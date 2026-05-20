@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/sessions/list
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 4c0b9bdd59df2358812d1ea50c332342689d2641eda974cdc2a860a9fb10936b
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: e0646f6f9a6e6f89406b63b96c753fb6196fc40d63082887eb176492b371f406
 ---
 
 ## List
@@ -81,7 +81,7 @@ List Sessions
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 21 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 22 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -130,6 +130,8 @@ List Sessions
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
+
+    - `"cache-diagnosis-2026-04-07"`
 
 ### Returns
 
@@ -773,7 +775,7 @@ List Sessions
 
     - `result: str`
 
-      Current evaluation state. 'pending' before the agent begins work; 'running' while producing or revising; 'evaluating' while the grader scores; 'satisfied'/'max_iterations_reached'/'failed'/'interrupted' are terminal.
+      Current evaluation state. `pending` before the agent begins work; `running` while producing or revising; `evaluating` while the grader scores; `satisfied`/`max_iterations_reached`/`failed`/`interrupted` are terminal.
 
     - `type: Literal["outcome_evaluation"]`
 

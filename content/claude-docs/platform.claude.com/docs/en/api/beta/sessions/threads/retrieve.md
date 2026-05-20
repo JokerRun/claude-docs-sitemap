@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/threads/retrieve
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: f588ee12757383d8afde63a83c961a7f7d01be8208ee032446488f02e6e0d02a
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 4835e374dc61a0de80d16d77e4bf6d04ae239fb59c54ec2889307766e0dd378d
 ---
 
 ## Retrieve
@@ -25,7 +25,7 @@ Get Session Thread
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 21 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -74,6 +74,8 @@ Get Session Thread
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
+
+    - `"cache-diagnosis-2026-04-07"`
 
 ### Returns
 

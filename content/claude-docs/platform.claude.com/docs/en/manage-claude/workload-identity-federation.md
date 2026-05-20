@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/workload-identity-federation
-fetched_at: 2026-05-09T03:13:52.260309Z
-sha256: be47faab8653c26b1716bc8f548527570d463cf4a45d0c57e04197342e34100c
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 56ac6cebdcbbc0814ece9b4fa7ad46e061e92654f65647b86deed036b8e001cd
 ---
 
 # Workload Identity Federation
@@ -54,7 +54,7 @@ A rule defines match conditions, a target, and the authorization scope and token
 
 - **Match:** The conditions an incoming JWT must satisfy. You can match on a `subject_prefix` (for example, `system:serviceaccount:prod:worker`, or with a trailing `*` for a prefix match), an exact `audience`, a map of exact claim values, a [CEL](https://cel.dev/) `condition` expression for complex logic, or any combination. At least one of `subject_prefix`, `claims`, or `condition` must be set, and all configured matchers must pass for the JWT to be accepted.
 - **Target:** The service account the matched JWT maps to.
-- **Authorization:** The OAuth `scope` granted on the minted token. At launch this is always `workspace:developer`, which grants the same access as an API key issued for that workspace (see [OAuth scopes](/docs/en/manage-claude/wif-reference#oauth-scopes)). The rule also sets `token_lifetime_seconds` (60 to 86400, default 3600).
+- **Authorization:** The OAuth `scope` granted on the minted token. The default is `workspace:developer`, which grants the same access as an API key issued for that workspace. Some products lock the scope when you create a rule from their flow; for example, the [MCP tunnels](/docs/en/agents-and-tools/mcp-tunnels/overview) create-tunnel modal creates rules scoped to `org:manage_tunnels`. See [OAuth scopes](/docs/en/manage-claude/wif-reference#oauth-scopes). The rule also sets `token_lifetime_seconds` (60 to 86400, default 3600).
 
 A single issuer can have many rules: one per team, namespace, or permission level. Rules are evaluated by ID: the client specifies which rule to use in the exchange request, and Anthropic verifies the JWT satisfies that rule's match criteria. There is no implicit rule search.
 
@@ -93,7 +93,7 @@ In the Claude Console, go to **Settings → Workload identity**.
     | Basic info | A name and optional description. Select the issuer you registered in step 1. |
     | Match | Choose **Static** for subject prefix, audience, and exact-claim matching, or **CEL** for an expression. Be as specific as your IdP's claims allow: a rule that matches too broadly grants more access than you intend. |
     | Target | Select the service account you created in step 2. |
-    | Authorization | OAuth scope (`workspace:developer` at launch; see [OAuth scopes](/docs/en/manage-claude/wif-reference#oauth-scopes)) and token lifetime in seconds. |
+    | Authorization | OAuth scope (`workspace:developer` by default, or a product-specific scope such as `org:manage_tunnels`; see [OAuth scopes](/docs/en/manage-claude/wif-reference#oauth-scopes)) and token lifetime in seconds. |
 
     Note the rule's ID (`fdrl_...`). Your workload passes this ID in every token-exchange request.
   </Step>

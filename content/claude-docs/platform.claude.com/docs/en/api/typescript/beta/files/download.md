@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/files/download
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: c951e2b83045ba80f45c62800b8b5a02372556e18c083a48766d037bea7ae37a
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: b2d5b273c19063b542a25c0ac576d84166776b850e07dc2d3c078bf9134c808a
 ---
 
 ## Download
@@ -27,7 +27,7 @@ Download File
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 21 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 22 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -77,9 +77,11 @@ Download File
 
       - `"managed-agents-2026-04-01"`
 
+      - `"cache-diagnosis-2026-04-07"`
+
 ### Returns
 
-- `unnamed_schema_1 = Response`
+- `unnamed_schema_2 = Response`
 
 ### Example
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/files
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: debfd61a7d7aefee30c3d9f7ce2567ef4f9c8beeb4bf9ac7dda274aa0d563c9a
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: e5bf71ca102c6764d3240a6e35775621b90818cb392b67d629fafbc8fe12ec15
 ---
 
 # Files
@@ -27,7 +27,7 @@ Upload File
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 21 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -76,6 +76,8 @@ Upload File
     - `:"advisor-tool-2026-03-01"`
 
     - `:"managed-agents-2026-04-01"`
+
+    - `:"cache-diagnosis-2026-04-07"`
 
 ### Returns
 
@@ -175,7 +177,7 @@ List Files
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 21 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -224,6 +226,8 @@ List Files
     - `:"advisor-tool-2026-03-01"`
 
     - `:"managed-agents-2026-04-01"`
+
+    - `:"cache-diagnosis-2026-04-07"`
 
 ### Returns
 
@@ -309,7 +313,7 @@ Download File
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 21 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -358,6 +362,8 @@ Download File
     - `:"advisor-tool-2026-03-01"`
 
     - `:"managed-agents-2026-04-01"`
+
+    - `:"cache-diagnosis-2026-04-07"`
 
 ### Returns
 
@@ -395,7 +401,7 @@ Get File Metadata
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 21 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -444,6 +450,8 @@ Get File Metadata
     - `:"advisor-tool-2026-03-01"`
 
     - `:"managed-agents-2026-04-01"`
+
+    - `:"cache-diagnosis-2026-04-07"`
 
 ### Returns
 
@@ -529,7 +537,7 @@ Delete File
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 21 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -578,6 +586,8 @@ Delete File
     - `:"advisor-tool-2026-03-01"`
 
     - `:"managed-agents-2026-04-01"`
+
+    - `:"cache-diagnosis-2026-04-07"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-fetch-tool
-fetched_at: 2026-05-12T03:14:46.254373Z
-sha256: fa425fbd8f15db7d92381d0f5ce80ddd85593f561905683a3fc572d04c1e91c2
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: bbb79cb5194274de7217a53cb0b422b32f00f9abdf0474d2ebae8fe1077394f6
 ---
 
 # Web fetch tool
@@ -740,13 +740,15 @@ You can include the web fetch tool in the [Messages Batches API](/docs/en/build-
 Web fetch usage has **no additional charges** beyond standard token costs:
 
 ```json
-"usage": {
-  "input_tokens": 25039,
-  "output_tokens": 931,
-  "cache_read_input_tokens": 0,
-  "cache_creation_input_tokens": 0,
-  "server_tool_use": {
-    "web_fetch_requests": 1
+{
+  "usage": {
+    "input_tokens": 25039,
+    "output_tokens": 931,
+    "cache_read_input_tokens": 0,
+    "cache_creation_input_tokens": 0,
+    "server_tool_use": {
+      "web_fetch_requests": 1
+    }
   }
 }
 ```

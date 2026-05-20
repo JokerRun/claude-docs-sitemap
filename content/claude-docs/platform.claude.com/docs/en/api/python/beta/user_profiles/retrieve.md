@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/user_profiles/retrieve
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 01a7d77520b4074f7620ef9c260c7f4af5c0567a3c4f0794794fa917866d0279
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 8c224ba6d1cb7b0c0f6c3fd122e25f7ebc88964d6cd0959385eb9e7203a9ba57
 ---
 
 ## Retrieve
@@ -23,7 +23,7 @@ Get User Profile
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 21 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 22 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -72,6 +72,8 @@ Get User Profile
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
+
+    - `"cache-diagnosis-2026-04-07"`
 
 ### Returns
 

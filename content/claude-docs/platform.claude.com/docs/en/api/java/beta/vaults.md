@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: be22b94ca597c1c830e8d436e2d98f31a367e41c5ca2864cf33fe036c7478ccf
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 45e3655a93a74dcdda1632d2a9590945e4e037cb73bea759d6d2bf96d4b55f4c
 ---
 
 # Vaults
@@ -70,6 +70,8 @@ Create Vault
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
+    - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
   - `String displayName`
 
@@ -213,6 +215,8 @@ List Vaults
 
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
+    - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
+
 ### Returns
 
 - `class BetaManagedAgentsVault:`
@@ -334,6 +338,8 @@ Get Vault
 
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
+    - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
+
 ### Returns
 
 - `class BetaManagedAgentsVault:`
@@ -454,6 +460,8 @@ Update Vault
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
+    - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
   - `Optional<String> displayName`
 
@@ -584,6 +592,8 @@ Delete Vault
 
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
+    - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
+
 ### Returns
 
 - `class BetaManagedAgentsDeletedVault:`
@@ -684,6 +694,8 @@ Archive Vault
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
+    - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
 ### Returns
 
@@ -857,6 +869,8 @@ Create Credential
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
+    - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
   - `Auth auth`
 
@@ -1192,6 +1206,8 @@ List Credentials
 
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
+    - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
+
 ### Returns
 
 - `class BetaManagedAgentsCredential:`
@@ -1398,6 +1414,8 @@ Get Credential
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
+    - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
 ### Returns
 
@@ -1609,6 +1627,8 @@ Update Credential
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
+    - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
   - `Optional<Auth> auth`
 
@@ -1901,6 +1921,8 @@ Delete Credential
 
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
+    - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
+
 ### Returns
 
 - `class BetaManagedAgentsDeletedCredential:`
@@ -2007,6 +2029,8 @@ Archive Credential
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
+    - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
 ### Returns
 
@@ -2218,6 +2242,8 @@ Validate Credential
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
+    - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
 ### Returns
 

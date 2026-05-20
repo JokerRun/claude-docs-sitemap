@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/messages/batches/create
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 860050c77c1a5670d61614b07ffe2908506eacb1e39e801a52dc6bad6d41bbad
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 2e89faa5a65f16a9ae5d38bb9efa9a3de047fb93435ba83ffa7d0526a87bcd15
 ---
 
 ## Create
@@ -72,6 +72,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
+    - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
   - `List<Request> requests`
 
@@ -3191,6 +3193,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
                 - `INPUT_TOKENS("input_tokens")`
 
               - `long value`
+
+      - `Optional<BetaDiagnosticsParam> diagnostics`
+
+        Request-level diagnostics. Currently carries the previous response
+        id for prompt-cache divergence reporting.
+
+        - `Optional<String> previousMessageId`
+
+          The `id` (`msg_...`) from this client's previous /v1/messages response. The server compares that request's prompt fingerprint against this one and returns `diagnostics.cache_miss_reason` when the prompt-cache prefix could not be reused. Pass `null` on the first turn to opt in without a prior message to compare.
 
       - `Optional<String> inferenceGeo`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/count_tokens
-fetched_at: 2026-05-09T03:13:52.260309Z
-sha256: 00c9fd69560c138678eb71d5313f6f333436bcc1afd9708d0fd4a7259f7f60cb
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: ac304bc80891d975e68ec6a87574b3077687a2d85e4554b524a5b0f55f9dbb7c
 ---
 
 ## Count Tokens
@@ -23,7 +23,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 21 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -72,6 +72,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
+
+    - `"cache-diagnosis-2026-04-07"`
 
 ### Body Parameters
 

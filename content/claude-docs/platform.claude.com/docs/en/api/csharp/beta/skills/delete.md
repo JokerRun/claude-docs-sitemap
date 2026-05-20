@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/skills/delete
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: dcc2f9a013b1eb32a9f025c8ee9b0ad92587924cee8f206a4dea426014192f5e
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: a7369d7a8128f0d7a235ec253e2c0a91c8a6d0989ca5f4dc0454b4af81ac9d1e
 ---
 
 ## Delete
@@ -74,6 +74,8 @@ Delete Skill
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
+    - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
 ### Returns
 

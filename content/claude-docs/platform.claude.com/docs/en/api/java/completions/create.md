@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/completions/create
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 15a650f841f8fd2269c8c10754ac3b25e08cfddd71df297c5633174d86dc20f4
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 7fe9381fbfb856697ff00387fe7f567101b216dc045080cacbee068d8beeea7e
 ---
 
 ## Create
@@ -72,6 +72,8 @@ Future models and features will not be compatible with Text Completions. See our
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
+    - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
   - `long maxTokensToSample`
 

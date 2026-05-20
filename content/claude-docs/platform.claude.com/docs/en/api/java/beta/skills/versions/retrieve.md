@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/skills/versions/retrieve
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 8398468a4e38128afdb74fd39e7297914d695df39f3dbb627b27a3b9ddbf99c3
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 951e1930ef7b7cb4f46841869a3b3feb9b72fc16d1ce8e24f9d1d4ed1d5bd326
 ---
 
 ## Retrieve
@@ -80,6 +80,8 @@ Get Skill Version
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
+    - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
 ### Returns
 

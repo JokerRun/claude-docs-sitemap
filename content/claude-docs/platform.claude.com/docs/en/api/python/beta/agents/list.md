@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/agents/list
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: c84f25badc46e17177195fd09cd984493b215a768c71cb4c602dd2cdd6382089
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: c03fb4f5fbdd073ccdc3af8da7d5a0a8464ac6bc327049f1b1d3030ead45e0b1
 ---
 
 ## List
@@ -41,7 +41,7 @@ List Agents
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 21 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 22 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -90,6 +90,8 @@ List Agents
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
+
+    - `"cache-diagnosis-2026-04-07"`
 
 ### Returns
 

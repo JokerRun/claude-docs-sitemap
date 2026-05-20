@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/threads/list
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: d3ca22e4802ec75986b15bd8a67c825f51e8533b7d84339486934097bf134e46
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 58e62583170c03012ec308b5704bdbe0080c9041237377ebd4602812e12f4589
 ---
 
 ## List
@@ -78,6 +78,8 @@ List Session Threads
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
+    - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
 ### Returns
 

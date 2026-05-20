@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/sessions/create
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 94a5c403a3cad5a4f25ff6fcc285d25c3dc53315ed5eb088e6411d160db82346
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: be0d6e4bb46b7fa69de9890e0f1350f8cc23835af5e6ab83caed58a1b75016dd
 ---
 
 ## Create
@@ -649,7 +649,7 @@ Create Session
 
     - `result: string`
 
-      Current evaluation state. 'pending' before the agent begins work; 'running' while producing or revising; 'evaluating' while the grader scores; 'satisfied'/'max_iterations_reached'/'failed'/'interrupted' are terminal.
+      Current evaluation state. `pending` before the agent begins work; `running` while producing or revising; `evaluating` while the grader scores; `satisfied`/`max_iterations_reached`/`failed`/`interrupted` are terminal.
 
     - `type: "outcome_evaluation"`
 

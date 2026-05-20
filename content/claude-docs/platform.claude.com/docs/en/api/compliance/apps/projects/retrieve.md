@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/retrieve
-fetched_at: 2026-05-09T03:13:52.260309Z
-sha256: 24ca0d66a09cdf8a110419b1b2205f3eff3e5e47cf806e3c0663fffe5be15ba8
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: cde420f302a0fda2f8e28fcfa407472369355010cd47c74270155dc8ceec54ae
 ---
 
 ## Retrieve
@@ -42,6 +42,10 @@ Detailed project information including description, instructions, and counts
 
   Project creation timestamp
 
+- `deleted_at: string`
+
+  Timestamp when the project was deleted by an end user, or null otherwise
+
 - `description: string`
 
   Project description
@@ -61,6 +65,10 @@ Detailed project information including description, instructions, and counts
 - `organization_id: string`
 
   Organization identifier (tagged ID)
+
+- `organization_uuid: string`
+
+  Organization UUID this project belongs to
 
 - `updated_at: string`
 

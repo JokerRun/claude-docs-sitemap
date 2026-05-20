@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/download
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: f829ee6e16c282370890f2dcc476c62e8420e8332c368321aca1eef8ee36457a
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 034089fc69ac727f427911c653ee3149752f90326120afcaf464b6c0c3556f79
 ---
 
 ## Download
@@ -25,7 +25,7 @@ Download File
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 21 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -74,6 +74,8 @@ Download File
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
+
+    - `"cache-diagnosis-2026-04-07"`
 
 ### Example
 

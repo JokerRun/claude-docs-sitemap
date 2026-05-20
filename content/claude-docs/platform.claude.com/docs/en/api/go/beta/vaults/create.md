@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/vaults/create
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: f08afb5458f6592c53a9322322aed8e8ba1f9ca753be0eda473da3451f0b627e
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 8dfe4fd01e60b6c9c3c61b4e3c0df7916b82208af949b3f49cdfc0eadfe2e0b7
 ---
 
 ## Create
@@ -80,6 +80,8 @@ Create Vault
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
       - `const AnthropicBetaManagedAgents2026_04_01 AnthropicBeta = "managed-agents-2026-04-01"`
+
+      - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
 
 ### Returns
 

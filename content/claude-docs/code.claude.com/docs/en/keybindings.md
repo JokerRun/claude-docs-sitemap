@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/keybindings
-fetched_at: 2026-05-12T03:14:46.254373Z
-sha256: b5a9fe7fbf28791d7f72f97da561c9a39adc6fecb725eb1bf73d5e8f3fed41dd
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: e87779ea02a243fb9521c4913434f4de04a6b36f54864ab50d264a1c732b868d
 ---
 
 > ## Documentation Index
@@ -268,10 +268,11 @@ Actions available in the `DiffDialog` context:
 
 Actions available in the `ModelPicker` context:
 
-| Action                       | Default | Description           |
-| :--------------------------- | :------ | :-------------------- |
-| `modelPicker:decreaseEffort` | Left    | Decrease effort level |
-| `modelPicker:increaseEffort` | Right   | Increase effort level |
+| Action                       | Default | Description                                       |
+| :--------------------------- | :------ | :------------------------------------------------ |
+| `modelPicker:decreaseEffort` | Left    | Decrease effort level                             |
+| `modelPicker:increaseEffort` | Right   | Increase effort level                             |
+| `modelPicker:setAsDefault`   | d       | Set highlighted model as default for new sessions |
 
 ### Select actions
 

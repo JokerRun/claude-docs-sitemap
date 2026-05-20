@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/files/delete
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 79b98bf9785fbec31c9d3935179a7325e5e9098f68a3a5980fe9bbcf9ec4b89b
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 0cfc4a0fe6c3010378153d0f30af836c827500ce454b4bba3f3cf6860cd9a678
 ---
 
 ## Delete
@@ -25,7 +25,7 @@ Delete File
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 21 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 22 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -74,6 +74,8 @@ Delete File
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
+
+    - `"cache-diagnosis-2026-04-07"`
 
 ### Returns
 

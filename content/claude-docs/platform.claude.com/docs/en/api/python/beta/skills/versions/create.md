@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/skills/versions/create
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 688bb06e1ec97eb36c5a5e201aa32863079af1ef9b070c0ec7dcadff6f78f040
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 5da6edb709679a315ec2a40fdb880bc19c65443df2e3b4371dcfd645bd800c77
 ---
 
 ## Create
@@ -33,7 +33,7 @@ Create Skill Version
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 21 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 22 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -82,6 +82,8 @@ Create Skill Version
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
+
+    - `"cache-diagnosis-2026-04-07"`
 
 ### Returns
 

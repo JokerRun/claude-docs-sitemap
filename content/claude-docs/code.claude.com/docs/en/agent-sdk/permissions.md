@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/permissions
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: ef459b97f4f9c4c4858ffb30956be23352283e0e3d480468198f335dbc5504b6
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 872080ab9adad460650a091684c0cf5414261842d91a8a7b598733c3b7edfc54
 ---
 
 > ## Documentation Index
@@ -29,7 +29,7 @@ When Claude requests a tool, the SDK checks permissions in this order:
   </Step>
 
   <Step title="Deny rules">
-    Check `deny` rules (from `disallowed_tools` and [settings.json](/en/settings#permission-settings)). If a deny rule matches, the tool is blocked, even in `bypassPermissions` mode.
+    Check `deny` rules (from `disallowed_tools` and [settings.json](/en/settings#permission-settings)). If a deny rule matches, the tool is blocked, even in `bypassPermissions` mode. Bare-name deny rules like `Bash` remove the tool from Claude's context before this evaluation begins, so only scoped rules like `Bash(rm *)` are checked at this step.
   </Step>
 
   <Step title="Permission mode">
@@ -54,12 +54,13 @@ This page focuses on **allow and deny rules** and **permission modes**. For the 
 
 ## Allow and deny rules
 
-`allowed_tools` and `disallowed_tools` (TypeScript: `allowedTools` / `disallowedTools`) add entries to the allow and deny rule lists in the evaluation flow above. They control whether a tool call is approved, not whether the tool is available to Claude.
+`allowed_tools` and `disallowed_tools` (TypeScript: `allowedTools` / `disallowedTools`) add entries to the allow and deny rule lists in the evaluation flow above. Allow rules only affect approval: a tool not listed in `allowed_tools` is still available to Claude and falls through to the permission mode. Deny rules behave differently depending on whether they name a tool or scope a pattern within one.
 
-| Option                           | Effect                                                                                                                           |
-| :------------------------------- | :------------------------------------------------------------------------------------------------------------------------------- |
-| `allowed_tools=["Read", "Grep"]` | `Read` and `Grep` are auto-approved. Tools not listed here still exist and fall through to the permission mode and `canUseTool`. |
-| `disallowed_tools=["Bash"]`      | `Bash` is always denied. Deny rules are checked first and hold in every permission mode, including `bypassPermissions`.          |
+| Option                            | Effect                                                                                                                                                                    |
+| :-------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `allowed_tools=["Read", "Grep"]`  | `Read` and `Grep` are auto-approved. Tools not listed here still exist and fall through to the permission mode and `canUseTool`.                                          |
+| `disallowed_tools=["Bash"]`       | The `Bash` tool definition is removed from the request. Claude does not see the tool and cannot attempt it.                                                               |
+| `disallowed_tools=["Bash(rm *)"]` | `Bash` stays available. Calls matching `rm *` are denied in every permission mode, including `bypassPermissions`. Other `Bash` calls fall through to the permission mode. |
 
 For a locked-down agent, pair `allowedTools` with `permissionMode: "dontAsk"`. Listed tools are approved; anything else is denied outright instead of prompting:
 

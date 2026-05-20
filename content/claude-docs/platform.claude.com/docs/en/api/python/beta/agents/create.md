@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/agents/create
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 8911088548ca214149d758eeef3cb11918b07eb95cf3b5455829e0768cb08b01
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 197b04cde5e46c2d772225f3355304b096d12eb403e77032045f240f0e6dc7e0
 ---
 
 ## Create
@@ -453,7 +453,7 @@ Create Agent
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 21 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 22 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -502,6 +502,8 @@ Create Agent
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
+
+    - `"cache-diagnosis-2026-04-07"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats/files/retrieve
-fetched_at: 2026-05-09T03:13:52.260309Z
-sha256: 2eec1475cfdf3642e1eac6cd2ab423673aa34b0978742dcd8a5787cc5ca48718
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 9bea78dcbbb658bef9a698f7c47716b4e121fdb653e0fe8df1da7799d32b041d
 ---
 
 ## Retrieve
@@ -36,6 +36,10 @@ download the bytes.
 - `filename: string`
 
   Display name of the file, if set
+
+- `md5: string`
+
+  Lowercase hex MD5 of the file's preferred downloadable variant, as recorded at upload time. Null when no stored hash is available. The sibling `/content` endpoint also sets a `Content-MD5` header (base64 per RFC 1864) computed over the exact served bytes; when the two disagree, the header is authoritative.
 
 - `message_ids: array of string`
 

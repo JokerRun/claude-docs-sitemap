@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats/files
-fetched_at: 2026-05-09T03:13:52.260309Z
-sha256: 0f15f455fde18aa197fe0e2a0ec1de68ebfc1af27808bd0b7bed37b39953f7b1
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 6aced4f61330e01e8efda1de6e33e12378187f4d72a87fd0df207b1aa31520d7
 ---
 
 # Files
@@ -38,6 +38,10 @@ download the bytes.
 - `filename: string`
 
   Display name of the file, if set
+
+- `md5: string`
+
+  Lowercase hex MD5 of the file's preferred downloadable variant, as recorded at upload time. Null when no stored hash is available. The sibling `/content` endpoint also sets a `Content-MD5` header (base64 per RFC 1864) computed over the exact served bytes; when the two disagree, the header is authoritative.
 
 - `message_ids: array of string`
 
@@ -95,7 +99,7 @@ curl https://api.anthropic.com/v1/compliance/apps/chats/files/$CLAUDE_FILE_ID \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 
-## Content
+## Download
 
 **get** `/v1/compliance/apps/chats/files/{claude_file_id}/content`
 
@@ -122,7 +126,7 @@ curl https://api.anthropic.com/v1/compliance/apps/chats/files/$CLAUDE_FILE_ID/co
 
 ### File Retrieve Response
 
-- `FileRetrieveResponse = object { id, created_at, filename, 3 more }`
+- `FileRetrieveResponse = object { id, created_at, filename, 4 more }`
 
   File metadata for GET /v1/compliance/apps/chats/files/{claude_file_id}.
 
@@ -140,6 +144,10 @@ curl https://api.anthropic.com/v1/compliance/apps/chats/files/$CLAUDE_FILE_ID/co
   - `filename: string`
 
     Display name of the file, if set
+
+  - `md5: string`
+
+    Lowercase hex MD5 of the file's preferred downloadable variant, as recorded at upload time. Null when no stored hash is available. The sibling `/content` endpoint also sets a `Content-MD5` header (base64 per RFC 1864) computed over the exact served bytes; when the two disagree, the header is authoritative.
 
   - `message_ids: array of string`
 
@@ -168,7 +176,3 @@ curl https://api.anthropic.com/v1/compliance/apps/chats/files/$CLAUDE_FILE_ID/co
     Constant string confirming deletion
 
     - `"claude_file_deleted"`
-
-### File Content Response
-
-- `FileContentResponse = unknown`

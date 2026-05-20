@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/messages/batches/create
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: ffca32801a18c4c3957fd30e0cc6fc3a4cb5bdbc993af783be6a42b14d6a5f83
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 7da8f066e8fb7e3090c0fb09e140c853d5c4df5b2e198749f29bcbfc7e4ba484
 ---
 
 ## Create
@@ -3164,6 +3164,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             - `value: int`
 
+    - `diagnostics: Optional[BetaDiagnosticsParam]`
+
+      Request-level diagnostics. Currently carries the previous response
+      id for prompt-cache divergence reporting.
+
+      - `previous_message_id: Optional[str]`
+
+        The `id` (`msg_...`) from this client's previous /v1/messages response. The server compares that request's prompt fingerprint against this one and returns `diagnostics.cache_miss_reason` when the prompt-cache prefix could not be reused. Pass `null` on the first turn to opt in without a prior message to compare.
+
     - `inference_geo: Optional[str]`
 
       Specifies the geographic region for inference processing. If not specified, the workspace's `default_inference_geo` is used.
@@ -5228,7 +5237,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 21 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 22 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -5277,6 +5286,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
+
+    - `"cache-diagnosis-2026-04-07"`
 
 ### Returns
 

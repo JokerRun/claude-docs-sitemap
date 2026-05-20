@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/mcp
-fetched_at: 2026-05-19T03:15:49.705713Z
-sha256: 987d198ab7e132f58bc27a3fd26884b304383bcc6997a7eb5830083d1f57bc70
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: fab279fb17fb5c273f70ba044e2cc39f68d9b9ba94d40a5f283d947549b3c18a
 ---
 
 > ## Documentation Index
@@ -772,6 +772,8 @@ If you've logged into Claude Code with a [Claude.ai](https://claude.ai) account,
     Claude.ai servers appear in the list with indicators showing they come from Claude.ai.
   </Step>
 </Steps>
+
+Claude.ai connectors are fetched only when your active [authentication method](/en/authentication#authentication-precedence) is your Claude.ai subscription. They are not loaded when `ANTHROPIC_API_KEY`, `ANTHROPIC_AUTH_TOKEN`, `apiKeyHelper`, or a third-party provider such as Bedrock or Vertex is active, even if you previously ran `/login`. If `/mcp` does not list a connector you added, run `/status` to confirm which authentication method is active, unset that environment variable or remove the `apiKeyHelper` setting, then run `/login` to select your Claude.ai account.
 
 A server you've added in Claude Code takes [precedence](#scope-hierarchy-and-precedence) over a claude.ai connector that points at the same URL. When this happens, `/mcp` lists the connector as hidden and shows how to remove the duplicate if you'd rather use the connector.
 

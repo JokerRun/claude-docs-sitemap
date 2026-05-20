@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/models/retrieve
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: e1717dbc52008d4316e6841092194fdfecbe79b21d0b740c919c6ae0cdf5295a
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: c3404cc106e126fd300432564058f0ab7101879a8afa0addce400a076b348edf
 ---
 
 ## Retrieve
@@ -74,6 +74,8 @@ The Models API response can be used to determine information about a specific mo
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
+    - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
 ### Returns
 

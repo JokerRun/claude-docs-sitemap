@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/agents/archive
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 5fa8cbbf0e175256c7fa76acf25908c4132dc876b50db930848fccfae32d4c38
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 9507208aa908b02cc86f666d0e57b72df50e58e6776d377833387ca5715a5eb7
 ---
 
 ## Archive
@@ -23,7 +23,7 @@ Archive Agent
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 21 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -72,6 +72,8 @@ Archive Agent
     - `:"advisor-tool-2026-03-01"`
 
     - `:"managed-agents-2026-04-01"`
+
+    - `:"cache-diagnosis-2026-04-07"`
 
 ### Returns
 

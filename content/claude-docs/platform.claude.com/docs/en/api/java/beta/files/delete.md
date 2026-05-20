@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/files/delete
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 2a1b5146049cfc29f0034c3d984b255582e07f935b2e3a2e84a9607e4a66f45c
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 2d4fe675301638cbe6c2cccf7fdb054b153a5c1fe21f9e063664b6d4461e33c3
 ---
 
 ## Delete
@@ -72,6 +72,8 @@ Delete File
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
+    - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
 ### Returns
 

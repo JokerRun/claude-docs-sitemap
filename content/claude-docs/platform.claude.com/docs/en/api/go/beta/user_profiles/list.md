@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/user_profiles/list
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: b29950126c31aafd57c8a6064d3517d69b27fc4d43993fa1b524f1365779129f
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 4cfe2207d94881525e33d02ef45c6823f2c2e45f8235d2546a4ab5cacfcbcc05
 ---
 
 ## List
@@ -88,6 +88,8 @@ List User Profiles
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
       - `const AnthropicBetaManagedAgents2026_04_01 AnthropicBeta = "managed-agents-2026-04-01"`
+
+      - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
 
 ### Returns
 

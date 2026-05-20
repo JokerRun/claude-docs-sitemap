@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/agents/versions
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 8fb16fea134319d3613b875d04a512e89be0cf79ceb32d367f09e9448f3052cf
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 7e116831bb0b5e227221617743c5342ea699facc9eab9ef31eba511aa604f9d1
 ---
 
 # Versions
@@ -82,6 +82,8 @@ List Agent Versions
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
+    - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
 ### Returns
 

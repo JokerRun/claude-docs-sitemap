@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/agents/archive
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 3cc1c805af333d90e29ff1bb7c2032ef1bbe5d8211b5e107c62674c46cfaeb38
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 243c12c78b3da4f092481ccf59067d0b164011549653ada279d2be6272a9216a
 ---
 
 ## Archive
@@ -23,7 +23,7 @@ Archive Agent
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 21 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 22 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -72,6 +72,8 @@ Archive Agent
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
+
+    - `"cache-diagnosis-2026-04-07"`
 
 ### Returns
 

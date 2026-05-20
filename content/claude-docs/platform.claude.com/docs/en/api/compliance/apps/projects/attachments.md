@@ -1,11 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/attachments
-fetched_at: 2026-05-09T03:13:52.260309Z
-sha256: c820fc06c78e16bcd51b9d8fedd62942d9408e900964ced2e92669213e0f49e3
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 8e67534d40cefd316449691b2a3f513548189d28f02c02b5069d24c021c69ed9
 ---
 
-## Attachments
+# Attachments
+
+## List
 
 **get** `/v1/compliance/apps/projects/{project_id}/attachments`
 
@@ -120,3 +122,65 @@ NotFoundException: If project doesn't exist or project_id format is invalid
 curl https://api.anthropic.com/v1/compliance/apps/projects/$PROJECT_ID/attachments \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
+
+## Domain Types
+
+### Attachment List Response
+
+- `AttachmentListResponse = object { id, created_at, filename, 2 more }  or object { id, created_at, filename, 2 more }`
+
+  File attachment reference for compliance responses.
+
+  - `ComplianceProjectFileReference = object { id, created_at, filename, 2 more }`
+
+    File attachment reference for compliance responses.
+
+    - `id: string`
+
+      File identifier (e.g., 'claude_file_abcd')
+
+    - `created_at: string`
+
+      Creation timestamp (RFC 3339 format)
+
+    - `filename: string`
+
+      Display name of the file (e.g., 'document.pdf')
+
+    - `mime_type: string`
+
+      MIME type of the file when it was uploaded (e.g., 'application/pdf')
+
+    - `type: "project_file"`
+
+      Discriminator marking this as a binary file
+
+      - `"project_file"`
+
+  - `ComplianceProjectDocReference = object { id, created_at, filename, 2 more }`
+
+    Project document attachment reference for compliance responses.
+
+    - `id: string`
+
+      Project document identifier (e.g., 'claude_proj_doc_abcd')
+
+    - `created_at: string`
+
+      Creation timestamp (RFC 3339 format)
+
+    - `filename: string`
+
+      Display name of the document (e.g., 'document.txt')
+
+    - `mime_type: "text/plain"`
+
+      MIME type of the project document, always set to plain text
+
+      - `"text/plain"`
+
+    - `type: "project_doc"`
+
+      Discriminator marking this as a plain text document
+
+      - `"project_doc"`

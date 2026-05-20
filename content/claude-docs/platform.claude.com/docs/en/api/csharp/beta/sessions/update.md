@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/sessions/update
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 566f462525efa692de80bb0e8b459dad94df4892bb096bd74c6c9d6e8a589371
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: bc22418fd8b1692405f0da34c5707ce359bbf2c133fdd025997aff79ed32f933
 ---
 
 ## Update
@@ -20,6 +20,10 @@ Update Session
   - `required string sessionID`
 
     Path param: Path parameter session_id
+
+  - `BetaManagedAgentsSessionAgentUpdate agent`
+
+    Body param: Mid-session agent configuration update. Only `tools` and `mcp_servers` are updatable. Full replacement: the provided array becomes the new value. To preserve existing entries, GET the session, modify the array, and POST it back.
 
   - `IReadOnlyDictionary<string, string>? metadata`
 
@@ -84,6 +88,8 @@ Update Session
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
+    - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
 ### Returns
 
@@ -691,7 +697,7 @@ Update Session
 
     - `required string Result`
 
-      Current evaluation state. 'pending' before the agent begins work; 'running' while producing or revising; 'evaluating' while the grader scores; 'satisfied'/'max_iterations_reached'/'failed'/'interrupted' are terminal.
+      Current evaluation state. `pending` before the agent begins work; `running` while producing or revising; `evaluating` while the grader scores; `satisfied`/`max_iterations_reached`/`failed`/`interrupted` are terminal.
 
     - `required Type Type`
 

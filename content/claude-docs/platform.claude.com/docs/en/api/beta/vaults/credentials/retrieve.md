@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/retrieve
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 4358e6813eafaf673729f283b5b88fde251f5e1c1806204c280240cdabdceec4
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 9b3f43714f352e7903749166e6763d315e4e22f0bf69f539a3e9a21877513d73
 ---
 
 ## Retrieve
@@ -25,7 +25,7 @@ Get Credential
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 21 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -74,6 +74,8 @@ Get Credential
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
+
+    - `"cache-diagnosis-2026-04-07"`
 
 ### Returns
 

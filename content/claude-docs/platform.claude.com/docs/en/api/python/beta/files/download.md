@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/files/download
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 3b934e137bbb3e3d23673c52a3135e90714673597ca8b406c19510b9be5706da
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: d3066641846d87f3ad3089b265804b5b5c0cdce76039d60e4411206ca48fe03b
 ---
 
 ## Download
@@ -25,7 +25,7 @@ Download File
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 21 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 22 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -74,6 +74,8 @@ Download File
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
+
+    - `"cache-diagnosis-2026-04-07"`
 
 ### Returns
 

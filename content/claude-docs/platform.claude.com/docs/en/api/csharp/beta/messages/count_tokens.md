@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/messages/count_tokens
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 45f3157025b822a535a1e8828374537606ffddd77f75215e5573ade3e745e30b
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 037e7f4b8d28c2aa6d9c8b0cdbfdff014e0ebdc8fe2d31cfd25a441f73ed79ba
 ---
 
 ## Count Tokens
@@ -4236,6 +4236,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
+    - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
 ### Returns
 

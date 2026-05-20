@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics
-fetched_at: 2026-05-19T03:15:49.705713Z
-sha256: 31be9f5d58b9d6b1a17ab3ab880f53278f472a4cac3bc6c4422b8bf383b60fce
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 3dfb4c259299e24cbaecb6aadf57d4b06f1ef29d1c09e1c5a31412b73d3cc8a5
 ---
 
 # Cache diagnostics
@@ -1327,7 +1327,7 @@ The `diagnostics` field on the response `Message` has four possible states:
 | --- | --- |
 | field absent | The request did not include `diagnostics`, or the beta header was missing. |
 | `null` | Either `previous_message_id` was `null` (first turn, nothing to compare), or a comparison ran and found no divergence. |
-| `{"cache_miss_reason": null}` | The comparison was still running when the response was serialized. This can happen when prefill is very fast. Treat it as inconclusive and check the next turn. |
+| `{"cache_miss_reason": null}` | The comparison was still running when the response was serialized. This can happen when the response starts very quickly. Treat it as inconclusive and check the next turn. |
 | `{"cache_miss_reason": {...}}` | A `cache_miss_reason` is attached. For `*_changed` types this identifies the first divergence point; `previous_message_not_found` and `unavailable` are cases where no comparison was produced. |
 
 When `cache_miss_reason` is non-null, it looks like this:

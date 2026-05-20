@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/models/retrieve
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: afa3ea31e9f594895e42776372de5b407ef9a2d635e6bd9e091886169b75aa40
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: d46b7a3020efdf0412638c3747dea5785992f10b75e8ac67005a55a40a28667f
 ---
 
 ## Retrieve
@@ -78,6 +78,8 @@ The Models API response can be used to determine information about a specific mo
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
       - `const AnthropicBetaManagedAgents2026_04_01 AnthropicBeta = "managed-agents-2026-04-01"`
+
+      - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
 
 ### Returns
 

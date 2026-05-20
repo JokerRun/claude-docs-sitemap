@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/memory_stores/memories/list
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 0bff123c13ab5b30a66732e8747dc987c525217028d527a34d18bcd6b06ca084
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 13b7c17702806141598813b8384aaa6872f40f16793ea188125669e867bce24c
 ---
 
 ## List
@@ -61,7 +61,7 @@ List memories
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 21 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 22 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -110,6 +110,8 @@ List memories
       - `"advisor-tool-2026-03-01"`
 
       - `"managed-agents-2026-04-01"`
+
+      - `"cache-diagnosis-2026-04-07"`
 
 ### Returns
 

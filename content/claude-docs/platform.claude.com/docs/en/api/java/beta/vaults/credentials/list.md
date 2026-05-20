@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/credentials/list
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 55fbc34ac88ddb907b28956fb7fe6e8c83db4a51735ca305f69ec641114bd0e1
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: d4fb47eaf9de49966927b9d1d214f56c1df3963f837c1d01cfbde720b7d40e7b
 ---
 
 ## List
@@ -82,6 +82,8 @@ List Credentials
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
+    - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
 ### Returns
 

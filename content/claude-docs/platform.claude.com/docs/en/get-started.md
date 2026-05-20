@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/get-started
-fetched_at: 2026-05-16T03:13:19.414477Z
-sha256: 5eb9136cd40b4dc3c83a7ee531a6499066b881da805ad62e4b7d46e94c51880b
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 08e50da5f90372210b28a6a887e1bf18f412c952ee182c6348b4783838ea1e9d
 ---
 
 # Get started with Claude
@@ -334,7 +334,7 @@ main().catch(console.error);
             }
 
             dependencies {
-                implementation("com.anthropic:anthropic-java:2.32.0")
+                implementation("com.anthropic:anthropic-java:2.33.0")
             }
 
             application {
@@ -359,7 +359,7 @@ main().catch(console.error);
                 <dependency>
                   <groupId>com.anthropic</groupId>
                   <artifactId>anthropic-java</artifactId>
-                  <version>2.32.0</version>
+                  <version>2.33.0</version>
                 </dependency>
               </dependencies>
             </project>

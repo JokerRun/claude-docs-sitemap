@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/memory_stores/retrieve
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 5ff755e5dfee3f35c4844619fdc7a8e5e28532042d35b8bdb640370b8dffd5f7
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 5f6d27bd2195513ae4bd5179d08873efd119c3ab96a2c398c168cd7ae4fc3a8e
 ---
 
 ## Retrieve
@@ -72,6 +72,8 @@ Retrieve a memory store
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
+    - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
 ### Returns
 

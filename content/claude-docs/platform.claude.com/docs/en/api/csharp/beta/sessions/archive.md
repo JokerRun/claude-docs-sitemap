@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/sessions/archive
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 6e48580117eb57e0a940e141d4e8fb22d83f5d803ce9d530ab222ccea278ee80
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 62cfac1c9bf52f3f52531b117612cdd91726e61276447fae66cf73faedacb7fb
 ---
 
 ## Archive
@@ -72,6 +72,8 @@ Archive Session
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
+    - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
 ### Returns
 
@@ -679,7 +681,7 @@ Archive Session
 
     - `required string Result`
 
-      Current evaluation state. 'pending' before the agent begins work; 'running' while producing or revising; 'evaluating' while the grader scores; 'satisfied'/'max_iterations_reached'/'failed'/'interrupted' are terminal.
+      Current evaluation state. `pending` before the agent begins work; `running` while producing or revising; `evaluating` while the grader scores; `satisfied`/`max_iterations_reached`/`failed`/`interrupted` are terminal.
 
     - `required Type Type`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock
-fetched_at: 2026-05-16T03:13:19.414477Z
-sha256: 2fa09ae82e480e84279a0b0d18a60db012c90eaab7b9b56ecd4746b1f48e591d
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 31ab191f73e53450d4bc467a20eb75b21accfcb58d003c083737f39e4fa14257
 ---
 
 # Claude in Amazon Bedrock
@@ -106,7 +106,7 @@ go get github.com/anthropics/anthropic-sdk-go/bedrock
 <Tabs>
 <Tab title="Gradle">
 ```kotlin
-implementation("com.anthropic:anthropic-java-bedrock:2.32.0")
+implementation("com.anthropic:anthropic-java-bedrock:2.33.0")
 ```
 </Tab>
 <Tab title="Maven">
@@ -114,7 +114,7 @@ implementation("com.anthropic:anthropic-java-bedrock:2.32.0")
 <dependency>
     <groupId>com.anthropic</groupId>
     <artifactId>anthropic-java-bedrock</artifactId>
-    <version>2.32.0</version>
+    <version>2.33.0</version>
 </dependency>
 ```
 </Tab>
@@ -341,6 +341,10 @@ Model IDs in Claude in Amazon Bedrock carry an `anthropic.` provider prefix. Mod
 | Claude Opus 4.7       | `anthropic.claude-opus-4-7`       | Open                                                                       |
 | Claude Haiku 4.5      | `anthropic.claude-haiku-4-5`      | Open                                                                       |
 | Claude Mythos Preview | `anthropic.claude-mythos-preview` | Invitation only ([Project Glasswing](https://anthropic.com/glasswing))     |
+
+<Tip>
+Upgrading to a newer Claude model? In Claude Code, run `/claude-api migrate` to apply model ID swaps and breaking parameter changes across your codebase. The skill detects which cloud platform your code targets and adjusts model ID formats and feature changes for that platform. See [Migrating to a newer Claude model](/docs/en/agents-and-tools/agent-skills/claude-api-skill#migrating-to-a-newer-claude-model).
+</Tip>
 
 ## Feature support
 

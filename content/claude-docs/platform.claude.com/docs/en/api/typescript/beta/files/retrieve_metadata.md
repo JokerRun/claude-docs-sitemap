@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/files/retrieve_metadata
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 1af10cd8c3748af16c8b122373db1abe9e36b1ecad8a4539c05d6367b0619471
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 7336bf9ddfbe273a13937af08c84f1c8c8a4bc57c804801289bb9343a95d6f26
 ---
 
 ## Retrieve Metadata
@@ -27,7 +27,7 @@ Get File Metadata
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 21 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 22 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -76,6 +76,8 @@ Get File Metadata
       - `"advisor-tool-2026-03-01"`
 
       - `"managed-agents-2026-04-01"`
+
+      - `"cache-diagnosis-2026-04-07"`
 
 ### Returns
 

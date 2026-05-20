@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/vaults/retrieve
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 82624a1bfeac93f0a85263244424675d5006d0bae272fc70a375434c79bff195
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 225b492bf571c1e512a5103f88d5727d7fde53ab1eee476b5ce2bd64c0e16280
 ---
 
 ## Retrieve
@@ -72,6 +72,8 @@ Get Vault
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
+    - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
 ### Returns
 

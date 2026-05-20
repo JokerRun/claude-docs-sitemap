@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/vaults/credentials/update
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 38195ffd61988fc2b759d757bbea82ef20ce6b1401a09c489a9289823be5a17d
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: daefaa313bba79141c8d551f38a525293eb462d5f992b02424992707b8a00f02
 ---
 
 ## Update
@@ -109,7 +109,7 @@ Update Credential
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 21 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 22 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -158,6 +158,8 @@ Update Credential
       - `"advisor-tool-2026-03-01"`
 
       - `"managed-agents-2026-04-01"`
+
+      - `"cache-diagnosis-2026-04-07"`
 
 ### Returns
 

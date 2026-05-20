@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/memory_stores/archive
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 2a3740dc0f4284b0cc63d3fbc05386389df5262695dbd2e2b15ac3dbec6aeda0
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: db7c4bdb02a5a12403a256bd0fe62b7c3c5c71ce3af2060e52c89a3902b2ccf3
 ---
 
 ## Archive
@@ -70,6 +70,8 @@ Archive a memory store
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
+    - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
 ### Returns
 

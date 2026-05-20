@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/files/upload
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: f1db99c630df14f173f41b8b0b6c2a4582fdf50ae0abca144a02b09b1c721913
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: ad7b76491809bf8b7ccfa3a994c1920669171a78d76878aff7c7f1af5aae0a12
 ---
 
 ## Upload
@@ -68,6 +68,8 @@ Upload File
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
+    - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
   - `String file`
 

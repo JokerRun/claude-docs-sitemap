@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/create
-fetched_at: 2026-04-21T03:11:28.016230Z
-sha256: 6061341e22b5ee90219c2bcfa571ce89d330da09e513880f5a8988e10f40a30d
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 84e1ff73f16ee85eb79fbbeedd380c122d9010ff68fae356d3d3355e0399f7d3
 ---
 
 ## Create
@@ -10,6 +10,14 @@ sha256: 6061341e22b5ee90219c2bcfa571ce89d330da09e513880f5a8988e10f40a30d
 **post** `/v1/organizations/workspaces`
 
 Create Workspace
+
+### Header Parameters
+
+- `"anthropic-beta": optional array of string`
+
+  Optional header to specify the beta version(s) you want to use.
+
+  To use multiple betas, use a comma separated list like `beta1,beta2` or specify the header multiple times for each beta.
 
 ### Body Parameters
 
@@ -39,9 +47,13 @@ Create Workspace
 
     Geographic region for workspace data storage. Immutable after creation. Defaults to 'us' if omitted.
 
+- `tags: optional map[string]`
+
+  User-defined tags as string key-value pairs. Keys may not begin with `anthropic`.
+
 ### Returns
 
-- `Workspace = object { id, archived_at, created_at, 4 more }`
+- `Workspace = object { id, archived_at, created_at, 5 more }`
 
   - `id: string`
 
@@ -85,6 +97,10 @@ Create Workspace
 
     Name of the Workspace.
 
+  - `tags: map[string]`
+
+    User-defined tags as string key-value pairs. Keys may not begin with `anthropic`.
+
   - `type: "workspace"`
 
     Object type.
@@ -101,6 +117,10 @@ curl https://api.anthropic.com/v1/organizations/workspaces \
     -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY" \
     -d '{
-          "name": "x"
+          "name": "x",
+          "tags": {
+            "env": "prod",
+            "team": "platform"
+          }
         }'
 ```

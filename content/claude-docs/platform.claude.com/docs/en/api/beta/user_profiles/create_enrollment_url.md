@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/create_enrollment_url
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 4b0be44a4f15dc9a0d00a364b6e4ddbd180896c564f96fd76c9a6fd4507ddc04
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: a26bc1986278e0eb8be47a2e13239fb1d717a568fb0533eab1c95318c04283e9
 ---
 
 ## Create Enrollment URL
@@ -23,7 +23,7 @@ Create Enrollment URL
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 21 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -72,6 +72,8 @@ Create Enrollment URL
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
+
+    - `"cache-diagnosis-2026-04-07"`
 
 ### Returns
 

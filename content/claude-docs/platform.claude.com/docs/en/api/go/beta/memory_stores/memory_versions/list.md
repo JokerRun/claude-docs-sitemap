@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/memory_stores/memory_versions/list
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 26b786b7ead0c24ce037adf88d60e6131e452708db75b474df2eb87077431f92
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 32ff579c973ebe05161a95fdece109e8943d031314b2bb81a8e7fe1b2fe35a4b
 ---
 
 ## List
@@ -110,6 +110,8 @@ List memory versions
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
       - `const AnthropicBetaManagedAgents2026_04_01 AnthropicBeta = "managed-agents-2026-04-01"`
+
+      - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
 
 ### Returns
 

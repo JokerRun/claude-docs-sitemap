@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/memory_stores/memory_versions/list
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: eab4a1355dad4b9e580e96386122ec7df669b09e6d2b557869b49aa17f8428f0
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 236b439c565266685530b22cdf0a0afcf0612ac9cbe03314cb6ac0369dd6c854
 ---
 
 ## List
@@ -108,6 +108,8 @@ List memory versions
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
+    - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
 ### Returns
 

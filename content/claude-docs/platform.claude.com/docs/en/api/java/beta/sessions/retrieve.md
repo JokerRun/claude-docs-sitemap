@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/retrieve
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: e38325d47a4a0c9d1dae55d57e03143c1fc53e57e2ee4198a08769b704bce42b
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 8a3c4e77fb6ba70a69dd4cec9ca62b5fc7054c7f0a37c08b111179525efe7d5e
 ---
 
 ## Retrieve
@@ -70,6 +70,8 @@ Get Session
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
+    - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
 ### Returns
 
@@ -677,7 +679,7 @@ Get Session
 
     - `String result`
 
-      Current evaluation state. 'pending' before the agent begins work; 'running' while producing or revising; 'evaluating' while the grader scores; 'satisfied'/'max_iterations_reached'/'failed'/'interrupted' are terminal.
+      Current evaluation state. `pending` before the agent begins work; `running` while producing or revising; `evaluating` while the grader scores; `satisfied`/`max_iterations_reached`/`failed`/`interrupted` are terminal.
 
     - `Type type`
 

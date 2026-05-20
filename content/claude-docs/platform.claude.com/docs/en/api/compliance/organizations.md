@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations
-fetched_at: 2026-05-09T03:13:52.260309Z
-sha256: 23b3f9c4906d94619a2cffa9622f87fe39421e619e9550c81343f121add9a3e4
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 7708e0311b282418334a2f4e8fb8259809f2ba1f1ecbed4384995ab50564239c
 ---
 
 # Organizations
@@ -103,9 +103,9 @@ List of user members with pagination info
 
 ### Returns
 
-- `data: array of object { id, created_at, email, full_name }`
+- `data: array of object { id, created_at, email, 2 more }`
 
-  List of current organization members sorted by account creation date ascending
+  List of current organization members sorted by organization join date ascending
 
   - `id: string`
 
@@ -122,6 +122,28 @@ List of user members with pagination info
   - `full_name: string`
 
     User's current full name
+
+  - `organization_role: "admin" or "billing" or "claude_code_user" or 6 more`
+
+    User's built-in role within the organization. This is distinct from any custom RBAC roles that may also be assigned.
+
+    - `"admin"`
+
+    - `"billing"`
+
+    - `"claude_code_user"`
+
+    - `"developer"`
+
+    - `"managed"`
+
+    - `"membership_admin"`
+
+    - `"owner"`
+
+    - `"primary_owner"`
+
+    - `"user"`
 
 - `has_more: boolean`
 
@@ -142,7 +164,7 @@ curl https://api.anthropic.com/v1/compliance/organizations/$ORG_UUID/users \
 
 ### User List Response
 
-- `UserListResponse = object { id, created_at, email, full_name }`
+- `UserListResponse = object { id, created_at, email, 2 more }`
 
   User member information for compliance responses.
 
@@ -161,6 +183,28 @@ curl https://api.anthropic.com/v1/compliance/organizations/$ORG_UUID/users \
   - `full_name: string`
 
     User's current full name
+
+  - `organization_role: "admin" or "billing" or "claude_code_user" or 6 more`
+
+    User's built-in role within the organization. This is distinct from any custom RBAC roles that may also be assigned.
+
+    - `"admin"`
+
+    - `"billing"`
+
+    - `"claude_code_user"`
+
+    - `"developer"`
+
+    - `"managed"`
+
+    - `"membership_admin"`
+
+    - `"owner"`
+
+    - `"primary_owner"`
+
+    - `"user"`
 
 # Roles
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/archive
-fetched_at: 2026-04-25T03:09:48.142425Z
-sha256: 08df2be86dc87341719c106c4e4582907c29b9feb9ac9550b19d97376f182e86
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: df70ce7f6e4d6705088b8c849c0197198e6692175804b0c99a5eff2f597b2890
 ---
 
 ## Archive
@@ -17,7 +17,7 @@ Archive Workspace
 
 ### Returns
 
-- `Workspace = object { id, archived_at, created_at, 4 more }`
+- `Workspace = object { id, archived_at, created_at, 5 more }`
 
   - `id: string`
 
@@ -60,6 +60,10 @@ Archive Workspace
   - `name: string`
 
     Name of the Workspace.
+
+  - `tags: map[string]`
+
+    User-defined tags as string key-value pairs. Keys may not begin with `anthropic`.
 
   - `type: "workspace"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai
-fetched_at: 2026-05-16T03:13:19.414477Z
-sha256: 64ff1c2fcb9c2f6a91ae7c1c23d64c4ba4a704e61bc28ab7f33916eb8873f6a4
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: c6c31484250808b0f4d936cc8c86b44ce29f8e8ad3d2164c7f20ecc091a4a1d4
 ---
 
 # Claude on Vertex AI
@@ -52,14 +52,14 @@ go get github.com/anthropics/anthropic-sdk-go
 <Tab title="Java">
 <CodeGroup>
 ```groovy Gradle
-implementation("com.anthropic:anthropic-java-vertex:2.32.0")
+implementation("com.anthropic:anthropic-java-vertex:2.33.0")
 ```
 
 ```xml Maven
 <dependency>
     <groupId>com.anthropic</groupId>
     <artifactId>anthropic-java-vertex</artifactId>
-    <version>2.32.0</version>
+    <version>2.33.0</version>
 </dependency>
 ```
 
@@ -131,6 +131,10 @@ Lifecycle terms (Deprecated, Retired) are defined in [Model deprecations](/docs/
 | Claude Opus 4 <br /><small>Deprecated. Retiring September 14, 2026.</small> | claude-opus-4@20250514   |
 | Claude Haiku 4.5               | claude-haiku-4-5@20251001 |
 | Claude Haiku 3.5 <br /><small>Deprecated. Retiring July 5, 2026.</small> | claude-3-5-haiku@20241022 |
+
+<Tip>
+Upgrading to a newer Claude model? In Claude Code, run `/claude-api migrate` to apply model ID swaps and breaking parameter changes across your codebase. The skill detects which cloud platform your code targets and adjusts model ID formats and feature changes for that platform. See [Migrating to a newer Claude model](/docs/en/agents-and-tools/agent-skills/claude-api-skill#migrating-to-a-newer-claude-model).
+</Tip>
 
 ### Making requests
 

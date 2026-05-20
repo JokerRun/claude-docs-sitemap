@@ -1,17 +1,19 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/cloud-containers
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 18695a12bff72365ab03c88e350b3fd6cc6a5a880c3cbbdb2443c2d4dec8ec77
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 5759ae312ce173f4be0ee6ac27ff99cbda2a3cd25f7290f8112d02669e3373c1
 ---
 
-# Container reference
+# Cloud container reference
 
 Pre-installed packages, databases, and utilities available in cloud containers.
 
 ---
 
 Cloud containers in Claude Managed Agents come pre-installed with a comprehensive set of programming languages, databases, and utilities. The agent can use these immediately without any installation steps.
+
+These specifications apply to `cloud` environments. Self-hosted sandboxes run on your infrastructure with whatever your worker provides.
 
 <Note>
 All Managed Agents API requests require the `managed-agents-2026-04-01` beta header. The SDK sets the beta header automatically.

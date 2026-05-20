@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/overview
-fetched_at: 2026-05-12T03:14:46.254373Z
-sha256: 73f7abdf1a5642d857e4d3a1938733e9a5a8a6015fc11614ddcd767c4c1fad94
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 7fb75b518a4eea6b78d0b659e7fe8e790bff2d8967bffe0eb3a1eb24bde9080d
 ---
 
 # Claude Managed Agents overview
@@ -41,7 +41,7 @@ Claude Managed Agents is built around four concepts:
 | Concept | Description |
 |---------|-------------|
 | **Agent** | The model, system prompt, tools, MCP servers, and skills |
-| **Environment** | A configured container template (packages, network access) |
+| **Environment** | Configuration for where sessions run: an Anthropic-managed cloud container, or a self-hosted sandbox on your own infrastructure |
 | **Session** | A running agent instance within an environment, performing a specific task and generating outputs |
 | **Events** | Messages exchanged between your application and the agent (user turns, tool results, status updates) |
 
@@ -52,7 +52,7 @@ Claude Managed Agents is built around four concepts:
     Define the model, system prompt, tools, MCP servers, and skills. Create the agent once and reference it by ID across sessions.
   </Step>
   <Step title="Create an environment">
-    Configure a cloud container with pre-installed packages (Python, Node.js, Go, etc.), network access rules, and mounted files.
+    Configure where the agent runs: a cloud container, or a [self-hosted sandbox](/docs/en/managed-agents/self-hosted-sandboxes) on your own infrastructure.
   </Step>
   <Step title="Start a session">
     Launch a session that references your agent and environment configuration.
@@ -71,6 +71,7 @@ Claude Managed Agents is best for workloads that need:
 
 - **Long-running execution:** Tasks that run for minutes or hours with multiple tool calls
 - **Cloud infrastructure:** Secure containers with pre-installed packages and network access
+- **Self-hosted execution:** Sandboxes on infrastructure you control for compliance or data-residency requirements
 - **Minimal infrastructure:** No need to build your own agent loop, sandbox, or tool execution layer
 - **Stateful sessions:** Persistent filesystems and conversation history across multiple interactions
 

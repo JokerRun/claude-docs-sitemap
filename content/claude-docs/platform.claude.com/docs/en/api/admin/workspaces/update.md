@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/update
-fetched_at: 2026-04-25T03:09:48.142425Z
-sha256: 44659e11a9840097ebe2a41b1b8712ff2821d92451939c28c48a84302a3ea7e2
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: b7176714b0a3af4daf7dbc90198370f32f2fe91e66baf26cb1176546a517d245
 ---
 
 ## Update
@@ -16,10 +16,6 @@ Update Workspace
 - `workspace_id: string`
 
 ### Body Parameters
-
-- `name: string`
-
-  Name of the Workspace.
 
 - `data_residency: optional object { allowed_inference_geos, default_inference_geo }`
 
@@ -39,9 +35,17 @@ Update Workspace
 
     Default inference geo applied when requests omit the parameter. Must be a member of allowed_inference_geos unless allowed_inference_geos is `"unrestricted"`.
 
+- `name: optional string`
+
+  Name of the Workspace.
+
+- `tags: optional map[string]`
+
+  User-defined tags as string key-value pairs. Keys may not begin with `anthropic`.
+
 ### Returns
 
-- `Workspace = object { id, archived_at, created_at, 4 more }`
+- `Workspace = object { id, archived_at, created_at, 5 more }`
 
   - `id: string`
 
@@ -85,6 +89,10 @@ Update Workspace
 
     Name of the Workspace.
 
+  - `tags: map[string]`
+
+    User-defined tags as string key-value pairs. Keys may not begin with `anthropic`.
+
   - `type: "workspace"`
 
     Object type.
@@ -101,6 +109,9 @@ curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID \
     -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY" \
     -d '{
-          "name": "x"
+          "tags": {
+            "env": "prod",
+            "team": "platform"
+          }
         }'
 ```

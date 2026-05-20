@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/memory_stores/memory_versions/retrieve
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: f87231412e8456c3abf63421beb0bc6de7102cdee69c3f36300e4f547391dcc9
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 5a1cd7f0664a099c38debf5ab252f485a9317a35810949bdb2396fc9800bbb0b
 ---
 
 ## Retrieve
@@ -80,6 +80,8 @@ Retrieve a memory version
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
+    - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
 ### Returns
 

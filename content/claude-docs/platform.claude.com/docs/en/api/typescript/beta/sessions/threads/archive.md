@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/sessions/threads/archive
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 84a01b1626a2cdf4cfae3ec4c4297cac58cdd808a10308b44aedc69357e0a32c
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 717f3a3e646b34cc12fa2ff0db0176de380535d431bd7d7e3975d5f359e5eaaf
 ---
 
 ## Archive
@@ -29,7 +29,7 @@ Archive Session Thread
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 21 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 22 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -78,6 +78,8 @@ Archive Session Thread
       - `"advisor-tool-2026-03-01"`
 
       - `"managed-agents-2026-04-01"`
+
+      - `"cache-diagnosis-2026-04-07"`
 
 ### Returns
 

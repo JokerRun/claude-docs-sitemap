@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/quickstart
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 435131a53cdd1112d2bd9540485f0ce6ea0e8e4429beb923ec47aae2465f48c1
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 5088e7013f2484d97ecbb32cfd93e7eace22164f4a19ce1c12bcfa4acb5c9bde
 ---
 
 # Mulai dengan Claude Managed Agents
@@ -18,7 +18,7 @@ Panduan ini memandu Anda membuat agen, menyiapkan lingkungan, memulai sesi, dan 
 | Concept | Description |
 |---------|-------------|
 | **Agent** | The model, system prompt, tools, MCP servers, and skills |
-| **Environment** | A configured container template (packages, network access) |
+| **Environment** | Configuration for where sessions run: an Anthropic-managed cloud container, or a self-hosted sandbox on your own infrastructure |
 | **Session** | A running agent instance within an environment, performing a specific task and generating outputs |
 | **Events** | Messages exchanged between your application and the agent (user turns, tool results, status updates) |
 

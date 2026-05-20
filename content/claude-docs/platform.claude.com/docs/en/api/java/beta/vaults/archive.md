@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/archive
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 5479ef9f3dc97a63fa6ca4ce098d548c4058d0f36346cab5bb6720062bd431d3
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 7d268f2c80924f224d4c0addfd3cc38e9b18be17045241a96ff279691871f55c
 ---
 
 ## Archive
@@ -70,6 +70,8 @@ Archive Vault
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
+    - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/skills/versions/delete
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 12b54f629ca9a86a272d6265cdf333210326abeda9bbcb8523af05ae7df2dfc6
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 0ff558272be867c398ad38f1318ee3ad44cb6f115bc65ac03ef7801eb1826680
 ---
 
 ## Delete
@@ -80,6 +80,8 @@ Delete Skill Version
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
+    - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
 ### Returns
 

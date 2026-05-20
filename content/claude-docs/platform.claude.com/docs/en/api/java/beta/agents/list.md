@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/agents/list
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 6427fc52e647a029e15c84e3ce283b9526e9db5dd033c566c47853fb82d76995
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: a546a9fe27acd01e0cafff5da3642582872b725942ebf90f28d8132f428302de
 ---
 
 ## List
@@ -88,6 +88,8 @@ List Agents
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
+    - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
 ### Returns
 

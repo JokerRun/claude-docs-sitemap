@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/sessions/list
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 1df25145679fd030cabab76d8a8f05d0e59ef02c3412304b025746f682390d22
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 8013b7b8928996605277b6dbf0622b875d82fa4b68eddd6ed3d3e94ffbd78050
 ---
 
 ## List
@@ -132,6 +132,8 @@ List Sessions
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
       - `const AnthropicBetaManagedAgents2026_04_01 AnthropicBeta = "managed-agents-2026-04-01"`
+
+      - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
 
 ### Returns
 
@@ -755,7 +757,7 @@ List Sessions
 
     - `Result string`
 
-      Current evaluation state. 'pending' before the agent begins work; 'running' while producing or revising; 'evaluating' while the grader scores; 'satisfied'/'max_iterations_reached'/'failed'/'interrupted' are terminal.
+      Current evaluation state. `pending` before the agent begins work; `running` while producing or revising; `evaluating` while the grader scores; `satisfied`/`max_iterations_reached`/`failed`/`interrupted` are terminal.
 
     - `Type BetaManagedAgentsOutcomeEvaluationResourceType`
 

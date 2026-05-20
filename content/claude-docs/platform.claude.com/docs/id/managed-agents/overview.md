@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/overview
-fetched_at: 2026-04-18T03:10:04.936408Z
-sha256: cb5ad6d9ca9b8cd7008a6999d5a8844f4dc7b0177c18a59778d8d6482825ee6f
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 96b3fae3b6c3718e1283dd5c272a2846723152f2c87432f2da2ff090b73274f9
 ---
 
 # Ikhtisar Claude Managed Agents
@@ -37,7 +37,7 @@ Claude Managed Agents dibangun di sekitar empat konsep:
 | Concept | Description |
 |---------|-------------|
 | **Agent** | The model, system prompt, tools, MCP servers, and skills |
-| **Environment** | A configured container template (packages, network access) |
+| **Environment** | Configuration for where sessions run: an Anthropic-managed cloud container, or a self-hosted sandbox on your own infrastructure |
 | **Session** | A running agent instance within an environment, performing a specific task and generating outputs |
 | **Events** | Messages exchanged between your application and the agent (user turns, tool results, status updates) |
 

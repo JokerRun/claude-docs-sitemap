@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/retrieve
-fetched_at: 2026-04-21T03:11:28.016230Z
-sha256: e4e9c89d38d23f7561bbcac61d7c80fc3486f8301f5c55bb3a0a7e7aae3458d4
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 05e15ec4dbffee419b653877a87d9a4eb12c985b20451aa0cebb6c7478ceaf15
 ---
 
 ## Retrieve
@@ -19,7 +19,7 @@ Get Workspace
 
 ### Returns
 
-- `Workspace = object { id, archived_at, created_at, 4 more }`
+- `Workspace = object { id, archived_at, created_at, 5 more }`
 
   - `id: string`
 
@@ -62,6 +62,10 @@ Get Workspace
   - `name: string`
 
     Name of the Workspace.
+
+  - `tags: map[string]`
+
+    User-defined tags as string key-value pairs. Keys may not begin with `anthropic`.
 
   - `type: "workspace"`
 

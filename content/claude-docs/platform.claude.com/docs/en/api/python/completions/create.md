@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/completions/create
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 6da099997b5f670d0e08148ff4741ff6348452858e1c42603b16da5b29cd6607
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 757e1b080a72511aed9d2be502302ab244940b95629138dbcc89721d4d7be91f
 ---
 
 ## Create
@@ -201,7 +201,7 @@ Future models and features will not be compatible with Text Completions. See our
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 21 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 22 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -250,6 +250,8 @@ Future models and features will not be compatible with Text Completions. See our
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
+
+    - `"cache-diagnosis-2026-04-07"`
 
 ### Returns
 

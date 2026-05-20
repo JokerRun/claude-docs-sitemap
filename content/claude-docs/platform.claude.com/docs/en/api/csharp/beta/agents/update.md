@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/agents/update
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 0d6d658dabe994d9f69c7b768e6a4b12934d17b049dca0775c513cd75a810a55
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 324e2f1a4d9e330e92f5a6394f4870560b5350fd89eac896c2ccf7750a9d3ba0
 ---
 
 ## Update
@@ -442,6 +442,8 @@ Update Agent
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
+    - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
 ### Returns
 

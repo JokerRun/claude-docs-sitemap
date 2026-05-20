@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/environments/retrieve
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: e8a6d39cd760c60846d4fef1f68495f25f48a18c4e79b3619d17d522927c1297
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: edbc71e39d3a19f448b0cedc0fb06a72cd163443b17a1d6c4f88cf0fbdfc61b3
 ---
 
 ## Retrieve
@@ -23,7 +23,7 @@ Retrieve a specific environment by ID.
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 21 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -73,6 +73,8 @@ Retrieve a specific environment by ID.
 
     - `:"managed-agents-2026-04-01"`
 
+    - `:"cache-diagnosis-2026-04-07"`
+
 ### Returns
 
 - `class BetaEnvironment`
@@ -87,85 +89,99 @@ Retrieve a specific environment by ID.
 
     RFC 3339 timestamp when environment was archived, or null if not archived
 
-  - `config: BetaCloudConfig`
+  - `config: BetaCloudConfig | BetaSelfHostedConfig`
 
-    `cloud` environment configuration.
+    Environment configuration (either Anthropic Cloud or self-hosted)
 
-    - `networking: BetaUnrestrictedNetwork | BetaLimitedNetwork`
+    - `class BetaCloudConfig`
 
-      Network configuration policy.
+      `cloud` environment configuration.
 
-      - `class BetaUnrestrictedNetwork`
+      - `networking: BetaUnrestrictedNetwork | BetaLimitedNetwork`
 
-        Unrestricted network access.
+        Network configuration policy.
 
-        - `type: :unrestricted`
+        - `class BetaUnrestrictedNetwork`
 
-          Network policy type
+          Unrestricted network access.
 
-          - `:unrestricted`
+          - `type: :unrestricted`
 
-      - `class BetaLimitedNetwork`
+            Network policy type
 
-        Limited network access.
+            - `:unrestricted`
 
-        - `allow_mcp_servers: bool`
+        - `class BetaLimitedNetwork`
 
-          Permits outbound access to MCP server endpoints configured on the agent, beyond those listed in the `allowed_hosts` array.
+          Limited network access.
 
-        - `allow_package_managers: bool`
+          - `allow_mcp_servers: bool`
 
-          Permits outbound access to public package registries (PyPI, npm, etc.) beyond those listed in the `allowed_hosts` array.
+            Permits outbound access to MCP server endpoints configured on the agent, beyond those listed in the `allowed_hosts` array.
 
-        - `allowed_hosts: Array[String]`
+          - `allow_package_managers: bool`
 
-          Specifies domains the container can reach.
+            Permits outbound access to public package registries (PyPI, npm, etc.) beyond those listed in the `allowed_hosts` array.
 
-        - `type: :limited`
+          - `allowed_hosts: Array[String]`
 
-          Network policy type
+            Specifies domains the container can reach.
 
-          - `:limited`
+          - `type: :limited`
 
-    - `packages: BetaPackages`
+            Network policy type
 
-      Package manager configuration.
+            - `:limited`
 
-      - `apt: Array[String]`
+      - `packages: BetaPackages`
 
-        Ubuntu/Debian packages to install
+        Package manager configuration.
 
-      - `cargo: Array[String]`
+        - `apt: Array[String]`
 
-        Rust packages to install
+          Ubuntu/Debian packages to install
 
-      - `gem_: Array[String]`
+        - `cargo: Array[String]`
 
-        Ruby packages to install
+          Rust packages to install
 
-      - `go: Array[String]`
+        - `gem_: Array[String]`
 
-        Go packages to install
+          Ruby packages to install
 
-      - `npm: Array[String]`
+        - `go: Array[String]`
 
-        Node.js packages to install
+          Go packages to install
 
-      - `pip: Array[String]`
+        - `npm: Array[String]`
 
-        Python packages to install
+          Node.js packages to install
 
-      - `type: :packages`
+        - `pip: Array[String]`
 
-        Package configuration type
+          Python packages to install
 
-        - `:packages`
+        - `type: :packages`
 
-    - `type: :cloud`
+          Package configuration type
 
-      Environment type
+          - `:packages`
 
-      - `:cloud`
+      - `type: :cloud`
+
+        Environment type
+
+        - `:cloud`
+
+    - `class BetaSelfHostedConfig`
+
+      Configuration for self-hosted environments.
+
+      - `type: :self_hosted`
+
+        Environment type
+
+        - `:self_hosted`
 
   - `created_at: String`
 
@@ -192,6 +208,14 @@ Retrieve a specific environment by ID.
   - `updated_at: String`
 
     RFC 3339 timestamp when environment was last updated
+
+  - `scope: :organization | :account`
+
+    The visibility scope for this environment. 'organization' means visible to all accounts. 'account' means visible only to the owning account.
+
+    - `:organization`
+
+    - `:account`
 
 ### Example
 

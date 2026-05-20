@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/models
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: f734347cc4d5dd1b42abd6ce30c6344d31f4760526af622e2ad5f36cc57ec731
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 227182adc805ebe688714029320d475a727b6f7bf2c91b134444a27a48199f35
 ---
 
 # Models
@@ -86,6 +86,8 @@ The Models API response can be used to determine which models are available for 
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
+    - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
 ### Returns
 
@@ -369,6 +371,8 @@ The Models API response can be used to determine information about a specific mo
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
+    - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/messages/batches/retrieve
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: c9764c424ece71bc05144b90d1dec3237df4124fff2bcb31adb44e232a808215
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 75d012ddf45bf80c7418d1dc795b487bf0c543a4ea0657f321daddd330a79aae
 ---
 
 ## Retrieve
@@ -27,7 +27,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 21 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -76,6 +76,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `:"advisor-tool-2026-03-01"`
 
     - `:"managed-agents-2026-04-01"`
+
+    - `:"cache-diagnosis-2026-04-07"`
 
 ### Returns
 

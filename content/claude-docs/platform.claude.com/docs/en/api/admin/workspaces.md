@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces
-fetched_at: 2026-04-25T03:09:48.142425Z
-sha256: bbad0119fd31220e49a32aff72ff6de29da54ba1c3d72488bccf876c94bab446
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: f419463f4090b9284087db687d9d10c1440b889d94be82e3486b9fae6fd2ed80
 ---
 
 # Workspaces
@@ -12,6 +12,14 @@ sha256: bbad0119fd31220e49a32aff72ff6de29da54ba1c3d72488bccf876c94bab446
 **post** `/v1/organizations/workspaces`
 
 Create Workspace
+
+### Header Parameters
+
+- `"anthropic-beta": optional array of string`
+
+  Optional header to specify the beta version(s) you want to use.
+
+  To use multiple betas, use a comma separated list like `beta1,beta2` or specify the header multiple times for each beta.
 
 ### Body Parameters
 
@@ -41,9 +49,13 @@ Create Workspace
 
     Geographic region for workspace data storage. Immutable after creation. Defaults to 'us' if omitted.
 
+- `tags: optional map[string]`
+
+  User-defined tags as string key-value pairs. Keys may not begin with `anthropic`.
+
 ### Returns
 
-- `Workspace = object { id, archived_at, created_at, 4 more }`
+- `Workspace = object { id, archived_at, created_at, 5 more }`
 
   - `id: string`
 
@@ -86,6 +98,10 @@ Create Workspace
   - `name: string`
 
     Name of the Workspace.
+
+  - `tags: map[string]`
+
+    User-defined tags as string key-value pairs. Keys may not begin with `anthropic`.
 
   - `type: "workspace"`
 
@@ -103,7 +119,11 @@ curl https://api.anthropic.com/v1/organizations/workspaces \
     -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY" \
     -d '{
-          "name": "x"
+          "name": "x",
+          "tags": {
+            "env": "prod",
+            "team": "platform"
+          }
         }'
 ```
 
@@ -121,7 +141,7 @@ Get Workspace
 
 ### Returns
 
-- `Workspace = object { id, archived_at, created_at, 4 more }`
+- `Workspace = object { id, archived_at, created_at, 5 more }`
 
   - `id: string`
 
@@ -164,6 +184,10 @@ Get Workspace
   - `name: string`
 
     Name of the Workspace.
+
+  - `tags: map[string]`
+
+    User-defined tags as string key-value pairs. Keys may not begin with `anthropic`.
 
   - `type: "workspace"`
 
@@ -253,6 +277,10 @@ List Workspaces
 
     Name of the Workspace.
 
+  - `tags: map[string]`
+
+    User-defined tags as string key-value pairs. Keys may not begin with `anthropic`.
+
   - `type: "workspace"`
 
     Object type.
@@ -293,10 +321,6 @@ Update Workspace
 
 ### Body Parameters
 
-- `name: string`
-
-  Name of the Workspace.
-
 - `data_residency: optional object { allowed_inference_geos, default_inference_geo }`
 
   Data residency configuration for the workspace.
@@ -315,9 +339,17 @@ Update Workspace
 
     Default inference geo applied when requests omit the parameter. Must be a member of allowed_inference_geos unless allowed_inference_geos is `"unrestricted"`.
 
+- `name: optional string`
+
+  Name of the Workspace.
+
+- `tags: optional map[string]`
+
+  User-defined tags as string key-value pairs. Keys may not begin with `anthropic`.
+
 ### Returns
 
-- `Workspace = object { id, archived_at, created_at, 4 more }`
+- `Workspace = object { id, archived_at, created_at, 5 more }`
 
   - `id: string`
 
@@ -360,6 +392,10 @@ Update Workspace
   - `name: string`
 
     Name of the Workspace.
+
+  - `tags: map[string]`
+
+    User-defined tags as string key-value pairs. Keys may not begin with `anthropic`.
 
   - `type: "workspace"`
 
@@ -377,7 +413,10 @@ curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID \
     -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY" \
     -d '{
-          "name": "x"
+          "tags": {
+            "env": "prod",
+            "team": "platform"
+          }
         }'
 ```
 
@@ -393,7 +432,7 @@ Archive Workspace
 
 ### Returns
 
-- `Workspace = object { id, archived_at, created_at, 4 more }`
+- `Workspace = object { id, archived_at, created_at, 5 more }`
 
   - `id: string`
 
@@ -436,6 +475,10 @@ Archive Workspace
   - `name: string`
 
     Name of the Workspace.
+
+  - `tags: map[string]`
+
+    User-defined tags as string key-value pairs. Keys may not begin with `anthropic`.
 
   - `type: "workspace"`
 

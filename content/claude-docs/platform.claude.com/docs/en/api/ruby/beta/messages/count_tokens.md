@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/messages/count_tokens
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 2497de298eb843a0452035c508800c4e3b5d4dd78b279f358d64d4c38d45b5fd
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 49e74c7890b6e977bde545b659565287773973676cab9ef5512c9a8e409ae2cb
 ---
 
 ## Count Tokens
@@ -5066,7 +5066,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 21 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -5115,6 +5115,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
     - `:"advisor-tool-2026-03-01"`
 
     - `:"managed-agents-2026-04-01"`
+
+    - `:"cache-diagnosis-2026-04-07"`
 
 ### Returns
 

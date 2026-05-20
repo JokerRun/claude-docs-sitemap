@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/memory_stores/create
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 7eb1515da24b43666c8b195cf781a9db5b3c24e19c7ec305357cd432726f17c1
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: bd4405ff5c2e0eef300ca9ace85ba4ad7882bedd3ab1b62a9a0b2f7d347d64e7
 ---
 
 ## Create
@@ -80,6 +80,8 @@ Create a memory store
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
+    - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
 ### Returns
 

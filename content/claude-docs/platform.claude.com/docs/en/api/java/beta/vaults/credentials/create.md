@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/credentials/create
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 643a86da3e5fb208122192d3e9fcbdc3f06424485bff5bd669e4de488cf0981e
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 0a45acbbcd481d892bde1056c93de8011f4aa9931d27f9ad49aad75f527dbb66
 ---
 
 ## Create
@@ -70,6 +70,8 @@ Create Credential
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
+    - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
   - `Auth auth`
 

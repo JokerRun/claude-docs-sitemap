@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/resources/delete
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: e1eac06b564aa02c71983d81b19b13adee8ab963d34c75c9bd2e2b948c3c2c45
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 94c1d6910dff8e06009c153ef5945bf5ad0e6487f3105cd3d075121c22d442c9
 ---
 
 ## Delete
@@ -72,6 +72,8 @@ Delete Session Resource
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
+    - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
 ### Returns
 

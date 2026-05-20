@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/vaults/delete
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 7d116aaa4a3cd88669f3bc8e06aaa08e562d3ac3a10971692eb4ace89545d10a
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: c5cd8b635a4bb135bd430811ec1391d224e489332702a00b0866bfd29be9c2d5
 ---
 
 ## Delete
@@ -23,7 +23,7 @@ Delete Vault
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 21 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 22 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -72,6 +72,8 @@ Delete Vault
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
+
+    - `"cache-diagnosis-2026-04-07"`
 
 ### Returns
 

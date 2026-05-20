@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/memory_stores/memory_versions/retrieve
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 37317eb602519d78c99458885dc9a30b6be8f73bc8e012186f5ed3c9f107c166
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: fe976137996016ed67e5e4196ce55c4a46b7e6e63809dbbcea8928b33463afeb
 ---
 
 ## Retrieve
@@ -37,7 +37,7 @@ Retrieve a memory version
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 21 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 22 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -86,6 +86,8 @@ Retrieve a memory version
       - `"advisor-tool-2026-03-01"`
 
       - `"managed-agents-2026-04-01"`
+
+      - `"cache-diagnosis-2026-04-07"`
 
 ### Returns
 

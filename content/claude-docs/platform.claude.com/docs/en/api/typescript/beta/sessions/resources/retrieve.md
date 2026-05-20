@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/sessions/resources/retrieve
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: a8d53cd5bfc98c2ad3f1a172a70a7f5a80457cfda66bb72ff2d95c2f80eee461
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: f739637b9cd4e06bab21fa5d6eef7a25ee1e2c43d9bcf10b56d578a64cb02caf
 ---
 
 ## Retrieve
@@ -29,7 +29,7 @@ Get Session Resource
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 21 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 22 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -78,6 +78,8 @@ Get Session Resource
       - `"advisor-tool-2026-03-01"`
 
       - `"managed-agents-2026-04-01"`
+
+      - `"cache-diagnosis-2026-04-07"`
 
 ### Returns
 

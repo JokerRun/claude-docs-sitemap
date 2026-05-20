@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/messages/batches/results
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: b9e5537589157c8553c082f9f6cbf3177119d4b15e8ebfe9395d1597d5056a56
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 16e577532876fd5aea4304b5510cc5c903e4f69f6471046a4091bf43080c17ec
 ---
 
 ## Results
@@ -29,7 +29,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 21 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 22 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -78,6 +78,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
+
+    - `"cache-diagnosis-2026-04-07"`
 
 ### Returns
 
@@ -1115,6 +1117,67 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
                 The type of context management edit applied.
 
                 - `"clear_thinking_20251015"`
+
+        - `diagnostics: Optional[BetaDiagnostics]`
+
+          Response envelope for request-level diagnostics. Present (possibly
+          null) whenever the caller supplied `diagnostics` on the request.
+
+          - `cache_miss_reason: Optional[CacheMissReason]`
+
+            Explains why the prompt cache could not fully reuse the prefix from the request identified by `diagnostics.previous_message_id`. `null` means diagnosis is still pending — the response was serialized before the background comparison completed.
+
+            - `class BetaCacheMissModelChanged: …`
+
+              - `cache_missed_input_tokens: int`
+
+                Approximate number of input tokens that would have been read from cache had the prefix matched the previous request.
+
+              - `type: Literal["model_changed"]`
+
+                - `"model_changed"`
+
+            - `class BetaCacheMissSystemChanged: …`
+
+              - `cache_missed_input_tokens: int`
+
+                Approximate number of input tokens that would have been read from cache had the prefix matched the previous request.
+
+              - `type: Literal["system_changed"]`
+
+                - `"system_changed"`
+
+            - `class BetaCacheMissToolsChanged: …`
+
+              - `cache_missed_input_tokens: int`
+
+                Approximate number of input tokens that would have been read from cache had the prefix matched the previous request.
+
+              - `type: Literal["tools_changed"]`
+
+                - `"tools_changed"`
+
+            - `class BetaCacheMissMessagesChanged: …`
+
+              - `cache_missed_input_tokens: int`
+
+                Approximate number of input tokens that would have been read from cache had the prefix matched the previous request.
+
+              - `type: Literal["messages_changed"]`
+
+                - `"messages_changed"`
+
+            - `class BetaCacheMissPreviousMessageNotFound: …`
+
+              - `type: Literal["previous_message_not_found"]`
+
+                - `"previous_message_not_found"`
+
+            - `class BetaCacheMissUnavailable: …`
+
+              - `type: Literal["unavailable"]`
+
+                - `"unavailable"`
 
         - `model: Model`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/credentials/update
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 2acfcba2cf8fa767ce04c7dbc09340dedfc3024d464341276474f36771f7e8ea
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: b373c453a6115a68c48f54eb191ea5c145d6218ff79de15877585bacb09e7d75
 ---
 
 ## Update
@@ -72,6 +72,8 @@ Update Credential
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
+    - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
   - `Optional<Auth> auth`
 

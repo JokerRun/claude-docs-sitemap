@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/agents/retrieve
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: c7be7243cefbbac187c1e6db5fd417e13d050ebe2591f3f9293d44ec930b9d55
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 8f2b05d8d685d5d7b17c25d052c98ebc324a26a02c47705419c4b8bef3060824
 ---
 
 ## Retrieve
@@ -74,6 +74,8 @@ Get Agent
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
+    - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
 ### Returns
 

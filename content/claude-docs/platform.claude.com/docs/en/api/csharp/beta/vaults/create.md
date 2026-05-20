@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/vaults/create
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 437592d84d4e596565ee8654132841128d4a784b4856330a29363a4617a7bcaf
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 8f2325fc4092d200adb0aee83e63f170352ee167adec1ef43a496832c10ab2e4
 ---
 
 ## Create
@@ -76,6 +76,8 @@ Create Vault
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
+    - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/skills/delete
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: fd8145af5e93144bf3f710b8405dcbe173e571d90680ef0858a7bee24153a33f
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: eba144057ab00d36c7fc2f69f0b33c0566a01b88bba1cd7bb37f3c83c2712b03
 ---
 
 ## Delete
@@ -78,6 +78,8 @@ Delete Skill
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
       - `const AnthropicBetaManagedAgents2026_04_01 AnthropicBeta = "managed-agents-2026-04-01"`
+
+      - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
 
 ### Returns
 

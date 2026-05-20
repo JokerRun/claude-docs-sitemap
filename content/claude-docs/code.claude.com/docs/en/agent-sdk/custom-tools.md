@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/custom-tools
-fetched_at: 2026-05-08T03:11:40.925611Z
-sha256: 36309a038999fd45c911cc1815aeccaaf707eedb743b37d5dae7a7eeb03838c1
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 5d72029e2ffaefe3c7962fef5d706b2ed99c0fe1c4caf5ce8732f66e469bd8de
 ---
 
 > ## Documentation Index
@@ -330,16 +330,16 @@ When MCP tools are exposed to Claude, their names follow a specific format:
 
 ### Configure allowed tools
 
-The `tools` option and the allowed/disallowed lists operate on separate layers. `tools` controls which built-in tools appear in Claude's context. Allowed and disallowed tool lists control whether calls are approved or denied once Claude attempts them.
+The `tools` option and the allowed/disallowed lists affect two layers: availability, which controls whether a tool appears in Claude's context, and permission, which controls whether a call is approved once Claude attempts it. `tools` and bare-name `disallowedTools` entries change availability. `allowedTools` and scoped `disallowedTools` rules change permission only.
 
-| Option                    | Layer        | Effect                                                                                                                                            |
-| :------------------------ | :----------- | :------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `tools: ["Read", "Grep"]` | Availability | Only the listed built-ins are in Claude's context. Unlisted built-ins are removed. MCP tools are unaffected.                                      |
-| `tools: []`               | Availability | All built-ins are removed. Claude can only use your MCP tools.                                                                                    |
-| allowed tools             | Permission   | Listed tools run without a permission prompt. Unlisted tools remain available; calls go through the [permission flow](/en/agent-sdk/permissions). |
-| disallowed tools          | Permission   | Every call to a listed tool is denied. The tool stays in Claude's context, so Claude may still attempt it before the call is rejected.            |
+| Option                    | Layer        | Effect                                                                                                                                                                                                          |
+| :------------------------ | :----------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `tools: ["Read", "Grep"]` | Availability | Only the listed built-ins are in Claude's context. Unlisted built-ins are removed. MCP tools are unaffected.                                                                                                    |
+| `tools: []`               | Availability | All built-ins are removed. Claude can only use your MCP tools.                                                                                                                                                  |
+| allowed tools             | Permission   | Listed tools run without a permission prompt. Unlisted tools remain available; calls go through the [permission flow](/en/agent-sdk/permissions).                                                               |
+| disallowed tools          | Both         | A bare tool name such as `"Bash"` removes the tool from Claude's context, the same as omitting it from `tools`. A scoped rule such as `"Bash(rm *)"` leaves the tool in context and denies only matching calls. |
 
-To limit which built-ins Claude can use, prefer `tools` over disallowed tools. Omitting a tool from `tools` removes it from context so Claude never attempts it; listing it in `disallowedTools` (Python: `disallowed_tools`) blocks the call but leaves the tool visible, so Claude may waste a turn trying it. See [Configure permissions](/en/agent-sdk/permissions) for the full evaluation order.
+To remove a built-in entirely, omit it from `tools` or list its bare name in `disallowedTools` (Python: `disallowed_tools`); both keep the tool out of context so Claude never attempts it. A scoped `disallowedTools` rule blocks matching calls but leaves the tool visible, so Claude may waste a turn trying it. See [Configure permissions](/en/agent-sdk/permissions) for the full evaluation order.
 
 ## Handle errors
 

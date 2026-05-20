@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/sessions/archive
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 3bba550fb754e1a697771b14595b190b968e0b0c2b58daf1aa123c33ae5286d4
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: b93067f60fb8e5a2340cf795b626010206ed71f276a2ae7e4a11d6aced7bdc1e
 ---
 
 ## Archive
@@ -25,7 +25,7 @@ Archive Session
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 21 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 22 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -74,6 +74,8 @@ Archive Session
       - `"advisor-tool-2026-03-01"`
 
       - `"managed-agents-2026-04-01"`
+
+      - `"cache-diagnosis-2026-04-07"`
 
 ### Returns
 
@@ -689,7 +691,7 @@ Archive Session
 
     - `result: string`
 
-      Current evaluation state. 'pending' before the agent begins work; 'running' while producing or revising; 'evaluating' while the grader scores; 'satisfied'/'max_iterations_reached'/'failed'/'interrupted' are terminal.
+      Current evaluation state. `pending` before the agent begins work; `running` while producing or revising; `evaluating` while the grader scores; `satisfied`/`max_iterations_reached`/`failed`/`interrupted` are terminal.
 
     - `type: "outcome_evaluation"`
 

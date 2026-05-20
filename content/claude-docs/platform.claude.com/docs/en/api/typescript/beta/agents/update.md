@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/agents/update
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 90289f711faeadf69e2a9b2a7cc3493b3454ed13b6292a541d4bd5e669179e2f
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 79a6f01bef12ec06da9ae92035ecedd5cd854fd8cfe4f0501979c3ebce6b5a7f
 ---
 
 ## Update
@@ -437,7 +437,7 @@ Update Agent
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 21 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 22 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -486,6 +486,8 @@ Update Agent
       - `"advisor-tool-2026-03-01"`
 
       - `"managed-agents-2026-04-01"`
+
+      - `"cache-diagnosis-2026-04-07"`
 
 ### Returns
 

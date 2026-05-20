@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/sessions/threads/retrieve
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 60dd6a5119d734695f27c2a7fc8484ec89652c4d386cf617a83b3df435039754
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 2e2a8523c207abb37e02a26d203f992f02c3cf82370d16a0943ce903b94f9174
 ---
 
 ## Retrieve
@@ -25,7 +25,7 @@ Get Session Thread
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 21 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -74,6 +74,8 @@ Get Session Thread
     - `:"advisor-tool-2026-03-01"`
 
     - `:"managed-agents-2026-04-01"`
+
+    - `:"cache-diagnosis-2026-04-07"`
 
 ### Returns
 

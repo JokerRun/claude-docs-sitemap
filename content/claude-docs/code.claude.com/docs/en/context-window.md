@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/context-window
-fetched_at: 2026-04-14T03:11:27.743340Z
-sha256: d26606820440e4ec93df872d8c64de80a1ca8cccd9a326d4e1501eaf8691640c
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 6827b699e123d20c6ed2d3ec00c866d3e3e0b24112157b2b81f1db7d834f640c
 ---
 
 > ## Documentation Index
@@ -1618,4 +1618,5 @@ For deeper coverage of the features shown in the timeline, see these pages:
 * [Store instructions and memories](/en/memory): CLAUDE.md hierarchy and auto memory
 * [Subagents](/en/sub-agents): delegate research to a separate context window
 * [Best practices](/en/best-practices): managing context as your primary constraint
+* [Prompt caching](/en/prompt-caching): which actions invalidate the cached prefix
 * [Reduce token usage](/en/costs#reduce-token-usage): strategies for keeping context usage low

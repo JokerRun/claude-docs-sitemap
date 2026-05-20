@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/credentials/archive
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 9477cad42461ee371051df88b7ca8ad6b931481db3f4b1d7ed84cba17877a3e7
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 1731d8612e2ea22213418b9ac11e916a76080f4624aa762fbae1134a53b40404
 ---
 
 ## Archive
@@ -72,6 +72,8 @@ Archive Credential
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
+    - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
 ### Returns
 

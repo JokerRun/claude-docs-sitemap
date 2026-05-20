@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/tools
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: ed0f3609b3d6a2282c8b6f0ed9415714741a589e4021f70dae966e1147dd5837
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 34d9c42b947286b36b8c9a74bc6efe069f1be8bbddff7456afab80b7cea80c3b
 ---
 
 # Tools
@@ -33,6 +33,8 @@ The agent toolset includes the following tools. All are enabled by default when 
 | Grep | `grep` | Text search using regex patterns |
 | Web fetch | `web_fetch` | Fetch content from a URL |
 | Web search | `web_search` | Search the web for information |
+
+When a tool output exceeds 100K tokens, it is automatically written to a file in the sandbox. The model receives a truncated preview with the file path and can read the full content from there.
 
 ## Configuring the toolset
 

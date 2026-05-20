@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/pricing
-fetched_at: 2026-05-14T03:14:07.437614Z
-sha256: 43695902fd4d936d7db37dfb6d54f201d2f6b1dad33b8c82e0c500128828b1e6
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 8ef364d2efb4ff12f0bda7fc35cf6f31f95591eecbb1db2ea40bfbae74b7e4c6
 ---
 
 # Harga
@@ -150,7 +150,7 @@ The additional tokens from tool use come from:
 - `tool_use` content blocks in API requests and responses
 - `tool_result` content blocks in API requests
 
-When you use `tools`, we also automatically include a special system prompt for the model which enables tool use. The number of tool use tokens required for each model are listed below (excluding the additional tokens listed above). Note that the table assumes at least 1 tool is provided. If no `tools` are provided, then a tool choice of `none` uses 0 additional system prompt tokens.
+When you use `tools`, the API also automatically includes a special system prompt for the model which enables tool use. The number of tool use tokens required for each model are listed below (excluding the additional tokens listed above). Note that the table assumes at least 1 tool is provided. If no `tools` are provided, then a tool choice of `none` uses 0 additional system prompt tokens.
 
 | Model                    | Tool choice                                          | Tool use system prompt token count          |
 |--------------------------|------------------------------------------------------|---------------------------------------------|
@@ -198,11 +198,13 @@ When used without these tools, code execution is billed by execution time, track
 Code execution usage is tracked in the response:
 
 ```json
-"usage": {
-  "input_tokens": 105,
-  "output_tokens": 239,
-  "server_tool_use": {
-    "code_execution_requests": 1
+{
+  "usage": {
+    "input_tokens": 105,
+    "output_tokens": 239,
+    "server_tool_use": {
+      "code_execution_requests": 1
+    }
   }
 }
 ```
@@ -224,13 +226,15 @@ Lihat [harga tool use](#tool-use-pricing) untuk detail harga lengkap.
 Web search usage is charged in addition to token usage:
 
 ```json
-"usage": {
-  "input_tokens": 105,
-  "output_tokens": 6039,
-  "cache_read_input_tokens": 7123,
-  "cache_creation_input_tokens": 7345,
-  "server_tool_use": {
-    "web_search_requests": 1
+{
+  "usage": {
+    "input_tokens": 105,
+    "output_tokens": 6039,
+    "cache_read_input_tokens": 7123,
+    "cache_creation_input_tokens": 7345,
+    "server_tool_use": {
+      "web_search_requests": 1
+    }
   }
 }
 ```
@@ -244,13 +248,15 @@ Each web search counts as one use, regardless of the number of results returned.
 Web fetch usage has **no additional charges** beyond standard token costs:
 
 ```json
-"usage": {
-  "input_tokens": 25039,
-  "output_tokens": 931,
-  "cache_read_input_tokens": 0,
-  "cache_creation_input_tokens": 0,
-  "server_tool_use": {
-    "web_fetch_requests": 1
+{
+  "usage": {
+    "input_tokens": 25039,
+    "output_tokens": 931,
+    "cache_read_input_tokens": 0,
+    "cache_creation_input_tokens": 0,
+    "server_tool_use": {
+      "web_fetch_requests": 1
+    }
   }
 }
 ```

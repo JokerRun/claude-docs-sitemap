@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/messages/batches/cancel
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 3dbb81ddaa7e693cbe631f02cc8a912f2aebb012369b12ebb149821a8e4299fb
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 5eec64cbb02e6cc5e44ef019308e3f24b7b1e79d91a45d485c2525896eac1e85
 ---
 
 ## Cancel
@@ -29,7 +29,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 21 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -78,6 +78,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `:"advisor-tool-2026-03-01"`
 
     - `:"managed-agents-2026-04-01"`
+
+    - `:"cache-diagnosis-2026-04-07"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/user_profiles/update
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 08c86ce875d14a29b08862ad5a5dc6d273c7da071d54d9044d2fe32d65fa0627
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: e4fa4e9b54a8af181325e80de25cc7061c103de4793b4a896726f7d30b15545d
 ---
 
 ## Update
@@ -45,7 +45,7 @@ Update User Profile
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 21 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 22 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -94,6 +94,8 @@ Update User Profile
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
+
+    - `"cache-diagnosis-2026-04-07"`
 
 ### Returns
 

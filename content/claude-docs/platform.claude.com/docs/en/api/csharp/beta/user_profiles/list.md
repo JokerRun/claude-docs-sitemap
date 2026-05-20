@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/user_profiles/list
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 0735429c2e0f3daeb83f2a19de2b3617e825d9dd6f461c28f8c4ad86edf57881
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 7672667778e4c0531ae42f3cc10e27e99d643a8bc9ca30d21b36a05f0274d7c5
 ---
 
 ## List
@@ -84,6 +84,8 @@ List User Profiles
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
+    - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
 ### Returns
 

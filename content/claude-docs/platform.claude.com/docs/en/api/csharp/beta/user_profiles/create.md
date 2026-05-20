@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/user_profiles/create
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: f402d6cf6df8bc595e3ba2a53ec83d5a1eb459b716b32ec80ca00132c78c31b1
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 5569102dfa2dc2313772a6a4e384b35f905d55ee9451c62feeb25a9354b6beab
 ---
 
 ## Create
@@ -90,6 +90,8 @@ Create User Profile
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
+    - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
 ### Returns
 

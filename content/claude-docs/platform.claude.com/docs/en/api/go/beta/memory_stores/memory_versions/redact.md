@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/memory_stores/memory_versions/redact
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 79b7715998ac23a9a0759f44fcc0d1060bc957634b113da46b922f4ca6cb559a
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: f558814724844a4be10f64ac4283613150507bde1148035ce0a0387530a35cbf
 ---
 
 ## Redact
@@ -78,6 +78,8 @@ Redact a memory version
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
       - `const AnthropicBetaManagedAgents2026_04_01 AnthropicBeta = "managed-agents-2026-04-01"`
+
+      - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
 
 ### Returns
 

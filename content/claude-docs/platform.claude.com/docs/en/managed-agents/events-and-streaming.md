@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/events-and-streaming
-fetched_at: 2026-05-07T03:15:02.178755Z
-sha256: 05380eb3d821a98d671d3f53e671272d8e11e1a53409d878502bdb2c1fc46625
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 66599c23aeb31b522428c46a06e81d8b29d00368fe8517377a39432a8dab8b8c
 ---
 
 # Session event stream
@@ -35,6 +35,7 @@ Event type strings follow a `{domain}.{action}` naming convention.
 | `user.custom_tool_result` | Response to a custom tool call from the agent. |
 | `user.tool_confirmation` | Approve or deny an agent or MCP tool call when a permission policy requires confirmation. |
 | `user.define_outcome` | Define an [outcome](/docs/en/managed-agents/define-outcomes) for the agent to work toward.  |
+| `user.tool_result` | For sessions with `self_hosted` [environments](/docs/en/managed-agents/self-hosted-sandboxes) only, your integration is responsible for providing `agent_toolset` results. The SDK helpers and CLI do this automatically. |
 
   </Tab>
   <Tab title="Agent events">
@@ -61,6 +62,7 @@ Event type strings follow a `{domain}.{action}` naming convention.
 | `session.status_idle` | Agent finished its current task and is waiting for input. Includes a `stop_reason` indicating why the agent stopped. |
 | `session.status_rescheduled` | A transient error occurred and the session is retrying automatically. |
 | `session.status_terminated` | Session ended due to an unrecoverable error. |
+| `session.updated` | Session update request changed at least one field. Includes only the fields that changed. Updates apply on the next turn. |
 | `session.error` | An error occurred during processing. Includes a typed `error` object with a `retry_status`. |
 | `session.thread_created` | A [multiagent](/docs/en/managed-agents/multi-agent) thread was created. |
 | `session.thread_status_running` | A [multiagent](/docs/en/managed-agents/multi-agent) thread started activity. |

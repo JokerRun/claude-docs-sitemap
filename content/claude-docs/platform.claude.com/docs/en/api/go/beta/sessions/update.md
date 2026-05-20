@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/sessions/update
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: fefe312fba6e8beac88906f33558dfa6b31944c9b56e654c06d189de9f1c56ac
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: e050c27ab8f349e5ca632374b2f3349a202565f87132c1ed54c8eaa86172ac6b
 ---
 
 ## Update
@@ -18,6 +18,10 @@ Update Session
 - `sessionID string`
 
 - `params BetaSessionUpdateParams`
+
+  - `Agent param.Field[BetaManagedAgentsSessionAgentUpdate]`
+
+    Body param: Mid-session agent configuration update. Only `tools` and `mcp_servers` are updatable. Full replacement: the provided array becomes the new value. To preserve existing entries, GET the session, modify the array, and POST it back.
 
   - `Metadata param.Field[map[string, string]]`
 
@@ -86,6 +90,8 @@ Update Session
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
       - `const AnthropicBetaManagedAgents2026_04_01 AnthropicBeta = "managed-agents-2026-04-01"`
+
+      - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
 
 ### Returns
 
@@ -709,7 +715,7 @@ Update Session
 
     - `Result string`
 
-      Current evaluation state. 'pending' before the agent begins work; 'running' while producing or revising; 'evaluating' while the grader scores; 'satisfied'/'max_iterations_reached'/'failed'/'interrupted' are terminal.
+      Current evaluation state. `pending` before the agent begins work; `running` while producing or revising; `evaluating` while the grader scores; `satisfied`/`max_iterations_reached`/`failed`/`interrupted` are terminal.
 
     - `Type BetaManagedAgentsOutcomeEvaluationResourceType`
 

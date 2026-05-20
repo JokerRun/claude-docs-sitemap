@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/memory_stores/memories/create
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 1fac9fdc2bc8bba43b9366e7407855a873cf846d3327be9602dd81b70c51d73c
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 34d01355d9abb444f65450dcc0628f8ad0149f02797d5be25d6e0bc69247198d
 ---
 
 ## Create
@@ -39,7 +39,7 @@ Create a memory
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 21 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 22 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -88,6 +88,8 @@ Create a memory
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
+
+    - `"cache-diagnosis-2026-04-07"`
 
 ### Returns
 

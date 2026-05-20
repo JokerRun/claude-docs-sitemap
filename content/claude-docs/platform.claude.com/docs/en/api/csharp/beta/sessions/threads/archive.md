@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/sessions/threads/archive
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: b2e6a3837a51d9ac0436ba99c66996ff2a1f8c57a27398b4582c6fc95b49cedc
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: ea373b37cc89fe2565ff9cc051a8c6a118da7aac01dc87ada5a98c3291ac3892
 ---
 
 ## Archive
@@ -76,6 +76,8 @@ Archive Session Thread
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
+    - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
 ### Returns
 

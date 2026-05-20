@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/archive
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 85f09841316909fa373f17c2a25302827659cb9f2f75a2f8af883deac799ac28
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 482b5650bbf9f198dd21c90d903cd0ce8ef3f37af1cbc869e52432aeced05f92
 ---
 
 ## Archive
@@ -23,7 +23,7 @@ Archive Agent
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 21 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -72,6 +72,8 @@ Archive Agent
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
+
+    - `"cache-diagnosis-2026-04-07"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/sessions/events
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 79e35fd213b2b1511587f100692a4fafdede3a50d025c78308ed144192b2109f
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: d20f4794a3eed6427c7e6613362d77d07cce15103be1fb3c05ecb9722a22f12d
 ---
 
 # Events
@@ -61,7 +61,7 @@ List Events
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 21 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -111,9 +111,11 @@ List Events
 
     - `:"managed-agents-2026-04-01"`
 
+    - `:"cache-diagnosis-2026-04-07"`
+
 ### Returns
 
-- `BetaManagedAgentsSessionEvent = BetaManagedAgentsUserMessageEvent | BetaManagedAgentsUserInterruptEvent | BetaManagedAgentsUserToolConfirmationEvent | 28 more`
+- `BetaManagedAgentsSessionEvent = BetaManagedAgentsUserMessageEvent | BetaManagedAgentsUserInterruptEvent | BetaManagedAgentsUserToolConfirmationEvent | 30 more`
 
   Union type for all event types in a session.
 
@@ -351,7 +353,7 @@ List Events
 
       - `:"user.custom_tool_result"`
 
-    - `content: Array[BetaManagedAgentsTextBlock | BetaManagedAgentsImageBlock | BetaManagedAgentsDocumentBlock]`
+    - `content: Array[BetaManagedAgentsTextBlock | BetaManagedAgentsImageBlock | BetaManagedAgentsDocumentBlock | BetaManagedAgentsSearchResultBlock]`
 
       The result content returned by the tool.
 
@@ -496,6 +498,42 @@ List Events
         - `title: String`
 
           The title of the document.
+
+      - `class BetaManagedAgentsSearchResultBlock`
+
+        A block containing a web search result.
+
+        - `citations: BetaManagedAgentsSearchResultCitations`
+
+          Citation settings for a search result.
+
+          - `enabled: bool`
+
+            Whether citations are enabled for this search result.
+
+        - `content: Array[BetaManagedAgentsSearchResultContent]`
+
+          Array of text content blocks from the search result.
+
+          - `text: String`
+
+            The text content.
+
+          - `type: :text`
+
+            - `:text`
+
+        - `source: String`
+
+          The URL source of the search result.
+
+        - `title: String`
+
+          The title of the search result.
+
+        - `type: :search_result`
+
+          - `:search_result`
 
     - `is_error: bool`
 
@@ -643,7 +681,7 @@ List Events
 
       - `:"agent.mcp_tool_result"`
 
-    - `content: Array[BetaManagedAgentsTextBlock | BetaManagedAgentsImageBlock | BetaManagedAgentsDocumentBlock]`
+    - `content: Array[BetaManagedAgentsTextBlock | BetaManagedAgentsImageBlock | BetaManagedAgentsDocumentBlock | BetaManagedAgentsSearchResultBlock]`
 
       The result content returned by the tool.
 
@@ -788,6 +826,42 @@ List Events
         - `title: String`
 
           The title of the document.
+
+      - `class BetaManagedAgentsSearchResultBlock`
+
+        A block containing a web search result.
+
+        - `citations: BetaManagedAgentsSearchResultCitations`
+
+          Citation settings for a search result.
+
+          - `enabled: bool`
+
+            Whether citations are enabled for this search result.
+
+        - `content: Array[BetaManagedAgentsSearchResultContent]`
+
+          Array of text content blocks from the search result.
+
+          - `text: String`
+
+            The text content.
+
+          - `type: :text`
+
+            - `:text`
+
+        - `source: String`
+
+          The URL source of the search result.
+
+        - `title: String`
+
+          The title of the search result.
+
+        - `type: :search_result`
+
+          - `:search_result`
 
     - `is_error: bool`
 
@@ -851,7 +925,7 @@ List Events
 
       - `:"agent.tool_result"`
 
-    - `content: Array[BetaManagedAgentsTextBlock | BetaManagedAgentsImageBlock | BetaManagedAgentsDocumentBlock]`
+    - `content: Array[BetaManagedAgentsTextBlock | BetaManagedAgentsImageBlock | BetaManagedAgentsDocumentBlock | BetaManagedAgentsSearchResultBlock]`
 
       The result content returned by the tool.
 
@@ -996,6 +1070,42 @@ List Events
         - `title: String`
 
           The title of the document.
+
+      - `class BetaManagedAgentsSearchResultBlock`
+
+        A block containing a web search result.
+
+        - `citations: BetaManagedAgentsSearchResultCitations`
+
+          Citation settings for a search result.
+
+          - `enabled: bool`
+
+            Whether citations are enabled for this search result.
+
+        - `content: Array[BetaManagedAgentsSearchResultContent]`
+
+          Array of text content blocks from the search result.
+
+          - `text: String`
+
+            The text content.
+
+          - `type: :text`
+
+            - `:text`
+
+        - `source: String`
+
+          The URL source of the search result.
+
+        - `title: String`
+
+          The title of the search result.
+
+        - `type: :search_result`
+
+          - `:search_result`
 
     - `is_error: bool`
 
@@ -2141,6 +2251,216 @@ List Events
 
       - `:"session.thread_status_terminated"`
 
+  - `class BetaManagedAgentsUserToolResultEvent`
+
+    Event sent by the client providing the result of an agent-toolset tool execution. Only valid on `self_hosted` environments, where sandbox-routed tools are executed by the client rather than the server.
+
+    - `id: String`
+
+      Unique identifier for this event.
+
+    - `tool_use_id: String`
+
+      The id of the `agent.tool_use` event this result corresponds to, which can be found in the last `session.status_idle` [event's](https://platform.claude.com/docs/en/api/beta/sessions/events/list#beta_managed_agents_session_requires_action.event_ids) `stop_reason.event_ids` field.
+
+    - `type: :"user.tool_result"`
+
+      - `:"user.tool_result"`
+
+    - `content: Array[BetaManagedAgentsTextBlock | BetaManagedAgentsImageBlock | BetaManagedAgentsDocumentBlock | BetaManagedAgentsSearchResultBlock]`
+
+      The result content returned by the tool.
+
+      - `class BetaManagedAgentsTextBlock`
+
+        Regular text content.
+
+        - `text: String`
+
+          The text content.
+
+        - `type: :text`
+
+          - `:text`
+
+      - `class BetaManagedAgentsImageBlock`
+
+        Image content specified directly as base64 data or as a reference via a URL.
+
+        - `source: BetaManagedAgentsBase64ImageSource | BetaManagedAgentsURLImageSource | BetaManagedAgentsFileImageSource`
+
+          Union type for image source variants.
+
+          - `class BetaManagedAgentsBase64ImageSource`
+
+            Base64-encoded image data.
+
+            - `data: String`
+
+              Base64-encoded image data.
+
+            - `media_type: String`
+
+              MIME type of the image (e.g., "image/png", "image/jpeg", "image/gif", "image/webp").
+
+            - `type: :base64`
+
+              - `:base64`
+
+          - `class BetaManagedAgentsURLImageSource`
+
+            Image referenced by URL.
+
+            - `type: :url`
+
+              - `:url`
+
+            - `url: String`
+
+              URL of the image to fetch.
+
+          - `class BetaManagedAgentsFileImageSource`
+
+            Image referenced by file ID.
+
+            - `file_id: String`
+
+              ID of a previously uploaded file.
+
+            - `type: :file`
+
+              - `:file`
+
+        - `type: :image`
+
+          - `:image`
+
+      - `class BetaManagedAgentsDocumentBlock`
+
+        Document content, either specified directly as base64 data, as text, or as a reference via a URL.
+
+        - `source: BetaManagedAgentsBase64DocumentSource | BetaManagedAgentsPlainTextDocumentSource | BetaManagedAgentsURLDocumentSource | BetaManagedAgentsFileDocumentSource`
+
+          Union type for document source variants.
+
+          - `class BetaManagedAgentsBase64DocumentSource`
+
+            Base64-encoded document data.
+
+            - `data: String`
+
+              Base64-encoded document data.
+
+            - `media_type: String`
+
+              MIME type of the document (e.g., "application/pdf").
+
+            - `type: :base64`
+
+              - `:base64`
+
+          - `class BetaManagedAgentsPlainTextDocumentSource`
+
+            Plain text document content.
+
+            - `data: String`
+
+              The plain text content.
+
+            - `media_type: :"text/plain"`
+
+              MIME type of the text content. Must be "text/plain".
+
+              - `:"text/plain"`
+
+            - `type: :text`
+
+              - `:text`
+
+          - `class BetaManagedAgentsURLDocumentSource`
+
+            Document referenced by URL.
+
+            - `type: :url`
+
+              - `:url`
+
+            - `url: String`
+
+              URL of the document to fetch.
+
+          - `class BetaManagedAgentsFileDocumentSource`
+
+            Document referenced by file ID.
+
+            - `file_id: String`
+
+              ID of a previously uploaded file.
+
+            - `type: :file`
+
+              - `:file`
+
+        - `type: :document`
+
+          - `:document`
+
+        - `context: String`
+
+          Additional context about the document for the model.
+
+        - `title: String`
+
+          The title of the document.
+
+      - `class BetaManagedAgentsSearchResultBlock`
+
+        A block containing a web search result.
+
+        - `citations: BetaManagedAgentsSearchResultCitations`
+
+          Citation settings for a search result.
+
+          - `enabled: bool`
+
+            Whether citations are enabled for this search result.
+
+        - `content: Array[BetaManagedAgentsSearchResultContent]`
+
+          Array of text content blocks from the search result.
+
+          - `text: String`
+
+            The text content.
+
+          - `type: :text`
+
+            - `:text`
+
+        - `source: String`
+
+          The URL source of the search result.
+
+        - `title: String`
+
+          The title of the search result.
+
+        - `type: :search_result`
+
+          - `:search_result`
+
+    - `is_error: bool`
+
+      Whether the tool execution resulted in an error.
+
+    - `processed_at: Time`
+
+      A timestamp in RFC 3339 format
+
+    - `session_thread_id: String`
+
+      Routes this result to a subagent thread. Copy from the `agent.tool_use` event's `session_thread_id`.
+
   - `class BetaManagedAgentsSessionThreadStatusRescheduledEvent`
 
     A session thread hit a transient error and is retrying automatically. Emitted on the thread's own stream and cross-posted to the primary stream for child threads.
@@ -2164,6 +2484,606 @@ List Events
     - `type: :"session.thread_status_rescheduled"`
 
       - `:"session.thread_status_rescheduled"`
+
+  - `class BetaManagedAgentsSessionUpdatedEvent`
+
+    Emitted when an UpdateSession request changed at least one field. Carries only the fields that changed; absent fields were not part of the update. The new configuration applies from the next turn.
+
+    - `id: String`
+
+      Unique identifier for this event.
+
+    - `processed_at: Time`
+
+      A timestamp in RFC 3339 format
+
+    - `type: :"session.updated"`
+
+      - `:"session.updated"`
+
+    - `agent: BetaManagedAgentsSessionAgent`
+
+      Resolved `agent` definition for a `session`. Snapshot of the `agent` at `session` creation time.
+
+      - `id: String`
+
+      - `description: String`
+
+      - `mcp_servers: Array[BetaManagedAgentsMCPServerURLDefinition]`
+
+        - `name: String`
+
+        - `type: :url`
+
+          - `:url`
+
+        - `url: String`
+
+      - `model: BetaManagedAgentsModelConfig`
+
+        Model identifier and configuration.
+
+        - `id: BetaManagedAgentsModel`
+
+          The model that will power your agent.
+
+          See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `:"claude-opus-4-7" | :"claude-opus-4-6" | :"claude-sonnet-4-6" | 6 more`
+
+            The model that will power your agent.
+
+            See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `:"claude-opus-4-7"`
+
+              Frontier intelligence for long-running agents and coding
+
+            - `:"claude-opus-4-6"`
+
+              Most intelligent model for building agents and coding
+
+            - `:"claude-sonnet-4-6"`
+
+              Best combination of speed and intelligence
+
+            - `:"claude-haiku-4-5"`
+
+              Fastest model with near-frontier intelligence
+
+            - `:"claude-haiku-4-5-20251001"`
+
+              Fastest model with near-frontier intelligence
+
+            - `:"claude-opus-4-5"`
+
+              Premium model combining maximum intelligence with practical performance
+
+            - `:"claude-opus-4-5-20251101"`
+
+              Premium model combining maximum intelligence with practical performance
+
+            - `:"claude-sonnet-4-5"`
+
+              High-performance model for agents and coding
+
+            - `:"claude-sonnet-4-5-20250929"`
+
+              High-performance model for agents and coding
+
+          - `String`
+
+        - `speed: :standard | :fast`
+
+          Inference speed mode. `fast` provides significantly faster output token generation at premium pricing. Not all models support `fast`; invalid combinations are rejected at create time.
+
+          - `:standard`
+
+          - `:fast`
+
+      - `multiagent: BetaManagedAgentsSessionMultiagentCoordinator`
+
+        Resolved coordinator topology with full agent definitions for each roster member.
+
+        - `agents: Array[BetaManagedAgentsSessionThreadAgent]`
+
+          Full `agent` definitions the coordinator may spawn as session threads.
+
+          - `id: String`
+
+          - `description: String`
+
+          - `mcp_servers: Array[BetaManagedAgentsMCPServerURLDefinition]`
+
+            - `name: String`
+
+            - `type: :url`
+
+              - `:url`
+
+            - `url: String`
+
+          - `model: BetaManagedAgentsModelConfig`
+
+            Model identifier and configuration.
+
+            - `id: BetaManagedAgentsModel`
+
+              The model that will power your agent.
+
+              See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+              - `:"claude-opus-4-7" | :"claude-opus-4-6" | :"claude-sonnet-4-6" | 6 more`
+
+                The model that will power your agent.
+
+                See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+                - `:"claude-opus-4-7"`
+
+                  Frontier intelligence for long-running agents and coding
+
+                - `:"claude-opus-4-6"`
+
+                  Most intelligent model for building agents and coding
+
+                - `:"claude-sonnet-4-6"`
+
+                  Best combination of speed and intelligence
+
+                - `:"claude-haiku-4-5"`
+
+                  Fastest model with near-frontier intelligence
+
+                - `:"claude-haiku-4-5-20251001"`
+
+                  Fastest model with near-frontier intelligence
+
+                - `:"claude-opus-4-5"`
+
+                  Premium model combining maximum intelligence with practical performance
+
+                - `:"claude-opus-4-5-20251101"`
+
+                  Premium model combining maximum intelligence with practical performance
+
+                - `:"claude-sonnet-4-5"`
+
+                  High-performance model for agents and coding
+
+                - `:"claude-sonnet-4-5-20250929"`
+
+                  High-performance model for agents and coding
+
+              - `String`
+
+            - `speed: :standard | :fast`
+
+              Inference speed mode. `fast` provides significantly faster output token generation at premium pricing. Not all models support `fast`; invalid combinations are rejected at create time.
+
+              - `:standard`
+
+              - `:fast`
+
+          - `name: String`
+
+          - `skills: Array[BetaManagedAgentsAnthropicSkill | BetaManagedAgentsCustomSkill]`
+
+            - `class BetaManagedAgentsAnthropicSkill`
+
+              A resolved Anthropic-managed skill.
+
+              - `skill_id: String`
+
+              - `type: :anthropic`
+
+                - `:anthropic`
+
+              - `version: String`
+
+            - `class BetaManagedAgentsCustomSkill`
+
+              A resolved user-created custom skill.
+
+              - `skill_id: String`
+
+              - `type: :custom`
+
+                - `:custom`
+
+              - `version: String`
+
+          - `system_: String`
+
+          - `tools: Array[BetaManagedAgentsAgentToolset20260401 | BetaManagedAgentsMCPToolset | BetaManagedAgentsCustomTool]`
+
+            - `class BetaManagedAgentsAgentToolset20260401`
+
+              - `configs: Array[BetaManagedAgentsAgentToolConfig]`
+
+                - `enabled: bool`
+
+                - `name: :bash | :edit | :read | 5 more`
+
+                  Built-in agent tool identifier.
+
+                  - `:bash`
+
+                  - `:edit`
+
+                  - `:read`
+
+                  - `:write`
+
+                  - `:glob`
+
+                  - `:grep`
+
+                  - `:web_fetch`
+
+                  - `:web_search`
+
+                - `permission_policy: BetaManagedAgentsAlwaysAllowPolicy | BetaManagedAgentsAlwaysAskPolicy`
+
+                  Permission policy for tool execution.
+
+                  - `class BetaManagedAgentsAlwaysAllowPolicy`
+
+                    Tool calls are automatically approved without user confirmation.
+
+                    - `type: :always_allow`
+
+                      - `:always_allow`
+
+                  - `class BetaManagedAgentsAlwaysAskPolicy`
+
+                    Tool calls require user confirmation before execution.
+
+                    - `type: :always_ask`
+
+                      - `:always_ask`
+
+              - `default_config: BetaManagedAgentsAgentToolsetDefaultConfig`
+
+                Resolved default configuration for agent tools.
+
+                - `enabled: bool`
+
+                - `permission_policy: BetaManagedAgentsAlwaysAllowPolicy | BetaManagedAgentsAlwaysAskPolicy`
+
+                  Permission policy for tool execution.
+
+                  - `class BetaManagedAgentsAlwaysAllowPolicy`
+
+                    Tool calls are automatically approved without user confirmation.
+
+                    - `type: :always_allow`
+
+                      - `:always_allow`
+
+                  - `class BetaManagedAgentsAlwaysAskPolicy`
+
+                    Tool calls require user confirmation before execution.
+
+                    - `type: :always_ask`
+
+                      - `:always_ask`
+
+              - `type: :agent_toolset_20260401`
+
+                - `:agent_toolset_20260401`
+
+            - `class BetaManagedAgentsMCPToolset`
+
+              - `configs: Array[BetaManagedAgentsMCPToolConfig]`
+
+                - `enabled: bool`
+
+                - `name: String`
+
+                - `permission_policy: BetaManagedAgentsAlwaysAllowPolicy | BetaManagedAgentsAlwaysAskPolicy`
+
+                  Permission policy for tool execution.
+
+                  - `class BetaManagedAgentsAlwaysAllowPolicy`
+
+                    Tool calls are automatically approved without user confirmation.
+
+                    - `type: :always_allow`
+
+                      - `:always_allow`
+
+                  - `class BetaManagedAgentsAlwaysAskPolicy`
+
+                    Tool calls require user confirmation before execution.
+
+                    - `type: :always_ask`
+
+                      - `:always_ask`
+
+              - `default_config: BetaManagedAgentsMCPToolsetDefaultConfig`
+
+                Resolved default configuration for all tools from an MCP server.
+
+                - `enabled: bool`
+
+                - `permission_policy: BetaManagedAgentsAlwaysAllowPolicy | BetaManagedAgentsAlwaysAskPolicy`
+
+                  Permission policy for tool execution.
+
+                  - `class BetaManagedAgentsAlwaysAllowPolicy`
+
+                    Tool calls are automatically approved without user confirmation.
+
+                    - `type: :always_allow`
+
+                      - `:always_allow`
+
+                  - `class BetaManagedAgentsAlwaysAskPolicy`
+
+                    Tool calls require user confirmation before execution.
+
+                    - `type: :always_ask`
+
+                      - `:always_ask`
+
+              - `mcp_server_name: String`
+
+              - `type: :mcp_toolset`
+
+                - `:mcp_toolset`
+
+            - `class BetaManagedAgentsCustomTool`
+
+              A custom tool as returned in API responses.
+
+              - `description: String`
+
+              - `input_schema: BetaManagedAgentsCustomToolInputSchema`
+
+                JSON Schema for custom tool input parameters.
+
+                - `properties: Hash[Symbol, untyped]`
+
+                  JSON Schema properties defining the tool's input parameters.
+
+                - `required: Array[String]`
+
+                  List of required property names.
+
+                - `type: :object`
+
+                  Must be 'object' for tool input schemas.
+
+                  - `:object`
+
+              - `name: String`
+
+              - `type: :custom`
+
+                - `:custom`
+
+          - `type: :agent`
+
+            - `:agent`
+
+          - `version: Integer`
+
+        - `type: :coordinator`
+
+          - `:coordinator`
+
+      - `name: String`
+
+      - `skills: Array[BetaManagedAgentsAnthropicSkill | BetaManagedAgentsCustomSkill]`
+
+        - `class BetaManagedAgentsAnthropicSkill`
+
+          A resolved Anthropic-managed skill.
+
+          - `skill_id: String`
+
+          - `type: :anthropic`
+
+            - `:anthropic`
+
+          - `version: String`
+
+        - `class BetaManagedAgentsCustomSkill`
+
+          A resolved user-created custom skill.
+
+          - `skill_id: String`
+
+          - `type: :custom`
+
+            - `:custom`
+
+          - `version: String`
+
+      - `system_: String`
+
+      - `tools: Array[BetaManagedAgentsAgentToolset20260401 | BetaManagedAgentsMCPToolset | BetaManagedAgentsCustomTool]`
+
+        - `class BetaManagedAgentsAgentToolset20260401`
+
+          - `configs: Array[BetaManagedAgentsAgentToolConfig]`
+
+            - `enabled: bool`
+
+            - `name: :bash | :edit | :read | 5 more`
+
+              Built-in agent tool identifier.
+
+              - `:bash`
+
+              - `:edit`
+
+              - `:read`
+
+              - `:write`
+
+              - `:glob`
+
+              - `:grep`
+
+              - `:web_fetch`
+
+              - `:web_search`
+
+            - `permission_policy: BetaManagedAgentsAlwaysAllowPolicy | BetaManagedAgentsAlwaysAskPolicy`
+
+              Permission policy for tool execution.
+
+              - `class BetaManagedAgentsAlwaysAllowPolicy`
+
+                Tool calls are automatically approved without user confirmation.
+
+                - `type: :always_allow`
+
+                  - `:always_allow`
+
+              - `class BetaManagedAgentsAlwaysAskPolicy`
+
+                Tool calls require user confirmation before execution.
+
+                - `type: :always_ask`
+
+                  - `:always_ask`
+
+          - `default_config: BetaManagedAgentsAgentToolsetDefaultConfig`
+
+            Resolved default configuration for agent tools.
+
+            - `enabled: bool`
+
+            - `permission_policy: BetaManagedAgentsAlwaysAllowPolicy | BetaManagedAgentsAlwaysAskPolicy`
+
+              Permission policy for tool execution.
+
+              - `class BetaManagedAgentsAlwaysAllowPolicy`
+
+                Tool calls are automatically approved without user confirmation.
+
+                - `type: :always_allow`
+
+                  - `:always_allow`
+
+              - `class BetaManagedAgentsAlwaysAskPolicy`
+
+                Tool calls require user confirmation before execution.
+
+                - `type: :always_ask`
+
+                  - `:always_ask`
+
+          - `type: :agent_toolset_20260401`
+
+            - `:agent_toolset_20260401`
+
+        - `class BetaManagedAgentsMCPToolset`
+
+          - `configs: Array[BetaManagedAgentsMCPToolConfig]`
+
+            - `enabled: bool`
+
+            - `name: String`
+
+            - `permission_policy: BetaManagedAgentsAlwaysAllowPolicy | BetaManagedAgentsAlwaysAskPolicy`
+
+              Permission policy for tool execution.
+
+              - `class BetaManagedAgentsAlwaysAllowPolicy`
+
+                Tool calls are automatically approved without user confirmation.
+
+                - `type: :always_allow`
+
+                  - `:always_allow`
+
+              - `class BetaManagedAgentsAlwaysAskPolicy`
+
+                Tool calls require user confirmation before execution.
+
+                - `type: :always_ask`
+
+                  - `:always_ask`
+
+          - `default_config: BetaManagedAgentsMCPToolsetDefaultConfig`
+
+            Resolved default configuration for all tools from an MCP server.
+
+            - `enabled: bool`
+
+            - `permission_policy: BetaManagedAgentsAlwaysAllowPolicy | BetaManagedAgentsAlwaysAskPolicy`
+
+              Permission policy for tool execution.
+
+              - `class BetaManagedAgentsAlwaysAllowPolicy`
+
+                Tool calls are automatically approved without user confirmation.
+
+                - `type: :always_allow`
+
+                  - `:always_allow`
+
+              - `class BetaManagedAgentsAlwaysAskPolicy`
+
+                Tool calls require user confirmation before execution.
+
+                - `type: :always_ask`
+
+                  - `:always_ask`
+
+          - `mcp_server_name: String`
+
+          - `type: :mcp_toolset`
+
+            - `:mcp_toolset`
+
+        - `class BetaManagedAgentsCustomTool`
+
+          A custom tool as returned in API responses.
+
+          - `description: String`
+
+          - `input_schema: BetaManagedAgentsCustomToolInputSchema`
+
+            JSON Schema for custom tool input parameters.
+
+            - `properties: Hash[Symbol, untyped]`
+
+              JSON Schema properties defining the tool's input parameters.
+
+            - `required: Array[String]`
+
+              List of required property names.
+
+            - `type: :object`
+
+              Must be 'object' for tool input schemas.
+
+              - `:object`
+
+          - `name: String`
+
+          - `type: :custom`
+
+            - `:custom`
+
+      - `type: :agent`
+
+        - `:agent`
+
+      - `version: Integer`
+
+    - `metadata: Hash[Symbol, String]`
+
+      The session's full metadata bag after the update. Present when the update set non-empty metadata; absent when metadata was unchanged or cleared to empty.
+
+    - `title: String`
+
+      The session's new title. Present only when the update changed it.
 
 ### Example
 
@@ -2395,7 +3315,7 @@ Send Events
 
       - `:"user.custom_tool_result"`
 
-    - `content: Array[BetaManagedAgentsTextBlock | BetaManagedAgentsImageBlock | BetaManagedAgentsDocumentBlock]`
+    - `content: Array[BetaManagedAgentsTextBlock | BetaManagedAgentsImageBlock | BetaManagedAgentsDocumentBlock | BetaManagedAgentsSearchResultBlock]`
 
       The result content returned by the tool.
 
@@ -2541,6 +3461,42 @@ Send Events
 
           The title of the document.
 
+      - `class BetaManagedAgentsSearchResultBlock`
+
+        A block containing a web search result.
+
+        - `citations: BetaManagedAgentsSearchResultCitations`
+
+          Citation settings for a search result.
+
+          - `enabled: bool`
+
+            Whether citations are enabled for this search result.
+
+        - `content: Array[BetaManagedAgentsSearchResultContent]`
+
+          Array of text content blocks from the search result.
+
+          - `text: String`
+
+            The text content.
+
+          - `type: :text`
+
+            - `:text`
+
+        - `source: String`
+
+          The URL source of the search result.
+
+        - `title: String`
+
+          The title of the search result.
+
+        - `type: :search_result`
+
+          - `:search_result`
+
     - `is_error: bool`
 
       Whether the tool execution resulted in an error.
@@ -2589,13 +3545,211 @@ Send Events
 
       Eval→revision cycles before giving up. Default 3, max 20.
 
+  - `class BetaManagedAgentsUserToolResultEventParams`
+
+    Parameters for providing the result of an agent-toolset tool execution. Only valid on `self_hosted` environments, where sandbox-routed tools are executed by the client rather than the server.
+
+    - `tool_use_id: String`
+
+      The id of the `agent.tool_use` event this result corresponds to, which can be found in the last `session.status_idle` [event's](https://platform.claude.com/docs/en/api/beta/sessions/events/list#beta_managed_agents_session_requires_action.event_ids) `stop_reason.event_ids` field.
+
+    - `type: :"user.tool_result"`
+
+      - `:"user.tool_result"`
+
+    - `content: Array[BetaManagedAgentsTextBlock | BetaManagedAgentsImageBlock | BetaManagedAgentsDocumentBlock | BetaManagedAgentsSearchResultBlock]`
+
+      The result content returned by the tool.
+
+      - `class BetaManagedAgentsTextBlock`
+
+        Regular text content.
+
+        - `text: String`
+
+          The text content.
+
+        - `type: :text`
+
+          - `:text`
+
+      - `class BetaManagedAgentsImageBlock`
+
+        Image content specified directly as base64 data or as a reference via a URL.
+
+        - `source: BetaManagedAgentsBase64ImageSource | BetaManagedAgentsURLImageSource | BetaManagedAgentsFileImageSource`
+
+          Union type for image source variants.
+
+          - `class BetaManagedAgentsBase64ImageSource`
+
+            Base64-encoded image data.
+
+            - `data: String`
+
+              Base64-encoded image data.
+
+            - `media_type: String`
+
+              MIME type of the image (e.g., "image/png", "image/jpeg", "image/gif", "image/webp").
+
+            - `type: :base64`
+
+              - `:base64`
+
+          - `class BetaManagedAgentsURLImageSource`
+
+            Image referenced by URL.
+
+            - `type: :url`
+
+              - `:url`
+
+            - `url: String`
+
+              URL of the image to fetch.
+
+          - `class BetaManagedAgentsFileImageSource`
+
+            Image referenced by file ID.
+
+            - `file_id: String`
+
+              ID of a previously uploaded file.
+
+            - `type: :file`
+
+              - `:file`
+
+        - `type: :image`
+
+          - `:image`
+
+      - `class BetaManagedAgentsDocumentBlock`
+
+        Document content, either specified directly as base64 data, as text, or as a reference via a URL.
+
+        - `source: BetaManagedAgentsBase64DocumentSource | BetaManagedAgentsPlainTextDocumentSource | BetaManagedAgentsURLDocumentSource | BetaManagedAgentsFileDocumentSource`
+
+          Union type for document source variants.
+
+          - `class BetaManagedAgentsBase64DocumentSource`
+
+            Base64-encoded document data.
+
+            - `data: String`
+
+              Base64-encoded document data.
+
+            - `media_type: String`
+
+              MIME type of the document (e.g., "application/pdf").
+
+            - `type: :base64`
+
+              - `:base64`
+
+          - `class BetaManagedAgentsPlainTextDocumentSource`
+
+            Plain text document content.
+
+            - `data: String`
+
+              The plain text content.
+
+            - `media_type: :"text/plain"`
+
+              MIME type of the text content. Must be "text/plain".
+
+              - `:"text/plain"`
+
+            - `type: :text`
+
+              - `:text`
+
+          - `class BetaManagedAgentsURLDocumentSource`
+
+            Document referenced by URL.
+
+            - `type: :url`
+
+              - `:url`
+
+            - `url: String`
+
+              URL of the document to fetch.
+
+          - `class BetaManagedAgentsFileDocumentSource`
+
+            Document referenced by file ID.
+
+            - `file_id: String`
+
+              ID of a previously uploaded file.
+
+            - `type: :file`
+
+              - `:file`
+
+        - `type: :document`
+
+          - `:document`
+
+        - `context: String`
+
+          Additional context about the document for the model.
+
+        - `title: String`
+
+          The title of the document.
+
+      - `class BetaManagedAgentsSearchResultBlock`
+
+        A block containing a web search result.
+
+        - `citations: BetaManagedAgentsSearchResultCitations`
+
+          Citation settings for a search result.
+
+          - `enabled: bool`
+
+            Whether citations are enabled for this search result.
+
+        - `content: Array[BetaManagedAgentsSearchResultContent]`
+
+          Array of text content blocks from the search result.
+
+          - `text: String`
+
+            The text content.
+
+          - `type: :text`
+
+            - `:text`
+
+        - `source: String`
+
+          The URL source of the search result.
+
+        - `title: String`
+
+          The title of the search result.
+
+        - `type: :search_result`
+
+          - `:search_result`
+
+    - `is_error: bool`
+
+      Whether the tool execution resulted in an error.
+
 - `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 21 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -2645,13 +3799,15 @@ Send Events
 
     - `:"managed-agents-2026-04-01"`
 
+    - `:"cache-diagnosis-2026-04-07"`
+
 ### Returns
 
 - `class BetaManagedAgentsSendSessionEvents`
 
   Events that were successfully sent to the session.
 
-  - `data: Array[BetaManagedAgentsUserMessageEvent | BetaManagedAgentsUserInterruptEvent | BetaManagedAgentsUserToolConfirmationEvent | 2 more]`
+  - `data: Array[BetaManagedAgentsUserMessageEvent | BetaManagedAgentsUserInterruptEvent | BetaManagedAgentsUserToolConfirmationEvent | 3 more]`
 
     Sent events
 
@@ -2889,7 +4045,7 @@ Send Events
 
         - `:"user.custom_tool_result"`
 
-      - `content: Array[BetaManagedAgentsTextBlock | BetaManagedAgentsImageBlock | BetaManagedAgentsDocumentBlock]`
+      - `content: Array[BetaManagedAgentsTextBlock | BetaManagedAgentsImageBlock | BetaManagedAgentsDocumentBlock | BetaManagedAgentsSearchResultBlock]`
 
         The result content returned by the tool.
 
@@ -3035,6 +4191,42 @@ Send Events
 
             The title of the document.
 
+        - `class BetaManagedAgentsSearchResultBlock`
+
+          A block containing a web search result.
+
+          - `citations: BetaManagedAgentsSearchResultCitations`
+
+            Citation settings for a search result.
+
+            - `enabled: bool`
+
+              Whether citations are enabled for this search result.
+
+          - `content: Array[BetaManagedAgentsSearchResultContent]`
+
+            Array of text content blocks from the search result.
+
+            - `text: String`
+
+              The text content.
+
+            - `type: :text`
+
+              - `:text`
+
+          - `source: String`
+
+            The URL source of the search result.
+
+          - `title: String`
+
+            The title of the search result.
+
+          - `type: :search_result`
+
+            - `:search_result`
+
       - `is_error: bool`
 
         Whether the tool execution resulted in an error.
@@ -3103,6 +4295,216 @@ Send Events
 
         - `:"user.define_outcome"`
 
+    - `class BetaManagedAgentsUserToolResultEvent`
+
+      Event sent by the client providing the result of an agent-toolset tool execution. Only valid on `self_hosted` environments, where sandbox-routed tools are executed by the client rather than the server.
+
+      - `id: String`
+
+        Unique identifier for this event.
+
+      - `tool_use_id: String`
+
+        The id of the `agent.tool_use` event this result corresponds to, which can be found in the last `session.status_idle` [event's](https://platform.claude.com/docs/en/api/beta/sessions/events/list#beta_managed_agents_session_requires_action.event_ids) `stop_reason.event_ids` field.
+
+      - `type: :"user.tool_result"`
+
+        - `:"user.tool_result"`
+
+      - `content: Array[BetaManagedAgentsTextBlock | BetaManagedAgentsImageBlock | BetaManagedAgentsDocumentBlock | BetaManagedAgentsSearchResultBlock]`
+
+        The result content returned by the tool.
+
+        - `class BetaManagedAgentsTextBlock`
+
+          Regular text content.
+
+          - `text: String`
+
+            The text content.
+
+          - `type: :text`
+
+            - `:text`
+
+        - `class BetaManagedAgentsImageBlock`
+
+          Image content specified directly as base64 data or as a reference via a URL.
+
+          - `source: BetaManagedAgentsBase64ImageSource | BetaManagedAgentsURLImageSource | BetaManagedAgentsFileImageSource`
+
+            Union type for image source variants.
+
+            - `class BetaManagedAgentsBase64ImageSource`
+
+              Base64-encoded image data.
+
+              - `data: String`
+
+                Base64-encoded image data.
+
+              - `media_type: String`
+
+                MIME type of the image (e.g., "image/png", "image/jpeg", "image/gif", "image/webp").
+
+              - `type: :base64`
+
+                - `:base64`
+
+            - `class BetaManagedAgentsURLImageSource`
+
+              Image referenced by URL.
+
+              - `type: :url`
+
+                - `:url`
+
+              - `url: String`
+
+                URL of the image to fetch.
+
+            - `class BetaManagedAgentsFileImageSource`
+
+              Image referenced by file ID.
+
+              - `file_id: String`
+
+                ID of a previously uploaded file.
+
+              - `type: :file`
+
+                - `:file`
+
+          - `type: :image`
+
+            - `:image`
+
+        - `class BetaManagedAgentsDocumentBlock`
+
+          Document content, either specified directly as base64 data, as text, or as a reference via a URL.
+
+          - `source: BetaManagedAgentsBase64DocumentSource | BetaManagedAgentsPlainTextDocumentSource | BetaManagedAgentsURLDocumentSource | BetaManagedAgentsFileDocumentSource`
+
+            Union type for document source variants.
+
+            - `class BetaManagedAgentsBase64DocumentSource`
+
+              Base64-encoded document data.
+
+              - `data: String`
+
+                Base64-encoded document data.
+
+              - `media_type: String`
+
+                MIME type of the document (e.g., "application/pdf").
+
+              - `type: :base64`
+
+                - `:base64`
+
+            - `class BetaManagedAgentsPlainTextDocumentSource`
+
+              Plain text document content.
+
+              - `data: String`
+
+                The plain text content.
+
+              - `media_type: :"text/plain"`
+
+                MIME type of the text content. Must be "text/plain".
+
+                - `:"text/plain"`
+
+              - `type: :text`
+
+                - `:text`
+
+            - `class BetaManagedAgentsURLDocumentSource`
+
+              Document referenced by URL.
+
+              - `type: :url`
+
+                - `:url`
+
+              - `url: String`
+
+                URL of the document to fetch.
+
+            - `class BetaManagedAgentsFileDocumentSource`
+
+              Document referenced by file ID.
+
+              - `file_id: String`
+
+                ID of a previously uploaded file.
+
+              - `type: :file`
+
+                - `:file`
+
+          - `type: :document`
+
+            - `:document`
+
+          - `context: String`
+
+            Additional context about the document for the model.
+
+          - `title: String`
+
+            The title of the document.
+
+        - `class BetaManagedAgentsSearchResultBlock`
+
+          A block containing a web search result.
+
+          - `citations: BetaManagedAgentsSearchResultCitations`
+
+            Citation settings for a search result.
+
+            - `enabled: bool`
+
+              Whether citations are enabled for this search result.
+
+          - `content: Array[BetaManagedAgentsSearchResultContent]`
+
+            Array of text content blocks from the search result.
+
+            - `text: String`
+
+              The text content.
+
+            - `type: :text`
+
+              - `:text`
+
+          - `source: String`
+
+            The URL source of the search result.
+
+          - `title: String`
+
+            The title of the search result.
+
+          - `type: :search_result`
+
+            - `:search_result`
+
+      - `is_error: bool`
+
+        Whether the tool execution resulted in an error.
+
+      - `processed_at: Time`
+
+        A timestamp in RFC 3339 format
+
+      - `session_thread_id: String`
+
+        Routes this result to a subagent thread. Copy from the `agent.tool_use` event's `session_thread_id`.
+
 ### Example
 
 ```ruby
@@ -3136,7 +4538,7 @@ Stream Events
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 21 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -3186,9 +4588,11 @@ Stream Events
 
     - `:"managed-agents-2026-04-01"`
 
+    - `:"cache-diagnosis-2026-04-07"`
+
 ### Returns
 
-- `BetaManagedAgentsStreamSessionEvents = BetaManagedAgentsUserMessageEvent | BetaManagedAgentsUserInterruptEvent | BetaManagedAgentsUserToolConfirmationEvent | 28 more`
+- `BetaManagedAgentsStreamSessionEvents = BetaManagedAgentsUserMessageEvent | BetaManagedAgentsUserInterruptEvent | BetaManagedAgentsUserToolConfirmationEvent | 30 more`
 
   Server-sent event in the session stream.
 
@@ -3426,7 +4830,7 @@ Stream Events
 
       - `:"user.custom_tool_result"`
 
-    - `content: Array[BetaManagedAgentsTextBlock | BetaManagedAgentsImageBlock | BetaManagedAgentsDocumentBlock]`
+    - `content: Array[BetaManagedAgentsTextBlock | BetaManagedAgentsImageBlock | BetaManagedAgentsDocumentBlock | BetaManagedAgentsSearchResultBlock]`
 
       The result content returned by the tool.
 
@@ -3571,6 +4975,42 @@ Stream Events
         - `title: String`
 
           The title of the document.
+
+      - `class BetaManagedAgentsSearchResultBlock`
+
+        A block containing a web search result.
+
+        - `citations: BetaManagedAgentsSearchResultCitations`
+
+          Citation settings for a search result.
+
+          - `enabled: bool`
+
+            Whether citations are enabled for this search result.
+
+        - `content: Array[BetaManagedAgentsSearchResultContent]`
+
+          Array of text content blocks from the search result.
+
+          - `text: String`
+
+            The text content.
+
+          - `type: :text`
+
+            - `:text`
+
+        - `source: String`
+
+          The URL source of the search result.
+
+        - `title: String`
+
+          The title of the search result.
+
+        - `type: :search_result`
+
+          - `:search_result`
 
     - `is_error: bool`
 
@@ -3718,7 +5158,7 @@ Stream Events
 
       - `:"agent.mcp_tool_result"`
 
-    - `content: Array[BetaManagedAgentsTextBlock | BetaManagedAgentsImageBlock | BetaManagedAgentsDocumentBlock]`
+    - `content: Array[BetaManagedAgentsTextBlock | BetaManagedAgentsImageBlock | BetaManagedAgentsDocumentBlock | BetaManagedAgentsSearchResultBlock]`
 
       The result content returned by the tool.
 
@@ -3863,6 +5303,42 @@ Stream Events
         - `title: String`
 
           The title of the document.
+
+      - `class BetaManagedAgentsSearchResultBlock`
+
+        A block containing a web search result.
+
+        - `citations: BetaManagedAgentsSearchResultCitations`
+
+          Citation settings for a search result.
+
+          - `enabled: bool`
+
+            Whether citations are enabled for this search result.
+
+        - `content: Array[BetaManagedAgentsSearchResultContent]`
+
+          Array of text content blocks from the search result.
+
+          - `text: String`
+
+            The text content.
+
+          - `type: :text`
+
+            - `:text`
+
+        - `source: String`
+
+          The URL source of the search result.
+
+        - `title: String`
+
+          The title of the search result.
+
+        - `type: :search_result`
+
+          - `:search_result`
 
     - `is_error: bool`
 
@@ -3926,7 +5402,7 @@ Stream Events
 
       - `:"agent.tool_result"`
 
-    - `content: Array[BetaManagedAgentsTextBlock | BetaManagedAgentsImageBlock | BetaManagedAgentsDocumentBlock]`
+    - `content: Array[BetaManagedAgentsTextBlock | BetaManagedAgentsImageBlock | BetaManagedAgentsDocumentBlock | BetaManagedAgentsSearchResultBlock]`
 
       The result content returned by the tool.
 
@@ -4071,6 +5547,42 @@ Stream Events
         - `title: String`
 
           The title of the document.
+
+      - `class BetaManagedAgentsSearchResultBlock`
+
+        A block containing a web search result.
+
+        - `citations: BetaManagedAgentsSearchResultCitations`
+
+          Citation settings for a search result.
+
+          - `enabled: bool`
+
+            Whether citations are enabled for this search result.
+
+        - `content: Array[BetaManagedAgentsSearchResultContent]`
+
+          Array of text content blocks from the search result.
+
+          - `text: String`
+
+            The text content.
+
+          - `type: :text`
+
+            - `:text`
+
+        - `source: String`
+
+          The URL source of the search result.
+
+        - `title: String`
+
+          The title of the search result.
+
+        - `type: :search_result`
+
+          - `:search_result`
 
     - `is_error: bool`
 
@@ -5216,6 +6728,216 @@ Stream Events
 
       - `:"session.thread_status_terminated"`
 
+  - `class BetaManagedAgentsUserToolResultEvent`
+
+    Event sent by the client providing the result of an agent-toolset tool execution. Only valid on `self_hosted` environments, where sandbox-routed tools are executed by the client rather than the server.
+
+    - `id: String`
+
+      Unique identifier for this event.
+
+    - `tool_use_id: String`
+
+      The id of the `agent.tool_use` event this result corresponds to, which can be found in the last `session.status_idle` [event's](https://platform.claude.com/docs/en/api/beta/sessions/events/list#beta_managed_agents_session_requires_action.event_ids) `stop_reason.event_ids` field.
+
+    - `type: :"user.tool_result"`
+
+      - `:"user.tool_result"`
+
+    - `content: Array[BetaManagedAgentsTextBlock | BetaManagedAgentsImageBlock | BetaManagedAgentsDocumentBlock | BetaManagedAgentsSearchResultBlock]`
+
+      The result content returned by the tool.
+
+      - `class BetaManagedAgentsTextBlock`
+
+        Regular text content.
+
+        - `text: String`
+
+          The text content.
+
+        - `type: :text`
+
+          - `:text`
+
+      - `class BetaManagedAgentsImageBlock`
+
+        Image content specified directly as base64 data or as a reference via a URL.
+
+        - `source: BetaManagedAgentsBase64ImageSource | BetaManagedAgentsURLImageSource | BetaManagedAgentsFileImageSource`
+
+          Union type for image source variants.
+
+          - `class BetaManagedAgentsBase64ImageSource`
+
+            Base64-encoded image data.
+
+            - `data: String`
+
+              Base64-encoded image data.
+
+            - `media_type: String`
+
+              MIME type of the image (e.g., "image/png", "image/jpeg", "image/gif", "image/webp").
+
+            - `type: :base64`
+
+              - `:base64`
+
+          - `class BetaManagedAgentsURLImageSource`
+
+            Image referenced by URL.
+
+            - `type: :url`
+
+              - `:url`
+
+            - `url: String`
+
+              URL of the image to fetch.
+
+          - `class BetaManagedAgentsFileImageSource`
+
+            Image referenced by file ID.
+
+            - `file_id: String`
+
+              ID of a previously uploaded file.
+
+            - `type: :file`
+
+              - `:file`
+
+        - `type: :image`
+
+          - `:image`
+
+      - `class BetaManagedAgentsDocumentBlock`
+
+        Document content, either specified directly as base64 data, as text, or as a reference via a URL.
+
+        - `source: BetaManagedAgentsBase64DocumentSource | BetaManagedAgentsPlainTextDocumentSource | BetaManagedAgentsURLDocumentSource | BetaManagedAgentsFileDocumentSource`
+
+          Union type for document source variants.
+
+          - `class BetaManagedAgentsBase64DocumentSource`
+
+            Base64-encoded document data.
+
+            - `data: String`
+
+              Base64-encoded document data.
+
+            - `media_type: String`
+
+              MIME type of the document (e.g., "application/pdf").
+
+            - `type: :base64`
+
+              - `:base64`
+
+          - `class BetaManagedAgentsPlainTextDocumentSource`
+
+            Plain text document content.
+
+            - `data: String`
+
+              The plain text content.
+
+            - `media_type: :"text/plain"`
+
+              MIME type of the text content. Must be "text/plain".
+
+              - `:"text/plain"`
+
+            - `type: :text`
+
+              - `:text`
+
+          - `class BetaManagedAgentsURLDocumentSource`
+
+            Document referenced by URL.
+
+            - `type: :url`
+
+              - `:url`
+
+            - `url: String`
+
+              URL of the document to fetch.
+
+          - `class BetaManagedAgentsFileDocumentSource`
+
+            Document referenced by file ID.
+
+            - `file_id: String`
+
+              ID of a previously uploaded file.
+
+            - `type: :file`
+
+              - `:file`
+
+        - `type: :document`
+
+          - `:document`
+
+        - `context: String`
+
+          Additional context about the document for the model.
+
+        - `title: String`
+
+          The title of the document.
+
+      - `class BetaManagedAgentsSearchResultBlock`
+
+        A block containing a web search result.
+
+        - `citations: BetaManagedAgentsSearchResultCitations`
+
+          Citation settings for a search result.
+
+          - `enabled: bool`
+
+            Whether citations are enabled for this search result.
+
+        - `content: Array[BetaManagedAgentsSearchResultContent]`
+
+          Array of text content blocks from the search result.
+
+          - `text: String`
+
+            The text content.
+
+          - `type: :text`
+
+            - `:text`
+
+        - `source: String`
+
+          The URL source of the search result.
+
+        - `title: String`
+
+          The title of the search result.
+
+        - `type: :search_result`
+
+          - `:search_result`
+
+    - `is_error: bool`
+
+      Whether the tool execution resulted in an error.
+
+    - `processed_at: Time`
+
+      A timestamp in RFC 3339 format
+
+    - `session_thread_id: String`
+
+      Routes this result to a subagent thread. Copy from the `agent.tool_use` event's `session_thread_id`.
+
   - `class BetaManagedAgentsSessionThreadStatusRescheduledEvent`
 
     A session thread hit a transient error and is retrying automatically. Emitted on the thread's own stream and cross-posted to the primary stream for child threads.
@@ -5239,6 +6961,606 @@ Stream Events
     - `type: :"session.thread_status_rescheduled"`
 
       - `:"session.thread_status_rescheduled"`
+
+  - `class BetaManagedAgentsSessionUpdatedEvent`
+
+    Emitted when an UpdateSession request changed at least one field. Carries only the fields that changed; absent fields were not part of the update. The new configuration applies from the next turn.
+
+    - `id: String`
+
+      Unique identifier for this event.
+
+    - `processed_at: Time`
+
+      A timestamp in RFC 3339 format
+
+    - `type: :"session.updated"`
+
+      - `:"session.updated"`
+
+    - `agent: BetaManagedAgentsSessionAgent`
+
+      Resolved `agent` definition for a `session`. Snapshot of the `agent` at `session` creation time.
+
+      - `id: String`
+
+      - `description: String`
+
+      - `mcp_servers: Array[BetaManagedAgentsMCPServerURLDefinition]`
+
+        - `name: String`
+
+        - `type: :url`
+
+          - `:url`
+
+        - `url: String`
+
+      - `model: BetaManagedAgentsModelConfig`
+
+        Model identifier and configuration.
+
+        - `id: BetaManagedAgentsModel`
+
+          The model that will power your agent.
+
+          See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `:"claude-opus-4-7" | :"claude-opus-4-6" | :"claude-sonnet-4-6" | 6 more`
+
+            The model that will power your agent.
+
+            See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `:"claude-opus-4-7"`
+
+              Frontier intelligence for long-running agents and coding
+
+            - `:"claude-opus-4-6"`
+
+              Most intelligent model for building agents and coding
+
+            - `:"claude-sonnet-4-6"`
+
+              Best combination of speed and intelligence
+
+            - `:"claude-haiku-4-5"`
+
+              Fastest model with near-frontier intelligence
+
+            - `:"claude-haiku-4-5-20251001"`
+
+              Fastest model with near-frontier intelligence
+
+            - `:"claude-opus-4-5"`
+
+              Premium model combining maximum intelligence with practical performance
+
+            - `:"claude-opus-4-5-20251101"`
+
+              Premium model combining maximum intelligence with practical performance
+
+            - `:"claude-sonnet-4-5"`
+
+              High-performance model for agents and coding
+
+            - `:"claude-sonnet-4-5-20250929"`
+
+              High-performance model for agents and coding
+
+          - `String`
+
+        - `speed: :standard | :fast`
+
+          Inference speed mode. `fast` provides significantly faster output token generation at premium pricing. Not all models support `fast`; invalid combinations are rejected at create time.
+
+          - `:standard`
+
+          - `:fast`
+
+      - `multiagent: BetaManagedAgentsSessionMultiagentCoordinator`
+
+        Resolved coordinator topology with full agent definitions for each roster member.
+
+        - `agents: Array[BetaManagedAgentsSessionThreadAgent]`
+
+          Full `agent` definitions the coordinator may spawn as session threads.
+
+          - `id: String`
+
+          - `description: String`
+
+          - `mcp_servers: Array[BetaManagedAgentsMCPServerURLDefinition]`
+
+            - `name: String`
+
+            - `type: :url`
+
+              - `:url`
+
+            - `url: String`
+
+          - `model: BetaManagedAgentsModelConfig`
+
+            Model identifier and configuration.
+
+            - `id: BetaManagedAgentsModel`
+
+              The model that will power your agent.
+
+              See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+              - `:"claude-opus-4-7" | :"claude-opus-4-6" | :"claude-sonnet-4-6" | 6 more`
+
+                The model that will power your agent.
+
+                See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+                - `:"claude-opus-4-7"`
+
+                  Frontier intelligence for long-running agents and coding
+
+                - `:"claude-opus-4-6"`
+
+                  Most intelligent model for building agents and coding
+
+                - `:"claude-sonnet-4-6"`
+
+                  Best combination of speed and intelligence
+
+                - `:"claude-haiku-4-5"`
+
+                  Fastest model with near-frontier intelligence
+
+                - `:"claude-haiku-4-5-20251001"`
+
+                  Fastest model with near-frontier intelligence
+
+                - `:"claude-opus-4-5"`
+
+                  Premium model combining maximum intelligence with practical performance
+
+                - `:"claude-opus-4-5-20251101"`
+
+                  Premium model combining maximum intelligence with practical performance
+
+                - `:"claude-sonnet-4-5"`
+
+                  High-performance model for agents and coding
+
+                - `:"claude-sonnet-4-5-20250929"`
+
+                  High-performance model for agents and coding
+
+              - `String`
+
+            - `speed: :standard | :fast`
+
+              Inference speed mode. `fast` provides significantly faster output token generation at premium pricing. Not all models support `fast`; invalid combinations are rejected at create time.
+
+              - `:standard`
+
+              - `:fast`
+
+          - `name: String`
+
+          - `skills: Array[BetaManagedAgentsAnthropicSkill | BetaManagedAgentsCustomSkill]`
+
+            - `class BetaManagedAgentsAnthropicSkill`
+
+              A resolved Anthropic-managed skill.
+
+              - `skill_id: String`
+
+              - `type: :anthropic`
+
+                - `:anthropic`
+
+              - `version: String`
+
+            - `class BetaManagedAgentsCustomSkill`
+
+              A resolved user-created custom skill.
+
+              - `skill_id: String`
+
+              - `type: :custom`
+
+                - `:custom`
+
+              - `version: String`
+
+          - `system_: String`
+
+          - `tools: Array[BetaManagedAgentsAgentToolset20260401 | BetaManagedAgentsMCPToolset | BetaManagedAgentsCustomTool]`
+
+            - `class BetaManagedAgentsAgentToolset20260401`
+
+              - `configs: Array[BetaManagedAgentsAgentToolConfig]`
+
+                - `enabled: bool`
+
+                - `name: :bash | :edit | :read | 5 more`
+
+                  Built-in agent tool identifier.
+
+                  - `:bash`
+
+                  - `:edit`
+
+                  - `:read`
+
+                  - `:write`
+
+                  - `:glob`
+
+                  - `:grep`
+
+                  - `:web_fetch`
+
+                  - `:web_search`
+
+                - `permission_policy: BetaManagedAgentsAlwaysAllowPolicy | BetaManagedAgentsAlwaysAskPolicy`
+
+                  Permission policy for tool execution.
+
+                  - `class BetaManagedAgentsAlwaysAllowPolicy`
+
+                    Tool calls are automatically approved without user confirmation.
+
+                    - `type: :always_allow`
+
+                      - `:always_allow`
+
+                  - `class BetaManagedAgentsAlwaysAskPolicy`
+
+                    Tool calls require user confirmation before execution.
+
+                    - `type: :always_ask`
+
+                      - `:always_ask`
+
+              - `default_config: BetaManagedAgentsAgentToolsetDefaultConfig`
+
+                Resolved default configuration for agent tools.
+
+                - `enabled: bool`
+
+                - `permission_policy: BetaManagedAgentsAlwaysAllowPolicy | BetaManagedAgentsAlwaysAskPolicy`
+
+                  Permission policy for tool execution.
+
+                  - `class BetaManagedAgentsAlwaysAllowPolicy`
+
+                    Tool calls are automatically approved without user confirmation.
+
+                    - `type: :always_allow`
+
+                      - `:always_allow`
+
+                  - `class BetaManagedAgentsAlwaysAskPolicy`
+
+                    Tool calls require user confirmation before execution.
+
+                    - `type: :always_ask`
+
+                      - `:always_ask`
+
+              - `type: :agent_toolset_20260401`
+
+                - `:agent_toolset_20260401`
+
+            - `class BetaManagedAgentsMCPToolset`
+
+              - `configs: Array[BetaManagedAgentsMCPToolConfig]`
+
+                - `enabled: bool`
+
+                - `name: String`
+
+                - `permission_policy: BetaManagedAgentsAlwaysAllowPolicy | BetaManagedAgentsAlwaysAskPolicy`
+
+                  Permission policy for tool execution.
+
+                  - `class BetaManagedAgentsAlwaysAllowPolicy`
+
+                    Tool calls are automatically approved without user confirmation.
+
+                    - `type: :always_allow`
+
+                      - `:always_allow`
+
+                  - `class BetaManagedAgentsAlwaysAskPolicy`
+
+                    Tool calls require user confirmation before execution.
+
+                    - `type: :always_ask`
+
+                      - `:always_ask`
+
+              - `default_config: BetaManagedAgentsMCPToolsetDefaultConfig`
+
+                Resolved default configuration for all tools from an MCP server.
+
+                - `enabled: bool`
+
+                - `permission_policy: BetaManagedAgentsAlwaysAllowPolicy | BetaManagedAgentsAlwaysAskPolicy`
+
+                  Permission policy for tool execution.
+
+                  - `class BetaManagedAgentsAlwaysAllowPolicy`
+
+                    Tool calls are automatically approved without user confirmation.
+
+                    - `type: :always_allow`
+
+                      - `:always_allow`
+
+                  - `class BetaManagedAgentsAlwaysAskPolicy`
+
+                    Tool calls require user confirmation before execution.
+
+                    - `type: :always_ask`
+
+                      - `:always_ask`
+
+              - `mcp_server_name: String`
+
+              - `type: :mcp_toolset`
+
+                - `:mcp_toolset`
+
+            - `class BetaManagedAgentsCustomTool`
+
+              A custom tool as returned in API responses.
+
+              - `description: String`
+
+              - `input_schema: BetaManagedAgentsCustomToolInputSchema`
+
+                JSON Schema for custom tool input parameters.
+
+                - `properties: Hash[Symbol, untyped]`
+
+                  JSON Schema properties defining the tool's input parameters.
+
+                - `required: Array[String]`
+
+                  List of required property names.
+
+                - `type: :object`
+
+                  Must be 'object' for tool input schemas.
+
+                  - `:object`
+
+              - `name: String`
+
+              - `type: :custom`
+
+                - `:custom`
+
+          - `type: :agent`
+
+            - `:agent`
+
+          - `version: Integer`
+
+        - `type: :coordinator`
+
+          - `:coordinator`
+
+      - `name: String`
+
+      - `skills: Array[BetaManagedAgentsAnthropicSkill | BetaManagedAgentsCustomSkill]`
+
+        - `class BetaManagedAgentsAnthropicSkill`
+
+          A resolved Anthropic-managed skill.
+
+          - `skill_id: String`
+
+          - `type: :anthropic`
+
+            - `:anthropic`
+
+          - `version: String`
+
+        - `class BetaManagedAgentsCustomSkill`
+
+          A resolved user-created custom skill.
+
+          - `skill_id: String`
+
+          - `type: :custom`
+
+            - `:custom`
+
+          - `version: String`
+
+      - `system_: String`
+
+      - `tools: Array[BetaManagedAgentsAgentToolset20260401 | BetaManagedAgentsMCPToolset | BetaManagedAgentsCustomTool]`
+
+        - `class BetaManagedAgentsAgentToolset20260401`
+
+          - `configs: Array[BetaManagedAgentsAgentToolConfig]`
+
+            - `enabled: bool`
+
+            - `name: :bash | :edit | :read | 5 more`
+
+              Built-in agent tool identifier.
+
+              - `:bash`
+
+              - `:edit`
+
+              - `:read`
+
+              - `:write`
+
+              - `:glob`
+
+              - `:grep`
+
+              - `:web_fetch`
+
+              - `:web_search`
+
+            - `permission_policy: BetaManagedAgentsAlwaysAllowPolicy | BetaManagedAgentsAlwaysAskPolicy`
+
+              Permission policy for tool execution.
+
+              - `class BetaManagedAgentsAlwaysAllowPolicy`
+
+                Tool calls are automatically approved without user confirmation.
+
+                - `type: :always_allow`
+
+                  - `:always_allow`
+
+              - `class BetaManagedAgentsAlwaysAskPolicy`
+
+                Tool calls require user confirmation before execution.
+
+                - `type: :always_ask`
+
+                  - `:always_ask`
+
+          - `default_config: BetaManagedAgentsAgentToolsetDefaultConfig`
+
+            Resolved default configuration for agent tools.
+
+            - `enabled: bool`
+
+            - `permission_policy: BetaManagedAgentsAlwaysAllowPolicy | BetaManagedAgentsAlwaysAskPolicy`
+
+              Permission policy for tool execution.
+
+              - `class BetaManagedAgentsAlwaysAllowPolicy`
+
+                Tool calls are automatically approved without user confirmation.
+
+                - `type: :always_allow`
+
+                  - `:always_allow`
+
+              - `class BetaManagedAgentsAlwaysAskPolicy`
+
+                Tool calls require user confirmation before execution.
+
+                - `type: :always_ask`
+
+                  - `:always_ask`
+
+          - `type: :agent_toolset_20260401`
+
+            - `:agent_toolset_20260401`
+
+        - `class BetaManagedAgentsMCPToolset`
+
+          - `configs: Array[BetaManagedAgentsMCPToolConfig]`
+
+            - `enabled: bool`
+
+            - `name: String`
+
+            - `permission_policy: BetaManagedAgentsAlwaysAllowPolicy | BetaManagedAgentsAlwaysAskPolicy`
+
+              Permission policy for tool execution.
+
+              - `class BetaManagedAgentsAlwaysAllowPolicy`
+
+                Tool calls are automatically approved without user confirmation.
+
+                - `type: :always_allow`
+
+                  - `:always_allow`
+
+              - `class BetaManagedAgentsAlwaysAskPolicy`
+
+                Tool calls require user confirmation before execution.
+
+                - `type: :always_ask`
+
+                  - `:always_ask`
+
+          - `default_config: BetaManagedAgentsMCPToolsetDefaultConfig`
+
+            Resolved default configuration for all tools from an MCP server.
+
+            - `enabled: bool`
+
+            - `permission_policy: BetaManagedAgentsAlwaysAllowPolicy | BetaManagedAgentsAlwaysAskPolicy`
+
+              Permission policy for tool execution.
+
+              - `class BetaManagedAgentsAlwaysAllowPolicy`
+
+                Tool calls are automatically approved without user confirmation.
+
+                - `type: :always_allow`
+
+                  - `:always_allow`
+
+              - `class BetaManagedAgentsAlwaysAskPolicy`
+
+                Tool calls require user confirmation before execution.
+
+                - `type: :always_ask`
+
+                  - `:always_ask`
+
+          - `mcp_server_name: String`
+
+          - `type: :mcp_toolset`
+
+            - `:mcp_toolset`
+
+        - `class BetaManagedAgentsCustomTool`
+
+          A custom tool as returned in API responses.
+
+          - `description: String`
+
+          - `input_schema: BetaManagedAgentsCustomToolInputSchema`
+
+            JSON Schema for custom tool input parameters.
+
+            - `properties: Hash[Symbol, untyped]`
+
+              JSON Schema properties defining the tool's input parameters.
+
+            - `required: Array[String]`
+
+              List of required property names.
+
+            - `type: :object`
+
+              Must be 'object' for tool input schemas.
+
+              - `:object`
+
+          - `name: String`
+
+          - `type: :custom`
+
+            - `:custom`
+
+      - `type: :agent`
+
+        - `:agent`
+
+      - `version: Integer`
+
+    - `metadata: Hash[Symbol, String]`
+
+      The session's full metadata bag after the update. Present when the update set non-empty metadata; absent when metadata was unchanged or cleared to empty.
+
+    - `title: String`
+
+      The session's new title. Present only when the update changed it.
 
 ### Example
 
@@ -5306,7 +7628,7 @@ puts(beta_managed_agents_stream_session_events)
 
     - `:"agent.mcp_tool_result"`
 
-  - `content: Array[BetaManagedAgentsTextBlock | BetaManagedAgentsImageBlock | BetaManagedAgentsDocumentBlock]`
+  - `content: Array[BetaManagedAgentsTextBlock | BetaManagedAgentsImageBlock | BetaManagedAgentsDocumentBlock | BetaManagedAgentsSearchResultBlock]`
 
     The result content returned by the tool.
 
@@ -5451,6 +7773,42 @@ puts(beta_managed_agents_stream_session_events)
       - `title: String`
 
         The title of the document.
+
+    - `class BetaManagedAgentsSearchResultBlock`
+
+      A block containing a web search result.
+
+      - `citations: BetaManagedAgentsSearchResultCitations`
+
+        Citation settings for a search result.
+
+        - `enabled: bool`
+
+          Whether citations are enabled for this search result.
+
+      - `content: Array[BetaManagedAgentsSearchResultContent]`
+
+        Array of text content blocks from the search result.
+
+        - `text: String`
+
+          The text content.
+
+        - `type: :text`
+
+          - `:text`
+
+      - `source: String`
+
+        The URL source of the search result.
+
+      - `title: String`
+
+        The title of the search result.
+
+      - `type: :search_result`
+
+        - `:search_result`
 
   - `is_error: bool`
 
@@ -5932,7 +8290,7 @@ puts(beta_managed_agents_stream_session_events)
 
     - `:"agent.tool_result"`
 
-  - `content: Array[BetaManagedAgentsTextBlock | BetaManagedAgentsImageBlock | BetaManagedAgentsDocumentBlock]`
+  - `content: Array[BetaManagedAgentsTextBlock | BetaManagedAgentsImageBlock | BetaManagedAgentsDocumentBlock | BetaManagedAgentsSearchResultBlock]`
 
     The result content returned by the tool.
 
@@ -6077,6 +8435,42 @@ puts(beta_managed_agents_stream_session_events)
       - `title: String`
 
         The title of the document.
+
+    - `class BetaManagedAgentsSearchResultBlock`
+
+      A block containing a web search result.
+
+      - `citations: BetaManagedAgentsSearchResultCitations`
+
+        Citation settings for a search result.
+
+        - `enabled: bool`
+
+          Whether citations are enabled for this search result.
+
+      - `content: Array[BetaManagedAgentsSearchResultContent]`
+
+        Array of text content blocks from the search result.
+
+        - `text: String`
+
+          The text content.
+
+        - `type: :text`
+
+          - `:text`
+
+      - `source: String`
+
+        The URL source of the search result.
+
+      - `title: String`
+
+        The title of the search result.
+
+      - `type: :search_result`
+
+        - `:search_result`
 
   - `is_error: bool`
 
@@ -6282,7 +8676,7 @@ puts(beta_managed_agents_stream_session_events)
 
 ### Beta Managed Agents Event Params
 
-- `BetaManagedAgentsEventParams = BetaManagedAgentsUserMessageEventParams | BetaManagedAgentsUserInterruptEventParams | BetaManagedAgentsUserToolConfirmationEventParams | 2 more`
+- `BetaManagedAgentsEventParams = BetaManagedAgentsUserMessageEventParams | BetaManagedAgentsUserInterruptEventParams | BetaManagedAgentsUserToolConfirmationEventParams | 3 more`
 
   Union type for event parameters that can be sent to a session.
 
@@ -6488,7 +8882,7 @@ puts(beta_managed_agents_stream_session_events)
 
       - `:"user.custom_tool_result"`
 
-    - `content: Array[BetaManagedAgentsTextBlock | BetaManagedAgentsImageBlock | BetaManagedAgentsDocumentBlock]`
+    - `content: Array[BetaManagedAgentsTextBlock | BetaManagedAgentsImageBlock | BetaManagedAgentsDocumentBlock | BetaManagedAgentsSearchResultBlock]`
 
       The result content returned by the tool.
 
@@ -6634,6 +9028,42 @@ puts(beta_managed_agents_stream_session_events)
 
           The title of the document.
 
+      - `class BetaManagedAgentsSearchResultBlock`
+
+        A block containing a web search result.
+
+        - `citations: BetaManagedAgentsSearchResultCitations`
+
+          Citation settings for a search result.
+
+          - `enabled: bool`
+
+            Whether citations are enabled for this search result.
+
+        - `content: Array[BetaManagedAgentsSearchResultContent]`
+
+          Array of text content blocks from the search result.
+
+          - `text: String`
+
+            The text content.
+
+          - `type: :text`
+
+            - `:text`
+
+        - `source: String`
+
+          The URL source of the search result.
+
+        - `title: String`
+
+          The title of the search result.
+
+        - `type: :search_result`
+
+          - `:search_result`
+
     - `is_error: bool`
 
       Whether the tool execution resulted in an error.
@@ -6681,6 +9111,204 @@ puts(beta_managed_agents_stream_session_events)
     - `max_iterations: Integer`
 
       Eval→revision cycles before giving up. Default 3, max 20.
+
+  - `class BetaManagedAgentsUserToolResultEventParams`
+
+    Parameters for providing the result of an agent-toolset tool execution. Only valid on `self_hosted` environments, where sandbox-routed tools are executed by the client rather than the server.
+
+    - `tool_use_id: String`
+
+      The id of the `agent.tool_use` event this result corresponds to, which can be found in the last `session.status_idle` [event's](https://platform.claude.com/docs/en/api/beta/sessions/events/list#beta_managed_agents_session_requires_action.event_ids) `stop_reason.event_ids` field.
+
+    - `type: :"user.tool_result"`
+
+      - `:"user.tool_result"`
+
+    - `content: Array[BetaManagedAgentsTextBlock | BetaManagedAgentsImageBlock | BetaManagedAgentsDocumentBlock | BetaManagedAgentsSearchResultBlock]`
+
+      The result content returned by the tool.
+
+      - `class BetaManagedAgentsTextBlock`
+
+        Regular text content.
+
+        - `text: String`
+
+          The text content.
+
+        - `type: :text`
+
+          - `:text`
+
+      - `class BetaManagedAgentsImageBlock`
+
+        Image content specified directly as base64 data or as a reference via a URL.
+
+        - `source: BetaManagedAgentsBase64ImageSource | BetaManagedAgentsURLImageSource | BetaManagedAgentsFileImageSource`
+
+          Union type for image source variants.
+
+          - `class BetaManagedAgentsBase64ImageSource`
+
+            Base64-encoded image data.
+
+            - `data: String`
+
+              Base64-encoded image data.
+
+            - `media_type: String`
+
+              MIME type of the image (e.g., "image/png", "image/jpeg", "image/gif", "image/webp").
+
+            - `type: :base64`
+
+              - `:base64`
+
+          - `class BetaManagedAgentsURLImageSource`
+
+            Image referenced by URL.
+
+            - `type: :url`
+
+              - `:url`
+
+            - `url: String`
+
+              URL of the image to fetch.
+
+          - `class BetaManagedAgentsFileImageSource`
+
+            Image referenced by file ID.
+
+            - `file_id: String`
+
+              ID of a previously uploaded file.
+
+            - `type: :file`
+
+              - `:file`
+
+        - `type: :image`
+
+          - `:image`
+
+      - `class BetaManagedAgentsDocumentBlock`
+
+        Document content, either specified directly as base64 data, as text, or as a reference via a URL.
+
+        - `source: BetaManagedAgentsBase64DocumentSource | BetaManagedAgentsPlainTextDocumentSource | BetaManagedAgentsURLDocumentSource | BetaManagedAgentsFileDocumentSource`
+
+          Union type for document source variants.
+
+          - `class BetaManagedAgentsBase64DocumentSource`
+
+            Base64-encoded document data.
+
+            - `data: String`
+
+              Base64-encoded document data.
+
+            - `media_type: String`
+
+              MIME type of the document (e.g., "application/pdf").
+
+            - `type: :base64`
+
+              - `:base64`
+
+          - `class BetaManagedAgentsPlainTextDocumentSource`
+
+            Plain text document content.
+
+            - `data: String`
+
+              The plain text content.
+
+            - `media_type: :"text/plain"`
+
+              MIME type of the text content. Must be "text/plain".
+
+              - `:"text/plain"`
+
+            - `type: :text`
+
+              - `:text`
+
+          - `class BetaManagedAgentsURLDocumentSource`
+
+            Document referenced by URL.
+
+            - `type: :url`
+
+              - `:url`
+
+            - `url: String`
+
+              URL of the document to fetch.
+
+          - `class BetaManagedAgentsFileDocumentSource`
+
+            Document referenced by file ID.
+
+            - `file_id: String`
+
+              ID of a previously uploaded file.
+
+            - `type: :file`
+
+              - `:file`
+
+        - `type: :document`
+
+          - `:document`
+
+        - `context: String`
+
+          Additional context about the document for the model.
+
+        - `title: String`
+
+          The title of the document.
+
+      - `class BetaManagedAgentsSearchResultBlock`
+
+        A block containing a web search result.
+
+        - `citations: BetaManagedAgentsSearchResultCitations`
+
+          Citation settings for a search result.
+
+          - `enabled: bool`
+
+            Whether citations are enabled for this search result.
+
+        - `content: Array[BetaManagedAgentsSearchResultContent]`
+
+          Array of text content blocks from the search result.
+
+          - `text: String`
+
+            The text content.
+
+          - `type: :text`
+
+            - `:text`
+
+        - `source: String`
+
+          The URL source of the search result.
+
+        - `title: String`
+
+          The title of the search result.
+
+        - `type: :search_result`
+
+          - `:search_result`
+
+    - `is_error: bool`
+
+      Whether the tool execution resulted in an error.
 
 ### Beta Managed Agents File Document Source
 
@@ -7060,13 +9688,75 @@ puts(beta_managed_agents_stream_session_events)
 
     - `:terminal`
 
+### Beta Managed Agents Search Result Block
+
+- `class BetaManagedAgentsSearchResultBlock`
+
+  A block containing a web search result.
+
+  - `citations: BetaManagedAgentsSearchResultCitations`
+
+    Citation settings for a search result.
+
+    - `enabled: bool`
+
+      Whether citations are enabled for this search result.
+
+  - `content: Array[BetaManagedAgentsSearchResultContent]`
+
+    Array of text content blocks from the search result.
+
+    - `text: String`
+
+      The text content.
+
+    - `type: :text`
+
+      - `:text`
+
+  - `source: String`
+
+    The URL source of the search result.
+
+  - `title: String`
+
+    The title of the search result.
+
+  - `type: :search_result`
+
+    - `:search_result`
+
+### Beta Managed Agents Search Result Citations
+
+- `class BetaManagedAgentsSearchResultCitations`
+
+  Citation settings for a search result.
+
+  - `enabled: bool`
+
+    Whether citations are enabled for this search result.
+
+### Beta Managed Agents Search Result Content
+
+- `class BetaManagedAgentsSearchResultContent`
+
+  Text content within a search result.
+
+  - `text: String`
+
+    The text content.
+
+  - `type: :text`
+
+    - `:text`
+
 ### Beta Managed Agents Send Session Events
 
 - `class BetaManagedAgentsSendSessionEvents`
 
   Events that were successfully sent to the session.
 
-  - `data: Array[BetaManagedAgentsUserMessageEvent | BetaManagedAgentsUserInterruptEvent | BetaManagedAgentsUserToolConfirmationEvent | 2 more]`
+  - `data: Array[BetaManagedAgentsUserMessageEvent | BetaManagedAgentsUserInterruptEvent | BetaManagedAgentsUserToolConfirmationEvent | 3 more]`
 
     Sent events
 
@@ -7304,7 +9994,7 @@ puts(beta_managed_agents_stream_session_events)
 
         - `:"user.custom_tool_result"`
 
-      - `content: Array[BetaManagedAgentsTextBlock | BetaManagedAgentsImageBlock | BetaManagedAgentsDocumentBlock]`
+      - `content: Array[BetaManagedAgentsTextBlock | BetaManagedAgentsImageBlock | BetaManagedAgentsDocumentBlock | BetaManagedAgentsSearchResultBlock]`
 
         The result content returned by the tool.
 
@@ -7450,6 +10140,42 @@ puts(beta_managed_agents_stream_session_events)
 
             The title of the document.
 
+        - `class BetaManagedAgentsSearchResultBlock`
+
+          A block containing a web search result.
+
+          - `citations: BetaManagedAgentsSearchResultCitations`
+
+            Citation settings for a search result.
+
+            - `enabled: bool`
+
+              Whether citations are enabled for this search result.
+
+          - `content: Array[BetaManagedAgentsSearchResultContent]`
+
+            Array of text content blocks from the search result.
+
+            - `text: String`
+
+              The text content.
+
+            - `type: :text`
+
+              - `:text`
+
+          - `source: String`
+
+            The URL source of the search result.
+
+          - `title: String`
+
+            The title of the search result.
+
+          - `type: :search_result`
+
+            - `:search_result`
+
       - `is_error: bool`
 
         Whether the tool execution resulted in an error.
@@ -7517,6 +10243,216 @@ puts(beta_managed_agents_stream_session_events)
       - `type: :"user.define_outcome"`
 
         - `:"user.define_outcome"`
+
+    - `class BetaManagedAgentsUserToolResultEvent`
+
+      Event sent by the client providing the result of an agent-toolset tool execution. Only valid on `self_hosted` environments, where sandbox-routed tools are executed by the client rather than the server.
+
+      - `id: String`
+
+        Unique identifier for this event.
+
+      - `tool_use_id: String`
+
+        The id of the `agent.tool_use` event this result corresponds to, which can be found in the last `session.status_idle` [event's](https://platform.claude.com/docs/en/api/beta/sessions/events/list#beta_managed_agents_session_requires_action.event_ids) `stop_reason.event_ids` field.
+
+      - `type: :"user.tool_result"`
+
+        - `:"user.tool_result"`
+
+      - `content: Array[BetaManagedAgentsTextBlock | BetaManagedAgentsImageBlock | BetaManagedAgentsDocumentBlock | BetaManagedAgentsSearchResultBlock]`
+
+        The result content returned by the tool.
+
+        - `class BetaManagedAgentsTextBlock`
+
+          Regular text content.
+
+          - `text: String`
+
+            The text content.
+
+          - `type: :text`
+
+            - `:text`
+
+        - `class BetaManagedAgentsImageBlock`
+
+          Image content specified directly as base64 data or as a reference via a URL.
+
+          - `source: BetaManagedAgentsBase64ImageSource | BetaManagedAgentsURLImageSource | BetaManagedAgentsFileImageSource`
+
+            Union type for image source variants.
+
+            - `class BetaManagedAgentsBase64ImageSource`
+
+              Base64-encoded image data.
+
+              - `data: String`
+
+                Base64-encoded image data.
+
+              - `media_type: String`
+
+                MIME type of the image (e.g., "image/png", "image/jpeg", "image/gif", "image/webp").
+
+              - `type: :base64`
+
+                - `:base64`
+
+            - `class BetaManagedAgentsURLImageSource`
+
+              Image referenced by URL.
+
+              - `type: :url`
+
+                - `:url`
+
+              - `url: String`
+
+                URL of the image to fetch.
+
+            - `class BetaManagedAgentsFileImageSource`
+
+              Image referenced by file ID.
+
+              - `file_id: String`
+
+                ID of a previously uploaded file.
+
+              - `type: :file`
+
+                - `:file`
+
+          - `type: :image`
+
+            - `:image`
+
+        - `class BetaManagedAgentsDocumentBlock`
+
+          Document content, either specified directly as base64 data, as text, or as a reference via a URL.
+
+          - `source: BetaManagedAgentsBase64DocumentSource | BetaManagedAgentsPlainTextDocumentSource | BetaManagedAgentsURLDocumentSource | BetaManagedAgentsFileDocumentSource`
+
+            Union type for document source variants.
+
+            - `class BetaManagedAgentsBase64DocumentSource`
+
+              Base64-encoded document data.
+
+              - `data: String`
+
+                Base64-encoded document data.
+
+              - `media_type: String`
+
+                MIME type of the document (e.g., "application/pdf").
+
+              - `type: :base64`
+
+                - `:base64`
+
+            - `class BetaManagedAgentsPlainTextDocumentSource`
+
+              Plain text document content.
+
+              - `data: String`
+
+                The plain text content.
+
+              - `media_type: :"text/plain"`
+
+                MIME type of the text content. Must be "text/plain".
+
+                - `:"text/plain"`
+
+              - `type: :text`
+
+                - `:text`
+
+            - `class BetaManagedAgentsURLDocumentSource`
+
+              Document referenced by URL.
+
+              - `type: :url`
+
+                - `:url`
+
+              - `url: String`
+
+                URL of the document to fetch.
+
+            - `class BetaManagedAgentsFileDocumentSource`
+
+              Document referenced by file ID.
+
+              - `file_id: String`
+
+                ID of a previously uploaded file.
+
+              - `type: :file`
+
+                - `:file`
+
+          - `type: :document`
+
+            - `:document`
+
+          - `context: String`
+
+            Additional context about the document for the model.
+
+          - `title: String`
+
+            The title of the document.
+
+        - `class BetaManagedAgentsSearchResultBlock`
+
+          A block containing a web search result.
+
+          - `citations: BetaManagedAgentsSearchResultCitations`
+
+            Citation settings for a search result.
+
+            - `enabled: bool`
+
+              Whether citations are enabled for this search result.
+
+          - `content: Array[BetaManagedAgentsSearchResultContent]`
+
+            Array of text content blocks from the search result.
+
+            - `text: String`
+
+              The text content.
+
+            - `type: :text`
+
+              - `:text`
+
+          - `source: String`
+
+            The URL source of the search result.
+
+          - `title: String`
+
+            The title of the search result.
+
+          - `type: :search_result`
+
+            - `:search_result`
+
+      - `is_error: bool`
+
+        Whether the tool execution resulted in an error.
+
+      - `processed_at: Time`
+
+        A timestamp in RFC 3339 format
+
+      - `session_thread_id: String`
+
+        Routes this result to a subagent thread. Copy from the `agent.tool_use` event's `session_thread_id`.
 
 ### Beta Managed Agents Session Deleted Event
 
@@ -7858,7 +10794,7 @@ puts(beta_managed_agents_stream_session_events)
 
 ### Beta Managed Agents Session Event
 
-- `BetaManagedAgentsSessionEvent = BetaManagedAgentsUserMessageEvent | BetaManagedAgentsUserInterruptEvent | BetaManagedAgentsUserToolConfirmationEvent | 28 more`
+- `BetaManagedAgentsSessionEvent = BetaManagedAgentsUserMessageEvent | BetaManagedAgentsUserInterruptEvent | BetaManagedAgentsUserToolConfirmationEvent | 30 more`
 
   Union type for all event types in a session.
 
@@ -8096,7 +11032,7 @@ puts(beta_managed_agents_stream_session_events)
 
       - `:"user.custom_tool_result"`
 
-    - `content: Array[BetaManagedAgentsTextBlock | BetaManagedAgentsImageBlock | BetaManagedAgentsDocumentBlock]`
+    - `content: Array[BetaManagedAgentsTextBlock | BetaManagedAgentsImageBlock | BetaManagedAgentsDocumentBlock | BetaManagedAgentsSearchResultBlock]`
 
       The result content returned by the tool.
 
@@ -8241,6 +11177,42 @@ puts(beta_managed_agents_stream_session_events)
         - `title: String`
 
           The title of the document.
+
+      - `class BetaManagedAgentsSearchResultBlock`
+
+        A block containing a web search result.
+
+        - `citations: BetaManagedAgentsSearchResultCitations`
+
+          Citation settings for a search result.
+
+          - `enabled: bool`
+
+            Whether citations are enabled for this search result.
+
+        - `content: Array[BetaManagedAgentsSearchResultContent]`
+
+          Array of text content blocks from the search result.
+
+          - `text: String`
+
+            The text content.
+
+          - `type: :text`
+
+            - `:text`
+
+        - `source: String`
+
+          The URL source of the search result.
+
+        - `title: String`
+
+          The title of the search result.
+
+        - `type: :search_result`
+
+          - `:search_result`
 
     - `is_error: bool`
 
@@ -8388,7 +11360,7 @@ puts(beta_managed_agents_stream_session_events)
 
       - `:"agent.mcp_tool_result"`
 
-    - `content: Array[BetaManagedAgentsTextBlock | BetaManagedAgentsImageBlock | BetaManagedAgentsDocumentBlock]`
+    - `content: Array[BetaManagedAgentsTextBlock | BetaManagedAgentsImageBlock | BetaManagedAgentsDocumentBlock | BetaManagedAgentsSearchResultBlock]`
 
       The result content returned by the tool.
 
@@ -8533,6 +11505,42 @@ puts(beta_managed_agents_stream_session_events)
         - `title: String`
 
           The title of the document.
+
+      - `class BetaManagedAgentsSearchResultBlock`
+
+        A block containing a web search result.
+
+        - `citations: BetaManagedAgentsSearchResultCitations`
+
+          Citation settings for a search result.
+
+          - `enabled: bool`
+
+            Whether citations are enabled for this search result.
+
+        - `content: Array[BetaManagedAgentsSearchResultContent]`
+
+          Array of text content blocks from the search result.
+
+          - `text: String`
+
+            The text content.
+
+          - `type: :text`
+
+            - `:text`
+
+        - `source: String`
+
+          The URL source of the search result.
+
+        - `title: String`
+
+          The title of the search result.
+
+        - `type: :search_result`
+
+          - `:search_result`
 
     - `is_error: bool`
 
@@ -8596,7 +11604,7 @@ puts(beta_managed_agents_stream_session_events)
 
       - `:"agent.tool_result"`
 
-    - `content: Array[BetaManagedAgentsTextBlock | BetaManagedAgentsImageBlock | BetaManagedAgentsDocumentBlock]`
+    - `content: Array[BetaManagedAgentsTextBlock | BetaManagedAgentsImageBlock | BetaManagedAgentsDocumentBlock | BetaManagedAgentsSearchResultBlock]`
 
       The result content returned by the tool.
 
@@ -8741,6 +11749,42 @@ puts(beta_managed_agents_stream_session_events)
         - `title: String`
 
           The title of the document.
+
+      - `class BetaManagedAgentsSearchResultBlock`
+
+        A block containing a web search result.
+
+        - `citations: BetaManagedAgentsSearchResultCitations`
+
+          Citation settings for a search result.
+
+          - `enabled: bool`
+
+            Whether citations are enabled for this search result.
+
+        - `content: Array[BetaManagedAgentsSearchResultContent]`
+
+          Array of text content blocks from the search result.
+
+          - `text: String`
+
+            The text content.
+
+          - `type: :text`
+
+            - `:text`
+
+        - `source: String`
+
+          The URL source of the search result.
+
+        - `title: String`
+
+          The title of the search result.
+
+        - `type: :search_result`
+
+          - `:search_result`
 
     - `is_error: bool`
 
@@ -9886,6 +12930,216 @@ puts(beta_managed_agents_stream_session_events)
 
       - `:"session.thread_status_terminated"`
 
+  - `class BetaManagedAgentsUserToolResultEvent`
+
+    Event sent by the client providing the result of an agent-toolset tool execution. Only valid on `self_hosted` environments, where sandbox-routed tools are executed by the client rather than the server.
+
+    - `id: String`
+
+      Unique identifier for this event.
+
+    - `tool_use_id: String`
+
+      The id of the `agent.tool_use` event this result corresponds to, which can be found in the last `session.status_idle` [event's](https://platform.claude.com/docs/en/api/beta/sessions/events/list#beta_managed_agents_session_requires_action.event_ids) `stop_reason.event_ids` field.
+
+    - `type: :"user.tool_result"`
+
+      - `:"user.tool_result"`
+
+    - `content: Array[BetaManagedAgentsTextBlock | BetaManagedAgentsImageBlock | BetaManagedAgentsDocumentBlock | BetaManagedAgentsSearchResultBlock]`
+
+      The result content returned by the tool.
+
+      - `class BetaManagedAgentsTextBlock`
+
+        Regular text content.
+
+        - `text: String`
+
+          The text content.
+
+        - `type: :text`
+
+          - `:text`
+
+      - `class BetaManagedAgentsImageBlock`
+
+        Image content specified directly as base64 data or as a reference via a URL.
+
+        - `source: BetaManagedAgentsBase64ImageSource | BetaManagedAgentsURLImageSource | BetaManagedAgentsFileImageSource`
+
+          Union type for image source variants.
+
+          - `class BetaManagedAgentsBase64ImageSource`
+
+            Base64-encoded image data.
+
+            - `data: String`
+
+              Base64-encoded image data.
+
+            - `media_type: String`
+
+              MIME type of the image (e.g., "image/png", "image/jpeg", "image/gif", "image/webp").
+
+            - `type: :base64`
+
+              - `:base64`
+
+          - `class BetaManagedAgentsURLImageSource`
+
+            Image referenced by URL.
+
+            - `type: :url`
+
+              - `:url`
+
+            - `url: String`
+
+              URL of the image to fetch.
+
+          - `class BetaManagedAgentsFileImageSource`
+
+            Image referenced by file ID.
+
+            - `file_id: String`
+
+              ID of a previously uploaded file.
+
+            - `type: :file`
+
+              - `:file`
+
+        - `type: :image`
+
+          - `:image`
+
+      - `class BetaManagedAgentsDocumentBlock`
+
+        Document content, either specified directly as base64 data, as text, or as a reference via a URL.
+
+        - `source: BetaManagedAgentsBase64DocumentSource | BetaManagedAgentsPlainTextDocumentSource | BetaManagedAgentsURLDocumentSource | BetaManagedAgentsFileDocumentSource`
+
+          Union type for document source variants.
+
+          - `class BetaManagedAgentsBase64DocumentSource`
+
+            Base64-encoded document data.
+
+            - `data: String`
+
+              Base64-encoded document data.
+
+            - `media_type: String`
+
+              MIME type of the document (e.g., "application/pdf").
+
+            - `type: :base64`
+
+              - `:base64`
+
+          - `class BetaManagedAgentsPlainTextDocumentSource`
+
+            Plain text document content.
+
+            - `data: String`
+
+              The plain text content.
+
+            - `media_type: :"text/plain"`
+
+              MIME type of the text content. Must be "text/plain".
+
+              - `:"text/plain"`
+
+            - `type: :text`
+
+              - `:text`
+
+          - `class BetaManagedAgentsURLDocumentSource`
+
+            Document referenced by URL.
+
+            - `type: :url`
+
+              - `:url`
+
+            - `url: String`
+
+              URL of the document to fetch.
+
+          - `class BetaManagedAgentsFileDocumentSource`
+
+            Document referenced by file ID.
+
+            - `file_id: String`
+
+              ID of a previously uploaded file.
+
+            - `type: :file`
+
+              - `:file`
+
+        - `type: :document`
+
+          - `:document`
+
+        - `context: String`
+
+          Additional context about the document for the model.
+
+        - `title: String`
+
+          The title of the document.
+
+      - `class BetaManagedAgentsSearchResultBlock`
+
+        A block containing a web search result.
+
+        - `citations: BetaManagedAgentsSearchResultCitations`
+
+          Citation settings for a search result.
+
+          - `enabled: bool`
+
+            Whether citations are enabled for this search result.
+
+        - `content: Array[BetaManagedAgentsSearchResultContent]`
+
+          Array of text content blocks from the search result.
+
+          - `text: String`
+
+            The text content.
+
+          - `type: :text`
+
+            - `:text`
+
+        - `source: String`
+
+          The URL source of the search result.
+
+        - `title: String`
+
+          The title of the search result.
+
+        - `type: :search_result`
+
+          - `:search_result`
+
+    - `is_error: bool`
+
+      Whether the tool execution resulted in an error.
+
+    - `processed_at: Time`
+
+      A timestamp in RFC 3339 format
+
+    - `session_thread_id: String`
+
+      Routes this result to a subagent thread. Copy from the `agent.tool_use` event's `session_thread_id`.
+
   - `class BetaManagedAgentsSessionThreadStatusRescheduledEvent`
 
     A session thread hit a transient error and is retrying automatically. Emitted on the thread's own stream and cross-posted to the primary stream for child threads.
@@ -9909,6 +13163,606 @@ puts(beta_managed_agents_stream_session_events)
     - `type: :"session.thread_status_rescheduled"`
 
       - `:"session.thread_status_rescheduled"`
+
+  - `class BetaManagedAgentsSessionUpdatedEvent`
+
+    Emitted when an UpdateSession request changed at least one field. Carries only the fields that changed; absent fields were not part of the update. The new configuration applies from the next turn.
+
+    - `id: String`
+
+      Unique identifier for this event.
+
+    - `processed_at: Time`
+
+      A timestamp in RFC 3339 format
+
+    - `type: :"session.updated"`
+
+      - `:"session.updated"`
+
+    - `agent: BetaManagedAgentsSessionAgent`
+
+      Resolved `agent` definition for a `session`. Snapshot of the `agent` at `session` creation time.
+
+      - `id: String`
+
+      - `description: String`
+
+      - `mcp_servers: Array[BetaManagedAgentsMCPServerURLDefinition]`
+
+        - `name: String`
+
+        - `type: :url`
+
+          - `:url`
+
+        - `url: String`
+
+      - `model: BetaManagedAgentsModelConfig`
+
+        Model identifier and configuration.
+
+        - `id: BetaManagedAgentsModel`
+
+          The model that will power your agent.
+
+          See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `:"claude-opus-4-7" | :"claude-opus-4-6" | :"claude-sonnet-4-6" | 6 more`
+
+            The model that will power your agent.
+
+            See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `:"claude-opus-4-7"`
+
+              Frontier intelligence for long-running agents and coding
+
+            - `:"claude-opus-4-6"`
+
+              Most intelligent model for building agents and coding
+
+            - `:"claude-sonnet-4-6"`
+
+              Best combination of speed and intelligence
+
+            - `:"claude-haiku-4-5"`
+
+              Fastest model with near-frontier intelligence
+
+            - `:"claude-haiku-4-5-20251001"`
+
+              Fastest model with near-frontier intelligence
+
+            - `:"claude-opus-4-5"`
+
+              Premium model combining maximum intelligence with practical performance
+
+            - `:"claude-opus-4-5-20251101"`
+
+              Premium model combining maximum intelligence with practical performance
+
+            - `:"claude-sonnet-4-5"`
+
+              High-performance model for agents and coding
+
+            - `:"claude-sonnet-4-5-20250929"`
+
+              High-performance model for agents and coding
+
+          - `String`
+
+        - `speed: :standard | :fast`
+
+          Inference speed mode. `fast` provides significantly faster output token generation at premium pricing. Not all models support `fast`; invalid combinations are rejected at create time.
+
+          - `:standard`
+
+          - `:fast`
+
+      - `multiagent: BetaManagedAgentsSessionMultiagentCoordinator`
+
+        Resolved coordinator topology with full agent definitions for each roster member.
+
+        - `agents: Array[BetaManagedAgentsSessionThreadAgent]`
+
+          Full `agent` definitions the coordinator may spawn as session threads.
+
+          - `id: String`
+
+          - `description: String`
+
+          - `mcp_servers: Array[BetaManagedAgentsMCPServerURLDefinition]`
+
+            - `name: String`
+
+            - `type: :url`
+
+              - `:url`
+
+            - `url: String`
+
+          - `model: BetaManagedAgentsModelConfig`
+
+            Model identifier and configuration.
+
+            - `id: BetaManagedAgentsModel`
+
+              The model that will power your agent.
+
+              See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+              - `:"claude-opus-4-7" | :"claude-opus-4-6" | :"claude-sonnet-4-6" | 6 more`
+
+                The model that will power your agent.
+
+                See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+                - `:"claude-opus-4-7"`
+
+                  Frontier intelligence for long-running agents and coding
+
+                - `:"claude-opus-4-6"`
+
+                  Most intelligent model for building agents and coding
+
+                - `:"claude-sonnet-4-6"`
+
+                  Best combination of speed and intelligence
+
+                - `:"claude-haiku-4-5"`
+
+                  Fastest model with near-frontier intelligence
+
+                - `:"claude-haiku-4-5-20251001"`
+
+                  Fastest model with near-frontier intelligence
+
+                - `:"claude-opus-4-5"`
+
+                  Premium model combining maximum intelligence with practical performance
+
+                - `:"claude-opus-4-5-20251101"`
+
+                  Premium model combining maximum intelligence with practical performance
+
+                - `:"claude-sonnet-4-5"`
+
+                  High-performance model for agents and coding
+
+                - `:"claude-sonnet-4-5-20250929"`
+
+                  High-performance model for agents and coding
+
+              - `String`
+
+            - `speed: :standard | :fast`
+
+              Inference speed mode. `fast` provides significantly faster output token generation at premium pricing. Not all models support `fast`; invalid combinations are rejected at create time.
+
+              - `:standard`
+
+              - `:fast`
+
+          - `name: String`
+
+          - `skills: Array[BetaManagedAgentsAnthropicSkill | BetaManagedAgentsCustomSkill]`
+
+            - `class BetaManagedAgentsAnthropicSkill`
+
+              A resolved Anthropic-managed skill.
+
+              - `skill_id: String`
+
+              - `type: :anthropic`
+
+                - `:anthropic`
+
+              - `version: String`
+
+            - `class BetaManagedAgentsCustomSkill`
+
+              A resolved user-created custom skill.
+
+              - `skill_id: String`
+
+              - `type: :custom`
+
+                - `:custom`
+
+              - `version: String`
+
+          - `system_: String`
+
+          - `tools: Array[BetaManagedAgentsAgentToolset20260401 | BetaManagedAgentsMCPToolset | BetaManagedAgentsCustomTool]`
+
+            - `class BetaManagedAgentsAgentToolset20260401`
+
+              - `configs: Array[BetaManagedAgentsAgentToolConfig]`
+
+                - `enabled: bool`
+
+                - `name: :bash | :edit | :read | 5 more`
+
+                  Built-in agent tool identifier.
+
+                  - `:bash`
+
+                  - `:edit`
+
+                  - `:read`
+
+                  - `:write`
+
+                  - `:glob`
+
+                  - `:grep`
+
+                  - `:web_fetch`
+
+                  - `:web_search`
+
+                - `permission_policy: BetaManagedAgentsAlwaysAllowPolicy | BetaManagedAgentsAlwaysAskPolicy`
+
+                  Permission policy for tool execution.
+
+                  - `class BetaManagedAgentsAlwaysAllowPolicy`
+
+                    Tool calls are automatically approved without user confirmation.
+
+                    - `type: :always_allow`
+
+                      - `:always_allow`
+
+                  - `class BetaManagedAgentsAlwaysAskPolicy`
+
+                    Tool calls require user confirmation before execution.
+
+                    - `type: :always_ask`
+
+                      - `:always_ask`
+
+              - `default_config: BetaManagedAgentsAgentToolsetDefaultConfig`
+
+                Resolved default configuration for agent tools.
+
+                - `enabled: bool`
+
+                - `permission_policy: BetaManagedAgentsAlwaysAllowPolicy | BetaManagedAgentsAlwaysAskPolicy`
+
+                  Permission policy for tool execution.
+
+                  - `class BetaManagedAgentsAlwaysAllowPolicy`
+
+                    Tool calls are automatically approved without user confirmation.
+
+                    - `type: :always_allow`
+
+                      - `:always_allow`
+
+                  - `class BetaManagedAgentsAlwaysAskPolicy`
+
+                    Tool calls require user confirmation before execution.
+
+                    - `type: :always_ask`
+
+                      - `:always_ask`
+
+              - `type: :agent_toolset_20260401`
+
+                - `:agent_toolset_20260401`
+
+            - `class BetaManagedAgentsMCPToolset`
+
+              - `configs: Array[BetaManagedAgentsMCPToolConfig]`
+
+                - `enabled: bool`
+
+                - `name: String`
+
+                - `permission_policy: BetaManagedAgentsAlwaysAllowPolicy | BetaManagedAgentsAlwaysAskPolicy`
+
+                  Permission policy for tool execution.
+
+                  - `class BetaManagedAgentsAlwaysAllowPolicy`
+
+                    Tool calls are automatically approved without user confirmation.
+
+                    - `type: :always_allow`
+
+                      - `:always_allow`
+
+                  - `class BetaManagedAgentsAlwaysAskPolicy`
+
+                    Tool calls require user confirmation before execution.
+
+                    - `type: :always_ask`
+
+                      - `:always_ask`
+
+              - `default_config: BetaManagedAgentsMCPToolsetDefaultConfig`
+
+                Resolved default configuration for all tools from an MCP server.
+
+                - `enabled: bool`
+
+                - `permission_policy: BetaManagedAgentsAlwaysAllowPolicy | BetaManagedAgentsAlwaysAskPolicy`
+
+                  Permission policy for tool execution.
+
+                  - `class BetaManagedAgentsAlwaysAllowPolicy`
+
+                    Tool calls are automatically approved without user confirmation.
+
+                    - `type: :always_allow`
+
+                      - `:always_allow`
+
+                  - `class BetaManagedAgentsAlwaysAskPolicy`
+
+                    Tool calls require user confirmation before execution.
+
+                    - `type: :always_ask`
+
+                      - `:always_ask`
+
+              - `mcp_server_name: String`
+
+              - `type: :mcp_toolset`
+
+                - `:mcp_toolset`
+
+            - `class BetaManagedAgentsCustomTool`
+
+              A custom tool as returned in API responses.
+
+              - `description: String`
+
+              - `input_schema: BetaManagedAgentsCustomToolInputSchema`
+
+                JSON Schema for custom tool input parameters.
+
+                - `properties: Hash[Symbol, untyped]`
+
+                  JSON Schema properties defining the tool's input parameters.
+
+                - `required: Array[String]`
+
+                  List of required property names.
+
+                - `type: :object`
+
+                  Must be 'object' for tool input schemas.
+
+                  - `:object`
+
+              - `name: String`
+
+              - `type: :custom`
+
+                - `:custom`
+
+          - `type: :agent`
+
+            - `:agent`
+
+          - `version: Integer`
+
+        - `type: :coordinator`
+
+          - `:coordinator`
+
+      - `name: String`
+
+      - `skills: Array[BetaManagedAgentsAnthropicSkill | BetaManagedAgentsCustomSkill]`
+
+        - `class BetaManagedAgentsAnthropicSkill`
+
+          A resolved Anthropic-managed skill.
+
+          - `skill_id: String`
+
+          - `type: :anthropic`
+
+            - `:anthropic`
+
+          - `version: String`
+
+        - `class BetaManagedAgentsCustomSkill`
+
+          A resolved user-created custom skill.
+
+          - `skill_id: String`
+
+          - `type: :custom`
+
+            - `:custom`
+
+          - `version: String`
+
+      - `system_: String`
+
+      - `tools: Array[BetaManagedAgentsAgentToolset20260401 | BetaManagedAgentsMCPToolset | BetaManagedAgentsCustomTool]`
+
+        - `class BetaManagedAgentsAgentToolset20260401`
+
+          - `configs: Array[BetaManagedAgentsAgentToolConfig]`
+
+            - `enabled: bool`
+
+            - `name: :bash | :edit | :read | 5 more`
+
+              Built-in agent tool identifier.
+
+              - `:bash`
+
+              - `:edit`
+
+              - `:read`
+
+              - `:write`
+
+              - `:glob`
+
+              - `:grep`
+
+              - `:web_fetch`
+
+              - `:web_search`
+
+            - `permission_policy: BetaManagedAgentsAlwaysAllowPolicy | BetaManagedAgentsAlwaysAskPolicy`
+
+              Permission policy for tool execution.
+
+              - `class BetaManagedAgentsAlwaysAllowPolicy`
+
+                Tool calls are automatically approved without user confirmation.
+
+                - `type: :always_allow`
+
+                  - `:always_allow`
+
+              - `class BetaManagedAgentsAlwaysAskPolicy`
+
+                Tool calls require user confirmation before execution.
+
+                - `type: :always_ask`
+
+                  - `:always_ask`
+
+          - `default_config: BetaManagedAgentsAgentToolsetDefaultConfig`
+
+            Resolved default configuration for agent tools.
+
+            - `enabled: bool`
+
+            - `permission_policy: BetaManagedAgentsAlwaysAllowPolicy | BetaManagedAgentsAlwaysAskPolicy`
+
+              Permission policy for tool execution.
+
+              - `class BetaManagedAgentsAlwaysAllowPolicy`
+
+                Tool calls are automatically approved without user confirmation.
+
+                - `type: :always_allow`
+
+                  - `:always_allow`
+
+              - `class BetaManagedAgentsAlwaysAskPolicy`
+
+                Tool calls require user confirmation before execution.
+
+                - `type: :always_ask`
+
+                  - `:always_ask`
+
+          - `type: :agent_toolset_20260401`
+
+            - `:agent_toolset_20260401`
+
+        - `class BetaManagedAgentsMCPToolset`
+
+          - `configs: Array[BetaManagedAgentsMCPToolConfig]`
+
+            - `enabled: bool`
+
+            - `name: String`
+
+            - `permission_policy: BetaManagedAgentsAlwaysAllowPolicy | BetaManagedAgentsAlwaysAskPolicy`
+
+              Permission policy for tool execution.
+
+              - `class BetaManagedAgentsAlwaysAllowPolicy`
+
+                Tool calls are automatically approved without user confirmation.
+
+                - `type: :always_allow`
+
+                  - `:always_allow`
+
+              - `class BetaManagedAgentsAlwaysAskPolicy`
+
+                Tool calls require user confirmation before execution.
+
+                - `type: :always_ask`
+
+                  - `:always_ask`
+
+          - `default_config: BetaManagedAgentsMCPToolsetDefaultConfig`
+
+            Resolved default configuration for all tools from an MCP server.
+
+            - `enabled: bool`
+
+            - `permission_policy: BetaManagedAgentsAlwaysAllowPolicy | BetaManagedAgentsAlwaysAskPolicy`
+
+              Permission policy for tool execution.
+
+              - `class BetaManagedAgentsAlwaysAllowPolicy`
+
+                Tool calls are automatically approved without user confirmation.
+
+                - `type: :always_allow`
+
+                  - `:always_allow`
+
+              - `class BetaManagedAgentsAlwaysAskPolicy`
+
+                Tool calls require user confirmation before execution.
+
+                - `type: :always_ask`
+
+                  - `:always_ask`
+
+          - `mcp_server_name: String`
+
+          - `type: :mcp_toolset`
+
+            - `:mcp_toolset`
+
+        - `class BetaManagedAgentsCustomTool`
+
+          A custom tool as returned in API responses.
+
+          - `description: String`
+
+          - `input_schema: BetaManagedAgentsCustomToolInputSchema`
+
+            JSON Schema for custom tool input parameters.
+
+            - `properties: Hash[Symbol, untyped]`
+
+              JSON Schema properties defining the tool's input parameters.
+
+            - `required: Array[String]`
+
+              List of required property names.
+
+            - `type: :object`
+
+              Must be 'object' for tool input schemas.
+
+              - `:object`
+
+          - `name: String`
+
+          - `type: :custom`
+
+            - `:custom`
+
+      - `type: :agent`
+
+        - `:agent`
+
+      - `version: Integer`
+
+    - `metadata: Hash[Symbol, String]`
+
+      The session's full metadata bag after the update. Present when the update set non-empty metadata; absent when metadata was unchanged or cleared to empty.
+
+    - `title: String`
+
+      The session's new title. Present only when the update changed it.
 
 ### Beta Managed Agents Session Requires Action
 
@@ -10422,7 +14276,7 @@ puts(beta_managed_agents_stream_session_events)
 
 ### Beta Managed Agents Stream Session Events
 
-- `BetaManagedAgentsStreamSessionEvents = BetaManagedAgentsUserMessageEvent | BetaManagedAgentsUserInterruptEvent | BetaManagedAgentsUserToolConfirmationEvent | 28 more`
+- `BetaManagedAgentsStreamSessionEvents = BetaManagedAgentsUserMessageEvent | BetaManagedAgentsUserInterruptEvent | BetaManagedAgentsUserToolConfirmationEvent | 30 more`
 
   Server-sent event in the session stream.
 
@@ -10660,7 +14514,7 @@ puts(beta_managed_agents_stream_session_events)
 
       - `:"user.custom_tool_result"`
 
-    - `content: Array[BetaManagedAgentsTextBlock | BetaManagedAgentsImageBlock | BetaManagedAgentsDocumentBlock]`
+    - `content: Array[BetaManagedAgentsTextBlock | BetaManagedAgentsImageBlock | BetaManagedAgentsDocumentBlock | BetaManagedAgentsSearchResultBlock]`
 
       The result content returned by the tool.
 
@@ -10805,6 +14659,42 @@ puts(beta_managed_agents_stream_session_events)
         - `title: String`
 
           The title of the document.
+
+      - `class BetaManagedAgentsSearchResultBlock`
+
+        A block containing a web search result.
+
+        - `citations: BetaManagedAgentsSearchResultCitations`
+
+          Citation settings for a search result.
+
+          - `enabled: bool`
+
+            Whether citations are enabled for this search result.
+
+        - `content: Array[BetaManagedAgentsSearchResultContent]`
+
+          Array of text content blocks from the search result.
+
+          - `text: String`
+
+            The text content.
+
+          - `type: :text`
+
+            - `:text`
+
+        - `source: String`
+
+          The URL source of the search result.
+
+        - `title: String`
+
+          The title of the search result.
+
+        - `type: :search_result`
+
+          - `:search_result`
 
     - `is_error: bool`
 
@@ -10952,7 +14842,7 @@ puts(beta_managed_agents_stream_session_events)
 
       - `:"agent.mcp_tool_result"`
 
-    - `content: Array[BetaManagedAgentsTextBlock | BetaManagedAgentsImageBlock | BetaManagedAgentsDocumentBlock]`
+    - `content: Array[BetaManagedAgentsTextBlock | BetaManagedAgentsImageBlock | BetaManagedAgentsDocumentBlock | BetaManagedAgentsSearchResultBlock]`
 
       The result content returned by the tool.
 
@@ -11097,6 +14987,42 @@ puts(beta_managed_agents_stream_session_events)
         - `title: String`
 
           The title of the document.
+
+      - `class BetaManagedAgentsSearchResultBlock`
+
+        A block containing a web search result.
+
+        - `citations: BetaManagedAgentsSearchResultCitations`
+
+          Citation settings for a search result.
+
+          - `enabled: bool`
+
+            Whether citations are enabled for this search result.
+
+        - `content: Array[BetaManagedAgentsSearchResultContent]`
+
+          Array of text content blocks from the search result.
+
+          - `text: String`
+
+            The text content.
+
+          - `type: :text`
+
+            - `:text`
+
+        - `source: String`
+
+          The URL source of the search result.
+
+        - `title: String`
+
+          The title of the search result.
+
+        - `type: :search_result`
+
+          - `:search_result`
 
     - `is_error: bool`
 
@@ -11160,7 +15086,7 @@ puts(beta_managed_agents_stream_session_events)
 
       - `:"agent.tool_result"`
 
-    - `content: Array[BetaManagedAgentsTextBlock | BetaManagedAgentsImageBlock | BetaManagedAgentsDocumentBlock]`
+    - `content: Array[BetaManagedAgentsTextBlock | BetaManagedAgentsImageBlock | BetaManagedAgentsDocumentBlock | BetaManagedAgentsSearchResultBlock]`
 
       The result content returned by the tool.
 
@@ -11305,6 +15231,42 @@ puts(beta_managed_agents_stream_session_events)
         - `title: String`
 
           The title of the document.
+
+      - `class BetaManagedAgentsSearchResultBlock`
+
+        A block containing a web search result.
+
+        - `citations: BetaManagedAgentsSearchResultCitations`
+
+          Citation settings for a search result.
+
+          - `enabled: bool`
+
+            Whether citations are enabled for this search result.
+
+        - `content: Array[BetaManagedAgentsSearchResultContent]`
+
+          Array of text content blocks from the search result.
+
+          - `text: String`
+
+            The text content.
+
+          - `type: :text`
+
+            - `:text`
+
+        - `source: String`
+
+          The URL source of the search result.
+
+        - `title: String`
+
+          The title of the search result.
+
+        - `type: :search_result`
+
+          - `:search_result`
 
     - `is_error: bool`
 
@@ -12450,6 +16412,216 @@ puts(beta_managed_agents_stream_session_events)
 
       - `:"session.thread_status_terminated"`
 
+  - `class BetaManagedAgentsUserToolResultEvent`
+
+    Event sent by the client providing the result of an agent-toolset tool execution. Only valid on `self_hosted` environments, where sandbox-routed tools are executed by the client rather than the server.
+
+    - `id: String`
+
+      Unique identifier for this event.
+
+    - `tool_use_id: String`
+
+      The id of the `agent.tool_use` event this result corresponds to, which can be found in the last `session.status_idle` [event's](https://platform.claude.com/docs/en/api/beta/sessions/events/list#beta_managed_agents_session_requires_action.event_ids) `stop_reason.event_ids` field.
+
+    - `type: :"user.tool_result"`
+
+      - `:"user.tool_result"`
+
+    - `content: Array[BetaManagedAgentsTextBlock | BetaManagedAgentsImageBlock | BetaManagedAgentsDocumentBlock | BetaManagedAgentsSearchResultBlock]`
+
+      The result content returned by the tool.
+
+      - `class BetaManagedAgentsTextBlock`
+
+        Regular text content.
+
+        - `text: String`
+
+          The text content.
+
+        - `type: :text`
+
+          - `:text`
+
+      - `class BetaManagedAgentsImageBlock`
+
+        Image content specified directly as base64 data or as a reference via a URL.
+
+        - `source: BetaManagedAgentsBase64ImageSource | BetaManagedAgentsURLImageSource | BetaManagedAgentsFileImageSource`
+
+          Union type for image source variants.
+
+          - `class BetaManagedAgentsBase64ImageSource`
+
+            Base64-encoded image data.
+
+            - `data: String`
+
+              Base64-encoded image data.
+
+            - `media_type: String`
+
+              MIME type of the image (e.g., "image/png", "image/jpeg", "image/gif", "image/webp").
+
+            - `type: :base64`
+
+              - `:base64`
+
+          - `class BetaManagedAgentsURLImageSource`
+
+            Image referenced by URL.
+
+            - `type: :url`
+
+              - `:url`
+
+            - `url: String`
+
+              URL of the image to fetch.
+
+          - `class BetaManagedAgentsFileImageSource`
+
+            Image referenced by file ID.
+
+            - `file_id: String`
+
+              ID of a previously uploaded file.
+
+            - `type: :file`
+
+              - `:file`
+
+        - `type: :image`
+
+          - `:image`
+
+      - `class BetaManagedAgentsDocumentBlock`
+
+        Document content, either specified directly as base64 data, as text, or as a reference via a URL.
+
+        - `source: BetaManagedAgentsBase64DocumentSource | BetaManagedAgentsPlainTextDocumentSource | BetaManagedAgentsURLDocumentSource | BetaManagedAgentsFileDocumentSource`
+
+          Union type for document source variants.
+
+          - `class BetaManagedAgentsBase64DocumentSource`
+
+            Base64-encoded document data.
+
+            - `data: String`
+
+              Base64-encoded document data.
+
+            - `media_type: String`
+
+              MIME type of the document (e.g., "application/pdf").
+
+            - `type: :base64`
+
+              - `:base64`
+
+          - `class BetaManagedAgentsPlainTextDocumentSource`
+
+            Plain text document content.
+
+            - `data: String`
+
+              The plain text content.
+
+            - `media_type: :"text/plain"`
+
+              MIME type of the text content. Must be "text/plain".
+
+              - `:"text/plain"`
+
+            - `type: :text`
+
+              - `:text`
+
+          - `class BetaManagedAgentsURLDocumentSource`
+
+            Document referenced by URL.
+
+            - `type: :url`
+
+              - `:url`
+
+            - `url: String`
+
+              URL of the document to fetch.
+
+          - `class BetaManagedAgentsFileDocumentSource`
+
+            Document referenced by file ID.
+
+            - `file_id: String`
+
+              ID of a previously uploaded file.
+
+            - `type: :file`
+
+              - `:file`
+
+        - `type: :document`
+
+          - `:document`
+
+        - `context: String`
+
+          Additional context about the document for the model.
+
+        - `title: String`
+
+          The title of the document.
+
+      - `class BetaManagedAgentsSearchResultBlock`
+
+        A block containing a web search result.
+
+        - `citations: BetaManagedAgentsSearchResultCitations`
+
+          Citation settings for a search result.
+
+          - `enabled: bool`
+
+            Whether citations are enabled for this search result.
+
+        - `content: Array[BetaManagedAgentsSearchResultContent]`
+
+          Array of text content blocks from the search result.
+
+          - `text: String`
+
+            The text content.
+
+          - `type: :text`
+
+            - `:text`
+
+        - `source: String`
+
+          The URL source of the search result.
+
+        - `title: String`
+
+          The title of the search result.
+
+        - `type: :search_result`
+
+          - `:search_result`
+
+    - `is_error: bool`
+
+      Whether the tool execution resulted in an error.
+
+    - `processed_at: Time`
+
+      A timestamp in RFC 3339 format
+
+    - `session_thread_id: String`
+
+      Routes this result to a subagent thread. Copy from the `agent.tool_use` event's `session_thread_id`.
+
   - `class BetaManagedAgentsSessionThreadStatusRescheduledEvent`
 
     A session thread hit a transient error and is retrying automatically. Emitted on the thread's own stream and cross-posted to the primary stream for child threads.
@@ -12473,6 +16645,606 @@ puts(beta_managed_agents_stream_session_events)
     - `type: :"session.thread_status_rescheduled"`
 
       - `:"session.thread_status_rescheduled"`
+
+  - `class BetaManagedAgentsSessionUpdatedEvent`
+
+    Emitted when an UpdateSession request changed at least one field. Carries only the fields that changed; absent fields were not part of the update. The new configuration applies from the next turn.
+
+    - `id: String`
+
+      Unique identifier for this event.
+
+    - `processed_at: Time`
+
+      A timestamp in RFC 3339 format
+
+    - `type: :"session.updated"`
+
+      - `:"session.updated"`
+
+    - `agent: BetaManagedAgentsSessionAgent`
+
+      Resolved `agent` definition for a `session`. Snapshot of the `agent` at `session` creation time.
+
+      - `id: String`
+
+      - `description: String`
+
+      - `mcp_servers: Array[BetaManagedAgentsMCPServerURLDefinition]`
+
+        - `name: String`
+
+        - `type: :url`
+
+          - `:url`
+
+        - `url: String`
+
+      - `model: BetaManagedAgentsModelConfig`
+
+        Model identifier and configuration.
+
+        - `id: BetaManagedAgentsModel`
+
+          The model that will power your agent.
+
+          See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `:"claude-opus-4-7" | :"claude-opus-4-6" | :"claude-sonnet-4-6" | 6 more`
+
+            The model that will power your agent.
+
+            See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `:"claude-opus-4-7"`
+
+              Frontier intelligence for long-running agents and coding
+
+            - `:"claude-opus-4-6"`
+
+              Most intelligent model for building agents and coding
+
+            - `:"claude-sonnet-4-6"`
+
+              Best combination of speed and intelligence
+
+            - `:"claude-haiku-4-5"`
+
+              Fastest model with near-frontier intelligence
+
+            - `:"claude-haiku-4-5-20251001"`
+
+              Fastest model with near-frontier intelligence
+
+            - `:"claude-opus-4-5"`
+
+              Premium model combining maximum intelligence with practical performance
+
+            - `:"claude-opus-4-5-20251101"`
+
+              Premium model combining maximum intelligence with practical performance
+
+            - `:"claude-sonnet-4-5"`
+
+              High-performance model for agents and coding
+
+            - `:"claude-sonnet-4-5-20250929"`
+
+              High-performance model for agents and coding
+
+          - `String`
+
+        - `speed: :standard | :fast`
+
+          Inference speed mode. `fast` provides significantly faster output token generation at premium pricing. Not all models support `fast`; invalid combinations are rejected at create time.
+
+          - `:standard`
+
+          - `:fast`
+
+      - `multiagent: BetaManagedAgentsSessionMultiagentCoordinator`
+
+        Resolved coordinator topology with full agent definitions for each roster member.
+
+        - `agents: Array[BetaManagedAgentsSessionThreadAgent]`
+
+          Full `agent` definitions the coordinator may spawn as session threads.
+
+          - `id: String`
+
+          - `description: String`
+
+          - `mcp_servers: Array[BetaManagedAgentsMCPServerURLDefinition]`
+
+            - `name: String`
+
+            - `type: :url`
+
+              - `:url`
+
+            - `url: String`
+
+          - `model: BetaManagedAgentsModelConfig`
+
+            Model identifier and configuration.
+
+            - `id: BetaManagedAgentsModel`
+
+              The model that will power your agent.
+
+              See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+              - `:"claude-opus-4-7" | :"claude-opus-4-6" | :"claude-sonnet-4-6" | 6 more`
+
+                The model that will power your agent.
+
+                See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+                - `:"claude-opus-4-7"`
+
+                  Frontier intelligence for long-running agents and coding
+
+                - `:"claude-opus-4-6"`
+
+                  Most intelligent model for building agents and coding
+
+                - `:"claude-sonnet-4-6"`
+
+                  Best combination of speed and intelligence
+
+                - `:"claude-haiku-4-5"`
+
+                  Fastest model with near-frontier intelligence
+
+                - `:"claude-haiku-4-5-20251001"`
+
+                  Fastest model with near-frontier intelligence
+
+                - `:"claude-opus-4-5"`
+
+                  Premium model combining maximum intelligence with practical performance
+
+                - `:"claude-opus-4-5-20251101"`
+
+                  Premium model combining maximum intelligence with practical performance
+
+                - `:"claude-sonnet-4-5"`
+
+                  High-performance model for agents and coding
+
+                - `:"claude-sonnet-4-5-20250929"`
+
+                  High-performance model for agents and coding
+
+              - `String`
+
+            - `speed: :standard | :fast`
+
+              Inference speed mode. `fast` provides significantly faster output token generation at premium pricing. Not all models support `fast`; invalid combinations are rejected at create time.
+
+              - `:standard`
+
+              - `:fast`
+
+          - `name: String`
+
+          - `skills: Array[BetaManagedAgentsAnthropicSkill | BetaManagedAgentsCustomSkill]`
+
+            - `class BetaManagedAgentsAnthropicSkill`
+
+              A resolved Anthropic-managed skill.
+
+              - `skill_id: String`
+
+              - `type: :anthropic`
+
+                - `:anthropic`
+
+              - `version: String`
+
+            - `class BetaManagedAgentsCustomSkill`
+
+              A resolved user-created custom skill.
+
+              - `skill_id: String`
+
+              - `type: :custom`
+
+                - `:custom`
+
+              - `version: String`
+
+          - `system_: String`
+
+          - `tools: Array[BetaManagedAgentsAgentToolset20260401 | BetaManagedAgentsMCPToolset | BetaManagedAgentsCustomTool]`
+
+            - `class BetaManagedAgentsAgentToolset20260401`
+
+              - `configs: Array[BetaManagedAgentsAgentToolConfig]`
+
+                - `enabled: bool`
+
+                - `name: :bash | :edit | :read | 5 more`
+
+                  Built-in agent tool identifier.
+
+                  - `:bash`
+
+                  - `:edit`
+
+                  - `:read`
+
+                  - `:write`
+
+                  - `:glob`
+
+                  - `:grep`
+
+                  - `:web_fetch`
+
+                  - `:web_search`
+
+                - `permission_policy: BetaManagedAgentsAlwaysAllowPolicy | BetaManagedAgentsAlwaysAskPolicy`
+
+                  Permission policy for tool execution.
+
+                  - `class BetaManagedAgentsAlwaysAllowPolicy`
+
+                    Tool calls are automatically approved without user confirmation.
+
+                    - `type: :always_allow`
+
+                      - `:always_allow`
+
+                  - `class BetaManagedAgentsAlwaysAskPolicy`
+
+                    Tool calls require user confirmation before execution.
+
+                    - `type: :always_ask`
+
+                      - `:always_ask`
+
+              - `default_config: BetaManagedAgentsAgentToolsetDefaultConfig`
+
+                Resolved default configuration for agent tools.
+
+                - `enabled: bool`
+
+                - `permission_policy: BetaManagedAgentsAlwaysAllowPolicy | BetaManagedAgentsAlwaysAskPolicy`
+
+                  Permission policy for tool execution.
+
+                  - `class BetaManagedAgentsAlwaysAllowPolicy`
+
+                    Tool calls are automatically approved without user confirmation.
+
+                    - `type: :always_allow`
+
+                      - `:always_allow`
+
+                  - `class BetaManagedAgentsAlwaysAskPolicy`
+
+                    Tool calls require user confirmation before execution.
+
+                    - `type: :always_ask`
+
+                      - `:always_ask`
+
+              - `type: :agent_toolset_20260401`
+
+                - `:agent_toolset_20260401`
+
+            - `class BetaManagedAgentsMCPToolset`
+
+              - `configs: Array[BetaManagedAgentsMCPToolConfig]`
+
+                - `enabled: bool`
+
+                - `name: String`
+
+                - `permission_policy: BetaManagedAgentsAlwaysAllowPolicy | BetaManagedAgentsAlwaysAskPolicy`
+
+                  Permission policy for tool execution.
+
+                  - `class BetaManagedAgentsAlwaysAllowPolicy`
+
+                    Tool calls are automatically approved without user confirmation.
+
+                    - `type: :always_allow`
+
+                      - `:always_allow`
+
+                  - `class BetaManagedAgentsAlwaysAskPolicy`
+
+                    Tool calls require user confirmation before execution.
+
+                    - `type: :always_ask`
+
+                      - `:always_ask`
+
+              - `default_config: BetaManagedAgentsMCPToolsetDefaultConfig`
+
+                Resolved default configuration for all tools from an MCP server.
+
+                - `enabled: bool`
+
+                - `permission_policy: BetaManagedAgentsAlwaysAllowPolicy | BetaManagedAgentsAlwaysAskPolicy`
+
+                  Permission policy for tool execution.
+
+                  - `class BetaManagedAgentsAlwaysAllowPolicy`
+
+                    Tool calls are automatically approved without user confirmation.
+
+                    - `type: :always_allow`
+
+                      - `:always_allow`
+
+                  - `class BetaManagedAgentsAlwaysAskPolicy`
+
+                    Tool calls require user confirmation before execution.
+
+                    - `type: :always_ask`
+
+                      - `:always_ask`
+
+              - `mcp_server_name: String`
+
+              - `type: :mcp_toolset`
+
+                - `:mcp_toolset`
+
+            - `class BetaManagedAgentsCustomTool`
+
+              A custom tool as returned in API responses.
+
+              - `description: String`
+
+              - `input_schema: BetaManagedAgentsCustomToolInputSchema`
+
+                JSON Schema for custom tool input parameters.
+
+                - `properties: Hash[Symbol, untyped]`
+
+                  JSON Schema properties defining the tool's input parameters.
+
+                - `required: Array[String]`
+
+                  List of required property names.
+
+                - `type: :object`
+
+                  Must be 'object' for tool input schemas.
+
+                  - `:object`
+
+              - `name: String`
+
+              - `type: :custom`
+
+                - `:custom`
+
+          - `type: :agent`
+
+            - `:agent`
+
+          - `version: Integer`
+
+        - `type: :coordinator`
+
+          - `:coordinator`
+
+      - `name: String`
+
+      - `skills: Array[BetaManagedAgentsAnthropicSkill | BetaManagedAgentsCustomSkill]`
+
+        - `class BetaManagedAgentsAnthropicSkill`
+
+          A resolved Anthropic-managed skill.
+
+          - `skill_id: String`
+
+          - `type: :anthropic`
+
+            - `:anthropic`
+
+          - `version: String`
+
+        - `class BetaManagedAgentsCustomSkill`
+
+          A resolved user-created custom skill.
+
+          - `skill_id: String`
+
+          - `type: :custom`
+
+            - `:custom`
+
+          - `version: String`
+
+      - `system_: String`
+
+      - `tools: Array[BetaManagedAgentsAgentToolset20260401 | BetaManagedAgentsMCPToolset | BetaManagedAgentsCustomTool]`
+
+        - `class BetaManagedAgentsAgentToolset20260401`
+
+          - `configs: Array[BetaManagedAgentsAgentToolConfig]`
+
+            - `enabled: bool`
+
+            - `name: :bash | :edit | :read | 5 more`
+
+              Built-in agent tool identifier.
+
+              - `:bash`
+
+              - `:edit`
+
+              - `:read`
+
+              - `:write`
+
+              - `:glob`
+
+              - `:grep`
+
+              - `:web_fetch`
+
+              - `:web_search`
+
+            - `permission_policy: BetaManagedAgentsAlwaysAllowPolicy | BetaManagedAgentsAlwaysAskPolicy`
+
+              Permission policy for tool execution.
+
+              - `class BetaManagedAgentsAlwaysAllowPolicy`
+
+                Tool calls are automatically approved without user confirmation.
+
+                - `type: :always_allow`
+
+                  - `:always_allow`
+
+              - `class BetaManagedAgentsAlwaysAskPolicy`
+
+                Tool calls require user confirmation before execution.
+
+                - `type: :always_ask`
+
+                  - `:always_ask`
+
+          - `default_config: BetaManagedAgentsAgentToolsetDefaultConfig`
+
+            Resolved default configuration for agent tools.
+
+            - `enabled: bool`
+
+            - `permission_policy: BetaManagedAgentsAlwaysAllowPolicy | BetaManagedAgentsAlwaysAskPolicy`
+
+              Permission policy for tool execution.
+
+              - `class BetaManagedAgentsAlwaysAllowPolicy`
+
+                Tool calls are automatically approved without user confirmation.
+
+                - `type: :always_allow`
+
+                  - `:always_allow`
+
+              - `class BetaManagedAgentsAlwaysAskPolicy`
+
+                Tool calls require user confirmation before execution.
+
+                - `type: :always_ask`
+
+                  - `:always_ask`
+
+          - `type: :agent_toolset_20260401`
+
+            - `:agent_toolset_20260401`
+
+        - `class BetaManagedAgentsMCPToolset`
+
+          - `configs: Array[BetaManagedAgentsMCPToolConfig]`
+
+            - `enabled: bool`
+
+            - `name: String`
+
+            - `permission_policy: BetaManagedAgentsAlwaysAllowPolicy | BetaManagedAgentsAlwaysAskPolicy`
+
+              Permission policy for tool execution.
+
+              - `class BetaManagedAgentsAlwaysAllowPolicy`
+
+                Tool calls are automatically approved without user confirmation.
+
+                - `type: :always_allow`
+
+                  - `:always_allow`
+
+              - `class BetaManagedAgentsAlwaysAskPolicy`
+
+                Tool calls require user confirmation before execution.
+
+                - `type: :always_ask`
+
+                  - `:always_ask`
+
+          - `default_config: BetaManagedAgentsMCPToolsetDefaultConfig`
+
+            Resolved default configuration for all tools from an MCP server.
+
+            - `enabled: bool`
+
+            - `permission_policy: BetaManagedAgentsAlwaysAllowPolicy | BetaManagedAgentsAlwaysAskPolicy`
+
+              Permission policy for tool execution.
+
+              - `class BetaManagedAgentsAlwaysAllowPolicy`
+
+                Tool calls are automatically approved without user confirmation.
+
+                - `type: :always_allow`
+
+                  - `:always_allow`
+
+              - `class BetaManagedAgentsAlwaysAskPolicy`
+
+                Tool calls require user confirmation before execution.
+
+                - `type: :always_ask`
+
+                  - `:always_ask`
+
+          - `mcp_server_name: String`
+
+          - `type: :mcp_toolset`
+
+            - `:mcp_toolset`
+
+        - `class BetaManagedAgentsCustomTool`
+
+          A custom tool as returned in API responses.
+
+          - `description: String`
+
+          - `input_schema: BetaManagedAgentsCustomToolInputSchema`
+
+            JSON Schema for custom tool input parameters.
+
+            - `properties: Hash[Symbol, untyped]`
+
+              JSON Schema properties defining the tool's input parameters.
+
+            - `required: Array[String]`
+
+              List of required property names.
+
+            - `type: :object`
+
+              Must be 'object' for tool input schemas.
+
+              - `:object`
+
+          - `name: String`
+
+          - `type: :custom`
+
+            - `:custom`
+
+      - `type: :agent`
+
+        - `:agent`
+
+      - `version: Integer`
+
+    - `metadata: Hash[Symbol, String]`
+
+      The session's full metadata bag after the update. Present when the update set non-empty metadata; absent when metadata was unchanged or cleared to empty.
+
+    - `title: String`
+
+      The session's new title. Present only when the update changed it.
 
 ### Beta Managed Agents Text Block
 
@@ -12604,7 +17376,7 @@ puts(beta_managed_agents_stream_session_events)
 
     - `:"user.custom_tool_result"`
 
-  - `content: Array[BetaManagedAgentsTextBlock | BetaManagedAgentsImageBlock | BetaManagedAgentsDocumentBlock]`
+  - `content: Array[BetaManagedAgentsTextBlock | BetaManagedAgentsImageBlock | BetaManagedAgentsDocumentBlock | BetaManagedAgentsSearchResultBlock]`
 
     The result content returned by the tool.
 
@@ -12749,6 +17521,42 @@ puts(beta_managed_agents_stream_session_events)
       - `title: String`
 
         The title of the document.
+
+    - `class BetaManagedAgentsSearchResultBlock`
+
+      A block containing a web search result.
+
+      - `citations: BetaManagedAgentsSearchResultCitations`
+
+        Citation settings for a search result.
+
+        - `enabled: bool`
+
+          Whether citations are enabled for this search result.
+
+      - `content: Array[BetaManagedAgentsSearchResultContent]`
+
+        Array of text content blocks from the search result.
+
+        - `text: String`
+
+          The text content.
+
+        - `type: :text`
+
+          - `:text`
+
+      - `source: String`
+
+        The URL source of the search result.
+
+      - `title: String`
+
+        The title of the search result.
+
+      - `type: :search_result`
+
+        - `:search_result`
 
   - `is_error: bool`
 
@@ -12776,7 +17584,7 @@ puts(beta_managed_agents_stream_session_events)
 
     - `:"user.custom_tool_result"`
 
-  - `content: Array[BetaManagedAgentsTextBlock | BetaManagedAgentsImageBlock | BetaManagedAgentsDocumentBlock]`
+  - `content: Array[BetaManagedAgentsTextBlock | BetaManagedAgentsImageBlock | BetaManagedAgentsDocumentBlock | BetaManagedAgentsSearchResultBlock]`
 
     The result content returned by the tool.
 
@@ -12921,6 +17729,42 @@ puts(beta_managed_agents_stream_session_events)
       - `title: String`
 
         The title of the document.
+
+    - `class BetaManagedAgentsSearchResultBlock`
+
+      A block containing a web search result.
+
+      - `citations: BetaManagedAgentsSearchResultCitations`
+
+        Citation settings for a search result.
+
+        - `enabled: bool`
+
+          Whether citations are enabled for this search result.
+
+      - `content: Array[BetaManagedAgentsSearchResultContent]`
+
+        Array of text content blocks from the search result.
+
+        - `text: String`
+
+          The text content.
+
+        - `type: :text`
+
+          - `:text`
+
+      - `source: String`
+
+        The URL source of the search result.
+
+      - `title: String`
+
+        The title of the search result.
+
+      - `type: :search_result`
+
+        - `:search_result`
 
   - `is_error: bool`
 
@@ -13449,3 +18293,203 @@ puts(beta_managed_agents_stream_session_events)
   - `deny_message: String`
 
     Optional message providing context for a 'deny' decision. Only allowed when result is 'deny'.
+
+### Beta Managed Agents User Tool Result Event Params
+
+- `class BetaManagedAgentsUserToolResultEventParams`
+
+  Parameters for providing the result of an agent-toolset tool execution. Only valid on `self_hosted` environments, where sandbox-routed tools are executed by the client rather than the server.
+
+  - `tool_use_id: String`
+
+    The id of the `agent.tool_use` event this result corresponds to, which can be found in the last `session.status_idle` [event's](https://platform.claude.com/docs/en/api/beta/sessions/events/list#beta_managed_agents_session_requires_action.event_ids) `stop_reason.event_ids` field.
+
+  - `type: :"user.tool_result"`
+
+    - `:"user.tool_result"`
+
+  - `content: Array[BetaManagedAgentsTextBlock | BetaManagedAgentsImageBlock | BetaManagedAgentsDocumentBlock | BetaManagedAgentsSearchResultBlock]`
+
+    The result content returned by the tool.
+
+    - `class BetaManagedAgentsTextBlock`
+
+      Regular text content.
+
+      - `text: String`
+
+        The text content.
+
+      - `type: :text`
+
+        - `:text`
+
+    - `class BetaManagedAgentsImageBlock`
+
+      Image content specified directly as base64 data or as a reference via a URL.
+
+      - `source: BetaManagedAgentsBase64ImageSource | BetaManagedAgentsURLImageSource | BetaManagedAgentsFileImageSource`
+
+        Union type for image source variants.
+
+        - `class BetaManagedAgentsBase64ImageSource`
+
+          Base64-encoded image data.
+
+          - `data: String`
+
+            Base64-encoded image data.
+
+          - `media_type: String`
+
+            MIME type of the image (e.g., "image/png", "image/jpeg", "image/gif", "image/webp").
+
+          - `type: :base64`
+
+            - `:base64`
+
+        - `class BetaManagedAgentsURLImageSource`
+
+          Image referenced by URL.
+
+          - `type: :url`
+
+            - `:url`
+
+          - `url: String`
+
+            URL of the image to fetch.
+
+        - `class BetaManagedAgentsFileImageSource`
+
+          Image referenced by file ID.
+
+          - `file_id: String`
+
+            ID of a previously uploaded file.
+
+          - `type: :file`
+
+            - `:file`
+
+      - `type: :image`
+
+        - `:image`
+
+    - `class BetaManagedAgentsDocumentBlock`
+
+      Document content, either specified directly as base64 data, as text, or as a reference via a URL.
+
+      - `source: BetaManagedAgentsBase64DocumentSource | BetaManagedAgentsPlainTextDocumentSource | BetaManagedAgentsURLDocumentSource | BetaManagedAgentsFileDocumentSource`
+
+        Union type for document source variants.
+
+        - `class BetaManagedAgentsBase64DocumentSource`
+
+          Base64-encoded document data.
+
+          - `data: String`
+
+            Base64-encoded document data.
+
+          - `media_type: String`
+
+            MIME type of the document (e.g., "application/pdf").
+
+          - `type: :base64`
+
+            - `:base64`
+
+        - `class BetaManagedAgentsPlainTextDocumentSource`
+
+          Plain text document content.
+
+          - `data: String`
+
+            The plain text content.
+
+          - `media_type: :"text/plain"`
+
+            MIME type of the text content. Must be "text/plain".
+
+            - `:"text/plain"`
+
+          - `type: :text`
+
+            - `:text`
+
+        - `class BetaManagedAgentsURLDocumentSource`
+
+          Document referenced by URL.
+
+          - `type: :url`
+
+            - `:url`
+
+          - `url: String`
+
+            URL of the document to fetch.
+
+        - `class BetaManagedAgentsFileDocumentSource`
+
+          Document referenced by file ID.
+
+          - `file_id: String`
+
+            ID of a previously uploaded file.
+
+          - `type: :file`
+
+            - `:file`
+
+      - `type: :document`
+
+        - `:document`
+
+      - `context: String`
+
+        Additional context about the document for the model.
+
+      - `title: String`
+
+        The title of the document.
+
+    - `class BetaManagedAgentsSearchResultBlock`
+
+      A block containing a web search result.
+
+      - `citations: BetaManagedAgentsSearchResultCitations`
+
+        Citation settings for a search result.
+
+        - `enabled: bool`
+
+          Whether citations are enabled for this search result.
+
+      - `content: Array[BetaManagedAgentsSearchResultContent]`
+
+        Array of text content blocks from the search result.
+
+        - `text: String`
+
+          The text content.
+
+        - `type: :text`
+
+          - `:text`
+
+      - `source: String`
+
+        The URL source of the search result.
+
+      - `title: String`
+
+        The title of the search result.
+
+      - `type: :search_result`
+
+        - `:search_result`
+
+  - `is_error: bool`
+
+    Whether the tool execution resulted in an error.

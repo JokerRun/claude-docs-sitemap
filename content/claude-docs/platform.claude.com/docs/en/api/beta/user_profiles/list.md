@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/list
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 8c977852eed756ab6d6bbe9a198ad05e03f55c883d9b3b3555dc1f818d30fe9f
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 2df3908f1339df5c866f9d3b7a75c07ce19feb6775928ffedfb278818a3796d1
 ---
 
 ## List
@@ -37,7 +37,7 @@ List User Profiles
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 21 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -86,6 +86,8 @@ List User Profiles
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
+
+    - `"cache-diagnosis-2026-04-07"`
 
 ### Returns
 

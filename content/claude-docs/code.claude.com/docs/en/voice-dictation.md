@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/voice-dictation
-fetched_at: 2026-05-15T03:15:49.552363Z
-sha256: 95d6325241c662b07d8b1d0177242712f88f62f232f5bc51be0015e68c25d5ff
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 7be812e14d93464f4633c34c75f42d3c1c2f4d5836d347bdfdf6710fa9018a91
 ---
 
 > ## Documentation Index
@@ -149,7 +149,7 @@ The dictation key is bound to `voice:pushToTalk` in the `Chat` context and defau
 }
 ```
 
-Setting `"space": null` removes the default binding. Omit it if you want both keys active.
+The `voice:pushToTalk` action uses one key at a time. When you bind a custom key, it replaces the default `Space` binding rather than adding a second trigger, so the `"space": null` line in this example is for clarity and can be omitted without changing behavior.
 
 In hold mode, avoid binding a bare letter key like `v` since hold detection relies on key-repeat and the letter types into the prompt during warmup. Use `Space`, or use a modifier combination like `meta+k` to start recording on the first keypress with no warmup. Tap mode has no warmup, so most keys work.
 

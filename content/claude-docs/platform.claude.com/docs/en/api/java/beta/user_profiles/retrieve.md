@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/user_profiles/retrieve
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: fe20304b3102b9237e779353ff86308a36938243a971a85e1fda155f9de7eae8
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: c582b93b5b3c1a92834fc2f08e56c32f761db293c6130eac8f34bf583d621c28
 ---
 
 ## Retrieve
@@ -70,6 +70,8 @@ Get User Profile
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
+    - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
 ### Returns
 

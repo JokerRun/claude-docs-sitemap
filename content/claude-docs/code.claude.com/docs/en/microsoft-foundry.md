@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/microsoft-foundry
-fetched_at: 2026-05-17T03:15:10.882880Z
-sha256: 2b9270f40dea16737d9c09d1b6c06fcf8855fa001a88e1a1175040ff1ca13b2b
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: b627e03075f645d06784e1aab274bddf6b5b2ff21f34969e6735faeee7a9760c
 ---
 
 > ## Documentation Index
@@ -174,7 +174,7 @@ Background tasks such as session title generation use the small/fast model, norm
 
 For current and legacy model IDs, see [Models overview](https://platform.claude.com/docs/en/about-claude/models/overview). See [Model configuration](/en/model-config#pin-models-for-third-party-deployments) for the full list of environment variables.
 
-[Prompt caching](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) is enabled automatically. To request a 1-hour cache TTL instead of the 5-minute default, set the following variable; cache writes with a 1-hour TTL are billed at a higher rate:
+[Prompt caching](/en/prompt-caching) is enabled automatically. To request a 1-hour cache TTL instead of the 5-minute default, set the following variable; cache writes with a 1-hour TTL are billed at a higher rate:
 
 ```bash theme={null}
 export ENABLE_PROMPT_CACHING_1H=1

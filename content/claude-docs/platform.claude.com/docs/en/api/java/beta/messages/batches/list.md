@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/messages/batches/list
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: c69b9554091b6a8416e7c66b480d0d4eb70c010d35178d67832b4352a097563c
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: c719f825f101cf8f0b94adb18e0d20a0fa4da3af427b59e0cbc06d854d72a685
 ---
 
 ## List
@@ -84,6 +84,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
+    - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
 ### Returns
 

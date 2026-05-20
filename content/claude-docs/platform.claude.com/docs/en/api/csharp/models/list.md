@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/models/list
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: be0f73a0716e51f1fe36ac565fdc94575bf18df0d0a577d39a11cc30d16c043e
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: a0cba9453072908183c2045a0abdc8519fed8c8b4ac246053fef448d45a73c01
 ---
 
 ## List
@@ -84,6 +84,8 @@ The Models API response can be used to determine which models are available for 
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
+    - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
 ### Returns
 

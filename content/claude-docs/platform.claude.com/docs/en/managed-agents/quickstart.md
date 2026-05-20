@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/quickstart
-fetched_at: 2026-05-16T03:13:19.414477Z
-sha256: 264797b1d142d117c9872a58e8a2326f4c73e6a543120d248dc4ad900329f416
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: e182e61b8c3b9eb56d2044484939ae9151373525ff5bc7cf2d702c7244095e87
 ---
 
 # Get started with Claude Managed Agents
@@ -22,7 +22,7 @@ This guide walks you through creating an agent, setting up an environment, start
 | Concept | Description |
 |---------|-------------|
 | **Agent** | The model, system prompt, tools, MCP servers, and skills |
-| **Environment** | A configured container template (packages, network access) |
+| **Environment** | Configuration for where sessions run: an Anthropic-managed cloud container, or a self-hosted sandbox on your own infrastructure |
 | **Session** | A running agent instance within an environment, performing a specific task and generating outputs |
 | **Events** | Messages exchanged between your application and the agent (user turns, tool results, status updates) |
 
@@ -46,7 +46,7 @@ brew install anthropics/tap/ant
 For Linux environments, download the release binary directly.
 
 ```bash nocheck
-VERSION=1.8.0
+VERSION=1.9.1
 OS=$(uname -s | tr '[:upper:]' '[:lower:]')
 ARCH=$(uname -m | sed -e 's/x86_64/amd64/' -e 's/aarch64/arm64/')
 curl -fsSL "https://github.com/anthropics/anthropic-cli/releases/download/v${VERSION}/ant_${VERSION}_${OS}_${ARCH}.tar.gz" \
@@ -94,7 +94,7 @@ ant --version
   </Tab>
   <Tab title="Java">
     ```groovy Gradle
-    implementation("com.anthropic:anthropic-java:2.32.0")
+    implementation("com.anthropic:anthropic-java:2.33.0")
     ```
   </Tab>
   <Tab title="Go">
@@ -467,6 +467,8 @@ puts "Environment ID: #{environment.id}"
     </CodeGroup>
 
     Save the returned `environment.id`. You'll reference it in every session you create.
+
+    <Tip>To run the sandbox on your own infrastructure instead of a cloud container, see [Self-hosted sandboxes](/docs/en/managed-agents/self-hosted-sandboxes).</Tip>
   </Step>
 
   <Step title="Start a session">

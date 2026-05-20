@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/compliance-activity-feed
-fetched_at: 2026-05-19T03:15:49.705713Z
-sha256: b1c2feea39759a5c21f7ba1f0c3d137ff3b46b46e21bcdb86fcddadcdbca4637
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 4692f2d4dcb3b31bca0ea526415350f302207738507b3309c53c43d9d98e35ba
 ---
 
 # Query the Activity Feed
@@ -16,7 +16,7 @@ Retrieve, filter, and paginate your organization's Compliance API Activity Feed.
 </Note>
 :
     same wording, but "Activity Feed (this page)" as plain text so this page
-    doesn't link to itself. Keep in sync with content/snippets/compliance-api-availability.mdx. */}
+    doesn't link to itself. Keep in sync with content/en/_snippets/compliance-api-availability.mdx. */}
 <Note>
   The Compliance API is enabled on request. Claude Enterprise organizations have access to the full API; Claude Console organizations have access to the Activity Feed (this page) only. See [Get access to the Compliance API](/docs/en/manage-claude/compliance-api-access).
 </Note>

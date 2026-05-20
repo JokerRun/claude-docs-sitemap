@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview
-fetched_at: 2026-05-14T03:14:07.437614Z
-sha256: 631e64ceb9af106c6861677e658e71103f19f0d7f79e3d307714324af76e0096
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 9f82061815a7c05c06d2f61af2400eda79beb4daa4602478f66b27782035e250
 ---
 
 # Tool use with Claude
@@ -124,7 +124,7 @@ The additional tokens from tool use come from:
 - `tool_use` content blocks in API requests and responses
 - `tool_result` content blocks in API requests
 
-When you use `tools`, we also automatically include a special system prompt for the model which enables tool use. The number of tool use tokens required for each model are listed below (excluding the additional tokens listed above). Note that the table assumes at least 1 tool is provided. If no `tools` are provided, then a tool choice of `none` uses 0 additional system prompt tokens.
+When you use `tools`, the API also automatically includes a special system prompt for the model which enables tool use. The number of tool use tokens required for each model are listed below (excluding the additional tokens listed above). Note that the table assumes at least 1 tool is provided. If no `tools` are provided, then a tool choice of `none` uses 0 additional system prompt tokens.
 
 | Model                    | Tool choice                                          | Tool use system prompt token count          |
 |--------------------------|------------------------------------------------------|---------------------------------------------|

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/permissions
-fetched_at: 2026-05-19T03:15:49.705713Z
-sha256: e72905cfe43500ed220ab7ed3a7664b8797d8da2fd5bd334ac402836928b29e8
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 74a265cf4c28f995635348d01569c50ecfede71487ef5b28639af1af63887da3
 ---
 
 > ## Documentation Index
@@ -34,6 +34,8 @@ You can view and manage Claude Code's tool permissions with `/permissions`. This
 * **Deny** rules prevent Claude Code from using the specified tool.
 
 Rules are evaluated in order: **deny -> ask -> allow**. The first matching rule wins, so deny rules always take precedence.
+
+Deny rules behave differently depending on whether they name a tool or scope a pattern within one. A bare tool name like `Bash` removes the tool from Claude's context entirely, so Claude never sees it. A scoped rule like `Bash(rm *)` leaves the tool available and blocks matching calls when Claude attempts them.
 
 <Note>
   Permission rules are enforced by Claude Code, not by the model. Instructions in your prompt or `CLAUDE.md` shape what Claude tries to do, but they don't change what Claude Code allows. To grant or revoke access, use `/permissions`, the rules described here, a [permission mode](/en/permission-modes), or a [PreToolUse hook](#extend-permissions-with-hooks).
@@ -72,7 +74,7 @@ To match all uses of a tool, use just the tool name without parentheses:
 | `WebFetch` | Matches all web fetch requests |
 | `Read`     | Matches all file reads         |
 
-`Bash(*)` is equivalent to `Bash` and matches all Bash commands.
+`Bash(*)` is equivalent to `Bash` and matches all Bash commands. As a deny rule, both forms remove the tool from Claude's context.
 
 ### Use specifiers for fine-grained control
 

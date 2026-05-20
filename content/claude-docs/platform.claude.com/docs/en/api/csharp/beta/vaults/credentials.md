@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/vaults/credentials
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: d064288a1cee14bbf823ea3eb14c2ef38171d76275cc2611e17f0025048d8c7b
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 4a8f25617285576322f22cdaf0bdda3704d8f8c2718724b973e7508a52093da8
 ---
 
 # Credentials
@@ -182,6 +182,8 @@ Create Credential
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
+    - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
 ### Returns
 
@@ -400,6 +402,8 @@ List Credentials
 
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
+    - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
+
 ### Returns
 
 - `class CredentialListPageResponse:`
@@ -612,6 +616,8 @@ Get Credential
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
+    - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
 ### Returns
 
@@ -897,6 +903,8 @@ Update Credential
 
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
+    - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
+
 ### Returns
 
 - `class BetaManagedAgentsCredential:`
@@ -1101,6 +1109,8 @@ Delete Credential
 
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
+    - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
+
 ### Returns
 
 - `class BetaManagedAgentsDeletedCredential:`
@@ -1200,6 +1210,8 @@ Archive Credential
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
+    - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
 ### Returns
 
@@ -1404,6 +1416,8 @@ Validate Credential
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
+    - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
 ### Returns
 

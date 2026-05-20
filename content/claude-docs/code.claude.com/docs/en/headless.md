@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/headless
-fetched_at: 2026-05-14T03:14:07.437614Z
-sha256: 334f62184bca3da333c5f080dd3a7cc5b798ad7546186c815e7124684ebf90d4
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 66a91816e32f73349bd2dc3a7c1c15ddd4988473f528306a98ac1c5729162af7
 ---
 
 > ## Documentation Index
@@ -159,17 +159,17 @@ claude -p "Write a poem" --output-format stream-json --verbose --include-partial
 
 When an API request fails with a retryable error, Claude Code emits a `system/api_retry` event before retrying. You can use this to surface retry progress or implement custom backoff logic.
 
-| Field            | Type            | Description                                                                                                                                                           |
-| ---------------- | --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `type`           | `"system"`      | message type                                                                                                                                                          |
-| `subtype`        | `"api_retry"`   | identifies this as a retry event                                                                                                                                      |
-| `attempt`        | integer         | current attempt number, starting at 1                                                                                                                                 |
-| `max_retries`    | integer         | total retries permitted                                                                                                                                               |
-| `retry_delay_ms` | integer         | milliseconds until the next attempt                                                                                                                                   |
-| `error_status`   | integer or null | HTTP status code, or `null` for connection errors with no HTTP response                                                                                               |
-| `error`          | string          | error category: `authentication_failed`, `oauth_org_not_allowed`, `billing_error`, `rate_limit`, `invalid_request`, `server_error`, `max_output_tokens`, or `unknown` |
-| `uuid`           | string          | unique event identifier                                                                                                                                               |
-| `session_id`     | string          | session the event belongs to                                                                                                                                          |
+| Field            | Type            | Description                                                                                                                                                                              |
+| ---------------- | --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `type`           | `"system"`      | message type                                                                                                                                                                             |
+| `subtype`        | `"api_retry"`   | identifies this as a retry event                                                                                                                                                         |
+| `attempt`        | integer         | current attempt number, starting at 1                                                                                                                                                    |
+| `max_retries`    | integer         | total retries permitted                                                                                                                                                                  |
+| `retry_delay_ms` | integer         | milliseconds until the next attempt                                                                                                                                                      |
+| `error_status`   | integer or null | HTTP status code, or `null` for connection errors with no HTTP response                                                                                                                  |
+| `error`          | string          | error category: `authentication_failed`, `oauth_org_not_allowed`, `billing_error`, `rate_limit`, `invalid_request`, `model_not_found`, `server_error`, `max_output_tokens`, or `unknown` |
+| `uuid`           | string          | unique event identifier                                                                                                                                                                  |
+| `session_id`     | string          | session the event belongs to                                                                                                                                                             |
 
 The `system/init` event reports session metadata including the model, tools, MCP servers, and loaded plugins. It is the first event in the stream unless [`CLAUDE_CODE_SYNC_PLUGIN_INSTALL`](/en/env-vars) is set, in which case `plugin_install` events precede it. Use the plugin fields to fail CI when a plugin did not load:
 

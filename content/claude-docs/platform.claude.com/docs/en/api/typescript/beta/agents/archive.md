@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/agents/archive
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: aacb5c47ec84bf5ead230c7feba9c92e9c1604c088e73764898f5a15e2b87e13
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 7e242850da46237908dc94061fcdcbc73af5cb54c9b95190d07984b84048bfb5
 ---
 
 ## Archive
@@ -25,7 +25,7 @@ Archive Agent
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 21 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 22 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -74,6 +74,8 @@ Archive Agent
       - `"advisor-tool-2026-03-01"`
 
       - `"managed-agents-2026-04-01"`
+
+      - `"cache-diagnosis-2026-04-07"`
 
 ### Returns
 

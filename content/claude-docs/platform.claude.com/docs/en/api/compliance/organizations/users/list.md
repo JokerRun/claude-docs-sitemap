@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/users/list
-fetched_at: 2026-05-09T03:13:52.260309Z
-sha256: 3d93ac6464adff77bb469c4bb353eac008d6b1fe5ddb87d42512251959cc755a
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 1527f24c94dd56556186f9dce26f0ad15aea90d76b0e01e7b6cc1e1ecb0e12bf
 ---
 
 ## List
@@ -36,9 +36,9 @@ List of user members with pagination info
 
 ### Returns
 
-- `data: array of object { id, created_at, email, full_name }`
+- `data: array of object { id, created_at, email, 2 more }`
 
-  List of current organization members sorted by account creation date ascending
+  List of current organization members sorted by organization join date ascending
 
   - `id: string`
 
@@ -55,6 +55,28 @@ List of user members with pagination info
   - `full_name: string`
 
     User's current full name
+
+  - `organization_role: "admin" or "billing" or "claude_code_user" or 6 more`
+
+    User's built-in role within the organization. This is distinct from any custom RBAC roles that may also be assigned.
+
+    - `"admin"`
+
+    - `"billing"`
+
+    - `"claude_code_user"`
+
+    - `"developer"`
+
+    - `"managed"`
+
+    - `"membership_admin"`
+
+    - `"owner"`
+
+    - `"primary_owner"`
+
+    - `"user"`
 
 - `has_more: boolean`
 

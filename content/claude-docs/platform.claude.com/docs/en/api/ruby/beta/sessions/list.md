@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/sessions/list
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 49d98549bad5429b300d812e1fc1ef1bf60ef6a0650392057201d209389792a0
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 677177d40ad164a9aedd51cde21f1efde26385eb399f8fb90e7d183c4a6bfd72
 ---
 
 ## List
@@ -81,7 +81,7 @@ List Sessions
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 21 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -130,6 +130,8 @@ List Sessions
     - `:"advisor-tool-2026-03-01"`
 
     - `:"managed-agents-2026-04-01"`
+
+    - `:"cache-diagnosis-2026-04-07"`
 
 ### Returns
 
@@ -753,7 +755,7 @@ List Sessions
 
     - `result: String`
 
-      Current evaluation state. 'pending' before the agent begins work; 'running' while producing or revising; 'evaluating' while the grader scores; 'satisfied'/'max_iterations_reached'/'failed'/'interrupted' are terminal.
+      Current evaluation state. `pending` before the agent begins work; `running` while producing or revising; `evaluating` while the grader scores; `satisfied`/`max_iterations_reached`/`failed`/`interrupted` are terminal.
 
     - `type: :outcome_evaluation`
 

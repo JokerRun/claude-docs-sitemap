@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/user_profiles/create
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 0e69302520f899fdb243c07c826c901f714ac9019fc8e4f8c652c859aef5c061
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 158b663ffbdd7a728715b39843f23e3e704b1c0a442de9a87cb4dc3e32346b55
 ---
 
 ## Create
@@ -43,7 +43,7 @@ Create User Profile
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 21 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -92,6 +92,8 @@ Create User Profile
     - `:"advisor-tool-2026-03-01"`
 
     - `:"managed-agents-2026-04-01"`
+
+    - `:"cache-diagnosis-2026-04-07"`
 
 ### Returns
 

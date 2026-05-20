@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/vaults/credentials/delete
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: ba2c1a4f5c9d0bdd4be3480ea44e9fa1c9f8e1c7de5912d8bb8b0cefb3590797
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: c6afcc5904339908bfcea78cd8582d4667d5039b2577b42b783c70430831ef47
 ---
 
 ## Delete
@@ -78,6 +78,8 @@ Delete Credential
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
       - `const AnthropicBetaManagedAgents2026_04_01 AnthropicBeta = "managed-agents-2026-04-01"`
+
+      - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
 
 ### Returns
 

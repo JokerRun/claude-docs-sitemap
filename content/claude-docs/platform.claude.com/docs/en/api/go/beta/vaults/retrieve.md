@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/vaults/retrieve
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 2b9a61895c6e4e3869d604d0fc8fd2b78804933f613cb30365430067af07311f
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: e88ee00ffd00b8b9f98ea09523794af474bcc7aa4ef65797e7cfe0c23058f287
 ---
 
 ## Retrieve
@@ -74,6 +74,8 @@ Get Vault
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
       - `const AnthropicBetaManagedAgents2026_04_01 AnthropicBeta = "managed-agents-2026-04-01"`
+
+      - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
 
 ### Returns
 

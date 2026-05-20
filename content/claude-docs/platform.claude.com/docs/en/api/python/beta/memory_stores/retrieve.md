@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/memory_stores/retrieve
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: a27fb5ab8fa7fb87d8c6d0964157501037dbf97d95d0110d54f4d1d50556bcb2
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: d86097ea9f2ce28a978c03d21a0e1d8bae44cf2d4beaa20f84b117eb1e07ebd1
 ---
 
 ## Retrieve
@@ -23,7 +23,7 @@ Retrieve a memory store
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 21 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 22 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -72,6 +72,8 @@ Retrieve a memory store
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
+
+    - `"cache-diagnosis-2026-04-07"`
 
 ### Returns
 

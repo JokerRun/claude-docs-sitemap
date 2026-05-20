@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/vaults/credentials/update
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 9dadbf6490de887a681ded48cbacd12ebbe6d75c49105fc84e62cbd1a7ce0465
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: f5fe8b690460fff04b36abb2c9b7e9414d7fcd0cb57ca2dce405562af5fa2ab8
 ---
 
 ## Update
@@ -156,6 +156,8 @@ Update Credential
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
+    - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
 ### Returns
 

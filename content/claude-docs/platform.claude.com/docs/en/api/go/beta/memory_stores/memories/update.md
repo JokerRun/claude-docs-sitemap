@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/memory_stores/memories/update
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 66ea05fd6ca2fd1273908e44795aa0cec7b0c8566e0d42021375446bbb01aead
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 448c626b6046c629840c0f5a695a4f6ee3e42d09ff93a344cc6b2c79effc733d
 ---
 
 ## Update
@@ -94,6 +94,8 @@ Update a memory
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
       - `const AnthropicBetaManagedAgents2026_04_01 AnthropicBeta = "managed-agents-2026-04-01"`
+
+      - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
 
 ### Returns
 

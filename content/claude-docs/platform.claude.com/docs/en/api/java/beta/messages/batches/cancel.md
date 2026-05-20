@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/messages/batches/cancel
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 29135a9dca6404ec564d0558aff78e6467d9ff1858fe6f644dd121050dd6bd62
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 9d6a34e13738c3f563922cb9b6e99bb96df0f3dbbe0775c1428034b0dd910990
 ---
 
 ## Cancel
@@ -76,6 +76,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
+    - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/user_profiles
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: b2313713ebed6e02f605c1a50eebaa926954a4c91af22906e40ac264afe155e5
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: b894cd24bd446b73ce1e259297a7c6d2ed05bddee5991641d47e357e5f5b8373
 ---
 
 # User Profiles
@@ -92,6 +92,8 @@ Create User Profile
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
+    - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
 ### Returns
 
@@ -241,6 +243,8 @@ List User Profiles
 
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
+    - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
+
 ### Returns
 
 - `class UserProfileListPageResponse:`
@@ -386,6 +390,8 @@ Get User Profile
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
+    - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
 ### Returns
 
@@ -548,6 +554,8 @@ Update User Profile
 
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
+    - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
+
 ### Returns
 
 - `class BetaUserProfile:`
@@ -686,6 +694,8 @@ Create Enrollment URL
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
+    - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
 ### Returns
 

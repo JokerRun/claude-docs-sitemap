@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memories/retrieve
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 7293f3ee5c9911c4091ab15ce2626549b7aef40b1b7da223f1d38fd51a157501
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 4f08ffe2a7c56e996a6cba553455e3c78d25630c74dae97e720926731d86a233
 ---
 
 ## Retrieve
@@ -35,7 +35,7 @@ Retrieve a memory
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 21 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -84,6 +84,8 @@ Retrieve a memory
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
+
+    - `"cache-diagnosis-2026-04-07"`
 
 ### Returns
 

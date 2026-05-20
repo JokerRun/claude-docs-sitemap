@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/vaults/update
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 055ce220a07bdbece2b5cf4b0b408022525a8ec6c57f5e7b31ac91751a235b4c
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: baee92f459db27fd51480b849fe756be7049ec5ffa7e6c05ef5c1620071c6d0d
 ---
 
 ## Update
@@ -80,6 +80,8 @@ Update Vault
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
+    - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
 ### Returns
 

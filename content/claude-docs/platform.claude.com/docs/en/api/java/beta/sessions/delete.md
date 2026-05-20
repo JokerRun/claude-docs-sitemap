@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/delete
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 21d5ca862f7a80b6267a43ff773855a6083e209ee9535851225721938c761c14
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: aca97b0b64a96d0960884816f5342b58d2089396b8219917fdbdc56c167f4e26
 ---
 
 ## Delete
@@ -70,6 +70,8 @@ Delete Session
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
+    - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
 ### Returns
 

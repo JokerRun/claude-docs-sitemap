@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/memory_stores/update
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: b070552563110342d11d7b554f48506e72264b5fcdde13c848727cd4689a60bd
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: cd2a402384ba68d7fdc974c18872031621df275c5f7a7b53c0cacff03661691d
 ---
 
 ## Update
@@ -84,6 +84,8 @@ Update a memory store
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
+    - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
 ### Returns
 

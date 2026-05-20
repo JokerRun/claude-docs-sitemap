@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/skills/list
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 79a0830bd573a667a04f6094468dd8f43bc5777d6fcac3785c9e1f059f51a01e
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 1b361302de7e44238f8950355ad20263b88a93353f747d3d4f80bd5b285e7a0a
 ---
 
 ## List
@@ -89,6 +89,8 @@ List Skills
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
+    - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
 ### Returns
 

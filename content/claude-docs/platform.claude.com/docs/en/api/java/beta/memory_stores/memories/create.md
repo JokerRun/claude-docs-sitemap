@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/memory_stores/memories/create
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: fc4094aa232aee1d786f9b26c30c1a6bd786578facc4333d8f6771367df09345
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: ec21ba164f63b03882ffc0581f2a5184fd8332980b63237974b6af305940e7d0
 ---
 
 ## Create
@@ -74,6 +74,8 @@ Create a memory
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
+    - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
   - `Optional<String> content`
 

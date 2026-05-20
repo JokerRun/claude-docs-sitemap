@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/sessions/delete
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 89f54adfa5dd40447e06c1795dc79c00bdd9f9415b0fb4e4907ba9457c29ad5d
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 731b91340398afe446f7fceeaaf35c298656063ef61d2bb880da2805eff9bc41
 ---
 
 ## Delete
@@ -72,6 +72,8 @@ Delete Session
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
+    - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
 ### Returns
 

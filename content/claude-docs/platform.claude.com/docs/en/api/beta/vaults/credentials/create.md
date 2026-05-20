@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/create
-fetched_at: 2026-05-09T03:13:52.260309Z
-sha256: 478879b457a5999cdcc254195a98af7c65704fb6f9715e7fe397fe3bedd880b8
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: e2e6bdc2fd0e5c0989577f69da1fee87aad98a8211ddcc40691748ca37cc7734
 ---
 
 ## Create
@@ -23,7 +23,7 @@ Create Credential
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 21 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -72,6 +72,8 @@ Create Credential
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
+
+    - `"cache-diagnosis-2026-04-07"`
 
 ### Body Parameters
 

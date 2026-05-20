@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/environments/delete
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 05648af09a78ded948a8a79180b2408ac3095be789d35282e2d1ebc588c16aa4
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 3d4172903357d591478502569e64a1c1495673ba6f74c830859e2357ad30f37e
 ---
 
 ## Delete
@@ -25,7 +25,7 @@ Delete an environment by ID. Returns a confirmation of the deletion.
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 21 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 22 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -74,6 +74,8 @@ Delete an environment by ID. Returns a confirmation of the deletion.
       - `"advisor-tool-2026-03-01"`
 
       - `"managed-agents-2026-04-01"`
+
+      - `"cache-diagnosis-2026-04-07"`
 
 ### Returns
 

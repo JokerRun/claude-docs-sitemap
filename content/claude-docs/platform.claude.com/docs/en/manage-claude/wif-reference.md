@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/wif-reference
-fetched_at: 2026-05-09T03:13:52.260309Z
-sha256: f9070fa2594de11ca8093e147242620aafb8480dbd83679396c8cee30b09c803
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: a715d7546f0a71bb1bb286f5b778710283f3fb974668f8764aa48cfa12f6a518
 ---
 
 # WIF reference
@@ -131,6 +131,7 @@ The `oauth_scope` you set on a federation rule determines which Claude API endpo
 | Scope | Grants access to |
 | :--- | :--- |
 | `workspace:developer` | All non-administrative Claude API endpoints in the rule's workspace: [Messages](/docs/en/api/messages) (including streaming and token counting), [Models](/docs/en/api/models-list), [Managed Agents](/docs/en/managed-agents/overview) and their sessions, [Files](/docs/en/build-with-claude/files), and [Skills](/docs/en/build-with-claude/skills-guide). This matches the access an API key issued for the same workspace has. |
+| `org:manage_tunnels` | The [MCP tunnels API](/docs/en/agents-and-tools/mcp-tunnels/reference#tunnels-api): list and get tunnels, register and archive CA certificates, reveal and rotate the tunnel token, and archive tunnels. The Console's create-tunnel modal locks this scope when you create a rule from it. |
 
 A request to an endpoint outside the token's scope returns HTTP 403. Finer-grained scopes (per resource, or read versus write) are not currently available.
 

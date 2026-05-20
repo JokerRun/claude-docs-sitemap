@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool
-fetched_at: 2026-05-14T03:14:07.437614Z
-sha256: 8619ab4a1e4fe0f14df09c9e9b648e9eba1799573725f139b05f53ecdbf82860
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: a4cb1b6da64f0e562457572673c7a5a2ee7f1bf9b7e10ec32a5994b0b8fe3db4
 ---
 
 # Code execution tool
@@ -1722,11 +1722,13 @@ When used without these tools, code execution is billed by execution time, track
 Code execution usage is tracked in the response:
 
 ```json
-"usage": {
-  "input_tokens": 105,
-  "output_tokens": 239,
-  "server_tool_use": {
-    "code_execution_requests": 1
+{
+  "usage": {
+    "input_tokens": 105,
+    "output_tokens": 239,
+    "server_tool_use": {
+      "code_execution_requests": 1
+    }
   }
 }
 ```

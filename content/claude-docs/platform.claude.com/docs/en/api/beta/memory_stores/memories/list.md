@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memories/list
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 542a09e2e2a57f6d8702a4549a4f407079a62da402338117be548f27efae7381
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: cf1b2330605c5ecf1cb19a43d26891569620c0884da81fd2737b1a0471a7963a
 ---
 
 ## List
@@ -61,7 +61,7 @@ List memories
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 21 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -110,6 +110,8 @@ List memories
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
+
+    - `"cache-diagnosis-2026-04-07"`
 
 ### Returns
 

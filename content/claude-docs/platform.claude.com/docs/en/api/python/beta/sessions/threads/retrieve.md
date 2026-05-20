@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/sessions/threads/retrieve
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 6209eb2ae6d42a06b2d98aa5ece9fde9c71a1400ace48aabfdc370a6568f5577
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: b81934b1b12b2fba3cbf2b7d388aada515ae26f11c67c35a025f4e7a563263ec
 ---
 
 ## Retrieve
@@ -25,7 +25,7 @@ Get Session Thread
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 21 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 22 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -74,6 +74,8 @@ Get Session Thread
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
+
+    - `"cache-diagnosis-2026-04-07"`
 
 ### Returns
 

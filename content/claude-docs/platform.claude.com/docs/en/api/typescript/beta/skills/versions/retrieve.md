@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/skills/versions/retrieve
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: f333bbec712e13a17ea6c15acdebbc23a57ccccc134f1f2c1b6ee50f1b48ea80
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 866f6842c32831207460ca6ffad6af6d053f29ee3172a69c1546662b1604ca8c
 ---
 
 ## Retrieve
@@ -35,7 +35,7 @@ Get Skill Version
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 21 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 22 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -84,6 +84,8 @@ Get Skill Version
       - `"advisor-tool-2026-03-01"`
 
       - `"managed-agents-2026-04-01"`
+
+      - `"cache-diagnosis-2026-04-07"`
 
 ### Returns
 

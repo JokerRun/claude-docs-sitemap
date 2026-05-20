@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/user_profiles/update
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: a776ab64e05dc69bcf31400227c56c458d37ad0072e042c7de2ecc5b23dd0a18
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 3ea01b1153b38ce46ab7074cb11cbca32db75d523800883681a3a2a79d51d4f2
 ---
 
 ## Update
@@ -94,6 +94,8 @@ Update User Profile
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
+    - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
 ### Returns
 

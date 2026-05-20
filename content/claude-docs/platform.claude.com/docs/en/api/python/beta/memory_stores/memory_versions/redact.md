@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/memory_stores/memory_versions/redact
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 91ddc26fe3d423a6ec0878cfdd9f9a9b119f4563da2985792540ac6cc7804a41
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: daf92f05ada1227d23c1f1459bba9c1206587ab8184aacd20135b92191e12249
 ---
 
 ## Redact
@@ -25,7 +25,7 @@ Redact a memory version
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 21 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 22 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -74,6 +74,8 @@ Redact a memory version
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
+
+    - `"cache-diagnosis-2026-04-07"`
 
 ### Returns
 

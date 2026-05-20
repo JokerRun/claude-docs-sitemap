@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/memory_stores/delete
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 868a17ffe786d2b547c725eae50c05bcc40410f770a479ff43cf87fc9848d732
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 71164a4941422b8698f3b783de522dfd79ede701f4238d0f507792b58b86aa10
 ---
 
 ## Delete
@@ -70,6 +70,8 @@ Delete a memory store
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
+    - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
 ### Returns
 

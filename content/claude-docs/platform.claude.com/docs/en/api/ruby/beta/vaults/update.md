@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/vaults/update
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: c6b0ec08c4647e89ab2bdd9e8c5ce8d3dbab115cedf2dc5a50a16ce8cd0ad109
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 2b124a0bc97f50aa8f0c3b7407f908fe6af36f2d8a9d9317f0e9a3c06ae0f99f
 ---
 
 ## Update
@@ -31,7 +31,7 @@ Update Vault
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 21 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -80,6 +80,8 @@ Update Vault
     - `:"advisor-tool-2026-03-01"`
 
     - `:"managed-agents-2026-04-01"`
+
+    - `:"cache-diagnosis-2026-04-07"`
 
 ### Returns
 

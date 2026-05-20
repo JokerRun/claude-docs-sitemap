@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/user_profiles/list
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: cbeb50803437317e1c9e82290a1b8e3ad85c240ad4aeba3c3f599d0f8ae693d5
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 06ee668b65b07d39221b4902338bba3c5fb3f983a21f74d9788f870173b3d9fe
 ---
 
 ## List
@@ -37,7 +37,7 @@ List User Profiles
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 21 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -86,6 +86,8 @@ List User Profiles
     - `:"advisor-tool-2026-03-01"`
 
     - `:"managed-agents-2026-04-01"`
+
+    - `:"cache-diagnosis-2026-04-07"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/vaults/credentials/update
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 372de600bd3df1254111a480b980084fbc10b92a7f929cebc6bfeee4e3c8df1a
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: ad13dc1ae818abdf88f0f970228833eee1bc6736c0635c9582b7b888c5e9359a
 ---
 
 ## Update
@@ -158,6 +158,8 @@ Update Credential
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
       - `const AnthropicBetaManagedAgents2026_04_01 AnthropicBeta = "managed-agents-2026-04-01"`
+
+      - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/workspaces
-fetched_at: 2026-05-12T03:14:46.254373Z
-sha256: 67da21e4d2aa60379ce55fc64a25306628aefbbc3966671d7605e6c562f49058
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 8e1e86e411b27c16b2c0657adadfa0212b81ec33fe05b074fc3dcfb351043a93
 ---
 
 # Workspaces
@@ -184,6 +184,10 @@ Resources scoped to workspaces include:
 - **Files** created through the [Files API](/docs/en/build-with-claude/files)
 - **Message Batches** created through the [Batch API](/docs/en/build-with-claude/batch-processing)
 - **Skills** created through the [Skills API](/docs/en/build-with-claude/skills-guide)
+
+Some resources are managed at the organization level and cannot be managed with a workspace API key:
+- **[MCP tunnels](/docs/en/agents-and-tools/mcp-tunnels/overview)** are created in a workspace; the Console **MCP tunnels** list and the Managed Agent server picker show tunnels in the current workspace only, while the cap of 10 active tunnels applies organization-wide. Tunnel management requires a role with tunnel management permissions; organization developers can view but not change them. The Tunnels API authenticates with a short-lived OAuth token carrying the `org:manage_tunnels` scope, obtained through [Workload Identity Federation](/docs/en/manage-claude/workload-identity-federation), not a workspace API key.
+- **Workspaces** themselves and **organization members** are managed through the [Admin API](/docs/en/manage-claude/admin-api), which requires an Admin API key.
 
 <Note>
 [Prompt caches](/docs/en/build-with-claude/prompt-caching) are also isolated per workspace on the Claude API, [Claude Platform on AWS](/docs/en/build-with-claude/claude-platform-on-aws), and [Microsoft Foundry](/docs/en/build-with-claude/claude-in-microsoft-foundry) (in beta). On Amazon Bedrock and Vertex AI, prompt caches are isolated per organization.

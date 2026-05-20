@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/memory_stores/create
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 2cfb01bc0ab99e36cbfcf9360aa4b1cbd5693ff2a7fde0a5eb128d0f96c7c412
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 3051ae4b6f4d5d841410f52b1f003680a246edbc1175ecd091b98823acd9ecd7
 ---
 
 ## Create
@@ -84,6 +84,8 @@ Create a memory store
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
       - `const AnthropicBetaManagedAgents2026_04_01 AnthropicBeta = "managed-agents-2026-04-01"`
+
+      - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
 
 ### Returns
 

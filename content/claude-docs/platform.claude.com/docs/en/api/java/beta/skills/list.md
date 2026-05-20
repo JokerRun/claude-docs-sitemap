@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/skills/list
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 6bc83c385748fa88d9cbf8798d8416b6f8ff78520491f0df754383288cedb200
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 351921ee09a522dcc3bb6e1833a269d8c29daeda6c1b9b5a6613d77c1355bb36
 ---
 
 ## List
@@ -89,6 +89,8 @@ List Skills
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
+    - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool
-fetched_at: 2026-04-18T03:10:04.936408Z
-sha256: b6a1d485348ca437f542fe4499c23eb410d4c7f06cbd36db3930d568ed9526f7
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: ba52840d2fa01b0cb0236debe13522952dcb37d0130df26f17c944c9d3552cad
 ---
 
 # Alat pencarian web
@@ -678,13 +678,15 @@ Anda dapat menyertakan alat pencarian web dalam [Messages Batches API](/docs/id/
 Web search usage is charged in addition to token usage:
 
 ```json
-"usage": {
-  "input_tokens": 105,
-  "output_tokens": 6039,
-  "cache_read_input_tokens": 7123,
-  "cache_creation_input_tokens": 7345,
-  "server_tool_use": {
-    "web_search_requests": 1
+{
+  "usage": {
+    "input_tokens": 105,
+    "output_tokens": 6039,
+    "cache_read_input_tokens": 7123,
+    "cache_creation_input_tokens": 7345,
+    "server_tool_use": {
+      "web_search_requests": 1
+    }
   }
 }
 ```

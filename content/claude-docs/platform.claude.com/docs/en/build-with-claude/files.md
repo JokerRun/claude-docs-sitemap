@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/files
-fetched_at: 2026-05-14T03:14:07.437614Z
-sha256: 72f16d289efb803484bd6ff136c2b3931e5ba53184c1d97af75274949ba9a2b4
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 4f8d4c0531a631891b828e68d705f0276a8fe8d0c6844a858e18257004a0b94b
 ---
 
 # Files API
@@ -67,7 +67,7 @@ uploaded = client.beta.files.upload(
 ````
 
 ````typescript
-const uploaded = await anthropic.beta.files.upload({
+const uploaded = await client.beta.files.upload({
   file: await toFile(
     fs.createReadStream("/path/to/document.pdf"),
     undefined,
@@ -80,10 +80,15 @@ const uploaded = await anthropic.beta.files.upload({
 var uploaded = await client.Beta.Files.Upload(
     new FileUploadParams
     {
-        File = File.OpenRead("/path/to/document.pdf")
+        File = new BinaryContent
+        {
+            Stream = File.OpenRead("/path/to/document.pdf"),
+            FileName = "document.pdf",
+            ContentType = new("application/pdf")
+        }
     });
 
-Console.WriteLine(uploaded.Id);
+Console.WriteLine(uploaded.ID);
 ````
 
 ````go
@@ -232,7 +237,7 @@ print(response)
 ````
 
 ````typescript
-const response = await anthropic.beta.messages.create({
+const response = await client.beta.messages.create({
   model: "claude-opus-4-6",
   max_tokens: 1024,
   messages: [
@@ -263,29 +268,24 @@ console.log(response);
 var response = await client.Beta.Messages.Create(
     new MessageCreateParams
     {
-        Model = "claude-opus-4-6",
+        Model = Messages::Model.ClaudeOpus4_6,
         MaxTokens = 1024,
-        Betas = new[] { "files-api-2025-04-14" },
-        Messages = new[]
-        {
+        Betas = [AnthropicBeta.FilesApi2025_04_14],
+        Messages =
+        [
             new BetaMessageParam
             {
-                Role = "user",
-                Content = new object[]
+                Role = Role.User,
+                Content = new List<BetaContentBlockParam>
                 {
-                    new { type = "text", text = "Please summarize this document for me." },
-                    new
+                    new BetaTextBlockParam { Text = "Please summarize this document for me." },
+                    new BetaRequestDocumentBlock
                     {
-                        type = "document",
-                        source = new
-                        {
-                            type = "file",
-                            file_id = fileId
-                        }
+                        Source = new BetaFileDocumentSource { FileID = fileId }
                     }
                 }
             }
-        }
+        ]
     });
 
 Console.WriteLine(response);
@@ -844,7 +844,7 @@ file = client.beta.files.retrieve_metadata(file_id)
 ````
 
 ````typescript
-const file = await anthropic.beta.files.retrieveMetadata(uploaded.id);
+const file = await client.beta.files.retrieveMetadata(uploaded.id);
 ````
 
 ````csharp
@@ -906,7 +906,7 @@ result = client.beta.files.delete(file_id)
 ````
 
 ````typescript
-await anthropic.beta.files.delete(uploaded.id);
+await client.beta.files.delete(uploaded.id);
 ````
 
 ````csharp
@@ -966,16 +966,17 @@ file_content.write_to_file("downloaded_file.txt")
 ````
 
 ````typescript
-const content = await anthropic.beta.files.download(uploaded.id);
+const content = await client.beta.files.download(uploaded.id);
 
 const bytes = Buffer.from(await content.arrayBuffer());
 await fsp.writeFile("downloaded_file.txt", bytes);
 ````
 
 ````csharp
-byte[] fileContent = await client.Beta.Files.Download(fileId);
-
-await File.WriteAllBytesAsync("downloaded_file.txt", fileContent);
+using var fileContent = await client.Beta.Files.Download(fileId);
+await using var source = await fileContent.ReadAsStream();
+await using var destination = File.Create("downloaded_file.txt");
+await source.CopyToAsync(destination);
 ````
 
 ````go

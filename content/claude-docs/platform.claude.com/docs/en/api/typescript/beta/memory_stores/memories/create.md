@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/memory_stores/memories/create
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 220f53a86d1cd8c4f16f43206919451e4ad9b1b4391c90af25d496fbc9a55079
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 049615dc5dd1725e3dc471a35add5fa056041d776fa4dbd964db04d6c0c65b97
 ---
 
 ## Create
@@ -41,7 +41,7 @@ Create a memory
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 21 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 22 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -90,6 +90,8 @@ Create a memory
       - `"advisor-tool-2026-03-01"`
 
       - `"managed-agents-2026-04-01"`
+
+      - `"cache-diagnosis-2026-04-07"`
 
 ### Returns
 

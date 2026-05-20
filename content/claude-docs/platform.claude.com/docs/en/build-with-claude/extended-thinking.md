@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/extended-thinking
-fetched_at: 2026-05-14T03:14:07.437614Z
-sha256: 304684be7336929977ee232ba60c5f9337eed4e64ea9be723808f9b2ead5ffbe
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 5205a671246b84a8ff48d77a39baa71dd683d5c994706d1053eba8b957b751bc
 ---
 
 # Building with extended thinking
@@ -338,7 +338,7 @@ Here are some important considerations for summarized thinking:
 - Summarization is processed by a different model than the one you target in your requests. The thinking model does not see the summarized output.
 
 <Note>
-In rare cases where you need access to full thinking output for Claude 4 models, [contact our sales team](mailto:sales@anthropic.com).
+In rare cases where you need access to full thinking output for Claude 4 models, [contact Anthropic sales](mailto:sales@anthropic.com).
 </Note>
 
 ### Controlling thinking display
@@ -3748,7 +3748,7 @@ Full thinking content is encrypted and returned in the `signature` field. This f
 <Note>
 It is only strictly necessary to send back thinking blocks when using [tools with extended thinking](/docs/en/build-with-claude/extended-thinking#extended-thinking-with-tool-use). Otherwise you can omit thinking blocks from previous turns. If you pass them back, whether the API keeps or strips them depends on the model: Opus 4.5+ and Sonnet 4.6+ keep them in context by default; earlier Opus/Sonnet models and all Haiku models strip them. See [context editing](/docs/en/build-with-claude/context-editing) to configure this.
 
-If sending back thinking blocks, we recommend passing everything back as you received it for consistency and to avoid potential issues.
+If sending back thinking blocks, pass everything back as you received it for consistency and to avoid potential issues.
 </Note>
 
 Here are some important considerations on thinking encryption:

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/sessions/threads/retrieve
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 947f32e553efba3c6d7eb6bb886f2c04200bbe70448050b1b215d4b2ff62ae6e
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 8d176f98b21edb4caa40133d74e3f38a762965a43b3310df62d17cbb3f9dce4e
 ---
 
 ## Retrieve
@@ -29,7 +29,7 @@ Get Session Thread
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 21 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 22 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -78,6 +78,8 @@ Get Session Thread
       - `"advisor-tool-2026-03-01"`
 
       - `"managed-agents-2026-04-01"`
+
+      - `"cache-diagnosis-2026-04-07"`
 
 ### Returns
 

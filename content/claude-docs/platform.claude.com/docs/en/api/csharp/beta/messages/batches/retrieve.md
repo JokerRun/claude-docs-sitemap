@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/messages/batches/retrieve
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: df200448c3791ace1e1bf8a39596229ec77ae382ef91382f95f5aacf99cdcf08
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 0c8060511f5fbf9c655e49ef40ec745e5667b6d229a1ab929ff0e4e0ca564bff
 ---
 
 ## Retrieve
@@ -74,6 +74,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
+    - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
 ### Returns
 

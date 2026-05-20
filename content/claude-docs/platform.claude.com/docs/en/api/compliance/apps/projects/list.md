@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/list
-fetched_at: 2026-05-09T03:13:52.260309Z
-sha256: cbf70745211485f80c037b8491be0c89b5303eeab49506d4a5711ddddaa4942b
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: f09822c0a3f3ca162385113c23eef13ad04ec04031c33478c9f01b2e488a7662
 ---
 
 ## List
@@ -54,7 +54,7 @@ are sorted chronologically (time ascending) by created_at.
 
 ### Returns
 
-- `data: array of object { id, created_at, is_private, 4 more }`
+- `data: array of object { id, created_at, deleted_at, 6 more }`
 
   List of projects sorted by creation date ascending
 
@@ -65,6 +65,10 @@ are sorted chronologically (time ascending) by created_at.
   - `created_at: string`
 
     Project creation timestamp
+
+  - `deleted_at: string`
+
+    Timestamp when the project was deleted by an end user, or null otherwise
 
   - `is_private: boolean`
 
@@ -77,6 +81,10 @@ are sorted chronologically (time ascending) by created_at.
   - `organization_id: string`
 
     Organization identifier (tagged ID)
+
+  - `organization_uuid: string`
+
+    Organization UUID this project belongs to
 
   - `updated_at: string`
 

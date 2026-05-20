@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/vaults/credentials/retrieve
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: c33062ae57eb8e6ce71240de57beab6d47163ff96416a5bf37ce6da1a97c4cbf
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 56b036f1d34013b4994bf8b0f5de497eb2c09b73a16b950922177ef0710dea65
 ---
 
 ## Retrieve
@@ -76,6 +76,8 @@ Get Credential
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
+    - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
 ### Returns
 

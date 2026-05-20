@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/sessions/resources/add
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: e4e9f8e515e9f945c408c7717f2524338346d7694ddbabdddc669730a2be6de9
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 41009c2e4aca1b53c264afecf1d965c18f39f4a465c6b851c17f38f160f661e6
 ---
 
 ## Add
@@ -86,6 +86,8 @@ Add Session Resource
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
+    - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/archive
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 9a791518bbf06ac7637a0b3a474cf9f38f249c2894a1c3b1ff518b6854972c43
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 399e713bc2e09739cd00d75f4cf25cc7bd4172fbb557de6080417353cbc2b71c
 ---
 
 ## Archive
@@ -23,7 +23,7 @@ Archive a memory store
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 21 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -72,6 +72,8 @@ Archive a memory store
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
+
+    - `"cache-diagnosis-2026-04-07"`
 
 ### Returns
 

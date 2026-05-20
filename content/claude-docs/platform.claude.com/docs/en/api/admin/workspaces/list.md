@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/list
-fetched_at: 2026-04-21T03:11:28.016230Z
-sha256: db96be5b4c56586a3e8fc2c32c51e79cfa86859b7e4aea059d32b86c4a79c3c8
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 5e2e11dd8c9bf587eb7a2f6d71bf4c929f429fcdc7c9a0e54b56cbfa59f93541
 ---
 
 ## List
@@ -76,6 +76,10 @@ List Workspaces
   - `name: string`
 
     Name of the Workspace.
+
+  - `tags: map[string]`
+
+    User-defined tags as string key-value pairs. Keys may not begin with `anthropic`.
 
   - `type: "workspace"`
 

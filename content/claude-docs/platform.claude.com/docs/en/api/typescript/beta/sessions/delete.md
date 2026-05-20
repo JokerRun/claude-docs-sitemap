@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/sessions/delete
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 850077e9f2f387d094187a05e40a556cb09d7fae593fd44def2afb865d82f238
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 2ab3654c59b34c03a7c67d6ca57f166bcc90af5e144a72e17692a4a0c9d860e6
 ---
 
 ## Delete
@@ -25,7 +25,7 @@ Delete Session
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 21 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 22 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -74,6 +74,8 @@ Delete Session
       - `"advisor-tool-2026-03-01"`
 
       - `"managed-agents-2026-04-01"`
+
+      - `"cache-diagnosis-2026-04-07"`
 
 ### Returns
 

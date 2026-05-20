@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/credentials/delete
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 45dee51f5e64d90be25de9c9d13428fbc015de5be9f8203546495d8fa888afc8
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 312f5d3c87fe8a2759b92fade4100655675dd47c34a958c36cad3c9e45c0419c
 ---
 
 ## Delete
@@ -72,6 +72,8 @@ Delete Credential
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
+    - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
 ### Returns
 

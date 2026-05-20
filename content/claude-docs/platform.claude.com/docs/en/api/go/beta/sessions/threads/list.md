@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/sessions/threads/list
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 84ed53a990ecd0a3ec6e77f2772584ecb6b7d779d9b3ea447009b021d65274c3
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 895ab24b88336ddab6bd6ea43bf302a07ad53127fdab30e8c48e25fad54b1af4
 ---
 
 ## List
@@ -82,6 +82,8 @@ List Session Threads
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
       - `const AnthropicBetaManagedAgents2026_04_01 AnthropicBeta = "managed-agents-2026-04-01"`
+
+      - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
 
 ### Returns
 

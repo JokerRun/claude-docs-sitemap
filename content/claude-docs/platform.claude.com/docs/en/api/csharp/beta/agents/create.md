@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/agents/create
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: b6eeb597ca25da8d17b7cb33bb75c4d5f9c5b5e7fa64d1007caf7822045605a9
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 22299eb678bfbd36b5ff2a61ac37902cd7894bd491675ea8bd6e1e2c4ebd0175
 ---
 
 ## Create
@@ -434,6 +434,8 @@ Create Agent
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
+    - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/environments/delete
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: c8f00132bca27fe91712399838b5d52e47f9c75d9c603a37f8ddcf144f7654b1
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 907c9fdd3b58bafbe0bf6a5d7057e34ad8d9bdba89950236476fbf471e05bb12
 ---
 
 ## Delete
@@ -70,6 +70,8 @@ Delete an environment by ID. Returns a confirmation of the deletion.
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
+    - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
 ### Returns
 

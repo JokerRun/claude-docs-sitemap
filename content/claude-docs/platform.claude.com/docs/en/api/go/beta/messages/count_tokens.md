@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/messages/count_tokens
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: fd67ade9be6a1d10ef8401d3f91ba9fefd36247490765934ae7dbc1768d278fa
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 0ea433fc5046e8b5f6256317ea42fc52475e891a547a7d565890dcc35f46241f
 ---
 
 ## Count Tokens
@@ -4754,6 +4754,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
       - `const AnthropicBetaManagedAgents2026_04_01 AnthropicBeta = "managed-agents-2026-04-01"`
+
+      - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
 
 ### Returns
 

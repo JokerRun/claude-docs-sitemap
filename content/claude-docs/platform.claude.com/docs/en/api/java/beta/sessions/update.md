@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/update
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 2d1442203278a1ae0066e72c71d25407022c4fe2b5b1348d97cc3c1b800b910b
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 8f53bd6b48ba78b51f0c898349eeb0252bfcb88eb7047376242bcf8a8d617576
 ---
 
 ## Update
@@ -70,6 +70,12 @@ Update Session
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
+    - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
+
+  - `Optional<BetaManagedAgentsSessionAgentUpdate> agent`
+
+    Mid-session agent configuration update. Only `tools` and `mcp_servers` are updatable. Full replacement: the provided array becomes the new value. To preserve existing entries, GET the session, modify the array, and POST it back.
 
   - `Optional<Metadata> metadata`
 
@@ -689,7 +695,7 @@ Update Session
 
     - `String result`
 
-      Current evaluation state. 'pending' before the agent begins work; 'running' while producing or revising; 'evaluating' while the grader scores; 'satisfied'/'max_iterations_reached'/'failed'/'interrupted' are terminal.
+      Current evaluation state. `pending` before the agent begins work; `running` while producing or revising; `evaluating` while the grader scores; `satisfied`/`max_iterations_reached`/`failed`/`interrupted` are terminal.
 
     - `Type type`
 

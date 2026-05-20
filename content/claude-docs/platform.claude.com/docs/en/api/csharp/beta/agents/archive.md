@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/agents/archive
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 7b4979897e92aa966fa5581a5ffb2e838aa9bb5e19c8095d3c031ab2283c98d3
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 7ac5e7c9ff0216216fa998a403bbca845071faaeedef524c92f1c543efb32cc8
 ---
 
 ## Archive
@@ -72,6 +72,8 @@ Archive Agent
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
+    - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
 ### Returns
 

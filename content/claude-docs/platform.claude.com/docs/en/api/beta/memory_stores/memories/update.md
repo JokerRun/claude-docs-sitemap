@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memories/update
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 7a9072c9ca3fc486f810c841d083edb44ce9f26c0f80dd9877bfbd0af15117f5
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 06965c93a4e924bd9010906bb6a83e8d205e9b681b967e1596136749d3bdb583
 ---
 
 ## Update
@@ -35,7 +35,7 @@ Update a memory
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 21 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -84,6 +84,8 @@ Update a memory
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
+
+    - `"cache-diagnosis-2026-04-07"`
 
 ### Body Parameters
 

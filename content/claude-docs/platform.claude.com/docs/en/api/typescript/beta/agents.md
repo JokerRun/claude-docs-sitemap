@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/agents
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 422e650ca62de5b77d2bd4610fc81f2a9f538d6eda7062a7a6c2794826bac7d7
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 164c0277b114363b5907548f2ed7b423886b10458c31a8993a63c8abdb6c22ba
 ---
 
 # Agents
@@ -433,7 +433,7 @@ Create Agent
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 21 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 22 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -482,6 +482,8 @@ Create Agent
       - `"advisor-tool-2026-03-01"`
 
       - `"managed-agents-2026-04-01"`
+
+      - `"cache-diagnosis-2026-04-07"`
 
 ### Returns
 
@@ -856,7 +858,7 @@ List Agents
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 21 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 22 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -905,6 +907,8 @@ List Agents
       - `"advisor-tool-2026-03-01"`
 
       - `"managed-agents-2026-04-01"`
+
+      - `"cache-diagnosis-2026-04-07"`
 
 ### Returns
 
@@ -1263,7 +1267,7 @@ Get Agent
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 21 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 22 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -1312,6 +1316,8 @@ Get Agent
       - `"advisor-tool-2026-03-01"`
 
       - `"managed-agents-2026-04-01"`
+
+      - `"cache-diagnosis-2026-04-07"`
 
 ### Returns
 
@@ -2077,7 +2083,7 @@ Update Agent
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 21 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 22 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -2126,6 +2132,8 @@ Update Agent
       - `"advisor-tool-2026-03-01"`
 
       - `"managed-agents-2026-04-01"`
+
+      - `"cache-diagnosis-2026-04-07"`
 
 ### Returns
 
@@ -2481,7 +2489,7 @@ Archive Agent
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 21 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 22 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -2530,6 +2538,8 @@ Archive Agent
       - `"advisor-tool-2026-03-01"`
 
       - `"managed-agents-2026-04-01"`
+
+      - `"cache-diagnosis-2026-04-07"`
 
 ### Returns
 
@@ -3431,6 +3441,89 @@ console.log(betaManagedAgentsAgent.id);
 
     - `"agent_toolset_20260401"`
 
+### Beta Managed Agents Agent Toolset20260401 Bash Input
+
+- `BetaManagedAgentsAgentToolset20260401BashInput`
+
+  Input payload for the `bash` tool of the
+  `agent_toolset_20260401` toolset. All fields are optional;
+  a normal invocation supplies `command`, while `restart=true`
+  (with no `command`) reboots the runner-side bash session.
+
+  - `command?: string`
+
+    Shell command to execute. Omit only when `restart` is true.
+
+  - `restart?: boolean`
+
+    When true, restart the persistent bash session instead of
+    running a command. Subsequent calls without `restart` will
+    run against the fresh session.
+
+  - `timeout_ms?: number`
+
+    Per-call timeout in milliseconds. Defaults to the
+    runner-wide tool timeout when omitted or zero.
+
+### Beta Managed Agents Agent Toolset20260401 Edit Input
+
+- `BetaManagedAgentsAgentToolset20260401EditInput`
+
+  Input payload for the `edit` tool. Performs a string
+  replacement in the named file; by default `old_string` must
+  occur exactly once.
+
+  - `file_path: string`
+
+    Path of the file to edit.
+
+  - `new_string: string`
+
+    Replacement text.
+
+  - `old_string: string`
+
+    Substring to find and replace.
+
+  - `replace_all?: boolean`
+
+    When true, replace every occurrence of `old_string`
+    instead of requiring a unique match.
+
+### Beta Managed Agents Agent Toolset20260401 Glob Input
+
+- `BetaManagedAgentsAgentToolset20260401GlobInput`
+
+  Input payload for the `glob` tool. Returns paths matching a
+  doublestar glob pattern, newest first.
+
+  - `pattern: string`
+
+    Doublestar glob pattern (e.g. `**/*.go`). Absolute patterns
+    are only permitted when the runner is configured to allow
+    them.
+
+  - `path?: string`
+
+    Optional directory root to search under. Defaults to the
+    runner's working directory.
+
+### Beta Managed Agents Agent Toolset20260401 Grep Input
+
+- `BetaManagedAgentsAgentToolset20260401GrepInput`
+
+  Input payload for the `grep` tool. Searches file contents for
+  a regular expression, returning matching lines.
+
+  - `pattern: string`
+
+    Regular expression to search for.
+
+  - `path?: string`
+
+    Optional directory root to search under. Defaults to the
+    runner's working directory.
+
 ### Beta Managed Agents Agent Toolset20260401 Params
 
 - `BetaManagedAgentsAgentToolset20260401Params`
@@ -3516,6 +3609,39 @@ console.log(betaManagedAgentsAgent.id);
         - `type: "always_ask"`
 
           - `"always_ask"`
+
+### Beta Managed Agents Agent Toolset20260401 Read Input
+
+- `BetaManagedAgentsAgentToolset20260401ReadInput`
+
+  Input payload for the `read` tool. Reads file contents
+  relative to the runner's working directory (or absolute when
+  the runner permits).
+
+  - `file_path: string`
+
+    Path of the file to read.
+
+  - `view_range?: Array<number>`
+
+    Optional `[start_line, end_line]` 1-indexed inclusive
+    range. When omitted the entire file is returned.
+    `end_line` of 0 or negative means "to end of file".
+
+### Beta Managed Agents Agent Toolset20260401 Write Input
+
+- `BetaManagedAgentsAgentToolset20260401WriteInput`
+
+  Input payload for the `write` tool. Writes (overwriting) the
+  entire file contents.
+
+  - `content: string`
+
+    Full file contents to write.
+
+  - `file_path: string`
+
+    Path of the file to write.
 
 ### Beta Managed Agents Always Allow Policy
 
@@ -4201,6 +4327,288 @@ console.log(betaManagedAgentsAgent.id);
 
     - `"self"`
 
+### Beta Managed Agents Session Thread Agent
+
+- `BetaManagedAgentsSessionThreadAgent`
+
+  Resolved `agent` definition for a single `session_thread`. Snapshot of the agent at thread creation time. The multiagent roster is not repeated here; read it from `Session.agent`.
+
+  - `id: string`
+
+  - `description: string | null`
+
+  - `mcp_servers: Array<BetaManagedAgentsMCPServerURLDefinition>`
+
+    - `name: string`
+
+    - `type: "url"`
+
+      - `"url"`
+
+    - `url: string`
+
+  - `model: BetaManagedAgentsModelConfig`
+
+    Model identifier and configuration.
+
+    - `id: BetaManagedAgentsModel`
+
+      The model that will power your agent.
+
+      See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `"claude-opus-4-7" | "claude-opus-4-6" | "claude-sonnet-4-6" | 6 more`
+
+        - `"claude-opus-4-7"`
+
+          Frontier intelligence for long-running agents and coding
+
+        - `"claude-opus-4-6"`
+
+          Most intelligent model for building agents and coding
+
+        - `"claude-sonnet-4-6"`
+
+          Best combination of speed and intelligence
+
+        - `"claude-haiku-4-5"`
+
+          Fastest model with near-frontier intelligence
+
+        - `"claude-haiku-4-5-20251001"`
+
+          Fastest model with near-frontier intelligence
+
+        - `"claude-opus-4-5"`
+
+          Premium model combining maximum intelligence with practical performance
+
+        - `"claude-opus-4-5-20251101"`
+
+          Premium model combining maximum intelligence with practical performance
+
+        - `"claude-sonnet-4-5"`
+
+          High-performance model for agents and coding
+
+        - `"claude-sonnet-4-5-20250929"`
+
+          High-performance model for agents and coding
+
+      - `(string & {})`
+
+    - `speed?: "standard" | "fast"`
+
+      Inference speed mode. `fast` provides significantly faster output token generation at premium pricing. Not all models support `fast`; invalid combinations are rejected at create time.
+
+      - `"standard"`
+
+      - `"fast"`
+
+  - `name: string`
+
+  - `skills: Array<BetaManagedAgentsAnthropicSkill | BetaManagedAgentsCustomSkill>`
+
+    - `BetaManagedAgentsAnthropicSkill`
+
+      A resolved Anthropic-managed skill.
+
+      - `skill_id: string`
+
+      - `type: "anthropic"`
+
+        - `"anthropic"`
+
+      - `version: string`
+
+    - `BetaManagedAgentsCustomSkill`
+
+      A resolved user-created custom skill.
+
+      - `skill_id: string`
+
+      - `type: "custom"`
+
+        - `"custom"`
+
+      - `version: string`
+
+  - `system: string | null`
+
+  - `tools: Array<BetaManagedAgentsAgentToolset20260401 | BetaManagedAgentsMCPToolset | BetaManagedAgentsCustomTool>`
+
+    - `BetaManagedAgentsAgentToolset20260401`
+
+      - `configs: Array<BetaManagedAgentsAgentToolConfig>`
+
+        - `enabled: boolean`
+
+        - `name: "bash" | "edit" | "read" | 5 more`
+
+          Built-in agent tool identifier.
+
+          - `"bash"`
+
+          - `"edit"`
+
+          - `"read"`
+
+          - `"write"`
+
+          - `"glob"`
+
+          - `"grep"`
+
+          - `"web_fetch"`
+
+          - `"web_search"`
+
+        - `permission_policy: BetaManagedAgentsAlwaysAllowPolicy | BetaManagedAgentsAlwaysAskPolicy`
+
+          Permission policy for tool execution.
+
+          - `BetaManagedAgentsAlwaysAllowPolicy`
+
+            Tool calls are automatically approved without user confirmation.
+
+            - `type: "always_allow"`
+
+              - `"always_allow"`
+
+          - `BetaManagedAgentsAlwaysAskPolicy`
+
+            Tool calls require user confirmation before execution.
+
+            - `type: "always_ask"`
+
+              - `"always_ask"`
+
+      - `default_config: BetaManagedAgentsAgentToolsetDefaultConfig`
+
+        Resolved default configuration for agent tools.
+
+        - `enabled: boolean`
+
+        - `permission_policy: BetaManagedAgentsAlwaysAllowPolicy | BetaManagedAgentsAlwaysAskPolicy`
+
+          Permission policy for tool execution.
+
+          - `BetaManagedAgentsAlwaysAllowPolicy`
+
+            Tool calls are automatically approved without user confirmation.
+
+            - `type: "always_allow"`
+
+              - `"always_allow"`
+
+          - `BetaManagedAgentsAlwaysAskPolicy`
+
+            Tool calls require user confirmation before execution.
+
+            - `type: "always_ask"`
+
+              - `"always_ask"`
+
+      - `type: "agent_toolset_20260401"`
+
+        - `"agent_toolset_20260401"`
+
+    - `BetaManagedAgentsMCPToolset`
+
+      - `configs: Array<BetaManagedAgentsMCPToolConfig>`
+
+        - `enabled: boolean`
+
+        - `name: string`
+
+        - `permission_policy: BetaManagedAgentsAlwaysAllowPolicy | BetaManagedAgentsAlwaysAskPolicy`
+
+          Permission policy for tool execution.
+
+          - `BetaManagedAgentsAlwaysAllowPolicy`
+
+            Tool calls are automatically approved without user confirmation.
+
+            - `type: "always_allow"`
+
+              - `"always_allow"`
+
+          - `BetaManagedAgentsAlwaysAskPolicy`
+
+            Tool calls require user confirmation before execution.
+
+            - `type: "always_ask"`
+
+              - `"always_ask"`
+
+      - `default_config: BetaManagedAgentsMCPToolsetDefaultConfig`
+
+        Resolved default configuration for all tools from an MCP server.
+
+        - `enabled: boolean`
+
+        - `permission_policy: BetaManagedAgentsAlwaysAllowPolicy | BetaManagedAgentsAlwaysAskPolicy`
+
+          Permission policy for tool execution.
+
+          - `BetaManagedAgentsAlwaysAllowPolicy`
+
+            Tool calls are automatically approved without user confirmation.
+
+            - `type: "always_allow"`
+
+              - `"always_allow"`
+
+          - `BetaManagedAgentsAlwaysAskPolicy`
+
+            Tool calls require user confirmation before execution.
+
+            - `type: "always_ask"`
+
+              - `"always_ask"`
+
+      - `mcp_server_name: string`
+
+      - `type: "mcp_toolset"`
+
+        - `"mcp_toolset"`
+
+    - `BetaManagedAgentsCustomTool`
+
+      A custom tool as returned in API responses.
+
+      - `description: string`
+
+      - `input_schema: BetaManagedAgentsCustomToolInputSchema`
+
+        JSON Schema for custom tool input parameters.
+
+        - `properties?: Record<string, unknown> | null`
+
+          JSON Schema properties defining the tool's input parameters.
+
+        - `required?: Array<string>`
+
+          List of required property names.
+
+        - `type?: "object"`
+
+          Must be 'object' for tool input schemas.
+
+          - `"object"`
+
+      - `name: string`
+
+      - `type: "custom"`
+
+        - `"custom"`
+
+  - `type: "agent"`
+
+    - `"agent"`
+
+  - `version: number`
+
 ### Beta Managed Agents Skill Params
 
 - `BetaManagedAgentsSkillParams = BetaManagedAgentsAnthropicSkillParams | BetaManagedAgentsCustomSkillParams`
@@ -4287,7 +4695,7 @@ List Agent Versions
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 21 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 22 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -4336,6 +4744,8 @@ List Agent Versions
       - `"advisor-tool-2026-03-01"`
 
       - `"managed-agents-2026-04-01"`
+
+      - `"cache-diagnosis-2026-04-07"`
 
 ### Returns
 

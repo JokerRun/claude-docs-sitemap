@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/monitoring-usage
-fetched_at: 2026-05-13T03:15:22.791986Z
-sha256: 2dd008042bc5deb7b3445e8a76c636285540f013fe7d69ca7a5f12254b82aae9
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: c21a73840c3bed8453f310ede0686326204a9df9bcad887211c9f9593ffeb8ec
 ---
 
 > ## Documentation Index
@@ -138,6 +138,8 @@ Tracing is off by default. To enable it, set both `CLAUDE_CODE_ENABLE_TELEMETRY=
 Spans redact user prompt text, tool input details, and tool content by default. Set `OTEL_LOG_USER_PROMPTS=1`, `OTEL_LOG_TOOL_DETAILS=1`, and `OTEL_LOG_TOOL_CONTENT=1` to include them.
 
 When tracing is active, Bash and PowerShell subprocesses automatically inherit a `TRACEPARENT` environment variable containing the W3C trace context of the active tool execution span. This lets any subprocess that reads `TRACEPARENT` parent its own spans under the same trace, enabling end-to-end distributed tracing through scripts and commands that Claude runs.
+
+When tracing is active and Claude Code is connected directly to the Anthropic API, each model request carries a W3C `traceparent` header set to the `claude_code.llm_request` span's context, and the API's `traceresponse` header is recorded as a span link. Together these connect Claude Code's client-side spans to the server-side trace through any compliant intermediary. The header is not sent to third-party providers.
 
 In Agent SDK and non-interactive sessions started with `-p`, Claude Code also reads `TRACEPARENT` and `TRACESTATE` from its own environment when starting each interaction span. This lets an embedding process pass its active W3C trace context into the subprocess so Claude Code's spans appear as children of the caller's distributed trace. Interactive sessions ignore inbound `TRACEPARENT` to avoid accidentally inheriting ambient values from CI or container environments.
 
@@ -892,6 +894,22 @@ Logged when all hooks for a hook event have finished.
 * `managed_only`: `"true"` when only managed-policy hooks are permitted
 * `hook_source`: `"policySettings"` or `"merged"`
 * `hook_definitions`: JSON-serialized hook configuration. Included only when both detailed beta tracing and `OTEL_LOG_TOOL_DETAILS=1` are enabled
+
+#### Hook plugin metrics event
+
+Logged when an official-marketplace plugin hook emits per-invocation metrics. Only plugins installed from an official Anthropic marketplace can emit these. Third-party marketplace plugins and user-configured hooks do not emit to this event. Use this event to monitor plugin behavior such as finding rates, costs, and durations from your own observability stack.
+
+**Event Name**: `claude_code.hook_plugin_metrics`
+
+**Attributes**:
+
+* All [standard attributes](#standard-attributes)
+* `event.name`: `"hook_plugin_metrics"`
+* `event.timestamp`: ISO 8601 timestamp
+* `event.sequence`: monotonically increasing counter for ordering events within a session
+* `plugin_id`: plugin identifier in `<name>@<marketplace>` form
+* `hook_event`: hook event type that emitted the metrics
+* Up to 20 plugin-emitted metric keys. Names match `^[a-z][a-z0-9_]{0,39}$`. Values are boolean or number.
 
 #### Compaction event
 

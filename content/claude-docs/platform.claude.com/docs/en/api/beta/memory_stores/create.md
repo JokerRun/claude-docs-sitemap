@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/create
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: c4f1ad162aeb3719b31796c9817b4d433eed07239dc81c6a973839074c78073e
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 4c1f274e932ed24e109318e754287bc8be6dafe946473f8152e94a8f129e4036
 ---
 
 ## Create
@@ -19,7 +19,7 @@ Create a memory store
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 21 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -68,6 +68,8 @@ Create a memory store
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
+
+    - `"cache-diagnosis-2026-04-07"`
 
 ### Body Parameters
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/agents/archive
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 0f3a3cadf33e2e2c576c0d3ba8c9c0237935adcd05da6dbbfb7a92ad70067232
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: cce599053fec4b1836df829121d3e09f85dc126fd5dd5234ecc7e0bca7154dd4
 ---
 
 ## Archive
@@ -74,6 +74,8 @@ Archive Agent
       - `const AnthropicBetaAdvisorTool2026_03_01 AnthropicBeta = "advisor-tool-2026-03-01"`
 
       - `const AnthropicBetaManagedAgents2026_04_01 AnthropicBeta = "managed-agents-2026-04-01"`
+
+      - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
 
 ### Returns
 

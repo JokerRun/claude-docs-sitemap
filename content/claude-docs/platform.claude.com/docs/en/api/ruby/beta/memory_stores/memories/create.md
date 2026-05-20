@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/memory_stores/memories/create
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: e1027532904a28c32f631c986052c7ce6043076b90ce02555684f8c9e6f8e89a
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: cae067c2ddf36d03c7b48df5d846ad8ecbd6e556a9b969d316b6cde5e6467707
 ---
 
 ## Create
@@ -39,7 +39,7 @@ Create a memory
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 21 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -88,6 +88,8 @@ Create a memory
     - `:"advisor-tool-2026-03-01"`
 
     - `:"managed-agents-2026-04-01"`
+
+    - `:"cache-diagnosis-2026-04-07"`
 
 ### Returns
 

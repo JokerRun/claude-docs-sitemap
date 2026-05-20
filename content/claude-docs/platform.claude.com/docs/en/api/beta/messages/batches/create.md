@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/batches/create
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: faa28bb9c576731ce27022547beb23ff7fcb03f53e9aec60438d73b3628df233
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 13309d4379f65d66a5b63097ef0eeb3372776a3505f1f206996f79df6e2f06e9
 ---
 
 ## Create
@@ -23,7 +23,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   - `UnionMember0 = string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 21 more`
+  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -73,6 +73,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `"managed-agents-2026-04-01"`
 
+    - `"cache-diagnosis-2026-04-07"`
+
 ### Body Parameters
 
 - `requests: array of object { custom_id, params }`
@@ -85,7 +87,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     Must be unique for each request within the Message Batch.
 
-  - `params: object { max_tokens, messages, model, 20 more }`
+  - `params: object { max_tokens, messages, model, 21 more }`
 
     Messages API creation parameters for the individual request.
 
@@ -3201,6 +3203,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
               - `"input_tokens"`
 
             - `value: number`
+
+    - `diagnostics: optional BetaDiagnosticsParam`
+
+      Request-level diagnostics. Currently carries the previous response
+      id for prompt-cache divergence reporting.
+
+      - `previous_message_id: optional string`
+
+        The `id` (`msg_...`) from this client's previous /v1/messages response. The server compares that request's prompt fingerprint against this one and returns `diagnostics.cache_miss_reason` when the prompt-cache prefix could not be reused. Pass `null` on the first turn to opt in without a prior message to compare.
 
     - `inference_geo: optional string`
 

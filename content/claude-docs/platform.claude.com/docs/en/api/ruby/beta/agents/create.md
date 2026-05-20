@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/agents/create
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 614411f5ab9b8540f57d2b077f8d2caa010da4815e27a04bb2850c7b210c6ba0
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: d28c3b20bfa417e8b492bacb0b7ae882b40c0a0389fa7d8fdeb49061c4931b93
 ---
 
 ## Create
@@ -437,7 +437,7 @@ Create Agent
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 21 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -486,6 +486,8 @@ Create Agent
     - `:"advisor-tool-2026-03-01"`
 
     - `:"managed-agents-2026-04-01"`
+
+    - `:"cache-diagnosis-2026-04-07"`
 
 ### Returns
 

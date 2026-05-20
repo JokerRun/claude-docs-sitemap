@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/sessions/update
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: a9173e667446114da80eba36ec81f427f52b64aa8015fdb1cb9d2354b332916f
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: ec84885ae92b3c06517fdba53b929b85cac975e6e438d69005d95d0794494949
 ---
 
 ## Update
@@ -18,6 +18,10 @@ Update Session
 - `--session-id: string`
 
   Path param: Path parameter session_id
+
+- `--agent: optional object { mcp_servers, tools }`
+
+  Body param: Mid-session agent configuration update. Only `tools` and `mcp_servers` are updatable. Full replacement: the provided array becomes the new value. To preserve existing entries, GET the session, modify the array, and POST it back.
 
 - `--metadata: optional map[string]`
 
@@ -641,7 +645,7 @@ Update Session
 
     - `result: string`
 
-      Current evaluation state. 'pending' before the agent begins work; 'running' while producing or revising; 'evaluating' while the grader scores; 'satisfied'/'max_iterations_reached'/'failed'/'interrupted' are terminal.
+      Current evaluation state. `pending` before the agent begins work; `running` while producing or revising; `evaluating` while the grader scores; `satisfied`/`max_iterations_reached`/`failed`/`interrupted` are terminal.
 
     - `type: "outcome_evaluation"`
 

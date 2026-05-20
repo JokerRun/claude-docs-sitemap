@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/resources/retrieve
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 3e7c2c82ce5eb495d5f52cc111f3c2207badcd2a256aa0b974b7c655e9779863
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: e7b8b787eda6377c16b268f0568e61c58a1c192c8c25117400ab32d0f3a6a7d9
 ---
 
 ## Retrieve
@@ -72,6 +72,8 @@ Get Session Resource
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
+    - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
 ### Returns
 

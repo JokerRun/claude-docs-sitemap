@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/user_profiles
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 319881c2a5a281232bee670a2379fd76c3249ab51182abbdb9e3ef411d809220
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: fd8dbfb8ed00d659e245c45cd889fe36415e1709254bee97dce6e9f47f176bb2
 ---
 
 # User Profiles
@@ -70,6 +70,8 @@ Create User Profile
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
+    - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
   - `Optional<String> externalId`
 
@@ -252,6 +254,8 @@ List User Profiles
 
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
+    - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
+
 ### Returns
 
 - `class BetaUserProfile:`
@@ -397,6 +401,8 @@ Get User Profile
 
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
+    - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
+
 ### Returns
 
 - `class BetaUserProfile:`
@@ -541,6 +547,8 @@ Update User Profile
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
+    - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
   - `Optional<String> externalId`
 
@@ -708,6 +716,8 @@ Create Enrollment URL
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
+    - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
 ### Returns
 

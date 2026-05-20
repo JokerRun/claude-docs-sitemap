@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/sessions/delete
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 99ff67afec0aa03047eb23d92e60455c21b71c5ec9db9011ccf364f19d22838a
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 167a1490fe27e08836226ac39bdbf96450a13ed6e0244c7f9eaf2997188b647e
 ---
 
 ## Delete
@@ -23,7 +23,7 @@ Delete Session
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 21 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 22 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -72,6 +72,8 @@ Delete Session
     - `"advisor-tool-2026-03-01"`
 
     - `"managed-agents-2026-04-01"`
+
+    - `"cache-diagnosis-2026-04-07"`
 
 ### Returns
 

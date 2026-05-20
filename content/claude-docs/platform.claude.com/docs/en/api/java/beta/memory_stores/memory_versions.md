@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/memory_stores/memory_versions
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 42ab2a7335557fef171d9e2d6d1c7e165028d8ebe0575f8899f582705ccc9dbc
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: a59fbffe108c1ca08db3b75902b9f574916a35208ea7e3dd41fd43076d57b63d
 ---
 
 # Memory Versions
@@ -108,6 +108,8 @@ List memory versions
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
+    - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
 ### Returns
 
@@ -338,6 +340,8 @@ Retrieve a memory version
 
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
+    - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
+
 ### Returns
 
 - `class BetaManagedAgentsMemoryVersion:`
@@ -566,6 +570,8 @@ Redact a memory version
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
+    - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
 ### Returns
 

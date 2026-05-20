@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/messages/count_tokens
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: bfbcf7ee9de5858a87ad19fb707232c6ae873259cb8fac741f043f4ed5c2c1d3
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 50ff68c947ce5a29cddce294a2ea4d8ce454c921900da4bf539b2a119a696206
 ---
 
 ## Count Tokens
@@ -72,6 +72,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
     - `ADVISOR_TOOL_2026_03_01("advisor-tool-2026-03-01")`
 
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
+
+    - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
   - `List<BetaMessageParam> messages`
 

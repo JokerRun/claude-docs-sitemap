@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/sessions/list
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 5aeb32b666aee50f3353aeeb2ac5178eaf8902b559f13a06b47f2e679f86e189
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: a6d65875b7beed0b2bfe7fb1b29dc403ffbdb390c0614075faf8b250c12c1aad
 ---
 
 ## List
@@ -677,7 +677,7 @@ List Sessions
 
       - `result: string`
 
-        Current evaluation state. 'pending' before the agent begins work; 'running' while producing or revising; 'evaluating' while the grader scores; 'satisfied'/'max_iterations_reached'/'failed'/'interrupted' are terminal.
+        Current evaluation state. `pending` before the agent begins work; `running` while producing or revising; `evaluating` while the grader scores; `satisfied`/`max_iterations_reached`/`failed`/`interrupted` are terminal.
 
       - `type: "outcome_evaluation"`
 

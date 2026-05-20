@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/user_profiles/update
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 7c46a73b56036608b504c29ff2dae026e7779ce18cb059c3237f24fade05f3b8
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 4e0364bb5587721cb2025ace3fd09ffc5beb0227eafca589a8c1fffe625fef21
 ---
 
 ## Update
@@ -45,7 +45,7 @@ Update User Profile
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 21 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -94,6 +94,8 @@ Update User Profile
     - `:"advisor-tool-2026-03-01"`
 
     - `:"managed-agents-2026-04-01"`
+
+    - `:"cache-diagnosis-2026-04-07"`
 
 ### Returns
 

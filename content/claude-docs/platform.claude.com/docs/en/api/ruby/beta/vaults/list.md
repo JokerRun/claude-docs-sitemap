@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/vaults/list
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 777b018551325c62250b87b8567f6094fc91d40826914b4cedf604a2fcb0ab27
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 53b21f6f255a260acffae069125da67463e0eca51584c264bd2216c6b8012aa4
 ---
 
 ## List
@@ -33,7 +33,7 @@ List Vaults
 
   - `String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 21 more`
+  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -82,6 +82,8 @@ List Vaults
     - `:"advisor-tool-2026-03-01"`
 
     - `:"managed-agents-2026-04-01"`
+
+    - `:"cache-diagnosis-2026-04-07"`
 
 ### Returns
 

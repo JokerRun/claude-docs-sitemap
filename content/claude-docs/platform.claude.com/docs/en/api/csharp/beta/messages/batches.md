@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/messages/batches
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 6c14affb53364de4a404fa4a62222a13340e339686dafb38a5ce44e7f242b52c
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 2b51006518da1448c793ebe0b48ecac33e8b8d447f101aa1823ae201b95e0274
 ---
 
 # Batches
@@ -2760,6 +2760,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
               - `required Long Value`
 
+      - `BetaDiagnosticsParam? Diagnostics`
+
+        Request-level diagnostics. Currently carries the previous response
+        id for prompt-cache divergence reporting.
+
+        - `string? PreviousMessageID`
+
+          The `id` (`msg_...`) from this client's previous /v1/messages response. The server compares that request's prompt fingerprint against this one and returns `diagnostics.cache_miss_reason` when the prompt-cache prefix could not be reused. Pass `null` on the first turn to opt in without a prior message to compare.
+
       - `string? InferenceGeo`
 
         Specifies the geographic region for inference processing. If not specified, the workspace's `default_inference_geo` is used.
@@ -4672,6 +4681,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
+    - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
+
 ### Returns
 
 - `class BetaMessageBatch:`
@@ -4812,6 +4823,10 @@ BatchCreateParams parameters = new()
                             Trigger = new BetaInputTokensTrigger(1),
                         },
                     ],
+                },
+                Diagnostics = new()
+                {
+                    PreviousMessageID = "previous_message_id"
                 },
                 InferenceGeo = "inference_geo",
                 McpServers =
@@ -5014,6 +5029,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
+    - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
+
 ### Returns
 
 - `class BetaMessageBatch:`
@@ -5191,6 +5208,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
+    - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
 ### Returns
 
@@ -5378,6 +5397,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
+    - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
+
 ### Returns
 
 - `class BetaMessageBatch:`
@@ -5548,6 +5569,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
+    - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
+
 ### Returns
 
 - `class BetaDeletedMessageBatch:`
@@ -5643,6 +5666,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
 
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
+    - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
 ### Returns
 
@@ -6544,6 +6569,55 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
               - `JsonElement Type "clear_thinking_20251015"constant`
 
                 The type of context management edit applied.
+
+        - `required BetaDiagnostics? Diagnostics`
+
+          Response envelope for request-level diagnostics. Present (possibly
+          null) whenever the caller supplied `diagnostics` on the request.
+
+          - `required CacheMissReason? CacheMissReason`
+
+            Explains why the prompt cache could not fully reuse the prefix from the request identified by `diagnostics.previous_message_id`. `null` means diagnosis is still pending — the response was serialized before the background comparison completed.
+
+            - `class BetaCacheMissModelChanged:`
+
+              - `required Long CacheMissedInputTokens`
+
+                Approximate number of input tokens that would have been read from cache had the prefix matched the previous request.
+
+              - `JsonElement Type "model_changed"constant`
+
+            - `class BetaCacheMissSystemChanged:`
+
+              - `required Long CacheMissedInputTokens`
+
+                Approximate number of input tokens that would have been read from cache had the prefix matched the previous request.
+
+              - `JsonElement Type "system_changed"constant`
+
+            - `class BetaCacheMissToolsChanged:`
+
+              - `required Long CacheMissedInputTokens`
+
+                Approximate number of input tokens that would have been read from cache had the prefix matched the previous request.
+
+              - `JsonElement Type "tools_changed"constant`
+
+            - `class BetaCacheMissMessagesChanged:`
+
+              - `required Long CacheMissedInputTokens`
+
+                Approximate number of input tokens that would have been read from cache had the prefix matched the previous request.
+
+              - `JsonElement Type "messages_changed"constant`
+
+            - `class BetaCacheMissPreviousMessageNotFound:`
+
+              - `JsonElement Type "previous_message_not_found"constant`
+
+            - `class BetaCacheMissUnavailable:`
+
+              - `JsonElement Type "unavailable"constant`
 
         - `required Model Model`
 
@@ -8128,6 +8202,55 @@ await foreach (var betaMessageBatchIndividualResponse in client.Beta.Messages.Ba
 
                 The type of context management edit applied.
 
+        - `required BetaDiagnostics? Diagnostics`
+
+          Response envelope for request-level diagnostics. Present (possibly
+          null) whenever the caller supplied `diagnostics` on the request.
+
+          - `required CacheMissReason? CacheMissReason`
+
+            Explains why the prompt cache could not fully reuse the prefix from the request identified by `diagnostics.previous_message_id`. `null` means diagnosis is still pending — the response was serialized before the background comparison completed.
+
+            - `class BetaCacheMissModelChanged:`
+
+              - `required Long CacheMissedInputTokens`
+
+                Approximate number of input tokens that would have been read from cache had the prefix matched the previous request.
+
+              - `JsonElement Type "model_changed"constant`
+
+            - `class BetaCacheMissSystemChanged:`
+
+              - `required Long CacheMissedInputTokens`
+
+                Approximate number of input tokens that would have been read from cache had the prefix matched the previous request.
+
+              - `JsonElement Type "system_changed"constant`
+
+            - `class BetaCacheMissToolsChanged:`
+
+              - `required Long CacheMissedInputTokens`
+
+                Approximate number of input tokens that would have been read from cache had the prefix matched the previous request.
+
+              - `JsonElement Type "tools_changed"constant`
+
+            - `class BetaCacheMissMessagesChanged:`
+
+              - `required Long CacheMissedInputTokens`
+
+                Approximate number of input tokens that would have been read from cache had the prefix matched the previous request.
+
+              - `JsonElement Type "messages_changed"constant`
+
+            - `class BetaCacheMissPreviousMessageNotFound:`
+
+              - `JsonElement Type "previous_message_not_found"constant`
+
+            - `class BetaCacheMissUnavailable:`
+
+              - `JsonElement Type "unavailable"constant`
+
         - `required Model Model`
 
           The model that will complete your prompt.
@@ -9538,6 +9661,55 @@ await foreach (var betaMessageBatchIndividualResponse in client.Beta.Messages.Ba
 
               The type of context management edit applied.
 
+      - `required BetaDiagnostics? Diagnostics`
+
+        Response envelope for request-level diagnostics. Present (possibly
+        null) whenever the caller supplied `diagnostics` on the request.
+
+        - `required CacheMissReason? CacheMissReason`
+
+          Explains why the prompt cache could not fully reuse the prefix from the request identified by `diagnostics.previous_message_id`. `null` means diagnosis is still pending — the response was serialized before the background comparison completed.
+
+          - `class BetaCacheMissModelChanged:`
+
+            - `required Long CacheMissedInputTokens`
+
+              Approximate number of input tokens that would have been read from cache had the prefix matched the previous request.
+
+            - `JsonElement Type "model_changed"constant`
+
+          - `class BetaCacheMissSystemChanged:`
+
+            - `required Long CacheMissedInputTokens`
+
+              Approximate number of input tokens that would have been read from cache had the prefix matched the previous request.
+
+            - `JsonElement Type "system_changed"constant`
+
+          - `class BetaCacheMissToolsChanged:`
+
+            - `required Long CacheMissedInputTokens`
+
+              Approximate number of input tokens that would have been read from cache had the prefix matched the previous request.
+
+            - `JsonElement Type "tools_changed"constant`
+
+          - `class BetaCacheMissMessagesChanged:`
+
+            - `required Long CacheMissedInputTokens`
+
+              Approximate number of input tokens that would have been read from cache had the prefix matched the previous request.
+
+            - `JsonElement Type "messages_changed"constant`
+
+          - `class BetaCacheMissPreviousMessageNotFound:`
+
+            - `JsonElement Type "previous_message_not_found"constant`
+
+          - `class BetaCacheMissUnavailable:`
+
+            - `JsonElement Type "unavailable"constant`
+
       - `required Model Model`
 
         The model that will complete your prompt.
@@ -10909,6 +11081,55 @@ await foreach (var betaMessageBatchIndividualResponse in client.Beta.Messages.Ba
           - `JsonElement Type "clear_thinking_20251015"constant`
 
             The type of context management edit applied.
+
+    - `required BetaDiagnostics? Diagnostics`
+
+      Response envelope for request-level diagnostics. Present (possibly
+      null) whenever the caller supplied `diagnostics` on the request.
+
+      - `required CacheMissReason? CacheMissReason`
+
+        Explains why the prompt cache could not fully reuse the prefix from the request identified by `diagnostics.previous_message_id`. `null` means diagnosis is still pending — the response was serialized before the background comparison completed.
+
+        - `class BetaCacheMissModelChanged:`
+
+          - `required Long CacheMissedInputTokens`
+
+            Approximate number of input tokens that would have been read from cache had the prefix matched the previous request.
+
+          - `JsonElement Type "model_changed"constant`
+
+        - `class BetaCacheMissSystemChanged:`
+
+          - `required Long CacheMissedInputTokens`
+
+            Approximate number of input tokens that would have been read from cache had the prefix matched the previous request.
+
+          - `JsonElement Type "system_changed"constant`
+
+        - `class BetaCacheMissToolsChanged:`
+
+          - `required Long CacheMissedInputTokens`
+
+            Approximate number of input tokens that would have been read from cache had the prefix matched the previous request.
+
+          - `JsonElement Type "tools_changed"constant`
+
+        - `class BetaCacheMissMessagesChanged:`
+
+          - `required Long CacheMissedInputTokens`
+
+            Approximate number of input tokens that would have been read from cache had the prefix matched the previous request.
+
+          - `JsonElement Type "messages_changed"constant`
+
+        - `class BetaCacheMissPreviousMessageNotFound:`
+
+          - `JsonElement Type "previous_message_not_found"constant`
+
+        - `class BetaCacheMissUnavailable:`
+
+          - `JsonElement Type "unavailable"constant`
 
     - `required Model Model`
 

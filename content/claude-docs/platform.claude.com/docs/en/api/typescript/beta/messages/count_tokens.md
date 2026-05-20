@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/messages/count_tokens
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 519cafa1018f916cf818f053c12394940c233ecd11516bb4be6068fbf6464fb3
+fetched_at: 2026-05-20T03:15:44.945478Z
+sha256: 3b0236020b25229c95500881eb75dacab6eb257bdc5871ed9fe2cdb20da08e10
 ---
 
 ## Count Tokens
@@ -5060,7 +5060,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 21 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 22 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -5109,6 +5109,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
       - `"advisor-tool-2026-03-01"`
 
       - `"managed-agents-2026-04-01"`
+
+      - `"cache-diagnosis-2026-04-07"`
 
 ### Returns
 
