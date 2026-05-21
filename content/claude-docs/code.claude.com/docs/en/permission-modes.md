@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/permission-modes
-fetched_at: 2026-05-19T03:15:49.705713Z
-sha256: fb3765d2ba319cf7fc726e8c4df9a5ca482c6357d63a2f30cca2a63af4077296
+fetched_at: 2026-05-21T03:16:34.837917Z
+sha256: 8e63478de7a276d31f355cf8a1f2527fc281ac11f280146fc533c7f6fd43f972
 ---
 
 > ## Documentation Index
@@ -171,7 +171,7 @@ To make plan mode the default for a project, set `defaultMode` in `.claude/setti
 
 Auto mode lets Claude execute without permission prompts. A separate classifier model reviews actions before they run, blocking anything that escalates beyond your request, targets unrecognized infrastructure, or appears driven by hostile content Claude read.
 
-Auto mode also instructs Claude to execute immediately and minimize clarifying questions. To get that behavior while keeping permission prompts, set the [Proactive output style](/en/output-styles) instead.
+Auto mode also nudges Claude to keep working without stopping for clarifying questions. For stronger autonomous behavior while keeping permission prompts, set the [Proactive output style](/en/output-styles) instead.
 
 <Warning>
   Auto mode is a research preview. It reduces prompts but does not guarantee safety. Use it for tasks where you trust the general direction, not as a replacement for review on sensitive operations.

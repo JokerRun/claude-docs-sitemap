@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/output-styles
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 1090562ef88a7694bf0197bc7e8b6cf693dac6e7a0a1c9c94ebb9348334e1d87
+fetched_at: 2026-05-21T03:16:34.837917Z
+sha256: 752ef9ebcbf0c2f7b72ee670291152bd1940a6dad40396e0695a6f88721d46a2
 ---
 
 > ## Documentation Index
@@ -25,7 +25,7 @@ Claude Code's **Default** output style is the existing system prompt, designed t
 
 There are three additional built-in output styles:
 
-* **Proactive**: Claude executes immediately, makes reasonable assumptions instead of pausing for routine decisions, and prefers action over planning. This applies the same guidance as [auto mode](/en/permission-modes#eliminate-prompts-with-auto-mode) without changing your permission mode, so you still see permission prompts before tools run.
+* **Proactive**: Claude executes immediately, makes reasonable assumptions instead of pausing for routine decisions, and prefers action over planning. This is stronger autonomous-execution guidance than [auto mode](/en/permission-modes#eliminate-prompts-with-auto-mode) applies, and it works without changing your permission mode, so you still see permission prompts before tools run.
 
 * **Explanatory**: Provides educational "Insights" in between helping you complete software engineering tasks. Helps you understand implementation choices and codebase patterns.
 
@@ -121,6 +121,6 @@ Several features customize how Claude Code behaves. Output styles modify the sys
 ## Related resources
 
 * [Settings](/en/settings): where the `outputStyle` field lives and how settings precedence works
-* [Permission modes](/en/permission-modes): the Proactive style mirrors auto mode without changing your permission mode
+* [Permission modes](/en/permission-modes): how the Proactive style compares to auto mode
 * [Plugins](/en/plugins): package and distribute output styles alongside skills, hooks, and agents
 * [Debug your configuration](/en/debug-your-config): diagnose why an output style isn't taking effect

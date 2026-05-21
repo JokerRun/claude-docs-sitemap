@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-caching
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 98c410f6e5e3ef5e2844c6d1f582391d12aad3216d47784518c4255583334934
+fetched_at: 2026-05-21T03:16:34.837917Z
+sha256: ffd673012b4c8ebec0eef3c30c071cc442d2e4906b225e7882a6393929f0f399
 ---
 
 # Prompt caching
@@ -841,7 +841,7 @@ Changes to `tool_choice` or the presence/absence of images anywhere in the promp
 If you find that 5 minutes is too short, Anthropic also offers a 1-hour cache duration [at additional cost](#pricing).
 
 <Note>
-The 1-hour cache duration is available on the Claude API, [Claude Platform on AWS](/docs/en/build-with-claude/claude-platform-on-aws), [Vertex AI](/docs/en/build-with-claude/claude-on-vertex-ai), and [Microsoft Foundry](/docs/en/build-with-claude/claude-in-microsoft-foundry) (beta). Bedrock does not support the 1-hour cache duration.
+The 1-hour cache duration is available on the Claude API, [Claude Platform on AWS](/docs/en/build-with-claude/claude-platform-on-aws), [Amazon Bedrock](/docs/en/build-with-claude/claude-in-amazon-bedrock), [Amazon Bedrock (legacy)](/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy), [Vertex AI](/docs/en/build-with-claude/claude-on-vertex-ai), and [Microsoft Foundry](/docs/en/build-with-claude/claude-in-microsoft-foundry) (beta).
 </Note>
 
 To use the extended cache, include `ttl` in the `cache_control` definition like this:

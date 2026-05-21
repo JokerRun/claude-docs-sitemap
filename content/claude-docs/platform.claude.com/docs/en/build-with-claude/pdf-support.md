@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/pdf-support
-fetched_at: 2026-05-12T03:14:46.254373Z
-sha256: 998f6860d3eb1a17126a216db2734090f45c45e871044c6d3ed4ca568a0b9dea
+fetched_at: 2026-05-21T03:16:34.837917Z
+sha256: 8cea8a3886d23fade589e66b742cd9f71068a7f40d62f0d8553cae5458abb077
 ---
 
 # PDF support
@@ -94,6 +94,10 @@ Let's start with a simple example using the Messages API. You can provide PDFs t
 1. As a URL reference to a PDF hosted online
 2. As a base64-encoded PDF in `document` content blocks
 3. By a `file_id` from the [Files API](/docs/en/build-with-claude/files)
+
+<Note>
+On Amazon Bedrock and Vertex AI, only base64-encoded sources are currently available.
+</Note>
 
 #### Option 1: URL-based PDF document
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/environments
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: b7d45cfe4815ac5548d6ebbab6e7523f6e3bfcd8e1e62ae425ba0f2ac3e6eacc
+fetched_at: 2026-05-21T03:16:34.837917Z
+sha256: 56fecb027634a74e4d2a9a366071efce54809d54886b5aac08ba86a6e9f0d7cf
 ---
 
 # Penyiapan lingkungan cloud
@@ -80,9 +80,9 @@ console.log(`Environment ID: ${environment.id}`);
 var environment = await client.Beta.Environments.Create(new()
 {
     Name = "python-dev",
-    Config = new()
+    Config = new BetaCloudConfigParams
     {
-        Networking = new UnrestrictedNetwork(),
+        Networking = new BetaUnrestrictedNetwork(),
     },
 });
 
@@ -93,9 +93,11 @@ Console.WriteLine($"Environment ID: {environment.ID}");
 ````go
 environment, err := client.Beta.Environments.New(ctx, anthropic.BetaEnvironmentNewParams{
 	Name: "python-dev",
-	Config: anthropic.BetaCloudConfigParams{
-		Networking: anthropic.BetaCloudConfigParamsNetworkingUnion{
-			OfUnrestricted: &anthropic.UnrestrictedNetworkParam{},
+	Config: anthropic.BetaEnvironmentNewParamsConfigUnion{
+		OfCloud: &anthropic.BetaCloudConfigParams{
+			Networking: anthropic.BetaCloudConfigParamsNetworkingUnion{
+				OfUnrestricted: &anthropic.BetaUnrestrictedNetworkParam{},
+			},
 		},
 	},
 })
@@ -111,7 +113,7 @@ fmt.Printf("Environment ID: %s\n", environment.ID)
 var environment = client.beta().environments().create(EnvironmentCreateParams.builder()
     .name("python-dev")
     .config(BetaCloudConfigParams.builder()
-        .networking(UnrestrictedNetwork.builder().build())
+        .networking(BetaUnrestrictedNetwork.builder().build())
         .build())
     .build());
 IO.println("Environment ID: " + environment.id());

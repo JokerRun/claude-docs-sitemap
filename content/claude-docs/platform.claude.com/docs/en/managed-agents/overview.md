@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/overview
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 7fb75b518a4eea6b78d0b659e7fe8e790bff2d8967bffe0eb3a1eb24bde9080d
+fetched_at: 2026-05-21T03:16:34.837917Z
+sha256: b1edf313afa85208adae8a9a147156cbfa3fd4cc01df75b92cfaf99b076df724
 ---
 
 # Claude Managed Agents overview
@@ -29,7 +29,7 @@ Claude Managed Agents is also available on Claude Platform on AWS, with some dif
   <Card title="Quickstart" icon="play" href="/docs/en/managed-agents/quickstart">
     Create your first agent session
   </Card>
-  <Card title="API Reference" icon="code-brackets" href="/docs/en/managed-agents/sessions">
+  <Card title="API reference" icon="code-brackets" href="/docs/en/managed-agents/sessions">
     Full endpoint documentation
   </Card>
 </CardGroup>
@@ -97,7 +97,9 @@ To get started, you need:
 2. The `managed-agents-2026-04-01` beta header on all requests
 3. Access to Claude Managed Agents (enabled by default for all API accounts)
 
-Certain features ([outcomes](/docs/en/managed-agents/define-outcomes) and [multiagent](/docs/en/managed-agents/multi-agent)) are in beta (research preview). [Request access](https://claude.com/form/claude-managed-agents) to try them.
+Certain features ([MCP tunnels](/docs/en/agents-and-tools/mcp-tunnels/overview) and [dreaming](/docs/en/managed-agents/dreams)) are in research preview. [Request access](https://claude.com/form/claude-managed-agents) to try them.
+
+Claude Managed Agents is stateful by design: sessions are long-running, resume cleanly after pauses, and store conversation history, container state, and outputs server-side. Because of this, Managed Agents is not currently eligible for [Zero Data Retention](/docs/en/manage-claude/api-and-data-retention#zero-data-retention-zdr-scope) or HIPAA Business Associate Agreement (BAA) coverage. You retain control over this data: you can [delete sessions](/docs/en/managed-agents/sessions#deleting-a-session), and separately delete any [files](/docs/en/build-with-claude/files#delete-a-file) you uploaded, at any time through the API. For eligibility across all features, see [API and data retention](/docs/en/manage-claude/api-and-data-retention#feature-eligibility).
 
 ## Rate limits
 

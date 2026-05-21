@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/github
-fetched_at: 2026-05-12T03:14:46.254373Z
-sha256: 4086247fa4bd0f8b5285b257eccb20f1b2b83c1387ef7776f715ab96432f8a4d
+fetched_at: 2026-05-21T03:16:34.837917Z
+sha256: 3257c8206e4d9357e9e6305f3dc93b64fdea7b286792bae20c5668ee7f2ec57a
 ---
 
 # Accessing GitHub
@@ -144,13 +144,12 @@ var agent = await client.Beta.Agents.Create(new()
 agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
 	Name: "Code Reviewer",
 	Model: anthropic.BetaManagedAgentsModelConfigParams{
-		ID:   "claude-opus-4-7",
-		Type: anthropic.BetaManagedAgentsModelConfigParamsTypeModelConfig,
+		ID: "claude-opus-4-7",
 	},
 	System: anthropic.String("You are a code review assistant with access to GitHub."),
-	MCPServers: []anthropic.BetaManagedAgentsUrlmcpServerParams{
+	MCPServers: []anthropic.BetaManagedAgentsURLMCPServerParams{
 		{
-			Type: anthropic.BetaManagedAgentsUrlmcpServerParamsTypeURL,
+			Type: anthropic.BetaManagedAgentsURLMCPServerParamsTypeURL,
 			Name: "github",
 			URL:  "https://api.githubcopilot.com/mcp/",
 		},
@@ -180,8 +179,8 @@ var agent = client.beta().agents().create(AgentCreateParams.builder()
     .name("Code Reviewer")
     .model(BetaManagedAgentsModel.CLAUDE_OPUS_4_7)
     .system("You are a code review assistant with access to GitHub.")
-    .addMcpServer(BetaManagedAgentsUrlmcpServerParams.builder()
-        .type(BetaManagedAgentsUrlmcpServerParams.Type.URL)
+    .addMcpServer(BetaManagedAgentsUrlMcpServerParams.builder()
+        .type(BetaManagedAgentsUrlMcpServerParams.Type.URL)
         .name("github")
         .url("https://api.githubcopilot.com/mcp/")
         .build())
@@ -669,7 +668,12 @@ await client.beta.sessions.resources.update(repoResourceId, {
 ````csharp
 // List resources on the session
 var listed = await client.Beta.Sessions.Resources.List(session.ID);
-var repoResourceId = listed.Data[0].ID;
+string repoResourceId = null!;
+await foreach (var entry in listed.Paginate())
+{
+    repoResourceId = entry.ID;
+    break;
+}
 Console.WriteLine(repoResourceId); // "sesrsc_01ABC..."
 
 // Rotate the authorization token
@@ -849,7 +853,7 @@ await client.Beta.Sessions.Events.Send(session.ID, new()
   
 ````go
 _, err = client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
-	Events: []anthropic.SendEventsParamsUnion{
+	Events: []anthropic.BetaManagedAgentsEventParamsUnion{
 		{
 			OfUserMessage: &anthropic.BetaManagedAgentsUserMessageEventParams{
 				Type: anthropic.BetaManagedAgentsUserMessageEventParamsTypeUserMessage,

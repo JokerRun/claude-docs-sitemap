@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/changelog
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: b0132e7d841df6c29b9cd1af213c07b6efd0ef30f92d3ddfbbd0ef57f595fbcf
+fetched_at: 2026-05-21T03:16:34.837917Z
+sha256: f4b727981a5deff5ab89206a1ef29af917b613bbfefddadf4b4a03f905aa8ebf
 ---
 
 > ## Documentation Index
@@ -16,6 +16,25 @@ sha256: b0132e7d841df6c29b9cd1af213c07b6efd0ef30f92d3ddfbbd0ef57f595fbcf
 This page is generated from the [CHANGELOG.md on GitHub](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md).
 
 Run `claude --version` to check your installed version.
+
+<Update label="2.1.146" description="May 21, 2026">
+  * Renamed `/simplify` to `/code-review` with an optional effort level (e.g. `/code-review high`)
+  * Auto mode no longer suppresses `AskUserQuestion` when the user or a skill explicitly relies on it
+  * Fixed Windows PowerShell tool failing with "command line is invalid" when `pwsh` is installed via winget or the Microsoft Store (regression in v2.1.124)
+  * Fixed MCP `resources/list`, `resources/templates/list`, and `prompts/list` dropping items past page 1 on paginating servers
+  * Fixed full-screen strobing in attached background sessions on Windows Terminal while Claude is streaming
+  * Fixed the auto-updater status line not showing your current version when an update fails
+  * Fixed on Windows, removing a background-job worktree no longer follows NTFS junctions into the main repo
+  * Fixed `/background` refusing sessions whose only typed input was a skill or custom slash command
+  * Fixed backgrounded sessions re-prompting for tool permissions you already granted with "don't ask again"
+  * Fixed `/theme` color editor and "New custom theme" dialogs not responding to Esc
+  * Fixed an uncaught exception at the end of streaming sessions when running via the Agent SDK
+  * Fixed `forceLoginOrgUUID` and `forceLoginMethod` managed-settings policies not being enforced against third-party-provider and API-key sessions
+  * Fixed GNOME Terminal right-click and middle-click paste not inserting text
+  * Fixed `CLAUDE_CODE_SUBAGENT_MODEL` not being forwarded to child processes in multi-agent sessions
+  * Improved auto-updater reliability: native version checks and downloads now retry transient network failures instead of failing immediately
+  * Improved diff rendering performance for large file edits
+</Update>
 
 <Update label="2.1.145" description="May 19, 2026">
   * Added `claude agents --json` to list live Claude sessions as JSON for scripting (tmux-resurrect, status bars, session pickers)

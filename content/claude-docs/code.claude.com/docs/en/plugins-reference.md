@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins-reference
-fetched_at: 2026-05-19T03:15:49.705713Z
-sha256: b5d6b98ebaccd7c01d8ec8e16e6296f8944e2b2d84b024c1392d58bdd91330a1
+fetched_at: 2026-05-21T03:16:34.837917Z
+sha256: 6e23570b4af5056fa22811db160b1a35e6e67f8ff4828963dfbb54b01fa3f945
 ---
 
 > ## Documentation Index
@@ -415,6 +415,31 @@ If you include a manifest, `name` is the only required field.
 This name is used for namespacing components. For example, in the UI, the
 agent `agent-creator` for the plugin with name `plugin-dev` will appear as
 `plugin-dev:agent-creator`.
+
+### Unrecognized fields
+
+Claude Code ignores top-level fields it does not recognize. You can keep
+metadata from another ecosystem in `plugin.json` and the plugin still loads.
+This makes it practical to maintain one manifest that doubles as a VS Code or
+Cursor extension manifest, an npm `package.json`, or an MCPB/DXT bundle
+manifest.
+
+`claude plugin validate` reports unrecognized fields as warnings, not errors.
+If a field is one or two characters off from a recognized one, the warning
+suggests the likely intended name. A plugin with only unrecognized-field
+warnings still passes validation and loads at runtime.
+
+Fields with the wrong type still fail. For example, a `keywords` value that is
+a string instead of an array is a load error, and `claude plugin validate`
+reports it as one.
+
+Pass `--strict` to treat warnings as errors. Use it in CI to catch a misspelled
+field name or a field left over from another tool's manifest before publishing,
+even though the plugin would load at runtime.
+
+```bash theme={null}
+claude plugin validate ./my-plugin --strict
+```
 
 ### Metadata fields
 

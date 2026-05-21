@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/fullscreen
-fetched_at: 2026-05-12T03:14:46.254373Z
-sha256: 3956cf3e60206c2e6ca7f201ec61af9082e75935aa07e7752b71e002c5f4d482
+fetched_at: 2026-05-21T03:16:34.837917Z
+sha256: e7cbb1cce99777ef4062945b2ddeebfe9f513c8fb3502307b1be85705a1a74ef
 ---
 
 > ## Documentation Index
@@ -56,6 +56,7 @@ If mouse capture interferes with your workflow, you can [turn it off](#keep-nati
 Fullscreen rendering captures mouse events and handles them inside Claude Code:
 
 * **Click in the prompt input** to position your cursor anywhere in the text you're typing.
+* **Click a suggestion in the `/` command or `@` file list** to accept it. Hovering highlights the row under your cursor.
 * **Click a collapsed tool result** to expand it and see the full output. Click again to collapse. The tool call and its result expand together. Only messages that have more to show are clickable.
 * **Click a URL or file path** to open it. File paths in tool output, like the ones printed after an Edit or Write, open in your default application. Plain `http://` and `https://` URLs open in your browser. In most terminals this replaces native `Cmd`-click or `Ctrl`-click, which mouse capture intercepts. In the VS Code integrated terminal and similar xterm.js-based terminals, keep using `Cmd`-click. Claude Code defers to the terminal's own link handler there to avoid opening links twice.
 * **Click and drag** to select text anywhere in the conversation. Double-click selects a word, matching iTerm2's word boundaries so a file path selects as one unit. Triple-click selects the line.

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/mcp-connector
-fetched_at: 2026-05-12T03:14:46.254373Z
-sha256: a01b0e98d654e255eda4ec5a6bbc4ac7e0a8e7e91058478217d0f447b2470bb2
+fetched_at: 2026-05-21T03:16:34.837917Z
+sha256: 684876ea84e4da7cd70c54350c4d447930497206e64629263c625f9e457253d7
 ---
 
 # Konektor MCP
@@ -134,11 +134,10 @@ var agent = await client.Beta.Agents.Create(new()
 agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
 	Name: "GitHub Assistant",
 	Model: anthropic.BetaManagedAgentsModelConfigParams{
-		ID:   anthropic.BetaManagedAgentsModelClaudeOpus4_7,
-		Type: anthropic.BetaManagedAgentsModelConfigParamsTypeModelConfig,
+		ID: anthropic.BetaManagedAgentsModelClaudeOpus4_7,
 	},
-	MCPServers: []anthropic.BetaManagedAgentsUrlmcpServerParams{{
-		Type: anthropic.BetaManagedAgentsUrlmcpServerParamsTypeURL,
+	MCPServers: []anthropic.BetaManagedAgentsURLMCPServerParams{{
+		Type: anthropic.BetaManagedAgentsURLMCPServerParamsTypeURL,
 		Name: "github",
 		URL:  "https://api.githubcopilot.com/mcp/",
 	}},
@@ -168,8 +167,8 @@ var agent = client.beta().agents().create(
         .name("GitHub Assistant")
         .model(BetaManagedAgentsModel.CLAUDE_OPUS_4_7)
         .addMcpServer(
-            BetaManagedAgentsUrlmcpServerParams.builder()
-                .type(BetaManagedAgentsUrlmcpServerParams.Type.URL)
+            BetaManagedAgentsUrlMcpServerParams.builder()
+                .type(BetaManagedAgentsUrlMcpServerParams.Type.URL)
                 .name("github")
                 .url("https://api.githubcopilot.com/mcp/")
                 .build()
@@ -195,7 +194,7 @@ $agent = $client->beta->agents->create(
     name: 'GitHub Assistant',
     model: 'claude-opus-4-7',
     mcpServers: [
-        BetaManagedAgentsUrlmcpServerParams::with(
+        BetaManagedAgentsURLMCPServerParams::with(
             type: 'url',
             name: 'github',
             url: 'https://api.githubcopilot.com/mcp/',

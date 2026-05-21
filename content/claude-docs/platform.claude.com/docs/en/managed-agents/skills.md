@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/skills
-fetched_at: 2026-05-12T03:14:46.254373Z
-sha256: 385a0ba86a091a47dfc802c5a4c03d8c78d4266a7b73da0db468677c0be2a65e
+fetched_at: 2026-05-21T03:16:34.837917Z
+sha256: 74fc200f193fbe771603a1e86206d9d94432b2f6ccef92f9e128c51dda6d3f90
 ---
 
 # Skills
@@ -122,15 +122,14 @@ var agent = await client.Beta.Agents.Create(new()
 });
 ```
 
-```go Go
+```go Go nocheck
 agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
 	Name: "Financial Analyst",
 	Model: anthropic.BetaManagedAgentsModelConfigParams{
-		ID:   "claude-opus-4-7",
-		Type: anthropic.BetaManagedAgentsModelConfigParamsTypeModelConfig,
+		ID: "claude-opus-4-7",
 	},
 	System: anthropic.String("You are a financial analysis agent."),
-	Skills: []anthropic.ManagedAgentsSkillParamUnion{
+	Skills: []anthropic.BetaManagedAgentsSkillParamsUnion{
 		{OfAnthropic: &anthropic.BetaManagedAgentsAnthropicSkillParams{
 			SkillID: "xlsx",
 			Type:    anthropic.BetaManagedAgentsAnthropicSkillParamsTypeAnthropic,
@@ -145,6 +144,7 @@ agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
 if err != nil {
 	panic(err)
 }
+_ = agent
 ```
 
 ```java Java

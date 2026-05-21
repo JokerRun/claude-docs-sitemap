@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/permission-policies
-fetched_at: 2026-05-12T03:14:46.254373Z
-sha256: 79bf91d960e9254b1a67541c9e952463ff2e9a976174b6ba8c44f874aa39caa7
+fetched_at: 2026-05-21T03:16:34.837917Z
+sha256: ec6f16ac29611e42fbd0bca7e767a4e553dde4928e740c59b17f31c3fdc599a1
 ---
 
 # Permission policies
@@ -115,8 +115,7 @@ var agent = await client.Beta.Agents.Create(new()
 agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
 	Name: "Coding Assistant",
 	Model: anthropic.BetaManagedAgentsModelConfigParams{
-		ID:   "claude-opus-4-7",
-		Type: anthropic.BetaManagedAgentsModelConfigParamsTypeModelConfig,
+		ID: "claude-opus-4-7",
 	},
 	Tools: []anthropic.BetaAgentNewParamsToolUnion{{
 		OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{
@@ -134,6 +133,7 @@ agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
 if err != nil {
 	panic(err)
 }
+_ = agent
 ```
 
 ```java Java
@@ -314,11 +314,10 @@ var agent = await client.Beta.Agents.Create(new()
 agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
 	Name: "Dev Assistant",
 	Model: anthropic.BetaManagedAgentsModelConfigParams{
-		ID:   "claude-opus-4-7",
-		Type: anthropic.BetaManagedAgentsModelConfigParamsTypeModelConfig,
+		ID: "claude-opus-4-7",
 	},
-	MCPServers: []anthropic.BetaManagedAgentsUrlmcpServerParams{{
-		Type: anthropic.BetaManagedAgentsUrlmcpServerParamsTypeURL,
+	MCPServers: []anthropic.BetaManagedAgentsURLMCPServerParams{{
+		Type: anthropic.BetaManagedAgentsURLMCPServerParamsTypeURL,
 		Name: "github",
 		URL:  "https://mcp.example.com/github",
 	}},
@@ -346,6 +345,7 @@ agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
 if err != nil {
 	panic(err)
 }
+_ = agent
 ```
 
 ```java Java
@@ -354,8 +354,8 @@ var agent = client.beta().agents().create(
         .name("Dev Assistant")
         .model(BetaManagedAgentsModel.CLAUDE_OPUS_4_7)
         .addMcpServer(
-            BetaManagedAgentsUrlmcpServerParams.builder()
-                .type(BetaManagedAgentsUrlmcpServerParams.Type.URL)
+            BetaManagedAgentsUrlMcpServerParams.builder()
+                .type(BetaManagedAgentsUrlMcpServerParams.Type.URL)
                 .name("github")
                 .url("https://mcp.example.com/github")
                 .build()
@@ -387,13 +387,13 @@ var agent = client.beta().agents().create(
 ```php PHP
 use Anthropic\Beta\Agents\BetaManagedAgentsMCPToolsetDefaultConfigParams;
 use Anthropic\Beta\Agents\BetaManagedAgentsMCPToolsetParams;
-use Anthropic\Beta\Agents\BetaManagedAgentsUrlmcpServerParams;
+use Anthropic\Beta\Agents\BetaManagedAgentsURLMCPServerParams;
 
 $agent = $client->beta->agents->create(
     name: 'Dev Assistant',
     model: 'claude-opus-4-7',
     mcpServers: [
-        BetaManagedAgentsUrlmcpServerParams::with(
+        BetaManagedAgentsURLMCPServerParams::with(
             type: 'url',
             name: 'github',
             url: 'https://mcp.example.com/github',
@@ -762,7 +762,7 @@ await client.Beta.Sessions.Events.Send(session.ID, new()
 ```go Go
 // Allow the tool to execute
 _, err = client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
-	Events: []anthropic.SendEventsParamsUnion{{
+	Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
 		OfUserToolConfirmation: &anthropic.BetaManagedAgentsUserToolConfirmationEventParams{
 			Type:      anthropic.BetaManagedAgentsUserToolConfirmationEventParamsTypeUserToolConfirmation,
 			ToolUseID: agentToolUseEvent.ID,
@@ -776,7 +776,7 @@ if err != nil {
 
 // Or deny it with an explanation
 _, err = client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
-	Events: []anthropic.SendEventsParamsUnion{{
+	Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
 		OfUserToolConfirmation: &anthropic.BetaManagedAgentsUserToolConfirmationEventParams{
 			Type:        anthropic.BetaManagedAgentsUserToolConfirmationEventParamsTypeUserToolConfirmation,
 			ToolUseID:   mcpToolUseEvent.ID,

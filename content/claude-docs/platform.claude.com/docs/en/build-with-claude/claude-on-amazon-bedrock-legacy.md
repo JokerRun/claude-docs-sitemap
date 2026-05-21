@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: b4d61559fb642793f2ada26fc4a4eaec1ace2facbf319b04aab1f302056ad353
+fetched_at: 2026-05-21T03:16:34.837917Z
+sha256: 18a89c14ddc8b3c4caca980d0993b0fadeeff55a3f4ec8f1abf1091254e5ab06
 ---
 
 # Claude on Amazon Bedrock (legacy)
@@ -650,7 +650,24 @@ Turning on this service does not give AWS or Anthropic any access to your conten
 </Note>
 
 ## Feature support
-For all currently supported features on Bedrock, see [Features overview](/docs/en/build-with-claude/overview).
+For the full feature list with Amazon Bedrock availability, see [Features overview](/docs/en/build-with-claude/overview).
+
+### Supported feature highlights
+
+- [Messages API](/docs/en/api/messages/create)
+- [Prompt caching](/docs/en/build-with-claude/prompt-caching)
+- [Extended thinking](/docs/en/build-with-claude/extended-thinking)
+- [Tool use](/docs/en/agents-and-tools/tool-use/overview), including the [Bash tool](/docs/en/agents-and-tools/tool-use/bash-tool), [Computer use tool](/docs/en/agents-and-tools/tool-use/computer-use-tool), [Memory tool](/docs/en/agents-and-tools/tool-use/memory-tool), and [Text editor tool](/docs/en/agents-and-tools/tool-use/text-editor-tool)
+- [Citations](/docs/en/build-with-claude/citations)
+- [Structured outputs](/docs/en/build-with-claude/structured-outputs)
+
+### Features not supported
+
+- Input sources (URL sources for images and documents, Files API)
+- Server-side tools (code execution, web search, web fetch, advisor)
+- Agent infrastructure (Agent Skills, MCP connector, programmatic tool calling)
+- API endpoints (Message Batches, Models, Admin, Compliance, Usage and Cost)
+- Claude Managed Agents
 
 ### PDF support on Bedrock
 

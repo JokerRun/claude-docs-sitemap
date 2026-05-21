@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/files
-fetched_at: 2026-05-12T03:14:46.254373Z
-sha256: 2ba92e442082bd21faec856efba76557d1c5cd218a06ab53d3628b40b08d7e90
+fetched_at: 2026-05-21T03:16:34.837917Z
+sha256: 38c57c48b2230f942e406417f364acf76a36bf8dedf43bd3e82eb0f7ff1a45b4
 ---
 
 # Menambahkan file
@@ -375,7 +375,7 @@ printf '%s\n' "${resource_id}"  # "sesrsc_01ABC..."
 
   
 ````bash
-RESOURCE_ID=$(ant beta:sessions:resources create \
+RESOURCE_ID=$(ant beta:sessions:resources add \
   --session-id "$SESSION_ID" \
   --type file \
   --file-id "$FILE_ID" \
@@ -509,9 +509,9 @@ await client.beta.sessions.resources.delete(resource.id, {
   
 ````csharp
 var listed = await client.Beta.Sessions.Resources.List(session.ID);
-foreach (var entry in listed.Data)
+await foreach (var entry in listed.Paginate())
 {
-    var type = entry.Match<string>(repository => repository.Type, fileResource => fileResource.Type);
+    var type = entry.Match<string>(repo => repo.Type, fileRes => fileRes.Type, memoryStore => memoryStore.Type);
     Console.WriteLine($"{entry.ID} {type}");
 }
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/vision
-fetched_at: 2026-05-12T03:14:46.254373Z
-sha256: ce67dd38f41fb9b281ebb28dbfbbc0b154676e0687cb2e4a4bceefa7f86aacd0
+fetched_at: 2026-05-21T03:16:34.837917Z
+sha256: 70af14c50520fb4835ae169007664693cdb61c9c7e7487781f6b9175076556fe
 ---
 
 # Vision
@@ -124,6 +124,10 @@ The following examples demonstrate how to use Claude's vision capabilities using
 1. As a base64-encoded image in `image` content blocks
 2. As a URL reference to an image hosted online
 3. Using the Files API (upload once, use multiple times)
+
+<Note>
+On Amazon Bedrock and Vertex AI, only base64-encoded sources are currently available.
+</Note>
 
 The base64 example prompts use these variables:
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/checkpointing
-fetched_at: 2026-05-15T03:15:49.552363Z
-sha256: 0d292b1432079262906d80a125703c9aa769899a4103588bfe0ca47e7750a4c2
+fetched_at: 2026-05-21T03:16:34.837917Z
+sha256: 4056d43fd208398998e2e54d26b9d3913ebdc1a12de7be3538ee0158d94cb88b
 ---
 
 > ## Documentation Index
@@ -29,7 +29,13 @@ Claude Code tracks all changes made by its file editing tools:
 
 ### Rewind and summarize
 
-Press `Esc` twice (`Esc` + `Esc`) or use the `/rewind` command to open the rewind menu. A scrollable list shows each of your prompts from the session. Select the point you want to act on, then choose an action:
+Run `/rewind`, or press `Esc` twice when the prompt input is empty, to open the rewind menu.
+
+<Note>
+  If the prompt input contains text, double `Esc` clears it instead of opening the menu. The cleared text is saved to your input history, so press `Up` to recall it after you finish in the rewind menu.
+</Note>
+
+The rewind menu lists each prompt you sent during the session. Select the point you want to act on, then choose an action:
 
 * **Restore code and conversation**: revert both code and conversation to that point
 * **Restore conversation**: rewind to that message while keeping current code

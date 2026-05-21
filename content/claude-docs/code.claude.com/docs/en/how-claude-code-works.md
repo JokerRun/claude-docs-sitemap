@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/how-claude-code-works
-fetched_at: 2026-05-07T03:15:02.178755Z
-sha256: dd22815dcddc112848b4a8720da11e2f4cb1be86ab850fd3321f99145a282507
+fetched_at: 2026-05-21T03:16:34.837917Z
+sha256: 1d07e9df0b6317c8122e4e4d99e1c5ceb7cb45bfd85b40a90b7659a6c4ab17be
 ---
 
 > ## Documentation Index
@@ -204,7 +204,10 @@ When the first attempt isn't right, you don't start over. You iterate.
 
 #### Interrupt and steer
 
-You can interrupt Claude at any point. If it's going down the wrong path, just type your correction and press Enter. Claude will stop what it's doing and adjust its approach based on your input. You don't have to wait for it to finish or start over.
+You can redirect Claude at any point without waiting for the turn to finish or starting over:
+
+* **Press `Esc`** to stop Claude immediately. The running tool call is canceled and Claude waits for your next instruction.
+* **Type a correction and press `Enter`** to send it without stopping the running tool. Claude reads it as soon as the current action completes and adjusts before deciding its next step.
 
 ### Be specific upfront
 

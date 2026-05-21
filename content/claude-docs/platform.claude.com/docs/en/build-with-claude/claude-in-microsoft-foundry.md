@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 39ca5855265fa8445882bf8b00b48f2befebbbd82c35618ed1472da4035645bb
+fetched_at: 2026-05-21T03:16:34.837917Z
+sha256: efc436a15bc4f3f3d00541655b7e15745f13ddd94ef30755a36ad8484930b059
 ---
 
 # Claude in Microsoft Foundry
@@ -507,10 +507,10 @@ Claude Opus 4.7, Claude Opus 4.6, and Claude Sonnet 4.6 have a [1M-token context
 
 ### Features not supported
 
-- Admin API (`/v1/organizations/*` endpoints)
-- Compliance API (`/v1/compliance/*` endpoints)
-- Models API (`/v1/models`)
-- Message Batches API (`/v1/messages/batches`)
+- Admin API
+- Compliance API
+- Models API
+- Message Batches API
 
 ## API responses
 

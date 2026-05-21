@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/discover-plugins
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 44997d94f67dd027094399c2e631d64e828438396a31f94b076ab507a575df66
+fetched_at: 2026-05-21T03:16:34.837917Z
+sha256: 7e89d887766b507aa3d1e621a2b4b8e29c5aea717ed6a7bc0eb101af2b692126
 ---
 
 > ## Documentation Index
@@ -156,7 +156,11 @@ Anthropic also maintains a [demo plugins marketplace](https://github.com/anthrop
   </Step>
 
   <Step title="Install a plugin">
-    Select a plugin to view its details. {/* min-version: 2.1.143 */}On Claude Code v2.1.143 and later, the details pane includes a **Context cost** estimate so you can see how many tokens the plugin will add to your [context window](/en/features-overview#understand-context-costs) every turn before you install it. {/* min-version: 2.1.144 */}On v2.1.144 and later, the pane also shows the plugin's **Last updated** date.
+    Select a plugin to view its details. The details pane shows what the plugin contains and what it costs:
+
+    * {/* min-version: 2.1.143 */}A **Context cost** estimate so you can see how many tokens the plugin will add to your [context window](/en/features-overview#understand-context-costs) every turn (Claude Code v2.1.143 and later)
+    * {/* min-version: 2.1.144 */}The plugin's **Last updated** date (v2.1.144 and later)
+    * {/* min-version: 2.1.145 */}A **Will install** section listing the plugin's commands, agents, skills, hooks, and MCP and LSP servers, so you can review exactly what it adds before installing (v2.1.145 and later)
 
     Choose an installation scope:
 
@@ -186,7 +190,7 @@ Anthropic also maintains a [demo plugins marketplace](https://github.com/anthrop
 
     This stages your changes, generates a commit message, and creates the commit.
 
-    Each plugin works differently. Check the plugin's description in the **Discover** tab or its homepage to learn what skills and capabilities it provides.
+    Each plugin works differently. Check the plugin's details in the **Discover** tab to see the commands and skills it provides, or visit its homepage for usage guidance.
   </Step>
 </Steps>
 

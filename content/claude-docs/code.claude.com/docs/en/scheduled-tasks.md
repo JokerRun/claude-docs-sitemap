@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/scheduled-tasks
-fetched_at: 2026-05-19T03:15:49.705713Z
-sha256: 534218c7e41c787321dc1795780f40526311e99662746b3df6fbe9e060f91bf4
+fetched_at: 2026-05-21T03:16:34.837917Z
+sha256: 0725620f2665d463ea9f38fad0fd3e068b5b72d7debc3b387744970d35689202
 ---
 
 > ## Documentation Index
@@ -100,7 +100,7 @@ Claude does not start new initiatives outside that scope, and irreversible actio
 A bare `/loop` runs this prompt at a [dynamically chosen interval](#let-claude-choose-the-interval). Add an interval, for example `/loop 15m`, to run it on a fixed schedule instead. To replace the built-in prompt with your own default, see [Customize the default prompt with loop.md](#customize-the-default-prompt-with-loop-md).
 
 <Note>
-  On Bedrock, Vertex AI, and Microsoft Foundry, `/loop` with no prompt prints the usage message instead of starting the maintenance loop.
+  The built-in maintenance prompt isn't available to everyone yet, and isn't supported on Bedrock, Vertex AI, or Microsoft Foundry. Where it isn't active, `/loop` with no prompt prints the usage message instead.
 </Note>
 
 ### Customize the default prompt with loop.md
@@ -124,6 +124,10 @@ quiet, say so in one line.
 ```
 
 Edits to `loop.md` take effect on the next iteration, so you can refine the instructions while a loop is running. When no `loop.md` exists in either location, the loop falls back to the built-in maintenance prompt. Keep the file concise: content beyond 25,000 bytes is truncated.
+
+<Note>
+  `loop.md` follows the same availability as the [built-in maintenance prompt](#run-the-built-in-maintenance-prompt). Where the maintenance prompt isn't active, `/loop` with no prompt prints the usage message and the file isn't read.
+</Note>
 
 ### Stop a loop
 

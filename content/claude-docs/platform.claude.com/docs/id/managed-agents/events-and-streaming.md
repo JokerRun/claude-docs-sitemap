@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/events-and-streaming
-fetched_at: 2026-05-12T03:14:46.254373Z
-sha256: c321718da83c007b9afe90636a768cdd87064b62fed25c51a4757b32f7ad3c3a
+fetched_at: 2026-05-21T03:16:34.837917Z
+sha256: 928d9ef6a504b87662368c33d3858f90ef5368ea61d5b55702c728d2c9de576c
 ---
 
 # Aliran peristiwa sesi
@@ -603,7 +603,7 @@ await foreach (var streamEvent in stream.Enumerate())
 	defer stream.Close()
 
 	if _, err := client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
-		Events: []anthropic.SendEventsParamsUnion{{
+		Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
 			OfUserMessage: &anthropic.BetaManagedAgentsUserMessageEventParams{
 				Type: anthropic.BetaManagedAgentsUserMessageEventParamsTypeUserMessage,
 				Content: []anthropic.BetaManagedAgentsUserMessageEventParamsContentUnion{{
@@ -651,7 +651,7 @@ try (var stream = client.beta().sessions().events().streamStreaming(session.id()
             .build()
     );
 
-    for (var event : (Iterable<StreamEvents>) stream.stream()::iterator) {
+    for (var event : (Iterable<BetaManagedAgentsStreamSessionEvents>) stream.stream()::iterator) {
         if (event.isAgentMessage()) {
             event.asAgentMessage().content().forEach(block -> IO.print(block.text()));
         } else if (event.isSessionStatusIdle()) {
@@ -674,10 +674,7 @@ try (var stream = client.beta().sessions().events().streamStreaming(session.id()
   
 ````php
 // Open the stream first, then send the user message
-$stream = $client->beta->sessions->events->streamStream(
-    $session->id,
-    requestOptions: ['transporter' => $streamingClient],
-);
+$stream = $client->beta->sessions->events->streamStream($session->id);
 $client->beta->sessions->events->send(
     $session->id,
     events: [
@@ -948,7 +945,7 @@ try (var stream = client.beta().sessions().events().streamStreaming(session.id()
     }
 
     // Tail live events, skipping anything already seen
-    for (var event : (Iterable<StreamEvents>) stream.stream()::iterator) {
+    for (var event : (Iterable<BetaManagedAgentsStreamSessionEvents>) stream.stream()::iterator) {
         Optional<Map<String, JsonValue>> obj = event._json().orElseThrow().asObject();
         if (!seenEventIds.add(obj.orElseThrow().get("id").asStringOrThrow())) continue;
         if (event.isAgentMessage()) {
@@ -962,10 +959,7 @@ try (var stream = client.beta().sessions().events().streamStreaming(session.id()
 
   
 ````php
-$stream = $client->beta->sessions->events->streamStream(
-    $session->id,
-    requestOptions: ['transporter' => $streamingClient],
-);
+$stream = $client->beta->sessions->events->streamStream($session->id);
 
 // Stream is open and buffering. List history before tailing live.
 $seenEventIds = [];

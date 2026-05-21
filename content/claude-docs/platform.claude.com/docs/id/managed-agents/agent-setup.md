@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/agent-setup
-fetched_at: 2026-04-18T03:10:04.936408Z
-sha256: c717d805276834334b2dbcdc1989d215ea00a5f84db4b8e1c68ef4d805475d9a
+fetched_at: 2026-05-21T03:16:34.837917Z
+sha256: ed728497a412e483e99a54d15f2b5104748cbf68918c6be54af527ee250f0280
 ---
 
 # Tentukan agen Anda
@@ -109,14 +109,13 @@ var agent = await client.Beta.Agents.Create(new()
 agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
 	Name: "Coding Assistant",
 	Model: anthropic.BetaManagedAgentsModelConfigParams{
-		ID:   "claude-opus-4-7",
-		Type: anthropic.BetaManagedAgentsModelConfigParamsTypeModelConfig,
+		ID: "claude-opus-4-7",
 	},
 	System: anthropic.String("You are a helpful coding agent."),
 	Tools: []anthropic.BetaAgentNewParamsToolUnion{{
 		OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{
 			Type: anthropic.BetaManagedAgentsAgentToolset20260401ParamsTypeAgentToolset20260401,
-			},
+		},
 	}},
 })
 if err != nil {
