@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/security
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 1599b49c597556737d4a4068c9fee7f1e7a1fa12e0bbdbbe65cc4fbed4cdc88e
+fetched_at: 2026-05-22T03:16:37.965758Z
+sha256: 3dea27162f1688ed13de763c824b6e7bffa21de2fb84134fb28e9f6d3365db56
 ---
 
 # MCP tunnels security
@@ -12,7 +12,7 @@ Hardening guidance, credential rotation, breach response, and teardown for MCP t
 ---
 
 <Note>
-  MCP tunnels is a Research Preview feature. [Request access](https://claude.com/form/claude-managed-agents) to try it.
+  MCP tunnels is a research preview feature. [Request access](https://claude.com/form/claude-managed-agents) to try it.
 </Note>
 
 The tunnel architecture provides strong defaults (outbound-only connectivity, end-to-end encryption, and IP validation), but the overall security of your deployment also depends on how you configure and operate it. This page covers recommended hardening, breach response, and how to decommission a tunnel.

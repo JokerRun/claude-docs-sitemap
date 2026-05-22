@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/typescript
-fetched_at: 2026-05-21T03:16:34.837917Z
-sha256: 592a15727808a69a6bfe58f4489f913db31be56c28de900db4875c0e59639ae9
+fetched_at: 2026-05-22T03:16:37.965758Z
+sha256: 370796a1fd6bda2edca213b4908020a7099842ea1037d464df57acb5f51da7c4
 ---
 
 > ## Documentation Index
@@ -2891,6 +2891,12 @@ interface SpawnOptions {
   signal: AbortSignal;
 }
 ```
+
+<Note>
+  The `signal` field tells your spawn function when to tear down the process. Pass it as the `signal` option to Node's `spawn()`, or pass it to your VM or container teardown handler.
+
+  This signal does not fire the instant [`Options.abortController`](#options) aborts. The SDK first closes the process's stdin and waits about two seconds so the CLI can shut down cleanly, then aborts this signal. To react the moment the caller aborts instead, listen on your own `Options.abortController.signal`, which your spawn function can reference from its enclosing scope.
+</Note>
 
 ### `McpSetServersResult`
 

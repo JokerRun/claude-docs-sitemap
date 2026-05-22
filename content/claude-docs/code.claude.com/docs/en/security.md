@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/security
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: eb2a1c81108dd890084187946ff961f733d9ad82589eb9b96f93630f498bfae5
+fetched_at: 2026-05-22T03:16:37.965758Z
+sha256: 3cd0e8581e8058b18551d7f1a92bd9652720a6cad53bdbecce02df291906f0db
 ---
 
 > ## Documentation Index
@@ -144,8 +144,9 @@ If you discover a security vulnerability in Claude Code:
 
 ## Related resources
 
-* [Sandboxing](/en/sandboxing) - Filesystem and network isolation for bash commands
-* [Permissions](/en/permissions) - Configure permissions and access controls
-* [Monitoring usage](/en/monitoring-usage) - Track and audit Claude Code activity
-* [Development containers](/en/devcontainer) - Secure, isolated environments
-* [Anthropic Trust Center](https://trust.anthropic.com) - Security certifications and compliance
+* [Sandbox environments](/en/sandbox-environments): compare isolation approaches and choose one for your threat model
+* [Sandboxing](/en/sandboxing): filesystem and network isolation for Bash commands
+* [Permissions](/en/permissions): configure permissions and access controls
+* [Monitoring usage](/en/monitoring-usage): track and audit Claude Code activity
+* [Development containers](/en/devcontainer): secure, isolated environments
+* [Anthropic Trust Center](https://trust.anthropic.com): security certifications and compliance

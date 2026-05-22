@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/devcontainer
-fetched_at: 2026-04-28T03:13:37.243984Z
-sha256: 3cffb108cae6f94cf2e4be33324b5147707e663ee48346343ed98f7ca3240388
+fetched_at: 2026-05-22T03:16:37.965758Z
+sha256: f806dba4afa929c1654a728a1b3276431eec3abcdde7b538db5caed215a7b82a
 ---
 
 > ## Documentation Index
@@ -197,5 +197,6 @@ Once Claude Code is running in your dev container, the pages below cover the res
 * [Network access requirements](/en/network-config#network-access-requirements): the full domain allowlist for proxies and firewalls
 * [Telemetry services and opt-out](/en/data-usage#telemetry-services): what Claude Code sends by default and the environment variables that disable it
 * [Explore the `.claude` directory](/en/claude-directory): what the volume mount holds, including credentials, settings, and session history
+* [Sandbox environments](/en/sandbox-environments): compare dev containers with the built-in Bash sandbox, custom containers, and VMs
 * [Security model](/en/security): how Claude Code's permission system, sandboxing, and prompt-injection protections fit together
 * [Permission modes](/en/permission-modes): the full range from plan mode to auto mode to bypass, and when to use each

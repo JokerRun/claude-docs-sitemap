@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/server-managed-settings
-fetched_at: 2026-05-13T03:15:22.791986Z
-sha256: 4dad5ea0d5229a2cd574ade6b737ae16021f3f2aaa621c145587393857fb9bbc
+fetched_at: 2026-05-22T03:16:37.965758Z
+sha256: 58e73e9892fc14a846ca6890c8e29057bcb0d90859218b52a32be52cd2563222
 ---
 
 > ## Documentation Index
@@ -130,7 +130,7 @@ Most [settings keys](/en/settings#available-settings) work in any scope. A handf
 Server-managed settings have the following limitations:
 
 * Settings apply uniformly to all users in the organization. Per-group configurations are not yet supported.
-* [MCP server configurations](/en/mcp#managed-mcp-configuration) cannot be distributed through server-managed settings.
+* A [`managed-mcp.json`](/en/managed-mcp) file cannot be distributed through server-managed settings. Deliver the `allowedMcpServers` and `deniedMcpServers` policy keys there instead.
 * Settings restricted to OS-level policy sources, such as `policyHelper` and `wslInheritsWindowsSettings`, are not honored. Deploy them through MDM or a system `managed-settings.json` file instead.
 
 ## Settings delivery
