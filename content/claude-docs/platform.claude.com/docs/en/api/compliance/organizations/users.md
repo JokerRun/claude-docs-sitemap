@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/users
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 13befe1b11a79c4ff9b03627fe451cba6544c73b74428004413c2a792fdfc4b1
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 0cc7f2d1446d58df28992a40d21b2fd50de1037d4062f73cf7710480d78d4978
 ---
 
 # Users
 
-## List
+## List organization users
 
 **get** `/v1/compliance/organizations/{org_uuid}/users`
 
@@ -95,11 +95,29 @@ curl https://api.anthropic.com/v1/compliance/organizations/$ORG_UUID/users \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "id",
+      "created_at": "2019-12-27T18:11:19.117Z",
+      "email": "email",
+      "full_name": "full_name",
+      "organization_role": "admin"
+    }
+  ],
+  "has_more": true,
+  "next_page": "next_page"
+}
+```
+
 ## Domain Types
 
 ### User List Response
 
-- `UserListResponse = object { id, created_at, email, 2 more }`
+- `UserListResponse object { id, created_at, email, 2 more }`
 
   User member information for compliance responses.
 

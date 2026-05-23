@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/messages/batches/cancel
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 5f2508da1ca9906ac68fa76f851ac067730c9ad85ca761cc9e267e2661af60fc
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 3158994cdfb4c40121b7b4d4c4e95d150b391e0a8b73c2314605d6695a7a815c
 ---
 
-## Cancel
+## Cancel a Message Batch
 
 `$ ant beta:messages:batches cancel`
 
@@ -121,4 +121,27 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 ant beta:messages:batches cancel \
   --api-key my-anthropic-api-key \
   --message-batch-id message_batch_id
+```
+
+#### Response
+
+```json
+{
+  "id": "msgbatch_013Zva2CMHLNnXjNJJKqJ2EF",
+  "archived_at": "2024-08-20T18:37:24.100435Z",
+  "cancel_initiated_at": "2024-08-20T18:37:24.100435Z",
+  "created_at": "2024-08-20T18:37:24.100435Z",
+  "ended_at": "2024-08-20T18:37:24.100435Z",
+  "expires_at": "2024-08-20T18:37:24.100435Z",
+  "processing_status": "in_progress",
+  "request_counts": {
+    "canceled": 10,
+    "errored": 30,
+    "expired": 10,
+    "processing": 100,
+    "succeeded": 50
+  },
+  "results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_013Zva2CMHLNnXjNJJKqJ2EF/results",
+  "type": "message_batch"
+}
 ```

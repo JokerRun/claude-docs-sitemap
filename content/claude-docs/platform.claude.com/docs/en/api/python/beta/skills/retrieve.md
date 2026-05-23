@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/skills/retrieve
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: d203850a1acf6453f2a30b437b3e8d3ced5be7d8a8451c137150ebf34727905e
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 03ee35fc9cbce7e38665971551c23f6b827b5d6bcbfa566d6b731ddacb0ed8f3
 ---
 
-## Retrieve
+## Get Skill
 
 `beta.skills.retrieve(strskill_id, SkillRetrieveParams**kwargs)  -> SkillRetrieveResponse`
 
@@ -137,4 +137,18 @@ skill = client.beta.skills.retrieve(
     skill_id="skill_id",
 )
 print(skill.id)
+```
+
+#### Response
+
+```json
+{
+  "id": "skill_01JAbcdefghijklmnopqrstuvw",
+  "created_at": "2024-10-30T23:58:27.427722Z",
+  "display_title": "My Custom Skill",
+  "latest_version": "1759178010641129",
+  "source": "custom",
+  "type": "type",
+  "updated_at": "2024-10-30T23:58:27.427722Z"
+}
 ```

@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats/list
-fetched_at: 2026-05-09T03:13:52.260309Z
-sha256: 2936fdb7dbbaa150085633285ec4a617b02ea41a6737e648fff2b9aec4c5e140
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: e4c1a5a1384e466447187a01352956aa28b1f5d7eae9851f9b91b9fab365fd4c
 ---
 
-## List
+## List chats
 
 **get** `/v1/compliance/apps/chats`
 
@@ -154,4 +154,31 @@ by created_at, with ties broken by id.
 ```http
 curl https://api.anthropic.com/v1/compliance/apps/chats \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "claude_chat_abc123",
+      "name": "Product Requirements Discussion",
+      "created_at": "2025-06-07T08:09:10Z",
+      "updated_at": "2025-06-07T09:10:11Z",
+      "organization_id": "org_abc123",
+      "organization_uuid": "abcdef0123-4567-89ab-cdef-0123456789ab",
+      "project_id": "claude_proj_xyz789",
+      "model": "claude-opus-4-7",
+      "user": {
+        "id": "user_xyz456",
+        "email_address": "user@example.com"
+      },
+      "href": "https://claude.ai/chat/abcdef01-2345-6789-abcd-ef0123456789"
+    }
+  ],
+  "has_more": false,
+  "first_id": "claude_chat_abc123",
+  "last_id": "claude_chat_abc123"
+}
 ```

@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/agents/list
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 18c912e0292883ec5ea68bd9cf74f4fae8bec076693207548bd31b531c8d900e
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: c15c97a6b327b37ca08ae70d7847a4540d6af79468009a840f771a5a91f48c6d
 ---
 
-## List
+## List Agents
 
 `AgentListPageResponse Beta.Agents.List(AgentListParams?parameters, CancellationTokencancellationToken = default)`
 
@@ -291,17 +291,9 @@ List Agents
 
               Tool calls are automatically approved without user confirmation.
 
-              - `required Type Type`
-
-                - `"always_allow"AlwaysAllow`
-
             - `class BetaManagedAgentsAlwaysAskPolicy:`
 
               Tool calls require user confirmation before execution.
-
-              - `required Type Type`
-
-                - `"always_ask"AlwaysAsk`
 
         - `required Type Type`
 
@@ -323,17 +315,9 @@ List Agents
 
               Tool calls are automatically approved without user confirmation.
 
-              - `required Type Type`
-
-                - `"always_allow"AlwaysAllow`
-
             - `class BetaManagedAgentsAlwaysAskPolicy:`
 
               Tool calls require user confirmation before execution.
-
-              - `required Type Type`
-
-                - `"always_ask"AlwaysAsk`
 
         - `required BetaManagedAgentsMcpToolsetDefaultConfig DefaultConfig`
 
@@ -349,17 +333,9 @@ List Agents
 
               Tool calls are automatically approved without user confirmation.
 
-              - `required Type Type`
-
-                - `"always_allow"AlwaysAllow`
-
             - `class BetaManagedAgentsAlwaysAskPolicy:`
 
               Tool calls require user confirmation before execution.
-
-              - `required Type Type`
-
-                - `"always_ask"AlwaysAsk`
 
         - `required string McpServerName`
 
@@ -422,5 +398,82 @@ var page = await client.Beta.Agents.List(parameters);
 await foreach (var item in page.Paginate())
 {
     Console.WriteLine(item);
+}
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "agent_011CZkYpogX7uDKUyvBTophP",
+      "archived_at": null,
+      "created_at": "2026-03-15T10:00:00Z",
+      "description": "A general-purpose starter agent.",
+      "mcp_servers": [
+        {
+          "name": "example-mcp",
+          "type": "url",
+          "url": "https://example-server.modelcontextprotocol.io/sse"
+        }
+      ],
+      "metadata": {
+        "foo": "bar"
+      },
+      "model": {
+        "id": "claude-sonnet-4-6",
+        "speed": "standard"
+      },
+      "multiagent": {
+        "agents": [
+          {
+            "id": "agent_011CZkYqphY8vELVzwCUpqiQ",
+            "type": "agent",
+            "version": 1
+          }
+        ],
+        "type": "coordinator"
+      },
+      "name": "My First Agent",
+      "skills": [
+        {
+          "skill_id": "xlsx",
+          "type": "anthropic",
+          "version": "1"
+        },
+        {
+          "skill_id": "skill_011CZkZFNu9hAbo3jZPRgTlx",
+          "type": "custom",
+          "version": "2"
+        }
+      ],
+      "system": "You are a general-purpose agent that can research, write code, run commands, and use connected tools to complete the user's task end to end.",
+      "tools": [
+        {
+          "configs": [
+            {
+              "enabled": true,
+              "name": "bash",
+              "permission_policy": {
+                "type": "always_allow"
+              }
+            }
+          ],
+          "default_config": {
+            "enabled": true,
+            "permission_policy": {
+              "type": "always_ask"
+            }
+          },
+          "type": "agent_toolset_20260401"
+        }
+      ],
+      "type": "agent",
+      "updated_at": "2026-03-15T10:00:00Z",
+      "version": 1
+    }
+  ],
+  "next_page": "next_page"
 }
 ```

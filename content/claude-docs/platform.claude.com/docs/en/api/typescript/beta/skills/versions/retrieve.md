@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/skills/versions/retrieve
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 866f6842c32831207460ca6ffad6af6d053f29ee3172a69c1546662b1604ca8c
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 040c9d536088c7ef77d6c625e35a3741eb49ecd62811d746e97ab3a96bad821b
 ---
 
-## Retrieve
+## Get Skill Version
 
 `client.beta.skills.versions.retrieve(stringversion, VersionRetrieveParamsparams, RequestOptionsoptions?): VersionRetrieveResponse`
 
@@ -147,4 +147,19 @@ const client = new Anthropic({
 const version = await client.beta.skills.versions.retrieve('version', { skill_id: 'skill_id' });
 
 console.log(version.id);
+```
+
+#### Response
+
+```json
+{
+  "id": "skillver_01JAbcdefghijklmnopqrstuvw",
+  "created_at": "2024-10-30T23:58:27.427722Z",
+  "description": "A custom skill for doing something useful",
+  "directory": "my-skill",
+  "name": "my-skill",
+  "skill_id": "skill_01JAbcdefghijklmnopqrstuvw",
+  "type": "type",
+  "version": "1759178010641129"
+}
 ```

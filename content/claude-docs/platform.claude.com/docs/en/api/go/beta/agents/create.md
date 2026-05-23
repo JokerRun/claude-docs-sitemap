@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/agents/create
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: ad43be8182d983ab35962ad6e3c5209514ef5d52de5b283dc093cfbfc2751d3c
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: d1fe0c0401d95a22ede155f3198a531380c23577dd2d016e8e031e92c7cc515a
 ---
 
-## Create
+## Create Agent
 
 `client.Beta.Agents.New(ctx, params) (*BetaManagedAgentsAgent, error)`
 
@@ -231,17 +231,9 @@ Create Agent
 
             Tool calls are automatically approved without user confirmation.
 
-            - `Type BetaManagedAgentsAlwaysAllowPolicyType`
-
-              - `const BetaManagedAgentsAlwaysAllowPolicyTypeAlwaysAllow BetaManagedAgentsAlwaysAllowPolicyType = "always_allow"`
-
           - `type BetaManagedAgentsAlwaysAskPolicy struct{…}`
 
             Tool calls require user confirmation before execution.
-
-            - `Type BetaManagedAgentsAlwaysAskPolicyType`
-
-              - `const BetaManagedAgentsAlwaysAskPolicyTypeAlwaysAsk BetaManagedAgentsAlwaysAskPolicyType = "always_ask"`
 
     - `type BetaManagedAgentsMCPToolsetParamsResp struct{…}`
 
@@ -275,17 +267,9 @@ Create Agent
 
             Tool calls are automatically approved without user confirmation.
 
-            - `Type BetaManagedAgentsAlwaysAllowPolicyType`
-
-              - `const BetaManagedAgentsAlwaysAllowPolicyTypeAlwaysAllow BetaManagedAgentsAlwaysAllowPolicyType = "always_allow"`
-
           - `type BetaManagedAgentsAlwaysAskPolicy struct{…}`
 
             Tool calls require user confirmation before execution.
-
-            - `Type BetaManagedAgentsAlwaysAskPolicyType`
-
-              - `const BetaManagedAgentsAlwaysAskPolicyTypeAlwaysAsk BetaManagedAgentsAlwaysAskPolicyType = "always_ask"`
 
       - `DefaultConfig BetaManagedAgentsMCPToolsetDefaultConfigParamsResp`
 
@@ -303,17 +287,9 @@ Create Agent
 
             Tool calls are automatically approved without user confirmation.
 
-            - `Type BetaManagedAgentsAlwaysAllowPolicyType`
-
-              - `const BetaManagedAgentsAlwaysAllowPolicyTypeAlwaysAllow BetaManagedAgentsAlwaysAllowPolicyType = "always_allow"`
-
           - `type BetaManagedAgentsAlwaysAskPolicy struct{…}`
 
             Tool calls require user confirmation before execution.
-
-            - `Type BetaManagedAgentsAlwaysAskPolicyType`
-
-              - `const BetaManagedAgentsAlwaysAskPolicyTypeAlwaysAsk BetaManagedAgentsAlwaysAskPolicyType = "always_ask"`
 
     - `type BetaManagedAgentsCustomToolParamsResp struct{…}`
 
@@ -611,17 +587,9 @@ Create Agent
 
             Tool calls are automatically approved without user confirmation.
 
-            - `Type BetaManagedAgentsAlwaysAllowPolicyType`
-
-              - `const BetaManagedAgentsAlwaysAllowPolicyTypeAlwaysAllow BetaManagedAgentsAlwaysAllowPolicyType = "always_allow"`
-
           - `type BetaManagedAgentsAlwaysAskPolicy struct{…}`
 
             Tool calls require user confirmation before execution.
-
-            - `Type BetaManagedAgentsAlwaysAskPolicyType`
-
-              - `const BetaManagedAgentsAlwaysAskPolicyTypeAlwaysAsk BetaManagedAgentsAlwaysAskPolicyType = "always_ask"`
 
       - `Type BetaManagedAgentsAgentToolset20260401Type`
 
@@ -643,17 +611,9 @@ Create Agent
 
             Tool calls are automatically approved without user confirmation.
 
-            - `Type BetaManagedAgentsAlwaysAllowPolicyType`
-
-              - `const BetaManagedAgentsAlwaysAllowPolicyTypeAlwaysAllow BetaManagedAgentsAlwaysAllowPolicyType = "always_allow"`
-
           - `type BetaManagedAgentsAlwaysAskPolicy struct{…}`
 
             Tool calls require user confirmation before execution.
-
-            - `Type BetaManagedAgentsAlwaysAskPolicyType`
-
-              - `const BetaManagedAgentsAlwaysAskPolicyTypeAlwaysAsk BetaManagedAgentsAlwaysAskPolicyType = "always_ask"`
 
       - `DefaultConfig BetaManagedAgentsMCPToolsetDefaultConfig`
 
@@ -669,17 +629,9 @@ Create Agent
 
             Tool calls are automatically approved without user confirmation.
 
-            - `Type BetaManagedAgentsAlwaysAllowPolicyType`
-
-              - `const BetaManagedAgentsAlwaysAllowPolicyTypeAlwaysAllow BetaManagedAgentsAlwaysAllowPolicyType = "always_allow"`
-
           - `type BetaManagedAgentsAlwaysAskPolicy struct{…}`
 
             Tool calls require user confirmation before execution.
-
-            - `Type BetaManagedAgentsAlwaysAskPolicyType`
-
-              - `const BetaManagedAgentsAlwaysAskPolicyTypeAlwaysAsk BetaManagedAgentsAlwaysAskPolicyType = "always_ask"`
 
       - `MCPServerName string`
 
@@ -756,5 +708,77 @@ func main() {
     panic(err.Error())
   }
   fmt.Printf("%+v\n", betaManagedAgentsAgent.ID)
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "agent_011CZkYpogX7uDKUyvBTophP",
+  "archived_at": null,
+  "created_at": "2026-03-15T10:00:00Z",
+  "description": "A general-purpose starter agent.",
+  "mcp_servers": [
+    {
+      "name": "example-mcp",
+      "type": "url",
+      "url": "https://example-server.modelcontextprotocol.io/sse"
+    }
+  ],
+  "metadata": {
+    "foo": "bar"
+  },
+  "model": {
+    "id": "claude-sonnet-4-6",
+    "speed": "standard"
+  },
+  "multiagent": {
+    "agents": [
+      {
+        "id": "agent_011CZkYqphY8vELVzwCUpqiQ",
+        "type": "agent",
+        "version": 1
+      }
+    ],
+    "type": "coordinator"
+  },
+  "name": "My First Agent",
+  "skills": [
+    {
+      "skill_id": "xlsx",
+      "type": "anthropic",
+      "version": "1"
+    },
+    {
+      "skill_id": "skill_011CZkZFNu9hAbo3jZPRgTlx",
+      "type": "custom",
+      "version": "2"
+    }
+  ],
+  "system": "You are a general-purpose agent that can research, write code, run commands, and use connected tools to complete the user's task end to end.",
+  "tools": [
+    {
+      "configs": [
+        {
+          "enabled": true,
+          "name": "bash",
+          "permission_policy": {
+            "type": "always_allow"
+          }
+        }
+      ],
+      "default_config": {
+        "enabled": true,
+        "permission_policy": {
+          "type": "always_ask"
+        }
+      },
+      "type": "agent_toolset_20260401"
+    }
+  ],
+  "type": "agent",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "version": 1
 }
 ```

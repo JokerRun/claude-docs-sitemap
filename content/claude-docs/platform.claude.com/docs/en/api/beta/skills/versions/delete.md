@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/versions/delete
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 6092b14c2c9a1d0e195d85f0b14863cf3970682debe977cbc07263e9fabe5807
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: ceaa519b4f9e44c5df0c2c5a84f0a774dc52f167b5d2ce29fbf10fa6878fd4a7
 ---
 
-## Delete
+## Delete Skill Version
 
 **delete** `/v1/skills/{skill_id}/versions/{version}`
 
@@ -31,9 +31,9 @@ Delete Skill Version
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = string`
+  - `string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -107,4 +107,13 @@ curl https://api.anthropic.com/v1/skills/$SKILL_ID/versions/$VERSION \
     -H 'anthropic-version: 2023-06-01' \
     -H 'anthropic-beta: skills-2025-10-02' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
+```
+
+#### Response
+
+```json
+{
+  "id": "1759178010641129",
+  "type": "type"
+}
 ```

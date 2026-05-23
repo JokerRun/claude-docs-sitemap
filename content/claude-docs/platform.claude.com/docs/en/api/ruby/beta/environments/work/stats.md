@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/environments/work/stats
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: b257b318cea510fce3034f137b76ee7031685e39c2810eeb9c6e0f1f109533e0
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: d490c7928b8d55fcbc1aa68595cdc2fea54376d32bd65bee68b7dc69c26ecc7a
 ---
 
-## Stats
+## Get Queue Statistics
 
 `beta.environments.work.stats(environment_id, **kwargs) -> BetaSelfHostedWorkQueueStats`
 
@@ -21,9 +21,9 @@ Get statistics about the work queue for an environment.
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `String`
+  - `String = String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -115,4 +115,16 @@ anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
 beta_self_hosted_work_queue_stats = anthropic.beta.environments.work.stats("env_011CZkZ9X2dpNyB7HsEFoRfW")
 
 puts(beta_self_hosted_work_queue_stats)
+```
+
+#### Response
+
+```json
+{
+  "depth": 0,
+  "oldest_queued_at": "oldest_queued_at",
+  "pending": 0,
+  "type": "work_queue_stats",
+  "workers_polling": 0
+}
 ```

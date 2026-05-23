@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/environments/work/update
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: b87ae4f932314cd387a8ab491bcc68dbb1edbf5871fec60d5d6977fe3d2c0337
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: d5751d1f357ab69d7a33d390cc0efc131277302780a8b7ec85603e0a3372818e
 ---
 
-## Update
+## Update Work Item
 
 `beta.environments.work.update(strwork_id, WorkUpdateParams**kwargs)  -> BetaSelfHostedWork`
 
@@ -180,4 +180,28 @@ beta_self_hosted_work = client.beta.environments.work.update(
     },
 )
 print(beta_self_hosted_work.id)
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "acknowledged_at": "acknowledged_at",
+  "created_at": "created_at",
+  "data": {
+    "id": "id",
+    "type": "session"
+  },
+  "environment_id": "environment_id",
+  "latest_heartbeat_at": "latest_heartbeat_at",
+  "metadata": {
+    "foo": "string"
+  },
+  "started_at": "started_at",
+  "state": "queued",
+  "stop_requested_at": "stop_requested_at",
+  "stopped_at": "stopped_at",
+  "type": "work"
+}
 ```

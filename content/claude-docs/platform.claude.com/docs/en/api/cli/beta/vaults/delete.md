@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/vaults/delete
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: fc20c485b600a9ff1c684085305852dabd6c8618b191ef23347999170824b34d
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: de2d9a9e8ee1dc0f237f5906b2d683f54f40a7c4f725aa71193811918830c72e
 ---
 
-## Delete
+## Delete Vault
 
 `$ ant beta:vaults delete`
 
@@ -43,4 +43,13 @@ Delete Vault
 ant beta:vaults delete \
   --api-key my-anthropic-api-key \
   --vault-id vlt_011CZkZDLs7fYzm1hXNPeRjv
+```
+
+#### Response
+
+```json
+{
+  "id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+  "type": "vault_deleted"
+}
 ```

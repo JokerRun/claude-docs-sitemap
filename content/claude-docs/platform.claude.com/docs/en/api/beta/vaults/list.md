@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/list
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: e8c6934b414c2733b488bb80f0acb74a40e5e9800e123c6e20719da2ed625a6f
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: fd1cb2cd26dd20b64beec63ce9c4c77e0092797977004b086ed5b6bfa2d46bea
 ---
 
-## List
+## List Vaults
 
 **get** `/v1/vaults`
 
@@ -31,9 +31,9 @@ List Vaults
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = string`
+  - `string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -130,4 +130,25 @@ curl https://api.anthropic.com/v1/vaults \
     -H 'anthropic-version: 2023-06-01' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+      "archived_at": null,
+      "created_at": "2026-03-15T10:00:00Z",
+      "display_name": "Example vault",
+      "metadata": {
+        "environment": "production"
+      },
+      "type": "vault",
+      "updated_at": "2026-03-15T10:00:00Z"
+    }
+  ],
+  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="
+}
 ```

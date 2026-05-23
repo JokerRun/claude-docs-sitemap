@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/models/retrieve
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 652cf0ddf618d87e027324c629acce79c16844745f75a3d707bc54272751f7e4
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: cac5fc6884cca9ec89f1147c92b48e8761b02c74d0890f4b3e1d5ffc4cf4f812
 ---
 
-## Retrieve
+## Get a Model
 
 `$ ant beta:models retrieve`
 
@@ -221,4 +221,78 @@ The Models API response can be used to determine information about a specific mo
 ant beta:models retrieve \
   --api-key my-anthropic-api-key \
   --model-id model_id
+```
+
+#### Response
+
+```json
+{
+  "id": "claude-opus-4-6",
+  "capabilities": {
+    "batch": {
+      "supported": true
+    },
+    "citations": {
+      "supported": true
+    },
+    "code_execution": {
+      "supported": true
+    },
+    "context_management": {
+      "clear_thinking_20251015": {
+        "supported": true
+      },
+      "clear_tool_uses_20250919": {
+        "supported": true
+      },
+      "compact_20260112": {
+        "supported": true
+      },
+      "supported": true
+    },
+    "effort": {
+      "high": {
+        "supported": true
+      },
+      "low": {
+        "supported": true
+      },
+      "max": {
+        "supported": true
+      },
+      "medium": {
+        "supported": true
+      },
+      "supported": true,
+      "xhigh": {
+        "supported": true
+      }
+    },
+    "image_input": {
+      "supported": true
+    },
+    "pdf_input": {
+      "supported": true
+    },
+    "structured_outputs": {
+      "supported": true
+    },
+    "thinking": {
+      "supported": true,
+      "types": {
+        "adaptive": {
+          "supported": true
+        },
+        "enabled": {
+          "supported": true
+        }
+      }
+    }
+  },
+  "created_at": "2026-02-04T00:00:00Z",
+  "display_name": "Claude Opus 4.6",
+  "max_input_tokens": 0,
+  "max_tokens": 0,
+  "type": "model"
+}
 ```

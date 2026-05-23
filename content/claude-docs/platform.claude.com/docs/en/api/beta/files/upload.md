@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/upload
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 178fc97b36be9caf24621bc3ae74722a05c198444a245df724522d89d238963f
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: d9132033fdc0be3561260802d50d7de736535b709981017e14e85e1a1727793b
 ---
 
-## Upload
+## Upload File
 
 **post** `/v1/files`
 
@@ -17,9 +17,9 @@ Upload File
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = string`
+  - `string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -73,7 +73,7 @@ Upload File
 
 ### Returns
 
-- `FileMetadata = object { id, created_at, filename, 5 more }`
+- `FileMetadata object { id, created_at, filename, 5 more }`
 
   - `id: string`
 
@@ -132,4 +132,22 @@ curl https://api.anthropic.com/v1/files \
     -H 'anthropic-beta: files-api-2025-04-14' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY" \
     -F 'file=@/path/to/file'
+```
+
+#### Response
+
+```json
+{
+  "id": "file_011CNha8iCJcU1wXNR6q4V8w",
+  "created_at": "2025-04-15T18:37:24.100435Z",
+  "filename": "document.pdf",
+  "mime_type": "application/pdf",
+  "size_bytes": 102400,
+  "type": "file",
+  "downloadable": false,
+  "scope": {
+    "id": "id",
+    "type": "session"
+  }
+}
 ```

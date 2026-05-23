@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/usage_report
-fetched_at: 2026-04-25T03:09:48.142425Z
-sha256: b05de342cf68d579e87ef17673a45cd00b836f702cca49ece471934d8bf2e211
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 201cade6df0692c9590d2051c8fd434deb20cba3e4a4e01a1fe943666e4b53a8
 ---
 
 # Usage Report
 
-## Retrieve Messages
+## Get Messages Usage Report
 
 **get** `/v1/organizations/usage_report/messages`
 
@@ -142,7 +142,7 @@ Get Messages Usage Report
 
 ### Returns
 
-- `MessagesUsageReport = object { data, has_more, next_page }`
+- `MessagesUsageReport object { data, has_more, next_page }`
 
   - `data: array of object { ending_at, results, starting_at }`
 
@@ -255,7 +255,44 @@ curl https://api.anthropic.com/v1/organizations/usage_report/messages \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
 ```
 
-## Retrieve Claude Code
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "ending_at": "2025-08-02T00:00:00Z",
+      "results": [
+        {
+          "account_id": "user_01WCz1FkmYMm4gnmykNKUu3Q",
+          "api_key_id": "apikey_01Rj2N8SVvo6BePZj99NhmiT",
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 1000,
+            "ephemeral_5m_input_tokens": 500
+          },
+          "cache_read_input_tokens": 200,
+          "context_window": "0-200k",
+          "inference_geo": "global",
+          "model": "claude-opus-4-6",
+          "output_tokens": 500,
+          "server_tool_use": {
+            "web_search_requests": 10
+          },
+          "service_account_id": "svac_01Hk3R9TWxq7CfQak00OiVw4",
+          "service_tier": "standard",
+          "uncached_input_tokens": 1500,
+          "workspace_id": "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ"
+        }
+      ],
+      "starting_at": "2025-08-01T00:00:00Z"
+    }
+  ],
+  "has_more": true,
+  "next_page": "2019-12-27T18:11:19.117Z"
+}
+```
+
+## Get Claude Code Usage Report
 
 **get** `/v1/organizations/usage_report/claude_code`
 
@@ -278,7 +315,7 @@ Enables organizations to analyze developer productivity and build custom dashboa
 
 ### Returns
 
-- `ClaudeCodeUsageReport = object { data, has_more, next_page }`
+- `ClaudeCodeUsageReport object { data, has_more, next_page }`
 
   - `data: array of object { actor, core_metrics, customer_type, 6 more }`
 
@@ -288,7 +325,7 @@ Enables organizations to analyze developer productivity and build custom dashboa
 
       The user or API key that performed the Claude Code actions.
 
-      - `UserActor = object { email_address, type }`
+      - `UserActor object { email_address, type }`
 
         - `email_address: string`
 
@@ -298,7 +335,7 @@ Enables organizations to analyze developer productivity and build custom dashboa
 
           - `"user_actor"`
 
-      - `APIActor = object { api_key_name, type }`
+      - `APIActor object { api_key_name, type }`
 
         - `api_key_name: string`
 
@@ -432,11 +469,88 @@ curl https://api.anthropic.com/v1/organizations/usage_report/claude_code \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
 ```
 
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "actor": {
+        "email_address": "user@emaildomain.com",
+        "type": "user_actor"
+      },
+      "core_metrics": {
+        "commits_by_claude_code": 8,
+        "lines_of_code": {
+          "added": 342,
+          "removed": 128
+        },
+        "num_sessions": 15,
+        "pull_requests_by_claude_code": 2
+      },
+      "customer_type": "api",
+      "date": "2025-08-08T00:00:00Z",
+      "model_breakdown": [
+        {
+          "estimated_cost": {
+            "amount": 186,
+            "currency": "USD"
+          },
+          "model": "claude-sonnet-4-20250514",
+          "tokens": {
+            "cache_creation": 2340,
+            "cache_read": 8790,
+            "input": 45230,
+            "output": 12450
+          }
+        },
+        {
+          "estimated_cost": {
+            "amount": 42,
+            "currency": "USD"
+          },
+          "model": "claude-3-5-haiku-20241022",
+          "tokens": {
+            "cache_creation": 890,
+            "cache_read": 3420,
+            "input": 23100,
+            "output": 5680
+          }
+        }
+      ],
+      "organization_id": "12345678-1234-5678-1234-567812345678",
+      "terminal_type": "iTerm.app",
+      "tool_actions": {
+        "edit_tool": {
+          "accepted": 25,
+          "rejected": 3
+        },
+        "multi_edit_tool": {
+          "accepted": 12,
+          "rejected": 1
+        },
+        "notebook_edit_tool": {
+          "accepted": 5,
+          "rejected": 2
+        },
+        "write_tool": {
+          "accepted": 8,
+          "rejected": 0
+        }
+      },
+      "subscription_type": "enterprise"
+    }
+  ],
+  "has_more": true,
+  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="
+}
+```
+
 ## Domain Types
 
 ### Claude Code Usage Report
 
-- `ClaudeCodeUsageReport = object { data, has_more, next_page }`
+- `ClaudeCodeUsageReport object { data, has_more, next_page }`
 
   - `data: array of object { actor, core_metrics, customer_type, 6 more }`
 
@@ -446,7 +560,7 @@ curl https://api.anthropic.com/v1/organizations/usage_report/claude_code \
 
       The user or API key that performed the Claude Code actions.
 
-      - `UserActor = object { email_address, type }`
+      - `UserActor object { email_address, type }`
 
         - `email_address: string`
 
@@ -456,7 +570,7 @@ curl https://api.anthropic.com/v1/organizations/usage_report/claude_code \
 
           - `"user_actor"`
 
-      - `APIActor = object { api_key_name, type }`
+      - `APIActor object { api_key_name, type }`
 
         - `api_key_name: string`
 
@@ -584,7 +698,7 @@ curl https://api.anthropic.com/v1/organizations/usage_report/claude_code \
 
 ### Messages Usage Report
 
-- `MessagesUsageReport = object { data, has_more, next_page }`
+- `MessagesUsageReport object { data, has_more, next_page }`
 
   - `data: array of object { ending_at, results, starting_at }`
 

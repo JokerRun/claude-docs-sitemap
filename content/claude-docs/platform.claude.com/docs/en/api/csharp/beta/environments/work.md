@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/environments/work
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 0459041b7c248e8a8d5e0d2336941a27f1b4e91794cc326152939aa2bca8527b
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 523e4096dd526e9bdcda1474e88514154c3e66a6ecce19bb20634f023b183d99
 ---
 
 # Work
 
-## Retrieve
+## Get Work Item
 
 `BetaSelfHostedWork Beta.Environments.Work.Retrieve(WorkRetrieveParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -173,7 +173,31 @@ var betaSelfHostedWork = await client.Beta.Environments.Work.Retrieve(parameters
 Console.WriteLine(betaSelfHostedWork);
 ```
 
-## Poll
+#### Response
+
+```json
+{
+  "id": "id",
+  "acknowledged_at": "acknowledged_at",
+  "created_at": "created_at",
+  "data": {
+    "id": "id",
+    "type": "session"
+  },
+  "environment_id": "environment_id",
+  "latest_heartbeat_at": "latest_heartbeat_at",
+  "metadata": {
+    "foo": "string"
+  },
+  "started_at": "started_at",
+  "state": "queued",
+  "stop_requested_at": "stop_requested_at",
+  "stopped_at": "stopped_at",
+  "type": "work"
+}
+```
+
+## Poll for Work
 
 `BetaSelfHostedWork? Beta.Environments.Work.Poll(WorkPollParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -346,7 +370,31 @@ var betaSelfHostedWork = await client.Beta.Environments.Work.Poll(parameters);
 Console.WriteLine(betaSelfHostedWork);
 ```
 
-## Ack
+#### Response
+
+```json
+{
+  "id": "id",
+  "acknowledged_at": "acknowledged_at",
+  "created_at": "created_at",
+  "data": {
+    "id": "id",
+    "type": "session"
+  },
+  "environment_id": "environment_id",
+  "latest_heartbeat_at": "latest_heartbeat_at",
+  "metadata": {
+    "foo": "string"
+  },
+  "started_at": "started_at",
+  "state": "queued",
+  "stop_requested_at": "stop_requested_at",
+  "stopped_at": "stopped_at",
+  "type": "work"
+}
+```
+
+## Acknowledge Work
 
 `BetaSelfHostedWork Beta.Environments.Work.Ack(WorkAckParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -512,7 +560,31 @@ var betaSelfHostedWork = await client.Beta.Environments.Work.Ack(parameters);
 Console.WriteLine(betaSelfHostedWork);
 ```
 
-## Heartbeat
+#### Response
+
+```json
+{
+  "id": "id",
+  "acknowledged_at": "acknowledged_at",
+  "created_at": "created_at",
+  "data": {
+    "id": "id",
+    "type": "session"
+  },
+  "environment_id": "environment_id",
+  "latest_heartbeat_at": "latest_heartbeat_at",
+  "metadata": {
+    "foo": "string"
+  },
+  "started_at": "started_at",
+  "state": "queued",
+  "stop_requested_at": "stop_requested_at",
+  "stopped_at": "stopped_at",
+  "type": "work"
+}
+```
+
+## Record Heartbeat
 
 `BetaSelfHostedWorkHeartbeatResponse Beta.Environments.Work.Heartbeat(WorkHeartbeatParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -646,7 +718,19 @@ var betaSelfHostedWorkHeartbeatResponse = await client.Beta.Environments.Work.He
 Console.WriteLine(betaSelfHostedWorkHeartbeatResponse);
 ```
 
-## Stop
+#### Response
+
+```json
+{
+  "last_heartbeat": "last_heartbeat",
+  "lease_extended": true,
+  "state": "queued",
+  "ttl_seconds": 0,
+  "type": "work_heartbeat"
+}
+```
+
+## Stop Work
 
 `BetaSelfHostedWork Beta.Environments.Work.Stop(WorkStopParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -816,7 +900,31 @@ var betaSelfHostedWork = await client.Beta.Environments.Work.Stop(parameters);
 Console.WriteLine(betaSelfHostedWork);
 ```
 
-## List
+#### Response
+
+```json
+{
+  "id": "id",
+  "acknowledged_at": "acknowledged_at",
+  "created_at": "created_at",
+  "data": {
+    "id": "id",
+    "type": "session"
+  },
+  "environment_id": "environment_id",
+  "latest_heartbeat_at": "latest_heartbeat_at",
+  "metadata": {
+    "foo": "string"
+  },
+  "started_at": "started_at",
+  "state": "queued",
+  "stop_requested_at": "stop_requested_at",
+  "stopped_at": "stopped_at",
+  "type": "work"
+}
+```
+
+## List Work Items
 
 `BetaSelfHostedWorkListResponse Beta.Environments.Work.List(WorkListParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -991,7 +1099,36 @@ await foreach (var item in page.Paginate())
 }
 ```
 
-## Update
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "id",
+      "acknowledged_at": "acknowledged_at",
+      "created_at": "created_at",
+      "data": {
+        "id": "id",
+        "type": "session"
+      },
+      "environment_id": "environment_id",
+      "latest_heartbeat_at": "latest_heartbeat_at",
+      "metadata": {
+        "foo": "string"
+      },
+      "started_at": "started_at",
+      "state": "queued",
+      "stop_requested_at": "stop_requested_at",
+      "stopped_at": "stopped_at",
+      "type": "work"
+    }
+  ],
+  "next_page": "next_page"
+}
+```
+
+## Update Work Item
 
 `BetaSelfHostedWork Beta.Environments.Work.Update(WorkUpdateParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -1162,7 +1299,31 @@ var betaSelfHostedWork = await client.Beta.Environments.Work.Update(parameters);
 Console.WriteLine(betaSelfHostedWork);
 ```
 
-## Stats
+#### Response
+
+```json
+{
+  "id": "id",
+  "acknowledged_at": "acknowledged_at",
+  "created_at": "created_at",
+  "data": {
+    "id": "id",
+    "type": "session"
+  },
+  "environment_id": "environment_id",
+  "latest_heartbeat_at": "latest_heartbeat_at",
+  "metadata": {
+    "foo": "string"
+  },
+  "started_at": "started_at",
+  "state": "queued",
+  "stop_requested_at": "stop_requested_at",
+  "stopped_at": "stopped_at",
+  "type": "work"
+}
+```
+
+## Get Queue Statistics
 
 `BetaSelfHostedWorkQueueStats Beta.Environments.Work.Stats(WorkStatsParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -1269,6 +1430,18 @@ WorkStatsParams parameters = new()
 var betaSelfHostedWorkQueueStats = await client.Beta.Environments.Work.Stats(parameters);
 
 Console.WriteLine(betaSelfHostedWorkQueueStats);
+```
+
+#### Response
+
+```json
+{
+  "depth": 0,
+  "oldest_queued_at": "oldest_queued_at",
+  "pending": 0,
+  "type": "work_queue_stats",
+  "workers_polling": 0
+}
 ```
 
 ## Domain Types

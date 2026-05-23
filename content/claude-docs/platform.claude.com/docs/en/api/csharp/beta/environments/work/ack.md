@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/environments/work/ack
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: cc590597d2dec87b8ac38cac65479645e7e8da66d7db0c363c2d00779be3f67c
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 18456a8f94d16e442bac6515922478b6008f54520e0214339ce9bda81d0fea8c
 ---
 
-## Ack
+## Acknowledge Work
 
 `BetaSelfHostedWork Beta.Environments.Work.Ack(WorkAckParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -169,4 +169,28 @@ WorkAckParams parameters = new()
 var betaSelfHostedWork = await client.Beta.Environments.Work.Ack(parameters);
 
 Console.WriteLine(betaSelfHostedWork);
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "acknowledged_at": "acknowledged_at",
+  "created_at": "created_at",
+  "data": {
+    "id": "id",
+    "type": "session"
+  },
+  "environment_id": "environment_id",
+  "latest_heartbeat_at": "latest_heartbeat_at",
+  "metadata": {
+    "foo": "string"
+  },
+  "started_at": "started_at",
+  "state": "queued",
+  "stop_requested_at": "stop_requested_at",
+  "stopped_at": "stopped_at",
+  "type": "work"
+}
 ```

@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/skills/delete
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: a7369d7a8128f0d7a235ec253e2c0a91c8a6d0989ca5f4dc0454b4af81ac9d1e
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 74c524c3dfa6078d0951299c5a67135d01c7e5d17745aedaef339d1e3267ec52
 ---
 
-## Delete
+## Delete Skill
 
 `SkillDeleteResponse Beta.Skills.Delete(SkillDeleteParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -101,4 +101,13 @@ SkillDeleteParams parameters = new() { SkillID = "skill_id" };
 var skill = await client.Beta.Skills.Delete(parameters);
 
 Console.WriteLine(skill);
+```
+
+#### Response
+
+```json
+{
+  "id": "skill_01JAbcdefghijklmnopqrstuvw",
+  "type": "type"
+}
 ```

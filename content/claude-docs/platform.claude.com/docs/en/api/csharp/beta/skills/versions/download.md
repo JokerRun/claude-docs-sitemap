@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/skills/versions/download
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: ca2e6759815ac06027c3b7c535455a0b97c15c305397f3d1f984b016dbc9aafc
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 8a51779aa1f2ca5a163038efbfa49b7557a71921d3297ccef99fbc592e5f662b
 ---
 
-## Download
+## Download Skill Version Content
 
 `HttpResponse Beta.Skills.Versions.Download(VersionDownloadParamsparameters, CancellationTokencancellationToken = default)`
 

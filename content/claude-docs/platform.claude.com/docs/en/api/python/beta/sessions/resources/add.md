@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/sessions/resources/add
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 11d6436ba4dcf2131761bff96f153946439a7b985509ebf8756ee83cace90cf1
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 70b6a0c01211e937898f6014ebd8fb71b5109a99185852d6612e75418c78bf9e
 ---
 
-## Add
+## Add Session Resource
 
 `beta.sessions.resources.add(strsession_id, ResourceAddParams**kwargs)  -> BetaManagedAgentsFileResource`
 
@@ -124,4 +124,17 @@ beta_managed_agents_file_resource = client.beta.sessions.resources.add(
     type="file",
 )
 print(beta_managed_agents_file_resource.id)
+```
+
+#### Response
+
+```json
+{
+  "id": "sesrsc_011CZkZBJq5dWxk9fVLNcPht",
+  "created_at": "2026-03-15T10:00:00Z",
+  "file_id": "file_011CNha8iCJcU1wXNR6q4V8w",
+  "mount_path": "/uploads/receipt.pdf",
+  "type": "file",
+  "updated_at": "2026-03-15T10:00:00Z"
+}
 ```

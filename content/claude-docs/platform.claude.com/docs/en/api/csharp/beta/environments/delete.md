@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/environments/delete
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 907c9fdd3b58bafbe0bf6a5d7057e34ad8d9bdba89950236476fbf471e05bb12
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 330b80b9b809bc4ce1882404aea344d9ef9f98ca8d4686ebadb78e6ac7b27a1a
 ---
 
-## Delete
+## Delete Environment
 
 `BetaEnvironmentDeleteResponse Beta.Environments.Delete(EnvironmentDeleteParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -98,4 +98,13 @@ EnvironmentDeleteParams parameters = new()
 var betaEnvironmentDeleteResponse = await client.Beta.Environments.Delete(parameters);
 
 Console.WriteLine(betaEnvironmentDeleteResponse);
+```
+
+#### Response
+
+```json
+{
+  "id": "env_011CZkZ9X2dpNyB7HsEFoRfW",
+  "type": "environment_deleted"
+}
 ```

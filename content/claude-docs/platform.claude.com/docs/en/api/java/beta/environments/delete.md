@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/environments/delete
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 600818865b45c9ae377d0b6f5bd0128d3643f461c5c90dbe25f57bbc5b302077
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: d85c5adaca57e0cbe6b2eb651bfd77cc025458f0e9d1037d73744eecd2070d60
 ---
 
-## Delete
+## Delete Environment
 
 `BetaEnvironmentDeleteResponse beta().environments().delete(EnvironmentDeleteParamsparams = EnvironmentDeleteParams.none(), RequestOptionsrequestOptions = RequestOptions.none())`
 
@@ -107,5 +107,14 @@ public final class Main {
 
         BetaEnvironmentDeleteResponse betaEnvironmentDeleteResponse = client.beta().environments().delete("env_011CZkZ9X2dpNyB7HsEFoRfW");
     }
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "env_011CZkZ9X2dpNyB7HsEFoRfW",
+  "type": "environment_deleted"
 }
 ```

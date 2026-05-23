@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/memory_stores/delete
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: f7fa72470a7a1c44500614e95391a0720f70e4d015b302369eaf909f5ddcc0cb
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 088baf16d5eb3c73bbf6cc026cd54649b1a9a888fc909e116d354082c23e3844
 ---
 
-## Delete
+## Delete a memory store
 
 `BetaManagedAgentsDeletedMemoryStore Beta.MemoryStores.Delete(MemoryStoreDeleteParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -100,4 +100,13 @@ MemoryStoreDeleteParams parameters = new()
 var betaManagedAgentsDeletedMemoryStore = await client.Beta.MemoryStores.Delete(parameters);
 
 Console.WriteLine(betaManagedAgentsDeletedMemoryStore);
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "type": "memory_store_deleted"
+}
 ```

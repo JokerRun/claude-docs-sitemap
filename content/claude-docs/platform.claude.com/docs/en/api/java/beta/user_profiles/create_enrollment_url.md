@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/user_profiles/create_enrollment_url
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 6157c6bdebe510c590301eb9b203b36c8f4f63d2fc49e40be559d52f1b772063
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: e61e380356fa9379e819263d467a9c3520372451d5e5968ad21290d98b7a074c
 ---
 
 ## Create Enrollment URL
@@ -109,5 +109,15 @@ public final class Main {
 
         BetaUserProfileEnrollmentUrl betaUserProfileEnrollmentUrl = client.beta().userProfiles().createEnrollmentUrl("uprof_011CZkZCu8hGbp5mYRQgUmz9");
     }
+}
+```
+
+#### Response
+
+```json
+{
+  "expires_at": "2026-03-15T10:15:00Z",
+  "type": "enrollment_url",
+  "url": "https://platform.claude.com/user-profiles/enrollment/M3J0bGJxZ2ppMnptbnB1"
 }
 ```

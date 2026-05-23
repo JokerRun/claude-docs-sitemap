@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/environments/work/stats
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: eaf57136570469cf6c2fc96ba6e3e5fb90c5509a4bf362dac9743ac0687a25a1
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: c509a310a77696cbc9474b062b801c2da47e16ff914ade734956774c707f34fe
 ---
 
-## Stats
+## Get Queue Statistics
 
 `client.Beta.Environments.Work.Stats(ctx, environmentID, query) (*BetaSelfHostedWorkQueueStats, error)`
 
@@ -135,5 +135,17 @@ func main() {
     panic(err.Error())
   }
   fmt.Printf("%+v\n", betaSelfHostedWorkQueueStats.Depth)
+}
+```
+
+#### Response
+
+```json
+{
+  "depth": 0,
+  "oldest_queued_at": "oldest_queued_at",
+  "pending": 0,
+  "type": "work_queue_stats",
+  "workers_polling": 0
 }
 ```

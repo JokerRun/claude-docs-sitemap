@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/messages/batches/list
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 4c72371fbbc0ea3a4862f11ad8557966466adb6dd7385e02e0f6740e0bae0e0e
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: a14e2d20c52a6d43a8a8797ce8d4fe6c1684ddcc58b9e1e3f952c862785cf734
 ---
 
-## List
+## List Message Batches
 
 `BatchListPage messages().batches().list(BatchListParamsparams = BatchListParams.none(), RequestOptionsrequestOptions = RequestOptions.none())`
 
@@ -141,5 +141,35 @@ public final class Main {
 
         BatchListPage page = client.messages().batches().list();
     }
+}
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "msgbatch_013Zva2CMHLNnXjNJJKqJ2EF",
+      "archived_at": "2024-08-20T18:37:24.100435Z",
+      "cancel_initiated_at": "2024-08-20T18:37:24.100435Z",
+      "created_at": "2024-08-20T18:37:24.100435Z",
+      "ended_at": "2024-08-20T18:37:24.100435Z",
+      "expires_at": "2024-08-20T18:37:24.100435Z",
+      "processing_status": "in_progress",
+      "request_counts": {
+        "canceled": 10,
+        "errored": 30,
+        "expired": 10,
+        "processing": 100,
+        "succeeded": 50
+      },
+      "results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_013Zva2CMHLNnXjNJJKqJ2EF/results",
+      "type": "message_batch"
+    }
+  ],
+  "first_id": "first_id",
+  "has_more": true,
+  "last_id": "last_id"
 }
 ```

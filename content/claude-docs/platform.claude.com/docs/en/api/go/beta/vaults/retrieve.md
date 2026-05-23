@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/vaults/retrieve
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: e88ee00ffd00b8b9f98ea09523794af474bcc7aa4ef65797e7cfe0c23058f287
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: a83560a1644321399c4ef1e99bf3b79d73510a021e63d1ba37be43813384b9ae
 ---
 
-## Retrieve
+## Get Vault
 
 `client.Beta.Vaults.Get(ctx, vaultID, query) (*BetaManagedAgentsVault, error)`
 
@@ -139,5 +139,21 @@ func main() {
     panic(err.Error())
   }
   fmt.Printf("%+v\n", betaManagedAgentsVault.ID)
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+  "archived_at": null,
+  "created_at": "2026-03-15T10:00:00Z",
+  "display_name": "Example vault",
+  "metadata": {
+    "environment": "production"
+  },
+  "type": "vault",
+  "updated_at": "2026-03-15T10:00:00Z"
 }
 ```

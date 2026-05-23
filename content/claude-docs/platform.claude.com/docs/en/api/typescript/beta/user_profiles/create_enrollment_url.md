@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/user_profiles/create_enrollment_url
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: f917434840fbc5e302a88d26681bdbcf5663a79860a6088d91c8f55a451efd61
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: db10c9970aacd5e5738acc0fa2a98bec48ab8796e0c2020759bf0eac643c68a8
 ---
 
 ## Create Enrollment URL
@@ -109,4 +109,14 @@ const betaUserProfileEnrollmentURL = await client.beta.userProfiles.createEnroll
 );
 
 console.log(betaUserProfileEnrollmentURL.expires_at);
+```
+
+#### Response
+
+```json
+{
+  "expires_at": "2026-03-15T10:15:00Z",
+  "type": "enrollment_url",
+  "url": "https://platform.claude.com/user-profiles/enrollment/M3J0bGJxZ2ppMnptbnB1"
+}
 ```

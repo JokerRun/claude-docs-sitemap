@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/environments/work/update
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 5058b3baa9ef3fdba50bc0233cb694269f37b1bae3f909d6e3ba66a0145785e8
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 5a68d22d5e2afd9c4d38806f51a3a9fc11c34813ef3eb285098b0f91bc74cd0e
 ---
 
-## Update
+## Update Work Item
 
 `client.beta.environments.work.update(stringworkID, WorkUpdateParamsparams, RequestOptionsoptions?): BetaSelfHostedWork`
 
@@ -182,4 +182,28 @@ const betaSelfHostedWork = await client.beta.environments.work.update('work_id',
 });
 
 console.log(betaSelfHostedWork.id);
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "acknowledged_at": "acknowledged_at",
+  "created_at": "created_at",
+  "data": {
+    "id": "id",
+    "type": "session"
+  },
+  "environment_id": "environment_id",
+  "latest_heartbeat_at": "latest_heartbeat_at",
+  "metadata": {
+    "foo": "string"
+  },
+  "started_at": "started_at",
+  "state": "queued",
+  "stop_requested_at": "stop_requested_at",
+  "stopped_at": "stopped_at",
+  "type": "work"
+}
 ```

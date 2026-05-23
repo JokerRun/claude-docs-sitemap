@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/vaults/delete
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: c5cd8b635a4bb135bd430811ec1391d224e489332702a00b0866bfd29be9c2d5
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 866ee914480610b08b7830bf6f842ce67e7251ac771face1c22cf30e5748b176
 ---
 
-## Delete
+## Delete Vault
 
 `beta.vaults.delete(strvault_id, VaultDeleteParams**kwargs)  -> BetaManagedAgentsDeletedVault`
 
@@ -102,4 +102,13 @@ beta_managed_agents_deleted_vault = client.beta.vaults.delete(
     vault_id="vlt_011CZkZDLs7fYzm1hXNPeRjv",
 )
 print(beta_managed_agents_deleted_vault.id)
+```
+
+#### Response
+
+```json
+{
+  "id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+  "type": "vault_deleted"
+}
 ```

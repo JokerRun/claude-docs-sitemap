@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/memory_stores
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 22a3ce0b31ad7e97101ca404e05343a2a3448efb1f679d61a8105ae14391b83d
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 352dd38c3581946d0d89295030ab5ea0ede5f94f460ba9bae6cdd09762e6c877
 ---
 
 # Memory Stores
 
-## Create
+## Create a memory store
 
 `client.Beta.MemoryStores.New(ctx, params) (*BetaManagedAgentsMemoryStore, error)`
 
@@ -154,7 +154,24 @@ func main() {
 }
 ```
 
-## List
+#### Response
+
+```json
+{
+  "id": "id",
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "name": "name",
+  "type": "memory_store",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "archived_at": "2019-12-27T18:11:19.117Z",
+  "description": "description",
+  "metadata": {
+    "foo": "string"
+  }
+}
+```
+
+## List memory stores
 
 `client.Beta.MemoryStores.List(ctx, params) (*PageCursor[BetaManagedAgentsMemoryStore], error)`
 
@@ -309,7 +326,29 @@ func main() {
 }
 ```
 
-## Retrieve
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "id",
+      "created_at": "2019-12-27T18:11:19.117Z",
+      "name": "name",
+      "type": "memory_store",
+      "updated_at": "2019-12-27T18:11:19.117Z",
+      "archived_at": "2019-12-27T18:11:19.117Z",
+      "description": "description",
+      "metadata": {
+        "foo": "string"
+      }
+    }
+  ],
+  "next_page": "next_page"
+}
+```
+
+## Retrieve a memory store
 
 `client.Beta.MemoryStores.Get(ctx, memoryStoreID, query) (*BetaManagedAgentsMemoryStore, error)`
 
@@ -450,7 +489,24 @@ func main() {
 }
 ```
 
-## Update
+#### Response
+
+```json
+{
+  "id": "id",
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "name": "name",
+  "type": "memory_store",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "archived_at": "2019-12-27T18:11:19.117Z",
+  "description": "description",
+  "metadata": {
+    "foo": "string"
+  }
+}
+```
+
+## Update a memory store
 
 `client.Beta.MemoryStores.Update(ctx, memoryStoreID, params) (*BetaManagedAgentsMemoryStore, error)`
 
@@ -603,7 +659,24 @@ func main() {
 }
 ```
 
-## Delete
+#### Response
+
+```json
+{
+  "id": "id",
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "name": "name",
+  "type": "memory_store",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "archived_at": "2019-12-27T18:11:19.117Z",
+  "description": "description",
+  "metadata": {
+    "foo": "string"
+  }
+}
+```
+
+## Delete a memory store
 
 `client.Beta.MemoryStores.Delete(ctx, memoryStoreID, body) (*BetaManagedAgentsDeletedMemoryStore, error)`
 
@@ -720,7 +793,16 @@ func main() {
 }
 ```
 
-## Archive
+#### Response
+
+```json
+{
+  "id": "id",
+  "type": "memory_store_deleted"
+}
+```
+
+## Archive a memory store
 
 `client.Beta.MemoryStores.Archive(ctx, memoryStoreID, body) (*BetaManagedAgentsMemoryStore, error)`
 
@@ -861,6 +943,23 @@ func main() {
 }
 ```
 
+#### Response
+
+```json
+{
+  "id": "id",
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "name": "name",
+  "type": "memory_store",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "archived_at": "2019-12-27T18:11:19.117Z",
+  "description": "description",
+  "metadata": {
+    "foo": "string"
+  }
+}
+```
+
 ## Domain Types
 
 ### Beta Managed Agents Deleted Memory Store
@@ -917,7 +1016,7 @@ func main() {
 
 # Memories
 
-## Create
+## Create a memory
 
 `client.Beta.MemoryStores.Memories.New(ctx, memoryStoreID, params) (*BetaManagedAgentsMemory, error)`
 
@@ -1079,7 +1178,24 @@ func main() {
 }
 ```
 
-## List
+#### Response
+
+```json
+{
+  "id": "id",
+  "content_sha256": "content_sha256",
+  "content_size_bytes": 0,
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "memory_store_id": "memory_store_id",
+  "memory_version_id": "memory_version_id",
+  "path": "path",
+  "type": "memory",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "content": "content"
+}
+```
+
+## List memories
 
 `client.Beta.MemoryStores.Memories.List(ctx, memoryStoreID, params) (*PageCursor[BetaManagedAgentsMemoryListItemUnion], error)`
 
@@ -1276,7 +1392,29 @@ func main() {
 }
 ```
 
-## Retrieve
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "id",
+      "content_sha256": "content_sha256",
+      "content_size_bytes": 0,
+      "created_at": "2019-12-27T18:11:19.117Z",
+      "memory_store_id": "memory_store_id",
+      "memory_version_id": "memory_version_id",
+      "path": "path",
+      "type": "memory",
+      "updated_at": "2019-12-27T18:11:19.117Z",
+      "content": "content"
+    }
+  ],
+  "next_page": "next_page"
+}
+```
+
+## Retrieve a memory
 
 `client.Beta.MemoryStores.Memories.Get(ctx, memoryID, params) (*BetaManagedAgentsMemory, error)`
 
@@ -1433,7 +1571,24 @@ func main() {
 }
 ```
 
-## Update
+#### Response
+
+```json
+{
+  "id": "id",
+  "content_sha256": "content_sha256",
+  "content_size_bytes": 0,
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "memory_store_id": "memory_store_id",
+  "memory_version_id": "memory_version_id",
+  "path": "path",
+  "type": "memory",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "content": "content"
+}
+```
+
+## Update a memory
 
 `client.Beta.MemoryStores.Memories.Update(ctx, memoryID, params) (*BetaManagedAgentsMemory, error)`
 
@@ -1602,7 +1757,24 @@ func main() {
 }
 ```
 
-## Delete
+#### Response
+
+```json
+{
+  "id": "id",
+  "content_sha256": "content_sha256",
+  "content_size_bytes": 0,
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "memory_store_id": "memory_store_id",
+  "memory_version_id": "memory_version_id",
+  "path": "path",
+  "type": "memory",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "content": "content"
+}
+```
+
+## Delete a memory
 
 `client.Beta.MemoryStores.Memories.Delete(ctx, memoryID, params) (*BetaManagedAgentsDeletedMemory, error)`
 
@@ -1724,6 +1896,15 @@ func main() {
     panic(err.Error())
   }
   fmt.Printf("%+v\n", betaManagedAgentsDeletedMemory.ID)
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "type": "memory_deleted"
 }
 ```
 
@@ -2043,7 +2224,7 @@ func main() {
 
 # Memory Versions
 
-## List
+## List memory versions
 
 `client.Beta.MemoryStores.MemoryVersions.List(ctx, memoryStoreID, params) (*PageCursor[BetaManagedAgentsMemoryVersion], error)`
 
@@ -2251,42 +2432,6 @@ List memory versions
 
     Identifies who performed a write or redact operation. Captured at write time on the `memory_version` row. The API key that created a session is not recorded on agent writes; attribution answers who made the write, not who is ultimately responsible. Look up session provenance separately via the [Sessions API](/docs/en/api/sessions-retrieve).
 
-    - `type BetaManagedAgentsSessionActor struct{…}`
-
-      Attribution for a write made by an agent during a session, through the mounted filesystem at `/mnt/memory/`.
-
-      - `SessionID string`
-
-        ID of the session that performed the write (a `sesn_...` value). Look up the session via [Retrieve a session](/docs/en/api/sessions-retrieve) for further provenance.
-
-      - `Type BetaManagedAgentsSessionActorType`
-
-        - `const BetaManagedAgentsSessionActorTypeSessionActor BetaManagedAgentsSessionActorType = "session_actor"`
-
-    - `type BetaManagedAgentsAPIActor struct{…}`
-
-      Attribution for a write made directly via the public API (outside of any session).
-
-      - `APIKeyID string`
-
-        ID of the API key that performed the write. This identifies the key, not the secret.
-
-      - `Type BetaManagedAgentsAPIActorType`
-
-        - `const BetaManagedAgentsAPIActorTypeAPIActor BetaManagedAgentsAPIActorType = "api_actor"`
-
-    - `type BetaManagedAgentsUserActor struct{…}`
-
-      Attribution for a write made by a human user through the Anthropic Console.
-
-      - `Type BetaManagedAgentsUserActorType`
-
-        - `const BetaManagedAgentsUserActorTypeUserActor BetaManagedAgentsUserActorType = "user_actor"`
-
-      - `UserID string`
-
-        ID of the user who performed the write (a `user_...` value).
-
 ### Example
 
 ```go
@@ -2318,7 +2463,38 @@ func main() {
 }
 ```
 
-## Retrieve
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "id",
+      "created_at": "2019-12-27T18:11:19.117Z",
+      "memory_id": "memory_id",
+      "memory_store_id": "memory_store_id",
+      "operation": "created",
+      "type": "memory_version",
+      "content": "content",
+      "content_sha256": "content_sha256",
+      "content_size_bytes": 0,
+      "created_by": {
+        "session_id": "x",
+        "type": "session_actor"
+      },
+      "path": "path",
+      "redacted_at": "2019-12-27T18:11:19.117Z",
+      "redacted_by": {
+        "session_id": "x",
+        "type": "session_actor"
+      }
+    }
+  ],
+  "next_page": "next_page"
+}
+```
+
+## Retrieve a memory version
 
 `client.Beta.MemoryStores.MemoryVersions.Get(ctx, memoryVersionID, params) (*BetaManagedAgentsMemoryVersion, error)`
 
@@ -2498,42 +2674,6 @@ Retrieve a memory version
 
     Identifies who performed a write or redact operation. Captured at write time on the `memory_version` row. The API key that created a session is not recorded on agent writes; attribution answers who made the write, not who is ultimately responsible. Look up session provenance separately via the [Sessions API](/docs/en/api/sessions-retrieve).
 
-    - `type BetaManagedAgentsSessionActor struct{…}`
-
-      Attribution for a write made by an agent during a session, through the mounted filesystem at `/mnt/memory/`.
-
-      - `SessionID string`
-
-        ID of the session that performed the write (a `sesn_...` value). Look up the session via [Retrieve a session](/docs/en/api/sessions-retrieve) for further provenance.
-
-      - `Type BetaManagedAgentsSessionActorType`
-
-        - `const BetaManagedAgentsSessionActorTypeSessionActor BetaManagedAgentsSessionActorType = "session_actor"`
-
-    - `type BetaManagedAgentsAPIActor struct{…}`
-
-      Attribution for a write made directly via the public API (outside of any session).
-
-      - `APIKeyID string`
-
-        ID of the API key that performed the write. This identifies the key, not the secret.
-
-      - `Type BetaManagedAgentsAPIActorType`
-
-        - `const BetaManagedAgentsAPIActorTypeAPIActor BetaManagedAgentsAPIActorType = "api_actor"`
-
-    - `type BetaManagedAgentsUserActor struct{…}`
-
-      Attribution for a write made by a human user through the Anthropic Console.
-
-      - `Type BetaManagedAgentsUserActorType`
-
-        - `const BetaManagedAgentsUserActorTypeUserActor BetaManagedAgentsUserActorType = "user_actor"`
-
-      - `UserID string`
-
-        ID of the user who performed the write (a `user_...` value).
-
 ### Example
 
 ```go
@@ -2565,7 +2705,33 @@ func main() {
 }
 ```
 
-## Redact
+#### Response
+
+```json
+{
+  "id": "id",
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "memory_id": "memory_id",
+  "memory_store_id": "memory_store_id",
+  "operation": "created",
+  "type": "memory_version",
+  "content": "content",
+  "content_sha256": "content_sha256",
+  "content_size_bytes": 0,
+  "created_by": {
+    "session_id": "x",
+    "type": "session_actor"
+  },
+  "path": "path",
+  "redacted_at": "2019-12-27T18:11:19.117Z",
+  "redacted_by": {
+    "session_id": "x",
+    "type": "session_actor"
+  }
+}
+```
+
+## Redact a memory version
 
 `client.Beta.MemoryStores.MemoryVersions.Redact(ctx, memoryVersionID, params) (*BetaManagedAgentsMemoryVersion, error)`
 
@@ -2741,42 +2907,6 @@ Redact a memory version
 
     Identifies who performed a write or redact operation. Captured at write time on the `memory_version` row. The API key that created a session is not recorded on agent writes; attribution answers who made the write, not who is ultimately responsible. Look up session provenance separately via the [Sessions API](/docs/en/api/sessions-retrieve).
 
-    - `type BetaManagedAgentsSessionActor struct{…}`
-
-      Attribution for a write made by an agent during a session, through the mounted filesystem at `/mnt/memory/`.
-
-      - `SessionID string`
-
-        ID of the session that performed the write (a `sesn_...` value). Look up the session via [Retrieve a session](/docs/en/api/sessions-retrieve) for further provenance.
-
-      - `Type BetaManagedAgentsSessionActorType`
-
-        - `const BetaManagedAgentsSessionActorTypeSessionActor BetaManagedAgentsSessionActorType = "session_actor"`
-
-    - `type BetaManagedAgentsAPIActor struct{…}`
-
-      Attribution for a write made directly via the public API (outside of any session).
-
-      - `APIKeyID string`
-
-        ID of the API key that performed the write. This identifies the key, not the secret.
-
-      - `Type BetaManagedAgentsAPIActorType`
-
-        - `const BetaManagedAgentsAPIActorTypeAPIActor BetaManagedAgentsAPIActorType = "api_actor"`
-
-    - `type BetaManagedAgentsUserActor struct{…}`
-
-      Attribution for a write made by a human user through the Anthropic Console.
-
-      - `Type BetaManagedAgentsUserActorType`
-
-        - `const BetaManagedAgentsUserActorTypeUserActor BetaManagedAgentsUserActorType = "user_actor"`
-
-      - `UserID string`
-
-        ID of the user who performed the write (a `user_...` value).
-
 ### Example
 
 ```go
@@ -2805,6 +2935,32 @@ func main() {
     panic(err.Error())
   }
   fmt.Printf("%+v\n", betaManagedAgentsMemoryVersion.ID)
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "memory_id": "memory_id",
+  "memory_store_id": "memory_store_id",
+  "operation": "created",
+  "type": "memory_version",
+  "content": "content",
+  "content_sha256": "content_sha256",
+  "content_size_bytes": 0,
+  "created_by": {
+    "session_id": "x",
+    "type": "session_actor"
+  },
+  "path": "path",
+  "redacted_at": "2019-12-27T18:11:19.117Z",
+  "redacted_by": {
+    "session_id": "x",
+    "type": "session_actor"
+  }
 }
 ```
 
@@ -2965,42 +3121,6 @@ func main() {
   - `RedactedBy BetaManagedAgentsActorUnion`
 
     Identifies who performed a write or redact operation. Captured at write time on the `memory_version` row. The API key that created a session is not recorded on agent writes; attribution answers who made the write, not who is ultimately responsible. Look up session provenance separately via the [Sessions API](/docs/en/api/sessions-retrieve).
-
-    - `type BetaManagedAgentsSessionActor struct{…}`
-
-      Attribution for a write made by an agent during a session, through the mounted filesystem at `/mnt/memory/`.
-
-      - `SessionID string`
-
-        ID of the session that performed the write (a `sesn_...` value). Look up the session via [Retrieve a session](/docs/en/api/sessions-retrieve) for further provenance.
-
-      - `Type BetaManagedAgentsSessionActorType`
-
-        - `const BetaManagedAgentsSessionActorTypeSessionActor BetaManagedAgentsSessionActorType = "session_actor"`
-
-    - `type BetaManagedAgentsAPIActor struct{…}`
-
-      Attribution for a write made directly via the public API (outside of any session).
-
-      - `APIKeyID string`
-
-        ID of the API key that performed the write. This identifies the key, not the secret.
-
-      - `Type BetaManagedAgentsAPIActorType`
-
-        - `const BetaManagedAgentsAPIActorTypeAPIActor BetaManagedAgentsAPIActorType = "api_actor"`
-
-    - `type BetaManagedAgentsUserActor struct{…}`
-
-      Attribution for a write made by a human user through the Anthropic Console.
-
-      - `Type BetaManagedAgentsUserActorType`
-
-        - `const BetaManagedAgentsUserActorTypeUserActor BetaManagedAgentsUserActorType = "user_actor"`
-
-      - `UserID string`
-
-        ID of the user who performed the write (a `user_...` value).
 
 ### Beta Managed Agents Memory Version Operation
 

@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/memory_stores/update
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 5ac78c47a6228cd9c4f4b2a1da4ab9cc32388472a87004f7d6163609b593c709
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: e48aa58d59709ac1a90d9e05a4ad84954fd6696b1777ed7f3de3e9353cc35731
 ---
 
-## Update
+## Update a memory store
 
 `client.beta.memoryStores.update(stringmemoryStoreID, MemoryStoreUpdateParamsparams, RequestOptionsoptions?): BetaManagedAgentsMemoryStore`
 
@@ -139,4 +139,21 @@ const client = new Anthropic({
 const betaManagedAgentsMemoryStore = await client.beta.memoryStores.update('memory_store_id');
 
 console.log(betaManagedAgentsMemoryStore.id);
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "name": "name",
+  "type": "memory_store",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "archived_at": "2019-12-27T18:11:19.117Z",
+  "description": "description",
+  "metadata": {
+    "foo": "string"
+  }
+}
 ```

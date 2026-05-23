@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 7904dc8a1e1eb323c27d16d66d01d912fcea24aec4aa287757471e11559cfd61
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 5c0267e605a219078a5f0e7c0b5b7da26822add23923c389502749ec9b1fe885
 ---
 
 # Agents
 
-## Create
+## Create Agent
 
 **post** `/v1/agents`
 
@@ -19,9 +19,9 @@ Create Agent
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = string`
+  - `string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -85,7 +85,7 @@ Create Agent
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `UnionMember0 = "claude-opus-4-7" or "claude-opus-4-6" or "claude-sonnet-4-6" or 6 more`
+    - `"claude-opus-4-7" or "claude-opus-4-6" or "claude-sonnet-4-6" or 6 more`
 
       The model that will power your agent.
 
@@ -127,9 +127,9 @@ Create Agent
 
         High-performance model for agents and coding
 
-    - `UnionMember1 = string`
+    - `string`
 
-  - `BetaManagedAgentsModelConfigParams = object { id, speed }`
+  - `BetaManagedAgentsModelConfigParams object { id, speed }`
 
     An object that defines additional configuration control over model use
 
@@ -138,50 +138,6 @@ Create Agent
       The model that will power your agent.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
-
-      - `UnionMember0 = "claude-opus-4-7" or "claude-opus-4-6" or "claude-sonnet-4-6" or 6 more`
-
-        The model that will power your agent.
-
-        See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
-
-        - `"claude-opus-4-7"`
-
-          Frontier intelligence for long-running agents and coding
-
-        - `"claude-opus-4-6"`
-
-          Most intelligent model for building agents and coding
-
-        - `"claude-sonnet-4-6"`
-
-          Best combination of speed and intelligence
-
-        - `"claude-haiku-4-5"`
-
-          Fastest model with near-frontier intelligence
-
-        - `"claude-haiku-4-5-20251001"`
-
-          Fastest model with near-frontier intelligence
-
-        - `"claude-opus-4-5"`
-
-          Premium model combining maximum intelligence with practical performance
-
-        - `"claude-opus-4-5-20251101"`
-
-          Premium model combining maximum intelligence with practical performance
-
-        - `"claude-sonnet-4-5"`
-
-          High-performance model for agents and coding
-
-        - `"claude-sonnet-4-5-20250929"`
-
-          High-performance model for agents and coding
-
-      - `UnionMember1 = string`
 
     - `speed: optional "standard" or "fast"`
 
@@ -227,9 +183,9 @@ Create Agent
 
     Agents the coordinator may spawn as session threads. 1–20 entries. Each entry is an agent ID string, a versioned `{"type":"agent","id","version"}` reference, or `{"type":"self"}` to allow recursive self-invocation. Entries must reference distinct agents (after resolving `self` and string forms); at most one `self`. Referenced agents must exist, must not be archived, and must not themselves have `multiagent` set (depth limit 1).
 
-    - `UnionMember0 = string`
+    - `string`
 
-    - `BetaManagedAgentsAgentParams = object { id, type, version }`
+    - `BetaManagedAgentsAgentParams object { id, type, version }`
 
       Specification for an Agent. Provide a specific `version` or use the short-form `agent="agent_id"` for the most recent version
 
@@ -245,7 +201,7 @@ Create Agent
 
         The specific `agent` version to use. Omit to use the latest version. Must be at least 1 if specified.
 
-    - `BetaManagedAgentsMultiagentSelfParams = object { type }`
+    - `BetaManagedAgentsMultiagentSelfParams object { type }`
 
       Sentinel roster entry meaning "the agent that owns this configuration". Resolved server-side to a concrete agent reference.
 
@@ -261,7 +217,7 @@ Create Agent
 
   Skills available to the agent. Maximum 20.
 
-  - `BetaManagedAgentsAnthropicSkillParams = object { skill_id, type, version }`
+  - `BetaManagedAgentsAnthropicSkillParams object { skill_id, type, version }`
 
     An Anthropic-managed skill.
 
@@ -277,7 +233,7 @@ Create Agent
 
       Version to pin. Defaults to latest if omitted.
 
-  - `BetaManagedAgentsCustomSkillParams = object { skill_id, type, version }`
+  - `BetaManagedAgentsCustomSkillParams object { skill_id, type, version }`
 
     A user-created custom skill.
 
@@ -301,7 +257,7 @@ Create Agent
 
   Tool configurations available to the agent. Maximum of 128 tools across all toolsets allowed.
 
-  - `BetaManagedAgentsAgentToolset20260401Params = object { type, configs, default_config }`
+  - `BetaManagedAgentsAgentToolset20260401Params object { type, configs, default_config }`
 
     Configuration for built-in agent tools. Use this to enable or disable groups of tools available to the agent.
 
@@ -341,7 +297,7 @@ Create Agent
 
         Permission policy for tool execution.
 
-        - `BetaManagedAgentsAlwaysAllowPolicy = object { type }`
+        - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
 
           Tool calls are automatically approved without user confirmation.
 
@@ -349,7 +305,7 @@ Create Agent
 
             - `"always_allow"`
 
-        - `BetaManagedAgentsAlwaysAskPolicy = object { type }`
+        - `BetaManagedAgentsAlwaysAskPolicy object { type }`
 
           Tool calls require user confirmation before execution.
 
@@ -369,23 +325,15 @@ Create Agent
 
         Permission policy for tool execution.
 
-        - `BetaManagedAgentsAlwaysAllowPolicy = object { type }`
+        - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
 
           Tool calls are automatically approved without user confirmation.
 
-          - `type: "always_allow"`
-
-            - `"always_allow"`
-
-        - `BetaManagedAgentsAlwaysAskPolicy = object { type }`
+        - `BetaManagedAgentsAlwaysAskPolicy object { type }`
 
           Tool calls require user confirmation before execution.
 
-          - `type: "always_ask"`
-
-            - `"always_ask"`
-
-  - `BetaManagedAgentsMCPToolsetParams = object { mcp_server_name, type, configs, default_config }`
+  - `BetaManagedAgentsMCPToolsetParams object { mcp_server_name, type, configs, default_config }`
 
     Configuration for tools from an MCP server defined in `mcp_servers`.
 
@@ -413,21 +361,13 @@ Create Agent
 
         Permission policy for tool execution.
 
-        - `BetaManagedAgentsAlwaysAllowPolicy = object { type }`
+        - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
 
           Tool calls are automatically approved without user confirmation.
 
-          - `type: "always_allow"`
-
-            - `"always_allow"`
-
-        - `BetaManagedAgentsAlwaysAskPolicy = object { type }`
+        - `BetaManagedAgentsAlwaysAskPolicy object { type }`
 
           Tool calls require user confirmation before execution.
-
-          - `type: "always_ask"`
-
-            - `"always_ask"`
 
     - `default_config: optional BetaManagedAgentsMCPToolsetDefaultConfigParams`
 
@@ -441,23 +381,15 @@ Create Agent
 
         Permission policy for tool execution.
 
-        - `BetaManagedAgentsAlwaysAllowPolicy = object { type }`
+        - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
 
           Tool calls are automatically approved without user confirmation.
 
-          - `type: "always_allow"`
-
-            - `"always_allow"`
-
-        - `BetaManagedAgentsAlwaysAskPolicy = object { type }`
+        - `BetaManagedAgentsAlwaysAskPolicy object { type }`
 
           Tool calls require user confirmation before execution.
 
-          - `type: "always_ask"`
-
-            - `"always_ask"`
-
-  - `BetaManagedAgentsCustomToolParams = object { description, input_schema, name, type }`
+  - `BetaManagedAgentsCustomToolParams object { description, input_schema, name, type }`
 
     A custom tool that is executed by the API client rather than the agent. When the agent calls this tool, an `agent.custom_tool_use` event is emitted and the session goes idle, waiting for the client to provide the result via a `user.custom_tool_result` event.
 
@@ -493,7 +425,7 @@ Create Agent
 
 ### Returns
 
-- `BetaManagedAgentsAgent = object { id, archived_at, created_at, 12 more }`
+- `BetaManagedAgentsAgent object { id, archived_at, created_at, 12 more }`
 
   A Managed Agents `agent`.
 
@@ -531,7 +463,7 @@ Create Agent
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `UnionMember0 = "claude-opus-4-7" or "claude-opus-4-6" or "claude-sonnet-4-6" or 6 more`
+      - `"claude-opus-4-7" or "claude-opus-4-6" or "claude-sonnet-4-6" or 6 more`
 
         The model that will power your agent.
 
@@ -573,7 +505,7 @@ Create Agent
 
           High-performance model for agents and coding
 
-      - `UnionMember1 = string`
+      - `string`
 
     - `speed: optional "standard" or "fast"`
 
@@ -607,7 +539,7 @@ Create Agent
 
   - `skills: array of BetaManagedAgentsAnthropicSkill or BetaManagedAgentsCustomSkill`
 
-    - `BetaManagedAgentsAnthropicSkill = object { skill_id, type, version }`
+    - `BetaManagedAgentsAnthropicSkill object { skill_id, type, version }`
 
       A resolved Anthropic-managed skill.
 
@@ -619,7 +551,7 @@ Create Agent
 
       - `version: string`
 
-    - `BetaManagedAgentsCustomSkill = object { skill_id, type, version }`
+    - `BetaManagedAgentsCustomSkill object { skill_id, type, version }`
 
       A resolved user-created custom skill.
 
@@ -635,7 +567,7 @@ Create Agent
 
   - `tools: array of BetaManagedAgentsAgentToolset20260401 or BetaManagedAgentsMCPToolset or BetaManagedAgentsCustomTool`
 
-    - `BetaManagedAgentsAgentToolset20260401 = object { configs, default_config, type }`
+    - `BetaManagedAgentsAgentToolset20260401 object { configs, default_config, type }`
 
       - `configs: array of BetaManagedAgentsAgentToolConfig`
 
@@ -665,7 +597,7 @@ Create Agent
 
           Permission policy for tool execution.
 
-          - `BetaManagedAgentsAlwaysAllowPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
 
             Tool calls are automatically approved without user confirmation.
 
@@ -673,7 +605,7 @@ Create Agent
 
               - `"always_allow"`
 
-          - `BetaManagedAgentsAlwaysAskPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAskPolicy object { type }`
 
             Tool calls require user confirmation before execution.
 
@@ -691,27 +623,19 @@ Create Agent
 
           Permission policy for tool execution.
 
-          - `BetaManagedAgentsAlwaysAllowPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
 
             Tool calls are automatically approved without user confirmation.
 
-            - `type: "always_allow"`
-
-              - `"always_allow"`
-
-          - `BetaManagedAgentsAlwaysAskPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAskPolicy object { type }`
 
             Tool calls require user confirmation before execution.
-
-            - `type: "always_ask"`
-
-              - `"always_ask"`
 
       - `type: "agent_toolset_20260401"`
 
         - `"agent_toolset_20260401"`
 
-    - `BetaManagedAgentsMCPToolset = object { configs, default_config, mcp_server_name, type }`
+    - `BetaManagedAgentsMCPToolset object { configs, default_config, mcp_server_name, type }`
 
       - `configs: array of BetaManagedAgentsMCPToolConfig`
 
@@ -723,21 +647,13 @@ Create Agent
 
           Permission policy for tool execution.
 
-          - `BetaManagedAgentsAlwaysAllowPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
 
             Tool calls are automatically approved without user confirmation.
 
-            - `type: "always_allow"`
-
-              - `"always_allow"`
-
-          - `BetaManagedAgentsAlwaysAskPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAskPolicy object { type }`
 
             Tool calls require user confirmation before execution.
-
-            - `type: "always_ask"`
-
-              - `"always_ask"`
 
       - `default_config: BetaManagedAgentsMCPToolsetDefaultConfig`
 
@@ -749,21 +665,13 @@ Create Agent
 
           Permission policy for tool execution.
 
-          - `BetaManagedAgentsAlwaysAllowPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
 
             Tool calls are automatically approved without user confirmation.
 
-            - `type: "always_allow"`
-
-              - `"always_allow"`
-
-          - `BetaManagedAgentsAlwaysAskPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAskPolicy object { type }`
 
             Tool calls require user confirmation before execution.
-
-            - `type: "always_ask"`
-
-              - `"always_ask"`
 
       - `mcp_server_name: string`
 
@@ -771,7 +679,7 @@ Create Agent
 
         - `"mcp_toolset"`
 
-    - `BetaManagedAgentsCustomTool = object { description, input_schema, name, type }`
+    - `BetaManagedAgentsCustomTool object { description, input_schema, name, type }`
 
       A custom tool as returned in API responses.
 
@@ -837,7 +745,79 @@ curl https://api.anthropic.com/v1/agents \
         }"
 ```
 
-## List
+#### Response
+
+```json
+{
+  "id": "agent_011CZkYpogX7uDKUyvBTophP",
+  "archived_at": null,
+  "created_at": "2026-03-15T10:00:00Z",
+  "description": "A general-purpose starter agent.",
+  "mcp_servers": [
+    {
+      "name": "example-mcp",
+      "type": "url",
+      "url": "https://example-server.modelcontextprotocol.io/sse"
+    }
+  ],
+  "metadata": {
+    "foo": "bar"
+  },
+  "model": {
+    "id": "claude-sonnet-4-6",
+    "speed": "standard"
+  },
+  "multiagent": {
+    "agents": [
+      {
+        "id": "agent_011CZkYqphY8vELVzwCUpqiQ",
+        "type": "agent",
+        "version": 1
+      }
+    ],
+    "type": "coordinator"
+  },
+  "name": "My First Agent",
+  "skills": [
+    {
+      "skill_id": "xlsx",
+      "type": "anthropic",
+      "version": "1"
+    },
+    {
+      "skill_id": "skill_011CZkZFNu9hAbo3jZPRgTlx",
+      "type": "custom",
+      "version": "2"
+    }
+  ],
+  "system": "You are a general-purpose agent that can research, write code, run commands, and use connected tools to complete the user's task end to end.",
+  "tools": [
+    {
+      "configs": [
+        {
+          "enabled": true,
+          "name": "bash",
+          "permission_policy": {
+            "type": "always_allow"
+          }
+        }
+      ],
+      "default_config": {
+        "enabled": true,
+        "permission_policy": {
+          "type": "always_ask"
+        }
+      },
+      "type": "agent_toolset_20260401"
+    }
+  ],
+  "type": "agent",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "version": 1
+}
+```
+
+## List Agents
 
 **get** `/v1/agents`
 
@@ -871,9 +851,9 @@ List Agents
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = string`
+  - `string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -965,7 +945,7 @@ List Agents
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `UnionMember0 = "claude-opus-4-7" or "claude-opus-4-6" or "claude-sonnet-4-6" or 6 more`
+      - `"claude-opus-4-7" or "claude-opus-4-6" or "claude-sonnet-4-6" or 6 more`
 
         The model that will power your agent.
 
@@ -1007,7 +987,7 @@ List Agents
 
           High-performance model for agents and coding
 
-      - `UnionMember1 = string`
+      - `string`
 
     - `speed: optional "standard" or "fast"`
 
@@ -1041,7 +1021,7 @@ List Agents
 
   - `skills: array of BetaManagedAgentsAnthropicSkill or BetaManagedAgentsCustomSkill`
 
-    - `BetaManagedAgentsAnthropicSkill = object { skill_id, type, version }`
+    - `BetaManagedAgentsAnthropicSkill object { skill_id, type, version }`
 
       A resolved Anthropic-managed skill.
 
@@ -1053,7 +1033,7 @@ List Agents
 
       - `version: string`
 
-    - `BetaManagedAgentsCustomSkill = object { skill_id, type, version }`
+    - `BetaManagedAgentsCustomSkill object { skill_id, type, version }`
 
       A resolved user-created custom skill.
 
@@ -1069,7 +1049,7 @@ List Agents
 
   - `tools: array of BetaManagedAgentsAgentToolset20260401 or BetaManagedAgentsMCPToolset or BetaManagedAgentsCustomTool`
 
-    - `BetaManagedAgentsAgentToolset20260401 = object { configs, default_config, type }`
+    - `BetaManagedAgentsAgentToolset20260401 object { configs, default_config, type }`
 
       - `configs: array of BetaManagedAgentsAgentToolConfig`
 
@@ -1099,7 +1079,7 @@ List Agents
 
           Permission policy for tool execution.
 
-          - `BetaManagedAgentsAlwaysAllowPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
 
             Tool calls are automatically approved without user confirmation.
 
@@ -1107,7 +1087,7 @@ List Agents
 
               - `"always_allow"`
 
-          - `BetaManagedAgentsAlwaysAskPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAskPolicy object { type }`
 
             Tool calls require user confirmation before execution.
 
@@ -1125,27 +1105,19 @@ List Agents
 
           Permission policy for tool execution.
 
-          - `BetaManagedAgentsAlwaysAllowPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
 
             Tool calls are automatically approved without user confirmation.
 
-            - `type: "always_allow"`
-
-              - `"always_allow"`
-
-          - `BetaManagedAgentsAlwaysAskPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAskPolicy object { type }`
 
             Tool calls require user confirmation before execution.
-
-            - `type: "always_ask"`
-
-              - `"always_ask"`
 
       - `type: "agent_toolset_20260401"`
 
         - `"agent_toolset_20260401"`
 
-    - `BetaManagedAgentsMCPToolset = object { configs, default_config, mcp_server_name, type }`
+    - `BetaManagedAgentsMCPToolset object { configs, default_config, mcp_server_name, type }`
 
       - `configs: array of BetaManagedAgentsMCPToolConfig`
 
@@ -1157,21 +1129,13 @@ List Agents
 
           Permission policy for tool execution.
 
-          - `BetaManagedAgentsAlwaysAllowPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
 
             Tool calls are automatically approved without user confirmation.
 
-            - `type: "always_allow"`
-
-              - `"always_allow"`
-
-          - `BetaManagedAgentsAlwaysAskPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAskPolicy object { type }`
 
             Tool calls require user confirmation before execution.
-
-            - `type: "always_ask"`
-
-              - `"always_ask"`
 
       - `default_config: BetaManagedAgentsMCPToolsetDefaultConfig`
 
@@ -1183,21 +1147,13 @@ List Agents
 
           Permission policy for tool execution.
 
-          - `BetaManagedAgentsAlwaysAllowPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
 
             Tool calls are automatically approved without user confirmation.
 
-            - `type: "always_allow"`
-
-              - `"always_allow"`
-
-          - `BetaManagedAgentsAlwaysAskPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAskPolicy object { type }`
 
             Tool calls require user confirmation before execution.
-
-            - `type: "always_ask"`
-
-              - `"always_ask"`
 
       - `mcp_server_name: string`
 
@@ -1205,7 +1161,7 @@ List Agents
 
         - `"mcp_toolset"`
 
-    - `BetaManagedAgentsCustomTool = object { description, input_schema, name, type }`
+    - `BetaManagedAgentsCustomTool object { description, input_schema, name, type }`
 
       A custom tool as returned in API responses.
 
@@ -1260,7 +1216,84 @@ curl https://api.anthropic.com/v1/agents \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 
-## Retrieve
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "agent_011CZkYpogX7uDKUyvBTophP",
+      "archived_at": null,
+      "created_at": "2026-03-15T10:00:00Z",
+      "description": "A general-purpose starter agent.",
+      "mcp_servers": [
+        {
+          "name": "example-mcp",
+          "type": "url",
+          "url": "https://example-server.modelcontextprotocol.io/sse"
+        }
+      ],
+      "metadata": {
+        "foo": "bar"
+      },
+      "model": {
+        "id": "claude-sonnet-4-6",
+        "speed": "standard"
+      },
+      "multiagent": {
+        "agents": [
+          {
+            "id": "agent_011CZkYqphY8vELVzwCUpqiQ",
+            "type": "agent",
+            "version": 1
+          }
+        ],
+        "type": "coordinator"
+      },
+      "name": "My First Agent",
+      "skills": [
+        {
+          "skill_id": "xlsx",
+          "type": "anthropic",
+          "version": "1"
+        },
+        {
+          "skill_id": "skill_011CZkZFNu9hAbo3jZPRgTlx",
+          "type": "custom",
+          "version": "2"
+        }
+      ],
+      "system": "You are a general-purpose agent that can research, write code, run commands, and use connected tools to complete the user's task end to end.",
+      "tools": [
+        {
+          "configs": [
+            {
+              "enabled": true,
+              "name": "bash",
+              "permission_policy": {
+                "type": "always_allow"
+              }
+            }
+          ],
+          "default_config": {
+            "enabled": true,
+            "permission_policy": {
+              "type": "always_ask"
+            }
+          },
+          "type": "agent_toolset_20260401"
+        }
+      ],
+      "type": "agent",
+      "updated_at": "2026-03-15T10:00:00Z",
+      "version": 1
+    }
+  ],
+  "next_page": "next_page"
+}
+```
+
+## Get Agent
 
 **get** `/v1/agents/{agent_id}`
 
@@ -1282,9 +1315,9 @@ Get Agent
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = string`
+  - `string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -1338,7 +1371,7 @@ Get Agent
 
 ### Returns
 
-- `BetaManagedAgentsAgent = object { id, archived_at, created_at, 12 more }`
+- `BetaManagedAgentsAgent object { id, archived_at, created_at, 12 more }`
 
   A Managed Agents `agent`.
 
@@ -1376,7 +1409,7 @@ Get Agent
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `UnionMember0 = "claude-opus-4-7" or "claude-opus-4-6" or "claude-sonnet-4-6" or 6 more`
+      - `"claude-opus-4-7" or "claude-opus-4-6" or "claude-sonnet-4-6" or 6 more`
 
         The model that will power your agent.
 
@@ -1418,7 +1451,7 @@ Get Agent
 
           High-performance model for agents and coding
 
-      - `UnionMember1 = string`
+      - `string`
 
     - `speed: optional "standard" or "fast"`
 
@@ -1452,7 +1485,7 @@ Get Agent
 
   - `skills: array of BetaManagedAgentsAnthropicSkill or BetaManagedAgentsCustomSkill`
 
-    - `BetaManagedAgentsAnthropicSkill = object { skill_id, type, version }`
+    - `BetaManagedAgentsAnthropicSkill object { skill_id, type, version }`
 
       A resolved Anthropic-managed skill.
 
@@ -1464,7 +1497,7 @@ Get Agent
 
       - `version: string`
 
-    - `BetaManagedAgentsCustomSkill = object { skill_id, type, version }`
+    - `BetaManagedAgentsCustomSkill object { skill_id, type, version }`
 
       A resolved user-created custom skill.
 
@@ -1480,7 +1513,7 @@ Get Agent
 
   - `tools: array of BetaManagedAgentsAgentToolset20260401 or BetaManagedAgentsMCPToolset or BetaManagedAgentsCustomTool`
 
-    - `BetaManagedAgentsAgentToolset20260401 = object { configs, default_config, type }`
+    - `BetaManagedAgentsAgentToolset20260401 object { configs, default_config, type }`
 
       - `configs: array of BetaManagedAgentsAgentToolConfig`
 
@@ -1510,7 +1543,7 @@ Get Agent
 
           Permission policy for tool execution.
 
-          - `BetaManagedAgentsAlwaysAllowPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
 
             Tool calls are automatically approved without user confirmation.
 
@@ -1518,7 +1551,7 @@ Get Agent
 
               - `"always_allow"`
 
-          - `BetaManagedAgentsAlwaysAskPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAskPolicy object { type }`
 
             Tool calls require user confirmation before execution.
 
@@ -1536,27 +1569,19 @@ Get Agent
 
           Permission policy for tool execution.
 
-          - `BetaManagedAgentsAlwaysAllowPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
 
             Tool calls are automatically approved without user confirmation.
 
-            - `type: "always_allow"`
-
-              - `"always_allow"`
-
-          - `BetaManagedAgentsAlwaysAskPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAskPolicy object { type }`
 
             Tool calls require user confirmation before execution.
-
-            - `type: "always_ask"`
-
-              - `"always_ask"`
 
       - `type: "agent_toolset_20260401"`
 
         - `"agent_toolset_20260401"`
 
-    - `BetaManagedAgentsMCPToolset = object { configs, default_config, mcp_server_name, type }`
+    - `BetaManagedAgentsMCPToolset object { configs, default_config, mcp_server_name, type }`
 
       - `configs: array of BetaManagedAgentsMCPToolConfig`
 
@@ -1568,21 +1593,13 @@ Get Agent
 
           Permission policy for tool execution.
 
-          - `BetaManagedAgentsAlwaysAllowPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
 
             Tool calls are automatically approved without user confirmation.
 
-            - `type: "always_allow"`
-
-              - `"always_allow"`
-
-          - `BetaManagedAgentsAlwaysAskPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAskPolicy object { type }`
 
             Tool calls require user confirmation before execution.
-
-            - `type: "always_ask"`
-
-              - `"always_ask"`
 
       - `default_config: BetaManagedAgentsMCPToolsetDefaultConfig`
 
@@ -1594,21 +1611,13 @@ Get Agent
 
           Permission policy for tool execution.
 
-          - `BetaManagedAgentsAlwaysAllowPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
 
             Tool calls are automatically approved without user confirmation.
 
-            - `type: "always_allow"`
-
-              - `"always_allow"`
-
-          - `BetaManagedAgentsAlwaysAskPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAskPolicy object { type }`
 
             Tool calls require user confirmation before execution.
-
-            - `type: "always_ask"`
-
-              - `"always_ask"`
 
       - `mcp_server_name: string`
 
@@ -1616,7 +1625,7 @@ Get Agent
 
         - `"mcp_toolset"`
 
-    - `BetaManagedAgentsCustomTool = object { description, input_schema, name, type }`
+    - `BetaManagedAgentsCustomTool object { description, input_schema, name, type }`
 
       A custom tool as returned in API responses.
 
@@ -1667,7 +1676,79 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 
-## Update
+#### Response
+
+```json
+{
+  "id": "agent_011CZkYpogX7uDKUyvBTophP",
+  "archived_at": null,
+  "created_at": "2026-03-15T10:00:00Z",
+  "description": "A general-purpose starter agent.",
+  "mcp_servers": [
+    {
+      "name": "example-mcp",
+      "type": "url",
+      "url": "https://example-server.modelcontextprotocol.io/sse"
+    }
+  ],
+  "metadata": {
+    "foo": "bar"
+  },
+  "model": {
+    "id": "claude-sonnet-4-6",
+    "speed": "standard"
+  },
+  "multiagent": {
+    "agents": [
+      {
+        "id": "agent_011CZkYqphY8vELVzwCUpqiQ",
+        "type": "agent",
+        "version": 1
+      }
+    ],
+    "type": "coordinator"
+  },
+  "name": "My First Agent",
+  "skills": [
+    {
+      "skill_id": "xlsx",
+      "type": "anthropic",
+      "version": "1"
+    },
+    {
+      "skill_id": "skill_011CZkZFNu9hAbo3jZPRgTlx",
+      "type": "custom",
+      "version": "2"
+    }
+  ],
+  "system": "You are a general-purpose agent that can research, write code, run commands, and use connected tools to complete the user's task end to end.",
+  "tools": [
+    {
+      "configs": [
+        {
+          "enabled": true,
+          "name": "bash",
+          "permission_policy": {
+            "type": "always_allow"
+          }
+        }
+      ],
+      "default_config": {
+        "enabled": true,
+        "permission_policy": {
+          "type": "always_ask"
+        }
+      },
+      "type": "agent_toolset_20260401"
+    }
+  ],
+  "type": "agent",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "version": 1
+}
+```
+
+## Update Agent
 
 **post** `/v1/agents/{agent_id}`
 
@@ -1683,9 +1764,9 @@ Update Agent
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = string`
+  - `string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -1777,7 +1858,7 @@ Update Agent
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `UnionMember0 = "claude-opus-4-7" or "claude-opus-4-6" or "claude-sonnet-4-6" or 6 more`
+    - `"claude-opus-4-7" or "claude-opus-4-6" or "claude-sonnet-4-6" or 6 more`
 
       The model that will power your agent.
 
@@ -1819,9 +1900,9 @@ Update Agent
 
         High-performance model for agents and coding
 
-    - `UnionMember1 = string`
+    - `string`
 
-  - `BetaManagedAgentsModelConfigParams = object { id, speed }`
+  - `BetaManagedAgentsModelConfigParams object { id, speed }`
 
     An object that defines additional configuration control over model use
 
@@ -1830,50 +1911,6 @@ Update Agent
       The model that will power your agent.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
-
-      - `UnionMember0 = "claude-opus-4-7" or "claude-opus-4-6" or "claude-sonnet-4-6" or 6 more`
-
-        The model that will power your agent.
-
-        See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
-
-        - `"claude-opus-4-7"`
-
-          Frontier intelligence for long-running agents and coding
-
-        - `"claude-opus-4-6"`
-
-          Most intelligent model for building agents and coding
-
-        - `"claude-sonnet-4-6"`
-
-          Best combination of speed and intelligence
-
-        - `"claude-haiku-4-5"`
-
-          Fastest model with near-frontier intelligence
-
-        - `"claude-haiku-4-5-20251001"`
-
-          Fastest model with near-frontier intelligence
-
-        - `"claude-opus-4-5"`
-
-          Premium model combining maximum intelligence with practical performance
-
-        - `"claude-opus-4-5-20251101"`
-
-          Premium model combining maximum intelligence with practical performance
-
-        - `"claude-sonnet-4-5"`
-
-          High-performance model for agents and coding
-
-        - `"claude-sonnet-4-5-20250929"`
-
-          High-performance model for agents and coding
-
-      - `UnionMember1 = string`
 
     - `speed: optional "standard" or "fast"`
 
@@ -1891,9 +1928,9 @@ Update Agent
 
     Agents the coordinator may spawn as session threads. 1–20 entries. Each entry is an agent ID string, a versioned `{"type":"agent","id","version"}` reference, or `{"type":"self"}` to allow recursive self-invocation. Entries must reference distinct agents (after resolving `self` and string forms); at most one `self`. Referenced agents must exist, must not be archived, and must not themselves have `multiagent` set (depth limit 1).
 
-    - `UnionMember0 = string`
+    - `string`
 
-    - `BetaManagedAgentsAgentParams = object { id, type, version }`
+    - `BetaManagedAgentsAgentParams object { id, type, version }`
 
       Specification for an Agent. Provide a specific `version` or use the short-form `agent="agent_id"` for the most recent version
 
@@ -1909,7 +1946,7 @@ Update Agent
 
         The specific `agent` version to use. Omit to use the latest version. Must be at least 1 if specified.
 
-    - `BetaManagedAgentsMultiagentSelfParams = object { type }`
+    - `BetaManagedAgentsMultiagentSelfParams object { type }`
 
       Sentinel roster entry meaning "the agent that owns this configuration". Resolved server-side to a concrete agent reference.
 
@@ -1929,7 +1966,7 @@ Update Agent
 
   Skills. Full replacement. Omit to preserve; send empty array or null to clear. Maximum 20.
 
-  - `BetaManagedAgentsAnthropicSkillParams = object { skill_id, type, version }`
+  - `BetaManagedAgentsAnthropicSkillParams object { skill_id, type, version }`
 
     An Anthropic-managed skill.
 
@@ -1945,7 +1982,7 @@ Update Agent
 
       Version to pin. Defaults to latest if omitted.
 
-  - `BetaManagedAgentsCustomSkillParams = object { skill_id, type, version }`
+  - `BetaManagedAgentsCustomSkillParams object { skill_id, type, version }`
 
     A user-created custom skill.
 
@@ -1969,7 +2006,7 @@ Update Agent
 
   Tool configurations available to the agent. Full replacement. Omit to preserve; send empty array or null to clear. Maximum of 128 tools across all toolsets allowed.
 
-  - `BetaManagedAgentsAgentToolset20260401Params = object { type, configs, default_config }`
+  - `BetaManagedAgentsAgentToolset20260401Params object { type, configs, default_config }`
 
     Configuration for built-in agent tools. Use this to enable or disable groups of tools available to the agent.
 
@@ -2009,7 +2046,7 @@ Update Agent
 
         Permission policy for tool execution.
 
-        - `BetaManagedAgentsAlwaysAllowPolicy = object { type }`
+        - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
 
           Tool calls are automatically approved without user confirmation.
 
@@ -2017,7 +2054,7 @@ Update Agent
 
             - `"always_allow"`
 
-        - `BetaManagedAgentsAlwaysAskPolicy = object { type }`
+        - `BetaManagedAgentsAlwaysAskPolicy object { type }`
 
           Tool calls require user confirmation before execution.
 
@@ -2037,23 +2074,15 @@ Update Agent
 
         Permission policy for tool execution.
 
-        - `BetaManagedAgentsAlwaysAllowPolicy = object { type }`
+        - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
 
           Tool calls are automatically approved without user confirmation.
 
-          - `type: "always_allow"`
-
-            - `"always_allow"`
-
-        - `BetaManagedAgentsAlwaysAskPolicy = object { type }`
+        - `BetaManagedAgentsAlwaysAskPolicy object { type }`
 
           Tool calls require user confirmation before execution.
 
-          - `type: "always_ask"`
-
-            - `"always_ask"`
-
-  - `BetaManagedAgentsMCPToolsetParams = object { mcp_server_name, type, configs, default_config }`
+  - `BetaManagedAgentsMCPToolsetParams object { mcp_server_name, type, configs, default_config }`
 
     Configuration for tools from an MCP server defined in `mcp_servers`.
 
@@ -2081,21 +2110,13 @@ Update Agent
 
         Permission policy for tool execution.
 
-        - `BetaManagedAgentsAlwaysAllowPolicy = object { type }`
+        - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
 
           Tool calls are automatically approved without user confirmation.
 
-          - `type: "always_allow"`
-
-            - `"always_allow"`
-
-        - `BetaManagedAgentsAlwaysAskPolicy = object { type }`
+        - `BetaManagedAgentsAlwaysAskPolicy object { type }`
 
           Tool calls require user confirmation before execution.
-
-          - `type: "always_ask"`
-
-            - `"always_ask"`
 
     - `default_config: optional BetaManagedAgentsMCPToolsetDefaultConfigParams`
 
@@ -2109,23 +2130,15 @@ Update Agent
 
         Permission policy for tool execution.
 
-        - `BetaManagedAgentsAlwaysAllowPolicy = object { type }`
+        - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
 
           Tool calls are automatically approved without user confirmation.
 
-          - `type: "always_allow"`
-
-            - `"always_allow"`
-
-        - `BetaManagedAgentsAlwaysAskPolicy = object { type }`
+        - `BetaManagedAgentsAlwaysAskPolicy object { type }`
 
           Tool calls require user confirmation before execution.
 
-          - `type: "always_ask"`
-
-            - `"always_ask"`
-
-  - `BetaManagedAgentsCustomToolParams = object { description, input_schema, name, type }`
+  - `BetaManagedAgentsCustomToolParams object { description, input_schema, name, type }`
 
     A custom tool that is executed by the API client rather than the agent. When the agent calls this tool, an `agent.custom_tool_use` event is emitted and the session goes idle, waiting for the client to provide the result via a `user.custom_tool_result` event.
 
@@ -2161,7 +2174,7 @@ Update Agent
 
 ### Returns
 
-- `BetaManagedAgentsAgent = object { id, archived_at, created_at, 12 more }`
+- `BetaManagedAgentsAgent object { id, archived_at, created_at, 12 more }`
 
   A Managed Agents `agent`.
 
@@ -2199,7 +2212,7 @@ Update Agent
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `UnionMember0 = "claude-opus-4-7" or "claude-opus-4-6" or "claude-sonnet-4-6" or 6 more`
+      - `"claude-opus-4-7" or "claude-opus-4-6" or "claude-sonnet-4-6" or 6 more`
 
         The model that will power your agent.
 
@@ -2241,7 +2254,7 @@ Update Agent
 
           High-performance model for agents and coding
 
-      - `UnionMember1 = string`
+      - `string`
 
     - `speed: optional "standard" or "fast"`
 
@@ -2275,7 +2288,7 @@ Update Agent
 
   - `skills: array of BetaManagedAgentsAnthropicSkill or BetaManagedAgentsCustomSkill`
 
-    - `BetaManagedAgentsAnthropicSkill = object { skill_id, type, version }`
+    - `BetaManagedAgentsAnthropicSkill object { skill_id, type, version }`
 
       A resolved Anthropic-managed skill.
 
@@ -2287,7 +2300,7 @@ Update Agent
 
       - `version: string`
 
-    - `BetaManagedAgentsCustomSkill = object { skill_id, type, version }`
+    - `BetaManagedAgentsCustomSkill object { skill_id, type, version }`
 
       A resolved user-created custom skill.
 
@@ -2303,7 +2316,7 @@ Update Agent
 
   - `tools: array of BetaManagedAgentsAgentToolset20260401 or BetaManagedAgentsMCPToolset or BetaManagedAgentsCustomTool`
 
-    - `BetaManagedAgentsAgentToolset20260401 = object { configs, default_config, type }`
+    - `BetaManagedAgentsAgentToolset20260401 object { configs, default_config, type }`
 
       - `configs: array of BetaManagedAgentsAgentToolConfig`
 
@@ -2333,7 +2346,7 @@ Update Agent
 
           Permission policy for tool execution.
 
-          - `BetaManagedAgentsAlwaysAllowPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
 
             Tool calls are automatically approved without user confirmation.
 
@@ -2341,7 +2354,7 @@ Update Agent
 
               - `"always_allow"`
 
-          - `BetaManagedAgentsAlwaysAskPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAskPolicy object { type }`
 
             Tool calls require user confirmation before execution.
 
@@ -2359,27 +2372,19 @@ Update Agent
 
           Permission policy for tool execution.
 
-          - `BetaManagedAgentsAlwaysAllowPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
 
             Tool calls are automatically approved without user confirmation.
 
-            - `type: "always_allow"`
-
-              - `"always_allow"`
-
-          - `BetaManagedAgentsAlwaysAskPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAskPolicy object { type }`
 
             Tool calls require user confirmation before execution.
-
-            - `type: "always_ask"`
-
-              - `"always_ask"`
 
       - `type: "agent_toolset_20260401"`
 
         - `"agent_toolset_20260401"`
 
-    - `BetaManagedAgentsMCPToolset = object { configs, default_config, mcp_server_name, type }`
+    - `BetaManagedAgentsMCPToolset object { configs, default_config, mcp_server_name, type }`
 
       - `configs: array of BetaManagedAgentsMCPToolConfig`
 
@@ -2391,21 +2396,13 @@ Update Agent
 
           Permission policy for tool execution.
 
-          - `BetaManagedAgentsAlwaysAllowPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
 
             Tool calls are automatically approved without user confirmation.
 
-            - `type: "always_allow"`
-
-              - `"always_allow"`
-
-          - `BetaManagedAgentsAlwaysAskPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAskPolicy object { type }`
 
             Tool calls require user confirmation before execution.
-
-            - `type: "always_ask"`
-
-              - `"always_ask"`
 
       - `default_config: BetaManagedAgentsMCPToolsetDefaultConfig`
 
@@ -2417,21 +2414,13 @@ Update Agent
 
           Permission policy for tool execution.
 
-          - `BetaManagedAgentsAlwaysAllowPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
 
             Tool calls are automatically approved without user confirmation.
 
-            - `type: "always_allow"`
-
-              - `"always_allow"`
-
-          - `BetaManagedAgentsAlwaysAskPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAskPolicy object { type }`
 
             Tool calls require user confirmation before execution.
-
-            - `type: "always_ask"`
-
-              - `"always_ask"`
 
       - `mcp_server_name: string`
 
@@ -2439,7 +2428,7 @@ Update Agent
 
         - `"mcp_toolset"`
 
-    - `BetaManagedAgentsCustomTool = object { description, input_schema, name, type }`
+    - `BetaManagedAgentsCustomTool object { description, input_schema, name, type }`
 
       A custom tool as returned in API responses.
 
@@ -2495,7 +2484,79 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID \
         }"
 ```
 
-## Archive
+#### Response
+
+```json
+{
+  "id": "agent_011CZkYpogX7uDKUyvBTophP",
+  "archived_at": null,
+  "created_at": "2026-03-15T10:00:00Z",
+  "description": "A general-purpose starter agent.",
+  "mcp_servers": [
+    {
+      "name": "example-mcp",
+      "type": "url",
+      "url": "https://example-server.modelcontextprotocol.io/sse"
+    }
+  ],
+  "metadata": {
+    "foo": "bar"
+  },
+  "model": {
+    "id": "claude-sonnet-4-6",
+    "speed": "standard"
+  },
+  "multiagent": {
+    "agents": [
+      {
+        "id": "agent_011CZkYqphY8vELVzwCUpqiQ",
+        "type": "agent",
+        "version": 1
+      }
+    ],
+    "type": "coordinator"
+  },
+  "name": "My First Agent",
+  "skills": [
+    {
+      "skill_id": "xlsx",
+      "type": "anthropic",
+      "version": "1"
+    },
+    {
+      "skill_id": "skill_011CZkZFNu9hAbo3jZPRgTlx",
+      "type": "custom",
+      "version": "2"
+    }
+  ],
+  "system": "You are a general-purpose agent that can research, write code, run commands, and use connected tools to complete the user's task end to end.",
+  "tools": [
+    {
+      "configs": [
+        {
+          "enabled": true,
+          "name": "bash",
+          "permission_policy": {
+            "type": "always_allow"
+          }
+        }
+      ],
+      "default_config": {
+        "enabled": true,
+        "permission_policy": {
+          "type": "always_ask"
+        }
+      },
+      "type": "agent_toolset_20260401"
+    }
+  ],
+  "type": "agent",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "version": 1
+}
+```
+
+## Archive Agent
 
 **post** `/v1/agents/{agent_id}/archive`
 
@@ -2511,9 +2572,9 @@ Archive Agent
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = string`
+  - `string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -2567,7 +2628,7 @@ Archive Agent
 
 ### Returns
 
-- `BetaManagedAgentsAgent = object { id, archived_at, created_at, 12 more }`
+- `BetaManagedAgentsAgent object { id, archived_at, created_at, 12 more }`
 
   A Managed Agents `agent`.
 
@@ -2605,7 +2666,7 @@ Archive Agent
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `UnionMember0 = "claude-opus-4-7" or "claude-opus-4-6" or "claude-sonnet-4-6" or 6 more`
+      - `"claude-opus-4-7" or "claude-opus-4-6" or "claude-sonnet-4-6" or 6 more`
 
         The model that will power your agent.
 
@@ -2647,7 +2708,7 @@ Archive Agent
 
           High-performance model for agents and coding
 
-      - `UnionMember1 = string`
+      - `string`
 
     - `speed: optional "standard" or "fast"`
 
@@ -2681,7 +2742,7 @@ Archive Agent
 
   - `skills: array of BetaManagedAgentsAnthropicSkill or BetaManagedAgentsCustomSkill`
 
-    - `BetaManagedAgentsAnthropicSkill = object { skill_id, type, version }`
+    - `BetaManagedAgentsAnthropicSkill object { skill_id, type, version }`
 
       A resolved Anthropic-managed skill.
 
@@ -2693,7 +2754,7 @@ Archive Agent
 
       - `version: string`
 
-    - `BetaManagedAgentsCustomSkill = object { skill_id, type, version }`
+    - `BetaManagedAgentsCustomSkill object { skill_id, type, version }`
 
       A resolved user-created custom skill.
 
@@ -2709,7 +2770,7 @@ Archive Agent
 
   - `tools: array of BetaManagedAgentsAgentToolset20260401 or BetaManagedAgentsMCPToolset or BetaManagedAgentsCustomTool`
 
-    - `BetaManagedAgentsAgentToolset20260401 = object { configs, default_config, type }`
+    - `BetaManagedAgentsAgentToolset20260401 object { configs, default_config, type }`
 
       - `configs: array of BetaManagedAgentsAgentToolConfig`
 
@@ -2739,7 +2800,7 @@ Archive Agent
 
           Permission policy for tool execution.
 
-          - `BetaManagedAgentsAlwaysAllowPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
 
             Tool calls are automatically approved without user confirmation.
 
@@ -2747,7 +2808,7 @@ Archive Agent
 
               - `"always_allow"`
 
-          - `BetaManagedAgentsAlwaysAskPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAskPolicy object { type }`
 
             Tool calls require user confirmation before execution.
 
@@ -2765,27 +2826,19 @@ Archive Agent
 
           Permission policy for tool execution.
 
-          - `BetaManagedAgentsAlwaysAllowPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
 
             Tool calls are automatically approved without user confirmation.
 
-            - `type: "always_allow"`
-
-              - `"always_allow"`
-
-          - `BetaManagedAgentsAlwaysAskPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAskPolicy object { type }`
 
             Tool calls require user confirmation before execution.
-
-            - `type: "always_ask"`
-
-              - `"always_ask"`
 
       - `type: "agent_toolset_20260401"`
 
         - `"agent_toolset_20260401"`
 
-    - `BetaManagedAgentsMCPToolset = object { configs, default_config, mcp_server_name, type }`
+    - `BetaManagedAgentsMCPToolset object { configs, default_config, mcp_server_name, type }`
 
       - `configs: array of BetaManagedAgentsMCPToolConfig`
 
@@ -2797,21 +2850,13 @@ Archive Agent
 
           Permission policy for tool execution.
 
-          - `BetaManagedAgentsAlwaysAllowPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
 
             Tool calls are automatically approved without user confirmation.
 
-            - `type: "always_allow"`
-
-              - `"always_allow"`
-
-          - `BetaManagedAgentsAlwaysAskPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAskPolicy object { type }`
 
             Tool calls require user confirmation before execution.
-
-            - `type: "always_ask"`
-
-              - `"always_ask"`
 
       - `default_config: BetaManagedAgentsMCPToolsetDefaultConfig`
 
@@ -2823,21 +2868,13 @@ Archive Agent
 
           Permission policy for tool execution.
 
-          - `BetaManagedAgentsAlwaysAllowPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
 
             Tool calls are automatically approved without user confirmation.
 
-            - `type: "always_allow"`
-
-              - `"always_allow"`
-
-          - `BetaManagedAgentsAlwaysAskPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAskPolicy object { type }`
 
             Tool calls require user confirmation before execution.
-
-            - `type: "always_ask"`
-
-              - `"always_ask"`
 
       - `mcp_server_name: string`
 
@@ -2845,7 +2882,7 @@ Archive Agent
 
         - `"mcp_toolset"`
 
-    - `BetaManagedAgentsCustomTool = object { description, input_schema, name, type }`
+    - `BetaManagedAgentsCustomTool object { description, input_schema, name, type }`
 
       A custom tool as returned in API responses.
 
@@ -2897,11 +2934,83 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 
+#### Response
+
+```json
+{
+  "id": "agent_011CZkYpogX7uDKUyvBTophP",
+  "archived_at": null,
+  "created_at": "2026-03-15T10:00:00Z",
+  "description": "A general-purpose starter agent.",
+  "mcp_servers": [
+    {
+      "name": "example-mcp",
+      "type": "url",
+      "url": "https://example-server.modelcontextprotocol.io/sse"
+    }
+  ],
+  "metadata": {
+    "foo": "bar"
+  },
+  "model": {
+    "id": "claude-sonnet-4-6",
+    "speed": "standard"
+  },
+  "multiagent": {
+    "agents": [
+      {
+        "id": "agent_011CZkYqphY8vELVzwCUpqiQ",
+        "type": "agent",
+        "version": 1
+      }
+    ],
+    "type": "coordinator"
+  },
+  "name": "My First Agent",
+  "skills": [
+    {
+      "skill_id": "xlsx",
+      "type": "anthropic",
+      "version": "1"
+    },
+    {
+      "skill_id": "skill_011CZkZFNu9hAbo3jZPRgTlx",
+      "type": "custom",
+      "version": "2"
+    }
+  ],
+  "system": "You are a general-purpose agent that can research, write code, run commands, and use connected tools to complete the user's task end to end.",
+  "tools": [
+    {
+      "configs": [
+        {
+          "enabled": true,
+          "name": "bash",
+          "permission_policy": {
+            "type": "always_allow"
+          }
+        }
+      ],
+      "default_config": {
+        "enabled": true,
+        "permission_policy": {
+          "type": "always_ask"
+        }
+      },
+      "type": "agent_toolset_20260401"
+    }
+  ],
+  "type": "agent",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "version": 1
+}
+```
+
 ## Domain Types
 
 ### Beta Managed Agents Agent
 
-- `BetaManagedAgentsAgent = object { id, archived_at, created_at, 12 more }`
+- `BetaManagedAgentsAgent object { id, archived_at, created_at, 12 more }`
 
   A Managed Agents `agent`.
 
@@ -2939,7 +3048,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `UnionMember0 = "claude-opus-4-7" or "claude-opus-4-6" or "claude-sonnet-4-6" or 6 more`
+      - `"claude-opus-4-7" or "claude-opus-4-6" or "claude-sonnet-4-6" or 6 more`
 
         The model that will power your agent.
 
@@ -2981,7 +3090,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
           High-performance model for agents and coding
 
-      - `UnionMember1 = string`
+      - `string`
 
     - `speed: optional "standard" or "fast"`
 
@@ -3015,7 +3124,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
   - `skills: array of BetaManagedAgentsAnthropicSkill or BetaManagedAgentsCustomSkill`
 
-    - `BetaManagedAgentsAnthropicSkill = object { skill_id, type, version }`
+    - `BetaManagedAgentsAnthropicSkill object { skill_id, type, version }`
 
       A resolved Anthropic-managed skill.
 
@@ -3027,7 +3136,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
       - `version: string`
 
-    - `BetaManagedAgentsCustomSkill = object { skill_id, type, version }`
+    - `BetaManagedAgentsCustomSkill object { skill_id, type, version }`
 
       A resolved user-created custom skill.
 
@@ -3043,7 +3152,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
   - `tools: array of BetaManagedAgentsAgentToolset20260401 or BetaManagedAgentsMCPToolset or BetaManagedAgentsCustomTool`
 
-    - `BetaManagedAgentsAgentToolset20260401 = object { configs, default_config, type }`
+    - `BetaManagedAgentsAgentToolset20260401 object { configs, default_config, type }`
 
       - `configs: array of BetaManagedAgentsAgentToolConfig`
 
@@ -3073,7 +3182,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
           Permission policy for tool execution.
 
-          - `BetaManagedAgentsAlwaysAllowPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
 
             Tool calls are automatically approved without user confirmation.
 
@@ -3081,7 +3190,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
               - `"always_allow"`
 
-          - `BetaManagedAgentsAlwaysAskPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAskPolicy object { type }`
 
             Tool calls require user confirmation before execution.
 
@@ -3099,27 +3208,19 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
           Permission policy for tool execution.
 
-          - `BetaManagedAgentsAlwaysAllowPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
 
             Tool calls are automatically approved without user confirmation.
 
-            - `type: "always_allow"`
-
-              - `"always_allow"`
-
-          - `BetaManagedAgentsAlwaysAskPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAskPolicy object { type }`
 
             Tool calls require user confirmation before execution.
-
-            - `type: "always_ask"`
-
-              - `"always_ask"`
 
       - `type: "agent_toolset_20260401"`
 
         - `"agent_toolset_20260401"`
 
-    - `BetaManagedAgentsMCPToolset = object { configs, default_config, mcp_server_name, type }`
+    - `BetaManagedAgentsMCPToolset object { configs, default_config, mcp_server_name, type }`
 
       - `configs: array of BetaManagedAgentsMCPToolConfig`
 
@@ -3131,21 +3232,13 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
           Permission policy for tool execution.
 
-          - `BetaManagedAgentsAlwaysAllowPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
 
             Tool calls are automatically approved without user confirmation.
 
-            - `type: "always_allow"`
-
-              - `"always_allow"`
-
-          - `BetaManagedAgentsAlwaysAskPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAskPolicy object { type }`
 
             Tool calls require user confirmation before execution.
-
-            - `type: "always_ask"`
-
-              - `"always_ask"`
 
       - `default_config: BetaManagedAgentsMCPToolsetDefaultConfig`
 
@@ -3157,21 +3250,13 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
           Permission policy for tool execution.
 
-          - `BetaManagedAgentsAlwaysAllowPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
 
             Tool calls are automatically approved without user confirmation.
 
-            - `type: "always_allow"`
-
-              - `"always_allow"`
-
-          - `BetaManagedAgentsAlwaysAskPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAskPolicy object { type }`
 
             Tool calls require user confirmation before execution.
-
-            - `type: "always_ask"`
-
-              - `"always_ask"`
 
       - `mcp_server_name: string`
 
@@ -3179,7 +3264,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
         - `"mcp_toolset"`
 
-    - `BetaManagedAgentsCustomTool = object { description, input_schema, name, type }`
+    - `BetaManagedAgentsCustomTool object { description, input_schema, name, type }`
 
       A custom tool as returned in API responses.
 
@@ -3223,7 +3308,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
 ### Beta Managed Agents Agent Reference
 
-- `BetaManagedAgentsAgentReference = object { id, type, version }`
+- `BetaManagedAgentsAgentReference object { id, type, version }`
 
   A resolved agent reference with a concrete version.
 
@@ -3237,7 +3322,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
 ### Beta Managed Agents Agent Tool Config
 
-- `BetaManagedAgentsAgentToolConfig = object { enabled, name, permission_policy }`
+- `BetaManagedAgentsAgentToolConfig object { enabled, name, permission_policy }`
 
   Configuration for a specific agent tool.
 
@@ -3267,7 +3352,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
     Permission policy for tool execution.
 
-    - `BetaManagedAgentsAlwaysAllowPolicy = object { type }`
+    - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
 
       Tool calls are automatically approved without user confirmation.
 
@@ -3275,7 +3360,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
         - `"always_allow"`
 
-    - `BetaManagedAgentsAlwaysAskPolicy = object { type }`
+    - `BetaManagedAgentsAlwaysAskPolicy object { type }`
 
       Tool calls require user confirmation before execution.
 
@@ -3285,7 +3370,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
 ### Beta Managed Agents Agent Tool Config Params
 
-- `BetaManagedAgentsAgentToolConfigParams = object { name, enabled, permission_policy }`
+- `BetaManagedAgentsAgentToolConfigParams object { name, enabled, permission_policy }`
 
   Configuration override for a specific tool within a toolset.
 
@@ -3317,7 +3402,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
     Permission policy for tool execution.
 
-    - `BetaManagedAgentsAlwaysAllowPolicy = object { type }`
+    - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
 
       Tool calls are automatically approved without user confirmation.
 
@@ -3325,7 +3410,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
         - `"always_allow"`
 
-    - `BetaManagedAgentsAlwaysAskPolicy = object { type }`
+    - `BetaManagedAgentsAlwaysAskPolicy object { type }`
 
       Tool calls require user confirmation before execution.
 
@@ -3335,7 +3420,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
 ### Beta Managed Agents Agent Toolset Default Config
 
-- `BetaManagedAgentsAgentToolsetDefaultConfig = object { enabled, permission_policy }`
+- `BetaManagedAgentsAgentToolsetDefaultConfig object { enabled, permission_policy }`
 
   Resolved default configuration for agent tools.
 
@@ -3345,7 +3430,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
     Permission policy for tool execution.
 
-    - `BetaManagedAgentsAlwaysAllowPolicy = object { type }`
+    - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
 
       Tool calls are automatically approved without user confirmation.
 
@@ -3353,7 +3438,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
         - `"always_allow"`
 
-    - `BetaManagedAgentsAlwaysAskPolicy = object { type }`
+    - `BetaManagedAgentsAlwaysAskPolicy object { type }`
 
       Tool calls require user confirmation before execution.
 
@@ -3363,7 +3448,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
 ### Beta Managed Agents Agent Toolset Default Config Params
 
-- `BetaManagedAgentsAgentToolsetDefaultConfigParams = object { enabled, permission_policy }`
+- `BetaManagedAgentsAgentToolsetDefaultConfigParams object { enabled, permission_policy }`
 
   Default configuration for all tools in a toolset.
 
@@ -3375,7 +3460,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
     Permission policy for tool execution.
 
-    - `BetaManagedAgentsAlwaysAllowPolicy = object { type }`
+    - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
 
       Tool calls are automatically approved without user confirmation.
 
@@ -3383,7 +3468,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
         - `"always_allow"`
 
-    - `BetaManagedAgentsAlwaysAskPolicy = object { type }`
+    - `BetaManagedAgentsAlwaysAskPolicy object { type }`
 
       Tool calls require user confirmation before execution.
 
@@ -3393,7 +3478,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
 ### Beta Managed Agents Agent Toolset20260401
 
-- `BetaManagedAgentsAgentToolset20260401 = object { configs, default_config, type }`
+- `BetaManagedAgentsAgentToolset20260401 object { configs, default_config, type }`
 
   - `configs: array of BetaManagedAgentsAgentToolConfig`
 
@@ -3423,7 +3508,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
       Permission policy for tool execution.
 
-      - `BetaManagedAgentsAlwaysAllowPolicy = object { type }`
+      - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
 
         Tool calls are automatically approved without user confirmation.
 
@@ -3431,7 +3516,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
           - `"always_allow"`
 
-      - `BetaManagedAgentsAlwaysAskPolicy = object { type }`
+      - `BetaManagedAgentsAlwaysAskPolicy object { type }`
 
         Tool calls require user confirmation before execution.
 
@@ -3449,21 +3534,13 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
       Permission policy for tool execution.
 
-      - `BetaManagedAgentsAlwaysAllowPolicy = object { type }`
+      - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
 
         Tool calls are automatically approved without user confirmation.
 
-        - `type: "always_allow"`
-
-          - `"always_allow"`
-
-      - `BetaManagedAgentsAlwaysAskPolicy = object { type }`
+      - `BetaManagedAgentsAlwaysAskPolicy object { type }`
 
         Tool calls require user confirmation before execution.
-
-        - `type: "always_ask"`
-
-          - `"always_ask"`
 
   - `type: "agent_toolset_20260401"`
 
@@ -3471,7 +3548,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
 ### Beta Managed Agents Agent Toolset20260401 Bash Input
 
-- `BetaManagedAgentsAgentToolset20260401BashInput = object { command, restart, timeout_ms }`
+- `BetaManagedAgentsAgentToolset20260401BashInput object { command, restart, timeout_ms }`
 
   Input payload for the `bash` tool of the
   `agent_toolset_20260401` toolset. All fields are optional;
@@ -3495,7 +3572,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
 ### Beta Managed Agents Agent Toolset20260401 Edit Input
 
-- `BetaManagedAgentsAgentToolset20260401EditInput = object { file_path, new_string, old_string, replace_all }`
+- `BetaManagedAgentsAgentToolset20260401EditInput object { file_path, new_string, old_string, replace_all }`
 
   Input payload for the `edit` tool. Performs a string
   replacement in the named file; by default `old_string` must
@@ -3520,7 +3597,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
 ### Beta Managed Agents Agent Toolset20260401 Glob Input
 
-- `BetaManagedAgentsAgentToolset20260401GlobInput = object { pattern, path }`
+- `BetaManagedAgentsAgentToolset20260401GlobInput object { pattern, path }`
 
   Input payload for the `glob` tool. Returns paths matching a
   doublestar glob pattern, newest first.
@@ -3538,7 +3615,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
 ### Beta Managed Agents Agent Toolset20260401 Grep Input
 
-- `BetaManagedAgentsAgentToolset20260401GrepInput = object { pattern, path }`
+- `BetaManagedAgentsAgentToolset20260401GrepInput object { pattern, path }`
 
   Input payload for the `grep` tool. Searches file contents for
   a regular expression, returning matching lines.
@@ -3554,7 +3631,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
 ### Beta Managed Agents Agent Toolset20260401 Params
 
-- `BetaManagedAgentsAgentToolset20260401Params = object { type, configs, default_config }`
+- `BetaManagedAgentsAgentToolset20260401Params object { type, configs, default_config }`
 
   Configuration for built-in agent tools. Use this to enable or disable groups of tools available to the agent.
 
@@ -3594,7 +3671,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
       Permission policy for tool execution.
 
-      - `BetaManagedAgentsAlwaysAllowPolicy = object { type }`
+      - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
 
         Tool calls are automatically approved without user confirmation.
 
@@ -3602,7 +3679,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
           - `"always_allow"`
 
-      - `BetaManagedAgentsAlwaysAskPolicy = object { type }`
+      - `BetaManagedAgentsAlwaysAskPolicy object { type }`
 
         Tool calls require user confirmation before execution.
 
@@ -3622,25 +3699,17 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
       Permission policy for tool execution.
 
-      - `BetaManagedAgentsAlwaysAllowPolicy = object { type }`
+      - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
 
         Tool calls are automatically approved without user confirmation.
 
-        - `type: "always_allow"`
-
-          - `"always_allow"`
-
-      - `BetaManagedAgentsAlwaysAskPolicy = object { type }`
+      - `BetaManagedAgentsAlwaysAskPolicy object { type }`
 
         Tool calls require user confirmation before execution.
 
-        - `type: "always_ask"`
-
-          - `"always_ask"`
-
 ### Beta Managed Agents Agent Toolset20260401 Read Input
 
-- `BetaManagedAgentsAgentToolset20260401ReadInput = object { file_path, view_range }`
+- `BetaManagedAgentsAgentToolset20260401ReadInput object { file_path, view_range }`
 
   Input payload for the `read` tool. Reads file contents
   relative to the runner's working directory (or absolute when
@@ -3658,7 +3727,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
 ### Beta Managed Agents Agent Toolset20260401 Write Input
 
-- `BetaManagedAgentsAgentToolset20260401WriteInput = object { content, file_path }`
+- `BetaManagedAgentsAgentToolset20260401WriteInput object { content, file_path }`
 
   Input payload for the `write` tool. Writes (overwriting) the
   entire file contents.
@@ -3673,7 +3742,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
 ### Beta Managed Agents Always Allow Policy
 
-- `BetaManagedAgentsAlwaysAllowPolicy = object { type }`
+- `BetaManagedAgentsAlwaysAllowPolicy object { type }`
 
   Tool calls are automatically approved without user confirmation.
 
@@ -3683,7 +3752,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
 ### Beta Managed Agents Always Ask Policy
 
-- `BetaManagedAgentsAlwaysAskPolicy = object { type }`
+- `BetaManagedAgentsAlwaysAskPolicy object { type }`
 
   Tool calls require user confirmation before execution.
 
@@ -3693,7 +3762,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
 ### Beta Managed Agents Anthropic Skill
 
-- `BetaManagedAgentsAnthropicSkill = object { skill_id, type, version }`
+- `BetaManagedAgentsAnthropicSkill object { skill_id, type, version }`
 
   A resolved Anthropic-managed skill.
 
@@ -3707,7 +3776,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
 ### Beta Managed Agents Anthropic Skill Params
 
-- `BetaManagedAgentsAnthropicSkillParams = object { skill_id, type, version }`
+- `BetaManagedAgentsAnthropicSkillParams object { skill_id, type, version }`
 
   An Anthropic-managed skill.
 
@@ -3725,7 +3794,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
 ### Beta Managed Agents Custom Skill
 
-- `BetaManagedAgentsCustomSkill = object { skill_id, type, version }`
+- `BetaManagedAgentsCustomSkill object { skill_id, type, version }`
 
   A resolved user-created custom skill.
 
@@ -3739,7 +3808,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
 ### Beta Managed Agents Custom Skill Params
 
-- `BetaManagedAgentsCustomSkillParams = object { skill_id, type, version }`
+- `BetaManagedAgentsCustomSkillParams object { skill_id, type, version }`
 
   A user-created custom skill.
 
@@ -3757,7 +3826,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
 ### Beta Managed Agents Custom Tool
 
-- `BetaManagedAgentsCustomTool = object { description, input_schema, name, type }`
+- `BetaManagedAgentsCustomTool object { description, input_schema, name, type }`
 
   A custom tool as returned in API responses.
 
@@ -3789,7 +3858,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
 ### Beta Managed Agents Custom Tool Input Schema
 
-- `BetaManagedAgentsCustomToolInputSchema = object { properties, required, type }`
+- `BetaManagedAgentsCustomToolInputSchema object { properties, required, type }`
 
   JSON Schema for custom tool input parameters.
 
@@ -3809,7 +3878,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
 ### Beta Managed Agents Custom Tool Params
 
-- `BetaManagedAgentsCustomToolParams = object { description, input_schema, name, type }`
+- `BetaManagedAgentsCustomToolParams object { description, input_schema, name, type }`
 
   A custom tool that is executed by the API client rather than the agent. When the agent calls this tool, an `agent.custom_tool_use` event is emitted and the session goes idle, waiting for the client to provide the result via a `user.custom_tool_result` event.
 
@@ -3845,7 +3914,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
 ### Beta Managed Agents MCP Server URL Definition
 
-- `BetaManagedAgentsMCPServerURLDefinition = object { name, type, url }`
+- `BetaManagedAgentsMCPServerURLDefinition object { name, type, url }`
 
   URL-based MCP server connection as returned in API responses.
 
@@ -3859,7 +3928,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
 ### Beta Managed Agents MCP Tool Config
 
-- `BetaManagedAgentsMCPToolConfig = object { enabled, name, permission_policy }`
+- `BetaManagedAgentsMCPToolConfig object { enabled, name, permission_policy }`
 
   Resolved configuration for a specific MCP tool.
 
@@ -3871,7 +3940,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
     Permission policy for tool execution.
 
-    - `BetaManagedAgentsAlwaysAllowPolicy = object { type }`
+    - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
 
       Tool calls are automatically approved without user confirmation.
 
@@ -3879,7 +3948,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
         - `"always_allow"`
 
-    - `BetaManagedAgentsAlwaysAskPolicy = object { type }`
+    - `BetaManagedAgentsAlwaysAskPolicy object { type }`
 
       Tool calls require user confirmation before execution.
 
@@ -3889,7 +3958,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
 ### Beta Managed Agents MCP Tool Config Params
 
-- `BetaManagedAgentsMCPToolConfigParams = object { name, enabled, permission_policy }`
+- `BetaManagedAgentsMCPToolConfigParams object { name, enabled, permission_policy }`
 
   Configuration override for a specific MCP tool.
 
@@ -3905,7 +3974,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
     Permission policy for tool execution.
 
-    - `BetaManagedAgentsAlwaysAllowPolicy = object { type }`
+    - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
 
       Tool calls are automatically approved without user confirmation.
 
@@ -3913,7 +3982,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
         - `"always_allow"`
 
-    - `BetaManagedAgentsAlwaysAskPolicy = object { type }`
+    - `BetaManagedAgentsAlwaysAskPolicy object { type }`
 
       Tool calls require user confirmation before execution.
 
@@ -3923,7 +3992,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
 ### Beta Managed Agents MCP Toolset
 
-- `BetaManagedAgentsMCPToolset = object { configs, default_config, mcp_server_name, type }`
+- `BetaManagedAgentsMCPToolset object { configs, default_config, mcp_server_name, type }`
 
   - `configs: array of BetaManagedAgentsMCPToolConfig`
 
@@ -3935,7 +4004,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
       Permission policy for tool execution.
 
-      - `BetaManagedAgentsAlwaysAllowPolicy = object { type }`
+      - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
 
         Tool calls are automatically approved without user confirmation.
 
@@ -3943,7 +4012,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
           - `"always_allow"`
 
-      - `BetaManagedAgentsAlwaysAskPolicy = object { type }`
+      - `BetaManagedAgentsAlwaysAskPolicy object { type }`
 
         Tool calls require user confirmation before execution.
 
@@ -3961,21 +4030,13 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
       Permission policy for tool execution.
 
-      - `BetaManagedAgentsAlwaysAllowPolicy = object { type }`
+      - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
 
         Tool calls are automatically approved without user confirmation.
 
-        - `type: "always_allow"`
-
-          - `"always_allow"`
-
-      - `BetaManagedAgentsAlwaysAskPolicy = object { type }`
+      - `BetaManagedAgentsAlwaysAskPolicy object { type }`
 
         Tool calls require user confirmation before execution.
-
-        - `type: "always_ask"`
-
-          - `"always_ask"`
 
   - `mcp_server_name: string`
 
@@ -3985,7 +4046,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
 ### Beta Managed Agents MCP Toolset Default Config
 
-- `BetaManagedAgentsMCPToolsetDefaultConfig = object { enabled, permission_policy }`
+- `BetaManagedAgentsMCPToolsetDefaultConfig object { enabled, permission_policy }`
 
   Resolved default configuration for all tools from an MCP server.
 
@@ -3995,7 +4056,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
     Permission policy for tool execution.
 
-    - `BetaManagedAgentsAlwaysAllowPolicy = object { type }`
+    - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
 
       Tool calls are automatically approved without user confirmation.
 
@@ -4003,7 +4064,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
         - `"always_allow"`
 
-    - `BetaManagedAgentsAlwaysAskPolicy = object { type }`
+    - `BetaManagedAgentsAlwaysAskPolicy object { type }`
 
       Tool calls require user confirmation before execution.
 
@@ -4013,7 +4074,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
 ### Beta Managed Agents MCP Toolset Default Config Params
 
-- `BetaManagedAgentsMCPToolsetDefaultConfigParams = object { enabled, permission_policy }`
+- `BetaManagedAgentsMCPToolsetDefaultConfigParams object { enabled, permission_policy }`
 
   Default configuration for all tools from an MCP server.
 
@@ -4025,7 +4086,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
     Permission policy for tool execution.
 
-    - `BetaManagedAgentsAlwaysAllowPolicy = object { type }`
+    - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
 
       Tool calls are automatically approved without user confirmation.
 
@@ -4033,7 +4094,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
         - `"always_allow"`
 
-    - `BetaManagedAgentsAlwaysAskPolicy = object { type }`
+    - `BetaManagedAgentsAlwaysAskPolicy object { type }`
 
       Tool calls require user confirmation before execution.
 
@@ -4043,7 +4104,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
 ### Beta Managed Agents MCP Toolset Params
 
-- `BetaManagedAgentsMCPToolsetParams = object { mcp_server_name, type, configs, default_config }`
+- `BetaManagedAgentsMCPToolsetParams object { mcp_server_name, type, configs, default_config }`
 
   Configuration for tools from an MCP server defined in `mcp_servers`.
 
@@ -4071,7 +4132,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
       Permission policy for tool execution.
 
-      - `BetaManagedAgentsAlwaysAllowPolicy = object { type }`
+      - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
 
         Tool calls are automatically approved without user confirmation.
 
@@ -4079,7 +4140,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
           - `"always_allow"`
 
-      - `BetaManagedAgentsAlwaysAskPolicy = object { type }`
+      - `BetaManagedAgentsAlwaysAskPolicy object { type }`
 
         Tool calls require user confirmation before execution.
 
@@ -4099,21 +4160,13 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
       Permission policy for tool execution.
 
-      - `BetaManagedAgentsAlwaysAllowPolicy = object { type }`
+      - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
 
         Tool calls are automatically approved without user confirmation.
 
-        - `type: "always_allow"`
-
-          - `"always_allow"`
-
-      - `BetaManagedAgentsAlwaysAskPolicy = object { type }`
+      - `BetaManagedAgentsAlwaysAskPolicy object { type }`
 
         Tool calls require user confirmation before execution.
-
-        - `type: "always_ask"`
-
-          - `"always_ask"`
 
 ### Beta Managed Agents Model
 
@@ -4123,7 +4176,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-  - `UnionMember0 = "claude-opus-4-7" or "claude-opus-4-6" or "claude-sonnet-4-6" or 6 more`
+  - `"claude-opus-4-7" or "claude-opus-4-6" or "claude-sonnet-4-6" or 6 more`
 
     The model that will power your agent.
 
@@ -4165,11 +4218,11 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
       High-performance model for agents and coding
 
-  - `UnionMember1 = string`
+  - `string`
 
 ### Beta Managed Agents Model Config
 
-- `BetaManagedAgentsModelConfig = object { id, speed }`
+- `BetaManagedAgentsModelConfig object { id, speed }`
 
   Model identifier and configuration.
 
@@ -4179,7 +4232,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `UnionMember0 = "claude-opus-4-7" or "claude-opus-4-6" or "claude-sonnet-4-6" or 6 more`
+    - `"claude-opus-4-7" or "claude-opus-4-6" or "claude-sonnet-4-6" or 6 more`
 
       The model that will power your agent.
 
@@ -4221,7 +4274,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
         High-performance model for agents and coding
 
-    - `UnionMember1 = string`
+    - `string`
 
   - `speed: optional "standard" or "fast"`
 
@@ -4233,7 +4286,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
 ### Beta Managed Agents Model Config Params
 
-- `BetaManagedAgentsModelConfigParams = object { id, speed }`
+- `BetaManagedAgentsModelConfigParams object { id, speed }`
 
   An object that defines additional configuration control over model use
 
@@ -4243,7 +4296,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `UnionMember0 = "claude-opus-4-7" or "claude-opus-4-6" or "claude-sonnet-4-6" or 6 more`
+    - `"claude-opus-4-7" or "claude-opus-4-6" or "claude-sonnet-4-6" or 6 more`
 
       The model that will power your agent.
 
@@ -4285,7 +4338,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
         High-performance model for agents and coding
 
-    - `UnionMember1 = string`
+    - `string`
 
   - `speed: optional "standard" or "fast"`
 
@@ -4297,7 +4350,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
 ### Beta Managed Agents Multiagent Coordinator
 
-- `BetaManagedAgentsMultiagentCoordinator = object { agents, type }`
+- `BetaManagedAgentsMultiagentCoordinator object { agents, type }`
 
   Resolved coordinator topology with a concrete agent roster.
 
@@ -4319,7 +4372,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
 ### Beta Managed Agents Multiagent Coordinator Params
 
-- `BetaManagedAgentsMultiagentCoordinatorParams = object { agents, type }`
+- `BetaManagedAgentsMultiagentCoordinatorParams object { agents, type }`
 
   A coordinator topology: the session's primary thread orchestrates work by spawning session threads, each running an agent drawn from the `agents` roster.
 
@@ -4327,9 +4380,9 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
     Agents the coordinator may spawn as session threads. 1–20 entries. Each entry is an agent ID string, a versioned `{"type":"agent","id","version"}` reference, or `{"type":"self"}` to allow recursive self-invocation. Entries must reference distinct agents (after resolving `self` and string forms); at most one `self`. Referenced agents must exist, must not be archived, and must not themselves have `multiagent` set (depth limit 1).
 
-    - `UnionMember0 = string`
+    - `string`
 
-    - `BetaManagedAgentsAgentParams = object { id, type, version }`
+    - `BetaManagedAgentsAgentParams object { id, type, version }`
 
       Specification for an Agent. Provide a specific `version` or use the short-form `agent="agent_id"` for the most recent version
 
@@ -4345,7 +4398,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
         The specific `agent` version to use. Omit to use the latest version. Must be at least 1 if specified.
 
-    - `BetaManagedAgentsMultiagentSelfParams = object { type }`
+    - `BetaManagedAgentsMultiagentSelfParams object { type }`
 
       Sentinel roster entry meaning "the agent that owns this configuration". Resolved server-side to a concrete agent reference.
 
@@ -4359,7 +4412,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
 ### Beta Managed Agents Multiagent Self Params
 
-- `BetaManagedAgentsMultiagentSelfParams = object { type }`
+- `BetaManagedAgentsMultiagentSelfParams object { type }`
 
   Sentinel roster entry meaning "the agent that owns this configuration". Resolved server-side to a concrete agent reference.
 
@@ -4369,7 +4422,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
 ### Beta Managed Agents Session Thread Agent
 
-- `BetaManagedAgentsSessionThreadAgent = object { id, description, mcp_servers, 7 more }`
+- `BetaManagedAgentsSessionThreadAgent object { id, description, mcp_servers, 7 more }`
 
   Resolved `agent` definition for a single `session_thread`. Snapshot of the agent at thread creation time. The multiagent roster is not repeated here; read it from `Session.agent`.
 
@@ -4397,7 +4450,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `UnionMember0 = "claude-opus-4-7" or "claude-opus-4-6" or "claude-sonnet-4-6" or 6 more`
+      - `"claude-opus-4-7" or "claude-opus-4-6" or "claude-sonnet-4-6" or 6 more`
 
         The model that will power your agent.
 
@@ -4439,7 +4492,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
           High-performance model for agents and coding
 
-      - `UnionMember1 = string`
+      - `string`
 
     - `speed: optional "standard" or "fast"`
 
@@ -4453,7 +4506,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
   - `skills: array of BetaManagedAgentsAnthropicSkill or BetaManagedAgentsCustomSkill`
 
-    - `BetaManagedAgentsAnthropicSkill = object { skill_id, type, version }`
+    - `BetaManagedAgentsAnthropicSkill object { skill_id, type, version }`
 
       A resolved Anthropic-managed skill.
 
@@ -4465,7 +4518,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
       - `version: string`
 
-    - `BetaManagedAgentsCustomSkill = object { skill_id, type, version }`
+    - `BetaManagedAgentsCustomSkill object { skill_id, type, version }`
 
       A resolved user-created custom skill.
 
@@ -4481,7 +4534,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
   - `tools: array of BetaManagedAgentsAgentToolset20260401 or BetaManagedAgentsMCPToolset or BetaManagedAgentsCustomTool`
 
-    - `BetaManagedAgentsAgentToolset20260401 = object { configs, default_config, type }`
+    - `BetaManagedAgentsAgentToolset20260401 object { configs, default_config, type }`
 
       - `configs: array of BetaManagedAgentsAgentToolConfig`
 
@@ -4511,7 +4564,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
           Permission policy for tool execution.
 
-          - `BetaManagedAgentsAlwaysAllowPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
 
             Tool calls are automatically approved without user confirmation.
 
@@ -4519,7 +4572,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
               - `"always_allow"`
 
-          - `BetaManagedAgentsAlwaysAskPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAskPolicy object { type }`
 
             Tool calls require user confirmation before execution.
 
@@ -4537,27 +4590,19 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
           Permission policy for tool execution.
 
-          - `BetaManagedAgentsAlwaysAllowPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
 
             Tool calls are automatically approved without user confirmation.
 
-            - `type: "always_allow"`
-
-              - `"always_allow"`
-
-          - `BetaManagedAgentsAlwaysAskPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAskPolicy object { type }`
 
             Tool calls require user confirmation before execution.
-
-            - `type: "always_ask"`
-
-              - `"always_ask"`
 
       - `type: "agent_toolset_20260401"`
 
         - `"agent_toolset_20260401"`
 
-    - `BetaManagedAgentsMCPToolset = object { configs, default_config, mcp_server_name, type }`
+    - `BetaManagedAgentsMCPToolset object { configs, default_config, mcp_server_name, type }`
 
       - `configs: array of BetaManagedAgentsMCPToolConfig`
 
@@ -4569,21 +4614,13 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
           Permission policy for tool execution.
 
-          - `BetaManagedAgentsAlwaysAllowPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
 
             Tool calls are automatically approved without user confirmation.
 
-            - `type: "always_allow"`
-
-              - `"always_allow"`
-
-          - `BetaManagedAgentsAlwaysAskPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAskPolicy object { type }`
 
             Tool calls require user confirmation before execution.
-
-            - `type: "always_ask"`
-
-              - `"always_ask"`
 
       - `default_config: BetaManagedAgentsMCPToolsetDefaultConfig`
 
@@ -4595,21 +4632,13 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
           Permission policy for tool execution.
 
-          - `BetaManagedAgentsAlwaysAllowPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
 
             Tool calls are automatically approved without user confirmation.
 
-            - `type: "always_allow"`
-
-              - `"always_allow"`
-
-          - `BetaManagedAgentsAlwaysAskPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAskPolicy object { type }`
 
             Tool calls require user confirmation before execution.
-
-            - `type: "always_ask"`
-
-              - `"always_ask"`
 
       - `mcp_server_name: string`
 
@@ -4617,7 +4646,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
         - `"mcp_toolset"`
 
-    - `BetaManagedAgentsCustomTool = object { description, input_schema, name, type }`
+    - `BetaManagedAgentsCustomTool object { description, input_schema, name, type }`
 
       A custom tool as returned in API responses.
 
@@ -4659,7 +4688,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
   Skill to load in the session container.
 
-  - `BetaManagedAgentsAnthropicSkillParams = object { skill_id, type, version }`
+  - `BetaManagedAgentsAnthropicSkillParams object { skill_id, type, version }`
 
     An Anthropic-managed skill.
 
@@ -4675,7 +4704,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
       Version to pin. Defaults to latest if omitted.
 
-  - `BetaManagedAgentsCustomSkillParams = object { skill_id, type, version }`
+  - `BetaManagedAgentsCustomSkillParams object { skill_id, type, version }`
 
     A user-created custom skill.
 
@@ -4693,7 +4722,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
 ### Beta Managed Agents URL MCP Server Params
 
-- `BetaManagedAgentsURLMCPServerParams = object { name, type, url }`
+- `BetaManagedAgentsURLMCPServerParams object { name, type, url }`
 
   URL-based MCP server connection.
 
@@ -4711,7 +4740,7 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/archive \
 
 # Versions
 
-## List
+## List Agent Versions
 
 **get** `/v1/agents/{agent_id}/versions`
 
@@ -4737,9 +4766,9 @@ List Agent Versions
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = string`
+  - `string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -4831,7 +4860,7 @@ List Agent Versions
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `UnionMember0 = "claude-opus-4-7" or "claude-opus-4-6" or "claude-sonnet-4-6" or 6 more`
+      - `"claude-opus-4-7" or "claude-opus-4-6" or "claude-sonnet-4-6" or 6 more`
 
         The model that will power your agent.
 
@@ -4873,7 +4902,7 @@ List Agent Versions
 
           High-performance model for agents and coding
 
-      - `UnionMember1 = string`
+      - `string`
 
     - `speed: optional "standard" or "fast"`
 
@@ -4907,7 +4936,7 @@ List Agent Versions
 
   - `skills: array of BetaManagedAgentsAnthropicSkill or BetaManagedAgentsCustomSkill`
 
-    - `BetaManagedAgentsAnthropicSkill = object { skill_id, type, version }`
+    - `BetaManagedAgentsAnthropicSkill object { skill_id, type, version }`
 
       A resolved Anthropic-managed skill.
 
@@ -4919,7 +4948,7 @@ List Agent Versions
 
       - `version: string`
 
-    - `BetaManagedAgentsCustomSkill = object { skill_id, type, version }`
+    - `BetaManagedAgentsCustomSkill object { skill_id, type, version }`
 
       A resolved user-created custom skill.
 
@@ -4935,7 +4964,7 @@ List Agent Versions
 
   - `tools: array of BetaManagedAgentsAgentToolset20260401 or BetaManagedAgentsMCPToolset or BetaManagedAgentsCustomTool`
 
-    - `BetaManagedAgentsAgentToolset20260401 = object { configs, default_config, type }`
+    - `BetaManagedAgentsAgentToolset20260401 object { configs, default_config, type }`
 
       - `configs: array of BetaManagedAgentsAgentToolConfig`
 
@@ -4965,7 +4994,7 @@ List Agent Versions
 
           Permission policy for tool execution.
 
-          - `BetaManagedAgentsAlwaysAllowPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
 
             Tool calls are automatically approved without user confirmation.
 
@@ -4973,7 +5002,7 @@ List Agent Versions
 
               - `"always_allow"`
 
-          - `BetaManagedAgentsAlwaysAskPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAskPolicy object { type }`
 
             Tool calls require user confirmation before execution.
 
@@ -4991,27 +5020,19 @@ List Agent Versions
 
           Permission policy for tool execution.
 
-          - `BetaManagedAgentsAlwaysAllowPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
 
             Tool calls are automatically approved without user confirmation.
 
-            - `type: "always_allow"`
-
-              - `"always_allow"`
-
-          - `BetaManagedAgentsAlwaysAskPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAskPolicy object { type }`
 
             Tool calls require user confirmation before execution.
-
-            - `type: "always_ask"`
-
-              - `"always_ask"`
 
       - `type: "agent_toolset_20260401"`
 
         - `"agent_toolset_20260401"`
 
-    - `BetaManagedAgentsMCPToolset = object { configs, default_config, mcp_server_name, type }`
+    - `BetaManagedAgentsMCPToolset object { configs, default_config, mcp_server_name, type }`
 
       - `configs: array of BetaManagedAgentsMCPToolConfig`
 
@@ -5023,21 +5044,13 @@ List Agent Versions
 
           Permission policy for tool execution.
 
-          - `BetaManagedAgentsAlwaysAllowPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
 
             Tool calls are automatically approved without user confirmation.
 
-            - `type: "always_allow"`
-
-              - `"always_allow"`
-
-          - `BetaManagedAgentsAlwaysAskPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAskPolicy object { type }`
 
             Tool calls require user confirmation before execution.
-
-            - `type: "always_ask"`
-
-              - `"always_ask"`
 
       - `default_config: BetaManagedAgentsMCPToolsetDefaultConfig`
 
@@ -5049,21 +5062,13 @@ List Agent Versions
 
           Permission policy for tool execution.
 
-          - `BetaManagedAgentsAlwaysAllowPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAllowPolicy object { type }`
 
             Tool calls are automatically approved without user confirmation.
 
-            - `type: "always_allow"`
-
-              - `"always_allow"`
-
-          - `BetaManagedAgentsAlwaysAskPolicy = object { type }`
+          - `BetaManagedAgentsAlwaysAskPolicy object { type }`
 
             Tool calls require user confirmation before execution.
-
-            - `type: "always_ask"`
-
-              - `"always_ask"`
 
       - `mcp_server_name: string`
 
@@ -5071,7 +5076,7 @@ List Agent Versions
 
         - `"mcp_toolset"`
 
-    - `BetaManagedAgentsCustomTool = object { description, input_schema, name, type }`
+    - `BetaManagedAgentsCustomTool object { description, input_schema, name, type }`
 
       A custom tool as returned in API responses.
 
@@ -5124,4 +5129,81 @@ curl https://api.anthropic.com/v1/agents/$AGENT_ID/versions \
     -H 'anthropic-version: 2023-06-01' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "agent_011CZkYpogX7uDKUyvBTophP",
+      "archived_at": null,
+      "created_at": "2026-03-15T10:00:00Z",
+      "description": "A general-purpose starter agent.",
+      "mcp_servers": [
+        {
+          "name": "example-mcp",
+          "type": "url",
+          "url": "https://example-server.modelcontextprotocol.io/sse"
+        }
+      ],
+      "metadata": {
+        "foo": "bar"
+      },
+      "model": {
+        "id": "claude-sonnet-4-6",
+        "speed": "standard"
+      },
+      "multiagent": {
+        "agents": [
+          {
+            "id": "agent_011CZkYqphY8vELVzwCUpqiQ",
+            "type": "agent",
+            "version": 1
+          }
+        ],
+        "type": "coordinator"
+      },
+      "name": "My First Agent",
+      "skills": [
+        {
+          "skill_id": "xlsx",
+          "type": "anthropic",
+          "version": "1"
+        },
+        {
+          "skill_id": "skill_011CZkZFNu9hAbo3jZPRgTlx",
+          "type": "custom",
+          "version": "2"
+        }
+      ],
+      "system": "You are a general-purpose agent that can research, write code, run commands, and use connected tools to complete the user's task end to end.",
+      "tools": [
+        {
+          "configs": [
+            {
+              "enabled": true,
+              "name": "bash",
+              "permission_policy": {
+                "type": "always_allow"
+              }
+            }
+          ],
+          "default_config": {
+            "enabled": true,
+            "permission_policy": {
+              "type": "always_ask"
+            }
+          },
+          "type": "agent_toolset_20260401"
+        }
+      ],
+      "type": "agent",
+      "updated_at": "2026-03-15T10:00:00Z",
+      "version": 1
+    }
+  ],
+  "next_page": "next_page"
+}
 ```

@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/memory_stores/archive
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: fa887e3af5e2d551cf9a7941e20c5ab17344e44e2e2a2796023f4729051469f6
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 7b84c3a0972ff111e19ec53485fe58ce3fe00e07b7eb084788cbc5e8c352ef0b
 ---
 
-## Archive
+## Archive a memory store
 
 `beta.memory_stores.archive(strmemory_store_id, MemoryStoreArchiveParams**kwargs)  -> BetaManagedAgentsMemoryStore`
 
@@ -126,4 +126,21 @@ beta_managed_agents_memory_store = client.beta.memory_stores.archive(
     memory_store_id="memory_store_id",
 )
 print(beta_managed_agents_memory_store.id)
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "name": "name",
+  "type": "memory_store",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "archived_at": "2019-12-27T18:11:19.117Z",
+  "description": "description",
+  "metadata": {
+    "foo": "string"
+  }
+}
 ```

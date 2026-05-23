@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/sessions/delete
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 7ce66a12c81aefca41439aa84f7688f74e755878dab03c6cd0dfa942582b044c
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 4455856d10b5f584428fb469ba2be187b94856f53270916fa32617f415ddf6aa
 ---
 
-## Delete
+## Delete Session
 
 `client.Beta.Sessions.Delete(ctx, sessionID, body) (*BetaManagedAgentsDeletedSession, error)`
 
@@ -117,5 +117,14 @@ func main() {
     panic(err.Error())
   }
   fmt.Printf("%+v\n", betaManagedAgentsDeletedSession.ID)
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "sesn_011CZkZAtmR3yMPDzynEDxu7",
+  "type": "session_deleted"
 }
 ```

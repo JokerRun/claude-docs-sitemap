@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/sessions/resources/list
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 557c76e1474db3e12e31e75f97a8d9154b156f943169fc1c069f287bbef6f7b3
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 5ab5a9da57087fedf9c78caca619a5e1384e02860db0d15404f6bf73120a692c
 ---
 
-## List
+## List Session Resources
 
 `client.Beta.Sessions.Resources.List(ctx, sessionID, params) (*PageCursor[BetaManagedAgentsSessionResourceUnion], error)`
 
@@ -217,5 +217,35 @@ func main() {
     panic(err.Error())
   }
   fmt.Printf("%+v\n", page)
+}
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "sesrsc_011CZkZBJq5dWxk9fVLNcPht",
+      "created_at": "2026-03-15T10:00:00Z",
+      "file_id": "file_011CNha8iCJcU1wXNR6q4V8w",
+      "mount_path": "/uploads/receipt.pdf",
+      "type": "file",
+      "updated_at": "2026-03-15T10:00:00Z"
+    },
+    {
+      "id": "sesrsc_011CZkZCKr6eXyl0gWMOdQiu",
+      "created_at": "2026-03-15T10:00:00Z",
+      "mount_path": "/workspace/example-repo",
+      "type": "github_repository",
+      "updated_at": "2026-03-15T10:00:00Z",
+      "url": "https://github.com/example-org/example-repo",
+      "checkout": {
+        "name": "main",
+        "type": "branch"
+      }
+    }
+  ],
+  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="
 }
 ```

@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/environments/work/list
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 05e5fef2f39a01a551cc3bde7a17ae166009e8c7ff909dbfeabd0ce6f7324542
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 218526a17ceca65954223b235c920857e53fed01e1a8a4256d721791098be3ef
 ---
 
-## List
+## List Work Items
 
 `BetaSelfHostedWorkListResponse Beta.Environments.Work.List(WorkListParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -177,5 +177,34 @@ var page = await client.Beta.Environments.Work.List(parameters);
 await foreach (var item in page.Paginate())
 {
     Console.WriteLine(item);
+}
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "id",
+      "acknowledged_at": "acknowledged_at",
+      "created_at": "created_at",
+      "data": {
+        "id": "id",
+        "type": "session"
+      },
+      "environment_id": "environment_id",
+      "latest_heartbeat_at": "latest_heartbeat_at",
+      "metadata": {
+        "foo": "string"
+      },
+      "started_at": "started_at",
+      "state": "queued",
+      "stop_requested_at": "stop_requested_at",
+      "stopped_at": "stopped_at",
+      "type": "work"
+    }
+  ],
+  "next_page": "next_page"
 }
 ```

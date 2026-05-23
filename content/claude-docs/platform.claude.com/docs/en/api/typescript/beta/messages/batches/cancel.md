@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/messages/batches/cancel
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 2dcec2ecd9d63c4da1b8235ecad16a9eb7c0c32e3017b87f554649a160c19791
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: c2092a112f5bf9c3e7b08258bfda6f91ac5aef381cf2dcbd621f2944dbefab85
 ---
 
-## Cancel
+## Cancel a Message Batch
 
 `client.beta.messages.batches.cancel(stringmessageBatchID, BatchCancelParamsparams?, RequestOptionsoptions?): BetaMessageBatch`
 
@@ -185,4 +185,27 @@ const client = new Anthropic({
 const betaMessageBatch = await client.beta.messages.batches.cancel('message_batch_id');
 
 console.log(betaMessageBatch.id);
+```
+
+#### Response
+
+```json
+{
+  "id": "msgbatch_013Zva2CMHLNnXjNJJKqJ2EF",
+  "archived_at": "2024-08-20T18:37:24.100435Z",
+  "cancel_initiated_at": "2024-08-20T18:37:24.100435Z",
+  "created_at": "2024-08-20T18:37:24.100435Z",
+  "ended_at": "2024-08-20T18:37:24.100435Z",
+  "expires_at": "2024-08-20T18:37:24.100435Z",
+  "processing_status": "in_progress",
+  "request_counts": {
+    "canceled": 10,
+    "errored": 30,
+    "expired": 10,
+    "processing": 100,
+    "succeeded": 50
+  },
+  "results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_013Zva2CMHLNnXjNJJKqJ2EF/results",
+  "type": "message_batch"
+}
 ```

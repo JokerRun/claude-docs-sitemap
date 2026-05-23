@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/environments/work/ack
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 25cd8faafc2c93471c2b92eaa2d7630ce10dff0b3f3bc0e1c7b17e829d988b50
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 9d018f624d745b106b612d37a68e4bae6bdbbd6d6644a82a8614a7770cc9465e
 ---
 
-## Ack
+## Acknowledge Work
 
 `BetaSelfHostedWork beta().environments().work().ack(WorkAckParamsparams, RequestOptionsrequestOptions = RequestOptions.none())`
 
@@ -179,5 +179,29 @@ public final class Main {
             .build();
         BetaSelfHostedWork betaSelfHostedWork = client.beta().environments().work().ack(params);
     }
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "acknowledged_at": "acknowledged_at",
+  "created_at": "created_at",
+  "data": {
+    "id": "id",
+    "type": "session"
+  },
+  "environment_id": "environment_id",
+  "latest_heartbeat_at": "latest_heartbeat_at",
+  "metadata": {
+    "foo": "string"
+  },
+  "started_at": "started_at",
+  "state": "queued",
+  "stop_requested_at": "stop_requested_at",
+  "stopped_at": "stopped_at",
+  "type": "work"
 }
 ```

@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/memory_stores/retrieve
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: bee8a2630f43abb3a51864117f9bcc25e947b060196a203c1470f002021f49a3
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 05594b101019bb11c8d451830477539122f6c6fcb503bbabc05bb4fddf9c2c3e
 ---
 
-## Retrieve
+## Retrieve a memory store
 
 `BetaManagedAgentsMemoryStore beta().memoryStores().retrieve(MemoryStoreRetrieveParamsparams = MemoryStoreRetrieveParams.none(), RequestOptionsrequestOptions = RequestOptions.none())`
 
@@ -129,5 +129,22 @@ public final class Main {
 
         BetaManagedAgentsMemoryStore betaManagedAgentsMemoryStore = client.beta().memoryStores().retrieve("memory_store_id");
     }
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "name": "name",
+  "type": "memory_store",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "archived_at": "2019-12-27T18:11:19.117Z",
+  "description": "description",
+  "metadata": {
+    "foo": "string"
+  }
 }
 ```

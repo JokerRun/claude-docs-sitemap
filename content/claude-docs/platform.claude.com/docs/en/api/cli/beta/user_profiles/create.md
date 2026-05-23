@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/user_profiles/create
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 852f61e65529cb2c9605fc7e05bebacbbf3fa6146fd289a25d94dcbbfc8097c2
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 1075d3d9848ab041abbd1fff11b242bd5a173f0e95e581d2b8c45c745be225ce
 ---
 
-## Create
+## Create User Profile
 
 `$ ant beta:user-profiles create`
 
@@ -98,4 +98,24 @@ Create User Profile
 ```cli
 ant beta:user-profiles create \
   --api-key my-anthropic-api-key
+```
+
+#### Response
+
+```json
+{
+  "id": "uprof_011CZkZCu8hGbp5mYRQgUmz9",
+  "created_at": "2026-03-15T10:00:00Z",
+  "metadata": {},
+  "relationship": "external",
+  "trust_grants": {
+    "cyber": {
+      "status": "active"
+    }
+  },
+  "type": "user_profile",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "external_id": "user_12345",
+  "name": "Example User"
+}
 ```

@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/delete
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: d3ac65745b538b58c080f9b457fbe3dcfa5394a057ae49d7739035b31fe88054
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 8e7a770ef9662146949747cb4e3b567518717f69d639d9dd2100e778054e5623
 ---
 
-## Delete
+## Delete Vault
 
 `BetaManagedAgentsDeletedVault beta().vaults().delete(VaultDeleteParamsparams = VaultDeleteParams.none(), RequestOptionsrequestOptions = RequestOptions.none())`
 
@@ -105,5 +105,14 @@ public final class Main {
 
         BetaManagedAgentsDeletedVault betaManagedAgentsDeletedVault = client.beta().vaults().delete("vlt_011CZkZDLs7fYzm1hXNPeRjv");
     }
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+  "type": "vault_deleted"
 }
 ```

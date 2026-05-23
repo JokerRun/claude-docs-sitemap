@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/environments/work/retrieve
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 27840f632f25793e3ea8f8323ab11a14b5c6a40ce4ad587d071a28ba96e1371c
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 5d6203fd36391e8a4f223ae20efd6d2f417fd6ee0c03236ba2c4c7d4d5eaf337
 ---
 
-## Retrieve
+## Get Work Item
 
 `BetaSelfHostedWork beta().environments().work().retrieve(WorkRetrieveParamsparams, RequestOptionsrequestOptions = RequestOptions.none())`
 
@@ -179,5 +179,29 @@ public final class Main {
             .build();
         BetaSelfHostedWork betaSelfHostedWork = client.beta().environments().work().retrieve(params);
     }
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "acknowledged_at": "acknowledged_at",
+  "created_at": "created_at",
+  "data": {
+    "id": "id",
+    "type": "session"
+  },
+  "environment_id": "environment_id",
+  "latest_heartbeat_at": "latest_heartbeat_at",
+  "metadata": {
+    "foo": "string"
+  },
+  "started_at": "started_at",
+  "state": "queued",
+  "stop_requested_at": "stop_requested_at",
+  "stopped_at": "stopped_at",
+  "type": "work"
 }
 ```

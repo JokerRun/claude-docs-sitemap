@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/memory_stores/update
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 4cf0bbaba1edc668b435ed6e2bb5a08ca4f171b86456c379872bdaf2baf28532
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 54b05683780cbe2da801bdc0f6f4664c7c96458ee061395cb45f58f6d3db22cc
 ---
 
-## Update
+## Update a memory store
 
 `beta.memory_stores.update(strmemory_store_id, MemoryStoreUpdateParams**kwargs)  -> BetaManagedAgentsMemoryStore`
 
@@ -138,4 +138,21 @@ beta_managed_agents_memory_store = client.beta.memory_stores.update(
     memory_store_id="memory_store_id",
 )
 print(beta_managed_agents_memory_store.id)
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "name": "name",
+  "type": "memory_store",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "archived_at": "2019-12-27T18:11:19.117Z",
+  "description": "description",
+  "metadata": {
+    "foo": "string"
+  }
+}
 ```

@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/sessions/resources
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 0ad72f63cc16c2a51a6b6f1e660ca59513e581991e6d68f4f9f0df063de66fdc
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 598c74f0d8d0ce7fe34c654668f2033349ae9acfcaee8a8142557db348c8d67d
 ---
 
 # Resources
 
-## Add
+## Add Session Resource
 
 `$ ant beta:sessions:resources add`
 
@@ -69,7 +69,20 @@ ant beta:sessions:resources add \
   --type file
 ```
 
-## List
+#### Response
+
+```json
+{
+  "id": "sesrsc_011CZkZBJq5dWxk9fVLNcPht",
+  "created_at": "2026-03-15T10:00:00Z",
+  "file_id": "file_011CNha8iCJcU1wXNR6q4V8w",
+  "mount_path": "/uploads/receipt.pdf",
+  "type": "file",
+  "updated_at": "2026-03-15T10:00:00Z"
+}
+```
+
+## List Session Resources
 
 `$ ant beta:sessions:resources list`
 
@@ -215,7 +228,37 @@ ant beta:sessions:resources list \
   --session-id sesn_011CZkZAtmR3yMPDzynEDxu7
 ```
 
-## Retrieve
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "sesrsc_011CZkZBJq5dWxk9fVLNcPht",
+      "created_at": "2026-03-15T10:00:00Z",
+      "file_id": "file_011CNha8iCJcU1wXNR6q4V8w",
+      "mount_path": "/uploads/receipt.pdf",
+      "type": "file",
+      "updated_at": "2026-03-15T10:00:00Z"
+    },
+    {
+      "id": "sesrsc_011CZkZCKr6eXyl0gWMOdQiu",
+      "created_at": "2026-03-15T10:00:00Z",
+      "mount_path": "/workspace/example-repo",
+      "type": "github_repository",
+      "updated_at": "2026-03-15T10:00:00Z",
+      "url": "https://github.com/example-org/example-repo",
+      "checkout": {
+        "name": "main",
+        "type": "branch"
+      }
+    }
+  ],
+  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="
+}
+```
+
+## Get Session Resource
 
 `$ ant beta:sessions:resources retrieve`
 
@@ -350,7 +393,24 @@ ant beta:sessions:resources retrieve \
   --resource-id sesrsc_011CZkZBJq5dWxk9fVLNcPht
 ```
 
-## Update
+#### Response
+
+```json
+{
+  "id": "sesrsc_011CZkZCKr6eXyl0gWMOdQiu",
+  "created_at": "2026-03-15T10:00:00Z",
+  "mount_path": "/workspace/example-repo",
+  "type": "github_repository",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "url": "https://github.com/example-org/example-repo",
+  "checkout": {
+    "name": "main",
+    "type": "branch"
+  }
+}
+```
+
+## Update Session Resource
 
 `$ ant beta:sessions:resources update`
 
@@ -490,7 +550,24 @@ ant beta:sessions:resources update \
   --authorization-token ghp_exampletoken
 ```
 
-## Delete
+#### Response
+
+```json
+{
+  "id": "sesrsc_011CZkZCKr6eXyl0gWMOdQiu",
+  "created_at": "2026-03-15T10:00:00Z",
+  "mount_path": "/workspace/example-repo",
+  "type": "github_repository",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "url": "https://github.com/example-org/example-repo",
+  "checkout": {
+    "name": "main",
+    "type": "branch"
+  }
+}
+```
+
+## Delete Session Resource
 
 `$ ant beta:sessions:resources delete`
 
@@ -531,6 +608,15 @@ ant beta:sessions:resources delete \
   --api-key my-anthropic-api-key \
   --session-id sesn_011CZkZAtmR3yMPDzynEDxu7 \
   --resource-id sesrsc_011CZkZBJq5dWxk9fVLNcPht
+```
+
+#### Response
+
+```json
+{
+  "id": "sesrsc_011CZkZBJq5dWxk9fVLNcPht",
+  "type": "session_resource_deleted"
+}
 ```
 
 ## Domain Types

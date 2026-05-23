@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/files/upload
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 6a26274178709a4561d66f6431ec0efefdddd692a00818fd35786ea9fef2dc0d
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 9f7e09dfb1e0522920ce85c23a905cb7d913a0d3780e0e7d203f1f3a2cfe11e0
 ---
 
-## Upload
+## Upload File
 
 `client.beta.files.upload(FileUploadParamsparams, RequestOptionsoptions?): FileMetadata`
 
@@ -144,4 +144,22 @@ const client = new Anthropic({
 const fileMetadata = await client.beta.files.upload({ file: fs.createReadStream('path/to/file') });
 
 console.log(fileMetadata.id);
+```
+
+#### Response
+
+```json
+{
+  "id": "file_011CNha8iCJcU1wXNR6q4V8w",
+  "created_at": "2025-04-15T18:37:24.100435Z",
+  "filename": "document.pdf",
+  "mime_type": "application/pdf",
+  "size_bytes": 102400,
+  "type": "file",
+  "downloadable": false,
+  "scope": {
+    "id": "id",
+    "type": "session"
+  }
+}
 ```

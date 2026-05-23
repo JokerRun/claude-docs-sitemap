@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/user_profiles/retrieve
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 8c224ba6d1cb7b0c0f6c3fd122e25f7ebc88964d6cd0959385eb9e7203a9ba57
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: c2b40f617fa6351c51a69e3291ef9ff685f46e43cba6ee1da8c720067efbc4e3
 ---
 
-## Retrieve
+## Get User Profile
 
 `beta.user_profiles.retrieve(struser_profile_id, UserProfileRetrieveParams**kwargs)  -> BetaUserProfile`
 
@@ -146,4 +146,24 @@ beta_user_profile = client.beta.user_profiles.retrieve(
     user_profile_id="uprof_011CZkZCu8hGbp5mYRQgUmz9",
 )
 print(beta_user_profile.id)
+```
+
+#### Response
+
+```json
+{
+  "id": "uprof_011CZkZCu8hGbp5mYRQgUmz9",
+  "created_at": "2026-03-15T10:00:00Z",
+  "metadata": {},
+  "relationship": "external",
+  "trust_grants": {
+    "cyber": {
+      "status": "active"
+    }
+  },
+  "type": "user_profile",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "external_id": "user_12345",
+  "name": "Example User"
+}
 ```

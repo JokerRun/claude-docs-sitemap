@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/subagents
-fetched_at: 2026-05-16T03:13:19.414477Z
-sha256: e1c0ee9a50aaeba9695ecd2b85028430f6ced7f92bb661cd05996ee7c62f6a5d
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: cb702ff2d919c9f03db429fe4440babbc3bf18d39f9577fb6dc80f11930ca92d
 ---
 
 > ## Documentation Index
@@ -60,7 +60,7 @@ Subagents can be limited to specific tools, reducing the risk of unintended acti
 
 ### Programmatic definition (recommended)
 
-Define subagents directly in your code using the `agents` parameter. This example creates two subagents: a code reviewer with read-only access and a test runner that can execute commands. The `Agent` tool must be included in `allowedTools` since Claude invokes subagents through the Agent tool.
+Define subagents directly in your code using the `agents` parameter. This example creates two subagents: a code reviewer with read-only access and a test runner that can execute commands. Claude invokes subagents through the `Agent` tool, so include `Agent` in `allowedTools` to auto-approve subagent invocations without a permission prompt.
 
 <CodeGroup>
   ```python Python theme={null}
@@ -72,7 +72,7 @@ Define subagents directly in your code using the `agents` parameter. This exampl
       async for message in query(
           prompt="Review the authentication module for security issues",
           options=ClaudeAgentOptions(
-              # Agent tool is required for subagent invocation
+              # Auto-approve these tools, including Agent for subagent invocation
               allowed_tools=["Read", "Grep", "Glob", "Agent"],
               agents={
                   "code-reviewer": AgentDefinition(
@@ -121,7 +121,7 @@ Define subagents directly in your code using the `agents` parameter. This exampl
   for await (const message of query({
     prompt: "Review the authentication module for security issues",
     options: {
-      // Agent tool is required for subagent invocation
+      // Auto-approve these tools, including Agent for subagent invocation
       allowedTools: ["Read", "Grep", "Glob", "Agent"],
       agents: {
         "code-reviewer": {
@@ -192,7 +192,7 @@ In the Python SDK, these field names use camelCase to match the wire format. See
 You can also define subagents as markdown files in `.claude/agents/` directories. See the [Claude Code subagents documentation](/en/sub-agents) for details on this approach. Programmatically defined agents take precedence over filesystem-based agents with the same name.
 
 <Note>
-  Even without defining custom subagents, Claude can spawn the built-in `general-purpose` subagent when `Agent` is in your `allowedTools`. This is useful for delegating research or exploration tasks without creating specialized agents.
+  Even without defining custom subagents, Claude can spawn the built-in `general-purpose` subagent. This is useful for delegating research or exploration tasks without creating specialized agents. Include `Agent` in `allowedTools` so these invocations auto-approve without a permission prompt.
 </Note>
 
 ## What subagents inherit
@@ -590,7 +590,7 @@ This example creates a read-only analysis agent that can examine code but cannot
 
 If Claude completes tasks directly instead of delegating to your subagent:
 
-1. **Include the Agent tool**: subagents are invoked via the Agent tool, so it must be in `allowedTools`
+1. **Check Agent invocations are approved**: include `Agent` in `allowedTools` to auto-approve subagent calls. Without it, Agent invocations fall through to your `canUseTool` callback or, in `dontAsk` mode, are denied
 2. **Use explicit prompting**: mention the subagent by name in your prompt (for example, "Use the code-reviewer agent to...")
 3. **Write a clear description**: explain exactly when the subagent should be used so Claude can match tasks appropriately
 

@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/memory_stores/delete
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 71164a4941422b8698f3b783de522dfd79ede701f4238d0f507792b58b86aa10
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 28912af4131f13abc50fe845d0e5733079bc2a5b52227ca885aff2ee0d2a7ec0
 ---
 
-## Delete
+## Delete a memory store
 
 `BetaManagedAgentsDeletedMemoryStore beta().memoryStores().delete(MemoryStoreDeleteParamsparams = MemoryStoreDeleteParams.none(), RequestOptionsrequestOptions = RequestOptions.none())`
 
@@ -105,5 +105,14 @@ public final class Main {
 
         BetaManagedAgentsDeletedMemoryStore betaManagedAgentsDeletedMemoryStore = client.beta().memoryStores().delete("memory_store_id");
     }
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "type": "memory_store_deleted"
 }
 ```

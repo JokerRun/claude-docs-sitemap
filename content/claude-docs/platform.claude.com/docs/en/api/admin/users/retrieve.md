@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/users/retrieve
-fetched_at: 2026-04-25T03:09:48.142425Z
-sha256: ae028818d3e0d46d14e7256a64974fc9e9914249f666a91c3725c11780d84f17
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 2e9989822a983efaef1ee5ab84ba2a71cf014a76805b2f1322260b59e6190690
 ---
 
-## Retrieve
+## Get User
 
 **get** `/v1/organizations/users/{user_id}`
 
@@ -19,7 +19,7 @@ Get User
 
 ### Returns
 
-- `User = object { id, added_at, email, 3 more }`
+- `User object { id, added_at, email, 3 more }`
 
   - `id: string`
 
@@ -65,4 +65,17 @@ Get User
 curl https://api.anthropic.com/v1/organizations/users/$USER_ID \
     -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
+```
+
+#### Response
+
+```json
+{
+  "id": "user_01WCz1FkmYMm4gnmykNKUu3Q",
+  "added_at": "2024-10-30T23:58:27.427722Z",
+  "email": "user@emaildomain.com",
+  "name": "Jane Doe",
+  "role": "user",
+  "type": "user"
+}
 ```

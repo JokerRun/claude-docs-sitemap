@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/skills/versions/create
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 887457ea6bbd8b62cc3e0608570cc344d898e592aca280da3f41f8f5553895ee
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 4862b020bdb8e5bd5b1952d4fba842be72f45039b865225d3d395c5945a6b7f0
 ---
 
-## Create
+## Create Skill Version
 
 `client.Beta.Skills.Versions.New(ctx, skillID, params) (*BetaSkillVersionNewResponse, error)`
 
@@ -163,5 +163,20 @@ func main() {
     panic(err.Error())
   }
   fmt.Printf("%+v\n", version.ID)
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "skillver_01JAbcdefghijklmnopqrstuvw",
+  "created_at": "2024-10-30T23:58:27.427722Z",
+  "description": "A custom skill for doing something useful",
+  "directory": "my-skill",
+  "name": "my-skill",
+  "skill_id": "skill_01JAbcdefghijklmnopqrstuvw",
+  "type": "type",
+  "version": "1759178010641129"
 }
 ```

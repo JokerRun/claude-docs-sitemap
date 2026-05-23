@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/skills/delete
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 504871ca400a1b6790177235cbf84722468ed820eda734c385bacec70d9747ba
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 2bcc17a21061848f138191ba24c7b4f4bc42ed64b8d23118126af7767b19d0df
 ---
 
-## Delete
+## Delete Skill
 
 `$ ant beta:skills delete`
 
@@ -47,4 +47,13 @@ Delete Skill
 ant beta:skills delete \
   --api-key my-anthropic-api-key \
   --skill-id skill_id
+```
+
+#### Response
+
+```json
+{
+  "id": "skill_01JAbcdefghijklmnopqrstuvw",
+  "type": "type"
+}
 ```

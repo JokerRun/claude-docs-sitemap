@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/environments/work/list
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: e4284a270b81a8627ea7ef1ef0db46bf5db231e1b76c9109b83cfef5bd8615dd
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 1360fd1e4c022c42251fb54f972895c807e6203ccbdd441659a8a798b27f9c8b
 ---
 
-## List
+## List Work Items
 
 `$ ant beta:environments:work list`
 
@@ -119,4 +119,33 @@ List work items in an environment.
 ant beta:environments:work list \
   --api-key my-anthropic-api-key \
   --environment-id env_011CZkZ9X2dpNyB7HsEFoRfW
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "id",
+      "acknowledged_at": "acknowledged_at",
+      "created_at": "created_at",
+      "data": {
+        "id": "id",
+        "type": "session"
+      },
+      "environment_id": "environment_id",
+      "latest_heartbeat_at": "latest_heartbeat_at",
+      "metadata": {
+        "foo": "string"
+      },
+      "started_at": "started_at",
+      "state": "queued",
+      "stop_requested_at": "stop_requested_at",
+      "stopped_at": "stopped_at",
+      "type": "work"
+    }
+  ],
+  "next_page": "next_page"
+}
 ```

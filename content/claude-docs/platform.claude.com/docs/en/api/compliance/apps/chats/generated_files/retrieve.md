@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats/generated_files/retrieve
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 82192a013181282b1fa89113e042eb49ca35e489026791e97f2269fd7596da89
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: c8db7f3fa12ac9f9711e2b70133d5ccac5e391b9d02482583c15973d28a98f0f
 ---
 
-## Retrieve
+## Get Claude-generated file metadata
 
 **get** `/v1/compliance/apps/chats/generated-files/{claude_gen_file_id}`
 
@@ -60,4 +60,18 @@ download the bytes.
 ```http
 curl https://api.anthropic.com/v1/compliance/apps/chats/generated-files/$CLAUDE_GEN_FILE_ID \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "claude_chat_id": "claude_chat_id",
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "filename": "filename",
+  "md5": "md5",
+  "mime_type": "mime_type",
+  "size_bytes": 0
+}
 ```

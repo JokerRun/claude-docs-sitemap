@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/memory_stores/create
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 45df16524a6e0c361363724cc774841220fe655706b12725c65dc05f132d85e4
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: eaecd2b0aa36f92d2826a2a8171be8cf8846aa693d4bfb55a9a39f03a5841a64
 ---
 
-## Create
+## Create a memory store
 
 `beta.memory_stores.create(**kwargs) -> BetaManagedAgentsMemoryStore`
 
@@ -31,9 +31,9 @@ Create a memory store
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `String`
+  - `String = String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -133,4 +133,21 @@ anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
 beta_managed_agents_memory_store = anthropic.beta.memory_stores.create(name: "x")
 
 puts(beta_managed_agents_memory_store)
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "name": "name",
+  "type": "memory_store",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "archived_at": "2019-12-27T18:11:19.117Z",
+  "description": "description",
+  "metadata": {
+    "foo": "string"
+  }
+}
 ```

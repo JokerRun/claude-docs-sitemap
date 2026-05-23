@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/memory_stores/memories/retrieve
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: fa92f036159fe189fa51fa583bf740a23e059964db3b053bc87d86ea96830ef6
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: c10a422d6a90f7b0b4dab453564277e4967c532e0558dde6e171157052536427
 ---
 
-## Retrieve
+## Retrieve a memory
 
 `BetaManagedAgentsMemory beta().memoryStores().memories().retrieve(MemoryRetrieveParamsparams, RequestOptionsrequestOptions = RequestOptions.none())`
 
@@ -147,5 +147,22 @@ public final class Main {
             .build();
         BetaManagedAgentsMemory betaManagedAgentsMemory = client.beta().memoryStores().memories().retrieve(params);
     }
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "content_sha256": "content_sha256",
+  "content_size_bytes": 0,
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "memory_store_id": "memory_store_id",
+  "memory_version_id": "memory_version_id",
+  "path": "path",
+  "type": "memory",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "content": "content"
 }
 ```

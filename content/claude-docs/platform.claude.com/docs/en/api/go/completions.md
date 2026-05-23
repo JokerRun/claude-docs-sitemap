@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/completions
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 2ee72fea5eff33cbc90ad26804d6a1894d09033672c75bc1a1e7578d204f68db
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: d08a5215fc57379036d36a811f74c0eea3e6740eece2dc16bca9bdeeaa4efe6e
 ---
 
 # Completions
 
-## Create
+## Create a Text Completion
 
 `client.Completions.New(ctx, params) (*Completion, error)`
 
@@ -290,6 +290,18 @@ func main() {
     panic(err.Error())
   }
   fmt.Printf("%+v\n", completion.ID)
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "compl_018CKm6gsux7P8yMcwZbeCPw",
+  "completion": " Hello! My name is Claude.",
+  "model": "claude-2.1",
+  "stop_reason": "stop_sequence",
+  "type": "completion"
 }
 ```
 

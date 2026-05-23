@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/vaults/credentials/update
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: daefaa313bba79141c8d551f38a525293eb462d5f992b02424992707b8a00f02
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: f46d083fdd8d853b3ea7ea00b94fadb49e22ce4eca7e2613742be1a43ba7903f
 ---
 
-## Update
+## Update Credential
 
 `client.beta.vaults.credentials.update(stringcredentialID, CredentialUpdateParamsparams, RequestOptionsoptions?): BetaManagedAgentsCredential`
 
@@ -294,4 +294,25 @@ const betaManagedAgentsCredential = await client.beta.vaults.credentials.update(
 );
 
 console.log(betaManagedAgentsCredential.id);
+```
+
+#### Response
+
+```json
+{
+  "id": "vcrd_011CZkZEMt8gZan2iYOQfSkw",
+  "archived_at": null,
+  "auth": {
+    "mcp_server_url": "https://example-server.modelcontextprotocol.io/sse",
+    "type": "static_bearer"
+  },
+  "created_at": "2026-03-15T10:00:00Z",
+  "metadata": {
+    "environment": "production"
+  },
+  "type": "vault_credential",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "vault_id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+  "display_name": "Example credential"
+}
 ```

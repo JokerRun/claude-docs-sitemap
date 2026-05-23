@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/skills/versions/download
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 2662c3b0a822e25d42fa33ecbe9a2549f9d3c8cf5f6bf37e5f2f329f818bc1d7
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 62d22a6bb05d92d1e175b735c2a9a783ec989368605f89263ba2af6d3b5a577c
 ---
 
-## Download
+## Download Skill Version Content
 
 `HttpResponse beta().skills().versions().download(VersionDownloadParamsparams, RequestOptionsrequestOptions = RequestOptions.none())`
 

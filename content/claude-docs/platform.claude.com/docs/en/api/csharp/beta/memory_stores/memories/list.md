@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/memory_stores/memories/list
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 94a280869d8616644eb04831d32f31cadaba35c8c98826acd61323ebbde024cf
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 8e815a83f978c6f63dbda212daa6dcbdcd16eb2614063e413174dce6230bb3a5
 ---
 
-## List
+## List memories
 
 `MemoryListPageResponse Beta.MemoryStores.Memories.List(MemoryListParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -186,5 +186,27 @@ var page = await client.Beta.MemoryStores.Memories.List(parameters);
 await foreach (var item in page.Paginate())
 {
     Console.WriteLine(item);
+}
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "id",
+      "content_sha256": "content_sha256",
+      "content_size_bytes": 0,
+      "created_at": "2019-12-27T18:11:19.117Z",
+      "memory_store_id": "memory_store_id",
+      "memory_version_id": "memory_version_id",
+      "path": "path",
+      "type": "memory",
+      "updated_at": "2019-12-27T18:11:19.117Z",
+      "content": "content"
+    }
+  ],
+  "next_page": "next_page"
 }
 ```

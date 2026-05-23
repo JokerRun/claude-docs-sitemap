@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/vaults/create
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 1e8d3ee392e8f695e5e92b748076ce9cbb90c090f3f83bbf85c1363fb2b42bcd
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 6af795826ec74fbeeaec6c1b8dc656bcfcbe40df1b490a66983073065cba29d4
 ---
 
-## Create
+## Create Vault
 
 `$ ant beta:vaults create`
 
@@ -67,4 +67,20 @@ Create Vault
 ant beta:vaults create \
   --api-key my-anthropic-api-key \
   --display-name 'Example vault'
+```
+
+#### Response
+
+```json
+{
+  "id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+  "archived_at": null,
+  "created_at": "2026-03-15T10:00:00Z",
+  "display_name": "Example vault",
+  "metadata": {
+    "environment": "production"
+  },
+  "type": "vault",
+  "updated_at": "2026-03-15T10:00:00Z"
+}
 ```

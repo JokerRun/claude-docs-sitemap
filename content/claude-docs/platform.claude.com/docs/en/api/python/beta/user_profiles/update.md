@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/user_profiles/update
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: e4fa4e9b54a8af181325e80de25cc7061c103de4793b4a896726f7d30b15545d
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: f95099f55c75e568ccb97a29c7ac6c80e7bf4c8a775efb81f82ca8f250346474
 ---
 
-## Update
+## Update User Profile
 
 `beta.user_profiles.update(struser_profile_id, UserProfileUpdateParams**kwargs)  -> BetaUserProfile`
 
@@ -168,4 +168,24 @@ beta_user_profile = client.beta.user_profiles.update(
     user_profile_id="uprof_011CZkZCu8hGbp5mYRQgUmz9",
 )
 print(beta_user_profile.id)
+```
+
+#### Response
+
+```json
+{
+  "id": "uprof_011CZkZCu8hGbp5mYRQgUmz9",
+  "created_at": "2026-03-15T10:00:00Z",
+  "metadata": {},
+  "relationship": "external",
+  "trust_grants": {
+    "cyber": {
+      "status": "active"
+    }
+  },
+  "type": "user_profile",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "external_id": "user_12345",
+  "name": "Example User"
+}
 ```

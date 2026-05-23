@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/environments/work/stats
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 3e97049468c26131b243c3fef0ce5e5609f5588bee4b9c7f2ca6e929cf13b6cb
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: e231c635bc88a41c3060ac7527ec3f2df6b90e28802f7788a5ac8b562342c781
 ---
 
-## Stats
+## Get Queue Statistics
 
 `client.beta.environments.work.stats(stringenvironmentID, WorkStatsParamsparams?, RequestOptionsoptions?): BetaSelfHostedWorkQueueStats`
 
@@ -121,4 +121,16 @@ const betaSelfHostedWorkQueueStats = await client.beta.environments.work.stats(
 );
 
 console.log(betaSelfHostedWorkQueueStats.depth);
+```
+
+#### Response
+
+```json
+{
+  "depth": 0,
+  "oldest_queued_at": "oldest_queued_at",
+  "pending": 0,
+  "type": "work_queue_stats",
+  "workers_polling": 0
+}
 ```

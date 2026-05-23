@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/environments/work/heartbeat
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 5d2b11fbafc45db52c30754297d5f6ccc3cf13dc4f5f9e03b4a443cc84cd6ee3
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 56f905aef88f3ceb4aacf4569d449d216a2eba9460478c6a7ed27d3ebad0ae7f
 ---
 
-## Heartbeat
+## Record Heartbeat
 
 `beta.environments.work.heartbeat(strwork_id, WorkHeartbeatParams**kwargs)  -> BetaSelfHostedWorkHeartbeatResponse`
 
@@ -139,4 +139,16 @@ beta_self_hosted_work_heartbeat_response = client.beta.environments.work.heartbe
     environment_id="env_011CZkZ9X2dpNyB7HsEFoRfW",
 )
 print(beta_self_hosted_work_heartbeat_response.last_heartbeat)
+```
+
+#### Response
+
+```json
+{
+  "last_heartbeat": "last_heartbeat",
+  "lease_extended": true,
+  "state": "queued",
+  "ttl_seconds": 0,
+  "type": "work_heartbeat"
+}
 ```

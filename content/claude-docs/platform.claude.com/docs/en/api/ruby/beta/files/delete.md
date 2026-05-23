@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/files/delete
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: e7f630e35e341e5b311f28720df3455fb86971775ef638d9beaf66adbb31ec5c
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: eb59e7be51b77fa3706ecd0660461b526c2fb568288c941f3d4cabc55618c680
 ---
 
-## Delete
+## Delete File
 
 `beta.files.delete(file_id, **kwargs) -> DeletedFile`
 
@@ -23,9 +23,9 @@ Delete File
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `String`
+  - `String = String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -103,4 +103,13 @@ anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
 deleted_file = anthropic.beta.files.delete("file_id")
 
 puts(deleted_file)
+```
+
+#### Response
+
+```json
+{
+  "id": "file_011CNha8iCJcU1wXNR6q4V8w",
+  "type": "file_deleted"
+}
 ```

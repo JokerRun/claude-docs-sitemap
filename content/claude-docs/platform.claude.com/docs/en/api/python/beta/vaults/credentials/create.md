@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/vaults/credentials/create
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 25a2e89c919dc7af13871fbcd1d9c03aa74291b8ac03e41b750beb3b7680fb35
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 0663d1c69dd29442386b13c70b6bd43b1f5ccd1d0d8bd6cf4b4cb9d8fb0e2f7c
 ---
 
-## Create
+## Create Credential
 
 `beta.vaults.credentials.create(strvault_id, CredentialCreateParams**kwargs)  -> BetaManagedAgentsCredential`
 
@@ -319,4 +319,25 @@ beta_managed_agents_credential = client.beta.vaults.credentials.create(
     },
 )
 print(beta_managed_agents_credential.id)
+```
+
+#### Response
+
+```json
+{
+  "id": "vcrd_011CZkZEMt8gZan2iYOQfSkw",
+  "archived_at": null,
+  "auth": {
+    "mcp_server_url": "https://example-server.modelcontextprotocol.io/sse",
+    "type": "static_bearer"
+  },
+  "created_at": "2026-03-15T10:00:00Z",
+  "metadata": {
+    "environment": "production"
+  },
+  "type": "vault_credential",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "vault_id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+  "display_name": "Example credential"
+}
 ```

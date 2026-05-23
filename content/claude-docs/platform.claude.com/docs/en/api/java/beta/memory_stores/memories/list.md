@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/memory_stores/memories/list
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 2c780d7917c0c7b2ee72431eeaed503f9d6bc8d6292c024d06b03d4b1992e08c
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: e8906f744e1587264a03816be04c0a1cfbaf243250327dba4dde1127c4879078
 ---
 
-## List
+## List memories
 
 `MemoryListPage beta().memoryStores().memories().list(MemoryListParamsparams = MemoryListParams.none(), RequestOptionsrequestOptions = RequestOptions.none())`
 
@@ -185,5 +185,27 @@ public final class Main {
 
         MemoryListPage page = client.beta().memoryStores().memories().list("memory_store_id");
     }
+}
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "id",
+      "content_sha256": "content_sha256",
+      "content_size_bytes": 0,
+      "created_at": "2019-12-27T18:11:19.117Z",
+      "memory_store_id": "memory_store_id",
+      "memory_version_id": "memory_version_id",
+      "path": "path",
+      "type": "memory",
+      "updated_at": "2019-12-27T18:11:19.117Z",
+      "content": "content"
+    }
+  ],
+  "next_page": "next_page"
 }
 ```

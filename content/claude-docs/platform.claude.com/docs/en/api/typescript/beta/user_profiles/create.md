@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/user_profiles/create
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: e9cf4dd07033029707fdf20b404dba46b3c6f4c2366d05d4ba57808e642617fe
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 26d11225725fc52484649f180a1303acd95a72df6f46791a2293184fa3b25fe3
 ---
 
-## Create
+## Create User Profile
 
 `client.beta.userProfiles.create(UserProfileCreateParamsparams, RequestOptionsoptions?): BetaUserProfile`
 
@@ -167,4 +167,24 @@ const client = new Anthropic({
 const betaUserProfile = await client.beta.userProfiles.create();
 
 console.log(betaUserProfile.id);
+```
+
+#### Response
+
+```json
+{
+  "id": "uprof_011CZkZCu8hGbp5mYRQgUmz9",
+  "created_at": "2026-03-15T10:00:00Z",
+  "metadata": {},
+  "relationship": "external",
+  "trust_grants": {
+    "cyber": {
+      "status": "active"
+    }
+  },
+  "type": "user_profile",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "external_id": "user_12345",
+  "name": "Example User"
+}
 ```

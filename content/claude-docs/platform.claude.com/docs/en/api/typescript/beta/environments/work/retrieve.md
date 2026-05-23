@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/environments/work/retrieve
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: d49f539762e1c4606a1a531f9d7726efa14594b665edf7041fbad6618cb31da0
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: b81770b6b6386323a25d6ca7dda500fdc963c8c0a40f6fb06b70cd101960c66c
 ---
 
-## Retrieve
+## Get Work Item
 
 `client.beta.environments.work.retrieve(stringworkID, WorkRetrieveParamsparams, RequestOptionsoptions?): BetaSelfHostedWork`
 
@@ -177,4 +177,28 @@ const betaSelfHostedWork = await client.beta.environments.work.retrieve('work_id
 });
 
 console.log(betaSelfHostedWork.id);
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "acknowledged_at": "acknowledged_at",
+  "created_at": "created_at",
+  "data": {
+    "id": "id",
+    "type": "session"
+  },
+  "environment_id": "environment_id",
+  "latest_heartbeat_at": "latest_heartbeat_at",
+  "metadata": {
+    "foo": "string"
+  },
+  "started_at": "started_at",
+  "state": "queued",
+  "stop_requested_at": "stop_requested_at",
+  "stopped_at": "stopped_at",
+  "type": "work"
+}
 ```

@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/skills
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: a180414c22eabd5018ff9ad2100d741c4628a889802cdd4e4c94918f268f5a2f
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: d0f981caefda059566d772aaf9b40af764c2ae245ad9104c3266bcb0d5e40175
 ---
 
 # Skills
 
-## Create
+## Create Skill
 
 `client.Beta.Skills.New(ctx, params) (*BetaSkillNewResponse, error)`
 
@@ -161,7 +161,21 @@ func main() {
 }
 ```
 
-## List
+#### Response
+
+```json
+{
+  "id": "skill_01JAbcdefghijklmnopqrstuvw",
+  "created_at": "2024-10-30T23:58:27.427722Z",
+  "display_title": "My Custom Skill",
+  "latest_version": "1759178010641129",
+  "source": "custom",
+  "type": "type",
+  "updated_at": "2024-10-30T23:58:27.427722Z"
+}
+```
+
+## List Skills
 
 `client.Beta.Skills.List(ctx, params) (*PageCursor[BetaSkillListResponse], error)`
 
@@ -324,7 +338,27 @@ func main() {
 }
 ```
 
-## Retrieve
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "skill_01JAbcdefghijklmnopqrstuvw",
+      "created_at": "2024-10-30T23:58:27.427722Z",
+      "display_title": "My Custom Skill",
+      "latest_version": "1759178010641129",
+      "source": "custom",
+      "type": "type",
+      "updated_at": "2024-10-30T23:58:27.427722Z"
+    }
+  ],
+  "has_more": true,
+  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="
+}
+```
+
+## Get Skill
 
 `client.Beta.Skills.Get(ctx, skillID, query) (*BetaSkillGetResponse, error)`
 
@@ -476,7 +510,21 @@ func main() {
 }
 ```
 
-## Delete
+#### Response
+
+```json
+{
+  "id": "skill_01JAbcdefghijklmnopqrstuvw",
+  "created_at": "2024-10-30T23:58:27.427722Z",
+  "display_title": "My Custom Skill",
+  "latest_version": "1759178010641129",
+  "source": "custom",
+  "type": "type",
+  "updated_at": "2024-10-30T23:58:27.427722Z"
+}
+```
+
+## Delete Skill
 
 `client.Beta.Skills.Delete(ctx, skillID, body) (*BetaSkillDeleteResponse, error)`
 
@@ -599,9 +647,18 @@ func main() {
 }
 ```
 
+#### Response
+
+```json
+{
+  "id": "skill_01JAbcdefghijklmnopqrstuvw",
+  "type": "type"
+}
+```
+
 # Versions
 
-## Create
+## Create Skill Version
 
 `client.Beta.Skills.Versions.New(ctx, skillID, params) (*BetaSkillVersionNewResponse, error)`
 
@@ -762,7 +819,22 @@ func main() {
 }
 ```
 
-## List
+#### Response
+
+```json
+{
+  "id": "skillver_01JAbcdefghijklmnopqrstuvw",
+  "created_at": "2024-10-30T23:58:27.427722Z",
+  "description": "A custom skill for doing something useful",
+  "directory": "my-skill",
+  "name": "my-skill",
+  "skill_id": "skill_01JAbcdefghijklmnopqrstuvw",
+  "type": "type",
+  "version": "1759178010641129"
+}
+```
+
+## List Skill Versions
 
 `client.Beta.Skills.Versions.List(ctx, skillID, params) (*PageCursor[BetaSkillVersionListResponse], error)`
 
@@ -927,7 +999,28 @@ func main() {
 }
 ```
 
-## Download
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "skillver_01JAbcdefghijklmnopqrstuvw",
+      "created_at": "2024-10-30T23:58:27.427722Z",
+      "description": "A custom skill for doing something useful",
+      "directory": "my-skill",
+      "name": "my-skill",
+      "skill_id": "skill_01JAbcdefghijklmnopqrstuvw",
+      "type": "type",
+      "version": "1759178010641129"
+    }
+  ],
+  "has_more": true,
+  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="
+}
+```
+
+## Download Skill Version Content
 
 `client.Beta.Skills.Versions.Download(ctx, version, params) (*Response, error)`
 
@@ -1044,7 +1137,7 @@ func main() {
 }
 ```
 
-## Retrieve
+## Get Skill Version
 
 `client.Beta.Skills.Versions.Get(ctx, version, params) (*BetaSkillVersionGetResponse, error)`
 
@@ -1205,7 +1298,22 @@ func main() {
 }
 ```
 
-## Delete
+#### Response
+
+```json
+{
+  "id": "skillver_01JAbcdefghijklmnopqrstuvw",
+  "created_at": "2024-10-30T23:58:27.427722Z",
+  "description": "A custom skill for doing something useful",
+  "directory": "my-skill",
+  "name": "my-skill",
+  "skill_id": "skill_01JAbcdefghijklmnopqrstuvw",
+  "type": "type",
+  "version": "1759178010641129"
+}
+```
+
+## Delete Skill Version
 
 `client.Beta.Skills.Versions.Delete(ctx, version, params) (*BetaSkillVersionDeleteResponse, error)`
 
@@ -1331,5 +1439,14 @@ func main() {
     panic(err.Error())
   }
   fmt.Printf("%+v\n", version.ID)
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "1759178010641129",
+  "type": "type"
 }
 ```

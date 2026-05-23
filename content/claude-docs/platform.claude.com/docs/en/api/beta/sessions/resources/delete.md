@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/resources/delete
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 2e0091502ed1d9517b19b837e8a0a0469676d0c67cc7ca1600568674dc022a2d
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 78f167f82c9943cf491e805683fe9b0299fd21b8b754564118f8ceaf14693970
 ---
 
-## Delete
+## Delete Session Resource
 
 **delete** `/v1/sessions/{session_id}/resources/{resource_id}`
 
@@ -23,9 +23,9 @@ Delete Session Resource
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = string`
+  - `string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -79,7 +79,7 @@ Delete Session Resource
 
 ### Returns
 
-- `BetaManagedAgentsDeleteSessionResource = object { id, type }`
+- `BetaManagedAgentsDeleteSessionResource object { id, type }`
 
   Confirmation of resource deletion.
 
@@ -97,4 +97,13 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/resources/$RESOURCE_ID \
     -H 'anthropic-version: 2023-06-01' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
+```
+
+#### Response
+
+```json
+{
+  "id": "sesrsc_011CZkZBJq5dWxk9fVLNcPht",
+  "type": "session_resource_deleted"
+}
 ```

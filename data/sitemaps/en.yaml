@@ -25,7 +25,7 @@
   lastmod: '2026-05-05T15:19:44.962Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/mcp
-  lastmod: '2026-05-09T03:55:25.505Z'
+  lastmod: '2026-05-23T01:26:42.908Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/migration-guide
   lastmod: '2026-05-05T21:23:39.052Z'
@@ -37,19 +37,19 @@
   lastmod: '2026-05-05T15:19:44.961Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/overview
-  lastmod: '2026-05-13T17:12:30.299Z'
+  lastmod: '2026-05-23T01:26:42.912Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/permissions
   lastmod: '2026-05-19T20:04:47.353Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/plugins
-  lastmod: '2026-05-15T14:58:10.012Z'
+  lastmod: '2026-05-23T01:37:25.000Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/python
   lastmod: '2026-05-19T18:30:38.722Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/quickstart
-  lastmod: '2026-05-11T19:13:22.501Z'
+  lastmod: '2026-05-23T01:26:42.906Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/secure-deployment
   lastmod: '2026-04-29T06:50:30.729Z'
@@ -64,7 +64,7 @@
   lastmod: '2026-05-12T23:24:44.243Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/slash-commands
-  lastmod: '2026-05-15T14:58:10.013Z'
+  lastmod: '2026-05-23T01:37:25.002Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/streaming-output
   lastmod: '2026-05-05T21:23:39.059Z'
@@ -76,7 +76,7 @@
   lastmod: '2026-04-16T18:46:17.407Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/subagents
-  lastmod: '2026-05-15T14:58:10.016Z'
+  lastmod: '2026-05-23T01:26:42.933Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/todo-tracking
   lastmod: '2026-05-18T22:55:25.009Z'
@@ -121,7 +121,7 @@
   lastmod: '2026-04-28T15:54:10.733Z'
 - source: code
   loc: https://code.claude.com/docs/en/changelog
-  lastmod: '2026-05-22T01:22:07.328Z'
+  lastmod: '2026-05-22T22:25:29.543Z'
 - source: code
   loc: https://code.claude.com/docs/en/channels
   lastmod: '2026-05-11T23:27:14.149Z'
@@ -355,7 +355,7 @@
   lastmod: '2026-05-20T04:18:51.521Z'
 - source: code
   loc: https://code.claude.com/docs/en/sub-agents
-  lastmod: '2026-05-19T17:00:09.935Z'
+  lastmod: '2026-05-23T01:31:35.681Z'
 - source: code
   loc: https://code.claude.com/docs/en/terminal-config
   lastmod: '2026-05-08T16:30:06.298Z'
@@ -415,7 +415,7 @@
   lastmod: '2026-05-19T14:12:04.033Z'
 - source: code
   loc: https://code.claude.com/docs/en/worktrees
-  lastmod: '2026-05-12T23:22:56.659Z'
+  lastmod: '2026-05-23T01:31:35.679Z'
 - source: code
   loc: https://code.claude.com/docs/en/zero-data-retention
   lastmod: '2026-05-02T18:10:10.308Z'

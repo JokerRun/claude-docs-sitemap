@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/vaults/list
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 83ef8631be59850e8493fe57aa9bed85cf81097757826231964d3f7516ffbffe
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 7b6ec11a462e0e16b12936730c567dba044338942bb869f01a25596300cce656
 ---
 
-## List
+## List Vaults
 
 `client.beta.vaults.list(VaultListParamsparams?, RequestOptionsoptions?): PageCursor<BetaManagedAgentsVault>`
 
@@ -133,5 +133,26 @@ const client = new Anthropic({
 // Automatically fetches more pages as needed.
 for await (const betaManagedAgentsVault of client.beta.vaults.list()) {
   console.log(betaManagedAgentsVault.id);
+}
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+      "archived_at": null,
+      "created_at": "2026-03-15T10:00:00Z",
+      "display_name": "Example vault",
+      "metadata": {
+        "environment": "production"
+      },
+      "type": "vault",
+      "updated_at": "2026-03-15T10:00:00Z"
+    }
+  ],
+  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="
 }
 ```

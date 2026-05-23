@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/skills/retrieve
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: acdec99bfa27384cc6b2e692d4a5778a073e29f8d33629593a0696aab65c2c1c
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: bdcdfb4912eea0627b2f3f8e2679cff8c324a5d7b53a0cb23ec916477832c968
 ---
 
-## Retrieve
+## Get Skill
 
 `beta.skills.retrieve(skill_id, **kwargs) -> SkillRetrieveResponse`
 
@@ -25,9 +25,9 @@ Get Skill
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `String`
+  - `String = String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -134,4 +134,18 @@ anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
 skill = anthropic.beta.skills.retrieve("skill_id")
 
 puts(skill)
+```
+
+#### Response
+
+```json
+{
+  "id": "skill_01JAbcdefghijklmnopqrstuvw",
+  "created_at": "2024-10-30T23:58:27.427722Z",
+  "display_title": "My Custom Skill",
+  "latest_version": "1759178010641129",
+  "source": "custom",
+  "type": "type",
+  "updated_at": "2024-10-30T23:58:27.427722Z"
+}
 ```

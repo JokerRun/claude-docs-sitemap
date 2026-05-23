@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/environments/work/list
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: d3406c13e7edce73eff538e7176a7e0ffd616cf425ac876aacbfd381b075ad59
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: da3392658406203a5bdc783ab438d935edb087f2b740fd077f872fd1e2758955
 ---
 
-## List
+## List Work Items
 
 `beta.environments.work.list(strenvironment_id, WorkListParams**kwargs)  -> SyncPageCursor[BetaSelfHostedWork]`
 
@@ -179,4 +179,33 @@ page = client.beta.environments.work.list(
 )
 page = page.data[0]
 print(page.id)
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "id",
+      "acknowledged_at": "acknowledged_at",
+      "created_at": "created_at",
+      "data": {
+        "id": "id",
+        "type": "session"
+      },
+      "environment_id": "environment_id",
+      "latest_heartbeat_at": "latest_heartbeat_at",
+      "metadata": {
+        "foo": "string"
+      },
+      "started_at": "started_at",
+      "state": "queued",
+      "stop_requested_at": "stop_requested_at",
+      "stopped_at": "stopped_at",
+      "type": "work"
+    }
+  ],
+  "next_page": "next_page"
+}
 ```

@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/mcp_tunnels/rotate_token
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 33b6a87e6ce61c10395edcd6919ac3cd68021de6ffbfbaf8cce0d07d3544e7ba
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 34af7bc512143b4f86ca5d229e9daf3dc16e3632023a7a2d26213fd2996c8570
 ---
 
-## Rotate Token
+## Rotate Tunnel Token
 
 **post** `/v1/organizations/tunnels/{tunnel_id}/rotate_token`
 
@@ -59,4 +59,14 @@ curl https://api.anthropic.com/v1/organizations/tunnels/$TUNNEL_ID/rotate_token 
     -X POST \
     -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_WIF_BEARER_TOKEN"
+```
+
+#### Response
+
+```json
+{
+  "id": "ttkn_bb97000eaec162831399ca9b6684a4fdf5be49ace5683057b017aab5c87e19e0",
+  "tunnel_token": "eyJhIjoiRVhBTVBMRSIsInQiOiJFWEFNUExFIiwicyI6IkVYQU1QTEUifQ==",
+  "type": "tunnel_token"
+}
 ```

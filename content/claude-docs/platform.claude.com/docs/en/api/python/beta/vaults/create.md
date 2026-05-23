@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/vaults/create
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: f962175b708e385263be56d26ede833261771a426f7bb9085a614ec130ab9d2e
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 52f8d9a56df1b533cba322b08f3e38c58fee417cae2c1ddac3c62d2953b0ec46
 ---
 
-## Create
+## Create Vault
 
 `beta.vaults.create(VaultCreateParams**kwargs)  -> BetaManagedAgentsVault`
 
@@ -128,4 +128,20 @@ beta_managed_agents_vault = client.beta.vaults.create(
     display_name="Example vault",
 )
 print(beta_managed_agents_vault.id)
+```
+
+#### Response
+
+```json
+{
+  "id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+  "archived_at": null,
+  "created_at": "2026-03-15T10:00:00Z",
+  "display_name": "Example vault",
+  "metadata": {
+    "environment": "production"
+  },
+  "type": "vault",
+  "updated_at": "2026-03-15T10:00:00Z"
+}
 ```

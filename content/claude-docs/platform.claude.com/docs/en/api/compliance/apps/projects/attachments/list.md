@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/attachments/list
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 92c38654d169624d0d413158f291f2d6256bb7a40a36b2b2cdb937c2e6dc236e
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 950a63600bfc6ee4e0cd6007e6aca7780e3150be55b2fec878733734cd1d98ca
 ---
 
-## List
+## List project attachments
 
 **get** `/v1/compliance/apps/projects/{project_id}/attachments`
 
@@ -52,7 +52,7 @@ NotFoundException: If project doesn't exist or project_id format is invalid
 
   List of attachments sorted chronologically by created_at, tie break by id
 
-  - `ComplianceProjectFileReference = object { id, created_at, filename, 2 more }`
+  - `ComplianceProjectFileReference object { id, created_at, filename, 2 more }`
 
     File attachment reference for compliance responses.
 
@@ -78,7 +78,7 @@ NotFoundException: If project doesn't exist or project_id format is invalid
 
       - `"project_file"`
 
-  - `ComplianceProjectDocReference = object { id, created_at, filename, 2 more }`
+  - `ComplianceProjectDocReference object { id, created_at, filename, 2 more }`
 
     Project document attachment reference for compliance responses.
 
@@ -119,4 +119,22 @@ NotFoundException: If project doesn't exist or project_id format is invalid
 ```http
 curl https://api.anthropic.com/v1/compliance/apps/projects/$PROJECT_ID/attachments \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "id",
+      "created_at": "2019-12-27T18:11:19.117Z",
+      "filename": "filename",
+      "mime_type": "mime_type",
+      "type": "project_file"
+    }
+  ],
+  "has_more": true,
+  "next_page": "next_page"
+}
 ```

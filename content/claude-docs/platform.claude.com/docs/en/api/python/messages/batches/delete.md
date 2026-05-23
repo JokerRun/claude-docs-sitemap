@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/messages/batches/delete
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 74cd4bbe006b91b26d57aac7a654f489294abe32b24f440a8465c45cb3977acf
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 5cc64903a27319dd0d22bf68d07163104c7c53117d92ab25936e5c31cb3b0590
 ---
 
-## Delete
+## Delete a Message Batch
 
 `messages.batches.delete(strmessage_batch_id)  -> DeletedMessageBatch`
 
@@ -52,4 +52,13 @@ deleted_message_batch = client.messages.batches.delete(
     "message_batch_id",
 )
 print(deleted_message_batch.id)
+```
+
+#### Response
+
+```json
+{
+  "id": "msgbatch_013Zva2CMHLNnXjNJJKqJ2EF",
+  "type": "message_batch_deleted"
+}
 ```

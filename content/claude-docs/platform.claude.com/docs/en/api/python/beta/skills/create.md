@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/skills/create
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 89e89c7d375ef5a87bac949dada4f75b85de9ee135eb4a1affc3e4233b686626
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: f98fe0076c25d2e5a479f647021c4d1f9dabd43cbcbfe59846a33d3670b280cd
 ---
 
-## Create
+## Create Skill
 
 `beta.skills.create(SkillCreateParams**kwargs)  -> SkillCreateResponse`
 
@@ -141,4 +141,18 @@ client = Anthropic(
 )
 skill = client.beta.skills.create()
 print(skill.id)
+```
+
+#### Response
+
+```json
+{
+  "id": "skill_01JAbcdefghijklmnopqrstuvw",
+  "created_at": "2024-10-30T23:58:27.427722Z",
+  "display_title": "My Custom Skill",
+  "latest_version": "1759178010641129",
+  "source": "custom",
+  "type": "type",
+  "updated_at": "2024-10-30T23:58:27.427722Z"
+}
 ```

@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/vaults/list
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 53b21f6f255a260acffae069125da67463e0eca51584c264bd2216c6b8012aa4
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 85d682a07fa65e4dbc0ed833b8008b9caa0132a9562993ef8ae7f3870e20d45d
 ---
 
-## List
+## List Vaults
 
 `beta.vaults.list(**kwargs) -> PageCursor<BetaManagedAgentsVault>`
 
@@ -31,9 +31,9 @@ List Vaults
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `String`
+  - `String = String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -129,4 +129,25 @@ anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
 page = anthropic.beta.vaults.list
 
 puts(page)
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+      "archived_at": null,
+      "created_at": "2026-03-15T10:00:00Z",
+      "display_name": "Example vault",
+      "metadata": {
+        "environment": "production"
+      },
+      "type": "vault",
+      "updated_at": "2026-03-15T10:00:00Z"
+    }
+  ],
+  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="
+}
 ```

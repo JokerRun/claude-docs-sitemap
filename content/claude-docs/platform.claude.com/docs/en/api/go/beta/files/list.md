@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/files/list
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 07799dce2940f12bbc37bce20ebc641cdcfde31436a9b6b6ee92054fc39153be
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 9ea6a06e7c8572beb5603eb0e4d31b5239d3b4807d6f99c4d3bc8af5be435144
 ---
 
-## List
+## List Files
 
 `client.Beta.Files.List(ctx, params) (*Page[FileMetadata], error)`
 
@@ -169,5 +169,30 @@ func main() {
     panic(err.Error())
   }
   fmt.Printf("%+v\n", page)
+}
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "file_011CNha8iCJcU1wXNR6q4V8w",
+      "created_at": "2025-04-15T18:37:24.100435Z",
+      "filename": "document.pdf",
+      "mime_type": "application/pdf",
+      "size_bytes": 102400,
+      "type": "file",
+      "downloadable": false,
+      "scope": {
+        "id": "id",
+        "type": "session"
+      }
+    }
+  ],
+  "first_id": "file_011CNha8iCJcU1wXNR6q4V8w",
+  "has_more": true,
+  "last_id": "file_013Zva2CMHLNnXjNJJKqJ2EF"
 }
 ```

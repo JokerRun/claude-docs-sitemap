@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/skills/versions/create
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 5da6edb709679a315ec2a40fdb880bc19c65443df2e3b4371dcfd645bd800c77
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: d745fee5df27aa2c5ff08cca0dae40e57965a8ae7177d72e54769b00377a59fe
 ---
 
-## Create
+## Create Skill Version
 
 `beta.skills.versions.create(strskill_id, VersionCreateParams**kwargs)  -> VersionCreateResponse`
 
@@ -146,4 +146,19 @@ version = client.beta.skills.versions.create(
     skill_id="skill_id",
 )
 print(version.id)
+```
+
+#### Response
+
+```json
+{
+  "id": "skillver_01JAbcdefghijklmnopqrstuvw",
+  "created_at": "2024-10-30T23:58:27.427722Z",
+  "description": "A custom skill for doing something useful",
+  "directory": "my-skill",
+  "name": "my-skill",
+  "skill_id": "skill_01JAbcdefghijklmnopqrstuvw",
+  "type": "type",
+  "version": "1759178010641129"
+}
 ```

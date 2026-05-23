@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/skills/versions/list
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: ed1a396d969e14e1bf275e06836ab036d1334f6457a4482d0ad16d9105244171
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 262aea19fce0020215261babc3c3460cfb6b83a4762ed203877da50b3560060e
 ---
 
-## List
+## List Skill Versions
 
 `$ ant beta:skills:versions list`
 
@@ -101,4 +101,25 @@ List Skill Versions
 ant beta:skills:versions list \
   --api-key my-anthropic-api-key \
   --skill-id skill_id
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "skillver_01JAbcdefghijklmnopqrstuvw",
+      "created_at": "2024-10-30T23:58:27.427722Z",
+      "description": "A custom skill for doing something useful",
+      "directory": "my-skill",
+      "name": "my-skill",
+      "skill_id": "skill_01JAbcdefghijklmnopqrstuvw",
+      "type": "type",
+      "version": "1759178010641129"
+    }
+  ],
+  "has_more": true,
+  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="
+}
 ```

@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/models/retrieve
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: d46b7a3020efdf0412638c3747dea5785992f10b75e8ac67005a55a40a28667f
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 702a0ef52109026c0727b9752497e606d77f004c2aaa6d8779ccb8b1849b2785
 ---
 
-## Retrieve
+## Get a Model
 
 `client.Models.Get(ctx, modelID, query) (*ModelInfo, error)`
 
@@ -105,17 +105,9 @@ The Models API response can be used to determine information about a specific mo
 
       Whether the model supports citation generation.
 
-      - `Supported bool`
-
-        Whether this capability is supported by the model.
-
     - `CodeExecution CapabilitySupport`
 
       Whether the model supports code execution tools.
-
-      - `Supported bool`
-
-        Whether this capability is supported by the model.
 
     - `ContextManagement ContextManagementCapability`
 
@@ -125,25 +117,13 @@ The Models API response can be used to determine information about a specific mo
 
         Indicates whether a capability is supported.
 
-        - `Supported bool`
-
-          Whether this capability is supported by the model.
-
       - `ClearToolUses20250919 CapabilitySupport`
 
         Indicates whether a capability is supported.
 
-        - `Supported bool`
-
-          Whether this capability is supported by the model.
-
       - `Compact20260112 CapabilitySupport`
 
         Indicates whether a capability is supported.
-
-        - `Supported bool`
-
-          Whether this capability is supported by the model.
 
       - `Supported bool`
 
@@ -157,33 +137,17 @@ The Models API response can be used to determine information about a specific mo
 
         Whether the model supports high effort level.
 
-        - `Supported bool`
-
-          Whether this capability is supported by the model.
-
       - `Low CapabilitySupport`
 
         Whether the model supports low effort level.
-
-        - `Supported bool`
-
-          Whether this capability is supported by the model.
 
       - `Max CapabilitySupport`
 
         Whether the model supports max effort level.
 
-        - `Supported bool`
-
-          Whether this capability is supported by the model.
-
       - `Medium CapabilitySupport`
 
         Whether the model supports medium effort level.
-
-        - `Supported bool`
-
-          Whether this capability is supported by the model.
 
       - `Supported bool`
 
@@ -193,33 +157,17 @@ The Models API response can be used to determine information about a specific mo
 
         Indicates whether a capability is supported.
 
-        - `Supported bool`
-
-          Whether this capability is supported by the model.
-
     - `ImageInput CapabilitySupport`
 
       Whether the model accepts image content blocks.
-
-      - `Supported bool`
-
-        Whether this capability is supported by the model.
 
     - `PDFInput CapabilitySupport`
 
       Whether the model accepts PDF content blocks.
 
-      - `Supported bool`
-
-        Whether this capability is supported by the model.
-
     - `StructuredOutputs CapabilitySupport`
 
       Whether the model supports structured output / JSON mode / strict tool schemas.
-
-      - `Supported bool`
-
-        Whether this capability is supported by the model.
 
     - `Thinking ThinkingCapability`
 
@@ -237,17 +185,9 @@ The Models API response can be used to determine information about a specific mo
 
           Whether the model supports thinking with type 'adaptive' (auto).
 
-          - `Supported bool`
-
-            Whether this capability is supported by the model.
-
         - `Enabled CapabilitySupport`
 
           Whether the model supports thinking with type 'enabled'.
-
-          - `Supported bool`
-
-            Whether this capability is supported by the model.
 
   - `CreatedAt Time`
 
@@ -301,5 +241,79 @@ func main() {
     panic(err.Error())
   }
   fmt.Printf("%+v\n", modelInfo.ID)
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "claude-opus-4-6",
+  "capabilities": {
+    "batch": {
+      "supported": true
+    },
+    "citations": {
+      "supported": true
+    },
+    "code_execution": {
+      "supported": true
+    },
+    "context_management": {
+      "clear_thinking_20251015": {
+        "supported": true
+      },
+      "clear_tool_uses_20250919": {
+        "supported": true
+      },
+      "compact_20260112": {
+        "supported": true
+      },
+      "supported": true
+    },
+    "effort": {
+      "high": {
+        "supported": true
+      },
+      "low": {
+        "supported": true
+      },
+      "max": {
+        "supported": true
+      },
+      "medium": {
+        "supported": true
+      },
+      "supported": true,
+      "xhigh": {
+        "supported": true
+      }
+    },
+    "image_input": {
+      "supported": true
+    },
+    "pdf_input": {
+      "supported": true
+    },
+    "structured_outputs": {
+      "supported": true
+    },
+    "thinking": {
+      "supported": true,
+      "types": {
+        "adaptive": {
+          "supported": true
+        },
+        "enabled": {
+          "supported": true
+        }
+      }
+    }
+  },
+  "created_at": "2026-02-04T00:00:00Z",
+  "display_name": "Claude Opus 4.6",
+  "max_input_tokens": 0,
+  "max_tokens": 0,
+  "type": "model"
 }
 ```

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/user_profiles/create_enrollment_url
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: e7b7d8c42b4d35630d5a209f0a6fc83bceaac8dfaddd50544360002ee5ce2cac
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: c15b33873aff5f18995434961b964bc5dfb75598fdfd03646d981ab26439f08b
 ---
 
 ## Create Enrollment URL
@@ -106,4 +106,14 @@ beta_user_profile_enrollment_url = client.beta.user_profiles.create_enrollment_u
     user_profile_id="uprof_011CZkZCu8hGbp5mYRQgUmz9",
 )
 print(beta_user_profile_enrollment_url.expires_at)
+```
+
+#### Response
+
+```json
+{
+  "expires_at": "2026-03-15T10:15:00Z",
+  "type": "enrollment_url",
+  "url": "https://platform.claude.com/user-profiles/enrollment/M3J0bGJxZ2ppMnptbnB1"
+}
 ```

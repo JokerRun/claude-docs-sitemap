@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/messages/batches/delete
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: d4b8ec3c4191b872bf3534a181f1b5b2c2708cbd96934a05b9c0f2f69fb4d59d
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: a9bd2b656133eb39e2329240eecad4844d3df651c3d4d230db3c7fced15784f3
 ---
 
-## Delete
+## Delete a Message Batch
 
 `DeletedMessageBatch Messages.Batches.Delete(BatchDeleteParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -47,4 +47,13 @@ BatchDeleteParams parameters = new() { MessageBatchID = "message_batch_id" };
 var deletedMessageBatch = await client.Messages.Batches.Delete(parameters);
 
 Console.WriteLine(deletedMessageBatch);
+```
+
+#### Response
+
+```json
+{
+  "id": "msgbatch_013Zva2CMHLNnXjNJJKqJ2EF",
+  "type": "message_batch_deleted"
+}
 ```

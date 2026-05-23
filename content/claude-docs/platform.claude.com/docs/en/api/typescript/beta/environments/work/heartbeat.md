@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/environments/work/heartbeat
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: e4911355984ec22d8df99937db653565b8ecdffe2ddda4a0ab8dab634cd427bf
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: bb568d873ed6cb01b7a20b28657f84af2436a4cb04bf9079e7112edd097e4e7e
 ---
 
-## Heartbeat
+## Record Heartbeat
 
 `client.beta.environments.work.heartbeat(stringworkID, WorkHeartbeatParamsparams, RequestOptionsoptions?): BetaSelfHostedWorkHeartbeatResponse`
 
@@ -144,4 +144,16 @@ const betaSelfHostedWorkHeartbeatResponse = await client.beta.environments.work.
 );
 
 console.log(betaSelfHostedWorkHeartbeatResponse.last_heartbeat);
+```
+
+#### Response
+
+```json
+{
+  "last_heartbeat": "last_heartbeat",
+  "lease_extended": true,
+  "state": "queued",
+  "ttl_seconds": 0,
+  "type": "work_heartbeat"
+}
 ```

@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/environments/work/stats
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 08add0de21103390a8813bbf329f88262e06488fe526a7fc0496553cb412511d
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 353e03c92370f3789ed034626a58406be4d27477b601f17f8f7250a69a3770f8
 ---
 
-## Stats
+## Get Queue Statistics
 
 `BetaSelfHostedWorkQueueStats beta().environments().work().stats(WorkStatsParamsparams = WorkStatsParams.none(), RequestOptionsrequestOptions = RequestOptions.none())`
 
@@ -121,5 +121,17 @@ public final class Main {
 
         BetaSelfHostedWorkQueueStats betaSelfHostedWorkQueueStats = client.beta().environments().work().stats("env_011CZkZ9X2dpNyB7HsEFoRfW");
     }
+}
+```
+
+#### Response
+
+```json
+{
+  "depth": 0,
+  "oldest_queued_at": "oldest_queued_at",
+  "pending": 0,
+  "type": "work_queue_stats",
+  "workers_polling": 0
 }
 ```

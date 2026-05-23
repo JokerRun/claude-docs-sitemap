@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/messages/batches/retrieve
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 75d012ddf45bf80c7418d1dc795b487bf0c543a4ea0657f321daddd330a79aae
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 93867185b8686e8d926ce072f707505ef2e23113137ddfb25395eeec75bedfc5
 ---
 
-## Retrieve
+## Retrieve a Message Batch
 
 `beta.messages.batches.retrieve(message_batch_id, **kwargs) -> BetaMessageBatch`
 
@@ -25,9 +25,9 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `String`
+  - `String = String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -179,4 +179,27 @@ anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
 beta_message_batch = anthropic.beta.messages.batches.retrieve("message_batch_id")
 
 puts(beta_message_batch)
+```
+
+#### Response
+
+```json
+{
+  "id": "msgbatch_013Zva2CMHLNnXjNJJKqJ2EF",
+  "archived_at": "2024-08-20T18:37:24.100435Z",
+  "cancel_initiated_at": "2024-08-20T18:37:24.100435Z",
+  "created_at": "2024-08-20T18:37:24.100435Z",
+  "ended_at": "2024-08-20T18:37:24.100435Z",
+  "expires_at": "2024-08-20T18:37:24.100435Z",
+  "processing_status": "in_progress",
+  "request_counts": {
+    "canceled": 10,
+    "errored": 30,
+    "expired": 10,
+    "processing": 100,
+    "succeeded": 50
+  },
+  "results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_013Zva2CMHLNnXjNJJKqJ2EF/results",
+  "type": "message_batch"
+}
 ```

@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/vaults/credentials/retrieve
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 56b036f1d34013b4994bf8b0f5de497eb2c09b73a16b950922177ef0710dea65
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 193b3fa581c97fb467753375970bae64af26676445cbd90c81c53208a3d8f100
 ---
 
-## Retrieve
+## Get Credential
 
 `BetaManagedAgentsCredential Beta.Vaults.Credentials.Retrieve(CredentialRetrieveParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -209,4 +209,25 @@ CredentialRetrieveParams parameters = new()
 var betaManagedAgentsCredential = await client.Beta.Vaults.Credentials.Retrieve(parameters);
 
 Console.WriteLine(betaManagedAgentsCredential);
+```
+
+#### Response
+
+```json
+{
+  "id": "vcrd_011CZkZEMt8gZan2iYOQfSkw",
+  "archived_at": null,
+  "auth": {
+    "mcp_server_url": "https://example-server.modelcontextprotocol.io/sse",
+    "type": "static_bearer"
+  },
+  "created_at": "2026-03-15T10:00:00Z",
+  "metadata": {
+    "environment": "production"
+  },
+  "type": "vault_credential",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "vault_id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+  "display_name": "Example credential"
+}
 ```

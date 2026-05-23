@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/vaults/archive
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 358c1eb7a2781845dab259cd00bf4d91340b0a97eabd444602fd3a7d6b27d2c4
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 4cc50e924b8a11c60ea74042f64ded82af34d15b268608cf2d5eb6785955be2e
 ---
 
-## Archive
+## Archive Vault
 
 `BetaManagedAgentsVault Beta.Vaults.Archive(VaultArchiveParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -120,4 +120,20 @@ VaultArchiveParams parameters = new()
 var betaManagedAgentsVault = await client.Beta.Vaults.Archive(parameters);
 
 Console.WriteLine(betaManagedAgentsVault);
+```
+
+#### Response
+
+```json
+{
+  "id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+  "archived_at": null,
+  "created_at": "2026-03-15T10:00:00Z",
+  "display_name": "Example vault",
+  "metadata": {
+    "environment": "production"
+  },
+  "type": "vault",
+  "updated_at": "2026-03-15T10:00:00Z"
+}
 ```

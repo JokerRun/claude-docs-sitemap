@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/environments/list
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: a55ac9472662efcf33059e212adb511ba31df20059cc774d40075ad5ce1cdeab
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 5bb4e6bb7925e1d8bd0a8dd05df4e7001786548f004fab0f5ac45eac70da9a26
 ---
 
-## List
+## List Environments
 
 `$ ant beta:environments list`
 
@@ -179,4 +179,58 @@ List environments with pagination support.
 ```cli
 ant beta:environments list \
   --api-key my-anthropic-api-key
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "env_011CZkZ9X2dpNyB7HsEFoRfW",
+      "archived_at": null,
+      "config": {
+        "networking": {
+          "allow_mcp_servers": false,
+          "allow_package_managers": true,
+          "allowed_hosts": [
+            "api.example.com"
+          ],
+          "type": "limited"
+        },
+        "packages": {
+          "apt": [
+            "string"
+          ],
+          "cargo": [
+            "string"
+          ],
+          "gem": [
+            "string"
+          ],
+          "go": [
+            "string"
+          ],
+          "npm": [
+            "string"
+          ],
+          "pip": [
+            "pandas",
+            "numpy"
+          ],
+          "type": "packages"
+        },
+        "type": "cloud"
+      },
+      "created_at": "2026-03-15T10:00:00Z",
+      "description": "Python environment with data-analysis packages.",
+      "metadata": {},
+      "name": "python-data-analysis",
+      "type": "environment",
+      "updated_at": "2026-03-15T10:00:00Z",
+      "scope": "organization"
+    }
+  ],
+  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="
+}
 ```

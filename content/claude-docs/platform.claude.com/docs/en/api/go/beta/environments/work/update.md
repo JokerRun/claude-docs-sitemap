@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/environments/work/update
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 8ed8e75a093eb36c4a788a7be33d994dc07d0557f0882f80ae3b008dd389b928
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 6c68388dbfb59ee4546ee24cb54e3a47d66f8ce0a2a11ab992e78920e18a8464
 ---
 
-## Update
+## Update Work Item
 
 `client.Beta.Environments.Work.Update(ctx, workID, params) (*BetaSelfHostedWork, error)`
 
@@ -200,5 +200,29 @@ func main() {
     panic(err.Error())
   }
   fmt.Printf("%+v\n", betaSelfHostedWork.ID)
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "acknowledged_at": "acknowledged_at",
+  "created_at": "created_at",
+  "data": {
+    "id": "id",
+    "type": "session"
+  },
+  "environment_id": "environment_id",
+  "latest_heartbeat_at": "latest_heartbeat_at",
+  "metadata": {
+    "foo": "string"
+  },
+  "started_at": "started_at",
+  "state": "queued",
+  "stop_requested_at": "stop_requested_at",
+  "stopped_at": "stopped_at",
+  "type": "work"
 }
 ```

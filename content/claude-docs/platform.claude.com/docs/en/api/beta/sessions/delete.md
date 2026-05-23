@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/delete
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 215b3418b9ee457a6c6359091d3a897eb3c7c9562321b70e3529a97a543da830
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: b43bd2da87aba96c6ef2cdeb95b8880c66d962f5db1da609138ca14d4752fe62
 ---
 
-## Delete
+## Delete Session
 
 **delete** `/v1/sessions/{session_id}`
 
@@ -21,9 +21,9 @@ Delete Session
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = string`
+  - `string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -77,7 +77,7 @@ Delete Session
 
 ### Returns
 
-- `BetaManagedAgentsDeletedSession = object { id, type }`
+- `BetaManagedAgentsDeletedSession object { id, type }`
 
   Confirmation that a `session` has been permanently deleted.
 
@@ -95,4 +95,13 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID \
     -H 'anthropic-version: 2023-06-01' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
+```
+
+#### Response
+
+```json
+{
+  "id": "sesn_011CZkZAtmR3yMPDzynEDxu7",
+  "type": "session_deleted"
+}
 ```

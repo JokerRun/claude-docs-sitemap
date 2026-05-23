@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/cost_report/retrieve
-fetched_at: 2026-04-25T03:09:48.142425Z
-sha256: 86a03230499bc86eaa2c8d0d536251d3b64d69c4767f9aed50b7be2c5d0db4fa
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 5105eec0ab0cf13b912e9ba6cdf7172ecb046b2a05044c652054e1c4f9f9bba1
 ---
 
-## Retrieve
+## Get Cost Report
 
 **get** `/v1/organizations/cost_report`
 
@@ -54,7 +54,7 @@ Get Cost Report
 
 ### Returns
 
-- `CostReport = object { data, has_more, next_page }`
+- `CostReport object { data, has_more, next_page }`
 
   - `data: array of object { ending_at, results, starting_at }`
 
@@ -151,4 +151,33 @@ Get Cost Report
 curl https://api.anthropic.com/v1/organizations/cost_report \
     -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "ending_at": "2025-08-02T00:00:00Z",
+      "results": [
+        {
+          "amount": "123.78912",
+          "context_window": "0-200k",
+          "cost_type": "tokens",
+          "currency": "USD",
+          "description": "Claude Sonnet 4 Usage - Input Tokens",
+          "inference_geo": "global",
+          "model": "claude-opus-4-6",
+          "service_tier": "standard",
+          "token_type": "uncached_input_tokens",
+          "workspace_id": "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ"
+        }
+      ],
+      "starting_at": "2025-08-01T00:00:00Z"
+    }
+  ],
+  "has_more": true,
+  "next_page": "2019-12-27T18:11:19.117Z"
+}
 ```

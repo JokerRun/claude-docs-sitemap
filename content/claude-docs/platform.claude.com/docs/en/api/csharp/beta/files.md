@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/files
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 7bbc53183a79c249be944b0a147cd21056827838e95789c834cb20eadecd7592
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 7d7a7f7a9f1603e43cda3384e96ecb8d868d5e6b5872137d61bda1e0a1626df4
 ---
 
 # Files
 
-## Upload
+## Upload File
 
 `FileMetadata Beta.Files.Upload(FileUploadParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -138,7 +138,25 @@ var fileMetadata = await client.Beta.Files.Upload(parameters);
 Console.WriteLine(fileMetadata);
 ```
 
-## List
+#### Response
+
+```json
+{
+  "id": "file_011CNha8iCJcU1wXNR6q4V8w",
+  "created_at": "2025-04-15T18:37:24.100435Z",
+  "filename": "document.pdf",
+  "mime_type": "application/pdf",
+  "size_bytes": 102400,
+  "type": "file",
+  "downloadable": false,
+  "scope": {
+    "id": "id",
+    "type": "session"
+  }
+}
+```
+
+## List Files
 
 `FileListPageResponse Beta.Files.List(FileListParams?parameters, CancellationTokencancellationToken = default)`
 
@@ -298,7 +316,32 @@ await foreach (var item in page.Paginate())
 }
 ```
 
-## Download
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "file_011CNha8iCJcU1wXNR6q4V8w",
+      "created_at": "2025-04-15T18:37:24.100435Z",
+      "filename": "document.pdf",
+      "mime_type": "application/pdf",
+      "size_bytes": 102400,
+      "type": "file",
+      "downloadable": false,
+      "scope": {
+        "id": "id",
+        "type": "session"
+      }
+    }
+  ],
+  "first_id": "file_011CNha8iCJcU1wXNR6q4V8w",
+  "has_more": true,
+  "last_id": "file_013Zva2CMHLNnXjNJJKqJ2EF"
+}
+```
+
+## Download File
 
 `HttpResponse Beta.Files.Download(FileDownloadParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -378,7 +421,7 @@ var response = await client.Beta.Files.Download(parameters);
 Console.WriteLine(response);
 ```
 
-## Retrieve Metadata
+## Get File Metadata
 
 `FileMetadata Beta.Files.RetrieveMetadata(FileRetrieveMetadataParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -506,7 +549,25 @@ var fileMetadata = await client.Beta.Files.RetrieveMetadata(parameters);
 Console.WriteLine(fileMetadata);
 ```
 
-## Delete
+#### Response
+
+```json
+{
+  "id": "file_011CNha8iCJcU1wXNR6q4V8w",
+  "created_at": "2025-04-15T18:37:24.100435Z",
+  "filename": "document.pdf",
+  "mime_type": "application/pdf",
+  "size_bytes": 102400,
+  "type": "file",
+  "downloadable": false,
+  "scope": {
+    "id": "id",
+    "type": "session"
+  }
+}
+```
+
+## Delete File
 
 `DeletedFile Beta.Files.Delete(FileDeleteParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -600,6 +661,15 @@ FileDeleteParams parameters = new() { FileID = "file_id" };
 var deletedFile = await client.Beta.Files.Delete(parameters);
 
 Console.WriteLine(deletedFile);
+```
+
+#### Response
+
+```json
+{
+  "id": "file_011CNha8iCJcU1wXNR6q4V8w",
+  "type": "file_deleted"
+}
 ```
 
 ## Domain Types

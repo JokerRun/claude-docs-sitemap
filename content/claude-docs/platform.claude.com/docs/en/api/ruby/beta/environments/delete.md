@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/environments/delete
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 536558141145ecdaec005284c4143de8916bff8c4ffb8b562f09b17573a834c8
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: b74f49524b58757dc12171af62b35a605e1a6c7f132d829df3d194a5206edd63
 ---
 
-## Delete
+## Delete Environment
 
 `beta.environments.delete(environment_id, **kwargs) -> BetaEnvironmentDeleteResponse`
 
@@ -21,9 +21,9 @@ Delete an environment by ID. Returns a confirmation of the deletion.
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `String`
+  - `String = String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -101,4 +101,13 @@ anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
 beta_environment_delete_response = anthropic.beta.environments.delete("env_011CZkZ9X2dpNyB7HsEFoRfW")
 
 puts(beta_environment_delete_response)
+```
+
+#### Response
+
+```json
+{
+  "id": "env_011CZkZ9X2dpNyB7HsEFoRfW",
+  "type": "environment_deleted"
+}
 ```

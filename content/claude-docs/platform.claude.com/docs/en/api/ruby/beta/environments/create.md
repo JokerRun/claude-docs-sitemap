@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/environments/create
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: efe1ef97c28ea09e47fb6d2c51e185ad1343e5f6b3ecc1f6d82d0cc1c0f8a390
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: e35236b800d8e7dccfd546788edbf20843553e5457e28fc24a94bc9eef776e22
 ---
 
-## Create
+## Create Environment
 
 `beta.environments.create(**kwargs) -> BetaEnvironment`
 
@@ -141,9 +141,9 @@ Create a new environment with the specified configuration.
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `String`
+  - `String = String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -347,4 +347,53 @@ anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
 beta_environment = anthropic.beta.environments.create(name: "python-data-analysis")
 
 puts(beta_environment)
+```
+
+#### Response
+
+```json
+{
+  "id": "env_011CZkZ9X2dpNyB7HsEFoRfW",
+  "archived_at": null,
+  "config": {
+    "networking": {
+      "allow_mcp_servers": false,
+      "allow_package_managers": true,
+      "allowed_hosts": [
+        "api.example.com"
+      ],
+      "type": "limited"
+    },
+    "packages": {
+      "apt": [
+        "string"
+      ],
+      "cargo": [
+        "string"
+      ],
+      "gem": [
+        "string"
+      ],
+      "go": [
+        "string"
+      ],
+      "npm": [
+        "string"
+      ],
+      "pip": [
+        "pandas",
+        "numpy"
+      ],
+      "type": "packages"
+    },
+    "type": "cloud"
+  },
+  "created_at": "2026-03-15T10:00:00Z",
+  "description": "Python environment with data-analysis packages.",
+  "metadata": {},
+  "name": "python-data-analysis",
+  "type": "environment",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "scope": "organization"
+}
 ```

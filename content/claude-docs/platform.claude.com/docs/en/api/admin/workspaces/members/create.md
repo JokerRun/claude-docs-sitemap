@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/members/create
-fetched_at: 2026-04-21T03:11:28.016230Z
-sha256: f4ff1d3a792de5d597788fdf4f6e90afc2e4265e0ad124d62a2df90e4ac0e59b
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 0c137a489300c15f73e96648744c24a7dc5b13ca7ee215bda58ff0374d11c694
 ---
 
-## Create
+## Create Workspace Member
 
 **post** `/v1/organizations/workspaces/{workspace_id}/members`
 
@@ -37,7 +37,7 @@ Create Workspace Member
 
 ### Returns
 
-- `WorkspaceMember = object { type, user_id, workspace_id, workspace_role }`
+- `WorkspaceMember object { type, user_id, workspace_id, workspace_role }`
 
   - `type: "workspace_member"`
 
@@ -80,4 +80,15 @@ curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/members
           "user_id": "user_01WCz1FkmYMm4gnmykNKUu3Q",
           "workspace_role": "workspace_user"
         }'
+```
+
+#### Response
+
+```json
+{
+  "type": "workspace_member",
+  "user_id": "user_01WCz1FkmYMm4gnmykNKUu3Q",
+  "workspace_id": "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
+  "workspace_role": "workspace_user"
+}
 ```

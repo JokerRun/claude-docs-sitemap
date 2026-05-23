@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/download
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 034089fc69ac727f427911c653ee3149752f90326120afcaf464b6c0c3556f79
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 224d4f955cdba6de3dfc40040f810c0e530f19998ef5165addcd9938cbc63727
 ---
 
-## Download
+## Download File
 
 **get** `/v1/files/{file_id}/content`
 
@@ -23,9 +23,9 @@ Download File
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = string`
+  - `string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 

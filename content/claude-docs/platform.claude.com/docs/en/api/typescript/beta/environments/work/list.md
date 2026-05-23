@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/environments/work/list
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 0314cab32a5777fd5a3c769a9dbe1571f043c864177c3ecb0a5058773b8f86c6
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: f2ce82a7e93e9f8543eb8d2cefb41b2496fbe3b9e93c97950453d9c33effc13a
 ---
 
-## List
+## List Work Items
 
 `client.beta.environments.work.list(stringenvironmentID, WorkListParamsparams?, RequestOptionsoptions?): PageCursor<BetaSelfHostedWork>`
 
@@ -181,5 +181,34 @@ for await (const betaSelfHostedWork of client.beta.environments.work.list(
   'env_011CZkZ9X2dpNyB7HsEFoRfW',
 )) {
   console.log(betaSelfHostedWork.id);
+}
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "id",
+      "acknowledged_at": "acknowledged_at",
+      "created_at": "created_at",
+      "data": {
+        "id": "id",
+        "type": "session"
+      },
+      "environment_id": "environment_id",
+      "latest_heartbeat_at": "latest_heartbeat_at",
+      "metadata": {
+        "foo": "string"
+      },
+      "started_at": "started_at",
+      "state": "queued",
+      "stop_requested_at": "stop_requested_at",
+      "stopped_at": "stopped_at",
+      "type": "work"
+    }
+  ],
+  "next_page": "next_page"
 }
 ```

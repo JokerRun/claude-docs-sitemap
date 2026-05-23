@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/skills/retrieve
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: f0d1d64d5680062d28ab7eb64b9d2af35bb66c5538dbfbe4b9bb7dc48a625bd0
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: f4ecc4c1532844d297a5af70db3fb93e8cfb8d043b3ebe91ab6e08c13b16cc97
 ---
 
-## Retrieve
+## Get Skill
 
 `$ ant beta:skills retrieve`
 
@@ -76,4 +76,18 @@ Get Skill
 ant beta:skills retrieve \
   --api-key my-anthropic-api-key \
   --skill-id skill_id
+```
+
+#### Response
+
+```json
+{
+  "id": "skill_01JAbcdefghijklmnopqrstuvw",
+  "created_at": "2024-10-30T23:58:27.427722Z",
+  "display_title": "My Custom Skill",
+  "latest_version": "1759178010641129",
+  "source": "custom",
+  "type": "type",
+  "updated_at": "2024-10-30T23:58:27.427722Z"
+}
 ```

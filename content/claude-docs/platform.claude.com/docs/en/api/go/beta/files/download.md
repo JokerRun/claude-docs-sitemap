@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/files/download
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 296225399dfba8e434029dbdbfede5f2485a0711bfd98bbcb57264a7aa2fbc5a
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: a5e622569291fa4dddc0393b8dca90df978cb4d44ed23521de60c07af5c38066
 ---
 
-## Download
+## Download File
 
 `client.Beta.Files.Download(ctx, fileID, query) (*Response, error)`
 

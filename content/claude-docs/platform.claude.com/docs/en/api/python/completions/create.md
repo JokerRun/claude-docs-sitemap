@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/completions/create
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 757e1b080a72511aed9d2be502302ab244940b95629138dbcc89721d4d7be91f
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: e6f8c94447868b853dee13b4bc2b22a89e4453487be86ab2eeda6ade13aa8c90
 ---
 
-## Create
+## Create a Text Completion
 
 `completions.create(CompletionCreateParams**kwargs)  -> Completion`
 
@@ -399,4 +399,16 @@ for completion in client.completions.create(
     prompt="\n\nHuman: Hello, world!\n\nAssistant:",
 ):
   print(completion)
+```
+
+#### Response
+
+```json
+{
+  "id": "compl_018CKm6gsux7P8yMcwZbeCPw",
+  "completion": " Hello! My name is Claude.",
+  "model": "claude-2.1",
+  "stop_reason": "stop_sequence",
+  "type": "completion"
+}
 ```

@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/sessions/resources/update
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: a532e65d2d229a61bd1d74792ab667f897afaa3e81360f02a95ca6e17ceb9888
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 0a41d026f7efaf3d0ed10b597947860096322dd9da322bd0386dc9cb355d7280
 ---
 
-## Update
+## Update Session Resource
 
 `$ ant beta:sessions:resources update`
 
@@ -143,4 +143,21 @@ ant beta:sessions:resources update \
   --session-id sesn_011CZkZAtmR3yMPDzynEDxu7 \
   --resource-id sesrsc_011CZkZBJq5dWxk9fVLNcPht \
   --authorization-token ghp_exampletoken
+```
+
+#### Response
+
+```json
+{
+  "id": "sesrsc_011CZkZCKr6eXyl0gWMOdQiu",
+  "created_at": "2026-03-15T10:00:00Z",
+  "mount_path": "/workspace/example-repo",
+  "type": "github_repository",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "url": "https://github.com/example-org/example-repo",
+  "checkout": {
+    "name": "main",
+    "type": "branch"
+  }
+}
 ```

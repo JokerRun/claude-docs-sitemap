@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/user_profiles/create
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: bd3e71f7ceab772dbb65b47cff964b21abe0c4016873d2c898b8ca81440348cf
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: b347a26d20a7da6050f3daa3629f59da3f7293a3391fd229d1f6c7d5b9f28ff3
 ---
 
-## Create
+## Create User Profile
 
 `client.Beta.UserProfiles.New(ctx, params) (*BetaUserProfile, error)`
 
@@ -179,5 +179,25 @@ func main() {
     panic(err.Error())
   }
   fmt.Printf("%+v\n", betaUserProfile.ID)
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "uprof_011CZkZCu8hGbp5mYRQgUmz9",
+  "created_at": "2026-03-15T10:00:00Z",
+  "metadata": {},
+  "relationship": "external",
+  "trust_grants": {
+    "cyber": {
+      "status": "active"
+    }
+  },
+  "type": "user_profile",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "external_id": "user_12345",
+  "name": "Example User"
 }
 ```

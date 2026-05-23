@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/users/delete
-fetched_at: 2026-04-21T03:11:28.016230Z
-sha256: fbc1a9c080f0f8edb353e6e21fa7126cc060bc1f9d925feb801aa3207de0d89e
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 2911753b9ae4f8e4e515cf2e96067bf3676ceb7ee6e7b961195d044c7a0acade
 ---
 
-## Delete
+## Remove User
 
 **delete** `/v1/organizations/users/{user_id}`
 
@@ -38,4 +38,13 @@ curl https://api.anthropic.com/v1/organizations/users/$USER_ID \
     -X DELETE \
     -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
+```
+
+#### Response
+
+```json
+{
+  "id": "user_01WCz1FkmYMm4gnmykNKUu3Q",
+  "type": "user_deleted"
+}
 ```

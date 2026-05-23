@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/skills/versions/create
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 3bbb3840194bd65036b929287aa576755cde90bcf5cd36d451b0eb6463e72f13
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 5cae2c9f902d037d54f5e037d6290689753a1cd8a00bdc18984cc85d306f87dd
 ---
 
-## Create
+## Create Skill Version
 
 `client.beta.skills.versions.create(stringskillID, VersionCreateParamsparams?, RequestOptionsoptions?): VersionCreateResponse`
 
@@ -147,4 +147,19 @@ const client = new Anthropic({
 const version = await client.beta.skills.versions.create('skill_id');
 
 console.log(version.id);
+```
+
+#### Response
+
+```json
+{
+  "id": "skillver_01JAbcdefghijklmnopqrstuvw",
+  "created_at": "2024-10-30T23:58:27.427722Z",
+  "description": "A custom skill for doing something useful",
+  "directory": "my-skill",
+  "name": "my-skill",
+  "skill_id": "skill_01JAbcdefghijklmnopqrstuvw",
+  "type": "type",
+  "version": "1759178010641129"
+}
 ```

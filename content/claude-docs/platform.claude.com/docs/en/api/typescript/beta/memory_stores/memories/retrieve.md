@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/memory_stores/memories/retrieve
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 44eb5b419c809675565e7ee6aedf392f06d95eeb29db3c6946e4cdf7a4d480e9
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 7780cb868eb30b6ae7fd25244425e300a6e56e2392d76eb91ac72ba80bed2f56
 ---
 
-## Retrieve
+## Retrieve a memory
 
 `client.beta.memoryStores.memories.retrieve(stringmemoryID, MemoryRetrieveParamsparams, RequestOptionsoptions?): BetaManagedAgentsMemory`
 
@@ -149,4 +149,21 @@ const betaManagedAgentsMemory = await client.beta.memoryStores.memories.retrieve
 });
 
 console.log(betaManagedAgentsMemory.id);
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "content_sha256": "content_sha256",
+  "content_size_bytes": 0,
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "memory_store_id": "memory_store_id",
+  "memory_version_id": "memory_version_id",
+  "path": "path",
+  "type": "memory",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "content": "content"
+}
 ```

@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/vaults/create
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 8dfe4fd01e60b6c9c3c61b4e3c0df7916b82208af949b3f49cdfc0eadfe2e0b7
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 12c60e940d8a2ac685a51af19143912bc66905c5db8d7e8bafcfcdde58672c5d
 ---
 
-## Create
+## Create Vault
 
 `client.Beta.Vaults.New(ctx, params) (*BetaManagedAgentsVault, error)`
 
@@ -141,5 +141,21 @@ func main() {
     panic(err.Error())
   }
   fmt.Printf("%+v\n", betaManagedAgentsVault.ID)
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+  "archived_at": null,
+  "created_at": "2026-03-15T10:00:00Z",
+  "display_name": "Example vault",
+  "metadata": {
+    "environment": "production"
+  },
+  "type": "vault",
+  "updated_at": "2026-03-15T10:00:00Z"
 }
 ```

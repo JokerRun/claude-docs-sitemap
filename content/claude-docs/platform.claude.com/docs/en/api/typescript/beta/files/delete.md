@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/files/delete
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 3cf8c1abf05462ae69f992c59a0fe53646f1b3335f3983824a454f83efb80ba9
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: a85d56ce852984ac8a7b34c8ea16c33d9f6f77981efb0b5f2f3a4c409e58533a
 ---
 
-## Delete
+## Delete File
 
 `client.beta.files.delete(stringfileID, FileDeleteParamsparams?, RequestOptionsoptions?): DeletedFile`
 
@@ -107,4 +107,13 @@ const client = new Anthropic({
 const deletedFile = await client.beta.files.delete('file_id');
 
 console.log(deletedFile.id);
+```
+
+#### Response
+
+```json
+{
+  "id": "file_011CNha8iCJcU1wXNR6q4V8w",
+  "type": "file_deleted"
+}
 ```

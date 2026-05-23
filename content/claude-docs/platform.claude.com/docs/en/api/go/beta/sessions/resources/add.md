@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/sessions/resources/add
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 51c8420fc1d7cd1027314bdece31308723cd49a9904a8f8cd2ca907459df8151
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: aa0c4cd901dedfb59e580d83789e71f5642641f16309f0245f0f7540514d5ba7
 ---
 
-## Add
+## Add Session Resource
 
 `client.Beta.Sessions.Resources.Add(ctx, sessionID, params) (*BetaManagedAgentsFileResource, error)`
 
@@ -134,5 +134,18 @@ func main() {
     panic(err.Error())
   }
   fmt.Printf("%+v\n", betaManagedAgentsFileResource.ID)
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "sesrsc_011CZkZBJq5dWxk9fVLNcPht",
+  "created_at": "2026-03-15T10:00:00Z",
+  "file_id": "file_011CNha8iCJcU1wXNR6q4V8w",
+  "mount_path": "/uploads/receipt.pdf",
+  "type": "file",
+  "updated_at": "2026-03-15T10:00:00Z"
 }
 ```

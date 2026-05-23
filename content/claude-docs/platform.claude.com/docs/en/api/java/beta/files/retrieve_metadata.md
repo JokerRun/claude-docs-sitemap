@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/files/retrieve_metadata
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 0b3ddd241f1b2545148d9b804dddd56de14cc812026e27ed81603f345c91142e
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: ac15496f79c6915a0d4fbb51ac63cadcdd434b4e144b60128639b9f89c921f7b
 ---
 
-## Retrieve Metadata
+## Get File Metadata
 
 `FileMetadata beta().files().retrieveMetadata(FileRetrieveMetadataParamsparams = FileRetrieveMetadataParams.none(), RequestOptionsrequestOptions = RequestOptions.none())`
 
@@ -145,5 +145,23 @@ public final class Main {
 
         FileMetadata fileMetadata = client.beta().files().retrieveMetadata("file_id");
     }
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "file_011CNha8iCJcU1wXNR6q4V8w",
+  "created_at": "2025-04-15T18:37:24.100435Z",
+  "filename": "document.pdf",
+  "mime_type": "application/pdf",
+  "size_bytes": 102400,
+  "type": "file",
+  "downloadable": false,
+  "scope": {
+    "id": "id",
+    "type": "session"
+  }
 }
 ```

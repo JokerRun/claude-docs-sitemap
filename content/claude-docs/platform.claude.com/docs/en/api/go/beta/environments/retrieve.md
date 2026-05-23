@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/environments/retrieve
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 969f6779dda290fd1e3a084f9ac5826fbef20b715dfe9533a1ea29fe9eee01e7
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: c0a974461b197a3e8b725eb6db88288c8e871015576702c745960b61ca84ec8a
 ---
 
-## Retrieve
+## Get Environment
 
 `client.Beta.Environments.Get(ctx, environmentID, query) (*BetaEnvironment, error)`
 
@@ -247,5 +247,54 @@ func main() {
     panic(err.Error())
   }
   fmt.Printf("%+v\n", betaEnvironment.ID)
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "env_011CZkZ9X2dpNyB7HsEFoRfW",
+  "archived_at": null,
+  "config": {
+    "networking": {
+      "allow_mcp_servers": false,
+      "allow_package_managers": true,
+      "allowed_hosts": [
+        "api.example.com"
+      ],
+      "type": "limited"
+    },
+    "packages": {
+      "apt": [
+        "string"
+      ],
+      "cargo": [
+        "string"
+      ],
+      "gem": [
+        "string"
+      ],
+      "go": [
+        "string"
+      ],
+      "npm": [
+        "string"
+      ],
+      "pip": [
+        "pandas",
+        "numpy"
+      ],
+      "type": "packages"
+    },
+    "type": "cloud"
+  },
+  "created_at": "2026-03-15T10:00:00Z",
+  "description": "Python environment with data-analysis packages.",
+  "metadata": {},
+  "name": "python-data-analysis",
+  "type": "environment",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "scope": "organization"
 }
 ```

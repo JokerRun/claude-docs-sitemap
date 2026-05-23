@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/memory_stores
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 26c62682ccb974258fdea430a091d1d4dc60e75c779bf92c7ecbc8164ce56160
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 442793cbf77cbc88d2a5d26cb174075f8d5ad6203fbe1b616638bee1459fbfa3
 ---
 
 # Memory Stores
 
-## Create
+## Create a memory store
 
 `$ ant beta:memory-stores create`
 
@@ -79,7 +79,24 @@ ant beta:memory-stores create \
   --name x
 ```
 
-## List
+#### Response
+
+```json
+{
+  "id": "id",
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "name": "name",
+  "type": "memory_store",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "archived_at": "2019-12-27T18:11:19.117Z",
+  "description": "description",
+  "metadata": {
+    "foo": "string"
+  }
+}
+```
+
+## List memory stores
 
 `$ ant beta:memory-stores list`
 
@@ -166,7 +183,29 @@ ant beta:memory-stores list \
   --api-key my-anthropic-api-key
 ```
 
-## Retrieve
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "id",
+      "created_at": "2019-12-27T18:11:19.117Z",
+      "name": "name",
+      "type": "memory_store",
+      "updated_at": "2019-12-27T18:11:19.117Z",
+      "archived_at": "2019-12-27T18:11:19.117Z",
+      "description": "description",
+      "metadata": {
+        "foo": "string"
+      }
+    }
+  ],
+  "next_page": "next_page"
+}
+```
+
+## Retrieve a memory store
 
 `$ ant beta:memory-stores retrieve`
 
@@ -230,7 +269,24 @@ ant beta:memory-stores retrieve \
   --memory-store-id memory_store_id
 ```
 
-## Update
+#### Response
+
+```json
+{
+  "id": "id",
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "name": "name",
+  "type": "memory_store",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "archived_at": "2019-12-27T18:11:19.117Z",
+  "description": "description",
+  "metadata": {
+    "foo": "string"
+  }
+}
+```
+
+## Update a memory store
 
 `$ ant beta:memory-stores update`
 
@@ -306,7 +362,24 @@ ant beta:memory-stores update \
   --memory-store-id memory_store_id
 ```
 
-## Delete
+#### Response
+
+```json
+{
+  "id": "id",
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "name": "name",
+  "type": "memory_store",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "archived_at": "2019-12-27T18:11:19.117Z",
+  "description": "description",
+  "metadata": {
+    "foo": "string"
+  }
+}
+```
+
+## Delete a memory store
 
 `$ ant beta:memory-stores delete`
 
@@ -346,7 +419,16 @@ ant beta:memory-stores delete \
   --memory-store-id memory_store_id
 ```
 
-## Archive
+#### Response
+
+```json
+{
+  "id": "id",
+  "type": "memory_store_deleted"
+}
+```
+
+## Archive a memory store
 
 `$ ant beta:memory-stores archive`
 
@@ -410,6 +492,23 @@ ant beta:memory-stores archive \
   --memory-store-id memory_store_id
 ```
 
+#### Response
+
+```json
+{
+  "id": "id",
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "name": "name",
+  "type": "memory_store",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "archived_at": "2019-12-27T18:11:19.117Z",
+  "description": "description",
+  "metadata": {
+    "foo": "string"
+  }
+}
+```
+
 ## Domain Types
 
 ### Beta Managed Agents Deleted Memory Store
@@ -466,7 +565,7 @@ ant beta:memory-stores archive \
 
 # Memories
 
-## Create
+## Create a memory
 
 `$ ant beta:memory-stores:memories create`
 
@@ -552,7 +651,24 @@ ant beta:memory-stores:memories create \
   --path xx
 ```
 
-## List
+#### Response
+
+```json
+{
+  "id": "id",
+  "content_sha256": "content_sha256",
+  "content_size_bytes": 0,
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "memory_store_id": "memory_store_id",
+  "memory_version_id": "memory_version_id",
+  "path": "path",
+  "type": "memory",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "content": "content"
+}
+```
+
+## List memories
 
 `$ ant beta:memory-stores:memories list`
 
@@ -676,7 +792,29 @@ ant beta:memory-stores:memories list \
   --memory-store-id memory_store_id
 ```
 
-## Retrieve
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "id",
+      "content_sha256": "content_sha256",
+      "content_size_bytes": 0,
+      "created_at": "2019-12-27T18:11:19.117Z",
+      "memory_store_id": "memory_store_id",
+      "memory_version_id": "memory_version_id",
+      "path": "path",
+      "type": "memory",
+      "updated_at": "2019-12-27T18:11:19.117Z",
+      "content": "content"
+    }
+  ],
+  "next_page": "next_page"
+}
+```
+
+## Retrieve a memory
 
 `$ ant beta:memory-stores:memories retrieve`
 
@@ -757,7 +895,24 @@ ant beta:memory-stores:memories retrieve \
   --memory-id memory_id
 ```
 
-## Update
+#### Response
+
+```json
+{
+  "id": "id",
+  "content_sha256": "content_sha256",
+  "content_size_bytes": 0,
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "memory_store_id": "memory_store_id",
+  "memory_version_id": "memory_version_id",
+  "path": "path",
+  "type": "memory",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "content": "content"
+}
+```
+
+## Update a memory
 
 `$ ant beta:memory-stores:memories update`
 
@@ -850,7 +1005,24 @@ ant beta:memory-stores:memories update \
   --memory-id memory_id
 ```
 
-## Delete
+#### Response
+
+```json
+{
+  "id": "id",
+  "content_sha256": "content_sha256",
+  "content_size_bytes": 0,
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "memory_store_id": "memory_store_id",
+  "memory_version_id": "memory_version_id",
+  "path": "path",
+  "type": "memory",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "content": "content"
+}
+```
+
+## Delete a memory
 
 `$ ant beta:memory-stores:memories delete`
 
@@ -897,6 +1069,15 @@ ant beta:memory-stores:memories delete \
   --api-key my-anthropic-api-key \
   --memory-store-id memory_store_id \
   --memory-id memory_id
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "type": "memory_deleted"
+}
 ```
 
 ## Domain Types
@@ -1197,7 +1378,7 @@ ant beta:memory-stores:memories delete \
 
 # Memory Versions
 
-## List
+## List memory versions
 
 `$ ant beta:memory-stores:memory-versions list`
 
@@ -1359,37 +1540,13 @@ List memory versions
 
         Attribution for a write made by an agent during a session, through the mounted filesystem at `/mnt/memory/`.
 
-        - `session_id: string`
-
-          ID of the session that performed the write (a `sesn_...` value). Look up the session via [Retrieve a session](/docs/en/api/sessions-retrieve) for further provenance.
-
-        - `type: "session_actor"`
-
-          - `"session_actor"`
-
       - `beta_managed_agents_api_actor: object { api_key_id, type }`
 
         Attribution for a write made directly via the public API (outside of any session).
 
-        - `api_key_id: string`
-
-          ID of the API key that performed the write. This identifies the key, not the secret.
-
-        - `type: "api_actor"`
-
-          - `"api_actor"`
-
       - `beta_managed_agents_user_actor: object { type, user_id }`
 
         Attribution for a write made by a human user through the Anthropic Console.
-
-        - `type: "user_actor"`
-
-          - `"user_actor"`
-
-        - `user_id: string`
-
-          ID of the user who performed the write (a `user_...` value).
 
   - `next_page: optional string`
 
@@ -1403,7 +1560,38 @@ ant beta:memory-stores:memory-versions list \
   --memory-store-id memory_store_id
 ```
 
-## Retrieve
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "id",
+      "created_at": "2019-12-27T18:11:19.117Z",
+      "memory_id": "memory_id",
+      "memory_store_id": "memory_store_id",
+      "operation": "created",
+      "type": "memory_version",
+      "content": "content",
+      "content_sha256": "content_sha256",
+      "content_size_bytes": 0,
+      "created_by": {
+        "session_id": "x",
+        "type": "session_actor"
+      },
+      "path": "path",
+      "redacted_at": "2019-12-27T18:11:19.117Z",
+      "redacted_by": {
+        "session_id": "x",
+        "type": "session_actor"
+      }
+    }
+  ],
+  "next_page": "next_page"
+}
+```
+
+## Retrieve a memory version
 
 `$ ant beta:memory-stores:memory-versions retrieve`
 
@@ -1533,37 +1721,13 @@ Retrieve a memory version
 
       Attribution for a write made by an agent during a session, through the mounted filesystem at `/mnt/memory/`.
 
-      - `session_id: string`
-
-        ID of the session that performed the write (a `sesn_...` value). Look up the session via [Retrieve a session](/docs/en/api/sessions-retrieve) for further provenance.
-
-      - `type: "session_actor"`
-
-        - `"session_actor"`
-
     - `beta_managed_agents_api_actor: object { api_key_id, type }`
 
       Attribution for a write made directly via the public API (outside of any session).
 
-      - `api_key_id: string`
-
-        ID of the API key that performed the write. This identifies the key, not the secret.
-
-      - `type: "api_actor"`
-
-        - `"api_actor"`
-
     - `beta_managed_agents_user_actor: object { type, user_id }`
 
       Attribution for a write made by a human user through the Anthropic Console.
-
-      - `type: "user_actor"`
-
-        - `"user_actor"`
-
-      - `user_id: string`
-
-        ID of the user who performed the write (a `user_...` value).
 
 ### Example
 
@@ -1574,7 +1738,33 @@ ant beta:memory-stores:memory-versions retrieve \
   --memory-version-id memory_version_id
 ```
 
-## Redact
+#### Response
+
+```json
+{
+  "id": "id",
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "memory_id": "memory_id",
+  "memory_store_id": "memory_store_id",
+  "operation": "created",
+  "type": "memory_version",
+  "content": "content",
+  "content_sha256": "content_sha256",
+  "content_size_bytes": 0,
+  "created_by": {
+    "session_id": "x",
+    "type": "session_actor"
+  },
+  "path": "path",
+  "redacted_at": "2019-12-27T18:11:19.117Z",
+  "redacted_by": {
+    "session_id": "x",
+    "type": "session_actor"
+  }
+}
+```
+
+## Redact a memory version
 
 `$ ant beta:memory-stores:memory-versions redact`
 
@@ -1700,37 +1890,13 @@ Redact a memory version
 
       Attribution for a write made by an agent during a session, through the mounted filesystem at `/mnt/memory/`.
 
-      - `session_id: string`
-
-        ID of the session that performed the write (a `sesn_...` value). Look up the session via [Retrieve a session](/docs/en/api/sessions-retrieve) for further provenance.
-
-      - `type: "session_actor"`
-
-        - `"session_actor"`
-
     - `beta_managed_agents_api_actor: object { api_key_id, type }`
 
       Attribution for a write made directly via the public API (outside of any session).
 
-      - `api_key_id: string`
-
-        ID of the API key that performed the write. This identifies the key, not the secret.
-
-      - `type: "api_actor"`
-
-        - `"api_actor"`
-
     - `beta_managed_agents_user_actor: object { type, user_id }`
 
       Attribution for a write made by a human user through the Anthropic Console.
-
-      - `type: "user_actor"`
-
-        - `"user_actor"`
-
-      - `user_id: string`
-
-        ID of the user who performed the write (a `user_...` value).
 
 ### Example
 
@@ -1739,6 +1905,32 @@ ant beta:memory-stores:memory-versions redact \
   --api-key my-anthropic-api-key \
   --memory-store-id memory_store_id \
   --memory-version-id memory_version_id
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "memory_id": "memory_id",
+  "memory_store_id": "memory_store_id",
+  "operation": "created",
+  "type": "memory_version",
+  "content": "content",
+  "content_sha256": "content_sha256",
+  "content_size_bytes": 0,
+  "created_by": {
+    "session_id": "x",
+    "type": "session_actor"
+  },
+  "path": "path",
+  "redacted_at": "2019-12-27T18:11:19.117Z",
+  "redacted_by": {
+    "session_id": "x",
+    "type": "session_actor"
+  }
+}
 ```
 
 ## Domain Types
@@ -1903,37 +2095,13 @@ ant beta:memory-stores:memory-versions redact \
 
       Attribution for a write made by an agent during a session, through the mounted filesystem at `/mnt/memory/`.
 
-      - `session_id: string`
-
-        ID of the session that performed the write (a `sesn_...` value). Look up the session via [Retrieve a session](/docs/en/api/sessions-retrieve) for further provenance.
-
-      - `type: "session_actor"`
-
-        - `"session_actor"`
-
     - `beta_managed_agents_api_actor: object { api_key_id, type }`
 
       Attribution for a write made directly via the public API (outside of any session).
 
-      - `api_key_id: string`
-
-        ID of the API key that performed the write. This identifies the key, not the secret.
-
-      - `type: "api_actor"`
-
-        - `"api_actor"`
-
     - `beta_managed_agents_user_actor: object { type, user_id }`
 
       Attribution for a write made by a human user through the Anthropic Console.
-
-      - `type: "user_actor"`
-
-        - `"user_actor"`
-
-      - `user_id: string`
-
-        ID of the user who performed the write (a `user_...` value).
 
 ### Beta Managed Agents Memory Version Operation
 

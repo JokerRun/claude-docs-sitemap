@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/vaults/retrieve
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 8bb9d888a5e077bc2aad983953cd2c286b4c45e382743583a85858a509940c87
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: f42efbd4927f7aa28b14bf9b07df2b2ee5fb14486c2cbfd96827b45d59e07066
 ---
 
-## Retrieve
+## Get Vault
 
 `$ ant beta:vaults retrieve`
 
@@ -63,4 +63,20 @@ Get Vault
 ant beta:vaults retrieve \
   --api-key my-anthropic-api-key \
   --vault-id vlt_011CZkZDLs7fYzm1hXNPeRjv
+```
+
+#### Response
+
+```json
+{
+  "id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+  "archived_at": null,
+  "created_at": "2026-03-15T10:00:00Z",
+  "display_name": "Example vault",
+  "metadata": {
+    "environment": "production"
+  },
+  "type": "vault",
+  "updated_at": "2026-03-15T10:00:00Z"
+}
 ```

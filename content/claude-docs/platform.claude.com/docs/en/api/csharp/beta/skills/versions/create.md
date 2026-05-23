@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/skills/versions/create
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: e89ab0e4500055319660b4ac04913e199cce3de3222a4be7b056d216aea30885
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 5be428e1b1b2f2f30d90cab7927dfea95f9f47af1f443d4ba89e6f300ec1bcf7
 ---
 
-## Create
+## Create Skill Version
 
 `VersionCreateResponse Beta.Skills.Versions.Create(VersionCreateParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -139,4 +139,19 @@ VersionCreateParams parameters = new() { SkillID = "skill_id" };
 var version = await client.Beta.Skills.Versions.Create(parameters);
 
 Console.WriteLine(version);
+```
+
+#### Response
+
+```json
+{
+  "id": "skillver_01JAbcdefghijklmnopqrstuvw",
+  "created_at": "2024-10-30T23:58:27.427722Z",
+  "description": "A custom skill for doing something useful",
+  "directory": "my-skill",
+  "name": "my-skill",
+  "skill_id": "skill_01JAbcdefghijklmnopqrstuvw",
+  "type": "type",
+  "version": "1759178010641129"
+}
 ```

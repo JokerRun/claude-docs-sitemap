@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/memory_stores/memories/create
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: ec21ba164f63b03882ffc0581f2a5184fd8332980b63237974b6af305940e7d0
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: a8b898a75e23305aa81e124d0c6171de23415b86d4e428337ba76dfd3dea6947
 ---
 
-## Create
+## Create a memory
 
 `BetaManagedAgentsMemory beta().memoryStores().memories().create(MemoryCreateParamsparams, RequestOptionsrequestOptions = RequestOptions.none())`
 
@@ -154,5 +154,22 @@ public final class Main {
             .build();
         BetaManagedAgentsMemory betaManagedAgentsMemory = client.beta().memoryStores().memories().create(params);
     }
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "content_sha256": "content_sha256",
+  "content_size_bytes": 0,
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "memory_store_id": "memory_store_id",
+  "memory_version_id": "memory_version_id",
+  "path": "path",
+  "type": "memory",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "content": "content"
 }
 ```

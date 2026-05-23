@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/vaults/create
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 136db8be7e0ccbc64ecd8f8c717e8d7405d33d350661924e3a6becd4bab3b21d
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: e39bb92685504e3a568b91afcad40404e42da7c8021888d4f8194bf5af7aaa01
 ---
 
-## Create
+## Create Vault
 
 `client.beta.vaults.create(VaultCreateParamsparams, RequestOptionsoptions?): BetaManagedAgentsVault`
 
@@ -129,4 +129,20 @@ const client = new Anthropic({
 const betaManagedAgentsVault = await client.beta.vaults.create({ display_name: 'Example vault' });
 
 console.log(betaManagedAgentsVault.id);
+```
+
+#### Response
+
+```json
+{
+  "id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+  "archived_at": null,
+  "created_at": "2026-03-15T10:00:00Z",
+  "display_name": "Example vault",
+  "metadata": {
+    "environment": "production"
+  },
+  "type": "vault",
+  "updated_at": "2026-03-15T10:00:00Z"
+}
 ```

@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/messages/batches/retrieve
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: b45b9312ebcb46c24abaccd58c7317654977385e97cd85d123e11a166103d307
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 359c586b453072a3e43f04357ec180bc755875cc7bb5c2c14aff2261c70a259c
 ---
 
-## Retrieve
+## Retrieve a Message Batch
 
 `BetaMessageBatch beta().messages().batches().retrieve(BatchRetrieveParamsparams = BatchRetrieveParams.none(), RequestOptionsrequestOptions = RequestOptions.none())`
 
@@ -185,5 +185,28 @@ public final class Main {
 
         BetaMessageBatch betaMessageBatch = client.beta().messages().batches().retrieve("message_batch_id");
     }
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "msgbatch_013Zva2CMHLNnXjNJJKqJ2EF",
+  "archived_at": "2024-08-20T18:37:24.100435Z",
+  "cancel_initiated_at": "2024-08-20T18:37:24.100435Z",
+  "created_at": "2024-08-20T18:37:24.100435Z",
+  "ended_at": "2024-08-20T18:37:24.100435Z",
+  "expires_at": "2024-08-20T18:37:24.100435Z",
+  "processing_status": "in_progress",
+  "request_counts": {
+    "canceled": 10,
+    "errored": 30,
+    "expired": 10,
+    "processing": 100,
+    "succeeded": 50
+  },
+  "results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_013Zva2CMHLNnXjNJJKqJ2EF/results",
+  "type": "message_batch"
 }
 ```

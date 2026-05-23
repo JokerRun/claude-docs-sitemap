@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/sessions/resources/update
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 579d2025c316a1c19436346e12d9bc1b1c2573bfd393c0f1eb688a7724fb3893
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 223990d55c7deab08d1ccd7cbfdf76e1c71a606e575a9cc26a4ed6964a8621c7
 ---
 
-## Update
+## Update Session Resource
 
 `beta.sessions.resources.update(strresource_id, ResourceUpdateParams**kwargs)  -> ResourceUpdateResponse`
 
@@ -200,4 +200,21 @@ resource = client.beta.sessions.resources.update(
     authorization_token="ghp_exampletoken",
 )
 print(resource)
+```
+
+#### Response
+
+```json
+{
+  "id": "sesrsc_011CZkZCKr6eXyl0gWMOdQiu",
+  "created_at": "2026-03-15T10:00:00Z",
+  "mount_path": "/workspace/example-repo",
+  "type": "github_repository",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "url": "https://github.com/example-org/example-repo",
+  "checkout": {
+    "name": "main",
+    "type": "branch"
+  }
+}
 ```

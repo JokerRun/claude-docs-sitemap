@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/users
-fetched_at: 2026-04-25T03:09:48.142425Z
-sha256: 3705274a5289eb5481103c7b689771a8bb9b42f2179721c4321bb66485b95151
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: bd9e767da11f8ba1ff4af16a48cec82bd359d88dd1f4f272cf41c03bbebd3448
 ---
 
 # Users
 
-## Retrieve
+## Get User
 
 **get** `/v1/organizations/users/{user_id}`
 
@@ -21,7 +21,7 @@ Get User
 
 ### Returns
 
-- `User = object { id, added_at, email, 3 more }`
+- `User object { id, added_at, email, 3 more }`
 
   - `id: string`
 
@@ -69,7 +69,20 @@ curl https://api.anthropic.com/v1/organizations/users/$USER_ID \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
 ```
 
-## List
+#### Response
+
+```json
+{
+  "id": "user_01WCz1FkmYMm4gnmykNKUu3Q",
+  "added_at": "2024-10-30T23:58:27.427722Z",
+  "email": "user@emaildomain.com",
+  "name": "Jane Doe",
+  "role": "user",
+  "type": "user"
+}
+```
+
+## List Users
 
 **get** `/v1/organizations/users`
 
@@ -157,7 +170,27 @@ curl https://api.anthropic.com/v1/organizations/users \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
 ```
 
-## Update
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "user_01WCz1FkmYMm4gnmykNKUu3Q",
+      "added_at": "2024-10-30T23:58:27.427722Z",
+      "email": "user@emaildomain.com",
+      "name": "Jane Doe",
+      "role": "user",
+      "type": "user"
+    }
+  ],
+  "first_id": "first_id",
+  "has_more": true,
+  "last_id": "last_id"
+}
+```
+
+## Update User
 
 **post** `/v1/organizations/users/{user_id}`
 
@@ -185,7 +218,7 @@ Update User
 
 ### Returns
 
-- `User = object { id, added_at, email, 3 more }`
+- `User object { id, added_at, email, 3 more }`
 
   - `id: string`
 
@@ -237,7 +270,20 @@ curl https://api.anthropic.com/v1/organizations/users/$USER_ID \
         }'
 ```
 
-## Delete
+#### Response
+
+```json
+{
+  "id": "user_01WCz1FkmYMm4gnmykNKUu3Q",
+  "added_at": "2024-10-30T23:58:27.427722Z",
+  "email": "user@emaildomain.com",
+  "name": "Jane Doe",
+  "role": "user",
+  "type": "user"
+}
+```
+
+## Remove User
 
 **delete** `/v1/organizations/users/{user_id}`
 
@@ -272,11 +318,20 @@ curl https://api.anthropic.com/v1/organizations/users/$USER_ID \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
 ```
 
+#### Response
+
+```json
+{
+  "id": "user_01WCz1FkmYMm4gnmykNKUu3Q",
+  "type": "user_deleted"
+}
+```
+
 ## Domain Types
 
 ### User
 
-- `User = object { id, added_at, email, 3 more }`
+- `User object { id, added_at, email, 3 more }`
 
   - `id: string`
 
@@ -318,7 +373,7 @@ curl https://api.anthropic.com/v1/organizations/users/$USER_ID \
 
 ### User Delete Response
 
-- `UserDeleteResponse = object { id, type }`
+- `UserDeleteResponse object { id, type }`
 
   - `id: string`
 

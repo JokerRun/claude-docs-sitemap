@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/user_profiles/retrieve
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 536ae5d6011f02c7d359f1d6afc2b1b6e469b93e766f5af3d741a29d0f3d03a4
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: d23bbe3d59278a7eff5cfb74c7a11c19aa73ffc38621c03a2fbd38f8cba8ab30
 ---
 
-## Retrieve
+## Get User Profile
 
 `client.Beta.UserProfiles.Get(ctx, userProfileID, query) (*BetaUserProfile, error)`
 
@@ -163,5 +163,25 @@ func main() {
     panic(err.Error())
   }
   fmt.Printf("%+v\n", betaUserProfile.ID)
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "uprof_011CZkZCu8hGbp5mYRQgUmz9",
+  "created_at": "2026-03-15T10:00:00Z",
+  "metadata": {},
+  "relationship": "external",
+  "trust_grants": {
+    "cyber": {
+      "status": "active"
+    }
+  },
+  "type": "user_profile",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "external_id": "user_12345",
+  "name": "Example User"
 }
 ```

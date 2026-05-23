@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/users/update
-fetched_at: 2026-04-25T03:09:48.142425Z
-sha256: 56bd0224c189b27bdec7b32067c4406d4aa845215b883bd227851a144585a58f
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 402d15d5c0a98fde49b14a4cbd8e855197f0516eede1869d8bae4db9dbcbff9c
 ---
 
-## Update
+## Update User
 
 **post** `/v1/organizations/users/{user_id}`
 
@@ -33,7 +33,7 @@ Update User
 
 ### Returns
 
-- `User = object { id, added_at, email, 3 more }`
+- `User object { id, added_at, email, 3 more }`
 
   - `id: string`
 
@@ -83,4 +83,17 @@ curl https://api.anthropic.com/v1/organizations/users/$USER_ID \
     -d '{
           "role": "user"
         }'
+```
+
+#### Response
+
+```json
+{
+  "id": "user_01WCz1FkmYMm4gnmykNKUu3Q",
+  "added_at": "2024-10-30T23:58:27.427722Z",
+  "email": "user@emaildomain.com",
+  "name": "Jane Doe",
+  "role": "user",
+  "type": "user"
+}
 ```

@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/memory_stores/update
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: c83ae0a485f9763efb36e3dd220902d7a081aa67053b1f6238390d48607139c2
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: dfdac560b4aeb86e2f097cc1cb0caeafe3873e43364b900679021da16cd984f3
 ---
 
-## Update
+## Update a memory store
 
 `BetaManagedAgentsMemoryStore beta().memoryStores().update(MemoryStoreUpdateParamsparams = MemoryStoreUpdateParams.none(), RequestOptionsrequestOptions = RequestOptions.none())`
 
@@ -141,5 +141,22 @@ public final class Main {
 
         BetaManagedAgentsMemoryStore betaManagedAgentsMemoryStore = client.beta().memoryStores().update("memory_store_id");
     }
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "name": "name",
+  "type": "memory_store",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "archived_at": "2019-12-27T18:11:19.117Z",
+  "description": "description",
+  "metadata": {
+    "foo": "string"
+  }
 }
 ```

@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/environments/work/heartbeat
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: f4683b7d02932884f7ff53e5f020988fda0c9e8eb80a79c57dee2bd13a8b8666
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 1eb9ff1e87e5c87026ea45422d9d8185cfc5b44e8832ea12ebfa0c17e8c9502b
 ---
 
-## Heartbeat
+## Record Heartbeat
 
 `BetaSelfHostedWorkHeartbeatResponse beta().environments().work().heartbeat(WorkHeartbeatParamsparams, RequestOptionsrequestOptions = RequestOptions.none())`
 
@@ -145,5 +145,17 @@ public final class Main {
             .build();
         BetaSelfHostedWorkHeartbeatResponse betaSelfHostedWorkHeartbeatResponse = client.beta().environments().work().heartbeat(params);
     }
+}
+```
+
+#### Response
+
+```json
+{
+  "last_heartbeat": "last_heartbeat",
+  "lease_extended": true,
+  "state": "queued",
+  "ttl_seconds": 0,
+  "type": "work_heartbeat"
 }
 ```

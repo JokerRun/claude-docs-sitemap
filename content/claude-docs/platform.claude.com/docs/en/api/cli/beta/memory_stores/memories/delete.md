@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/memory_stores/memories/delete
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 6fa5d70cafdab9b06b0bfae9f734636fa2ca3d020cdf4f262efa8bf321c9e19c
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 87c7fc09cfeec00b924b6225a94bda5eb65a69bef7aaf14ad6735d66c78ccce7
 ---
 
-## Delete
+## Delete a memory
 
 `$ ant beta:memory-stores:memories delete`
 
@@ -52,4 +52,13 @@ ant beta:memory-stores:memories delete \
   --api-key my-anthropic-api-key \
   --memory-store-id memory_store_id \
   --memory-id memory_id
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "type": "memory_deleted"
+}
 ```

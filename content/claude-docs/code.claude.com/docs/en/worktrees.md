@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/worktrees
-fetched_at: 2026-05-13T03:15:22.791986Z
-sha256: b6759d03d098f0509133d16b5fb32fbbfd5f2ca4b66fb2f0f0274f3d51e13112
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: e100605f712de0b1abc031ad949f67a59c72648f48a7ec0ff3414a07f7c4001a
 ---
 
 > ## Documentation Index
@@ -86,6 +86,8 @@ This applies to worktrees created with `--worktree`, [subagent worktrees](#isola
 ## Isolate subagents with worktrees
 
 Subagents can run in their own worktrees so parallel edits don't conflict. Ask Claude to "use worktrees for your agents", or set it permanently on a [custom subagent](/en/sub-agents#supported-frontmatter-fields) by adding `isolation: worktree` to the frontmatter. Each subagent gets a temporary worktree that is removed automatically when the subagent finishes without changes.
+
+Subagent worktrees use the same [base branch](#choose-the-base-branch) as `--worktree`, so they branch from your repository's default branch unless `worktree.baseRef` is set to `"head"`.
 
 ## Clean up worktrees
 

@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/sessions/delete
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 2ab3654c59b34c03a7c67d6ca57f166bcc90af5e144a72e17692a4a0c9d860e6
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: deeb958880cda88404610da5e51da41289bd1cb6e6e7c83214d0fdf41c801d82
 ---
 
-## Delete
+## Delete Session
 
 `client.beta.sessions.delete(stringsessionID, SessionDeleteParamsparams?, RequestOptionsoptions?): BetaManagedAgentsDeletedSession`
 
@@ -103,4 +103,13 @@ const betaManagedAgentsDeletedSession = await client.beta.sessions.delete(
 );
 
 console.log(betaManagedAgentsDeletedSession.id);
+```
+
+#### Response
+
+```json
+{
+  "id": "sesn_011CZkZAtmR3yMPDzynEDxu7",
+  "type": "session_deleted"
+}
 ```

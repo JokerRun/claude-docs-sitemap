@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/archive
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 4af252c810e915978523a21c37fed9c8330249ad38a1eadba50281aedb31827e
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 3cccdbd14e4d9340b00cc4a9eb76a7704702cd0a501741487b4508c7725acf76
 ---
 
-## Archive
+## Archive Credential
 
 **post** `/v1/vaults/{vault_id}/credentials/{credential_id}/archive`
 
@@ -23,9 +23,9 @@ Archive Credential
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = string`
+  - `string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -79,7 +79,7 @@ Archive Credential
 
 ### Returns
 
-- `BetaManagedAgentsCredential = object { id, archived_at, auth, 6 more }`
+- `BetaManagedAgentsCredential object { id, archived_at, auth, 6 more }`
 
   A credential stored in a vault. Sensitive fields are never returned in responses.
 
@@ -95,7 +95,7 @@ Archive Credential
 
     Authentication details for a credential.
 
-    - `BetaManagedAgentsMCPOAuthAuthResponse = object { mcp_server_url, type, expires_at, refresh }`
+    - `BetaManagedAgentsMCPOAuthAuthResponse object { mcp_server_url, type, expires_at, refresh }`
 
       OAuth credential details for an MCP server.
 
@@ -127,7 +127,7 @@ Archive Credential
 
           Token endpoint requires no client authentication.
 
-          - `BetaManagedAgentsTokenEndpointAuthNoneResponse = object { type }`
+          - `BetaManagedAgentsTokenEndpointAuthNoneResponse object { type }`
 
             Token endpoint requires no client authentication.
 
@@ -135,7 +135,7 @@ Archive Credential
 
               - `"none"`
 
-          - `BetaManagedAgentsTokenEndpointAuthBasicResponse = object { type }`
+          - `BetaManagedAgentsTokenEndpointAuthBasicResponse object { type }`
 
             Token endpoint uses HTTP Basic authentication with client credentials.
 
@@ -143,7 +143,7 @@ Archive Credential
 
               - `"client_secret_basic"`
 
-          - `BetaManagedAgentsTokenEndpointAuthPostResponse = object { type }`
+          - `BetaManagedAgentsTokenEndpointAuthPostResponse object { type }`
 
             Token endpoint uses POST body authentication with client credentials.
 
@@ -159,7 +159,7 @@ Archive Credential
 
           OAuth scope for the refresh request.
 
-    - `BetaManagedAgentsStaticBearerAuthResponse = object { mcp_server_url, type }`
+    - `BetaManagedAgentsStaticBearerAuthResponse object { mcp_server_url, type }`
 
       Static bearer token credential details for an MCP server.
 
@@ -203,4 +203,25 @@ curl https://api.anthropic.com/v1/vaults/$VAULT_ID/credentials/$CREDENTIAL_ID/ar
     -H 'anthropic-version: 2023-06-01' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
+```
+
+#### Response
+
+```json
+{
+  "id": "vcrd_011CZkZEMt8gZan2iYOQfSkw",
+  "archived_at": null,
+  "auth": {
+    "mcp_server_url": "https://example-server.modelcontextprotocol.io/sse",
+    "type": "static_bearer"
+  },
+  "created_at": "2026-03-15T10:00:00Z",
+  "metadata": {
+    "environment": "production"
+  },
+  "type": "vault_credential",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "vault_id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+  "display_name": "Example credential"
+}
 ```

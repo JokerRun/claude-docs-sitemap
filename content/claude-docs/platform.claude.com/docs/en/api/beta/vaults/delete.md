@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/delete
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 177a9cf6a78c870bbb0b4e1aa3a9b764054f42f24fb1e6de8029984d470ea6c0
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 37189be07485509ce586e78d045a5f52e5d846d9efb91ef8f3f2cde0350814ba
 ---
 
-## Delete
+## Delete Vault
 
 **delete** `/v1/vaults/{vault_id}`
 
@@ -21,9 +21,9 @@ Delete Vault
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = string`
+  - `string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -77,7 +77,7 @@ Delete Vault
 
 ### Returns
 
-- `BetaManagedAgentsDeletedVault = object { id, type }`
+- `BetaManagedAgentsDeletedVault object { id, type }`
 
   Confirmation of a deleted vault.
 
@@ -97,4 +97,13 @@ curl https://api.anthropic.com/v1/vaults/$VAULT_ID \
     -H 'anthropic-version: 2023-06-01' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
+```
+
+#### Response
+
+```json
+{
+  "id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+  "type": "vault_deleted"
+}
 ```

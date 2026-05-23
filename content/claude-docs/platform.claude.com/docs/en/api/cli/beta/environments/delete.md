@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/environments/delete
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: c517e564e3f32013663fc411666e3552a216c0976a0fbdb06c225f4f9c1ade4a
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 6b401a3c916c78f8d5e852c7dec8e87c18c1b618ae47943995977ccb04c3e8d4
 ---
 
-## Delete
+## Delete Environment
 
 `$ ant beta:environments delete`
 
@@ -41,4 +41,13 @@ Delete an environment by ID. Returns a confirmation of the deletion.
 ant beta:environments delete \
   --api-key my-anthropic-api-key \
   --environment-id env_011CZkZ9X2dpNyB7HsEFoRfW
+```
+
+#### Response
+
+```json
+{
+  "id": "env_011CZkZ9X2dpNyB7HsEFoRfW",
+  "type": "environment_deleted"
+}
 ```

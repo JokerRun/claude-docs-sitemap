@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/batches/delete
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: bd3deaa158f6caa55f686b83a0a0a9cbd1140c2f0faa4df8d7bcf03d4c720be0
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 891adf21097006d3a1829bda49db71a65c7c6047780e11d04ff392b7729a0622
 ---
 
-## Delete
+## Delete a Message Batch
 
 **delete** `/v1/messages/batches/{message_batch_id}`
 
@@ -27,9 +27,9 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = string`
+  - `string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -83,7 +83,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
 ### Returns
 
-- `BetaDeletedMessageBatch = object { id, type }`
+- `BetaDeletedMessageBatch object { id, type }`
 
   - `id: string`
 
@@ -105,4 +105,13 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID \
     -H 'anthropic-version: 2023-06-01' \
     -H 'anthropic-beta: message-batches-2024-09-24' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
+```
+
+#### Response
+
+```json
+{
+  "id": "msgbatch_013Zva2CMHLNnXjNJJKqJ2EF",
+  "type": "message_batch_deleted"
+}
 ```

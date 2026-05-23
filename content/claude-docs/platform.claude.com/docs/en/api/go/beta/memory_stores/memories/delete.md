@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/memory_stores/memories/delete
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: bb5b9df09b0a3e87a54c05385eb7cca8a66716824ebfa49d44930b1a7b6e4574
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: f65e0e8c7c514e649de73bb5866133ac69baf023eacba261cbfbb793ebb238a3
 ---
 
-## Delete
+## Delete a memory
 
 `client.Beta.MemoryStores.Memories.Delete(ctx, memoryID, params) (*BetaManagedAgentsDeletedMemory, error)`
 
@@ -127,5 +127,14 @@ func main() {
     panic(err.Error())
   }
   fmt.Printf("%+v\n", betaManagedAgentsDeletedMemory.ID)
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "type": "memory_deleted"
 }
 ```

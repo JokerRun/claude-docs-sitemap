@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/environments/work/update
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 32a91d99ea92aa819f8307b3a7fa3cb19c71f46838400c5330d04bb81d78df79
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: a444342de313e0b541b3668110724157d052e721efec027f217c4dfe90c5f4bc
 ---
 
-## Update
+## Update Work Item
 
 `BetaSelfHostedWork beta().environments().work().update(WorkUpdateParamsparams, RequestOptionsrequestOptions = RequestOptions.none())`
 
@@ -190,5 +190,29 @@ public final class Main {
             .build();
         BetaSelfHostedWork betaSelfHostedWork = client.beta().environments().work().update(params);
     }
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "acknowledged_at": "acknowledged_at",
+  "created_at": "created_at",
+  "data": {
+    "id": "id",
+    "type": "session"
+  },
+  "environment_id": "environment_id",
+  "latest_heartbeat_at": "latest_heartbeat_at",
+  "metadata": {
+    "foo": "string"
+  },
+  "started_at": "started_at",
+  "state": "queued",
+  "stop_requested_at": "stop_requested_at",
+  "stopped_at": "stopped_at",
+  "type": "work"
 }
 ```

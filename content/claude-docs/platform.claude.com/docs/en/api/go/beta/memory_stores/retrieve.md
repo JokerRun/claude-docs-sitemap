@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/memory_stores/retrieve
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 32b357fb756052c8528acd416474141d2a2a48fd99dd523e3a2f08f3d55aa4e9
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: c61eab90927c941fa1750d37d479dd5f6a81d0dfeb2c552243eb28baaaaa3173
 ---
 
-## Retrieve
+## Retrieve a memory store
 
 `client.Beta.MemoryStores.Get(ctx, memoryStoreID, query) (*BetaManagedAgentsMemoryStore, error)`
 
@@ -143,5 +143,22 @@ func main() {
     panic(err.Error())
   }
   fmt.Printf("%+v\n", betaManagedAgentsMemoryStore.ID)
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "name": "name",
+  "type": "memory_store",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "archived_at": "2019-12-27T18:11:19.117Z",
+  "description": "description",
+  "metadata": {
+    "foo": "string"
+  }
 }
 ```

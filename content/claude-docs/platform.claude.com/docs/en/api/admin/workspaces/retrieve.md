@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/retrieve
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 05e15ec4dbffee419b653877a87d9a4eb12c985b20451aa0cebb6c7478ceaf15
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: d6f86e8966eb346b99aaa40cf65bde5f8db9e8d70acece4beeb4725b00d8e90e
 ---
 
-## Retrieve
+## Get Workspace
 
 **get** `/v1/organizations/workspaces/{workspace_id}`
 
@@ -19,7 +19,7 @@ Get Workspace
 
 ### Returns
 
-- `Workspace = object { id, archived_at, created_at, 5 more }`
+- `Workspace object { id, archived_at, created_at, 5 more }`
 
   - `id: string`
 
@@ -41,9 +41,9 @@ Get Workspace
 
       Permitted inference geo values. 'unrestricted' means all geos are allowed.
 
-      - `UnionMember0 = array of string`
+      - `array of string`
 
-      - `UnionMember1 = "unrestricted"`
+      - `"unrestricted"`
 
         - `"unrestricted"`
 
@@ -81,4 +81,26 @@ Get Workspace
 curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID \
     -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
+```
+
+#### Response
+
+```json
+{
+  "id": "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
+  "archived_at": "2024-11-01T23:59:27.427722Z",
+  "created_at": "2024-10-30T23:58:27.427722Z",
+  "data_residency": {
+    "allowed_inference_geos": "unrestricted",
+    "default_inference_geo": "default_inference_geo",
+    "workspace_geo": "workspace_geo"
+  },
+  "display_color": "#6C5BB9",
+  "name": "Workspace Name",
+  "tags": {
+    "env": "prod",
+    "team": "platform"
+  },
+  "type": "workspace"
+}
 ```

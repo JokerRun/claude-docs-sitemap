@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/vaults/credentials/delete
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: bfa78d14cb7eec56d5de6465c6a68b6faa8e0f8816d8933360308381fb4ab98a
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: adf2283940dbe38bc1f012326b4cca6188a5208a6360bda5c3474c170ade1d2e
 ---
 
-## Delete
+## Delete Credential
 
 `client.beta.vaults.credentials.delete(stringcredentialID, CredentialDeleteParamsparams, RequestOptionsoptions?): BetaManagedAgentsDeletedCredential`
 
@@ -110,4 +110,13 @@ const betaManagedAgentsDeletedCredential = await client.beta.vaults.credentials.
 );
 
 console.log(betaManagedAgentsDeletedCredential.id);
+```
+
+#### Response
+
+```json
+{
+  "id": "vcrd_011CZkZEMt8gZan2iYOQfSkw",
+  "type": "vault_credential_deleted"
+}
 ```

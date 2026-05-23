@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/delete
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 5f40011cbdfd8192c13ad00ad3356d776bf9f739eaf0d9cd4c130c32c82176b5
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 029cf2757771b6d074e65118c5b80382210e84613905b83d3ae6cb3cac773883
 ---
 
-## Delete
+## Delete a memory store
 
 **delete** `/v1/memory_stores/{memory_store_id}`
 
@@ -21,9 +21,9 @@ Delete a memory store
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = string`
+  - `string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -77,7 +77,7 @@ Delete a memory store
 
 ### Returns
 
-- `BetaManagedAgentsDeletedMemoryStore = object { id, type }`
+- `BetaManagedAgentsDeletedMemoryStore object { id, type }`
 
   Confirmation that a `memory_store` was deleted.
 
@@ -97,4 +97,13 @@ curl https://api.anthropic.com/v1/memory_stores/$MEMORY_STORE_ID \
     -H 'anthropic-version: 2023-06-01' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "type": "memory_store_deleted"
+}
 ```

@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/memory_stores/memories/delete
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: e1c5dd25068ce09f050b62072dae8e5c9565f16f3cad0f7df4b5a50a87450e16
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 1d33d967b0cd54e27218fa708520083cbfe33bc8219ef094db3c0efcc1fb101f
 ---
 
-## Delete
+## Delete a memory
 
 `client.beta.memoryStores.memories.delete(stringmemoryID, MemoryDeleteParamsparams, RequestOptionsoptions?): BetaManagedAgentsDeletedMemory`
 
@@ -113,4 +113,13 @@ const betaManagedAgentsDeletedMemory = await client.beta.memoryStores.memories.d
 });
 
 console.log(betaManagedAgentsDeletedMemory.id);
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "type": "memory_deleted"
+}
 ```

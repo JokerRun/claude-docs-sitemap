@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/vaults/credentials/list
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: bd540a51344dd44cdf742e725786288581a2441b805474db51246ae6c1cb619e
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 8b2a59aa49a47aeda6ce300bd4bcd9faebb4d88fd0afdfdc24b66c463194d7bb
 ---
 
-## List
+## List Credentials
 
 `beta.vaults.credentials.list(strvault_id, CredentialListParams**kwargs)  -> SyncPageCursor[BetaManagedAgentsCredential]`
 
@@ -219,4 +219,30 @@ page = client.beta.vaults.credentials.list(
 )
 page = page.data[0]
 print(page.id)
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "vcrd_011CZkZEMt8gZan2iYOQfSkw",
+      "archived_at": null,
+      "auth": {
+        "mcp_server_url": "https://example-server.modelcontextprotocol.io/sse",
+        "type": "static_bearer"
+      },
+      "created_at": "2026-03-15T10:00:00Z",
+      "metadata": {
+        "environment": "production"
+      },
+      "type": "vault_credential",
+      "updated_at": "2026-03-15T10:00:00Z",
+      "vault_id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+      "display_name": "Example credential"
+    }
+  ],
+  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="
+}
 ```

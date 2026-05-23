@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/sessions/delete
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 731b91340398afe446f7fceeaaf35c298656063ef61d2bb880da2805eff9bc41
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: e4f63c8984713f8e5fb25a45617d8fd97dedc7351af44b8e87588fa9fcffefcd
 ---
 
-## Delete
+## Delete Session
 
 `BetaManagedAgentsDeletedSession Beta.Sessions.Delete(SessionDeleteParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -98,4 +98,13 @@ SessionDeleteParams parameters = new()
 var betaManagedAgentsDeletedSession = await client.Beta.Sessions.Delete(parameters);
 
 Console.WriteLine(betaManagedAgentsDeletedSession);
+```
+
+#### Response
+
+```json
+{
+  "id": "sesn_011CZkZAtmR3yMPDzynEDxu7",
+  "type": "session_deleted"
+}
 ```

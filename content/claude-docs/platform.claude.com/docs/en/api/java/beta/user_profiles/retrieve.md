@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/user_profiles/retrieve
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: c582b93b5b3c1a92834fc2f08e56c32f761db293c6130eac8f34bf583d621c28
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 43fd3b70a4f6e35f39752bfbaeb1fab57aa6029f06a1f76ec33dde1c1e8847a7
 ---
 
-## Retrieve
+## Get User Profile
 
 `BetaUserProfile beta().userProfiles().retrieve(UserProfileRetrieveParamsparams = UserProfileRetrieveParams.none(), RequestOptionsrequestOptions = RequestOptions.none())`
 
@@ -149,5 +149,25 @@ public final class Main {
 
         BetaUserProfile betaUserProfile = client.beta().userProfiles().retrieve("uprof_011CZkZCu8hGbp5mYRQgUmz9");
     }
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "uprof_011CZkZCu8hGbp5mYRQgUmz9",
+  "created_at": "2026-03-15T10:00:00Z",
+  "metadata": {},
+  "relationship": "external",
+  "trust_grants": {
+    "cyber": {
+      "status": "active"
+    }
+  },
+  "type": "user_profile",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "external_id": "user_12345",
+  "name": "Example User"
 }
 ```

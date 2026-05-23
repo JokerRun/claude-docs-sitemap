@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/environments/work
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: d0acc7204a8a37a4230973678646dda8f380ae845f56abeb7a21266036722782
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: dd08faac648abd3ea90e58a46eec3e99a71549776b4e2c8df9dd35bc08dea5a8
 ---
 
 # Work
 
-## Retrieve
+## Get Work Item
 
 `$ ant beta:environments:work retrieve`
 
@@ -116,7 +116,31 @@ ant beta:environments:work retrieve \
   --work-id work_id
 ```
 
-## Poll
+#### Response
+
+```json
+{
+  "id": "id",
+  "acknowledged_at": "acknowledged_at",
+  "created_at": "created_at",
+  "data": {
+    "id": "id",
+    "type": "session"
+  },
+  "environment_id": "environment_id",
+  "latest_heartbeat_at": "latest_heartbeat_at",
+  "metadata": {
+    "foo": "string"
+  },
+  "started_at": "started_at",
+  "state": "queued",
+  "stop_requested_at": "stop_requested_at",
+  "stopped_at": "stopped_at",
+  "type": "work"
+}
+```
+
+## Poll for Work
 
 `$ ant beta:environments:work poll`
 
@@ -232,7 +256,31 @@ ant beta:environments:work poll \
   --environment-id env_011CZkZ9X2dpNyB7HsEFoRfW
 ```
 
-## Ack
+#### Response
+
+```json
+{
+  "id": "id",
+  "acknowledged_at": "acknowledged_at",
+  "created_at": "created_at",
+  "data": {
+    "id": "id",
+    "type": "session"
+  },
+  "environment_id": "environment_id",
+  "latest_heartbeat_at": "latest_heartbeat_at",
+  "metadata": {
+    "foo": "string"
+  },
+  "started_at": "started_at",
+  "state": "queued",
+  "stop_requested_at": "stop_requested_at",
+  "stopped_at": "stopped_at",
+  "type": "work"
+}
+```
+
+## Acknowledge Work
 
 `$ ant beta:environments:work ack`
 
@@ -341,7 +389,31 @@ ant beta:environments:work ack \
   --work-id work_id
 ```
 
-## Heartbeat
+#### Response
+
+```json
+{
+  "id": "id",
+  "acknowledged_at": "acknowledged_at",
+  "created_at": "created_at",
+  "data": {
+    "id": "id",
+    "type": "session"
+  },
+  "environment_id": "environment_id",
+  "latest_heartbeat_at": "latest_heartbeat_at",
+  "metadata": {
+    "foo": "string"
+  },
+  "started_at": "started_at",
+  "state": "queued",
+  "stop_requested_at": "stop_requested_at",
+  "stopped_at": "stopped_at",
+  "type": "work"
+}
+```
+
+## Record Heartbeat
 
 `$ ant beta:environments:work heartbeat`
 
@@ -418,7 +490,19 @@ ant beta:environments:work heartbeat \
   --work-id work_id
 ```
 
-## Stop
+#### Response
+
+```json
+{
+  "last_heartbeat": "last_heartbeat",
+  "lease_extended": true,
+  "state": "queued",
+  "ttl_seconds": 0,
+  "type": "work_heartbeat"
+}
+```
+
+## Stop Work
 
 `$ ant beta:environments:work stop`
 
@@ -531,7 +615,31 @@ ant beta:environments:work stop \
   --work-id work_id
 ```
 
-## List
+#### Response
+
+```json
+{
+  "id": "id",
+  "acknowledged_at": "acknowledged_at",
+  "created_at": "created_at",
+  "data": {
+    "id": "id",
+    "type": "session"
+  },
+  "environment_id": "environment_id",
+  "latest_heartbeat_at": "latest_heartbeat_at",
+  "metadata": {
+    "foo": "string"
+  },
+  "started_at": "started_at",
+  "state": "queued",
+  "stop_requested_at": "stop_requested_at",
+  "stopped_at": "stopped_at",
+  "type": "work"
+}
+```
+
+## List Work Items
 
 `$ ant beta:environments:work list`
 
@@ -647,7 +755,36 @@ ant beta:environments:work list \
   --environment-id env_011CZkZ9X2dpNyB7HsEFoRfW
 ```
 
-## Update
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "id",
+      "acknowledged_at": "acknowledged_at",
+      "created_at": "created_at",
+      "data": {
+        "id": "id",
+        "type": "session"
+      },
+      "environment_id": "environment_id",
+      "latest_heartbeat_at": "latest_heartbeat_at",
+      "metadata": {
+        "foo": "string"
+      },
+      "started_at": "started_at",
+      "state": "queued",
+      "stop_requested_at": "stop_requested_at",
+      "stopped_at": "stopped_at",
+      "type": "work"
+    }
+  ],
+  "next_page": "next_page"
+}
+```
+
+## Update Work Item
 
 `$ ant beta:environments:work update`
 
@@ -761,7 +898,31 @@ ant beta:environments:work update \
   --metadata '{foo: string}'
 ```
 
-## Stats
+#### Response
+
+```json
+{
+  "id": "id",
+  "acknowledged_at": "acknowledged_at",
+  "created_at": "created_at",
+  "data": {
+    "id": "id",
+    "type": "session"
+  },
+  "environment_id": "environment_id",
+  "latest_heartbeat_at": "latest_heartbeat_at",
+  "metadata": {
+    "foo": "string"
+  },
+  "started_at": "started_at",
+  "state": "queued",
+  "stop_requested_at": "stop_requested_at",
+  "stopped_at": "stopped_at",
+  "type": "work"
+}
+```
+
+## Get Queue Statistics
 
 `$ ant beta:environments:work stats`
 
@@ -811,6 +972,18 @@ Get statistics about the work queue for an environment.
 ant beta:environments:work stats \
   --api-key my-anthropic-api-key \
   --environment-id env_011CZkZ9X2dpNyB7HsEFoRfW
+```
+
+#### Response
+
+```json
+{
+  "depth": 0,
+  "oldest_queued_at": "oldest_queued_at",
+  "pending": 0,
+  "type": "work_queue_stats",
+  "workers_polling": 0
+}
 ```
 
 ## Domain Types

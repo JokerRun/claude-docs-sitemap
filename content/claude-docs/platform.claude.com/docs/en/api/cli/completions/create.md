@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/completions/create
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: d57f3f7be6d9bdab36a6f5180f049761c141edc6a9a2d542779228d446fb05b1
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 995fc2645019c1f15823d6bf7c610e9c7634e72fb2921b498d692a9d0ac27dfc
 ---
 
-## Create
+## Create a Text Completion
 
 `$ ant completions create`
 
@@ -206,4 +206,16 @@ ant completions create \
 Human: Hello, world!
 
 Assistant:'
+```
+
+#### Response
+
+```json
+{
+  "id": "compl_018CKm6gsux7P8yMcwZbeCPw",
+  "completion": " Hello! My name is Claude.",
+  "model": "claude-2.1",
+  "stop_reason": "stop_sequence",
+  "type": "completion"
+}
 ```

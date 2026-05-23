@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/artifacts/download
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: f8a6a240fe87594b10308ca52cefc21bebcf22207cdaeec342e49eda7395b154
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: a40df7ffba80c819b655b6777c4b3ba379fd20f1ccf9ba72b6926ae9bc2e6119
 ---
 
-## Download
+## Download artifact content
 
 **get** `/v1/compliance/apps/artifacts/{artifact_version_id}/content`
 

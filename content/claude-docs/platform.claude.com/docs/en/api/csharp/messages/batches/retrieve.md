@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/messages/batches/retrieve
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 33403c909c4b95a8b56b758442a70d20ede48a00a669ac42134b0934e2589761
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 2193fa295698d507d9443ef0f17edf01668ad06ac52ecff08d13e82ec797b717
 ---
 
-## Retrieve
+## Retrieve a Message Batch
 
 `MessageBatch Messages.Batches.Retrieve(BatchRetrieveParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -119,4 +119,27 @@ BatchRetrieveParams parameters = new() { MessageBatchID = "message_batch_id" };
 var messageBatch = await client.Messages.Batches.Retrieve(parameters);
 
 Console.WriteLine(messageBatch);
+```
+
+#### Response
+
+```json
+{
+  "id": "msgbatch_013Zva2CMHLNnXjNJJKqJ2EF",
+  "archived_at": "2024-08-20T18:37:24.100435Z",
+  "cancel_initiated_at": "2024-08-20T18:37:24.100435Z",
+  "created_at": "2024-08-20T18:37:24.100435Z",
+  "ended_at": "2024-08-20T18:37:24.100435Z",
+  "expires_at": "2024-08-20T18:37:24.100435Z",
+  "processing_status": "in_progress",
+  "request_counts": {
+    "canceled": 10,
+    "errored": 30,
+    "expired": 10,
+    "processing": 100,
+    "succeeded": 50
+  },
+  "results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_013Zva2CMHLNnXjNJJKqJ2EF/results",
+  "type": "message_batch"
+}
 ```

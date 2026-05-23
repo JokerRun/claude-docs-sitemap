@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/skills/versions/retrieve
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 8f48d20f71ab88157da3c0f790e378c7db0ac653bc8d7065722f217f1bd98698
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 086f6600c7711f5632a8fb5d9a3416d7902bb9c6520567d0f1d6d231fcce9a37
 ---
 
-## Retrieve
+## Get Skill Version
 
 `VersionRetrieveResponse Beta.Skills.Versions.Retrieve(VersionRetrieveParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -143,4 +143,19 @@ VersionRetrieveParams parameters = new()
 var version = await client.Beta.Skills.Versions.Retrieve(parameters);
 
 Console.WriteLine(version);
+```
+
+#### Response
+
+```json
+{
+  "id": "skillver_01JAbcdefghijklmnopqrstuvw",
+  "created_at": "2024-10-30T23:58:27.427722Z",
+  "description": "A custom skill for doing something useful",
+  "directory": "my-skill",
+  "name": "my-skill",
+  "skill_id": "skill_01JAbcdefghijklmnopqrstuvw",
+  "type": "type",
+  "version": "1759178010641129"
+}
 ```

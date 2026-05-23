@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/delete
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: aca97b0b64a96d0960884816f5342b58d2089396b8219917fdbdc56c167f4e26
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 261ff6e80d529d472bbce00d0e94a67a363b8e26f90b89e8eab028421fdd31dc
 ---
 
-## Delete
+## Delete Session
 
 `BetaManagedAgentsDeletedSession beta().sessions().delete(SessionDeleteParamsparams = SessionDeleteParams.none(), RequestOptionsrequestOptions = RequestOptions.none())`
 
@@ -103,5 +103,14 @@ public final class Main {
 
         BetaManagedAgentsDeletedSession betaManagedAgentsDeletedSession = client.beta().sessions().delete("sesn_011CZkZAtmR3yMPDzynEDxu7");
     }
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "sesn_011CZkZAtmR3yMPDzynEDxu7",
+  "type": "session_deleted"
 }
 ```

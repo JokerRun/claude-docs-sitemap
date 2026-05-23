@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/vaults/credentials/update
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 7b0f59e92b9ba9b00efa665a6ab439ba40b3e29d17562b74717bf4bd07615ab0
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 0dc35c3fa670c4310c1a6919468bd4384c2fc05079897e8f514b954198233d78
 ---
 
-## Update
+## Update Credential
 
 `beta.vaults.credentials.update(credential_id, **kwargs) -> BetaManagedAgentsCredential`
 
@@ -103,9 +103,9 @@ Update Credential
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `String`
+  - `String = String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -288,4 +288,25 @@ beta_managed_agents_credential = anthropic.beta.vaults.credentials.update(
 )
 
 puts(beta_managed_agents_credential)
+```
+
+#### Response
+
+```json
+{
+  "id": "vcrd_011CZkZEMt8gZan2iYOQfSkw",
+  "archived_at": null,
+  "auth": {
+    "mcp_server_url": "https://example-server.modelcontextprotocol.io/sse",
+    "type": "static_bearer"
+  },
+  "created_at": "2026-03-15T10:00:00Z",
+  "metadata": {
+    "environment": "production"
+  },
+  "type": "vault_credential",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "vault_id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+  "display_name": "Example credential"
+}
 ```

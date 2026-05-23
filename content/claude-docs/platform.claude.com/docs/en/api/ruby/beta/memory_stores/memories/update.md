@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/memory_stores/memories/update
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 8385a34764325a97a1c7cf8c49d2e7204951345795aad766b34a8c5652950072
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: d9ba6f416e306dc082077147aea68febb7f3741afc41a0ffd9768fe0733311a4
 ---
 
-## Update
+## Update a memory
 
 `beta.memory_stores.memories.update(memory_id, **kwargs) -> BetaManagedAgentsMemory`
 
@@ -51,9 +51,9 @@ Update a memory
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `String`
+  - `String = String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -161,4 +161,21 @@ anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
 beta_managed_agents_memory = anthropic.beta.memory_stores.memories.update("memory_id", memory_store_id: "memory_store_id")
 
 puts(beta_managed_agents_memory)
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "content_sha256": "content_sha256",
+  "content_size_bytes": 0,
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "memory_store_id": "memory_store_id",
+  "memory_version_id": "memory_version_id",
+  "path": "path",
+  "type": "memory",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "content": "content"
+}
 ```

@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/skills/versions/delete
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: e042a31c9f2c7da72c37f74157bdb30dc54c44d1929538c980039165b702cdf0
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 0c9df69bf4c0465ec332b913de5d33e97217d98e91761ea120a31614f1ec9567
 ---
 
-## Delete
+## Delete Skill Version
 
 `beta.skills.versions.delete(version, **kwargs) -> VersionDeleteResponse`
 
@@ -31,9 +31,9 @@ Delete Skill Version
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `String`
+  - `String = String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -111,4 +111,13 @@ anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
 version = anthropic.beta.skills.versions.delete("version", skill_id: "skill_id")
 
 puts(version)
+```
+
+#### Response
+
+```json
+{
+  "id": "1759178010641129",
+  "type": "type"
+}
 ```

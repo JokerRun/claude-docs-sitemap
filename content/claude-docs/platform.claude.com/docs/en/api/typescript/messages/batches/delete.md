@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/messages/batches/delete
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 119dfb75f469b9c2cf2b1c924b24d6b43af84ee6866f37933da5eaaad9da2159
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: d770b1a7d3d221b00ea7b3994de703d11921c6788c73db8ec7e1146336307d3c
 ---
 
-## Delete
+## Delete a Message Batch
 
 `client.messages.batches.delete(stringmessageBatchID, RequestOptionsoptions?): DeletedMessageBatch`
 
@@ -51,4 +51,13 @@ const client = new Anthropic({
 const deletedMessageBatch = await client.messages.batches.delete('message_batch_id');
 
 console.log(deletedMessageBatch.id);
+```
+
+#### Response
+
+```json
+{
+  "id": "msgbatch_013Zva2CMHLNnXjNJJKqJ2EF",
+  "type": "message_batch_deleted"
+}
 ```

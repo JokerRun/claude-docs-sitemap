@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/skills/delete
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 2f93cdc8aa5a7bab3c69186f0ac3c39c15ddb7fcb4aaf225a0ff8effdfd06f95
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 4ce78e59f16c3b6547112801105e4b661e7453564392b1c6bb00e5fe29303f36
 ---
 
-## Delete
+## Delete Skill
 
 `client.beta.skills.delete(stringskillID, SkillDeleteParamsparams?, RequestOptionsoptions?): SkillDeleteResponse`
 
@@ -109,4 +109,13 @@ const client = new Anthropic({
 const skill = await client.beta.skills.delete('skill_id');
 
 console.log(skill.id);
+```
+
+#### Response
+
+```json
+{
+  "id": "skill_01JAbcdefghijklmnopqrstuvw",
+  "type": "type"
+}
 ```

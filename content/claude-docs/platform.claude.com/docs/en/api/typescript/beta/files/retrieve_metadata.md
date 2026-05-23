@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/files/retrieve_metadata
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 7336bf9ddfbe273a13937af08c84f1c8c8a4bc57c804801289bb9343a95d6f26
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 118d86619637c4ff4300943c49d9ba2f70683e738ca019c578c3c03f91de8448
 ---
 
-## Retrieve Metadata
+## Get File Metadata
 
 `client.beta.files.retrieveMetadata(stringfileID, FileRetrieveMetadataParamsparams?, RequestOptionsoptions?): FileMetadata`
 
@@ -143,4 +143,22 @@ const client = new Anthropic({
 const fileMetadata = await client.beta.files.retrieveMetadata('file_id');
 
 console.log(fileMetadata.id);
+```
+
+#### Response
+
+```json
+{
+  "id": "file_011CNha8iCJcU1wXNR6q4V8w",
+  "created_at": "2025-04-15T18:37:24.100435Z",
+  "filename": "document.pdf",
+  "mime_type": "application/pdf",
+  "size_bytes": 102400,
+  "type": "file",
+  "downloadable": false,
+  "scope": {
+    "id": "id",
+    "type": "session"
+  }
+}
 ```

@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/environments/work/retrieve
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 0e54bd458f563c18bf4783b3d29591e54efe0d7ffe50c226b151a4604c29d715
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: c2d8cc50356a57c88f585a467a67c84d20ae802616a172e8d7056f8341fed478
 ---
 
-## Retrieve
+## Get Work Item
 
 `client.Beta.Environments.Work.Get(ctx, workID, params) (*BetaSelfHostedWork, error)`
 
@@ -191,5 +191,29 @@ func main() {
     panic(err.Error())
   }
   fmt.Printf("%+v\n", betaSelfHostedWork.ID)
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "acknowledged_at": "acknowledged_at",
+  "created_at": "created_at",
+  "data": {
+    "id": "id",
+    "type": "session"
+  },
+  "environment_id": "environment_id",
+  "latest_heartbeat_at": "latest_heartbeat_at",
+  "metadata": {
+    "foo": "string"
+  },
+  "started_at": "started_at",
+  "state": "queued",
+  "stop_requested_at": "stop_requested_at",
+  "stopped_at": "stopped_at",
+  "type": "work"
 }
 ```

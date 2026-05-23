@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/vaults/delete
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 6bd4bf4542d7cfb685d370fe114c9152865740c9fc052a9fedbe21a4e665a6b4
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 8bf0124f00f7b64b46ca1c80d9f41f8b908dd06e48c76e80d4fce352846bd2c3
 ---
 
-## Delete
+## Delete Vault
 
 `beta.vaults.delete(vault_id, **kwargs) -> BetaManagedAgentsDeletedVault`
 
@@ -21,9 +21,9 @@ Delete Vault
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `String`
+  - `String = String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -99,4 +99,13 @@ anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
 beta_managed_agents_deleted_vault = anthropic.beta.vaults.delete("vlt_011CZkZDLs7fYzm1hXNPeRjv")
 
 puts(beta_managed_agents_deleted_vault)
+```
+
+#### Response
+
+```json
+{
+  "id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+  "type": "vault_deleted"
+}
 ```

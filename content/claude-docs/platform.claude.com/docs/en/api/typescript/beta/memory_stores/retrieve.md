@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/memory_stores/retrieve
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 536f691c5f8096c82d0053593ddb4c251ed296b06d60e68c93bc27cffe72b698
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 1c2963b066a93e5133d3030c9a50897ffc83f8572e3a9610dd59b70d873a950b
 ---
 
-## Retrieve
+## Retrieve a memory store
 
 `client.beta.memoryStores.retrieve(stringmemoryStoreID, MemoryStoreRetrieveParamsparams?, RequestOptionsoptions?): BetaManagedAgentsMemoryStore`
 
@@ -127,4 +127,21 @@ const client = new Anthropic({
 const betaManagedAgentsMemoryStore = await client.beta.memoryStores.retrieve('memory_store_id');
 
 console.log(betaManagedAgentsMemoryStore.id);
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "name": "name",
+  "type": "memory_store",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "archived_at": "2019-12-27T18:11:19.117Z",
+  "description": "description",
+  "metadata": {
+    "foo": "string"
+  }
+}
 ```

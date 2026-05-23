@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/user_profiles/create_enrollment_url
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 88a192714ae05be796cc77d1de30dd04b4f93e9219dcde95bbf9745093895054
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: c643495d9c5d23986cac7273d7d73f3e146fdbf448841052b0812cbda6ccac74
 ---
 
 ## Create Enrollment URL
@@ -123,5 +123,15 @@ func main() {
     panic(err.Error())
   }
   fmt.Printf("%+v\n", betaUserProfileEnrollmentURL.ExpiresAt)
+}
+```
+
+#### Response
+
+```json
+{
+  "expires_at": "2026-03-15T10:15:00Z",
+  "type": "enrollment_url",
+  "url": "https://platform.claude.com/user-profiles/enrollment/M3J0bGJxZ2ppMnptbnB1"
 }
 ```

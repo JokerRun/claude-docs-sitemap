@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/sessions/resources/delete
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: d86f1ca030777a1bee4a4565571004dc817ced02ff19d0ce873d408f0e58060a
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: d3e8d9b7b7fb77fc81f13dcdfeba0df08d7c18da5303496d3f5cb6e62668badc
 ---
 
-## Delete
+## Delete Session Resource
 
 `BetaManagedAgentsDeleteSessionResource Beta.Sessions.Resources.Delete(ResourceDeleteParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -103,4 +103,13 @@ ResourceDeleteParams parameters = new()
 var betaManagedAgentsDeleteSessionResource = await client.Beta.Sessions.Resources.Delete(parameters);
 
 Console.WriteLine(betaManagedAgentsDeleteSessionResource);
+```
+
+#### Response
+
+```json
+{
+  "id": "sesrsc_011CZkZBJq5dWxk9fVLNcPht",
+  "type": "session_resource_deleted"
+}
 ```

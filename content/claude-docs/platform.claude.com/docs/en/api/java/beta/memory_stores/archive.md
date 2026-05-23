@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/memory_stores/archive
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: db7c4bdb02a5a12403a256bd0fe62b7c3c5c71ce3af2060e52c89a3902b2ccf3
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 802219a71382ca1c4e2f5fec5b10c6e0b9a2a4f6c610145f0f257e947c390b25
 ---
 
-## Archive
+## Archive a memory store
 
 `BetaManagedAgentsMemoryStore beta().memoryStores().archive(MemoryStoreArchiveParamsparams = MemoryStoreArchiveParams.none(), RequestOptionsrequestOptions = RequestOptions.none())`
 
@@ -129,5 +129,22 @@ public final class Main {
 
         BetaManagedAgentsMemoryStore betaManagedAgentsMemoryStore = client.beta().memoryStores().archive("memory_store_id");
     }
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "name": "name",
+  "type": "memory_store",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "archived_at": "2019-12-27T18:11:19.117Z",
+  "description": "description",
+  "metadata": {
+    "foo": "string"
+  }
 }
 ```

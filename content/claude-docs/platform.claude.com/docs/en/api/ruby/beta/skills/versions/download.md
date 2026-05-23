@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/skills/versions/download
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 693f590a8cfad82af26ebbd930a5575e9b17cfc1100619f4134f8911f815a6cf
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 9a262bf8d515ea45c4fe071a7fc4c977aef6f29fdba27be259ee80b6c1e45c64
 ---
 
-## Download
+## Download Skill Version Content
 
 `beta.skills.versions.download(version, **kwargs) -> StringIO`
 
@@ -31,9 +31,9 @@ Download a skill version's content as a zip archive.
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `String`
+  - `String = String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 

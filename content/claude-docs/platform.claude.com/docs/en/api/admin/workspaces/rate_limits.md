@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/rate_limits
-fetched_at: 2026-04-25T03:09:48.142425Z
-sha256: 7fd15c7aaec17c85ba58f96f2c318b0864981f64ac590b2e9e14cac194646935
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 216570680138abf836a7a7f389eb391730ce5088ca74201ccae6360cfe5e6e9d
 ---
 
 # Rate Limits
 
-## List
+## List Workspace Rate Limits
 
 **get** `/v1/organizations/workspaces/{workspace_id}/rate_limits`
 
@@ -105,11 +105,35 @@ curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/rate_li
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
 ```
 
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "group_type": "model_group",
+      "limits": [
+        {
+          "org_limit": 0,
+          "type": "type",
+          "value": 0
+        }
+      ],
+      "models": [
+        "string"
+      ],
+      "type": "workspace_rate_limit"
+    }
+  ],
+  "next_page": "next_page"
+}
+```
+
 ## Domain Types
 
 ### Rate Limit List Response
 
-- `RateLimitListResponse = object { data, next_page }`
+- `RateLimitListResponse object { data, next_page }`
 
   - `data: array of object { group_type, limits, models, type }`
 

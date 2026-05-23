@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/sessions/resources/retrieve
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: bda4293e3621f2ecbf2e77ffcb8a16a540751f1fa350efa2dff2da06290371d3
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 360c9ddda5fae23c6f4e6c48349d2c9b504ea888f0bc4d8b3e3eb1fd4d2a1665
 ---
 
-## Retrieve
+## Get Session Resource
 
 `beta.sessions.resources.retrieve(strresource_id, ResourceRetrieveParams**kwargs)  -> ResourceRetrieveResponse`
 
@@ -195,4 +195,21 @@ resource = client.beta.sessions.resources.retrieve(
     session_id="sesn_011CZkZAtmR3yMPDzynEDxu7",
 )
 print(resource)
+```
+
+#### Response
+
+```json
+{
+  "id": "sesrsc_011CZkZCKr6eXyl0gWMOdQiu",
+  "created_at": "2026-03-15T10:00:00Z",
+  "mount_path": "/workspace/example-repo",
+  "type": "github_repository",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "url": "https://github.com/example-org/example-repo",
+  "checkout": {
+    "name": "main",
+    "type": "branch"
+  }
+}
 ```

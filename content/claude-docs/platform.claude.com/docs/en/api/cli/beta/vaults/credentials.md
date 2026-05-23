@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/vaults/credentials
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 48b6ae8648c3a445a0ebf9dd1b757379bd2473d52796fda5b892d8dbd6120dbc
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: aefdb17bddcdf8a93847e9f9e9d65350becd353695cbbda55d31c677e4051771
 ---
 
 # Credentials
 
-## Create
+## Create Credential
 
 `$ ant beta:vaults:credentials create`
 
@@ -164,7 +164,28 @@ ant beta:vaults:credentials create \
   --auth '{token: bearer_exampletoken, mcp_server_url: https://example-server.modelcontextprotocol.io/sse, type: static_bearer}'
 ```
 
-## List
+#### Response
+
+```json
+{
+  "id": "vcrd_011CZkZEMt8gZan2iYOQfSkw",
+  "archived_at": null,
+  "auth": {
+    "mcp_server_url": "https://example-server.modelcontextprotocol.io/sse",
+    "type": "static_bearer"
+  },
+  "created_at": "2026-03-15T10:00:00Z",
+  "metadata": {
+    "environment": "production"
+  },
+  "type": "vault_credential",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "vault_id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+  "display_name": "Example credential"
+}
+```
+
+## List Credentials
 
 `$ ant beta:vaults:credentials list`
 
@@ -328,7 +349,33 @@ ant beta:vaults:credentials list \
   --vault-id vlt_011CZkZDLs7fYzm1hXNPeRjv
 ```
 
-## Retrieve
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "vcrd_011CZkZEMt8gZan2iYOQfSkw",
+      "archived_at": null,
+      "auth": {
+        "mcp_server_url": "https://example-server.modelcontextprotocol.io/sse",
+        "type": "static_bearer"
+      },
+      "created_at": "2026-03-15T10:00:00Z",
+      "metadata": {
+        "environment": "production"
+      },
+      "type": "vault_credential",
+      "updated_at": "2026-03-15T10:00:00Z",
+      "vault_id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+      "display_name": "Example credential"
+    }
+  ],
+  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="
+}
+```
+
+## Get Credential
 
 `$ ant beta:vaults:credentials retrieve`
 
@@ -477,7 +524,28 @@ ant beta:vaults:credentials retrieve \
   --credential-id vcrd_011CZkZEMt8gZan2iYOQfSkw
 ```
 
-## Update
+#### Response
+
+```json
+{
+  "id": "vcrd_011CZkZEMt8gZan2iYOQfSkw",
+  "archived_at": null,
+  "auth": {
+    "mcp_server_url": "https://example-server.modelcontextprotocol.io/sse",
+    "type": "static_bearer"
+  },
+  "created_at": "2026-03-15T10:00:00Z",
+  "metadata": {
+    "environment": "production"
+  },
+  "type": "vault_credential",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "vault_id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+  "display_name": "Example credential"
+}
+```
+
+## Update Credential
 
 `$ ant beta:vaults:credentials update`
 
@@ -638,7 +706,28 @@ ant beta:vaults:credentials update \
   --credential-id vcrd_011CZkZEMt8gZan2iYOQfSkw
 ```
 
-## Delete
+#### Response
+
+```json
+{
+  "id": "vcrd_011CZkZEMt8gZan2iYOQfSkw",
+  "archived_at": null,
+  "auth": {
+    "mcp_server_url": "https://example-server.modelcontextprotocol.io/sse",
+    "type": "static_bearer"
+  },
+  "created_at": "2026-03-15T10:00:00Z",
+  "metadata": {
+    "environment": "production"
+  },
+  "type": "vault_credential",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "vault_id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+  "display_name": "Example credential"
+}
+```
+
+## Delete Credential
 
 `$ ant beta:vaults:credentials delete`
 
@@ -683,7 +772,16 @@ ant beta:vaults:credentials delete \
   --credential-id vcrd_011CZkZEMt8gZan2iYOQfSkw
 ```
 
-## Archive
+#### Response
+
+```json
+{
+  "id": "vcrd_011CZkZEMt8gZan2iYOQfSkw",
+  "type": "vault_credential_deleted"
+}
+```
+
+## Archive Credential
 
 `$ ant beta:vaults:credentials archive`
 
@@ -832,7 +930,28 @@ ant beta:vaults:credentials archive \
   --credential-id vcrd_011CZkZEMt8gZan2iYOQfSkw
 ```
 
-## MCP OAuth Validate
+#### Response
+
+```json
+{
+  "id": "vcrd_011CZkZEMt8gZan2iYOQfSkw",
+  "archived_at": null,
+  "auth": {
+    "mcp_server_url": "https://example-server.modelcontextprotocol.io/sse",
+    "type": "static_bearer"
+  },
+  "created_at": "2026-03-15T10:00:00Z",
+  "metadata": {
+    "environment": "production"
+  },
+  "type": "vault_credential",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "vault_id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+  "display_name": "Example credential"
+}
+```
+
+## Validate Credential
 
 `$ ant beta:vaults:credentials mcp-oauth-validate`
 
@@ -961,6 +1080,37 @@ ant beta:vaults:credentials mcp-oauth-validate \
   --api-key my-anthropic-api-key \
   --vault-id vlt_011CZkZDLs7fYzm1hXNPeRjv \
   --credential-id vcrd_011CZkZEMt8gZan2iYOQfSkw
+```
+
+#### Response
+
+```json
+{
+  "credential_id": "vcrd_011CZkZEMt8gZan2iYOQfSkw",
+  "has_refresh_token": true,
+  "mcp_probe": {
+    "http_response": {
+      "body": "body",
+      "body_truncated": true,
+      "content_type": "content_type",
+      "status_code": 0
+    },
+    "method": "method"
+  },
+  "refresh": {
+    "http_response": {
+      "body": "body",
+      "body_truncated": true,
+      "content_type": "content_type",
+      "status_code": 0
+    },
+    "status": "succeeded"
+  },
+  "status": "valid",
+  "type": "vault_credential_validation",
+  "validated_at": "2026-03-15T10:00:00Z",
+  "vault_id": "vlt_011CZkZDLs7fYzm1hXNPeRjv"
+}
 ```
 
 ## Domain Types

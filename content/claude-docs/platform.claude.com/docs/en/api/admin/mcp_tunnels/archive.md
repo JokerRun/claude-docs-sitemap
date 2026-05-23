@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/mcp_tunnels/archive
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: a7e731c6446a4521e5fc004abd792d5ff56b0bc93ad1d55ed4d28ca6a7a1d510
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 342fafdba6361f65017c214514ea05f4362a90cd8f9c4f740ddcef7134402497
 ---
 
-## Archive
+## Archive Tunnel
 
 **post** `/v1/organizations/tunnels/{tunnel_id}/archive`
 
@@ -73,4 +73,18 @@ curl https://api.anthropic.com/v1/organizations/tunnels/$TUNNEL_ID/archive \
     -X POST \
     -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_WIF_BEARER_TOKEN"
+```
+
+#### Response
+
+```json
+{
+  "id": "tnl_01Hx9Kp2RtQvMn3sWbYdLcF8",
+  "archived_at": "2024-11-01T23:59:27.427722Z",
+  "created_at": "2024-10-30T23:58:27.427722Z",
+  "display_name": "Production",
+  "domain": "a1b2c3d4.tunnel.anthropic.com",
+  "type": "tunnel",
+  "workspace_id": "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ"
+}
 ```

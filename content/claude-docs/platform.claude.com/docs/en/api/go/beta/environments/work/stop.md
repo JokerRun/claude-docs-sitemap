@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/environments/work/stop
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: e739a9483b26fa10e84edf77de5bef18f50593f6e1be4f586327add821b804d2
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 5b8173481d33d687b16d2164e8c3f30327a729a700260a79a4b9fc5f8cea7442
 ---
 
-## Stop
+## Stop Work
 
 `client.Beta.Environments.Work.Stop(ctx, workID, params) (*BetaSelfHostedWork, error)`
 
@@ -198,5 +198,29 @@ func main() {
     panic(err.Error())
   }
   fmt.Printf("%+v\n", betaSelfHostedWork.ID)
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "acknowledged_at": "acknowledged_at",
+  "created_at": "created_at",
+  "data": {
+    "id": "id",
+    "type": "session"
+  },
+  "environment_id": "environment_id",
+  "latest_heartbeat_at": "latest_heartbeat_at",
+  "metadata": {
+    "foo": "string"
+  },
+  "started_at": "started_at",
+  "state": "queued",
+  "stop_requested_at": "stop_requested_at",
+  "stopped_at": "stopped_at",
+  "type": "work"
 }
 ```

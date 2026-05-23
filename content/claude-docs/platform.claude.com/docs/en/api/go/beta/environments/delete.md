@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/environments/delete
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 5df00daf9e409a3eb065d11c3bb4e0a43ba1bd9c7582c0333489e886f820b0b0
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 0c224080e10eed51a3e9ba6573524336c19f14a4346d53e06e76283dea7ccdb2
 ---
 
-## Delete
+## Delete Environment
 
 `client.Beta.Environments.Delete(ctx, environmentID, body) (*BetaEnvironmentDeleteResponse, error)`
 
@@ -121,5 +121,14 @@ func main() {
     panic(err.Error())
   }
   fmt.Printf("%+v\n", betaEnvironmentDeleteResponse.ID)
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "env_011CZkZ9X2dpNyB7HsEFoRfW",
+  "type": "environment_deleted"
 }
 ```

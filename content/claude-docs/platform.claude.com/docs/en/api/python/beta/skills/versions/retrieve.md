@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/skills/versions/retrieve
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: e0b7c8e181438e53f1fa25cf794710d7a71830cd82366af24d40fd0e900a986c
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 0c22d01418d7149cd59eacbc1726033e09ab971f370c30a967fbf80b115e019b
 ---
 
-## Retrieve
+## Get Skill Version
 
 `beta.skills.versions.retrieve(strversion, VersionRetrieveParams**kwargs)  -> VersionRetrieveResponse`
 
@@ -147,4 +147,19 @@ version = client.beta.skills.versions.retrieve(
     skill_id="skill_id",
 )
 print(version.id)
+```
+
+#### Response
+
+```json
+{
+  "id": "skillver_01JAbcdefghijklmnopqrstuvw",
+  "created_at": "2024-10-30T23:58:27.427722Z",
+  "description": "A custom skill for doing something useful",
+  "directory": "my-skill",
+  "name": "my-skill",
+  "skill_id": "skill_01JAbcdefghijklmnopqrstuvw",
+  "type": "type",
+  "version": "1759178010641129"
+}
 ```

@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/vaults/archive
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: ab5d320068c40970e8202853c21559d0fcd1bed853d6c81939183a11cb1c7db9
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 2a49605f9a02540d7ff0f1aadd9c7ad5a63d71a4c66e0b13138ed340a3d74223
 ---
 
-## Archive
+## Archive Vault
 
 `beta.vaults.archive(strvault_id, VaultArchiveParams**kwargs)  -> BetaManagedAgentsVault`
 
@@ -122,4 +122,20 @@ beta_managed_agents_vault = client.beta.vaults.archive(
     vault_id="vlt_011CZkZDLs7fYzm1hXNPeRjv",
 )
 print(beta_managed_agents_vault.id)
+```
+
+#### Response
+
+```json
+{
+  "id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+  "archived_at": null,
+  "created_at": "2026-03-15T10:00:00Z",
+  "display_name": "Example vault",
+  "metadata": {
+    "environment": "production"
+  },
+  "type": "vault",
+  "updated_at": "2026-03-15T10:00:00Z"
+}
 ```

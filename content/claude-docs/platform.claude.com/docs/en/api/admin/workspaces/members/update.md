@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/members/update
-fetched_at: 2026-04-21T03:11:28.016230Z
-sha256: a03e7cf161cbbd359fb67ea2ac42e1354a5cb51cb69cb0ff54c9d2295b50487e
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 18c48ec8680e7b4759dc73032448fede6f5d930e3a1ea4ca870d45bd65eadbc8
 ---
 
-## Update
+## Update Workspace Member
 
 **post** `/v1/organizations/workspaces/{workspace_id}/members/{user_id}`
 
@@ -39,7 +39,7 @@ Update Workspace Member
 
 ### Returns
 
-- `WorkspaceMember = object { type, user_id, workspace_id, workspace_role }`
+- `WorkspaceMember object { type, user_id, workspace_id, workspace_role }`
 
   - `type: "workspace_member"`
 
@@ -81,4 +81,15 @@ curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/members
     -d '{
           "workspace_role": "workspace_user"
         }'
+```
+
+#### Response
+
+```json
+{
+  "type": "workspace_member",
+  "user_id": "user_01WCz1FkmYMm4gnmykNKUu3Q",
+  "workspace_id": "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
+  "workspace_role": "workspace_user"
+}
 ```

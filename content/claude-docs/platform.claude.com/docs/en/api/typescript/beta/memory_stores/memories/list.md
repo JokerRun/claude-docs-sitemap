@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/memory_stores/memories/list
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 13b7c17702806141598813b8384aaa6872f40f16793ea188125669e867bce24c
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 4bdbcd8de4ca41b9aa839e56ffae40acf0c4255343cd2037c2fbfbea0a767638
 ---
 
-## List
+## List memories
 
 `client.beta.memoryStores.memories.list(stringmemoryStoreID, MemoryListParamsparams?, RequestOptionsoptions?): PageCursor<BetaManagedAgentsMemoryListItem>`
 
@@ -189,5 +189,27 @@ for await (const betaManagedAgentsMemoryListItem of client.beta.memoryStores.mem
   'memory_store_id',
 )) {
   console.log(betaManagedAgentsMemoryListItem);
+}
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "id",
+      "content_sha256": "content_sha256",
+      "content_size_bytes": 0,
+      "created_at": "2019-12-27T18:11:19.117Z",
+      "memory_store_id": "memory_store_id",
+      "memory_version_id": "memory_version_id",
+      "path": "path",
+      "type": "memory",
+      "updated_at": "2019-12-27T18:11:19.117Z",
+      "content": "content"
+    }
+  ],
+  "next_page": "next_page"
 }
 ```

@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/models/list
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 5973b3c72fcecb6f7b2cc0327bafd8f7a3c8fe1d4eca03a42d8c60668e16e3e4
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: ddb60f1eb10721a1e0d153cf5e5c4eb7d087751fd035340ffd870a6dabd33e6c
 ---
 
-## List
+## List Models
 
 `beta.models.list(**kwargs) -> Page<BetaModelInfo>`
 
@@ -35,9 +35,9 @@ The Models API response can be used to determine which models are available for 
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `String`
+  - `String = String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -113,17 +113,9 @@ The Models API response can be used to determine which models are available for 
 
       Whether the model supports citation generation.
 
-      - `supported: bool`
-
-        Whether this capability is supported by the model.
-
     - `code_execution: BetaCapabilitySupport`
 
       Whether the model supports code execution tools.
-
-      - `supported: bool`
-
-        Whether this capability is supported by the model.
 
     - `context_management: BetaContextManagementCapability`
 
@@ -133,25 +125,13 @@ The Models API response can be used to determine which models are available for 
 
         Indicates whether a capability is supported.
 
-        - `supported: bool`
-
-          Whether this capability is supported by the model.
-
       - `clear_tool_uses_20250919: BetaCapabilitySupport`
 
         Indicates whether a capability is supported.
 
-        - `supported: bool`
-
-          Whether this capability is supported by the model.
-
       - `compact_20260112: BetaCapabilitySupport`
 
         Indicates whether a capability is supported.
-
-        - `supported: bool`
-
-          Whether this capability is supported by the model.
 
       - `supported: bool`
 
@@ -165,33 +145,17 @@ The Models API response can be used to determine which models are available for 
 
         Whether the model supports high effort level.
 
-        - `supported: bool`
-
-          Whether this capability is supported by the model.
-
       - `low: BetaCapabilitySupport`
 
         Whether the model supports low effort level.
-
-        - `supported: bool`
-
-          Whether this capability is supported by the model.
 
       - `max: BetaCapabilitySupport`
 
         Whether the model supports max effort level.
 
-        - `supported: bool`
-
-          Whether this capability is supported by the model.
-
       - `medium: BetaCapabilitySupport`
 
         Whether the model supports medium effort level.
-
-        - `supported: bool`
-
-          Whether this capability is supported by the model.
 
       - `supported: bool`
 
@@ -201,33 +165,17 @@ The Models API response can be used to determine which models are available for 
 
         Indicates whether a capability is supported.
 
-        - `supported: bool`
-
-          Whether this capability is supported by the model.
-
     - `image_input: BetaCapabilitySupport`
 
       Whether the model accepts image content blocks.
-
-      - `supported: bool`
-
-        Whether this capability is supported by the model.
 
     - `pdf_input: BetaCapabilitySupport`
 
       Whether the model accepts PDF content blocks.
 
-      - `supported: bool`
-
-        Whether this capability is supported by the model.
-
     - `structured_outputs: BetaCapabilitySupport`
 
       Whether the model supports structured output / JSON mode / strict tool schemas.
-
-      - `supported: bool`
-
-        Whether this capability is supported by the model.
 
     - `thinking: BetaThinkingCapability`
 
@@ -245,17 +193,9 @@ The Models API response can be used to determine which models are available for 
 
           Whether the model supports thinking with type 'adaptive' (auto).
 
-          - `supported: bool`
-
-            Whether this capability is supported by the model.
-
         - `enabled: BetaCapabilitySupport`
 
           Whether the model supports thinking with type 'enabled'.
-
-          - `supported: bool`
-
-            Whether this capability is supported by the model.
 
   - `created_at: Time`
 
@@ -291,4 +231,85 @@ anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
 page = anthropic.beta.models.list
 
 puts(page)
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "claude-opus-4-6",
+      "capabilities": {
+        "batch": {
+          "supported": true
+        },
+        "citations": {
+          "supported": true
+        },
+        "code_execution": {
+          "supported": true
+        },
+        "context_management": {
+          "clear_thinking_20251015": {
+            "supported": true
+          },
+          "clear_tool_uses_20250919": {
+            "supported": true
+          },
+          "compact_20260112": {
+            "supported": true
+          },
+          "supported": true
+        },
+        "effort": {
+          "high": {
+            "supported": true
+          },
+          "low": {
+            "supported": true
+          },
+          "max": {
+            "supported": true
+          },
+          "medium": {
+            "supported": true
+          },
+          "supported": true,
+          "xhigh": {
+            "supported": true
+          }
+        },
+        "image_input": {
+          "supported": true
+        },
+        "pdf_input": {
+          "supported": true
+        },
+        "structured_outputs": {
+          "supported": true
+        },
+        "thinking": {
+          "supported": true,
+          "types": {
+            "adaptive": {
+              "supported": true
+            },
+            "enabled": {
+              "supported": true
+            }
+          }
+        }
+      },
+      "created_at": "2026-02-04T00:00:00Z",
+      "display_name": "Claude Opus 4.6",
+      "max_input_tokens": 0,
+      "max_tokens": 0,
+      "type": "model"
+    }
+  ],
+  "first_id": "first_id",
+  "has_more": true,
+  "last_id": "last_id"
+}
 ```

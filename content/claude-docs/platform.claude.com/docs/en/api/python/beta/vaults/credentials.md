@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/vaults/credentials
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 8cf71b7d52dd3dfb6cb745634c2b56c172d83bc88fec5bfff8e5c2172bfa5458
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 5b06cfac0b915d8930e548882ec9db3c5eac3e0647277114d5adfd0b949c1b36
 ---
 
 # Credentials
 
-## Create
+## Create Credential
 
 `beta.vaults.credentials.create(strvault_id, CredentialCreateParams**kwargs)  -> BetaManagedAgentsCredential`
 
@@ -323,7 +323,28 @@ beta_managed_agents_credential = client.beta.vaults.credentials.create(
 print(beta_managed_agents_credential.id)
 ```
 
-## List
+#### Response
+
+```json
+{
+  "id": "vcrd_011CZkZEMt8gZan2iYOQfSkw",
+  "archived_at": null,
+  "auth": {
+    "mcp_server_url": "https://example-server.modelcontextprotocol.io/sse",
+    "type": "static_bearer"
+  },
+  "created_at": "2026-03-15T10:00:00Z",
+  "metadata": {
+    "environment": "production"
+  },
+  "type": "vault_credential",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "vault_id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+  "display_name": "Example credential"
+}
+```
+
+## List Credentials
 
 `beta.vaults.credentials.list(strvault_id, CredentialListParams**kwargs)  -> SyncPageCursor[BetaManagedAgentsCredential]`
 
@@ -539,7 +560,33 @@ page = page.data[0]
 print(page.id)
 ```
 
-## Retrieve
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "vcrd_011CZkZEMt8gZan2iYOQfSkw",
+      "archived_at": null,
+      "auth": {
+        "mcp_server_url": "https://example-server.modelcontextprotocol.io/sse",
+        "type": "static_bearer"
+      },
+      "created_at": "2026-03-15T10:00:00Z",
+      "metadata": {
+        "environment": "production"
+      },
+      "type": "vault_credential",
+      "updated_at": "2026-03-15T10:00:00Z",
+      "vault_id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+      "display_name": "Example credential"
+    }
+  ],
+  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="
+}
+```
+
+## Get Credential
 
 `beta.vaults.credentials.retrieve(strcredential_id, CredentialRetrieveParams**kwargs)  -> BetaManagedAgentsCredential`
 
@@ -745,7 +792,28 @@ beta_managed_agents_credential = client.beta.vaults.credentials.retrieve(
 print(beta_managed_agents_credential.id)
 ```
 
-## Update
+#### Response
+
+```json
+{
+  "id": "vcrd_011CZkZEMt8gZan2iYOQfSkw",
+  "archived_at": null,
+  "auth": {
+    "mcp_server_url": "https://example-server.modelcontextprotocol.io/sse",
+    "type": "static_bearer"
+  },
+  "created_at": "2026-03-15T10:00:00Z",
+  "metadata": {
+    "environment": "production"
+  },
+  "type": "vault_credential",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "vault_id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+  "display_name": "Example credential"
+}
+```
+
+## Update Credential
 
 `beta.vaults.credentials.update(strcredential_id, CredentialUpdateParams**kwargs)  -> BetaManagedAgentsCredential`
 
@@ -1031,7 +1099,28 @@ beta_managed_agents_credential = client.beta.vaults.credentials.update(
 print(beta_managed_agents_credential.id)
 ```
 
-## Delete
+#### Response
+
+```json
+{
+  "id": "vcrd_011CZkZEMt8gZan2iYOQfSkw",
+  "archived_at": null,
+  "auth": {
+    "mcp_server_url": "https://example-server.modelcontextprotocol.io/sse",
+    "type": "static_bearer"
+  },
+  "created_at": "2026-03-15T10:00:00Z",
+  "metadata": {
+    "environment": "production"
+  },
+  "type": "vault_credential",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "vault_id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+  "display_name": "Example credential"
+}
+```
+
+## Delete Credential
 
 `beta.vaults.credentials.delete(strcredential_id, CredentialDeleteParams**kwargs)  -> BetaManagedAgentsDeletedCredential`
 
@@ -1133,7 +1222,16 @@ beta_managed_agents_deleted_credential = client.beta.vaults.credentials.delete(
 print(beta_managed_agents_deleted_credential.id)
 ```
 
-## Archive
+#### Response
+
+```json
+{
+  "id": "vcrd_011CZkZEMt8gZan2iYOQfSkw",
+  "type": "vault_credential_deleted"
+}
+```
+
+## Archive Credential
 
 `beta.vaults.credentials.archive(strcredential_id, CredentialArchiveParams**kwargs)  -> BetaManagedAgentsCredential`
 
@@ -1339,7 +1437,28 @@ beta_managed_agents_credential = client.beta.vaults.credentials.archive(
 print(beta_managed_agents_credential.id)
 ```
 
-## MCP OAuth Validate
+#### Response
+
+```json
+{
+  "id": "vcrd_011CZkZEMt8gZan2iYOQfSkw",
+  "archived_at": null,
+  "auth": {
+    "mcp_server_url": "https://example-server.modelcontextprotocol.io/sse",
+    "type": "static_bearer"
+  },
+  "created_at": "2026-03-15T10:00:00Z",
+  "metadata": {
+    "environment": "production"
+  },
+  "type": "vault_credential",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "vault_id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+  "display_name": "Example credential"
+}
+```
+
+## Validate Credential
 
 `beta.vaults.credentials.mcp_oauth_validate(strcredential_id, CredentialMCPOAuthValidateParams**kwargs)  -> BetaManagedAgentsCredentialValidation`
 
@@ -1461,22 +1580,6 @@ Validate Credential
 
       An HTTP response captured during a credential validation probe.
 
-      - `body: str`
-
-        Response body. May be truncated and has sensitive values scrubbed.
-
-      - `body_truncated: bool`
-
-        Whether `body` was truncated.
-
-      - `content_type: str`
-
-        Value of the `Content-Type` response header.
-
-      - `status_code: int`
-
-        HTTP status code.
-
     - `status: Literal["succeeded", "failed", "connect_error", "no_refresh_token"]`
 
       Outcome of a refresh-token exchange attempted during credential validation.
@@ -1525,6 +1628,37 @@ beta_managed_agents_credential_validation = client.beta.vaults.credentials.mcp_o
     vault_id="vlt_011CZkZDLs7fYzm1hXNPeRjv",
 )
 print(beta_managed_agents_credential_validation.credential_id)
+```
+
+#### Response
+
+```json
+{
+  "credential_id": "vcrd_011CZkZEMt8gZan2iYOQfSkw",
+  "has_refresh_token": true,
+  "mcp_probe": {
+    "http_response": {
+      "body": "body",
+      "body_truncated": true,
+      "content_type": "content_type",
+      "status_code": 0
+    },
+    "method": "method"
+  },
+  "refresh": {
+    "http_response": {
+      "body": "body",
+      "body_truncated": true,
+      "content_type": "content_type",
+      "status_code": 0
+    },
+    "status": "succeeded"
+  },
+  "status": "valid",
+  "type": "vault_credential_validation",
+  "validated_at": "2026-03-15T10:00:00Z",
+  "vault_id": "vlt_011CZkZDLs7fYzm1hXNPeRjv"
+}
 ```
 
 ## Domain Types
@@ -1696,22 +1830,6 @@ print(beta_managed_agents_credential_validation.credential_id)
     - `http_response: Optional[BetaManagedAgentsRefreshHTTPResponse]`
 
       An HTTP response captured during a credential validation probe.
-
-      - `body: str`
-
-        Response body. May be truncated and has sensitive values scrubbed.
-
-      - `body_truncated: bool`
-
-        Whether `body` was truncated.
-
-      - `content_type: str`
-
-        Value of the `Content-Type` response header.
-
-      - `status_code: int`
-
-        HTTP status code.
 
     - `status: Literal["succeeded", "failed", "connect_error", "no_refresh_token"]`
 

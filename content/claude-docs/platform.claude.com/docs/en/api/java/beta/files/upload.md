@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/files/upload
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: ad7b76491809bf8b7ccfa3a994c1920669171a78d76878aff7c7f1af5aae0a12
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 885736e23a7157d1194efb7376284465762833f73df527382bef379904ddbbf7
 ---
 
-## Upload
+## Upload File
 
 `FileMetadata beta().files().upload(FileUploadParamsparams, RequestOptionsrequestOptions = RequestOptions.none())`
 
@@ -149,5 +149,23 @@ public final class Main {
             .build();
         FileMetadata fileMetadata = client.beta().files().upload(params);
     }
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "file_011CNha8iCJcU1wXNR6q4V8w",
+  "created_at": "2025-04-15T18:37:24.100435Z",
+  "filename": "document.pdf",
+  "mime_type": "application/pdf",
+  "size_bytes": 102400,
+  "type": "file",
+  "downloadable": false,
+  "scope": {
+    "id": "id",
+    "type": "session"
+  }
 }
 ```

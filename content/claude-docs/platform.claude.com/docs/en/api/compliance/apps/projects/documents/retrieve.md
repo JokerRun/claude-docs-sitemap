@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/documents/retrieve
-fetched_at: 2026-05-09T03:13:52.260309Z
-sha256: 82c4009a89f7f6b2a475d8c7482eac9a11aaafcdbbd5c0b6bfccb63a907e1070
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 44032102ca1f540aa09febf262c987feac5067d5913c0723768d85e82a860d3b
 ---
 
-## Retrieve
+## Get project document content
 
 **get** `/v1/compliance/apps/projects/documents/{document_id}`
 
@@ -59,4 +59,19 @@ Project document information including content and metadata
 ```http
 curl https://api.anthropic.com/v1/compliance/apps/projects/documents/$DOCUMENT_ID \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "content": "content",
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "filename": "filename",
+  "user": {
+    "id": "id",
+    "email_address": "email_address"
+  }
+}
 ```

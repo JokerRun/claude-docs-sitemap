@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/vaults/credentials/delete
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: c6afcc5904339908bfcea78cd8582d4667d5039b2577b42b783c70430831ef47
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 8dd0c7dcb7e303413e7a59f54b690c0a24944ad2af2c2d9fdb61da028378ee5d
 ---
 
-## Delete
+## Delete Credential
 
 `client.Beta.Vaults.Credentials.Delete(ctx, credentialID, params) (*BetaManagedAgentsDeletedCredential, error)`
 
@@ -123,5 +123,14 @@ func main() {
     panic(err.Error())
   }
   fmt.Printf("%+v\n", betaManagedAgentsDeletedCredential.ID)
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "vcrd_011CZkZEMt8gZan2iYOQfSkw",
+  "type": "vault_credential_deleted"
 }
 ```

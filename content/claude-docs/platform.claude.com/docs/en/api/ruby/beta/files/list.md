@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/files/list
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 5efd31bd27f55fff5d8d2bc3d0cfb34e90d101ebd75f0d335f78837d189c96a7
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 519e5932bca6b1eefdd16c56972c163d9305c241ae77ff4b9ade3e6f4d63a0eb
 ---
 
-## List
+## List Files
 
 `beta.files.list(**kwargs) -> Page<FileMetadata>`
 
@@ -37,9 +37,9 @@ List Files
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `String`
+  - `String = String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -153,4 +153,29 @@ anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
 page = anthropic.beta.files.list
 
 puts(page)
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "file_011CNha8iCJcU1wXNR6q4V8w",
+      "created_at": "2025-04-15T18:37:24.100435Z",
+      "filename": "document.pdf",
+      "mime_type": "application/pdf",
+      "size_bytes": 102400,
+      "type": "file",
+      "downloadable": false,
+      "scope": {
+        "id": "id",
+        "type": "session"
+      }
+    }
+  ],
+  "first_id": "file_011CNha8iCJcU1wXNR6q4V8w",
+  "has_more": true,
+  "last_id": "file_013Zva2CMHLNnXjNJJKqJ2EF"
+}
 ```

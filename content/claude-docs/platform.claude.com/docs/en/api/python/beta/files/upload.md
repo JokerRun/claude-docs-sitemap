@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/files/upload
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 64de3c8e4652bed32fcddc951b13c9fef9da60f5de952798713ecc937727db0a
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: c404e61bbcea79b56dd9f84e3cd9c94ada8cd22ebc897068a34daa90a55ed6fe
 ---
 
-## Upload
+## Upload File
 
 `beta.files.upload(FileUploadParams**kwargs)  -> FileMetadata`
 
@@ -142,4 +142,22 @@ file_metadata = client.beta.files.upload(
     file=b"Example data",
 )
 print(file_metadata.id)
+```
+
+#### Response
+
+```json
+{
+  "id": "file_011CNha8iCJcU1wXNR6q4V8w",
+  "created_at": "2025-04-15T18:37:24.100435Z",
+  "filename": "document.pdf",
+  "mime_type": "application/pdf",
+  "size_bytes": 102400,
+  "type": "file",
+  "downloadable": false,
+  "scope": {
+    "id": "id",
+    "type": "session"
+  }
+}
 ```

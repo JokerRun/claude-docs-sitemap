@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/user_profiles/create
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 5569102dfa2dc2313772a6a4e384b35f905d55ee9451c62feeb25a9354b6beab
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: b76277b8b2713263f844075f99c1006688dd5edc0bd4efc0852157324e399123
 ---
 
-## Create
+## Create User Profile
 
 `BetaUserProfile Beta.UserProfiles.Create(UserProfileCreateParams?parameters, CancellationTokencancellationToken = default)`
 
@@ -159,4 +159,24 @@ UserProfileCreateParams parameters = new();
 var betaUserProfile = await client.Beta.UserProfiles.Create(parameters);
 
 Console.WriteLine(betaUserProfile);
+```
+
+#### Response
+
+```json
+{
+  "id": "uprof_011CZkZCu8hGbp5mYRQgUmz9",
+  "created_at": "2026-03-15T10:00:00Z",
+  "metadata": {},
+  "relationship": "external",
+  "trust_grants": {
+    "cyber": {
+      "status": "active"
+    }
+  },
+  "type": "user_profile",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "external_id": "user_12345",
+  "name": "Example User"
+}
 ```

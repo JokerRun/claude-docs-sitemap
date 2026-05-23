@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/credentials/retrieve
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 8155018a2836a2ad212fac4fa0fb2a4bddc73cea58731e85eefeaf9c0442cbd3
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: a7c8daf6c9da6aa63e962c10dfbcc58692e2c1e32d4608aa9d697db43a9e4f9c
 ---
 
-## Retrieve
+## Get Credential
 
 `BetaManagedAgentsCredential beta().vaults().credentials().retrieve(CredentialRetrieveParamsparams, RequestOptionsrequestOptions = RequestOptions.none())`
 
@@ -215,5 +215,26 @@ public final class Main {
             .build();
         BetaManagedAgentsCredential betaManagedAgentsCredential = client.beta().vaults().credentials().retrieve(params);
     }
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "vcrd_011CZkZEMt8gZan2iYOQfSkw",
+  "archived_at": null,
+  "auth": {
+    "mcp_server_url": "https://example-server.modelcontextprotocol.io/sse",
+    "type": "static_bearer"
+  },
+  "created_at": "2026-03-15T10:00:00Z",
+  "metadata": {
+    "environment": "production"
+  },
+  "type": "vault_credential",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "vault_id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+  "display_name": "Example credential"
 }
 ```

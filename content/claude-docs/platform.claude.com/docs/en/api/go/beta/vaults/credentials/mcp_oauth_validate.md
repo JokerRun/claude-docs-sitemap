@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/vaults/credentials/mcp_oauth_validate
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: b011f76a629cf0c7c360b7ec97c6b2e12fc7a3881916a85856f062a766a59072
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: a9d9582580fbf492c338d5c16c11934c737f413b60cf723d9fc9d25f607e973b
 ---
 
-## MCP OAuth Validate
+## Validate Credential
 
 `client.Beta.Vaults.Credentials.MCPOAuthValidate(ctx, credentialID, params) (*BetaManagedAgentsCredentialValidation, error)`
 
@@ -131,22 +131,6 @@ Validate Credential
 
       An HTTP response captured during a credential validation probe.
 
-      - `Body string`
-
-        Response body. May be truncated and has sensitive values scrubbed.
-
-      - `BodyTruncated bool`
-
-        Whether `body` was truncated.
-
-      - `ContentType string`
-
-        Value of the `Content-Type` response header.
-
-      - `StatusCode int64`
-
-        HTTP status code.
-
     - `Status BetaManagedAgentsRefreshObjectStatus`
 
       Outcome of a refresh-token exchange attempted during credential validation.
@@ -209,5 +193,36 @@ func main() {
     panic(err.Error())
   }
   fmt.Printf("%+v\n", betaManagedAgentsCredentialValidation.CredentialID)
+}
+```
+
+#### Response
+
+```json
+{
+  "credential_id": "vcrd_011CZkZEMt8gZan2iYOQfSkw",
+  "has_refresh_token": true,
+  "mcp_probe": {
+    "http_response": {
+      "body": "body",
+      "body_truncated": true,
+      "content_type": "content_type",
+      "status_code": 0
+    },
+    "method": "method"
+  },
+  "refresh": {
+    "http_response": {
+      "body": "body",
+      "body_truncated": true,
+      "content_type": "content_type",
+      "status_code": 0
+    },
+    "status": "succeeded"
+  },
+  "status": "valid",
+  "type": "vault_credential_validation",
+  "validated_at": "2026-03-15T10:00:00Z",
+  "vault_id": "vlt_011CZkZDLs7fYzm1hXNPeRjv"
 }
 ```

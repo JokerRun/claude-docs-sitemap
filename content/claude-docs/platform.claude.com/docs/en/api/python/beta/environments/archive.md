@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/environments/archive
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 43657cf46ffc3d8940ec4581084fe8b022f890f77e61a6327fa7ae3560a7c68e
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 043e4d74fc447c26044fc359f4172f818ba6fe2c45ae4f06f8f3e5d37a87d952
 ---
 
-## Archive
+## Archive Environment
 
 `beta.environments.archive(strenvironment_id, EnvironmentArchiveParams**kwargs)  -> BetaEnvironment`
 
@@ -230,4 +230,53 @@ beta_environment = client.beta.environments.archive(
     environment_id="env_011CZkZ9X2dpNyB7HsEFoRfW",
 )
 print(beta_environment.id)
+```
+
+#### Response
+
+```json
+{
+  "id": "env_011CZkZ9X2dpNyB7HsEFoRfW",
+  "archived_at": null,
+  "config": {
+    "networking": {
+      "allow_mcp_servers": false,
+      "allow_package_managers": true,
+      "allowed_hosts": [
+        "api.example.com"
+      ],
+      "type": "limited"
+    },
+    "packages": {
+      "apt": [
+        "string"
+      ],
+      "cargo": [
+        "string"
+      ],
+      "gem": [
+        "string"
+      ],
+      "go": [
+        "string"
+      ],
+      "npm": [
+        "string"
+      ],
+      "pip": [
+        "pandas",
+        "numpy"
+      ],
+      "type": "packages"
+    },
+    "type": "cloud"
+  },
+  "created_at": "2026-03-15T10:00:00Z",
+  "description": "Python environment with data-analysis packages.",
+  "metadata": {},
+  "name": "python-data-analysis",
+  "type": "environment",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "scope": "organization"
+}
 ```

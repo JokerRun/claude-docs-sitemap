@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats/files/download
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 3a24df78113513f3f5d9b1ac30a377d194dba695974ebc134f2b3425c9994601
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 690f867f9b8620b67862622409f6a2b98dad0739a6358d8a4d8d3416edd70ebb
 ---
 
-## Download
+## Download file content
 
 **get** `/v1/compliance/apps/chats/files/{claude_file_id}/content`
 

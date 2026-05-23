@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/users/list
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 1527f24c94dd56556186f9dce26f0ad15aea90d76b0e01e7b6cc1e1ecb0e12bf
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 71f7fd603b1d7d10cbad8eb38f22f56ca2be23468937c702db24fd932d1e86a8
 ---
 
-## List
+## List organization users
 
 **get** `/v1/compliance/organizations/{org_uuid}/users`
 
@@ -91,4 +91,22 @@ List of user members with pagination info
 ```http
 curl https://api.anthropic.com/v1/compliance/organizations/$ORG_UUID/users \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "id",
+      "created_at": "2019-12-27T18:11:19.117Z",
+      "email": "email",
+      "full_name": "full_name",
+      "organization_role": "admin"
+    }
+  ],
+  "has_more": true,
+  "next_page": "next_page"
+}
 ```

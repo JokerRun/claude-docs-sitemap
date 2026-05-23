@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/environments/work/ack
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 947609634d8a9549447154be6ec1e0a52aa513134d2143d229e52dc063351c21
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 84b5f4f7ff4ae1657709482e8fc8f7a51f7cbb9d556428afb5cde4ff91bbec0c
 ---
 
-## Ack
+## Acknowledge Work
 
 `client.beta.environments.work.ack(stringworkID, WorkAckParamsparams, RequestOptionsoptions?): BetaSelfHostedWork`
 
@@ -177,4 +177,28 @@ const betaSelfHostedWork = await client.beta.environments.work.ack('work_id', {
 });
 
 console.log(betaSelfHostedWork.id);
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "acknowledged_at": "acknowledged_at",
+  "created_at": "created_at",
+  "data": {
+    "id": "id",
+    "type": "session"
+  },
+  "environment_id": "environment_id",
+  "latest_heartbeat_at": "latest_heartbeat_at",
+  "metadata": {
+    "foo": "string"
+  },
+  "started_at": "started_at",
+  "state": "queued",
+  "stop_requested_at": "stop_requested_at",
+  "stopped_at": "stopped_at",
+  "type": "work"
+}
 ```

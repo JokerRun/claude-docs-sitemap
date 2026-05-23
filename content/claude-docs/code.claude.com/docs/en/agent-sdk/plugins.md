@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/plugins
-fetched_at: 2026-05-16T03:13:19.414477Z
-sha256: 222479c949f776d4aded191f4a0d262eedf26c2dd7287b3d16e5560125dcd912
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: fd21937717a514b9b1d837684cbfb6d7b2422a3dafdb76417642e02034a2b34c
 ---
 
 > ## Documentation Index
@@ -106,7 +106,7 @@ When plugins load successfully, they appear in the system initialization message
 
       // Check available commands from plugins
       console.log("Commands:", message.slash_commands);
-      // Example: ["/help", "/compact", "my-plugin:custom-command"]
+      // Example: ["compact", "context", "my-plugin:custom-command"]
     }
   }
   ```
@@ -130,7 +130,7 @@ When plugins load successfully, they appear in the system initialization message
 
               # Check available commands from plugins
               print("Commands:", message.data.get("slash_commands"))
-              # Example: ["/help", "/compact", "my-plugin:custom-command"]
+              # Example: ["compact", "context", "my-plugin:custom-command"]
 
 
   asyncio.run(main())

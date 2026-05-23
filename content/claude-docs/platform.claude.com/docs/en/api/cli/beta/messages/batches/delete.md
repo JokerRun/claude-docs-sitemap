@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/messages/batches/delete
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 00d17c475dba95e4903b39db5fd8eb4e9f770fb028c8c3aff178fd9bccc608eb
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 090b379f2ca8cad5cf0a71f14dd1b3bc57ab61f8cd3e1a186ffc975375d4a3a4
 ---
 
-## Delete
+## Delete a Message Batch
 
 `$ ant beta:messages:batches delete`
 
@@ -47,4 +47,13 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 ant beta:messages:batches delete \
   --api-key my-anthropic-api-key \
   --message-batch-id message_batch_id
+```
+
+#### Response
+
+```json
+{
+  "id": "msgbatch_013Zva2CMHLNnXjNJJKqJ2EF",
+  "type": "message_batch_deleted"
+}
 ```

@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/users/list
-fetched_at: 2026-04-25T03:09:48.142425Z
-sha256: 2e0e8109f368a34a78d842f4ab5d86b1bfdb9aec4a4ad87ec8ff4f01e7ff6a33
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 8b9494342e182fa65a0820d08465efe4e9005a10bcad773592c1b48fe87131d4
 ---
 
-## List
+## List Users
 
 **get** `/v1/organizations/users`
 
@@ -91,4 +91,24 @@ List Users
 curl https://api.anthropic.com/v1/organizations/users \
     -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "user_01WCz1FkmYMm4gnmykNKUu3Q",
+      "added_at": "2024-10-30T23:58:27.427722Z",
+      "email": "user@emaildomain.com",
+      "name": "Jane Doe",
+      "role": "user",
+      "type": "user"
+    }
+  ],
+  "first_id": "first_id",
+  "has_more": true,
+  "last_id": "last_id"
+}
 ```

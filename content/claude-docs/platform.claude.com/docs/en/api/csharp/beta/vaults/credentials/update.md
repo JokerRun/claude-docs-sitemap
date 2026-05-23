@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/vaults/credentials/update
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: f5fe8b690460fff04b36abb2c9b7e9414d7fcd0cb57ca2dce405562af5fa2ab8
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 0f2230b27e02e66ae9913db471c763c46b2b2482d3a58a3c45dc833b287bf5c1
 ---
 
-## Update
+## Update Credential
 
 `BetaManagedAgentsCredential Beta.Vaults.Credentials.Update(CredentialUpdateParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -289,4 +289,25 @@ CredentialUpdateParams parameters = new()
 var betaManagedAgentsCredential = await client.Beta.Vaults.Credentials.Update(parameters);
 
 Console.WriteLine(betaManagedAgentsCredential);
+```
+
+#### Response
+
+```json
+{
+  "id": "vcrd_011CZkZEMt8gZan2iYOQfSkw",
+  "archived_at": null,
+  "auth": {
+    "mcp_server_url": "https://example-server.modelcontextprotocol.io/sse",
+    "type": "static_bearer"
+  },
+  "created_at": "2026-03-15T10:00:00Z",
+  "metadata": {
+    "environment": "production"
+  },
+  "type": "vault_credential",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "vault_id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+  "display_name": "Example credential"
+}
 ```

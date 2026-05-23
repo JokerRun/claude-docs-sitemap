@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/memory_stores/list
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 4c807fa91c4656df6c4c6a58687dc47b86005ed64901e4218496098aef7c751f
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 60dfaccfbb6cf77f943f2bbc39f71d765923d6e0aaa79f1fedd6533df7b0ff79
 ---
 
-## List
+## List memory stores
 
 `client.beta.memoryStores.list(MemoryStoreListParamsparams?, RequestOptionsoptions?): PageCursor<BetaManagedAgentsMemoryStore>`
 
@@ -145,5 +145,27 @@ const client = new Anthropic({
 // Automatically fetches more pages as needed.
 for await (const betaManagedAgentsMemoryStore of client.beta.memoryStores.list()) {
   console.log(betaManagedAgentsMemoryStore.id);
+}
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "id",
+      "created_at": "2019-12-27T18:11:19.117Z",
+      "name": "name",
+      "type": "memory_store",
+      "updated_at": "2019-12-27T18:11:19.117Z",
+      "archived_at": "2019-12-27T18:11:19.117Z",
+      "description": "description",
+      "metadata": {
+        "foo": "string"
+      }
+    }
+  ],
+  "next_page": "next_page"
 }
 ```

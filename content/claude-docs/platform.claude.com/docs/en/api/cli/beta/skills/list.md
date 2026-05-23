@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/skills/list
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 8f25a728c06b5ec690aeffc3a935f2c86681fae20d161fee3d534355ccb54dc3
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 24d702816210af89d482debd90dc842c3c8080ea9e4b2f3b7b20c6633c4dce40
 ---
 
-## List
+## List Skills
 
 `$ ant beta:skills list`
 
@@ -106,4 +106,24 @@ List Skills
 ```cli
 ant beta:skills list \
   --api-key my-anthropic-api-key
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "skill_01JAbcdefghijklmnopqrstuvw",
+      "created_at": "2024-10-30T23:58:27.427722Z",
+      "display_title": "My Custom Skill",
+      "latest_version": "1759178010641129",
+      "source": "custom",
+      "type": "type",
+      "updated_at": "2024-10-30T23:58:27.427722Z"
+    }
+  ],
+  "has_more": true,
+  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="
+}
 ```

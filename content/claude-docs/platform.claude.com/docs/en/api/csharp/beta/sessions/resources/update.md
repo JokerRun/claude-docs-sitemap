@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/sessions/resources/update
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 5eb1ddb6f43fc748ee7a99864306e9ab2c45a9f9d088ed15041a8989ed152cda
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 90f1e048bd8784817c00a72873c9f47183b63a296df04360b25212c9402c36c1
 ---
 
-## Update
+## Update Session Resource
 
 `ResourceUpdateResponse Beta.Sessions.Resources.Update(ResourceUpdateParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -200,4 +200,21 @@ ResourceUpdateParams parameters = new()
 var resource = await client.Beta.Sessions.Resources.Update(parameters);
 
 Console.WriteLine(resource);
+```
+
+#### Response
+
+```json
+{
+  "id": "sesrsc_011CZkZCKr6eXyl0gWMOdQiu",
+  "created_at": "2026-03-15T10:00:00Z",
+  "mount_path": "/workspace/example-repo",
+  "type": "github_repository",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "url": "https://github.com/example-org/example-repo",
+  "checkout": {
+    "name": "main",
+    "type": "branch"
+  }
+}
 ```

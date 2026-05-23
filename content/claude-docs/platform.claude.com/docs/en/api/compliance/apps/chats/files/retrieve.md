@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats/files/retrieve
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 9bea78dcbbb658bef9a698f7c47716b4e121fdb653e0fe8df1da7799d32b041d
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 14b8d0b81373f966a2b70e1ebd4f81b91785b3580e5adb8c42817d2f33097e33
 ---
 
-## Retrieve
+## Get file metadata
 
 **get** `/v1/compliance/apps/chats/files/{claude_file_id}`
 
@@ -58,4 +58,20 @@ download the bytes.
 ```http
 curl https://api.anthropic.com/v1/compliance/apps/chats/files/$CLAUDE_FILE_ID \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
+```
+
+#### Response
+
+```json
+{
+  "id": "claude_file_xyz789",
+  "filename": "quarterly_report.pdf",
+  "mime_type": "application/pdf",
+  "size_bytes": 1048576,
+  "md5": "5d41402abc4b2a76b9719d911017c592",
+  "created_at": "2024-01-15T10:30:00Z",
+  "message_ids": [
+    "claude_chat_msg_abc123"
+  ]
+}
 ```

@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/vaults/credentials/create
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 2279663d5a64233943eff1e0bbe3febce5ceee808448d530c3c5ac8d28cfe0a2
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 3e22ed88cb6eb7769c44831dae02bd943f3b62c46bc78df7856a6e755216380a
 ---
 
-## Create
+## Create Credential
 
 `$ ant beta:vaults:credentials create`
 
@@ -160,4 +160,25 @@ ant beta:vaults:credentials create \
   --api-key my-anthropic-api-key \
   --vault-id vlt_011CZkZDLs7fYzm1hXNPeRjv \
   --auth '{token: bearer_exampletoken, mcp_server_url: https://example-server.modelcontextprotocol.io/sse, type: static_bearer}'
+```
+
+#### Response
+
+```json
+{
+  "id": "vcrd_011CZkZEMt8gZan2iYOQfSkw",
+  "archived_at": null,
+  "auth": {
+    "mcp_server_url": "https://example-server.modelcontextprotocol.io/sse",
+    "type": "static_bearer"
+  },
+  "created_at": "2026-03-15T10:00:00Z",
+  "metadata": {
+    "environment": "production"
+  },
+  "type": "vault_credential",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "vault_id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+  "display_name": "Example credential"
+}
 ```

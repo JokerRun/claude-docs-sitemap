@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/ack
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 8c9287d0627d5f1ee7a236abb2a4a9e5be858807b7599418ab2a6c5c2023c49d
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: ce323280d0b086924d634b84162ab2d8f2bfc9fcaba99a33f132a4c633c460fe
 ---
 
-## Ack
+## Acknowledge Work
 
 **post** `/v1/environments/{environment_id}/work/{work_id}/ack`
 
@@ -25,9 +25,9 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = string`
+  - `string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -81,7 +81,7 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
 
 ### Returns
 
-- `BetaSelfHostedWork = object { id, acknowledged_at, created_at, 9 more }`
+- `BetaSelfHostedWork object { id, acknowledged_at, created_at, 9 more }`
 
   Work resource representing a unit of work in a self-hosted environment.
 
@@ -167,4 +167,28 @@ curl https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID/work/$WORK_ID/ack
     -H 'anthropic-version: 2023-06-01' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "acknowledged_at": "acknowledged_at",
+  "created_at": "created_at",
+  "data": {
+    "id": "id",
+    "type": "session"
+  },
+  "environment_id": "environment_id",
+  "latest_heartbeat_at": "latest_heartbeat_at",
+  "metadata": {
+    "foo": "string"
+  },
+  "started_at": "started_at",
+  "state": "queued",
+  "stop_requested_at": "stop_requested_at",
+  "stopped_at": "stopped_at",
+  "type": "work"
+}
 ```

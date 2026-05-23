@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/user_profiles/retrieve
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: d0d363f9494e4f9e61c0655345038688f2b450c37d00d575d1d65ef0df67fa83
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 1b44447285895908f31292a742b101ad27ef46331ea39feae85372b61d8a24c5
 ---
 
-## Retrieve
+## Get User Profile
 
 `client.beta.userProfiles.retrieve(stringuserProfileID, UserProfileRetrieveParamsparams?, RequestOptionsoptions?): BetaUserProfile`
 
@@ -147,4 +147,24 @@ const client = new Anthropic({
 const betaUserProfile = await client.beta.userProfiles.retrieve('uprof_011CZkZCu8hGbp5mYRQgUmz9');
 
 console.log(betaUserProfile.id);
+```
+
+#### Response
+
+```json
+{
+  "id": "uprof_011CZkZCu8hGbp5mYRQgUmz9",
+  "created_at": "2026-03-15T10:00:00Z",
+  "metadata": {},
+  "relationship": "external",
+  "trust_grants": {
+    "cyber": {
+      "status": "active"
+    }
+  },
+  "type": "user_profile",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "external_id": "user_12345",
+  "name": "Example User"
+}
 ```

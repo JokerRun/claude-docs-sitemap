@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/messages/batches/create
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 334c15f2b78aaad433dcb1436803156de9df3b50a0be27c59db8a2f7522d27a7
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 77ed9ad47b5d7982544d801203d80b2ff0ee159d42ca8d23744269d6c559f76e
 ---
 
-## Create
+## Create a Message Batch
 
 `$ ant beta:messages:batches create`
 
@@ -121,4 +121,27 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 ant beta:messages:batches create \
   --api-key my-anthropic-api-key \
   --request '{custom_id: my-custom-id-1, params: {max_tokens: 1024, messages: [{content: [{text: x, type: text}], role: user}], model: claude-opus-4-6}}'
+```
+
+#### Response
+
+```json
+{
+  "id": "msgbatch_013Zva2CMHLNnXjNJJKqJ2EF",
+  "archived_at": "2024-08-20T18:37:24.100435Z",
+  "cancel_initiated_at": "2024-08-20T18:37:24.100435Z",
+  "created_at": "2024-08-20T18:37:24.100435Z",
+  "ended_at": "2024-08-20T18:37:24.100435Z",
+  "expires_at": "2024-08-20T18:37:24.100435Z",
+  "processing_status": "in_progress",
+  "request_counts": {
+    "canceled": 10,
+    "errored": 30,
+    "expired": 10,
+    "processing": 100,
+    "succeeded": 50
+  },
+  "results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_013Zva2CMHLNnXjNJJKqJ2EF/results",
+  "type": "message_batch"
+}
 ```

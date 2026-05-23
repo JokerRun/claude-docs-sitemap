@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/vaults/credentials/mcp_oauth_validate
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 2f796726d94b19fcea3a5bf543239c35be0e9301c6ea381b0eef16e81d50c130
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 4072817c246cea51cdfce48308c71c04ea9c1f3fe7a60bcedad1ac2f5cadcb99
 ---
 
-## MCP OAuth Validate
+## Validate Credential
 
 `$ ant beta:vaults:credentials mcp-oauth-validate`
 
@@ -134,4 +134,35 @@ ant beta:vaults:credentials mcp-oauth-validate \
   --api-key my-anthropic-api-key \
   --vault-id vlt_011CZkZDLs7fYzm1hXNPeRjv \
   --credential-id vcrd_011CZkZEMt8gZan2iYOQfSkw
+```
+
+#### Response
+
+```json
+{
+  "credential_id": "vcrd_011CZkZEMt8gZan2iYOQfSkw",
+  "has_refresh_token": true,
+  "mcp_probe": {
+    "http_response": {
+      "body": "body",
+      "body_truncated": true,
+      "content_type": "content_type",
+      "status_code": 0
+    },
+    "method": "method"
+  },
+  "refresh": {
+    "http_response": {
+      "body": "body",
+      "body_truncated": true,
+      "content_type": "content_type",
+      "status_code": 0
+    },
+    "status": "succeeded"
+  },
+  "status": "valid",
+  "type": "vault_credential_validation",
+  "validated_at": "2026-03-15T10:00:00Z",
+  "vault_id": "vlt_011CZkZDLs7fYzm1hXNPeRjv"
+}
 ```

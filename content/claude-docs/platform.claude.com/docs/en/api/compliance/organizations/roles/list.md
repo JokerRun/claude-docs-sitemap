@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/roles/list
-fetched_at: 2026-05-09T03:13:52.260309Z
-sha256: 4425985cdf553afc50a2635d24a62f49203f5a3922948516b64866d3375d58da
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: f7dea510366b0d160ca8739ff8df80d83b466bbb33941f5f0ecb9cfb14764b1e
 ---
 
-## List
+## List Compliance Roles
 
 **get** `/v1/compliance/organizations/{org_uuid}/roles`
 
@@ -70,4 +70,22 @@ List Compliance Roles
 ```http
 curl https://api.anthropic.com/v1/compliance/organizations/$ORG_UUID/roles \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "id",
+      "created_at": "created_at",
+      "description": "description",
+      "name": "name",
+      "updated_at": "updated_at"
+    }
+  ],
+  "has_more": true,
+  "next_page": "next_page"
+}
 ```

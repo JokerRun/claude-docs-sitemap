@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/environments/work/poll
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 9844e8a8549b9caf4035f781ac9832dd1430f2fedf1259c64ea8f656911157d9
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: a8f2d2f7aa5adc2c6a274d66a68099fb84809bb5a6b7c56044643f4c564cf5c3
 ---
 
-## Poll
+## Poll for Work
 
 `beta.environments.work.poll(environment_id, **kwargs) -> BetaSelfHostedWork`
 
@@ -31,9 +31,9 @@ Long poll for work items in the queue.
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `String`
+  - `String = String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -179,4 +179,28 @@ anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
 beta_self_hosted_work = anthropic.beta.environments.work.poll("env_011CZkZ9X2dpNyB7HsEFoRfW")
 
 puts(beta_self_hosted_work)
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "acknowledged_at": "acknowledged_at",
+  "created_at": "created_at",
+  "data": {
+    "id": "id",
+    "type": "session"
+  },
+  "environment_id": "environment_id",
+  "latest_heartbeat_at": "latest_heartbeat_at",
+  "metadata": {
+    "foo": "string"
+  },
+  "started_at": "started_at",
+  "state": "queued",
+  "stop_requested_at": "stop_requested_at",
+  "stopped_at": "stopped_at",
+  "type": "work"
+}
 ```

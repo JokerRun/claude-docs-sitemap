@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/environments/archive
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: b096ec7ec2505f4efdaeb496bf4239fea333a8d21d7720d062313a2e876b0328
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 845366b540ea450e375edaef49071675f536279776a45fde0543d56a4f95ee78
 ---
 
-## Archive
+## Archive Environment
 
 `client.beta.environments.archive(stringenvironmentID, EnvironmentArchiveParamsparams?, RequestOptionsoptions?): BetaEnvironment`
 
@@ -231,4 +231,53 @@ const client = new Anthropic({
 const betaEnvironment = await client.beta.environments.archive('env_011CZkZ9X2dpNyB7HsEFoRfW');
 
 console.log(betaEnvironment.id);
+```
+
+#### Response
+
+```json
+{
+  "id": "env_011CZkZ9X2dpNyB7HsEFoRfW",
+  "archived_at": null,
+  "config": {
+    "networking": {
+      "allow_mcp_servers": false,
+      "allow_package_managers": true,
+      "allowed_hosts": [
+        "api.example.com"
+      ],
+      "type": "limited"
+    },
+    "packages": {
+      "apt": [
+        "string"
+      ],
+      "cargo": [
+        "string"
+      ],
+      "gem": [
+        "string"
+      ],
+      "go": [
+        "string"
+      ],
+      "npm": [
+        "string"
+      ],
+      "pip": [
+        "pandas",
+        "numpy"
+      ],
+      "type": "packages"
+    },
+    "type": "cloud"
+  },
+  "created_at": "2026-03-15T10:00:00Z",
+  "description": "Python environment with data-analysis packages.",
+  "metadata": {},
+  "name": "python-data-analysis",
+  "type": "environment",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "scope": "organization"
+}
 ```

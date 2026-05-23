@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/vaults/credentials/list
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 71a245d78d0b8d53337412d44a69ebb13177b43b0de83e95a7ac45264b247b2a
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: cbef41814ede73d87b5d0a4da6d2ede1d0a17b27231a5778479289ad25f02928
 ---
 
-## List
+## List Credentials
 
 `CredentialListPageResponse Beta.Vaults.Credentials.List(CredentialListParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -225,5 +225,31 @@ var page = await client.Beta.Vaults.Credentials.List(parameters);
 await foreach (var item in page.Paginate())
 {
     Console.WriteLine(item);
+}
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "vcrd_011CZkZEMt8gZan2iYOQfSkw",
+      "archived_at": null,
+      "auth": {
+        "mcp_server_url": "https://example-server.modelcontextprotocol.io/sse",
+        "type": "static_bearer"
+      },
+      "created_at": "2026-03-15T10:00:00Z",
+      "metadata": {
+        "environment": "production"
+      },
+      "type": "vault_credential",
+      "updated_at": "2026-03-15T10:00:00Z",
+      "vault_id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+      "display_name": "Example credential"
+    }
+  ],
+  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="
 }
 ```

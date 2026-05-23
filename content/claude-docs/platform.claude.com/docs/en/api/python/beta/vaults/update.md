@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/vaults/update
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: c504eca5ddcde0d754962c8468058d215ba407f3a704cc366a3676840eb1f643
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: bf37ad6fa0731cfb269349a857e5027161ed33b1314770c7244fa632d1ca502d
 ---
 
-## Update
+## Update Vault
 
 `beta.vaults.update(strvault_id, VaultUpdateParams**kwargs)  -> BetaManagedAgentsVault`
 
@@ -130,4 +130,20 @@ beta_managed_agents_vault = client.beta.vaults.update(
     vault_id="vlt_011CZkZDLs7fYzm1hXNPeRjv",
 )
 print(beta_managed_agents_vault.id)
+```
+
+#### Response
+
+```json
+{
+  "id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+  "archived_at": null,
+  "created_at": "2026-03-15T10:00:00Z",
+  "display_name": "Example vault",
+  "metadata": {
+    "environment": "production"
+  },
+  "type": "vault",
+  "updated_at": "2026-03-15T10:00:00Z"
+}
 ```

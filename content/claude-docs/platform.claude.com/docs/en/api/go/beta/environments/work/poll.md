@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/environments/work/poll
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: a331873712ea914370c4f31e9fcfe1f1087357df9c0120d89e808121dbd26da2
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 20e46b500f161b91c771ba620ca1603dfd3083279c00d5e21fea2f78f653571d
 ---
 
-## Poll
+## Poll for Work
 
 `client.Beta.Environments.Work.Poll(ctx, environmentID, params) (*BetaSelfHostedWork, error)`
 
@@ -199,5 +199,29 @@ func main() {
     panic(err.Error())
   }
   fmt.Printf("%+v\n", betaSelfHostedWork.ID)
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "acknowledged_at": "acknowledged_at",
+  "created_at": "created_at",
+  "data": {
+    "id": "id",
+    "type": "session"
+  },
+  "environment_id": "environment_id",
+  "latest_heartbeat_at": "latest_heartbeat_at",
+  "metadata": {
+    "foo": "string"
+  },
+  "started_at": "started_at",
+  "state": "queued",
+  "stop_requested_at": "stop_requested_at",
+  "stopped_at": "stopped_at",
+  "type": "work"
 }
 ```

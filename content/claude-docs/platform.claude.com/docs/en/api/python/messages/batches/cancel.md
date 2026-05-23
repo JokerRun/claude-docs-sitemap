@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/messages/batches/cancel
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 17492c90948f23ad1f8ad17d33ab20e32d1bf14c9b65da102827a8e31ce7f79c
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 3fcf0d170f6d7c83fd1b2fd7b99ab738910dfcbb834c92272aabc4e314d1c666
 ---
 
-## Cancel
+## Cancel a Message Batch
 
 `messages.batches.cancel(strmessage_batch_id)  -> MessageBatch`
 
@@ -126,4 +126,27 @@ message_batch = client.messages.batches.cancel(
     "message_batch_id",
 )
 print(message_batch.id)
+```
+
+#### Response
+
+```json
+{
+  "id": "msgbatch_013Zva2CMHLNnXjNJJKqJ2EF",
+  "archived_at": "2024-08-20T18:37:24.100435Z",
+  "cancel_initiated_at": "2024-08-20T18:37:24.100435Z",
+  "created_at": "2024-08-20T18:37:24.100435Z",
+  "ended_at": "2024-08-20T18:37:24.100435Z",
+  "expires_at": "2024-08-20T18:37:24.100435Z",
+  "processing_status": "in_progress",
+  "request_counts": {
+    "canceled": 10,
+    "errored": 30,
+    "expired": 10,
+    "processing": 100,
+    "succeeded": 50
+  },
+  "results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_013Zva2CMHLNnXjNJJKqJ2EF/results",
+  "type": "message_batch"
+}
 ```

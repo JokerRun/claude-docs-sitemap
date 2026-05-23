@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/vaults/credentials/update
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: ad13dc1ae818abdf88f0f970228833eee1bc6736c0635c9582b7b888c5e9359a
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 6adbc39f8265abf3f4b117e9bcf8baa9e3d40403c9d49cfa74c323c8a1487dfc
 ---
 
-## Update
+## Update Credential
 
 `client.Beta.Vaults.Credentials.Update(ctx, credentialID, params) (*BetaManagedAgentsCredential, error)`
 
@@ -307,5 +307,26 @@ func main() {
     panic(err.Error())
   }
   fmt.Printf("%+v\n", betaManagedAgentsCredential.ID)
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "vcrd_011CZkZEMt8gZan2iYOQfSkw",
+  "archived_at": null,
+  "auth": {
+    "mcp_server_url": "https://example-server.modelcontextprotocol.io/sse",
+    "type": "static_bearer"
+  },
+  "created_at": "2026-03-15T10:00:00Z",
+  "metadata": {
+    "environment": "production"
+  },
+  "type": "vault_credential",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "vault_id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+  "display_name": "Example credential"
 }
 ```

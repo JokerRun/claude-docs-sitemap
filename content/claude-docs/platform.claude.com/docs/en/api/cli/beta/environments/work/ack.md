@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/environments/work/ack
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 640ecc9ff015b33027e2d6388b68f59aefb6d7c5df0199f46c84e54510cdb531
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 24d271d027265a13ca2233bd3f264e406738e642de7bb0c14e5ecbcbe11f7a58
 ---
 
-## Ack
+## Acknowledge Work
 
 `$ ant beta:environments:work ack`
 
@@ -112,4 +112,28 @@ ant beta:environments:work ack \
   --api-key my-anthropic-api-key \
   --environment-id env_011CZkZ9X2dpNyB7HsEFoRfW \
   --work-id work_id
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "acknowledged_at": "acknowledged_at",
+  "created_at": "created_at",
+  "data": {
+    "id": "id",
+    "type": "session"
+  },
+  "environment_id": "environment_id",
+  "latest_heartbeat_at": "latest_heartbeat_at",
+  "metadata": {
+    "foo": "string"
+  },
+  "started_at": "started_at",
+  "state": "queued",
+  "stop_requested_at": "stop_requested_at",
+  "stopped_at": "stopped_at",
+  "type": "work"
+}
 ```

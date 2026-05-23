@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/models/list
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: ac28e09d6b92fcec69f32ede5b29ce0cc8cffe0c6bab55c5b147f5f50732445a
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: a9c30a4a3148e844ed0977b2fd74ec330b18f85c9cdc7294f24f612af5698fb0
 ---
 
-## List
+## List Models
 
 `beta.models.list(ModelListParams**kwargs)  -> SyncPage[BetaModelInfo]`
 
@@ -113,17 +113,9 @@ The Models API response can be used to determine which models are available for 
 
       Whether the model supports citation generation.
 
-      - `supported: bool`
-
-        Whether this capability is supported by the model.
-
     - `code_execution: BetaCapabilitySupport`
 
       Whether the model supports code execution tools.
-
-      - `supported: bool`
-
-        Whether this capability is supported by the model.
 
     - `context_management: BetaContextManagementCapability`
 
@@ -133,25 +125,13 @@ The Models API response can be used to determine which models are available for 
 
         Indicates whether a capability is supported.
 
-        - `supported: bool`
-
-          Whether this capability is supported by the model.
-
       - `clear_tool_uses_20250919: Optional[BetaCapabilitySupport]`
 
         Indicates whether a capability is supported.
 
-        - `supported: bool`
-
-          Whether this capability is supported by the model.
-
       - `compact_20260112: Optional[BetaCapabilitySupport]`
 
         Indicates whether a capability is supported.
-
-        - `supported: bool`
-
-          Whether this capability is supported by the model.
 
       - `supported: bool`
 
@@ -165,33 +145,17 @@ The Models API response can be used to determine which models are available for 
 
         Whether the model supports high effort level.
 
-        - `supported: bool`
-
-          Whether this capability is supported by the model.
-
       - `low: BetaCapabilitySupport`
 
         Whether the model supports low effort level.
-
-        - `supported: bool`
-
-          Whether this capability is supported by the model.
 
       - `max: BetaCapabilitySupport`
 
         Whether the model supports max effort level.
 
-        - `supported: bool`
-
-          Whether this capability is supported by the model.
-
       - `medium: BetaCapabilitySupport`
 
         Whether the model supports medium effort level.
-
-        - `supported: bool`
-
-          Whether this capability is supported by the model.
 
       - `supported: bool`
 
@@ -201,33 +165,17 @@ The Models API response can be used to determine which models are available for 
 
         Indicates whether a capability is supported.
 
-        - `supported: bool`
-
-          Whether this capability is supported by the model.
-
     - `image_input: BetaCapabilitySupport`
 
       Whether the model accepts image content blocks.
-
-      - `supported: bool`
-
-        Whether this capability is supported by the model.
 
     - `pdf_input: BetaCapabilitySupport`
 
       Whether the model accepts PDF content blocks.
 
-      - `supported: bool`
-
-        Whether this capability is supported by the model.
-
     - `structured_outputs: BetaCapabilitySupport`
 
       Whether the model supports structured output / JSON mode / strict tool schemas.
-
-      - `supported: bool`
-
-        Whether this capability is supported by the model.
 
     - `thinking: BetaThinkingCapability`
 
@@ -245,17 +193,9 @@ The Models API response can be used to determine which models are available for 
 
           Whether the model supports thinking with type 'adaptive' (auto).
 
-          - `supported: bool`
-
-            Whether this capability is supported by the model.
-
         - `enabled: BetaCapabilitySupport`
 
           Whether the model supports thinking with type 'enabled'.
-
-          - `supported: bool`
-
-            Whether this capability is supported by the model.
 
   - `created_at: datetime`
 
@@ -293,4 +233,85 @@ client = Anthropic(
 page = client.beta.models.list()
 page = page.data[0]
 print(page.id)
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "claude-opus-4-6",
+      "capabilities": {
+        "batch": {
+          "supported": true
+        },
+        "citations": {
+          "supported": true
+        },
+        "code_execution": {
+          "supported": true
+        },
+        "context_management": {
+          "clear_thinking_20251015": {
+            "supported": true
+          },
+          "clear_tool_uses_20250919": {
+            "supported": true
+          },
+          "compact_20260112": {
+            "supported": true
+          },
+          "supported": true
+        },
+        "effort": {
+          "high": {
+            "supported": true
+          },
+          "low": {
+            "supported": true
+          },
+          "max": {
+            "supported": true
+          },
+          "medium": {
+            "supported": true
+          },
+          "supported": true,
+          "xhigh": {
+            "supported": true
+          }
+        },
+        "image_input": {
+          "supported": true
+        },
+        "pdf_input": {
+          "supported": true
+        },
+        "structured_outputs": {
+          "supported": true
+        },
+        "thinking": {
+          "supported": true,
+          "types": {
+            "adaptive": {
+              "supported": true
+            },
+            "enabled": {
+              "supported": true
+            }
+          }
+        }
+      },
+      "created_at": "2026-02-04T00:00:00Z",
+      "display_name": "Claude Opus 4.6",
+      "max_input_tokens": 0,
+      "max_tokens": 0,
+      "type": "model"
+    }
+  ],
+  "first_id": "first_id",
+  "has_more": true,
+  "last_id": "last_id"
+}
 ```

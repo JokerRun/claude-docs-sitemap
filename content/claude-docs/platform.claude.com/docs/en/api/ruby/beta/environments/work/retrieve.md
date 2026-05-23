@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/environments/work/retrieve
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 6da3d80dd3cf38fd03fbd4187fb078be4951c9fe8095f69b1787740c85a0af91
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 99c693a54404a82ae37beb71594b7f84bd5ebbd6f46ef65bf3f335778d1fe5b1
 ---
 
-## Retrieve
+## Get Work Item
 
 `beta.environments.work.retrieve(work_id, **kwargs) -> BetaSelfHostedWork`
 
@@ -25,9 +25,9 @@ Retrieve detailed information about a specific work item.
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `String`
+  - `String = String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -169,4 +169,28 @@ anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
 beta_self_hosted_work = anthropic.beta.environments.work.retrieve("work_id", environment_id: "env_011CZkZ9X2dpNyB7HsEFoRfW")
 
 puts(beta_self_hosted_work)
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "acknowledged_at": "acknowledged_at",
+  "created_at": "created_at",
+  "data": {
+    "id": "id",
+    "type": "session"
+  },
+  "environment_id": "environment_id",
+  "latest_heartbeat_at": "latest_heartbeat_at",
+  "metadata": {
+    "foo": "string"
+  },
+  "started_at": "started_at",
+  "state": "queued",
+  "stop_requested_at": "stop_requested_at",
+  "stopped_at": "stopped_at",
+  "type": "work"
+}
 ```

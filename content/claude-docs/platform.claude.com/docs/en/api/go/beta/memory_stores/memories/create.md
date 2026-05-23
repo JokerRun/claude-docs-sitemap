@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/memory_stores/memories/create
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 0e431dd0b185c786ae30ebe020fdb2db05bd4f258288f9e20f7420bc6dc1ebbc
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: f24b3053f1ff212d3c290fed1b90c0f5b37033c533ea20a70f8b437e6ba888e4
 ---
 
-## Create
+## Create a memory
 
 `client.Beta.MemoryStores.Memories.New(ctx, memoryStoreID, params) (*BetaManagedAgentsMemory, error)`
 
@@ -164,5 +164,22 @@ func main() {
     panic(err.Error())
   }
   fmt.Printf("%+v\n", betaManagedAgentsMemory.ID)
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "content_sha256": "content_sha256",
+  "content_size_bytes": 0,
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "memory_store_id": "memory_store_id",
+  "memory_version_id": "memory_version_id",
+  "path": "path",
+  "type": "memory",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "content": "content"
 }
 ```

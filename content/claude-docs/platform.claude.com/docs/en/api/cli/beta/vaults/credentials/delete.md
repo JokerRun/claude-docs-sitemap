@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/vaults/credentials/delete
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 9b8d5c30f37b01e891756cfffe1188242033c335d210965a7392b5c95c4c0174
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: ac4c2402bb5805c85f3a7fb1552b0b362aeeaae1147c4cb44bce486fafba5fd7
 ---
 
-## Delete
+## Delete Credential
 
 `$ ant beta:vaults:credentials delete`
 
@@ -48,4 +48,13 @@ ant beta:vaults:credentials delete \
   --api-key my-anthropic-api-key \
   --vault-id vlt_011CZkZDLs7fYzm1hXNPeRjv \
   --credential-id vcrd_011CZkZEMt8gZan2iYOQfSkw
+```
+
+#### Response
+
+```json
+{
+  "id": "vcrd_011CZkZEMt8gZan2iYOQfSkw",
+  "type": "vault_credential_deleted"
+}
 ```

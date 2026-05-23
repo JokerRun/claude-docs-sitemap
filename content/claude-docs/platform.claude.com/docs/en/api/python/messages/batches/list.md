@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/messages/batches/list
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 6de85ce7f5d2a44c1d8e815a67e552cc88ce58aea737221c67e614905d46ebc9
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: a32628c7950af74ca127afbb1063b110dd5f30485aea40ae87b26782b9e9fd94
 ---
 
-## List
+## List Message Batches
 
 `messages.batches.list(BatchListParams**kwargs)  -> SyncPage[MessageBatch]`
 
@@ -133,4 +133,34 @@ client = Anthropic(
 page = client.messages.batches.list()
 page = page.data[0]
 print(page.id)
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "msgbatch_013Zva2CMHLNnXjNJJKqJ2EF",
+      "archived_at": "2024-08-20T18:37:24.100435Z",
+      "cancel_initiated_at": "2024-08-20T18:37:24.100435Z",
+      "created_at": "2024-08-20T18:37:24.100435Z",
+      "ended_at": "2024-08-20T18:37:24.100435Z",
+      "expires_at": "2024-08-20T18:37:24.100435Z",
+      "processing_status": "in_progress",
+      "request_counts": {
+        "canceled": 10,
+        "errored": 30,
+        "expired": 10,
+        "processing": 100,
+        "succeeded": 50
+      },
+      "results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_013Zva2CMHLNnXjNJJKqJ2EF/results",
+      "type": "message_batch"
+    }
+  ],
+  "first_id": "first_id",
+  "has_more": true,
+  "last_id": "last_id"
+}
 ```

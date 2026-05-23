@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/stop
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 789aefeb3eb959f5381c0707f484e246dbcd36d3a8e4ea2bb7e291342ccad8d0
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: e3c661244be4f81f045de1c13d8ab7ab47c30c4136ee1347b6b908ab2818adcd
 ---
 
-## Stop
+## Stop Work
 
 **post** `/v1/environments/{environment_id}/work/{work_id}/stop`
 
@@ -25,9 +25,9 @@ Stop a work item, initiating graceful or forced shutdown.
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = string`
+  - `string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -87,7 +87,7 @@ Stop a work item, initiating graceful or forced shutdown.
 
 ### Returns
 
-- `BetaSelfHostedWork = object { id, acknowledged_at, created_at, 9 more }`
+- `BetaSelfHostedWork object { id, acknowledged_at, created_at, 9 more }`
 
   Work resource representing a unit of work in a self-hosted environment.
 
@@ -174,4 +174,28 @@ curl https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID/work/$WORK_ID/sto
     -H 'anthropic-beta: managed-agents-2026-04-01' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY" \
     -d '{}'
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "acknowledged_at": "acknowledged_at",
+  "created_at": "created_at",
+  "data": {
+    "id": "id",
+    "type": "session"
+  },
+  "environment_id": "environment_id",
+  "latest_heartbeat_at": "latest_heartbeat_at",
+  "metadata": {
+    "foo": "string"
+  },
+  "started_at": "started_at",
+  "state": "queued",
+  "stop_requested_at": "stop_requested_at",
+  "stopped_at": "stopped_at",
+  "type": "work"
+}
 ```

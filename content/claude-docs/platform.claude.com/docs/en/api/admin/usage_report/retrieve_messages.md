@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/usage_report/retrieve_messages
-fetched_at: 2026-04-25T03:09:48.142425Z
-sha256: a10b0b7a1ab54c3aa48b542f540198122f13550a60251504338cdd5bbcaf803e
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 68768257d566c4555d02cad090c4d81326a65dee6dd373d04426a82ed2b074cc
 ---
 
-## Retrieve Messages
+## Get Messages Usage Report
 
 **get** `/v1/organizations/usage_report/messages`
 
@@ -140,7 +140,7 @@ Get Messages Usage Report
 
 ### Returns
 
-- `MessagesUsageReport = object { data, has_more, next_page }`
+- `MessagesUsageReport object { data, has_more, next_page }`
 
   - `data: array of object { ending_at, results, starting_at }`
 
@@ -251,4 +251,41 @@ Get Messages Usage Report
 curl https://api.anthropic.com/v1/organizations/usage_report/messages \
     -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "ending_at": "2025-08-02T00:00:00Z",
+      "results": [
+        {
+          "account_id": "user_01WCz1FkmYMm4gnmykNKUu3Q",
+          "api_key_id": "apikey_01Rj2N8SVvo6BePZj99NhmiT",
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 1000,
+            "ephemeral_5m_input_tokens": 500
+          },
+          "cache_read_input_tokens": 200,
+          "context_window": "0-200k",
+          "inference_geo": "global",
+          "model": "claude-opus-4-6",
+          "output_tokens": 500,
+          "server_tool_use": {
+            "web_search_requests": 10
+          },
+          "service_account_id": "svac_01Hk3R9TWxq7CfQak00OiVw4",
+          "service_tier": "standard",
+          "uncached_input_tokens": 1500,
+          "workspace_id": "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ"
+        }
+      ],
+      "starting_at": "2025-08-01T00:00:00Z"
+    }
+  ],
+  "has_more": true,
+  "next_page": "2019-12-27T18:11:19.117Z"
+}
 ```

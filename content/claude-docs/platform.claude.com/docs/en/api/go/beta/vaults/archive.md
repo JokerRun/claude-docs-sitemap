@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/vaults/archive
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 496f123fa606abcc06348d3da07b4918beaca80ed2faeb8eb3e2720ce4d24e87
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 5535aa3e459a93f1278068bea0ca435e2b050d9a886969f1cd3c4419ca903979
 ---
 
-## Archive
+## Archive Vault
 
 `client.Beta.Vaults.Archive(ctx, vaultID, body) (*BetaManagedAgentsVault, error)`
 
@@ -139,5 +139,21 @@ func main() {
     panic(err.Error())
   }
   fmt.Printf("%+v\n", betaManagedAgentsVault.ID)
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+  "archived_at": null,
+  "created_at": "2026-03-15T10:00:00Z",
+  "display_name": "Example vault",
+  "metadata": {
+    "environment": "production"
+  },
+  "type": "vault",
+  "updated_at": "2026-03-15T10:00:00Z"
 }
 ```

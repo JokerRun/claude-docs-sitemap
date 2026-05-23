@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/environments/work/ack
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 731428aef4af98bd3939e0d7b9e4431e9c452d52203e42ed9438780c64db8874
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: bf606295c364b37ce50cf003a5adf51e36f82c1c9fc69110cad571b01ac90f5b
 ---
 
-## Ack
+## Acknowledge Work
 
 `beta.environments.work.ack(strwork_id, WorkAckParams**kwargs)  -> BetaSelfHostedWork`
 
@@ -173,4 +173,28 @@ beta_self_hosted_work = client.beta.environments.work.ack(
     environment_id="env_011CZkZ9X2dpNyB7HsEFoRfW",
 )
 print(beta_self_hosted_work.id)
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "acknowledged_at": "acknowledged_at",
+  "created_at": "created_at",
+  "data": {
+    "id": "id",
+    "type": "session"
+  },
+  "environment_id": "environment_id",
+  "latest_heartbeat_at": "latest_heartbeat_at",
+  "metadata": {
+    "foo": "string"
+  },
+  "started_at": "started_at",
+  "state": "queued",
+  "stop_requested_at": "stop_requested_at",
+  "stopped_at": "stopped_at",
+  "type": "work"
+}
 ```

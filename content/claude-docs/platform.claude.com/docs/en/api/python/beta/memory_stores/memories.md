@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/memory_stores/memories
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: fc9e028afbf401f1a9ac039b42e00487f216897fc20a3eda4d0a7dd8e9004aaf
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 77f7a287439a5d8710804272f1da986a374bddaa93866d1f8f686eb4a33d64cd
 ---
 
 # Memories
 
-## Create
+## Create a memory
 
 `beta.memory_stores.memories.create(strmemory_store_id, MemoryCreateParams**kwargs)  -> BetaManagedAgentsMemory`
 
@@ -156,7 +156,24 @@ beta_managed_agents_memory = client.beta.memory_stores.memories.create(
 print(beta_managed_agents_memory.id)
 ```
 
-## List
+#### Response
+
+```json
+{
+  "id": "id",
+  "content_sha256": "content_sha256",
+  "content_size_bytes": 0,
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "memory_store_id": "memory_store_id",
+  "memory_version_id": "memory_version_id",
+  "path": "path",
+  "type": "memory",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "content": "content"
+}
+```
+
+## List memories
 
 `beta.memory_stores.memories.list(strmemory_store_id, MemoryListParams**kwargs)  -> SyncPageCursor[BetaManagedAgentsMemoryListItem]`
 
@@ -340,7 +357,29 @@ page = page.data[0]
 print(page)
 ```
 
-## Retrieve
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "id",
+      "content_sha256": "content_sha256",
+      "content_size_bytes": 0,
+      "created_at": "2019-12-27T18:11:19.117Z",
+      "memory_store_id": "memory_store_id",
+      "memory_version_id": "memory_version_id",
+      "path": "path",
+      "type": "memory",
+      "updated_at": "2019-12-27T18:11:19.117Z",
+      "content": "content"
+    }
+  ],
+  "next_page": "next_page"
+}
+```
+
+## Retrieve a memory
 
 `beta.memory_stores.memories.retrieve(strmemory_id, MemoryRetrieveParams**kwargs)  -> BetaManagedAgentsMemory`
 
@@ -482,7 +521,24 @@ beta_managed_agents_memory = client.beta.memory_stores.memories.retrieve(
 print(beta_managed_agents_memory.id)
 ```
 
-## Update
+#### Response
+
+```json
+{
+  "id": "id",
+  "content_sha256": "content_sha256",
+  "content_size_bytes": 0,
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "memory_store_id": "memory_store_id",
+  "memory_version_id": "memory_version_id",
+  "path": "path",
+  "type": "memory",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "content": "content"
+}
+```
+
+## Update a memory
 
 `beta.memory_stores.memories.update(strmemory_id, MemoryUpdateParams**kwargs)  -> BetaManagedAgentsMemory`
 
@@ -644,7 +700,24 @@ beta_managed_agents_memory = client.beta.memory_stores.memories.update(
 print(beta_managed_agents_memory.id)
 ```
 
-## Delete
+#### Response
+
+```json
+{
+  "id": "id",
+  "content_sha256": "content_sha256",
+  "content_size_bytes": 0,
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "memory_store_id": "memory_store_id",
+  "memory_version_id": "memory_version_id",
+  "path": "path",
+  "type": "memory",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "content": "content"
+}
+```
+
+## Delete a memory
 
 `beta.memory_stores.memories.delete(strmemory_id, MemoryDeleteParams**kwargs)  -> BetaManagedAgentsDeletedMemory`
 
@@ -748,6 +821,15 @@ beta_managed_agents_deleted_memory = client.beta.memory_stores.memories.delete(
     memory_store_id="memory_store_id",
 )
 print(beta_managed_agents_deleted_memory.id)
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "type": "memory_deleted"
+}
 ```
 
 ## Domain Types

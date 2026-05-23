@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/vaults/retrieve
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: e5bfb1047ee1ce287b7cb309d54152fd74b9a3ed81f889b63d98e9ea2df72070
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: cb40968873e5f35c2a5062b078b82bc278375e2e34df19c6fc2212970eca9169
 ---
 
-## Retrieve
+## Get Vault
 
 `client.beta.vaults.retrieve(stringvaultID, VaultRetrieveParamsparams?, RequestOptionsoptions?): BetaManagedAgentsVault`
 
@@ -123,4 +123,20 @@ const client = new Anthropic({
 const betaManagedAgentsVault = await client.beta.vaults.retrieve('vlt_011CZkZDLs7fYzm1hXNPeRjv');
 
 console.log(betaManagedAgentsVault.id);
+```
+
+#### Response
+
+```json
+{
+  "id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+  "archived_at": null,
+  "created_at": "2026-03-15T10:00:00Z",
+  "display_name": "Example vault",
+  "metadata": {
+    "environment": "production"
+  },
+  "type": "vault",
+  "updated_at": "2026-03-15T10:00:00Z"
+}
 ```

@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats/files/delete
-fetched_at: 2026-05-09T03:13:52.260309Z
-sha256: bfa15486526081f5b39f0d2d719172ede94d6ce66a1d68d6ab3cdb9b852dcabd
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 041cef6b29a2e34b5b7ccb80fa0f50b4cb7ae46cf95a15668f1e6b45b87f260e
 ---
 
-## Delete
+## Delete file
 
 **delete** `/v1/compliance/apps/chats/files/{claude_file_id}`
 
@@ -40,4 +40,13 @@ operation that cannot be undone.
 curl https://api.anthropic.com/v1/compliance/apps/chats/files/$CLAUDE_FILE_ID \
     -X DELETE \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
+```
+
+#### Response
+
+```json
+{
+  "id": "claude_file_xyz789",
+  "type": "claude_file_deleted"
+}
 ```

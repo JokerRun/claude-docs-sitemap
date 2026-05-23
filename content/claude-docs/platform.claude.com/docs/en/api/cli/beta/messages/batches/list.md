@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/messages/batches/list
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: c6ef13fa77b5b094f1e09a77574881cdad3c428cf1bbfababb3484c2ca2d7db0
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 86d7e93f21ca4ec4482d8538fc981d8512390e83b361fb6f453a032d6aa55ffd
 ---
 
-## List
+## List Message Batches
 
 `$ ant beta:messages:batches list`
 
@@ -142,4 +142,34 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 ```cli
 ant beta:messages:batches list \
   --api-key my-anthropic-api-key
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "msgbatch_013Zva2CMHLNnXjNJJKqJ2EF",
+      "archived_at": "2024-08-20T18:37:24.100435Z",
+      "cancel_initiated_at": "2024-08-20T18:37:24.100435Z",
+      "created_at": "2024-08-20T18:37:24.100435Z",
+      "ended_at": "2024-08-20T18:37:24.100435Z",
+      "expires_at": "2024-08-20T18:37:24.100435Z",
+      "processing_status": "in_progress",
+      "request_counts": {
+        "canceled": 10,
+        "errored": 30,
+        "expired": 10,
+        "processing": 100,
+        "succeeded": 50
+      },
+      "results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_013Zva2CMHLNnXjNJJKqJ2EF/results",
+      "type": "message_batch"
+    }
+  ],
+  "first_id": "first_id",
+  "has_more": true,
+  "last_id": "last_id"
+}
 ```

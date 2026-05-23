@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/completions/create
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 7fe9381fbfb856697ff00387fe7f567101b216dc045080cacbee068d8beeea7e
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 9e8f2dd676e0724aa788f711d997e8a6c44deb2b7fbc791a8198e1ce0016b1f3
 ---
 
-## Create
+## Create a Text Completion
 
 `Completion completions().create(CompletionCreateParamsparams, RequestOptionsrequestOptions = RequestOptions.none())`
 
@@ -272,5 +272,17 @@ public final class Main {
             .build();
         Completion completion = client.completions().create(params);
     }
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "compl_018CKm6gsux7P8yMcwZbeCPw",
+  "completion": " Hello! My name is Claude.",
+  "model": "claude-2.1",
+  "stop_reason": "stop_sequence",
+  "type": "completion"
 }
 ```

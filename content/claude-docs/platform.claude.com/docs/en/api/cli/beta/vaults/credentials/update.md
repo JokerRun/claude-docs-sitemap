@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/vaults/credentials/update
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 5a003a3913c65e7dc99f1d973f1b19dc163b14513caac0c2189bb90317e27081
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 31e00906e87dddb06bb34e87348f2e3ecac34d879bca87de0de7cc7496b10e46
 ---
 
-## Update
+## Update Credential
 
 `$ ant beta:vaults:credentials update`
 
@@ -164,4 +164,25 @@ ant beta:vaults:credentials update \
   --api-key my-anthropic-api-key \
   --vault-id vlt_011CZkZDLs7fYzm1hXNPeRjv \
   --credential-id vcrd_011CZkZEMt8gZan2iYOQfSkw
+```
+
+#### Response
+
+```json
+{
+  "id": "vcrd_011CZkZEMt8gZan2iYOQfSkw",
+  "archived_at": null,
+  "auth": {
+    "mcp_server_url": "https://example-server.modelcontextprotocol.io/sse",
+    "type": "static_bearer"
+  },
+  "created_at": "2026-03-15T10:00:00Z",
+  "metadata": {
+    "environment": "production"
+  },
+  "type": "vault_credential",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "vault_id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+  "display_name": "Example credential"
+}
 ```

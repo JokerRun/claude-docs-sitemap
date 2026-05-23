@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/user_profiles/list
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 4ee6f261e35abcd9da1ace43bc555ebf2cbafd7e173003cdade947481d0316bb
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 0fd29321c84a9253afd6a61209012afbd08520c977329e23bea57acd67b14ed9
 ---
 
-## List
+## List User Profiles
 
 `client.beta.userProfiles.list(UserProfileListParamsparams?, RequestOptionsoptions?): PageCursor<BetaUserProfile>`
 
@@ -161,5 +161,30 @@ const client = new Anthropic({
 // Automatically fetches more pages as needed.
 for await (const betaUserProfile of client.beta.userProfiles.list()) {
   console.log(betaUserProfile.id);
+}
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "uprof_011CZkZCu8hGbp5mYRQgUmz9",
+      "created_at": "2026-03-15T10:00:00Z",
+      "metadata": {},
+      "relationship": "external",
+      "trust_grants": {
+        "cyber": {
+          "status": "active"
+        }
+      },
+      "type": "user_profile",
+      "updated_at": "2026-03-15T10:00:00Z",
+      "external_id": "user_12345",
+      "name": "Example User"
+    }
+  ],
+  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="
 }
 ```

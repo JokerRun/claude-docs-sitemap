@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/groups/members
-fetched_at: 2026-05-09T03:13:52.260309Z
-sha256: 6f42411f267300bf7a36081dbf4229a1cd03d626f982da5439366157d24261a4
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 109ce872267a55db39456fd6f9a85dfd4ad9a6aaed4c83b6402cf64835ece7a7
 ---
 
 # Members
 
-## List
+## List Compliance Group Members
 
 **get** `/v1/compliance/groups/{group_id}/members`
 
@@ -70,11 +70,28 @@ curl https://api.anthropic.com/v1/compliance/groups/$GROUP_ID/members \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "created_at": "created_at",
+      "email": "email",
+      "updated_at": "updated_at",
+      "user_id": "user_id"
+    }
+  ],
+  "has_more": true,
+  "next_page": "next_page"
+}
+```
+
 ## Domain Types
 
 ### Member List Response
 
-- `MemberListResponse = object { created_at, email, updated_at, user_id }`
+- `MemberListResponse object { created_at, email, updated_at, user_id }`
 
   Group member for compliance responses.
 

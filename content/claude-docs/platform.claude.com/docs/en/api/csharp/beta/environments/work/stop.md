@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/environments/work/stop
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: b96f1a7351fa467d09f0ddc6fc1b8764838e461eaad303ed860d2838e062f7d8
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: a37f1dfd94f382ce9ded1f5262fdbdf1f420513cafa943e6c531a3887a92cb9b
 ---
 
-## Stop
+## Stop Work
 
 `BetaSelfHostedWork Beta.Environments.Work.Stop(WorkStopParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -173,4 +173,28 @@ WorkStopParams parameters = new()
 var betaSelfHostedWork = await client.Beta.Environments.Work.Stop(parameters);
 
 Console.WriteLine(betaSelfHostedWork);
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "acknowledged_at": "acknowledged_at",
+  "created_at": "created_at",
+  "data": {
+    "id": "id",
+    "type": "session"
+  },
+  "environment_id": "environment_id",
+  "latest_heartbeat_at": "latest_heartbeat_at",
+  "metadata": {
+    "foo": "string"
+  },
+  "started_at": "started_at",
+  "state": "queued",
+  "stop_requested_at": "stop_requested_at",
+  "stopped_at": "stopped_at",
+  "type": "work"
+}
 ```

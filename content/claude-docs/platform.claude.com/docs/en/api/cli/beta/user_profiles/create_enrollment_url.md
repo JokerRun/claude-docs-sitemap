@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/user_profiles/create_enrollment_url
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: 180a01ff77fb910883cfb1f9b096bc538d12881e3c576cc654f2ba833ab86b52
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 9064158ac3833fb612b9aa2423e529231a03f75368a4283aa3d48948761e7b50
 ---
 
 ## Create Enrollment URL
@@ -47,4 +47,14 @@ Create Enrollment URL
 ant beta:user-profiles create-enrollment-url \
   --api-key my-anthropic-api-key \
   --user-profile-id uprof_011CZkZCu8hGbp5mYRQgUmz9
+```
+
+#### Response
+
+```json
+{
+  "expires_at": "2026-03-15T10:15:00Z",
+  "type": "enrollment_url",
+  "url": "https://platform.claude.com/user-profiles/enrollment/M3J0bGJxZ2ppMnptbnB1"
+}
 ```

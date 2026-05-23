@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/environments/work/stats
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: e2be6e34a9d21e3d6795372043f6f0e1c184292ca534f4d22123223012bedf8a
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 9dc61c3bc745acef014afd853864d59621ef23e5dda1b0d6c0b2b9a4da549ca7
 ---
 
-## Stats
+## Get Queue Statistics
 
 `BetaSelfHostedWorkQueueStats Beta.Environments.Work.Stats(WorkStatsParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -112,4 +112,16 @@ WorkStatsParams parameters = new()
 var betaSelfHostedWorkQueueStats = await client.Beta.Environments.Work.Stats(parameters);
 
 Console.WriteLine(betaSelfHostedWorkQueueStats);
+```
+
+#### Response
+
+```json
+{
+  "depth": 0,
+  "oldest_queued_at": "oldest_queued_at",
+  "pending": 0,
+  "type": "work_queue_stats",
+  "workers_polling": 0
+}
 ```

@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/skills/versions/list
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: a13a823df69f36ecb1c2a4767c049ceb2899e474bec3944a1b4f43a249918092
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 3a2a3e0601fc9d844287d6166c6816f2c1d61315fe08be111aaba9b08c970236
 ---
 
-## List
+## List Skill Versions
 
 `beta.skills.versions.list(strskill_id, VersionListParams**kwargs)  -> SyncPageCursor[VersionListResponse]`
 
@@ -151,4 +151,25 @@ page = client.beta.skills.versions.list(
 )
 page = page.data[0]
 print(page.id)
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "skillver_01JAbcdefghijklmnopqrstuvw",
+      "created_at": "2024-10-30T23:58:27.427722Z",
+      "description": "A custom skill for doing something useful",
+      "directory": "my-skill",
+      "name": "my-skill",
+      "skill_id": "skill_01JAbcdefghijklmnopqrstuvw",
+      "type": "type",
+      "version": "1759178010641129"
+    }
+  ],
+  "has_more": true,
+  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="
+}
 ```

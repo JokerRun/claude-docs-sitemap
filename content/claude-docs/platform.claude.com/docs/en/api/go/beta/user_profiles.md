@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/user_profiles
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: decbab09cf83869bfd4001531b0acaf7a85f789315b55523c1ab3a219ed8a979
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: cde39edb7035854cb52836cbe253cb7e4c9aa41f6de299b5433cd21684827a3f
 ---
 
 # User Profiles
 
-## Create
+## Create User Profile
 
 `client.Beta.UserProfiles.New(ctx, params) (*BetaUserProfile, error)`
 
@@ -184,7 +184,27 @@ func main() {
 }
 ```
 
-## List
+#### Response
+
+```json
+{
+  "id": "uprof_011CZkZCu8hGbp5mYRQgUmz9",
+  "created_at": "2026-03-15T10:00:00Z",
+  "metadata": {},
+  "relationship": "external",
+  "trust_grants": {
+    "cyber": {
+      "status": "active"
+    }
+  },
+  "type": "user_profile",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "external_id": "user_12345",
+  "name": "Example User"
+}
+```
+
+## List User Profiles
 
 `client.Beta.UserProfiles.List(ctx, params) (*PageCursor[BetaUserProfile], error)`
 
@@ -355,7 +375,32 @@ func main() {
 }
 ```
 
-## Retrieve
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "uprof_011CZkZCu8hGbp5mYRQgUmz9",
+      "created_at": "2026-03-15T10:00:00Z",
+      "metadata": {},
+      "relationship": "external",
+      "trust_grants": {
+        "cyber": {
+          "status": "active"
+        }
+      },
+      "type": "user_profile",
+      "updated_at": "2026-03-15T10:00:00Z",
+      "external_id": "user_12345",
+      "name": "Example User"
+    }
+  ],
+  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="
+}
+```
+
+## Get User Profile
 
 `client.Beta.UserProfiles.Get(ctx, userProfileID, query) (*BetaUserProfile, error)`
 
@@ -516,7 +561,27 @@ func main() {
 }
 ```
 
-## Update
+#### Response
+
+```json
+{
+  "id": "uprof_011CZkZCu8hGbp5mYRQgUmz9",
+  "created_at": "2026-03-15T10:00:00Z",
+  "metadata": {},
+  "relationship": "external",
+  "trust_grants": {
+    "cyber": {
+      "status": "active"
+    }
+  },
+  "type": "user_profile",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "external_id": "user_12345",
+  "name": "Example User"
+}
+```
+
+## Update User Profile
 
 `client.Beta.UserProfiles.Update(ctx, userProfileID, params) (*BetaUserProfile, error)`
 
@@ -699,6 +764,26 @@ func main() {
 }
 ```
 
+#### Response
+
+```json
+{
+  "id": "uprof_011CZkZCu8hGbp5mYRQgUmz9",
+  "created_at": "2026-03-15T10:00:00Z",
+  "metadata": {},
+  "relationship": "external",
+  "trust_grants": {
+    "cyber": {
+      "status": "active"
+    }
+  },
+  "type": "user_profile",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "external_id": "user_12345",
+  "name": "Example User"
+}
+```
+
 ## Create Enrollment URL
 
 `client.Beta.UserProfiles.NewEnrollmentURL(ctx, userProfileID, body) (*BetaUserProfileEnrollmentURL, error)`
@@ -817,6 +902,16 @@ func main() {
     panic(err.Error())
   }
   fmt.Printf("%+v\n", betaUserProfileEnrollmentURL.ExpiresAt)
+}
+```
+
+#### Response
+
+```json
+{
+  "expires_at": "2026-03-15T10:15:00Z",
+  "type": "enrollment_url",
+  "url": "https://platform.claude.com/user-profiles/enrollment/M3J0bGJxZ2ppMnptbnB1"
 }
 ```
 

@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/environments/work/update
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 84803533b685967fdb540561e9889099bab4dea1b97bc39ef0448e9b038c6985
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: db30746f6014d2a47cdbb76434f46c4d2fbef859d428c57bbc8ab99d90450323
 ---
 
-## Update
+## Update Work Item
 
 `BetaSelfHostedWork Beta.Environments.Work.Update(WorkUpdateParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -174,4 +174,28 @@ WorkUpdateParams parameters = new()
 var betaSelfHostedWork = await client.Beta.Environments.Work.Update(parameters);
 
 Console.WriteLine(betaSelfHostedWork);
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "acknowledged_at": "acknowledged_at",
+  "created_at": "created_at",
+  "data": {
+    "id": "id",
+    "type": "session"
+  },
+  "environment_id": "environment_id",
+  "latest_heartbeat_at": "latest_heartbeat_at",
+  "metadata": {
+    "foo": "string"
+  },
+  "started_at": "started_at",
+  "state": "queued",
+  "stop_requested_at": "stop_requested_at",
+  "stopped_at": "stopped_at",
+  "type": "work"
+}
 ```

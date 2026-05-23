@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/memory_stores/memories/retrieve
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 4ab50e92842f0a7ed4fe318c8f6ad4d2b4bfe9bcfef87cc475a64f4a27b8c486
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 0968fa3308386f50dc90251a5486579f467690b43ef490ef93b60b68277a3d45
 ---
 
-## Retrieve
+## Retrieve a memory
 
 `BetaManagedAgentsMemory Beta.MemoryStores.Memories.Retrieve(MemoryRetrieveParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -141,4 +141,21 @@ MemoryRetrieveParams parameters = new()
 var betaManagedAgentsMemory = await client.Beta.MemoryStores.Memories.Retrieve(parameters);
 
 Console.WriteLine(betaManagedAgentsMemory);
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "content_sha256": "content_sha256",
+  "content_size_bytes": 0,
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "memory_store_id": "memory_store_id",
+  "memory_version_id": "memory_version_id",
+  "path": "path",
+  "type": "memory",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "content": "content"
+}
 ```

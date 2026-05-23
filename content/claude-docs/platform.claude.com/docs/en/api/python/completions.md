@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/completions
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: db126692f9047b28029005fa03be57abc7886093ff07297725575ce811d7b289
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: ec36e70b02769ebde5a58506bdfa962438c0f3e258dfcae680b88969462081d6
 ---
 
 # Completions
 
-## Create
+## Create a Text Completion
 
 `completions.create(CompletionCreateParams**kwargs)  -> Completion`
 
@@ -401,6 +401,18 @@ for completion in client.completions.create(
     prompt="\n\nHuman: Hello, world!\n\nAssistant:",
 ):
   print(completion)
+```
+
+#### Response
+
+```json
+{
+  "id": "compl_018CKm6gsux7P8yMcwZbeCPw",
+  "completion": " Hello! My name is Claude.",
+  "model": "claude-2.1",
+  "stop_reason": "stop_sequence",
+  "type": "completion"
+}
 ```
 
 ## Domain Types

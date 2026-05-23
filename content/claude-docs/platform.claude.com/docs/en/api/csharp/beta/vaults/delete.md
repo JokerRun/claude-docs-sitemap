@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/vaults/delete
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 1d1b6a5becedf115f0efce9fe7f7ec284d4a321e0147070d0f6cb6ef440ae754
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 7aa1cf68dea093b58704d820ec60c1857d4cace99cac5d8a51d60b85eccb070a
 ---
 
-## Delete
+## Delete Vault
 
 `BetaManagedAgentsDeletedVault Beta.Vaults.Delete(VaultDeleteParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -100,4 +100,13 @@ VaultDeleteParams parameters = new()
 var betaManagedAgentsDeletedVault = await client.Beta.Vaults.Delete(parameters);
 
 Console.WriteLine(betaManagedAgentsDeletedVault);
+```
+
+#### Response
+
+```json
+{
+  "id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+  "type": "vault_deleted"
+}
 ```

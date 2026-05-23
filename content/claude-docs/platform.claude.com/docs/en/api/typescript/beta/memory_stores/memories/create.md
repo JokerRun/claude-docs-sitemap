@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/memory_stores/memories/create
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 049615dc5dd1725e3dc471a35add5fa056041d776fa4dbd964db04d6c0c65b97
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 62b0e577553b2d36f8d2af191010eb0a11b025288a146f50e633d2674df4f9e3
 ---
 
-## Create
+## Create a memory
 
 `client.beta.memoryStores.memories.create(stringmemoryStoreID, MemoryCreateParamsparams, RequestOptionsoptions?): BetaManagedAgentsMemory`
 
@@ -154,4 +154,21 @@ const betaManagedAgentsMemory = await client.beta.memoryStores.memories.create('
 });
 
 console.log(betaManagedAgentsMemory.id);
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "content_sha256": "content_sha256",
+  "content_size_bytes": 0,
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "memory_store_id": "memory_store_id",
+  "memory_version_id": "memory_version_id",
+  "path": "path",
+  "type": "memory",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "content": "content"
+}
 ```

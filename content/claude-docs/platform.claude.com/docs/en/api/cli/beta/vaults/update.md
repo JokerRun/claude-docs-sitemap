@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/vaults/update
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 146f123e8137e233114ebbc8e32cb15cff0a973ebb99ba0c97f180dcf0b1f506
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 90886db584c7304becf29943cf695afe20ea192e32aeb3b2ee7be70baba2152d
 ---
 
-## Update
+## Update Vault
 
 `$ ant beta:vaults update`
 
@@ -71,4 +71,20 @@ Update Vault
 ant beta:vaults update \
   --api-key my-anthropic-api-key \
   --vault-id vlt_011CZkZDLs7fYzm1hXNPeRjv
+```
+
+#### Response
+
+```json
+{
+  "id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+  "archived_at": null,
+  "created_at": "2026-03-15T10:00:00Z",
+  "display_name": "Example vault",
+  "metadata": {
+    "environment": "production"
+  },
+  "type": "vault",
+  "updated_at": "2026-03-15T10:00:00Z"
+}
 ```

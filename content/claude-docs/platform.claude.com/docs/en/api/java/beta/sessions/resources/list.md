@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/resources/list
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 9fe5ddf34ffdae52c20510cc59088a8cc10da6502cfc0b5e3df8b25a862ec37e
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 53b76fe3b3529bfeb929fc11b5a06a734c56eb04d3385f6a5d9990e0c732da7d
 ---
 
-## List
+## List Session Resources
 
 `ResourceListPage beta().sessions().resources().list(ResourceListParamsparams = ResourceListParams.none(), RequestOptionsrequestOptions = RequestOptions.none())`
 
@@ -203,5 +203,35 @@ public final class Main {
 
         ResourceListPage page = client.beta().sessions().resources().list("sesn_011CZkZAtmR3yMPDzynEDxu7");
     }
+}
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "sesrsc_011CZkZBJq5dWxk9fVLNcPht",
+      "created_at": "2026-03-15T10:00:00Z",
+      "file_id": "file_011CNha8iCJcU1wXNR6q4V8w",
+      "mount_path": "/uploads/receipt.pdf",
+      "type": "file",
+      "updated_at": "2026-03-15T10:00:00Z"
+    },
+    {
+      "id": "sesrsc_011CZkZCKr6eXyl0gWMOdQiu",
+      "created_at": "2026-03-15T10:00:00Z",
+      "mount_path": "/workspace/example-repo",
+      "type": "github_repository",
+      "updated_at": "2026-03-15T10:00:00Z",
+      "url": "https://github.com/example-org/example-repo",
+      "checkout": {
+        "name": "main",
+        "type": "branch"
+      }
+    }
+  ],
+  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="
 }
 ```

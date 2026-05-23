@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/user_profiles/create_enrollment_url
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: bbdf0049b852377fba54eb225959dc884566f2122ddf6a487daf5082a999f796
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 716fbc6de8197c8c216fab658bdd41ace56e4f55c7966956c897da28afe71d90
 ---
 
 ## Create Enrollment URL
@@ -104,4 +104,14 @@ UserProfileCreateEnrollmentUrlParams parameters = new()
 var betaUserProfileEnrollmentUrl = await client.Beta.UserProfiles.CreateEnrollmentUrl(parameters);
 
 Console.WriteLine(betaUserProfileEnrollmentUrl);
+```
+
+#### Response
+
+```json
+{
+  "expires_at": "2026-03-15T10:15:00Z",
+  "type": "enrollment_url",
+  "url": "https://platform.claude.com/user-profiles/enrollment/M3J0bGJxZ2ppMnptbnB1"
+}
 ```

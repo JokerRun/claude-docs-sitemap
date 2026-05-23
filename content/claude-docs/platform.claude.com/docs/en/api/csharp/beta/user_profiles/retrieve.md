@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/user_profiles/retrieve
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: eb82435119a232dc94905214fa6f5bcbef07a08347ce71aff0d5f55cb3d0c18a
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: abd5700268bee33ce597dca4a0dd06041601872f3a61a332c5c1809c917810ce
 ---
 
-## Retrieve
+## Get User Profile
 
 `BetaUserProfile Beta.UserProfiles.Retrieve(UserProfileRetrieveParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -144,4 +144,24 @@ UserProfileRetrieveParams parameters = new()
 var betaUserProfile = await client.Beta.UserProfiles.Retrieve(parameters);
 
 Console.WriteLine(betaUserProfile);
+```
+
+#### Response
+
+```json
+{
+  "id": "uprof_011CZkZCu8hGbp5mYRQgUmz9",
+  "created_at": "2026-03-15T10:00:00Z",
+  "metadata": {},
+  "relationship": "external",
+  "trust_grants": {
+    "cyber": {
+      "status": "active"
+    }
+  },
+  "type": "user_profile",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "external_id": "user_12345",
+  "name": "Example User"
+}
 ```

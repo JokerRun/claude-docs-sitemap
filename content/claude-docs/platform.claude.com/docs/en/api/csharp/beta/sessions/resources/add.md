@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/sessions/resources/add
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 41009c2e4aca1b53c264afecf1d965c18f39f4a465c6b851c17f38f160f661e6
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: cbd77b2b4f548475ce24d40fea51252a88973b04f727b63cc4820fdea6ba8eff
 ---
 
-## Add
+## Add Session Resource
 
 `BetaManagedAgentsFileResource Beta.Sessions.Resources.Add(ResourceAddParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -124,4 +124,17 @@ ResourceAddParams parameters = new()
 var betaManagedAgentsFileResource = await client.Beta.Sessions.Resources.Add(parameters);
 
 Console.WriteLine(betaManagedAgentsFileResource);
+```
+
+#### Response
+
+```json
+{
+  "id": "sesrsc_011CZkZBJq5dWxk9fVLNcPht",
+  "created_at": "2026-03-15T10:00:00Z",
+  "file_id": "file_011CNha8iCJcU1wXNR6q4V8w",
+  "mount_path": "/uploads/receipt.pdf",
+  "type": "file",
+  "updated_at": "2026-03-15T10:00:00Z"
+}
 ```

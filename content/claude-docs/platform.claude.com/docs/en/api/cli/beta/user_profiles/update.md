@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/user_profiles/update
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 371c1684bfa98810fe00be12641aa9799e2592205eb8c1bb952b6d0bc3b922c0
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 12ba2099c9d0de64126f73f0d496d5a3cacc286c242725d95a5cc53bd9e2b94e
 ---
 
-## Update
+## Update User Profile
 
 `$ ant beta:user-profiles update`
 
@@ -103,4 +103,24 @@ Update User Profile
 ant beta:user-profiles update \
   --api-key my-anthropic-api-key \
   --user-profile-id uprof_011CZkZCu8hGbp5mYRQgUmz9
+```
+
+#### Response
+
+```json
+{
+  "id": "uprof_011CZkZCu8hGbp5mYRQgUmz9",
+  "created_at": "2026-03-15T10:00:00Z",
+  "metadata": {},
+  "relationship": "external",
+  "trust_grants": {
+    "cyber": {
+      "status": "active"
+    }
+  },
+  "type": "user_profile",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "external_id": "user_12345",
+  "name": "Example User"
+}
 ```

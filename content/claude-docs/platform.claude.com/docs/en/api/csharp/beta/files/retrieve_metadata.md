@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/files/retrieve_metadata
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 89d2b638b7e9323148da1a1bfe3d21dcec2c2b67ece4993e51d2b77175359629
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 2c8e27b70739dad67f863f848dd400bc80e50dda6edcfc5e9ea8710f78df6de7
 ---
 
-## Retrieve Metadata
+## Get File Metadata
 
 `FileMetadata Beta.Files.RetrieveMetadata(FileRetrieveMetadataParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -131,4 +131,22 @@ FileRetrieveMetadataParams parameters = new() { FileID = "file_id" };
 var fileMetadata = await client.Beta.Files.RetrieveMetadata(parameters);
 
 Console.WriteLine(fileMetadata);
+```
+
+#### Response
+
+```json
+{
+  "id": "file_011CNha8iCJcU1wXNR6q4V8w",
+  "created_at": "2025-04-15T18:37:24.100435Z",
+  "filename": "document.pdf",
+  "mime_type": "application/pdf",
+  "size_bytes": 102400,
+  "type": "file",
+  "downloadable": false,
+  "scope": {
+    "id": "id",
+    "type": "session"
+  }
+}
 ```

@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/vaults/delete
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 4995b07fb7ca27284648eb57db77cec35e96487359cdb81badc37fc7290ffc8f
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 36ce8f46a865e6604931a5dcff7c2b4e7ed8e6b3f40084b81b22a8eb592e77b2
 ---
 
-## Delete
+## Delete Vault
 
 `client.Beta.Vaults.Delete(ctx, vaultID, body) (*BetaManagedAgentsDeletedVault, error)`
 
@@ -119,5 +119,14 @@ func main() {
     panic(err.Error())
   }
   fmt.Printf("%+v\n", betaManagedAgentsDeletedVault.ID)
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+  "type": "vault_deleted"
 }
 ```

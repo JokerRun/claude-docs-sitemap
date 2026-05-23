@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/sessions/resources/retrieve
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: f739637b9cd4e06bab21fa5d6eef7a25ee1e2c43d9bcf10b56d578a64cb02caf
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: b4f56ff2322b63ad3846e22eef0305d2ced308e3da9c47ab0a9afcd765be66d8
 ---
 
-## Retrieve
+## Get Session Resource
 
 `client.beta.sessions.resources.retrieve(stringresourceID, ResourceRetrieveParamsparams, RequestOptionsoptions?): ResourceRetrieveResponse`
 
@@ -199,4 +199,21 @@ const resource = await client.beta.sessions.resources.retrieve('sesrsc_011CZkZBJ
 });
 
 console.log(resource);
+```
+
+#### Response
+
+```json
+{
+  "id": "sesrsc_011CZkZCKr6eXyl0gWMOdQiu",
+  "created_at": "2026-03-15T10:00:00Z",
+  "mount_path": "/workspace/example-repo",
+  "type": "github_repository",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "url": "https://github.com/example-org/example-repo",
+  "checkout": {
+    "name": "main",
+    "type": "branch"
+  }
+}
 ```

@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/memory_stores/memories/retrieve
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: e73ce67dba693bfabbd4f4b579569b1b540fb03adb9584f619893eb422ce74bb
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 92c40f1c94ede94d31bdbc606e8c1797506bd9b4098c56139ebf18942b3ce952
 ---
 
-## Retrieve
+## Retrieve a memory
 
 `$ ant beta:memory-stores:memories retrieve`
 
@@ -84,4 +84,21 @@ ant beta:memory-stores:memories retrieve \
   --api-key my-anthropic-api-key \
   --memory-store-id memory_store_id \
   --memory-id memory_id
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "content_sha256": "content_sha256",
+  "content_size_bytes": 0,
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "memory_store_id": "memory_store_id",
+  "memory_version_id": "memory_version_id",
+  "path": "path",
+  "type": "memory",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "content": "content"
+}
 ```

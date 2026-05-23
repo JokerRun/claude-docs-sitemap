@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/skills/versions/delete
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 75496fd34da360eafb2c74e603a1374ec1bda86a5d4f96dd18196143cc49d7f6
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 57fba80de501fd2f6857195653f9b9a02ade292c26c713785c7e30b4a70f0b01
 ---
 
-## Delete
+## Delete Skill Version
 
 `$ ant beta:skills:versions delete`
 
@@ -54,4 +54,13 @@ ant beta:skills:versions delete \
   --api-key my-anthropic-api-key \
   --skill-id skill_id \
   --version version
+```
+
+#### Response
+
+```json
+{
+  "id": "1759178010641129",
+  "type": "type"
+}
 ```

@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/vaults/credentials/list
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: dc4c8805b4dc2024041a6ae917d829c1fb4e00c9b315a976e21ba58c42640939
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: e63781c2d6c480e5ec2109a633259b89cd2faa4f09d683938e031eec2c6d06a0
 ---
 
-## List
+## List Credentials
 
 `client.beta.vaults.credentials.list(stringvaultID, CredentialListParamsparams?, RequestOptionsoptions?): PageCursor<BetaManagedAgentsCredential>`
 
@@ -221,5 +221,31 @@ for await (const betaManagedAgentsCredential of client.beta.vaults.credentials.l
   'vlt_011CZkZDLs7fYzm1hXNPeRjv',
 )) {
   console.log(betaManagedAgentsCredential.id);
+}
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "vcrd_011CZkZEMt8gZan2iYOQfSkw",
+      "archived_at": null,
+      "auth": {
+        "mcp_server_url": "https://example-server.modelcontextprotocol.io/sse",
+        "type": "static_bearer"
+      },
+      "created_at": "2026-03-15T10:00:00Z",
+      "metadata": {
+        "environment": "production"
+      },
+      "type": "vault_credential",
+      "updated_at": "2026-03-15T10:00:00Z",
+      "vault_id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+      "display_name": "Example credential"
+    }
+  ],
+  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="
 }
 ```

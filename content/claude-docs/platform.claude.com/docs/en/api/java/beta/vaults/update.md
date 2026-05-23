@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/update
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 8e8190cc41fac1dec5cd0242ff33a01c088b59f0fc1ff6297af3c639a0cf0175
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: ab41c70b4a002fd0fbe6d4a57cc7277da17d6efd76aec607c34900c04afee22a
 ---
 
-## Update
+## Update Vault
 
 `BetaManagedAgentsVault beta().vaults().update(VaultUpdateParamsparams = VaultUpdateParams.none(), RequestOptionsrequestOptions = RequestOptions.none())`
 
@@ -133,5 +133,21 @@ public final class Main {
 
         BetaManagedAgentsVault betaManagedAgentsVault = client.beta().vaults().update("vlt_011CZkZDLs7fYzm1hXNPeRjv");
     }
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+  "archived_at": null,
+  "created_at": "2026-03-15T10:00:00Z",
+  "display_name": "Example vault",
+  "metadata": {
+    "environment": "production"
+  },
+  "type": "vault",
+  "updated_at": "2026-03-15T10:00:00Z"
 }
 ```

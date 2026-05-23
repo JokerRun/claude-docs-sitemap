@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/skills/delete
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 5887bb5ca36430fe0f3313c81e9c4efb3828e71eff2caeda11f427e7abe30ba8
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 692462d5fe390926292e4a423b3c219219b343ab1c48edd5a3e3f1a2b6229ca0
 ---
 
-## Delete
+## Delete Skill
 
 `beta.skills.delete(strskill_id, SkillDeleteParams**kwargs)  -> SkillDeleteResponse`
 
@@ -108,4 +108,13 @@ skill = client.beta.skills.delete(
     skill_id="skill_id",
 )
 print(skill.id)
+```
+
+#### Response
+
+```json
+{
+  "id": "skill_01JAbcdefghijklmnopqrstuvw",
+  "type": "type"
+}
 ```

@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/environments/list
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: b27938af4b1002273dbda50d8a8db26b2897d0dbb2bc9416cb7dcf0df92eb8da
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: acdd3485332a14ad8c548e3846cde4122c0410d10347efa7f9ac8035cecf4f67
 ---
 
-## List
+## List Environments
 
 `EnvironmentListPageResponse Beta.Environments.List(EnvironmentListParams?parameters, CancellationTokencancellationToken = default)`
 
@@ -235,5 +235,59 @@ var page = await client.Beta.Environments.List(parameters);
 await foreach (var item in page.Paginate())
 {
     Console.WriteLine(item);
+}
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "env_011CZkZ9X2dpNyB7HsEFoRfW",
+      "archived_at": null,
+      "config": {
+        "networking": {
+          "allow_mcp_servers": false,
+          "allow_package_managers": true,
+          "allowed_hosts": [
+            "api.example.com"
+          ],
+          "type": "limited"
+        },
+        "packages": {
+          "apt": [
+            "string"
+          ],
+          "cargo": [
+            "string"
+          ],
+          "gem": [
+            "string"
+          ],
+          "go": [
+            "string"
+          ],
+          "npm": [
+            "string"
+          ],
+          "pip": [
+            "pandas",
+            "numpy"
+          ],
+          "type": "packages"
+        },
+        "type": "cloud"
+      },
+      "created_at": "2026-03-15T10:00:00Z",
+      "description": "Python environment with data-analysis packages.",
+      "metadata": {},
+      "name": "python-data-analysis",
+      "type": "environment",
+      "updated_at": "2026-03-15T10:00:00Z",
+      "scope": "organization"
+    }
+  ],
+  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="
 }
 ```

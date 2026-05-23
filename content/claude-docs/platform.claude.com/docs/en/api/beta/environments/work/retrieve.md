@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/retrieve
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 80acba17aba428a49c95d0d5b396227558d859ca83f0f29afe64d1386dbcdea9
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 68afae93845c5b3867fc3728471900291f9094675457a05d7dea247fa2c78481
 ---
 
-## Retrieve
+## Get Work Item
 
 **get** `/v1/environments/{environment_id}/work/{work_id}`
 
@@ -25,9 +25,9 @@ Retrieve detailed information about a specific work item.
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = string`
+  - `string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -81,7 +81,7 @@ Retrieve detailed information about a specific work item.
 
 ### Returns
 
-- `BetaSelfHostedWork = object { id, acknowledged_at, created_at, 9 more }`
+- `BetaSelfHostedWork object { id, acknowledged_at, created_at, 9 more }`
 
   Work resource representing a unit of work in a self-hosted environment.
 
@@ -166,4 +166,28 @@ curl https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID/work/$WORK_ID \
     -H 'anthropic-version: 2023-06-01' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "acknowledged_at": "acknowledged_at",
+  "created_at": "created_at",
+  "data": {
+    "id": "id",
+    "type": "session"
+  },
+  "environment_id": "environment_id",
+  "latest_heartbeat_at": "latest_heartbeat_at",
+  "metadata": {
+    "foo": "string"
+  },
+  "started_at": "started_at",
+  "state": "queued",
+  "stop_requested_at": "stop_requested_at",
+  "stopped_at": "stopped_at",
+  "type": "work"
+}
 ```

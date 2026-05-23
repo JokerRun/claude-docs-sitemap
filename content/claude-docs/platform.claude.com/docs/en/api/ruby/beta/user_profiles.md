@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/user_profiles
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 0b660e009bad8da14833bf7205524fd264ff5a0345840e1d422c1ca3127475ac
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: c191381d77d1412f8403784e27517433bcb14ceebd44f2fec398809228d6af6f
 ---
 
 # User Profiles
 
-## Create
+## Create User Profile
 
 `beta.user_profiles.create(**kwargs) -> BetaUserProfile`
 
@@ -43,9 +43,9 @@ Create User Profile
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `String`
+  - `String = String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -167,7 +167,27 @@ beta_user_profile = anthropic.beta.user_profiles.create
 puts(beta_user_profile)
 ```
 
-## List
+#### Response
+
+```json
+{
+  "id": "uprof_011CZkZCu8hGbp5mYRQgUmz9",
+  "created_at": "2026-03-15T10:00:00Z",
+  "metadata": {},
+  "relationship": "external",
+  "trust_grants": {
+    "cyber": {
+      "status": "active"
+    }
+  },
+  "type": "user_profile",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "external_id": "user_12345",
+  "name": "Example User"
+}
+```
+
+## List User Profiles
 
 `beta.user_profiles.list(**kwargs) -> PageCursor<BetaUserProfile>`
 
@@ -197,9 +217,9 @@ List User Profiles
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `String`
+  - `String = String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -321,7 +341,32 @@ page = anthropic.beta.user_profiles.list
 puts(page)
 ```
 
-## Retrieve
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "uprof_011CZkZCu8hGbp5mYRQgUmz9",
+      "created_at": "2026-03-15T10:00:00Z",
+      "metadata": {},
+      "relationship": "external",
+      "trust_grants": {
+        "cyber": {
+          "status": "active"
+        }
+      },
+      "type": "user_profile",
+      "updated_at": "2026-03-15T10:00:00Z",
+      "external_id": "user_12345",
+      "name": "Example User"
+    }
+  ],
+  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="
+}
+```
+
+## Get User Profile
 
 `beta.user_profiles.retrieve(user_profile_id, **kwargs) -> BetaUserProfile`
 
@@ -337,9 +382,9 @@ Get User Profile
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `String`
+  - `String = String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -461,7 +506,27 @@ beta_user_profile = anthropic.beta.user_profiles.retrieve("uprof_011CZkZCu8hGbp5
 puts(beta_user_profile)
 ```
 
-## Update
+#### Response
+
+```json
+{
+  "id": "uprof_011CZkZCu8hGbp5mYRQgUmz9",
+  "created_at": "2026-03-15T10:00:00Z",
+  "metadata": {},
+  "relationship": "external",
+  "trust_grants": {
+    "cyber": {
+      "status": "active"
+    }
+  },
+  "type": "user_profile",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "external_id": "user_12345",
+  "name": "Example User"
+}
+```
+
+## Update User Profile
 
 `beta.user_profiles.update(user_profile_id, **kwargs) -> BetaUserProfile`
 
@@ -499,9 +564,9 @@ Update User Profile
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `String`
+  - `String = String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -623,6 +688,26 @@ beta_user_profile = anthropic.beta.user_profiles.update("uprof_011CZkZCu8hGbp5mY
 puts(beta_user_profile)
 ```
 
+#### Response
+
+```json
+{
+  "id": "uprof_011CZkZCu8hGbp5mYRQgUmz9",
+  "created_at": "2026-03-15T10:00:00Z",
+  "metadata": {},
+  "relationship": "external",
+  "trust_grants": {
+    "cyber": {
+      "status": "active"
+    }
+  },
+  "type": "user_profile",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "external_id": "user_12345",
+  "name": "Example User"
+}
+```
+
 ## Create Enrollment URL
 
 `beta.user_profiles.create_enrollment_url(user_profile_id, **kwargs) -> BetaUserProfileEnrollmentURL`
@@ -639,9 +724,9 @@ Create Enrollment URL
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `String`
+  - `String = String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -721,6 +806,16 @@ anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
 beta_user_profile_enrollment_url = anthropic.beta.user_profiles.create_enrollment_url("uprof_011CZkZCu8hGbp5mYRQgUmz9")
 
 puts(beta_user_profile_enrollment_url)
+```
+
+#### Response
+
+```json
+{
+  "expires_at": "2026-03-15T10:15:00Z",
+  "type": "enrollment_url",
+  "url": "https://platform.claude.com/user-profiles/enrollment/M3J0bGJxZ2ppMnptbnB1"
+}
 ```
 
 ## Domain Types

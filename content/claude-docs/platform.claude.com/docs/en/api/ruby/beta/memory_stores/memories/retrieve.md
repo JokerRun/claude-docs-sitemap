@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/memory_stores/memories/retrieve
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 586abfa7b6e4ed4b1b2504446d357495dd15d1a202fb566a47ce5cdceb87d16b
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 332e559bb18bddf1fd3eafd3b3a2d30b987ab76b75b44d11ff662589f2a9d356
 ---
 
-## Retrieve
+## Retrieve a memory
 
 `beta.memory_stores.memories.retrieve(memory_id, **kwargs) -> BetaManagedAgentsMemory`
 
@@ -31,9 +31,9 @@ Retrieve a memory
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `String`
+  - `String = String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -141,4 +141,21 @@ anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
 beta_managed_agents_memory = anthropic.beta.memory_stores.memories.retrieve("memory_id", memory_store_id: "memory_store_id")
 
 puts(beta_managed_agents_memory)
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "content_sha256": "content_sha256",
+  "content_size_bytes": 0,
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "memory_store_id": "memory_store_id",
+  "memory_version_id": "memory_version_id",
+  "path": "path",
+  "type": "memory",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "content": "content"
+}
 ```

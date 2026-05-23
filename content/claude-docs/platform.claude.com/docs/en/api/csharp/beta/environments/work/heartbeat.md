@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/environments/work/heartbeat
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 1716c713a047a2c6388a05080b98b452548ded66e94513b24d8ce90aefeaf939
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: a4d364a351d233db6c3f19956b0f6b0ad864d3eb9f0a9ea3f996419e7769f856
 ---
 
-## Heartbeat
+## Record Heartbeat
 
 `BetaSelfHostedWorkHeartbeatResponse Beta.Environments.Work.Heartbeat(WorkHeartbeatParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -137,4 +137,16 @@ WorkHeartbeatParams parameters = new()
 var betaSelfHostedWorkHeartbeatResponse = await client.Beta.Environments.Work.Heartbeat(parameters);
 
 Console.WriteLine(betaSelfHostedWorkHeartbeatResponse);
+```
+
+#### Response
+
+```json
+{
+  "last_heartbeat": "last_heartbeat",
+  "lease_extended": true,
+  "state": "queued",
+  "ttl_seconds": 0,
+  "type": "work_heartbeat"
+}
 ```

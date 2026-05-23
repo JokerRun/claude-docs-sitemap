@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/delete
-fetched_at: 2026-05-09T03:13:52.260309Z
-sha256: ec0ed9174d0756b2eabbdc1c900a8897293e13c439cc142f3192d135f7fa6fa0
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 1c3a893ad2ed5714faf5f5545f3ed4bddfb6842b948198b6f07dc0c191fbff5f
 ---
 
-## Delete
+## Delete project
 
 **delete** `/v1/compliance/apps/projects/{project_id}`
 
@@ -55,4 +55,13 @@ NotFoundException: If project doesn't exist or already deleted
 curl https://api.anthropic.com/v1/compliance/apps/projects/$PROJECT_ID \
     -X DELETE \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "type": "claude_project_deleted"
+}
 ```

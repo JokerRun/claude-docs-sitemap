@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/files/retrieve_metadata
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 893c1c1437f918c731fbfa35d826ad75d5ce8e0bdd269fefda485facca536f08
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: f465518dae9a3151b7241908a94ba35396c79e4426ddc069d8fd089bf235408f
 ---
 
-## Retrieve Metadata
+## Get File Metadata
 
 `client.Beta.Files.GetMetadata(ctx, fileID, query) (*FileMetadata, error)`
 
@@ -159,5 +159,23 @@ func main() {
     panic(err.Error())
   }
   fmt.Printf("%+v\n", fileMetadata.ID)
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "file_011CNha8iCJcU1wXNR6q4V8w",
+  "created_at": "2025-04-15T18:37:24.100435Z",
+  "filename": "document.pdf",
+  "mime_type": "application/pdf",
+  "size_bytes": 102400,
+  "type": "file",
+  "downloadable": false,
+  "scope": {
+    "id": "id",
+    "type": "session"
+  }
 }
 ```

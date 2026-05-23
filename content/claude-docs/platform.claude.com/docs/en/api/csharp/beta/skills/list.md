@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/skills/list
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 1b361302de7e44238f8950355ad20263b88a93353f747d3d4f80bd5b285e7a0a
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: de861acd514884d1979a1566bfd0d92b2d1243377ca18f8b5a38f8b528fc2d7f
 ---
 
-## List
+## List Skills
 
 `SkillListPageResponse Beta.Skills.List(SkillListParams?parameters, CancellationTokencancellationToken = default)`
 
@@ -162,5 +162,25 @@ var page = await client.Beta.Skills.List(parameters);
 await foreach (var item in page.Paginate())
 {
     Console.WriteLine(item);
+}
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "skill_01JAbcdefghijklmnopqrstuvw",
+      "created_at": "2024-10-30T23:58:27.427722Z",
+      "display_title": "My Custom Skill",
+      "latest_version": "1759178010641129",
+      "source": "custom",
+      "type": "type",
+      "updated_at": "2024-10-30T23:58:27.427722Z"
+    }
+  ],
+  "has_more": true,
+  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="
 }
 ```

@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/user_profiles/update
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 5a344fffdc73c8887146f45dd404ed7b45962ad8977189a7054574ad83b35e1d
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: d526264f8e262431f3fd3042ac84cce1d85f2001c216cda11afc4546789258be
 ---
 
-## Update
+## Update User Profile
 
 `client.beta.userProfiles.update(stringuserProfileID, UserProfileUpdateParamsparams, RequestOptionsoptions?): BetaUserProfile`
 
@@ -169,4 +169,24 @@ const client = new Anthropic({
 const betaUserProfile = await client.beta.userProfiles.update('uprof_011CZkZCu8hGbp5mYRQgUmz9');
 
 console.log(betaUserProfile.id);
+```
+
+#### Response
+
+```json
+{
+  "id": "uprof_011CZkZCu8hGbp5mYRQgUmz9",
+  "created_at": "2026-03-15T10:00:00Z",
+  "metadata": {},
+  "relationship": "external",
+  "trust_grants": {
+    "cyber": {
+      "status": "active"
+    }
+  },
+  "type": "user_profile",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "external_id": "user_12345",
+  "name": "Example User"
+}
 ```

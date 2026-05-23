@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/versions/download
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 2ad8a1ca0ea13d95c857707f1a688a6a9bbddf052dc868f6febeaae8861545f9
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: fd4dbf126ae90ea0c4e75550d55edde819e6715d0809fe1a53f907c7f5b8bc49
 ---
 
-## Download
+## Download Skill Version Content
 
 **get** `/v1/skills/{skill_id}/versions/{version}/content`
 
@@ -31,9 +31,9 @@ Download a skill version's content as a zip archive.
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = string`
+  - `string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 

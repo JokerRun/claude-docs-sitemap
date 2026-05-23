@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/skills/versions/delete
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 0ff558272be867c398ad38f1318ee3ad44cb6f115bc65ac03ef7801eb1826680
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 232a2f19b216d79894802281b8d7ee5106258fd8a0a2ae4c4999234d0d3edc25
 ---
 
-## Delete
+## Delete Skill Version
 
 `VersionDeleteResponse beta().skills().versions().delete(VersionDeleteParamsparams, RequestOptionsrequestOptions = RequestOptions.none())`
 
@@ -121,5 +121,14 @@ public final class Main {
             .build();
         VersionDeleteResponse version = client.beta().skills().versions().delete(params);
     }
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "1759178010641129",
+  "type": "type"
 }
 ```

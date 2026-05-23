@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/environments/work/stats
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: be13df2e488311ddc4f1618f17ece5247314147a53cc04ef67783d4907efde63
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 347d9324b04fc8ae2dc08c0ebeace6346f22c241e05de4aba1c36014c1fd1464
 ---
 
-## Stats
+## Get Queue Statistics
 
 `$ ant beta:environments:work stats`
 
@@ -55,4 +55,16 @@ Get statistics about the work queue for an environment.
 ant beta:environments:work stats \
   --api-key my-anthropic-api-key \
   --environment-id env_011CZkZ9X2dpNyB7HsEFoRfW
+```
+
+#### Response
+
+```json
+{
+  "depth": 0,
+  "oldest_queued_at": "oldest_queued_at",
+  "pending": 0,
+  "type": "work_queue_stats",
+  "workers_polling": 0
+}
 ```

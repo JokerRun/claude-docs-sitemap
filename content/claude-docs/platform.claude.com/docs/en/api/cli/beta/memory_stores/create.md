@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/memory_stores/create
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 95c7dd1017fe4b460ff797309a2643f8fd91d3fd07f614c27865113fbe51e0f1
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 43ba60652b2e845b3e4758f7efa70cba98949fcb6bd6e02aa4708f33287139e4
 ---
 
-## Create
+## Create a memory store
 
 `$ ant beta:memory-stores create`
 
@@ -75,4 +75,21 @@ Create a memory store
 ant beta:memory-stores create \
   --api-key my-anthropic-api-key \
   --name x
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "name": "name",
+  "type": "memory_store",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "archived_at": "2019-12-27T18:11:19.117Z",
+  "description": "description",
+  "metadata": {
+    "foo": "string"
+  }
+}
 ```

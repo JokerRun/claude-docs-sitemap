@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/files/download
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: b4b0ae02c5ee8124117de90fa3e668f1833fddf9162a95de20eacf8b6dc693ee
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: da0749cfbd080ece1c99657d2f7a3b93ed13c73a60614d713dd5fe273a3ae129
 ---
 
-## Download
+## Download File
 
 `beta.files.download(file_id, **kwargs) -> StringIO`
 
@@ -23,9 +23,9 @@ Download File
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `String`
+  - `String = String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 

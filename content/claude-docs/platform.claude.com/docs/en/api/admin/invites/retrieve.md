@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/invites/retrieve
-fetched_at: 2026-04-25T03:09:48.142425Z
-sha256: 07968dba44ff93950f9014c9f508b3982d0f9d933a112d906e6612d59c5a4321
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 904be29fc4d40869d40572a59b25f0b0208fa564e58b57f65c34b3cff1947df8
 ---
 
-## Retrieve
+## Get Invite
 
 **get** `/v1/organizations/invites/{invite_id}`
 
@@ -19,7 +19,7 @@ Get Invite
 
 ### Returns
 
-- `Invite = object { id, email, expires_at, 4 more }`
+- `Invite object { id, email, expires_at, 4 more }`
 
   - `id: string`
 
@@ -77,4 +77,18 @@ Get Invite
 curl https://api.anthropic.com/v1/organizations/invites/$INVITE_ID \
     -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
+```
+
+#### Response
+
+```json
+{
+  "id": "invite_015gWxCN9Hfg2QhZwTK7Mdeu",
+  "email": "user@emaildomain.com",
+  "expires_at": "2024-11-20T23:58:27.427722Z",
+  "invited_at": "2024-10-30T23:58:27.427722Z",
+  "role": "user",
+  "status": "pending",
+  "type": "invite"
+}
 ```

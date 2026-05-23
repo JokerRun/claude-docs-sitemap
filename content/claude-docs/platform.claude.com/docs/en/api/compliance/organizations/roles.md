@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/roles
-fetched_at: 2026-05-09T03:13:52.260309Z
-sha256: cb75c678a069c363f433494b7c2883129eb80fc43e6db262a2e81c8bab1f31c0
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 8af8c0fd2d20459f8310bea075d74bd7cb69d32faaff58abc29662e6a064b3fa
 ---
 
 # Roles
 
-## List
+## List Compliance Roles
 
 **get** `/v1/compliance/organizations/{org_uuid}/roles`
 
@@ -74,7 +74,25 @@ curl https://api.anthropic.com/v1/compliance/organizations/$ORG_UUID/roles \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 
-## Retrieve
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "id",
+      "created_at": "created_at",
+      "description": "description",
+      "name": "name",
+      "updated_at": "updated_at"
+    }
+  ],
+  "has_more": true,
+  "next_page": "next_page"
+}
+```
+
+## Get Compliance Role
 
 **get** `/v1/compliance/organizations/{org_uuid}/roles/{role_id}`
 
@@ -123,11 +141,23 @@ curl https://api.anthropic.com/v1/compliance/organizations/$ORG_UUID/roles/$ROLE
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 
+#### Response
+
+```json
+{
+  "id": "id",
+  "created_at": "created_at",
+  "description": "description",
+  "name": "name",
+  "updated_at": "updated_at"
+}
+```
+
 ## Domain Types
 
 ### Role List Response
 
-- `RoleListResponse = object { id, created_at, description, 2 more }`
+- `RoleListResponse object { id, created_at, description, 2 more }`
 
   Role information for compliance responses.
 
@@ -153,7 +183,7 @@ curl https://api.anthropic.com/v1/compliance/organizations/$ORG_UUID/roles/$ROLE
 
 ### Role Retrieve Response
 
-- `RoleRetrieveResponse = object { id, created_at, description, 2 more }`
+- `RoleRetrieveResponse object { id, created_at, description, 2 more }`
 
   Role information for compliance responses.
 
@@ -179,7 +209,7 @@ curl https://api.anthropic.com/v1/compliance/organizations/$ORG_UUID/roles/$ROLE
 
 # Permissions
 
-## List
+## List Compliance Role Permissions
 
 **get** `/v1/compliance/organizations/{org_uuid}/roles/{role_id}/permissions`
 
@@ -242,11 +272,27 @@ curl https://api.anthropic.com/v1/compliance/organizations/$ORG_UUID/roles/$ROLE
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "action": "action",
+      "resource_id": "resource_id",
+      "resource_type": "resource_type"
+    }
+  ],
+  "has_more": true,
+  "next_page": "next_page"
+}
+```
+
 ## Domain Types
 
 ### Permission List Response
 
-- `PermissionListResponse = object { action, resource_id, resource_type }`
+- `PermissionListResponse object { action, resource_id, resource_type }`
 
   Permission granted by a role.
 

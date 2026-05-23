@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/mcp_tunnels/tunnel_certificates/create
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 1679d9c8e29f9b63746883da98f93d69586b2842c4ee7bd2c72f03772d9271a8
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: c0c7418ba2c553497d332998b6b9dd0b824ba974c3369138d50bafb1260ffb99
 ---
 
-## Create
+## Create Tunnel Certificate
 
 **post** `/v1/organizations/tunnels/{tunnel_id}/certificates`
 
@@ -81,4 +81,18 @@ curl https://api.anthropic.com/v1/organizations/tunnels/$TUNNEL_ID/certificates 
     -d '{
           "ca_certificate_pem": "-----BEGIN CERTIFICATE-----\\nMIIBexampleEXAMPLEexampleEXAMPLEexampleEXAMPLEexampleEXAMPLEexa\\n...illustrative placeholder, not a real certificate...\\n-----END CERTIFICATE-----\\n"
         }'
+```
+
+#### Response
+
+```json
+{
+  "id": "tcrt_01JmWq4ZxnBvR7tKpY2sLdH9",
+  "archived_at": "2024-11-01T23:59:27.427722Z",
+  "created_at": "2024-10-30T23:58:27.427722Z",
+  "expires_at": "2024-10-30T23:58:27.427722Z",
+  "fingerprint": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
+  "tunnel_id": "tnl_01Hx9Kp2RtQvMn3sWbYdLcF8",
+  "type": "tunnel_certificate"
+}
 ```

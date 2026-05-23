@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/environments/archive
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: a6a3eb622f636d356aad7e8a2d709f5aa287416c0f4c42a9fecf98b91f7d13fe
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 79bc921ac7be333b58f648a03c2f7cdd614f3c2e2b466e9b5ff1da8e0206d23b
 ---
 
-## Archive
+## Archive Environment
 
 `BetaEnvironment beta().environments().archive(EnvironmentArchiveParamsparams = EnvironmentArchiveParams.none(), RequestOptionsrequestOptions = RequestOptions.none())`
 
@@ -233,5 +233,54 @@ public final class Main {
 
         BetaEnvironment betaEnvironment = client.beta().environments().archive("env_011CZkZ9X2dpNyB7HsEFoRfW");
     }
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "env_011CZkZ9X2dpNyB7HsEFoRfW",
+  "archived_at": null,
+  "config": {
+    "networking": {
+      "allow_mcp_servers": false,
+      "allow_package_managers": true,
+      "allowed_hosts": [
+        "api.example.com"
+      ],
+      "type": "limited"
+    },
+    "packages": {
+      "apt": [
+        "string"
+      ],
+      "cargo": [
+        "string"
+      ],
+      "gem": [
+        "string"
+      ],
+      "go": [
+        "string"
+      ],
+      "npm": [
+        "string"
+      ],
+      "pip": [
+        "pandas",
+        "numpy"
+      ],
+      "type": "packages"
+    },
+    "type": "cloud"
+  },
+  "created_at": "2026-03-15T10:00:00Z",
+  "description": "Python environment with data-analysis packages.",
+  "metadata": {},
+  "name": "python-data-analysis",
+  "type": "environment",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "scope": "organization"
 }
 ```

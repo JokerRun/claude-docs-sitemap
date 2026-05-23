@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/files/download
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: b2d5b273c19063b542a25c0ac576d84166776b850e07dc2d3c078bf9134c808a
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 764e273f1651a87dd06ef51a3b8fda4aeb508a5cc8fbba6388b7c638e4ea5e11
 ---
 
-## Download
+## Download File
 
 `client.beta.files.download(stringfileID, FileDownloadParamsparams?, RequestOptionsoptions?): Response`
 

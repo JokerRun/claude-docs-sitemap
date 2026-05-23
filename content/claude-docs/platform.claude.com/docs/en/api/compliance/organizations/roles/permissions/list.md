@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/roles/permissions/list
-fetched_at: 2026-05-09T03:13:52.260309Z
-sha256: 82835f5177dcee7cf5a0e368774c7c236434e082712ef74ee29bb2cb2daa6826
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 4f15dac39325da67958694968b2adbd00ba4dfe2af9158060928db1bce9b7fa2
 ---
 
-## List
+## List Compliance Role Permissions
 
 **get** `/v1/compliance/organizations/{org_uuid}/roles/{role_id}/permissions`
 
@@ -66,4 +66,20 @@ List Compliance Role Permissions
 ```http
 curl https://api.anthropic.com/v1/compliance/organizations/$ORG_UUID/roles/$ROLE_ID/permissions \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "action": "action",
+      "resource_id": "resource_id",
+      "resource_type": "resource_type"
+    }
+  ],
+  "has_more": true,
+  "next_page": "next_page"
+}
 ```

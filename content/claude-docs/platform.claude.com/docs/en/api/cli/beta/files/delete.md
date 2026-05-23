@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/files/delete
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: c02f26c5212ae8da02ca65103c5d7888adce4950ce7cc1e87a53764b696d7854
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 05f1ccf7a21bdfa2d9eca463247dc1aeda8bc3a77e1a21d1c301bb259b87239c
 ---
 
-## Delete
+## Delete File
 
 `$ ant beta:files delete`
 
@@ -45,4 +45,13 @@ Delete File
 ant beta:files delete \
   --api-key my-anthropic-api-key \
   --file-id file_id
+```
+
+#### Response
+
+```json
+{
+  "id": "file_011CNha8iCJcU1wXNR6q4V8w",
+  "type": "file_deleted"
+}
 ```

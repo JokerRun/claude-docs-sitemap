@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/sessions/events/send
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 418a867270a936291f15b60b034c0e3cceddf3ff2ab3690eda6552642298061a
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 16c010b4387fb5c8c8c8eb3fcc0ef68ec450abf38493b488121695e93874ba1f
 ---
 
-## Send
+## Send Events
 
 `beta.sessions.events.send_(session_id, **kwargs) -> BetaManagedAgentsSendSessionEvents`
 
@@ -231,143 +231,13 @@ Send Events
 
         Regular text content.
 
-        - `text: String`
-
-          The text content.
-
-        - `type: :text`
-
-          - `:text`
-
       - `class BetaManagedAgentsImageBlock`
 
         Image content specified directly as base64 data or as a reference via a URL.
 
-        - `source: BetaManagedAgentsBase64ImageSource | BetaManagedAgentsURLImageSource | BetaManagedAgentsFileImageSource`
-
-          Union type for image source variants.
-
-          - `class BetaManagedAgentsBase64ImageSource`
-
-            Base64-encoded image data.
-
-            - `data: String`
-
-              Base64-encoded image data.
-
-            - `media_type: String`
-
-              MIME type of the image (e.g., "image/png", "image/jpeg", "image/gif", "image/webp").
-
-            - `type: :base64`
-
-              - `:base64`
-
-          - `class BetaManagedAgentsURLImageSource`
-
-            Image referenced by URL.
-
-            - `type: :url`
-
-              - `:url`
-
-            - `url: String`
-
-              URL of the image to fetch.
-
-          - `class BetaManagedAgentsFileImageSource`
-
-            Image referenced by file ID.
-
-            - `file_id: String`
-
-              ID of a previously uploaded file.
-
-            - `type: :file`
-
-              - `:file`
-
-        - `type: :image`
-
-          - `:image`
-
       - `class BetaManagedAgentsDocumentBlock`
 
         Document content, either specified directly as base64 data, as text, or as a reference via a URL.
-
-        - `source: BetaManagedAgentsBase64DocumentSource | BetaManagedAgentsPlainTextDocumentSource | BetaManagedAgentsURLDocumentSource | BetaManagedAgentsFileDocumentSource`
-
-          Union type for document source variants.
-
-          - `class BetaManagedAgentsBase64DocumentSource`
-
-            Base64-encoded document data.
-
-            - `data: String`
-
-              Base64-encoded document data.
-
-            - `media_type: String`
-
-              MIME type of the document (e.g., "application/pdf").
-
-            - `type: :base64`
-
-              - `:base64`
-
-          - `class BetaManagedAgentsPlainTextDocumentSource`
-
-            Plain text document content.
-
-            - `data: String`
-
-              The plain text content.
-
-            - `media_type: :"text/plain"`
-
-              MIME type of the text content. Must be "text/plain".
-
-              - `:"text/plain"`
-
-            - `type: :text`
-
-              - `:text`
-
-          - `class BetaManagedAgentsURLDocumentSource`
-
-            Document referenced by URL.
-
-            - `type: :url`
-
-              - `:url`
-
-            - `url: String`
-
-              URL of the document to fetch.
-
-          - `class BetaManagedAgentsFileDocumentSource`
-
-            Document referenced by file ID.
-
-            - `file_id: String`
-
-              ID of a previously uploaded file.
-
-            - `type: :file`
-
-              - `:file`
-
-        - `type: :document`
-
-          - `:document`
-
-        - `context: String`
-
-          Additional context about the document for the model.
-
-        - `title: String`
-
-          The title of the document.
 
       - `class BetaManagedAgentsSearchResultBlock`
 
@@ -473,179 +343,17 @@ Send Events
 
         Regular text content.
 
-        - `text: String`
-
-          The text content.
-
-        - `type: :text`
-
-          - `:text`
-
       - `class BetaManagedAgentsImageBlock`
 
         Image content specified directly as base64 data or as a reference via a URL.
-
-        - `source: BetaManagedAgentsBase64ImageSource | BetaManagedAgentsURLImageSource | BetaManagedAgentsFileImageSource`
-
-          Union type for image source variants.
-
-          - `class BetaManagedAgentsBase64ImageSource`
-
-            Base64-encoded image data.
-
-            - `data: String`
-
-              Base64-encoded image data.
-
-            - `media_type: String`
-
-              MIME type of the image (e.g., "image/png", "image/jpeg", "image/gif", "image/webp").
-
-            - `type: :base64`
-
-              - `:base64`
-
-          - `class BetaManagedAgentsURLImageSource`
-
-            Image referenced by URL.
-
-            - `type: :url`
-
-              - `:url`
-
-            - `url: String`
-
-              URL of the image to fetch.
-
-          - `class BetaManagedAgentsFileImageSource`
-
-            Image referenced by file ID.
-
-            - `file_id: String`
-
-              ID of a previously uploaded file.
-
-            - `type: :file`
-
-              - `:file`
-
-        - `type: :image`
-
-          - `:image`
 
       - `class BetaManagedAgentsDocumentBlock`
 
         Document content, either specified directly as base64 data, as text, or as a reference via a URL.
 
-        - `source: BetaManagedAgentsBase64DocumentSource | BetaManagedAgentsPlainTextDocumentSource | BetaManagedAgentsURLDocumentSource | BetaManagedAgentsFileDocumentSource`
-
-          Union type for document source variants.
-
-          - `class BetaManagedAgentsBase64DocumentSource`
-
-            Base64-encoded document data.
-
-            - `data: String`
-
-              Base64-encoded document data.
-
-            - `media_type: String`
-
-              MIME type of the document (e.g., "application/pdf").
-
-            - `type: :base64`
-
-              - `:base64`
-
-          - `class BetaManagedAgentsPlainTextDocumentSource`
-
-            Plain text document content.
-
-            - `data: String`
-
-              The plain text content.
-
-            - `media_type: :"text/plain"`
-
-              MIME type of the text content. Must be "text/plain".
-
-              - `:"text/plain"`
-
-            - `type: :text`
-
-              - `:text`
-
-          - `class BetaManagedAgentsURLDocumentSource`
-
-            Document referenced by URL.
-
-            - `type: :url`
-
-              - `:url`
-
-            - `url: String`
-
-              URL of the document to fetch.
-
-          - `class BetaManagedAgentsFileDocumentSource`
-
-            Document referenced by file ID.
-
-            - `file_id: String`
-
-              ID of a previously uploaded file.
-
-            - `type: :file`
-
-              - `:file`
-
-        - `type: :document`
-
-          - `:document`
-
-        - `context: String`
-
-          Additional context about the document for the model.
-
-        - `title: String`
-
-          The title of the document.
-
       - `class BetaManagedAgentsSearchResultBlock`
 
         A block containing a web search result.
-
-        - `citations: BetaManagedAgentsSearchResultCitations`
-
-          Citation settings for a search result.
-
-          - `enabled: bool`
-
-            Whether citations are enabled for this search result.
-
-        - `content: Array[BetaManagedAgentsSearchResultContent]`
-
-          Array of text content blocks from the search result.
-
-          - `text: String`
-
-            The text content.
-
-          - `type: :text`
-
-            - `:text`
-
-        - `source: String`
-
-          The URL source of the search result.
-
-        - `title: String`
-
-          The title of the search result.
-
-        - `type: :search_result`
-
-          - `:search_result`
 
     - `is_error: bool`
 
@@ -655,9 +363,9 @@ Send Events
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `String`
+  - `String = String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -961,143 +669,13 @@ Send Events
 
           Regular text content.
 
-          - `text: String`
-
-            The text content.
-
-          - `type: :text`
-
-            - `:text`
-
         - `class BetaManagedAgentsImageBlock`
 
           Image content specified directly as base64 data or as a reference via a URL.
 
-          - `source: BetaManagedAgentsBase64ImageSource | BetaManagedAgentsURLImageSource | BetaManagedAgentsFileImageSource`
-
-            Union type for image source variants.
-
-            - `class BetaManagedAgentsBase64ImageSource`
-
-              Base64-encoded image data.
-
-              - `data: String`
-
-                Base64-encoded image data.
-
-              - `media_type: String`
-
-                MIME type of the image (e.g., "image/png", "image/jpeg", "image/gif", "image/webp").
-
-              - `type: :base64`
-
-                - `:base64`
-
-            - `class BetaManagedAgentsURLImageSource`
-
-              Image referenced by URL.
-
-              - `type: :url`
-
-                - `:url`
-
-              - `url: String`
-
-                URL of the image to fetch.
-
-            - `class BetaManagedAgentsFileImageSource`
-
-              Image referenced by file ID.
-
-              - `file_id: String`
-
-                ID of a previously uploaded file.
-
-              - `type: :file`
-
-                - `:file`
-
-          - `type: :image`
-
-            - `:image`
-
         - `class BetaManagedAgentsDocumentBlock`
 
           Document content, either specified directly as base64 data, as text, or as a reference via a URL.
-
-          - `source: BetaManagedAgentsBase64DocumentSource | BetaManagedAgentsPlainTextDocumentSource | BetaManagedAgentsURLDocumentSource | BetaManagedAgentsFileDocumentSource`
-
-            Union type for document source variants.
-
-            - `class BetaManagedAgentsBase64DocumentSource`
-
-              Base64-encoded document data.
-
-              - `data: String`
-
-                Base64-encoded document data.
-
-              - `media_type: String`
-
-                MIME type of the document (e.g., "application/pdf").
-
-              - `type: :base64`
-
-                - `:base64`
-
-            - `class BetaManagedAgentsPlainTextDocumentSource`
-
-              Plain text document content.
-
-              - `data: String`
-
-                The plain text content.
-
-              - `media_type: :"text/plain"`
-
-                MIME type of the text content. Must be "text/plain".
-
-                - `:"text/plain"`
-
-              - `type: :text`
-
-                - `:text`
-
-            - `class BetaManagedAgentsURLDocumentSource`
-
-              Document referenced by URL.
-
-              - `type: :url`
-
-                - `:url`
-
-              - `url: String`
-
-                URL of the document to fetch.
-
-            - `class BetaManagedAgentsFileDocumentSource`
-
-              Document referenced by file ID.
-
-              - `file_id: String`
-
-                ID of a previously uploaded file.
-
-              - `type: :file`
-
-                - `:file`
-
-          - `type: :document`
-
-            - `:document`
-
-          - `context: String`
-
-            Additional context about the document for the model.
-
-          - `title: String`
-
-            The title of the document.
 
         - `class BetaManagedAgentsSearchResultBlock`
 
@@ -1227,179 +805,17 @@ Send Events
 
           Regular text content.
 
-          - `text: String`
-
-            The text content.
-
-          - `type: :text`
-
-            - `:text`
-
         - `class BetaManagedAgentsImageBlock`
 
           Image content specified directly as base64 data or as a reference via a URL.
-
-          - `source: BetaManagedAgentsBase64ImageSource | BetaManagedAgentsURLImageSource | BetaManagedAgentsFileImageSource`
-
-            Union type for image source variants.
-
-            - `class BetaManagedAgentsBase64ImageSource`
-
-              Base64-encoded image data.
-
-              - `data: String`
-
-                Base64-encoded image data.
-
-              - `media_type: String`
-
-                MIME type of the image (e.g., "image/png", "image/jpeg", "image/gif", "image/webp").
-
-              - `type: :base64`
-
-                - `:base64`
-
-            - `class BetaManagedAgentsURLImageSource`
-
-              Image referenced by URL.
-
-              - `type: :url`
-
-                - `:url`
-
-              - `url: String`
-
-                URL of the image to fetch.
-
-            - `class BetaManagedAgentsFileImageSource`
-
-              Image referenced by file ID.
-
-              - `file_id: String`
-
-                ID of a previously uploaded file.
-
-              - `type: :file`
-
-                - `:file`
-
-          - `type: :image`
-
-            - `:image`
 
         - `class BetaManagedAgentsDocumentBlock`
 
           Document content, either specified directly as base64 data, as text, or as a reference via a URL.
 
-          - `source: BetaManagedAgentsBase64DocumentSource | BetaManagedAgentsPlainTextDocumentSource | BetaManagedAgentsURLDocumentSource | BetaManagedAgentsFileDocumentSource`
-
-            Union type for document source variants.
-
-            - `class BetaManagedAgentsBase64DocumentSource`
-
-              Base64-encoded document data.
-
-              - `data: String`
-
-                Base64-encoded document data.
-
-              - `media_type: String`
-
-                MIME type of the document (e.g., "application/pdf").
-
-              - `type: :base64`
-
-                - `:base64`
-
-            - `class BetaManagedAgentsPlainTextDocumentSource`
-
-              Plain text document content.
-
-              - `data: String`
-
-                The plain text content.
-
-              - `media_type: :"text/plain"`
-
-                MIME type of the text content. Must be "text/plain".
-
-                - `:"text/plain"`
-
-              - `type: :text`
-
-                - `:text`
-
-            - `class BetaManagedAgentsURLDocumentSource`
-
-              Document referenced by URL.
-
-              - `type: :url`
-
-                - `:url`
-
-              - `url: String`
-
-                URL of the document to fetch.
-
-            - `class BetaManagedAgentsFileDocumentSource`
-
-              Document referenced by file ID.
-
-              - `file_id: String`
-
-                ID of a previously uploaded file.
-
-              - `type: :file`
-
-                - `:file`
-
-          - `type: :document`
-
-            - `:document`
-
-          - `context: String`
-
-            Additional context about the document for the model.
-
-          - `title: String`
-
-            The title of the document.
-
         - `class BetaManagedAgentsSearchResultBlock`
 
           A block containing a web search result.
-
-          - `citations: BetaManagedAgentsSearchResultCitations`
-
-            Citation settings for a search result.
-
-            - `enabled: bool`
-
-              Whether citations are enabled for this search result.
-
-          - `content: Array[BetaManagedAgentsSearchResultContent]`
-
-            Array of text content blocks from the search result.
-
-            - `text: String`
-
-              The text content.
-
-            - `type: :text`
-
-              - `:text`
-
-          - `source: String`
-
-            The URL source of the search result.
-
-          - `title: String`
-
-            The title of the search result.
-
-          - `type: :search_result`
-
-            - `:search_result`
 
       - `is_error: bool`
 
@@ -1426,4 +842,24 @@ beta_managed_agents_send_session_events = anthropic.beta.sessions.events.send_(
 )
 
 puts(beta_managed_agents_send_session_events)
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "sevt_011CZkZGOp0iBcp4kaQSihUmy",
+      "content": [
+        {
+          "text": "Where is my order #1234?",
+          "type": "text"
+        }
+      ],
+      "type": "user.message",
+      "processed_at": "2026-03-15T10:00:00Z"
+    }
+  ]
+}
 ```

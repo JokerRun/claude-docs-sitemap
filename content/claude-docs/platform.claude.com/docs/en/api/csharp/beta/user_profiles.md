@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/user_profiles
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: b894cd24bd446b73ce1e259297a7c6d2ed05bddee5991641d47e357e5f5b8373
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 5fb79859c980f77a9e49e441ce4634340a5f3d5096a93040b8044149a89d8440
 ---
 
 # User Profiles
 
-## Create
+## Create User Profile
 
 `BetaUserProfile Beta.UserProfiles.Create(UserProfileCreateParams?parameters, CancellationTokencancellationToken = default)`
 
@@ -163,7 +163,27 @@ var betaUserProfile = await client.Beta.UserProfiles.Create(parameters);
 Console.WriteLine(betaUserProfile);
 ```
 
-## List
+#### Response
+
+```json
+{
+  "id": "uprof_011CZkZCu8hGbp5mYRQgUmz9",
+  "created_at": "2026-03-15T10:00:00Z",
+  "metadata": {},
+  "relationship": "external",
+  "trust_grants": {
+    "cyber": {
+      "status": "active"
+    }
+  },
+  "type": "user_profile",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "external_id": "user_12345",
+  "name": "Example User"
+}
+```
+
+## List User Profiles
 
 `UserProfileListPageResponse Beta.UserProfiles.List(UserProfileListParams?parameters, CancellationTokencancellationToken = default)`
 
@@ -323,7 +343,32 @@ await foreach (var item in page.Paginate())
 }
 ```
 
-## Retrieve
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "uprof_011CZkZCu8hGbp5mYRQgUmz9",
+      "created_at": "2026-03-15T10:00:00Z",
+      "metadata": {},
+      "relationship": "external",
+      "trust_grants": {
+        "cyber": {
+          "status": "active"
+        }
+      },
+      "type": "user_profile",
+      "updated_at": "2026-03-15T10:00:00Z",
+      "external_id": "user_12345",
+      "name": "Example User"
+    }
+  ],
+  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="
+}
+```
+
+## Get User Profile
 
 `BetaUserProfile Beta.UserProfiles.Retrieve(UserProfileRetrieveParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -464,7 +509,27 @@ var betaUserProfile = await client.Beta.UserProfiles.Retrieve(parameters);
 Console.WriteLine(betaUserProfile);
 ```
 
-## Update
+#### Response
+
+```json
+{
+  "id": "uprof_011CZkZCu8hGbp5mYRQgUmz9",
+  "created_at": "2026-03-15T10:00:00Z",
+  "metadata": {},
+  "relationship": "external",
+  "trust_grants": {
+    "cyber": {
+      "status": "active"
+    }
+  },
+  "type": "user_profile",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "external_id": "user_12345",
+  "name": "Example User"
+}
+```
+
+## Update User Profile
 
 `BetaUserProfile Beta.UserProfiles.Update(UserProfileUpdateParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -627,6 +692,26 @@ var betaUserProfile = await client.Beta.UserProfiles.Update(parameters);
 Console.WriteLine(betaUserProfile);
 ```
 
+#### Response
+
+```json
+{
+  "id": "uprof_011CZkZCu8hGbp5mYRQgUmz9",
+  "created_at": "2026-03-15T10:00:00Z",
+  "metadata": {},
+  "relationship": "external",
+  "trust_grants": {
+    "cyber": {
+      "status": "active"
+    }
+  },
+  "type": "user_profile",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "external_id": "user_12345",
+  "name": "Example User"
+}
+```
+
 ## Create Enrollment URL
 
 `BetaUserProfileEnrollmentUrl Beta.UserProfiles.CreateEnrollmentUrl(UserProfileCreateEnrollmentUrlParamsparameters, CancellationTokencancellationToken = default)`
@@ -726,6 +811,16 @@ UserProfileCreateEnrollmentUrlParams parameters = new()
 var betaUserProfileEnrollmentUrl = await client.Beta.UserProfiles.CreateEnrollmentUrl(parameters);
 
 Console.WriteLine(betaUserProfileEnrollmentUrl);
+```
+
+#### Response
+
+```json
+{
+  "expires_at": "2026-03-15T10:15:00Z",
+  "type": "enrollment_url",
+  "url": "https://platform.claude.com/user-profiles/enrollment/M3J0bGJxZ2ppMnptbnB1"
+}
 ```
 
 ## Domain Types

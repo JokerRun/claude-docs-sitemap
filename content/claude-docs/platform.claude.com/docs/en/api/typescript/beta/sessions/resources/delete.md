@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/sessions/resources/delete
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 997aa3aeb410c519f0f0dd89f5050086a2a6c3f85a7ec96b1af1f11f290c290e
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 93c139bfb075ad95ad139401f7558806ff07c0f9fad36db925cfd34da37f9dd0
 ---
 
-## Delete
+## Delete Session Resource
 
 `client.beta.sessions.resources.delete(stringresourceID, ResourceDeleteParamsparams, RequestOptionsoptions?): BetaManagedAgentsDeleteSessionResource`
 
@@ -108,4 +108,13 @@ const betaManagedAgentsDeleteSessionResource = await client.beta.sessions.resour
 );
 
 console.log(betaManagedAgentsDeleteSessionResource.id);
+```
+
+#### Response
+
+```json
+{
+  "id": "sesrsc_011CZkZBJq5dWxk9fVLNcPht",
+  "type": "session_resource_deleted"
+}
 ```

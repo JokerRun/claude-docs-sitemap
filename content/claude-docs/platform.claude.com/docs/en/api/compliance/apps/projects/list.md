@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/list
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: f09822c0a3f3ca162385113c23eef13ad04ec04031c33478c9f01b2e488a7662
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 88e00a31fb982f97797f1d4888d5b89b64ac4348437bf81447f98c26868e91a3
 ---
 
-## List
+## List projects
 
 **get** `/v1/compliance/apps/projects`
 
@@ -115,4 +115,28 @@ are sorted chronologically (time ascending) by created_at.
 ```http
 curl https://api.anthropic.com/v1/compliance/apps/projects \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "claude_proj_abc123",
+      "name": "Q4 Product Planning",
+      "created_at": "2025-06-01T10:00:00Z",
+      "updated_at": "2025-06-15T14:30:00Z",
+      "is_private": true,
+      "organization_id": "org_abc123",
+      "organization_uuid": "abc12345-6789-0abc-def0-123456789abc",
+      "user": {
+        "id": "user_xyz456",
+        "email_address": "user@example.com"
+      }
+    }
+  ],
+  "has_more": true,
+  "next_page": "page_eyJjcmVhdGVkX2F0IjoiMjAyNS0wNi0wMVQxMDowMDowMFoiLCJ1dWlkIjoiYWJjMTIzIn0="
+}
 ```

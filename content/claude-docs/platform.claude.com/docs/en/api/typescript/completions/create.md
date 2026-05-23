@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/completions/create
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: a29b527d4ffa6a85049102d03d6a0f844c12a6dcad9bf2ddc3d58b42396a2e22
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 5be946424beda7748c3f454f0efced91500835f68b70e85486d05588409eafc8
 ---
 
-## Create
+## Create a Text Completion
 
 `client.completions.create(CompletionCreateParamsparams, RequestOptionsoptions?): Completion | Stream<Completion>`
 
@@ -243,8 +243,6 @@ Future models and features will not be compatible with Text Completions. See our
 
       See [streaming](https://docs.claude.com/en/api/streaming) for details.
 
-      - `false`
-
   - `CompletionCreateParamsStreaming extends CompletionCreateParamsBase`
 
     - `stream: true`
@@ -380,4 +378,16 @@ const completion = await client.completions.create({
 });
 
 console.log(completion.id);
+```
+
+#### Response
+
+```json
+{
+  "id": "compl_018CKm6gsux7P8yMcwZbeCPw",
+  "completion": " Hello! My name is Claude.",
+  "model": "claude-2.1",
+  "stop_reason": "stop_sequence",
+  "type": "completion"
+}
 ```

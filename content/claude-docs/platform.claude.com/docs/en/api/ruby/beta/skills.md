@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/skills
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 996b15581cc656225e7f1511b9f4759bc650c6da37a44b0abfff9ffe7d72c418
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: d44b8bc5d14cf10d47ae84d6a60961dc78e3a9e6b0bc928034e7d581459a2a36
 ---
 
 # Skills
 
-## Create
+## Create Skill
 
 `beta.skills.create(**kwargs) -> SkillCreateResponse`
 
@@ -33,9 +33,9 @@ Create Skill
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `String`
+  - `String = String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -144,7 +144,21 @@ skill = anthropic.beta.skills.create
 puts(skill)
 ```
 
-## List
+#### Response
+
+```json
+{
+  "id": "skill_01JAbcdefghijklmnopqrstuvw",
+  "created_at": "2024-10-30T23:58:27.427722Z",
+  "display_title": "My Custom Skill",
+  "latest_version": "1759178010641129",
+  "source": "custom",
+  "type": "type",
+  "updated_at": "2024-10-30T23:58:27.427722Z"
+}
+```
+
+## List Skills
 
 `beta.skills.list(**kwargs) -> PageCursor<SkillListResponse>`
 
@@ -179,9 +193,9 @@ List Skills
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `String`
+  - `String = String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -290,7 +304,27 @@ page = anthropic.beta.skills.list
 puts(page)
 ```
 
-## Retrieve
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "skill_01JAbcdefghijklmnopqrstuvw",
+      "created_at": "2024-10-30T23:58:27.427722Z",
+      "display_title": "My Custom Skill",
+      "latest_version": "1759178010641129",
+      "source": "custom",
+      "type": "type",
+      "updated_at": "2024-10-30T23:58:27.427722Z"
+    }
+  ],
+  "has_more": true,
+  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="
+}
+```
+
+## Get Skill
 
 `beta.skills.retrieve(skill_id, **kwargs) -> SkillRetrieveResponse`
 
@@ -310,9 +344,9 @@ Get Skill
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `String`
+  - `String = String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -421,7 +455,21 @@ skill = anthropic.beta.skills.retrieve("skill_id")
 puts(skill)
 ```
 
-## Delete
+#### Response
+
+```json
+{
+  "id": "skill_01JAbcdefghijklmnopqrstuvw",
+  "created_at": "2024-10-30T23:58:27.427722Z",
+  "display_title": "My Custom Skill",
+  "latest_version": "1759178010641129",
+  "source": "custom",
+  "type": "type",
+  "updated_at": "2024-10-30T23:58:27.427722Z"
+}
+```
+
+## Delete Skill
 
 `beta.skills.delete(skill_id, **kwargs) -> SkillDeleteResponse`
 
@@ -441,9 +489,9 @@ Delete Skill
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `String`
+  - `String = String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -521,6 +569,15 @@ anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
 skill = anthropic.beta.skills.delete("skill_id")
 
 puts(skill)
+```
+
+#### Response
+
+```json
+{
+  "id": "skill_01JAbcdefghijklmnopqrstuvw",
+  "type": "type"
+}
 ```
 
 ## Domain Types
@@ -678,7 +735,7 @@ puts(skill)
 
 # Versions
 
-## Create
+## Create Skill Version
 
 `beta.skills.versions.create(skill_id, **kwargs) -> VersionCreateResponse`
 
@@ -704,9 +761,9 @@ Create Skill Version
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `String`
+  - `String = String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -818,7 +875,22 @@ version = anthropic.beta.skills.versions.create("skill_id")
 puts(version)
 ```
 
-## List
+#### Response
+
+```json
+{
+  "id": "skillver_01JAbcdefghijklmnopqrstuvw",
+  "created_at": "2024-10-30T23:58:27.427722Z",
+  "description": "A custom skill for doing something useful",
+  "directory": "my-skill",
+  "name": "my-skill",
+  "skill_id": "skill_01JAbcdefghijklmnopqrstuvw",
+  "type": "type",
+  "version": "1759178010641129"
+}
+```
+
+## List Skill Versions
 
 `beta.skills.versions.list(skill_id, **kwargs) -> PageCursor<VersionListResponse>`
 
@@ -848,9 +920,9 @@ List Skill Versions
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `String`
+  - `String = String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -962,7 +1034,28 @@ page = anthropic.beta.skills.versions.list("skill_id")
 puts(page)
 ```
 
-## Download
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "skillver_01JAbcdefghijklmnopqrstuvw",
+      "created_at": "2024-10-30T23:58:27.427722Z",
+      "description": "A custom skill for doing something useful",
+      "directory": "my-skill",
+      "name": "my-skill",
+      "skill_id": "skill_01JAbcdefghijklmnopqrstuvw",
+      "type": "type",
+      "version": "1759178010641129"
+    }
+  ],
+  "has_more": true,
+  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="
+}
+```
+
+## Download Skill Version Content
 
 `beta.skills.versions.download(version, **kwargs) -> StringIO`
 
@@ -988,9 +1081,9 @@ Download a skill version's content as a zip archive.
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `String`
+  - `String = String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -1058,7 +1151,7 @@ response = anthropic.beta.skills.versions.download("version", skill_id: "skill_i
 puts(response)
 ```
 
-## Retrieve
+## Get Skill Version
 
 `beta.skills.versions.retrieve(version, **kwargs) -> VersionRetrieveResponse`
 
@@ -1084,9 +1177,9 @@ Get Skill Version
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `String`
+  - `String = String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -1198,7 +1291,22 @@ version = anthropic.beta.skills.versions.retrieve("version", skill_id: "skill_id
 puts(version)
 ```
 
-## Delete
+#### Response
+
+```json
+{
+  "id": "skillver_01JAbcdefghijklmnopqrstuvw",
+  "created_at": "2024-10-30T23:58:27.427722Z",
+  "description": "A custom skill for doing something useful",
+  "directory": "my-skill",
+  "name": "my-skill",
+  "skill_id": "skill_01JAbcdefghijklmnopqrstuvw",
+  "type": "type",
+  "version": "1759178010641129"
+}
+```
+
+## Delete Skill Version
 
 `beta.skills.versions.delete(version, **kwargs) -> VersionDeleteResponse`
 
@@ -1224,9 +1332,9 @@ Delete Skill Version
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `String`
+  - `String = String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -1304,6 +1412,15 @@ anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
 version = anthropic.beta.skills.versions.delete("version", skill_id: "skill_id")
 
 puts(version)
+```
+
+#### Response
+
+```json
+{
+  "id": "1759178010641129",
+  "type": "type"
+}
 ```
 
 ## Domain Types

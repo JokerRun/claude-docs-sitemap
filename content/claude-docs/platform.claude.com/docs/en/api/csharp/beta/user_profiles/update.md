@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/user_profiles/update
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 3ea01b1153b38ce46ab7074cb11cbca32db75d523800883681a3a2a79d51d4f2
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 6811fc6d1cdf5ed7302cf9db6a4e1b902e4bcc0b06b476c4c543844245054478
 ---
 
-## Update
+## Update User Profile
 
 `BetaUserProfile Beta.UserProfiles.Update(UserProfileUpdateParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -166,4 +166,24 @@ UserProfileUpdateParams parameters = new()
 var betaUserProfile = await client.Beta.UserProfiles.Update(parameters);
 
 Console.WriteLine(betaUserProfile);
+```
+
+#### Response
+
+```json
+{
+  "id": "uprof_011CZkZCu8hGbp5mYRQgUmz9",
+  "created_at": "2026-03-15T10:00:00Z",
+  "metadata": {},
+  "relationship": "external",
+  "trust_grants": {
+    "cyber": {
+      "status": "active"
+    }
+  },
+  "type": "user_profile",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "external_id": "user_12345",
+  "name": "Example User"
+}
 ```

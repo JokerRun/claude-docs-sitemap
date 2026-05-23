@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/files/delete
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 4cfeac7f7189587d4384ea6fa8ddf07992766f261eba2f48977cf577822c8347
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 6ee86017fc430638dbf74e6ad51d7e2594f14bf1fb4ec2de5904c079db2c5d3d
 ---
 
-## Delete
+## Delete File
 
 `client.Beta.Files.Delete(ctx, fileID, body) (*DeletedFile, error)`
 
@@ -123,5 +123,14 @@ func main() {
     panic(err.Error())
   }
   fmt.Printf("%+v\n", deletedFile.ID)
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "file_011CNha8iCJcU1wXNR6q4V8w",
+  "type": "file_deleted"
 }
 ```

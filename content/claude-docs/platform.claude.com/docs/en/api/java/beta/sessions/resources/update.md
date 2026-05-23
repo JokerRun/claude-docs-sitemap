@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/resources/update
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: f2b79ffad6fec4064d034e36563af8a702236ea6eb4e26b35195138b43bb2ba2
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 41702d2f5312919dd2283309e6f07424ddc2f3d953d392a61f92ce6f2cba6999
 ---
 
-## Update
+## Update Session Resource
 
 `ResourceUpdateResponse beta().sessions().resources().update(ResourceUpdateParamsparams, RequestOptionsrequestOptions = RequestOptions.none())`
 
@@ -206,5 +206,22 @@ public final class Main {
             .build();
         ResourceUpdateResponse resource = client.beta().sessions().resources().update(params);
     }
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "sesrsc_011CZkZCKr6eXyl0gWMOdQiu",
+  "created_at": "2026-03-15T10:00:00Z",
+  "mount_path": "/workspace/example-repo",
+  "type": "github_repository",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "url": "https://github.com/example-org/example-repo",
+  "checkout": {
+    "name": "main",
+    "type": "branch"
+  }
 }
 ```

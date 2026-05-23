@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/files/retrieve_metadata
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 9a2aae6e551e1abf8f2e78e61f8d0e12bcefce8e4b3ce83adde34480928aff0a
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 8d0b13f8be5c2898e000e82876fa19baeb1322b774bbc13697af22c734ffa1cd
 ---
 
-## Retrieve Metadata
+## Get File Metadata
 
 `beta.files.retrieve_metadata(file_id, **kwargs) -> FileMetadata`
 
@@ -23,9 +23,9 @@ Get File Metadata
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `String`
+  - `String = String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -139,4 +139,22 @@ anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
 file_metadata = anthropic.beta.files.retrieve_metadata("file_id")
 
 puts(file_metadata)
+```
+
+#### Response
+
+```json
+{
+  "id": "file_011CNha8iCJcU1wXNR6q4V8w",
+  "created_at": "2025-04-15T18:37:24.100435Z",
+  "filename": "document.pdf",
+  "mime_type": "application/pdf",
+  "size_bytes": 102400,
+  "type": "file",
+  "downloadable": false,
+  "scope": {
+    "id": "id",
+    "type": "session"
+  }
+}
 ```

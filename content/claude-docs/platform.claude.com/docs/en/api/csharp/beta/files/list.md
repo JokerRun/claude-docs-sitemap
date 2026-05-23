@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/files/list
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: e02466998f68ed362ecb52da2508fc1edb4a92fec14a9802b3dd1d40aeb680d1
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 999b2413a374d848e41c2b3b0805aa9a65fea1c80055842c43c14dcbdb22a1c5
 ---
 
-## List
+## List Files
 
 `FileListPageResponse Beta.Files.List(FileListParams?parameters, CancellationTokencancellationToken = default)`
 
@@ -162,5 +162,30 @@ var page = await client.Beta.Files.List(parameters);
 await foreach (var item in page.Paginate())
 {
     Console.WriteLine(item);
+}
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "file_011CNha8iCJcU1wXNR6q4V8w",
+      "created_at": "2025-04-15T18:37:24.100435Z",
+      "filename": "document.pdf",
+      "mime_type": "application/pdf",
+      "size_bytes": 102400,
+      "type": "file",
+      "downloadable": false,
+      "scope": {
+        "id": "id",
+        "type": "session"
+      }
+    }
+  ],
+  "first_id": "file_011CNha8iCJcU1wXNR6q4V8w",
+  "has_more": true,
+  "last_id": "file_013Zva2CMHLNnXjNJJKqJ2EF"
 }
 ```

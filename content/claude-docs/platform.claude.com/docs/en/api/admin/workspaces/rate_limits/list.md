@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/rate_limits/list
-fetched_at: 2026-04-25T03:09:48.142425Z
-sha256: 89661b6ee29b5ba259de9dc8e853f3a116afa05a73250e7af83047deaf237950
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 6d994fc07c48f72cd450b1e4d0f12f13e90657fb53f31895771dc34a4b9adf09
 ---
 
-## List
+## List Workspace Rate Limits
 
 **get** `/v1/organizations/workspaces/{workspace_id}/rate_limits`
 
@@ -101,4 +101,28 @@ are not listed; use `GET /v1/organizations/rate_limits` to see those.
 curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/rate_limits \
     -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "group_type": "model_group",
+      "limits": [
+        {
+          "org_limit": 0,
+          "type": "type",
+          "value": 0
+        }
+      ],
+      "models": [
+        "string"
+      ],
+      "type": "workspace_rate_limit"
+    }
+  ],
+  "next_page": "next_page"
+}
 ```

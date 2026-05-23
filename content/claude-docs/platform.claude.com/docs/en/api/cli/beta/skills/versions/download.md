@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/skills/versions/download
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: bb5902a06cdfebed8864e53166c27957caa167f7818d4ac8cb86a8cb26d3875e
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 783c1aad12c5757c7b07d77a3bb3271b04ac08bae4f9eec37817924ec67711dd
 ---
 
-## Download
+## Download Skill Version Content
 
 `$ ant beta:skills:versions download`
 

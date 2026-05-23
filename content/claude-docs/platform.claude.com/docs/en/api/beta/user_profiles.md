@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 537de1b710c70c1e79e6c670f64fd6ead7bd2ec36376f0eb1b1548b81ff45fdc
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 35e2b6822581c63cb3875eb68fb13cef5b47bdf202621d6eb81a9efd91658d89
 ---
 
 # User Profiles
 
-## Create
+## Create User Profile
 
 **post** `/v1/user_profiles`
 
@@ -19,9 +19,9 @@ Create User Profile
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = string`
+  - `string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -99,7 +99,7 @@ Create User Profile
 
 ### Returns
 
-- `BetaUserProfile = object { id, created_at, metadata, 6 more }`
+- `BetaUserProfile object { id, created_at, metadata, 6 more }`
 
   - `id: string`
 
@@ -169,7 +169,27 @@ curl https://api.anthropic.com/v1/user_profiles \
         }'
 ```
 
-## List
+#### Response
+
+```json
+{
+  "id": "uprof_011CZkZCu8hGbp5mYRQgUmz9",
+  "created_at": "2026-03-15T10:00:00Z",
+  "metadata": {},
+  "relationship": "external",
+  "trust_grants": {
+    "cyber": {
+      "status": "active"
+    }
+  },
+  "type": "user_profile",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "external_id": "user_12345",
+  "name": "Example User"
+}
+```
+
+## List User Profiles
 
 **get** `/v1/user_profiles`
 
@@ -199,9 +219,9 @@ List User Profiles
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = string`
+  - `string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -326,7 +346,32 @@ curl https://api.anthropic.com/v1/user_profiles \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 
-## Retrieve
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "uprof_011CZkZCu8hGbp5mYRQgUmz9",
+      "created_at": "2026-03-15T10:00:00Z",
+      "metadata": {},
+      "relationship": "external",
+      "trust_grants": {
+        "cyber": {
+          "status": "active"
+        }
+      },
+      "type": "user_profile",
+      "updated_at": "2026-03-15T10:00:00Z",
+      "external_id": "user_12345",
+      "name": "Example User"
+    }
+  ],
+  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="
+}
+```
+
+## Get User Profile
 
 **get** `/v1/user_profiles/{user_profile_id}`
 
@@ -342,9 +387,9 @@ Get User Profile
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = string`
+  - `string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -398,7 +443,7 @@ Get User Profile
 
 ### Returns
 
-- `BetaUserProfile = object { id, created_at, metadata, 6 more }`
+- `BetaUserProfile object { id, created_at, metadata, 6 more }`
 
   - `id: string`
 
@@ -463,7 +508,27 @@ curl https://api.anthropic.com/v1/user_profiles/$USER_PROFILE_ID \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 
-## Update
+#### Response
+
+```json
+{
+  "id": "uprof_011CZkZCu8hGbp5mYRQgUmz9",
+  "created_at": "2026-03-15T10:00:00Z",
+  "metadata": {},
+  "relationship": "external",
+  "trust_grants": {
+    "cyber": {
+      "status": "active"
+    }
+  },
+  "type": "user_profile",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "external_id": "user_12345",
+  "name": "Example User"
+}
+```
+
+## Update User Profile
 
 **post** `/v1/user_profiles/{user_profile_id}`
 
@@ -479,9 +544,9 @@ Update User Profile
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = string`
+  - `string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -559,7 +624,7 @@ Update User Profile
 
 ### Returns
 
-- `BetaUserProfile = object { id, created_at, metadata, 6 more }`
+- `BetaUserProfile object { id, created_at, metadata, 6 more }`
 
   - `id: string`
 
@@ -628,6 +693,26 @@ curl https://api.anthropic.com/v1/user_profiles/$USER_PROFILE_ID \
         }'
 ```
 
+#### Response
+
+```json
+{
+  "id": "uprof_011CZkZCu8hGbp5mYRQgUmz9",
+  "created_at": "2026-03-15T10:00:00Z",
+  "metadata": {},
+  "relationship": "external",
+  "trust_grants": {
+    "cyber": {
+      "status": "active"
+    }
+  },
+  "type": "user_profile",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "external_id": "user_12345",
+  "name": "Example User"
+}
+```
+
 ## Create Enrollment URL
 
 **post** `/v1/user_profiles/{user_profile_id}/enrollment_url`
@@ -644,9 +729,9 @@ Create Enrollment URL
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = string`
+  - `string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -700,7 +785,7 @@ Create Enrollment URL
 
 ### Returns
 
-- `BetaUserProfileEnrollmentURL = object { expires_at, type, url }`
+- `BetaUserProfileEnrollmentURL object { expires_at, type, url }`
 
   - `expires_at: string`
 
@@ -726,11 +811,21 @@ curl https://api.anthropic.com/v1/user_profiles/$USER_PROFILE_ID/enrollment_url 
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 
+#### Response
+
+```json
+{
+  "expires_at": "2026-03-15T10:15:00Z",
+  "type": "enrollment_url",
+  "url": "https://platform.claude.com/user-profiles/enrollment/M3J0bGJxZ2ppMnptbnB1"
+}
+```
+
 ## Domain Types
 
 ### Beta User Profile
 
-- `BetaUserProfile = object { id, created_at, metadata, 6 more }`
+- `BetaUserProfile object { id, created_at, metadata, 6 more }`
 
   - `id: string`
 
@@ -788,7 +883,7 @@ curl https://api.anthropic.com/v1/user_profiles/$USER_PROFILE_ID/enrollment_url 
 
 ### Beta User Profile Enrollment URL
 
-- `BetaUserProfileEnrollmentURL = object { expires_at, type, url }`
+- `BetaUserProfileEnrollmentURL object { expires_at, type, url }`
 
   - `expires_at: string`
 
@@ -806,7 +901,7 @@ curl https://api.anthropic.com/v1/user_profiles/$USER_PROFILE_ID/enrollment_url 
 
 ### Beta User Profile Trust Grant
 
-- `BetaUserProfileTrustGrant = object { status }`
+- `BetaUserProfileTrustGrant object { status }`
 
   - `status: "active" or "pending" or "rejected"`
 

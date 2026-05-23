@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/vaults/archive
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: fb33b123f3dd4d1ddc7527d5bb950b3333ec996294d1ccc2ab00aa39e0d68dd8
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 53d3ff8529e813799c59de5204f96011970e1780d0a400a810960d8a3d164854
 ---
 
-## Archive
+## Archive Vault
 
 `$ ant beta:vaults archive`
 
@@ -63,4 +63,20 @@ Archive Vault
 ant beta:vaults archive \
   --api-key my-anthropic-api-key \
   --vault-id vlt_011CZkZDLs7fYzm1hXNPeRjv
+```
+
+#### Response
+
+```json
+{
+  "id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+  "archived_at": null,
+  "created_at": "2026-03-15T10:00:00Z",
+  "display_name": "Example vault",
+  "metadata": {
+    "environment": "production"
+  },
+  "type": "vault",
+  "updated_at": "2026-03-15T10:00:00Z"
+}
 ```

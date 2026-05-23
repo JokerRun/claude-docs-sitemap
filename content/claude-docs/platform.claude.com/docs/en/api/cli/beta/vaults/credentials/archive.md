@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/vaults/credentials/archive
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: f0deab75d34d81c789356537246b4f153f3d582affed2adec5e1b8f065ea4b9a
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: cd71377c44d7033a985851173852dbc9a29fbabc44841291bca825bcb427763e
 ---
 
-## Archive
+## Archive Credential
 
 `$ ant beta:vaults:credentials archive`
 
@@ -152,4 +152,25 @@ ant beta:vaults:credentials archive \
   --api-key my-anthropic-api-key \
   --vault-id vlt_011CZkZDLs7fYzm1hXNPeRjv \
   --credential-id vcrd_011CZkZEMt8gZan2iYOQfSkw
+```
+
+#### Response
+
+```json
+{
+  "id": "vcrd_011CZkZEMt8gZan2iYOQfSkw",
+  "archived_at": null,
+  "auth": {
+    "mcp_server_url": "https://example-server.modelcontextprotocol.io/sse",
+    "type": "static_bearer"
+  },
+  "created_at": "2026-03-15T10:00:00Z",
+  "metadata": {
+    "environment": "production"
+  },
+  "type": "vault_credential",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "vault_id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+  "display_name": "Example credential"
+}
 ```

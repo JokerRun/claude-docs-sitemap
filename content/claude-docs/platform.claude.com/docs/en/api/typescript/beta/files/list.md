@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/files/list
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 6b1d55ce408977b4d870e0118771336094655077dcb3a230f64b8dc472e2db9c
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 1a7457122c43fe685131ddff86c5f185e3c25322a42721e2a8170b9989e7d59c
 ---
 
-## List
+## List Files
 
 `client.beta.files.list(FileListParamsparams?, RequestOptionsoptions?): Page<FileMetadata>`
 
@@ -157,5 +157,30 @@ const client = new Anthropic({
 // Automatically fetches more pages as needed.
 for await (const fileMetadata of client.beta.files.list()) {
   console.log(fileMetadata.id);
+}
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "file_011CNha8iCJcU1wXNR6q4V8w",
+      "created_at": "2025-04-15T18:37:24.100435Z",
+      "filename": "document.pdf",
+      "mime_type": "application/pdf",
+      "size_bytes": 102400,
+      "type": "file",
+      "downloadable": false,
+      "scope": {
+        "id": "id",
+        "type": "session"
+      }
+    }
+  ],
+  "first_id": "file_011CNha8iCJcU1wXNR6q4V8w",
+  "has_more": true,
+  "last_id": "file_013Zva2CMHLNnXjNJJKqJ2EF"
 }
 ```

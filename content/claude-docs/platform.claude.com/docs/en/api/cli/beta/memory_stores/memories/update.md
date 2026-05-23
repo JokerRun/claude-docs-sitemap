@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/memory_stores/memories/update
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 72ea6309648abd7461e5b26cde9b7dfde11d129d592d147f9589f893fdbcea6a
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: f1f5efff36b1bd8f53bce6dcb7af71b7b0618b2c924638e94be3093cfcff8551
 ---
 
-## Update
+## Update a memory
 
 `$ ant beta:memory-stores:memories update`
 
@@ -96,4 +96,21 @@ ant beta:memory-stores:memories update \
   --api-key my-anthropic-api-key \
   --memory-store-id memory_store_id \
   --memory-id memory_id
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "content_sha256": "content_sha256",
+  "content_size_bytes": 0,
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "memory_store_id": "memory_store_id",
+  "memory_version_id": "memory_version_id",
+  "path": "path",
+  "type": "memory",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "content": "content"
+}
 ```

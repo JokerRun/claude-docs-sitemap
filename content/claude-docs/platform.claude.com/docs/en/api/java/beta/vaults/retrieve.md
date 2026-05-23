@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/retrieve
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 03ff7df40208e70f67bb4ff4cd14da6ce9048fb4f70768e09a1fe45ed4351199
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: dac807daaf0b65f3c179a30ed1eab157171ae9f04dbcc1fc59cebe4f3fc721e0
 ---
 
-## Retrieve
+## Get Vault
 
 `BetaManagedAgentsVault beta().vaults().retrieve(VaultRetrieveParamsparams = VaultRetrieveParams.none(), RequestOptionsrequestOptions = RequestOptions.none())`
 
@@ -125,5 +125,21 @@ public final class Main {
 
         BetaManagedAgentsVault betaManagedAgentsVault = client.beta().vaults().retrieve("vlt_011CZkZDLs7fYzm1hXNPeRjv");
     }
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+  "archived_at": null,
+  "created_at": "2026-03-15T10:00:00Z",
+  "display_name": "Example vault",
+  "metadata": {
+    "environment": "production"
+  },
+  "type": "vault",
+  "updated_at": "2026-03-15T10:00:00Z"
 }
 ```

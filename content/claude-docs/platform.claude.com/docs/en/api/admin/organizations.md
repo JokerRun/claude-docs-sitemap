@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/organizations
-fetched_at: 2026-04-21T03:11:28.016230Z
-sha256: 2429119ffe9416266dd86887b5e2e5a70d54f1716cda810591f1f6d87007c31f
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 5fe5473d85832a595ed2308a903cc0d169d84799f5af9983e19c5eace71aab74
 ---
 
 # Organizations
 
-## Me
+## Get Current Organization
 
 **get** `/v1/organizations/me`
 
@@ -15,7 +15,7 @@ Retrieve information about the organization associated with the authenticated AP
 
 ### Returns
 
-- `Organization = object { id, name, type }`
+- `Organization object { id, name, type }`
 
   - `id: string`
 
@@ -41,11 +41,21 @@ curl https://api.anthropic.com/v1/organizations/me \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
 ```
 
+#### Response
+
+```json
+{
+  "id": "12345678-1234-5678-1234-567812345678",
+  "name": "Organization Name",
+  "type": "organization"
+}
+```
+
 ## Domain Types
 
 ### Organization
 
-- `Organization = object { id, name, type }`
+- `Organization object { id, name, type }`
 
   - `id: string`
 

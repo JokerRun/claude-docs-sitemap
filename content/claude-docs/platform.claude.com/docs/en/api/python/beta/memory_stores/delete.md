@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/memory_stores/delete
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 95fb223528e9162696602ed65492c8c31d79127f12367d805917053872b745fe
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 7b12f02a65a0e8b9686c49bdc292f89873d626fe7e87d675025ccb97efd18f2d
 ---
 
-## Delete
+## Delete a memory store
 
 `beta.memory_stores.delete(strmemory_store_id, MemoryStoreDeleteParams**kwargs)  -> BetaManagedAgentsDeletedMemoryStore`
 
@@ -102,4 +102,13 @@ beta_managed_agents_deleted_memory_store = client.beta.memory_stores.delete(
     memory_store_id="memory_store_id",
 )
 print(beta_managed_agents_deleted_memory_store.id)
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "type": "memory_store_deleted"
+}
 ```

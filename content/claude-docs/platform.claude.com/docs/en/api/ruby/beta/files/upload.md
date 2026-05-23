@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/files/upload
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 7a9d32d62da47b3c1e4a715d344551b66d917b08c036ff7bb285aca0e82522d7
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: b81e3f40b808dca413657d0f66f735614d168e350865a5d03c47c4b89e8379e1
 ---
 
-## Upload
+## Upload File
 
 `beta.files.upload(**kwargs) -> FileMetadata`
 
@@ -23,9 +23,9 @@ Upload File
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `String`
+  - `String = String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -139,4 +139,22 @@ anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
 file_metadata = anthropic.beta.files.upload(file: StringIO.new("Example data"))
 
 puts(file_metadata)
+```
+
+#### Response
+
+```json
+{
+  "id": "file_011CNha8iCJcU1wXNR6q4V8w",
+  "created_at": "2025-04-15T18:37:24.100435Z",
+  "filename": "document.pdf",
+  "mime_type": "application/pdf",
+  "size_bytes": 102400,
+  "type": "file",
+  "downloadable": false,
+  "scope": {
+    "id": "id",
+    "type": "session"
+  }
+}
 ```

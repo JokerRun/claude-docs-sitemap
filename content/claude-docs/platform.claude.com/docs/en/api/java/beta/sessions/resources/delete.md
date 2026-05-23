@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/resources/delete
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 94c1d6910dff8e06009c153ef5945bf5ad0e6487f3105cd3d075121c22d442c9
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: d630c75283e739eef0cd2bf3ef6dd2cf1d880b083e93c9aeb9cd9ad3b6c2f36d
 ---
 
-## Delete
+## Delete Session Resource
 
 `BetaManagedAgentsDeleteSessionResource beta().sessions().resources().delete(ResourceDeleteParamsparams, RequestOptionsrequestOptions = RequestOptions.none())`
 
@@ -109,5 +109,14 @@ public final class Main {
             .build();
         BetaManagedAgentsDeleteSessionResource betaManagedAgentsDeleteSessionResource = client.beta().sessions().resources().delete(params);
     }
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "sesrsc_011CZkZBJq5dWxk9fVLNcPht",
+  "type": "session_resource_deleted"
 }
 ```

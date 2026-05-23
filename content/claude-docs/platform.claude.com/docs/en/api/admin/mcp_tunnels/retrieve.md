@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/mcp_tunnels/retrieve
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 9cb228f9054fda01a3b7947302a52f71188acf788514a4e16339cc27fe8f978a
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 7829fe0de77c14c8499ad8740ca289f798c802d35421179f084be16d30e891a6
 ---
 
-## Retrieve
+## Get Tunnel
 
 **get** `/v1/organizations/tunnels/{tunnel_id}`
 
@@ -67,4 +67,18 @@ Retrieve a single tunnel in the caller's organization by ID.
 curl https://api.anthropic.com/v1/organizations/tunnels/$TUNNEL_ID \
     -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_WIF_BEARER_TOKEN"
+```
+
+#### Response
+
+```json
+{
+  "id": "tnl_01Hx9Kp2RtQvMn3sWbYdLcF8",
+  "archived_at": "2024-11-01T23:59:27.427722Z",
+  "created_at": "2024-10-30T23:58:27.427722Z",
+  "display_name": "Production",
+  "domain": "a1b2c3d4.tunnel.anthropic.com",
+  "type": "tunnel",
+  "workspace_id": "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ"
+}
 ```

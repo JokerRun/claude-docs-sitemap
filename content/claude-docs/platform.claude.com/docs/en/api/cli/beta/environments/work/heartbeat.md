@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/environments/work/heartbeat
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 6d218648c44305921054557045f0e64398efc976fc7067cbbd64f9dda5d62806
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 789d3cf5869dc2c5693d70ca1d69dd9a578da55f4ae20dab0b4044b5264798af
 ---
 
-## Heartbeat
+## Record Heartbeat
 
 `$ ant beta:environments:work heartbeat`
 
@@ -80,4 +80,16 @@ ant beta:environments:work heartbeat \
   --api-key my-anthropic-api-key \
   --environment-id env_011CZkZ9X2dpNyB7HsEFoRfW \
   --work-id work_id
+```
+
+#### Response
+
+```json
+{
+  "last_heartbeat": "last_heartbeat",
+  "lease_extended": true,
+  "state": "queued",
+  "ttl_seconds": 0,
+  "type": "work_heartbeat"
+}
 ```

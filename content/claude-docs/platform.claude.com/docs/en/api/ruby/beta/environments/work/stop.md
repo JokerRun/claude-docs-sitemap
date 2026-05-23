@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/environments/work/stop
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: b4380542dfa1eccff7435c3022d458ab0bec45495258bfd0f3f8780aa566b65e
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 622649a81dd5c90d5634d1fd42c74a8dd4b230f8447ed4ddb15d5e0ab7894907
 ---
 
-## Stop
+## Stop Work
 
 `beta.environments.work.stop(work_id, **kwargs) -> BetaSelfHostedWork`
 
@@ -29,9 +29,9 @@ Stop a work item, initiating graceful or forced shutdown.
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `String`
+  - `String = String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -173,4 +173,28 @@ anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
 beta_self_hosted_work = anthropic.beta.environments.work.stop("work_id", environment_id: "env_011CZkZ9X2dpNyB7HsEFoRfW")
 
 puts(beta_self_hosted_work)
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "acknowledged_at": "acknowledged_at",
+  "created_at": "created_at",
+  "data": {
+    "id": "id",
+    "type": "session"
+  },
+  "environment_id": "environment_id",
+  "latest_heartbeat_at": "latest_heartbeat_at",
+  "metadata": {
+    "foo": "string"
+  },
+  "started_at": "started_at",
+  "state": "queued",
+  "stop_requested_at": "stop_requested_at",
+  "stopped_at": "stopped_at",
+  "type": "work"
+}
 ```

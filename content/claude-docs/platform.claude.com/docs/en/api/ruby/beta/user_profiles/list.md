@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/user_profiles/list
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 06ee668b65b07d39221b4902338bba3c5fb3f983a21f74d9788f870173b3d9fe
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: e54e8730a6eb07be209a23c219beeb0d31abe088141098b924b17afeabba831d
 ---
 
-## List
+## List User Profiles
 
 `beta.user_profiles.list(**kwargs) -> PageCursor<BetaUserProfile>`
 
@@ -35,9 +35,9 @@ List User Profiles
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `String`
+  - `String = String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -157,4 +157,29 @@ anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
 page = anthropic.beta.user_profiles.list
 
 puts(page)
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "uprof_011CZkZCu8hGbp5mYRQgUmz9",
+      "created_at": "2026-03-15T10:00:00Z",
+      "metadata": {},
+      "relationship": "external",
+      "trust_grants": {
+        "cyber": {
+          "status": "active"
+        }
+      },
+      "type": "user_profile",
+      "updated_at": "2026-03-15T10:00:00Z",
+      "external_id": "user_12345",
+      "name": "Example User"
+    }
+  ],
+  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="
+}
 ```

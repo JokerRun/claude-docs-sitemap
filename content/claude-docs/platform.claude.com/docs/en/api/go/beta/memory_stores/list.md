@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/memory_stores/list
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: f3eb2b2ef5f249032472423fe6bca7b6706d3aee992e0b5d9acd475525e9e511
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: c0a288892e790d71e280eba50c53a856a95636f2bd1fb623c1bb07d3fd5c7eaf
 ---
 
-## List
+## List memory stores
 
 `client.Beta.MemoryStores.List(ctx, params) (*PageCursor[BetaManagedAgentsMemoryStore], error)`
 
@@ -157,5 +157,27 @@ func main() {
     panic(err.Error())
   }
   fmt.Printf("%+v\n", page)
+}
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "id",
+      "created_at": "2019-12-27T18:11:19.117Z",
+      "name": "name",
+      "type": "memory_store",
+      "updated_at": "2019-12-27T18:11:19.117Z",
+      "archived_at": "2019-12-27T18:11:19.117Z",
+      "description": "description",
+      "metadata": {
+        "foo": "string"
+      }
+    }
+  ],
+  "next_page": "next_page"
 }
 ```

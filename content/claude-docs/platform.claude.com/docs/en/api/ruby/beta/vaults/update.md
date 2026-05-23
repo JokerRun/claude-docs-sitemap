@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/vaults/update
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 2b124a0bc97f50aa8f0c3b7407f908fe6af36f2d8a9d9317f0e9a3c06ae0f99f
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 2f40316a561ce3090b2973363abd35d9bf974a989169fc6c7418fc1f27777fd0
 ---
 
-## Update
+## Update Vault
 
 `beta.vaults.update(vault_id, **kwargs) -> BetaManagedAgentsVault`
 
@@ -29,9 +29,9 @@ Update Vault
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `String`
+  - `String = String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -127,4 +127,20 @@ anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
 beta_managed_agents_vault = anthropic.beta.vaults.update("vlt_011CZkZDLs7fYzm1hXNPeRjv")
 
 puts(beta_managed_agents_vault)
+```
+
+#### Response
+
+```json
+{
+  "id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+  "archived_at": null,
+  "created_at": "2026-03-15T10:00:00Z",
+  "display_name": "Example vault",
+  "metadata": {
+    "environment": "production"
+  },
+  "type": "vault",
+  "updated_at": "2026-03-15T10:00:00Z"
+}
 ```

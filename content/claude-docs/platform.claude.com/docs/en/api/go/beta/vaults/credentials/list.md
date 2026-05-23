@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/vaults/credentials/list
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: e7dda6aaa3adf19b3e8a870b45ba98b53a01a7f720d9b76bac036839558bfb74
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 2ebf68455f43c2c9a93fa4ed17907c64a7df2311a2768b308a6b88a3945e9406
 ---
 
-## List
+## List Credentials
 
 `client.Beta.Vaults.Credentials.List(ctx, vaultID, params) (*PageCursor[BetaManagedAgentsCredential], error)`
 
@@ -235,5 +235,31 @@ func main() {
     panic(err.Error())
   }
   fmt.Printf("%+v\n", page)
+}
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "vcrd_011CZkZEMt8gZan2iYOQfSkw",
+      "archived_at": null,
+      "auth": {
+        "mcp_server_url": "https://example-server.modelcontextprotocol.io/sse",
+        "type": "static_bearer"
+      },
+      "created_at": "2026-03-15T10:00:00Z",
+      "metadata": {
+        "environment": "production"
+      },
+      "type": "vault_credential",
+      "updated_at": "2026-03-15T10:00:00Z",
+      "vault_id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+      "display_name": "Example credential"
+    }
+  ],
+  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="
 }
 ```

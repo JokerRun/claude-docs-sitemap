@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/skills/versions/list
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 4cd511f0432e77bd0f9c30b8f1e75ae0b10fd80cf4f6a727c9cc36ff861f5966
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 79bd404fb97159ca60822a3d4da89ce6afc47cb7f9c02d165b838c534737ba71
 ---
 
-## List
+## List Skill Versions
 
 `VersionListPageResponse Beta.Skills.Versions.List(VersionListParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -156,5 +156,26 @@ var page = await client.Beta.Skills.Versions.List(parameters);
 await foreach (var item in page.Paginate())
 {
     Console.WriteLine(item);
+}
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "skillver_01JAbcdefghijklmnopqrstuvw",
+      "created_at": "2024-10-30T23:58:27.427722Z",
+      "description": "A custom skill for doing something useful",
+      "directory": "my-skill",
+      "name": "my-skill",
+      "skill_id": "skill_01JAbcdefghijklmnopqrstuvw",
+      "type": "type",
+      "version": "1759178010641129"
+    }
+  ],
+  "has_more": true,
+  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="
 }
 ```

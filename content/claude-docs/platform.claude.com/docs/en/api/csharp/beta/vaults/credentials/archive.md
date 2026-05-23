@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/vaults/credentials/archive
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 344ac62f289eb775caf649b5b9a49707fb4969922297cc9768079797b6256fff
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 5cd908f7584c7a995855730c377efd60d13a4ef735613a1cd253984575b42014
 ---
 
-## Archive
+## Archive Credential
 
 `BetaManagedAgentsCredential Beta.Vaults.Credentials.Archive(CredentialArchiveParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -209,4 +209,25 @@ CredentialArchiveParams parameters = new()
 var betaManagedAgentsCredential = await client.Beta.Vaults.Credentials.Archive(parameters);
 
 Console.WriteLine(betaManagedAgentsCredential);
+```
+
+#### Response
+
+```json
+{
+  "id": "vcrd_011CZkZEMt8gZan2iYOQfSkw",
+  "archived_at": null,
+  "auth": {
+    "mcp_server_url": "https://example-server.modelcontextprotocol.io/sse",
+    "type": "static_bearer"
+  },
+  "created_at": "2026-03-15T10:00:00Z",
+  "metadata": {
+    "environment": "production"
+  },
+  "type": "vault_credential",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "vault_id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+  "display_name": "Example credential"
+}
 ```

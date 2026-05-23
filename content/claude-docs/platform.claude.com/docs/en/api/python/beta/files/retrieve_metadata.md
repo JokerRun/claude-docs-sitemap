@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/files/retrieve_metadata
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 5b39adefcee5e5bfcb3b708fb2f14f504bd783001b56fbf571785ab6a35ec1c3
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 112536e9a110a02c7fb3b8d7701b829e8f1cb040e8db877746f97fbbae7b5da6
 ---
 
-## Retrieve Metadata
+## Get File Metadata
 
 `beta.files.retrieve_metadata(strfile_id, FileRetrieveMetadataParams**kwargs)  -> FileMetadata`
 
@@ -142,4 +142,22 @@ file_metadata = client.beta.files.retrieve_metadata(
     file_id="file_id",
 )
 print(file_metadata.id)
+```
+
+#### Response
+
+```json
+{
+  "id": "file_011CNha8iCJcU1wXNR6q4V8w",
+  "created_at": "2025-04-15T18:37:24.100435Z",
+  "filename": "document.pdf",
+  "mime_type": "application/pdf",
+  "size_bytes": 102400,
+  "type": "file",
+  "downloadable": false,
+  "scope": {
+    "id": "id",
+    "type": "session"
+  }
+}
 ```

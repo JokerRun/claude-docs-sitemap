@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/vaults/list
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: de925a4541361320666661528793b80eeec7d7a48eed67ae12119dbf79febf27
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 8b5bad66af12a9b5536a3f42a44285146dd0578fc87ba36b0b845ea2292ea46a
 ---
 
-## List
+## List Vaults
 
 `beta.vaults.list(VaultListParams**kwargs)  -> SyncPageCursor[BetaManagedAgentsVault]`
 
@@ -131,4 +131,25 @@ client = Anthropic(
 page = client.beta.vaults.list()
 page = page.data[0]
 print(page.id)
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+      "archived_at": null,
+      "created_at": "2026-03-15T10:00:00Z",
+      "display_name": "Example vault",
+      "metadata": {
+        "environment": "production"
+      },
+      "type": "vault",
+      "updated_at": "2026-03-15T10:00:00Z"
+    }
+  ],
+  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="
+}
 ```

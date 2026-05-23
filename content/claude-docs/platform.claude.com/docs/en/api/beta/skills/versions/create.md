@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/versions/create
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 4baf77cc694629f88dc5565e347a87841870a3342b11bedb353f4d2422920430
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: f0ff295a76b347fdda5d15c2ca5157c862ecc4fa7b5457b4679b9f4589e39889
 ---
 
-## Create
+## Create Skill Version
 
 **post** `/v1/skills/{skill_id}/versions`
 
@@ -25,9 +25,9 @@ Create Skill Version
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = string`
+  - `string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -133,4 +133,19 @@ curl https://api.anthropic.com/v1/skills/$SKILL_ID/versions \
     -H 'anthropic-version: 2023-06-01' \
     -H 'anthropic-beta: skills-2025-10-02' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
+```
+
+#### Response
+
+```json
+{
+  "id": "skillver_01JAbcdefghijklmnopqrstuvw",
+  "created_at": "2024-10-30T23:58:27.427722Z",
+  "description": "A custom skill for doing something useful",
+  "directory": "my-skill",
+  "name": "my-skill",
+  "skill_id": "skill_01JAbcdefghijklmnopqrstuvw",
+  "type": "type",
+  "version": "1759178010641129"
+}
 ```

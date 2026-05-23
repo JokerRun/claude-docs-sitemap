@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/user_profiles/list
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 7672667778e4c0531ae42f3cc10e27e99d643a8bc9ca30d21b36a05f0274d7c5
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: aefcc1e6f8d3d1e0c575aa16389c30b4bd99a371db438f5bad02343c204ae19c
 ---
 
-## List
+## List User Profiles
 
 `UserProfileListPageResponse Beta.UserProfiles.List(UserProfileListParams?parameters, CancellationTokencancellationToken = default)`
 
@@ -162,5 +162,30 @@ var page = await client.Beta.UserProfiles.List(parameters);
 await foreach (var item in page.Paginate())
 {
     Console.WriteLine(item);
+}
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "uprof_011CZkZCu8hGbp5mYRQgUmz9",
+      "created_at": "2026-03-15T10:00:00Z",
+      "metadata": {},
+      "relationship": "external",
+      "trust_grants": {
+        "cyber": {
+          "status": "active"
+        }
+      },
+      "type": "user_profile",
+      "updated_at": "2026-03-15T10:00:00Z",
+      "external_id": "user_12345",
+      "name": "Example User"
+    }
+  ],
+  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="
 }
 ```

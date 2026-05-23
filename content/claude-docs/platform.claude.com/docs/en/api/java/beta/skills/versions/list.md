@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/skills/versions/list
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: d88fdbdc2a41d9b8cd994f4f2dd6dbfdd24ee3cc405634a2924b0a13e3c5e543
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 2f838b9e6f953458bafa8c38736466f5b2b7db3caef33bf500bb4204502c5d01
 ---
 
-## List
+## List Skill Versions
 
 `VersionListPage beta().skills().versions().list(VersionListParamsparams = VersionListParams.none(), RequestOptionsrequestOptions = RequestOptions.none())`
 
@@ -153,5 +153,26 @@ public final class Main {
 
         VersionListPage page = client.beta().skills().versions().list("skill_id");
     }
+}
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "skillver_01JAbcdefghijklmnopqrstuvw",
+      "created_at": "2024-10-30T23:58:27.427722Z",
+      "description": "A custom skill for doing something useful",
+      "directory": "my-skill",
+      "name": "my-skill",
+      "skill_id": "skill_01JAbcdefghijklmnopqrstuvw",
+      "type": "type",
+      "version": "1759178010641129"
+    }
+  ],
+  "has_more": true,
+  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="
 }
 ```

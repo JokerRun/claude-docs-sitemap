@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/sessions/resources/add
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 2fd6ae3755721aec7b56b27c653d3ab4157c19b57cd8052ecdf3660e815a9a3c
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 0f667662ab7be0492b3f42b711b3704a68af727f09798870f274f9ca637c8163
 ---
 
-## Add
+## Add Session Resource
 
 `client.beta.sessions.resources.add(stringsessionID, ResourceAddParamsparams, RequestOptionsoptions?): BetaManagedAgentsFileResource`
 
@@ -128,4 +128,17 @@ const betaManagedAgentsFileResource = await client.beta.sessions.resources.add(
 );
 
 console.log(betaManagedAgentsFileResource.id);
+```
+
+#### Response
+
+```json
+{
+  "id": "sesrsc_011CZkZBJq5dWxk9fVLNcPht",
+  "created_at": "2026-03-15T10:00:00Z",
+  "file_id": "file_011CNha8iCJcU1wXNR6q4V8w",
+  "mount_path": "/uploads/receipt.pdf",
+  "type": "file",
+  "updated_at": "2026-03-15T10:00:00Z"
+}
 ```

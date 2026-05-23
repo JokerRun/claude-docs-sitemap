@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/mcp_tunnels/tunnel_certificates/list
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: a6c8778e5c7f6892e7fd96a1a9c2a711ce59ce4706687da9c6e1956fba36bc6f
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: ea32aaebb9d10ce26994b57191562f75393b54fec00c237cf9c33c672ff337df
 ---
 
-## List
+## List Tunnel Certificates
 
 **get** `/v1/organizations/tunnels/{tunnel_id}/certificates`
 
@@ -89,4 +89,23 @@ Archived certificates are excluded unless `include_archived` is set.
 curl https://api.anthropic.com/v1/organizations/tunnels/$TUNNEL_ID/certificates \
     -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_WIF_BEARER_TOKEN"
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "tcrt_01JmWq4ZxnBvR7tKpY2sLdH9",
+      "archived_at": "2024-11-01T23:59:27.427722Z",
+      "created_at": "2024-10-30T23:58:27.427722Z",
+      "expires_at": "2024-10-30T23:58:27.427722Z",
+      "fingerprint": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
+      "tunnel_id": "tnl_01Hx9Kp2RtQvMn3sWbYdLcF8",
+      "type": "tunnel_certificate"
+    }
+  ],
+  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="
+}
 ```

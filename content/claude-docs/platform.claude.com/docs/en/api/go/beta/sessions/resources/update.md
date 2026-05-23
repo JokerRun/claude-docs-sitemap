@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/sessions/resources/update
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 8f1b67aa0c6e12739615046f87eadba4240ecaa65167c87282e9ad155e93357e
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 79bb74ee986c39fbf09dc97b0c3125a056f8a326ad81b03f8a9c0295559c7133
 ---
 
-## Update
+## Update Session Resource
 
 `client.Beta.Sessions.Resources.Update(ctx, resourceID, params) (*BetaSessionResourceUpdateResponseUnion, error)`
 
@@ -218,5 +218,22 @@ func main() {
     panic(err.Error())
   }
   fmt.Printf("%+v\n", resource)
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "sesrsc_011CZkZCKr6eXyl0gWMOdQiu",
+  "created_at": "2026-03-15T10:00:00Z",
+  "mount_path": "/workspace/example-repo",
+  "type": "github_repository",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "url": "https://github.com/example-org/example-repo",
+  "checkout": {
+    "name": "main",
+    "type": "branch"
+  }
 }
 ```

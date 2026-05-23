@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/environments/work/stop
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 158699eb5ac69af626f224def13fa5dd42e00856f8fa86a2f184b894ec3e226f
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 498fe41957a15b64934fec9cd77113a40cd6ff9ecf01885dd85b49d79033760e
 ---
 
-## Stop
+## Stop Work
 
 `$ ant beta:environments:work stop`
 
@@ -116,4 +116,28 @@ ant beta:environments:work stop \
   --api-key my-anthropic-api-key \
   --environment-id env_011CZkZ9X2dpNyB7HsEFoRfW \
   --work-id work_id
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "acknowledged_at": "acknowledged_at",
+  "created_at": "created_at",
+  "data": {
+    "id": "id",
+    "type": "session"
+  },
+  "environment_id": "environment_id",
+  "latest_heartbeat_at": "latest_heartbeat_at",
+  "metadata": {
+    "foo": "string"
+  },
+  "started_at": "started_at",
+  "state": "queued",
+  "stop_requested_at": "stop_requested_at",
+  "stopped_at": "stopped_at",
+  "type": "work"
+}
 ```

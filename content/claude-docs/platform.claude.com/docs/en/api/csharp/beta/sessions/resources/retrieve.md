@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/sessions/resources/retrieve
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: b93b69576dd2f8122d9f1c19ca2bb12795ae74686f8e03a36d96d16bf63286a1
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: dc79b13571ad70beb47e7e20d0b3db68df9938f380ec573ceeb5ff52f48ee7c6
 ---
 
-## Retrieve
+## Get Session Resource
 
 `ResourceRetrieveResponse Beta.Sessions.Resources.Retrieve(ResourceRetrieveParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -195,4 +195,21 @@ ResourceRetrieveParams parameters = new()
 var resource = await client.Beta.Sessions.Resources.Retrieve(parameters);
 
 Console.WriteLine(resource);
+```
+
+#### Response
+
+```json
+{
+  "id": "sesrsc_011CZkZCKr6eXyl0gWMOdQiu",
+  "created_at": "2026-03-15T10:00:00Z",
+  "mount_path": "/workspace/example-repo",
+  "type": "github_repository",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "url": "https://github.com/example-org/example-repo",
+  "checkout": {
+    "name": "main",
+    "type": "branch"
+  }
+}
 ```

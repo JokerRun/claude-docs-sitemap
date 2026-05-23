@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/vaults/credentials/archive
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: dfd8f7b0cda6a605c8c025a05fc2db1f0c9327bef7d7ee714c8a4fbdcf060fd6
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 666d4aa1847354fca10d917e2eb12fce73d757eae16155a265093f1360c7aaa5
 ---
 
-## Archive
+## Archive Credential
 
 `beta.vaults.credentials.archive(credential_id, **kwargs) -> BetaManagedAgentsCredential`
 
@@ -23,9 +23,9 @@ Archive Credential
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `String`
+  - `String = String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -208,4 +208,25 @@ beta_managed_agents_credential = anthropic.beta.vaults.credentials.archive(
 )
 
 puts(beta_managed_agents_credential)
+```
+
+#### Response
+
+```json
+{
+  "id": "vcrd_011CZkZEMt8gZan2iYOQfSkw",
+  "archived_at": null,
+  "auth": {
+    "mcp_server_url": "https://example-server.modelcontextprotocol.io/sse",
+    "type": "static_bearer"
+  },
+  "created_at": "2026-03-15T10:00:00Z",
+  "metadata": {
+    "environment": "production"
+  },
+  "type": "vault_credential",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "vault_id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+  "display_name": "Example credential"
+}
 ```

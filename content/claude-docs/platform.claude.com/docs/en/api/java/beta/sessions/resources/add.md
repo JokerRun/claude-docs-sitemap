@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/resources/add
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: bb81470c0123bf8d2881e91c1859e162476f099b943fea93ecb3ad036200e1f2
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 82a18d80c71eafe9a75ca0475789d1a57e388dd36ea5995773310fc864c3ec78
 ---
 
-## Add
+## Add Session Resource
 
 `BetaManagedAgentsFileResource beta().sessions().resources().add(ResourceAddParamsparams, RequestOptionsrequestOptions = RequestOptions.none())`
 
@@ -125,5 +125,18 @@ public final class Main {
             .build();
         BetaManagedAgentsFileResource betaManagedAgentsFileResource = client.beta().sessions().resources().add(params);
     }
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "sesrsc_011CZkZBJq5dWxk9fVLNcPht",
+  "created_at": "2026-03-15T10:00:00Z",
+  "file_id": "file_011CNha8iCJcU1wXNR6q4V8w",
+  "mount_path": "/uploads/receipt.pdf",
+  "type": "file",
+  "updated_at": "2026-03-15T10:00:00Z"
 }
 ```

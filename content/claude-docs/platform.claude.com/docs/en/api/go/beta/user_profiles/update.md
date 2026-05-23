@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/user_profiles/update
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: dc14d3279852441bf64b5d976931c1e9c32e2297bbc8f3c5e0b32ceac70781d5
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 96d4d7bdceba3990ca44040badfd89a8f491c1fbb34732bc66c6b2b5a306961b
 ---
 
-## Update
+## Update User Profile
 
 `client.Beta.UserProfiles.Update(ctx, userProfileID, params) (*BetaUserProfile, error)`
 
@@ -185,5 +185,25 @@ func main() {
     panic(err.Error())
   }
   fmt.Printf("%+v\n", betaUserProfile.ID)
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "uprof_011CZkZCu8hGbp5mYRQgUmz9",
+  "created_at": "2026-03-15T10:00:00Z",
+  "metadata": {},
+  "relationship": "external",
+  "trust_grants": {
+    "cyber": {
+      "status": "active"
+    }
+  },
+  "type": "user_profile",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "external_id": "user_12345",
+  "name": "Example User"
 }
 ```

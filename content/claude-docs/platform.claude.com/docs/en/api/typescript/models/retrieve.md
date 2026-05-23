@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/models/retrieve
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: d712bb5e6a5345acfafbc7697348a0366e7162d92f00933e02b1bd44f03a457b
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 579797b4bf67adce9d6dc7986c0efac6d4e5031d9179c102b47c94bebb80a320
 ---
 
-## Retrieve
+## Get a Model
 
 `client.models.retrieve(stringmodelID, ModelRetrieveParamsparams?, RequestOptionsoptions?): ModelInfo`
 
@@ -105,17 +105,9 @@ The Models API response can be used to determine information about a specific mo
 
       Whether the model supports citation generation.
 
-      - `supported: boolean`
-
-        Whether this capability is supported by the model.
-
     - `code_execution: CapabilitySupport`
 
       Whether the model supports code execution tools.
-
-      - `supported: boolean`
-
-        Whether this capability is supported by the model.
 
     - `context_management: ContextManagementCapability`
 
@@ -125,25 +117,13 @@ The Models API response can be used to determine information about a specific mo
 
         Indicates whether a capability is supported.
 
-        - `supported: boolean`
-
-          Whether this capability is supported by the model.
-
       - `clear_tool_uses_20250919: CapabilitySupport | null`
 
         Indicates whether a capability is supported.
 
-        - `supported: boolean`
-
-          Whether this capability is supported by the model.
-
       - `compact_20260112: CapabilitySupport | null`
 
         Indicates whether a capability is supported.
-
-        - `supported: boolean`
-
-          Whether this capability is supported by the model.
 
       - `supported: boolean`
 
@@ -157,33 +137,17 @@ The Models API response can be used to determine information about a specific mo
 
         Whether the model supports high effort level.
 
-        - `supported: boolean`
-
-          Whether this capability is supported by the model.
-
       - `low: CapabilitySupport`
 
         Whether the model supports low effort level.
-
-        - `supported: boolean`
-
-          Whether this capability is supported by the model.
 
       - `max: CapabilitySupport`
 
         Whether the model supports max effort level.
 
-        - `supported: boolean`
-
-          Whether this capability is supported by the model.
-
       - `medium: CapabilitySupport`
 
         Whether the model supports medium effort level.
-
-        - `supported: boolean`
-
-          Whether this capability is supported by the model.
 
       - `supported: boolean`
 
@@ -193,33 +157,17 @@ The Models API response can be used to determine information about a specific mo
 
         Indicates whether a capability is supported.
 
-        - `supported: boolean`
-
-          Whether this capability is supported by the model.
-
     - `image_input: CapabilitySupport`
 
       Whether the model accepts image content blocks.
-
-      - `supported: boolean`
-
-        Whether this capability is supported by the model.
 
     - `pdf_input: CapabilitySupport`
 
       Whether the model accepts PDF content blocks.
 
-      - `supported: boolean`
-
-        Whether this capability is supported by the model.
-
     - `structured_outputs: CapabilitySupport`
 
       Whether the model supports structured output / JSON mode / strict tool schemas.
-
-      - `supported: boolean`
-
-        Whether this capability is supported by the model.
 
     - `thinking: ThinkingCapability`
 
@@ -237,17 +185,9 @@ The Models API response can be used to determine information about a specific mo
 
           Whether the model supports thinking with type 'adaptive' (auto).
 
-          - `supported: boolean`
-
-            Whether this capability is supported by the model.
-
         - `enabled: CapabilitySupport`
 
           Whether the model supports thinking with type 'enabled'.
-
-          - `supported: boolean`
-
-            Whether this capability is supported by the model.
 
   - `created_at: string`
 
@@ -285,4 +225,78 @@ const client = new Anthropic({
 const modelInfo = await client.models.retrieve('model_id');
 
 console.log(modelInfo.id);
+```
+
+#### Response
+
+```json
+{
+  "id": "claude-opus-4-6",
+  "capabilities": {
+    "batch": {
+      "supported": true
+    },
+    "citations": {
+      "supported": true
+    },
+    "code_execution": {
+      "supported": true
+    },
+    "context_management": {
+      "clear_thinking_20251015": {
+        "supported": true
+      },
+      "clear_tool_uses_20250919": {
+        "supported": true
+      },
+      "compact_20260112": {
+        "supported": true
+      },
+      "supported": true
+    },
+    "effort": {
+      "high": {
+        "supported": true
+      },
+      "low": {
+        "supported": true
+      },
+      "max": {
+        "supported": true
+      },
+      "medium": {
+        "supported": true
+      },
+      "supported": true,
+      "xhigh": {
+        "supported": true
+      }
+    },
+    "image_input": {
+      "supported": true
+    },
+    "pdf_input": {
+      "supported": true
+    },
+    "structured_outputs": {
+      "supported": true
+    },
+    "thinking": {
+      "supported": true,
+      "types": {
+        "adaptive": {
+          "supported": true
+        },
+        "enabled": {
+          "supported": true
+        }
+      }
+    }
+  },
+  "created_at": "2026-02-04T00:00:00Z",
+  "display_name": "Claude Opus 4.6",
+  "max_input_tokens": 0,
+  "max_tokens": 0,
+  "type": "model"
+}
 ```

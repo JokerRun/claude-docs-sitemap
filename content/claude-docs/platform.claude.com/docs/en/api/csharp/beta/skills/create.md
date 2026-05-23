@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/skills/create
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: f26b432dd0f0d17fa85419f4fe53f108c87df69767433acfe2067fd9d45c322a
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: a7066f79ec2f52ae5d1e58b71f80ad39dc0d8a8161679b3c7aaaeb1f0102dded
 ---
 
-## Create
+## Create Skill
 
 `SkillCreateResponse Beta.Skills.Create(SkillCreateParams?parameters, CancellationTokencancellationToken = default)`
 
@@ -136,4 +136,18 @@ SkillCreateParams parameters = new();
 var skill = await client.Beta.Skills.Create(parameters);
 
 Console.WriteLine(skill);
+```
+
+#### Response
+
+```json
+{
+  "id": "skill_01JAbcdefghijklmnopqrstuvw",
+  "created_at": "2024-10-30T23:58:27.427722Z",
+  "display_title": "My Custom Skill",
+  "latest_version": "1759178010641129",
+  "source": "custom",
+  "type": "type",
+  "updated_at": "2024-10-30T23:58:27.427722Z"
+}
 ```

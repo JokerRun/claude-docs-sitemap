@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/files
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 7d1f431d0f29883a3a3ad1982995741c79ee6bb17b0b7d8d4cdacdb77658bf26
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 6777d990d1d2dbb40f3ddda384568c40027e0e4791cb067634625d7b21a57909
 ---
 
 # Files
 
-## Upload
+## Upload File
 
 `$ ant beta:files upload`
 
@@ -81,7 +81,25 @@ ant beta:files upload \
   --file 'Example data'
 ```
 
-## List
+#### Response
+
+```json
+{
+  "id": "file_011CNha8iCJcU1wXNR6q4V8w",
+  "created_at": "2025-04-15T18:37:24.100435Z",
+  "filename": "document.pdf",
+  "mime_type": "application/pdf",
+  "size_bytes": 102400,
+  "type": "file",
+  "downloadable": false,
+  "scope": {
+    "id": "id",
+    "type": "session"
+  }
+}
+```
+
+## List Files
 
 `$ ant beta:files list`
 
@@ -184,7 +202,32 @@ ant beta:files list \
   --api-key my-anthropic-api-key
 ```
 
-## Download
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "file_011CNha8iCJcU1wXNR6q4V8w",
+      "created_at": "2025-04-15T18:37:24.100435Z",
+      "filename": "document.pdf",
+      "mime_type": "application/pdf",
+      "size_bytes": 102400,
+      "type": "file",
+      "downloadable": false,
+      "scope": {
+        "id": "id",
+        "type": "session"
+      }
+    }
+  ],
+  "first_id": "file_011CNha8iCJcU1wXNR6q4V8w",
+  "has_more": true,
+  "last_id": "file_013Zva2CMHLNnXjNJJKqJ2EF"
+}
+```
+
+## Download File
 
 `$ ant beta:files download`
 
@@ -214,7 +257,7 @@ ant beta:files download \
   --file-id file_id
 ```
 
-## Retrieve Metadata
+## Get File Metadata
 
 `$ ant beta:files retrieve-metadata`
 
@@ -288,7 +331,25 @@ ant beta:files retrieve-metadata \
   --file-id file_id
 ```
 
-## Delete
+#### Response
+
+```json
+{
+  "id": "file_011CNha8iCJcU1wXNR6q4V8w",
+  "created_at": "2025-04-15T18:37:24.100435Z",
+  "filename": "document.pdf",
+  "mime_type": "application/pdf",
+  "size_bytes": 102400,
+  "type": "file",
+  "downloadable": false,
+  "scope": {
+    "id": "id",
+    "type": "session"
+  }
+}
+```
+
+## Delete File
 
 `$ ant beta:files delete`
 
@@ -328,6 +389,15 @@ Delete File
 ant beta:files delete \
   --api-key my-anthropic-api-key \
   --file-id file_id
+```
+
+#### Response
+
+```json
+{
+  "id": "file_011CNha8iCJcU1wXNR6q4V8w",
+  "type": "file_deleted"
+}
 ```
 
 ## Domain Types

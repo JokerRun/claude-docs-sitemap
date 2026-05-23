@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/sessions/delete
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 8e627406a19efed22c9962e3046c1657bc7c3be12e329444328662bf9d55744d
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: cad83dec21a763134c6ad7d6b71b1b52fe3afeff49b8ce37f5ba76a46b33e528
 ---
 
-## Delete
+## Delete Session
 
 `$ ant beta:sessions delete`
 
@@ -41,4 +41,13 @@ Delete Session
 ant beta:sessions delete \
   --api-key my-anthropic-api-key \
   --session-id sesn_011CZkZAtmR3yMPDzynEDxu7
+```
+
+#### Response
+
+```json
+{
+  "id": "sesn_011CZkZAtmR3yMPDzynEDxu7",
+  "type": "session_deleted"
+}
 ```

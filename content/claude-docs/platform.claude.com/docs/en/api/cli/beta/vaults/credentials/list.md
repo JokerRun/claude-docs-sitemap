@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/vaults/credentials/list
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: fac330d176984ab9dc7739ed67d86429c52f8dc5c7735e47b628511d5fecb54f
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 927b908be7082a6c695b5c394ffc1a3755b228b9b7e7f504b44856da31520b83
 ---
 
-## List
+## List Credentials
 
 `$ ant beta:vaults:credentials list`
 
@@ -167,4 +167,30 @@ List Credentials
 ant beta:vaults:credentials list \
   --api-key my-anthropic-api-key \
   --vault-id vlt_011CZkZDLs7fYzm1hXNPeRjv
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "vcrd_011CZkZEMt8gZan2iYOQfSkw",
+      "archived_at": null,
+      "auth": {
+        "mcp_server_url": "https://example-server.modelcontextprotocol.io/sse",
+        "type": "static_bearer"
+      },
+      "created_at": "2026-03-15T10:00:00Z",
+      "metadata": {
+        "environment": "production"
+      },
+      "type": "vault_credential",
+      "updated_at": "2026-03-15T10:00:00Z",
+      "vault_id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+      "display_name": "Example credential"
+    }
+  ],
+  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="
+}
 ```

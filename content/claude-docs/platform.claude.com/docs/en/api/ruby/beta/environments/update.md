@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/environments/update
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: a14a721cadd2e5701e42048b78c4dbf9a960e88a9a23504bc8c1ccb63a7362ca
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 92dcfcd90e2b46d3c2d706ee5aa458d4feaa7005cec926a8c756db68745cddde
 ---
 
-## Update
+## Update Environment
 
 `beta.environments.update(environment_id, **kwargs) -> BetaEnvironment`
 
@@ -143,9 +143,9 @@ Update an existing environment's configuration.
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `String`
+  - `String = String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -349,4 +349,53 @@ anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
 beta_environment = anthropic.beta.environments.update("env_011CZkZ9X2dpNyB7HsEFoRfW")
 
 puts(beta_environment)
+```
+
+#### Response
+
+```json
+{
+  "id": "env_011CZkZ9X2dpNyB7HsEFoRfW",
+  "archived_at": null,
+  "config": {
+    "networking": {
+      "allow_mcp_servers": false,
+      "allow_package_managers": true,
+      "allowed_hosts": [
+        "api.example.com"
+      ],
+      "type": "limited"
+    },
+    "packages": {
+      "apt": [
+        "string"
+      ],
+      "cargo": [
+        "string"
+      ],
+      "gem": [
+        "string"
+      ],
+      "go": [
+        "string"
+      ],
+      "npm": [
+        "string"
+      ],
+      "pip": [
+        "pandas",
+        "numpy"
+      ],
+      "type": "packages"
+    },
+    "type": "cloud"
+  },
+  "created_at": "2026-03-15T10:00:00Z",
+  "description": "Python environment with data-analysis packages.",
+  "metadata": {},
+  "name": "python-data-analysis",
+  "type": "environment",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "scope": "organization"
+}
 ```

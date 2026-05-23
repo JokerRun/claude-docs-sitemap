@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/skills/list
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 351921ee09a522dcc3bb6e1833a269d8c29daeda6c1b9b5a6613d77c1355bb36
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 1b53e8ee3b88de14a8e8668df8e1a7e3e56637d8fda692a5f885b82b4fc19cd9
 ---
 
-## List
+## List Skills
 
 `SkillListPage beta().skills().list(SkillListParamsparams = SkillListParams.none(), RequestOptionsrequestOptions = RequestOptions.none())`
 
@@ -155,5 +155,25 @@ public final class Main {
 
         SkillListPage page = client.beta().skills().list();
     }
+}
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "skill_01JAbcdefghijklmnopqrstuvw",
+      "created_at": "2024-10-30T23:58:27.427722Z",
+      "display_title": "My Custom Skill",
+      "latest_version": "1759178010641129",
+      "source": "custom",
+      "type": "type",
+      "updated_at": "2024-10-30T23:58:27.427722Z"
+    }
+  ],
+  "has_more": true,
+  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="
 }
 ```

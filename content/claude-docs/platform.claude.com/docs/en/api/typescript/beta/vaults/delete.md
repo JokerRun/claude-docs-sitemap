@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/vaults/delete
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 8ae4898d53b32fa69402681caed3a27f52eae63e96099387d251c16996c01396
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 2e6f59dbe7e13948f0cf7381ceee52b36b0daab68af740613d3901002b8df774
 ---
 
-## Delete
+## Delete Vault
 
 `client.beta.vaults.delete(stringvaultID, VaultDeleteParamsparams?, RequestOptionsoptions?): BetaManagedAgentsDeletedVault`
 
@@ -105,4 +105,13 @@ const betaManagedAgentsDeletedVault = await client.beta.vaults.delete(
 );
 
 console.log(betaManagedAgentsDeletedVault.id);
+```
+
+#### Response
+
+```json
+{
+  "id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+  "type": "vault_deleted"
+}
 ```

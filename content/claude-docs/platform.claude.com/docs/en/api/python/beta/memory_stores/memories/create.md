@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/memory_stores/memories/create
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 34d01355d9abb444f65450dcc0628f8ad0149f02797d5be25d6e0bc69247198d
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 83fd77c9ec00b1caeb1e7bdef49d5f8fa2f2d298a1f4eee9c0e5b065a491df3c
 ---
 
-## Create
+## Create a memory
 
 `beta.memory_stores.memories.create(strmemory_store_id, MemoryCreateParams**kwargs)  -> BetaManagedAgentsMemory`
 
@@ -152,4 +152,21 @@ beta_managed_agents_memory = client.beta.memory_stores.memories.create(
     path="xx",
 )
 print(beta_managed_agents_memory.id)
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "content_sha256": "content_sha256",
+  "content_size_bytes": 0,
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "memory_store_id": "memory_store_id",
+  "memory_version_id": "memory_version_id",
+  "path": "path",
+  "type": "memory",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "content": "content"
+}
 ```

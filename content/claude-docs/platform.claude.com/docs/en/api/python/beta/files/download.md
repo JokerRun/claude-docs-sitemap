@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/files/download
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: d3066641846d87f3ad3089b265804b5b5c0cdce76039d60e4411206ca48fe03b
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 83292c9b1d33033c2aa53180b265f39d124c7214b255f894797ee38420f27755
 ---
 
-## Download
+## Download File
 
 `beta.files.download(strfile_id, FileDownloadParams**kwargs)  -> BinaryResponseContent`
 

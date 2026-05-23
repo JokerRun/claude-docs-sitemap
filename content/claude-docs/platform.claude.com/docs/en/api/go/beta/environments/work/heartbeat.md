@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/environments/work/heartbeat
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 6247f53abc30aaf7b351f2ffded03e2effc8e21ea36da576cb56531bd1e4b35e
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 79c8622aa5eb49cf3b9e7e063c18d04e79529597b03245d8e923a5405a14b5b4
 ---
 
-## Heartbeat
+## Record Heartbeat
 
 `client.Beta.Environments.Work.Heartbeat(ctx, workID, params) (*BetaSelfHostedWorkHeartbeatResponse, error)`
 
@@ -157,5 +157,17 @@ func main() {
     panic(err.Error())
   }
   fmt.Printf("%+v\n", betaSelfHostedWorkHeartbeatResponse.LastHeartbeat)
+}
+```
+
+#### Response
+
+```json
+{
+  "last_heartbeat": "last_heartbeat",
+  "lease_extended": true,
+  "state": "queued",
+  "ttl_seconds": 0,
+  "type": "work_heartbeat"
 }
 ```

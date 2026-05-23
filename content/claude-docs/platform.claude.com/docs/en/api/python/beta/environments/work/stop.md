@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/environments/work/stop
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 495f869da7566e5e4d1e17b974dcc467cb0492645682695dc3fcee64aa36103a
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 54bb9ea9dbbe894e8db05dcd94e2fd5a2ae6229b0e44bb06eaa58b0c2b7adfd1
 ---
 
-## Stop
+## Stop Work
 
 `beta.environments.work.stop(strwork_id, WorkStopParams**kwargs)  -> BetaSelfHostedWork`
 
@@ -177,4 +177,28 @@ beta_self_hosted_work = client.beta.environments.work.stop(
     environment_id="env_011CZkZ9X2dpNyB7HsEFoRfW",
 )
 print(beta_self_hosted_work.id)
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "acknowledged_at": "acknowledged_at",
+  "created_at": "created_at",
+  "data": {
+    "id": "id",
+    "type": "session"
+  },
+  "environment_id": "environment_id",
+  "latest_heartbeat_at": "latest_heartbeat_at",
+  "metadata": {
+    "foo": "string"
+  },
+  "started_at": "started_at",
+  "state": "queued",
+  "stop_requested_at": "stop_requested_at",
+  "stopped_at": "stopped_at",
+  "type": "work"
+}
 ```

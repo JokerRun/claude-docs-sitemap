@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/environments/work/poll
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: a99c337c49b762e182eb7d755a3c1fe8985b44f35f81a8fdfe6f1ee01293c372
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: d9b26ec25e632453caeadef07587e62b72bfb81c304cd8d7b8b03ac1762c9045
 ---
 
-## Poll
+## Poll for Work
 
 `beta.environments.work.poll(strenvironment_id, WorkPollParams**kwargs)  -> BetaSelfHostedWork`
 
@@ -182,4 +182,28 @@ beta_self_hosted_work = client.beta.environments.work.poll(
     environment_id="env_011CZkZ9X2dpNyB7HsEFoRfW",
 )
 print(beta_self_hosted_work.id)
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "acknowledged_at": "acknowledged_at",
+  "created_at": "created_at",
+  "data": {
+    "id": "id",
+    "type": "session"
+  },
+  "environment_id": "environment_id",
+  "latest_heartbeat_at": "latest_heartbeat_at",
+  "metadata": {
+    "foo": "string"
+  },
+  "started_at": "started_at",
+  "state": "queued",
+  "stop_requested_at": "stop_requested_at",
+  "stopped_at": "stopped_at",
+  "type": "work"
+}
 ```

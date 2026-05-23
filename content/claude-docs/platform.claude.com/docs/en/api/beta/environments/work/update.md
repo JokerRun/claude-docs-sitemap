@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/update
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: ff514528a6cfca9c9b8369b1ebdbcbb8382a0150ed2632c883811fbe38166d31
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 13997ed9cf48490cb91ae9920e1ecb730dbeb3e51ebf9966441b970f4b020b0b
 ---
 
-## Update
+## Update Work Item
 
 **post** `/v1/environments/{environment_id}/work/{work_id}`
 
@@ -25,9 +25,9 @@ Update work item metadata with merge semantics.
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = string`
+  - `string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -87,7 +87,7 @@ Update work item metadata with merge semantics.
 
 ### Returns
 
-- `BetaSelfHostedWork = object { id, acknowledged_at, created_at, 9 more }`
+- `BetaSelfHostedWork object { id, acknowledged_at, created_at, 9 more }`
 
   Work resource representing a unit of work in a self-hosted environment.
 
@@ -178,4 +178,28 @@ curl https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID/work/$WORK_ID \
             "foo": "string"
           }
         }'
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "acknowledged_at": "acknowledged_at",
+  "created_at": "created_at",
+  "data": {
+    "id": "id",
+    "type": "session"
+  },
+  "environment_id": "environment_id",
+  "latest_heartbeat_at": "latest_heartbeat_at",
+  "metadata": {
+    "foo": "string"
+  },
+  "started_at": "started_at",
+  "state": "queued",
+  "stop_requested_at": "stop_requested_at",
+  "stopped_at": "stopped_at",
+  "type": "work"
+}
 ```

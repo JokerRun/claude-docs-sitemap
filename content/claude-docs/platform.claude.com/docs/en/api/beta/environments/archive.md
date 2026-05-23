@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/archive
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: df529ebd3cc9cde324b6563b51b09c65ed61ab91877e6bedfb1a338798d0e301
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 9986e569116e621b5b207890296e2c6a19c322970bcdaa39285ee128ae288b94
 ---
 
-## Archive
+## Archive Environment
 
 **post** `/v1/environments/{environment_id}/archive`
 
@@ -21,9 +21,9 @@ Archive an environment by ID. Archived environments cannot be used to create new
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = string`
+  - `string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -77,7 +77,7 @@ Archive an environment by ID. Archived environments cannot be used to create new
 
 ### Returns
 
-- `BetaEnvironment = object { id, archived_at, config, 7 more }`
+- `BetaEnvironment object { id, archived_at, config, 7 more }`
 
   Unified Environment resource for both cloud and self-hosted environments.
 
@@ -93,7 +93,7 @@ Archive an environment by ID. Archived environments cannot be used to create new
 
     Environment configuration (either Anthropic Cloud or self-hosted)
 
-    - `BetaCloudConfig = object { networking, packages, type }`
+    - `BetaCloudConfig object { networking, packages, type }`
 
       `cloud` environment configuration.
 
@@ -101,7 +101,7 @@ Archive an environment by ID. Archived environments cannot be used to create new
 
         Network configuration policy.
 
-        - `BetaUnrestrictedNetwork = object { type }`
+        - `BetaUnrestrictedNetwork object { type }`
 
           Unrestricted network access.
 
@@ -111,7 +111,7 @@ Archive an environment by ID. Archived environments cannot be used to create new
 
             - `"unrestricted"`
 
-        - `BetaLimitedNetwork = object { allow_mcp_servers, allow_package_managers, allowed_hosts, type }`
+        - `BetaLimitedNetwork object { allow_mcp_servers, allow_package_managers, allowed_hosts, type }`
 
           Limited network access.
 
@@ -173,7 +173,7 @@ Archive an environment by ID. Archived environments cannot be used to create new
 
         - `"cloud"`
 
-    - `BetaSelfHostedConfig = object { type }`
+    - `BetaSelfHostedConfig object { type }`
 
       Configuration for self-hosted environments.
 
@@ -225,4 +225,53 @@ curl https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID/archive \
     -H 'anthropic-version: 2023-06-01' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
+```
+
+#### Response
+
+```json
+{
+  "id": "env_011CZkZ9X2dpNyB7HsEFoRfW",
+  "archived_at": null,
+  "config": {
+    "networking": {
+      "allow_mcp_servers": false,
+      "allow_package_managers": true,
+      "allowed_hosts": [
+        "api.example.com"
+      ],
+      "type": "limited"
+    },
+    "packages": {
+      "apt": [
+        "string"
+      ],
+      "cargo": [
+        "string"
+      ],
+      "gem": [
+        "string"
+      ],
+      "go": [
+        "string"
+      ],
+      "npm": [
+        "string"
+      ],
+      "pip": [
+        "pandas",
+        "numpy"
+      ],
+      "type": "packages"
+    },
+    "type": "cloud"
+  },
+  "created_at": "2026-03-15T10:00:00Z",
+  "description": "Python environment with data-analysis packages.",
+  "metadata": {},
+  "name": "python-data-analysis",
+  "type": "environment",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "scope": "organization"
+}
 ```

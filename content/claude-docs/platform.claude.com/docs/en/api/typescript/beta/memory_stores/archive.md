@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/memory_stores/archive
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: c7c1a0ed10060c3fed3871ae708a08f9a61c840b16d9f9719fcb10e72b3775d3
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 0d38a87ab8636f34c45f304e9f5bba08410c69ab831ac6c7dc2db9604f555235
 ---
 
-## Archive
+## Archive a memory store
 
 `client.beta.memoryStores.archive(stringmemoryStoreID, MemoryStoreArchiveParamsparams?, RequestOptionsoptions?): BetaManagedAgentsMemoryStore`
 
@@ -127,4 +127,21 @@ const client = new Anthropic({
 const betaManagedAgentsMemoryStore = await client.beta.memoryStores.archive('memory_store_id');
 
 console.log(betaManagedAgentsMemoryStore.id);
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "name": "name",
+  "type": "memory_store",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "archived_at": "2019-12-27T18:11:19.117Z",
+  "description": "description",
+  "metadata": {
+    "foo": "string"
+  }
+}
 ```

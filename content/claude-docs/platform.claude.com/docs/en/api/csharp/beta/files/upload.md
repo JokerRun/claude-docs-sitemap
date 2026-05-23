@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/files/upload
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 739823fac4cd2997fce3a3dadaef6e32676408defdadd63cdd07dbe699840141
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 784f889bcc24723008114d47f9531c2335220bdbc3b9cfb7059b2a86cc2f52ae
 ---
 
-## Upload
+## Upload File
 
 `FileMetadata Beta.Files.Upload(FileUploadParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -134,4 +134,22 @@ FileUploadParams parameters = new()
 var fileMetadata = await client.Beta.Files.Upload(parameters);
 
 Console.WriteLine(fileMetadata);
+```
+
+#### Response
+
+```json
+{
+  "id": "file_011CNha8iCJcU1wXNR6q4V8w",
+  "created_at": "2025-04-15T18:37:24.100435Z",
+  "filename": "document.pdf",
+  "mime_type": "application/pdf",
+  "size_bytes": 102400,
+  "type": "file",
+  "downloadable": false,
+  "scope": {
+    "id": "id",
+    "type": "session"
+  }
+}
 ```

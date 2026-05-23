@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/mcp_tunnels/tunnel_certificates/retrieve
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: cf8a12f9773e764fe8c70f5fcc1944591e76195f49a3768eb6da4e53a803c358
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: d75600fc2fb68a70e6a596dee3d9a003e73a358080a682a3bdacf5e76bee1d5a
 ---
 
-## Retrieve
+## Get Tunnel Certificate
 
 **get** `/v1/organizations/tunnels/{tunnel_id}/certificates/{certificate_id}`
 
@@ -69,4 +69,18 @@ Retrieve a single certificate registered on a tunnel by ID.
 curl https://api.anthropic.com/v1/organizations/tunnels/$TUNNEL_ID/certificates/$CERTIFICATE_ID \
     -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_WIF_BEARER_TOKEN"
+```
+
+#### Response
+
+```json
+{
+  "id": "tcrt_01JmWq4ZxnBvR7tKpY2sLdH9",
+  "archived_at": "2024-11-01T23:59:27.427722Z",
+  "created_at": "2024-10-30T23:58:27.427722Z",
+  "expires_at": "2024-10-30T23:58:27.427722Z",
+  "fingerprint": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
+  "tunnel_id": "tnl_01Hx9Kp2RtQvMn3sWbYdLcF8",
+  "type": "tunnel_certificate"
+}
 ```

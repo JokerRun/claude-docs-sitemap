@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/credentials/delete
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 312f5d3c87fe8a2759b92fade4100655675dd47c34a958c36cad3c9e45c0419c
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 9fe293f429e0dd546fc0e33952ab0b0f5a53772afb013c8aee2fc4fde489947f
 ---
 
-## Delete
+## Delete Credential
 
 `BetaManagedAgentsDeletedCredential beta().vaults().credentials().delete(CredentialDeleteParamsparams, RequestOptionsrequestOptions = RequestOptions.none())`
 
@@ -111,5 +111,14 @@ public final class Main {
             .build();
         BetaManagedAgentsDeletedCredential betaManagedAgentsDeletedCredential = client.beta().vaults().credentials().delete(params);
     }
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "vcrd_011CZkZEMt8gZan2iYOQfSkw",
+  "type": "vault_credential_deleted"
 }
 ```

@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/user_profiles/list
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 403b6868ad98db104774600e5835265609003a4bed61f00ea6f6de5e05857e02
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 406e9be551a99685b4e2d626d7cf3b9f06a2dcf3c3fe3da1537b9c6491c7b019
 ---
 
-## List
+## List User Profiles
 
 `UserProfileListPage beta().userProfiles().list(UserProfileListParamsparams = UserProfileListParams.none(), RequestOptionsrequestOptions = RequestOptions.none())`
 
@@ -163,5 +163,30 @@ public final class Main {
 
         UserProfileListPage page = client.beta().userProfiles().list();
     }
+}
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "uprof_011CZkZCu8hGbp5mYRQgUmz9",
+      "created_at": "2026-03-15T10:00:00Z",
+      "metadata": {},
+      "relationship": "external",
+      "trust_grants": {
+        "cyber": {
+          "status": "active"
+        }
+      },
+      "type": "user_profile",
+      "updated_at": "2026-03-15T10:00:00Z",
+      "external_id": "user_12345",
+      "name": "Example User"
+    }
+  ],
+  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="
 }
 ```

@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/environments/work/poll
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 2b374ac0ae36ad4478665d08c4948e830caa91871aa8f145bfe5e253575ce8a0
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 062e5730b1cf277fb79a91f713167327105f98e396235e8a7cfb50c6891bbe6d
 ---
 
-## Poll
+## Poll for Work
 
 `BetaSelfHostedWork? Beta.Environments.Work.Poll(WorkPollParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -176,4 +176,28 @@ WorkPollParams parameters = new()
 var betaSelfHostedWork = await client.Beta.Environments.Work.Poll(parameters);
 
 Console.WriteLine(betaSelfHostedWork);
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "acknowledged_at": "acknowledged_at",
+  "created_at": "created_at",
+  "data": {
+    "id": "id",
+    "type": "session"
+  },
+  "environment_id": "environment_id",
+  "latest_heartbeat_at": "latest_heartbeat_at",
+  "metadata": {
+    "foo": "string"
+  },
+  "started_at": "started_at",
+  "state": "queued",
+  "stop_requested_at": "stop_requested_at",
+  "stopped_at": "stopped_at",
+  "type": "work"
+}
 ```

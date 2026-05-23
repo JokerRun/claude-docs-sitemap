@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/quickstart
-fetched_at: 2026-05-12T03:14:46.254373Z
-sha256: b07c1f5df13126cd18bf83d5d2ae4c2916d4939f9d3396251449629c1e1cbf27
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: c5246ae71179efe675b29e9ccdcb579cd386a741af621a03d3ae4c0c4c981cf4
 ---
 
 > ## Documentation Index
@@ -130,7 +130,7 @@ Create `agent.py` if you're using the Python SDK, or `agent.ts` for TypeScript:
       async for message in query(
           prompt="Review utils.py for bugs that would cause crashes. Fix any issues you find.",
           options=ClaudeAgentOptions(
-              allowed_tools=["Read", "Edit", "Glob"],  # Tools Claude can use
+              allowed_tools=["Read", "Edit", "Glob"],  # Auto-approve these tools
               permission_mode="acceptEdits",  # Auto-approve file edits
           ),
       ):
@@ -155,7 +155,7 @@ Create `agent.py` if you're using the Python SDK, or `agent.ts` for TypeScript:
   for await (const message of query({
     prompt: "Review utils.py for bugs that would cause crashes. Fix any issues you find.",
     options: {
-      allowedTools: ["Read", "Edit", "Glob"], // Tools Claude can use
+      allowedTools: ["Read", "Edit", "Glob"], // Auto-approve these tools
       permissionMode: "acceptEdits" // Auto-approve file edits
     }
   })) {

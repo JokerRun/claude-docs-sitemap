@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/agents/retrieve
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 63af40e3075093162ca76b30856eb614440a5397f54a886466269762c97ba788
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 36e79ca762ab2ae6b3b4217f21914829b9b933a2f0651b3309698adca4ccc2d2
 ---
 
-## Retrieve
+## Get Agent
 
 `client.Beta.Agents.Get(ctx, agentID, params) (*BetaManagedAgentsAgent, error)`
 
@@ -285,17 +285,9 @@ Get Agent
 
             Tool calls are automatically approved without user confirmation.
 
-            - `Type BetaManagedAgentsAlwaysAllowPolicyType`
-
-              - `const BetaManagedAgentsAlwaysAllowPolicyTypeAlwaysAllow BetaManagedAgentsAlwaysAllowPolicyType = "always_allow"`
-
           - `type BetaManagedAgentsAlwaysAskPolicy struct{…}`
 
             Tool calls require user confirmation before execution.
-
-            - `Type BetaManagedAgentsAlwaysAskPolicyType`
-
-              - `const BetaManagedAgentsAlwaysAskPolicyTypeAlwaysAsk BetaManagedAgentsAlwaysAskPolicyType = "always_ask"`
 
       - `Type BetaManagedAgentsAgentToolset20260401Type`
 
@@ -317,17 +309,9 @@ Get Agent
 
             Tool calls are automatically approved without user confirmation.
 
-            - `Type BetaManagedAgentsAlwaysAllowPolicyType`
-
-              - `const BetaManagedAgentsAlwaysAllowPolicyTypeAlwaysAllow BetaManagedAgentsAlwaysAllowPolicyType = "always_allow"`
-
           - `type BetaManagedAgentsAlwaysAskPolicy struct{…}`
 
             Tool calls require user confirmation before execution.
-
-            - `Type BetaManagedAgentsAlwaysAskPolicyType`
-
-              - `const BetaManagedAgentsAlwaysAskPolicyTypeAlwaysAsk BetaManagedAgentsAlwaysAskPolicyType = "always_ask"`
 
       - `DefaultConfig BetaManagedAgentsMCPToolsetDefaultConfig`
 
@@ -343,17 +327,9 @@ Get Agent
 
             Tool calls are automatically approved without user confirmation.
 
-            - `Type BetaManagedAgentsAlwaysAllowPolicyType`
-
-              - `const BetaManagedAgentsAlwaysAllowPolicyTypeAlwaysAllow BetaManagedAgentsAlwaysAllowPolicyType = "always_allow"`
-
           - `type BetaManagedAgentsAlwaysAskPolicy struct{…}`
 
             Tool calls require user confirmation before execution.
-
-            - `Type BetaManagedAgentsAlwaysAskPolicyType`
-
-              - `const BetaManagedAgentsAlwaysAskPolicyTypeAlwaysAsk BetaManagedAgentsAlwaysAskPolicyType = "always_ask"`
 
       - `MCPServerName string`
 
@@ -431,5 +407,77 @@ func main() {
     panic(err.Error())
   }
   fmt.Printf("%+v\n", betaManagedAgentsAgent.ID)
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "agent_011CZkYpogX7uDKUyvBTophP",
+  "archived_at": null,
+  "created_at": "2026-03-15T10:00:00Z",
+  "description": "A general-purpose starter agent.",
+  "mcp_servers": [
+    {
+      "name": "example-mcp",
+      "type": "url",
+      "url": "https://example-server.modelcontextprotocol.io/sse"
+    }
+  ],
+  "metadata": {
+    "foo": "bar"
+  },
+  "model": {
+    "id": "claude-sonnet-4-6",
+    "speed": "standard"
+  },
+  "multiagent": {
+    "agents": [
+      {
+        "id": "agent_011CZkYqphY8vELVzwCUpqiQ",
+        "type": "agent",
+        "version": 1
+      }
+    ],
+    "type": "coordinator"
+  },
+  "name": "My First Agent",
+  "skills": [
+    {
+      "skill_id": "xlsx",
+      "type": "anthropic",
+      "version": "1"
+    },
+    {
+      "skill_id": "skill_011CZkZFNu9hAbo3jZPRgTlx",
+      "type": "custom",
+      "version": "2"
+    }
+  ],
+  "system": "You are a general-purpose agent that can research, write code, run commands, and use connected tools to complete the user's task end to end.",
+  "tools": [
+    {
+      "configs": [
+        {
+          "enabled": true,
+          "name": "bash",
+          "permission_policy": {
+            "type": "always_allow"
+          }
+        }
+      ],
+      "default_config": {
+        "enabled": true,
+        "permission_policy": {
+          "type": "always_ask"
+        }
+      },
+      "type": "agent_toolset_20260401"
+    }
+  ],
+  "type": "agent",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "version": 1
 }
 ```

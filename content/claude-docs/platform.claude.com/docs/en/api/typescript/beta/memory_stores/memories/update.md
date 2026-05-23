@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/memory_stores/memories/update
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 906a00bcb55d78393061eece166c7710e5489ae90d715cbad32ea2050cb6a8e0
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 3fd4d0d6701f2e0e9fe1eb273db256bb395a7086375e8c4e7e73a98594d25d57
 ---
 
-## Update
+## Update a memory
 
 `client.beta.memoryStores.memories.update(stringmemoryID, MemoryUpdateParamsparams, RequestOptionsoptions?): BetaManagedAgentsMemory`
 
@@ -169,4 +169,21 @@ const betaManagedAgentsMemory = await client.beta.memoryStores.memories.update('
 });
 
 console.log(betaManagedAgentsMemory.id);
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "content_sha256": "content_sha256",
+  "content_size_bytes": 0,
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "memory_store_id": "memory_store_id",
+  "memory_version_id": "memory_version_id",
+  "path": "path",
+  "type": "memory",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "content": "content"
+}
 ```

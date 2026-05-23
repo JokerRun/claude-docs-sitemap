@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/sessions/resources/add
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 1a6a99445e3b566ed0453fcabf4baa68bb03df367fdf8e5524c5452c44648988
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: b53c8f918e5b810c61b740e0e165b952bf703efba9910720a5f036562323378f
 ---
 
-## Add
+## Add Session Resource
 
 `$ ant beta:sessions:resources add`
 
@@ -65,4 +65,17 @@ ant beta:sessions:resources add \
   --session-id sesn_011CZkZAtmR3yMPDzynEDxu7 \
   --file-id file_011CNha8iCJcU1wXNR6q4V8w \
   --type file
+```
+
+#### Response
+
+```json
+{
+  "id": "sesrsc_011CZkZBJq5dWxk9fVLNcPht",
+  "created_at": "2026-03-15T10:00:00Z",
+  "file_id": "file_011CNha8iCJcU1wXNR6q4V8w",
+  "mount_path": "/uploads/receipt.pdf",
+  "type": "file",
+  "updated_at": "2026-03-15T10:00:00Z"
+}
 ```

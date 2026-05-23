@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/files/delete
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: f926710dd59ac36d8b1b32fe7ea2ec279abb89b7afb4fd835aad918496d7ebba
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: aedb1a41dc48d387b92c9560b09db3288a03722d94f0ccd421aa1cf1f767058e
 ---
 
-## Delete
+## Delete File
 
 `DeletedFile Beta.Files.Delete(FileDeleteParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -99,4 +99,13 @@ FileDeleteParams parameters = new() { FileID = "file_id" };
 var deletedFile = await client.Beta.Files.Delete(parameters);
 
 Console.WriteLine(deletedFile);
+```
+
+#### Response
+
+```json
+{
+  "id": "file_011CNha8iCJcU1wXNR6q4V8w",
+  "type": "file_deleted"
+}
 ```

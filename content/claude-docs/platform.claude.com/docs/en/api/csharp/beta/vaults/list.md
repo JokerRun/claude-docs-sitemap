@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/vaults/list
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: aa639bcbcfa147f8d6e19f0bbf935968baaa2545f7b4166556cb98d71370f960
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 5ffcaf358109a287df894a3991b120a49cffea787691de0086dfa029a7cf5af1
 ---
 
-## List
+## List Vaults
 
 `VaultListPageResponse Beta.Vaults.List(VaultListParams?parameters, CancellationTokencancellationToken = default)`
 
@@ -134,5 +134,26 @@ var page = await client.Beta.Vaults.List(parameters);
 await foreach (var item in page.Paginate())
 {
     Console.WriteLine(item);
+}
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+      "archived_at": null,
+      "created_at": "2026-03-15T10:00:00Z",
+      "display_name": "Example vault",
+      "metadata": {
+        "environment": "production"
+      },
+      "type": "vault",
+      "updated_at": "2026-03-15T10:00:00Z"
+    }
+  ],
+  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="
 }
 ```

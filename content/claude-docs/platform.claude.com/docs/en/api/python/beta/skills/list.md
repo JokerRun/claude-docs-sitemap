@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/skills/list
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 55531156848894edcb0fb23b09dc0e1d4c0ff7cf140685e0d64f177eeaee03fa
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 0fe2ebd97f4275cb3c0868a0bd311c5ad31280b1cf891efc3f2adcc61f8c53a6
 ---
 
-## List
+## List Skills
 
 `beta.skills.list(SkillListParams**kwargs)  -> SyncPageCursor[SkillListResponse]`
 
@@ -151,4 +151,24 @@ client = Anthropic(
 page = client.beta.skills.list()
 page = page.data[0]
 print(page.id)
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "skill_01JAbcdefghijklmnopqrstuvw",
+      "created_at": "2024-10-30T23:58:27.427722Z",
+      "display_title": "My Custom Skill",
+      "latest_version": "1759178010641129",
+      "source": "custom",
+      "type": "type",
+      "updated_at": "2024-10-30T23:58:27.427722Z"
+    }
+  ],
+  "has_more": true,
+  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="
+}
 ```

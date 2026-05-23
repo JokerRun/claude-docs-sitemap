@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/invites/create
-fetched_at: 2026-04-25T03:09:48.142425Z
-sha256: 4e7f9221ab8dcf602b311ecb63cfa045397042eecfa948b936718f4167c95c4c
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: ecdbb18260e800f2cc1de61887185ceddf259920ac3b481b982575e75c2e4aa8
 ---
 
-## Create
+## Create Invite
 
 **post** `/v1/organizations/invites`
 
@@ -31,7 +31,7 @@ Create Invite
 
 ### Returns
 
-- `Invite = object { id, email, expires_at, 4 more }`
+- `Invite object { id, email, expires_at, 4 more }`
 
   - `id: string`
 
@@ -94,4 +94,18 @@ curl https://api.anthropic.com/v1/organizations/invites \
           "email": "user@emaildomain.com",
           "role": "user"
         }'
+```
+
+#### Response
+
+```json
+{
+  "id": "invite_015gWxCN9Hfg2QhZwTK7Mdeu",
+  "email": "user@emaildomain.com",
+  "expires_at": "2024-11-20T23:58:27.427722Z",
+  "invited_at": "2024-10-30T23:58:27.427722Z",
+  "role": "user",
+  "status": "pending",
+  "type": "invite"
+}
 ```

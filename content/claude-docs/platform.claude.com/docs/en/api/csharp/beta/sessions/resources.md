@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/sessions/resources
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: c8db42453e8e35f1675924c5b14bc92367fb839d4ddca53b32b3f7271bcfacaa
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 34e10b1cb4a344697b5eec074da6dfbf14994272f42191a9011179ab2097eaf9
 ---
 
 # Resources
 
-## Add
+## Add Session Resource
 
 `BetaManagedAgentsFileResource Beta.Sessions.Resources.Add(ResourceAddParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -128,7 +128,20 @@ var betaManagedAgentsFileResource = await client.Beta.Sessions.Resources.Add(par
 Console.WriteLine(betaManagedAgentsFileResource);
 ```
 
-## List
+#### Response
+
+```json
+{
+  "id": "sesrsc_011CZkZBJq5dWxk9fVLNcPht",
+  "created_at": "2026-03-15T10:00:00Z",
+  "file_id": "file_011CNha8iCJcU1wXNR6q4V8w",
+  "mount_path": "/uploads/receipt.pdf",
+  "type": "file",
+  "updated_at": "2026-03-15T10:00:00Z"
+}
+```
+
+## List Session Resources
 
 `ResourceListPageResponse Beta.Sessions.Resources.List(ResourceListParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -333,7 +346,37 @@ await foreach (var item in page.Paginate())
 }
 ```
 
-## Retrieve
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "sesrsc_011CZkZBJq5dWxk9fVLNcPht",
+      "created_at": "2026-03-15T10:00:00Z",
+      "file_id": "file_011CNha8iCJcU1wXNR6q4V8w",
+      "mount_path": "/uploads/receipt.pdf",
+      "type": "file",
+      "updated_at": "2026-03-15T10:00:00Z"
+    },
+    {
+      "id": "sesrsc_011CZkZCKr6eXyl0gWMOdQiu",
+      "created_at": "2026-03-15T10:00:00Z",
+      "mount_path": "/workspace/example-repo",
+      "type": "github_repository",
+      "updated_at": "2026-03-15T10:00:00Z",
+      "url": "https://github.com/example-org/example-repo",
+      "checkout": {
+        "name": "main",
+        "type": "branch"
+      }
+    }
+  ],
+  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="
+}
+```
+
+## Get Session Resource
 
 `ResourceRetrieveResponse Beta.Sessions.Resources.Retrieve(ResourceRetrieveParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -525,7 +568,24 @@ var resource = await client.Beta.Sessions.Resources.Retrieve(parameters);
 Console.WriteLine(resource);
 ```
 
-## Update
+#### Response
+
+```json
+{
+  "id": "sesrsc_011CZkZCKr6eXyl0gWMOdQiu",
+  "created_at": "2026-03-15T10:00:00Z",
+  "mount_path": "/workspace/example-repo",
+  "type": "github_repository",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "url": "https://github.com/example-org/example-repo",
+  "checkout": {
+    "name": "main",
+    "type": "branch"
+  }
+}
+```
+
+## Update Session Resource
 
 `ResourceUpdateResponse Beta.Sessions.Resources.Update(ResourceUpdateParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -722,7 +782,24 @@ var resource = await client.Beta.Sessions.Resources.Update(parameters);
 Console.WriteLine(resource);
 ```
 
-## Delete
+#### Response
+
+```json
+{
+  "id": "sesrsc_011CZkZCKr6eXyl0gWMOdQiu",
+  "created_at": "2026-03-15T10:00:00Z",
+  "mount_path": "/workspace/example-repo",
+  "type": "github_repository",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "url": "https://github.com/example-org/example-repo",
+  "checkout": {
+    "name": "main",
+    "type": "branch"
+  }
+}
+```
+
+## Delete Session Resource
 
 `BetaManagedAgentsDeleteSessionResource Beta.Sessions.Resources.Delete(ResourceDeleteParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -820,6 +897,15 @@ ResourceDeleteParams parameters = new()
 var betaManagedAgentsDeleteSessionResource = await client.Beta.Sessions.Resources.Delete(parameters);
 
 Console.WriteLine(betaManagedAgentsDeleteSessionResource);
+```
+
+#### Response
+
+```json
+{
+  "id": "sesrsc_011CZkZBJq5dWxk9fVLNcPht",
+  "type": "session_resource_deleted"
+}
 ```
 
 ## Domain Types

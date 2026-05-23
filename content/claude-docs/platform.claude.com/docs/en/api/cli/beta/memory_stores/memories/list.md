@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/memory_stores/memories/list
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 4a38ffd3ed8f057ee95d000af280e4afcab9dc42c262fe2b91d6a4e08915af2a
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 33c0462a306b7b1a899dc3da97309298d22b00a132cff57ee4fe9370e257fedd
 ---
 
-## List
+## List memories
 
 `$ ant beta:memory-stores:memories list`
 
@@ -127,4 +127,26 @@ List memories
 ant beta:memory-stores:memories list \
   --api-key my-anthropic-api-key \
   --memory-store-id memory_store_id
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "id",
+      "content_sha256": "content_sha256",
+      "content_size_bytes": 0,
+      "created_at": "2019-12-27T18:11:19.117Z",
+      "memory_store_id": "memory_store_id",
+      "memory_version_id": "memory_version_id",
+      "path": "path",
+      "type": "memory",
+      "updated_at": "2019-12-27T18:11:19.117Z",
+      "content": "content"
+    }
+  ],
+  "next_page": "next_page"
+}
 ```

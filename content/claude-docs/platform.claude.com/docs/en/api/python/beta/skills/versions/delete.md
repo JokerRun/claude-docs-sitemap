@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/skills/versions/delete
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 398b4fbcf6846cfb65a6bc233dab0a801d7a9922baf6a35cc8ae6b6727dc885e
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: f5d30041c5927783e3711ee8ba4b45084fc6dfe9d7a6249525caea906078898f
 ---
 
-## Delete
+## Delete Skill Version
 
 `beta.skills.versions.delete(strversion, VersionDeleteParams**kwargs)  -> VersionDeleteResponse`
 
@@ -115,4 +115,13 @@ version = client.beta.skills.versions.delete(
     skill_id="skill_id",
 )
 print(version.id)
+```
+
+#### Response
+
+```json
+{
+  "id": "1759178010641129",
+  "type": "type"
+}
 ```

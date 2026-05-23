@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/skills/list
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 6d4127058a58b9a7c5c5c0cd6ac17d4f00dc5d68e8ff098f20beb48368514fad
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 0b17bc4b6052c0be40beaf34643cd7e3cb2447d365e2b0531e9df191e70d4c83
 ---
 
-## List
+## List Skills
 
 `client.Beta.Skills.List(ctx, params) (*PageCursor[BetaSkillListResponse], error)`
 
@@ -165,5 +165,25 @@ func main() {
     panic(err.Error())
   }
   fmt.Printf("%+v\n", page)
+}
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "skill_01JAbcdefghijklmnopqrstuvw",
+      "created_at": "2024-10-30T23:58:27.427722Z",
+      "display_title": "My Custom Skill",
+      "latest_version": "1759178010641129",
+      "source": "custom",
+      "type": "type",
+      "updated_at": "2024-10-30T23:58:27.427722Z"
+    }
+  ],
+  "has_more": true,
+  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="
 }
 ```

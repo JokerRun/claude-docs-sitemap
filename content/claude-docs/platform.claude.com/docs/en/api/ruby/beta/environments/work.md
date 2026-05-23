@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/environments/work
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: d9b1f0c250975aaaa742034a74cc0fc74b14e38110a1c7c654f4571df4fb4f6f
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: c348a9c19737dcdac91e00de9193fc6b9e028c1cf8830e0e935a4161a0ac8f56
 ---
 
 # Work
 
-## Retrieve
+## Get Work Item
 
 `beta.environments.work.retrieve(work_id, **kwargs) -> BetaSelfHostedWork`
 
@@ -27,9 +27,9 @@ Retrieve detailed information about a specific work item.
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `String`
+  - `String = String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -173,7 +173,31 @@ beta_self_hosted_work = anthropic.beta.environments.work.retrieve("work_id", env
 puts(beta_self_hosted_work)
 ```
 
-## Poll
+#### Response
+
+```json
+{
+  "id": "id",
+  "acknowledged_at": "acknowledged_at",
+  "created_at": "created_at",
+  "data": {
+    "id": "id",
+    "type": "session"
+  },
+  "environment_id": "environment_id",
+  "latest_heartbeat_at": "latest_heartbeat_at",
+  "metadata": {
+    "foo": "string"
+  },
+  "started_at": "started_at",
+  "state": "queued",
+  "stop_requested_at": "stop_requested_at",
+  "stopped_at": "stopped_at",
+  "type": "work"
+}
+```
+
+## Poll for Work
 
 `beta.environments.work.poll(environment_id, **kwargs) -> BetaSelfHostedWork`
 
@@ -199,9 +223,9 @@ Long poll for work items in the queue.
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `String`
+  - `String = String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -349,7 +373,31 @@ beta_self_hosted_work = anthropic.beta.environments.work.poll("env_011CZkZ9X2dpN
 puts(beta_self_hosted_work)
 ```
 
-## Ack
+#### Response
+
+```json
+{
+  "id": "id",
+  "acknowledged_at": "acknowledged_at",
+  "created_at": "created_at",
+  "data": {
+    "id": "id",
+    "type": "session"
+  },
+  "environment_id": "environment_id",
+  "latest_heartbeat_at": "latest_heartbeat_at",
+  "metadata": {
+    "foo": "string"
+  },
+  "started_at": "started_at",
+  "state": "queued",
+  "stop_requested_at": "stop_requested_at",
+  "stopped_at": "stopped_at",
+  "type": "work"
+}
+```
+
+## Acknowledge Work
 
 `beta.environments.work.ack(work_id, **kwargs) -> BetaSelfHostedWork`
 
@@ -369,9 +417,9 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `String`
+  - `String = String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -515,7 +563,31 @@ beta_self_hosted_work = anthropic.beta.environments.work.ack("work_id", environm
 puts(beta_self_hosted_work)
 ```
 
-## Heartbeat
+#### Response
+
+```json
+{
+  "id": "id",
+  "acknowledged_at": "acknowledged_at",
+  "created_at": "created_at",
+  "data": {
+    "id": "id",
+    "type": "session"
+  },
+  "environment_id": "environment_id",
+  "latest_heartbeat_at": "latest_heartbeat_at",
+  "metadata": {
+    "foo": "string"
+  },
+  "started_at": "started_at",
+  "state": "queued",
+  "stop_requested_at": "stop_requested_at",
+  "stopped_at": "stopped_at",
+  "type": "work"
+}
+```
+
+## Record Heartbeat
 
 `beta.environments.work.heartbeat(work_id, **kwargs) -> BetaSelfHostedWorkHeartbeatResponse`
 
@@ -543,9 +615,9 @@ Record a heartbeat for a work item to maintain the lease.
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `String`
+  - `String = String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -647,7 +719,19 @@ beta_self_hosted_work_heartbeat_response = anthropic.beta.environments.work.hear
 puts(beta_self_hosted_work_heartbeat_response)
 ```
 
-## Stop
+#### Response
+
+```json
+{
+  "last_heartbeat": "last_heartbeat",
+  "lease_extended": true,
+  "state": "queued",
+  "ttl_seconds": 0,
+  "type": "work_heartbeat"
+}
+```
+
+## Stop Work
 
 `beta.environments.work.stop(work_id, **kwargs) -> BetaSelfHostedWork`
 
@@ -671,9 +755,9 @@ Stop a work item, initiating graceful or forced shutdown.
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `String`
+  - `String = String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -817,7 +901,31 @@ beta_self_hosted_work = anthropic.beta.environments.work.stop("work_id", environ
 puts(beta_self_hosted_work)
 ```
 
-## List
+#### Response
+
+```json
+{
+  "id": "id",
+  "acknowledged_at": "acknowledged_at",
+  "created_at": "created_at",
+  "data": {
+    "id": "id",
+    "type": "session"
+  },
+  "environment_id": "environment_id",
+  "latest_heartbeat_at": "latest_heartbeat_at",
+  "metadata": {
+    "foo": "string"
+  },
+  "started_at": "started_at",
+  "state": "queued",
+  "stop_requested_at": "stop_requested_at",
+  "stopped_at": "stopped_at",
+  "type": "work"
+}
+```
+
+## List Work Items
 
 `beta.environments.work.list(environment_id, **kwargs) -> PageCursor<BetaSelfHostedWork>`
 
@@ -843,9 +951,9 @@ List work items in an environment.
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `String`
+  - `String = String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -989,7 +1097,36 @@ page = anthropic.beta.environments.work.list("env_011CZkZ9X2dpNyB7HsEFoRfW")
 puts(page)
 ```
 
-## Update
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "id",
+      "acknowledged_at": "acknowledged_at",
+      "created_at": "created_at",
+      "data": {
+        "id": "id",
+        "type": "session"
+      },
+      "environment_id": "environment_id",
+      "latest_heartbeat_at": "latest_heartbeat_at",
+      "metadata": {
+        "foo": "string"
+      },
+      "started_at": "started_at",
+      "state": "queued",
+      "stop_requested_at": "stop_requested_at",
+      "stopped_at": "stopped_at",
+      "type": "work"
+    }
+  ],
+  "next_page": "next_page"
+}
+```
+
+## Update Work Item
 
 `beta.environments.work.update(work_id, **kwargs) -> BetaSelfHostedWork`
 
@@ -1013,9 +1150,9 @@ Update work item metadata with merge semantics.
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `String`
+  - `String = String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -1163,7 +1300,31 @@ beta_self_hosted_work = anthropic.beta.environments.work.update(
 puts(beta_self_hosted_work)
 ```
 
-## Stats
+#### Response
+
+```json
+{
+  "id": "id",
+  "acknowledged_at": "acknowledged_at",
+  "created_at": "created_at",
+  "data": {
+    "id": "id",
+    "type": "session"
+  },
+  "environment_id": "environment_id",
+  "latest_heartbeat_at": "latest_heartbeat_at",
+  "metadata": {
+    "foo": "string"
+  },
+  "started_at": "started_at",
+  "state": "queued",
+  "stop_requested_at": "stop_requested_at",
+  "stopped_at": "stopped_at",
+  "type": "work"
+}
+```
+
+## Get Queue Statistics
 
 `beta.environments.work.stats(environment_id, **kwargs) -> BetaSelfHostedWorkQueueStats`
 
@@ -1179,9 +1340,9 @@ Get statistics about the work queue for an environment.
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `String`
+  - `String = String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -1273,6 +1434,18 @@ anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
 beta_self_hosted_work_queue_stats = anthropic.beta.environments.work.stats("env_011CZkZ9X2dpNyB7HsEFoRfW")
 
 puts(beta_self_hosted_work_queue_stats)
+```
+
+#### Response
+
+```json
+{
+  "depth": 0,
+  "oldest_queued_at": "oldest_queued_at",
+  "pending": 0,
+  "type": "work_queue_stats",
+  "workers_polling": 0
+}
 ```
 
 ## Domain Types

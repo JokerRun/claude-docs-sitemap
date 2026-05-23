@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/files/download
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 429b3b2ceed7a2b25d24353f0d3e08e5634515b543339fe22ab30b9917b3ee4e
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 154ee70f6c8a8c8effa0ed280904d91074016551caeccebb5542ecca1118681e
 ---
 
-## Download
+## Download File
 
 `HttpResponse Beta.Files.Download(FileDownloadParamsparameters, CancellationTokencancellationToken = default)`
 

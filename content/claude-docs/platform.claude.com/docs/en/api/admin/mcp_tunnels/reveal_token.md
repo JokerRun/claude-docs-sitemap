@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/mcp_tunnels/reveal_token
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 4c47128d01e60ac24133dc995fc3de5e9d06359be9dc7e95b651bdf0b17a088a
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 3e9b53518ba9d2636142b5b12e772611861c67b7a0ce9ce4d41ce74451d64d68
 ---
 
-## Reveal Token
+## Reveal Tunnel Token
 
 **post** `/v1/organizations/tunnels/{tunnel_id}/reveal_token`
 
@@ -54,4 +54,14 @@ curl https://api.anthropic.com/v1/organizations/tunnels/$TUNNEL_ID/reveal_token 
     -X POST \
     -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_WIF_BEARER_TOKEN"
+```
+
+#### Response
+
+```json
+{
+  "id": "ttkn_bb97000eaec162831399ca9b6684a4fdf5be49ace5683057b017aab5c87e19e0",
+  "tunnel_token": "eyJhIjoiRVhBTVBMRSIsInQiOiJFWEFNUExFIiwicyI6IkVYQU1QTEUifQ==",
+  "type": "tunnel_token"
+}
 ```

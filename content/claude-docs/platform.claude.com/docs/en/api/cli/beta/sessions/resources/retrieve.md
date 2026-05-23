@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/sessions/resources/retrieve
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 74318ee3fe66804fe400fc536d67653fa1ff6720cca5ac1ff8acb5fe61ac6a03
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 627b9efe7775efc6e275ae372d498702933fd8efdef3d0cae9cfed8ba8d50d44
 ---
 
-## Retrieve
+## Get Session Resource
 
 `$ ant beta:sessions:resources retrieve`
 
@@ -138,4 +138,21 @@ ant beta:sessions:resources retrieve \
   --api-key my-anthropic-api-key \
   --session-id sesn_011CZkZAtmR3yMPDzynEDxu7 \
   --resource-id sesrsc_011CZkZBJq5dWxk9fVLNcPht
+```
+
+#### Response
+
+```json
+{
+  "id": "sesrsc_011CZkZCKr6eXyl0gWMOdQiu",
+  "created_at": "2026-03-15T10:00:00Z",
+  "mount_path": "/workspace/example-repo",
+  "type": "github_repository",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "url": "https://github.com/example-org/example-repo",
+  "checkout": {
+    "name": "main",
+    "type": "branch"
+  }
+}
 ```

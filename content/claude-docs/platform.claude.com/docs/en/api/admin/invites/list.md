@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/invites/list
-fetched_at: 2026-04-25T03:09:48.142425Z
-sha256: d4f19c73c1e702b8d317044c2188513982e6dc80794d066a333e0b9f706cd3fa
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: c4eafa8031a1336c4f8cd7546054fa3c35597d3b4c70ca4dcb6f8a691ba4e025
 ---
 
-## List
+## List Invites
 
 **get** `/v1/organizations/invites`
 
@@ -99,4 +99,25 @@ List Invites
 curl https://api.anthropic.com/v1/organizations/invites \
     -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "invite_015gWxCN9Hfg2QhZwTK7Mdeu",
+      "email": "user@emaildomain.com",
+      "expires_at": "2024-11-20T23:58:27.427722Z",
+      "invited_at": "2024-10-30T23:58:27.427722Z",
+      "role": "user",
+      "status": "pending",
+      "type": "invite"
+    }
+  ],
+  "first_id": "first_id",
+  "has_more": true,
+  "last_id": "last_id"
+}
 ```

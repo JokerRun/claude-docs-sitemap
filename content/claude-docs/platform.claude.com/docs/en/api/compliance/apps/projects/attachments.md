@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/attachments
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 8e67534d40cefd316449691b2a3f513548189d28f02c02b5069d24c021c69ed9
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 62395bcfdca06fe73ee7d1146732eb4d3cf6ec4496c313a8afa7739eaa376702
 ---
 
 # Attachments
 
-## List
+## List project attachments
 
 **get** `/v1/compliance/apps/projects/{project_id}/attachments`
 
@@ -54,7 +54,7 @@ NotFoundException: If project doesn't exist or project_id format is invalid
 
   List of attachments sorted chronologically by created_at, tie break by id
 
-  - `ComplianceProjectFileReference = object { id, created_at, filename, 2 more }`
+  - `ComplianceProjectFileReference object { id, created_at, filename, 2 more }`
 
     File attachment reference for compliance responses.
 
@@ -80,7 +80,7 @@ NotFoundException: If project doesn't exist or project_id format is invalid
 
       - `"project_file"`
 
-  - `ComplianceProjectDocReference = object { id, created_at, filename, 2 more }`
+  - `ComplianceProjectDocReference object { id, created_at, filename, 2 more }`
 
     Project document attachment reference for compliance responses.
 
@@ -123,6 +123,24 @@ curl https://api.anthropic.com/v1/compliance/apps/projects/$PROJECT_ID/attachmen
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "id",
+      "created_at": "2019-12-27T18:11:19.117Z",
+      "filename": "filename",
+      "mime_type": "mime_type",
+      "type": "project_file"
+    }
+  ],
+  "has_more": true,
+  "next_page": "next_page"
+}
+```
+
 ## Domain Types
 
 ### Attachment List Response
@@ -131,7 +149,7 @@ curl https://api.anthropic.com/v1/compliance/apps/projects/$PROJECT_ID/attachmen
 
   File attachment reference for compliance responses.
 
-  - `ComplianceProjectFileReference = object { id, created_at, filename, 2 more }`
+  - `ComplianceProjectFileReference object { id, created_at, filename, 2 more }`
 
     File attachment reference for compliance responses.
 
@@ -157,7 +175,7 @@ curl https://api.anthropic.com/v1/compliance/apps/projects/$PROJECT_ID/attachmen
 
       - `"project_file"`
 
-  - `ComplianceProjectDocReference = object { id, created_at, filename, 2 more }`
+  - `ComplianceProjectDocReference object { id, created_at, filename, 2 more }`
 
     Project document attachment reference for compliance responses.
 

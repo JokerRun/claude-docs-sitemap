@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/vaults/update
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 7a10183824000b68c55dac9159832f5e9e681b469a87dc509416c3efb37fb633
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 5b840a34b77ca0515102c5b858f21d143bac788eab613d0cd21d6c454001e39a
 ---
 
-## Update
+## Update Vault
 
 `client.Beta.Vaults.Update(ctx, vaultID, params) (*BetaManagedAgentsVault, error)`
 
@@ -147,5 +147,21 @@ func main() {
     panic(err.Error())
   }
   fmt.Printf("%+v\n", betaManagedAgentsVault.ID)
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+  "archived_at": null,
+  "created_at": "2026-03-15T10:00:00Z",
+  "display_name": "Example vault",
+  "metadata": {
+    "environment": "production"
+  },
+  "type": "vault",
+  "updated_at": "2026-03-15T10:00:00Z"
 }
 ```

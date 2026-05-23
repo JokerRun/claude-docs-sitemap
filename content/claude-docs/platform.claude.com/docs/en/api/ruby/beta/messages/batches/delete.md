@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/messages/batches/delete
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 4cf2263ce98714cd2511b8aed67c16630601a9978f83bf58f5dd22b38e4ebfa9
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 559ddb9ce3d692759a9652fb7331e7b53e083694ec9e6bac8ea7aee3ac55e55b
 ---
 
-## Delete
+## Delete a Message Batch
 
 `beta.messages.batches.delete(message_batch_id, **kwargs) -> BetaDeletedMessageBatch`
 
@@ -27,9 +27,9 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `String`
+  - `String = String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -107,4 +107,13 @@ anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
 beta_deleted_message_batch = anthropic.beta.messages.batches.delete("message_batch_id")
 
 puts(beta_deleted_message_batch)
+```
+
+#### Response
+
+```json
+{
+  "id": "msgbatch_013Zva2CMHLNnXjNJJKqJ2EF",
+  "type": "message_batch_deleted"
+}
 ```

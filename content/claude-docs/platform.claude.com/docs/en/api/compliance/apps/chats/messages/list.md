@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats/messages/list
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 7be4d1919487497fdf555bb9012c47b8598a8738c1f61263c2c2e47f42ce2501
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 0aba762cac6a1dd1ee6d0fffa5a61de60abea44c13f843d7ea76443c82cb1008
 ---
 
-## List
+## Get chat messages
 
 **get** `/v1/compliance/apps/chats/{claude_chat_id}/messages`
 
@@ -234,4 +234,66 @@ Retrieves message history and file metadata for a specific chat.
 ```http
 curl https://api.anthropic.com/v1/compliance/apps/chats/$CLAUDE_CHAT_ID/messages \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
+```
+
+#### Response
+
+```json
+{
+  "id": "claude_chat_abc123",
+  "name": "Product Requirements Discussion",
+  "created_at": "2025-06-07T08:09:10Z",
+  "updated_at": "2025-06-07T08:09:11Z",
+  "organization_id": "org_abc123",
+  "organization_uuid": "abcdef0123-4567-89ab-cdef-0123456789ab",
+  "project_id": "claude_proj_xyz789",
+  "model": "claude-opus-4-7",
+  "user": {
+    "id": "user_xyz456",
+    "email_address": "user@example.com"
+  },
+  "href": "https://claude.ai/chat/abcdef01-2345-6789-abcd-ef0123456789",
+  "chat_messages": [
+    {
+      "id": "claude_chat_msg_abc123",
+      "role": "user",
+      "created_at": "2025-06-07T08:09:10Z",
+      "content": [
+        {
+          "type": "text",
+          "text": "Can you help me draft requirements for our new dashboard feature?"
+        }
+      ],
+      "files": [
+        {
+          "id": "claude_file_xyz789",
+          "filename": "dashboard_mockup_v1.pdf",
+          "mime_type": "application/pdf"
+        }
+      ]
+    },
+    {
+      "id": "claude_chat_msg_def456",
+      "role": "assistant",
+      "created_at": "2025-06-07T08:09:11Z",
+      "content": [
+        {
+          "type": "text",
+          "text": "I'd be happy to help you draft requirements for your dashboard feature..."
+        }
+      ],
+      "artifacts": [
+        {
+          "id": "claude_artifact_abc123",
+          "version_id": "claude_artifact_version_xyz789",
+          "title": "Dashboard Requirements Draft",
+          "artifact_type": "text/markdown"
+        }
+      ]
+    }
+  ],
+  "has_more": false,
+  "first_id": "eyJtc2dfdXVpZCI6ICIwZjcwYjA2Ni0uLi4ifQ==",
+  "last_id": "eyJtc2dfdXVpZCI6ICJhNGUwYjE3Mi0uLi4ifQ=="
+}
 ```

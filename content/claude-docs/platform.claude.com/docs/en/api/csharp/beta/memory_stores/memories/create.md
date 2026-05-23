@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/memory_stores/memories/create
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 7f6c3f2f562eb30c043148f7594185dd68ff4cd8addce662657d249ffa37f87b
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: f720c033a5773ab708ee597ffc3973fd30baebf2d296f2d1612ef14567cb9af5
 ---
 
-## Create
+## Create a memory
 
 `BetaManagedAgentsMemory Beta.MemoryStores.Memories.Create(MemoryCreateParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -146,4 +146,21 @@ MemoryCreateParams parameters = new()
 var betaManagedAgentsMemory = await client.Beta.MemoryStores.Memories.Create(parameters);
 
 Console.WriteLine(betaManagedAgentsMemory);
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "content_sha256": "content_sha256",
+  "content_size_bytes": 0,
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "memory_store_id": "memory_store_id",
+  "memory_version_id": "memory_version_id",
+  "path": "path",
+  "type": "memory",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "content": "content"
+}
 ```

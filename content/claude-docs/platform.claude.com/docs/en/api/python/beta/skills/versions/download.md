@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/skills/versions/download
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: c1d325f915228d536f9e77c59b61b93b037183eb57bfda9f971f6e761ec26c13
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: a07e9c2f9bc9b8f532679b228e490295a4cfc87eedf7d4080a6ba48064e3e5a2
 ---
 
-## Download
+## Download Skill Version Content
 
 `beta.skills.versions.download(strversion, VersionDownloadParams**kwargs)  -> BinaryResponseContent`
 

@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/vaults/credentials/retrieve
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 199b5e8b19196fe643e8604a367c3aebd1948db5437e972b9b9d148744545b3e
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 6cc06093183ac5cb407d48b18716738e3895792fd211f9714bd886ec2177d0aa
 ---
 
-## Retrieve
+## Get Credential
 
 `$ ant beta:vaults:credentials retrieve`
 
@@ -152,4 +152,25 @@ ant beta:vaults:credentials retrieve \
   --api-key my-anthropic-api-key \
   --vault-id vlt_011CZkZDLs7fYzm1hXNPeRjv \
   --credential-id vcrd_011CZkZEMt8gZan2iYOQfSkw
+```
+
+#### Response
+
+```json
+{
+  "id": "vcrd_011CZkZEMt8gZan2iYOQfSkw",
+  "archived_at": null,
+  "auth": {
+    "mcp_server_url": "https://example-server.modelcontextprotocol.io/sse",
+    "type": "static_bearer"
+  },
+  "created_at": "2026-03-15T10:00:00Z",
+  "metadata": {
+    "environment": "production"
+  },
+  "type": "vault_credential",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "vault_id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+  "display_name": "Example credential"
+}
 ```

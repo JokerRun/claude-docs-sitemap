@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/vaults/credentials/retrieve
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 3d2ee338faa7d48f4845a8d6d2563933654c589aeb2e6a5d143ccff8b9ee1f58
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 11b5c0381f2a64162631a31a78abe7f3aadae9c965b3c85dfb050d34c16f840a
 ---
 
-## Retrieve
+## Get Credential
 
 `client.beta.vaults.credentials.retrieve(stringcredentialID, CredentialRetrieveParamsparams, RequestOptionsoptions?): BetaManagedAgentsCredential`
 
@@ -214,4 +214,25 @@ const betaManagedAgentsCredential = await client.beta.vaults.credentials.retriev
 );
 
 console.log(betaManagedAgentsCredential.id);
+```
+
+#### Response
+
+```json
+{
+  "id": "vcrd_011CZkZEMt8gZan2iYOQfSkw",
+  "archived_at": null,
+  "auth": {
+    "mcp_server_url": "https://example-server.modelcontextprotocol.io/sse",
+    "type": "static_bearer"
+  },
+  "created_at": "2026-03-15T10:00:00Z",
+  "metadata": {
+    "environment": "production"
+  },
+  "type": "vault_credential",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "vault_id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+  "display_name": "Example credential"
+}
 ```

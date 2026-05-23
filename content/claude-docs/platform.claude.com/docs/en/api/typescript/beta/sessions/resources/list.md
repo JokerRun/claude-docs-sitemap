@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/sessions/resources/list
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 447aa081aa521d31f1b8f9b9ac7844d0d2060495d12884eed5255f528ff56409
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 420f1a64f5c57edab97b191cbc91b4dce3e052dd03520ada493b815e913edce4
 ---
 
-## List
+## List Session Resources
 
 `client.beta.sessions.resources.list(stringsessionID, ResourceListParamsparams?, RequestOptionsoptions?): PageCursor<BetaManagedAgentsSessionResource>`
 
@@ -203,5 +203,35 @@ for await (const betaManagedAgentsSessionResource of client.beta.sessions.resour
   'sesn_011CZkZAtmR3yMPDzynEDxu7',
 )) {
   console.log(betaManagedAgentsSessionResource);
+}
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "sesrsc_011CZkZBJq5dWxk9fVLNcPht",
+      "created_at": "2026-03-15T10:00:00Z",
+      "file_id": "file_011CNha8iCJcU1wXNR6q4V8w",
+      "mount_path": "/uploads/receipt.pdf",
+      "type": "file",
+      "updated_at": "2026-03-15T10:00:00Z"
+    },
+    {
+      "id": "sesrsc_011CZkZCKr6eXyl0gWMOdQiu",
+      "created_at": "2026-03-15T10:00:00Z",
+      "mount_path": "/workspace/example-repo",
+      "type": "github_repository",
+      "updated_at": "2026-03-15T10:00:00Z",
+      "url": "https://github.com/example-org/example-repo",
+      "checkout": {
+        "name": "main",
+        "type": "branch"
+      }
+    }
+  ],
+  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="
 }
 ```

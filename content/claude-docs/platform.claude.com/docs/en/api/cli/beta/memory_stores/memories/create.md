@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/memory_stores/memories/create
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: aede6610d6be48267b87d70277a6945b4940b4ef05b296ea78c575c9ae75c88b
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 7f667887f2aeab236147e502ea7a223fe672974e099c01f0557b6ef8242da32b
 ---
 
-## Create
+## Create a memory
 
 `$ ant beta:memory-stores:memories create`
 
@@ -89,4 +89,21 @@ ant beta:memory-stores:memories create \
   --memory-store-id memory_store_id \
   --content content \
   --path xx
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "content_sha256": "content_sha256",
+  "content_size_bytes": 0,
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "memory_store_id": "memory_store_id",
+  "memory_version_id": "memory_version_id",
+  "path": "path",
+  "type": "memory",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "content": "content"
+}
 ```

@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/sessions/delete
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 80a559888d9b9f990c904f1df6604f247a3a2ee0ed23daf252494942125d97f1
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: fdca9a854065a1cec69ad3d72fe1989ad87dc2ca00ed08480b977eeada3d4d2d
 ---
 
-## Delete
+## Delete Session
 
 `beta.sessions.delete(session_id, **kwargs) -> BetaManagedAgentsDeletedSession`
 
@@ -21,9 +21,9 @@ Delete Session
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `String`
+  - `String = String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -97,4 +97,13 @@ anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
 beta_managed_agents_deleted_session = anthropic.beta.sessions.delete("sesn_011CZkZAtmR3yMPDzynEDxu7")
 
 puts(beta_managed_agents_deleted_session)
+```
+
+#### Response
+
+```json
+{
+  "id": "sesn_011CZkZAtmR3yMPDzynEDxu7",
+  "type": "session_deleted"
+}
 ```

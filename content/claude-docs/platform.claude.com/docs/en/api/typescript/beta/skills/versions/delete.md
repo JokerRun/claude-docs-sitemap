@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/skills/versions/delete
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: ceb1338aab470789a26694caaa3e50f89f9b64287e30b01c2b674207b937bb79
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 7a4e1c9f3514d2180e7c486c21018b5ad15ae87f4c0c98b60ca9a9a3bece118f
 ---
 
-## Delete
+## Delete Skill Version
 
 `client.beta.skills.versions.delete(stringversion, VersionDeleteParamsparams, RequestOptionsoptions?): VersionDeleteResponse`
 
@@ -115,4 +115,13 @@ const client = new Anthropic({
 const version = await client.beta.skills.versions.delete('version', { skill_id: 'skill_id' });
 
 console.log(version.id);
+```
+
+#### Response
+
+```json
+{
+  "id": "1759178010641129",
+  "type": "type"
+}
 ```

@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/list
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 0749ab5a88e7c04a55647c479a41a3a77e218bfc9e3d9cd3d6d0d5905b4697f5
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 7ae7a786f927285f6b3496f41cb95adaa19bc4de991d2117ce9d2bb82f1ad9cd
 ---
 
-## List
+## List Work Items
 
 **get** `/v1/environments/{environment_id}/work`
 
@@ -33,9 +33,9 @@ List work items in an environment.
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = string`
+  - `string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -89,7 +89,7 @@ List work items in an environment.
 
 ### Returns
 
-- `BetaSelfHostedWorkListResponse = object { data, next_page }`
+- `BetaSelfHostedWorkListResponse object { data, next_page }`
 
   Response when listing work items with cursor-based pagination.
 
@@ -178,4 +178,33 @@ curl https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID/work \
     -H 'anthropic-version: 2023-06-01' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "id",
+      "acknowledged_at": "acknowledged_at",
+      "created_at": "created_at",
+      "data": {
+        "id": "id",
+        "type": "session"
+      },
+      "environment_id": "environment_id",
+      "latest_heartbeat_at": "latest_heartbeat_at",
+      "metadata": {
+        "foo": "string"
+      },
+      "started_at": "started_at",
+      "state": "queued",
+      "stop_requested_at": "stop_requested_at",
+      "stopped_at": "stopped_at",
+      "type": "work"
+    }
+  ],
+  "next_page": "next_page"
+}
 ```

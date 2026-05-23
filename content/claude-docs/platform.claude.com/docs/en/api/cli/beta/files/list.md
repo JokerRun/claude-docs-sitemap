@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/files/list
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: be1465bc8a05ff8226f545c8663fdc73c0920fbce5191608c8f8159c041793b3
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 519a153ec7552974cc330699ffc989072bf5e2089de14d46b9d95514999ea2c1
 ---
 
-## List
+## List Files
 
 `$ ant beta:files list`
 
@@ -106,4 +106,29 @@ List Files
 ```cli
 ant beta:files list \
   --api-key my-anthropic-api-key
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "file_011CNha8iCJcU1wXNR6q4V8w",
+      "created_at": "2025-04-15T18:37:24.100435Z",
+      "filename": "document.pdf",
+      "mime_type": "application/pdf",
+      "size_bytes": 102400,
+      "type": "file",
+      "downloadable": false,
+      "scope": {
+        "id": "id",
+        "type": "session"
+      }
+    }
+  ],
+  "first_id": "file_011CNha8iCJcU1wXNR6q4V8w",
+  "has_more": true,
+  "last_id": "file_013Zva2CMHLNnXjNJJKqJ2EF"
+}
 ```

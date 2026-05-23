@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/memory_stores/memories/retrieve
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 6307dc53e5a5c0ba14a01d0d625b0e4d84fc8b3991df7ff67867f7a1608fe130
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: dd45b7860ded528d374fff21fee1c76123312f8e5890c7504635aff51c021360
 ---
 
-## Retrieve
+## Retrieve a memory
 
 `beta.memory_stores.memories.retrieve(strmemory_id, MemoryRetrieveParams**kwargs)  -> BetaManagedAgentsMemory`
 
@@ -145,4 +145,21 @@ beta_managed_agents_memory = client.beta.memory_stores.memories.retrieve(
     memory_store_id="memory_store_id",
 )
 print(beta_managed_agents_memory.id)
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "content_sha256": "content_sha256",
+  "content_size_bytes": 0,
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "memory_store_id": "memory_store_id",
+  "memory_version_id": "memory_version_id",
+  "path": "path",
+  "type": "memory",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "content": "content"
+}
 ```

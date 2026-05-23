@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/environments/work/list
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 7646f8ff456598b1d78b958fbf5bb3c21ddfb7ea6d8bc0a5b9546ca328ef5fec
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: e9ca5ac8c8f62abe30534ab04722eee7c5e9b7175961cb621e422c2ea51b26d4
 ---
 
-## List
+## List Work Items
 
 `WorkListPage beta().environments().work().list(WorkListParamsparams = WorkListParams.none(), RequestOptionsrequestOptions = RequestOptions.none())`
 
@@ -181,5 +181,34 @@ public final class Main {
 
         WorkListPage page = client.beta().environments().work().list("env_011CZkZ9X2dpNyB7HsEFoRfW");
     }
+}
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "id",
+      "acknowledged_at": "acknowledged_at",
+      "created_at": "created_at",
+      "data": {
+        "id": "id",
+        "type": "session"
+      },
+      "environment_id": "environment_id",
+      "latest_heartbeat_at": "latest_heartbeat_at",
+      "metadata": {
+        "foo": "string"
+      },
+      "started_at": "started_at",
+      "state": "queued",
+      "stop_requested_at": "stop_requested_at",
+      "stopped_at": "stopped_at",
+      "type": "work"
+    }
+  ],
+  "next_page": "next_page"
 }
 ```

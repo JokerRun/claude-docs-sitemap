@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/vaults/retrieve
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 225b492bf571c1e512a5103f88d5727d7fde53ab1eee476b5ce2bd64c0e16280
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: cb1548a38d000b44fcd352d2aab628f7ca5382a11dde7e595dd47ea382cea429
 ---
 
-## Retrieve
+## Get Vault
 
 `BetaManagedAgentsVault Beta.Vaults.Retrieve(VaultRetrieveParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -120,4 +120,20 @@ VaultRetrieveParams parameters = new()
 var betaManagedAgentsVault = await client.Beta.Vaults.Retrieve(parameters);
 
 Console.WriteLine(betaManagedAgentsVault);
+```
+
+#### Response
+
+```json
+{
+  "id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+  "archived_at": null,
+  "created_at": "2026-03-15T10:00:00Z",
+  "display_name": "Example vault",
+  "metadata": {
+    "environment": "production"
+  },
+  "type": "vault",
+  "updated_at": "2026-03-15T10:00:00Z"
+}
 ```

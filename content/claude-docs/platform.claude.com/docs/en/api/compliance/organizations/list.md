@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/list
-fetched_at: 2026-05-09T03:13:52.260309Z
-sha256: 50dade94862f3abc9e4d3c96a2f4e261c3024277f11c55506ee9de04fb668fd3
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 6f4165f51213fb60909f3d3e1dfbd846b040d5090ad6a82c8ad5a520ffbe3689
 ---
 
-## List
+## List organizations
 
 **get** `/v1/compliance/organizations`
 
@@ -42,4 +42,18 @@ response would exceed 1,000 organizations.
 ```http
 curl https://api.anthropic.com/v1/compliance/organizations \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "created_at": "created_at",
+      "name": "name",
+      "uuid": "uuid"
+    }
+  ]
+}
 ```

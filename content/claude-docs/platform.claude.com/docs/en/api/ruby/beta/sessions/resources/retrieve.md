@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/sessions/resources/retrieve
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: e49bc409944bdb9740f8fde9f3cfc6df6d1909377d8247322391614c76fa6544
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 590d0be0c9b4918d10adb23e576c8fba275b8350d032ad854d9205e405cb82ab
 ---
 
-## Retrieve
+## Get Session Resource
 
 `beta.sessions.resources.retrieve(resource_id, **kwargs) -> ResourceRetrieveResponse`
 
@@ -23,9 +23,9 @@ Get Session Resource
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `String`
+  - `String = String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -194,4 +194,21 @@ resource = anthropic.beta.sessions.resources.retrieve(
 )
 
 puts(resource)
+```
+
+#### Response
+
+```json
+{
+  "id": "sesrsc_011CZkZCKr6eXyl0gWMOdQiu",
+  "created_at": "2026-03-15T10:00:00Z",
+  "mount_path": "/workspace/example-repo",
+  "type": "github_repository",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "url": "https://github.com/example-org/example-repo",
+  "checkout": {
+    "name": "main",
+    "type": "branch"
+  }
+}
 ```

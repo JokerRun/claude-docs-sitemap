@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/user_profiles/list
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 9e26fb36b58dfbb8cafa2cd8b4c7a80a0346a4f4d0481635297d86030e188397
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 19aa69acbfe5f9a424b5047d95ce99c0bcea133ae22486a0805df97bb13d214a
 ---
 
-## List
+## List User Profiles
 
 `$ ant beta:user-profiles list`
 
@@ -102,4 +102,29 @@ List User Profiles
 ```cli
 ant beta:user-profiles list \
   --api-key my-anthropic-api-key
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "uprof_011CZkZCu8hGbp5mYRQgUmz9",
+      "created_at": "2026-03-15T10:00:00Z",
+      "metadata": {},
+      "relationship": "external",
+      "trust_grants": {
+        "cyber": {
+          "status": "active"
+        }
+      },
+      "type": "user_profile",
+      "updated_at": "2026-03-15T10:00:00Z",
+      "external_id": "user_12345",
+      "name": "Example User"
+    }
+  ],
+  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="
+}
 ```

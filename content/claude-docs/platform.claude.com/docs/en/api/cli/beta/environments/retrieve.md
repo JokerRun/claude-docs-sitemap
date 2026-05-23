@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/environments/retrieve
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 291486c9d87b6217441d93b5802a556e2e00d907dc03ba5537790a756905ba72
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: f7e49fd4c28a38c226ae24573828139b9622a63ec8f2002310f059bd679a92a1
 ---
 
-## Retrieve
+## Get Environment
 
 `$ ant beta:environments retrieve`
 
@@ -159,4 +159,53 @@ Retrieve a specific environment by ID.
 ant beta:environments retrieve \
   --api-key my-anthropic-api-key \
   --environment-id env_011CZkZ9X2dpNyB7HsEFoRfW
+```
+
+#### Response
+
+```json
+{
+  "id": "env_011CZkZ9X2dpNyB7HsEFoRfW",
+  "archived_at": null,
+  "config": {
+    "networking": {
+      "allow_mcp_servers": false,
+      "allow_package_managers": true,
+      "allowed_hosts": [
+        "api.example.com"
+      ],
+      "type": "limited"
+    },
+    "packages": {
+      "apt": [
+        "string"
+      ],
+      "cargo": [
+        "string"
+      ],
+      "gem": [
+        "string"
+      ],
+      "go": [
+        "string"
+      ],
+      "npm": [
+        "string"
+      ],
+      "pip": [
+        "pandas",
+        "numpy"
+      ],
+      "type": "packages"
+    },
+    "type": "cloud"
+  },
+  "created_at": "2026-03-15T10:00:00Z",
+  "description": "Python environment with data-analysis packages.",
+  "metadata": {},
+  "name": "python-data-analysis",
+  "type": "environment",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "scope": "organization"
+}
 ```

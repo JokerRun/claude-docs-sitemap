@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/vaults/retrieve
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 697dd10afd13d5171993dbefa03ea7156bfe63443a07457f4fafc2c74584c654
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 51a8be526d0807971610efa908bb68e8e385257b517f6c8c9c7b9874fbe73a2b
 ---
 
-## Retrieve
+## Get Vault
 
 `beta.vaults.retrieve(strvault_id, VaultRetrieveParams**kwargs)  -> BetaManagedAgentsVault`
 
@@ -122,4 +122,20 @@ beta_managed_agents_vault = client.beta.vaults.retrieve(
     vault_id="vlt_011CZkZDLs7fYzm1hXNPeRjv",
 )
 print(beta_managed_agents_vault.id)
+```
+
+#### Response
+
+```json
+{
+  "id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+  "archived_at": null,
+  "created_at": "2026-03-15T10:00:00Z",
+  "display_name": "Example vault",
+  "metadata": {
+    "environment": "production"
+  },
+  "type": "vault",
+  "updated_at": "2026-03-15T10:00:00Z"
+}
 ```

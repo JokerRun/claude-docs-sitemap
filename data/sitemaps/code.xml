@@ -38,7 +38,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/de/agent-sdk/mcp</loc>
-    <lastmod>2026-05-09T04:18:40.083Z</lastmod>
+    <lastmod>2026-05-23T01:36:35.856Z</lastmod>
   </url>
 
   <url>
@@ -53,7 +53,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/de/agent-sdk/overview</loc>
-    <lastmod>2026-05-13T17:26:07.079Z</lastmod>
+    <lastmod>2026-05-23T01:36:35.854Z</lastmod>
   </url>
 
   <url>
@@ -63,7 +63,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/de/agent-sdk/plugins</loc>
-    <lastmod>2026-05-15T15:18:45.699Z</lastmod>
+    <lastmod>2026-05-23T01:45:25.108Z</lastmod>
   </url>
 
   <url>
@@ -73,7 +73,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/de/agent-sdk/quickstart</loc>
-    <lastmod>2026-05-11T19:30:36.716Z</lastmod>
+    <lastmod>2026-05-23T01:36:35.836Z</lastmod>
   </url>
 
   <url>
@@ -88,7 +88,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/de/agent-sdk/slash-commands</loc>
-    <lastmod>2026-05-15T15:18:45.756Z</lastmod>
+    <lastmod>2026-05-23T01:45:25.155Z</lastmod>
   </url>
 
   <url>
@@ -103,7 +103,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/de/agent-sdk/subagents</loc>
-    <lastmod>2026-05-15T15:18:45.758Z</lastmod>
+    <lastmod>2026-05-23T01:36:35.898Z</lastmod>
   </url>
 
   <url>
@@ -688,7 +688,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/en/agent-sdk/mcp</loc>
-    <lastmod>2026-05-09T03:55:25.505Z</lastmod>
+    <lastmod>2026-05-23T01:26:42.908Z</lastmod>
   </url>
 
   <url>
@@ -708,7 +708,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/en/agent-sdk/overview</loc>
-    <lastmod>2026-05-13T17:12:30.299Z</lastmod>
+    <lastmod>2026-05-23T01:26:42.912Z</lastmod>
   </url>
 
   <url>
@@ -718,7 +718,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/en/agent-sdk/plugins</loc>
-    <lastmod>2026-05-15T14:58:10.012Z</lastmod>
+    <lastmod>2026-05-23T01:37:25.000Z</lastmod>
   </url>
 
   <url>
@@ -728,7 +728,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/en/agent-sdk/quickstart</loc>
-    <lastmod>2026-05-11T19:13:22.501Z</lastmod>
+    <lastmod>2026-05-23T01:26:42.906Z</lastmod>
   </url>
 
   <url>
@@ -753,7 +753,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/en/agent-sdk/slash-commands</loc>
-    <lastmod>2026-05-15T14:58:10.013Z</lastmod>
+    <lastmod>2026-05-23T01:37:25.002Z</lastmod>
   </url>
 
   <url>
@@ -773,7 +773,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/en/agent-sdk/subagents</loc>
-    <lastmod>2026-05-15T14:58:10.016Z</lastmod>
+    <lastmod>2026-05-23T01:26:42.933Z</lastmod>
   </url>
 
   <url>
@@ -848,7 +848,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/en/changelog</loc>
-    <lastmod>2026-05-22T01:22:07.328Z</lastmod>
+    <lastmod>2026-05-22T22:25:29.543Z</lastmod>
   </url>
 
   <url>
@@ -1238,7 +1238,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/en/sub-agents</loc>
-    <lastmod>2026-05-19T17:00:09.935Z</lastmod>
+    <lastmod>2026-05-23T01:31:35.681Z</lastmod>
   </url>
 
   <url>
@@ -1338,7 +1338,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/en/worktrees</loc>
-    <lastmod>2026-05-12T23:22:56.659Z</lastmod>
+    <lastmod>2026-05-23T01:31:35.679Z</lastmod>
   </url>
 
   <url>
@@ -1383,7 +1383,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/es/agent-sdk/mcp</loc>
-    <lastmod>2026-05-09T04:18:40.822Z</lastmod>
+    <lastmod>2026-05-23T01:36:36.848Z</lastmod>
   </url>
 
   <url>
@@ -1398,7 +1398,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/es/agent-sdk/overview</loc>
-    <lastmod>2026-05-13T17:26:08.517Z</lastmod>
+    <lastmod>2026-05-23T01:36:36.845Z</lastmod>
   </url>
 
   <url>
@@ -1408,7 +1408,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/es/agent-sdk/plugins</loc>
-    <lastmod>2026-05-15T15:18:46.373Z</lastmod>
+    <lastmod>2026-05-23T01:45:26.216Z</lastmod>
   </url>
 
   <url>
@@ -1418,7 +1418,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/es/agent-sdk/quickstart</loc>
-    <lastmod>2026-05-11T19:30:37.543Z</lastmod>
+    <lastmod>2026-05-23T01:36:36.885Z</lastmod>
   </url>
 
   <url>
@@ -1433,7 +1433,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/es/agent-sdk/slash-commands</loc>
-    <lastmod>2026-05-15T15:18:46.416Z</lastmod>
+    <lastmod>2026-05-23T01:45:26.218Z</lastmod>
   </url>
 
   <url>
@@ -1448,7 +1448,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/es/agent-sdk/subagents</loc>
-    <lastmod>2026-05-15T15:18:46.419Z</lastmod>
+    <lastmod>2026-05-23T01:36:36.883Z</lastmod>
   </url>
 
   <url>
@@ -2028,7 +2028,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/fr/agent-sdk/mcp</loc>
-    <lastmod>2026-05-09T04:18:41.171Z</lastmod>
+    <lastmod>2026-05-23T01:36:37.314Z</lastmod>
   </url>
 
   <url>
@@ -2043,7 +2043,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/fr/agent-sdk/overview</loc>
-    <lastmod>2026-05-13T17:26:09.109Z</lastmod>
+    <lastmod>2026-05-23T01:36:37.354Z</lastmod>
   </url>
 
   <url>
@@ -2053,7 +2053,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/fr/agent-sdk/plugins</loc>
-    <lastmod>2026-05-15T15:18:46.706Z</lastmod>
+    <lastmod>2026-05-23T01:45:26.657Z</lastmod>
   </url>
 
   <url>
@@ -2063,7 +2063,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/fr/agent-sdk/quickstart</loc>
-    <lastmod>2026-05-11T19:30:37.925Z</lastmod>
+    <lastmod>2026-05-23T01:36:37.350Z</lastmod>
   </url>
 
   <url>
@@ -2078,7 +2078,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/fr/agent-sdk/slash-commands</loc>
-    <lastmod>2026-05-15T15:18:46.727Z</lastmod>
+    <lastmod>2026-05-23T01:45:26.658Z</lastmod>
   </url>
 
   <url>
@@ -2093,7 +2093,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/fr/agent-sdk/subagents</loc>
-    <lastmod>2026-05-15T15:18:46.725Z</lastmod>
+    <lastmod>2026-05-23T01:36:37.392Z</lastmod>
   </url>
 
   <url>
@@ -2673,7 +2673,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/id/agent-sdk/mcp</loc>
-    <lastmod>2026-05-09T04:18:41.528Z</lastmod>
+    <lastmod>2026-05-23T01:36:37.794Z</lastmod>
   </url>
 
   <url>
@@ -2688,7 +2688,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/id/agent-sdk/overview</loc>
-    <lastmod>2026-05-13T17:26:09.731Z</lastmod>
+    <lastmod>2026-05-23T01:36:37.797Z</lastmod>
   </url>
 
   <url>
@@ -2698,7 +2698,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/id/agent-sdk/plugins</loc>
-    <lastmod>2026-05-15T15:18:47.010Z</lastmod>
+    <lastmod>2026-05-23T01:45:27.114Z</lastmod>
   </url>
 
   <url>
@@ -2708,7 +2708,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/id/agent-sdk/quickstart</loc>
-    <lastmod>2026-05-11T19:30:38.299Z</lastmod>
+    <lastmod>2026-05-23T01:36:37.791Z</lastmod>
   </url>
 
   <url>
@@ -2723,7 +2723,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/id/agent-sdk/slash-commands</loc>
-    <lastmod>2026-05-15T15:18:47.014Z</lastmod>
+    <lastmod>2026-05-23T01:45:27.138Z</lastmod>
   </url>
 
   <url>
@@ -2738,7 +2738,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/id/agent-sdk/subagents</loc>
-    <lastmod>2026-05-15T15:18:47.011Z</lastmod>
+    <lastmod>2026-05-23T01:36:37.828Z</lastmod>
   </url>
 
   <url>
@@ -3318,7 +3318,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/it/agent-sdk/mcp</loc>
-    <lastmod>2026-05-09T04:18:41.899Z</lastmod>
+    <lastmod>2026-05-23T01:36:38.214Z</lastmod>
   </url>
 
   <url>
@@ -3343,7 +3343,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/it/agent-sdk/plugins</loc>
-    <lastmod>2026-05-15T15:18:47.302Z</lastmod>
+    <lastmod>2026-05-23T01:45:27.570Z</lastmod>
   </url>
 
   <url>
@@ -3353,7 +3353,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/it/agent-sdk/quickstart</loc>
-    <lastmod>2026-05-11T19:30:38.815Z</lastmod>
+    <lastmod>2026-05-23T01:36:38.243Z</lastmod>
   </url>
 
   <url>
@@ -3368,7 +3368,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/it/agent-sdk/slash-commands</loc>
-    <lastmod>2026-05-15T15:18:47.323Z</lastmod>
+    <lastmod>2026-05-23T01:45:27.594Z</lastmod>
   </url>
 
   <url>
@@ -3383,7 +3383,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/it/agent-sdk/subagents</loc>
-    <lastmod>2026-05-15T15:18:47.324Z</lastmod>
+    <lastmod>2026-05-23T01:36:38.241Z</lastmod>
   </url>
 
   <url>
@@ -3963,7 +3963,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/ja/agent-sdk/mcp</loc>
-    <lastmod>2026-05-09T04:18:42.254Z</lastmod>
+    <lastmod>2026-05-23T01:36:38.576Z</lastmod>
   </url>
 
   <url>
@@ -3978,7 +3978,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/ja/agent-sdk/overview</loc>
-    <lastmod>2026-05-13T17:26:11.102Z</lastmod>
+    <lastmod>2026-05-23T01:36:38.594Z</lastmod>
   </url>
 
   <url>
@@ -3988,7 +3988,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/ja/agent-sdk/plugins</loc>
-    <lastmod>2026-05-15T15:18:47.577Z</lastmod>
+    <lastmod>2026-05-23T01:45:27.969Z</lastmod>
   </url>
 
   <url>
@@ -3998,7 +3998,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/ja/agent-sdk/quickstart</loc>
-    <lastmod>2026-05-11T19:30:39.185Z</lastmod>
+    <lastmod>2026-05-23T01:36:38.616Z</lastmod>
   </url>
 
   <url>
@@ -4013,7 +4013,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/ja/agent-sdk/slash-commands</loc>
-    <lastmod>2026-05-15T15:18:47.579Z</lastmod>
+    <lastmod>2026-05-23T01:45:27.971Z</lastmod>
   </url>
 
   <url>
@@ -4028,7 +4028,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/ja/agent-sdk/subagents</loc>
-    <lastmod>2026-05-15T15:18:47.598Z</lastmod>
+    <lastmod>2026-05-23T01:36:38.647Z</lastmod>
   </url>
 
   <url>
@@ -4608,7 +4608,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/ko/agent-sdk/mcp</loc>
-    <lastmod>2026-05-09T04:18:42.593Z</lastmod>
+    <lastmod>2026-05-23T01:36:38.993Z</lastmod>
   </url>
 
   <url>
@@ -4633,7 +4633,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/ko/agent-sdk/plugins</loc>
-    <lastmod>2026-05-15T15:18:47.849Z</lastmod>
+    <lastmod>2026-05-23T01:45:28.367Z</lastmod>
   </url>
 
   <url>
@@ -4643,7 +4643,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/ko/agent-sdk/quickstart</loc>
-    <lastmod>2026-05-11T19:30:39.531Z</lastmod>
+    <lastmod>2026-05-23T01:36:38.990Z</lastmod>
   </url>
 
   <url>
@@ -4658,7 +4658,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/ko/agent-sdk/slash-commands</loc>
-    <lastmod>2026-05-15T15:18:47.880Z</lastmod>
+    <lastmod>2026-05-23T01:45:28.403Z</lastmod>
   </url>
 
   <url>
@@ -4673,7 +4673,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/ko/agent-sdk/subagents</loc>
-    <lastmod>2026-05-15T15:18:47.878Z</lastmod>
+    <lastmod>2026-05-23T01:36:39.025Z</lastmod>
   </url>
 
   <url>
@@ -5253,7 +5253,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/pt/agent-sdk/mcp</loc>
-    <lastmod>2026-05-09T04:18:42.948Z</lastmod>
+    <lastmod>2026-05-23T01:36:39.374Z</lastmod>
   </url>
 
   <url>
@@ -5268,7 +5268,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/pt/agent-sdk/overview</loc>
-    <lastmod>2026-05-13T17:26:14.625Z</lastmod>
+    <lastmod>2026-05-23T01:36:39.372Z</lastmod>
   </url>
 
   <url>
@@ -5278,7 +5278,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/pt/agent-sdk/plugins</loc>
-    <lastmod>2026-05-15T15:18:48.168Z</lastmod>
+    <lastmod>2026-05-23T01:45:28.726Z</lastmod>
   </url>
 
   <url>
@@ -5288,7 +5288,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/pt/agent-sdk/quickstart</loc>
-    <lastmod>2026-05-11T19:30:39.885Z</lastmod>
+    <lastmod>2026-05-23T01:36:39.395Z</lastmod>
   </url>
 
   <url>
@@ -5303,7 +5303,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/pt/agent-sdk/slash-commands</loc>
-    <lastmod>2026-05-15T15:18:48.214Z</lastmod>
+    <lastmod>2026-05-23T01:45:28.768Z</lastmod>
   </url>
 
   <url>
@@ -5318,7 +5318,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/pt/agent-sdk/subagents</loc>
-    <lastmod>2026-05-15T15:18:48.199Z</lastmod>
+    <lastmod>2026-05-23T01:36:39.397Z</lastmod>
   </url>
 
   <url>
@@ -5898,7 +5898,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/ru/agent-sdk/mcp</loc>
-    <lastmod>2026-05-09T04:18:43.290Z</lastmod>
+    <lastmod>2026-05-23T01:36:39.699Z</lastmod>
   </url>
 
   <url>
@@ -5913,7 +5913,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/ru/agent-sdk/overview</loc>
-    <lastmod>2026-05-13T17:26:16.959Z</lastmod>
+    <lastmod>2026-05-23T01:36:39.698Z</lastmod>
   </url>
 
   <url>
@@ -5923,7 +5923,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/ru/agent-sdk/plugins</loc>
-    <lastmod>2026-05-15T15:18:48.465Z</lastmod>
+    <lastmod>2026-05-23T01:45:29.107Z</lastmod>
   </url>
 
   <url>
@@ -5933,7 +5933,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/ru/agent-sdk/quickstart</loc>
-    <lastmod>2026-05-11T19:30:40.220Z</lastmod>
+    <lastmod>2026-05-23T01:36:39.731Z</lastmod>
   </url>
 
   <url>
@@ -5948,7 +5948,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/ru/agent-sdk/slash-commands</loc>
-    <lastmod>2026-05-15T15:18:48.480Z</lastmod>
+    <lastmod>2026-05-23T01:45:29.108Z</lastmod>
   </url>
 
   <url>
@@ -5963,7 +5963,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/ru/agent-sdk/subagents</loc>
-    <lastmod>2026-05-15T15:18:48.478Z</lastmod>
+    <lastmod>2026-05-23T01:36:39.729Z</lastmod>
   </url>
 
   <url>
@@ -6543,7 +6543,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/zh-CN/agent-sdk/mcp</loc>
-    <lastmod>2026-05-09T04:18:43.648Z</lastmod>
+    <lastmod>2026-05-23T01:36:42.024Z</lastmod>
   </url>
 
   <url>
@@ -6568,7 +6568,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/zh-CN/agent-sdk/plugins</loc>
-    <lastmod>2026-05-15T15:18:48.783Z</lastmod>
+    <lastmod>2026-05-23T01:45:31.623Z</lastmod>
   </url>
 
   <url>
@@ -6578,7 +6578,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/zh-CN/agent-sdk/quickstart</loc>
-    <lastmod>2026-05-11T19:30:40.588Z</lastmod>
+    <lastmod>2026-05-23T01:36:42.096Z</lastmod>
   </url>
 
   <url>
@@ -6593,7 +6593,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/zh-CN/agent-sdk/slash-commands</loc>
-    <lastmod>2026-05-15T15:18:48.803Z</lastmod>
+    <lastmod>2026-05-23T01:45:31.557Z</lastmod>
   </url>
 
   <url>
@@ -6608,7 +6608,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/zh-CN/agent-sdk/subagents</loc>
-    <lastmod>2026-05-15T15:18:48.802Z</lastmod>
+    <lastmod>2026-05-23T01:36:42.195Z</lastmod>
   </url>
 
   <url>
@@ -7188,7 +7188,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/zh-TW/agent-sdk/mcp</loc>
-    <lastmod>2026-05-09T04:18:43.979Z</lastmod>
+    <lastmod>2026-05-23T01:36:42.821Z</lastmod>
   </url>
 
   <url>
@@ -7203,7 +7203,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/zh-TW/agent-sdk/overview</loc>
-    <lastmod>2026-05-13T17:26:17.989Z</lastmod>
+    <lastmod>2026-05-23T01:36:42.823Z</lastmod>
   </url>
 
   <url>
@@ -7213,7 +7213,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/zh-TW/agent-sdk/plugins</loc>
-    <lastmod>2026-05-15T15:18:49.075Z</lastmod>
+    <lastmod>2026-05-23T01:45:32.233Z</lastmod>
   </url>
 
   <url>
@@ -7223,7 +7223,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/zh-TW/agent-sdk/quickstart</loc>
-    <lastmod>2026-05-11T19:30:40.959Z</lastmod>
+    <lastmod>2026-05-23T01:36:42.817Z</lastmod>
   </url>
 
   <url>
@@ -7238,7 +7238,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/zh-TW/agent-sdk/slash-commands</loc>
-    <lastmod>2026-05-15T15:18:49.062Z</lastmod>
+    <lastmod>2026-05-23T01:45:32.256Z</lastmod>
   </url>
 
   <url>
@@ -7253,7 +7253,7 @@
 
   <url>
     <loc>https://code.claude.com/docs/zh-TW/agent-sdk/subagents</loc>
-    <lastmod>2026-05-15T15:18:49.096Z</lastmod>
+    <lastmod>2026-05-23T01:36:42.850Z</lastmod>
   </url>
 
   <url>

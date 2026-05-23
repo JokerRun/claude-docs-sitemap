@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/skills/versions/retrieve
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 494dfec345521d1c781e547046e94627723414b83019687aadb48f7f901e53e6
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 27b7fff7543fac10f58a7c4c2f2ff62275528540547fb00c6e24d3137fd96e62
 ---
 
-## Retrieve
+## Get Skill Version
 
 `$ ant beta:skills:versions retrieve`
 
@@ -86,4 +86,19 @@ ant beta:skills:versions retrieve \
   --api-key my-anthropic-api-key \
   --skill-id skill_id \
   --version version
+```
+
+#### Response
+
+```json
+{
+  "id": "skillver_01JAbcdefghijklmnopqrstuvw",
+  "created_at": "2024-10-30T23:58:27.427722Z",
+  "description": "A custom skill for doing something useful",
+  "directory": "my-skill",
+  "name": "my-skill",
+  "skill_id": "skill_01JAbcdefghijklmnopqrstuvw",
+  "type": "type",
+  "version": "1759178010641129"
+}
 ```

@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/environments/work/list
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: bbc38d965a3eaadf3fe7b9bd9166bbd4e305fca99d4dea7398e86c64f45c6987
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 72f6f87d134a0bce4c29b765595597de70d479d30fdfa0ed377dcd2966f8a84b
 ---
 
-## List
+## List Work Items
 
 `client.Beta.Environments.Work.List(ctx, environmentID, params) (*PageCursor[BetaSelfHostedWork], error)`
 
@@ -195,5 +195,34 @@ func main() {
     panic(err.Error())
   }
   fmt.Printf("%+v\n", page)
+}
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "id",
+      "acknowledged_at": "acknowledged_at",
+      "created_at": "created_at",
+      "data": {
+        "id": "id",
+        "type": "session"
+      },
+      "environment_id": "environment_id",
+      "latest_heartbeat_at": "latest_heartbeat_at",
+      "metadata": {
+        "foo": "string"
+      },
+      "started_at": "started_at",
+      "state": "queued",
+      "stop_requested_at": "stop_requested_at",
+      "stopped_at": "stopped_at",
+      "type": "work"
+    }
+  ],
+  "next_page": "next_page"
 }
 ```

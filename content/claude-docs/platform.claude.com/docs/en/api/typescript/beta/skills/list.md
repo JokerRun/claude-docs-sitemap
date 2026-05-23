@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/skills/list
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 2e89bdf83bcadda7e8b76c099cb63d03f60bac124b59edb1243af9d82b84d522
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 3bf6a4dc0f3e2d880e373385d618fbd66982c8c7350248235de3bcdd29c3eef8
 ---
 
-## List
+## List Skills
 
 `client.beta.skills.list(SkillListParamsparams?, RequestOptionsoptions?): PageCursor<SkillListResponse>`
 
@@ -153,5 +153,25 @@ const client = new Anthropic({
 // Automatically fetches more pages as needed.
 for await (const skillListResponse of client.beta.skills.list()) {
   console.log(skillListResponse.id);
+}
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "skill_01JAbcdefghijklmnopqrstuvw",
+      "created_at": "2024-10-30T23:58:27.427722Z",
+      "display_title": "My Custom Skill",
+      "latest_version": "1759178010641129",
+      "source": "custom",
+      "type": "type",
+      "updated_at": "2024-10-30T23:58:27.427722Z"
+    }
+  ],
+  "has_more": true,
+  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="
 }
 ```

@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: a4c6d9254b747994235cb057b683fdbab284f7111cc5f6a1b4c038e7ab6dce31
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: b4f53205812b462e001be78af16707c5b0b5162715a64cd4e8ab2d4183616faf
 ---
 
 # Memory Stores
 
-## Create
+## Create a memory store
 
 **post** `/v1/memory_stores`
 
@@ -19,9 +19,9 @@ Create a memory store
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = string`
+  - `string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -89,7 +89,7 @@ Create a memory store
 
 ### Returns
 
-- `BetaManagedAgentsMemoryStore = object { id, created_at, name, 5 more }`
+- `BetaManagedAgentsMemoryStore object { id, created_at, name, 5 more }`
 
   A `memory_store`: a named container for agent memories, scoped to a workspace. Attach a store to a session via `resources[]` to mount it as a directory the agent can read and write.
 
@@ -138,7 +138,24 @@ curl https://api.anthropic.com/v1/memory_stores \
         }'
 ```
 
-## List
+#### Response
+
+```json
+{
+  "id": "id",
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "name": "name",
+  "type": "memory_store",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "archived_at": "2019-12-27T18:11:19.117Z",
+  "description": "description",
+  "metadata": {
+    "foo": "string"
+  }
+}
+```
+
+## List memory stores
 
 **get** `/v1/memory_stores`
 
@@ -172,9 +189,9 @@ List memory stores
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = string`
+  - `string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -277,7 +294,29 @@ curl https://api.anthropic.com/v1/memory_stores \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 
-## Retrieve
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "id",
+      "created_at": "2019-12-27T18:11:19.117Z",
+      "name": "name",
+      "type": "memory_store",
+      "updated_at": "2019-12-27T18:11:19.117Z",
+      "archived_at": "2019-12-27T18:11:19.117Z",
+      "description": "description",
+      "metadata": {
+        "foo": "string"
+      }
+    }
+  ],
+  "next_page": "next_page"
+}
+```
+
+## Retrieve a memory store
 
 **get** `/v1/memory_stores/{memory_store_id}`
 
@@ -293,9 +332,9 @@ Retrieve a memory store
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = string`
+  - `string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -349,7 +388,7 @@ Retrieve a memory store
 
 ### Returns
 
-- `BetaManagedAgentsMemoryStore = object { id, created_at, name, 5 more }`
+- `BetaManagedAgentsMemoryStore object { id, created_at, name, 5 more }`
 
   A `memory_store`: a named container for agent memories, scoped to a workspace. Attach a store to a session via `resources[]` to mount it as a directory the agent can read and write.
 
@@ -394,7 +433,24 @@ curl https://api.anthropic.com/v1/memory_stores/$MEMORY_STORE_ID \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 
-## Update
+#### Response
+
+```json
+{
+  "id": "id",
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "name": "name",
+  "type": "memory_store",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "archived_at": "2019-12-27T18:11:19.117Z",
+  "description": "description",
+  "metadata": {
+    "foo": "string"
+  }
+}
+```
+
+## Update a memory store
 
 **post** `/v1/memory_stores/{memory_store_id}`
 
@@ -410,9 +466,9 @@ Update a memory store
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = string`
+  - `string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -480,7 +536,7 @@ Update a memory store
 
 ### Returns
 
-- `BetaManagedAgentsMemoryStore = object { id, created_at, name, 5 more }`
+- `BetaManagedAgentsMemoryStore object { id, created_at, name, 5 more }`
 
   A `memory_store`: a named container for agent memories, scoped to a workspace. Attach a store to a session via `resources[]` to mount it as a directory the agent can read and write.
 
@@ -527,7 +583,24 @@ curl https://api.anthropic.com/v1/memory_stores/$MEMORY_STORE_ID \
     -d '{}'
 ```
 
-## Delete
+#### Response
+
+```json
+{
+  "id": "id",
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "name": "name",
+  "type": "memory_store",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "archived_at": "2019-12-27T18:11:19.117Z",
+  "description": "description",
+  "metadata": {
+    "foo": "string"
+  }
+}
+```
+
+## Delete a memory store
 
 **delete** `/v1/memory_stores/{memory_store_id}`
 
@@ -543,9 +616,9 @@ Delete a memory store
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = string`
+  - `string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -599,7 +672,7 @@ Delete a memory store
 
 ### Returns
 
-- `BetaManagedAgentsDeletedMemoryStore = object { id, type }`
+- `BetaManagedAgentsDeletedMemoryStore object { id, type }`
 
   Confirmation that a `memory_store` was deleted.
 
@@ -621,7 +694,16 @@ curl https://api.anthropic.com/v1/memory_stores/$MEMORY_STORE_ID \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 
-## Archive
+#### Response
+
+```json
+{
+  "id": "id",
+  "type": "memory_store_deleted"
+}
+```
+
+## Archive a memory store
 
 **post** `/v1/memory_stores/{memory_store_id}/archive`
 
@@ -637,9 +719,9 @@ Archive a memory store
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = string`
+  - `string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -693,7 +775,7 @@ Archive a memory store
 
 ### Returns
 
-- `BetaManagedAgentsMemoryStore = object { id, created_at, name, 5 more }`
+- `BetaManagedAgentsMemoryStore object { id, created_at, name, 5 more }`
 
   A `memory_store`: a named container for agent memories, scoped to a workspace. Attach a store to a session via `resources[]` to mount it as a directory the agent can read and write.
 
@@ -739,11 +821,28 @@ curl https://api.anthropic.com/v1/memory_stores/$MEMORY_STORE_ID/archive \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 
+#### Response
+
+```json
+{
+  "id": "id",
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "name": "name",
+  "type": "memory_store",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "archived_at": "2019-12-27T18:11:19.117Z",
+  "description": "description",
+  "metadata": {
+    "foo": "string"
+  }
+}
+```
+
 ## Domain Types
 
 ### Beta Managed Agents Deleted Memory Store
 
-- `BetaManagedAgentsDeletedMemoryStore = object { id, type }`
+- `BetaManagedAgentsDeletedMemoryStore object { id, type }`
 
   Confirmation that a `memory_store` was deleted.
 
@@ -757,7 +856,7 @@ curl https://api.anthropic.com/v1/memory_stores/$MEMORY_STORE_ID/archive \
 
 ### Beta Managed Agents Memory Store
 
-- `BetaManagedAgentsMemoryStore = object { id, created_at, name, 5 more }`
+- `BetaManagedAgentsMemoryStore object { id, created_at, name, 5 more }`
 
   A `memory_store`: a named container for agent memories, scoped to a workspace. Attach a store to a session via `resources[]` to mount it as a directory the agent can read and write.
 
@@ -795,7 +894,7 @@ curl https://api.anthropic.com/v1/memory_stores/$MEMORY_STORE_ID/archive \
 
 # Memories
 
-## Create
+## Create a memory
 
 **post** `/v1/memory_stores/{memory_store_id}/memories`
 
@@ -821,9 +920,9 @@ Create a memory
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = string`
+  - `string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -887,7 +986,7 @@ Create a memory
 
 ### Returns
 
-- `BetaManagedAgentsMemory = object { id, content_sha256, content_size_bytes, 7 more }`
+- `BetaManagedAgentsMemory object { id, content_sha256, content_size_bytes, 7 more }`
 
   A `memory` object: a single text document at a hierarchical path inside a memory store. The `content` field is populated when `view=full` and `null` when `view=basic`; the `content_size_bytes` and `content_sha256` fields are always populated so sync clients can diff without fetching content. Memories are addressed by their `mem_...` ID; the path is the create key and can be changed via update.
 
@@ -945,7 +1044,24 @@ curl https://api.anthropic.com/v1/memory_stores/$MEMORY_STORE_ID/memories \
         }'
 ```
 
-## List
+#### Response
+
+```json
+{
+  "id": "id",
+  "content_sha256": "content_sha256",
+  "content_size_bytes": 0,
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "memory_store_id": "memory_store_id",
+  "memory_version_id": "memory_version_id",
+  "path": "path",
+  "type": "memory",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "content": "content"
+}
+```
+
+## List memories
 
 **get** `/v1/memory_stores/{memory_store_id}/memories`
 
@@ -999,9 +1115,9 @@ List memories
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = string`
+  - `string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -1059,7 +1175,7 @@ List memories
 
   One page of results. Each item is either a `memory` object or, when `depth` was set, a `memory_prefix` rollup marker. Items appear in the requested `order_by`/`order`.
 
-  - `BetaManagedAgentsMemory = object { id, content_sha256, content_size_bytes, 7 more }`
+  - `BetaManagedAgentsMemory object { id, content_sha256, content_size_bytes, 7 more }`
 
     A `memory` object: a single text document at a hierarchical path inside a memory store. The `content` field is populated when `view=full` and `null` when `view=basic`; the `content_size_bytes` and `content_sha256` fields are always populated so sync clients can diff without fetching content. Memories are addressed by their `mem_...` ID; the path is the create key and can be changed via update.
 
@@ -1103,7 +1219,7 @@ List memories
 
       The memory's UTF-8 text content. Populated when `view=full`; `null` when `view=basic`. Maximum 100 kB (102,400 bytes).
 
-  - `BetaManagedAgentsMemoryPrefix = object { path, type }`
+  - `BetaManagedAgentsMemoryPrefix object { path, type }`
 
     A rolled-up directory marker returned by [List memories](/docs/en/api/beta/memory_stores/memories/list) when `depth` is set. Indicates that one or more memories exist deeper than the requested depth under this prefix. This is a list-time rollup, not a stored resource; it has no ID and no lifecycle. Each prefix counts toward the page `limit` and interleaves with `memory` items in path order.
 
@@ -1128,7 +1244,29 @@ curl https://api.anthropic.com/v1/memory_stores/$MEMORY_STORE_ID/memories \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 
-## Retrieve
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "id",
+      "content_sha256": "content_sha256",
+      "content_size_bytes": 0,
+      "created_at": "2019-12-27T18:11:19.117Z",
+      "memory_store_id": "memory_store_id",
+      "memory_version_id": "memory_version_id",
+      "path": "path",
+      "type": "memory",
+      "updated_at": "2019-12-27T18:11:19.117Z",
+      "content": "content"
+    }
+  ],
+  "next_page": "next_page"
+}
+```
+
+## Retrieve a memory
 
 **get** `/v1/memory_stores/{memory_store_id}/memories/{memory_id}`
 
@@ -1156,9 +1294,9 @@ Retrieve a memory
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = string`
+  - `string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -1212,7 +1350,7 @@ Retrieve a memory
 
 ### Returns
 
-- `BetaManagedAgentsMemory = object { id, content_sha256, content_size_bytes, 7 more }`
+- `BetaManagedAgentsMemory object { id, content_sha256, content_size_bytes, 7 more }`
 
   A `memory` object: a single text document at a hierarchical path inside a memory store. The `content` field is populated when `view=full` and `null` when `view=basic`; the `content_size_bytes` and `content_sha256` fields are always populated so sync clients can diff without fetching content. Memories are addressed by their `mem_...` ID; the path is the create key and can be changed via update.
 
@@ -1265,7 +1403,24 @@ curl https://api.anthropic.com/v1/memory_stores/$MEMORY_STORE_ID/memories/$MEMOR
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 
-## Update
+#### Response
+
+```json
+{
+  "id": "id",
+  "content_sha256": "content_sha256",
+  "content_size_bytes": 0,
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "memory_store_id": "memory_store_id",
+  "memory_version_id": "memory_version_id",
+  "path": "path",
+  "type": "memory",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "content": "content"
+}
+```
+
+## Update a memory
 
 **post** `/v1/memory_stores/{memory_store_id}/memories/{memory_id}`
 
@@ -1293,9 +1448,9 @@ Update a memory
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = string`
+  - `string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -1371,7 +1526,7 @@ Update a memory
 
 ### Returns
 
-- `BetaManagedAgentsMemory = object { id, content_sha256, content_size_bytes, 7 more }`
+- `BetaManagedAgentsMemory object { id, content_sha256, content_size_bytes, 7 more }`
 
   A `memory` object: a single text document at a hierarchical path inside a memory store. The `content` field is populated when `view=full` and `null` when `view=basic`; the `content_size_bytes` and `content_sha256` fields are always populated so sync clients can diff without fetching content. Memories are addressed by their `mem_...` ID; the path is the create key and can be changed via update.
 
@@ -1426,7 +1581,24 @@ curl https://api.anthropic.com/v1/memory_stores/$MEMORY_STORE_ID/memories/$MEMOR
     -d '{}'
 ```
 
-## Delete
+#### Response
+
+```json
+{
+  "id": "id",
+  "content_sha256": "content_sha256",
+  "content_size_bytes": 0,
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "memory_store_id": "memory_store_id",
+  "memory_version_id": "memory_version_id",
+  "path": "path",
+  "type": "memory",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "content": "content"
+}
+```
+
+## Delete a memory
 
 **delete** `/v1/memory_stores/{memory_store_id}/memories/{memory_id}`
 
@@ -1450,9 +1622,9 @@ Delete a memory
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = string`
+  - `string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -1506,7 +1678,7 @@ Delete a memory
 
 ### Returns
 
-- `BetaManagedAgentsDeletedMemory = object { id, type }`
+- `BetaManagedAgentsDeletedMemory object { id, type }`
 
   Tombstone returned by [Delete a memory](/docs/en/api/beta/memory_stores/memories/delete). The memory's version history persists and remains listable via [List memory versions](/docs/en/api/beta/memory_stores/memory_versions/list) until the store itself is deleted.
 
@@ -1528,11 +1700,20 @@ curl https://api.anthropic.com/v1/memory_stores/$MEMORY_STORE_ID/memories/$MEMOR
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 
+#### Response
+
+```json
+{
+  "id": "id",
+  "type": "memory_deleted"
+}
+```
+
 ## Domain Types
 
 ### Beta Managed Agents Conflict Error
 
-- `BetaManagedAgentsConflictError = object { type, message }`
+- `BetaManagedAgentsConflictError object { type, message }`
 
   - `type: "conflict_error"`
 
@@ -1542,7 +1723,7 @@ curl https://api.anthropic.com/v1/memory_stores/$MEMORY_STORE_ID/memories/$MEMOR
 
 ### Beta Managed Agents Content Sha256 Precondition
 
-- `BetaManagedAgentsContentSha256Precondition = object { type, content_sha256 }`
+- `BetaManagedAgentsContentSha256Precondition object { type, content_sha256 }`
 
   Optimistic-concurrency precondition: the update applies only if the memory's stored `content_sha256` equals the supplied value. On mismatch, the request returns `memory_precondition_failed_error` (HTTP 409); re-read the memory and retry against the fresh state. If the precondition fails but the stored state already exactly matches the requested `content` and `path`, the server returns 200 instead of 409.
 
@@ -1556,7 +1737,7 @@ curl https://api.anthropic.com/v1/memory_stores/$MEMORY_STORE_ID/memories/$MEMOR
 
 ### Beta Managed Agents Deleted Memory
 
-- `BetaManagedAgentsDeletedMemory = object { id, type }`
+- `BetaManagedAgentsDeletedMemory object { id, type }`
 
   Tombstone returned by [Delete a memory](/docs/en/api/beta/memory_stores/memories/delete). The memory's version history persists and remains listable via [List memory versions](/docs/en/api/beta/memory_stores/memory_versions/list) until the store itself is deleted.
 
@@ -1572,7 +1753,7 @@ curl https://api.anthropic.com/v1/memory_stores/$MEMORY_STORE_ID/memories/$MEMOR
 
 - `BetaManagedAgentsError = BetaInvalidRequestError or BetaAuthenticationError or BetaBillingError or 9 more`
 
-  - `BetaInvalidRequestError = object { message, type }`
+  - `BetaInvalidRequestError object { message, type }`
 
     - `message: string`
 
@@ -1580,7 +1761,7 @@ curl https://api.anthropic.com/v1/memory_stores/$MEMORY_STORE_ID/memories/$MEMOR
 
       - `"invalid_request_error"`
 
-  - `BetaAuthenticationError = object { message, type }`
+  - `BetaAuthenticationError object { message, type }`
 
     - `message: string`
 
@@ -1588,7 +1769,7 @@ curl https://api.anthropic.com/v1/memory_stores/$MEMORY_STORE_ID/memories/$MEMOR
 
       - `"authentication_error"`
 
-  - `BetaBillingError = object { message, type }`
+  - `BetaBillingError object { message, type }`
 
     - `message: string`
 
@@ -1596,7 +1777,7 @@ curl https://api.anthropic.com/v1/memory_stores/$MEMORY_STORE_ID/memories/$MEMOR
 
       - `"billing_error"`
 
-  - `BetaPermissionError = object { message, type }`
+  - `BetaPermissionError object { message, type }`
 
     - `message: string`
 
@@ -1604,7 +1785,7 @@ curl https://api.anthropic.com/v1/memory_stores/$MEMORY_STORE_ID/memories/$MEMOR
 
       - `"permission_error"`
 
-  - `BetaNotFoundError = object { message, type }`
+  - `BetaNotFoundError object { message, type }`
 
     - `message: string`
 
@@ -1612,7 +1793,7 @@ curl https://api.anthropic.com/v1/memory_stores/$MEMORY_STORE_ID/memories/$MEMOR
 
       - `"not_found_error"`
 
-  - `BetaRateLimitError = object { message, type }`
+  - `BetaRateLimitError object { message, type }`
 
     - `message: string`
 
@@ -1620,7 +1801,7 @@ curl https://api.anthropic.com/v1/memory_stores/$MEMORY_STORE_ID/memories/$MEMOR
 
       - `"rate_limit_error"`
 
-  - `BetaGatewayTimeoutError = object { message, type }`
+  - `BetaGatewayTimeoutError object { message, type }`
 
     - `message: string`
 
@@ -1628,7 +1809,7 @@ curl https://api.anthropic.com/v1/memory_stores/$MEMORY_STORE_ID/memories/$MEMOR
 
       - `"timeout_error"`
 
-  - `BetaAPIError = object { message, type }`
+  - `BetaAPIError object { message, type }`
 
     - `message: string`
 
@@ -1636,7 +1817,7 @@ curl https://api.anthropic.com/v1/memory_stores/$MEMORY_STORE_ID/memories/$MEMOR
 
       - `"api_error"`
 
-  - `BetaOverloadedError = object { message, type }`
+  - `BetaOverloadedError object { message, type }`
 
     - `message: string`
 
@@ -1644,7 +1825,7 @@ curl https://api.anthropic.com/v1/memory_stores/$MEMORY_STORE_ID/memories/$MEMOR
 
       - `"overloaded_error"`
 
-  - `BetaManagedAgentsMemoryPreconditionFailedError = object { type, message }`
+  - `BetaManagedAgentsMemoryPreconditionFailedError object { type, message }`
 
     - `type: "memory_precondition_failed_error"`
 
@@ -1652,7 +1833,7 @@ curl https://api.anthropic.com/v1/memory_stores/$MEMORY_STORE_ID/memories/$MEMOR
 
     - `message: optional string`
 
-  - `BetaManagedAgentsMemoryPathConflictError = object { type, conflicting_memory_id, conflicting_path, message }`
+  - `BetaManagedAgentsMemoryPathConflictError object { type, conflicting_memory_id, conflicting_path, message }`
 
     - `type: "memory_path_conflict_error"`
 
@@ -1664,7 +1845,7 @@ curl https://api.anthropic.com/v1/memory_stores/$MEMORY_STORE_ID/memories/$MEMOR
 
     - `message: optional string`
 
-  - `BetaManagedAgentsConflictError = object { type, message }`
+  - `BetaManagedAgentsConflictError object { type, message }`
 
     - `type: "conflict_error"`
 
@@ -1674,7 +1855,7 @@ curl https://api.anthropic.com/v1/memory_stores/$MEMORY_STORE_ID/memories/$MEMOR
 
 ### Beta Managed Agents Memory
 
-- `BetaManagedAgentsMemory = object { id, content_sha256, content_size_bytes, 7 more }`
+- `BetaManagedAgentsMemory object { id, content_sha256, content_size_bytes, 7 more }`
 
   A `memory` object: a single text document at a hierarchical path inside a memory store. The `content` field is populated when `view=full` and `null` when `view=basic`; the `content_size_bytes` and `content_sha256` fields are always populated so sync clients can diff without fetching content. Memories are addressed by their `mem_...` ID; the path is the create key and can be changed via update.
 
@@ -1724,7 +1905,7 @@ curl https://api.anthropic.com/v1/memory_stores/$MEMORY_STORE_ID/memories/$MEMOR
 
   One item in a [List memories](/docs/en/api/beta/memory_stores/memories/list) response: either a `memory` object or, when `depth` is set, a `memory_prefix` rollup marker.
 
-  - `BetaManagedAgentsMemory = object { id, content_sha256, content_size_bytes, 7 more }`
+  - `BetaManagedAgentsMemory object { id, content_sha256, content_size_bytes, 7 more }`
 
     A `memory` object: a single text document at a hierarchical path inside a memory store. The `content` field is populated when `view=full` and `null` when `view=basic`; the `content_size_bytes` and `content_sha256` fields are always populated so sync clients can diff without fetching content. Memories are addressed by their `mem_...` ID; the path is the create key and can be changed via update.
 
@@ -1768,7 +1949,7 @@ curl https://api.anthropic.com/v1/memory_stores/$MEMORY_STORE_ID/memories/$MEMOR
 
       The memory's UTF-8 text content. Populated when `view=full`; `null` when `view=basic`. Maximum 100 kB (102,400 bytes).
 
-  - `BetaManagedAgentsMemoryPrefix = object { path, type }`
+  - `BetaManagedAgentsMemoryPrefix object { path, type }`
 
     A rolled-up directory marker returned by [List memories](/docs/en/api/beta/memory_stores/memories/list) when `depth` is set. Indicates that one or more memories exist deeper than the requested depth under this prefix. This is a list-time rollup, not a stored resource; it has no ID and no lifecycle. Each prefix counts toward the page `limit` and interleaves with `memory` items in path order.
 
@@ -1782,7 +1963,7 @@ curl https://api.anthropic.com/v1/memory_stores/$MEMORY_STORE_ID/memories/$MEMOR
 
 ### Beta Managed Agents Memory Path Conflict Error
 
-- `BetaManagedAgentsMemoryPathConflictError = object { type, conflicting_memory_id, conflicting_path, message }`
+- `BetaManagedAgentsMemoryPathConflictError object { type, conflicting_memory_id, conflicting_path, message }`
 
   - `type: "memory_path_conflict_error"`
 
@@ -1796,7 +1977,7 @@ curl https://api.anthropic.com/v1/memory_stores/$MEMORY_STORE_ID/memories/$MEMOR
 
 ### Beta Managed Agents Memory Precondition Failed Error
 
-- `BetaManagedAgentsMemoryPreconditionFailedError = object { type, message }`
+- `BetaManagedAgentsMemoryPreconditionFailedError object { type, message }`
 
   - `type: "memory_precondition_failed_error"`
 
@@ -1806,7 +1987,7 @@ curl https://api.anthropic.com/v1/memory_stores/$MEMORY_STORE_ID/memories/$MEMOR
 
 ### Beta Managed Agents Memory Prefix
 
-- `BetaManagedAgentsMemoryPrefix = object { path, type }`
+- `BetaManagedAgentsMemoryPrefix object { path, type }`
 
   A rolled-up directory marker returned by [List memories](/docs/en/api/beta/memory_stores/memories/list) when `depth` is set. Indicates that one or more memories exist deeper than the requested depth under this prefix. This is a list-time rollup, not a stored resource; it has no ID and no lifecycle. Each prefix counts toward the page `limit` and interleaves with `memory` items in path order.
 
@@ -1830,7 +2011,7 @@ curl https://api.anthropic.com/v1/memory_stores/$MEMORY_STORE_ID/memories/$MEMOR
 
 ### Beta Managed Agents Precondition
 
-- `BetaManagedAgentsPrecondition = object { type, content_sha256 }`
+- `BetaManagedAgentsPrecondition object { type, content_sha256 }`
 
   Optimistic-concurrency precondition: the update applies only if the memory's stored `content_sha256` equals the supplied value. On mismatch, the request returns `memory_precondition_failed_error` (HTTP 409); re-read the memory and retry against the fresh state. If the precondition fails but the stored state already exactly matches the requested `content` and `path`, the server returns 200 instead of 409.
 
@@ -1844,7 +2025,7 @@ curl https://api.anthropic.com/v1/memory_stores/$MEMORY_STORE_ID/memories/$MEMOR
 
 # Memory Versions
 
-## List
+## List memory versions
 
 **get** `/v1/memory_stores/{memory_store_id}/memory_versions`
 
@@ -1908,9 +2089,9 @@ List memory versions
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = string`
+  - `string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -2014,7 +2195,7 @@ List memory versions
 
     Identifies who performed a write or redact operation. Captured at write time on the `memory_version` row. The API key that created a session is not recorded on agent writes; attribution answers who made the write, not who is ultimately responsible. Look up session provenance separately via the [Sessions API](/docs/en/api/sessions-retrieve).
 
-    - `BetaManagedAgentsSessionActor = object { session_id, type }`
+    - `BetaManagedAgentsSessionActor object { session_id, type }`
 
       Attribution for a write made by an agent during a session, through the mounted filesystem at `/mnt/memory/`.
 
@@ -2026,7 +2207,7 @@ List memory versions
 
         - `"session_actor"`
 
-    - `BetaManagedAgentsAPIActor = object { api_key_id, type }`
+    - `BetaManagedAgentsAPIActor object { api_key_id, type }`
 
       Attribution for a write made directly via the public API (outside of any session).
 
@@ -2038,7 +2219,7 @@ List memory versions
 
         - `"api_actor"`
 
-    - `BetaManagedAgentsUserActor = object { type, user_id }`
+    - `BetaManagedAgentsUserActor object { type, user_id }`
 
       Attribution for a write made by a human user through the Anthropic Console.
 
@@ -2062,42 +2243,6 @@ List memory versions
 
     Identifies who performed a write or redact operation. Captured at write time on the `memory_version` row. The API key that created a session is not recorded on agent writes; attribution answers who made the write, not who is ultimately responsible. Look up session provenance separately via the [Sessions API](/docs/en/api/sessions-retrieve).
 
-    - `BetaManagedAgentsSessionActor = object { session_id, type }`
-
-      Attribution for a write made by an agent during a session, through the mounted filesystem at `/mnt/memory/`.
-
-      - `session_id: string`
-
-        ID of the session that performed the write (a `sesn_...` value). Look up the session via [Retrieve a session](/docs/en/api/sessions-retrieve) for further provenance.
-
-      - `type: "session_actor"`
-
-        - `"session_actor"`
-
-    - `BetaManagedAgentsAPIActor = object { api_key_id, type }`
-
-      Attribution for a write made directly via the public API (outside of any session).
-
-      - `api_key_id: string`
-
-        ID of the API key that performed the write. This identifies the key, not the secret.
-
-      - `type: "api_actor"`
-
-        - `"api_actor"`
-
-    - `BetaManagedAgentsUserActor = object { type, user_id }`
-
-      Attribution for a write made by a human user through the Anthropic Console.
-
-      - `type: "user_actor"`
-
-        - `"user_actor"`
-
-      - `user_id: string`
-
-        ID of the user who performed the write (a `user_...` value).
-
 - `next_page: optional string`
 
   Opaque cursor for the next page (a `page_...` value), or `null` if there are no more results. Pass as `page` on the next request.
@@ -2111,7 +2256,38 @@ curl https://api.anthropic.com/v1/memory_stores/$MEMORY_STORE_ID/memory_versions
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 
-## Retrieve
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "id",
+      "created_at": "2019-12-27T18:11:19.117Z",
+      "memory_id": "memory_id",
+      "memory_store_id": "memory_store_id",
+      "operation": "created",
+      "type": "memory_version",
+      "content": "content",
+      "content_sha256": "content_sha256",
+      "content_size_bytes": 0,
+      "created_by": {
+        "session_id": "x",
+        "type": "session_actor"
+      },
+      "path": "path",
+      "redacted_at": "2019-12-27T18:11:19.117Z",
+      "redacted_by": {
+        "session_id": "x",
+        "type": "session_actor"
+      }
+    }
+  ],
+  "next_page": "next_page"
+}
+```
+
+## Retrieve a memory version
 
 **get** `/v1/memory_stores/{memory_store_id}/memory_versions/{memory_version_id}`
 
@@ -2139,9 +2315,9 @@ Retrieve a memory version
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = string`
+  - `string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -2195,7 +2371,7 @@ Retrieve a memory version
 
 ### Returns
 
-- `BetaManagedAgentsMemoryVersion = object { id, created_at, memory_id, 10 more }`
+- `BetaManagedAgentsMemoryVersion object { id, created_at, memory_id, 10 more }`
 
   A `memory_version` object: one immutable, attributed row in a memory's append-only history. Every non-no-op mutation to a memory produces a new version. Versions belong to the store (not the individual memory) and persist after the memory is deleted. Retrieving a redacted version returns 200 with `content`, `path`, `content_size_bytes`, and `content_sha256` set to `null`; branch on `redacted_at`, not HTTP status.
 
@@ -2245,7 +2421,7 @@ Retrieve a memory version
 
     Identifies who performed a write or redact operation. Captured at write time on the `memory_version` row. The API key that created a session is not recorded on agent writes; attribution answers who made the write, not who is ultimately responsible. Look up session provenance separately via the [Sessions API](/docs/en/api/sessions-retrieve).
 
-    - `BetaManagedAgentsSessionActor = object { session_id, type }`
+    - `BetaManagedAgentsSessionActor object { session_id, type }`
 
       Attribution for a write made by an agent during a session, through the mounted filesystem at `/mnt/memory/`.
 
@@ -2257,7 +2433,7 @@ Retrieve a memory version
 
         - `"session_actor"`
 
-    - `BetaManagedAgentsAPIActor = object { api_key_id, type }`
+    - `BetaManagedAgentsAPIActor object { api_key_id, type }`
 
       Attribution for a write made directly via the public API (outside of any session).
 
@@ -2269,7 +2445,7 @@ Retrieve a memory version
 
         - `"api_actor"`
 
-    - `BetaManagedAgentsUserActor = object { type, user_id }`
+    - `BetaManagedAgentsUserActor object { type, user_id }`
 
       Attribution for a write made by a human user through the Anthropic Console.
 
@@ -2293,42 +2469,6 @@ Retrieve a memory version
 
     Identifies who performed a write or redact operation. Captured at write time on the `memory_version` row. The API key that created a session is not recorded on agent writes; attribution answers who made the write, not who is ultimately responsible. Look up session provenance separately via the [Sessions API](/docs/en/api/sessions-retrieve).
 
-    - `BetaManagedAgentsSessionActor = object { session_id, type }`
-
-      Attribution for a write made by an agent during a session, through the mounted filesystem at `/mnt/memory/`.
-
-      - `session_id: string`
-
-        ID of the session that performed the write (a `sesn_...` value). Look up the session via [Retrieve a session](/docs/en/api/sessions-retrieve) for further provenance.
-
-      - `type: "session_actor"`
-
-        - `"session_actor"`
-
-    - `BetaManagedAgentsAPIActor = object { api_key_id, type }`
-
-      Attribution for a write made directly via the public API (outside of any session).
-
-      - `api_key_id: string`
-
-        ID of the API key that performed the write. This identifies the key, not the secret.
-
-      - `type: "api_actor"`
-
-        - `"api_actor"`
-
-    - `BetaManagedAgentsUserActor = object { type, user_id }`
-
-      Attribution for a write made by a human user through the Anthropic Console.
-
-      - `type: "user_actor"`
-
-        - `"user_actor"`
-
-      - `user_id: string`
-
-        ID of the user who performed the write (a `user_...` value).
-
 ### Example
 
 ```http
@@ -2338,7 +2478,33 @@ curl https://api.anthropic.com/v1/memory_stores/$MEMORY_STORE_ID/memory_versions
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 
-## Redact
+#### Response
+
+```json
+{
+  "id": "id",
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "memory_id": "memory_id",
+  "memory_store_id": "memory_store_id",
+  "operation": "created",
+  "type": "memory_version",
+  "content": "content",
+  "content_sha256": "content_sha256",
+  "content_size_bytes": 0,
+  "created_by": {
+    "session_id": "x",
+    "type": "session_actor"
+  },
+  "path": "path",
+  "redacted_at": "2019-12-27T18:11:19.117Z",
+  "redacted_by": {
+    "session_id": "x",
+    "type": "session_actor"
+  }
+}
+```
+
+## Redact a memory version
 
 **post** `/v1/memory_stores/{memory_store_id}/memory_versions/{memory_version_id}/redact`
 
@@ -2356,9 +2522,9 @@ Redact a memory version
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = string`
+  - `string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -2412,7 +2578,7 @@ Redact a memory version
 
 ### Returns
 
-- `BetaManagedAgentsMemoryVersion = object { id, created_at, memory_id, 10 more }`
+- `BetaManagedAgentsMemoryVersion object { id, created_at, memory_id, 10 more }`
 
   A `memory_version` object: one immutable, attributed row in a memory's append-only history. Every non-no-op mutation to a memory produces a new version. Versions belong to the store (not the individual memory) and persist after the memory is deleted. Retrieving a redacted version returns 200 with `content`, `path`, `content_size_bytes`, and `content_sha256` set to `null`; branch on `redacted_at`, not HTTP status.
 
@@ -2462,7 +2628,7 @@ Redact a memory version
 
     Identifies who performed a write or redact operation. Captured at write time on the `memory_version` row. The API key that created a session is not recorded on agent writes; attribution answers who made the write, not who is ultimately responsible. Look up session provenance separately via the [Sessions API](/docs/en/api/sessions-retrieve).
 
-    - `BetaManagedAgentsSessionActor = object { session_id, type }`
+    - `BetaManagedAgentsSessionActor object { session_id, type }`
 
       Attribution for a write made by an agent during a session, through the mounted filesystem at `/mnt/memory/`.
 
@@ -2474,7 +2640,7 @@ Redact a memory version
 
         - `"session_actor"`
 
-    - `BetaManagedAgentsAPIActor = object { api_key_id, type }`
+    - `BetaManagedAgentsAPIActor object { api_key_id, type }`
 
       Attribution for a write made directly via the public API (outside of any session).
 
@@ -2486,7 +2652,7 @@ Redact a memory version
 
         - `"api_actor"`
 
-    - `BetaManagedAgentsUserActor = object { type, user_id }`
+    - `BetaManagedAgentsUserActor object { type, user_id }`
 
       Attribution for a write made by a human user through the Anthropic Console.
 
@@ -2510,42 +2676,6 @@ Redact a memory version
 
     Identifies who performed a write or redact operation. Captured at write time on the `memory_version` row. The API key that created a session is not recorded on agent writes; attribution answers who made the write, not who is ultimately responsible. Look up session provenance separately via the [Sessions API](/docs/en/api/sessions-retrieve).
 
-    - `BetaManagedAgentsSessionActor = object { session_id, type }`
-
-      Attribution for a write made by an agent during a session, through the mounted filesystem at `/mnt/memory/`.
-
-      - `session_id: string`
-
-        ID of the session that performed the write (a `sesn_...` value). Look up the session via [Retrieve a session](/docs/en/api/sessions-retrieve) for further provenance.
-
-      - `type: "session_actor"`
-
-        - `"session_actor"`
-
-    - `BetaManagedAgentsAPIActor = object { api_key_id, type }`
-
-      Attribution for a write made directly via the public API (outside of any session).
-
-      - `api_key_id: string`
-
-        ID of the API key that performed the write. This identifies the key, not the secret.
-
-      - `type: "api_actor"`
-
-        - `"api_actor"`
-
-    - `BetaManagedAgentsUserActor = object { type, user_id }`
-
-      Attribution for a write made by a human user through the Anthropic Console.
-
-      - `type: "user_actor"`
-
-        - `"user_actor"`
-
-      - `user_id: string`
-
-        ID of the user who performed the write (a `user_...` value).
-
 ### Example
 
 ```http
@@ -2556,6 +2686,32 @@ curl https://api.anthropic.com/v1/memory_stores/$MEMORY_STORE_ID/memory_versions
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 
+#### Response
+
+```json
+{
+  "id": "id",
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "memory_id": "memory_id",
+  "memory_store_id": "memory_store_id",
+  "operation": "created",
+  "type": "memory_version",
+  "content": "content",
+  "content_sha256": "content_sha256",
+  "content_size_bytes": 0,
+  "created_by": {
+    "session_id": "x",
+    "type": "session_actor"
+  },
+  "path": "path",
+  "redacted_at": "2019-12-27T18:11:19.117Z",
+  "redacted_by": {
+    "session_id": "x",
+    "type": "session_actor"
+  }
+}
+```
+
 ## Domain Types
 
 ### Beta Managed Agents Actor
@@ -2564,7 +2720,7 @@ curl https://api.anthropic.com/v1/memory_stores/$MEMORY_STORE_ID/memory_versions
 
   Identifies who performed a write or redact operation. Captured at write time on the `memory_version` row. The API key that created a session is not recorded on agent writes; attribution answers who made the write, not who is ultimately responsible. Look up session provenance separately via the [Sessions API](/docs/en/api/sessions-retrieve).
 
-  - `BetaManagedAgentsSessionActor = object { session_id, type }`
+  - `BetaManagedAgentsSessionActor object { session_id, type }`
 
     Attribution for a write made by an agent during a session, through the mounted filesystem at `/mnt/memory/`.
 
@@ -2576,7 +2732,7 @@ curl https://api.anthropic.com/v1/memory_stores/$MEMORY_STORE_ID/memory_versions
 
       - `"session_actor"`
 
-  - `BetaManagedAgentsAPIActor = object { api_key_id, type }`
+  - `BetaManagedAgentsAPIActor object { api_key_id, type }`
 
     Attribution for a write made directly via the public API (outside of any session).
 
@@ -2588,7 +2744,7 @@ curl https://api.anthropic.com/v1/memory_stores/$MEMORY_STORE_ID/memory_versions
 
       - `"api_actor"`
 
-  - `BetaManagedAgentsUserActor = object { type, user_id }`
+  - `BetaManagedAgentsUserActor object { type, user_id }`
 
     Attribution for a write made by a human user through the Anthropic Console.
 
@@ -2602,7 +2758,7 @@ curl https://api.anthropic.com/v1/memory_stores/$MEMORY_STORE_ID/memory_versions
 
 ### Beta Managed Agents API Actor
 
-- `BetaManagedAgentsAPIActor = object { api_key_id, type }`
+- `BetaManagedAgentsAPIActor object { api_key_id, type }`
 
   Attribution for a write made directly via the public API (outside of any session).
 
@@ -2616,7 +2772,7 @@ curl https://api.anthropic.com/v1/memory_stores/$MEMORY_STORE_ID/memory_versions
 
 ### Beta Managed Agents Memory Version
 
-- `BetaManagedAgentsMemoryVersion = object { id, created_at, memory_id, 10 more }`
+- `BetaManagedAgentsMemoryVersion object { id, created_at, memory_id, 10 more }`
 
   A `memory_version` object: one immutable, attributed row in a memory's append-only history. Every non-no-op mutation to a memory produces a new version. Versions belong to the store (not the individual memory) and persist after the memory is deleted. Retrieving a redacted version returns 200 with `content`, `path`, `content_size_bytes`, and `content_sha256` set to `null`; branch on `redacted_at`, not HTTP status.
 
@@ -2666,7 +2822,7 @@ curl https://api.anthropic.com/v1/memory_stores/$MEMORY_STORE_ID/memory_versions
 
     Identifies who performed a write or redact operation. Captured at write time on the `memory_version` row. The API key that created a session is not recorded on agent writes; attribution answers who made the write, not who is ultimately responsible. Look up session provenance separately via the [Sessions API](/docs/en/api/sessions-retrieve).
 
-    - `BetaManagedAgentsSessionActor = object { session_id, type }`
+    - `BetaManagedAgentsSessionActor object { session_id, type }`
 
       Attribution for a write made by an agent during a session, through the mounted filesystem at `/mnt/memory/`.
 
@@ -2678,7 +2834,7 @@ curl https://api.anthropic.com/v1/memory_stores/$MEMORY_STORE_ID/memory_versions
 
         - `"session_actor"`
 
-    - `BetaManagedAgentsAPIActor = object { api_key_id, type }`
+    - `BetaManagedAgentsAPIActor object { api_key_id, type }`
 
       Attribution for a write made directly via the public API (outside of any session).
 
@@ -2690,7 +2846,7 @@ curl https://api.anthropic.com/v1/memory_stores/$MEMORY_STORE_ID/memory_versions
 
         - `"api_actor"`
 
-    - `BetaManagedAgentsUserActor = object { type, user_id }`
+    - `BetaManagedAgentsUserActor object { type, user_id }`
 
       Attribution for a write made by a human user through the Anthropic Console.
 
@@ -2713,42 +2869,6 @@ curl https://api.anthropic.com/v1/memory_stores/$MEMORY_STORE_ID/memory_versions
   - `redacted_by: optional BetaManagedAgentsActor`
 
     Identifies who performed a write or redact operation. Captured at write time on the `memory_version` row. The API key that created a session is not recorded on agent writes; attribution answers who made the write, not who is ultimately responsible. Look up session provenance separately via the [Sessions API](/docs/en/api/sessions-retrieve).
-
-    - `BetaManagedAgentsSessionActor = object { session_id, type }`
-
-      Attribution for a write made by an agent during a session, through the mounted filesystem at `/mnt/memory/`.
-
-      - `session_id: string`
-
-        ID of the session that performed the write (a `sesn_...` value). Look up the session via [Retrieve a session](/docs/en/api/sessions-retrieve) for further provenance.
-
-      - `type: "session_actor"`
-
-        - `"session_actor"`
-
-    - `BetaManagedAgentsAPIActor = object { api_key_id, type }`
-
-      Attribution for a write made directly via the public API (outside of any session).
-
-      - `api_key_id: string`
-
-        ID of the API key that performed the write. This identifies the key, not the secret.
-
-      - `type: "api_actor"`
-
-        - `"api_actor"`
-
-    - `BetaManagedAgentsUserActor = object { type, user_id }`
-
-      Attribution for a write made by a human user through the Anthropic Console.
-
-      - `type: "user_actor"`
-
-        - `"user_actor"`
-
-      - `user_id: string`
-
-        ID of the user who performed the write (a `user_...` value).
 
 ### Beta Managed Agents Memory Version Operation
 
@@ -2764,7 +2884,7 @@ curl https://api.anthropic.com/v1/memory_stores/$MEMORY_STORE_ID/memory_versions
 
 ### Beta Managed Agents Session Actor
 
-- `BetaManagedAgentsSessionActor = object { session_id, type }`
+- `BetaManagedAgentsSessionActor object { session_id, type }`
 
   Attribution for a write made by an agent during a session, through the mounted filesystem at `/mnt/memory/`.
 
@@ -2778,7 +2898,7 @@ curl https://api.anthropic.com/v1/memory_stores/$MEMORY_STORE_ID/memory_versions
 
 ### Beta Managed Agents User Actor
 
-- `BetaManagedAgentsUserActor = object { type, user_id }`
+- `BetaManagedAgentsUserActor object { type, user_id }`
 
   Attribution for a write made by a human user through the Anthropic Console.
 

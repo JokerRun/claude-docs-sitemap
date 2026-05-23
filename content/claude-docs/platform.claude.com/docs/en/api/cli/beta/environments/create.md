@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/environments/create
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 847741e76b09f3796b066dcdf354d51444cfe7eca55430f4e6685ac4caf92a7d
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 7064452e0d40344406b56d62c75b0239f246f0aaf47655500354dc6e026d9c6a
 ---
 
-## Create
+## Create Environment
 
 `$ ant beta:environments create`
 
@@ -177,4 +177,53 @@ Create a new environment with the specified configuration.
 ant beta:environments create \
   --api-key my-anthropic-api-key \
   --name python-data-analysis
+```
+
+#### Response
+
+```json
+{
+  "id": "env_011CZkZ9X2dpNyB7HsEFoRfW",
+  "archived_at": null,
+  "config": {
+    "networking": {
+      "allow_mcp_servers": false,
+      "allow_package_managers": true,
+      "allowed_hosts": [
+        "api.example.com"
+      ],
+      "type": "limited"
+    },
+    "packages": {
+      "apt": [
+        "string"
+      ],
+      "cargo": [
+        "string"
+      ],
+      "gem": [
+        "string"
+      ],
+      "go": [
+        "string"
+      ],
+      "npm": [
+        "string"
+      ],
+      "pip": [
+        "pandas",
+        "numpy"
+      ],
+      "type": "packages"
+    },
+    "type": "cloud"
+  },
+  "created_at": "2026-03-15T10:00:00Z",
+  "description": "Python environment with data-analysis packages.",
+  "metadata": {},
+  "name": "python-data-analysis",
+  "type": "environment",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "scope": "organization"
+}
 ```

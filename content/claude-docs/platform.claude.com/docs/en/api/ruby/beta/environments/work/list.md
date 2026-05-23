@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/environments/work/list
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: bf2b6a2f451f4155b981dd7aaf21dd155ee59a9f81fa386f588034f60ab790b9
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 847b15fa917dcdc4f13151864667fe398187daa9ca22f29da85f95e1f26d9fe7
 ---
 
-## List
+## List Work Items
 
 `beta.environments.work.list(environment_id, **kwargs) -> PageCursor<BetaSelfHostedWork>`
 
@@ -31,9 +31,9 @@ List work items in an environment.
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `String`
+  - `String = String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -175,4 +175,33 @@ anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
 page = anthropic.beta.environments.work.list("env_011CZkZ9X2dpNyB7HsEFoRfW")
 
 puts(page)
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "id",
+      "acknowledged_at": "acknowledged_at",
+      "created_at": "created_at",
+      "data": {
+        "id": "id",
+        "type": "session"
+      },
+      "environment_id": "environment_id",
+      "latest_heartbeat_at": "latest_heartbeat_at",
+      "metadata": {
+        "foo": "string"
+      },
+      "started_at": "started_at",
+      "state": "queued",
+      "stop_requested_at": "stop_requested_at",
+      "stopped_at": "stopped_at",
+      "type": "work"
+    }
+  ],
+  "next_page": "next_page"
+}
 ```

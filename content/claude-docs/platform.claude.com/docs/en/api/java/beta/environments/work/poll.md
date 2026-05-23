@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/environments/work/poll
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 5ec1f70cfb788bb7ca37b722a0014d28dc6a67cf8bb97eac47cef7e1f17e541d
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: e623a6b2c0f86fd899cd07e33e9c9c97500565ab4fe60a62c710dd31547334ea
 ---
 
-## Poll
+## Poll for Work
 
 `BetaSelfHostedWork beta().environments().work().poll(WorkPollParamsparams = WorkPollParams.none(), RequestOptionsrequestOptions = RequestOptions.none())`
 
@@ -186,5 +186,29 @@ public final class Main {
 
         Optional<BetaSelfHostedWork> betaSelfHostedWork = client.beta().environments().work().poll("env_011CZkZ9X2dpNyB7HsEFoRfW");
     }
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "acknowledged_at": "acknowledged_at",
+  "created_at": "created_at",
+  "data": {
+    "id": "id",
+    "type": "session"
+  },
+  "environment_id": "environment_id",
+  "latest_heartbeat_at": "latest_heartbeat_at",
+  "metadata": {
+    "foo": "string"
+  },
+  "started_at": "started_at",
+  "state": "queued",
+  "stop_requested_at": "stop_requested_at",
+  "stopped_at": "stopped_at",
+  "type": "work"
 }
 ```

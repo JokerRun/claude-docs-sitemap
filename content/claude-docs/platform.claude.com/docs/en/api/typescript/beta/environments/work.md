@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/environments/work
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: a65f17725f4c68086b15824d04133ad232fb541dfe1ad973e542dac486369e8e
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: a02698c446ac6cac867f0a8292c9d1d36bd1ea40660c36beed05bf123ff92f5f
 ---
 
 # Work
 
-## Retrieve
+## Get Work Item
 
 `client.beta.environments.work.retrieve(stringworkID, WorkRetrieveParamsparams, RequestOptionsoptions?): BetaSelfHostedWork`
 
@@ -181,7 +181,31 @@ const betaSelfHostedWork = await client.beta.environments.work.retrieve('work_id
 console.log(betaSelfHostedWork.id);
 ```
 
-## Poll
+#### Response
+
+```json
+{
+  "id": "id",
+  "acknowledged_at": "acknowledged_at",
+  "created_at": "created_at",
+  "data": {
+    "id": "id",
+    "type": "session"
+  },
+  "environment_id": "environment_id",
+  "latest_heartbeat_at": "latest_heartbeat_at",
+  "metadata": {
+    "foo": "string"
+  },
+  "started_at": "started_at",
+  "state": "queued",
+  "stop_requested_at": "stop_requested_at",
+  "stopped_at": "stopped_at",
+  "type": "work"
+}
+```
+
+## Poll for Work
 
 `client.beta.environments.work.poll(stringenvironmentID, WorkPollParamsparams?, RequestOptionsoptions?): BetaSelfHostedWork | null`
 
@@ -355,7 +379,31 @@ const betaSelfHostedWork = await client.beta.environments.work.poll('env_011CZkZ
 console.log(betaSelfHostedWork.id);
 ```
 
-## Ack
+#### Response
+
+```json
+{
+  "id": "id",
+  "acknowledged_at": "acknowledged_at",
+  "created_at": "created_at",
+  "data": {
+    "id": "id",
+    "type": "session"
+  },
+  "environment_id": "environment_id",
+  "latest_heartbeat_at": "latest_heartbeat_at",
+  "metadata": {
+    "foo": "string"
+  },
+  "started_at": "started_at",
+  "state": "queued",
+  "stop_requested_at": "stop_requested_at",
+  "stopped_at": "stopped_at",
+  "type": "work"
+}
+```
+
+## Acknowledge Work
 
 `client.beta.environments.work.ack(stringworkID, WorkAckParamsparams, RequestOptionsoptions?): BetaSelfHostedWork`
 
@@ -529,7 +577,31 @@ const betaSelfHostedWork = await client.beta.environments.work.ack('work_id', {
 console.log(betaSelfHostedWork.id);
 ```
 
-## Heartbeat
+#### Response
+
+```json
+{
+  "id": "id",
+  "acknowledged_at": "acknowledged_at",
+  "created_at": "created_at",
+  "data": {
+    "id": "id",
+    "type": "session"
+  },
+  "environment_id": "environment_id",
+  "latest_heartbeat_at": "latest_heartbeat_at",
+  "metadata": {
+    "foo": "string"
+  },
+  "started_at": "started_at",
+  "state": "queued",
+  "stop_requested_at": "stop_requested_at",
+  "stopped_at": "stopped_at",
+  "type": "work"
+}
+```
+
+## Record Heartbeat
 
 `client.beta.environments.work.heartbeat(stringworkID, WorkHeartbeatParamsparams, RequestOptionsoptions?): BetaSelfHostedWorkHeartbeatResponse`
 
@@ -670,7 +742,19 @@ const betaSelfHostedWorkHeartbeatResponse = await client.beta.environments.work.
 console.log(betaSelfHostedWorkHeartbeatResponse.last_heartbeat);
 ```
 
-## Stop
+#### Response
+
+```json
+{
+  "last_heartbeat": "last_heartbeat",
+  "lease_extended": true,
+  "state": "queued",
+  "ttl_seconds": 0,
+  "type": "work_heartbeat"
+}
+```
+
+## Stop Work
 
 `client.beta.environments.work.stop(stringworkID, WorkStopParamsparams, RequestOptionsoptions?): BetaSelfHostedWork`
 
@@ -848,7 +932,31 @@ const betaSelfHostedWork = await client.beta.environments.work.stop('work_id', {
 console.log(betaSelfHostedWork.id);
 ```
 
-## List
+#### Response
+
+```json
+{
+  "id": "id",
+  "acknowledged_at": "acknowledged_at",
+  "created_at": "created_at",
+  "data": {
+    "id": "id",
+    "type": "session"
+  },
+  "environment_id": "environment_id",
+  "latest_heartbeat_at": "latest_heartbeat_at",
+  "metadata": {
+    "foo": "string"
+  },
+  "started_at": "started_at",
+  "state": "queued",
+  "stop_requested_at": "stop_requested_at",
+  "stopped_at": "stopped_at",
+  "type": "work"
+}
+```
+
+## List Work Items
 
 `client.beta.environments.work.list(stringenvironmentID, WorkListParamsparams?, RequestOptionsoptions?): PageCursor<BetaSelfHostedWork>`
 
@@ -1027,7 +1135,36 @@ for await (const betaSelfHostedWork of client.beta.environments.work.list(
 }
 ```
 
-## Update
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "id",
+      "acknowledged_at": "acknowledged_at",
+      "created_at": "created_at",
+      "data": {
+        "id": "id",
+        "type": "session"
+      },
+      "environment_id": "environment_id",
+      "latest_heartbeat_at": "latest_heartbeat_at",
+      "metadata": {
+        "foo": "string"
+      },
+      "started_at": "started_at",
+      "state": "queued",
+      "stop_requested_at": "stop_requested_at",
+      "stopped_at": "stopped_at",
+      "type": "work"
+    }
+  ],
+  "next_page": "next_page"
+}
+```
+
+## Update Work Item
 
 `client.beta.environments.work.update(stringworkID, WorkUpdateParamsparams, RequestOptionsoptions?): BetaSelfHostedWork`
 
@@ -1206,7 +1343,31 @@ const betaSelfHostedWork = await client.beta.environments.work.update('work_id',
 console.log(betaSelfHostedWork.id);
 ```
 
-## Stats
+#### Response
+
+```json
+{
+  "id": "id",
+  "acknowledged_at": "acknowledged_at",
+  "created_at": "created_at",
+  "data": {
+    "id": "id",
+    "type": "session"
+  },
+  "environment_id": "environment_id",
+  "latest_heartbeat_at": "latest_heartbeat_at",
+  "metadata": {
+    "foo": "string"
+  },
+  "started_at": "started_at",
+  "state": "queued",
+  "stop_requested_at": "stop_requested_at",
+  "stopped_at": "stopped_at",
+  "type": "work"
+}
+```
+
+## Get Queue Statistics
 
 `client.beta.environments.work.stats(stringenvironmentID, WorkStatsParamsparams?, RequestOptionsoptions?): BetaSelfHostedWorkQueueStats`
 
@@ -1322,6 +1483,18 @@ const betaSelfHostedWorkQueueStats = await client.beta.environments.work.stats(
 );
 
 console.log(betaSelfHostedWorkQueueStats.depth);
+```
+
+#### Response
+
+```json
+{
+  "depth": 0,
+  "oldest_queued_at": "oldest_queued_at",
+  "pending": 0,
+  "type": "work_queue_stats",
+  "workers_polling": 0
+}
 ```
 
 ## Domain Types

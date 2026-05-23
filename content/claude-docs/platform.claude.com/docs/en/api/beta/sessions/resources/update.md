@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/resources/update
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 0111a9c74211b39c7865235e331ca0d127380f0d0bf1cc74417b9f14656c11e4
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 8247a22db872d6dcf8fb744f1709db2b350d7a9a09bc4e7d9d59701dc0a0d053
 ---
 
-## Update
+## Update Session Resource
 
 **post** `/v1/sessions/{session_id}/resources/{resource_id}`
 
@@ -23,9 +23,9 @@ Update Session Resource
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = string`
+  - `string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -85,7 +85,7 @@ Update Session Resource
 
 ### Returns
 
-- `BetaManagedAgentsGitHubRepositoryResource = object { id, created_at, mount_path, 4 more }`
+- `BetaManagedAgentsGitHubRepositoryResource object { id, created_at, mount_path, 4 more }`
 
   - `id: string`
 
@@ -107,7 +107,7 @@ Update Session Resource
 
   - `checkout: optional BetaManagedAgentsBranchCheckout or BetaManagedAgentsCommitCheckout`
 
-    - `BetaManagedAgentsBranchCheckout = object { name, type }`
+    - `BetaManagedAgentsBranchCheckout object { name, type }`
 
       - `name: string`
 
@@ -117,7 +117,7 @@ Update Session Resource
 
         - `"branch"`
 
-    - `BetaManagedAgentsCommitCheckout = object { sha, type }`
+    - `BetaManagedAgentsCommitCheckout object { sha, type }`
 
       - `sha: string`
 
@@ -127,7 +127,7 @@ Update Session Resource
 
         - `"commit"`
 
-- `BetaManagedAgentsFileResource = object { id, created_at, file_id, 3 more }`
+- `BetaManagedAgentsFileResource object { id, created_at, file_id, 3 more }`
 
   - `id: string`
 
@@ -147,7 +147,7 @@ Update Session Resource
 
     A timestamp in RFC 3339 format
 
-- `BetaManagedAgentsMemoryStoreResource = object { memory_store_id, type, access, 4 more }`
+- `BetaManagedAgentsMemoryStoreResource object { memory_store_id, type, access, 4 more }`
 
   A memory store attached to an agent session.
 
@@ -194,4 +194,21 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/resources/$RESOURCE_ID \
     -d '{
           "authorization_token": "ghp_exampletoken"
         }'
+```
+
+#### Response
+
+```json
+{
+  "id": "sesrsc_011CZkZCKr6eXyl0gWMOdQiu",
+  "created_at": "2026-03-15T10:00:00Z",
+  "mount_path": "/workspace/example-repo",
+  "type": "github_repository",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "url": "https://github.com/example-org/example-repo",
+  "checkout": {
+    "name": "main",
+    "type": "branch"
+  }
+}
 ```

@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/sessions/resources/add
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: e104f88af0d29725b8c90c4f58bd90f202bf24ed685ee9bf23af3796a46f0fad
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 3f3d5018dcc9d8bf69448b2c659f8a81c8b72a854e0db038c263eba23d34b1db
 ---
 
-## Add
+## Add Session Resource
 
 `beta.sessions.resources.add(session_id, **kwargs) -> BetaManagedAgentsFileResource`
 
@@ -33,9 +33,9 @@ Add Session Resource
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `String`
+  - `String = String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -123,4 +123,17 @@ beta_managed_agents_file_resource = anthropic.beta.sessions.resources.add(
 )
 
 puts(beta_managed_agents_file_resource)
+```
+
+#### Response
+
+```json
+{
+  "id": "sesrsc_011CZkZBJq5dWxk9fVLNcPht",
+  "created_at": "2026-03-15T10:00:00Z",
+  "file_id": "file_011CNha8iCJcU1wXNR6q4V8w",
+  "mount_path": "/uploads/receipt.pdf",
+  "type": "file",
+  "updated_at": "2026-03-15T10:00:00Z"
+}
 ```

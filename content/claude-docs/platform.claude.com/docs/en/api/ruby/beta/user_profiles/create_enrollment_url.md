@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/user_profiles/create_enrollment_url
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 4792e874e87baa660588252fc7815ff21e9058a86218630d7482c8051f3f379f
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: e22908f5822180a79eb50cc91f80a904b3e20d6274f6575353bc37eabadc9980
 ---
 
 ## Create Enrollment URL
@@ -21,9 +21,9 @@ Create Enrollment URL
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `String`
+  - `String = String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -103,4 +103,14 @@ anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
 beta_user_profile_enrollment_url = anthropic.beta.user_profiles.create_enrollment_url("uprof_011CZkZCu8hGbp5mYRQgUmz9")
 
 puts(beta_user_profile_enrollment_url)
+```
+
+#### Response
+
+```json
+{
+  "expires_at": "2026-03-15T10:15:00Z",
+  "type": "enrollment_url",
+  "url": "https://platform.claude.com/user-profiles/enrollment/M3J0bGJxZ2ppMnptbnB1"
+}
 ```

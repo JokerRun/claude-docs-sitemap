@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/files/upload
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: dbe80d4a4c51d0f3fa231dde0338c3f86f6ba1acd7bce9c08068d7283784d4c5
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 97b76586920e66ff40ed7cdeae93ed88b12af1af7e65f3edfab78722e605c67e
 ---
 
-## Upload
+## Upload File
 
 `$ ant beta:files upload`
 
@@ -77,4 +77,22 @@ Upload File
 ant beta:files upload \
   --api-key my-anthropic-api-key \
   --file 'Example data'
+```
+
+#### Response
+
+```json
+{
+  "id": "file_011CNha8iCJcU1wXNR6q4V8w",
+  "created_at": "2025-04-15T18:37:24.100435Z",
+  "filename": "document.pdf",
+  "mime_type": "application/pdf",
+  "size_bytes": 102400,
+  "type": "file",
+  "downloadable": false,
+  "scope": {
+    "id": "id",
+    "type": "session"
+  }
+}
 ```

@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/update
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: b88547eaafec5ece9b56f7ee83f92162dbc381faaace7b7ce72b023613cc9e50
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: d040b45e56d35f48e9a6bbcd7d9592ddd676b82306f869ef60f406d01f8b3c7b
 ---
 
-## Update
+## Update Environment
 
 **post** `/v1/environments/{environment_id}`
 
@@ -21,9 +21,9 @@ Update an existing environment's configuration.
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = string`
+  - `string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -81,7 +81,7 @@ Update an existing environment's configuration.
 
   Updated environment configuration
 
-  - `BetaCloudConfigParams = object { type, networking, packages }`
+  - `BetaCloudConfigParams object { type, networking, packages }`
 
     Request params for `cloud` environment configuration.
 
@@ -98,7 +98,7 @@ Update an existing environment's configuration.
 
       Network configuration policy. Omit on update to preserve the existing value.
 
-      - `BetaUnrestrictedNetwork = object { type }`
+      - `BetaUnrestrictedNetwork object { type }`
 
         Unrestricted network access.
 
@@ -108,7 +108,7 @@ Update an existing environment's configuration.
 
           - `"unrestricted"`
 
-      - `BetaLimitedNetworkParams = object { type, allow_mcp_servers, allow_package_managers, allowed_hosts }`
+      - `BetaLimitedNetworkParams object { type, allow_mcp_servers, allow_package_managers, allowed_hosts }`
 
         Limited network request params.
 
@@ -169,7 +169,7 @@ Update an existing environment's configuration.
 
         - `"packages"`
 
-  - `BetaSelfHostedConfigParams = object { type }`
+  - `BetaSelfHostedConfigParams object { type }`
 
     Request params for `self_hosted` environment configuration.
 
@@ -201,7 +201,7 @@ Update an existing environment's configuration.
 
 ### Returns
 
-- `BetaEnvironment = object { id, archived_at, config, 7 more }`
+- `BetaEnvironment object { id, archived_at, config, 7 more }`
 
   Unified Environment resource for both cloud and self-hosted environments.
 
@@ -217,7 +217,7 @@ Update an existing environment's configuration.
 
     Environment configuration (either Anthropic Cloud or self-hosted)
 
-    - `BetaCloudConfig = object { networking, packages, type }`
+    - `BetaCloudConfig object { networking, packages, type }`
 
       `cloud` environment configuration.
 
@@ -225,7 +225,7 @@ Update an existing environment's configuration.
 
         Network configuration policy.
 
-        - `BetaUnrestrictedNetwork = object { type }`
+        - `BetaUnrestrictedNetwork object { type }`
 
           Unrestricted network access.
 
@@ -235,7 +235,7 @@ Update an existing environment's configuration.
 
             - `"unrestricted"`
 
-        - `BetaLimitedNetwork = object { allow_mcp_servers, allow_package_managers, allowed_hosts, type }`
+        - `BetaLimitedNetwork object { allow_mcp_servers, allow_package_managers, allowed_hosts, type }`
 
           Limited network access.
 
@@ -297,7 +297,7 @@ Update an existing environment's configuration.
 
         - `"cloud"`
 
-    - `BetaSelfHostedConfig = object { type }`
+    - `BetaSelfHostedConfig object { type }`
 
       Configuration for self-hosted environments.
 
@@ -352,4 +352,53 @@ curl https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID \
     -d '{
           "description": "Python environment with data-analysis packages."
         }'
+```
+
+#### Response
+
+```json
+{
+  "id": "env_011CZkZ9X2dpNyB7HsEFoRfW",
+  "archived_at": null,
+  "config": {
+    "networking": {
+      "allow_mcp_servers": false,
+      "allow_package_managers": true,
+      "allowed_hosts": [
+        "api.example.com"
+      ],
+      "type": "limited"
+    },
+    "packages": {
+      "apt": [
+        "string"
+      ],
+      "cargo": [
+        "string"
+      ],
+      "gem": [
+        "string"
+      ],
+      "go": [
+        "string"
+      ],
+      "npm": [
+        "string"
+      ],
+      "pip": [
+        "pandas",
+        "numpy"
+      ],
+      "type": "packages"
+    },
+    "type": "cloud"
+  },
+  "created_at": "2026-03-15T10:00:00Z",
+  "description": "Python environment with data-analysis packages.",
+  "metadata": {},
+  "name": "python-data-analysis",
+  "type": "environment",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "scope": "organization"
+}
 ```

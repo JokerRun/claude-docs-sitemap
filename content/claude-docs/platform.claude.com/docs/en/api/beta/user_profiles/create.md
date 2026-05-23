@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/create
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 95e05e6698cc761bcb3da1bddf3c755b528c57b4758fa8cec145631380c5d96d
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 4c64f1dd6ca4ba5dc014cf2f93f1ff9d2aa4d2f171799703b2d60e68b27d1ce1
 ---
 
-## Create
+## Create User Profile
 
 **post** `/v1/user_profiles`
 
@@ -17,9 +17,9 @@ Create User Profile
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = string`
+  - `string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -97,7 +97,7 @@ Create User Profile
 
 ### Returns
 
-- `BetaUserProfile = object { id, created_at, metadata, 6 more }`
+- `BetaUserProfile object { id, created_at, metadata, 6 more }`
 
   - `id: string`
 
@@ -165,4 +165,24 @@ curl https://api.anthropic.com/v1/user_profiles \
           "external_id": "user_12345",
           "metadata": {}
         }'
+```
+
+#### Response
+
+```json
+{
+  "id": "uprof_011CZkZCu8hGbp5mYRQgUmz9",
+  "created_at": "2026-03-15T10:00:00Z",
+  "metadata": {},
+  "relationship": "external",
+  "trust_grants": {
+    "cyber": {
+      "status": "active"
+    }
+  },
+  "type": "user_profile",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "external_id": "user_12345",
+  "name": "Example User"
+}
 ```

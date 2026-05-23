@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/groups/list
-fetched_at: 2026-05-09T03:13:52.260309Z
-sha256: 10897520d0d2f02e35e4fb8dc8051077888350b6f5b7854e9bcf3a11a41ceb0e
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 8ef819b418cd98364dbf5c7b9d2f026d30c01f42cc30f22de1db71e023d60e7f
 ---
 
-## List
+## List Compliance Groups
 
 **get** `/v1/compliance/groups`
 
@@ -76,4 +76,26 @@ List Compliance Groups
 ```http
 curl https://api.anthropic.com/v1/compliance/groups \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "id",
+      "created_at": "created_at",
+      "description": "description",
+      "name": "name",
+      "roles": [
+        "string"
+      ],
+      "source_type": "source_type",
+      "updated_at": "updated_at"
+    }
+  ],
+  "has_more": true,
+  "next_page": "next_page"
+}
 ```

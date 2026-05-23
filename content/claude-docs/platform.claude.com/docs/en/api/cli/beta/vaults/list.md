@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/vaults/list
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 13d2dea190fcb12bf4e68ff107d357ea6acbb64324fd8a595ea13ab02ac4f8d6
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: f9f40bc84ae030273720a26c613ebc836270dc16e368e8fcc035aa7ac35cb1ca
 ---
 
-## List
+## List Vaults
 
 `$ ant beta:vaults list`
 
@@ -78,4 +78,25 @@ List Vaults
 ```cli
 ant beta:vaults list \
   --api-key my-anthropic-api-key
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+      "archived_at": null,
+      "created_at": "2026-03-15T10:00:00Z",
+      "display_name": "Example vault",
+      "metadata": {
+        "environment": "production"
+      },
+      "type": "vault",
+      "updated_at": "2026-03-15T10:00:00Z"
+    }
+  ],
+  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="
+}
 ```

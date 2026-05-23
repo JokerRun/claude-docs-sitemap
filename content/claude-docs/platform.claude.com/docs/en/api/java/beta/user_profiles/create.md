@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/user_profiles/create
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: dbe3a06c45693a9cca18f27c9bd8fa7520b58be5ee7fa45db5f1daa1fbc1c33f
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 8560f41d6043c5936eb726f4c2cd13d75feda1090aeaab5c723313218458521c
 ---
 
-## Create
+## Create User Profile
 
 `BetaUserProfile beta().userProfiles().create(UserProfileCreateParamsparams = UserProfileCreateParams.none(), RequestOptionsrequestOptions = RequestOptions.none())`
 
@@ -169,5 +169,25 @@ public final class Main {
 
         BetaUserProfile betaUserProfile = client.beta().userProfiles().create();
     }
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "uprof_011CZkZCu8hGbp5mYRQgUmz9",
+  "created_at": "2026-03-15T10:00:00Z",
+  "metadata": {},
+  "relationship": "external",
+  "trust_grants": {
+    "cyber": {
+      "status": "active"
+    }
+  },
+  "type": "user_profile",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "external_id": "user_12345",
+  "name": "Example User"
 }
 ```

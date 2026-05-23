@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/skills/versions/delete
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: e592ab8fbfc1522defd7b6afba277b10338b3d27c68727a56d0a8381275150fa
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 36938fae15212ceda9cf79684b0bfe4ded995d06e34a20dbac07bfbc1feb1d6d
 ---
 
-## Delete
+## Delete Skill Version
 
 `VersionDeleteResponse Beta.Skills.Versions.Delete(VersionDeleteParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -111,4 +111,13 @@ VersionDeleteParams parameters = new()
 var version = await client.Beta.Skills.Versions.Delete(parameters);
 
 Console.WriteLine(version);
+```
+
+#### Response
+
+```json
+{
+  "id": "1759178010641129",
+  "type": "type"
+}
 ```

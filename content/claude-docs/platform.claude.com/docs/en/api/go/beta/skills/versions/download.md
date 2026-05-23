@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/skills/versions/download
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: b5ca91838b8077f7bf335182f254c6d6a7cedc75a203e55ca4bbd5b021c6a0cc
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 8a8f7958b25b1fc81f0966a8e9664e0446eeac78dad3408499f16cf018f6b35b
 ---
 
-## Download
+## Download Skill Version Content
 
 `client.Beta.Skills.Versions.Download(ctx, version, params) (*Response, error)`
 

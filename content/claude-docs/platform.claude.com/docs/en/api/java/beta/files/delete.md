@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/files/delete
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 2d4fe675301638cbe6c2cccf7fdb054b153a5c1fe21f9e063664b6d4461e33c3
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 7b46965398b3b2de2e7756547b1d21e1245cb644222fc33bc059ddfc5951cf51
 ---
 
-## Delete
+## Delete File
 
 `DeletedFile beta().files().delete(FileDeleteParamsparams = FileDeleteParams.none(), RequestOptionsrequestOptions = RequestOptions.none())`
 
@@ -109,5 +109,14 @@ public final class Main {
 
         DeletedFile deletedFile = client.beta().files().delete("file_id");
     }
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "file_011CNha8iCJcU1wXNR6q4V8w",
+  "type": "file_deleted"
 }
 ```

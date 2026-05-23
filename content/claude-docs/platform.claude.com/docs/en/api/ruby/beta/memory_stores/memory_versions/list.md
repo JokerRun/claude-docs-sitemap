@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/memory_stores/memory_versions/list
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 17f9cf4969417c42989e125d3ac49067b7424af4971abe6d4acb772b38518254
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: eb4cd4412ad39a6c0b7790a00a7c3a372bab796a0a867beafee26001a8cf2056
 ---
 
-## List
+## List memory versions
 
 `beta.memory_stores.memory_versions.list(memory_store_id, **kwargs) -> PageCursor<BetaManagedAgentsMemoryVersion>`
 
@@ -67,9 +67,9 @@ List memory versions
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `String`
+  - `String = String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -221,42 +221,6 @@ List memory versions
 
     Identifies who performed a write or redact operation. Captured at write time on the `memory_version` row. The API key that created a session is not recorded on agent writes; attribution answers who made the write, not who is ultimately responsible. Look up session provenance separately via the [Sessions API](/docs/en/api/sessions-retrieve).
 
-    - `class BetaManagedAgentsSessionActor`
-
-      Attribution for a write made by an agent during a session, through the mounted filesystem at `/mnt/memory/`.
-
-      - `session_id: String`
-
-        ID of the session that performed the write (a `sesn_...` value). Look up the session via [Retrieve a session](/docs/en/api/sessions-retrieve) for further provenance.
-
-      - `type: :session_actor`
-
-        - `:session_actor`
-
-    - `class BetaManagedAgentsAPIActor`
-
-      Attribution for a write made directly via the public API (outside of any session).
-
-      - `api_key_id: String`
-
-        ID of the API key that performed the write. This identifies the key, not the secret.
-
-      - `type: :api_actor`
-
-        - `:api_actor`
-
-    - `class BetaManagedAgentsUserActor`
-
-      Attribution for a write made by a human user through the Anthropic Console.
-
-      - `type: :user_actor`
-
-        - `:user_actor`
-
-      - `user_id: String`
-
-        ID of the user who performed the write (a `user_...` value).
-
 ### Example
 
 ```ruby
@@ -267,4 +231,35 @@ anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
 page = anthropic.beta.memory_stores.memory_versions.list("memory_store_id")
 
 puts(page)
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "id",
+      "created_at": "2019-12-27T18:11:19.117Z",
+      "memory_id": "memory_id",
+      "memory_store_id": "memory_store_id",
+      "operation": "created",
+      "type": "memory_version",
+      "content": "content",
+      "content_sha256": "content_sha256",
+      "content_size_bytes": 0,
+      "created_by": {
+        "session_id": "x",
+        "type": "session_actor"
+      },
+      "path": "path",
+      "redacted_at": "2019-12-27T18:11:19.117Z",
+      "redacted_by": {
+        "session_id": "x",
+        "type": "session_actor"
+      }
+    }
+  ],
+  "next_page": "next_page"
+}
 ```

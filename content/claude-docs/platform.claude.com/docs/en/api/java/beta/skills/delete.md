@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/skills/delete
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 521a384c9d15fbc28b44cc0317b0d5a0b49b290d018633e855579901a999e65a
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: a1d13d30ea33483dd9906a917e6abd9b58e65ef0a560ce110296aa519fdad801
 ---
 
-## Delete
+## Delete Skill
 
 `SkillDeleteResponse beta().skills().delete(SkillDeleteParamsparams = SkillDeleteParams.none(), RequestOptionsrequestOptions = RequestOptions.none())`
 
@@ -111,5 +111,14 @@ public final class Main {
 
         SkillDeleteResponse skill = client.beta().skills().delete("skill_id");
     }
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "skill_01JAbcdefghijklmnopqrstuvw",
+  "type": "type"
 }
 ```

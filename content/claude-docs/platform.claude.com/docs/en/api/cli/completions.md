@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/completions
-fetched_at: 2026-04-24T03:12:20.532875Z
-sha256: 002a1f33fa5aa7c1ebbe11c8fc92b72d841c698ca934d539eae339a7644a57af
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: dafbf5e8902a6492a28f8b5b2dbee7a46185065d3553baf8f0f379c2da1fb359
 ---
 
 # Completions
 
-## Create
+## Create a Text Completion
 
 `$ ant completions create`
 
@@ -208,6 +208,18 @@ ant completions create \
 Human: Hello, world!
 
 Assistant:'
+```
+
+#### Response
+
+```json
+{
+  "id": "compl_018CKm6gsux7P8yMcwZbeCPw",
+  "completion": " Hello! My name is Claude.",
+  "model": "claude-2.1",
+  "stop_reason": "stop_sequence",
+  "type": "completion"
+}
 ```
 
 ## Domain Types

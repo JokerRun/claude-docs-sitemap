@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/vaults/update
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 0b5a9003c482237da378a3d2ea498005c740eba66439368249e4bcc2528fbe5e
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 81b24edbefdc851b4beb3540de3b7181de929204648d3e707cbccf90d3ddc419
 ---
 
-## Update
+## Update Vault
 
 `client.beta.vaults.update(stringvaultID, VaultUpdateParamsparams, RequestOptionsoptions?): BetaManagedAgentsVault`
 
@@ -131,4 +131,20 @@ const client = new Anthropic({
 const betaManagedAgentsVault = await client.beta.vaults.update('vlt_011CZkZDLs7fYzm1hXNPeRjv');
 
 console.log(betaManagedAgentsVault.id);
+```
+
+#### Response
+
+```json
+{
+  "id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+  "archived_at": null,
+  "created_at": "2026-03-15T10:00:00Z",
+  "display_name": "Example vault",
+  "metadata": {
+    "environment": "production"
+  },
+  "type": "vault",
+  "updated_at": "2026-03-15T10:00:00Z"
+}
 ```

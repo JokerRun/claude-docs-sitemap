@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/user_profiles/list
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 9c164ca6fa1702ec73000d85dbf9c3582b6daed9d602412ca284f7e0dac891e8
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 6a59d6b48cc88a176ed02cb8f3cceba3b0109bd4b2b2296920ae6c62fa61ad2b
 ---
 
-## List
+## List User Profiles
 
 `beta.user_profiles.list(UserProfileListParams**kwargs)  -> SyncPageCursor[BetaUserProfile]`
 
@@ -159,4 +159,29 @@ client = Anthropic(
 page = client.beta.user_profiles.list()
 page = page.data[0]
 print(page.id)
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "uprof_011CZkZCu8hGbp5mYRQgUmz9",
+      "created_at": "2026-03-15T10:00:00Z",
+      "metadata": {},
+      "relationship": "external",
+      "trust_grants": {
+        "cyber": {
+          "status": "active"
+        }
+      },
+      "type": "user_profile",
+      "updated_at": "2026-03-15T10:00:00Z",
+      "external_id": "user_12345",
+      "name": "Example User"
+    }
+  ],
+  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="
+}
 ```

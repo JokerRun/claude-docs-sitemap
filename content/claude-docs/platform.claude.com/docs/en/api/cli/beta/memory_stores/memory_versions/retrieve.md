@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/memory_stores/memory_versions/retrieve
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: 6167f4258798067b8879e98b33c1809ab0d91d1ab08b8e8ed7fa92c3305185a3
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 28f60c235a678f297bbb258bc8330d5ca00a483b1bab0e7496d704fa5c3cf0e1
 ---
 
-## Retrieve
+## Retrieve a memory version
 
 `$ ant beta:memory-stores:memory-versions retrieve`
 
@@ -135,37 +135,13 @@ Retrieve a memory version
 
       Attribution for a write made by an agent during a session, through the mounted filesystem at `/mnt/memory/`.
 
-      - `session_id: string`
-
-        ID of the session that performed the write (a `sesn_...` value). Look up the session via [Retrieve a session](/docs/en/api/sessions-retrieve) for further provenance.
-
-      - `type: "session_actor"`
-
-        - `"session_actor"`
-
     - `beta_managed_agents_api_actor: object { api_key_id, type }`
 
       Attribution for a write made directly via the public API (outside of any session).
 
-      - `api_key_id: string`
-
-        ID of the API key that performed the write. This identifies the key, not the secret.
-
-      - `type: "api_actor"`
-
-        - `"api_actor"`
-
     - `beta_managed_agents_user_actor: object { type, user_id }`
 
       Attribution for a write made by a human user through the Anthropic Console.
-
-      - `type: "user_actor"`
-
-        - `"user_actor"`
-
-      - `user_id: string`
-
-        ID of the user who performed the write (a `user_...` value).
 
 ### Example
 
@@ -174,4 +150,30 @@ ant beta:memory-stores:memory-versions retrieve \
   --api-key my-anthropic-api-key \
   --memory-store-id memory_store_id \
   --memory-version-id memory_version_id
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "memory_id": "memory_id",
+  "memory_store_id": "memory_store_id",
+  "operation": "created",
+  "type": "memory_version",
+  "content": "content",
+  "content_sha256": "content_sha256",
+  "content_size_bytes": 0,
+  "created_by": {
+    "session_id": "x",
+    "type": "session_actor"
+  },
+  "path": "path",
+  "redacted_at": "2019-12-27T18:11:19.117Z",
+  "redacted_by": {
+    "session_id": "x",
+    "type": "session_actor"
+  }
+}
 ```

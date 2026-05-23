@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/vaults/archive
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 82371f7f5328c4517c639b9e90bcd0e9844165d776ee7643a9a096d917c7f657
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: e0df54c51d1ad8d6e731b2688b6e44f571cd18fb0ed20f3888c2567a9e0dbb89
 ---
 
-## Archive
+## Archive Vault
 
 `client.beta.vaults.archive(stringvaultID, VaultArchiveParamsparams?, RequestOptionsoptions?): BetaManagedAgentsVault`
 
@@ -123,4 +123,20 @@ const client = new Anthropic({
 const betaManagedAgentsVault = await client.beta.vaults.archive('vlt_011CZkZDLs7fYzm1hXNPeRjv');
 
 console.log(betaManagedAgentsVault.id);
+```
+
+#### Response
+
+```json
+{
+  "id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+  "archived_at": null,
+  "created_at": "2026-03-15T10:00:00Z",
+  "display_name": "Example vault",
+  "metadata": {
+    "environment": "production"
+  },
+  "type": "vault",
+  "updated_at": "2026-03-15T10:00:00Z"
+}
 ```

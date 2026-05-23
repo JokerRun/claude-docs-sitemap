@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/create
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 52c66f832b56d805f08d6459101a0cd95c4a0d1b8d123c78d582759814ec1b2f
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: a014142b669a853ce5cb64b2a1c86e03eab5b9961cf0f7343907291ca63af9e0
 ---
 
-## Create
+## Create Vault
 
 `BetaManagedAgentsVault beta().vaults().create(VaultCreateParamsparams, RequestOptionsrequestOptions = RequestOptions.none())`
 
@@ -134,5 +134,21 @@ public final class Main {
             .build();
         BetaManagedAgentsVault betaManagedAgentsVault = client.beta().vaults().create(params);
     }
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+  "archived_at": null,
+  "created_at": "2026-03-15T10:00:00Z",
+  "display_name": "Example vault",
+  "metadata": {
+    "environment": "production"
+  },
+  "type": "vault",
+  "updated_at": "2026-03-15T10:00:00Z"
 }
 ```

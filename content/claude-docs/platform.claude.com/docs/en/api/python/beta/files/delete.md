@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/files/delete
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 0cfc4a0fe6c3010378153d0f30af836c827500ce454b4bba3f3cf6860cd9a678
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 08f14db2e1e45a7b8589c3b8b8b4cc2803cd0515c75aff9e8c8538d04b016d5e
 ---
 
-## Delete
+## Delete File
 
 `beta.files.delete(strfile_id, FileDeleteParams**kwargs)  -> DeletedFile`
 
@@ -106,4 +106,13 @@ deleted_file = client.beta.files.delete(
     file_id="file_id",
 )
 print(deleted_file.id)
+```
+
+#### Response
+
+```json
+{
+  "id": "file_011CNha8iCJcU1wXNR6q4V8w",
+  "type": "file_deleted"
+}
 ```

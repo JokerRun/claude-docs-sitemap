@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/files/download
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: c3f94484cd1c23d8c3b1b04dba6feef0e5b20c2acea8bcd4d43c5f26333c3cb0
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 5cc6cfa42787c2e53955358b6b4f5d3e1a950887fec6979a081d12c673f6c898
 ---
 
-## Download
+## Download File
 
 `$ ant beta:files download`
 

@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/archive
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 7d268f2c80924f224d4c0addfd3cc38e9b18be17045241a96ff279691871f55c
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 62015a548f3283e1fefdcdf7b7abd034bf883b737d05ddecf0183cd4025ab1c3
 ---
 
-## Archive
+## Archive Vault
 
 `BetaManagedAgentsVault beta().vaults().archive(VaultArchiveParamsparams = VaultArchiveParams.none(), RequestOptionsrequestOptions = RequestOptions.none())`
 
@@ -125,5 +125,21 @@ public final class Main {
 
         BetaManagedAgentsVault betaManagedAgentsVault = client.beta().vaults().archive("vlt_011CZkZDLs7fYzm1hXNPeRjv");
     }
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+  "archived_at": null,
+  "created_at": "2026-03-15T10:00:00Z",
+  "display_name": "Example vault",
+  "metadata": {
+    "environment": "production"
+  },
+  "type": "vault",
+  "updated_at": "2026-03-15T10:00:00Z"
 }
 ```

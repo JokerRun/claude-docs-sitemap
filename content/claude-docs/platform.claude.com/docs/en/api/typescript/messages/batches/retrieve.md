@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/messages/batches/retrieve
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: a46e305636c3469ef0de4772ddbf94a7047b36ff62dde8ea939b0d65e8f43634
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 471237c693499334c786fdfd3ddb0a3556b27b8910e48b82f584d818b617e581
 ---
 
-## Retrieve
+## Retrieve a Message Batch
 
 `client.messages.batches.retrieve(stringmessageBatchID, RequestOptionsoptions?): MessageBatch`
 
@@ -123,4 +123,27 @@ const client = new Anthropic({
 const messageBatch = await client.messages.batches.retrieve('message_batch_id');
 
 console.log(messageBatch.id);
+```
+
+#### Response
+
+```json
+{
+  "id": "msgbatch_013Zva2CMHLNnXjNJJKqJ2EF",
+  "archived_at": "2024-08-20T18:37:24.100435Z",
+  "cancel_initiated_at": "2024-08-20T18:37:24.100435Z",
+  "created_at": "2024-08-20T18:37:24.100435Z",
+  "ended_at": "2024-08-20T18:37:24.100435Z",
+  "expires_at": "2024-08-20T18:37:24.100435Z",
+  "processing_status": "in_progress",
+  "request_counts": {
+    "canceled": 10,
+    "errored": 30,
+    "expired": 10,
+    "processing": 100,
+    "succeeded": 50
+  },
+  "results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_013Zva2CMHLNnXjNJJKqJ2EF/results",
+  "type": "message_batch"
+}
 ```

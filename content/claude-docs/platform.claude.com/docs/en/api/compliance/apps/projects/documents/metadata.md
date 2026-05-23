@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/documents/metadata
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 6526af4acbbbf5bc19af6c51fc4e4ae3bb25c8ef0b5c298ab711445f918daabd
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 86d991716b052fb0d708c0be69803fc2053b946942845523d3f114039e7d3146
 ---
 
-## Metadata
+## Get project document metadata
 
 **get** `/v1/compliance/apps/projects/documents/{document_id}/metadata`
 
@@ -75,4 +75,22 @@ consumer can dedupe or match hashes without downloading every document.
 ```http
 curl https://api.anthropic.com/v1/compliance/apps/projects/documents/$DOCUMENT_ID/metadata \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "claude_project_id": "claude_project_id",
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "filename": "filename",
+  "md5": "md5",
+  "mime_type": "text/plain",
+  "size_bytes": 0,
+  "user": {
+    "id": "id",
+    "email_address": "email_address"
+  }
+}
 ```

@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/files/upload
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 98ce753204c2920626081660c7a938f67dc6f258e253581acdc958e77ba79097
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: bd28b2ee8fa7a55e2a3c2eb54a657fc93f630fd3bebdf7978f75948ca5150e74
 ---
 
-## Upload
+## Upload File
 
 `client.Beta.Files.Upload(ctx, params) (*FileMetadata, error)`
 
@@ -157,5 +157,23 @@ func main() {
     panic(err.Error())
   }
   fmt.Printf("%+v\n", fileMetadata.ID)
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "file_011CNha8iCJcU1wXNR6q4V8w",
+  "created_at": "2025-04-15T18:37:24.100435Z",
+  "filename": "document.pdf",
+  "mime_type": "application/pdf",
+  "size_bytes": 102400,
+  "type": "file",
+  "downloadable": false,
+  "scope": {
+    "id": "id",
+    "type": "session"
+  }
 }
 ```

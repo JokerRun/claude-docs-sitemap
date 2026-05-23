@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/completions
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: da13def0598eb2f8bbd4f8f475a5c61b5801b75e270abbf34c23b4ade8abd1cb
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: cdadb0418b948c94f860ab98a9f600c02ea33f21b69d990c9880e115faeef5ce
 ---
 
 # Completions
 
-## Create
+## Create a Text Completion
 
 `client.completions.create(CompletionCreateParamsparams, RequestOptionsoptions?): Completion | Stream<Completion>`
 
@@ -245,8 +245,6 @@ Future models and features will not be compatible with Text Completions. See our
 
       See [streaming](https://docs.claude.com/en/api/streaming) for details.
 
-      - `false`
-
   - `CompletionCreateParamsStreaming extends CompletionCreateParamsBase`
 
     - `stream: true`
@@ -382,6 +380,18 @@ const completion = await client.completions.create({
 });
 
 console.log(completion.id);
+```
+
+#### Response
+
+```json
+{
+  "id": "compl_018CKm6gsux7P8yMcwZbeCPw",
+  "completion": " Hello! My name is Claude.",
+  "model": "claude-2.1",
+  "stop_reason": "stop_sequence",
+  "type": "completion"
+}
 ```
 
 ## Domain Types

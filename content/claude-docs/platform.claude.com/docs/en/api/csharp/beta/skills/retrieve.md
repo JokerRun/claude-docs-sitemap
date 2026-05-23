@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/skills/retrieve
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 0873108c735a0244edceb6c13c6a452d9adb67706ed2e805f2834cc24dc50143
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: c4a990493a4c681a4e7796cb91ab575f736f9c6d90029cd72f172cc48f3c608c
 ---
 
-## Retrieve
+## Get Skill
 
 `SkillRetrieveResponse Beta.Skills.Retrieve(SkillRetrieveParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -130,4 +130,18 @@ SkillRetrieveParams parameters = new() { SkillID = "skill_id" };
 var skill = await client.Beta.Skills.Retrieve(parameters);
 
 Console.WriteLine(skill);
+```
+
+#### Response
+
+```json
+{
+  "id": "skill_01JAbcdefghijklmnopqrstuvw",
+  "created_at": "2024-10-30T23:58:27.427722Z",
+  "display_title": "My Custom Skill",
+  "latest_version": "1759178010641129",
+  "source": "custom",
+  "type": "type",
+  "updated_at": "2024-10-30T23:58:27.427722Z"
+}
 ```

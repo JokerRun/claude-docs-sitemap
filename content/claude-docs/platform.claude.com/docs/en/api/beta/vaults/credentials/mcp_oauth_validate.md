@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/mcp_oauth_validate
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 40cd5b31bbb07751047ee632b537e6d153b9a38812866744d1737a91d02f3ba2
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 6db035ba4554d8666791d60d5d5b7b2040789d10a98d7d9a81540a7a6ef63d00
 ---
 
-## MCP OAuth Validate
+## Validate Credential
 
 **post** `/v1/vaults/{vault_id}/credentials/{credential_id}/mcp_oauth_validate`
 
@@ -23,9 +23,9 @@ Validate Credential
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = string`
+  - `string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -79,7 +79,7 @@ Validate Credential
 
 ### Returns
 
-- `BetaManagedAgentsCredentialValidation = object { credential_id, has_refresh_token, mcp_probe, 5 more }`
+- `BetaManagedAgentsCredentialValidation object { credential_id, has_refresh_token, mcp_probe, 5 more }`
 
   Result of live-probing a credential against its configured MCP server.
 
@@ -127,22 +127,6 @@ Validate Credential
 
       An HTTP response captured during a credential validation probe.
 
-      - `body: string`
-
-        Response body. May be truncated and has sensitive values scrubbed.
-
-      - `body_truncated: boolean`
-
-        Whether `body` was truncated.
-
-      - `content_type: string`
-
-        Value of the `Content-Type` response header.
-
-      - `status_code: number`
-
-        HTTP status code.
-
     - `status: "succeeded" or "failed" or "connect_error" or "no_refresh_token"`
 
       Outcome of a refresh-token exchange attempted during credential validation.
@@ -185,4 +169,35 @@ curl https://api.anthropic.com/v1/vaults/$VAULT_ID/credentials/$CREDENTIAL_ID/mc
     -H 'anthropic-version: 2023-06-01' \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
+```
+
+#### Response
+
+```json
+{
+  "credential_id": "vcrd_011CZkZEMt8gZan2iYOQfSkw",
+  "has_refresh_token": true,
+  "mcp_probe": {
+    "http_response": {
+      "body": "body",
+      "body_truncated": true,
+      "content_type": "content_type",
+      "status_code": 0
+    },
+    "method": "method"
+  },
+  "refresh": {
+    "http_response": {
+      "body": "body",
+      "body_truncated": true,
+      "content_type": "content_type",
+      "status_code": 0
+    },
+    "status": "succeeded"
+  },
+  "status": "valid",
+  "type": "vault_credential_validation",
+  "validated_at": "2026-03-15T10:00:00Z",
+  "vault_id": "vlt_011CZkZDLs7fYzm1hXNPeRjv"
+}
 ```

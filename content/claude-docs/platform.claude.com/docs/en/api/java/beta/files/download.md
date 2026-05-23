@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/files/download
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 9e69e35266c79650dc9674ee9e70f573cd0b7a0b62052a7decfc2bd8ab928c5c
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 49610d1c382fb613062dc00eec99737f695fa714b181967f4e18db2ba2ece72a
 ---
 
-## Download
+## Download File
 
 `HttpResponse beta().files().download(FileDownloadParamsparams = FileDownloadParams.none(), RequestOptionsrequestOptions = RequestOptions.none())`
 

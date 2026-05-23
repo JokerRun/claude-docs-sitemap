@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/messages/count_tokens
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: c232c0f05b6ec1ea25257941afb44e7ae4623e44b46dc25ce4a1b3956563f941
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 8cde6964340325a984fa5b71d19aa62bf4342e63eb58ab3c920c483ae23e7c67
 ---
 
-## Count Tokens
+## Count tokens in a Message
 
 `$ ant beta:messages count-tokens`
 
@@ -213,4 +213,15 @@ ant beta:messages count-tokens \
   --api-key my-anthropic-api-key \
   --message '{content: [{text: x, type: text}], role: user}' \
   --model claude-opus-4-6
+```
+
+#### Response
+
+```json
+{
+  "context_management": {
+    "original_input_tokens": 0
+  },
+  "input_tokens": 2095
+}
 ```

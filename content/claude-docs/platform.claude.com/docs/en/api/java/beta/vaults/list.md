@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/list
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 41daf9a4183010e96aa759ad3c3cfe002d76acf28d48ac27d086ded7aadf2228
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 2746e625c36ca80c280bd33cb34eeece7c780b74d68145aa5a0d9422af5d4540
 ---
 
-## List
+## List Vaults
 
 `VaultListPage beta().vaults().list(VaultListParamsparams = VaultListParams.none(), RequestOptionsrequestOptions = RequestOptions.none())`
 
@@ -135,5 +135,26 @@ public final class Main {
 
         VaultListPage page = client.beta().vaults().list();
     }
+}
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+      "archived_at": null,
+      "created_at": "2026-03-15T10:00:00Z",
+      "display_name": "Example vault",
+      "metadata": {
+        "environment": "production"
+      },
+      "type": "vault",
+      "updated_at": "2026-03-15T10:00:00Z"
+    }
+  ],
+  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="
 }
 ```

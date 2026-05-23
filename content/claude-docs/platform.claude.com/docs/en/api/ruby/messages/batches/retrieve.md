@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/messages/batches/retrieve
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: 2792a2109abb099151501bf269e767895dc3e80e1d8a8362cb73367ee34b6948
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 2c71269bc33cfb5cbbfe2bac9d367233583e9d74ad34c17426f541e0599619fd
 ---
 
-## Retrieve
+## Retrieve a Message Batch
 
 `messages.batches.retrieve(message_batch_id) -> MessageBatch`
 
@@ -121,4 +121,27 @@ anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
 message_batch = anthropic.messages.batches.retrieve("message_batch_id")
 
 puts(message_batch)
+```
+
+#### Response
+
+```json
+{
+  "id": "msgbatch_013Zva2CMHLNnXjNJJKqJ2EF",
+  "archived_at": "2024-08-20T18:37:24.100435Z",
+  "cancel_initiated_at": "2024-08-20T18:37:24.100435Z",
+  "created_at": "2024-08-20T18:37:24.100435Z",
+  "ended_at": "2024-08-20T18:37:24.100435Z",
+  "expires_at": "2024-08-20T18:37:24.100435Z",
+  "processing_status": "in_progress",
+  "request_counts": {
+    "canceled": 10,
+    "errored": 30,
+    "expired": 10,
+    "processing": 100,
+    "succeeded": 50
+  },
+  "results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_013Zva2CMHLNnXjNJJKqJ2EF/results",
+  "type": "message_batch"
+}
 ```

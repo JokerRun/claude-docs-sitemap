@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/messages/batches/delete
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: dfb798a79e27c56705296a3deba1f0c516d4a4bd09f552ceb2618725278d25cb
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 8d1c2cc0f5dbb3beb07dd404842c62b93da0caa22b86f5b3c712cf88c8f31d26
 ---
 
-## Delete
+## Delete a Message Batch
 
 `client.Beta.Messages.Batches.Delete(ctx, messageBatchID, body) (*BetaDeletedMessageBatch, error)`
 
@@ -127,5 +127,14 @@ func main() {
     panic(err.Error())
   }
   fmt.Printf("%+v\n", betaDeletedMessageBatch.ID)
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "msgbatch_013Zva2CMHLNnXjNJJKqJ2EF",
+  "type": "message_batch_deleted"
 }
 ```

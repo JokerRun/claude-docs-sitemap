@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/groups/retrieve
-fetched_at: 2026-05-09T03:13:52.260309Z
-sha256: c9043a37e1f705620f4dc94ca4ebd9d7f6b274ffc0734f460453d9aa6cc01c56
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 1428eeff5c24e6afb8e968d06b017e2c201f0ff53d73c8aad6f4b93f664f9475
 ---
 
-## Retrieve
+## Get Compliance Group
 
 **get** `/v1/compliance/groups/{group_id}`
 
@@ -56,4 +56,20 @@ Get Compliance Group
 ```http
 curl https://api.anthropic.com/v1/compliance/groups/$GROUP_ID \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "created_at": "created_at",
+  "description": "description",
+  "name": "name",
+  "roles": [
+    "string"
+  ],
+  "source_type": "source_type",
+  "updated_at": "updated_at"
+}
 ```

@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/environments/work/ack
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: a894196ba1646e7492386d6e8a8747fcf4f76ec91a6edfd24d38752aa11f8d2d
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: fac56459faf7b99c9e1192b9d164c53548880eb8e6567cbaa8fc1bdb6cea0a6f
 ---
 
-## Ack
+## Acknowledge Work
 
 `client.Beta.Environments.Work.Ack(ctx, workID, params) (*BetaSelfHostedWork, error)`
 
@@ -191,5 +191,29 @@ func main() {
     panic(err.Error())
   }
   fmt.Printf("%+v\n", betaSelfHostedWork.ID)
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "acknowledged_at": "acknowledged_at",
+  "created_at": "created_at",
+  "data": {
+    "id": "id",
+    "type": "session"
+  },
+  "environment_id": "environment_id",
+  "latest_heartbeat_at": "latest_heartbeat_at",
+  "metadata": {
+    "foo": "string"
+  },
+  "started_at": "started_at",
+  "state": "queued",
+  "stop_requested_at": "stop_requested_at",
+  "stopped_at": "stopped_at",
+  "type": "work"
 }
 ```

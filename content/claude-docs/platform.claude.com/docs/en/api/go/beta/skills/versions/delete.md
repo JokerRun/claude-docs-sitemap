@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/skills/versions/delete
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 0deb0591e3dfef4bd75ce1cf858110f4e1477a7b68d3794486daa8a600252b86
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: bb8a965aba42be4627f8d98c93b0c8ab05073634e3286862447cb138c75a465c
 ---
 
-## Delete
+## Delete Skill Version
 
 `client.Beta.Skills.Versions.Delete(ctx, version, params) (*BetaSkillVersionDeleteResponse, error)`
 
@@ -131,5 +131,14 @@ func main() {
     panic(err.Error())
   }
   fmt.Printf("%+v\n", version.ID)
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "1759178010641129",
+  "type": "type"
 }
 ```

@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/memory_stores/update
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: cd2a402384ba68d7fdc974c18872031621df275c5f7a7b53c0cacff03661691d
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 29aaa7942b72741245bd243560105105114a4fe3422e28e1dd1d00be712af3de
 ---
 
-## Update
+## Update a memory store
 
 `BetaManagedAgentsMemoryStore Beta.MemoryStores.Update(MemoryStoreUpdateParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -136,4 +136,21 @@ MemoryStoreUpdateParams parameters = new()
 var betaManagedAgentsMemoryStore = await client.Beta.MemoryStores.Update(parameters);
 
 Console.WriteLine(betaManagedAgentsMemoryStore);
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "name": "name",
+  "type": "memory_store",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "archived_at": "2019-12-27T18:11:19.117Z",
+  "description": "description",
+  "metadata": {
+    "foo": "string"
+  }
+}
 ```

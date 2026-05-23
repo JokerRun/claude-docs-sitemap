@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/list
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 5e2e11dd8c9bf587eb7a2f6d71bf4c929f429fcdc7c9a0e54b56cbfa59f93541
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 5a44f310c7f9e046890c406accf8ba595805adc31b458289f126c400a690a23f
 ---
 
-## List
+## List Workspaces
 
 **get** `/v1/organizations/workspaces`
 
@@ -55,9 +55,9 @@ List Workspaces
 
       Permitted inference geo values. 'unrestricted' means all geos are allowed.
 
-      - `UnionMember0 = array of string`
+      - `array of string`
 
-      - `UnionMember1 = "unrestricted"`
+      - `"unrestricted"`
 
         - `"unrestricted"`
 
@@ -107,4 +107,33 @@ List Workspaces
 curl https://api.anthropic.com/v1/organizations/workspaces \
     -H 'anthropic-version: 2023-06-01' \
     -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ",
+      "archived_at": "2024-11-01T23:59:27.427722Z",
+      "created_at": "2024-10-30T23:58:27.427722Z",
+      "data_residency": {
+        "allowed_inference_geos": "unrestricted",
+        "default_inference_geo": "default_inference_geo",
+        "workspace_geo": "workspace_geo"
+      },
+      "display_color": "#6C5BB9",
+      "name": "Workspace Name",
+      "tags": {
+        "env": "prod",
+        "team": "platform"
+      },
+      "type": "workspace"
+    }
+  ],
+  "first_id": "first_id",
+  "has_more": true,
+  "last_id": "last_id"
+}
 ```

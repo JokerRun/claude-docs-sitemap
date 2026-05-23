@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/documents/delete
-fetched_at: 2026-05-09T03:13:52.260309Z
-sha256: baa5df277843bdf9c401d41aa76d7e498c4702c66f6bef095bfbd29a7869a22a
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: f663f5f801ba806a917d7019eba5e9c6b1e758114d14ff150c36712db4c02a7b
 ---
 
-## Delete
+## Delete project document
 
 **delete** `/v1/compliance/apps/projects/documents/{document_id}`
 
@@ -44,4 +44,13 @@ ComplianceProjectDocumentDeleteResponse confirming the deletion
 curl https://api.anthropic.com/v1/compliance/apps/projects/documents/$DOCUMENT_ID \
     -X DELETE \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "type": "claude_project_document_deleted"
+}
 ```

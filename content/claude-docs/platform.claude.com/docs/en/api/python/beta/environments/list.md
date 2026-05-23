@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/environments/list
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 8003c838949d5a0d8d4395b6d1a04133151131bdcb7d90954569bca889cfd94c
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: cf6c7c11cddec42a4fff092a548d59be62ec8fd4785ed295dc9c11e2a71f85d6
 ---
 
-## List
+## List Environments
 
 `beta.environments.list(EnvironmentListParams**kwargs)  -> SyncPageCursor[BetaEnvironment]`
 
@@ -239,4 +239,58 @@ client = Anthropic(
 page = client.beta.environments.list()
 page = page.data[0]
 print(page.id)
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "env_011CZkZ9X2dpNyB7HsEFoRfW",
+      "archived_at": null,
+      "config": {
+        "networking": {
+          "allow_mcp_servers": false,
+          "allow_package_managers": true,
+          "allowed_hosts": [
+            "api.example.com"
+          ],
+          "type": "limited"
+        },
+        "packages": {
+          "apt": [
+            "string"
+          ],
+          "cargo": [
+            "string"
+          ],
+          "gem": [
+            "string"
+          ],
+          "go": [
+            "string"
+          ],
+          "npm": [
+            "string"
+          ],
+          "pip": [
+            "pandas",
+            "numpy"
+          ],
+          "type": "packages"
+        },
+        "type": "cloud"
+      },
+      "created_at": "2026-03-15T10:00:00Z",
+      "description": "Python environment with data-analysis packages.",
+      "metadata": {},
+      "name": "python-data-analysis",
+      "type": "environment",
+      "updated_at": "2026-03-15T10:00:00Z",
+      "scope": "organization"
+    }
+  ],
+  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="
+}
 ```

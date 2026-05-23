@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/vaults/update
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: baee92f459db27fd51480b849fe756be7049ec5ffa7e6c05ef5c1620071c6d0d
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 289ba01bc040af6560b1289ac82d611ac7bea42a9dbe2efbc5a57a2d0ba3eac4
 ---
 
-## Update
+## Update Vault
 
 `BetaManagedAgentsVault Beta.Vaults.Update(VaultUpdateParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -128,4 +128,20 @@ VaultUpdateParams parameters = new()
 var betaManagedAgentsVault = await client.Beta.Vaults.Update(parameters);
 
 Console.WriteLine(betaManagedAgentsVault);
+```
+
+#### Response
+
+```json
+{
+  "id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+  "archived_at": null,
+  "created_at": "2026-03-15T10:00:00Z",
+  "display_name": "Example vault",
+  "metadata": {
+    "environment": "production"
+  },
+  "type": "vault",
+  "updated_at": "2026-03-15T10:00:00Z"
+}
 ```

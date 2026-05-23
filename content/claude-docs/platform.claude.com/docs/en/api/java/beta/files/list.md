@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/files/list
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: dc52970ee3fbaf30ad9fe8ed52bcd5ceab1072b32806c1f0d13dd9831b530a66
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: d9391ac324febce5610a15b39a536dd2bc4daf40f2fc7b91e97fb126387bb2ad
 ---
 
-## List
+## List Files
 
 `FileListPage beta().files().list(FileListParamsparams = FileListParams.none(), RequestOptionsrequestOptions = RequestOptions.none())`
 
@@ -159,5 +159,30 @@ public final class Main {
 
         FileListPage page = client.beta().files().list();
     }
+}
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "file_011CNha8iCJcU1wXNR6q4V8w",
+      "created_at": "2025-04-15T18:37:24.100435Z",
+      "filename": "document.pdf",
+      "mime_type": "application/pdf",
+      "size_bytes": 102400,
+      "type": "file",
+      "downloadable": false,
+      "scope": {
+        "id": "id",
+        "type": "session"
+      }
+    }
+  ],
+  "first_id": "file_011CNha8iCJcU1wXNR6q4V8w",
+  "has_more": true,
+  "last_id": "file_013Zva2CMHLNnXjNJJKqJ2EF"
 }
 ```

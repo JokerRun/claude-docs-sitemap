@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/skills/versions/create
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: c8e27bc9e55b04350242339d38d0e1c1c56be1b6af77c650337056a7563c0f7a
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 3bb9b4dba7e91e4a171acd09f3883edd28175f9568190ae856fb5a9c9ea24775
 ---
 
-## Create
+## Create Skill Version
 
 `beta.skills.versions.create(skill_id, **kwargs) -> VersionCreateResponse`
 
@@ -31,9 +31,9 @@ Create Skill Version
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `String`
+  - `String = String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -143,4 +143,19 @@ anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
 version = anthropic.beta.skills.versions.create("skill_id")
 
 puts(version)
+```
+
+#### Response
+
+```json
+{
+  "id": "skillver_01JAbcdefghijklmnopqrstuvw",
+  "created_at": "2024-10-30T23:58:27.427722Z",
+  "description": "A custom skill for doing something useful",
+  "directory": "my-skill",
+  "name": "my-skill",
+  "skill_id": "skill_01JAbcdefghijklmnopqrstuvw",
+  "type": "type",
+  "version": "1759178010641129"
+}
 ```

@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/roles/permissions
-fetched_at: 2026-05-09T03:13:52.260309Z
-sha256: 9204335470f55774938c51f8c6f17f9a25ed2312850a76c6740b685db8add910
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 554651ce30c6981098fde134e54b880aa9f9ad8139aed57b5d1e35c2ea00e52e
 ---
 
 # Permissions
 
-## List
+## List Compliance Role Permissions
 
 **get** `/v1/compliance/organizations/{org_uuid}/roles/{role_id}/permissions`
 
@@ -70,11 +70,27 @@ curl https://api.anthropic.com/v1/compliance/organizations/$ORG_UUID/roles/$ROLE
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "action": "action",
+      "resource_id": "resource_id",
+      "resource_type": "resource_type"
+    }
+  ],
+  "has_more": true,
+  "next_page": "next_page"
+}
+```
+
 ## Domain Types
 
 ### Permission List Response
 
-- `PermissionListResponse = object { action, resource_id, resource_type }`
+- `PermissionListResponse object { action, resource_id, resource_type }`
 
   Permission granted by a role.
 

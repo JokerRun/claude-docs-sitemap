@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/vaults/credentials/create
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: e9d14c7ef1263e55b9f77f10005dab1d6be2d8904c763ce86c07fcd347222dc6
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: a6b5e7f5c2d4b6c26247c8aa3228f1cae3ea92d718d7b5b8d093fbbd43769254
 ---
 
-## Create
+## Create Credential
 
 `client.beta.vaults.credentials.create(stringvaultID, CredentialCreateParamsparams, RequestOptionsoptions?): BetaManagedAgentsCredential`
 
@@ -324,4 +324,25 @@ const betaManagedAgentsCredential = await client.beta.vaults.credentials.create(
 );
 
 console.log(betaManagedAgentsCredential.id);
+```
+
+#### Response
+
+```json
+{
+  "id": "vcrd_011CZkZEMt8gZan2iYOQfSkw",
+  "archived_at": null,
+  "auth": {
+    "mcp_server_url": "https://example-server.modelcontextprotocol.io/sse",
+    "type": "static_bearer"
+  },
+  "created_at": "2026-03-15T10:00:00Z",
+  "metadata": {
+    "environment": "production"
+  },
+  "type": "vault_credential",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "vault_id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+  "display_name": "Example credential"
+}
 ```

@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/user_profiles/update
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 99d319eabf35f324675465eb0ccff7ac211e6420de2269e2fee741eb6c80e462
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: bfc50f5f21e4baa277a3a2811597831a64014c1d715a10e24b4b7e350a4eb798
 ---
 
-## Update
+## Update User Profile
 
 `BetaUserProfile beta().userProfiles().update(UserProfileUpdateParamsparams = UserProfileUpdateParams.none(), RequestOptionsrequestOptions = RequestOptions.none())`
 
@@ -171,5 +171,25 @@ public final class Main {
 
         BetaUserProfile betaUserProfile = client.beta().userProfiles().update("uprof_011CZkZCu8hGbp5mYRQgUmz9");
     }
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "uprof_011CZkZCu8hGbp5mYRQgUmz9",
+  "created_at": "2026-03-15T10:00:00Z",
+  "metadata": {},
+  "relationship": "external",
+  "trust_grants": {
+    "cyber": {
+      "status": "active"
+    }
+  },
+  "type": "user_profile",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "external_id": "user_12345",
+  "name": "Example User"
 }
 ```

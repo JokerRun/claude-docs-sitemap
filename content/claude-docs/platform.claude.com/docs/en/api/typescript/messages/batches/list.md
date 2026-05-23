@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/messages/batches/list
-fetched_at: 2026-02-18T04:24:24.092866Z
-sha256: f08b6a4ebd48b6f1b3867e11374ac83f89ab802efbf4cf1ed05b42f9d0abbd8c
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 18fc8936bb4f485c2f05959108fa9d34f958db5def36fbab7274abb4e36d3451
 ---
 
-## List
+## List Message Batches
 
 `client.messages.batches.list(BatchListParamsquery?, RequestOptionsoptions?): Page<MessageBatch>`
 
@@ -135,5 +135,35 @@ const client = new Anthropic({
 // Automatically fetches more pages as needed.
 for await (const messageBatch of client.messages.batches.list()) {
   console.log(messageBatch.id);
+}
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "msgbatch_013Zva2CMHLNnXjNJJKqJ2EF",
+      "archived_at": "2024-08-20T18:37:24.100435Z",
+      "cancel_initiated_at": "2024-08-20T18:37:24.100435Z",
+      "created_at": "2024-08-20T18:37:24.100435Z",
+      "ended_at": "2024-08-20T18:37:24.100435Z",
+      "expires_at": "2024-08-20T18:37:24.100435Z",
+      "processing_status": "in_progress",
+      "request_counts": {
+        "canceled": 10,
+        "errored": 30,
+        "expired": 10,
+        "processing": 100,
+        "succeeded": 50
+      },
+      "results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_013Zva2CMHLNnXjNJJKqJ2EF/results",
+      "type": "message_batch"
+    }
+  ],
+  "first_id": "first_id",
+  "has_more": true,
+  "last_id": "last_id"
 }
 ```

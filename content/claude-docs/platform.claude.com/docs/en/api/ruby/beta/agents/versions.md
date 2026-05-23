@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/agents/versions
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: b98d8fa9e6a1911eabf1220c0d1c25a958450e9eb034b9f2e101af425e499f9d
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 637e46c3e5f5719b279284cd3ea99bd774a698cd423d03fb5974d08aad675e87
 ---
 
 # Versions
 
-## List
+## List Agent Versions
 
 `beta.agents.versions.list(agent_id, **kwargs) -> PageCursor<BetaManagedAgentsAgent>`
 
@@ -31,9 +31,9 @@ List Agent Versions
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `String`
+  - `String = String`
 
-  - `:"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -125,7 +125,7 @@ List Agent Versions
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `:"claude-opus-4-7" | :"claude-opus-4-6" | :"claude-sonnet-4-6" | 6 more`
+      - `BetaManagedAgentsModel = :"claude-opus-4-7" | :"claude-opus-4-6" | :"claude-sonnet-4-6" | 6 more`
 
         The model that will power your agent.
 
@@ -167,7 +167,7 @@ List Agent Versions
 
           High-performance model for agents and coding
 
-      - `String`
+      - `String = String`
 
     - `speed: :standard | :fast`
 
@@ -289,17 +289,9 @@ List Agent Versions
 
             Tool calls are automatically approved without user confirmation.
 
-            - `type: :always_allow`
-
-              - `:always_allow`
-
           - `class BetaManagedAgentsAlwaysAskPolicy`
 
             Tool calls require user confirmation before execution.
-
-            - `type: :always_ask`
-
-              - `:always_ask`
 
       - `type: :agent_toolset_20260401`
 
@@ -321,17 +313,9 @@ List Agent Versions
 
             Tool calls are automatically approved without user confirmation.
 
-            - `type: :always_allow`
-
-              - `:always_allow`
-
           - `class BetaManagedAgentsAlwaysAskPolicy`
 
             Tool calls require user confirmation before execution.
-
-            - `type: :always_ask`
-
-              - `:always_ask`
 
       - `default_config: BetaManagedAgentsMCPToolsetDefaultConfig`
 
@@ -347,17 +331,9 @@ List Agent Versions
 
             Tool calls are automatically approved without user confirmation.
 
-            - `type: :always_allow`
-
-              - `:always_allow`
-
           - `class BetaManagedAgentsAlwaysAskPolicy`
 
             Tool calls require user confirmation before execution.
-
-            - `type: :always_ask`
-
-              - `:always_ask`
 
       - `mcp_server_name: String`
 
@@ -417,4 +393,81 @@ anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
 page = anthropic.beta.agents.versions.list("agent_011CZkYpogX7uDKUyvBTophP")
 
 puts(page)
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "agent_011CZkYpogX7uDKUyvBTophP",
+      "archived_at": null,
+      "created_at": "2026-03-15T10:00:00Z",
+      "description": "A general-purpose starter agent.",
+      "mcp_servers": [
+        {
+          "name": "example-mcp",
+          "type": "url",
+          "url": "https://example-server.modelcontextprotocol.io/sse"
+        }
+      ],
+      "metadata": {
+        "foo": "bar"
+      },
+      "model": {
+        "id": "claude-sonnet-4-6",
+        "speed": "standard"
+      },
+      "multiagent": {
+        "agents": [
+          {
+            "id": "agent_011CZkYqphY8vELVzwCUpqiQ",
+            "type": "agent",
+            "version": 1
+          }
+        ],
+        "type": "coordinator"
+      },
+      "name": "My First Agent",
+      "skills": [
+        {
+          "skill_id": "xlsx",
+          "type": "anthropic",
+          "version": "1"
+        },
+        {
+          "skill_id": "skill_011CZkZFNu9hAbo3jZPRgTlx",
+          "type": "custom",
+          "version": "2"
+        }
+      ],
+      "system": "You are a general-purpose agent that can research, write code, run commands, and use connected tools to complete the user's task end to end.",
+      "tools": [
+        {
+          "configs": [
+            {
+              "enabled": true,
+              "name": "bash",
+              "permission_policy": {
+                "type": "always_allow"
+              }
+            }
+          ],
+          "default_config": {
+            "enabled": true,
+            "permission_policy": {
+              "type": "always_ask"
+            }
+          },
+          "type": "agent_toolset_20260401"
+        }
+      ],
+      "type": "agent",
+      "updated_at": "2026-03-15T10:00:00Z",
+      "version": 1
+    }
+  ],
+  "next_page": "next_page"
+}
 ```

@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/skills/delete
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: eba144057ab00d36c7fc2f69f0b33c0566a01b88bba1cd7bb37f3c83c2712b03
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: cdc7896947898971dd07e38347d522a230722cf8aee06579f493f1d104424649
 ---
 
-## Delete
+## Delete Skill
 
 `client.Beta.Skills.Delete(ctx, skillID, body) (*BetaSkillDeleteResponse, error)`
 
@@ -125,5 +125,14 @@ func main() {
     panic(err.Error())
   }
   fmt.Printf("%+v\n", skill.ID)
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "skill_01JAbcdefghijklmnopqrstuvw",
+  "type": "type"
 }
 ```

@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/messages/create
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: a451da1727ae0f5b524d39d6138deb1ef6bc1946af1b899a63e9ea692738dd99
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 2c53fa6a8fc0b7314b8d06cbf871caaafd07ab740118fdaa0e479bbec132f448
 ---
 
-## Create
+## Create a Message
 
 `messages.create(MessageCreateParams**kwargs)  -> Message`
 
@@ -261,25 +261,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
           Create a cache control breakpoint at this content block.
 
-          - `type: Literal["ephemeral"]`
-
-            - `"ephemeral"`
-
-          - `ttl: Optional[Literal["5m", "1h"]]`
-
-            The time-to-live for the cache control breakpoint.
-
-            This may be one the following values:
-
-            - `5m`: 5 minutes
-            - `1h`: 1 hour
-
-            Defaults to `5m`.
-
-            - `"5m"`
-
-            - `"1h"`
-
       - `class DocumentBlockParam: …`
 
         - `source: Source`
@@ -318,197 +299,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
                 - `class TextBlockParam: …`
 
-                  - `text: str`
-
-                  - `type: Literal["text"]`
-
-                    - `"text"`
-
-                  - `cache_control: Optional[CacheControlEphemeral]`
-
-                    Create a cache control breakpoint at this content block.
-
-                    - `type: Literal["ephemeral"]`
-
-                      - `"ephemeral"`
-
-                    - `ttl: Optional[Literal["5m", "1h"]]`
-
-                      The time-to-live for the cache control breakpoint.
-
-                      This may be one the following values:
-
-                      - `5m`: 5 minutes
-                      - `1h`: 1 hour
-
-                      Defaults to `5m`.
-
-                      - `"5m"`
-
-                      - `"1h"`
-
-                  - `citations: Optional[List[TextCitationParam]]`
-
-                    - `class CitationCharLocationParam: …`
-
-                      - `cited_text: str`
-
-                      - `document_index: int`
-
-                      - `document_title: Optional[str]`
-
-                      - `end_char_index: int`
-
-                      - `start_char_index: int`
-
-                      - `type: Literal["char_location"]`
-
-                        - `"char_location"`
-
-                    - `class CitationPageLocationParam: …`
-
-                      - `cited_text: str`
-
-                      - `document_index: int`
-
-                      - `document_title: Optional[str]`
-
-                      - `end_page_number: int`
-
-                      - `start_page_number: int`
-
-                      - `type: Literal["page_location"]`
-
-                        - `"page_location"`
-
-                    - `class CitationContentBlockLocationParam: …`
-
-                      - `cited_text: str`
-
-                        The full text of the cited block range, concatenated.
-
-                        Always equals the contents of `content[start_block_index:end_block_index]` joined together. The text block is the minimal citable unit; this field is never a substring of a single block. Not counted toward output tokens, and not counted toward input tokens when sent back in subsequent turns.
-
-                      - `document_index: int`
-
-                      - `document_title: Optional[str]`
-
-                      - `end_block_index: int`
-
-                        Exclusive 0-based end index of the cited block range in the source's `content` array.
-
-                        Always greater than `start_block_index`; a single-block citation has `end_block_index = start_block_index + 1`.
-
-                      - `start_block_index: int`
-
-                        0-based index of the first cited block in the source's `content` array.
-
-                      - `type: Literal["content_block_location"]`
-
-                        - `"content_block_location"`
-
-                    - `class CitationWebSearchResultLocationParam: …`
-
-                      - `cited_text: str`
-
-                      - `encrypted_index: str`
-
-                      - `title: Optional[str]`
-
-                      - `type: Literal["web_search_result_location"]`
-
-                        - `"web_search_result_location"`
-
-                      - `url: str`
-
-                    - `class CitationSearchResultLocationParam: …`
-
-                      - `cited_text: str`
-
-                        The full text of the cited block range, concatenated.
-
-                        Always equals the contents of `content[start_block_index:end_block_index]` joined together. The text block is the minimal citable unit; this field is never a substring of a single block. Not counted toward output tokens, and not counted toward input tokens when sent back in subsequent turns.
-
-                      - `end_block_index: int`
-
-                        Exclusive 0-based end index of the cited block range in the source's `content` array.
-
-                        Always greater than `start_block_index`; a single-block citation has `end_block_index = start_block_index + 1`.
-
-                      - `search_result_index: int`
-
-                        0-based index of the cited search result among all `search_result` content blocks in the request, in the order they appear across messages and tool results.
-
-                        Counted separately from `document_index`; server-side web search results are not included in this count.
-
-                      - `source: str`
-
-                      - `start_block_index: int`
-
-                        0-based index of the first cited block in the source's `content` array.
-
-                      - `title: Optional[str]`
-
-                      - `type: Literal["search_result_location"]`
-
-                        - `"search_result_location"`
-
                 - `class ImageBlockParam: …`
-
-                  - `source: Source`
-
-                    - `class Base64ImageSource: …`
-
-                      - `data: str`
-
-                      - `media_type: Literal["image/jpeg", "image/png", "image/gif", "image/webp"]`
-
-                        - `"image/jpeg"`
-
-                        - `"image/png"`
-
-                        - `"image/gif"`
-
-                        - `"image/webp"`
-
-                      - `type: Literal["base64"]`
-
-                        - `"base64"`
-
-                    - `class URLImageSource: …`
-
-                      - `type: Literal["url"]`
-
-                        - `"url"`
-
-                      - `url: str`
-
-                  - `type: Literal["image"]`
-
-                    - `"image"`
-
-                  - `cache_control: Optional[CacheControlEphemeral]`
-
-                    Create a cache control breakpoint at this content block.
-
-                    - `type: Literal["ephemeral"]`
-
-                      - `"ephemeral"`
-
-                    - `ttl: Optional[Literal["5m", "1h"]]`
-
-                      The time-to-live for the cache control breakpoint.
-
-                      This may be one the following values:
-
-                      - `5m`: 5 minutes
-                      - `1h`: 1 hour
-
-                      Defaults to `5m`.
-
-                      - `"5m"`
-
-                      - `"1h"`
 
             - `type: Literal["content"]`
 
@@ -530,25 +321,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
           Create a cache control breakpoint at this content block.
 
-          - `type: Literal["ephemeral"]`
-
-            - `"ephemeral"`
-
-          - `ttl: Optional[Literal["5m", "1h"]]`
-
-            The time-to-live for the cache control breakpoint.
-
-            This may be one the following values:
-
-            - `5m`: 5 minutes
-            - `1h`: 1 hour
-
-            Defaults to `5m`.
-
-            - `"5m"`
-
-            - `"1h"`
-
         - `citations: Optional[CitationsConfigParam]`
 
           - `enabled: Optional[bool]`
@@ -565,136 +337,11 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
           - `type: Literal["text"]`
 
-            - `"text"`
-
           - `cache_control: Optional[CacheControlEphemeral]`
 
             Create a cache control breakpoint at this content block.
 
-            - `type: Literal["ephemeral"]`
-
-              - `"ephemeral"`
-
-            - `ttl: Optional[Literal["5m", "1h"]]`
-
-              The time-to-live for the cache control breakpoint.
-
-              This may be one the following values:
-
-              - `5m`: 5 minutes
-              - `1h`: 1 hour
-
-              Defaults to `5m`.
-
-              - `"5m"`
-
-              - `"1h"`
-
           - `citations: Optional[List[TextCitationParam]]`
-
-            - `class CitationCharLocationParam: …`
-
-              - `cited_text: str`
-
-              - `document_index: int`
-
-              - `document_title: Optional[str]`
-
-              - `end_char_index: int`
-
-              - `start_char_index: int`
-
-              - `type: Literal["char_location"]`
-
-                - `"char_location"`
-
-            - `class CitationPageLocationParam: …`
-
-              - `cited_text: str`
-
-              - `document_index: int`
-
-              - `document_title: Optional[str]`
-
-              - `end_page_number: int`
-
-              - `start_page_number: int`
-
-              - `type: Literal["page_location"]`
-
-                - `"page_location"`
-
-            - `class CitationContentBlockLocationParam: …`
-
-              - `cited_text: str`
-
-                The full text of the cited block range, concatenated.
-
-                Always equals the contents of `content[start_block_index:end_block_index]` joined together. The text block is the minimal citable unit; this field is never a substring of a single block. Not counted toward output tokens, and not counted toward input tokens when sent back in subsequent turns.
-
-              - `document_index: int`
-
-              - `document_title: Optional[str]`
-
-              - `end_block_index: int`
-
-                Exclusive 0-based end index of the cited block range in the source's `content` array.
-
-                Always greater than `start_block_index`; a single-block citation has `end_block_index = start_block_index + 1`.
-
-              - `start_block_index: int`
-
-                0-based index of the first cited block in the source's `content` array.
-
-              - `type: Literal["content_block_location"]`
-
-                - `"content_block_location"`
-
-            - `class CitationWebSearchResultLocationParam: …`
-
-              - `cited_text: str`
-
-              - `encrypted_index: str`
-
-              - `title: Optional[str]`
-
-              - `type: Literal["web_search_result_location"]`
-
-                - `"web_search_result_location"`
-
-              - `url: str`
-
-            - `class CitationSearchResultLocationParam: …`
-
-              - `cited_text: str`
-
-                The full text of the cited block range, concatenated.
-
-                Always equals the contents of `content[start_block_index:end_block_index]` joined together. The text block is the minimal citable unit; this field is never a substring of a single block. Not counted toward output tokens, and not counted toward input tokens when sent back in subsequent turns.
-
-              - `end_block_index: int`
-
-                Exclusive 0-based end index of the cited block range in the source's `content` array.
-
-                Always greater than `start_block_index`; a single-block citation has `end_block_index = start_block_index + 1`.
-
-              - `search_result_index: int`
-
-                0-based index of the cited search result among all `search_result` content blocks in the request, in the order they appear across messages and tool results.
-
-                Counted separately from `document_index`; server-side web search results are not included in this count.
-
-              - `source: str`
-
-              - `start_block_index: int`
-
-                0-based index of the first cited block in the source's `content` array.
-
-              - `title: Optional[str]`
-
-              - `type: Literal["search_result_location"]`
-
-                - `"search_result_location"`
 
         - `source: str`
 
@@ -708,28 +355,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
           Create a cache control breakpoint at this content block.
 
-          - `type: Literal["ephemeral"]`
-
-            - `"ephemeral"`
-
-          - `ttl: Optional[Literal["5m", "1h"]]`
-
-            The time-to-live for the cache control breakpoint.
-
-            This may be one the following values:
-
-            - `5m`: 5 minutes
-            - `1h`: 1 hour
-
-            Defaults to `5m`.
-
-            - `"5m"`
-
-            - `"1h"`
-
         - `citations: Optional[CitationsConfigParam]`
-
-          - `enabled: Optional[bool]`
 
       - `class ThinkingBlockParam: …`
 
@@ -764,25 +390,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         - `cache_control: Optional[CacheControlEphemeral]`
 
           Create a cache control breakpoint at this content block.
-
-          - `type: Literal["ephemeral"]`
-
-            - `"ephemeral"`
-
-          - `ttl: Optional[Literal["5m", "1h"]]`
-
-            The time-to-live for the cache control breakpoint.
-
-            This may be one the following values:
-
-            - `5m`: 5 minutes
-            - `1h`: 1 hour
-
-            Defaults to `5m`.
-
-            - `"5m"`
-
-            - `"1h"`
 
         - `caller: Optional[Caller]`
 
@@ -826,25 +433,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
           Create a cache control breakpoint at this content block.
 
-          - `type: Literal["ephemeral"]`
-
-            - `"ephemeral"`
-
-          - `ttl: Optional[Literal["5m", "1h"]]`
-
-            The time-to-live for the cache control breakpoint.
-
-            This may be one the following values:
-
-            - `5m`: 5 minutes
-            - `1h`: 1 hour
-
-            Defaults to `5m`.
-
-            - `"5m"`
-
-            - `"1h"`
-
         - `content: Optional[Union[str, List[Content], null]]`
 
           - `str`
@@ -853,648 +441,11 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
             - `class TextBlockParam: …`
 
-              - `text: str`
-
-              - `type: Literal["text"]`
-
-                - `"text"`
-
-              - `cache_control: Optional[CacheControlEphemeral]`
-
-                Create a cache control breakpoint at this content block.
-
-                - `type: Literal["ephemeral"]`
-
-                  - `"ephemeral"`
-
-                - `ttl: Optional[Literal["5m", "1h"]]`
-
-                  The time-to-live for the cache control breakpoint.
-
-                  This may be one the following values:
-
-                  - `5m`: 5 minutes
-                  - `1h`: 1 hour
-
-                  Defaults to `5m`.
-
-                  - `"5m"`
-
-                  - `"1h"`
-
-              - `citations: Optional[List[TextCitationParam]]`
-
-                - `class CitationCharLocationParam: …`
-
-                  - `cited_text: str`
-
-                  - `document_index: int`
-
-                  - `document_title: Optional[str]`
-
-                  - `end_char_index: int`
-
-                  - `start_char_index: int`
-
-                  - `type: Literal["char_location"]`
-
-                    - `"char_location"`
-
-                - `class CitationPageLocationParam: …`
-
-                  - `cited_text: str`
-
-                  - `document_index: int`
-
-                  - `document_title: Optional[str]`
-
-                  - `end_page_number: int`
-
-                  - `start_page_number: int`
-
-                  - `type: Literal["page_location"]`
-
-                    - `"page_location"`
-
-                - `class CitationContentBlockLocationParam: …`
-
-                  - `cited_text: str`
-
-                    The full text of the cited block range, concatenated.
-
-                    Always equals the contents of `content[start_block_index:end_block_index]` joined together. The text block is the minimal citable unit; this field is never a substring of a single block. Not counted toward output tokens, and not counted toward input tokens when sent back in subsequent turns.
-
-                  - `document_index: int`
-
-                  - `document_title: Optional[str]`
-
-                  - `end_block_index: int`
-
-                    Exclusive 0-based end index of the cited block range in the source's `content` array.
-
-                    Always greater than `start_block_index`; a single-block citation has `end_block_index = start_block_index + 1`.
-
-                  - `start_block_index: int`
-
-                    0-based index of the first cited block in the source's `content` array.
-
-                  - `type: Literal["content_block_location"]`
-
-                    - `"content_block_location"`
-
-                - `class CitationWebSearchResultLocationParam: …`
-
-                  - `cited_text: str`
-
-                  - `encrypted_index: str`
-
-                  - `title: Optional[str]`
-
-                  - `type: Literal["web_search_result_location"]`
-
-                    - `"web_search_result_location"`
-
-                  - `url: str`
-
-                - `class CitationSearchResultLocationParam: …`
-
-                  - `cited_text: str`
-
-                    The full text of the cited block range, concatenated.
-
-                    Always equals the contents of `content[start_block_index:end_block_index]` joined together. The text block is the minimal citable unit; this field is never a substring of a single block. Not counted toward output tokens, and not counted toward input tokens when sent back in subsequent turns.
-
-                  - `end_block_index: int`
-
-                    Exclusive 0-based end index of the cited block range in the source's `content` array.
-
-                    Always greater than `start_block_index`; a single-block citation has `end_block_index = start_block_index + 1`.
-
-                  - `search_result_index: int`
-
-                    0-based index of the cited search result among all `search_result` content blocks in the request, in the order they appear across messages and tool results.
-
-                    Counted separately from `document_index`; server-side web search results are not included in this count.
-
-                  - `source: str`
-
-                  - `start_block_index: int`
-
-                    0-based index of the first cited block in the source's `content` array.
-
-                  - `title: Optional[str]`
-
-                  - `type: Literal["search_result_location"]`
-
-                    - `"search_result_location"`
-
             - `class ImageBlockParam: …`
-
-              - `source: Source`
-
-                - `class Base64ImageSource: …`
-
-                  - `data: str`
-
-                  - `media_type: Literal["image/jpeg", "image/png", "image/gif", "image/webp"]`
-
-                    - `"image/jpeg"`
-
-                    - `"image/png"`
-
-                    - `"image/gif"`
-
-                    - `"image/webp"`
-
-                  - `type: Literal["base64"]`
-
-                    - `"base64"`
-
-                - `class URLImageSource: …`
-
-                  - `type: Literal["url"]`
-
-                    - `"url"`
-
-                  - `url: str`
-
-              - `type: Literal["image"]`
-
-                - `"image"`
-
-              - `cache_control: Optional[CacheControlEphemeral]`
-
-                Create a cache control breakpoint at this content block.
-
-                - `type: Literal["ephemeral"]`
-
-                  - `"ephemeral"`
-
-                - `ttl: Optional[Literal["5m", "1h"]]`
-
-                  The time-to-live for the cache control breakpoint.
-
-                  This may be one the following values:
-
-                  - `5m`: 5 minutes
-                  - `1h`: 1 hour
-
-                  Defaults to `5m`.
-
-                  - `"5m"`
-
-                  - `"1h"`
 
             - `class SearchResultBlockParam: …`
 
-              - `content: List[TextBlockParam]`
-
-                - `text: str`
-
-                - `type: Literal["text"]`
-
-                  - `"text"`
-
-                - `cache_control: Optional[CacheControlEphemeral]`
-
-                  Create a cache control breakpoint at this content block.
-
-                  - `type: Literal["ephemeral"]`
-
-                    - `"ephemeral"`
-
-                  - `ttl: Optional[Literal["5m", "1h"]]`
-
-                    The time-to-live for the cache control breakpoint.
-
-                    This may be one the following values:
-
-                    - `5m`: 5 minutes
-                    - `1h`: 1 hour
-
-                    Defaults to `5m`.
-
-                    - `"5m"`
-
-                    - `"1h"`
-
-                - `citations: Optional[List[TextCitationParam]]`
-
-                  - `class CitationCharLocationParam: …`
-
-                    - `cited_text: str`
-
-                    - `document_index: int`
-
-                    - `document_title: Optional[str]`
-
-                    - `end_char_index: int`
-
-                    - `start_char_index: int`
-
-                    - `type: Literal["char_location"]`
-
-                      - `"char_location"`
-
-                  - `class CitationPageLocationParam: …`
-
-                    - `cited_text: str`
-
-                    - `document_index: int`
-
-                    - `document_title: Optional[str]`
-
-                    - `end_page_number: int`
-
-                    - `start_page_number: int`
-
-                    - `type: Literal["page_location"]`
-
-                      - `"page_location"`
-
-                  - `class CitationContentBlockLocationParam: …`
-
-                    - `cited_text: str`
-
-                      The full text of the cited block range, concatenated.
-
-                      Always equals the contents of `content[start_block_index:end_block_index]` joined together. The text block is the minimal citable unit; this field is never a substring of a single block. Not counted toward output tokens, and not counted toward input tokens when sent back in subsequent turns.
-
-                    - `document_index: int`
-
-                    - `document_title: Optional[str]`
-
-                    - `end_block_index: int`
-
-                      Exclusive 0-based end index of the cited block range in the source's `content` array.
-
-                      Always greater than `start_block_index`; a single-block citation has `end_block_index = start_block_index + 1`.
-
-                    - `start_block_index: int`
-
-                      0-based index of the first cited block in the source's `content` array.
-
-                    - `type: Literal["content_block_location"]`
-
-                      - `"content_block_location"`
-
-                  - `class CitationWebSearchResultLocationParam: …`
-
-                    - `cited_text: str`
-
-                    - `encrypted_index: str`
-
-                    - `title: Optional[str]`
-
-                    - `type: Literal["web_search_result_location"]`
-
-                      - `"web_search_result_location"`
-
-                    - `url: str`
-
-                  - `class CitationSearchResultLocationParam: …`
-
-                    - `cited_text: str`
-
-                      The full text of the cited block range, concatenated.
-
-                      Always equals the contents of `content[start_block_index:end_block_index]` joined together. The text block is the minimal citable unit; this field is never a substring of a single block. Not counted toward output tokens, and not counted toward input tokens when sent back in subsequent turns.
-
-                    - `end_block_index: int`
-
-                      Exclusive 0-based end index of the cited block range in the source's `content` array.
-
-                      Always greater than `start_block_index`; a single-block citation has `end_block_index = start_block_index + 1`.
-
-                    - `search_result_index: int`
-
-                      0-based index of the cited search result among all `search_result` content blocks in the request, in the order they appear across messages and tool results.
-
-                      Counted separately from `document_index`; server-side web search results are not included in this count.
-
-                    - `source: str`
-
-                    - `start_block_index: int`
-
-                      0-based index of the first cited block in the source's `content` array.
-
-                    - `title: Optional[str]`
-
-                    - `type: Literal["search_result_location"]`
-
-                      - `"search_result_location"`
-
-              - `source: str`
-
-              - `title: str`
-
-              - `type: Literal["search_result"]`
-
-                - `"search_result"`
-
-              - `cache_control: Optional[CacheControlEphemeral]`
-
-                Create a cache control breakpoint at this content block.
-
-                - `type: Literal["ephemeral"]`
-
-                  - `"ephemeral"`
-
-                - `ttl: Optional[Literal["5m", "1h"]]`
-
-                  The time-to-live for the cache control breakpoint.
-
-                  This may be one the following values:
-
-                  - `5m`: 5 minutes
-                  - `1h`: 1 hour
-
-                  Defaults to `5m`.
-
-                  - `"5m"`
-
-                  - `"1h"`
-
-              - `citations: Optional[CitationsConfigParam]`
-
-                - `enabled: Optional[bool]`
-
             - `class DocumentBlockParam: …`
-
-              - `source: Source`
-
-                - `class Base64PDFSource: …`
-
-                  - `data: str`
-
-                  - `media_type: Literal["application/pdf"]`
-
-                    - `"application/pdf"`
-
-                  - `type: Literal["base64"]`
-
-                    - `"base64"`
-
-                - `class PlainTextSource: …`
-
-                  - `data: str`
-
-                  - `media_type: Literal["text/plain"]`
-
-                    - `"text/plain"`
-
-                  - `type: Literal["text"]`
-
-                    - `"text"`
-
-                - `class ContentBlockSource: …`
-
-                  - `content: Union[str, List[ContentBlockSourceContent]]`
-
-                    - `str`
-
-                    - `List[ContentBlockSourceContent]`
-
-                      - `class TextBlockParam: …`
-
-                        - `text: str`
-
-                        - `type: Literal["text"]`
-
-                          - `"text"`
-
-                        - `cache_control: Optional[CacheControlEphemeral]`
-
-                          Create a cache control breakpoint at this content block.
-
-                          - `type: Literal["ephemeral"]`
-
-                            - `"ephemeral"`
-
-                          - `ttl: Optional[Literal["5m", "1h"]]`
-
-                            The time-to-live for the cache control breakpoint.
-
-                            This may be one the following values:
-
-                            - `5m`: 5 minutes
-                            - `1h`: 1 hour
-
-                            Defaults to `5m`.
-
-                            - `"5m"`
-
-                            - `"1h"`
-
-                        - `citations: Optional[List[TextCitationParam]]`
-
-                          - `class CitationCharLocationParam: …`
-
-                            - `cited_text: str`
-
-                            - `document_index: int`
-
-                            - `document_title: Optional[str]`
-
-                            - `end_char_index: int`
-
-                            - `start_char_index: int`
-
-                            - `type: Literal["char_location"]`
-
-                              - `"char_location"`
-
-                          - `class CitationPageLocationParam: …`
-
-                            - `cited_text: str`
-
-                            - `document_index: int`
-
-                            - `document_title: Optional[str]`
-
-                            - `end_page_number: int`
-
-                            - `start_page_number: int`
-
-                            - `type: Literal["page_location"]`
-
-                              - `"page_location"`
-
-                          - `class CitationContentBlockLocationParam: …`
-
-                            - `cited_text: str`
-
-                              The full text of the cited block range, concatenated.
-
-                              Always equals the contents of `content[start_block_index:end_block_index]` joined together. The text block is the minimal citable unit; this field is never a substring of a single block. Not counted toward output tokens, and not counted toward input tokens when sent back in subsequent turns.
-
-                            - `document_index: int`
-
-                            - `document_title: Optional[str]`
-
-                            - `end_block_index: int`
-
-                              Exclusive 0-based end index of the cited block range in the source's `content` array.
-
-                              Always greater than `start_block_index`; a single-block citation has `end_block_index = start_block_index + 1`.
-
-                            - `start_block_index: int`
-
-                              0-based index of the first cited block in the source's `content` array.
-
-                            - `type: Literal["content_block_location"]`
-
-                              - `"content_block_location"`
-
-                          - `class CitationWebSearchResultLocationParam: …`
-
-                            - `cited_text: str`
-
-                            - `encrypted_index: str`
-
-                            - `title: Optional[str]`
-
-                            - `type: Literal["web_search_result_location"]`
-
-                              - `"web_search_result_location"`
-
-                            - `url: str`
-
-                          - `class CitationSearchResultLocationParam: …`
-
-                            - `cited_text: str`
-
-                              The full text of the cited block range, concatenated.
-
-                              Always equals the contents of `content[start_block_index:end_block_index]` joined together. The text block is the minimal citable unit; this field is never a substring of a single block. Not counted toward output tokens, and not counted toward input tokens when sent back in subsequent turns.
-
-                            - `end_block_index: int`
-
-                              Exclusive 0-based end index of the cited block range in the source's `content` array.
-
-                              Always greater than `start_block_index`; a single-block citation has `end_block_index = start_block_index + 1`.
-
-                            - `search_result_index: int`
-
-                              0-based index of the cited search result among all `search_result` content blocks in the request, in the order they appear across messages and tool results.
-
-                              Counted separately from `document_index`; server-side web search results are not included in this count.
-
-                            - `source: str`
-
-                            - `start_block_index: int`
-
-                              0-based index of the first cited block in the source's `content` array.
-
-                            - `title: Optional[str]`
-
-                            - `type: Literal["search_result_location"]`
-
-                              - `"search_result_location"`
-
-                      - `class ImageBlockParam: …`
-
-                        - `source: Source`
-
-                          - `class Base64ImageSource: …`
-
-                            - `data: str`
-
-                            - `media_type: Literal["image/jpeg", "image/png", "image/gif", "image/webp"]`
-
-                              - `"image/jpeg"`
-
-                              - `"image/png"`
-
-                              - `"image/gif"`
-
-                              - `"image/webp"`
-
-                            - `type: Literal["base64"]`
-
-                              - `"base64"`
-
-                          - `class URLImageSource: …`
-
-                            - `type: Literal["url"]`
-
-                              - `"url"`
-
-                            - `url: str`
-
-                        - `type: Literal["image"]`
-
-                          - `"image"`
-
-                        - `cache_control: Optional[CacheControlEphemeral]`
-
-                          Create a cache control breakpoint at this content block.
-
-                          - `type: Literal["ephemeral"]`
-
-                            - `"ephemeral"`
-
-                          - `ttl: Optional[Literal["5m", "1h"]]`
-
-                            The time-to-live for the cache control breakpoint.
-
-                            This may be one the following values:
-
-                            - `5m`: 5 minutes
-                            - `1h`: 1 hour
-
-                            Defaults to `5m`.
-
-                            - `"5m"`
-
-                            - `"1h"`
-
-                  - `type: Literal["content"]`
-
-                    - `"content"`
-
-                - `class URLPDFSource: …`
-
-                  - `type: Literal["url"]`
-
-                    - `"url"`
-
-                  - `url: str`
-
-              - `type: Literal["document"]`
-
-                - `"document"`
-
-              - `cache_control: Optional[CacheControlEphemeral]`
-
-                Create a cache control breakpoint at this content block.
-
-                - `type: Literal["ephemeral"]`
-
-                  - `"ephemeral"`
-
-                - `ttl: Optional[Literal["5m", "1h"]]`
-
-                  The time-to-live for the cache control breakpoint.
-
-                  This may be one the following values:
-
-                  - `5m`: 5 minutes
-                  - `1h`: 1 hour
-
-                  Defaults to `5m`.
-
-                  - `"5m"`
-
-                  - `"1h"`
-
-              - `citations: Optional[CitationsConfigParam]`
-
-                - `enabled: Optional[bool]`
-
-              - `context: Optional[str]`
-
-              - `title: Optional[str]`
 
             - `class ToolReferenceBlockParam: …`
 
@@ -1509,25 +460,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
               - `cache_control: Optional[CacheControlEphemeral]`
 
                 Create a cache control breakpoint at this content block.
-
-                - `type: Literal["ephemeral"]`
-
-                  - `"ephemeral"`
-
-                - `ttl: Optional[Literal["5m", "1h"]]`
-
-                  The time-to-live for the cache control breakpoint.
-
-                  This may be one the following values:
-
-                  - `5m`: 5 minutes
-                  - `1h`: 1 hour
-
-                  Defaults to `5m`.
-
-                  - `"5m"`
-
-                  - `"1h"`
 
         - `is_error: Optional[bool]`
 
@@ -1561,25 +493,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
           Create a cache control breakpoint at this content block.
 
-          - `type: Literal["ephemeral"]`
-
-            - `"ephemeral"`
-
-          - `ttl: Optional[Literal["5m", "1h"]]`
-
-            The time-to-live for the cache control breakpoint.
-
-            This may be one the following values:
-
-            - `5m`: 5 minutes
-            - `1h`: 1 hour
-
-            Defaults to `5m`.
-
-            - `"5m"`
-
-            - `"1h"`
-
         - `caller: Optional[Caller]`
 
           Tool invocation directly from the model.
@@ -1588,27 +501,11 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
             Tool invocation directly from the model.
 
-            - `type: Literal["direct"]`
-
-              - `"direct"`
-
           - `class ServerToolCaller: …`
 
             Tool invocation generated by a server-side tool.
 
-            - `tool_id: str`
-
-            - `type: Literal["code_execution_20250825"]`
-
-              - `"code_execution_20250825"`
-
           - `class ServerToolCaller20260120: …`
-
-            - `tool_id: str`
-
-            - `type: Literal["code_execution_20260120"]`
-
-              - `"code_execution_20260120"`
 
       - `class WebSearchToolResultBlockParam: …`
 
@@ -1658,25 +555,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
           Create a cache control breakpoint at this content block.
 
-          - `type: Literal["ephemeral"]`
-
-            - `"ephemeral"`
-
-          - `ttl: Optional[Literal["5m", "1h"]]`
-
-            The time-to-live for the cache control breakpoint.
-
-            This may be one the following values:
-
-            - `5m`: 5 minutes
-            - `1h`: 1 hour
-
-            Defaults to `5m`.
-
-            - `"5m"`
-
-            - `"1h"`
-
         - `caller: Optional[Caller]`
 
           Tool invocation directly from the model.
@@ -1685,27 +563,11 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
             Tool invocation directly from the model.
 
-            - `type: Literal["direct"]`
-
-              - `"direct"`
-
           - `class ServerToolCaller: …`
 
             Tool invocation generated by a server-side tool.
 
-            - `tool_id: str`
-
-            - `type: Literal["code_execution_20250825"]`
-
-              - `"code_execution_20250825"`
-
           - `class ServerToolCaller20260120: …`
-
-            - `tool_id: str`
-
-            - `type: Literal["code_execution_20260120"]`
-
-              - `"code_execution_20260120"`
 
       - `class WebFetchToolResultBlockParam: …`
 
@@ -1739,281 +601,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
             - `content: DocumentBlockParam`
 
-              - `source: Source`
-
-                - `class Base64PDFSource: …`
-
-                  - `data: str`
-
-                  - `media_type: Literal["application/pdf"]`
-
-                    - `"application/pdf"`
-
-                  - `type: Literal["base64"]`
-
-                    - `"base64"`
-
-                - `class PlainTextSource: …`
-
-                  - `data: str`
-
-                  - `media_type: Literal["text/plain"]`
-
-                    - `"text/plain"`
-
-                  - `type: Literal["text"]`
-
-                    - `"text"`
-
-                - `class ContentBlockSource: …`
-
-                  - `content: Union[str, List[ContentBlockSourceContent]]`
-
-                    - `str`
-
-                    - `List[ContentBlockSourceContent]`
-
-                      - `class TextBlockParam: …`
-
-                        - `text: str`
-
-                        - `type: Literal["text"]`
-
-                          - `"text"`
-
-                        - `cache_control: Optional[CacheControlEphemeral]`
-
-                          Create a cache control breakpoint at this content block.
-
-                          - `type: Literal["ephemeral"]`
-
-                            - `"ephemeral"`
-
-                          - `ttl: Optional[Literal["5m", "1h"]]`
-
-                            The time-to-live for the cache control breakpoint.
-
-                            This may be one the following values:
-
-                            - `5m`: 5 minutes
-                            - `1h`: 1 hour
-
-                            Defaults to `5m`.
-
-                            - `"5m"`
-
-                            - `"1h"`
-
-                        - `citations: Optional[List[TextCitationParam]]`
-
-                          - `class CitationCharLocationParam: …`
-
-                            - `cited_text: str`
-
-                            - `document_index: int`
-
-                            - `document_title: Optional[str]`
-
-                            - `end_char_index: int`
-
-                            - `start_char_index: int`
-
-                            - `type: Literal["char_location"]`
-
-                              - `"char_location"`
-
-                          - `class CitationPageLocationParam: …`
-
-                            - `cited_text: str`
-
-                            - `document_index: int`
-
-                            - `document_title: Optional[str]`
-
-                            - `end_page_number: int`
-
-                            - `start_page_number: int`
-
-                            - `type: Literal["page_location"]`
-
-                              - `"page_location"`
-
-                          - `class CitationContentBlockLocationParam: …`
-
-                            - `cited_text: str`
-
-                              The full text of the cited block range, concatenated.
-
-                              Always equals the contents of `content[start_block_index:end_block_index]` joined together. The text block is the minimal citable unit; this field is never a substring of a single block. Not counted toward output tokens, and not counted toward input tokens when sent back in subsequent turns.
-
-                            - `document_index: int`
-
-                            - `document_title: Optional[str]`
-
-                            - `end_block_index: int`
-
-                              Exclusive 0-based end index of the cited block range in the source's `content` array.
-
-                              Always greater than `start_block_index`; a single-block citation has `end_block_index = start_block_index + 1`.
-
-                            - `start_block_index: int`
-
-                              0-based index of the first cited block in the source's `content` array.
-
-                            - `type: Literal["content_block_location"]`
-
-                              - `"content_block_location"`
-
-                          - `class CitationWebSearchResultLocationParam: …`
-
-                            - `cited_text: str`
-
-                            - `encrypted_index: str`
-
-                            - `title: Optional[str]`
-
-                            - `type: Literal["web_search_result_location"]`
-
-                              - `"web_search_result_location"`
-
-                            - `url: str`
-
-                          - `class CitationSearchResultLocationParam: …`
-
-                            - `cited_text: str`
-
-                              The full text of the cited block range, concatenated.
-
-                              Always equals the contents of `content[start_block_index:end_block_index]` joined together. The text block is the minimal citable unit; this field is never a substring of a single block. Not counted toward output tokens, and not counted toward input tokens when sent back in subsequent turns.
-
-                            - `end_block_index: int`
-
-                              Exclusive 0-based end index of the cited block range in the source's `content` array.
-
-                              Always greater than `start_block_index`; a single-block citation has `end_block_index = start_block_index + 1`.
-
-                            - `search_result_index: int`
-
-                              0-based index of the cited search result among all `search_result` content blocks in the request, in the order they appear across messages and tool results.
-
-                              Counted separately from `document_index`; server-side web search results are not included in this count.
-
-                            - `source: str`
-
-                            - `start_block_index: int`
-
-                              0-based index of the first cited block in the source's `content` array.
-
-                            - `title: Optional[str]`
-
-                            - `type: Literal["search_result_location"]`
-
-                              - `"search_result_location"`
-
-                      - `class ImageBlockParam: …`
-
-                        - `source: Source`
-
-                          - `class Base64ImageSource: …`
-
-                            - `data: str`
-
-                            - `media_type: Literal["image/jpeg", "image/png", "image/gif", "image/webp"]`
-
-                              - `"image/jpeg"`
-
-                              - `"image/png"`
-
-                              - `"image/gif"`
-
-                              - `"image/webp"`
-
-                            - `type: Literal["base64"]`
-
-                              - `"base64"`
-
-                          - `class URLImageSource: …`
-
-                            - `type: Literal["url"]`
-
-                              - `"url"`
-
-                            - `url: str`
-
-                        - `type: Literal["image"]`
-
-                          - `"image"`
-
-                        - `cache_control: Optional[CacheControlEphemeral]`
-
-                          Create a cache control breakpoint at this content block.
-
-                          - `type: Literal["ephemeral"]`
-
-                            - `"ephemeral"`
-
-                          - `ttl: Optional[Literal["5m", "1h"]]`
-
-                            The time-to-live for the cache control breakpoint.
-
-                            This may be one the following values:
-
-                            - `5m`: 5 minutes
-                            - `1h`: 1 hour
-
-                            Defaults to `5m`.
-
-                            - `"5m"`
-
-                            - `"1h"`
-
-                  - `type: Literal["content"]`
-
-                    - `"content"`
-
-                - `class URLPDFSource: …`
-
-                  - `type: Literal["url"]`
-
-                    - `"url"`
-
-                  - `url: str`
-
-              - `type: Literal["document"]`
-
-                - `"document"`
-
-              - `cache_control: Optional[CacheControlEphemeral]`
-
-                Create a cache control breakpoint at this content block.
-
-                - `type: Literal["ephemeral"]`
-
-                  - `"ephemeral"`
-
-                - `ttl: Optional[Literal["5m", "1h"]]`
-
-                  The time-to-live for the cache control breakpoint.
-
-                  This may be one the following values:
-
-                  - `5m`: 5 minutes
-                  - `1h`: 1 hour
-
-                  Defaults to `5m`.
-
-                  - `"5m"`
-
-                  - `"1h"`
-
-              - `citations: Optional[CitationsConfigParam]`
-
-                - `enabled: Optional[bool]`
-
-              - `context: Optional[str]`
-
-              - `title: Optional[str]`
-
             - `type: Literal["web_fetch_result"]`
 
               - `"web_fetch_result"`
@@ -2036,25 +623,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
           Create a cache control breakpoint at this content block.
 
-          - `type: Literal["ephemeral"]`
-
-            - `"ephemeral"`
-
-          - `ttl: Optional[Literal["5m", "1h"]]`
-
-            The time-to-live for the cache control breakpoint.
-
-            This may be one the following values:
-
-            - `5m`: 5 minutes
-            - `1h`: 1 hour
-
-            Defaults to `5m`.
-
-            - `"5m"`
-
-            - `"1h"`
-
         - `caller: Optional[Caller]`
 
           Tool invocation directly from the model.
@@ -2063,27 +631,11 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
             Tool invocation directly from the model.
 
-            - `type: Literal["direct"]`
-
-              - `"direct"`
-
           - `class ServerToolCaller: …`
 
             Tool invocation generated by a server-side tool.
 
-            - `tool_id: str`
-
-            - `type: Literal["code_execution_20250825"]`
-
-              - `"code_execution_20250825"`
-
           - `class ServerToolCaller20260120: …`
-
-            - `tool_id: str`
-
-            - `type: Literal["code_execution_20260120"]`
-
-              - `"code_execution_20260120"`
 
       - `class CodeExecutionToolResultBlockParam: …`
 
@@ -2137,8 +689,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
               - `type: Literal["code_execution_output"]`
 
-                - `"code_execution_output"`
-
             - `encrypted_stdout: str`
 
             - `return_code: int`
@@ -2158,25 +708,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         - `cache_control: Optional[CacheControlEphemeral]`
 
           Create a cache control breakpoint at this content block.
-
-          - `type: Literal["ephemeral"]`
-
-            - `"ephemeral"`
-
-          - `ttl: Optional[Literal["5m", "1h"]]`
-
-            The time-to-live for the cache control breakpoint.
-
-            This may be one the following values:
-
-            - `5m`: 5 minutes
-            - `1h`: 1 hour
-
-            Defaults to `5m`.
-
-            - `"5m"`
-
-            - `"1h"`
 
       - `class BashCodeExecutionToolResultBlockParam: …`
 
@@ -2229,25 +760,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         - `cache_control: Optional[CacheControlEphemeral]`
 
           Create a cache control breakpoint at this content block.
-
-          - `type: Literal["ephemeral"]`
-
-            - `"ephemeral"`
-
-          - `ttl: Optional[Literal["5m", "1h"]]`
-
-            The time-to-live for the cache control breakpoint.
-
-            This may be one the following values:
-
-            - `5m`: 5 minutes
-            - `1h`: 1 hour
-
-            Defaults to `5m`.
-
-            - `"5m"`
-
-            - `"1h"`
 
       - `class TextEditorCodeExecutionToolResultBlockParam: …`
 
@@ -2329,25 +841,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
           Create a cache control breakpoint at this content block.
 
-          - `type: Literal["ephemeral"]`
-
-            - `"ephemeral"`
-
-          - `ttl: Optional[Literal["5m", "1h"]]`
-
-            The time-to-live for the cache control breakpoint.
-
-            This may be one the following values:
-
-            - `5m`: 5 minutes
-            - `1h`: 1 hour
-
-            Defaults to `5m`.
-
-            - `"5m"`
-
-            - `"1h"`
-
       - `class ToolSearchToolResultBlockParam: …`
 
         - `content: Content`
@@ -2376,30 +869,9 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
               - `type: Literal["tool_reference"]`
 
-                - `"tool_reference"`
-
               - `cache_control: Optional[CacheControlEphemeral]`
 
                 Create a cache control breakpoint at this content block.
-
-                - `type: Literal["ephemeral"]`
-
-                  - `"ephemeral"`
-
-                - `ttl: Optional[Literal["5m", "1h"]]`
-
-                  The time-to-live for the cache control breakpoint.
-
-                  This may be one the following values:
-
-                  - `5m`: 5 minutes
-                  - `1h`: 1 hour
-
-                  Defaults to `5m`.
-
-                  - `"5m"`
-
-                  - `"1h"`
 
             - `type: Literal["tool_search_tool_search_result"]`
 
@@ -2415,25 +887,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
           Create a cache control breakpoint at this content block.
 
-          - `type: Literal["ephemeral"]`
-
-            - `"ephemeral"`
-
-          - `ttl: Optional[Literal["5m", "1h"]]`
-
-            The time-to-live for the cache control breakpoint.
-
-            This may be one the following values:
-
-            - `5m`: 5 minutes
-            - `1h`: 1 hour
-
-            Defaults to `5m`.
-
-            - `"5m"`
-
-            - `"1h"`
-
       - `class ContainerUploadBlockParam: …`
 
         A content block that represents a file to be uploaded to the container
@@ -2448,25 +901,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         - `cache_control: Optional[CacheControlEphemeral]`
 
           Create a cache control breakpoint at this content block.
-
-          - `type: Literal["ephemeral"]`
-
-            - `"ephemeral"`
-
-          - `ttl: Optional[Literal["5m", "1h"]]`
-
-            The time-to-live for the cache control breakpoint.
-
-            This may be one the following values:
-
-            - `5m`: 5 minutes
-            - `1h`: 1 hour
-
-            Defaults to `5m`.
-
-            - `"5m"`
-
-            - `"1h"`
 
   - `role: Literal["user", "assistant"]`
 
@@ -2578,25 +1012,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   Top-level cache control automatically applies a cache_control marker to the last cacheable block in the request.
 
-  - `type: Literal["ephemeral"]`
-
-    - `"ephemeral"`
-
-  - `ttl: Optional[Literal["5m", "1h"]]`
-
-    The time-to-live for the cache control breakpoint.
-
-    This may be one the following values:
-
-    - `5m`: 5 minutes
-    - `1h`: 1 hour
-
-    Defaults to `5m`.
-
-    - `"5m"`
-
-    - `"1h"`
-
 - `container: Optional[str]`
 
   Container identifier for reuse across requests.
@@ -2685,136 +1100,11 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     - `type: Literal["text"]`
 
-      - `"text"`
-
     - `cache_control: Optional[CacheControlEphemeral]`
 
       Create a cache control breakpoint at this content block.
 
-      - `type: Literal["ephemeral"]`
-
-        - `"ephemeral"`
-
-      - `ttl: Optional[Literal["5m", "1h"]]`
-
-        The time-to-live for the cache control breakpoint.
-
-        This may be one the following values:
-
-        - `5m`: 5 minutes
-        - `1h`: 1 hour
-
-        Defaults to `5m`.
-
-        - `"5m"`
-
-        - `"1h"`
-
     - `citations: Optional[List[TextCitationParam]]`
-
-      - `class CitationCharLocationParam: …`
-
-        - `cited_text: str`
-
-        - `document_index: int`
-
-        - `document_title: Optional[str]`
-
-        - `end_char_index: int`
-
-        - `start_char_index: int`
-
-        - `type: Literal["char_location"]`
-
-          - `"char_location"`
-
-      - `class CitationPageLocationParam: …`
-
-        - `cited_text: str`
-
-        - `document_index: int`
-
-        - `document_title: Optional[str]`
-
-        - `end_page_number: int`
-
-        - `start_page_number: int`
-
-        - `type: Literal["page_location"]`
-
-          - `"page_location"`
-
-      - `class CitationContentBlockLocationParam: …`
-
-        - `cited_text: str`
-
-          The full text of the cited block range, concatenated.
-
-          Always equals the contents of `content[start_block_index:end_block_index]` joined together. The text block is the minimal citable unit; this field is never a substring of a single block. Not counted toward output tokens, and not counted toward input tokens when sent back in subsequent turns.
-
-        - `document_index: int`
-
-        - `document_title: Optional[str]`
-
-        - `end_block_index: int`
-
-          Exclusive 0-based end index of the cited block range in the source's `content` array.
-
-          Always greater than `start_block_index`; a single-block citation has `end_block_index = start_block_index + 1`.
-
-        - `start_block_index: int`
-
-          0-based index of the first cited block in the source's `content` array.
-
-        - `type: Literal["content_block_location"]`
-
-          - `"content_block_location"`
-
-      - `class CitationWebSearchResultLocationParam: …`
-
-        - `cited_text: str`
-
-        - `encrypted_index: str`
-
-        - `title: Optional[str]`
-
-        - `type: Literal["web_search_result_location"]`
-
-          - `"web_search_result_location"`
-
-        - `url: str`
-
-      - `class CitationSearchResultLocationParam: …`
-
-        - `cited_text: str`
-
-          The full text of the cited block range, concatenated.
-
-          Always equals the contents of `content[start_block_index:end_block_index]` joined together. The text block is the minimal citable unit; this field is never a substring of a single block. Not counted toward output tokens, and not counted toward input tokens when sent back in subsequent turns.
-
-        - `end_block_index: int`
-
-          Exclusive 0-based end index of the cited block range in the source's `content` array.
-
-          Always greater than `start_block_index`; a single-block citation has `end_block_index = start_block_index + 1`.
-
-        - `search_result_index: int`
-
-          0-based index of the cited search result among all `search_result` content blocks in the request, in the order they appear across messages and tool results.
-
-          Counted separately from `document_index`; server-side web search results are not included in this count.
-
-        - `source: str`
-
-        - `start_block_index: int`
-
-          0-based index of the first cited block in the source's `content` array.
-
-        - `title: Optional[str]`
-
-        - `type: Literal["search_result_location"]`
-
-          - `"search_result_location"`
 
 - `temperature: Optional[float]`
 
@@ -3030,25 +1320,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       Create a cache control breakpoint at this content block.
 
-      - `type: Literal["ephemeral"]`
-
-        - `"ephemeral"`
-
-      - `ttl: Optional[Literal["5m", "1h"]]`
-
-        The time-to-live for the cache control breakpoint.
-
-        This may be one the following values:
-
-        - `5m`: 5 minutes
-        - `1h`: 1 hour
-
-        Defaults to `5m`.
-
-        - `"5m"`
-
-        - `"1h"`
-
     - `defer_loading: Optional[bool]`
 
       If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
@@ -3099,25 +1370,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       Create a cache control breakpoint at this content block.
 
-      - `type: Literal["ephemeral"]`
-
-        - `"ephemeral"`
-
-      - `ttl: Optional[Literal["5m", "1h"]]`
-
-        The time-to-live for the cache control breakpoint.
-
-        This may be one the following values:
-
-        - `5m`: 5 minutes
-        - `1h`: 1 hour
-
-        Defaults to `5m`.
-
-        - `"5m"`
-
-        - `"1h"`
-
     - `defer_loading: Optional[bool]`
 
       If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
@@ -3154,25 +1406,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       Create a cache control breakpoint at this content block.
 
-      - `type: Literal["ephemeral"]`
-
-        - `"ephemeral"`
-
-      - `ttl: Optional[Literal["5m", "1h"]]`
-
-        The time-to-live for the cache control breakpoint.
-
-        This may be one the following values:
-
-        - `5m`: 5 minutes
-        - `1h`: 1 hour
-
-        Defaults to `5m`.
-
-        - `"5m"`
-
-        - `"1h"`
-
     - `defer_loading: Optional[bool]`
 
       If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
@@ -3206,25 +1439,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     - `cache_control: Optional[CacheControlEphemeral]`
 
       Create a cache control breakpoint at this content block.
-
-      - `type: Literal["ephemeral"]`
-
-        - `"ephemeral"`
-
-      - `ttl: Optional[Literal["5m", "1h"]]`
-
-        The time-to-live for the cache control breakpoint.
-
-        This may be one the following values:
-
-        - `5m`: 5 minutes
-        - `1h`: 1 hour
-
-        Defaults to `5m`.
-
-        - `"5m"`
-
-        - `"1h"`
 
     - `defer_loading: Optional[bool]`
 
@@ -3262,25 +1476,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       Create a cache control breakpoint at this content block.
 
-      - `type: Literal["ephemeral"]`
-
-        - `"ephemeral"`
-
-      - `ttl: Optional[Literal["5m", "1h"]]`
-
-        The time-to-live for the cache control breakpoint.
-
-        This may be one the following values:
-
-        - `5m`: 5 minutes
-        - `1h`: 1 hour
-
-        Defaults to `5m`.
-
-        - `"5m"`
-
-        - `"1h"`
-
     - `defer_loading: Optional[bool]`
 
       If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
@@ -3314,25 +1509,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     - `cache_control: Optional[CacheControlEphemeral]`
 
       Create a cache control breakpoint at this content block.
-
-      - `type: Literal["ephemeral"]`
-
-        - `"ephemeral"`
-
-      - `ttl: Optional[Literal["5m", "1h"]]`
-
-        The time-to-live for the cache control breakpoint.
-
-        This may be one the following values:
-
-        - `5m`: 5 minutes
-        - `1h`: 1 hour
-
-        Defaults to `5m`.
-
-        - `"5m"`
-
-        - `"1h"`
 
     - `defer_loading: Optional[bool]`
 
@@ -3370,25 +1546,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       Create a cache control breakpoint at this content block.
 
-      - `type: Literal["ephemeral"]`
-
-        - `"ephemeral"`
-
-      - `ttl: Optional[Literal["5m", "1h"]]`
-
-        The time-to-live for the cache control breakpoint.
-
-        This may be one the following values:
-
-        - `5m`: 5 minutes
-        - `1h`: 1 hour
-
-        Defaults to `5m`.
-
-        - `"5m"`
-
-        - `"1h"`
-
     - `defer_loading: Optional[bool]`
 
       If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
@@ -3425,25 +1582,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       Create a cache control breakpoint at this content block.
 
-      - `type: Literal["ephemeral"]`
-
-        - `"ephemeral"`
-
-      - `ttl: Optional[Literal["5m", "1h"]]`
-
-        The time-to-live for the cache control breakpoint.
-
-        This may be one the following values:
-
-        - `5m`: 5 minutes
-        - `1h`: 1 hour
-
-        Defaults to `5m`.
-
-        - `"5m"`
-
-        - `"1h"`
-
     - `defer_loading: Optional[bool]`
 
       If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
@@ -3479,25 +1617,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     - `cache_control: Optional[CacheControlEphemeral]`
 
       Create a cache control breakpoint at this content block.
-
-      - `type: Literal["ephemeral"]`
-
-        - `"ephemeral"`
-
-      - `ttl: Optional[Literal["5m", "1h"]]`
-
-        The time-to-live for the cache control breakpoint.
-
-        This may be one the following values:
-
-        - `5m`: 5 minutes
-        - `1h`: 1 hour
-
-        Defaults to `5m`.
-
-        - `"5m"`
-
-        - `"1h"`
 
     - `defer_loading: Optional[bool]`
 
@@ -3546,25 +1665,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     - `cache_control: Optional[CacheControlEphemeral]`
 
       Create a cache control breakpoint at this content block.
-
-      - `type: Literal["ephemeral"]`
-
-        - `"ephemeral"`
-
-      - `ttl: Optional[Literal["5m", "1h"]]`
-
-        The time-to-live for the cache control breakpoint.
-
-        This may be one the following values:
-
-        - `5m`: 5 minutes
-        - `1h`: 1 hour
-
-        Defaults to `5m`.
-
-        - `"5m"`
-
-        - `"1h"`
 
     - `defer_loading: Optional[bool]`
 
@@ -3636,30 +1736,9 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       Create a cache control breakpoint at this content block.
 
-      - `type: Literal["ephemeral"]`
-
-        - `"ephemeral"`
-
-      - `ttl: Optional[Literal["5m", "1h"]]`
-
-        The time-to-live for the cache control breakpoint.
-
-        This may be one the following values:
-
-        - `5m`: 5 minutes
-        - `1h`: 1 hour
-
-        Defaults to `5m`.
-
-        - `"5m"`
-
-        - `"1h"`
-
     - `citations: Optional[CitationsConfigParam]`
 
       Citations configuration for fetched documents. Citations are disabled by default.
-
-      - `enabled: Optional[bool]`
 
     - `defer_loading: Optional[bool]`
 
@@ -3711,25 +1790,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       Create a cache control breakpoint at this content block.
 
-      - `type: Literal["ephemeral"]`
-
-        - `"ephemeral"`
-
-      - `ttl: Optional[Literal["5m", "1h"]]`
-
-        The time-to-live for the cache control breakpoint.
-
-        This may be one the following values:
-
-        - `5m`: 5 minutes
-        - `1h`: 1 hour
-
-        Defaults to `5m`.
-
-        - `"5m"`
-
-        - `"1h"`
-
     - `defer_loading: Optional[bool]`
 
       If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
@@ -3745,26 +1805,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     - `user_location: Optional[UserLocation]`
 
       Parameters for the user's location. Used to provide more relevant search results.
-
-      - `type: Literal["approximate"]`
-
-        - `"approximate"`
-
-      - `city: Optional[str]`
-
-        The city of the user.
-
-      - `country: Optional[str]`
-
-        The two letter [ISO country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) of the user.
-
-      - `region: Optional[str]`
-
-        The region of the user.
-
-      - `timezone: Optional[str]`
-
-        The [IANA timezone](https://nodatime.org/TimeZones) of the user.
 
   - `class WebFetchTool20260209: …`
 
@@ -3800,30 +1840,9 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       Create a cache control breakpoint at this content block.
 
-      - `type: Literal["ephemeral"]`
-
-        - `"ephemeral"`
-
-      - `ttl: Optional[Literal["5m", "1h"]]`
-
-        The time-to-live for the cache control breakpoint.
-
-        This may be one the following values:
-
-        - `5m`: 5 minutes
-        - `1h`: 1 hour
-
-        Defaults to `5m`.
-
-        - `"5m"`
-
-        - `"1h"`
-
     - `citations: Optional[CitationsConfigParam]`
 
       Citations configuration for fetched documents. Citations are disabled by default.
-
-      - `enabled: Optional[bool]`
 
     - `defer_loading: Optional[bool]`
 
@@ -3877,30 +1896,9 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       Create a cache control breakpoint at this content block.
 
-      - `type: Literal["ephemeral"]`
-
-        - `"ephemeral"`
-
-      - `ttl: Optional[Literal["5m", "1h"]]`
-
-        The time-to-live for the cache control breakpoint.
-
-        This may be one the following values:
-
-        - `5m`: 5 minutes
-        - `1h`: 1 hour
-
-        Defaults to `5m`.
-
-        - `"5m"`
-
-        - `"1h"`
-
     - `citations: Optional[CitationsConfigParam]`
 
       Citations configuration for fetched documents. Citations are disabled by default.
-
-      - `enabled: Optional[bool]`
 
     - `defer_loading: Optional[bool]`
 
@@ -3950,25 +1948,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       Create a cache control breakpoint at this content block.
 
-      - `type: Literal["ephemeral"]`
-
-        - `"ephemeral"`
-
-      - `ttl: Optional[Literal["5m", "1h"]]`
-
-        The time-to-live for the cache control breakpoint.
-
-        This may be one the following values:
-
-        - `5m`: 5 minutes
-        - `1h`: 1 hour
-
-        Defaults to `5m`.
-
-        - `"5m"`
-
-        - `"1h"`
-
     - `defer_loading: Optional[bool]`
 
       If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
@@ -4004,25 +1983,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     - `cache_control: Optional[CacheControlEphemeral]`
 
       Create a cache control breakpoint at this content block.
-
-      - `type: Literal["ephemeral"]`
-
-        - `"ephemeral"`
-
-      - `ttl: Optional[Literal["5m", "1h"]]`
-
-        The time-to-live for the cache control breakpoint.
-
-        This may be one the following values:
-
-        - `5m`: 5 minutes
-        - `1h`: 1 hour
-
-        Defaults to `5m`.
-
-        - `"5m"`
-
-        - `"1h"`
 
     - `defer_loading: Optional[bool]`
 
@@ -4295,27 +2255,11 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
           Tool invocation directly from the model.
 
-          - `type: Literal["direct"]`
-
-            - `"direct"`
-
         - `class ServerToolCaller: …`
 
           Tool invocation generated by a server-side tool.
 
-          - `tool_id: str`
-
-          - `type: Literal["code_execution_20250825"]`
-
-            - `"code_execution_20250825"`
-
         - `class ServerToolCaller20260120: …`
-
-          - `tool_id: str`
-
-          - `type: Literal["code_execution_20260120"]`
-
-            - `"code_execution_20260120"`
 
       - `input: Dict[str, object]`
 
@@ -4349,27 +2293,11 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
           Tool invocation directly from the model.
 
-          - `type: Literal["direct"]`
-
-            - `"direct"`
-
         - `class ServerToolCaller: …`
 
           Tool invocation generated by a server-side tool.
 
-          - `tool_id: str`
-
-          - `type: Literal["code_execution_20250825"]`
-
-            - `"code_execution_20250825"`
-
         - `class ServerToolCaller20260120: …`
-
-          - `tool_id: str`
-
-          - `type: Literal["code_execution_20260120"]`
-
-            - `"code_execution_20260120"`
 
       - `content: WebSearchToolResultBlockContent`
 
@@ -4423,27 +2351,11 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
           Tool invocation directly from the model.
 
-          - `type: Literal["direct"]`
-
-            - `"direct"`
-
         - `class ServerToolCaller: …`
 
           Tool invocation generated by a server-side tool.
 
-          - `tool_id: str`
-
-          - `type: Literal["code_execution_20250825"]`
-
-            - `"code_execution_20250825"`
-
         - `class ServerToolCaller20260120: …`
-
-          - `tool_id: str`
-
-          - `type: Literal["code_execution_20260120"]`
-
-            - `"code_execution_20260120"`
 
       - `content: Content`
 
@@ -4584,8 +2496,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
             - `file_id: str`
 
             - `type: Literal["code_execution_output"]`
-
-              - `"code_execution_output"`
 
           - `encrypted_stdout: str`
 
@@ -5036,4 +2946,59 @@ for message in client.messages.create(
     model="claude-opus-4-6",
 ):
   print(message)
+```
+
+#### Response
+
+```json
+{
+  "id": "msg_013Zva2CMHLNnXjNJJKqJ2EF",
+  "container": {
+    "id": "id",
+    "expires_at": "2019-12-27T18:11:19.117Z"
+  },
+  "content": [
+    {
+      "citations": [
+        {
+          "cited_text": "cited_text",
+          "document_index": 0,
+          "document_title": "document_title",
+          "end_char_index": 0,
+          "file_id": "file_id",
+          "start_char_index": 0,
+          "type": "char_location"
+        }
+      ],
+      "text": "Hi! My name is Claude.",
+      "type": "text"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "role": "assistant",
+  "stop_details": {
+    "category": "cyber",
+    "explanation": "explanation",
+    "type": "refusal"
+  },
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "type": "message",
+  "usage": {
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "cache_creation_input_tokens": 2051,
+    "cache_read_input_tokens": 2051,
+    "inference_geo": "inference_geo",
+    "input_tokens": 2095,
+    "output_tokens": 503,
+    "server_tool_use": {
+      "web_fetch_requests": 2,
+      "web_search_requests": 0
+    },
+    "service_tier": "standard"
+  }
+}
 ```

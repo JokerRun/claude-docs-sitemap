@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/memory_stores/memories/delete
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 5c5d777e9a2ecc25f30769fe565a22564849aaf80027d9be42646ca312e3a0f7
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: bc822190e06c0c231fbd02fec8546161c642dddfc4bbd145e79f272a78189af0
 ---
 
-## Delete
+## Delete a memory
 
 `BetaManagedAgentsDeletedMemory Beta.MemoryStores.Memories.Delete(MemoryDeleteParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -109,4 +109,13 @@ MemoryDeleteParams parameters = new()
 var betaManagedAgentsDeletedMemory = await client.Beta.MemoryStores.Memories.Delete(parameters);
 
 Console.WriteLine(betaManagedAgentsDeletedMemory);
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "type": "memory_deleted"
+}
 ```

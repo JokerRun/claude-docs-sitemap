@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/environments/delete
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: cf4ed00a5e283239ea7d2d2fab328876230aeec6d282c5e6cce9504f932c3c7c
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 7ba96cc8b47d7f0303f837b2e01f193b4166c9347047a9fd4929569dcf3e551f
 ---
 
-## Delete
+## Delete Environment
 
 `beta.environments.delete(strenvironment_id, EnvironmentDeleteParams**kwargs)  -> BetaEnvironmentDeleteResponse`
 
@@ -104,4 +104,13 @@ beta_environment_delete_response = client.beta.environments.delete(
     environment_id="env_011CZkZ9X2dpNyB7HsEFoRfW",
 )
 print(beta_environment_delete_response.id)
+```
+
+#### Response
+
+```json
+{
+  "id": "env_011CZkZ9X2dpNyB7HsEFoRfW",
+  "type": "environment_deleted"
+}
 ```

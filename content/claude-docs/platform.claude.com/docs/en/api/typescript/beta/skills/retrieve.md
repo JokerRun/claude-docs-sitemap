@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/skills/retrieve
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 751b42b7dabcecdd210aa7441b9cfe1a2f496372bb9ac1ce5ece002f56fd1d4e
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 3ae0c1f1b47998ebaeffbda98a5be13f8851a77642c4a43f90ca0e68e98475e1
 ---
 
-## Retrieve
+## Get Skill
 
 `client.beta.skills.retrieve(stringskillID, SkillRetrieveParamsparams?, RequestOptionsoptions?): SkillRetrieveResponse`
 
@@ -138,4 +138,18 @@ const client = new Anthropic({
 const skill = await client.beta.skills.retrieve('skill_id');
 
 console.log(skill.id);
+```
+
+#### Response
+
+```json
+{
+  "id": "skill_01JAbcdefghijklmnopqrstuvw",
+  "created_at": "2024-10-30T23:58:27.427722Z",
+  "display_title": "My Custom Skill",
+  "latest_version": "1759178010641129",
+  "source": "custom",
+  "type": "type",
+  "updated_at": "2024-10-30T23:58:27.427722Z"
+}
 ```

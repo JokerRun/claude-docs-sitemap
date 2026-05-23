@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/models/list
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: a0cba9453072908183c2045a0abdc8519fed8c8b4ac246053fef448d45a73c01
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 53444385877403f297b7ad3a333be396cfc5b1ee2de57a1221016e0190e45528
 ---
 
-## List
+## List Models
 
 `ModelListPageResponse Models.List(ModelListParams?parameters, CancellationTokencancellationToken = default)`
 
@@ -113,17 +113,9 @@ The Models API response can be used to determine which models are available for 
 
         Whether the model supports citation generation.
 
-        - `required Boolean Supported`
-
-          Whether this capability is supported by the model.
-
       - `required CapabilitySupport CodeExecution`
 
         Whether the model supports code execution tools.
-
-        - `required Boolean Supported`
-
-          Whether this capability is supported by the model.
 
       - `required ContextManagementCapability ContextManagement`
 
@@ -133,25 +125,13 @@ The Models API response can be used to determine which models are available for 
 
           Indicates whether a capability is supported.
 
-          - `required Boolean Supported`
-
-            Whether this capability is supported by the model.
-
         - `required CapabilitySupport? ClearToolUses20250919`
 
           Indicates whether a capability is supported.
 
-          - `required Boolean Supported`
-
-            Whether this capability is supported by the model.
-
         - `required CapabilitySupport? Compact20260112`
 
           Indicates whether a capability is supported.
-
-          - `required Boolean Supported`
-
-            Whether this capability is supported by the model.
 
         - `required Boolean Supported`
 
@@ -165,33 +145,17 @@ The Models API response can be used to determine which models are available for 
 
           Whether the model supports high effort level.
 
-          - `required Boolean Supported`
-
-            Whether this capability is supported by the model.
-
         - `required CapabilitySupport Low`
 
           Whether the model supports low effort level.
-
-          - `required Boolean Supported`
-
-            Whether this capability is supported by the model.
 
         - `required CapabilitySupport Max`
 
           Whether the model supports max effort level.
 
-          - `required Boolean Supported`
-
-            Whether this capability is supported by the model.
-
         - `required CapabilitySupport Medium`
 
           Whether the model supports medium effort level.
-
-          - `required Boolean Supported`
-
-            Whether this capability is supported by the model.
 
         - `required Boolean Supported`
 
@@ -201,33 +165,17 @@ The Models API response can be used to determine which models are available for 
 
           Indicates whether a capability is supported.
 
-          - `required Boolean Supported`
-
-            Whether this capability is supported by the model.
-
       - `required CapabilitySupport ImageInput`
 
         Whether the model accepts image content blocks.
-
-        - `required Boolean Supported`
-
-          Whether this capability is supported by the model.
 
       - `required CapabilitySupport PdfInput`
 
         Whether the model accepts PDF content blocks.
 
-        - `required Boolean Supported`
-
-          Whether this capability is supported by the model.
-
       - `required CapabilitySupport StructuredOutputs`
 
         Whether the model supports structured output / JSON mode / strict tool schemas.
-
-        - `required Boolean Supported`
-
-          Whether this capability is supported by the model.
 
       - `required ThinkingCapability Thinking`
 
@@ -245,17 +193,9 @@ The Models API response can be used to determine which models are available for 
 
             Whether the model supports thinking with type 'adaptive' (auto).
 
-            - `required Boolean Supported`
-
-              Whether this capability is supported by the model.
-
           - `required CapabilitySupport Enabled`
 
             Whether the model supports thinking with type 'enabled'.
-
-            - `required Boolean Supported`
-
-              Whether this capability is supported by the model.
 
     - `required DateTimeOffset CreatedAt`
 
@@ -300,5 +240,86 @@ var page = await client.Models.List(parameters);
 await foreach (var item in page.Paginate())
 {
     Console.WriteLine(item);
+}
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "claude-opus-4-6",
+      "capabilities": {
+        "batch": {
+          "supported": true
+        },
+        "citations": {
+          "supported": true
+        },
+        "code_execution": {
+          "supported": true
+        },
+        "context_management": {
+          "clear_thinking_20251015": {
+            "supported": true
+          },
+          "clear_tool_uses_20250919": {
+            "supported": true
+          },
+          "compact_20260112": {
+            "supported": true
+          },
+          "supported": true
+        },
+        "effort": {
+          "high": {
+            "supported": true
+          },
+          "low": {
+            "supported": true
+          },
+          "max": {
+            "supported": true
+          },
+          "medium": {
+            "supported": true
+          },
+          "supported": true,
+          "xhigh": {
+            "supported": true
+          }
+        },
+        "image_input": {
+          "supported": true
+        },
+        "pdf_input": {
+          "supported": true
+        },
+        "structured_outputs": {
+          "supported": true
+        },
+        "thinking": {
+          "supported": true,
+          "types": {
+            "adaptive": {
+              "supported": true
+            },
+            "enabled": {
+              "supported": true
+            }
+          }
+        }
+      },
+      "created_at": "2026-02-04T00:00:00Z",
+      "display_name": "Claude Opus 4.6",
+      "max_input_tokens": 0,
+      "max_tokens": 0,
+      "type": "model"
+    }
+  ],
+  "first_id": "first_id",
+  "has_more": true,
+  "last_id": "last_id"
 }
 ```

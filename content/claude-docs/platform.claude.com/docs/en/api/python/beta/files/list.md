@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/files/list
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: a8ad78a1400d9565824303f595aa63c6c78949a03c13710250af89de00b34e53
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 960bffd8acf2899a895f1e8d1459aad8cf35c3b5375435a35b92470cc38a9441
 ---
 
-## List
+## List Files
 
 `beta.files.list(FileListParams**kwargs)  -> SyncPage[FileMetadata]`
 
@@ -155,4 +155,29 @@ client = Anthropic(
 page = client.beta.files.list()
 page = page.data[0]
 print(page.id)
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "file_011CNha8iCJcU1wXNR6q4V8w",
+      "created_at": "2025-04-15T18:37:24.100435Z",
+      "filename": "document.pdf",
+      "mime_type": "application/pdf",
+      "size_bytes": 102400,
+      "type": "file",
+      "downloadable": false,
+      "scope": {
+        "id": "id",
+        "type": "session"
+      }
+    }
+  ],
+  "first_id": "file_011CNha8iCJcU1wXNR6q4V8w",
+  "has_more": true,
+  "last_id": "file_013Zva2CMHLNnXjNJJKqJ2EF"
+}
 ```

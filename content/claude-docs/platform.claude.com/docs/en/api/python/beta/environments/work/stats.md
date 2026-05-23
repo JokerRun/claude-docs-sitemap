@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/environments/work/stats
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 1f5923b6fa34abdf06c405666f75b11e5271aab20e76d972df28f7f9c2e5a883
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 76e29e589cf0f94600514d48e9cc08f2d92dd03b665d21e8d967c6da6bb1edc5
 ---
 
-## Stats
+## Get Queue Statistics
 
 `beta.environments.work.stats(strenvironment_id, WorkStatsParams**kwargs)  -> BetaSelfHostedWorkQueueStats`
 
@@ -118,4 +118,16 @@ beta_self_hosted_work_queue_stats = client.beta.environments.work.stats(
     environment_id="env_011CZkZ9X2dpNyB7HsEFoRfW",
 )
 print(beta_self_hosted_work_queue_stats.depth)
+```
+
+#### Response
+
+```json
+{
+  "depth": 0,
+  "oldest_queued_at": "oldest_queued_at",
+  "pending": 0,
+  "type": "work_queue_stats",
+  "workers_polling": 0
+}
 ```

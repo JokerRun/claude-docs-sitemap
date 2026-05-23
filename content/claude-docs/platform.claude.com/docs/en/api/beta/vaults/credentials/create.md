@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/create
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: e2e6bdc2fd0e5c0989577f69da1fee87aad98a8211ddcc40691748ca37cc7734
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 4e536b40fa632790710186832ac8f3a684460bcef500061128ad35336456c673
 ---
 
-## Create
+## Create Credential
 
 **post** `/v1/vaults/{vault_id}/credentials`
 
@@ -21,9 +21,9 @@ Create Credential
 
   Optional header to specify the beta version(s) you want to use.
 
-  - `UnionMember0 = string`
+  - `string`
 
-  - `UnionMember1 = "message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -81,7 +81,7 @@ Create Credential
 
   Authentication details for creating a credential.
 
-  - `BetaManagedAgentsMCPOAuthCreateParams = object { access_token, mcp_server_url, type, 2 more }`
+  - `BetaManagedAgentsMCPOAuthCreateParams object { access_token, mcp_server_url, type, 2 more }`
 
     Parameters for creating an MCP OAuth credential.
 
@@ -121,7 +121,7 @@ Create Credential
 
         Token endpoint requires no client authentication.
 
-        - `BetaManagedAgentsTokenEndpointAuthNoneParam = object { type }`
+        - `BetaManagedAgentsTokenEndpointAuthNoneParam object { type }`
 
           Token endpoint requires no client authentication.
 
@@ -129,7 +129,7 @@ Create Credential
 
             - `"none"`
 
-        - `BetaManagedAgentsTokenEndpointAuthBasicParam = object { client_secret, type }`
+        - `BetaManagedAgentsTokenEndpointAuthBasicParam object { client_secret, type }`
 
           Token endpoint uses HTTP Basic authentication with client credentials.
 
@@ -141,7 +141,7 @@ Create Credential
 
             - `"client_secret_basic"`
 
-        - `BetaManagedAgentsTokenEndpointAuthPostParam = object { client_secret, type }`
+        - `BetaManagedAgentsTokenEndpointAuthPostParam object { client_secret, type }`
 
           Token endpoint uses POST body authentication with client credentials.
 
@@ -161,7 +161,7 @@ Create Credential
 
         OAuth scope for the refresh request.
 
-  - `BetaManagedAgentsStaticBearerCreateParams = object { token, mcp_server_url, type }`
+  - `BetaManagedAgentsStaticBearerCreateParams object { token, mcp_server_url, type }`
 
     Parameters for creating a static bearer token credential.
 
@@ -187,7 +187,7 @@ Create Credential
 
 ### Returns
 
-- `BetaManagedAgentsCredential = object { id, archived_at, auth, 6 more }`
+- `BetaManagedAgentsCredential object { id, archived_at, auth, 6 more }`
 
   A credential stored in a vault. Sensitive fields are never returned in responses.
 
@@ -203,7 +203,7 @@ Create Credential
 
     Authentication details for a credential.
 
-    - `BetaManagedAgentsMCPOAuthAuthResponse = object { mcp_server_url, type, expires_at, refresh }`
+    - `BetaManagedAgentsMCPOAuthAuthResponse object { mcp_server_url, type, expires_at, refresh }`
 
       OAuth credential details for an MCP server.
 
@@ -235,7 +235,7 @@ Create Credential
 
           Token endpoint requires no client authentication.
 
-          - `BetaManagedAgentsTokenEndpointAuthNoneResponse = object { type }`
+          - `BetaManagedAgentsTokenEndpointAuthNoneResponse object { type }`
 
             Token endpoint requires no client authentication.
 
@@ -243,7 +243,7 @@ Create Credential
 
               - `"none"`
 
-          - `BetaManagedAgentsTokenEndpointAuthBasicResponse = object { type }`
+          - `BetaManagedAgentsTokenEndpointAuthBasicResponse object { type }`
 
             Token endpoint uses HTTP Basic authentication with client credentials.
 
@@ -251,7 +251,7 @@ Create Credential
 
               - `"client_secret_basic"`
 
-          - `BetaManagedAgentsTokenEndpointAuthPostResponse = object { type }`
+          - `BetaManagedAgentsTokenEndpointAuthPostResponse object { type }`
 
             Token endpoint uses POST body authentication with client credentials.
 
@@ -267,7 +267,7 @@ Create Credential
 
           OAuth scope for the refresh request.
 
-    - `BetaManagedAgentsStaticBearerAuthResponse = object { mcp_server_url, type }`
+    - `BetaManagedAgentsStaticBearerAuthResponse object { mcp_server_url, type }`
 
       Static bearer token credential details for an MCP server.
 
@@ -322,4 +322,25 @@ curl https://api.anthropic.com/v1/vaults/$VAULT_ID/credentials \
             "environment": "production"
           }
         }'
+```
+
+#### Response
+
+```json
+{
+  "id": "vcrd_011CZkZEMt8gZan2iYOQfSkw",
+  "archived_at": null,
+  "auth": {
+    "mcp_server_url": "https://example-server.modelcontextprotocol.io/sse",
+    "type": "static_bearer"
+  },
+  "created_at": "2026-03-15T10:00:00Z",
+  "metadata": {
+    "environment": "production"
+  },
+  "type": "vault_credential",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "vault_id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+  "display_name": "Example credential"
+}
 ```

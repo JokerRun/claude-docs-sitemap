@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/artifacts/retrieve
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 0168e17c2257bbe73f7c48a81b4b83354a98a5c55aca76f63154f10cf3e3d8bc
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 6d988f8d23996e06739765d3037c31a0fa1c8b46ce650f579cffae8b18eb0b8e
 ---
 
-## Retrieve
+## Get artifact metadata
 
 **get** `/v1/compliance/apps/artifacts/{artifact_version_id}`
 
@@ -65,4 +65,19 @@ without downloading every artifact.
 ```http
 curl https://api.anthropic.com/v1/compliance/apps/artifacts/$ARTIFACT_VERSION_ID \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "artifact_type": "artifact_type",
+  "claude_chat_id": "claude_chat_id",
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "md5": "md5",
+  "size_bytes": 0,
+  "title": "title",
+  "version_id": "version_id"
+}
 ```

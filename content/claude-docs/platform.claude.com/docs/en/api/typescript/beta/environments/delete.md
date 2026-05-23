@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/environments/delete
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 3d4172903357d591478502569e64a1c1495673ba6f74c830859e2357ad30f37e
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 80782ebed92439e2b76c735fe3c1ed1b3155f5ee5facd85b78490b02992812b4
 ---
 
-## Delete
+## Delete Environment
 
 `client.beta.environments.delete(stringenvironmentID, EnvironmentDeleteParamsparams?, RequestOptionsoptions?): BetaEnvironmentDeleteResponse`
 
@@ -107,4 +107,13 @@ const betaEnvironmentDeleteResponse = await client.beta.environments.delete(
 );
 
 console.log(betaEnvironmentDeleteResponse.id);
+```
+
+#### Response
+
+```json
+{
+  "id": "env_011CZkZ9X2dpNyB7HsEFoRfW",
+  "type": "environment_deleted"
+}
 ```

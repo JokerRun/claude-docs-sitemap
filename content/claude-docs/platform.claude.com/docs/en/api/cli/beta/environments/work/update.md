@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/environments/work/update
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 0b3843ac0530dd60ae618609a833bfb629117473908bddf95b3adcc6d15148d1
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 475f561623cbb5e1e07d20ed84d26fff51366ad6b5566f02dec4dc083e6648ee
 ---
 
-## Update
+## Update Work Item
 
 `$ ant beta:environments:work update`
 
@@ -117,4 +117,28 @@ ant beta:environments:work update \
   --environment-id env_011CZkZ9X2dpNyB7HsEFoRfW \
   --work-id work_id \
   --metadata '{foo: string}'
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "acknowledged_at": "acknowledged_at",
+  "created_at": "created_at",
+  "data": {
+    "id": "id",
+    "type": "session"
+  },
+  "environment_id": "environment_id",
+  "latest_heartbeat_at": "latest_heartbeat_at",
+  "metadata": {
+    "foo": "string"
+  },
+  "started_at": "started_at",
+  "state": "queued",
+  "stop_requested_at": "stop_requested_at",
+  "stopped_at": "stopped_at",
+  "type": "work"
+}
 ```

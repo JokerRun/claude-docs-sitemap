@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/resources/retrieve
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: e7b8b787eda6377c16b268f0568e61c58a1c192c8c25117400ab32d0f3a6a7d9
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: a32c3eaf06beff25ebb8a32abed863f5fe7cee2f840bf5721b02c75bd339018a
 ---
 
-## Retrieve
+## Get Session Resource
 
 `ResourceRetrieveResponse beta().sessions().resources().retrieve(ResourceRetrieveParamsparams, RequestOptionsrequestOptions = RequestOptions.none())`
 
@@ -201,5 +201,22 @@ public final class Main {
             .build();
         ResourceRetrieveResponse resource = client.beta().sessions().resources().retrieve(params);
     }
+}
+```
+
+#### Response
+
+```json
+{
+  "id": "sesrsc_011CZkZCKr6eXyl0gWMOdQiu",
+  "created_at": "2026-03-15T10:00:00Z",
+  "mount_path": "/workspace/example-repo",
+  "type": "github_repository",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "url": "https://github.com/example-org/example-repo",
+  "checkout": {
+    "name": "main",
+    "type": "branch"
+  }
 }
 ```

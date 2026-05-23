@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/user_profiles/retrieve
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 071b469addf039d4928ecc98f66d62fe28eac2f9f8ebf40139bfccd6ae4dc52d
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 3c8211208f5cd0c8d5b3c4a491c70a9613bafc72dd9cabe40c96fcfc82119bab
 ---
 
-## Retrieve
+## Get User Profile
 
 `$ ant beta:user-profiles retrieve`
 
@@ -87,4 +87,24 @@ Get User Profile
 ant beta:user-profiles retrieve \
   --api-key my-anthropic-api-key \
   --user-profile-id uprof_011CZkZCu8hGbp5mYRQgUmz9
+```
+
+#### Response
+
+```json
+{
+  "id": "uprof_011CZkZCu8hGbp5mYRQgUmz9",
+  "created_at": "2026-03-15T10:00:00Z",
+  "metadata": {},
+  "relationship": "external",
+  "trust_grants": {
+    "cyber": {
+      "status": "active"
+    }
+  },
+  "type": "user_profile",
+  "updated_at": "2026-03-15T10:00:00Z",
+  "external_id": "user_12345",
+  "name": "Example User"
+}
 ```

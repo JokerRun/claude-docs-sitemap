@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/memory_stores/memories
-fetched_at: 2026-05-01T03:13:58.197473Z
-sha256: cba164985580dd934694e5338d926ad21c4598e9f04399f94e5a004707f115bd
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: affc3f945a00a74acc37b6e3d135b76c9caf64e76307738415c36d2af103eec1
 ---
 
 # Memories
 
-## Create
+## Create a memory
 
 `$ ant beta:memory-stores:memories create`
 
@@ -93,7 +93,24 @@ ant beta:memory-stores:memories create \
   --path xx
 ```
 
-## List
+#### Response
+
+```json
+{
+  "id": "id",
+  "content_sha256": "content_sha256",
+  "content_size_bytes": 0,
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "memory_store_id": "memory_store_id",
+  "memory_version_id": "memory_version_id",
+  "path": "path",
+  "type": "memory",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "content": "content"
+}
+```
+
+## List memories
 
 `$ ant beta:memory-stores:memories list`
 
@@ -217,7 +234,29 @@ ant beta:memory-stores:memories list \
   --memory-store-id memory_store_id
 ```
 
-## Retrieve
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "id",
+      "content_sha256": "content_sha256",
+      "content_size_bytes": 0,
+      "created_at": "2019-12-27T18:11:19.117Z",
+      "memory_store_id": "memory_store_id",
+      "memory_version_id": "memory_version_id",
+      "path": "path",
+      "type": "memory",
+      "updated_at": "2019-12-27T18:11:19.117Z",
+      "content": "content"
+    }
+  ],
+  "next_page": "next_page"
+}
+```
+
+## Retrieve a memory
 
 `$ ant beta:memory-stores:memories retrieve`
 
@@ -298,7 +337,24 @@ ant beta:memory-stores:memories retrieve \
   --memory-id memory_id
 ```
 
-## Update
+#### Response
+
+```json
+{
+  "id": "id",
+  "content_sha256": "content_sha256",
+  "content_size_bytes": 0,
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "memory_store_id": "memory_store_id",
+  "memory_version_id": "memory_version_id",
+  "path": "path",
+  "type": "memory",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "content": "content"
+}
+```
+
+## Update a memory
 
 `$ ant beta:memory-stores:memories update`
 
@@ -391,7 +447,24 @@ ant beta:memory-stores:memories update \
   --memory-id memory_id
 ```
 
-## Delete
+#### Response
+
+```json
+{
+  "id": "id",
+  "content_sha256": "content_sha256",
+  "content_size_bytes": 0,
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "memory_store_id": "memory_store_id",
+  "memory_version_id": "memory_version_id",
+  "path": "path",
+  "type": "memory",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "content": "content"
+}
+```
+
+## Delete a memory
 
 `$ ant beta:memory-stores:memories delete`
 
@@ -438,6 +511,15 @@ ant beta:memory-stores:memories delete \
   --api-key my-anthropic-api-key \
   --memory-store-id memory_store_id \
   --memory-id memory_id
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "type": "memory_deleted"
+}
 ```
 
 ## Domain Types

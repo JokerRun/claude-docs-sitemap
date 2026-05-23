@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/vaults/credentials/delete
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 5ccb0a3ed7ae537a99cd0726566b1c0a84ef9497b2e6d0143beabe437719ecd0
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 492bdafd9388e67347f49ed23d586f6685a8fd1ab2decbe48f6a8417567a2643
 ---
 
-## Delete
+## Delete Credential
 
 `BetaManagedAgentsDeletedCredential Beta.Vaults.Credentials.Delete(CredentialDeleteParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -105,4 +105,13 @@ CredentialDeleteParams parameters = new()
 var betaManagedAgentsDeletedCredential = await client.Beta.Vaults.Credentials.Delete(parameters);
 
 Console.WriteLine(betaManagedAgentsDeletedCredential);
+```
+
+#### Response
+
+```json
+{
+  "id": "vcrd_011CZkZEMt8gZan2iYOQfSkw",
+  "type": "vault_credential_deleted"
+}
 ```

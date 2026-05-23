@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/vaults/create
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 8f2325fc4092d200adb0aee83e63f170352ee167adec1ef43a496832c10ab2e4
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 3ac3694375cba82b407d85ed837fd782f8eddb5235acc9d2c5fd5bb2c965d238
 ---
 
-## Create
+## Create Vault
 
 `BetaManagedAgentsVault Beta.Vaults.Create(VaultCreateParamsparameters, CancellationTokencancellationToken = default)`
 
@@ -121,4 +121,20 @@ VaultCreateParams parameters = new() { DisplayName = "Example vault" };
 var betaManagedAgentsVault = await client.Beta.Vaults.Create(parameters);
 
 Console.WriteLine(betaManagedAgentsVault);
+```
+
+#### Response
+
+```json
+{
+  "id": "vlt_011CZkZDLs7fYzm1hXNPeRjv",
+  "archived_at": null,
+  "created_at": "2026-03-15T10:00:00Z",
+  "display_name": "Example vault",
+  "metadata": {
+    "environment": "production"
+  },
+  "type": "vault",
+  "updated_at": "2026-03-15T10:00:00Z"
+}
 ```

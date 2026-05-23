@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/environments/work/retrieve
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 0c01ec184c457910a7fed36a72bb98e61f6b0e2438c3b84d89eaf37bdbfa1cb2
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: f5764d9b58ddb4e450a019fbb32abfd2a710b15efd0d676135b33d1c228f7e9a
 ---
 
-## Retrieve
+## Get Work Item
 
 `beta.environments.work.retrieve(strwork_id, WorkRetrieveParams**kwargs)  -> BetaSelfHostedWork`
 
@@ -173,4 +173,28 @@ beta_self_hosted_work = client.beta.environments.work.retrieve(
     environment_id="env_011CZkZ9X2dpNyB7HsEFoRfW",
 )
 print(beta_self_hosted_work.id)
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "acknowledged_at": "acknowledged_at",
+  "created_at": "created_at",
+  "data": {
+    "id": "id",
+    "type": "session"
+  },
+  "environment_id": "environment_id",
+  "latest_heartbeat_at": "latest_heartbeat_at",
+  "metadata": {
+    "foo": "string"
+  },
+  "started_at": "started_at",
+  "state": "queued",
+  "stop_requested_at": "stop_requested_at",
+  "stopped_at": "stopped_at",
+  "type": "work"
+}
 ```

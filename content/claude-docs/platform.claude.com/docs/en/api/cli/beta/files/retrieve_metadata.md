@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/files/retrieve_metadata
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: 9eddf253740d0778325b557fbc9d39ca4a990de8f481b79b074bb56333e6d6ce
+fetched_at: 2026-05-23T03:13:35.851650Z
+sha256: 066511c136d727cceec72d40a27b2f854c59695ee26f26c83b9d99e9d1482eac
 ---
 
-## Retrieve Metadata
+## Get File Metadata
 
 `$ ant beta:files retrieve-metadata`
 
@@ -77,4 +77,22 @@ Get File Metadata
 ant beta:files retrieve-metadata \
   --api-key my-anthropic-api-key \
   --file-id file_id
+```
+
+#### Response
+
+```json
+{
+  "id": "file_011CNha8iCJcU1wXNR6q4V8w",
+  "created_at": "2025-04-15T18:37:24.100435Z",
+  "filename": "document.pdf",
+  "mime_type": "application/pdf",
+  "size_bytes": 102400,
+  "type": "file",
+  "downloadable": false,
+  "scope": {
+    "id": "id",
+    "type": "session"
+  }
+}
 ```
