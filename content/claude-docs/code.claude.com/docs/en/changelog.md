@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/changelog
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: f9e794b67fbc4e0449dbeb99d815637514c3f1781198fac96e70592df02b9473
+fetched_at: 2026-05-24T03:16:04.588760Z
+sha256: 7be7582a2ad3919a81d8c0f3690829aed990c0a4d8e736e03e0cdb4e39fac8bc
 ---
 
 > ## Documentation Index
@@ -16,6 +16,10 @@ sha256: f9e794b67fbc4e0449dbeb99d815637514c3f1781198fac96e70592df02b9473
 This page is generated from the [CHANGELOG.md on GitHub](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md).
 
 Run `claude --version` to check your installed version.
+
+<Update label="2.1.150" description="May 23, 2026">
+  * Internal infrastructure improvements (no user-facing changes)
+</Update>
 
 <Update label="2.1.149" description="May 22, 2026">
   * `/usage` now shows a per-category breakdown of what's driving your limits usage — skills, subagents, plugins, and per-MCP-server cost
