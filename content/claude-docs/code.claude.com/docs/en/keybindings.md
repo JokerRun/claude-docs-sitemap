@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/keybindings
-fetched_at: 2026-05-22T03:16:37.965758Z
-sha256: 80a6b5da31357be615d526272a441194aed361244f65e626d7927879cb8fb506
+fetched_at: 2026-05-26T03:16:13.081831Z
+sha256: 98bc2c3794552cab9e60330349e59d6c6712859975ed13d9c5dd730450c0bda5
 ---
 
 > ## Documentation Index
@@ -254,15 +254,26 @@ Actions available in the `MessageSelector` context:
 
 Actions available in the `DiffDialog` context:
 
-| Action                | Default            | Description            |
-| :-------------------- | :----------------- | :--------------------- |
-| `diff:dismiss`        | Escape             | Close diff viewer      |
-| `diff:previousSource` | Left               | Previous diff source   |
-| `diff:nextSource`     | Right              | Next diff source       |
-| `diff:previousFile`   | Up                 | Previous file in diff  |
-| `diff:nextFile`       | Down               | Next file in diff      |
-| `diff:viewDetails`    | Enter              | View diff details      |
-| `diff:back`           | (context-specific) | Go back in diff viewer |
+| Action                | Default            | Description                                                           |
+| :-------------------- | :----------------- | :-------------------------------------------------------------------- |
+| `diff:dismiss`        | Escape             | Close diff viewer                                                     |
+| `diff:previousSource` | Left               | Previous diff source                                                  |
+| `diff:nextSource`     | Right              | Next diff source                                                      |
+| `diff:previousFile`   | Up, K              | Previous file in the file list; scroll up one line in the detail view |
+| `diff:nextFile`       | Down, J            | Next file in the file list; scroll down one line in the detail view   |
+| `diff:viewDetails`    | Enter              | View diff details                                                     |
+| `diff:back`           | (context-specific) | Go back in diff viewer                                                |
+
+The diff detail view also binds pager-style keys to the standard [scroll actions](#scroll-actions). These bindings are part of the `DiffDialog` context and apply only in the detail view; the `Scroll` context defaults listed under [Scroll actions](#scroll-actions) are unchanged.
+
+| Action                | Default        | Description                 |
+| :-------------------- | :------------- | :-------------------------- |
+| `scroll:pageUp`       | PageUp         | Scroll up half a viewport   |
+| `scroll:pageDown`     | PageDown       | Scroll down half a viewport |
+| `scroll:fullPageUp`   | Shift+Space, B | Scroll up a full viewport   |
+| `scroll:fullPageDown` | Space          | Scroll down a full viewport |
+| `scroll:top`          | G, Home        | Jump to the top             |
+| `scroll:bottom`       | Shift+G, End   | Jump to the bottom          |
 
 ### Model picker actions
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/mcp
-fetched_at: 2026-05-22T03:16:37.965758Z
-sha256: 73533e913092d017e9da1644c6dd26d1c1c9d53fa90bd239c856b5c67b03c418
+fetched_at: 2026-05-26T03:16:13.081831Z
+sha256: d99316755c0169a60b66a9c313b621fd82d85918a26108f3c5fc392ad367d311
 ---
 
 > ## Documentation Index
@@ -48,7 +48,7 @@ You can also have Claude scaffold a server for you with the official [`mcp-serve
     /plugin install mcp-server-dev@claude-plugins-official
     ```
 
-    Then run `/reload-plugins` to activate it in the current session.
+    If Claude Code reports that the marketplace is not found, run `/plugin marketplace add anthropics/claude-plugins-official` first, then retry the install. Once installed, run `/reload-plugins` to activate it in the current session.
   </Step>
 
   <Step title="Run the build skill">

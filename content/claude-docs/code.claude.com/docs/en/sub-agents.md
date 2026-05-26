@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sub-agents
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: bc6eb30295186156688266922cdd5c8844c6437df564dea3d11dec6b1a9ac048
+fetched_at: 2026-05-26T03:16:13.081831Z
+sha256: c1483d0635de614b7d2a45d1ef75f1b929ab375279ffc9e7a5edbe9efe698cd2
 ---
 
 > ## Documentation Index
@@ -310,7 +310,14 @@ You can control what subagents can do through tool access, permission modes, and
 
 #### Available tools
 
-Subagents can use any of Claude Code's [internal tools](/en/tools-reference). By default, subagents inherit all tools from the main conversation, including MCP tools.
+Subagents inherit the [internal tools](/en/tools-reference) and MCP tools available in the main conversation by default. The following tools depend on the main conversation's UI or session state and are not available to subagents, even when listed in the `tools` field:
+
+* `Agent`
+* `AskUserQuestion`
+* `EnterPlanMode`
+* `ExitPlanMode`, unless the subagent's [`permissionMode`](#permission-modes) is `plan`
+* `ScheduleWakeup`
+* `WaitForMcpServers`
 
 To restrict tools, use either the `tools` field (allowlist) or the `disallowedTools` field (denylist). This example uses `tools` to exclusively allow Read, Grep, Glob, and Bash. The subagent can't edit files, write files, or use any MCP tools:
 

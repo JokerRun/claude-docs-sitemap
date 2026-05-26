@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/discover-plugins
-fetched_at: 2026-05-21T03:16:34.837917Z
-sha256: 7e89d887766b507aa3d1e621a2b4b8e29c5aea717ed6a7bc0eb101af2b692126
+fetched_at: 2026-05-26T03:16:13.081831Z
+sha256: f9679f47f62452ae2a62385df541652bcd6807374d9abc060ee9b8e7b9644c35
 ---
 
 > ## Documentation Index
@@ -173,7 +173,7 @@ Anthropic also maintains a [demo plugins marketplace](https://github.com/anthrop
     You can also install directly from the command line:
 
     ```shell theme={null}
-    /plugin install commit-commands@anthropics-claude-code
+    /plugin install commit-commands@claude-code-plugins
     ```
 
     See [Configuration scopes](/en/settings#configuration-scopes) to learn more about scopes.

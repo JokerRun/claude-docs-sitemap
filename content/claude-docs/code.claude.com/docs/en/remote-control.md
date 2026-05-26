@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/remote-control
-fetched_at: 2026-05-19T03:15:49.705713Z
-sha256: bdd69c50e1b1371918ea39d1f8b6c15895e591f851730b35f3840db502e0cccf
+fetched_at: 2026-05-26T03:16:13.081831Z
+sha256: 9379410a35a38a70b2b7883639ce88e714b50da015a1be28ed42a979e92f8587
 ---
 
 > ## Documentation Index
@@ -129,7 +129,7 @@ The remote session title is chosen in this order:
 3. The last meaningful message in existing conversation history
 4. An auto-generated name like `myhost-graceful-unicorn`, where `myhost` is your machine's hostname or the prefix you set with `--remote-control-session-name-prefix`
 
-If you didn't set an explicit name, the title updates to reflect your prompt once you send one.
+If you didn't set an explicit name, the title updates to reflect your prompt once you send one. Renaming a session from claude.ai or the Claude app also updates the local title shown in `claude --resume`.
 
 If the environment already has an active session, you'll be asked whether to continue it or start a new one.
 

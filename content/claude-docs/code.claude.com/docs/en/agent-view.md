@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-view
-fetched_at: 2026-05-22T03:16:37.965758Z
-sha256: cefc8267d3baf0d69afd222499c03ed73c2f4e40a66643f078f3f58ac01b8eae
+fetched_at: 2026-05-26T03:16:13.081831Z
+sha256: a02439ef883dc639bed7b188eeb41a55e304354035ea1db51a89ee709fd8010c
 ---
 
 > ## Documentation Index
@@ -173,7 +173,9 @@ While attached, the session behaves like any other Claude Code session: every [c
 
 Press `←` on an empty prompt to detach and return to agent view. If a dialog has focus and isn't responding to `←`, press `Ctrl+Z` to detach immediately.
 
-Detaching never stops a background session: `←`, `Ctrl+C`, `Ctrl+D`, `Ctrl+Z`, and `/exit` all leave it running. To end a session from inside it, run `/stop`.
+`Ctrl+C` keeps its standard interrupt behavior while attached: it cancels a running response or `!` shell command rather than detaching. Pressing `Ctrl+C` twice on an empty prompt detaches, the same as in any session.
+
+Detaching never stops a background session: `←`, `Ctrl+Z`, `/exit`, and double `Ctrl+C` or double `Ctrl+D` all leave it running. To end a session from inside it, run `/stop`.
 
 After you've dispatched or backgrounded a session, pressing `←` on an empty prompt works from any Claude Code session, not only ones you attached to from agent view. It backgrounds the current session and opens agent view with that row selected, so you can switch sessions without leaving the terminal. The row is created even from a fresh session with no conversation history, so `→` returns to it. When that row is the only one, agent view shows an onboarding hint below it. You can turn this shortcut off in `/config` (the `leftArrowOpensAgents` setting).
 
