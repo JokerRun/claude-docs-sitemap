@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/amazon-bedrock
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 9ccb5dd75ff66755f4e49314e8c8e7f6b5af5249ee7e69e98ac5a83f8942c129
+fetched_at: 2026-05-27T03:17:07.219627Z
+sha256: e2084dab95b545006d20551b0fabe1b43147164f6ddecf87bad3ce51971362de
 ---
 
 > ## Documentation Index
@@ -230,7 +230,7 @@ export ANTHROPIC_SMALL_FAST_MODEL_AWS_REGION=us-west-2
 When enabling Bedrock for Claude Code, keep the following in mind:
 
 * `AWS_REGION` is a required environment variable. Claude Code does not read from the `.aws` config file for this setting.
-* When using Bedrock, the `/login` and `/logout` commands are disabled since authentication is handled through AWS credentials.
+* When using Bedrock, the `/logout` command is unavailable since authentication is handled through AWS credentials.
 * You can use settings files for environment variables like `AWS_PROFILE` that you don't want to leak to other processes. See [Settings](/en/settings) for more information.
 
 ### 4. Pin model versions

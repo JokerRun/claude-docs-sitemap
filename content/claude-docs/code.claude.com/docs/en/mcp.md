@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/mcp
-fetched_at: 2026-05-26T03:16:13.081831Z
-sha256: d99316755c0169a60b66a9c313b621fd82d85918a26108f3c5fc392ad367d311
+fetched_at: 2026-05-27T03:17:07.219627Z
+sha256: 3f77e1b53b3a5597d7826d055e27d48d8857d1059d89a4e7041e27053c342a30
 ---
 
 > ## Documentation Index
@@ -330,7 +330,7 @@ claude mcp add --transport http hubspot --scope user https://mcp.hubspot.com/ant
 
 ### Scope hierarchy and precedence
 
-When the same server is defined in more than one place, Claude Code connects to it once, using the definition from the highest-precedence source:
+When the same server is defined in more than one place, Claude Code connects to it once, using the definition from the highest-precedence source. The entire server entry from that source is used; fields are not merged across scopes.
 
 1. Local scope
 2. Project scope

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/admin-setup
-fetched_at: 2026-05-22T03:16:37.965758Z
-sha256: 64329bf13fd88e9aeeff69aac06c088876b4b0e16e0aa5d6e051022f6464f30e
+fetched_at: 2026-05-27T03:17:07.219627Z
+sha256: 5a29743d9319ad15f8a637a99b7624dedc648cee948ddeb6e86634e5dfd39f85
 ---
 
 > ## Documentation Index
@@ -139,5 +139,6 @@ With provider and delivery mechanism chosen, move on to detailed configuration:
 
 * [Server-managed settings](/en/server-managed-settings): deliver managed policy from the Claude admin console
 * [Settings reference](/en/settings): every setting key, file location, and precedence rule
+* [Monorepos and large repos](/en/large-codebases): per-directory configuration patterns for organizations deploying into a monorepo
 * [Amazon Bedrock](/en/amazon-bedrock), [Google Vertex AI](/en/google-vertex-ai), [Microsoft Foundry](/en/microsoft-foundry): provider-specific deployment
 * [Claude Enterprise Administrator Guide](https://claude.com/resources/tutorials/claude-enterprise-administrator-guide): SSO, SCIM, seat management, and rollout playbook

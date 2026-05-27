@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/common-workflows
-fetched_at: 2026-05-12T03:14:46.254373Z
-sha256: c5c94eb80b81d8298b2fa6bcdcbe5b6cc77ce969c31857c9964287e54db46d2d
+fetched_at: 2026-05-27T03:17:07.219627Z
+sha256: c5375cc0f8d983fe2da468d638d105e2b9213eceb5cb2c131aae59f32e25acc1
 ---
 
 > ## Documentation Index
@@ -29,6 +29,8 @@ This page covers:
 These are prompt patterns for everyday tasks like exploring unfamiliar code, debugging, refactoring, writing tests, and creating PRs. Each works in any Claude Code surface; adapt the wording to your project.
 
 ### Understand new codebases
+
+For configuring Claude Code in a monorepo or large codebase, see [Monorepos and large repos](/en/large-codebases).
 
 #### Get a quick codebase overview
 

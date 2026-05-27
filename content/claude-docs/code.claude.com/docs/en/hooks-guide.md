@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/hooks-guide
-fetched_at: 2026-05-22T03:16:37.965758Z
-sha256: a8ceb5abdb5aa2fb41bc5b51bf92ec451e0334ccc21de31ee45ba9d1a0552085
+fetched_at: 2026-05-27T03:17:07.219627Z
+sha256: 6b7ee0efd0de7f6a4f53b9e71f5c5aca54d65716cd5178889966e1473b5e1627
 ---
 
 > ## Documentation Index
@@ -99,6 +99,8 @@ Each example includes a ready-to-use configuration block that you add to a [sett
 * [Audit configuration changes](#audit-configuration-changes)
 * [Reload environment when directory or files change](#reload-environment-when-directory-or-files-change)
 * [Auto-approve specific permission prompts](#auto-approve-specific-permission-prompts)
+
+For a production example of hooks that run a separate model review and feed findings back into the session, see [how the `security-guidance` plugin integrates with Claude Code](/en/security-guidance#how-the-plugin-integrates-with-claude-code).
 
 ### Get notified when Claude needs input
 

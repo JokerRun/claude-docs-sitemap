@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/discover-plugins
-fetched_at: 2026-05-26T03:16:13.081831Z
-sha256: f9679f47f62452ae2a62385df541652bcd6807374d9abc060ee9b8e7b9644c35
+fetched_at: 2026-05-27T03:17:07.219627Z
+sha256: 515dec721f92d32d0e75ded5d3cad8d764f7357bebef0a5c7aee148b7abee532
 ---
 
 > ## Documentation Index
@@ -96,6 +96,10 @@ These plugins bundle pre-configured [MCP servers](/en/mcp) so you can connect Cl
 * **Infrastructure**: `vercel`, `firebase`, `supabase`
 * **Communication**: `slack`
 * **Monitoring**: `sentry`
+
+### Automatic security review
+
+The `security-guidance` plugin reviews each change Claude makes for common vulnerabilities and instructs Claude to fix what it finds in the same session. See [Catch security issues as Claude writes code](/en/security-guidance) for what it checks and how to add project-specific rules.
 
 ### Development workflows
 

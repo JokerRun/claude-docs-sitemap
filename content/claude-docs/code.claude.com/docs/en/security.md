@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/security
-fetched_at: 2026-05-22T03:16:37.965758Z
-sha256: 3cd0e8581e8058b18551d7f1a92bd9652720a6cad53bdbecce02df291906f0db
+fetched_at: 2026-05-27T03:17:07.219627Z
+sha256: f184f5b7cc24d247fca511028a1c7d1e40db9101ffc24ac9674d27f293c9c5ab
 ---
 
 > ## Documentation Index
@@ -144,6 +144,7 @@ If you discover a security vulnerability in Claude Code:
 
 ## Related resources
 
+* [Security guidance plugin](/en/security-guidance): have Claude review and fix vulnerabilities in its own code changes during the session
 * [Sandbox environments](/en/sandbox-environments): compare isolation approaches and choose one for your threat model
 * [Sandboxing](/en/sandboxing): filesystem and network isolation for Bash commands
 * [Permissions](/en/permissions): configure permissions and access controls
