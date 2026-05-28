@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/code-review
-fetched_at: 2026-05-25T03:18:07.876412Z
-sha256: d0b6e4525a0b7f13fb0b83a4f37be2c148750b3cca0cdbc3174339cf98c32578
+fetched_at: 2026-05-28T03:18:36.130288Z
+sha256: 065051f97bf2850fa7f16144f3e68444b112bdc3c6be79814b699ea81d114834
 ---
 
 > ## Documentation Index
@@ -31,9 +31,10 @@ This page covers:
 * [Customizing reviews](#customize-reviews) with `CLAUDE.md` and `REVIEW.md`
 * [Pricing](#pricing)
 * [Troubleshooting](#troubleshooting) failed runs and missing comments
+* [Reviewing a diff locally](#review-a-diff-locally) with the `/code-review` command
 
 <Note>
-  To review a diff locally in your terminal without installing the GitHub App, run the [`/code-review` command](/en/commands) in any Claude Code session. It reports correctness bugs in the current diff at a chosen effort level and can post findings as inline PR comments with `--comment`. The command was named `/simplify` before v2.1.147.
+  To review a diff locally in your terminal without installing the GitHub App, run the `/code-review` command in any Claude Code session. See [Review a diff locally](#review-a-diff-locally).
 </Note>
 
 ## How reviews work
@@ -280,6 +281,16 @@ If the check run title says issues were found but you don't see inline review co
 * **Check run Details**: click **Details** next to the Claude Code Review check in the Checks tab. The severity table lists every finding with its file, line, and summary regardless of whether the inline comment was accepted.
 * **Files changed annotations**: open the **Files changed** tab on the PR. Findings render as annotations attached directly to the diff lines, separate from review comments.
 * **Review body**: if you pushed to the PR while a review was running, some findings may reference lines that no longer exist in the current diff. Those appear under an **Additional findings** heading in the review body text rather than as inline comments.
+
+## Review a diff locally
+
+The [`/code-review` command](/en/commands) reviews a diff in your terminal without installing the GitHub App. Run it in any Claude Code session: it reports correctness bugs and {/* min-version: 2.1.151 */}reuse, simplification, and efficiency cleanups in the current diff. Pass `--comment` to post findings as inline PR comments, or `--fix` to apply the findings to your working tree after the review.
+
+Lower [effort levels](/en/model-config#adjust-effort-level) return fewer, higher-confidence findings, while `high` through `max` give broader coverage and may include uncertain findings. Without an effort argument, the review uses the session's current effort. Pass a path or PR reference to review a specific target instead of the current diff.
+
+`/code-review ultra --fix` runs the deeper [ultrareview](/en/ultrareview) in the cloud, then applies its findings to your working tree when they arrive back in your session.
+
+The command was named `/simplify` before v2.1.147, when it applied fixes by default. `/simplify` still works and is equivalent to `/code-review --fix`.
 
 ## Related resources
 

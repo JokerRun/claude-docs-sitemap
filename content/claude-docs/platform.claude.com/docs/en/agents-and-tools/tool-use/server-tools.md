@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/server-tools
-fetched_at: 2026-05-12T03:14:46.254373Z
-sha256: f0f7ee29e7419659030e8f64ad538b94695e58aaa20c23146d926b58f8a71ffe
+fetched_at: 2026-05-28T03:18:36.130288Z
+sha256: caf6665af11d99f45e1c64e7ca76e8e7e6cb63c311e888ddb4e809251ebe5ea0
 ---
 
 # Server tools
@@ -485,7 +485,9 @@ See [Streaming](/docs/en/build-with-claude/streaming) for the full event referen
 
 ## Batch requests
 
-All server tools support batch processing. See [Batch processing](/docs/en/build-with-claude/batch-processing).
+All server tools support batch processing. In a batch, the agentic loop runs just as it does for synchronous requests, with a higher per-turn iteration limit. If the loop reaches that limit, the response ends with `stop_reason: "pause_turn"`; you can continue it by submitting a follow-up request with the returned content. See [Server tools and the agentic loop](/docs/en/build-with-claude/batch-processing#server-tools-and-the-agentic-loop) for details.
+
+Common batch workloads for server tools include enriching a dataset or catalog with information pulled from the web, checking a large set of documents against current sources, monitoring a list of pages or topics over time, and running analysis code over many files.
 
 ## Next steps
 

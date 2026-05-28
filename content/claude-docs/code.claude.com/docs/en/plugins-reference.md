@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins-reference
-fetched_at: 2026-05-27T03:17:07.219627Z
-sha256: d7a3e000dd602ae02c7ccab5bc69cf9378ff2cb82287a65d34b07eb38d138d9a
+fetched_at: 2026-05-28T03:18:36.130288Z
+sha256: c0547c64af898fb8e58ec89513386ff883094645e1e5d25857fad67615dca93a
 ---
 
 > ## Documentation Index
@@ -128,6 +128,7 @@ Plugin hooks respond to the same lifecycle events as [user-defined hooks](/en/ho
 | `PostToolUseFailure`  | After a tool call fails                                                                                                                                |
 | `PostToolBatch`       | After a full batch of parallel tool calls resolves, before the next model call                                                                         |
 | `Notification`        | When Claude Code sends a notification                                                                                                                  |
+| `MessageDisplay`      | While assistant message text is displayed                                                                                                              |
 | `SubagentStart`       | When a subagent is spawned                                                                                                                             |
 | `SubagentStop`        | When a subagent finishes                                                                                                                               |
 | `TaskCreated`         | When a task is being created via `TaskCreate`                                                                                                          |

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/keybindings
-fetched_at: 2026-05-26T03:16:13.081831Z
-sha256: 98bc2c3794552cab9e60330349e59d6c6712859975ed13d9c5dd730450c0bda5
+fetched_at: 2026-05-28T03:18:36.130288Z
+sha256: 34f0934eb71b836304e2d1be778833b94efffeb0e7b5c4248bfd5e6a7f2b3e04
 ---
 
 > ## Documentation Index
@@ -468,6 +468,7 @@ When vim mode is enabled via `/config` → Editor mode, keybindings and vim mode
 * The Escape key in vim mode switches INSERT to NORMAL mode; it does not trigger `chat:cancel`
 * Most Ctrl+key shortcuts pass through vim mode to the keybinding system
 * In vim NORMAL mode, `?` shows the help menu (vim behavior)
+* In vim NORMAL mode, `/` opens history search, the same as Ctrl+R in standard mode
 
 ## Validation
 

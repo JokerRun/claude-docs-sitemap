@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/mcp-connector
-fetched_at: 2026-05-12T03:14:46.254373Z
-sha256: 7099e6a6b645e3e89e939d354d35115d930f34be6d1506f88f01c5a88b7750f4
+fetched_at: 2026-05-28T03:18:36.130288Z
+sha256: 7f2d0b4678b6c801fd06357865759059f215133629dbefe35c6ffabf3e241b85
 ---
 
 # MCP connector
@@ -750,6 +750,10 @@ await anthropic.beta.files.upload({ file: mcpResourceToFile(fileResource) });
 ### Error handling
 
 The conversion functions throw `UnsupportedMCPValueError` if an MCP value isn't supported by the Claude API. This can happen with unsupported content types, MIME types, or non-HTTP resource links.
+
+## Batch requests
+
+You can include `mcp_servers` in [Message Batches API](/docs/en/build-with-claude/batch-processing) requests. MCP tool calls through the Batches API are priced the same as those in regular Messages API requests.
 
 ## Data retention
 
