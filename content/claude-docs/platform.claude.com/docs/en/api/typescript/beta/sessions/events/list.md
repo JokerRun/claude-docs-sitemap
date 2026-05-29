@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/sessions/events/list
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 4668a2937cc2684e457097f827d62f7a2d753f680ca4cbb2cb51459cd9c2bb37
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 837ef121b25803e9c3f8cf601788219b5c5d40157bfa72bf07c2b1778d6abf0d
 ---
 
 ## List Events
@@ -61,7 +61,7 @@ List Events
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 22 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 24 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -112,6 +112,10 @@ List Events
       - `"managed-agents-2026-04-01"`
 
       - `"cache-diagnosis-2026-04-07"`
+
+      - `"thinking-token-count-2026-05-13"`
+
+      - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

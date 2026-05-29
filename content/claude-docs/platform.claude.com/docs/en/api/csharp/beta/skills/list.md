@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/skills/list
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: de861acd514884d1979a1566bfd0d92b2d1243377ca18f8b5a38f8b528fc2d7f
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 43fadca031403f56a88b5d366a00cc3d8f2c86b5746f3206ea2128b6f7913ada
 ---
 
 ## List Skills
@@ -91,6 +91,10 @@ List Skills
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
+
+    - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
 
 ### Returns
 

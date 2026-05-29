@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/user_profiles/list
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 406e9be551a99685b4e2d626d7cf3b9f06a2dcf3c3fe3da1537b9c6491c7b019
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: e901e1701b4fc9f7d495fa6c30dd736a334b561a3a14f1c3c15a037f9a63a6d6
 ---
 
 ## List User Profiles
@@ -86,6 +86,10 @@ List User Profiles
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
+
+    - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
+
+    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
 ### Returns
 

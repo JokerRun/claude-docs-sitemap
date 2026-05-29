@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/sessions/create
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: bb6b6e8a6824bdada6bfbebb163b816776729ae12124326efa31d360809e5298
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 80715c1beffc563eb9081a40da441d7026701be0a65edda7792e90f57fc5af3b
 ---
 
 ## Create Session
@@ -147,7 +147,7 @@ Create Session
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 22 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 24 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -198,6 +198,10 @@ Create Session
     - `"managed-agents-2026-04-01"`
 
     - `"cache-diagnosis-2026-04-07"`
+
+    - `"thinking-token-count-2026-05-13"`
+
+    - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

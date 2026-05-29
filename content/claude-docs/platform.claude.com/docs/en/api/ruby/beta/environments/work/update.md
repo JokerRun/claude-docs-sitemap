@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/environments/work/update
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 7a99f6c5bc838f11b1cfdb01b31cb987b0556b5826d6d829bd044906c0ffca65
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 0ce8d4c2e1eee0deecbca5d22766092bbb6924e4e8b4d41ee6d97616657de2df
 ---
 
 ## Update Work Item
@@ -31,7 +31,7 @@ Update work item metadata with merge semantics.
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 24 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -82,6 +82,10 @@ Update work item metadata with merge semantics.
     - `:"managed-agents-2026-04-01"`
 
     - `:"cache-diagnosis-2026-04-07"`
+
+    - `:"thinking-token-count-2026-05-13"`
+
+    - `:"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

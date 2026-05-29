@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/environments/work/stop
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 54bb9ea9dbbe894e8db05dcd94e2fd5a2ae6229b0e44bb06eaa58b0c2b7adfd1
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: b6a75e592bd41a6abc6ee5172cb435a9c441e48f63a2b851946b3790ae26a4e9
 ---
 
 ## Stop Work
@@ -31,7 +31,7 @@ Stop a work item, initiating graceful or forced shutdown.
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 22 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 24 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -82,6 +82,10 @@ Stop a work item, initiating graceful or forced shutdown.
     - `"managed-agents-2026-04-01"`
 
     - `"cache-diagnosis-2026-04-07"`
+
+    - `"thinking-token-count-2026-05-13"`
+
+    - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

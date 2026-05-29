@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/skills/list
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 0b17bc4b6052c0be40beaf34643cd7e3cb2447d365e2b0531e9df191e70d4c83
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 08490072029aed5ab8ba2d73c29686e1255f4f7234716dea39f56145058302c0
 ---
 
 ## List Skills
@@ -95,6 +95,10 @@ List Skills
       - `const AnthropicBetaManagedAgents2026_04_01 AnthropicBeta = "managed-agents-2026-04-01"`
 
       - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
+
+      - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
+
+      - `const AnthropicBetaMidConversationSystem2026_04_07 AnthropicBeta = "mid-conversation-system-2026-04-07"`
 
 ### Returns
 

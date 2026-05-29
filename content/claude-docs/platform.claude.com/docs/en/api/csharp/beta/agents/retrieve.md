@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/agents/retrieve
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 4ab7dc8383925a35432abfda80cb847626425a2c1d898b5f4065eeb055349e2b
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: d1e5edd61f256b70b5da5108766953c944ae215e25101ab49f798218f0d2016a
 ---
 
 ## Get Agent
@@ -78,6 +78,10 @@ Get Agent
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
+
+    - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
 
 ### Returns
 

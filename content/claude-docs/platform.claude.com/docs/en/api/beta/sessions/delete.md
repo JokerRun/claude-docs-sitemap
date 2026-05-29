@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/delete
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: b43bd2da87aba96c6ef2cdeb95b8880c66d962f5db1da609138ca14d4752fe62
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 7c2686c5aee0954098e2a98f585ce1e478515ffebc3a23375e51044cfb29679e
 ---
 
 ## Delete Session
@@ -23,7 +23,7 @@ Delete Session
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 24 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -74,6 +74,10 @@ Delete Session
     - `"managed-agents-2026-04-01"`
 
     - `"cache-diagnosis-2026-04-07"`
+
+    - `"thinking-token-count-2026-05-13"`
+
+    - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

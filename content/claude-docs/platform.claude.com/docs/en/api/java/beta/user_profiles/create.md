@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/user_profiles/create
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 8560f41d6043c5936eb726f4c2cd13d75feda1090aeaab5c723313218458521c
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 6b3c6e6f49178992eb93387272188c1c775c08d2a55cc88f8fbdb5a0f2ec9713
 ---
 
 ## Create User Profile
@@ -70,6 +70,10 @@ Create User Profile
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
+
+    - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
+
+    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
   - `Optional<String> externalId`
 

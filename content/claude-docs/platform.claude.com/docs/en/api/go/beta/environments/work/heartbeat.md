@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/environments/work/heartbeat
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 79c8622aa5eb49cf3b9e7e063c18d04e79529597b03245d8e923a5405a14b5b4
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 33b441d7880e71536da83a8fa3dce6e8e950806014b4b7d17047ec6a08fcf186
 ---
 
 ## Record Heartbeat
@@ -90,6 +90,10 @@ Record a heartbeat for a work item to maintain the lease.
       - `const AnthropicBetaManagedAgents2026_04_01 AnthropicBeta = "managed-agents-2026-04-01"`
 
       - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
+
+      - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
+
+      - `const AnthropicBetaMidConversationSystem2026_04_07 AnthropicBeta = "mid-conversation-system-2026-04-07"`
 
 ### Returns
 

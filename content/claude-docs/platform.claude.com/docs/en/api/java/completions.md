@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/completions
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 8111f5b675ecb2ee9796739786e9805641197153cb7bd464e4b37ec9c8cd6418
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 1eecfb0d0a359a29b5c75db1920c9d2383231b58a40f11f63b745eca6497f149
 ---
 
 # Completions
@@ -76,6 +76,10 @@ Future models and features will not be compatible with Text Completions. See our
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
+
+    - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
+
+    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
   - `long maxTokensToSample`
 
@@ -164,6 +168,10 @@ Future models and features will not be compatible with Text Completions. See our
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+    - `CLAUDE_OPUS_4_8("claude-opus-4-8")`
+
+      Frontier intelligence for long-running agents and coding
 
     - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
 
@@ -269,7 +277,7 @@ public final class Main {
 
         CompletionCreateParams params = CompletionCreateParams.builder()
             .maxTokensToSample(256L)
-            .model(Model.CLAUDE_OPUS_4_7)
+            .model(Model.CLAUDE_OPUS_4_8)
             .prompt("\n\nHuman: Hello, world!\n\nAssistant:")
             .build();
         Completion completion = client.completions().create(params);
@@ -310,6 +318,10 @@ public final class Main {
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+    - `CLAUDE_OPUS_4_8("claude-opus-4-8")`
+
+      Frontier intelligence for long-running agents and coding
 
     - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
 

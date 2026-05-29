@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/agents/versions
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: e1b88a23847f7aac30fec5f899a09afe759156f319e84ec12b4d7cd36f9f46ef
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: e4cb596343ac13c04d7af174f69fc49fee7031f7950455124c5934ab584ddc11
 ---
 
 # Versions
@@ -82,6 +82,10 @@ List Agent Versions
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
+
+    - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
+
+    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/skills
-fetched_at: 2026-05-21T03:16:34.837917Z
-sha256: 74fc200f193fbe771603a1e86206d9d94432b2f6ccef92f9e128c51dda6d3f90
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 8fb62ebc0fbb61c333bbdd95fa74abafb27c5e814426e9afc2496cba99a357b8
 ---
 
 # Skills
@@ -45,7 +45,7 @@ agent=$(curl -sS https://api.anthropic.com/v1/agents \
   --json @- <<'EOF'
 {
   "name": "Financial Analyst",
-  "model": "claude-opus-4-7",
+  "model": "claude-opus-4-8",
   "system": "You are a financial analysis agent.",
   "skills": [
     {"type": "anthropic", "skill_id": "xlsx"},
@@ -59,7 +59,7 @@ EOF
 ```bash CLI nocheck
 ant beta:agents create <<'YAML'
 name: Financial Analyst
-model: claude-opus-4-7
+model: claude-opus-4-8
 system: You are a financial analysis agent.
 skills:
   - type: anthropic
@@ -73,7 +73,7 @@ YAML
 ```python Python
 agent = client.beta.agents.create(
     name="Financial Analyst",
-    model="claude-opus-4-7",
+    model="claude-opus-4-8",
     system="You are a financial analysis agent.",
     skills=[
         {
@@ -92,7 +92,7 @@ agent = client.beta.agents.create(
 ```typescript TypeScript
 const agent = await client.beta.agents.create({
   name: "Financial Analyst",
-  model: "claude-opus-4-7",
+  model: "claude-opus-4-8",
   system: "You are a financial analysis agent.",
   skills: [
     {
@@ -112,7 +112,7 @@ const agent = await client.beta.agents.create({
 var agent = await client.Beta.Agents.Create(new()
 {
     Name = "Financial Analyst",
-    Model = BetaManagedAgentsModel.ClaudeOpus4_7,
+    Model = BetaManagedAgentsModel.ClaudeOpus4_8,
     System = "You are a financial analysis agent.",
     Skills =
     [
@@ -126,7 +126,7 @@ var agent = await client.Beta.Agents.Create(new()
 agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
 	Name: "Financial Analyst",
 	Model: anthropic.BetaManagedAgentsModelConfigParams{
-		ID: "claude-opus-4-7",
+		ID: "claude-opus-4-8",
 	},
 	System: anthropic.String("You are a financial analysis agent."),
 	Skills: []anthropic.BetaManagedAgentsSkillParamsUnion{
@@ -151,7 +151,7 @@ _ = agent
 var agent = client.beta().agents().create(
     AgentCreateParams.builder()
         .name("Financial Analyst")
-        .model(BetaManagedAgentsModel.CLAUDE_OPUS_4_7)
+        .model(BetaManagedAgentsModel.CLAUDE_OPUS_4_8)
         .system("You are a financial analysis agent.")
         .addSkill(
             BetaManagedAgentsAnthropicSkillParams.builder()
@@ -173,7 +173,7 @@ var agent = client.beta().agents().create(
 ```php PHP
 $agent = $client->beta->agents->create(
     name: 'Financial Analyst',
-    model: 'claude-opus-4-7',
+    model: 'claude-opus-4-8',
     system: 'You are a financial analysis agent.',
     skills: [
         ['type' => 'anthropic', 'skill_id' => 'xlsx'],
@@ -185,7 +185,7 @@ $agent = $client->beta->agents->create(
 ```ruby Ruby
 agent = client.beta.agents.create(
   name: "Financial Analyst",
-  model: "claude-opus-4-7",
+  model: "claude-opus-4-8",
   system_: "You are a financial analysis agent.",
   skills: [
     {type: "anthropic", skill_id: "xlsx"},

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/threads/retrieve
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: f984bfeb41e95c5c74ae09da84ac5d456e029e866d5ffff8343e5ec0e45c3e55
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 696cfe748406f2c7479710f78e03d21fd85adf0916ed46eca213c3c6c7c63368
 ---
 
 ## Get Session Thread
@@ -74,6 +74,10 @@ Get Session Thread
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
+
+    - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
+
+    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
 ### Returns
 

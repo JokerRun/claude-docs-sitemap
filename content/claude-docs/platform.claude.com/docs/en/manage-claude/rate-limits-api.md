@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/rate-limits-api
-fetched_at: 2026-05-09T03:13:52.260309Z
-sha256: ff0a4bdb9d52d1796ecbcb54791a9e2e98378146c66402803c6fec5f2a542395
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 2d9fd551efb4ad1b72ddf241e737f042fbe16af184acee95b4c51faa1dd27c1e
 ---
 
 # Rate Limits API
@@ -70,7 +70,8 @@ curl "https://api.anthropic.com/v1/organizations/rate_limits" \
         "claude-opus-4-5",
         "claude-opus-4-5-20251101",
         "claude-opus-4-6",
-        "claude-opus-4-7"
+        "claude-opus-4-7",
+        "claude-opus-4-8"
       ],
       "limits": [
         { "type": "requests_per_minute", "value": 4000 },
@@ -94,7 +95,7 @@ curl "https://api.anthropic.com/v1/organizations/rate_limits" \
 Pass any model ID or alias as the `model` query parameter to return only the entry that contains it:
 
 ```bash cURL
-curl "https://api.anthropic.com/v1/organizations/rate_limits?model=claude-opus-4-7" \
+curl "https://api.anthropic.com/v1/organizations/rate_limits?model=claude-opus-4-8" \
   --header "anthropic-version: 2023-06-01" \
   --header "x-api-key: $ANTHROPIC_ADMIN_KEY"
 ```
@@ -133,7 +134,8 @@ curl "https://api.anthropic.com/v1/organizations/workspaces/wrkspc_01JwQvzr7rXLA
         "claude-opus-4-5",
         "claude-opus-4-5-20251101",
         "claude-opus-4-6",
-        "claude-opus-4-7"
+        "claude-opus-4-7",
+        "claude-opus-4-8"
       ],
       "limits": [
         { "type": "requests_per_minute", "value": 1000, "org_limit": 4000 },

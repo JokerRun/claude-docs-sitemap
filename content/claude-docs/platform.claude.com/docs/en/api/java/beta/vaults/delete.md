@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/delete
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 8e7a770ef9662146949747cb4e3b567518717f69d639d9dd2100e778054e5623
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 12b7d6508549f2b1c2ddeb457df7172393ea93fe441dc72670ffd157885892fc
 ---
 
 ## Delete Vault
@@ -72,6 +72,10 @@ Delete Vault
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
+
+    - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
+
+    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
 ### Returns
 

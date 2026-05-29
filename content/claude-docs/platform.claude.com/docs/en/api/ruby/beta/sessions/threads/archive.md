@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/sessions/threads/archive
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 2f061630e3a8517f95affd1de83b12665abc538bb3f3c3469bf9fc408f042a19
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 58a106d3dd4df80005bf63f3fab9129158fca070d83c8ec10e1201a4d12cd096
 ---
 
 ## Archive Session Thread
@@ -25,7 +25,7 @@ Archive Session Thread
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 24 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -76,6 +76,10 @@ Archive Session Thread
     - `:"managed-agents-2026-04-01"`
 
     - `:"cache-diagnosis-2026-04-07"`
+
+    - `:"thinking-token-count-2026-05-13"`
+
+    - `:"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

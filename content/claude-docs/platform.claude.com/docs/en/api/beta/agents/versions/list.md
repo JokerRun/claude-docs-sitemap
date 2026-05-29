@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/versions/list
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: ebf37dd9abeb1131cef80b8fd6adc3b050d99e8f9aa64c85887e50bd0f4f25e7
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: f313892ab523d9e1983126d222e6e7ccf4eb9b92f743abe023b8410f98d59287
 ---
 
 ## List Agent Versions
@@ -33,7 +33,7 @@ List Agent Versions
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 24 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -84,6 +84,10 @@ List Agent Versions
     - `"managed-agents-2026-04-01"`
 
     - `"cache-diagnosis-2026-04-07"`
+
+    - `"thinking-token-count-2026-05-13"`
+
+    - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

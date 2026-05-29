@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/compliance-content-data
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 82bc1b959f7b8a37a126faaa287a4f6169498fb9354449be685549cdf89ad161
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 3fc6bb92aa2249dc8b8739a20261ba3f5d6f32c3df6a5bd9340defde2327ef0a
 ---
 
 # Retrieve and delete chats, files, and projects
@@ -61,7 +61,7 @@ curl --fail-with-body -sS -G \
       "updated_at": "2026-04-10T09:10:11Z",
       "deleted_at": null,
       "href": "https://claude.ai/chat/abcdef01-2345-6789-abcd-ef0123456789",
-      "model": "claude-opus-4-7",
+      "model": "claude-opus-4-8",
       "organization_uuid": "91012d09-e48b-438e-a489-1bebfd8fa6f9",
       "project_id": "claude_proj_01KGp4eZNug9ri4kE35RSppq",
       "user": {
@@ -102,7 +102,7 @@ The messages endpoint returns the chat's metadata plus a `chat_messages` array s
   "updated_at": "2026-04-10T09:10:11Z",
   "deleted_at": null,
   "href": "https://claude.ai/chat/abcdef01-2345-6789-abcd-ef0123456789",
-  "model": "claude-opus-4-7",
+  "model": "claude-opus-4-8",
   "organization_uuid": "91012d09-e48b-438e-a489-1bebfd8fa6f9",
   "project_id": "claude_proj_01KGp4eZNug9ri4kE35RSppq",
   "user": {

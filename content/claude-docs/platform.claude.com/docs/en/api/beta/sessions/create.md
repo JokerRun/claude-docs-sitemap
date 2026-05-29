@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/create
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 7e23fb3e6ccc5176af410559f55cd459c9bcff5991e0cf9e78c2e2a736a19cea
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: c0ef9bbf6f987fa003cb9e3177465ef066cf8b6002f2441399a4947485a1e138
 ---
 
 ## Create Session
@@ -19,7 +19,7 @@ Create Session
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 24 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -70,6 +70,10 @@ Create Session
     - `"managed-agents-2026-04-01"`
 
     - `"cache-diagnosis-2026-04-07"`
+
+    - `"thinking-token-count-2026-05-13"`
+
+    - `"mid-conversation-system-2026-04-07"`
 
 ### Body Parameters
 

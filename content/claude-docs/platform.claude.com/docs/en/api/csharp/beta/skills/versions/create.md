@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/skills/versions/create
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 5be428e1b1b2f2f30d90cab7927dfea95f9f47af1f443d4ba89e6f300ec1bcf7
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: f0713b0d3b0d64f5d7526b870ebf5aa3431488f024995bb79d48abff0e01cba5
 ---
 
 ## Create Skill Version
@@ -82,6 +82,10 @@ Create Skill Version
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
+
+    - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
 
 ### Returns
 

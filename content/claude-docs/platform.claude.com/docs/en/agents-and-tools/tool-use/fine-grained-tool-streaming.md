@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/fine-grained-tool-streaming
-fetched_at: 2026-05-21T03:16:34.837917Z
-sha256: 8d2034126b64d28e25618011a9e87f4312d50bb22e565f2322123d8d9b7ddaff
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 13797b5e15cdc9dc08697a5fa626eb4334e2761d6cbd346a1714becec309172e
 ---
 
 # Fine-grained tool streaming
@@ -34,7 +34,7 @@ Here's an example of how to use fine-grained tool streaming with the API:
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -d '{
-      "model": "claude-opus-4-7",
+      "model": "claude-opus-4-8",
       "max_tokens": 65536,
       "tools": [
         {
@@ -69,7 +69,7 @@ Here's an example of how to use fine-grained tool streaming with the API:
 
   ```bash CLI
   ant messages create --stream --format jsonl <<'YAML' |
-  model: claude-opus-4-7
+  model: claude-opus-4-8
   max_tokens: 65536
   tools:
     - name: make_file
@@ -101,7 +101,7 @@ Here's an example of how to use fine-grained tool streaming with the API:
 
   with client.messages.stream(
       max_tokens=65536,
-      model="claude-opus-4-7",
+      model="claude-opus-4-8",
       tools=[
           {
               "name": "make_file",
@@ -142,7 +142,7 @@ Here's an example of how to use fine-grained tool streaming with the API:
   const anthropic = new Anthropic();
 
   const stream = anthropic.messages.stream({
-    model: "claude-opus-4-7",
+    model: "claude-opus-4-8",
     max_tokens: 65536,
     tools: [
       {
@@ -187,7 +187,7 @@ Here's an example of how to use fine-grained tool streaming with the API:
 
   MessageCreateParams parameters = new()
   {
-      Model = Model.ClaudeOpus4_7,
+      Model = Model.ClaudeOpus4_8,
       MaxTokens = 65536,
       Tools =
       [
@@ -274,7 +274,7 @@ Here's an example of how to use fine-grained tool streaming with the API:
   	}
 
   	stream := client.Messages.NewStreaming(context.Background(), anthropic.MessageNewParams{
-  		Model:     anthropic.ModelClaudeOpus4_7,
+  		Model:     anthropic.ModelClaudeOpus4_8,
   		MaxTokens: 65536,
   		Tools:     []anthropic.ToolUnionParam{{OfTool: &makeFileTool}},
   		Messages: []anthropic.MessageParam{
@@ -334,7 +334,7 @@ Here's an example of how to use fine-grained tool streaming with the API:
           .build();
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_4_7)
+          .model(Model.CLAUDE_OPUS_4_8)
           .maxTokens(65536L)
           .addTool(makeFileTool)
           .addUserMessage("Can you write a long poem and make a file called poem.txt?")
@@ -365,7 +365,7 @@ Here's an example of how to use fine-grained tool streaming with the API:
 
   $stream = $client->messages->createStream(
       maxTokens: 65536,
-      model: Model::CLAUDE_OPUS_4_7,
+      model: Model::CLAUDE_OPUS_4_8,
       tools: [
           [
               'name' => 'make_file',
@@ -416,7 +416,7 @@ Here's an example of how to use fine-grained tool streaming with the API:
   anthropic = Anthropic::Client.new
 
   stream = anthropic.messages.stream(
-    model: Anthropic::Models::Model::CLAUDE_OPUS_4_7,
+    model: Anthropic::Models::Model::CLAUDE_OPUS_4_8,
     max_tokens: 65_536,
     tools: [
       {
@@ -490,7 +490,7 @@ The type mismatch between the initial `input: {}` (object) and `partial_json` (s
   tool_inputs: dict[int, str] = {}  # index -> accumulated JSON string
 
   with client.messages.stream(
-      model="claude-opus-4-7",
+      model="claude-opus-4-8",
       max_tokens=1024,
       tools=[
           {
@@ -525,7 +525,7 @@ The type mismatch between the initial `input: {}` (object) and `partial_json` (s
   const toolInputs = new Map<number, string>();
 
   const stream = anthropic.messages.stream({
-    model: "claude-opus-4-7",
+    model: "claude-opus-4-8",
     max_tokens: 1024,
     tools: [
       {
@@ -567,7 +567,7 @@ The type mismatch between the initial `input: {}` (object) and `partial_json` (s
 
   MessageCreateParams parameters = new()
   {
-      Model = Model.ClaudeOpus4_7,
+      Model = Model.ClaudeOpus4_8,
       MaxTokens = 1024,
       Tools =
       [
@@ -638,7 +638,7 @@ The type mismatch between the initial `input: {}` (object) and `partial_json` (s
   	toolInputs := map[int64]string{} // content block index -> accumulated JSON
 
   	stream := client.Messages.NewStreaming(context.Background(), anthropic.MessageNewParams{
-  		Model:     anthropic.ModelClaudeOpus4_7,
+  		Model:     anthropic.ModelClaudeOpus4_8,
   		MaxTokens: 1024,
   		Tools: []anthropic.ToolUnionParam{{
   			OfTool: &anthropic.ToolParam{
@@ -712,7 +712,7 @@ The type mismatch between the initial `input: {}` (object) and `partial_json` (s
               .build();
 
       MessageCreateParams createParams = MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_4_7)
+              .model(Model.CLAUDE_OPUS_4_8)
               .maxTokens(1024)
               .addTool(weatherTool)
               .addUserMessage("Weather in Paris?")
@@ -766,7 +766,7 @@ The type mismatch between the initial `input: {}` (object) and `partial_json` (s
 
   $stream = $client->messages->createStream(
       maxTokens: 1024,
-      model: Model::CLAUDE_OPUS_4_7,
+      model: Model::CLAUDE_OPUS_4_8,
       tools: [
           [
               'name' => 'get_weather',
@@ -812,7 +812,7 @@ The type mismatch between the initial `input: {}` (object) and `partial_json` (s
   tool_inputs = {} # index -> accumulated JSON string
 
   stream = client.messages.stream_raw(
-    model: Anthropic::Models::Model::CLAUDE_OPUS_4_7,
+    model: Anthropic::Models::Model::CLAUDE_OPUS_4_8,
     max_tokens: 1024,
     tools: [
       {

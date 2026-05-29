@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/mcp
-fetched_at: 2026-05-27T03:17:07.219627Z
-sha256: 3f77e1b53b3a5597d7826d055e27d48d8857d1059d89a4e7041e27053c342a30
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: a3cded050f65ee11346191e627436cb0834cfd42d8c87846cd4d9e284ffd1b69
 ---
 
 > ## Documentation Index
@@ -147,6 +147,8 @@ claude mcp remove github
 # (within Claude Code) Check server status
 /mcp
 ```
+
+Project-scoped servers from `.mcp.json` that are awaiting your approval appear in `claude mcp list` as `⏸ Pending approval`. Run `claude` interactively to review and approve them. `claude mcp get <name>` shows pending servers as `⏸ Pending approval` and rejected servers as `✗ Rejected`.
 
 The `/mcp` panel shows the tool count next to each connected server and flags servers that advertise the tools capability but expose no tools.
 

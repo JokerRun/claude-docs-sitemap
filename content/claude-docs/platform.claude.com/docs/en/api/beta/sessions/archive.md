@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/archive
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 5463734989baaaf0eb051a74d8b7118a91f0ba450572d43ea4724cfdd5bc6539
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 8cbd7d22108f5b85aacae1d5356d6558d8fe26d3c7f5289b001733aed0255296
 ---
 
 ## Archive Session
@@ -23,7 +23,7 @@ Archive Session
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 24 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -74,6 +74,10 @@ Archive Session
     - `"managed-agents-2026-04-01"`
 
     - `"cache-diagnosis-2026-04-07"`
+
+    - `"thinking-token-count-2026-05-13"`
+
+    - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

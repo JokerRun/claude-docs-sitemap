@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/vaults/update
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 5b840a34b77ca0515102c5b858f21d143bac788eab613d0cd21d6c454001e39a
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 9be1a67611b3fb419eb31763d732e15d84cd84e9075389c0296f607dc87dc936
 ---
 
 ## Update Vault
@@ -84,6 +84,10 @@ Update Vault
       - `const AnthropicBetaManagedAgents2026_04_01 AnthropicBeta = "managed-agents-2026-04-01"`
 
       - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
+
+      - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
+
+      - `const AnthropicBetaMidConversationSystem2026_04_07 AnthropicBeta = "mid-conversation-system-2026-04-07"`
 
 ### Returns
 

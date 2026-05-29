@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/sessions/archive
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: a0cde4092c42deb7b3b40ac09f611c6db9fb426ac2dc8994997052b51d204ae1
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: f7cf043351da634f89d8e7d7bb02a54ec4a38562310f2d8a9f15daa833e76425
 ---
 
 ## Archive Session
@@ -76,6 +76,10 @@ Archive Session
       - `const AnthropicBetaManagedAgents2026_04_01 AnthropicBeta = "managed-agents-2026-04-01"`
 
       - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
+
+      - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
+
+      - `const AnthropicBetaMidConversationSystem2026_04_07 AnthropicBeta = "mid-conversation-system-2026-04-07"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/messages/count_tokens
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 8cde6964340325a984fa5b71d19aa62bf4342e63eb58ab3c920c483ae23e7c67
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 427a0d3d58bef99b439862e721fe574b74ede7ac7d8b522be6722c1bbfb08619
 ---
 
 ## Count tokens in a Message
@@ -70,7 +70,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
   There is a limit of 100,000 messages in a single request.
 
-- `--model: "claude-opus-4-7" or "claude-mythos-preview" or "claude-opus-4-6" or 14 more or string`
+- `--model: "claude-opus-4-8" or "claude-opus-4-7" or "claude-mythos-preview" or 15 more or string`
 
   Body param: The model that will complete your prompt.
 

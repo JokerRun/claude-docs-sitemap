@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/usage-cost-api
-fetched_at: 2026-05-12T03:14:46.254373Z
-sha256: dcb782c0ef1fcae21abe05c86ec9c216e103979d0afce4fdd5d550b2de68e074
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 53f9b1f689c419500012259c72fd86e4d808ff5beb5aca1d6d19f5003eb81458
 ---
 
 # Usage and Cost API
@@ -112,7 +112,7 @@ bucket_width=1d" \
 curl "https://api.anthropic.com/v1/organizations/usage_report/messages?\
 starting_at=2025-01-15T00:00:00Z&\
 ending_at=2025-01-15T23:59:59Z&\
-models[]=claude-opus-4-7&\
+models[]=claude-opus-4-8&\
 service_tiers[]=batch&\
 context_window[]=0-200k&\
 bucket_width=1h" \
@@ -173,7 +173,7 @@ bucket_width=1d" \
 Models released before February 2026 (prior to Claude Opus 4.6 and Claude Sonnet 4.6) don't support the `inference_geo` request parameter, so their usage reports return `"not_available"` for this dimension. You can use `not_available` as a filter value in `inference_geos[]` to target those models.
 </Note>
 
-#### Fast mode (beta: research preview)
+#### Fast mode (research preview)
 
 Track [fast mode](/docs/en/build-with-claude/fast-mode) usage by grouping and filtering with the `speed` dimension. This is useful for monitoring standard vs. fast mode usage.
 

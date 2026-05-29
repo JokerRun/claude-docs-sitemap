@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/environments/create
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: e35236b800d8e7dccfd546788edbf20843553e5457e28fc24a94bc9eef776e22
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 24a39453e27403c915daa6f8a6fd8295cb22b2cabb566698edd6723df11bbe9a
 ---
 
 ## Create Environment
@@ -143,7 +143,7 @@ Create a new environment with the specified configuration.
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 24 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -194,6 +194,10 @@ Create a new environment with the specified configuration.
     - `:"managed-agents-2026-04-01"`
 
     - `:"cache-diagnosis-2026-04-07"`
+
+    - `:"thinking-token-count-2026-05-13"`
+
+    - `:"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

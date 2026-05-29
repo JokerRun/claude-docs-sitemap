@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/user_profiles/update
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: d526264f8e262431f3fd3042ac84cce1d85f2001c216cda11afc4546789258be
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: cef8f6c334e199b80b41e7f09de6c80520e8cf5fa024d78ae810a64db52bdd4b
 ---
 
 ## Update User Profile
@@ -47,7 +47,7 @@ Update User Profile
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 22 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 24 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -98,6 +98,10 @@ Update User Profile
       - `"managed-agents-2026-04-01"`
 
       - `"cache-diagnosis-2026-04-07"`
+
+      - `"thinking-token-count-2026-05-13"`
+
+      - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

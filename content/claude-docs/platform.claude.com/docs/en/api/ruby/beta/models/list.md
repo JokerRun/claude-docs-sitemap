@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/models/list
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: ddb60f1eb10721a1e0d153cf5e5c4eb7d087751fd035340ffd870a6dabd33e6c
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 2713a75f38beccff0d1340aa4a5af62b51f88c6c2cb3795e9b304db452092030
 ---
 
 ## List Models
@@ -37,7 +37,7 @@ The Models API response can be used to determine which models are available for 
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 24 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -88,6 +88,10 @@ The Models API response can be used to determine which models are available for 
     - `:"managed-agents-2026-04-01"`
 
     - `:"cache-diagnosis-2026-04-07"`
+
+    - `:"thinking-token-count-2026-05-13"`
+
+    - `:"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

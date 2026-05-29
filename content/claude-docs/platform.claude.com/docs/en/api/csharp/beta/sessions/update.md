@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/sessions/update
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 8668ce6e0c60178f18546c15f3888ce149b6824abd06eb296ccf28d63b9539df
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 19fa476a4fa8a7d3e4e6352a4336a05c307ba386d4c0380ffec2380fbb7ae0c2
 ---
 
 ## Update Session
@@ -90,6 +90,10 @@ Update Session
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
+
+    - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
 
 ### Returns
 

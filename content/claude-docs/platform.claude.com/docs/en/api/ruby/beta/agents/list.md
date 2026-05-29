@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/agents/list
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 58ff5d67e054ef13b9bf7a3decb6a34b6b37adbcd901e028c535a02e104d7b1f
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: a32fbb9e5d084bc4d69dc602aec9b0a34ee0185b890117bc30b7e331d7132075
 ---
 
 ## List Agents
@@ -41,7 +41,7 @@ List Agents
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 24 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -92,6 +92,10 @@ List Agents
     - `:"managed-agents-2026-04-01"`
 
     - `:"cache-diagnosis-2026-04-07"`
+
+    - `:"thinking-token-count-2026-05-13"`
+
+    - `:"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/batch-processing
-fetched_at: 2026-05-14T03:14:07.437614Z
-sha256: 933dc06fea552cbeb97f1339a827eab6c6a0eb94585877efc8d5c7212cbb2041
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 9ad0da89622015e5fbe9d41cc83fac5926f74f754f1e29e6d8984687d6e40932
 ---
 
 # Pemrosesan batch
@@ -80,6 +80,7 @@ Batches API menawarkan penghematan biaya yang signifikan. Semua penggunaan diken
 
 | Model             | Batch input      | Batch output    |
 |-------------------|------------------|-----------------|
+| <NextOpus />          | $2.50 / MTok     | $12.50 / MTok   |
 | Claude Opus 4.7       | $2.50 / MTok     | $12.50 / MTok   |
 | Claude Opus 4.6       | $2.50 / MTok     | $12.50 / MTok   |
 | Claude Opus 4.5     | $2.50 / MTok     | $12.50 / MTok   |

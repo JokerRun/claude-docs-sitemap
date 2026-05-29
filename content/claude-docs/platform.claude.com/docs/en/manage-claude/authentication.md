@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/authentication
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: f0df9916760011b539b25f0e26f6b976e1eec8ded2825ab775f6fe8033eccc5c
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 7d00594adc3a7edfea22a29a1f3306f3e78c4da96974446632c57f184cf37098
 ---
 
 # Authentication
@@ -44,7 +44,7 @@ curl https://api.anthropic.com/v1/messages \
   -H "anthropic-version: 2023-06-01" \
   -H "content-type: application/json" \
   -d '{
-    "model": "claude-opus-4-7",
+    "model": "claude-opus-4-8",
     "max_tokens": 1024,
     "messages": [{"role": "user", "content": "Hello, Claude"}]
   }'

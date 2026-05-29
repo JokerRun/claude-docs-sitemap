@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/environments/archive
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 79bc921ac7be333b58f648a03c2f7cdd614f3c2e2b466e9b5ff1da8e0206d23b
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: d72f1b02a44bfbe3cf893a63954f79c6509f90141ebe5b700d8d340791b6c3eb
 ---
 
 ## Archive Environment
@@ -72,6 +72,10 @@ Archive an environment by ID. Archived environments cannot be used to create new
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
+
+    - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
+
+    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
 ### Returns
 

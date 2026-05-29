@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/skills/versions/delete
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 7a4e1c9f3514d2180e7c486c21018b5ad15ae87f4c0c98b60ca9a9a3bece118f
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 6036fe64d82b26ec472f79f8cb474141252b9245fa67c34726d04da3d9096992
 ---
 
 ## Delete Skill Version
@@ -35,7 +35,7 @@ Delete Skill Version
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 22 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 24 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -86,6 +86,10 @@ Delete Skill Version
       - `"managed-agents-2026-04-01"`
 
       - `"cache-diagnosis-2026-04-07"`
+
+      - `"thinking-token-count-2026-05-13"`
+
+      - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

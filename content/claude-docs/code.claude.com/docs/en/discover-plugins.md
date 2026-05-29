@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/discover-plugins
-fetched_at: 2026-05-27T03:17:07.219627Z
-sha256: 515dec721f92d32d0e75ded5d3cad8d764f7357bebef0a5c7aee148b7abee532
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: b31ebf5d11f8245000b34a2f5bc4aaa4ae8967e9a135c0588153afe9b75a2188
 ---
 
 > ## Documentation Index
@@ -156,7 +156,7 @@ Anthropic also maintains a [demo plugins marketplace](https://github.com/anthrop
     * **Marketplaces**: add, remove, or update your added marketplaces
     * **Errors**: view any plugin loading errors
 
-    Go to the **Discover** tab to see plugins from the marketplace you just added.
+    Go to the **Discover** tab to see plugins from the marketplace you just added. {/* min-version: 2.1.154 */}Plugins marked as relevant to your current working directory are pinned at the top with a **suggested for this directory** label.
   </Step>
 
   <Step title="Install a plugin">

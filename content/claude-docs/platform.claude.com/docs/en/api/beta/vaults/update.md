@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/update
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 86883abc4a056afb6ed0e61d9e91c33de84a4d9c0015fc254bee4471c6653614
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 781811bc9c417f9c7e8a18280d07a0cca3bee5b5ddccd135f40147fbd639fb5b
 ---
 
 ## Update Vault
@@ -23,7 +23,7 @@ Update Vault
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 24 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -74,6 +74,10 @@ Update Vault
     - `"managed-agents-2026-04-01"`
 
     - `"cache-diagnosis-2026-04-07"`
+
+    - `"thinking-token-count-2026-05-13"`
+
+    - `"mid-conversation-system-2026-04-07"`
 
 ### Body Parameters
 

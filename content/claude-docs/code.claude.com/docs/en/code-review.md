@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/code-review
-fetched_at: 2026-05-28T03:18:36.130288Z
-sha256: 065051f97bf2850fa7f16144f3e68444b112bdc3c6be79814b699ea81d114834
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: e4e2704375f0525d574bcbba75e640159f260576cd290522428102e723b17d33
 ---
 
 > ## Documentation Index
@@ -290,7 +290,7 @@ Lower [effort levels](/en/model-config#adjust-effort-level) return fewer, higher
 
 `/code-review ultra --fix` runs the deeper [ultrareview](/en/ultrareview) in the cloud, then applies its findings to your working tree when they arrive back in your session.
 
-The command was named `/simplify` before v2.1.147, when it applied fixes by default. `/simplify` still works and is equivalent to `/code-review --fix`.
+The command was named `/simplify` before v2.1.147, when it applied fixes by default. {/* min-version: 2.1.154 */}From v2.1.154, `/simplify` runs a separate cleanup-only review that applies fixes without hunting for bugs. If you scripted `/simplify` for bug-finding, switch to `/code-review --fix`, which is unchanged.
 
 ## Related resources
 

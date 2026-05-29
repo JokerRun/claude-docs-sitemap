@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/memory_stores/delete
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 7b12f02a65a0e8b9686c49bdc292f89873d626fe7e87d675025ccb97efd18f2d
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 54fd948292eb6579510baca16997ac853e9a77fcc4e83a86670df651e8efd0c8
 ---
 
 ## Delete a memory store
@@ -23,7 +23,7 @@ Delete a memory store
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 22 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 24 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -74,6 +74,10 @@ Delete a memory store
     - `"managed-agents-2026-04-01"`
 
     - `"cache-diagnosis-2026-04-07"`
+
+    - `"thinking-token-count-2026-05-13"`
+
+    - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

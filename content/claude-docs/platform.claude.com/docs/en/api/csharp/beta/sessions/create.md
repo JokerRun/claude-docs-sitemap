@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/sessions/create
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 2fe55b667ff0891147e715de19dad4093a39b5788bcaf2306dc4913814383369
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: deadd225f5dfacd211517d787fb8b061082901bbdf50435ac9bc1253c824d00d
 ---
 
 ## Create Session
@@ -196,6 +196,10 @@ Create Session
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
+
+    - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
 
 ### Returns
 

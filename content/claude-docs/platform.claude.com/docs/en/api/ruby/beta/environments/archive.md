@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/environments/archive
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 3b30742801bf37cae71837f5183f00b17a98bd267ead64f7b2c54b8768b3ccdf
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 98ac9ce79442ad45c687165675c4454a1cfee9d5a06f4debfd88ca3053a77bf2
 ---
 
 ## Archive Environment
@@ -23,7 +23,7 @@ Archive an environment by ID. Archived environments cannot be used to create new
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 24 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -74,6 +74,10 @@ Archive an environment by ID. Archived environments cannot be used to create new
     - `:"managed-agents-2026-04-01"`
 
     - `:"cache-diagnosis-2026-04-07"`
+
+    - `:"thinking-token-count-2026-05-13"`
+
+    - `:"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

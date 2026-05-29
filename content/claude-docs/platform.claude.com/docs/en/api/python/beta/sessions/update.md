@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/sessions/update
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: cccfaeb645886349233ef52798c6d8e7e5d2bf2da16cbb57d3c773a266190f63
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 47bd9ccfd81a1e2043ca1c6dea8b71a4c0cccc30fce0e464d5642f432c47bd5e
 ---
 
 ## Update Session
@@ -225,7 +225,7 @@ Update Session
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 22 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 24 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -276,6 +276,10 @@ Update Session
     - `"managed-agents-2026-04-01"`
 
     - `"cache-diagnosis-2026-04-07"`
+
+    - `"thinking-token-count-2026-05-13"`
+
+    - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/memory_stores/update
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: e48aa58d59709ac1a90d9e05a4ad84954fd6696b1777ed7f3de3e9353cc35731
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: d2e06f28094c139d6fff8de15c7166ae46ccbf2457874933b1bb8bd65b6b2d68
 ---
 
 ## Update a memory store
@@ -37,7 +37,7 @@ Update a memory store
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 22 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 24 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -88,6 +88,10 @@ Update a memory store
       - `"managed-agents-2026-04-01"`
 
       - `"cache-diagnosis-2026-04-07"`
+
+      - `"thinking-token-count-2026-05-13"`
+
+      - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

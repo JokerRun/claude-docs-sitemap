@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/glossary
-fetched_at: 2026-05-22T03:16:37.965758Z
-sha256: 5b418e0251321283757266ce8d74d3c6648b2ffa614a740d0a13b490321d6e49
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: b3f394765f4d5f7d090cfc98ff1fb17cab77eea99cec5b0412d841a092a9ebef
 ---
 
 > ## Documentation Index
@@ -125,7 +125,7 @@ Learn more: [Sessions from Dispatch](/en/desktop#sessions-from-dispatch)
 
 ### Effort level
 
-A setting that controls how much of the adaptive-reasoning thinking budget Claude uses on each turn. Higher effort means more thinking tokens and deeper reasoning; lower effort is faster and cheaper. Effort is supported on Opus 4.7, Opus 4.6, and Sonnet 4.6.
+A setting that controls how much of the adaptive-reasoning thinking budget Claude uses on each turn. Higher effort means more thinking tokens and deeper reasoning; lower effort is faster and cheaper. Effort is supported on Opus 4.6 and later, and on Sonnet 4.6.
 
 Learn more: [Adjust effort level](/en/model-config#adjust-effort-level)
 
@@ -298,6 +298,14 @@ Learn more: [Tools available to Claude](/en/tools-reference)
 One complete response from Claude within a [session](#session). A turn begins when you send a message and ends when Claude finishes responding, with any number of [tool](#tool) calls in between. [Stop hooks](#hook) fire at the end of each turn. A session consists of many turns, and the [agentic loop](#agentic-loop) describes what happens inside one.
 
 Learn more: [How Claude Code works](/en/how-claude-code-works#the-agentic-loop)
+
+## V
+
+### Verification loop
+
+How a session knows the work is actually done rather than just plausible. You give Claude a check it can run, such as a test suite, a build, or a screenshot comparison, and Claude iterates until the check passes instead of stopping after one attempt. A verification loop is the prerequisite for [`/goal`](/en/goal), unattended runs, and [dynamic workflows](/en/workflows): without one, the only thing deciding the agent is finished is the agent itself.
+
+Learn more: [Give Claude a way to verify its work](/en/best-practices#give-claude-a-way-to-verify-its-work)
 
 ## W
 

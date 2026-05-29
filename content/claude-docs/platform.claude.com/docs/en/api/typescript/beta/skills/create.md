@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/skills/create
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 46dcf30873c63f9450814efc6ba6bad2f1cc90337a5d78c723200d3234ec7b50
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: c2c9ef4858d29071e3d06a0bd56a60ede73fe63024d285457bb91f580e9fa1bb
 ---
 
 ## Create Skill
@@ -35,7 +35,7 @@ Create Skill
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 22 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 24 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -86,6 +86,10 @@ Create Skill
       - `"managed-agents-2026-04-01"`
 
       - `"cache-diagnosis-2026-04-07"`
+
+      - `"thinking-token-count-2026-05-13"`
+
+      - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/events/list
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 91bc8e646a2e434a79d744ef46c70f6cd475c1365a9aab2af3a4db7b954703b5
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 3c70a90f0d1dd2a595c3f0c67ca0082f813a3c0ded8508498937f4ec47c384ec
 ---
 
 ## List Events
@@ -108,6 +108,10 @@ List Events
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
+
+    - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
+
+    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
 ### Returns
 

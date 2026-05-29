@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/server-tools
-fetched_at: 2026-05-28T03:18:36.130288Z
-sha256: caf6665af11d99f45e1c64e7ca76e8e7e6cb63c311e888ddb4e809251ebe5ea0
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 053f3c4f062481d33f6511f8e48cac01b6773e0e9ff88d932a7cd9a7e798c317
 ---
 
 # Server tools
@@ -42,7 +42,7 @@ client = anthropic.Anthropic()
 
 # Initial request with web search
 response = client.messages.create(
-    model="claude-opus-4-7",
+    model="claude-opus-4-8",
     max_tokens=1024,
     messages=[
         {
@@ -66,7 +66,7 @@ if response.stop_reason == "pause_turn":
 
     # Send the continuation request
     continuation = client.messages.create(
-        model="claude-opus-4-7",
+        model="claude-opus-4-8",
         max_tokens=1024,
         messages=messages,
         tools=[{"type": "web_search_20250305", "name": "web_search", "max_uses": 10}],
@@ -85,7 +85,7 @@ const client = new Anthropic();
 async function main() {
   // Initial request with web search
   const response = await client.messages.create({
-    model: "claude-opus-4-7",
+    model: "claude-opus-4-8",
     max_tokens: 1024,
     messages: [
       {
@@ -117,7 +117,7 @@ async function main() {
 
     // Send the continuation request
     const continuation = await client.messages.create({
-      model: "claude-opus-4-7",
+      model: "claude-opus-4-8",
       max_tokens: 1024,
       messages: messages,
       tools: [
@@ -153,7 +153,7 @@ class Program
 
         var parameters = new MessageCreateParams
         {
-            Model = "claude-opus-4-7",
+            Model = "claude-opus-4-8",
             MaxTokens = 1024,
             Messages = [
                 new() {
@@ -170,7 +170,7 @@ class Program
         {
             var continuationParams = new MessageCreateParams
             {
-                Model = "claude-opus-4-7",
+                Model = "claude-opus-4-8",
                 MaxTokens = 1024,
                 Messages = [
                     new() {
@@ -217,7 +217,7 @@ func main() {
 	}
 
 	response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-		Model:     anthropic.ModelClaudeOpus4_7,
+		Model:     anthropic.ModelClaudeOpus4_8,
 		MaxTokens: 1024,
 		Messages: []anthropic.MessageParam{
 			anthropic.NewUserMessage(anthropic.NewTextBlock("Search for comprehensive information about quantum computing breakthroughs in 2025")),
@@ -236,7 +236,7 @@ func main() {
 		}
 
 		continuation, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-			Model:     anthropic.ModelClaudeOpus4_7,
+			Model:     anthropic.ModelClaudeOpus4_8,
 			MaxTokens: 1024,
 			Messages: []anthropic.MessageParam{
 				anthropic.NewUserMessage(anthropic.NewTextBlock("Search for comprehensive information about quantum computing breakthroughs in 2025")),
@@ -266,7 +266,7 @@ void main() {
     AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
     MessageCreateParams params = MessageCreateParams.builder()
-        .model("claude-opus-4-7")
+        .model("claude-opus-4-8")
         .maxTokens(1024L)
         .addUserMessage("Search for comprehensive information about quantum computing breakthroughs in 2025")
         .addTool(WebSearchTool20250305.builder()
@@ -279,7 +279,7 @@ void main() {
     if (response.stopReason().isPresent()
             && response.stopReason().get().equals(StopReason.PAUSE_TURN)) {
         MessageCreateParams continuationParams = MessageCreateParams.builder()
-            .model("claude-opus-4-7")
+            .model("claude-opus-4-8")
             .maxTokens(1024L)
             .addUserMessage("Search for comprehensive information about quantum computing breakthroughs in 2025")
             .addMessage(response)
@@ -311,7 +311,7 @@ $response = $client->messages->create(
             'content' => 'Search for comprehensive information about quantum computing breakthroughs in 2025'
         ]
     ],
-    model: 'claude-opus-4-7',
+    model: 'claude-opus-4-8',
     tools: [
         [
             'type' => 'web_search_20250305',
@@ -336,7 +336,7 @@ if ($response->stopReason === 'pause_turn') {
     $continuation = $client->messages->create(
         maxTokens: 1024,
         messages: $messages,
-        model: 'claude-opus-4-7',
+        model: 'claude-opus-4-8',
         tools: [
             [
                 'type' => 'web_search_20250305',
@@ -358,7 +358,7 @@ require "anthropic"
 client = Anthropic::Client.new
 
 response = client.messages.create(
-  model: "claude-opus-4-7",
+  model: "claude-opus-4-8",
   max_tokens: 1024,
   messages: [
     {
@@ -389,7 +389,7 @@ if response.stop_reason == :pause_turn
   ]
 
   continuation = client.messages.create(
-    model: "claude-opus-4-7",
+    model: "claude-opus-4-8",
     max_tokens: 1024,
     messages: messages,
     tools: [

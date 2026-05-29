@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/messages/count_tokens
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 4ee04a180d6e25e2d0fb85dbed33947f00e79258c807633cf18058cf18031478
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 229e7063b3de988796b405dc7f627e1c876a5fd253346989ac445ee07dddb399
 ---
 
 ## Count tokens in a Message
@@ -591,6 +591,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
               - `"url_not_allowed"`
 
+              - `"url_not_in_prior_context"`
+
               - `"url_not_accessible"`
 
               - `"unsupported_content_type"`
@@ -677,6 +679,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
               - `"advisor_result"`
 
+            - `stop_reason: Optional[str]`
+
           - `class BetaAdvisorRedactedResultBlockParam: …`
 
             - `encrypted_content: str`
@@ -686,6 +690,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
             - `type: Literal["advisor_redacted_result"]`
 
               - `"advisor_redacted_result"`
+
+            - `stop_reason: Optional[str]`
 
         - `tool_use_id: str`
 
@@ -1022,10 +1028,6 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         When content is None, the block represents a failed compaction. The server
         treats these as no-ops. Empty string content is not allowed.
 
-        - `content: Optional[str]`
-
-          Summary of previously compacted content, or null if compaction failed
-
         - `type: Literal["compaction"]`
 
           - `"compaction"`
@@ -1034,15 +1036,50 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
           Create a cache control breakpoint at this content block.
 
+        - `content: Optional[str]`
+
+          Summary of previously compacted content, or null if compaction failed
+
         - `encrypted_content: Optional[str]`
 
           Opaque metadata from prior compaction, to be round-tripped verbatim
 
-  - `role: Literal["user", "assistant"]`
+      - `class BetaMidConversationSystemBlockParam: …`
+
+        System instructions that appear mid-conversation.
+
+        Use this block to provide or update system-level instructions at a specific
+        point in the conversation, rather than only via the top-level `system` parameter.
+
+        - `content: List[BetaTextBlockParam]`
+
+          System instruction text blocks.
+
+          - `text: str`
+
+          - `type: Literal["text"]`
+
+          - `cache_control: Optional[BetaCacheControlEphemeral]`
+
+            Create a cache control breakpoint at this content block.
+
+          - `citations: Optional[List[BetaTextCitationParam]]`
+
+        - `type: Literal["mid_conv_system"]`
+
+          - `"mid_conv_system"`
+
+        - `cache_control: Optional[BetaCacheControlEphemeral]`
+
+          Create a cache control breakpoint at this content block.
+
+  - `role: Literal["user", "assistant", "system"]`
 
     - `"user"`
 
     - `"assistant"`
+
+    - `"system"`
 
 - `model: ModelParam`
 
@@ -1050,12 +1087,13 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-  - `Literal["claude-opus-4-7", "claude-mythos-preview", "claude-opus-4-6", 14 more]`
+  - `Literal["claude-opus-4-8", "claude-opus-4-7", "claude-mythos-preview", 15 more]`
 
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+    - `claude-opus-4-8` - Frontier intelligence for long-running agents and coding
     - `claude-opus-4-7` - Frontier intelligence for long-running agents and coding
     - `claude-mythos-preview` - New class of intelligence, strongest in coding and cybersecurity
     - `claude-opus-4-6` - Frontier intelligence for long-running agents and coding
@@ -1073,6 +1111,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
     - `claude-sonnet-4-0` - Deprecated: Will reach end-of-life on June 15th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
     - `claude-sonnet-4-20250514` - Deprecated: Will reach end-of-life on June 15th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
     - `claude-3-haiku-20240307` - Deprecated: Will reach end-of-life on April 20th, 2026. Please migrate to claude-haiku-4-5. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+
+    - `"claude-opus-4-8"`
+
+      Frontier intelligence for long-running agents and coding
 
     - `"claude-opus-4-7"`
 
@@ -2553,7 +2595,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 22 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 24 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -2604,6 +2646,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
     - `"managed-agents-2026-04-01"`
 
     - `"cache-diagnosis-2026-04-07"`
+
+    - `"thinking-token-count-2026-05-13"`
+
+    - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

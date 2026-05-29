@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/data-residency
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 716105e7d38fc74e598cdff016cff490a50a7446735e327b77f53086a0abc4a3
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 6bd0531e2308d94a99a0580fc9729fa1af32448dc4c45cabec51b08aa938dafd
 ---
 
 # Data residency
@@ -42,7 +42,7 @@ curl https://api.anthropic.com/v1/messages \
     --header "anthropic-version: 2023-06-01" \
     --header "content-type: application/json" \
     --data '{
-        "model": "claude-opus-4-7",
+        "model": "claude-opus-4-8",
         "max_tokens": 1024,
         "inference_geo": "us",
         "messages": [{
@@ -54,7 +54,7 @@ curl https://api.anthropic.com/v1/messages \
 
 ```bash CLI
 ant messages create \
-  --model claude-opus-4-7 \
+  --model claude-opus-4-8 \
   --max-tokens 1024 \
   --inference-geo us \
   --message '{role: user, content: "Summarize the key points of this document."}' \
@@ -67,7 +67,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 response = client.messages.create(
-    model="claude-opus-4-7",
+    model="claude-opus-4-8",
     max_tokens=1024,
     inference_geo="us",
     messages=[
@@ -86,7 +86,7 @@ import Anthropic from "@anthropic-ai/sdk";
 const client = new Anthropic();
 
 const response = await client.messages.create({
-  model: "claude-opus-4-7",
+  model: "claude-opus-4-8",
   max_tokens: 1024,
   inference_geo: "us",
   messages: [

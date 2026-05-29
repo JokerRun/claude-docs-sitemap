@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/files/upload
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: b81e3f40b808dca413657d0f66f735614d168e350865a5d03c47c4b89e8379e1
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 5034986ae5d768f529afa79d663b7dcea1dd2455a39ab255d4dd962b66d77ab3
 ---
 
 ## Upload File
@@ -25,7 +25,7 @@ Upload File
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 24 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -76,6 +76,10 @@ Upload File
     - `:"managed-agents-2026-04-01"`
 
     - `:"cache-diagnosis-2026-04-07"`
+
+    - `:"thinking-token-count-2026-05-13"`
+
+    - `:"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

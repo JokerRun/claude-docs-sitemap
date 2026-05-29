@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/memory_stores/memories/update
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 6c818830ad786a59b50e830c0f70173a8566d27811dfe8d5b5f9440a41846589
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 9ba9babd495b5862eac3dc2e7fb1d905db296bb5129bdd278e4ceb17ee51e6a3
 ---
 
 ## Update a memory
@@ -94,6 +94,10 @@ Update a memory
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
+
+    - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
 
 ### Returns
 

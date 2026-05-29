@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/voice-dictation
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 7be812e14d93464f4633c34c75f42d3c1c2f4d5836d347bdfdf6710fa9018a91
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: b9323bbf5e8bbf3e496a77e6cfd135400563bd51f954224ae7efecaefe2d5163
 ---
 
 > ## Documentation Index
@@ -21,7 +21,7 @@ Speak your prompts instead of typing them in the Claude Code CLI. Your speech is
 
 ## Requirements
 
-Voice dictation streams your recorded audio to Anthropic's servers for transcription. Audio is not processed locally. The speech-to-text service is only available when you authenticate with a Claude.ai account, and is not available when Claude Code is configured to use an Anthropic API key directly, Amazon Bedrock, Google Vertex AI, or Microsoft Foundry. Transcription does not consume Claude messages or tokens and does not count toward the limits shown in `/usage`. See [data usage](/en/data-usage) for how Anthropic handles your data.
+Voice dictation streams your recorded audio to Anthropic's servers for transcription. Audio is not processed locally. The speech-to-text service is only available when you authenticate with a Claude.ai account, and is not available when Claude Code is configured to use an Anthropic API key directly, Amazon Bedrock, Google Vertex AI, or Microsoft Foundry. Voice dictation is also not available when your organization has HIPAA compliance enabled. Transcription does not consume Claude messages or tokens and does not count toward the limits shown in `/usage`. See [data usage](/en/data-usage) for how Anthropic handles your data.
 
 Voice dictation also needs local microphone access, so it does not work in remote environments such as [Claude Code on the web](/en/claude-code-on-the-web) or SSH sessions. In WSL, voice dictation requires WSLg for audio access. WSLg is included with WSL2 when installed from the Microsoft Store on Windows 10 or 11. If WSLg is not available, for example on WSL1, run Claude Code in native Windows instead.
 

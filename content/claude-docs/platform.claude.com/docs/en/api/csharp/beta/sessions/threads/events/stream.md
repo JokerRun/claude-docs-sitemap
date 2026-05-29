@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/sessions/threads/events/stream
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 259dcaf1cba4c645bed31541cb79ca44b137b479c239c02e13e08a15e9f53d61
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 7d3e5b5c4fd77fc595bfdc8193cf69db8d7c8b37fd6ade3a5c0b8f414de00d7c
 ---
 
 ## Stream Session Thread Events
@@ -78,6 +78,10 @@ Stream Session Thread Events
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
+
+    - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
 
 ### Returns
 

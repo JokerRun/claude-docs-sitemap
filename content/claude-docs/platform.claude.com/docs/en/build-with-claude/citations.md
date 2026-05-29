@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/citations
-fetched_at: 2026-04-17T03:11:44.711743Z
-sha256: a7ca911a586726d08b1ff9c33f0338aecc04c68ebdc56c0671a6aa2aaf33957f
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 41f25f1401e65894126cab0cf9a1ff085ca3631711ebc0931cbfcb086bb6ff46
 ---
 
 # Citations
@@ -31,7 +31,7 @@ curl https://api.anthropic.com/v1/messages \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
   -d '{
-    "model": "claude-opus-4-7",
+    "model": "claude-opus-4-8",
     "max_tokens": 1024,
     "messages": [
       {
@@ -60,7 +60,7 @@ curl https://api.anthropic.com/v1/messages \
 
 ```bash CLI
 ant messages create <<'YAML'
-model: claude-opus-4-7
+model: claude-opus-4-8
 max_tokens: 1024
 messages:
   - role: user
@@ -85,7 +85,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 response = client.messages.create(
-    model="claude-opus-4-7",
+    model="claude-opus-4-8",
     max_tokens=1024,
     messages=[
         {
@@ -137,7 +137,7 @@ public class DocumentExample {
       .build();
 
     MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_OPUS_4_7)
+      .model(Model.CLAUDE_OPUS_4_8)
       .maxTokens(1024)
       .addUserMessageOfBlockParams(
         List.of(
@@ -241,7 +241,7 @@ curl https://api.anthropic.com/v1/messages \
      --header "anthropic-version: 2023-06-01" \
      --header "content-type: application/json" \
      --data '{
-    "model": "claude-opus-4-7",
+    "model": "claude-opus-4-8",
     "max_tokens": 1024,
     "messages": [
         {
@@ -269,7 +269,7 @@ curl https://api.anthropic.com/v1/messages \
 
 ```bash CLI
 ant messages create \
-  --model claude-opus-4-7 \
+  --model claude-opus-4-8 \
   --max-tokens 1024 <<'YAML'
 messages:
   - role: user
@@ -299,7 +299,7 @@ long_document = (
 )  # Minimum cacheable length
 
 response = client.messages.create(
-    model="claude-opus-4-7",
+    model="claude-opus-4-8",
     max_tokens=1024,
     messages=[
         {
@@ -338,7 +338,7 @@ const longDocument =
   "This is a very long document with thousands of words..." + " ... ".repeat(1000); // Minimum cacheable length
 
 const response = await client.messages.create({
-  model: "claude-opus-4-7",
+  model: "claude-opus-4-8",
   max_tokens: 1024,
   messages: [
     {

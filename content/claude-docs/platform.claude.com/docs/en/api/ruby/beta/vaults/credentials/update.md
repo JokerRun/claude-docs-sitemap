@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/vaults/credentials/update
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 0dc35c3fa670c4310c1a6919468bd4384c2fc05079897e8f514b954198233d78
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 4530a9e09807925b847b6ccd0e6d23e636c5424ccedef880ea268426d44ef0b9
 ---
 
 ## Update Credential
@@ -105,7 +105,7 @@ Update Credential
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 24 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -156,6 +156,10 @@ Update Credential
     - `:"managed-agents-2026-04-01"`
 
     - `:"cache-diagnosis-2026-04-07"`
+
+    - `:"thinking-token-count-2026-05-13"`
+
+    - `:"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

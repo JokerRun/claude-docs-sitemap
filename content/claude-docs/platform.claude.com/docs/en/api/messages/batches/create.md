@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/batches/create
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: ed61cc261fb5ad72a485c14c42aa094641196a6b15430f76c12c14c7e84c1969
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: af616edb028e10ae50cb6652e6f047bcf3644d9c8ad25925a860e0e13a888a85
 ---
 
 ## Create a Message Batch
@@ -597,6 +597,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `"url_not_allowed"`
 
+                  - `"url_not_in_prior_context"`
+
                   - `"url_not_accessible"`
 
                   - `"unsupported_content_type"`
@@ -916,11 +918,42 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
               Create a cache control breakpoint at this content block.
 
-      - `role: "user" or "assistant"`
+          - `MidConversationSystemBlockParam object { content, type, cache_control }`
+
+            System instructions that appear mid-conversation.
+
+            Use this block to provide or update system-level instructions at a specific
+            point in the conversation, rather than only via the top-level `system` parameter.
+
+            - `content: array of TextBlockParam`
+
+              System instruction text blocks.
+
+              - `text: string`
+
+              - `type: "text"`
+
+              - `cache_control: optional CacheControlEphemeral`
+
+                Create a cache control breakpoint at this content block.
+
+              - `citations: optional array of TextCitationParam`
+
+            - `type: "mid_conv_system"`
+
+              - `"mid_conv_system"`
+
+            - `cache_control: optional CacheControlEphemeral`
+
+              Create a cache control breakpoint at this content block.
+
+      - `role: "user" or "assistant" or "system"`
 
         - `"user"`
 
         - `"assistant"`
+
+        - `"system"`
 
     - `model: Model`
 
@@ -928,11 +961,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `"claude-opus-4-7" or "claude-mythos-preview" or "claude-opus-4-6" or 14 more`
+      - `"claude-opus-4-8" or "claude-opus-4-7" or "claude-mythos-preview" or 15 more`
 
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-opus-4-8"`
+
+          Frontier intelligence for long-running agents and coding
 
         - `"claude-opus-4-7"`
 

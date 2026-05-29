@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/vaults/credentials/delete
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: adf2283940dbe38bc1f012326b4cca6188a5208a6360bda5c3474c170ade1d2e
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 55dad1dfe70023542c2bbad604558f5894bc4ae61705bfd5c50d2ba1c68c5ba2
 ---
 
 ## Delete Credential
@@ -29,7 +29,7 @@ Delete Credential
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 22 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 24 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -80,6 +80,10 @@ Delete Credential
       - `"managed-agents-2026-04-01"`
 
       - `"cache-diagnosis-2026-04-07"`
+
+      - `"thinking-token-count-2026-05-13"`
+
+      - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/environments/work/update
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 5a68d22d5e2afd9c4d38806f51a3a9fc11c34813ef3eb285098b0f91bc74cd0e
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 3f9e6731707a2c3d9511abeb31c45a30fcd72e4e3fb17b64e281c2eff8d7359c
 ---
 
 ## Update Work Item
@@ -35,7 +35,7 @@ Update work item metadata with merge semantics.
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 22 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 24 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -86,6 +86,10 @@ Update work item metadata with merge semantics.
       - `"managed-agents-2026-04-01"`
 
       - `"cache-diagnosis-2026-04-07"`
+
+      - `"thinking-token-count-2026-05-13"`
+
+      - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

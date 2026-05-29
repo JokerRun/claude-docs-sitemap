@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/skills/create
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: f98fe0076c25d2e5a479f647021c4d1f9dabd43cbcbfe59846a33d3670b280cd
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: d08e56aba7355a85d1172e704154241aae26e216cae3d27ca2ccc8f7e699e1c4
 ---
 
 ## Create Skill
@@ -33,7 +33,7 @@ Create Skill
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 22 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 24 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -84,6 +84,10 @@ Create Skill
     - `"managed-agents-2026-04-01"`
 
     - `"cache-diagnosis-2026-04-07"`
+
+    - `"thinking-token-count-2026-05-13"`
+
+    - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

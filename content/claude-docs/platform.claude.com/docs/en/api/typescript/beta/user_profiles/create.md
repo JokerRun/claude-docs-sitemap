@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/user_profiles/create
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 26d11225725fc52484649f180a1303acd95a72df6f46791a2293184fa3b25fe3
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 7bcc3a4f874c793c75278f3c384373bb0486ab417e6fb671e0b9ea02c3951926
 ---
 
 ## Create User Profile
@@ -45,7 +45,7 @@ Create User Profile
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 22 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 24 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -96,6 +96,10 @@ Create User Profile
       - `"managed-agents-2026-04-01"`
 
       - `"cache-diagnosis-2026-04-07"`
+
+      - `"thinking-token-count-2026-05-13"`
+
+      - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/update
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 565508e012128543c33300148ce95880744ef375967877bc033c5a08fc038b05
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 4fb3fa1387139fed0663f30214145a79b1e22eb2bc09155e3e98f09da17b31be
 ---
 
 ## Update Agent
@@ -23,7 +23,7 @@ Update Agent
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 24 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -74,6 +74,10 @@ Update Agent
     - `"managed-agents-2026-04-01"`
 
     - `"cache-diagnosis-2026-04-07"`
+
+    - `"thinking-token-count-2026-05-13"`
+
+    - `"mid-conversation-system-2026-04-07"`
 
 ### Body Parameters
 

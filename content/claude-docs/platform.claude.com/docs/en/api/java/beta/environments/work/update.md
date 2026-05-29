@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/environments/work/update
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: a444342de313e0b541b3668110724157d052e721efec027f217c4dfe90c5f4bc
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: d64d0a25eff77d27479863cbdfce0119d453710b05e2b76ebb3d8038e6252599
 ---
 
 ## Update Work Item
@@ -76,6 +76,10 @@ Update work item metadata with merge semantics.
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
+
+    - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
+
+    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
   - `BetaSelfHostedWorkUpdateRequest betaSelfHostedWorkUpdateRequest`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/credentials/mcp_oauth_validate
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 5973a5e7932bcd79e91a9c0e95e870364047c2453b10aade5addb44c88e0415f
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 85f1740b4d53062b36ae139c9e79683c34b0953eb7c97d6e56ae3b5627461d3c
 ---
 
 ## Validate Credential
@@ -74,6 +74,10 @@ Validate Credential
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
+
+    - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
+
+    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
 ### Returns
 

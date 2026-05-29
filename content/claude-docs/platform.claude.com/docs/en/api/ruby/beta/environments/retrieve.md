@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/environments/retrieve
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: d16759de3d335e5c2e6771cd1d04d28aa78f83c3eb455f27f3fce2111995e72a
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 7f0394d7ed74c7f07d4ebcb3c8292dd5647b678a76317100b60ba6c93d08e197
 ---
 
 ## Get Environment
@@ -23,7 +23,7 @@ Retrieve a specific environment by ID.
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 24 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -74,6 +74,10 @@ Retrieve a specific environment by ID.
     - `:"managed-agents-2026-04-01"`
 
     - `:"cache-diagnosis-2026-04-07"`
+
+    - `:"thinking-token-count-2026-05-13"`
+
+    - `:"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

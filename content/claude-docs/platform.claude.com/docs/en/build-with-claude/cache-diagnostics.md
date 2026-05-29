@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 3dfb4c259299e24cbaecb6aadf57d4b06f1ef29d1c09e1c5a31412b73d3cc8a5
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: bd7960755740012eb7a5ad5b4d7baaeda5b611d2f2b0502ca2c3d9ad61fbd1ef
 ---
 
 # Cache diagnostics
@@ -46,7 +46,7 @@ response=$(curl -sS --fail-with-body https://api.anthropic.com/v1/messages \
   --header "anthropic-beta: cache-diagnosis-2026-04-07" \
   --header "content-type: application/json" \
   --data '{
-    "model": "claude-opus-4-7",
+    "model": "claude-opus-4-8",
     "max_tokens": 1024,
     "cache_control": {"type": "ephemeral"},
     "system": "You are an AI assistant analyzing a large document. <document>...</document>",
@@ -64,7 +64,7 @@ curl -sS --fail-with-body https://api.anthropic.com/v1/messages \
   --header "content-type: application/json" \
   --data @- <<EOF | jq '{id, diagnostics}'  # diagnostics: null means no divergence was found
 {
-  "model": "claude-opus-4-7",
+  "model": "claude-opus-4-8",
   "max_tokens": 1024,
   "cache_control": {"type": "ephemeral"},
   "system": "You are an AI assistant analyzing a large document. <document>...</document>",
@@ -83,7 +83,7 @@ EOF
 turn1=$(ant beta:messages create \
   --beta cache-diagnosis-2026-04-07 \
   --transform '{id,usage,diagnostics}' <<'YAML'
-model: claude-opus-4-7
+model: claude-opus-4-8
 max_tokens: 1024
 cache_control:
   type: ephemeral
@@ -102,7 +102,7 @@ message_id=$(jq -r '.id' <<<"$turn1")
 ant beta:messages create \
   --beta cache-diagnosis-2026-04-07 \
   --transform '{id,usage,diagnostics}' <<YAML
-model: claude-opus-4-7
+model: claude-opus-4-8
 max_tokens: 1024
 cache_control:
   type: ephemeral
@@ -128,7 +128,7 @@ SYSTEM = "You are an AI assistant analyzing a large document. <document>...</doc
 
 # Turn 1: opt in with previous_message_id=None
 r1 = client.beta.messages.create(
-    model="claude-opus-4-7",
+    model="claude-opus-4-8",
     max_tokens=1024,
     cache_control={"type": "ephemeral"},
     system=SYSTEM,
@@ -139,7 +139,7 @@ r1 = client.beta.messages.create(
 
 # Turn 2: reference the previous response id
 r2 = client.beta.messages.create(
-    model="claude-opus-4-7",
+    model="claude-opus-4-8",
     max_tokens=1024,
     cache_control={"type": "ephemeral"},
     system=SYSTEM,
@@ -170,7 +170,7 @@ const SYSTEM = "You are an AI assistant analyzing a large document. <document>..
 
 // Turn 1: opt in with previous_message_id: null
 const r1 = await client.beta.messages.create({
-  model: "claude-opus-4-7",
+  model: "claude-opus-4-8",
   max_tokens: 1024,
   cache_control: { type: "ephemeral" },
   system: SYSTEM,
@@ -181,7 +181,7 @@ const r1 = await client.beta.messages.create({
 
 // Turn 2: reference the previous response id
 const r2 = await client.beta.messages.create({
-  model: "claude-opus-4-7",
+  model: "claude-opus-4-8",
   max_tokens: 1024,
   cache_control: { type: "ephemeral" },
   system: SYSTEM,
@@ -217,7 +217,7 @@ var system = "You are an AI assistant analyzing a large document. <document>...<
 var r1 = await client.Beta.Messages.Create(
     new()
     {
-        Model = Messages::Model.ClaudeOpus4_7,
+        Model = Messages::Model.ClaudeOpus4_8,
         MaxTokens = 1024,
         CacheControl = new(),
         System = system,
@@ -233,7 +233,7 @@ var r1 = await client.Beta.Messages.Create(
 var r2 = await client.Beta.Messages.Create(
     new()
     {
-        Model = Messages::Model.ClaudeOpus4_7,
+        Model = Messages::Model.ClaudeOpus4_8,
         MaxTokens = 1024,
         CacheControl = new(),
         System = system,
@@ -280,7 +280,7 @@ func main() {
 	}
 
 	r1, err := client.Beta.Messages.New(ctx, anthropic.BetaMessageNewParams{
-		Model:        anthropic.ModelClaudeOpus4_7,
+		Model:        anthropic.ModelClaudeOpus4_8,
 		MaxTokens:    1024,
 		CacheControl: anthropic.BetaCacheControlEphemeralParam{},
 		System:       system,
@@ -297,7 +297,7 @@ func main() {
 	}
 
 	r2, err := client.Beta.Messages.New(ctx, anthropic.BetaMessageNewParams{
-		Model:        anthropic.ModelClaudeOpus4_7,
+		Model:        anthropic.ModelClaudeOpus4_8,
 		MaxTokens:    1024,
 		CacheControl: anthropic.BetaCacheControlEphemeralParam{},
 		System:       system,
@@ -342,7 +342,7 @@ void main() {
 
     var r1 = client.beta().messages().create(
         MessageCreateParams.builder()
-            .model(Model.CLAUDE_OPUS_4_7)
+            .model(Model.CLAUDE_OPUS_4_8)
             .maxTokens(1024)
             .cacheControl(BetaCacheControlEphemeral.builder().build())
             .system(system)
@@ -355,7 +355,7 @@ void main() {
 
     var r2 = client.beta().messages().create(
         MessageCreateParams.builder()
-            .model(Model.CLAUDE_OPUS_4_7)
+            .model(Model.CLAUDE_OPUS_4_8)
             .maxTokens(1024)
             .cacheControl(BetaCacheControlEphemeral.builder().build())
             .system(system)
@@ -395,7 +395,7 @@ $client = new Client();
 $system = 'You are an AI assistant analyzing a large document. <document>...</document>';
 
 $r1 = $client->beta->messages->create(
-    model: Model::CLAUDE_OPUS_4_7,
+    model: Model::CLAUDE_OPUS_4_8,
     maxTokens: 1024,
     cacheControl: new BetaCacheControlEphemeral,
     system: $system,
@@ -407,7 +407,7 @@ $r1 = $client->beta->messages->create(
 );
 
 $r2 = $client->beta->messages->create(
-    model: Model::CLAUDE_OPUS_4_7,
+    model: Model::CLAUDE_OPUS_4_8,
     maxTokens: 1024,
     cacheControl: new BetaCacheControlEphemeral,
     system: $system,
@@ -435,7 +435,7 @@ client = Anthropic::Client.new
 SYSTEM = "You are an AI assistant analyzing a large document. <document>...</document>"
 
 r1 = client.beta.messages.create(
-  model: :"claude-opus-4-7",
+  model: :"claude-opus-4-8",
   max_tokens: 1024,
   cache_control: {type: "ephemeral"},
   system_: SYSTEM,
@@ -447,7 +447,7 @@ r1 = client.beta.messages.create(
 )
 
 r2 = client.beta.messages.create(
-  model: :"claude-opus-4-7",
+  model: :"claude-opus-4-8",
   max_tokens: 1024,
   cache_control: {type: "ephemeral"},
   system_: SYSTEM,
@@ -484,7 +484,7 @@ response=$(curl -sS --fail-with-body https://api.anthropic.com/v1/messages \
   --header "anthropic-beta: cache-diagnosis-2026-04-07" \
   --header "content-type: application/json" \
   --data '{
-    "model": "claude-opus-4-7",
+    "model": "claude-opus-4-8",
     "max_tokens": 1024,
     "cache_control": {"type": "ephemeral"},
     "system": "You are an AI assistant analyzing a large document. <document>...</document>",
@@ -502,7 +502,7 @@ curl -sS --fail-with-body https://api.anthropic.com/v1/messages \
   --header "content-type: application/json" \
   --data @- <<EOF | sed -n 's/^data: //p' | jq -s '.[] | select(.type == "message_start") | .message.diagnostics'
 {
-  "model": "claude-opus-4-7",
+  "model": "claude-opus-4-8",
   "max_tokens": 1024,
   "stream": true,
   "cache_control": {"type": "ephemeral"},
@@ -525,7 +525,7 @@ set -euo pipefail
 turn1=$(ant beta:messages create \
   --beta cache-diagnosis-2026-04-07 \
   --transform '{id,usage,diagnostics}' <<'YAML'
-model: claude-opus-4-7
+model: claude-opus-4-8
 max_tokens: 1024
 cache_control:
   type: ephemeral
@@ -545,7 +545,7 @@ message_id=$(jq -r '.id' <<<"$turn1")
 ant beta:messages create \
   --beta cache-diagnosis-2026-04-07 \
   --stream --format jsonl <<YAML |
-model: claude-opus-4-7
+model: claude-opus-4-8
 max_tokens: 1024
 cache_control:
   type: ephemeral
@@ -572,7 +572,7 @@ SYSTEM = "You are an AI assistant analyzing a large document. <document>...</doc
 
 # Turn 1: opt in with previous_message_id=None
 r1 = client.beta.messages.create(
-    model="claude-opus-4-7",
+    model="claude-opus-4-8",
     max_tokens=1024,
     cache_control={"type": "ephemeral"},
     system=SYSTEM,
@@ -583,7 +583,7 @@ r1 = client.beta.messages.create(
 
 # Turn 2: stream, referencing the previous response id
 with client.beta.messages.stream(
-    model="claude-opus-4-7",
+    model="claude-opus-4-8",
     max_tokens=1024,
     cache_control={"type": "ephemeral"},
     system=SYSTEM,
@@ -618,7 +618,7 @@ const SYSTEM = "You are an AI assistant analyzing a large document. <document>..
 
 // Turn 1: opt in with previous_message_id: null
 const r1 = await client.beta.messages.create({
-  model: "claude-opus-4-7",
+  model: "claude-opus-4-8",
   max_tokens: 1024,
   cache_control: { type: "ephemeral" },
   system: SYSTEM,
@@ -629,7 +629,7 @@ const r1 = await client.beta.messages.create({
 
 // Turn 2: stream, referencing the previous response id
 const stream = client.beta.messages.stream({
-  model: "claude-opus-4-7",
+  model: "claude-opus-4-8",
   max_tokens: 1024,
   cache_control: { type: "ephemeral" },
   system: SYSTEM,
@@ -676,7 +676,7 @@ var system = "You are an AI assistant analyzing a large document. <document>...<
 var r1 = await client.Beta.Messages.Create(
     new()
     {
-        Model = Messages::Model.ClaudeOpus4_7,
+        Model = Messages::Model.ClaudeOpus4_8,
         MaxTokens = 1024,
         CacheControl = new(),
         System = system,
@@ -695,7 +695,7 @@ BetaDiagnostics? diagnostics = null;
 var stream = client.Beta.Messages.CreateStreaming(
     new()
     {
-        Model = Messages::Model.ClaudeOpus4_7,
+        Model = Messages::Model.ClaudeOpus4_8,
         MaxTokens = 1024,
         CacheControl = new(),
         System = system,
@@ -757,7 +757,7 @@ func main() {
 
 	// Turn 1: opt in with PreviousMessageID null
 	r1, err := client.Beta.Messages.New(ctx, anthropic.BetaMessageNewParams{
-		Model:        anthropic.ModelClaudeOpus4_7,
+		Model:        anthropic.ModelClaudeOpus4_8,
 		MaxTokens:    1024,
 		CacheControl: anthropic.BetaCacheControlEphemeralParam{},
 		System:       system,
@@ -775,7 +775,7 @@ func main() {
 
 	// Turn 2: stream, referencing the previous response id
 	stream := client.Beta.Messages.NewStreaming(ctx, anthropic.BetaMessageNewParams{
-		Model:        anthropic.ModelClaudeOpus4_7,
+		Model:        anthropic.ModelClaudeOpus4_8,
 		MaxTokens:    1024,
 		CacheControl: anthropic.BetaCacheControlEphemeralParam{},
 		System:       system,
@@ -831,7 +831,7 @@ void main() {
     // Turn 1: opt in with previousMessageId = null
     var r1 = client.beta().messages().create(
         MessageCreateParams.builder()
-            .model(Model.CLAUDE_OPUS_4_7)
+            .model(Model.CLAUDE_OPUS_4_8)
             .maxTokens(1024)
             .cacheControl(BetaCacheControlEphemeral.builder().build())
             .system(system)
@@ -843,7 +843,7 @@ void main() {
 
     // Turn 2: stream, referencing the previous response id
     var params = MessageCreateParams.builder()
-        .model(Model.CLAUDE_OPUS_4_7)
+        .model(Model.CLAUDE_OPUS_4_8)
         .maxTokens(1024)
         .cacheControl(BetaCacheControlEphemeral.builder().build())
         .system(system)
@@ -898,7 +898,7 @@ $system = 'You are an AI assistant analyzing a large document. <document>...</do
 
 // Turn 1: opt in with previousMessageID null
 $r1 = $client->beta->messages->create(
-    model: Model::CLAUDE_OPUS_4_7,
+    model: Model::CLAUDE_OPUS_4_8,
     maxTokens: 1024,
     cacheControl: new BetaCacheControlEphemeral,
     system: $system,
@@ -911,7 +911,7 @@ $r1 = $client->beta->messages->create(
 
 // Turn 2: stream, referencing the previous response id
 $stream = $client->beta->messages->createStream(
-    model: Model::CLAUDE_OPUS_4_7,
+    model: Model::CLAUDE_OPUS_4_8,
     maxTokens: 1024,
     cacheControl: new BetaCacheControlEphemeral,
     system: $system,
@@ -951,7 +951,7 @@ SYSTEM = "You are an AI assistant analyzing a large document. <document>...</doc
 
 # Turn 1: opt in with previous_message_id: nil
 r1 = client.beta.messages.create(
-  model: :"claude-opus-4-7",
+  model: :"claude-opus-4-8",
   max_tokens: 1024,
   cache_control: {type: "ephemeral"},
   system_: SYSTEM,
@@ -962,7 +962,7 @@ r1 = client.beta.messages.create(
 
 # Turn 2: stream, referencing the previous response id
 stream = client.beta.messages.stream(
-  model: :"claude-opus-4-7",
+  model: :"claude-opus-4-8",
   max_tokens: 1024,
   cache_control: {type: "ephemeral"},
   system_: SYSTEM,
@@ -1030,7 +1030,7 @@ for i, user_message in enumerate(
     messages.append({"role": "user", "content": user_message})
 
     r = client.beta.messages.create(
-        model="claude-opus-4-7",
+        model="claude-opus-4-8",
         max_tokens=1024,
         cache_control={"type": "ephemeral"},
         system=SYSTEM,
@@ -1065,7 +1065,7 @@ for (const [i, prompt] of prompts.entries()) {
   messages.push({ role: "user", content: prompt });
 
   const r = await client.beta.messages.create({
-    model: "claude-opus-4-7",
+    model: "claude-opus-4-8",
     max_tokens: 1024,
     cache_control: { type: "ephemeral" },
     system: SYSTEM,
@@ -1107,7 +1107,7 @@ for (int i = 0; i < prompts.Length; i++)
     var r = await client.Beta.Messages.Create(
         new()
         {
-            Model = Messages::Model.ClaudeOpus4_7,
+            Model = Messages::Model.ClaudeOpus4_8,
             MaxTokens = 1024,
             CacheControl = new(),
             System = system,
@@ -1163,7 +1163,7 @@ func main() {
 		messages = append(messages, anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock(prompt)))
 
 		r, err := client.Beta.Messages.New(ctx, anthropic.BetaMessageNewParams{
-			Model:        anthropic.ModelClaudeOpus4_7,
+			Model:        anthropic.ModelClaudeOpus4_8,
 			MaxTokens:    1024,
 			CacheControl: anthropic.BetaCacheControlEphemeralParam{},
 			System:       system,
@@ -1218,7 +1218,7 @@ void main() {
 
         var r = client.beta().messages().create(
             MessageCreateParams.builder()
-                .model(Model.CLAUDE_OPUS_4_7)
+                .model(Model.CLAUDE_OPUS_4_8)
                 .maxTokens(1024)
                 .cacheControl(BetaCacheControlEphemeral.builder().build())
                 .system(system)
@@ -1265,7 +1265,7 @@ foreach (['Summarize section 1.', 'Now section 2.', 'Now section 3.'] as $i => $
     $messages[] = ['role' => 'user', 'content' => $userMsg];
 
     $r = $client->beta->messages->create(
-        model: Model::CLAUDE_OPUS_4_7,
+        model: Model::CLAUDE_OPUS_4_8,
         maxTokens: 1024,
         cacheControl: new BetaCacheControlEphemeral,
         system: $system,
@@ -1299,7 +1299,7 @@ prev_id = nil
   messages << {role: "user", content: user_msg}
 
   r = client.beta.messages.create(
-    model: :"claude-opus-4-7",
+    model: :"claude-opus-4-8",
     max_tokens: 1024,
     cache_control: {type: "ephemeral"},
     system_: SYSTEM,

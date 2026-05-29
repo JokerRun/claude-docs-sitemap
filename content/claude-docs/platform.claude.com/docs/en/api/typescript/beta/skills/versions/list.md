@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/skills/versions/list
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 706d0ee5c9265318170ba628bf13db2ba005b392cfe5cf43eb2c49aa6b0ff375
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: c869687e24da0410bc2eac8469871154129f1f2dcc378c07591488fa0b76ba71
 ---
 
 ## List Skill Versions
@@ -39,7 +39,7 @@ List Skill Versions
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 22 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 24 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -90,6 +90,10 @@ List Skill Versions
       - `"managed-agents-2026-04-01"`
 
       - `"cache-diagnosis-2026-04-07"`
+
+      - `"thinking-token-count-2026-05-13"`
+
+      - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/threads/events/stream
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: b4a8911033420d853dc215e6bf6c15417d54c9909ae3223f7967cf671c945725
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 12b1af99e86555154299ace542d4afd56d080d80765750686766aadfb9cde4d3
 ---
 
 ## Stream Session Thread Events
@@ -74,6 +74,10 @@ Stream Session Thread Events
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
+
+    - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
+
+    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
 ### Returns
 

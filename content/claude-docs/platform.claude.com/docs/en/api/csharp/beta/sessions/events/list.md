@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/sessions/events/list
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: e2468ebf2355d25fd5da3a7486462b93972d5135bbac118a98438b58bd55a1c4
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 82bdf6ce6a022339a0b9cba2c2f4aa0897e9d8d4a7f4de08458b9e208082eec0
 ---
 
 ## List Events
@@ -110,6 +110,10 @@ List Events
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
+
+    - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
 
 ### Returns
 

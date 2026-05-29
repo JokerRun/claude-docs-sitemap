@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/messages/batches/delete
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: f0121a06742c24a11555414dbc0856512287fccf4edcb8392eec26619e5c2450
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: bf63edce767da702058c11aa8208c5d7ea2c65f65f7b14cf4ea1125159f495ce
 ---
 
 ## Delete a Message Batch
@@ -78,6 +78,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
+
+    - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
+
+    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
 ### Returns
 

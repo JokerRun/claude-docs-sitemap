@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugin-marketplaces
-fetched_at: 2026-05-28T03:18:36.130288Z
-sha256: cbf1d0aca0541f527bb8617cc8bfa564765df371418493472a12f19c6c6caec0
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: f63b02451ec91045d89197e32bc55f2e3a329392d2e7821e1363373cc401af31
 ---
 
 > ## Documentation Index
@@ -205,19 +205,20 @@ Each plugin entry in the `plugins` array describes a plugin and where to find it
 
 **Standard metadata fields:**
 
-| Field         | Type    | Description                                                                                                                                                                                                                                         |
-| :------------ | :------ | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `displayName` | string  | {/* min-version: 2.1.143 */}Human-readable name shown in UI surfaces. Falls back to `name` when omitted. May contain spaces and any casing. Not used for namespacing or lookup. Requires Claude Code v2.1.143 or later.                             |
-| `description` | string  | Brief plugin description                                                                                                                                                                                                                            |
-| `version`     | string  | Plugin version. If set (here or in `plugin.json`), the plugin is pinned to this string and users only receive updates when it changes. Omit to fall back to the git commit SHA. See [Version resolution](#version-resolution-and-release-channels). |
-| `author`      | object  | Plugin author information (`name` required, `email` optional)                                                                                                                                                                                       |
-| `homepage`    | string  | Plugin homepage or documentation URL                                                                                                                                                                                                                |
-| `repository`  | string  | Source code repository URL                                                                                                                                                                                                                          |
-| `license`     | string  | SPDX license identifier (for example, MIT, Apache-2.0)                                                                                                                                                                                              |
-| `keywords`    | array   | Tags for plugin discovery and categorization                                                                                                                                                                                                        |
-| `category`    | string  | Plugin category for organization                                                                                                                                                                                                                    |
-| `tags`        | array   | Tags for searchability                                                                                                                                                                                                                              |
-| `strict`      | boolean | Controls whether `plugin.json` is the authority for component definitions (default: true). See [Strict mode](#strict-mode) below.                                                                                                                   |
+| Field            | Type    | Description                                                                                                                                                                                                                                                                                                                                    |
+| :--------------- | :------ | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `displayName`    | string  | {/* min-version: 2.1.143 */}Human-readable name shown in UI surfaces. Falls back to `name` when omitted. May contain spaces and any casing. Not used for namespacing or lookup. Requires Claude Code v2.1.143 or later.                                                                                                                        |
+| `description`    | string  | Brief plugin description                                                                                                                                                                                                                                                                                                                       |
+| `version`        | string  | Plugin version. If set (here or in `plugin.json`), the plugin is pinned to this string and users only receive updates when it changes. Omit to fall back to the git commit SHA. See [Version resolution](#version-resolution-and-release-channels).                                                                                            |
+| `author`         | object  | Plugin author information (`name` required, `email` optional)                                                                                                                                                                                                                                                                                  |
+| `homepage`       | string  | Plugin homepage or documentation URL                                                                                                                                                                                                                                                                                                           |
+| `repository`     | string  | Source code repository URL                                                                                                                                                                                                                                                                                                                     |
+| `license`        | string  | SPDX license identifier (for example, MIT, Apache-2.0)                                                                                                                                                                                                                                                                                         |
+| `keywords`       | array   | Tags for plugin discovery and categorization                                                                                                                                                                                                                                                                                                   |
+| `category`       | string  | Plugin category for organization                                                                                                                                                                                                                                                                                                               |
+| `tags`           | array   | Tags for searchability                                                                                                                                                                                                                                                                                                                         |
+| `strict`         | boolean | Controls whether `plugin.json` is the authority for component definitions (default: true). See [Strict mode](#strict-mode) below.                                                                                                                                                                                                              |
+| `defaultEnabled` | boolean | {/* min-version: 2.1.154 */}Whether the plugin is enabled after install (default: true). Set to `false` to install the plugin disabled until the user opts in. Takes precedence over the same field in the plugin's `plugin.json`. See [Default enablement](/en/plugins-reference#default-enablement). Requires Claude Code v2.1.154 or later. |
 
 **Component configuration fields:**
 
@@ -911,6 +912,8 @@ claude plugin marketplace list [options]
 | Option   | Description    |
 | :------- | :------------- |
 | `--json` | Output as JSON |
+
+With `--json`, each entry includes `name`, `source`, and source-specific fields: `repo` for GitHub sources, `url` for git and URL sources, and `path` for local sources. GitHub and git sources also include a `ref` field when the marketplace was added with a pinned branch or tag.
 
 ### Plugin marketplace remove
 

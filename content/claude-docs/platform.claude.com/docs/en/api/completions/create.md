@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/completions/create
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: aeb871e7524b645e4dec1c5a66bf1725bb1126d7a095bd9f29f92667779878fc
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 611aa7d9898665ebd95eb9caa177998da27f125239584c3fd4911ca8795ed1b5
 ---
 
 ## Create a Text Completion
@@ -23,7 +23,7 @@ Future models and features will not be compatible with Text Completions. See our
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 24 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -75,6 +75,10 @@ Future models and features will not be compatible with Text Completions. See our
 
     - `"cache-diagnosis-2026-04-07"`
 
+    - `"thinking-token-count-2026-05-13"`
+
+    - `"mid-conversation-system-2026-04-07"`
+
 ### Body Parameters
 
 - `max_tokens_to_sample: number`
@@ -89,11 +93,15 @@ Future models and features will not be compatible with Text Completions. See our
 
   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-  - `"claude-opus-4-7" or "claude-mythos-preview" or "claude-opus-4-6" or 14 more`
+  - `"claude-opus-4-8" or "claude-opus-4-7" or "claude-mythos-preview" or 15 more`
 
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+    - `"claude-opus-4-8"`
+
+      Frontier intelligence for long-running agents and coding
 
     - `"claude-opus-4-7"`
 
@@ -253,11 +261,15 @@ Future models and features will not be compatible with Text Completions. See our
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `"claude-opus-4-7" or "claude-mythos-preview" or "claude-opus-4-6" or 14 more`
+    - `"claude-opus-4-8" or "claude-opus-4-7" or "claude-mythos-preview" or 15 more`
 
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `"claude-opus-4-8"`
+
+        Frontier intelligence for long-running agents and coding
 
       - `"claude-opus-4-7"`
 

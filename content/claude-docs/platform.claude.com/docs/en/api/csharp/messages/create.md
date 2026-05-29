@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/messages/create
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: fd06df1dbda3d88e13f9fc0b399de7077b18121fcd98324331b7982caf3a9031
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 36dca904c49eb46565328833a491802f9a3f69fd481258621c75a05882ecbcd3
 ---
 
 ## Create a Message
@@ -525,6 +525,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
                 - `"url_not_allowed"UrlNotAllowed`
 
+                - `"url_not_in_prior_context"UrlNotInPriorContext`
+
                 - `"url_not_accessible"UrlNotAccessible`
 
                 - `"unsupported_content_type"UnsupportedContentType`
@@ -802,11 +804,40 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
             Create a cache control breakpoint at this content block.
 
+        - `class MidConversationSystemBlockParam:`
+
+          System instructions that appear mid-conversation.
+
+          Use this block to provide or update system-level instructions at a specific
+          point in the conversation, rather than only via the top-level `system` parameter.
+
+          - `required IReadOnlyList<TextBlockParam> Content`
+
+            System instruction text blocks.
+
+            - `required string Text`
+
+            - `JsonElement Type "text"constant`
+
+            - `CacheControlEphemeral? CacheControl`
+
+              Create a cache control breakpoint at this content block.
+
+            - `IReadOnlyList<TextCitationParam>? Citations`
+
+          - `JsonElement Type "mid_conv_system"constant`
+
+          - `CacheControlEphemeral? CacheControl`
+
+            Create a cache control breakpoint at this content block.
+
     - `required Role Role`
 
       - `"user"User`
 
       - `"assistant"Assistant`
+
+      - `"system"System`
 
   - `required Model model`
 
@@ -1947,6 +1978,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
             - `"url_not_allowed"UrlNotAllowed`
 
+            - `"url_not_in_prior_context"UrlNotInPriorContext`
+
             - `"url_not_accessible"UrlNotAccessible`
 
             - `"unsupported_content_type"UnsupportedContentType`
@@ -2219,6 +2252,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+    - `"claude-opus-4-8"ClaudeOpus4_8`
+
+      Frontier intelligence for long-running agents and coding
+
     - `"claude-opus-4-7"ClaudeOpus4_7`
 
       Frontier intelligence for long-running agents and coding
@@ -2398,6 +2435,26 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       The number of output tokens which were used.
 
+    - `required OutputTokensDetails? OutputTokensDetails`
+
+      Breakdown of output tokens by category.
+
+      `output_tokens` remains the inclusive, authoritative total used for billing.
+      This object provides a read-only decomposition for observability — for example,
+      how many of the billed output tokens were spent on internal reasoning that may
+      have been summarized before being returned to you.
+
+      - `required Long ThinkingTokens`
+
+        Number of output tokens the model generated as internal reasoning, including
+        the thinking-block delimiter tokens.
+
+        Reflects the raw reasoning the model produced, not the (possibly shorter)
+        summarized thinking text returned in the response body. Computed by
+        re-tokenizing the raw reasoning text, so it may differ from the model's exact
+        generation count by a small number of tokens. Always ≤ `output_tokens`;
+        `output_tokens - thinking_tokens` approximates the non-reasoning output.
+
     - `required ServerToolUsage? ServerToolUse`
 
       The number of server tool requests.
@@ -2488,6 +2545,9 @@ Console.WriteLine(message);
     "inference_geo": "inference_geo",
     "input_tokens": 2095,
     "output_tokens": 503,
+    "output_tokens_details": {
+      "thinking_tokens": 0
+    },
     "server_tool_use": {
       "web_fetch_requests": 2,
       "web_search_requests": 0

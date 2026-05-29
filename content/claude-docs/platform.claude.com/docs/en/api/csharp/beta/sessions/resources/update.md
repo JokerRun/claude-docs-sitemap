@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/sessions/resources/update
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 90f1e048bd8784817c00a72873c9f47183b63a296df04360b25212c9402c36c1
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 404d0921ef09d8b65ad97c0bb60ab11a324b99d903ca57640a2980892a01dea7
 ---
 
 ## Update Session Resource
@@ -82,6 +82,10 @@ Update Session Resource
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
+
+    - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/messages/batches/create
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 9cf150f771320fa10d8a69b7a7a65e826cbea144543bcf62ede287e552e96b69
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: dc5d3c3f06774a4339a47bc1256403308766b8908af2d94037cc92fdec895582
 ---
 
 ## Create a Message Batch
@@ -601,6 +601,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                     - `URL_NOT_ALLOWED("url_not_allowed")`
 
+                    - `URL_NOT_IN_PRIOR_CONTEXT("url_not_in_prior_context")`
+
                     - `URL_NOT_ACCESSIBLE("url_not_accessible")`
 
                     - `UNSUPPORTED_CONTENT_TYPE("unsupported_content_type")`
@@ -920,17 +922,52 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                 Create a cache control breakpoint at this content block.
 
+            - `class MidConversationSystemBlockParam:`
+
+              System instructions that appear mid-conversation.
+
+              Use this block to provide or update system-level instructions at a specific
+              point in the conversation, rather than only via the top-level `system` parameter.
+
+              - `List<TextBlockParam> content`
+
+                System instruction text blocks.
+
+                - `String text`
+
+                - `JsonValue; type "text"constant`
+
+                - `Optional<CacheControlEphemeral> cacheControl`
+
+                  Create a cache control breakpoint at this content block.
+
+                - `Optional<List<TextCitationParam>> citations`
+
+              - `JsonValue; type "mid_conv_system"constant`
+
+                - `MID_CONV_SYSTEM("mid_conv_system")`
+
+              - `Optional<CacheControlEphemeral> cacheControl`
+
+                Create a cache control breakpoint at this content block.
+
         - `Role role`
 
           - `USER("user")`
 
           - `ASSISTANT("assistant")`
 
+          - `SYSTEM("system")`
+
       - `Model model`
 
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `CLAUDE_OPUS_4_8("claude-opus-4-8")`
+
+          Frontier intelligence for long-running agents and coding
 
         - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
 

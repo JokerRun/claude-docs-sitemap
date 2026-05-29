@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/user_profiles/update
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: bfc50f5f21e4baa277a3a2811597831a64014c1d715a10e24b4b7e350a4eb798
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 1d15fd2e78e9c90d163505b03f26c40612884b69651b1a0e4a9293958b0b1172
 ---
 
 ## Update User Profile
@@ -72,6 +72,10 @@ Update User Profile
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
+
+    - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
+
+    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
   - `Optional<String> externalId`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/events/list
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 88bbf1e7d2e494070ee7328b5a3a3a865bdf8f52ee6124735961f5980a7acac1
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 883271ddd590c35812c46bc65ffa19db1c9098e87fde1417e7c009781cfa48a7
 ---
 
 ## List Events
@@ -61,7 +61,7 @@ List Events
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 24 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -112,6 +112,10 @@ List Events
     - `"managed-agents-2026-04-01"`
 
     - `"cache-diagnosis-2026-04-07"`
+
+    - `"thinking-token-count-2026-05-13"`
+
+    - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

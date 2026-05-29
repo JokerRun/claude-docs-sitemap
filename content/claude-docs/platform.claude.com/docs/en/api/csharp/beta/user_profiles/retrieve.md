@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/user_profiles/retrieve
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: abd5700268bee33ce597dca4a0dd06041601872f3a61a332c5c1809c917810ce
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 7569b7532069a4879de3da5abe534e43a46e11a9eaf1bd980345bd3262b37240
 ---
 
 ## Get User Profile
@@ -74,6 +74,10 @@ Get User Profile
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
+
+    - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
 
 ### Returns
 

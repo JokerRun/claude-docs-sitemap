@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/agents/create
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: c2ebbcef9176bb974226a7cbee3ec1aedfbe56969f1b4d1f7b1310047c1eea5d
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 51f52aeb1f0fb9f00fd4b0a0c3b029c78b69cf27a0015f6a2499dd92770f20c0
 ---
 
 ## Create Agent
@@ -369,7 +369,7 @@ Create Agent
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 24 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -420,6 +420,10 @@ Create Agent
     - `:"managed-agents-2026-04-01"`
 
     - `:"cache-diagnosis-2026-04-07"`
+
+    - `:"thinking-token-count-2026-05-13"`
+
+    - `:"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

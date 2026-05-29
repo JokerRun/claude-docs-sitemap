@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/threads/events/list
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 341eb812d0c45996d951a7f4d3f408fb3bcd269ab6f0f02db76f94542f5642fd
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: ce3381df21e3f871d0b6b82274c92df4da19db794c226f9d6dfc5ac03ba11a22
 ---
 
 ## List Session Thread Events
@@ -35,7 +35,7 @@ List Session Thread Events
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 24 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -86,6 +86,10 @@ List Session Thread Events
     - `"managed-agents-2026-04-01"`
 
     - `"cache-diagnosis-2026-04-07"`
+
+    - `"thinking-token-count-2026-05-13"`
+
+    - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

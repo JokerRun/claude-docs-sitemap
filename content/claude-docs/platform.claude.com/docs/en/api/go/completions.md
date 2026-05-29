@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/completions
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: d08a5215fc57379036d36a811f74c0eea3e6740eece2dc16bca9bdeeaa4efe6e
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: bf7e3da03926afe507ca4584869a7a6debb4d17654908d1d7492f70c414584e1
 ---
 
 # Completions
@@ -151,6 +151,10 @@ Future models and features will not be compatible with Text Completions. See our
 
       - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
 
+      - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
+
+      - `const AnthropicBetaMidConversationSystem2026_04_07 AnthropicBeta = "mid-conversation-system-2026-04-07"`
+
 ### Returns
 
 - `type Completion struct{…}`
@@ -176,6 +180,10 @@ Future models and features will not be compatible with Text Completions. See our
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `const ModelClaudeOpus4_8 Model = "claude-opus-4-8"`
+
+        Frontier intelligence for long-running agents and coding
 
       - `const ModelClaudeOpus4_7 Model = "claude-opus-4-7"`
 
@@ -283,7 +291,7 @@ func main() {
   )
   completion, err := client.Completions.New(context.TODO(), anthropic.CompletionNewParams{
     MaxTokensToSample: 256,
-    Model: anthropic.ModelClaudeOpus4_7,
+    Model: anthropic.ModelClaudeOpus4_8,
     Prompt: "\n\nHuman: Hello, world!\n\nAssistant:",
   })
   if err != nil {
@@ -332,6 +340,10 @@ func main() {
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `const ModelClaudeOpus4_8 Model = "claude-opus-4-8"`
+
+        Frontier intelligence for long-running agents and coding
 
       - `const ModelClaudeOpus4_7 Model = "claude-opus-4-7"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/files/delete
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: aedb1a41dc48d387b92c9560b09db3288a03722d94f0ccd421aa1cf1f767058e
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 9eec64a6c64dec88cb07f7c2eba0e6f2b07a7bc8d78614442d8752eefa7807a7
 ---
 
 ## Delete File
@@ -74,6 +74,10 @@ Delete File
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
+
+    - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
 
 ### Returns
 

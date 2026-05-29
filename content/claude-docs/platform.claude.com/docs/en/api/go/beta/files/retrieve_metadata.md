@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/files/retrieve_metadata
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: f465518dae9a3151b7241908a94ba35396c79e4426ddc069d8fd089bf235408f
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 7b1e10f9756db038e785ec04a909aeb47dff1df8b857400c70374e9aafd36d77
 ---
 
 ## Get File Metadata
@@ -78,6 +78,10 @@ Get File Metadata
       - `const AnthropicBetaManagedAgents2026_04_01 AnthropicBeta = "managed-agents-2026-04-01"`
 
       - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
+
+      - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
+
+      - `const AnthropicBetaMidConversationSystem2026_04_07 AnthropicBeta = "mid-conversation-system-2026-04-07"`
 
 ### Returns
 

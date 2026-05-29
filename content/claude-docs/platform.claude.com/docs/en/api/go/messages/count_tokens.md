@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/messages/count_tokens
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 9c4358cedace6a3d90c14f0d2881d10f7b5d851ef8d585a7f94b72364581b974
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: f4f005580a6a2440d96dc1ee059317539a1151e38e3a3a316c108d6c66192ff9
 ---
 
 ## Count tokens in a Message
@@ -571,6 +571,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
                 - `const WebFetchToolResultErrorCodeURLNotAllowed WebFetchToolResultErrorCode = "url_not_allowed"`
 
+                - `const WebFetchToolResultErrorCodeURLNotInPriorContext WebFetchToolResultErrorCode = "url_not_in_prior_context"`
+
                 - `const WebFetchToolResultErrorCodeURLNotAccessible WebFetchToolResultErrorCode = "url_not_accessible"`
 
                 - `const WebFetchToolResultErrorCodeUnsupportedContentType WebFetchToolResultErrorCode = "unsupported_content_type"`
@@ -890,11 +892,42 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
             Create a cache control breakpoint at this content block.
 
+        - `type MidConversationSystemBlockParamResp struct{…}`
+
+          System instructions that appear mid-conversation.
+
+          Use this block to provide or update system-level instructions at a specific
+          point in the conversation, rather than only via the top-level `system` parameter.
+
+          - `Content []TextBlockParamResp`
+
+            System instruction text blocks.
+
+            - `Text string`
+
+            - `Type Text`
+
+            - `CacheControl CacheControlEphemeral`
+
+              Create a cache control breakpoint at this content block.
+
+            - `Citations []TextCitationParamUnionResp`
+
+          - `Type MidConvSystem`
+
+            - `const MidConvSystemMidConvSystem MidConvSystem = "mid_conv_system"`
+
+          - `CacheControl CacheControlEphemeral`
+
+            Create a cache control breakpoint at this content block.
+
     - `Role MessageParamRole`
 
       - `const MessageParamRoleUser MessageParamRole = "user"`
 
       - `const MessageParamRoleAssistant MessageParamRole = "assistant"`
+
+      - `const MessageParamRoleSystem MessageParamRole = "system"`
 
   - `Model param.Field[Model]`
 

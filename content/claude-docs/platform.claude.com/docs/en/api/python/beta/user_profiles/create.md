@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/user_profiles/create
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 9569e126333cb206ea834508251c78f914b91633583d172563f5a37348324768
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: f6dc33c26527669c4dc139ee7c4ccdc17ffb93dbabf8e0e5327b3b00d0991ee8
 ---
 
 ## Create User Profile
@@ -43,7 +43,7 @@ Create User Profile
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 22 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 24 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -94,6 +94,10 @@ Create User Profile
     - `"managed-agents-2026-04-01"`
 
     - `"cache-diagnosis-2026-04-07"`
+
+    - `"thinking-token-count-2026-05-13"`
+
+    - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/files
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: d7cb36bed22c0a115b08e8fbfeb78c4b95c0136f81d2875a6f7c11009bb9cedf
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 191e98aeb228181656227e82b33ff830a539c815446be7b9635f12d0712665ce
 ---
 
 # Files API
@@ -183,7 +183,7 @@ curl -X POST https://api.anthropic.com/v1/messages \
   -H "content-type: application/json" \
   -d @- <<EOF
 {
-  "model": "claude-opus-4-6",
+  "model": "claude-opus-4-8",
   "max_tokens": 1024,
   "messages": [
     {
@@ -209,7 +209,7 @@ EOF
 
 ````bash
 ant beta:messages create --beta files-api-2025-04-14 <<YAML
-model: claude-opus-4-6
+model: claude-opus-4-8
 max_tokens: 1024
 messages:
   - role: user
@@ -225,7 +225,7 @@ YAML
 
 ````python
 response = client.beta.messages.create(
-    model="claude-opus-4-6",
+    model="claude-opus-4-8",
     max_tokens=1024,
     messages=[
         {
@@ -249,7 +249,7 @@ print(response)
 
 ````typescript
 const response = await client.beta.messages.create({
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-8",
   max_tokens: 1024,
   messages: [
     {
@@ -326,7 +326,7 @@ fmt.Println(msg)
 
 ````java
 MessageCreateParams params = MessageCreateParams.builder()
-    .model(Model.CLAUDE_OPUS_4_6)
+    .model(Model.CLAUDE_OPUS_4_8)
     .addBeta("files-api-2025-04-14")
     .maxTokens(1024)
     .addUserMessageOfBetaContentBlockParams(List.of(
@@ -363,7 +363,7 @@ $response = $client->beta->messages->create(
             ]
         ]
     ],
-    model: 'claude-opus-4-6',
+    model: 'claude-opus-4-8',
     betas: ['files-api-2025-04-14'],
 );
 
@@ -372,7 +372,7 @@ print_r($response);
 
 ````ruby
 response = client.beta.messages.create(
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-8",
   max_tokens: 1024,
   betas: ["files-api-2025-04-14"],
   messages: [

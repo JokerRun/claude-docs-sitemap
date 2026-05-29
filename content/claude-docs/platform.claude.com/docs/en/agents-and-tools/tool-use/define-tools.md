@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: ebce8ee91000a1e0d60c054b223aa89b0e5731b471173a35df7df9d6a7a87444
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 2406d7e7c96cf40f13c14fb7efa94b3014d75d0497f1d5c576605916de6c155e
 ---
 
 # Define tools
@@ -153,7 +153,7 @@ curl -sS https://api.anthropic.com/v1/messages \
   -H "anthropic-version: 2023-06-01" \
   -d @- <<'EOF'
 {
-  "model": "claude-opus-4-7",
+  "model": "claude-opus-4-8",
   "max_tokens": 1024,
   "tools": [
     {
@@ -190,7 +190,7 @@ EOF
 
 ```bash CLI
 ant messages create <<'YAML'
-model: claude-opus-4-7
+model: claude-opus-4-8
 max_tokens: 1024
 tools:
   - name: get_weather
@@ -224,7 +224,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 response = client.messages.create(
-    model="claude-opus-4-7",
+    model="claude-opus-4-8",
     max_tokens=1024,
     tools=[
         {
@@ -266,7 +266,7 @@ import Anthropic from "@anthropic-ai/sdk";
 const client = new Anthropic();
 
 const response = await client.messages.create({
-  model: "claude-opus-4-7",
+  model: "claude-opus-4-8",
   max_tokens: 1024,
   tools: [
     {
@@ -321,7 +321,7 @@ AnthropicClient client = new();
 
 var parameters = new MessageCreateParams
 {
-    Model = Model.ClaudeOpus4_7,
+    Model = Model.ClaudeOpus4_8,
     MaxTokens = 1024,
     Tools = [
         new ToolUnion(new Tool()
@@ -380,7 +380,7 @@ func main() {
 	client := anthropic.NewClient()
 
 	response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-		Model:     anthropic.ModelClaudeOpus4_7,
+		Model:     anthropic.ModelClaudeOpus4_8,
 		MaxTokens: 1024,
 		Tools: []anthropic.ToolUnionParam{
 			{OfTool: &anthropic.ToolParam{
@@ -441,7 +441,7 @@ void main() {
     AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
     MessageCreateParams params = MessageCreateParams.builder()
-        .model(Model.CLAUDE_OPUS_4_7)
+        .model(Model.CLAUDE_OPUS_4_8)
         .maxTokens(1024L)
         .addTool(Tool.builder()
             .name("get_weather")
@@ -494,7 +494,7 @@ $message = $client->messages->create(
     messages: [
         ['role' => 'user', 'content' => "What's the weather like in San Francisco?"]
     ],
-    model: 'claude-opus-4-7',
+    model: 'claude-opus-4-8',
     tools: [
         [
             'name' => 'get_weather',
@@ -538,7 +538,7 @@ require "anthropic"
 client = Anthropic::Client.new
 
 message = client.messages.create(
-  model: "claude-opus-4-7",
+  model: "claude-opus-4-8",
   max_tokens: 1024,
   tools: [
     {

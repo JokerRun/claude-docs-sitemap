@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/messages/count_tokens
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 8d8a468c52d1191423be34b81f1b9a1b7fad50f62f36c2b8e24e7be6d5b29f8b
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 774fa203328d3db1e92bcb91441df5f87b165e9747f5ceea30f79fc2a90e5cc9
 ---
 
 ## Count tokens in a Message
@@ -74,6 +74,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
+
+    - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
+
+    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
   - `List<BetaMessageParam> messages`
 
@@ -647,6 +651,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
                 - `URL_NOT_ALLOWED("url_not_allowed")`
 
+                - `URL_NOT_IN_PRIOR_CONTEXT("url_not_in_prior_context")`
+
                 - `URL_NOT_ACCESSIBLE("url_not_accessible")`
 
                 - `UNSUPPORTED_CONTENT_TYPE("unsupported_content_type")`
@@ -733,6 +739,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
                 - `ADVISOR_RESULT("advisor_result")`
 
+              - `Optional<String> stopReason`
+
             - `class BetaAdvisorRedactedResultBlockParam:`
 
               - `String encryptedContent`
@@ -742,6 +750,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
               - `JsonValue; type "advisor_redacted_result"constant`
 
                 - `ADVISOR_REDACTED_RESULT("advisor_redacted_result")`
+
+              - `Optional<String> stopReason`
 
           - `String toolUseId`
 
@@ -1078,10 +1088,6 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
           When content is None, the block represents a failed compaction. The server
           treats these as no-ops. Empty string content is not allowed.
 
-          - `Optional<String> content`
-
-            Summary of previously compacted content, or null if compaction failed
-
           - `JsonValue; type "compaction"constant`
 
             - `COMPACTION("compaction")`
@@ -1090,15 +1096,50 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
             Create a cache control breakpoint at this content block.
 
+          - `Optional<String> content`
+
+            Summary of previously compacted content, or null if compaction failed
+
           - `Optional<String> encryptedContent`
 
             Opaque metadata from prior compaction, to be round-tripped verbatim
+
+        - `class BetaMidConversationSystemBlockParam:`
+
+          System instructions that appear mid-conversation.
+
+          Use this block to provide or update system-level instructions at a specific
+          point in the conversation, rather than only via the top-level `system` parameter.
+
+          - `List<BetaTextBlockParam> content`
+
+            System instruction text blocks.
+
+            - `String text`
+
+            - `JsonValue; type "text"constant`
+
+            - `Optional<BetaCacheControlEphemeral> cacheControl`
+
+              Create a cache control breakpoint at this content block.
+
+            - `Optional<List<BetaTextCitationParam>> citations`
+
+          - `JsonValue; type "mid_conv_system"constant`
+
+            - `MID_CONV_SYSTEM("mid_conv_system")`
+
+          - `Optional<BetaCacheControlEphemeral> cacheControl`
+
+            Create a cache control breakpoint at this content block.
 
     - `Role role`
 
       - `USER("user")`
 
       - `ASSISTANT("assistant")`
+
+      - `SYSTEM("system")`
 
   - `Model model`
 
@@ -2111,6 +2152,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `CLAUDE_OPUS_4_8("claude-opus-4-8")`
+
+          Frontier intelligence for long-running agents and coding
 
         - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
 

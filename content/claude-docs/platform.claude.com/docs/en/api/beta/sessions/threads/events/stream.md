@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/threads/events/stream
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 2559fc1fefc2deae0c1c9f26ae0591eaba17824855cba911288c7651b2328dc6
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 6a6cced5ea11f1e0b1ff53a64318355a5786693dc5ffbef7c35cb5c38dd4b7f0
 ---
 
 ## Stream Session Thread Events
@@ -25,7 +25,7 @@ Stream Session Thread Events
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 24 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -76,6 +76,10 @@ Stream Session Thread Events
     - `"managed-agents-2026-04-01"`
 
     - `"cache-diagnosis-2026-04-07"`
+
+    - `"thinking-token-count-2026-05-13"`
+
+    - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

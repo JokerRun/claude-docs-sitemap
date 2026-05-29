@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/keybindings
-fetched_at: 2026-05-28T03:18:36.130288Z
-sha256: 34f0934eb71b836304e2d1be778833b94efffeb0e7b5c4248bfd5e6a7f2b3e04
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: cd9f1c67d5d0ef9e61cb6925ef77916993ed0405e1d0fce3e58ebca4fef90448
 ---
 
 > ## Documentation Index
@@ -279,11 +279,11 @@ The diff detail view also binds pager-style keys to the standard [scroll actions
 
 Actions available in the `ModelPicker` context:
 
-| Action                       | Default | Description                                       |
-| :--------------------------- | :------ | :------------------------------------------------ |
-| `modelPicker:decreaseEffort` | Left    | Decrease effort level                             |
-| `modelPicker:increaseEffort` | Right   | Increase effort level                             |
-| `modelPicker:setAsDefault`   | d       | Set highlighted model as default for new sessions |
+| Action                        | Default | Description                                  |
+| :---------------------------- | :------ | :------------------------------------------- |
+| `modelPicker:decreaseEffort`  | Left    | Decrease effort level                        |
+| `modelPicker:increaseEffort`  | Right   | Increase effort level                        |
+| `modelPicker:thisSessionOnly` | s       | Apply highlighted model to this session only |
 
 ### Select actions
 

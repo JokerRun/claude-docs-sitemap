@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/php/messages/create
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 478946c13b152e9e36f32c8976da0e3d7231c69edfc157272fb85f38bf19340a
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: b836d282c5b0c93ac917c0f4fc494f6e1741937d1ae95463a96c448ee21a9e66
 ---
 
 ## Create a Message
@@ -444,6 +444,9 @@ var_dump($message);
     "inference_geo": "inference_geo",
     "input_tokens": 2095,
     "output_tokens": 503,
+    "output_tokens_details": {
+      "thinking_tokens": 0
+    },
     "server_tool_use": {
       "web_fetch_requests": 2,
       "web_search_requests": 0

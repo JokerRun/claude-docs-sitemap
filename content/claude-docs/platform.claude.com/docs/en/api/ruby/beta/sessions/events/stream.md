@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/sessions/events/stream
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 44eb4b5b2d5a2fe2307d43796e19ce50921ea60bc3cafe54f27ec260a7cb2056
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 503a94600a92f797926f2f78ab3d8efa6050a440b805353043046828c868d382
 ---
 
 ## Stream Events
@@ -23,7 +23,7 @@ Stream Events
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 24 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -74,6 +74,10 @@ Stream Events
     - `:"managed-agents-2026-04-01"`
 
     - `:"cache-diagnosis-2026-04-07"`
+
+    - `:"thinking-token-count-2026-05-13"`
+
+    - `:"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

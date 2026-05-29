@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/messages
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 97b765566dbf76ef881ab52da936545afeefa7912bcdafe1d93510fbcc77cb78
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 864aad998dd6c12586584954f2004ab61eb64db40ce4495ccb405b4040f004ff
 ---
 
 # Messages
@@ -587,6 +587,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
                 - `URL_NOT_ALLOWED("url_not_allowed")`
 
+                - `URL_NOT_IN_PRIOR_CONTEXT("url_not_in_prior_context")`
+
                 - `URL_NOT_ACCESSIBLE("url_not_accessible")`
 
                 - `UNSUPPORTED_CONTENT_TYPE("unsupported_content_type")`
@@ -906,11 +908,42 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
             Create a cache control breakpoint at this content block.
 
+        - `class MidConversationSystemBlockParam:`
+
+          System instructions that appear mid-conversation.
+
+          Use this block to provide or update system-level instructions at a specific
+          point in the conversation, rather than only via the top-level `system` parameter.
+
+          - `List<TextBlockParam> content`
+
+            System instruction text blocks.
+
+            - `String text`
+
+            - `JsonValue; type "text"constant`
+
+            - `Optional<CacheControlEphemeral> cacheControl`
+
+              Create a cache control breakpoint at this content block.
+
+            - `Optional<List<TextCitationParam>> citations`
+
+          - `JsonValue; type "mid_conv_system"constant`
+
+            - `MID_CONV_SYSTEM("mid_conv_system")`
+
+          - `Optional<CacheControlEphemeral> cacheControl`
+
+            Create a cache control breakpoint at this content block.
+
     - `Role role`
 
       - `USER("user")`
 
       - `ASSISTANT("assistant")`
+
+      - `SYSTEM("system")`
 
   - `Model model`
 
@@ -2143,6 +2176,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
             - `URL_NOT_ALLOWED("url_not_allowed")`
 
+            - `URL_NOT_IN_PRIOR_CONTEXT("url_not_in_prior_context")`
+
             - `URL_NOT_ACCESSIBLE("url_not_accessible")`
 
             - `UNSUPPORTED_CONTENT_TYPE("unsupported_content_type")`
@@ -2469,6 +2504,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+    - `CLAUDE_OPUS_4_8("claude-opus-4-8")`
+
+      Frontier intelligence for long-running agents and coding
+
     - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
 
       Frontier intelligence for long-running agents and coding
@@ -2654,6 +2693,26 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       The number of output tokens which were used.
 
+    - `Optional<OutputTokensDetails> outputTokensDetails`
+
+      Breakdown of output tokens by category.
+
+      `output_tokens` remains the inclusive, authoritative total used for billing.
+      This object provides a read-only decomposition for observability — for example,
+      how many of the billed output tokens were spent on internal reasoning that may
+      have been summarized before being returned to you.
+
+      - `long thinkingTokens`
+
+        Number of output tokens the model generated as internal reasoning, including
+        the thinking-block delimiter tokens.
+
+        Reflects the raw reasoning the model produced, not the (possibly shorter)
+        summarized thinking text returned in the response body. Computed by
+        re-tokenizing the raw reasoning text, so it may differ from the model's exact
+        generation count by a small number of tokens. Always ≤ `output_tokens`;
+        `output_tokens - thinking_tokens` approximates the non-reasoning output.
+
     - `Optional<ServerToolUsage> serverToolUse`
 
       The number of server tool requests.
@@ -2749,6 +2808,9 @@ public final class Main {
     "inference_geo": "inference_geo",
     "input_tokens": 2095,
     "output_tokens": 503,
+    "output_tokens_details": {
+      "thinking_tokens": 0
+    },
     "server_tool_use": {
       "web_fetch_requests": 2,
       "web_search_requests": 0
@@ -3328,6 +3390,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
                 - `URL_NOT_ALLOWED("url_not_allowed")`
 
+                - `URL_NOT_IN_PRIOR_CONTEXT("url_not_in_prior_context")`
+
                 - `URL_NOT_ACCESSIBLE("url_not_accessible")`
 
                 - `UNSUPPORTED_CONTENT_TYPE("unsupported_content_type")`
@@ -3647,11 +3711,42 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
             Create a cache control breakpoint at this content block.
 
+        - `class MidConversationSystemBlockParam:`
+
+          System instructions that appear mid-conversation.
+
+          Use this block to provide or update system-level instructions at a specific
+          point in the conversation, rather than only via the top-level `system` parameter.
+
+          - `List<TextBlockParam> content`
+
+            System instruction text blocks.
+
+            - `String text`
+
+            - `JsonValue; type "text"constant`
+
+            - `Optional<CacheControlEphemeral> cacheControl`
+
+              Create a cache control breakpoint at this content block.
+
+            - `Optional<List<TextCitationParam>> citations`
+
+          - `JsonValue; type "mid_conv_system"constant`
+
+            - `MID_CONV_SYSTEM("mid_conv_system")`
+
+          - `Optional<CacheControlEphemeral> cacheControl`
+
+            Create a cache control breakpoint at this content block.
+
     - `Role role`
 
       - `USER("user")`
 
       - `ASSISTANT("assistant")`
+
+      - `SYSTEM("system")`
 
   - `Model model`
 
@@ -6133,6 +6228,8 @@ public final class Main {
 
           - `URL_NOT_ALLOWED("url_not_allowed")`
 
+          - `URL_NOT_IN_PRIOR_CONTEXT("url_not_in_prior_context")`
+
           - `URL_NOT_ACCESSIBLE("url_not_accessible")`
 
           - `UNSUPPORTED_CONTENT_TYPE("unsupported_content_type")`
@@ -6956,6 +7053,8 @@ public final class Main {
 
           - `URL_NOT_ALLOWED("url_not_allowed")`
 
+          - `URL_NOT_IN_PRIOR_CONTEXT("url_not_in_prior_context")`
+
           - `URL_NOT_ACCESSIBLE("url_not_accessible")`
 
           - `UNSUPPORTED_CONTENT_TYPE("unsupported_content_type")`
@@ -7270,6 +7369,35 @@ public final class Main {
     - `JsonValue; type "container_upload"constant`
 
       - `CONTAINER_UPLOAD("container_upload")`
+
+    - `Optional<CacheControlEphemeral> cacheControl`
+
+      Create a cache control breakpoint at this content block.
+
+  - `class MidConversationSystemBlockParam:`
+
+    System instructions that appear mid-conversation.
+
+    Use this block to provide or update system-level instructions at a specific
+    point in the conversation, rather than only via the top-level `system` parameter.
+
+    - `List<TextBlockParam> content`
+
+      System instruction text blocks.
+
+      - `String text`
+
+      - `JsonValue; type "text"constant`
+
+      - `Optional<CacheControlEphemeral> cacheControl`
+
+        Create a cache control breakpoint at this content block.
+
+      - `Optional<List<TextCitationParam>> citations`
+
+    - `JsonValue; type "mid_conv_system"constant`
+
+      - `MID_CONV_SYSTEM("mid_conv_system")`
 
     - `Optional<CacheControlEphemeral> cacheControl`
 
@@ -8485,6 +8613,8 @@ public final class Main {
 
             - `URL_NOT_ALLOWED("url_not_allowed")`
 
+            - `URL_NOT_IN_PRIOR_CONTEXT("url_not_in_prior_context")`
+
             - `URL_NOT_ACCESSIBLE("url_not_accessible")`
 
             - `UNSUPPORTED_CONTENT_TYPE("unsupported_content_type")`
@@ -8811,6 +8941,10 @@ public final class Main {
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+    - `CLAUDE_OPUS_4_8("claude-opus-4-8")`
+
+      Frontier intelligence for long-running agents and coding
+
     - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
 
       Frontier intelligence for long-running agents and coding
@@ -8995,6 +9129,26 @@ public final class Main {
     - `long outputTokens`
 
       The number of output tokens which were used.
+
+    - `Optional<OutputTokensDetails> outputTokensDetails`
+
+      Breakdown of output tokens by category.
+
+      `output_tokens` remains the inclusive, authoritative total used for billing.
+      This object provides a read-only decomposition for observability — for example,
+      how many of the billed output tokens were spent on internal reasoning that may
+      have been summarized before being returned to you.
+
+      - `long thinkingTokens`
+
+        Number of output tokens the model generated as internal reasoning, including
+        the thinking-block delimiter tokens.
+
+        Reflects the raw reasoning the model produced, not the (possibly shorter)
+        summarized thinking text returned in the response body. Computed by
+        re-tokenizing the raw reasoning text, so it may differ from the model's exact
+        generation count by a small number of tokens. Always ≤ `output_tokens`;
+        `output_tokens - thinking_tokens` approximates the non-reasoning output.
 
     - `Optional<ServerToolUsage> serverToolUse`
 
@@ -9771,6 +9925,26 @@ public final class Main {
 
     The cumulative number of output tokens which were used.
 
+  - `Optional<OutputTokensDetails> outputTokensDetails`
+
+    Breakdown of output tokens by category.
+
+    `output_tokens` remains the inclusive, authoritative total used for billing.
+    This object provides a read-only decomposition for observability — for example,
+    how many of the billed output tokens were spent on internal reasoning that may
+    have been summarized before being returned to you.
+
+    - `long thinkingTokens`
+
+      Number of output tokens the model generated as internal reasoning, including
+      the thinking-block delimiter tokens.
+
+      Reflects the raw reasoning the model produced, not the (possibly shorter)
+      summarized thinking text returned in the response body. Computed by
+      re-tokenizing the raw reasoning text, so it may differ from the model's exact
+      generation count by a small number of tokens. Always ≤ `output_tokens`;
+      `output_tokens - thinking_tokens` approximates the non-reasoning output.
+
   - `Optional<ServerToolUsage> serverToolUse`
 
     The number of server tool requests.
@@ -10290,6 +10464,8 @@ public final class Main {
 
               - `URL_NOT_ALLOWED("url_not_allowed")`
 
+              - `URL_NOT_IN_PRIOR_CONTEXT("url_not_in_prior_context")`
+
               - `URL_NOT_ACCESSIBLE("url_not_accessible")`
 
               - `UNSUPPORTED_CONTENT_TYPE("unsupported_content_type")`
@@ -10609,11 +10785,42 @@ public final class Main {
 
           Create a cache control breakpoint at this content block.
 
+      - `class MidConversationSystemBlockParam:`
+
+        System instructions that appear mid-conversation.
+
+        Use this block to provide or update system-level instructions at a specific
+        point in the conversation, rather than only via the top-level `system` parameter.
+
+        - `List<TextBlockParam> content`
+
+          System instruction text blocks.
+
+          - `String text`
+
+          - `JsonValue; type "text"constant`
+
+          - `Optional<CacheControlEphemeral> cacheControl`
+
+            Create a cache control breakpoint at this content block.
+
+          - `Optional<List<TextCitationParam>> citations`
+
+        - `JsonValue; type "mid_conv_system"constant`
+
+          - `MID_CONV_SYSTEM("mid_conv_system")`
+
+        - `Optional<CacheControlEphemeral> cacheControl`
+
+          Create a cache control breakpoint at this content block.
+
   - `Role role`
 
     - `USER("user")`
 
     - `ASSISTANT("assistant")`
+
+    - `SYSTEM("system")`
 
 ### Message Tokens Count
 
@@ -10633,6 +10840,162 @@ public final class Main {
 
     This should be a uuid, hash value, or other opaque identifier. Anthropic may use this id to help detect abuse. Do not include any identifying information such as name, email address, or phone number.
 
+### Mid Conversation System Block Param
+
+- `class MidConversationSystemBlockParam:`
+
+  System instructions that appear mid-conversation.
+
+  Use this block to provide or update system-level instructions at a specific
+  point in the conversation, rather than only via the top-level `system` parameter.
+
+  - `List<TextBlockParam> content`
+
+    System instruction text blocks.
+
+    - `String text`
+
+    - `JsonValue; type "text"constant`
+
+      - `TEXT("text")`
+
+    - `Optional<CacheControlEphemeral> cacheControl`
+
+      Create a cache control breakpoint at this content block.
+
+      - `JsonValue; type "ephemeral"constant`
+
+        - `EPHEMERAL("ephemeral")`
+
+      - `Optional<Ttl> ttl`
+
+        The time-to-live for the cache control breakpoint.
+
+        This may be one the following values:
+
+        - `5m`: 5 minutes
+        - `1h`: 1 hour
+
+        Defaults to `5m`.
+
+        - `TTL_5M("5m")`
+
+        - `TTL_1H("1h")`
+
+    - `Optional<List<TextCitationParam>> citations`
+
+      - `class CitationCharLocationParam:`
+
+        - `String citedText`
+
+        - `long documentIndex`
+
+        - `Optional<String> documentTitle`
+
+        - `long endCharIndex`
+
+        - `long startCharIndex`
+
+        - `JsonValue; type "char_location"constant`
+
+          - `CHAR_LOCATION("char_location")`
+
+      - `class CitationPageLocationParam:`
+
+        - `String citedText`
+
+        - `long documentIndex`
+
+        - `Optional<String> documentTitle`
+
+        - `long endPageNumber`
+
+        - `long startPageNumber`
+
+        - `JsonValue; type "page_location"constant`
+
+          - `PAGE_LOCATION("page_location")`
+
+      - `class CitationContentBlockLocationParam:`
+
+        - `String citedText`
+
+          The full text of the cited block range, concatenated.
+
+          Always equals the contents of `content[start_block_index:end_block_index]` joined together. The text block is the minimal citable unit; this field is never a substring of a single block. Not counted toward output tokens, and not counted toward input tokens when sent back in subsequent turns.
+
+        - `long documentIndex`
+
+        - `Optional<String> documentTitle`
+
+        - `long endBlockIndex`
+
+          Exclusive 0-based end index of the cited block range in the source's `content` array.
+
+          Always greater than `start_block_index`; a single-block citation has `end_block_index = start_block_index + 1`.
+
+        - `long startBlockIndex`
+
+          0-based index of the first cited block in the source's `content` array.
+
+        - `JsonValue; type "content_block_location"constant`
+
+          - `CONTENT_BLOCK_LOCATION("content_block_location")`
+
+      - `class CitationWebSearchResultLocationParam:`
+
+        - `String citedText`
+
+        - `String encryptedIndex`
+
+        - `Optional<String> title`
+
+        - `JsonValue; type "web_search_result_location"constant`
+
+          - `WEB_SEARCH_RESULT_LOCATION("web_search_result_location")`
+
+        - `String url`
+
+      - `class CitationSearchResultLocationParam:`
+
+        - `String citedText`
+
+          The full text of the cited block range, concatenated.
+
+          Always equals the contents of `content[start_block_index:end_block_index]` joined together. The text block is the minimal citable unit; this field is never a substring of a single block. Not counted toward output tokens, and not counted toward input tokens when sent back in subsequent turns.
+
+        - `long endBlockIndex`
+
+          Exclusive 0-based end index of the cited block range in the source's `content` array.
+
+          Always greater than `start_block_index`; a single-block citation has `end_block_index = start_block_index + 1`.
+
+        - `long searchResultIndex`
+
+          0-based index of the cited search result among all `search_result` content blocks in the request, in the order they appear across messages and tool results.
+
+          Counted separately from `document_index`; server-side web search results are not included in this count.
+
+        - `String source`
+
+        - `long startBlockIndex`
+
+          0-based index of the first cited block in the source's `content` array.
+
+        - `Optional<String> title`
+
+        - `JsonValue; type "search_result_location"constant`
+
+          - `SEARCH_RESULT_LOCATION("search_result_location")`
+
+  - `JsonValue; type "mid_conv_system"constant`
+
+    - `MID_CONV_SYSTEM("mid_conv_system")`
+
+  - `Optional<CacheControlEphemeral> cacheControl`
+
+    Create a cache control breakpoint at this content block.
+
 ### Model
 
 - `enum Model:`
@@ -10640,6 +11003,10 @@ public final class Main {
   The model that will complete your prompt.
 
   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+  - `CLAUDE_OPUS_4_8("claude-opus-4-8")`
+
+    Frontier intelligence for long-running agents and coding
 
   - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
 
@@ -11387,6 +11754,8 @@ public final class Main {
 
             - `URL_NOT_ALLOWED("url_not_allowed")`
 
+            - `URL_NOT_IN_PRIOR_CONTEXT("url_not_in_prior_context")`
+
             - `URL_NOT_ACCESSIBLE("url_not_accessible")`
 
             - `UNSUPPORTED_CONTENT_TYPE("unsupported_content_type")`
@@ -11813,6 +12182,26 @@ public final class Main {
 
       The cumulative number of output tokens which were used.
 
+    - `Optional<OutputTokensDetails> outputTokensDetails`
+
+      Breakdown of output tokens by category.
+
+      `output_tokens` remains the inclusive, authoritative total used for billing.
+      This object provides a read-only decomposition for observability — for example,
+      how many of the billed output tokens were spent on internal reasoning that may
+      have been summarized before being returned to you.
+
+      - `long thinkingTokens`
+
+        Number of output tokens the model generated as internal reasoning, including
+        the thinking-block delimiter tokens.
+
+        Reflects the raw reasoning the model produced, not the (possibly shorter)
+        summarized thinking text returned in the response body. Computed by
+        re-tokenizing the raw reasoning text, so it may differ from the model's exact
+        generation count by a small number of tokens. Always ≤ `output_tokens`;
+        `output_tokens - thinking_tokens` approximates the non-reasoning output.
+
     - `Optional<ServerToolUsage> serverToolUse`
 
       The number of server tool requests.
@@ -12188,6 +12577,8 @@ public final class Main {
 
               - `URL_NOT_ALLOWED("url_not_allowed")`
 
+              - `URL_NOT_IN_PRIOR_CONTEXT("url_not_in_prior_context")`
+
               - `URL_NOT_ACCESSIBLE("url_not_accessible")`
 
               - `UNSUPPORTED_CONTENT_TYPE("unsupported_content_type")`
@@ -12514,6 +12905,10 @@ public final class Main {
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+      - `CLAUDE_OPUS_4_8("claude-opus-4-8")`
+
+        Frontier intelligence for long-running agents and coding
+
       - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
 
         Frontier intelligence for long-running agents and coding
@@ -12698,6 +13093,26 @@ public final class Main {
       - `long outputTokens`
 
         The number of output tokens which were used.
+
+      - `Optional<OutputTokensDetails> outputTokensDetails`
+
+        Breakdown of output tokens by category.
+
+        `output_tokens` remains the inclusive, authoritative total used for billing.
+        This object provides a read-only decomposition for observability — for example,
+        how many of the billed output tokens were spent on internal reasoning that may
+        have been summarized before being returned to you.
+
+        - `long thinkingTokens`
+
+          Number of output tokens the model generated as internal reasoning, including
+          the thinking-block delimiter tokens.
+
+          Reflects the raw reasoning the model produced, not the (possibly shorter)
+          summarized thinking text returned in the response body. Computed by
+          re-tokenizing the raw reasoning text, so it may differ from the model's exact
+          generation count by a small number of tokens. Always ≤ `output_tokens`;
+          `output_tokens - thinking_tokens` approximates the non-reasoning output.
 
       - `Optional<ServerToolUsage> serverToolUse`
 
@@ -13098,6 +13513,8 @@ public final class Main {
 
                 - `URL_NOT_ALLOWED("url_not_allowed")`
 
+                - `URL_NOT_IN_PRIOR_CONTEXT("url_not_in_prior_context")`
+
                 - `URL_NOT_ACCESSIBLE("url_not_accessible")`
 
                 - `UNSUPPORTED_CONTENT_TYPE("unsupported_content_type")`
@@ -13424,6 +13841,10 @@ public final class Main {
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+        - `CLAUDE_OPUS_4_8("claude-opus-4-8")`
+
+          Frontier intelligence for long-running agents and coding
+
         - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
 
           Frontier intelligence for long-running agents and coding
@@ -13609,6 +14030,26 @@ public final class Main {
 
           The number of output tokens which were used.
 
+        - `Optional<OutputTokensDetails> outputTokensDetails`
+
+          Breakdown of output tokens by category.
+
+          `output_tokens` remains the inclusive, authoritative total used for billing.
+          This object provides a read-only decomposition for observability — for example,
+          how many of the billed output tokens were spent on internal reasoning that may
+          have been summarized before being returned to you.
+
+          - `long thinkingTokens`
+
+            Number of output tokens the model generated as internal reasoning, including
+            the thinking-block delimiter tokens.
+
+            Reflects the raw reasoning the model produced, not the (possibly shorter)
+            summarized thinking text returned in the response body. Computed by
+            re-tokenizing the raw reasoning text, so it may differ from the model's exact
+            generation count by a small number of tokens. Always ≤ `output_tokens`;
+            `output_tokens - thinking_tokens` approximates the non-reasoning output.
+
         - `Optional<ServerToolUsage> serverToolUse`
 
           The number of server tool requests.
@@ -13682,6 +14123,26 @@ public final class Main {
       - `long outputTokens`
 
         The cumulative number of output tokens which were used.
+
+      - `Optional<OutputTokensDetails> outputTokensDetails`
+
+        Breakdown of output tokens by category.
+
+        `output_tokens` remains the inclusive, authoritative total used for billing.
+        This object provides a read-only decomposition for observability — for example,
+        how many of the billed output tokens were spent on internal reasoning that may
+        have been summarized before being returned to you.
+
+        - `long thinkingTokens`
+
+          Number of output tokens the model generated as internal reasoning, including
+          the thinking-block delimiter tokens.
+
+          Reflects the raw reasoning the model produced, not the (possibly shorter)
+          summarized thinking text returned in the response body. Computed by
+          re-tokenizing the raw reasoning text, so it may differ from the model's exact
+          generation count by a small number of tokens. Always ≤ `output_tokens`;
+          `output_tokens - thinking_tokens` approximates the non-reasoning output.
 
       - `Optional<ServerToolUsage> serverToolUse`
 
@@ -17190,6 +17651,26 @@ public final class Main {
 
     The number of output tokens which were used.
 
+  - `Optional<OutputTokensDetails> outputTokensDetails`
+
+    Breakdown of output tokens by category.
+
+    `output_tokens` remains the inclusive, authoritative total used for billing.
+    This object provides a read-only decomposition for observability — for example,
+    how many of the billed output tokens were spent on internal reasoning that may
+    have been summarized before being returned to you.
+
+    - `long thinkingTokens`
+
+      Number of output tokens the model generated as internal reasoning, including
+      the thinking-block delimiter tokens.
+
+      Reflects the raw reasoning the model produced, not the (possibly shorter)
+      summarized thinking text returned in the response body. Computed by
+      re-tokenizing the raw reasoning text, so it may differ from the model's exact
+      generation count by a small number of tokens. Always ≤ `output_tokens`;
+      `output_tokens - thinking_tokens` approximates the non-reasoning output.
+
   - `Optional<ServerToolUsage> serverToolUse`
 
     The number of server tool requests.
@@ -17832,6 +18313,8 @@ public final class Main {
 
         - `URL_NOT_ALLOWED("url_not_allowed")`
 
+        - `URL_NOT_IN_PRIOR_CONTEXT("url_not_in_prior_context")`
+
         - `URL_NOT_ACCESSIBLE("url_not_accessible")`
 
         - `UNSUPPORTED_CONTENT_TYPE("unsupported_content_type")`
@@ -17923,6 +18406,8 @@ public final class Main {
         - `URL_TOO_LONG("url_too_long")`
 
         - `URL_NOT_ALLOWED("url_not_allowed")`
+
+        - `URL_NOT_IN_PRIOR_CONTEXT("url_not_in_prior_context")`
 
         - `URL_NOT_ACCESSIBLE("url_not_accessible")`
 
@@ -18243,6 +18728,8 @@ public final class Main {
 
     - `URL_NOT_ALLOWED("url_not_allowed")`
 
+    - `URL_NOT_IN_PRIOR_CONTEXT("url_not_in_prior_context")`
+
     - `URL_NOT_ACCESSIBLE("url_not_accessible")`
 
     - `UNSUPPORTED_CONTENT_TYPE("unsupported_content_type")`
@@ -18269,6 +18756,8 @@ public final class Main {
 
     - `URL_NOT_ALLOWED("url_not_allowed")`
 
+    - `URL_NOT_IN_PRIOR_CONTEXT("url_not_in_prior_context")`
+
     - `URL_NOT_ACCESSIBLE("url_not_accessible")`
 
     - `UNSUPPORTED_CONTENT_TYPE("unsupported_content_type")`
@@ -18292,6 +18781,8 @@ public final class Main {
   - `URL_TOO_LONG("url_too_long")`
 
   - `URL_NOT_ALLOWED("url_not_allowed")`
+
+  - `URL_NOT_IN_PRIOR_CONTEXT("url_not_in_prior_context")`
 
   - `URL_NOT_ACCESSIBLE("url_not_accessible")`
 
@@ -19426,6 +19917,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                     - `URL_NOT_ALLOWED("url_not_allowed")`
 
+                    - `URL_NOT_IN_PRIOR_CONTEXT("url_not_in_prior_context")`
+
                     - `URL_NOT_ACCESSIBLE("url_not_accessible")`
 
                     - `UNSUPPORTED_CONTENT_TYPE("unsupported_content_type")`
@@ -19745,17 +20238,52 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                 Create a cache control breakpoint at this content block.
 
+            - `class MidConversationSystemBlockParam:`
+
+              System instructions that appear mid-conversation.
+
+              Use this block to provide or update system-level instructions at a specific
+              point in the conversation, rather than only via the top-level `system` parameter.
+
+              - `List<TextBlockParam> content`
+
+                System instruction text blocks.
+
+                - `String text`
+
+                - `JsonValue; type "text"constant`
+
+                - `Optional<CacheControlEphemeral> cacheControl`
+
+                  Create a cache control breakpoint at this content block.
+
+                - `Optional<List<TextCitationParam>> citations`
+
+              - `JsonValue; type "mid_conv_system"constant`
+
+                - `MID_CONV_SYSTEM("mid_conv_system")`
+
+              - `Optional<CacheControlEphemeral> cacheControl`
+
+                Create a cache control breakpoint at this content block.
+
         - `Role role`
 
           - `USER("user")`
 
           - `ASSISTANT("assistant")`
 
+          - `SYSTEM("system")`
+
       - `Model model`
 
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `CLAUDE_OPUS_4_8("claude-opus-4-8")`
+
+          Frontier intelligence for long-running agents and coding
 
         - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
 
@@ -21908,6 +22436,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `URL_NOT_ALLOWED("url_not_allowed")`
 
+                  - `URL_NOT_IN_PRIOR_CONTEXT("url_not_in_prior_context")`
+
                   - `URL_NOT_ACCESSIBLE("url_not_accessible")`
 
                   - `UNSUPPORTED_CONTENT_TYPE("unsupported_content_type")`
@@ -22234,6 +22764,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `CLAUDE_OPUS_4_8("claude-opus-4-8")`
+
+            Frontier intelligence for long-running agents and coding
+
           - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
 
             Frontier intelligence for long-running agents and coding
@@ -22418,6 +22952,26 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           - `long outputTokens`
 
             The number of output tokens which were used.
+
+          - `Optional<OutputTokensDetails> outputTokensDetails`
+
+            Breakdown of output tokens by category.
+
+            `output_tokens` remains the inclusive, authoritative total used for billing.
+            This object provides a read-only decomposition for observability — for example,
+            how many of the billed output tokens were spent on internal reasoning that may
+            have been summarized before being returned to you.
+
+            - `long thinkingTokens`
+
+              Number of output tokens the model generated as internal reasoning, including
+              the thinking-block delimiter tokens.
+
+              Reflects the raw reasoning the model produced, not the (possibly shorter)
+              summarized thinking text returned in the response body. Computed by
+              re-tokenizing the raw reasoning text, so it may differ from the model's exact
+              generation count by a small number of tokens. Always ≤ `output_tokens`;
+              `output_tokens - thinking_tokens` approximates the non-reasoning output.
 
           - `Optional<ServerToolUsage> serverToolUse`
 
@@ -23160,6 +23714,8 @@ public final class Main {
 
                   - `URL_NOT_ALLOWED("url_not_allowed")`
 
+                  - `URL_NOT_IN_PRIOR_CONTEXT("url_not_in_prior_context")`
+
                   - `URL_NOT_ACCESSIBLE("url_not_accessible")`
 
                   - `UNSUPPORTED_CONTENT_TYPE("unsupported_content_type")`
@@ -23486,6 +24042,10 @@ public final class Main {
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `CLAUDE_OPUS_4_8("claude-opus-4-8")`
+
+            Frontier intelligence for long-running agents and coding
+
           - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
 
             Frontier intelligence for long-running agents and coding
@@ -23670,6 +24230,26 @@ public final class Main {
           - `long outputTokens`
 
             The number of output tokens which were used.
+
+          - `Optional<OutputTokensDetails> outputTokensDetails`
+
+            Breakdown of output tokens by category.
+
+            `output_tokens` remains the inclusive, authoritative total used for billing.
+            This object provides a read-only decomposition for observability — for example,
+            how many of the billed output tokens were spent on internal reasoning that may
+            have been summarized before being returned to you.
+
+            - `long thinkingTokens`
+
+              Number of output tokens the model generated as internal reasoning, including
+              the thinking-block delimiter tokens.
+
+              Reflects the raw reasoning the model produced, not the (possibly shorter)
+              summarized thinking text returned in the response body. Computed by
+              re-tokenizing the raw reasoning text, so it may differ from the model's exact
+              generation count by a small number of tokens. Always ≤ `output_tokens`;
+              `output_tokens - thinking_tokens` approximates the non-reasoning output.
 
           - `Optional<ServerToolUsage> serverToolUse`
 
@@ -24198,6 +24778,8 @@ public final class Main {
 
                 - `URL_NOT_ALLOWED("url_not_allowed")`
 
+                - `URL_NOT_IN_PRIOR_CONTEXT("url_not_in_prior_context")`
+
                 - `URL_NOT_ACCESSIBLE("url_not_accessible")`
 
                 - `UNSUPPORTED_CONTENT_TYPE("unsupported_content_type")`
@@ -24524,6 +25106,10 @@ public final class Main {
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+        - `CLAUDE_OPUS_4_8("claude-opus-4-8")`
+
+          Frontier intelligence for long-running agents and coding
+
         - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
 
           Frontier intelligence for long-running agents and coding
@@ -24708,6 +25294,26 @@ public final class Main {
         - `long outputTokens`
 
           The number of output tokens which were used.
+
+        - `Optional<OutputTokensDetails> outputTokensDetails`
+
+          Breakdown of output tokens by category.
+
+          `output_tokens` remains the inclusive, authoritative total used for billing.
+          This object provides a read-only decomposition for observability — for example,
+          how many of the billed output tokens were spent on internal reasoning that may
+          have been summarized before being returned to you.
+
+          - `long thinkingTokens`
+
+            Number of output tokens the model generated as internal reasoning, including
+            the thinking-block delimiter tokens.
+
+            Reflects the raw reasoning the model produced, not the (possibly shorter)
+            summarized thinking text returned in the response body. Computed by
+            re-tokenizing the raw reasoning text, so it may differ from the model's exact
+            generation count by a small number of tokens. Always ≤ `output_tokens`;
+            `output_tokens - thinking_tokens` approximates the non-reasoning output.
 
         - `Optional<ServerToolUsage> serverToolUse`
 
@@ -25198,6 +25804,8 @@ public final class Main {
 
               - `URL_NOT_ALLOWED("url_not_allowed")`
 
+              - `URL_NOT_IN_PRIOR_CONTEXT("url_not_in_prior_context")`
+
               - `URL_NOT_ACCESSIBLE("url_not_accessible")`
 
               - `UNSUPPORTED_CONTENT_TYPE("unsupported_content_type")`
@@ -25524,6 +26132,10 @@ public final class Main {
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+      - `CLAUDE_OPUS_4_8("claude-opus-4-8")`
+
+        Frontier intelligence for long-running agents and coding
+
       - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
 
         Frontier intelligence for long-running agents and coding
@@ -25708,6 +26320,26 @@ public final class Main {
       - `long outputTokens`
 
         The number of output tokens which were used.
+
+      - `Optional<OutputTokensDetails> outputTokensDetails`
+
+        Breakdown of output tokens by category.
+
+        `output_tokens` remains the inclusive, authoritative total used for billing.
+        This object provides a read-only decomposition for observability — for example,
+        how many of the billed output tokens were spent on internal reasoning that may
+        have been summarized before being returned to you.
+
+        - `long thinkingTokens`
+
+          Number of output tokens the model generated as internal reasoning, including
+          the thinking-block delimiter tokens.
+
+          Reflects the raw reasoning the model produced, not the (possibly shorter)
+          summarized thinking text returned in the response body. Computed by
+          re-tokenizing the raw reasoning text, so it may differ from the model's exact
+          generation count by a small number of tokens. Always ≤ `output_tokens`;
+          `output_tokens - thinking_tokens` approximates the non-reasoning output.
 
       - `Optional<ServerToolUsage> serverToolUse`
 

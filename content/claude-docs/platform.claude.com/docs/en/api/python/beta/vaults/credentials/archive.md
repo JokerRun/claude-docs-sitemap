@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/vaults/credentials/archive
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: ca7115ddc55e9da9d2c834584c4fe9202807ab954deb4feb70b9dd19be888a8f
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 54ce80e390a5878c0c18538c630e107a6c830767c9a8c0129269f3bdcf6e847f
 ---
 
 ## Archive Credential
@@ -25,7 +25,7 @@ Archive Credential
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 22 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 24 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -76,6 +76,10 @@ Archive Credential
     - `"managed-agents-2026-04-01"`
 
     - `"cache-diagnosis-2026-04-07"`
+
+    - `"thinking-token-count-2026-05-13"`
+
+    - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

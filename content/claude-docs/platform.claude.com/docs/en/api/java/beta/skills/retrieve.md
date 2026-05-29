@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/skills/retrieve
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: ff9b4cfb7c4207ca1a6b4811d737f486a195f848c437f630cec584d2de0f954c
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: d573b69adcb470c2fd205f0b0ac5796fa86fb41f37395ccb0413c816f7cf50c8
 ---
 
 ## Get Skill
@@ -76,6 +76,10 @@ Get Skill
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
+
+    - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
+
+    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
 ### Returns
 

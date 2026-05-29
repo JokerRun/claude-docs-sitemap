@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/update
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: ab41c70b4a002fd0fbe6d4a57cc7277da17d6efd76aec607c34900c04afee22a
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 85d724da548069df0db48051e561fa73e953deb693fba589919c78d1e4a31241
 ---
 
 ## Update Vault
@@ -72,6 +72,10 @@ Update Vault
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
+
+    - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
+
+    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
   - `Optional<String> displayName`
 

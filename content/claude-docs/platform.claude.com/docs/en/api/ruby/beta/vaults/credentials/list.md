@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/vaults/credentials/list
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: d31510885558d82c232c38fa007f3ad47424ef1d1704cfb63b16c8cc2499655f
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 6d5a8ddafbc8dcb5d186b9d9867b06dc128b0d458ce351287916cac462960493
 ---
 
 ## List Credentials
@@ -35,7 +35,7 @@ List Credentials
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 24 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -86,6 +86,10 @@ List Credentials
     - `:"managed-agents-2026-04-01"`
 
     - `:"cache-diagnosis-2026-04-07"`
+
+    - `:"thinking-token-count-2026-05-13"`
+
+    - `:"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/sessions/resources/delete
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 93c139bfb075ad95ad139401f7558806ff07c0f9fad36db925cfd34da37f9dd0
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: b4f2ac47456db64ec81307f79a1d6398c9309857c90a2af45680dc84f2e9fdc9
 ---
 
 ## Delete Session Resource
@@ -29,7 +29,7 @@ Delete Session Resource
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 22 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 24 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -80,6 +80,10 @@ Delete Session Resource
       - `"managed-agents-2026-04-01"`
 
       - `"cache-diagnosis-2026-04-07"`
+
+      - `"thinking-token-count-2026-05-13"`
+
+      - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

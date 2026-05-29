@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/vaults/archive
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: a80a3d4ce963861c5c118aae540de4d108d5e17a23a7299097eb71c39482acdd
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 27e9c8ff3a06edd38b74624bf01d0f8db8d214fe70081ab119b6e1876cab5c8a
 ---
 
 ## Archive Vault
@@ -23,7 +23,7 @@ Archive Vault
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 24 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -74,6 +74,10 @@ Archive Vault
     - `:"managed-agents-2026-04-01"`
 
     - `:"cache-diagnosis-2026-04-07"`
+
+    - `:"thinking-token-count-2026-05-13"`
+
+    - `:"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

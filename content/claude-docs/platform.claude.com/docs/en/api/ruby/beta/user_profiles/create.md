@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/user_profiles/create
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 09ec356538b0d5bdd6a013c0f6979cc2b1c9e8bc9e92ae8efabe2e2f964ed684
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 93a72226c03a09ba474a53306207aa7cdf0aae28a1c276615fd752a9461233d5
 ---
 
 ## Create User Profile
@@ -43,7 +43,7 @@ Create User Profile
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 24 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -94,6 +94,10 @@ Create User Profile
     - `:"managed-agents-2026-04-01"`
 
     - `:"cache-diagnosis-2026-04-07"`
+
+    - `:"thinking-token-count-2026-05-13"`
+
+    - `:"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

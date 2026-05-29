@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/batches/create
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 5a4b353675a347cce97b35a6e7993d7d71326f8760f709f95bbae25a050b92a1
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 8683ead2a9d96d4a77154a38435542f88aaf2dddb83832f83ef85702b6ea13b7
 ---
 
 ## Create a Message Batch
@@ -23,7 +23,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 24 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -74,6 +74,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `"managed-agents-2026-04-01"`
 
     - `"cache-diagnosis-2026-04-07"`
+
+    - `"thinking-token-count-2026-05-13"`
+
+    - `"mid-conversation-system-2026-04-07"`
 
 ### Body Parameters
 
@@ -675,6 +679,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `"url_not_allowed"`
 
+                  - `"url_not_in_prior_context"`
+
                   - `"url_not_accessible"`
 
                   - `"unsupported_content_type"`
@@ -753,7 +759,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `"advisor_tool_result_error"`
 
-              - `BetaAdvisorResultBlockParam object { text, type }`
+              - `BetaAdvisorResultBlockParam object { text, type, stop_reason }`
 
                 - `text: string`
 
@@ -761,7 +767,9 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `"advisor_result"`
 
-              - `BetaAdvisorRedactedResultBlockParam object { encrypted_content, type }`
+                - `stop_reason: optional string`
+
+              - `BetaAdvisorRedactedResultBlockParam object { encrypted_content, type, stop_reason }`
 
                 - `encrypted_content: string`
 
@@ -770,6 +778,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
                 - `type: "advisor_redacted_result"`
 
                   - `"advisor_redacted_result"`
+
+                - `stop_reason: optional string`
 
             - `tool_use_id: string`
 
@@ -1096,7 +1106,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
               Create a cache control breakpoint at this content block.
 
-          - `BetaCompactionBlockParam object { content, type, cache_control, encrypted_content }`
+          - `BetaCompactionBlockParam object { type, cache_control, content, encrypted_content }`
 
             A compaction block containing summary of previous context.
 
@@ -1106,10 +1116,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             When content is None, the block represents a failed compaction. The server
             treats these as no-ops. Empty string content is not allowed.
 
-            - `content: string`
-
-              Summary of previously compacted content, or null if compaction failed
-
             - `type: "compaction"`
 
               - `"compaction"`
@@ -1118,15 +1124,50 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
               Create a cache control breakpoint at this content block.
 
+            - `content: optional string`
+
+              Summary of previously compacted content, or null if compaction failed
+
             - `encrypted_content: optional string`
 
               Opaque metadata from prior compaction, to be round-tripped verbatim
 
-      - `role: "user" or "assistant"`
+          - `BetaMidConversationSystemBlockParam object { content, type, cache_control }`
+
+            System instructions that appear mid-conversation.
+
+            Use this block to provide or update system-level instructions at a specific
+            point in the conversation, rather than only via the top-level `system` parameter.
+
+            - `content: array of BetaTextBlockParam`
+
+              System instruction text blocks.
+
+              - `text: string`
+
+              - `type: "text"`
+
+              - `cache_control: optional BetaCacheControlEphemeral`
+
+                Create a cache control breakpoint at this content block.
+
+              - `citations: optional array of BetaTextCitationParam`
+
+            - `type: "mid_conv_system"`
+
+              - `"mid_conv_system"`
+
+            - `cache_control: optional BetaCacheControlEphemeral`
+
+              Create a cache control breakpoint at this content block.
+
+      - `role: "user" or "assistant" or "system"`
 
         - `"user"`
 
         - `"assistant"`
+
+        - `"system"`
 
     - `model: Model`
 
@@ -1134,11 +1175,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `"claude-opus-4-7" or "claude-mythos-preview" or "claude-opus-4-6" or 14 more`
+      - `"claude-opus-4-8" or "claude-opus-4-7" or "claude-mythos-preview" or 15 more`
 
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-opus-4-8"`
+
+          Frontier intelligence for long-running agents and coding
 
         - `"claude-opus-4-7"`
 

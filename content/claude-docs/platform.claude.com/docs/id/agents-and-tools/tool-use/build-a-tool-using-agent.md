@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/build-a-tool-using-agent
-fetched_at: 2026-04-25T03:09:48.142425Z
-sha256: 8e36c4de78252965b02889f732175013e3a792aab4aca32bdbfe775a9b70d81d
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 6676c604bb8bf94ef5569a72bc35055b8369f4428de7bbec5a90c68b704674a8
 ---
 
 # Tutorial: Bangun agen yang menggunakan alat
@@ -30,7 +30,6 @@ Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude memut
 ````bash
 #!/bin/bash
 # Ring 1: Single tool, single turn.
-# Source for <CodeSource> in build-a-tool-using-agent.mdx.
 
 # Define one tool as a JSON fragment. The input_schema is a JSON Schema
 # object describing the arguments Claude should pass when it calls this
@@ -76,7 +75,7 @@ RESPONSE=$(curl -s https://api.anthropic.com/v1/messages \
     --argjson tools "$TOOLS" \
     --arg msg "$USER_MSG" \
     '{
-      model: "claude-opus-4-6",
+      model: "claude-opus-4-8",
       max_tokens: 1024,
       tools: $tools,
       tool_choice: {type: "auto", disable_parallel_tool_use: true},
@@ -113,7 +112,7 @@ FOLLOWUP=$(curl -s https://api.anthropic.com/v1/messages \
     --arg tool_use_id "$TOOL_USE_ID" \
     --arg result "$RESULT" \
     '{
-      model: "claude-opus-4-6",
+      model: "claude-opus-4-8",
       max_tokens: 1024,
       tools: $tools,
       tool_choice: {type: "auto", disable_parallel_tool_use: true},
@@ -138,7 +137,6 @@ echo "$FOLLOWUP" | jq -r '.content[] | select(.type == "text") | .text'
 # Ring 1: Single tool, single turn.
 # Uses jq for cross-turn message-array state — building an agentic loop in shell
 # requires JSON manipulation beyond ant's single-call --transform scope.
-# Source for <CodeSource> in build-a-tool-using-agent.mdx.
 set -euo pipefail
 
 USER_MSG="Schedule a 30-minute sync with alice@example.com and bob@example.com next Monday at 10am."
@@ -155,7 +153,7 @@ call_api() {
   # JSON, which YAML accepts as flow syntax.
   {
     cat <<'YAML'
-model: claude-opus-4-6
+model: claude-opus-4-8
 max_tokens: 1024
 tool_choice: {type: auto, disable_parallel_tool_use: true}
 tools:
@@ -225,7 +223,6 @@ jq -r '.content[] | select(.type == "text") | .text' <<<"$FOLLOWUP"
   
 ````python
 # Ring 1: Single tool, single turn.
-# Source for <CodeSource> in build-a-tool-using-agent.mdx.
 
 import json
 
@@ -268,7 +265,7 @@ tools = [
 # Send the user's request along with the tool definition. Claude decides
 # whether to call the tool based on the request and the tool description.
 response = client.messages.create(
-    model="claude-opus-4-6",
+    model="claude-opus-4-8",
     max_tokens=1024,
     tools=tools,
     tool_choice={"type": "auto", "disable_parallel_tool_use": True},
@@ -298,7 +295,7 @@ result = {"event_id": "evt_123", "status": "created"}
 # its tool_use_id must match the id from the tool_use block above. The
 # assistant's previous response is included so Claude has the full history.
 followup = client.messages.create(
-    model="claude-opus-4-6",
+    model="claude-opus-4-8",
     max_tokens=1024,
     tools=tools,
     tool_choice={"type": "auto", "disable_parallel_tool_use": True},
@@ -331,7 +328,6 @@ print(final_text.text)
   
 ````typescript
 // Ring 1: Single tool, single turn.
-// Source for <CodeSource> in build-a-tool-using-agent.mdx.
 
 import Anthropic from "@anthropic-ai/sdk";
 
@@ -373,7 +369,7 @@ const tools: Anthropic.Tool[] = [
 // Send the user's request along with the tool definition. Claude decides
 // whether to call the tool based on the request and the tool description.
 const response = await client.messages.create({
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-8",
   max_tokens: 1024,
   tools,
   tool_choice: { type: "auto", disable_parallel_tool_use: true },
@@ -406,7 +402,7 @@ const result = { event_id: "evt_123", status: "created" };
 // its tool_use_id must match the id from the tool_use block above. The
 // assistant's previous response is included so Claude has the full history.
 const followup = await client.messages.create({
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-8",
   max_tokens: 1024,
   tools,
   tool_choice: { type: "auto", disable_parallel_tool_use: true },
@@ -465,7 +461,6 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun kembali array `
 ````bash
 #!/bin/bash
 # Ring 2: The agentic loop.
-# Source for <CodeSource> in build-a-tool-using-agent.mdx.
 
 TOOLS='[
   {
@@ -511,7 +506,7 @@ call_api() {
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d "$(jq -n --argjson tools "$TOOLS" --argjson messages "$MESSAGES" \
-      '{model: "claude-opus-4-6", max_tokens: 1024, tools: $tools, tool_choice: {type: "auto", disable_parallel_tool_use: true}, messages: $messages}')"
+      '{model: "claude-opus-4-8", max_tokens: 1024, tools: $tools, tool_choice: {type: "auto", disable_parallel_tool_use: true}, messages: $messages}')"
 }
 
 RESPONSE=$(call_api)
@@ -547,7 +542,6 @@ echo "$RESPONSE" | jq -r '.content[] | select(.type == "text") | .text'
 # Ring 2: The agentic loop.
 # Uses jq for cross-turn message-array state — building an agentic loop in shell
 # requires JSON manipulation beyond ant's single-call --transform scope.
-# Source for <CodeSource> in build-a-tool-using-agent.mdx.
 set -euo pipefail
 
 run_tool() {
@@ -571,7 +565,7 @@ call_api() {
   # JSON, which YAML accepts as flow syntax.
   {
     cat <<'YAML'
-model: claude-opus-4-6
+model: claude-opus-4-8
 max_tokens: 1024
 tool_choice: {type: auto, disable_parallel_tool_use: true}
 tools:
@@ -629,7 +623,6 @@ jq -r '.content[] | select(.type == "text") | .text' <<<"$RESPONSE"
   
 ````python
 # Ring 2: The agentic loop.
-# Source for <CodeSource> in build-a-tool-using-agent.mdx.
 
 import json
 
@@ -680,7 +673,7 @@ messages = [
 ]
 
 response = client.messages.create(
-    model="claude-opus-4-6",
+    model="claude-opus-4-8",
     max_tokens=1024,
     tools=tools,
     tool_choice={"type": "auto", "disable_parallel_tool_use": True},
@@ -708,7 +701,7 @@ while response.stop_reason == "tool_use":
     )
 
     response = client.messages.create(
-        model="claude-opus-4-6",
+        model="claude-opus-4-8",
         max_tokens=1024,
         tools=tools,
         tool_choice={"type": "auto", "disable_parallel_tool_use": True},
@@ -722,7 +715,6 @@ print(final_text.text)
   
 ````typescript
 // Ring 2: The agentic loop.
-// Source for <CodeSource> in build-a-tool-using-agent.mdx.
 
 import Anthropic from "@anthropic-ai/sdk";
 
@@ -773,7 +765,7 @@ const messages: Anthropic.MessageParam[] = [
 ];
 
 let response = await client.messages.create({
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-8",
   max_tokens: 1024,
   tools,
   tool_choice: { type: "auto", disable_parallel_tool_use: true },
@@ -801,7 +793,7 @@ while (response.stop_reason === "tool_use") {
   });
 
   response = await client.messages.create({
-    model: "claude-opus-4-6",
+    model: "claude-opus-4-8",
     max_tokens: 1024,
     tools,
     tool_choice: { type: "auto", disable_parallel_tool_use: true },
@@ -837,7 +829,6 @@ Ketika Claude memiliki beberapa panggilan alat independen untuk dibuat, itu dapa
 ````bash
 #!/bin/bash
 # Ring 3: Multiple tools, parallel calls.
-# Source for <CodeSource> in build-a-tool-using-agent.mdx.
 
 TOOLS='[
   {
@@ -891,7 +882,7 @@ call_api() {
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d "$(jq -n --argjson tools "$TOOLS" --argjson messages "$MESSAGES" \
-      '{model: "claude-opus-4-6", max_tokens: 1024, tools: $tools, messages: $messages}')"
+      '{model: "claude-opus-4-8", max_tokens: 1024, tools: $tools, messages: $messages}')"
 }
 
 RESPONSE=$(call_api)
@@ -926,7 +917,6 @@ echo "$RESPONSE" | jq -r '.content[] | select(.type == "text") | .text'
 # Ring 3: Multiple tools, parallel calls.
 # Uses jq for cross-turn message-array state — building an agentic loop in shell
 # requires JSON manipulation beyond ant's single-call --transform scope.
-# Source for <CodeSource> in build-a-tool-using-agent.mdx.
 set -euo pipefail
 
 run_tool() {
@@ -950,7 +940,7 @@ call_api() {
   # which YAML accepts as flow syntax.
   {
     cat <<'YAML'
-model: claude-opus-4-6
+model: claude-opus-4-8
 max_tokens: 1024
 tools:
   - name: create_calendar_event
@@ -1015,7 +1005,6 @@ jq -r '.content[] | select(.type == "text") | .text' <<<"$RESPONSE"
   
 ````python
 # Ring 3: Multiple tools, parallel calls.
-# Source for <CodeSource> in build-a-tool-using-agent.mdx.
 
 import json
 
@@ -1078,7 +1067,7 @@ messages = [
 ]
 
 response = client.messages.create(
-    model="claude-opus-4-6",
+    model="claude-opus-4-8",
     max_tokens=1024,
     tools=tools,
     messages=messages,
@@ -1103,7 +1092,7 @@ while response.stop_reason == "tool_use":
     messages.append({"role": "user", "content": tool_results})
 
     response = client.messages.create(
-        model="claude-opus-4-6",
+        model="claude-opus-4-8",
         max_tokens=1024,
         tools=tools,
         messages=messages,
@@ -1116,7 +1105,6 @@ print(final_text.text)
   
 ````typescript
 // Ring 3: Multiple tools, parallel calls.
-// Source for <CodeSource> in build-a-tool-using-agent.mdx.
 
 import Anthropic from "@anthropic-ai/sdk";
 
@@ -1182,7 +1170,7 @@ const messages: Anthropic.MessageParam[] = [
 ];
 
 let response = await client.messages.create({
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-8",
   max_tokens: 1024,
   tools,
   messages,
@@ -1207,7 +1195,7 @@ while (response.stop_reason === "tool_use") {
   messages.push({ role: "user", content: toolResults });
 
   response = await client.messages.create({
-    model: "claude-opus-4-6",
+    model: "claude-opus-4-8",
     max_tokens: 1024,
     tools,
     messages,
@@ -1240,7 +1228,6 @@ Alat gagal. API kalender mungkin menolak acara dengan terlalu banyak peserta, at
 ````bash
 #!/bin/bash
 # Ring 4: Error handling.
-# Source for <CodeSource> in build-a-tool-using-agent.mdx.
 
 TOOLS='[
   {
@@ -1301,7 +1288,7 @@ call_api() {
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d "$(jq -n --argjson tools "$TOOLS" --argjson messages "$MESSAGES" \
-      '{model: "claude-opus-4-6", max_tokens: 1024, tools: $tools, messages: $messages}')"
+      '{model: "claude-opus-4-8", max_tokens: 1024, tools: $tools, messages: $messages}')"
 }
 
 RESPONSE=$(call_api)
@@ -1339,7 +1326,6 @@ echo "$RESPONSE" | jq -r '.content[] | select(.type == "text") | .text'
 # Ring 4: Error handling.
 # Uses jq for cross-turn message-array state — building an agentic loop in shell
 # requires JSON manipulation beyond ant's single-call --transform scope.
-# Source for <CodeSource> in build-a-tool-using-agent.mdx.
 set -euo pipefail
 
 run_tool() {
@@ -1372,7 +1358,7 @@ call_api() {
   # which YAML accepts as flow syntax.
   {
     cat <<'YAML'
-model: claude-opus-4-6
+model: claude-opus-4-8
 max_tokens: 1024
 tools:
   - name: create_calendar_event
@@ -1441,7 +1427,6 @@ jq -r '.content[] | select(.type == "text") | .text' <<<"$RESPONSE"
   
 ````python
 # Ring 4: Error handling.
-# Source for <CodeSource> in build-a-tool-using-agent.mdx.
 
 import json
 
@@ -1506,7 +1491,7 @@ messages = [
 ]
 
 response = client.messages.create(
-    model="claude-opus-4-6",
+    model="claude-opus-4-8",
     max_tokens=1024,
     tools=tools,
     messages=messages,
@@ -1536,7 +1521,7 @@ while response.stop_reason == "tool_use":
     messages.append({"role": "user", "content": tool_results})
 
     response = client.messages.create(
-        model="claude-opus-4-6",
+        model="claude-opus-4-8",
         max_tokens=1024,
         tools=tools,
         messages=messages,
@@ -1549,7 +1534,6 @@ print(final_text.text)
   
 ````typescript
 // Ring 4: Error handling.
-// Source for <CodeSource> in build-a-tool-using-agent.mdx.
 
 import Anthropic from "@anthropic-ai/sdk";
 
@@ -1619,7 +1603,7 @@ const messages: Anthropic.MessageParam[] = [
 ];
 
 let response = await client.messages.create({
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-8",
   max_tokens: 1024,
   tools,
   messages,
@@ -1652,7 +1636,7 @@ while (response.stop_reason === "tool_use") {
   messages.push({ role: "user", content: toolResults });
 
   response = await client.messages.create({
-    model: "claude-opus-4-6",
+    model: "claude-opus-4-8",
     max_tokens: 1024,
     tools,
     messages,
@@ -1691,7 +1675,6 @@ Tool Runner tersedia di Python, TypeScript, dan Ruby SDK. Tab Shell dan CLI mena
 ````bash
 #!/bin/bash
 # Ring 5: The Tool Runner SDK abstraction.
-# Source for <CodeSource> in build-a-tool-using-agent.mdx.
 
 # The Tool Runner SDK abstraction is available in the Python, TypeScript,
 # and Ruby SDKs. There is no equivalent for raw curl requests. Switch to
@@ -1703,7 +1686,6 @@ Tool Runner tersedia di Python, TypeScript, dan Ruby SDK. Tab Shell dan CLI mena
 ````bash
 #!/usr/bin/env bash
 # Ring 5: The Tool Runner SDK abstraction.
-# Source for <CodeSource> in build-a-tool-using-agent.mdx.
 set -euo pipefail
 
 # The Tool Runner SDK abstraction is available in the Python, TypeScript,
@@ -1715,7 +1697,6 @@ set -euo pipefail
   
 ````python
 # Ring 5: The Tool Runner SDK abstraction.
-# Source for <CodeSource> in build-a-tool-using-agent.mdx.
 
 import json
 
@@ -1758,7 +1739,7 @@ def list_calendar_events(date: str) -> str:
 
 
 final_message = client.beta.messages.tool_runner(
-    model="claude-opus-4-6",
+    model="claude-opus-4-8",
     max_tokens=1024,
     tools=[create_calendar_event, list_calendar_events],
     messages=[
@@ -1777,7 +1758,6 @@ for block in final_message.content:
   
 ````typescript
 // Ring 5: The Tool Runner SDK abstraction.
-// Source for <CodeSource> in build-a-tool-using-agent.mdx.
 
 import Anthropic from "@anthropic-ai/sdk";
 import { betaZodTool } from "@anthropic-ai/sdk/helpers/beta/zod";
@@ -1827,7 +1807,7 @@ const listCalendarEvents = betaZodTool({
 });
 
 const finalMessage = await client.beta.messages.toolRunner({
-  model: "claude-opus-4-6",
+  model: "claude-opus-4-8",
   max_tokens: 1024,
   tools: [createCalendarEvent, listCalendarEvents],
   messages: [

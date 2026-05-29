@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/google-vertex-ai
-fetched_at: 2026-05-27T03:17:07.219627Z
-sha256: 484117c7ba530caa331ac12921d2e0994ee2f9037a386635be48b16e2057f39a
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 4695086b4a9261643f60660367b12f35b0d53ba2f2313e9b79d34f83cc35bdaf
 ---
 
 > ## Documentation Index
@@ -219,10 +219,10 @@ Claude Code disables [MCP tool search](/en/mcp#scale-with-mcp-tool-search) by de
 
 Set these environment variables to specific Vertex AI model IDs.
 
-Without `ANTHROPIC_DEFAULT_OPUS_MODEL`, the `opus` alias on Vertex resolves to Opus 4.6. Set it to the Opus 4.7 ID to use the latest model:
+Without `ANTHROPIC_DEFAULT_OPUS_MODEL`, the `opus` alias on Vertex resolves to Opus 4.6. Set it to the Opus 4.8 ID to use the latest model:
 
 ```bash theme={null}
-export ANTHROPIC_DEFAULT_OPUS_MODEL='claude-opus-4-7'
+export ANTHROPIC_DEFAULT_OPUS_MODEL='claude-opus-4-8'
 export ANTHROPIC_DEFAULT_SONNET_MODEL='claude-sonnet-4-6'
 export ANTHROPIC_DEFAULT_HAIKU_MODEL='claude-haiku-4-5@20251001'
 ```
@@ -241,7 +241,7 @@ Background tasks such as session title generation use the small/fast model, norm
 To customize models further:
 
 ```bash theme={null}
-export ANTHROPIC_MODEL='claude-opus-4-7'
+export ANTHROPIC_MODEL='claude-opus-4-8'
 export ANTHROPIC_DEFAULT_HAIKU_MODEL='claude-haiku-4-5@20251001'
 ```
 
@@ -271,7 +271,7 @@ For details, see [Vertex IAM documentation](https://cloud.google.com/vertex-ai/d
 
 ## 1M token context window
 
-Claude Opus 4.7, Opus 4.6, and Sonnet 4.6 support the [1M token context window](https://platform.claude.com/docs/en/build-with-claude/context-windows#1m-token-context-window) on Vertex AI. Claude Code automatically enables the extended context window when you select a 1M model variant.
+Claude Opus 4.6 and later, and Sonnet 4.6, support the [1M token context window](https://platform.claude.com/docs/en/build-with-claude/context-windows#1m-token-context-window) on Vertex AI. Claude Code automatically enables the extended context window when you select a 1M model variant.
 
 The [setup wizard](#sign-in-with-vertex-ai) offers a 1M context option when it pins models. To enable it for a manually pinned model instead, append `[1m]` to the model ID. See [Pin models for third-party deployments](/en/model-config#pin-models-for-third-party-deployments) for details.
 

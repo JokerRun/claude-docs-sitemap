@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/retrieve
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 1c26452c6fcb99c6e33a16c155913ec15beae4f0a19b16a3815acfcbb9bd85d8
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 4a17339958553ef100928c2895452d72127b1167247b501a337d9feb6ac30e8a
 ---
 
 ## Get Credential
@@ -25,7 +25,7 @@ Get Credential
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 24 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -76,6 +76,10 @@ Get Credential
     - `"managed-agents-2026-04-01"`
 
     - `"cache-diagnosis-2026-04-07"`
+
+    - `"thinking-token-count-2026-05-13"`
+
+    - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

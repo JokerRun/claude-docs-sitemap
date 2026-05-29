@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/messages/create
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 3df4411063f850f7a103d2cd0ca6c1418bbe326c7e2fc078c656a9858d56a771
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 2a8030e49807eb87ea3516526a44eec1ff6ee5b219b612859821ddf32bca1c41
 ---
 
 ## Create a Message
@@ -599,6 +599,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
                 - `const BetaWebFetchToolResultErrorCodeURLNotAllowed BetaWebFetchToolResultErrorCode = "url_not_allowed"`
 
+                - `const BetaWebFetchToolResultErrorCodeURLNotInPriorContext BetaWebFetchToolResultErrorCode = "url_not_in_prior_context"`
+
                 - `const BetaWebFetchToolResultErrorCodeURLNotAccessible BetaWebFetchToolResultErrorCode = "url_not_accessible"`
 
                 - `const BetaWebFetchToolResultErrorCodeUnsupportedContentType BetaWebFetchToolResultErrorCode = "unsupported_content_type"`
@@ -685,6 +687,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
                 - `const AdvisorResultAdvisorResult AdvisorResult = "advisor_result"`
 
+              - `StopReason string`
+
             - `type BetaAdvisorRedactedResultBlockParamResp struct{…}`
 
               - `EncryptedContent string`
@@ -694,6 +698,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
               - `Type AdvisorRedactedResult`
 
                 - `const AdvisorRedactedResultAdvisorRedactedResult AdvisorRedactedResult = "advisor_redacted_result"`
+
+              - `StopReason string`
 
           - `ToolUseID string`
 
@@ -1030,10 +1036,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
           When content is None, the block represents a failed compaction. The server
           treats these as no-ops. Empty string content is not allowed.
 
-          - `Content string`
-
-            Summary of previously compacted content, or null if compaction failed
-
           - `Type Compaction`
 
             - `const CompactionCompaction Compaction = "compaction"`
@@ -1042,15 +1044,50 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
             Create a cache control breakpoint at this content block.
 
+          - `Content string`
+
+            Summary of previously compacted content, or null if compaction failed
+
           - `EncryptedContent string`
 
             Opaque metadata from prior compaction, to be round-tripped verbatim
+
+        - `type BetaMidConversationSystemBlockParamResp struct{…}`
+
+          System instructions that appear mid-conversation.
+
+          Use this block to provide or update system-level instructions at a specific
+          point in the conversation, rather than only via the top-level `system` parameter.
+
+          - `Content []BetaTextBlockParamResp`
+
+            System instruction text blocks.
+
+            - `Text string`
+
+            - `Type Text`
+
+            - `CacheControl BetaCacheControlEphemeral`
+
+              Create a cache control breakpoint at this content block.
+
+            - `Citations []BetaTextCitationParamUnionResp`
+
+          - `Type MidConvSystem`
+
+            - `const MidConvSystemMidConvSystem MidConvSystem = "mid_conv_system"`
+
+          - `CacheControl BetaCacheControlEphemeral`
+
+            Create a cache control breakpoint at this content block.
 
     - `Role BetaMessageParamRole`
 
       - `const BetaMessageParamRoleUser BetaMessageParamRole = "user"`
 
       - `const BetaMessageParamRoleAssistant BetaMessageParamRole = "assistant"`
+
+      - `const BetaMessageParamRoleSystem BetaMessageParamRole = "system"`
 
   - `Model param.Field[Model]`
 
@@ -2143,6 +2180,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `const ModelClaudeOpus4_8 Model = "claude-opus-4-8"`
+
+            Frontier intelligence for long-running agents and coding
+
           - `const ModelClaudeOpus4_7 Model = "claude-opus-4-7"`
 
             Frontier intelligence for long-running agents and coding
@@ -2437,6 +2478,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       - `const AnthropicBetaManagedAgents2026_04_01 AnthropicBeta = "managed-agents-2026-04-01"`
 
       - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
+
+      - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
+
+      - `const AnthropicBetaMidConversationSystem2026_04_07 AnthropicBeta = "mid-conversation-system-2026-04-07"`
 
 ### Returns
 
@@ -2807,6 +2852,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
             - `const BetaWebFetchToolResultErrorCodeURLNotAllowed BetaWebFetchToolResultErrorCode = "url_not_allowed"`
 
+            - `const BetaWebFetchToolResultErrorCodeURLNotInPriorContext BetaWebFetchToolResultErrorCode = "url_not_in_prior_context"`
+
             - `const BetaWebFetchToolResultErrorCodeURLNotAccessible BetaWebFetchToolResultErrorCode = "url_not_accessible"`
 
             - `const BetaWebFetchToolResultErrorCodeUnsupportedContentType BetaWebFetchToolResultErrorCode = "unsupported_content_type"`
@@ -2923,6 +2970,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `type BetaAdvisorResultBlock struct{…}`
 
+          - `StopReason string`
+
+            The advisor sub-inference's stop reason (same values as the top-level message `stop_reason`). `max_tokens` indicates the advisor's output was truncated at the tool's `max_tokens` value or the advisor model's policy cap.
+
           - `Text string`
 
           - `Type AdvisorResult`
@@ -2934,6 +2985,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
           - `EncryptedContent string`
 
             Opaque blob containing the advisor's output. Round-trip verbatim; do not inspect or modify.
+
+          - `StopReason string`
+
+            The advisor sub-inference's stop reason (same values as the top-level message `stop_reason`).
 
           - `Type AdvisorRedactedResult`
 
@@ -3368,6 +3423,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+      - `const ModelClaudeOpus4_8 Model = "claude-opus-4-8"`
+
+        Frontier intelligence for long-running agents and coding
+
       - `const ModelClaudeOpus4_7 Model = "claude-opus-4-7"`
 
         Frontier intelligence for long-running agents and coding
@@ -3665,6 +3724,26 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       The number of output tokens which were used.
 
+    - `OutputTokensDetails BetaUsageOutputTokensDetails`
+
+      Breakdown of output tokens by category.
+
+      `output_tokens` remains the inclusive, authoritative total used for billing.
+      This object provides a read-only decomposition for observability — for example,
+      how many of the billed output tokens were spent on internal reasoning that may
+      have been summarized before being returned to you.
+
+      - `ThinkingTokens int64`
+
+        Number of output tokens the model generated as internal reasoning, including
+        the thinking-block delimiter tokens.
+
+        Reflects the raw reasoning the model produced, not the (possibly shorter)
+        summarized thinking text returned in the response body. Computed by
+        re-tokenizing the raw reasoning text, so it may differ from the model's exact
+        generation count by a small number of tokens. Always ≤ `output_tokens`;
+        `output_tokens - thinking_tokens` approximates the non-reasoning output.
+
     - `ServerToolUse BetaServerToolUsage`
 
       The number of server tool requests.
@@ -3812,6 +3891,9 @@ func main() {
       }
     ],
     "output_tokens": 503,
+    "output_tokens_details": {
+      "thinking_tokens": 0
+    },
     "server_tool_use": {
       "web_fetch_requests": 2,
       "web_search_requests": 0

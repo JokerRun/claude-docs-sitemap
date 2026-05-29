@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/environments/retrieve
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 7d38e2d240c5959cf64ff50f839c5aefd9832e88c32463dc5bf95246012abbe0
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 0970ceefbd43b9a62959f89ddf0371d1953e913643123d1a394b934e275a7303
 ---
 
 ## Get Environment
@@ -72,6 +72,10 @@ Retrieve a specific environment by ID.
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
+
+    - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
+
+    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
 ### Returns
 

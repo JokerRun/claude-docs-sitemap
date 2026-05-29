@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/environments/update
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: f38b791403d0b8dd08595b1e5bb86f5ccdf9d88de09d853df2d6799df1c25215
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: b2a1748b42ec8b8f3adee15f630a8f2d1ec1f672393f95497360bacc0388d55e
 ---
 
 ## Update Environment
@@ -145,7 +145,7 @@ Update an existing environment's configuration.
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 22 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 24 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -196,6 +196,10 @@ Update an existing environment's configuration.
     - `"managed-agents-2026-04-01"`
 
     - `"cache-diagnosis-2026-04-07"`
+
+    - `"thinking-token-count-2026-05-13"`
+
+    - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

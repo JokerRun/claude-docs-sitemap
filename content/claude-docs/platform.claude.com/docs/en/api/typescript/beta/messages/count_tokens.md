@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/messages/count_tokens
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: f969385b0b69196f34cf4f1458a20f454dea8f6fc861a9184a30798c7fb72cd9
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: b53012e3ae1a8a87a8cccbf0eb4b538c8780aa86efe2342fe74cf7d3715088d4
 ---
 
 ## Count tokens in a Message
@@ -593,6 +593,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
                 - `"url_not_allowed"`
 
+                - `"url_not_in_prior_context"`
+
                 - `"url_not_accessible"`
 
                 - `"unsupported_content_type"`
@@ -679,6 +681,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
                 - `"advisor_result"`
 
+              - `stop_reason?: string | null`
+
             - `BetaAdvisorRedactedResultBlockParam`
 
               - `encrypted_content: string`
@@ -688,6 +692,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
               - `type: "advisor_redacted_result"`
 
                 - `"advisor_redacted_result"`
+
+              - `stop_reason?: string | null`
 
           - `tool_use_id: string`
 
@@ -1024,10 +1030,6 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
           When content is None, the block represents a failed compaction. The server
           treats these as no-ops. Empty string content is not allowed.
 
-          - `content: string | null`
-
-            Summary of previously compacted content, or null if compaction failed
-
           - `type: "compaction"`
 
             - `"compaction"`
@@ -1036,15 +1038,50 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
             Create a cache control breakpoint at this content block.
 
+          - `content?: string | null`
+
+            Summary of previously compacted content, or null if compaction failed
+
           - `encrypted_content?: string | null`
 
             Opaque metadata from prior compaction, to be round-tripped verbatim
 
-    - `role: "user" | "assistant"`
+        - `BetaMidConversationSystemBlockParam`
+
+          System instructions that appear mid-conversation.
+
+          Use this block to provide or update system-level instructions at a specific
+          point in the conversation, rather than only via the top-level `system` parameter.
+
+          - `content: Array<BetaTextBlockParam>`
+
+            System instruction text blocks.
+
+            - `text: string`
+
+            - `type: "text"`
+
+            - `cache_control?: BetaCacheControlEphemeral | null`
+
+              Create a cache control breakpoint at this content block.
+
+            - `citations?: Array<BetaTextCitationParam> | null`
+
+          - `type: "mid_conv_system"`
+
+            - `"mid_conv_system"`
+
+          - `cache_control?: BetaCacheControlEphemeral | null`
+
+            Create a cache control breakpoint at this content block.
+
+    - `role: "user" | "assistant" | "system"`
 
       - `"user"`
 
       - `"assistant"`
+
+      - `"system"`
 
   - `model: Model`
 
@@ -1052,7 +1089,11 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `"claude-opus-4-7" | "claude-mythos-preview" | "claude-opus-4-6" | 14 more`
+    - `"claude-opus-4-8" | "claude-opus-4-7" | "claude-mythos-preview" | 15 more`
+
+      - `"claude-opus-4-8"`
+
+        Frontier intelligence for long-running agents and coding
 
       - `"claude-opus-4-7"`
 
@@ -2533,7 +2574,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 22 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 24 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -2584,6 +2625,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
       - `"managed-agents-2026-04-01"`
 
       - `"cache-diagnosis-2026-04-07"`
+
+      - `"thinking-token-count-2026-05-13"`
+
+      - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

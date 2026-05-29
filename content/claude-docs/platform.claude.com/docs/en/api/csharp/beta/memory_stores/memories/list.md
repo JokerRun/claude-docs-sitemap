@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/memory_stores/memories/list
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 8e815a83f978c6f63dbda212daa6dcbdcd16eb2614063e413174dce6230bb3a5
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 0d432ce40311bf3339ee44d534db2734b154b32dc1da51fa971b2e81f7278b32
 ---
 
 ## List memories
@@ -106,6 +106,10 @@ List memories
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
+
+    - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
 
 ### Returns
 

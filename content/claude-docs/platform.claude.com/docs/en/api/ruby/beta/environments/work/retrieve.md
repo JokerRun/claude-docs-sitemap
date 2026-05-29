@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/environments/work/retrieve
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 99c693a54404a82ae37beb71594b7f84bd5ebbd6f46ef65bf3f335778d1fe5b1
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: b00badb91840e0898ee28f11093f610abbe8210590aa4d6f9bf1c861249bef70
 ---
 
 ## Get Work Item
@@ -27,7 +27,7 @@ Retrieve detailed information about a specific work item.
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 24 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -78,6 +78,10 @@ Retrieve detailed information about a specific work item.
     - `:"managed-agents-2026-04-01"`
 
     - `:"cache-diagnosis-2026-04-07"`
+
+    - `:"thinking-token-count-2026-05-13"`
+
+    - `:"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

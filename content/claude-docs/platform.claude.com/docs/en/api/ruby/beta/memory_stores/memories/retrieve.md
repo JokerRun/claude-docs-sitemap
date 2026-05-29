@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/memory_stores/memories/retrieve
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 332e559bb18bddf1fd3eafd3b3a2d30b987ab76b75b44d11ff662589f2a9d356
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 4e6848005ef4e70b7c65185004a6d1141e35b49f189f4bf840d1351af366e6d1
 ---
 
 ## Retrieve a memory
@@ -33,7 +33,7 @@ Retrieve a memory
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 24 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -84,6 +84,10 @@ Retrieve a memory
     - `:"managed-agents-2026-04-01"`
 
     - `:"cache-diagnosis-2026-04-07"`
+
+    - `:"thinking-token-count-2026-05-13"`
+
+    - `:"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

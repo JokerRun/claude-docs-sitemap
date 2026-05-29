@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/agents/create
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 93889c7cee324a0868e1a49708216f4355b0565cffb1d955db4d86c0572dab20
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 33200ececfce0f30b226c5b4e458b983f05ff6481fe60caa989848dc04b02a63
 ---
 
 ## Create Agent
@@ -70,6 +70,10 @@ Create Agent
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
+
+    - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
+
+    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
   - `Model model`
 

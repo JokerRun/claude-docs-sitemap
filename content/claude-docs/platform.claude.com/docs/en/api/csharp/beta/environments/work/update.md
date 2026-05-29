@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/environments/work/update
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: db30746f6014d2a47cdbb76434f46c4d2fbef859d428c57bbc8ab99d90450323
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 606cd9e9efcc5d34b9c035a4675e1b6885739fc7fb1c229cb31a7ad35d1b356c
 ---
 
 ## Update Work Item
@@ -84,6 +84,10 @@ Update work item metadata with merge semantics.
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
+
+    - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
 
 ### Returns
 

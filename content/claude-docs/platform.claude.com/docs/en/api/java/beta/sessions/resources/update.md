@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/resources/update
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 41702d2f5312919dd2283309e6f07424ddc2f3d953d392a61f92ce6f2cba6999
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 084467eec02aa464cc41508edc2efa3df4541110dd0dbb92cea966c28d82d180
 ---
 
 ## Update Session Resource
@@ -74,6 +74,10 @@ Update Session Resource
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
+
+    - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
+
+    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
   - `String authorizationToken`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/user_profiles/update
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 6811fc6d1cdf5ed7302cf9db6a4e1b902e4bcc0b06b476c4c543844245054478
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: ad948abe4e1c03e683ad0e744b3f1ce767d8de323429b88baf6b557ddb2a99c2
 ---
 
 ## Update User Profile
@@ -96,6 +96,10 @@ Update User Profile
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
+
+    - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
 
 ### Returns
 

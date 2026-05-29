@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/messages/count_tokens
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 544f05b96337684e378211f6a168f9fce667e4eb895fa52eca9574b44a5f639e
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 9f29dd9040ffb8b65eba466182167f324272fd4c08b3e376675f2d1b78f4580a
 ---
 
 ## Count tokens in a Message
@@ -575,6 +575,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
                 - `URL_NOT_ALLOWED("url_not_allowed")`
 
+                - `URL_NOT_IN_PRIOR_CONTEXT("url_not_in_prior_context")`
+
                 - `URL_NOT_ACCESSIBLE("url_not_accessible")`
 
                 - `UNSUPPORTED_CONTENT_TYPE("unsupported_content_type")`
@@ -894,11 +896,42 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
             Create a cache control breakpoint at this content block.
 
+        - `class MidConversationSystemBlockParam:`
+
+          System instructions that appear mid-conversation.
+
+          Use this block to provide or update system-level instructions at a specific
+          point in the conversation, rather than only via the top-level `system` parameter.
+
+          - `List<TextBlockParam> content`
+
+            System instruction text blocks.
+
+            - `String text`
+
+            - `JsonValue; type "text"constant`
+
+            - `Optional<CacheControlEphemeral> cacheControl`
+
+              Create a cache control breakpoint at this content block.
+
+            - `Optional<List<TextCitationParam>> citations`
+
+          - `JsonValue; type "mid_conv_system"constant`
+
+            - `MID_CONV_SYSTEM("mid_conv_system")`
+
+          - `Optional<CacheControlEphemeral> cacheControl`
+
+            Create a cache control breakpoint at this content block.
+
     - `Role role`
 
       - `USER("user")`
 
       - `ASSISTANT("assistant")`
+
+      - `SYSTEM("system")`
 
   - `Model model`
 

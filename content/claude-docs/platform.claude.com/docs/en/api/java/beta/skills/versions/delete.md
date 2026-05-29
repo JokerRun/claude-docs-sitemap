@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/skills/versions/delete
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 232a2f19b216d79894802281b8d7ee5106258fd8a0a2ae4c4999234d0d3edc25
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: d404c59c9304b1605af4c3f02a47cb0e246a6f582ed203346e7cca43731a2971
 ---
 
 ## Delete Skill Version
@@ -82,6 +82,10 @@ Delete Skill Version
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
+
+    - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
+
+    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
 ### Returns
 

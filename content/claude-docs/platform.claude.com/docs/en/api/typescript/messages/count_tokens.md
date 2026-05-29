@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/messages/count_tokens
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 36fc80730fb939bbac47573cbda8e7d7b659978adf0a210f3f3f9a732804840c
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: b53a073ad9ce23421820c42eca58180933e6ef11f93c6834b59dadf202c0e771
 ---
 
 ## Count tokens in a Message
@@ -575,6 +575,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
                 - `"url_not_allowed"`
 
+                - `"url_not_in_prior_context"`
+
                 - `"url_not_accessible"`
 
                 - `"unsupported_content_type"`
@@ -894,11 +896,42 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
             Create a cache control breakpoint at this content block.
 
-    - `role: "user" | "assistant"`
+        - `MidConversationSystemBlockParam`
+
+          System instructions that appear mid-conversation.
+
+          Use this block to provide or update system-level instructions at a specific
+          point in the conversation, rather than only via the top-level `system` parameter.
+
+          - `content: Array<TextBlockParam>`
+
+            System instruction text blocks.
+
+            - `text: string`
+
+            - `type: "text"`
+
+            - `cache_control?: CacheControlEphemeral | null`
+
+              Create a cache control breakpoint at this content block.
+
+            - `citations?: Array<TextCitationParam> | null`
+
+          - `type: "mid_conv_system"`
+
+            - `"mid_conv_system"`
+
+          - `cache_control?: CacheControlEphemeral | null`
+
+            Create a cache control breakpoint at this content block.
+
+    - `role: "user" | "assistant" | "system"`
 
       - `"user"`
 
       - `"assistant"`
+
+      - `"system"`
 
   - `model: Model`
 
@@ -906,7 +939,11 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `"claude-opus-4-7" | "claude-mythos-preview" | "claude-opus-4-6" | 14 more`
+    - `"claude-opus-4-8" | "claude-opus-4-7" | "claude-mythos-preview" | 15 more`
+
+      - `"claude-opus-4-8"`
+
+        Frontier intelligence for long-running agents and coding
 
       - `"claude-opus-4-7"`
 

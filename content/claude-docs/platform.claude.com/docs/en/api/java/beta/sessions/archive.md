@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/archive
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 4d06636eb35a3cb621993f0b19abe447e58b4fce83bb202148a734dbb5ed63a8
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 63429ae0f219d295ce8bafc1b87665c208a456f324d528737f4bf622e352c0be
 ---
 
 ## Archive Session
@@ -72,6 +72,10 @@ Archive Session
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
+
+    - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
+
+    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
 ### Returns
 

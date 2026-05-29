@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/environments/work/stats
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 353e03c92370f3789ed034626a58406be4d27477b601f17f8f7250a69a3770f8
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 1a004c27c8d04ef7830de045279ff3a2a6ef4a0c4a2c44a8296f33965000c263
 ---
 
 ## Get Queue Statistics
@@ -72,6 +72,10 @@ Get statistics about the work queue for an environment.
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
+
+    - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
+
+    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
 ### Returns
 

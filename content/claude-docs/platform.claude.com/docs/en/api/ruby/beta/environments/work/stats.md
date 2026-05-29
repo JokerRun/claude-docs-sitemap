@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/environments/work/stats
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: d490c7928b8d55fcbc1aa68595cdc2fea54376d32bd65bee68b7dc69c26ecc7a
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 6cd1b8a600179bc28635a16ce863c84b8768066f59923a4d31305539c4991234
 ---
 
 ## Get Queue Statistics
@@ -23,7 +23,7 @@ Get statistics about the work queue for an environment.
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 24 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -74,6 +74,10 @@ Get statistics about the work queue for an environment.
     - `:"managed-agents-2026-04-01"`
 
     - `:"cache-diagnosis-2026-04-07"`
+
+    - `:"thinking-token-count-2026-05-13"`
+
+    - `:"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

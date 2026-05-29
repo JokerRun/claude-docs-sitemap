@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/environments/work/retrieve
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: c2d8cc50356a57c88f585a467a67c84d20ae802616a172e8d7056f8341fed478
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 82981ca14c8ce6c32dee56f64ea51226eb5529efe9f1143feed0de878109338e
 ---
 
 ## Get Work Item
@@ -82,6 +82,10 @@ Retrieve detailed information about a specific work item.
       - `const AnthropicBetaManagedAgents2026_04_01 AnthropicBeta = "managed-agents-2026-04-01"`
 
       - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
+
+      - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
+
+      - `const AnthropicBetaMidConversationSystem2026_04_07 AnthropicBeta = "mid-conversation-system-2026-04-07"`
 
 ### Returns
 

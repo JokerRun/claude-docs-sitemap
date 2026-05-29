@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/memory_stores/memories/retrieve
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: c10a422d6a90f7b0b4dab453564277e4967c532e0558dde6e171157052536427
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: ae4e7afeb961b9ed618655084c3c20ba551589033d381748c154ca2b1e23c7f3
 ---
 
 ## Retrieve a memory
@@ -78,6 +78,10 @@ Retrieve a memory
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
+
+    - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
+
+    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/agents/update
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: e7ab770c6ac95cdb136fb89d32f3c607da74b87c077586c7733fc17e05bd5e28
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: f2f6a78572d6d8eb3d7bf0b527cd5ccb433b7ded68e76d5c9572b0f43e19148c
 ---
 
 ## Update Agent
@@ -420,6 +420,10 @@ Update Agent
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
+
+    - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
 
 ### Returns
 

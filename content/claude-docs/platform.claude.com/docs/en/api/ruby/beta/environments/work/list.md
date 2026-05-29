@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/environments/work/list
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 847b15fa917dcdc4f13151864667fe398187daa9ca22f29da85f95e1f26d9fe7
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 8e7e121c000ef7d8702a6639e9865a35c29e6d1e5493cafa7ad46e953363745a
 ---
 
 ## List Work Items
@@ -33,7 +33,7 @@ List work items in an environment.
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 24 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -84,6 +84,10 @@ List work items in an environment.
     - `:"managed-agents-2026-04-01"`
 
     - `:"cache-diagnosis-2026-04-07"`
+
+    - `:"thinking-token-count-2026-05-13"`
+
+    - `:"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/sessions/create
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: e5a30fe4e16ec531f01f8c9bed3560425b37a2d81bec3e8235fbc1157f697c75
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: a416dab76d2ff7bc6ccffbbf5d2c2cf1da3cfe3c98e0e610e25c20ff8d24078e
 ---
 
 ## Create Session
@@ -147,7 +147,7 @@ Create Session
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 24 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -198,6 +198,10 @@ Create Session
     - `:"managed-agents-2026-04-01"`
 
     - `:"cache-diagnosis-2026-04-07"`
+
+    - `:"thinking-token-count-2026-05-13"`
+
+    - `:"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

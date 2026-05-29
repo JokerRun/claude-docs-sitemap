@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/messages/batches/list
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 54a5cde10307684a5d19e85d28c74348e39af4ed4e339ae3590d2fdd3aeffa58
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 6df97a3b4a4961a311454ca33e483c39bbd6710321026bde909bfb58889f011e
 ---
 
 ## List Message Batches
@@ -86,6 +86,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
+
+    - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
 
 ### Returns
 

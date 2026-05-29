@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/agents/update
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: f9d0f2a932e188b84ad25c50d17872255ef6f9fa5325cfdbb54747596bddfe66
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: f487e691e7e3629e8a765601f11348bcefce0dc265a62b5539aca127b6954850
 ---
 
 ## Update Agent
@@ -375,7 +375,7 @@ Update Agent
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 24 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -426,6 +426,10 @@ Update Agent
     - `:"managed-agents-2026-04-01"`
 
     - `:"cache-diagnosis-2026-04-07"`
+
+    - `:"thinking-token-count-2026-05-13"`
+
+    - `:"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

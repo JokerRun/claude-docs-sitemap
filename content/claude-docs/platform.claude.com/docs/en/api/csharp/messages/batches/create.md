@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/messages/batches/create
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 09f301af2e74509982dcbb45a8045c28cfc183a4a05155049300f492d64b2ba4
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 934d9b7d649445bfbf39227d3bef628cb8ca0ee4189afd2d8fb0fd85e9e19b57
 ---
 
 ## Create a Message Batch
@@ -541,6 +541,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                     - `"url_not_allowed"UrlNotAllowed`
 
+                    - `"url_not_in_prior_context"UrlNotInPriorContext`
+
                     - `"url_not_accessible"UrlNotAccessible`
 
                     - `"unsupported_content_type"UnsupportedContentType`
@@ -818,17 +820,50 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                 Create a cache control breakpoint at this content block.
 
+            - `class MidConversationSystemBlockParam:`
+
+              System instructions that appear mid-conversation.
+
+              Use this block to provide or update system-level instructions at a specific
+              point in the conversation, rather than only via the top-level `system` parameter.
+
+              - `required IReadOnlyList<TextBlockParam> Content`
+
+                System instruction text blocks.
+
+                - `required string Text`
+
+                - `JsonElement Type "text"constant`
+
+                - `CacheControlEphemeral? CacheControl`
+
+                  Create a cache control breakpoint at this content block.
+
+                - `IReadOnlyList<TextCitationParam>? Citations`
+
+              - `JsonElement Type "mid_conv_system"constant`
+
+              - `CacheControlEphemeral? CacheControl`
+
+                Create a cache control breakpoint at this content block.
+
         - `required Role Role`
 
           - `"user"User`
 
           - `"assistant"Assistant`
 
+          - `"system"System`
+
       - `required Model Model`
 
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-opus-4-8"ClaudeOpus4_8`
+
+          Frontier intelligence for long-running agents and coding
 
         - `"claude-opus-4-7"ClaudeOpus4_7`
 

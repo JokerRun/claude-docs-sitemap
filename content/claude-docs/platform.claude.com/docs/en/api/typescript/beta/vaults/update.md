@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/vaults/update
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 81b24edbefdc851b4beb3540de3b7181de929204648d3e707cbccf90d3ddc419
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: c66eadd396440dafe068b9c238c40ac0f6a2bc0c1819b9ef10e6101e238509bc
 ---
 
 ## Update Vault
@@ -33,7 +33,7 @@ Update Vault
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 22 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 24 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -84,6 +84,10 @@ Update Vault
       - `"managed-agents-2026-04-01"`
 
       - `"cache-diagnosis-2026-04-07"`
+
+      - `"thinking-token-count-2026-05-13"`
+
+      - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

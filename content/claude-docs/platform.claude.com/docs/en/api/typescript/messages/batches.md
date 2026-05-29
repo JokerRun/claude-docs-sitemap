@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/messages/batches
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 32bcd719cec967325e779ef96295f9aad5f69b009b6a03d8b5a0dc63af213f11
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 2380342afa401826e95bd011dd2c90facd49f915f225c5b747117ac1b6793fc9
 ---
 
 # Batches
@@ -603,6 +603,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                     - `"url_not_allowed"`
 
+                    - `"url_not_in_prior_context"`
+
                     - `"url_not_accessible"`
 
                     - `"unsupported_content_type"`
@@ -922,11 +924,42 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                 Create a cache control breakpoint at this content block.
 
-        - `role: "user" | "assistant"`
+            - `MidConversationSystemBlockParam`
+
+              System instructions that appear mid-conversation.
+
+              Use this block to provide or update system-level instructions at a specific
+              point in the conversation, rather than only via the top-level `system` parameter.
+
+              - `content: Array<TextBlockParam>`
+
+                System instruction text blocks.
+
+                - `text: string`
+
+                - `type: "text"`
+
+                - `cache_control?: CacheControlEphemeral | null`
+
+                  Create a cache control breakpoint at this content block.
+
+                - `citations?: Array<TextCitationParam> | null`
+
+              - `type: "mid_conv_system"`
+
+                - `"mid_conv_system"`
+
+              - `cache_control?: CacheControlEphemeral | null`
+
+                Create a cache control breakpoint at this content block.
+
+        - `role: "user" | "assistant" | "system"`
 
           - `"user"`
 
           - `"assistant"`
+
+          - `"system"`
 
       - `model: Model`
 
@@ -934,7 +967,11 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-        - `"claude-opus-4-7" | "claude-mythos-preview" | "claude-opus-4-6" | 14 more`
+        - `"claude-opus-4-8" | "claude-opus-4-7" | "claude-mythos-preview" | 15 more`
+
+          - `"claude-opus-4-8"`
+
+            Frontier intelligence for long-running agents and coding
 
           - `"claude-opus-4-7"`
 
@@ -3047,6 +3084,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `"url_not_allowed"`
 
+                  - `"url_not_in_prior_context"`
+
                   - `"url_not_accessible"`
 
                   - `"unsupported_content_type"`
@@ -3373,7 +3412,11 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-          - `"claude-opus-4-7" | "claude-mythos-preview" | "claude-opus-4-6" | 14 more`
+          - `"claude-opus-4-8" | "claude-opus-4-7" | "claude-mythos-preview" | 15 more`
+
+            - `"claude-opus-4-8"`
+
+              Frontier intelligence for long-running agents and coding
 
             - `"claude-opus-4-7"`
 
@@ -3561,6 +3604,26 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           - `output_tokens: number`
 
             The number of output tokens which were used.
+
+          - `output_tokens_details: OutputTokensDetails | null`
+
+            Breakdown of output tokens by category.
+
+            `output_tokens` remains the inclusive, authoritative total used for billing.
+            This object provides a read-only decomposition for observability — for example,
+            how many of the billed output tokens were spent on internal reasoning that may
+            have been summarized before being returned to you.
+
+            - `thinking_tokens: number`
+
+              Number of output tokens the model generated as internal reasoning, including
+              the thinking-block delimiter tokens.
+
+              Reflects the raw reasoning the model produced, not the (possibly shorter)
+              summarized thinking text returned in the response body. Computed by
+              re-tokenizing the raw reasoning text, so it may differ from the model's exact
+              generation count by a small number of tokens. Always ≤ `output_tokens`;
+              `output_tokens - thinking_tokens` approximates the non-reasoning output.
 
           - `server_tool_use: ServerToolUsage | null`
 
@@ -4295,6 +4358,8 @@ console.log(messageBatchIndividualResponse.custom_id);
 
                   - `"url_not_allowed"`
 
+                  - `"url_not_in_prior_context"`
+
                   - `"url_not_accessible"`
 
                   - `"unsupported_content_type"`
@@ -4621,7 +4686,11 @@ console.log(messageBatchIndividualResponse.custom_id);
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-          - `"claude-opus-4-7" | "claude-mythos-preview" | "claude-opus-4-6" | 14 more`
+          - `"claude-opus-4-8" | "claude-opus-4-7" | "claude-mythos-preview" | 15 more`
+
+            - `"claude-opus-4-8"`
+
+              Frontier intelligence for long-running agents and coding
 
             - `"claude-opus-4-7"`
 
@@ -4809,6 +4878,26 @@ console.log(messageBatchIndividualResponse.custom_id);
           - `output_tokens: number`
 
             The number of output tokens which were used.
+
+          - `output_tokens_details: OutputTokensDetails | null`
+
+            Breakdown of output tokens by category.
+
+            `output_tokens` remains the inclusive, authoritative total used for billing.
+            This object provides a read-only decomposition for observability — for example,
+            how many of the billed output tokens were spent on internal reasoning that may
+            have been summarized before being returned to you.
+
+            - `thinking_tokens: number`
+
+              Number of output tokens the model generated as internal reasoning, including
+              the thinking-block delimiter tokens.
+
+              Reflects the raw reasoning the model produced, not the (possibly shorter)
+              summarized thinking text returned in the response body. Computed by
+              re-tokenizing the raw reasoning text, so it may differ from the model's exact
+              generation count by a small number of tokens. Always ≤ `output_tokens`;
+              `output_tokens - thinking_tokens` approximates the non-reasoning output.
 
           - `server_tool_use: ServerToolUsage | null`
 
@@ -5337,6 +5426,8 @@ console.log(messageBatchIndividualResponse.custom_id);
 
                 - `"url_not_allowed"`
 
+                - `"url_not_in_prior_context"`
+
                 - `"url_not_accessible"`
 
                 - `"unsupported_content_type"`
@@ -5663,7 +5754,11 @@ console.log(messageBatchIndividualResponse.custom_id);
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-        - `"claude-opus-4-7" | "claude-mythos-preview" | "claude-opus-4-6" | 14 more`
+        - `"claude-opus-4-8" | "claude-opus-4-7" | "claude-mythos-preview" | 15 more`
+
+          - `"claude-opus-4-8"`
+
+            Frontier intelligence for long-running agents and coding
 
           - `"claude-opus-4-7"`
 
@@ -5851,6 +5946,26 @@ console.log(messageBatchIndividualResponse.custom_id);
         - `output_tokens: number`
 
           The number of output tokens which were used.
+
+        - `output_tokens_details: OutputTokensDetails | null`
+
+          Breakdown of output tokens by category.
+
+          `output_tokens` remains the inclusive, authoritative total used for billing.
+          This object provides a read-only decomposition for observability — for example,
+          how many of the billed output tokens were spent on internal reasoning that may
+          have been summarized before being returned to you.
+
+          - `thinking_tokens: number`
+
+            Number of output tokens the model generated as internal reasoning, including
+            the thinking-block delimiter tokens.
+
+            Reflects the raw reasoning the model produced, not the (possibly shorter)
+            summarized thinking text returned in the response body. Computed by
+            re-tokenizing the raw reasoning text, so it may differ from the model's exact
+            generation count by a small number of tokens. Always ≤ `output_tokens`;
+            `output_tokens - thinking_tokens` approximates the non-reasoning output.
 
         - `server_tool_use: ServerToolUsage | null`
 
@@ -6341,6 +6456,8 @@ console.log(messageBatchIndividualResponse.custom_id);
 
               - `"url_not_allowed"`
 
+              - `"url_not_in_prior_context"`
+
               - `"url_not_accessible"`
 
               - `"unsupported_content_type"`
@@ -6667,7 +6784,11 @@ console.log(messageBatchIndividualResponse.custom_id);
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `"claude-opus-4-7" | "claude-mythos-preview" | "claude-opus-4-6" | 14 more`
+      - `"claude-opus-4-8" | "claude-opus-4-7" | "claude-mythos-preview" | 15 more`
+
+        - `"claude-opus-4-8"`
+
+          Frontier intelligence for long-running agents and coding
 
         - `"claude-opus-4-7"`
 
@@ -6855,6 +6976,26 @@ console.log(messageBatchIndividualResponse.custom_id);
       - `output_tokens: number`
 
         The number of output tokens which were used.
+
+      - `output_tokens_details: OutputTokensDetails | null`
+
+        Breakdown of output tokens by category.
+
+        `output_tokens` remains the inclusive, authoritative total used for billing.
+        This object provides a read-only decomposition for observability — for example,
+        how many of the billed output tokens were spent on internal reasoning that may
+        have been summarized before being returned to you.
+
+        - `thinking_tokens: number`
+
+          Number of output tokens the model generated as internal reasoning, including
+          the thinking-block delimiter tokens.
+
+          Reflects the raw reasoning the model produced, not the (possibly shorter)
+          summarized thinking text returned in the response body. Computed by
+          re-tokenizing the raw reasoning text, so it may differ from the model's exact
+          generation count by a small number of tokens. Always ≤ `output_tokens`;
+          `output_tokens - thinking_tokens` approximates the non-reasoning output.
 
       - `server_tool_use: ServerToolUsage | null`
 

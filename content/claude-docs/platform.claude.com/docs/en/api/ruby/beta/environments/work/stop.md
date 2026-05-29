@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/environments/work/stop
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 622649a81dd5c90d5634d1fd42c74a8dd4b230f8447ed4ddb15d5e0ab7894907
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: eaf95a8d1b1f0eb0783d0f5dd5bc906abb881a02eb69397d59440792192669dd
 ---
 
 ## Stop Work
@@ -31,7 +31,7 @@ Stop a work item, initiating graceful or forced shutdown.
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 24 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -82,6 +82,10 @@ Stop a work item, initiating graceful or forced shutdown.
     - `:"managed-agents-2026-04-01"`
 
     - `:"cache-diagnosis-2026-04-07"`
+
+    - `:"thinking-token-count-2026-05-13"`
+
+    - `:"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

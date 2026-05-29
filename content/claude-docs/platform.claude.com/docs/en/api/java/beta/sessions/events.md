@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/events
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: ce7b9e727021fe350ca72b1b8669038dff9d08ee454bd9860c61193e46fd1336
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 0129d4cc280569c9ecb7c05c24d04d9af5fa643cb78fb0f1aa7cf13aed60a9e7
 ---
 
 # Events
@@ -110,6 +110,10 @@ List Events
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
+
+    - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
+
+    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
 ### Returns
 
@@ -1948,6 +1952,10 @@ Send Events
 
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
+    - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
+
+    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
+
   - `List<BetaManagedAgentsEventParams> events`
 
     Events to send to the `session`.
@@ -2820,6 +2828,10 @@ Stream Events
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
+
+    - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
+
+    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
 ### Returns
 

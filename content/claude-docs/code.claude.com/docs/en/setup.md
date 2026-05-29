@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/setup
-fetched_at: 2026-05-22T03:16:37.965758Z
-sha256: 20533a369aaf31c3e7c6e6c3833d9103a154c141dbf31b9b477df4197dd7f748
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 0f3777e78c4b08ccffb077c6e9b3799bf7c64403fa5640b096396ddbef5d3246
 ---
 
 > ## Documentation Index
@@ -190,6 +190,10 @@ Native installations automatically update in the background. You can [configure 
 ### Auto-updates
 
 Claude Code checks for updates on startup and periodically while running. Updates download and install in the background, then take effect the next time you start Claude Code.
+
+Run `claude doctor` to see the result of the most recent update attempt.
+
+If an npm global install can't auto-update because the npm global directory isn't writable, Claude Code shows a one-time notice at startup, and `claude doctor` lists the available fixes. See [permission errors during installation](/en/troubleshoot-install#permission-errors-during-installation) for details.
 
 <Note>
   Homebrew, WinGet, apt, dnf, and apk installations do not auto-update by default; see below to opt in for Homebrew and WinGet. To upgrade Homebrew manually, run `brew upgrade claude-code` or `brew upgrade claude-code@latest`, depending on which cask you installed. For WinGet, run `winget upgrade Anthropic.ClaudeCode`. For Linux package managers, see the upgrade commands in [Install with Linux package managers](#install-with-linux-package-managers).

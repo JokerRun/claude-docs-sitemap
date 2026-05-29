@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/quickstart
-fetched_at: 2026-05-21T03:16:34.837917Z
-sha256: fb2eb3d33850ec68ed45a4f0d149c91826a785e6848731d7459d195086de3260
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: de5f04e264df8ab45c8422b5c2eeb17094c2af67634fb862ab6ce4b9565a70ef
 ---
 
 # Get started with Claude Managed Agents
@@ -46,7 +46,7 @@ brew install anthropics/tap/ant
 For Linux environments, download the release binary directly.
 
 ```bash nocheck
-VERSION=1.9.1
+VERSION=1.10.0
 OS=$(uname -s | tr '[:upper:]' '[:lower:]')
 ARCH=$(uname -m | sed -e 's/x86_64/amd64/' -e 's/aarch64/arm64/')
 curl -fsSL "https://github.com/anthropics/anthropic-cli/releases/download/v${VERSION}/ant_${VERSION}_${OS}_${ARCH}.tar.gz" \
@@ -94,7 +94,7 @@ ant --version
   </Tab>
   <Tab title="Java">
     ```groovy Gradle
-    implementation("com.anthropic:anthropic-java:2.33.0")
+    implementation("com.anthropic:anthropic-java:2.35.0")
     ```
   </Tab>
   <Tab title="Go">
@@ -150,7 +150,7 @@ agent=$(
     -d @- <<'EOF'
 {
   "name": "Coding Assistant",
-  "model": "claude-opus-4-7",
+  "model": "claude-opus-4-8",
   "system": "You are a helpful coding assistant. Write clean, well-documented code.",
   "tools": [
     {"type": "agent_toolset_20260401"}
@@ -169,7 +169,7 @@ echo "Agent ID: $AGENT_ID, version: $AGENT_VERSION"
 ````bash
 ant beta:agents create \
   --name "Coding Assistant" \
-  --model '{id: claude-opus-4-7}' \
+  --model '{id: claude-opus-4-8}' \
   --system "You are a helpful coding assistant. Write clean, well-documented code." \
   --tool '{type: agent_toolset_20260401}'
 ````
@@ -182,7 +182,7 @@ client = Anthropic()
 
 agent = client.beta.agents.create(
     name="Coding Assistant",
-    model="claude-opus-4-7",
+    model="claude-opus-4-8",
     system="You are a helpful coding assistant. Write clean, well-documented code.",
     tools=[
         {"type": "agent_toolset_20260401"},
@@ -200,7 +200,7 @@ const client = new Anthropic();
 
 const agent = await client.beta.agents.create({
   name: "Coding Assistant",
-  model: "claude-opus-4-7",
+  model: "claude-opus-4-8",
   system: "You are a helpful coding assistant. Write clean, well-documented code.",
   tools: [
     { type: "agent_toolset_20260401" },
@@ -223,7 +223,7 @@ var client = new AnthropicClient();
 var agent = await client.Beta.Agents.Create(new()
 {
     Name = "Coding Assistant",
-    Model = BetaManagedAgentsModel.ClaudeOpus4_7,
+    Model = BetaManagedAgentsModel.ClaudeOpus4_8,
     System = "You are a helpful coding assistant. Write clean, well-documented code.",
     Tools =
     [
@@ -255,7 +255,7 @@ func main() {
 	agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
 		Name: "Coding Assistant",
 		Model: anthropic.BetaManagedAgentsModelConfigParams{
-			ID: anthropic.BetaManagedAgentsModelClaudeOpus4_7,
+			ID: anthropic.BetaManagedAgentsModelClaudeOpus4_8,
 		},
 		System: anthropic.String("You are a helpful coding assistant. Write clean, well-documented code."),
 		Tools: []anthropic.BetaAgentNewParamsToolUnion{{
@@ -290,7 +290,7 @@ void main() {
 
     var agent = client.beta().agents().create(AgentCreateParams.builder()
         .name("Coding Assistant")
-        .model(BetaManagedAgentsModel.CLAUDE_OPUS_4_7)
+        .model(BetaManagedAgentsModel.CLAUDE_OPUS_4_8)
         .system("You are a helpful coding assistant. Write clean, well-documented code.")
         .addTool(BetaManagedAgentsAgentToolset20260401Params.builder()
             .type(BetaManagedAgentsAgentToolset20260401Params.Type.AGENT_TOOLSET_20260401)
@@ -308,7 +308,7 @@ $client = new Client();
 
 $agent = $client->beta->agents->create(
     name: 'Coding Assistant',
-    model: 'claude-opus-4-7',
+    model: 'claude-opus-4-8',
     system: 'You are a helpful coding assistant. Write clean, well-documented code.',
     tools: [
         ['type' => 'agent_toolset_20260401'],
@@ -326,7 +326,7 @@ client = Anthropic::Client.new
 
 agent = client.beta.agents.create(
   name: "Coding Assistant",
-  model: "claude-opus-4-7",
+  model: "claude-opus-4-8",
   system_: "You are a helpful coding assistant. Write clean, well-documented code.",
   tools: [{type: "agent_toolset_20260401"}]
 )

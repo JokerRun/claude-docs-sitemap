@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/list
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 3d80c9d135197787d14d6fd392244efdccb71f49833ff022bda148e23d688d3d
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: c36d8aca5350b9d976a4586ad937fddfe6dd1f7d249bcd7285b9182c0f483145
 ---
 
 ## List Agents
@@ -41,7 +41,7 @@ List Agents
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 24 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -92,6 +92,10 @@ List Agents
     - `"managed-agents-2026-04-01"`
 
     - `"cache-diagnosis-2026-04-07"`
+
+    - `"thinking-token-count-2026-05-13"`
+
+    - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

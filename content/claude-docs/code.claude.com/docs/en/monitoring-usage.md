@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/monitoring-usage
-fetched_at: 2026-05-28T03:18:36.130288Z
-sha256: 80694d896953ccf4a92c7d9de31c1d1083fa8d5175f6938a035ce84102496685
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: a89a23c54c7448db7caab2a0b7fa7dca9a21e43b52a690b50dab75934ac32301
 ---
 
 > ## Documentation Index
@@ -947,6 +947,7 @@ Logged when conversation compaction completes.
 * `pre_tokens`: Approximate token count before compaction
 * `post_tokens`: Approximate token count after compaction
 * `error`: Error message when compaction failed
+* `precompute_reuse`: Only set when `trigger` is `"manual"`. Auto-compaction can prepare a summary in the background before the context window fills, and this attribute records whether `/compact` reused that prepared summary. `"hit"` means it was reused; `"miss_custom_instructions"`, `"miss_hook"`, and `"miss_not_ready"` give the reason a fresh summary was computed instead. {/* min-version: 2.1.153 */}Requires Claude Code v2.1.153 or later
 
 #### Feedback survey event
 

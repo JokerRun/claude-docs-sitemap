@@ -197,6 +197,14 @@
 <priority>0.8</priority>
 </url>
 <url>
+<loc>https://platform.claude.com/docs/en/build-with-claude/mid-conversation-system-messages</loc>
+<priority>0.8</priority>
+</url>
+<url>
+<loc>https://platform.claude.com/docs/en/build-with-claude/mid-conversation-effort-example</loc>
+<priority>0.8</priority>
+</url>
+<url>
 <loc>https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics</loc>
 <priority>0.8</priority>
 </url>

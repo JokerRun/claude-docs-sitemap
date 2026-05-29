@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/vaults/create
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 52f8d9a56df1b533cba322b08f3e38c58fee417cae2c1ddac3c62d2953b0ec46
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 5d1f2b40dea9ec1087df0578c0938fc39b28f89e579b05de92404144542883ea
 ---
 
 ## Create Vault
@@ -29,7 +29,7 @@ Create Vault
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 22 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 24 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -80,6 +80,10 @@ Create Vault
     - `"managed-agents-2026-04-01"`
 
     - `"cache-diagnosis-2026-04-07"`
+
+    - `"thinking-token-count-2026-05-13"`
+
+    - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

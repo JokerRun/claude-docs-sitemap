@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/environments/create
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: a7cd750d581f0616e85e616f85cd198329f1a23598daa4896424aa43efb38b34
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 85183e21b93f518663e0d589700ade292038b1944130ddf7fbcfcfd1f9671353
 ---
 
 ## Create Environment
@@ -70,6 +70,10 @@ Create a new environment with the specified configuration.
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
+
+    - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
+
+    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
   - `String name`
 

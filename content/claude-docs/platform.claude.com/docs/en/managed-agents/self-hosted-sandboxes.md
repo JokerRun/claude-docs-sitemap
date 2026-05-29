@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes
-fetched_at: 2026-05-21T03:16:34.837917Z
-sha256: a05302f7a9b59d4c0b7c7bf024d839c248fbce9dcfd92d899c55f795cb62d34e
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: b4060168a0ff0ba6cf9324e61154469d2d8dc61050ed4eba75cb56268b40b950
 ---
 
 # Self-hosted sandboxes
@@ -14,6 +14,10 @@ Run agent sessions in your own self-hosted sandbox environment.
 By default, Managed Agents executes tools and code inside [Anthropic-managed cloud containers](/docs/en/managed-agents/cloud-containers). Self-hosted sandboxes keep the orchestration on Anthropic's side but move tool execution into infrastructure you control, so the agent's code, filesystem, and network egress never leave your environment.
 
 Self-hosted sandboxes are not yet available on [Claude Platform on AWS](/docs/en/build-with-claude/claude-platform-on-aws).
+
+<Note>
+Self-hosted sandboxes support all Claude models available in Managed Agents, including <NextOpus />. The model is configured on the [agent](/docs/en/managed-agents/agent-setup), not the environment.
+</Note>
 
 ## How it differs from cloud environments
 
@@ -195,7 +199,7 @@ The SDK helpers require `/bin/bash` at that exact path. The TypeScript SDK addit
 
         
         ```bash nocheck
-        VERSION=1.9.1
+        VERSION=1.10.0
         OS=$(uname -s | tr '[:upper:]' '[:lower:]')
         ARCH=$(uname -m | sed -e 's/x86_64/amd64/' -e 's/aarch64/arm64/')
         curl -fsSL "https://github.com/anthropics/anthropic-cli/releases/download/v${VERSION}/ant_${VERSION}_${OS}_${ARCH}.tar.gz" \
@@ -225,7 +229,7 @@ The SDK helpers require `/bin/bash` at that exact path. The TypeScript SDK addit
 
         ```text
         FROM your-base-image
-        ARG ANT_VERSION=1.9.1
+        ARG ANT_VERSION=1.10.0
         ARG TARGETARCH
         RUN ARCH=$([ "$TARGETARCH" = "arm64" ] && echo arm64 || echo amd64) && \
             curl -fsSL "https://github.com/anthropics/anthropic-cli/releases/download/v${ANT_VERSION}/ant_${ANT_VERSION}_linux_${ARCH}.tar.gz" \

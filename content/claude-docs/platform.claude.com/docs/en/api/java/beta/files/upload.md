@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/files/upload
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 885736e23a7157d1194efb7376284465762833f73df527382bef379904ddbbf7
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: bf27f10da6f8cfa0cada2b6d54500194d776da99a931f03ee81ef63d13566e58
 ---
 
 ## Upload File
@@ -70,6 +70,10 @@ Upload File
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
+
+    - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
+
+    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
   - `String file`
 

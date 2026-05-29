@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/files/retrieve_metadata
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 8d0b13f8be5c2898e000e82876fa19baeb1322b774bbc13697af22c734ffa1cd
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 439aefbb3561ec0f629cacb131de88ff4abeb3a5c0f0cfd5d98d7d623081f2de
 ---
 
 ## Get File Metadata
@@ -25,7 +25,7 @@ Get File Metadata
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 24 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -76,6 +76,10 @@ Get File Metadata
     - `:"managed-agents-2026-04-01"`
 
     - `:"cache-diagnosis-2026-04-07"`
+
+    - `:"thinking-token-count-2026-05-13"`
+
+    - `:"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

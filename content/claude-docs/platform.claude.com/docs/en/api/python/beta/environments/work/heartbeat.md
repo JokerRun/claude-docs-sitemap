@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/environments/work/heartbeat
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 56f905aef88f3ceb4aacf4569d449d216a2eba9460478c6a7ed27d3ebad0ae7f
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 823740a4530a405af5f025ff18a47505dd548f61b60cf74402ea48950263b4f3
 ---
 
 ## Record Heartbeat
@@ -35,7 +35,7 @@ Record a heartbeat for a work item to maintain the lease.
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 22 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 24 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -86,6 +86,10 @@ Record a heartbeat for a work item to maintain the lease.
     - `"managed-agents-2026-04-01"`
 
     - `"cache-diagnosis-2026-04-07"`
+
+    - `"thinking-token-count-2026-05-13"`
+
+    - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

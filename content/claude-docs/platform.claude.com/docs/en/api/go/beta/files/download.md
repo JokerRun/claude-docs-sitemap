@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/files/download
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: a5e622569291fa4dddc0393b8dca90df978cb4d44ed23521de60c07af5c38066
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 0518f0954f1a1287f58d22109c1c1a5ef0de04ec6a4fd7a4e8541f09c273b727
 ---
 
 ## Download File
@@ -78,6 +78,10 @@ Download File
       - `const AnthropicBetaManagedAgents2026_04_01 AnthropicBeta = "managed-agents-2026-04-01"`
 
       - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
+
+      - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
+
+      - `const AnthropicBetaMidConversationSystem2026_04_07 AnthropicBeta = "mid-conversation-system-2026-04-07"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/agents/list
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 4065ec3fc6dfc9bd1a7d4a0d5c0f6c8861f9178f5f199a91383f00c3bdc2129f
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 84791718181737dbb34461af6aadfc6cccdb974a1abf422a9a171bd3779ff610
 ---
 
 ## List Agents
@@ -43,7 +43,7 @@ List Agents
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 22 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 24 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -94,6 +94,10 @@ List Agents
       - `"managed-agents-2026-04-01"`
 
       - `"cache-diagnosis-2026-04-07"`
+
+      - `"thinking-token-count-2026-05-13"`
+
+      - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

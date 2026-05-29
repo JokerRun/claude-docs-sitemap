@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/agents/versions
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: e5743ac21cfd67a50184b7aa775367a62290990b4ab24f02d957d166ed5c09ce
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 0c433007db3b01e5ed9ca335603c77b7e96693a30cffbada25a4621cda40e129
 ---
 
 # Versions
@@ -35,7 +35,7 @@ List Agent Versions
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 22 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 24 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -86,6 +86,10 @@ List Agent Versions
       - `"managed-agents-2026-04-01"`
 
       - `"cache-diagnosis-2026-04-07"`
+
+      - `"thinking-token-count-2026-05-13"`
+
+      - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/messages/count_tokens
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: e968b0ba3bda0127eccd6129b5e2b7911412dff2e4a2f211c9c589870acdab72
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: c267f0df39a36b99efe29077177ea20618a895c25619254853111a467d6c484e
 ---
 
 ## Count tokens in a Message
@@ -515,6 +515,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
                 - `"url_not_allowed"UrlNotAllowed`
 
+                - `"url_not_in_prior_context"UrlNotInPriorContext`
+
                 - `"url_not_accessible"UrlNotAccessible`
 
                 - `"unsupported_content_type"UnsupportedContentType`
@@ -792,11 +794,40 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
             Create a cache control breakpoint at this content block.
 
+        - `class MidConversationSystemBlockParam:`
+
+          System instructions that appear mid-conversation.
+
+          Use this block to provide or update system-level instructions at a specific
+          point in the conversation, rather than only via the top-level `system` parameter.
+
+          - `required IReadOnlyList<TextBlockParam> Content`
+
+            System instruction text blocks.
+
+            - `required string Text`
+
+            - `JsonElement Type "text"constant`
+
+            - `CacheControlEphemeral? CacheControl`
+
+              Create a cache control breakpoint at this content block.
+
+            - `IReadOnlyList<TextCitationParam>? Citations`
+
+          - `JsonElement Type "mid_conv_system"constant`
+
+          - `CacheControlEphemeral? CacheControl`
+
+            Create a cache control breakpoint at this content block.
+
     - `required Role Role`
 
       - `"user"User`
 
       - `"assistant"Assistant`
+
+      - `"system"System`
 
   - `required Model model`
 

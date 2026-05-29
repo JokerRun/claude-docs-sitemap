@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/messages
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 060893ea218dea28878db106b949c981b6ee5724d2e2c7ebe09b7a78140da64a
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 0c491f098129aefa8412404994a4733a4c48321356b86b062c518f4bff7c68f6
 ---
 
 # Messages
@@ -82,11 +82,11 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   There is a limit of 100,000 messages in a single request.
 
-  - `content: Union[str, List[Union[TextBlockParam, ImageBlockParam, DocumentBlockParam, 14 more]]]`
+  - `content: Union[str, List[Union[TextBlockParam, ImageBlockParam, DocumentBlockParam, 15 more]]]`
 
     - `str`
 
-    - `List[Union[TextBlockParam, ImageBlockParam, DocumentBlockParam, 14 more]]`
+    - `List[Union[TextBlockParam, ImageBlockParam, DocumentBlockParam, 15 more]]`
 
       - `class TextBlockParam: …`
 
@@ -585,6 +585,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
               - `"url_not_allowed"`
 
+              - `"url_not_in_prior_context"`
+
               - `"url_not_accessible"`
 
               - `"unsupported_content_type"`
@@ -904,11 +906,42 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
           Create a cache control breakpoint at this content block.
 
-  - `role: Literal["user", "assistant"]`
+      - `class MidConversationSystemBlockParam: …`
+
+        System instructions that appear mid-conversation.
+
+        Use this block to provide or update system-level instructions at a specific
+        point in the conversation, rather than only via the top-level `system` parameter.
+
+        - `content: List[TextBlockParam]`
+
+          System instruction text blocks.
+
+          - `text: str`
+
+          - `type: Literal["text"]`
+
+          - `cache_control: Optional[CacheControlEphemeral]`
+
+            Create a cache control breakpoint at this content block.
+
+          - `citations: Optional[List[TextCitationParam]]`
+
+        - `type: Literal["mid_conv_system"]`
+
+          - `"mid_conv_system"`
+
+        - `cache_control: Optional[CacheControlEphemeral]`
+
+          Create a cache control breakpoint at this content block.
+
+  - `role: Literal["user", "assistant", "system"]`
 
     - `"user"`
 
     - `"assistant"`
+
+    - `"system"`
 
 - `model: ModelParam`
 
@@ -916,12 +949,13 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-  - `Literal["claude-opus-4-7", "claude-mythos-preview", "claude-opus-4-6", 14 more]`
+  - `Literal["claude-opus-4-8", "claude-opus-4-7", "claude-mythos-preview", 15 more]`
 
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+    - `claude-opus-4-8` - Frontier intelligence for long-running agents and coding
     - `claude-opus-4-7` - Frontier intelligence for long-running agents and coding
     - `claude-mythos-preview` - New class of intelligence, strongest in coding and cybersecurity
     - `claude-opus-4-6` - Frontier intelligence for long-running agents and coding
@@ -939,6 +973,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     - `claude-sonnet-4-0` - Deprecated: Will reach end-of-life on June 15th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
     - `claude-sonnet-4-20250514` - Deprecated: Will reach end-of-life on June 15th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
     - `claude-3-haiku-20240307` - Deprecated: Will reach end-of-life on April 20th, 2026. Please migrate to claude-haiku-4-5. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+
+    - `"claude-opus-4-8"`
+
+      Frontier intelligence for long-running agents and coding
 
     - `"claude-opus-4-7"`
 
@@ -2371,6 +2409,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
             - `"url_not_allowed"`
 
+            - `"url_not_in_prior_context"`
+
             - `"url_not_accessible"`
 
             - `"unsupported_content_type"`
@@ -2697,12 +2737,13 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `Literal["claude-opus-4-7", "claude-mythos-preview", "claude-opus-4-6", 14 more]`
+    - `Literal["claude-opus-4-8", "claude-opus-4-7", "claude-mythos-preview", 15 more]`
 
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+      - `claude-opus-4-8` - Frontier intelligence for long-running agents and coding
       - `claude-opus-4-7` - Frontier intelligence for long-running agents and coding
       - `claude-mythos-preview` - New class of intelligence, strongest in coding and cybersecurity
       - `claude-opus-4-6` - Frontier intelligence for long-running agents and coding
@@ -2720,6 +2761,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       - `claude-sonnet-4-0` - Deprecated: Will reach end-of-life on June 15th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
       - `claude-sonnet-4-20250514` - Deprecated: Will reach end-of-life on June 15th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
       - `claude-3-haiku-20240307` - Deprecated: Will reach end-of-life on April 20th, 2026. Please migrate to claude-haiku-4-5. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+
+      - `"claude-opus-4-8"`
+
+        Frontier intelligence for long-running agents and coding
 
       - `"claude-opus-4-7"`
 
@@ -2908,6 +2953,26 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       The number of output tokens which were used.
 
+    - `output_tokens_details: Optional[OutputTokensDetails]`
+
+      Breakdown of output tokens by category.
+
+      `output_tokens` remains the inclusive, authoritative total used for billing.
+      This object provides a read-only decomposition for observability — for example,
+      how many of the billed output tokens were spent on internal reasoning that may
+      have been summarized before being returned to you.
+
+      - `thinking_tokens: int`
+
+        Number of output tokens the model generated as internal reasoning, including
+        the thinking-block delimiter tokens.
+
+        Reflects the raw reasoning the model produced, not the (possibly shorter)
+        summarized thinking text returned in the response body. Computed by
+        re-tokenizing the raw reasoning text, so it may differ from the model's exact
+        generation count by a small number of tokens. Always ≤ `output_tokens`;
+        `output_tokens - thinking_tokens` approximates the non-reasoning output.
+
     - `server_tool_use: Optional[ServerToolUsage]`
 
       The number of server tool requests.
@@ -2996,6 +3061,9 @@ for message in client.messages.create(
     "inference_geo": "inference_geo",
     "input_tokens": 2095,
     "output_tokens": 503,
+    "output_tokens_details": {
+      "thinking_tokens": 0
+    },
     "server_tool_use": {
       "web_fetch_requests": 2,
       "web_search_requests": 0
@@ -3070,11 +3138,11 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
   There is a limit of 100,000 messages in a single request.
 
-  - `content: Union[str, List[Union[TextBlockParam, ImageBlockParam, DocumentBlockParam, 14 more]]]`
+  - `content: Union[str, List[Union[TextBlockParam, ImageBlockParam, DocumentBlockParam, 15 more]]]`
 
     - `str`
 
-    - `List[Union[TextBlockParam, ImageBlockParam, DocumentBlockParam, 14 more]]`
+    - `List[Union[TextBlockParam, ImageBlockParam, DocumentBlockParam, 15 more]]`
 
       - `class TextBlockParam: …`
 
@@ -3573,6 +3641,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
               - `"url_not_allowed"`
 
+              - `"url_not_in_prior_context"`
+
               - `"url_not_accessible"`
 
               - `"unsupported_content_type"`
@@ -3892,11 +3962,42 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
           Create a cache control breakpoint at this content block.
 
-  - `role: Literal["user", "assistant"]`
+      - `class MidConversationSystemBlockParam: …`
+
+        System instructions that appear mid-conversation.
+
+        Use this block to provide or update system-level instructions at a specific
+        point in the conversation, rather than only via the top-level `system` parameter.
+
+        - `content: List[TextBlockParam]`
+
+          System instruction text blocks.
+
+          - `text: str`
+
+          - `type: Literal["text"]`
+
+          - `cache_control: Optional[CacheControlEphemeral]`
+
+            Create a cache control breakpoint at this content block.
+
+          - `citations: Optional[List[TextCitationParam]]`
+
+        - `type: Literal["mid_conv_system"]`
+
+          - `"mid_conv_system"`
+
+        - `cache_control: Optional[CacheControlEphemeral]`
+
+          Create a cache control breakpoint at this content block.
+
+  - `role: Literal["user", "assistant", "system"]`
 
     - `"user"`
 
     - `"assistant"`
+
+    - `"system"`
 
 - `model: ModelParam`
 
@@ -3904,12 +4005,13 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-  - `Literal["claude-opus-4-7", "claude-mythos-preview", "claude-opus-4-6", 14 more]`
+  - `Literal["claude-opus-4-8", "claude-opus-4-7", "claude-mythos-preview", 15 more]`
 
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+    - `claude-opus-4-8` - Frontier intelligence for long-running agents and coding
     - `claude-opus-4-7` - Frontier intelligence for long-running agents and coding
     - `claude-mythos-preview` - New class of intelligence, strongest in coding and cybersecurity
     - `claude-opus-4-6` - Frontier intelligence for long-running agents and coding
@@ -3927,6 +4029,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
     - `claude-sonnet-4-0` - Deprecated: Will reach end-of-life on June 15th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
     - `claude-sonnet-4-20250514` - Deprecated: Will reach end-of-life on June 15th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
     - `claude-3-haiku-20240307` - Deprecated: Will reach end-of-life on April 20th, 2026. Please migrate to claude-haiku-4-5. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+
+    - `"claude-opus-4-8"`
+
+      Frontier intelligence for long-running agents and coding
 
     - `"claude-opus-4-7"`
 
@@ -6587,6 +6693,8 @@ print(message_tokens_count.input_tokens)
 
           - `"url_not_allowed"`
 
+          - `"url_not_in_prior_context"`
+
           - `"url_not_accessible"`
 
           - `"unsupported_content_type"`
@@ -6909,7 +7017,7 @@ print(message_tokens_count.input_tokens)
 
 ### Content Block Param
 
-- `Union[TextBlockParam, ImageBlockParam, DocumentBlockParam, 13 more]`
+- `Union[TextBlockParam, ImageBlockParam, DocumentBlockParam, 14 more]`
 
   Regular text content.
 
@@ -7410,6 +7518,8 @@ print(message_tokens_count.input_tokens)
 
           - `"url_not_allowed"`
 
+          - `"url_not_in_prior_context"`
+
           - `"url_not_accessible"`
 
           - `"unsupported_content_type"`
@@ -7724,6 +7834,35 @@ print(message_tokens_count.input_tokens)
     - `type: Literal["container_upload"]`
 
       - `"container_upload"`
+
+    - `cache_control: Optional[CacheControlEphemeral]`
+
+      Create a cache control breakpoint at this content block.
+
+  - `class MidConversationSystemBlockParam: …`
+
+    System instructions that appear mid-conversation.
+
+    Use this block to provide or update system-level instructions at a specific
+    point in the conversation, rather than only via the top-level `system` parameter.
+
+    - `content: List[TextBlockParam]`
+
+      System instruction text blocks.
+
+      - `text: str`
+
+      - `type: Literal["text"]`
+
+      - `cache_control: Optional[CacheControlEphemeral]`
+
+        Create a cache control breakpoint at this content block.
+
+      - `citations: Optional[List[TextCitationParam]]`
+
+    - `type: Literal["mid_conv_system"]`
+
+      - `"mid_conv_system"`
 
     - `cache_control: Optional[CacheControlEphemeral]`
 
@@ -8939,6 +9078,8 @@ print(message_tokens_count.input_tokens)
 
             - `"url_not_allowed"`
 
+            - `"url_not_in_prior_context"`
+
             - `"url_not_accessible"`
 
             - `"unsupported_content_type"`
@@ -9265,12 +9406,13 @@ print(message_tokens_count.input_tokens)
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `Literal["claude-opus-4-7", "claude-mythos-preview", "claude-opus-4-6", 14 more]`
+    - `Literal["claude-opus-4-8", "claude-opus-4-7", "claude-mythos-preview", 15 more]`
 
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+      - `claude-opus-4-8` - Frontier intelligence for long-running agents and coding
       - `claude-opus-4-7` - Frontier intelligence for long-running agents and coding
       - `claude-mythos-preview` - New class of intelligence, strongest in coding and cybersecurity
       - `claude-opus-4-6` - Frontier intelligence for long-running agents and coding
@@ -9288,6 +9430,10 @@ print(message_tokens_count.input_tokens)
       - `claude-sonnet-4-0` - Deprecated: Will reach end-of-life on June 15th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
       - `claude-sonnet-4-20250514` - Deprecated: Will reach end-of-life on June 15th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
       - `claude-3-haiku-20240307` - Deprecated: Will reach end-of-life on April 20th, 2026. Please migrate to claude-haiku-4-5. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+
+      - `"claude-opus-4-8"`
+
+        Frontier intelligence for long-running agents and coding
 
       - `"claude-opus-4-7"`
 
@@ -9475,6 +9621,26 @@ print(message_tokens_count.input_tokens)
     - `output_tokens: int`
 
       The number of output tokens which were used.
+
+    - `output_tokens_details: Optional[OutputTokensDetails]`
+
+      Breakdown of output tokens by category.
+
+      `output_tokens` remains the inclusive, authoritative total used for billing.
+      This object provides a read-only decomposition for observability — for example,
+      how many of the billed output tokens were spent on internal reasoning that may
+      have been summarized before being returned to you.
+
+      - `thinking_tokens: int`
+
+        Number of output tokens the model generated as internal reasoning, including
+        the thinking-block delimiter tokens.
+
+        Reflects the raw reasoning the model produced, not the (possibly shorter)
+        summarized thinking text returned in the response body. Computed by
+        re-tokenizing the raw reasoning text, so it may differ from the model's exact
+        generation count by a small number of tokens. Always ≤ `output_tokens`;
+        `output_tokens - thinking_tokens` approximates the non-reasoning output.
 
     - `server_tool_use: Optional[ServerToolUsage]`
 
@@ -10251,6 +10417,26 @@ print(message_tokens_count.input_tokens)
 
     The cumulative number of output tokens which were used.
 
+  - `output_tokens_details: Optional[OutputTokensDetails]`
+
+    Breakdown of output tokens by category.
+
+    `output_tokens` remains the inclusive, authoritative total used for billing.
+    This object provides a read-only decomposition for observability — for example,
+    how many of the billed output tokens were spent on internal reasoning that may
+    have been summarized before being returned to you.
+
+    - `thinking_tokens: int`
+
+      Number of output tokens the model generated as internal reasoning, including
+      the thinking-block delimiter tokens.
+
+      Reflects the raw reasoning the model produced, not the (possibly shorter)
+      summarized thinking text returned in the response body. Computed by
+      re-tokenizing the raw reasoning text, so it may differ from the model's exact
+      generation count by a small number of tokens. Always ≤ `output_tokens`;
+      `output_tokens - thinking_tokens` approximates the non-reasoning output.
+
   - `server_tool_use: Optional[ServerToolUsage]`
 
     The number of server tool requests.
@@ -10267,11 +10453,11 @@ print(message_tokens_count.input_tokens)
 
 - `class MessageParam: …`
 
-  - `content: Union[str, List[Union[TextBlockParam, ImageBlockParam, DocumentBlockParam, 14 more]]]`
+  - `content: Union[str, List[Union[TextBlockParam, ImageBlockParam, DocumentBlockParam, 15 more]]]`
 
     - `str`
 
-    - `List[Union[TextBlockParam, ImageBlockParam, DocumentBlockParam, 14 more]]`
+    - `List[Union[TextBlockParam, ImageBlockParam, DocumentBlockParam, 15 more]]`
 
       - `class TextBlockParam: …`
 
@@ -10770,6 +10956,8 @@ print(message_tokens_count.input_tokens)
 
               - `"url_not_allowed"`
 
+              - `"url_not_in_prior_context"`
+
               - `"url_not_accessible"`
 
               - `"unsupported_content_type"`
@@ -11089,11 +11277,42 @@ print(message_tokens_count.input_tokens)
 
           Create a cache control breakpoint at this content block.
 
-  - `role: Literal["user", "assistant"]`
+      - `class MidConversationSystemBlockParam: …`
+
+        System instructions that appear mid-conversation.
+
+        Use this block to provide or update system-level instructions at a specific
+        point in the conversation, rather than only via the top-level `system` parameter.
+
+        - `content: List[TextBlockParam]`
+
+          System instruction text blocks.
+
+          - `text: str`
+
+          - `type: Literal["text"]`
+
+          - `cache_control: Optional[CacheControlEphemeral]`
+
+            Create a cache control breakpoint at this content block.
+
+          - `citations: Optional[List[TextCitationParam]]`
+
+        - `type: Literal["mid_conv_system"]`
+
+          - `"mid_conv_system"`
+
+        - `cache_control: Optional[CacheControlEphemeral]`
+
+          Create a cache control breakpoint at this content block.
+
+  - `role: Literal["user", "assistant", "system"]`
 
     - `"user"`
 
     - `"assistant"`
+
+    - `"system"`
 
 ### Message Tokens Count
 
@@ -11113,20 +11332,177 @@ print(message_tokens_count.input_tokens)
 
     This should be a uuid, hash value, or other opaque identifier. Anthropic may use this id to help detect abuse. Do not include any identifying information such as name, email address, or phone number.
 
+### Mid Conversation System Block Param
+
+- `class MidConversationSystemBlockParam: …`
+
+  System instructions that appear mid-conversation.
+
+  Use this block to provide or update system-level instructions at a specific
+  point in the conversation, rather than only via the top-level `system` parameter.
+
+  - `content: List[TextBlockParam]`
+
+    System instruction text blocks.
+
+    - `text: str`
+
+    - `type: Literal["text"]`
+
+      - `"text"`
+
+    - `cache_control: Optional[CacheControlEphemeral]`
+
+      Create a cache control breakpoint at this content block.
+
+      - `type: Literal["ephemeral"]`
+
+        - `"ephemeral"`
+
+      - `ttl: Optional[Literal["5m", "1h"]]`
+
+        The time-to-live for the cache control breakpoint.
+
+        This may be one the following values:
+
+        - `5m`: 5 minutes
+        - `1h`: 1 hour
+
+        Defaults to `5m`.
+
+        - `"5m"`
+
+        - `"1h"`
+
+    - `citations: Optional[List[TextCitationParam]]`
+
+      - `class CitationCharLocationParam: …`
+
+        - `cited_text: str`
+
+        - `document_index: int`
+
+        - `document_title: Optional[str]`
+
+        - `end_char_index: int`
+
+        - `start_char_index: int`
+
+        - `type: Literal["char_location"]`
+
+          - `"char_location"`
+
+      - `class CitationPageLocationParam: …`
+
+        - `cited_text: str`
+
+        - `document_index: int`
+
+        - `document_title: Optional[str]`
+
+        - `end_page_number: int`
+
+        - `start_page_number: int`
+
+        - `type: Literal["page_location"]`
+
+          - `"page_location"`
+
+      - `class CitationContentBlockLocationParam: …`
+
+        - `cited_text: str`
+
+          The full text of the cited block range, concatenated.
+
+          Always equals the contents of `content[start_block_index:end_block_index]` joined together. The text block is the minimal citable unit; this field is never a substring of a single block. Not counted toward output tokens, and not counted toward input tokens when sent back in subsequent turns.
+
+        - `document_index: int`
+
+        - `document_title: Optional[str]`
+
+        - `end_block_index: int`
+
+          Exclusive 0-based end index of the cited block range in the source's `content` array.
+
+          Always greater than `start_block_index`; a single-block citation has `end_block_index = start_block_index + 1`.
+
+        - `start_block_index: int`
+
+          0-based index of the first cited block in the source's `content` array.
+
+        - `type: Literal["content_block_location"]`
+
+          - `"content_block_location"`
+
+      - `class CitationWebSearchResultLocationParam: …`
+
+        - `cited_text: str`
+
+        - `encrypted_index: str`
+
+        - `title: Optional[str]`
+
+        - `type: Literal["web_search_result_location"]`
+
+          - `"web_search_result_location"`
+
+        - `url: str`
+
+      - `class CitationSearchResultLocationParam: …`
+
+        - `cited_text: str`
+
+          The full text of the cited block range, concatenated.
+
+          Always equals the contents of `content[start_block_index:end_block_index]` joined together. The text block is the minimal citable unit; this field is never a substring of a single block. Not counted toward output tokens, and not counted toward input tokens when sent back in subsequent turns.
+
+        - `end_block_index: int`
+
+          Exclusive 0-based end index of the cited block range in the source's `content` array.
+
+          Always greater than `start_block_index`; a single-block citation has `end_block_index = start_block_index + 1`.
+
+        - `search_result_index: int`
+
+          0-based index of the cited search result among all `search_result` content blocks in the request, in the order they appear across messages and tool results.
+
+          Counted separately from `document_index`; server-side web search results are not included in this count.
+
+        - `source: str`
+
+        - `start_block_index: int`
+
+          0-based index of the first cited block in the source's `content` array.
+
+        - `title: Optional[str]`
+
+        - `type: Literal["search_result_location"]`
+
+          - `"search_result_location"`
+
+  - `type: Literal["mid_conv_system"]`
+
+    - `"mid_conv_system"`
+
+  - `cache_control: Optional[CacheControlEphemeral]`
+
+    Create a cache control breakpoint at this content block.
+
 ### Model
 
-- `Union[Literal["claude-opus-4-7", "claude-mythos-preview", "claude-opus-4-6", 14 more], str]`
+- `Union[Literal["claude-opus-4-8", "claude-opus-4-7", "claude-mythos-preview", 15 more], str]`
 
   The model that will complete your prompt.
 
   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-  - `Literal["claude-opus-4-7", "claude-mythos-preview", "claude-opus-4-6", 14 more]`
+  - `Literal["claude-opus-4-8", "claude-opus-4-7", "claude-mythos-preview", 15 more]`
 
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+    - `claude-opus-4-8` - Frontier intelligence for long-running agents and coding
     - `claude-opus-4-7` - Frontier intelligence for long-running agents and coding
     - `claude-mythos-preview` - New class of intelligence, strongest in coding and cybersecurity
     - `claude-opus-4-6` - Frontier intelligence for long-running agents and coding
@@ -11144,6 +11520,10 @@ print(message_tokens_count.input_tokens)
     - `claude-sonnet-4-0` - Deprecated: Will reach end-of-life on June 15th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
     - `claude-sonnet-4-20250514` - Deprecated: Will reach end-of-life on June 15th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
     - `claude-3-haiku-20240307` - Deprecated: Will reach end-of-life on April 20th, 2026. Please migrate to claude-haiku-4-5. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+
+    - `"claude-opus-4-8"`
+
+      Frontier intelligence for long-running agents and coding
 
     - `"claude-opus-4-7"`
 
@@ -11893,6 +12273,8 @@ print(message_tokens_count.input_tokens)
 
             - `"url_not_allowed"`
 
+            - `"url_not_in_prior_context"`
+
             - `"url_not_accessible"`
 
             - `"unsupported_content_type"`
@@ -12319,6 +12701,26 @@ print(message_tokens_count.input_tokens)
 
       The cumulative number of output tokens which were used.
 
+    - `output_tokens_details: Optional[OutputTokensDetails]`
+
+      Breakdown of output tokens by category.
+
+      `output_tokens` remains the inclusive, authoritative total used for billing.
+      This object provides a read-only decomposition for observability — for example,
+      how many of the billed output tokens were spent on internal reasoning that may
+      have been summarized before being returned to you.
+
+      - `thinking_tokens: int`
+
+        Number of output tokens the model generated as internal reasoning, including
+        the thinking-block delimiter tokens.
+
+        Reflects the raw reasoning the model produced, not the (possibly shorter)
+        summarized thinking text returned in the response body. Computed by
+        re-tokenizing the raw reasoning text, so it may differ from the model's exact
+        generation count by a small number of tokens. Always ≤ `output_tokens`;
+        `output_tokens - thinking_tokens` approximates the non-reasoning output.
+
     - `server_tool_use: Optional[ServerToolUsage]`
 
       The number of server tool requests.
@@ -12694,6 +13096,8 @@ print(message_tokens_count.input_tokens)
 
               - `"url_not_allowed"`
 
+              - `"url_not_in_prior_context"`
+
               - `"url_not_accessible"`
 
               - `"unsupported_content_type"`
@@ -13020,12 +13424,13 @@ print(message_tokens_count.input_tokens)
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `Literal["claude-opus-4-7", "claude-mythos-preview", "claude-opus-4-6", 14 more]`
+      - `Literal["claude-opus-4-8", "claude-opus-4-7", "claude-mythos-preview", 15 more]`
 
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+        - `claude-opus-4-8` - Frontier intelligence for long-running agents and coding
         - `claude-opus-4-7` - Frontier intelligence for long-running agents and coding
         - `claude-mythos-preview` - New class of intelligence, strongest in coding and cybersecurity
         - `claude-opus-4-6` - Frontier intelligence for long-running agents and coding
@@ -13043,6 +13448,10 @@ print(message_tokens_count.input_tokens)
         - `claude-sonnet-4-0` - Deprecated: Will reach end-of-life on June 15th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
         - `claude-sonnet-4-20250514` - Deprecated: Will reach end-of-life on June 15th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
         - `claude-3-haiku-20240307` - Deprecated: Will reach end-of-life on April 20th, 2026. Please migrate to claude-haiku-4-5. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+
+        - `"claude-opus-4-8"`
+
+          Frontier intelligence for long-running agents and coding
 
         - `"claude-opus-4-7"`
 
@@ -13230,6 +13639,26 @@ print(message_tokens_count.input_tokens)
       - `output_tokens: int`
 
         The number of output tokens which were used.
+
+      - `output_tokens_details: Optional[OutputTokensDetails]`
+
+        Breakdown of output tokens by category.
+
+        `output_tokens` remains the inclusive, authoritative total used for billing.
+        This object provides a read-only decomposition for observability — for example,
+        how many of the billed output tokens were spent on internal reasoning that may
+        have been summarized before being returned to you.
+
+        - `thinking_tokens: int`
+
+          Number of output tokens the model generated as internal reasoning, including
+          the thinking-block delimiter tokens.
+
+          Reflects the raw reasoning the model produced, not the (possibly shorter)
+          summarized thinking text returned in the response body. Computed by
+          re-tokenizing the raw reasoning text, so it may differ from the model's exact
+          generation count by a small number of tokens. Always ≤ `output_tokens`;
+          `output_tokens - thinking_tokens` approximates the non-reasoning output.
 
       - `server_tool_use: Optional[ServerToolUsage]`
 
@@ -13630,6 +14059,8 @@ print(message_tokens_count.input_tokens)
 
                 - `"url_not_allowed"`
 
+                - `"url_not_in_prior_context"`
+
                 - `"url_not_accessible"`
 
                 - `"unsupported_content_type"`
@@ -13956,12 +14387,13 @@ print(message_tokens_count.input_tokens)
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-        - `Literal["claude-opus-4-7", "claude-mythos-preview", "claude-opus-4-6", 14 more]`
+        - `Literal["claude-opus-4-8", "claude-opus-4-7", "claude-mythos-preview", 15 more]`
 
           The model that will complete your prompt.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `claude-opus-4-8` - Frontier intelligence for long-running agents and coding
           - `claude-opus-4-7` - Frontier intelligence for long-running agents and coding
           - `claude-mythos-preview` - New class of intelligence, strongest in coding and cybersecurity
           - `claude-opus-4-6` - Frontier intelligence for long-running agents and coding
@@ -13979,6 +14411,10 @@ print(message_tokens_count.input_tokens)
           - `claude-sonnet-4-0` - Deprecated: Will reach end-of-life on June 15th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
           - `claude-sonnet-4-20250514` - Deprecated: Will reach end-of-life on June 15th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
           - `claude-3-haiku-20240307` - Deprecated: Will reach end-of-life on April 20th, 2026. Please migrate to claude-haiku-4-5. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+
+          - `"claude-opus-4-8"`
+
+            Frontier intelligence for long-running agents and coding
 
           - `"claude-opus-4-7"`
 
@@ -14167,6 +14603,26 @@ print(message_tokens_count.input_tokens)
 
           The number of output tokens which were used.
 
+        - `output_tokens_details: Optional[OutputTokensDetails]`
+
+          Breakdown of output tokens by category.
+
+          `output_tokens` remains the inclusive, authoritative total used for billing.
+          This object provides a read-only decomposition for observability — for example,
+          how many of the billed output tokens were spent on internal reasoning that may
+          have been summarized before being returned to you.
+
+          - `thinking_tokens: int`
+
+            Number of output tokens the model generated as internal reasoning, including
+            the thinking-block delimiter tokens.
+
+            Reflects the raw reasoning the model produced, not the (possibly shorter)
+            summarized thinking text returned in the response body. Computed by
+            re-tokenizing the raw reasoning text, so it may differ from the model's exact
+            generation count by a small number of tokens. Always ≤ `output_tokens`;
+            `output_tokens - thinking_tokens` approximates the non-reasoning output.
+
         - `server_tool_use: Optional[ServerToolUsage]`
 
           The number of server tool requests.
@@ -14240,6 +14696,26 @@ print(message_tokens_count.input_tokens)
       - `output_tokens: int`
 
         The cumulative number of output tokens which were used.
+
+      - `output_tokens_details: Optional[OutputTokensDetails]`
+
+        Breakdown of output tokens by category.
+
+        `output_tokens` remains the inclusive, authoritative total used for billing.
+        This object provides a read-only decomposition for observability — for example,
+        how many of the billed output tokens were spent on internal reasoning that may
+        have been summarized before being returned to you.
+
+        - `thinking_tokens: int`
+
+          Number of output tokens the model generated as internal reasoning, including
+          the thinking-block delimiter tokens.
+
+          Reflects the raw reasoning the model produced, not the (possibly shorter)
+          summarized thinking text returned in the response body. Computed by
+          re-tokenizing the raw reasoning text, so it may differ from the model's exact
+          generation count by a small number of tokens. Always ≤ `output_tokens`;
+          `output_tokens - thinking_tokens` approximates the non-reasoning output.
 
       - `server_tool_use: Optional[ServerToolUsage]`
 
@@ -17748,6 +18224,26 @@ print(message_tokens_count.input_tokens)
 
     The number of output tokens which were used.
 
+  - `output_tokens_details: Optional[OutputTokensDetails]`
+
+    Breakdown of output tokens by category.
+
+    `output_tokens` remains the inclusive, authoritative total used for billing.
+    This object provides a read-only decomposition for observability — for example,
+    how many of the billed output tokens were spent on internal reasoning that may
+    have been summarized before being returned to you.
+
+    - `thinking_tokens: int`
+
+      Number of output tokens the model generated as internal reasoning, including
+      the thinking-block delimiter tokens.
+
+      Reflects the raw reasoning the model produced, not the (possibly shorter)
+      summarized thinking text returned in the response body. Computed by
+      re-tokenizing the raw reasoning text, so it may differ from the model's exact
+      generation count by a small number of tokens. Always ≤ `output_tokens`;
+      `output_tokens - thinking_tokens` approximates the non-reasoning output.
+
   - `server_tool_use: Optional[ServerToolUsage]`
 
     The number of server tool requests.
@@ -18390,6 +18886,8 @@ print(message_tokens_count.input_tokens)
 
         - `"url_not_allowed"`
 
+        - `"url_not_in_prior_context"`
+
         - `"url_not_accessible"`
 
         - `"unsupported_content_type"`
@@ -18481,6 +18979,8 @@ print(message_tokens_count.input_tokens)
         - `"url_too_long"`
 
         - `"url_not_allowed"`
+
+        - `"url_not_in_prior_context"`
 
         - `"url_not_accessible"`
 
@@ -18801,6 +19301,8 @@ print(message_tokens_count.input_tokens)
 
     - `"url_not_allowed"`
 
+    - `"url_not_in_prior_context"`
+
     - `"url_not_accessible"`
 
     - `"unsupported_content_type"`
@@ -18827,6 +19329,8 @@ print(message_tokens_count.input_tokens)
 
     - `"url_not_allowed"`
 
+    - `"url_not_in_prior_context"`
+
     - `"url_not_accessible"`
 
     - `"unsupported_content_type"`
@@ -18843,13 +19347,15 @@ print(message_tokens_count.input_tokens)
 
 ### Web Fetch Tool Result Error Code
 
-- `Literal["invalid_tool_input", "url_too_long", "url_not_allowed", 5 more]`
+- `Literal["invalid_tool_input", "url_too_long", "url_not_allowed", 6 more]`
 
   - `"invalid_tool_input"`
 
   - `"url_too_long"`
 
   - `"url_not_allowed"`
+
+  - `"url_not_in_prior_context"`
 
   - `"url_not_accessible"`
 
@@ -19479,11 +19985,11 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       There is a limit of 100,000 messages in a single request.
 
-      - `content: Union[str, List[Union[TextBlockParam, ImageBlockParam, DocumentBlockParam, 14 more]]]`
+      - `content: Union[str, List[Union[TextBlockParam, ImageBlockParam, DocumentBlockParam, 15 more]]]`
 
         - `str`
 
-        - `List[Union[TextBlockParam, ImageBlockParam, DocumentBlockParam, 14 more]]`
+        - `List[Union[TextBlockParam, ImageBlockParam, DocumentBlockParam, 15 more]]`
 
           - `class TextBlockParam: …`
 
@@ -19982,6 +20488,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `"url_not_allowed"`
 
+                  - `"url_not_in_prior_context"`
+
                   - `"url_not_accessible"`
 
                   - `"unsupported_content_type"`
@@ -20301,11 +20809,42 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
               Create a cache control breakpoint at this content block.
 
-      - `role: Literal["user", "assistant"]`
+          - `class MidConversationSystemBlockParam: …`
+
+            System instructions that appear mid-conversation.
+
+            Use this block to provide or update system-level instructions at a specific
+            point in the conversation, rather than only via the top-level `system` parameter.
+
+            - `content: List[TextBlockParam]`
+
+              System instruction text blocks.
+
+              - `text: str`
+
+              - `type: Literal["text"]`
+
+              - `cache_control: Optional[CacheControlEphemeral]`
+
+                Create a cache control breakpoint at this content block.
+
+              - `citations: Optional[List[TextCitationParam]]`
+
+            - `type: Literal["mid_conv_system"]`
+
+              - `"mid_conv_system"`
+
+            - `cache_control: Optional[CacheControlEphemeral]`
+
+              Create a cache control breakpoint at this content block.
+
+      - `role: Literal["user", "assistant", "system"]`
 
         - `"user"`
 
         - `"assistant"`
+
+        - `"system"`
 
     - `model: ModelParam`
 
@@ -20313,12 +20852,13 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `Literal["claude-opus-4-7", "claude-mythos-preview", "claude-opus-4-6", 14 more]`
+      - `Literal["claude-opus-4-8", "claude-opus-4-7", "claude-mythos-preview", 15 more]`
 
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+        - `claude-opus-4-8` - Frontier intelligence for long-running agents and coding
         - `claude-opus-4-7` - Frontier intelligence for long-running agents and coding
         - `claude-mythos-preview` - New class of intelligence, strongest in coding and cybersecurity
         - `claude-opus-4-6` - Frontier intelligence for long-running agents and coding
@@ -20336,6 +20876,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
         - `claude-sonnet-4-0` - Deprecated: Will reach end-of-life on June 15th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
         - `claude-sonnet-4-20250514` - Deprecated: Will reach end-of-life on June 15th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
         - `claude-3-haiku-20240307` - Deprecated: Will reach end-of-life on April 20th, 2026. Please migrate to claude-haiku-4-5. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+
+        - `"claude-opus-4-8"`
+
+          Frontier intelligence for long-running agents and coding
 
         - `"claude-opus-4-7"`
 
@@ -22448,6 +22992,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `"url_not_allowed"`
 
+                  - `"url_not_in_prior_context"`
+
                   - `"url_not_accessible"`
 
                   - `"unsupported_content_type"`
@@ -22774,12 +23320,13 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-          - `Literal["claude-opus-4-7", "claude-mythos-preview", "claude-opus-4-6", 14 more]`
+          - `Literal["claude-opus-4-8", "claude-opus-4-7", "claude-mythos-preview", 15 more]`
 
             The model that will complete your prompt.
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+            - `claude-opus-4-8` - Frontier intelligence for long-running agents and coding
             - `claude-opus-4-7` - Frontier intelligence for long-running agents and coding
             - `claude-mythos-preview` - New class of intelligence, strongest in coding and cybersecurity
             - `claude-opus-4-6` - Frontier intelligence for long-running agents and coding
@@ -22797,6 +23344,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `claude-sonnet-4-0` - Deprecated: Will reach end-of-life on June 15th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
             - `claude-sonnet-4-20250514` - Deprecated: Will reach end-of-life on June 15th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
             - `claude-3-haiku-20240307` - Deprecated: Will reach end-of-life on April 20th, 2026. Please migrate to claude-haiku-4-5. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+
+            - `"claude-opus-4-8"`
+
+              Frontier intelligence for long-running agents and coding
 
             - `"claude-opus-4-7"`
 
@@ -22984,6 +23535,26 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           - `output_tokens: int`
 
             The number of output tokens which were used.
+
+          - `output_tokens_details: Optional[OutputTokensDetails]`
+
+            Breakdown of output tokens by category.
+
+            `output_tokens` remains the inclusive, authoritative total used for billing.
+            This object provides a read-only decomposition for observability — for example,
+            how many of the billed output tokens were spent on internal reasoning that may
+            have been summarized before being returned to you.
+
+            - `thinking_tokens: int`
+
+              Number of output tokens the model generated as internal reasoning, including
+              the thinking-block delimiter tokens.
+
+              Reflects the raw reasoning the model produced, not the (possibly shorter)
+              summarized thinking text returned in the response body. Computed by
+              re-tokenizing the raw reasoning text, so it may differ from the model's exact
+              generation count by a small number of tokens. Always ≤ `output_tokens`;
+              `output_tokens - thinking_tokens` approximates the non-reasoning output.
 
           - `server_tool_use: Optional[ServerToolUsage]`
 
@@ -23719,6 +24290,8 @@ for batch in client.messages.batches.results(
 
                   - `"url_not_allowed"`
 
+                  - `"url_not_in_prior_context"`
+
                   - `"url_not_accessible"`
 
                   - `"unsupported_content_type"`
@@ -24045,12 +24618,13 @@ for batch in client.messages.batches.results(
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-          - `Literal["claude-opus-4-7", "claude-mythos-preview", "claude-opus-4-6", 14 more]`
+          - `Literal["claude-opus-4-8", "claude-opus-4-7", "claude-mythos-preview", 15 more]`
 
             The model that will complete your prompt.
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+            - `claude-opus-4-8` - Frontier intelligence for long-running agents and coding
             - `claude-opus-4-7` - Frontier intelligence for long-running agents and coding
             - `claude-mythos-preview` - New class of intelligence, strongest in coding and cybersecurity
             - `claude-opus-4-6` - Frontier intelligence for long-running agents and coding
@@ -24068,6 +24642,10 @@ for batch in client.messages.batches.results(
             - `claude-sonnet-4-0` - Deprecated: Will reach end-of-life on June 15th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
             - `claude-sonnet-4-20250514` - Deprecated: Will reach end-of-life on June 15th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
             - `claude-3-haiku-20240307` - Deprecated: Will reach end-of-life on April 20th, 2026. Please migrate to claude-haiku-4-5. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+
+            - `"claude-opus-4-8"`
+
+              Frontier intelligence for long-running agents and coding
 
             - `"claude-opus-4-7"`
 
@@ -24255,6 +24833,26 @@ for batch in client.messages.batches.results(
           - `output_tokens: int`
 
             The number of output tokens which were used.
+
+          - `output_tokens_details: Optional[OutputTokensDetails]`
+
+            Breakdown of output tokens by category.
+
+            `output_tokens` remains the inclusive, authoritative total used for billing.
+            This object provides a read-only decomposition for observability — for example,
+            how many of the billed output tokens were spent on internal reasoning that may
+            have been summarized before being returned to you.
+
+            - `thinking_tokens: int`
+
+              Number of output tokens the model generated as internal reasoning, including
+              the thinking-block delimiter tokens.
+
+              Reflects the raw reasoning the model produced, not the (possibly shorter)
+              summarized thinking text returned in the response body. Computed by
+              re-tokenizing the raw reasoning text, so it may differ from the model's exact
+              generation count by a small number of tokens. Always ≤ `output_tokens`;
+              `output_tokens - thinking_tokens` approximates the non-reasoning output.
 
           - `server_tool_use: Optional[ServerToolUsage]`
 
@@ -24783,6 +25381,8 @@ for batch in client.messages.batches.results(
 
                 - `"url_not_allowed"`
 
+                - `"url_not_in_prior_context"`
+
                 - `"url_not_accessible"`
 
                 - `"unsupported_content_type"`
@@ -25109,12 +25709,13 @@ for batch in client.messages.batches.results(
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-        - `Literal["claude-opus-4-7", "claude-mythos-preview", "claude-opus-4-6", 14 more]`
+        - `Literal["claude-opus-4-8", "claude-opus-4-7", "claude-mythos-preview", 15 more]`
 
           The model that will complete your prompt.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `claude-opus-4-8` - Frontier intelligence for long-running agents and coding
           - `claude-opus-4-7` - Frontier intelligence for long-running agents and coding
           - `claude-mythos-preview` - New class of intelligence, strongest in coding and cybersecurity
           - `claude-opus-4-6` - Frontier intelligence for long-running agents and coding
@@ -25132,6 +25733,10 @@ for batch in client.messages.batches.results(
           - `claude-sonnet-4-0` - Deprecated: Will reach end-of-life on June 15th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
           - `claude-sonnet-4-20250514` - Deprecated: Will reach end-of-life on June 15th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
           - `claude-3-haiku-20240307` - Deprecated: Will reach end-of-life on April 20th, 2026. Please migrate to claude-haiku-4-5. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+
+          - `"claude-opus-4-8"`
+
+            Frontier intelligence for long-running agents and coding
 
           - `"claude-opus-4-7"`
 
@@ -25319,6 +25924,26 @@ for batch in client.messages.batches.results(
         - `output_tokens: int`
 
           The number of output tokens which were used.
+
+        - `output_tokens_details: Optional[OutputTokensDetails]`
+
+          Breakdown of output tokens by category.
+
+          `output_tokens` remains the inclusive, authoritative total used for billing.
+          This object provides a read-only decomposition for observability — for example,
+          how many of the billed output tokens were spent on internal reasoning that may
+          have been summarized before being returned to you.
+
+          - `thinking_tokens: int`
+
+            Number of output tokens the model generated as internal reasoning, including
+            the thinking-block delimiter tokens.
+
+            Reflects the raw reasoning the model produced, not the (possibly shorter)
+            summarized thinking text returned in the response body. Computed by
+            re-tokenizing the raw reasoning text, so it may differ from the model's exact
+            generation count by a small number of tokens. Always ≤ `output_tokens`;
+            `output_tokens - thinking_tokens` approximates the non-reasoning output.
 
         - `server_tool_use: Optional[ServerToolUsage]`
 
@@ -25809,6 +26434,8 @@ for batch in client.messages.batches.results(
 
               - `"url_not_allowed"`
 
+              - `"url_not_in_prior_context"`
+
               - `"url_not_accessible"`
 
               - `"unsupported_content_type"`
@@ -26135,12 +26762,13 @@ for batch in client.messages.batches.results(
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `Literal["claude-opus-4-7", "claude-mythos-preview", "claude-opus-4-6", 14 more]`
+      - `Literal["claude-opus-4-8", "claude-opus-4-7", "claude-mythos-preview", 15 more]`
 
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+        - `claude-opus-4-8` - Frontier intelligence for long-running agents and coding
         - `claude-opus-4-7` - Frontier intelligence for long-running agents and coding
         - `claude-mythos-preview` - New class of intelligence, strongest in coding and cybersecurity
         - `claude-opus-4-6` - Frontier intelligence for long-running agents and coding
@@ -26158,6 +26786,10 @@ for batch in client.messages.batches.results(
         - `claude-sonnet-4-0` - Deprecated: Will reach end-of-life on June 15th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
         - `claude-sonnet-4-20250514` - Deprecated: Will reach end-of-life on June 15th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
         - `claude-3-haiku-20240307` - Deprecated: Will reach end-of-life on April 20th, 2026. Please migrate to claude-haiku-4-5. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+
+        - `"claude-opus-4-8"`
+
+          Frontier intelligence for long-running agents and coding
 
         - `"claude-opus-4-7"`
 
@@ -26345,6 +26977,26 @@ for batch in client.messages.batches.results(
       - `output_tokens: int`
 
         The number of output tokens which were used.
+
+      - `output_tokens_details: Optional[OutputTokensDetails]`
+
+        Breakdown of output tokens by category.
+
+        `output_tokens` remains the inclusive, authoritative total used for billing.
+        This object provides a read-only decomposition for observability — for example,
+        how many of the billed output tokens were spent on internal reasoning that may
+        have been summarized before being returned to you.
+
+        - `thinking_tokens: int`
+
+          Number of output tokens the model generated as internal reasoning, including
+          the thinking-block delimiter tokens.
+
+          Reflects the raw reasoning the model produced, not the (possibly shorter)
+          summarized thinking text returned in the response body. Computed by
+          re-tokenizing the raw reasoning text, so it may differ from the model's exact
+          generation count by a small number of tokens. Always ≤ `output_tokens`;
+          `output_tokens - thinking_tokens` approximates the non-reasoning output.
 
       - `server_tool_use: Optional[ServerToolUsage]`
 

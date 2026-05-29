@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/list
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 2746e625c36ca80c280bd33cb34eeece7c780b74d68145aa5a0d9422af5d4540
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: a2ab0727c60ac3642df6a3a05429f86f97abce09e1469403c2f30c9e5a20a50d
 ---
 
 ## List Vaults
@@ -82,6 +82,10 @@ List Vaults
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
+
+    - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
+
+    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
 ### Returns
 

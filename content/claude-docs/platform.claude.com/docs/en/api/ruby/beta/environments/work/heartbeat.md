@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/environments/work/heartbeat
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 4b5e36c45b19f0d85ec616b531bf8529a3300f9b3363eb6b6326d315c9a2af67
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: dff167f3639a340564e7ae20b44f62e777c5fc070318e3b290f20f11e0cdef23
 ---
 
 ## Record Heartbeat
@@ -35,7 +35,7 @@ Record a heartbeat for a work item to maintain the lease.
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 24 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -86,6 +86,10 @@ Record a heartbeat for a work item to maintain the lease.
     - `:"managed-agents-2026-04-01"`
 
     - `:"cache-diagnosis-2026-04-07"`
+
+    - `:"thinking-token-count-2026-05-13"`
+
+    - `:"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

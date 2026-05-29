@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/agents/archive
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: a67818ba10ba00c7853a418ae1df256dd0fd5ed2cc5023301c7c00c0296934ba
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: b622e1eadb573d57a722ed69702ca27667aa6a1a9936b2fd301d9c449ab8065d
 ---
 
 ## Archive Agent
@@ -72,6 +72,10 @@ Archive Agent
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
+
+    - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
+
+    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
 ### Returns
 

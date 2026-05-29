@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/agent-setup
-fetched_at: 2026-05-21T03:16:34.837917Z
-sha256: ed728497a412e483e99a54d15f2b5104748cbf68918c6be54af527ee250f0280
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 21a89da7a71e4d65884530619292c4f98fb083458747ac83c0925d38e2c0ad86
 ---
 
 # Tentukan agen Anda
@@ -47,7 +47,7 @@ agent=$(curl -fsSL https://api.anthropic.com/v1/agents \
   -H "content-type: application/json" \
   -d '{
     "name": "Coding Assistant",
-    "model": "claude-opus-4-7",
+    "model": "claude-opus-4-8",
     "system": "You are a helpful coding agent.",
     "tools": [{"type": "agent_toolset_20260401"}]
   }')
@@ -60,7 +60,7 @@ AGENT_VERSION=$(jq -r '.version' <<< "$agent")
 ````bash
 ant beta:agents create \
   --name "Coding Assistant" \
-  --model '{id: claude-opus-4-7}' \
+  --model '{id: claude-opus-4-8}' \
   --system "You are a helpful coding agent." \
   --tool '{type: agent_toolset_20260401}'
 ````
@@ -69,7 +69,7 @@ ant beta:agents create \
 ````python
 agent = client.beta.agents.create(
     name="Coding Assistant",
-    model="claude-opus-4-7",
+    model="claude-opus-4-8",
     system="You are a helpful coding agent.",
     tools=[
         {"type": "agent_toolset_20260401"},
@@ -81,7 +81,7 @@ agent = client.beta.agents.create(
 ````typescript
 const agent = await client.beta.agents.create({
   name: "Coding Assistant",
-  model: "claude-opus-4-7",
+  model: "claude-opus-4-8",
   system: "You are a helpful coding agent.",
   tools: [{ type: "agent_toolset_20260401" }],
 });
@@ -92,7 +92,7 @@ const agent = await client.beta.agents.create({
 var agent = await client.Beta.Agents.Create(new()
 {
     Name = "Coding Assistant",
-    Model = new("claude-opus-4-7"),
+    Model = new("claude-opus-4-8"),
     System = "You are a helpful coding agent.",
     Tools =
     [
@@ -109,7 +109,7 @@ var agent = await client.Beta.Agents.Create(new()
 agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
 	Name: "Coding Assistant",
 	Model: anthropic.BetaManagedAgentsModelConfigParams{
-		ID: "claude-opus-4-7",
+		ID: "claude-opus-4-8",
 	},
 	System: anthropic.String("You are a helpful coding agent."),
 	Tools: []anthropic.BetaAgentNewParamsToolUnion{{
@@ -128,7 +128,7 @@ if err != nil {
 var agent = client.beta().agents().create(
     AgentCreateParams.builder()
         .name("Coding Assistant")
-        .model(BetaManagedAgentsModel.CLAUDE_OPUS_4_7)
+        .model(BetaManagedAgentsModel.CLAUDE_OPUS_4_8)
         .system("You are a helpful coding agent.")
         .addTool(
             BetaManagedAgentsAgentToolset20260401Params.builder()
@@ -143,7 +143,7 @@ var agent = client.beta().agents().create(
 ````php
 $agent = $client->beta->agents->create(
     name: 'Coding Assistant',
-    model: 'claude-opus-4-7',
+    model: 'claude-opus-4-8',
     system: 'You are a helpful coding agent.',
     tools: [
         BetaManagedAgentsAgentToolset20260401Params::with(
@@ -157,7 +157,7 @@ $agent = $client->beta->agents->create(
 ````ruby
 agent = client.beta.agents.create(
   name: "Coding Assistant",
-  model: "claude-opus-4-7",
+  model: "claude-opus-4-8",
   system_: "You are a helpful coding agent.",
   tools: [{type: "agent_toolset_20260401"}]
 )

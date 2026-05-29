@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/sessions/threads/archive
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 36784be3c591ca8b8cdff9eb10421a933606962dbf96e5bac5844443547ea924
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: fe8e8ec310b88dfbdfe35c5f0fc1044c81ef3a767b85e274c2e61b4a9c199932
 ---
 
 ## Archive Session Thread
@@ -78,6 +78,10 @@ Archive Session Thread
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
+
+    - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
 
 ### Returns
 

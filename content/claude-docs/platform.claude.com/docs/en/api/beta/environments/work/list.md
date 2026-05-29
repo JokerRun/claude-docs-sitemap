@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/list
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 7ae7a786f927285f6b3496f41cb95adaa19bc4de991d2117ce9d2bb82f1ad9cd
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 237b912e5851d2a3f2b83e48c706416999a62fb53c82d99c63edf8c91f4c0d81
 ---
 
 ## List Work Items
@@ -35,7 +35,7 @@ List work items in an environment.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 24 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -86,6 +86,10 @@ List work items in an environment.
     - `"managed-agents-2026-04-01"`
 
     - `"cache-diagnosis-2026-04-07"`
+
+    - `"thinking-token-count-2026-05-13"`
+
+    - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

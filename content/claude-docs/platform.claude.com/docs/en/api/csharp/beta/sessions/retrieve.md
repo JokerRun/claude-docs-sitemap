@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/sessions/retrieve
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 76ee71a722bf4c80dbaa8b40e115a37bb179b84c7dfaa2b5134b8e2e4582da61
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: c965152ac2338cb41fec510c5d667e6bc23d39f9679470e88b10d59b032e2d9e
 ---
 
 ## Get Session
@@ -74,6 +74,10 @@ Get Session
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
+
+    - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
 
 ### Returns
 

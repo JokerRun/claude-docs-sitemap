@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/sessions/threads/events/list
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 70af7c0c072d5510571381c68e2b915a1bf4555bbd919147e6062a1a289a3199
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: c7c4f2ee2df7dbcc7469296373382604a7808afa553a018d2d69465e9c5f6442
 ---
 
 ## List Session Thread Events
@@ -33,7 +33,7 @@ List Session Thread Events
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 24 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -84,6 +84,10 @@ List Session Thread Events
     - `:"managed-agents-2026-04-01"`
 
     - `:"cache-diagnosis-2026-04-07"`
+
+    - `:"thinking-token-count-2026-05-13"`
+
+    - `:"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/agents/versions
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 2c0e7402cae7268fc60e2b89804433a66a970ca00a1dbde73fadb4b15e470dc1
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 5e1e36265b73726d7f1a13afa2c77f86a4a5b4955a4bc90c4a2cb6c4a3c5f622
 ---
 
 # Versions
@@ -86,6 +86,10 @@ List Agent Versions
       - `const AnthropicBetaManagedAgents2026_04_01 AnthropicBeta = "managed-agents-2026-04-01"`
 
       - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
+
+      - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
+
+      - `const AnthropicBetaMidConversationSystem2026_04_07 AnthropicBeta = "mid-conversation-system-2026-04-07"`
 
 ### Returns
 

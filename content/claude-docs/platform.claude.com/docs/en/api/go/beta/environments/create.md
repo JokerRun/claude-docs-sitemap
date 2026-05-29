@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/environments/create
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 67ea3b2938cc1c34b914ca1ffe930607e6f29436a4dc64b1adf7bf708add8d8c
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 34bc544587575e99bae1830bb1f84b764ea52afda18a48e017fae400364b4a13
 ---
 
 ## Create Environment
@@ -196,6 +196,10 @@ Create a new environment with the specified configuration.
       - `const AnthropicBetaManagedAgents2026_04_01 AnthropicBeta = "managed-agents-2026-04-01"`
 
       - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
+
+      - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
+
+      - `const AnthropicBetaMidConversationSystem2026_04_07 AnthropicBeta = "mid-conversation-system-2026-04-07"`
 
 ### Returns
 

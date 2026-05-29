@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/sessions/threads/list
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 3cd3623100fcb8410e9d352c03a4e56ea11b65a6bd50026531e86c0c392f92b3
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 2b9d49057b1e9040253a7c6cdc598c9aa8eff86d322b9ff2102858deb27dc438
 ---
 
 ## List Session Threads
@@ -84,6 +84,10 @@ List Session Threads
       - `const AnthropicBetaManagedAgents2026_04_01 AnthropicBeta = "managed-agents-2026-04-01"`
 
       - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
+
+      - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
+
+      - `const AnthropicBetaMidConversationSystem2026_04_07 AnthropicBeta = "mid-conversation-system-2026-04-07"`
 
 ### Returns
 

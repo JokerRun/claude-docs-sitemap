@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/environments/work/ack
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 18456a8f94d16e442bac6515922478b6008f54520e0214339ce9bda81d0fea8c
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: d8f748f64b386e1ca5c6da5a7177541203ed5e69f0542c15eeaafd0f26882cab
 ---
 
 ## Acknowledge Work
@@ -80,6 +80,10 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
+
+    - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
 
 ### Returns
 

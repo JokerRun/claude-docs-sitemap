@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/environments/delete
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 7ba96cc8b47d7f0303f837b2e01f193b4166c9347047a9fd4929569dcf3e551f
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 920bd84b31a1a94010f6cf9274f9b5281656a6e0a10461858434419a1ce4fc05
 ---
 
 ## Delete Environment
@@ -23,7 +23,7 @@ Delete an environment by ID. Returns a confirmation of the deletion.
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 22 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 24 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -74,6 +74,10 @@ Delete an environment by ID. Returns a confirmation of the deletion.
     - `"managed-agents-2026-04-01"`
 
     - `"cache-diagnosis-2026-04-07"`
+
+    - `"thinking-token-count-2026-05-13"`
+
+    - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

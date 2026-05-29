@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/agents/archive
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 6fe8dc798b0a1641aad63da5dabba372069dc40a1179a0895ce0e0fc4e99e2d5
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: cc5ae1bcedaf7ee30b299821fa675ffbd07d51a6394fcc7c2552c0a6c2e052d5
 ---
 
 ## Archive Agent
@@ -74,6 +74,10 @@ Archive Agent
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
+
+    - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
 
 ### Returns
 

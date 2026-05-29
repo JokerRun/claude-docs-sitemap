@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/memory_stores/memories/create
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: a8b898a75e23305aa81e124d0c6171de23415b86d4e428337ba76dfd3dea6947
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 8304cd69ab039e9d526003a35a58917bf62cd6d58475962f4736b4e77b8ee642
 ---
 
 ## Create a memory
@@ -76,6 +76,10 @@ Create a memory
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
+
+    - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
+
+    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
   - `Optional<String> content`
 

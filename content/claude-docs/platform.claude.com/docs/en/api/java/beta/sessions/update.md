@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/update
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: b55a1fc40e84e7e30c2253f5fe81f2d10a8722163aa6d5a8b5a81952edd6d3cd
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: b307e3f5097b8f2607770be32e12a9db35440fad271657e054e9c022749f3dcc
 ---
 
 ## Update Session
@@ -72,6 +72,10 @@ Update Session
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
+
+    - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
+
+    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
   - `Optional<BetaManagedAgentsSessionAgentUpdate> agent`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/php/beta/messages/create
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: f575bc9e4d87efa0d5d4fd167ce8542c599b9b6f66cd155c1e3ddb5a7591e628
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 0a2ffc64c8e8572b102f787bbd973c4d5bd2fdceb88739f1efb711d4dc93e209
 ---
 
 ## Create a Message
@@ -555,6 +555,9 @@ var_dump($betaMessage);
       }
     ],
     "output_tokens": 503,
+    "output_tokens_details": {
+      "thinking_tokens": 0
+    },
     "server_tool_use": {
       "web_fetch_requests": 2,
       "web_search_requests": 0

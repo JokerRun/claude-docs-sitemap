@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/memory_stores/list
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 0b34237c2b1fbd06c0ff395acd7e1195d6c53baf33e408c77e1e57381634d336
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 8e5b7035fe8fd671260e1a05caa73221ee46137492d4bcbe51a0c039e64bd62e
 ---
 
 ## List memory stores
@@ -90,6 +90,10 @@ List memory stores
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
+
+    - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
+
+    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
 ### Returns
 

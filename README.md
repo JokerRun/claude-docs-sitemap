@@ -38,7 +38,7 @@ Automated daily English sitemap collection from Claude documentation sources.
 | code | https://code.claude.com/docs/en/agent-sdk/overview | 2026-05-27 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/permissions | 2026-05-19 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/plugins | 2026-05-27 |  |
-| ... | _(~1800 more rows)_ | | |
+| ... | _(~1803 more rows)_ | | |
 
 <!-- tsv_preview_end -->
 

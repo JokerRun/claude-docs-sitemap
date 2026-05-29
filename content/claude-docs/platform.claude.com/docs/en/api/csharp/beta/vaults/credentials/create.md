@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/vaults/credentials/create
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 4282b7d23bcc03730bd47fa7e32eb6756079f95b32130e4f2af2170897b54b49
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: b7a6cffc36b65ff73b6d89a4233730d2b93e5f00befbc3ee917403adbec1dae2
 ---
 
 ## Create Credential
@@ -182,6 +182,10 @@ Create Credential
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
+
+    - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
 
 ### Returns
 

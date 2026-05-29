@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/environments/create
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: eaabde720e7f094e83c5355b59a50a7983fa6c50890e2efa2988e03e1d5e007e
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 1cefe0c921abaed1cf7899b68424cd9dd456b2efa7ffa468e7a3249a79383344
 ---
 
 ## Create Environment
@@ -143,7 +143,7 @@ Create a new environment with the specified configuration.
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 22 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 24 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -194,6 +194,10 @@ Create a new environment with the specified configuration.
     - `"managed-agents-2026-04-01"`
 
     - `"cache-diagnosis-2026-04-07"`
+
+    - `"thinking-token-count-2026-05-13"`
+
+    - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

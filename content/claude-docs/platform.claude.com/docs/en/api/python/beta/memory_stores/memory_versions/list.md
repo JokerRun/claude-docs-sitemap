@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/memory_stores/memory_versions/list
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 6b581f9ab52a1981c99630f2aa0b6c34dbb03a51ec22f8ae9afff142872d7bd7
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 84784a9697475e7ed6fed9ad87f9367d0fca1a39ed1272eea563233ad9f64a8a
 ---
 
 ## List memory versions
@@ -69,7 +69,7 @@ List memory versions
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 22 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 24 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -120,6 +120,10 @@ List memory versions
     - `"managed-agents-2026-04-01"`
 
     - `"cache-diagnosis-2026-04-07"`
+
+    - `"thinking-token-count-2026-05-13"`
+
+    - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/messages
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 505b02eeaa2dfd15d6c04a319f6f6de81bfbfb81701e12015bfdc00319c211c4
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: bb7655e3a7f2a0664654c5a9cfd5f1046dec5496b053e59181b36eaa2fdc4e0e
 ---
 
 # Messages
@@ -82,7 +82,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   There is a limit of 100,000 messages in a single request.
 
-- `--model: "claude-opus-4-7" or "claude-mythos-preview" or "claude-opus-4-6" or 14 more or string`
+- `--model: "claude-opus-4-8" or "claude-opus-4-7" or "claude-mythos-preview" or 15 more or string`
 
   The model that will complete your prompt.
 
@@ -549,13 +549,15 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `web_fetch_tool_result_error_block: object { error_code, type }`
 
-          - `error_code: "invalid_tool_input" or "url_too_long" or "url_not_allowed" or 5 more`
+          - `error_code: "invalid_tool_input" or "url_too_long" or "url_not_allowed" or 6 more`
 
             - `"invalid_tool_input"`
 
             - `"url_too_long"`
 
             - `"url_not_allowed"`
+
+            - `"url_not_in_prior_context"`
 
             - `"url_not_accessible"`
 
@@ -823,11 +825,15 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `type: "container_upload"`
 
-  - `model: "claude-opus-4-7" or "claude-mythos-preview" or "claude-opus-4-6" or 14 more or string`
+  - `model: "claude-opus-4-8" or "claude-opus-4-7" or "claude-mythos-preview" or 15 more or string`
 
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+    - `"claude-opus-4-8"`
+
+      Frontier intelligence for long-running agents and coding
 
     - `"claude-opus-4-7"`
 
@@ -964,7 +970,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     For Messages, this is always `"message"`.
 
-  - `usage: object { cache_creation, cache_creation_input_tokens, cache_read_input_tokens, 5 more }`
+  - `usage: object { cache_creation, cache_creation_input_tokens, cache_read_input_tokens, 6 more }`
 
     Billing and rate-limit usage.
 
@@ -1007,6 +1013,26 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     - `output_tokens: number`
 
       The number of output tokens which were used.
+
+    - `output_tokens_details: object { thinking_tokens }`
+
+      Breakdown of output tokens by category.
+
+      `output_tokens` remains the inclusive, authoritative total used for billing.
+      This object provides a read-only decomposition for observability — for example,
+      how many of the billed output tokens were spent on internal reasoning that may
+      have been summarized before being returned to you.
+
+      - `thinking_tokens: number`
+
+        Number of output tokens the model generated as internal reasoning, including
+        the thinking-block delimiter tokens.
+
+        Reflects the raw reasoning the model produced, not the (possibly shorter)
+        summarized thinking text returned in the response body. Computed by
+        re-tokenizing the raw reasoning text, so it may differ from the model's exact
+        generation count by a small number of tokens. Always ≤ `output_tokens`;
+        `output_tokens - thinking_tokens` approximates the non-reasoning output.
 
     - `server_tool_use: object { web_fetch_requests, web_search_requests }`
 
@@ -1086,6 +1112,9 @@ ant messages create \
     "inference_geo": "inference_geo",
     "input_tokens": 2095,
     "output_tokens": 503,
+    "output_tokens_details": {
+      "thinking_tokens": 0
+    },
     "server_tool_use": {
       "web_fetch_requests": 2,
       "web_search_requests": 0
@@ -1160,7 +1189,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
   There is a limit of 100,000 messages in a single request.
 
-- `--model: "claude-opus-4-7" or "claude-mythos-preview" or "claude-opus-4-6" or 14 more or string`
+- `--model: "claude-opus-4-8" or "claude-opus-4-7" or "claude-mythos-preview" or 15 more or string`
 
   The model that will complete your prompt.
 
@@ -2711,13 +2740,15 @@ ant messages count-tokens \
 
       - `web_fetch_tool_result_error_block: object { error_code, type }`
 
-        - `error_code: "invalid_tool_input" or "url_too_long" or "url_not_allowed" or 5 more`
+        - `error_code: "invalid_tool_input" or "url_too_long" or "url_not_allowed" or 6 more`
 
           - `"invalid_tool_input"`
 
           - `"url_too_long"`
 
           - `"url_not_allowed"`
+
+          - `"url_not_in_prior_context"`
 
           - `"url_not_accessible"`
 
@@ -2987,7 +3018,7 @@ ant messages count-tokens \
 
 ### Content Block Param
 
-- `content_block_param: TextBlockParam or ImageBlockParam or DocumentBlockParam or 13 more`
+- `content_block_param: TextBlockParam or ImageBlockParam or DocumentBlockParam or 14 more`
 
   Regular text content.
 
@@ -3586,13 +3617,15 @@ ant messages count-tokens \
 
       - `web_fetch_tool_result_error_block_param: object { error_code, type }`
 
-        - `error_code: "invalid_tool_input" or "url_too_long" or "url_not_allowed" or 5 more`
+        - `error_code: "invalid_tool_input" or "url_too_long" or "url_not_allowed" or 6 more`
 
           - `"invalid_tool_input"`
 
           - `"url_too_long"`
 
           - `"url_not_allowed"`
+
+          - `"url_not_in_prior_context"`
 
           - `"url_not_accessible"`
 
@@ -3945,6 +3978,46 @@ ant messages count-tokens \
     - `file_id: string`
 
     - `type: "container_upload"`
+
+    - `cache_control: optional object { type, ttl }`
+
+      Create a cache control breakpoint at this content block.
+
+      - `type: "ephemeral"`
+
+      - `ttl: optional "5m" or "1h"`
+
+        The time-to-live for the cache control breakpoint.
+
+        This may be one the following values:
+
+        - `5m`: 5 minutes
+        - `1h`: 1 hour
+
+        Defaults to `5m`.
+
+  - `mid_conversation_system_block_param: object { content, type, cache_control }`
+
+    System instructions that appear mid-conversation.
+
+    Use this block to provide or update system-level instructions at a specific
+    point in the conversation, rather than only via the top-level `system` parameter.
+
+    - `content: array of TextBlockParam`
+
+      System instruction text blocks.
+
+      - `text: string`
+
+      - `type: "text"`
+
+      - `cache_control: optional object { type, ttl }`
+
+        Create a cache control breakpoint at this content block.
+
+      - `citations: optional array of TextCitationParam`
+
+    - `type: "mid_conv_system"`
 
     - `cache_control: optional object { type, ttl }`
 
@@ -5071,13 +5144,15 @@ ant messages count-tokens \
 
         - `web_fetch_tool_result_error_block: object { error_code, type }`
 
-          - `error_code: "invalid_tool_input" or "url_too_long" or "url_not_allowed" or 5 more`
+          - `error_code: "invalid_tool_input" or "url_too_long" or "url_not_allowed" or 6 more`
 
             - `"invalid_tool_input"`
 
             - `"url_too_long"`
 
             - `"url_not_allowed"`
+
+            - `"url_not_in_prior_context"`
 
             - `"url_not_accessible"`
 
@@ -5345,11 +5420,15 @@ ant messages count-tokens \
 
       - `type: "container_upload"`
 
-  - `model: "claude-opus-4-7" or "claude-mythos-preview" or "claude-opus-4-6" or 14 more or string`
+  - `model: "claude-opus-4-8" or "claude-opus-4-7" or "claude-mythos-preview" or 15 more or string`
 
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+    - `"claude-opus-4-8"`
+
+      Frontier intelligence for long-running agents and coding
 
     - `"claude-opus-4-7"`
 
@@ -5486,7 +5565,7 @@ ant messages count-tokens \
 
     For Messages, this is always `"message"`.
 
-  - `usage: object { cache_creation, cache_creation_input_tokens, cache_read_input_tokens, 5 more }`
+  - `usage: object { cache_creation, cache_creation_input_tokens, cache_read_input_tokens, 6 more }`
 
     Billing and rate-limit usage.
 
@@ -5529,6 +5608,26 @@ ant messages count-tokens \
     - `output_tokens: number`
 
       The number of output tokens which were used.
+
+    - `output_tokens_details: object { thinking_tokens }`
+
+      Breakdown of output tokens by category.
+
+      `output_tokens` remains the inclusive, authoritative total used for billing.
+      This object provides a read-only decomposition for observability — for example,
+      how many of the billed output tokens were spent on internal reasoning that may
+      have been summarized before being returned to you.
+
+      - `thinking_tokens: number`
+
+        Number of output tokens the model generated as internal reasoning, including
+        the thinking-block delimiter tokens.
+
+        Reflects the raw reasoning the model produced, not the (possibly shorter)
+        summarized thinking text returned in the response body. Computed by
+        re-tokenizing the raw reasoning text, so it may differ from the model's exact
+        generation count by a small number of tokens. Always ≤ `output_tokens`;
+        `output_tokens - thinking_tokens` approximates the non-reasoning output.
 
     - `server_tool_use: object { web_fetch_requests, web_search_requests }`
 
@@ -6442,7 +6541,7 @@ ant messages count-tokens \
 
 ### Message Delta Usage
 
-- `message_delta_usage: object { cache_creation_input_tokens, cache_read_input_tokens, input_tokens, 2 more }`
+- `message_delta_usage: object { cache_creation_input_tokens, cache_read_input_tokens, input_tokens, 3 more }`
 
   - `cache_creation_input_tokens: number`
 
@@ -6459,6 +6558,26 @@ ant messages count-tokens \
   - `output_tokens: number`
 
     The cumulative number of output tokens which were used.
+
+  - `output_tokens_details: object { thinking_tokens }`
+
+    Breakdown of output tokens by category.
+
+    `output_tokens` remains the inclusive, authoritative total used for billing.
+    This object provides a read-only decomposition for observability — for example,
+    how many of the billed output tokens were spent on internal reasoning that may
+    have been summarized before being returned to you.
+
+    - `thinking_tokens: number`
+
+      Number of output tokens the model generated as internal reasoning, including
+      the thinking-block delimiter tokens.
+
+      Reflects the raw reasoning the model produced, not the (possibly shorter)
+      summarized thinking text returned in the response body. Computed by
+      re-tokenizing the raw reasoning text, so it may differ from the model's exact
+      generation count by a small number of tokens. Always ≤ `output_tokens`;
+      `output_tokens - thinking_tokens` approximates the non-reasoning output.
 
   - `server_tool_use: object { web_fetch_requests, web_search_requests }`
 
@@ -7073,13 +7192,15 @@ ant messages count-tokens \
 
         - `web_fetch_tool_result_error_block_param: object { error_code, type }`
 
-          - `error_code: "invalid_tool_input" or "url_too_long" or "url_not_allowed" or 5 more`
+          - `error_code: "invalid_tool_input" or "url_too_long" or "url_not_allowed" or 6 more`
 
             - `"invalid_tool_input"`
 
             - `"url_too_long"`
 
             - `"url_not_allowed"`
+
+            - `"url_not_in_prior_context"`
 
             - `"url_not_accessible"`
 
@@ -7450,11 +7571,53 @@ ant messages count-tokens \
 
           Defaults to `5m`.
 
-  - `role: "user" or "assistant"`
+    - `mid_conversation_system_block_param: object { content, type, cache_control }`
+
+      System instructions that appear mid-conversation.
+
+      Use this block to provide or update system-level instructions at a specific
+      point in the conversation, rather than only via the top-level `system` parameter.
+
+      - `content: array of TextBlockParam`
+
+        System instruction text blocks.
+
+        - `text: string`
+
+        - `type: "text"`
+
+        - `cache_control: optional object { type, ttl }`
+
+          Create a cache control breakpoint at this content block.
+
+        - `citations: optional array of TextCitationParam`
+
+      - `type: "mid_conv_system"`
+
+      - `cache_control: optional object { type, ttl }`
+
+        Create a cache control breakpoint at this content block.
+
+        - `type: "ephemeral"`
+
+        - `ttl: optional "5m" or "1h"`
+
+          The time-to-live for the cache control breakpoint.
+
+          This may be one the following values:
+
+          - `5m`: 5 minutes
+          - `1h`: 1 hour
+
+          Defaults to `5m`.
+
+  - `role: "user" or "assistant" or "system"`
 
     - `"user"`
 
     - `"assistant"`
+
+    - `"system"`
 
 ### Message Tokens Count
 
@@ -7473,6 +7636,159 @@ ant messages count-tokens \
     An external identifier for the user who is associated with the request.
 
     This should be a uuid, hash value, or other opaque identifier. Anthropic may use this id to help detect abuse. Do not include any identifying information such as name, email address, or phone number.
+
+### Mid Conversation System Block Param
+
+- `mid_conversation_system_block_param: object { content, type, cache_control }`
+
+  System instructions that appear mid-conversation.
+
+  Use this block to provide or update system-level instructions at a specific
+  point in the conversation, rather than only via the top-level `system` parameter.
+
+  - `content: array of TextBlockParam`
+
+    System instruction text blocks.
+
+    - `text: string`
+
+    - `type: "text"`
+
+    - `cache_control: optional object { type, ttl }`
+
+      Create a cache control breakpoint at this content block.
+
+      - `type: "ephemeral"`
+
+      - `ttl: optional "5m" or "1h"`
+
+        The time-to-live for the cache control breakpoint.
+
+        This may be one the following values:
+
+        - `5m`: 5 minutes
+        - `1h`: 1 hour
+
+        Defaults to `5m`.
+
+        - `"5m"`
+
+        - `"1h"`
+
+    - `citations: optional array of TextCitationParam`
+
+      - `citation_char_location_param: object { cited_text, document_index, document_title, 3 more }`
+
+        - `cited_text: string`
+
+        - `document_index: number`
+
+        - `document_title: string`
+
+        - `end_char_index: number`
+
+        - `start_char_index: number`
+
+        - `type: "char_location"`
+
+      - `citation_page_location_param: object { cited_text, document_index, document_title, 3 more }`
+
+        - `cited_text: string`
+
+        - `document_index: number`
+
+        - `document_title: string`
+
+        - `end_page_number: number`
+
+        - `start_page_number: number`
+
+        - `type: "page_location"`
+
+      - `citation_content_block_location_param: object { cited_text, document_index, document_title, 3 more }`
+
+        - `cited_text: string`
+
+          The full text of the cited block range, concatenated.
+
+          Always equals the contents of `content[start_block_index:end_block_index]` joined together. The text block is the minimal citable unit; this field is never a substring of a single block. Not counted toward output tokens, and not counted toward input tokens when sent back in subsequent turns.
+
+        - `document_index: number`
+
+        - `document_title: string`
+
+        - `end_block_index: number`
+
+          Exclusive 0-based end index of the cited block range in the source's `content` array.
+
+          Always greater than `start_block_index`; a single-block citation has `end_block_index = start_block_index + 1`.
+
+        - `start_block_index: number`
+
+          0-based index of the first cited block in the source's `content` array.
+
+        - `type: "content_block_location"`
+
+      - `citation_web_search_result_location_param: object { cited_text, encrypted_index, title, 2 more }`
+
+        - `cited_text: string`
+
+        - `encrypted_index: string`
+
+        - `title: string`
+
+        - `type: "web_search_result_location"`
+
+        - `url: string`
+
+      - `citation_search_result_location_param: object { cited_text, end_block_index, search_result_index, 4 more }`
+
+        - `cited_text: string`
+
+          The full text of the cited block range, concatenated.
+
+          Always equals the contents of `content[start_block_index:end_block_index]` joined together. The text block is the minimal citable unit; this field is never a substring of a single block. Not counted toward output tokens, and not counted toward input tokens when sent back in subsequent turns.
+
+        - `end_block_index: number`
+
+          Exclusive 0-based end index of the cited block range in the source's `content` array.
+
+          Always greater than `start_block_index`; a single-block citation has `end_block_index = start_block_index + 1`.
+
+        - `search_result_index: number`
+
+          0-based index of the cited search result among all `search_result` content blocks in the request, in the order they appear across messages and tool results.
+
+          Counted separately from `document_index`; server-side web search results are not included in this count.
+
+        - `source: string`
+
+        - `start_block_index: number`
+
+          0-based index of the first cited block in the source's `content` array.
+
+        - `title: string`
+
+        - `type: "search_result_location"`
+
+  - `type: "mid_conv_system"`
+
+  - `cache_control: optional object { type, ttl }`
+
+    Create a cache control breakpoint at this content block.
+
+    - `type: "ephemeral"`
+
+    - `ttl: optional "5m" or "1h"`
+
+      The time-to-live for the cache control breakpoint.
+
+      This may be one the following values:
+
+      - `5m`: 5 minutes
+      - `1h`: 1 hour
+
+      Defaults to `5m`.
 
 ### Output Config
 
@@ -8064,13 +8380,15 @@ ant messages count-tokens \
 
         - `web_fetch_tool_result_error_block: object { error_code, type }`
 
-          - `error_code: "invalid_tool_input" or "url_too_long" or "url_not_allowed" or 5 more`
+          - `error_code: "invalid_tool_input" or "url_too_long" or "url_not_allowed" or 6 more`
 
             - `"invalid_tool_input"`
 
             - `"url_too_long"`
 
             - `"url_not_allowed"`
+
+            - `"url_not_in_prior_context"`
 
             - `"url_not_accessible"`
 
@@ -8408,7 +8726,7 @@ ant messages count-tokens \
 
   - `type: "message_delta"`
 
-  - `usage: object { cache_creation_input_tokens, cache_read_input_tokens, input_tokens, 2 more }`
+  - `usage: object { cache_creation_input_tokens, cache_read_input_tokens, input_tokens, 3 more }`
 
     Billing and rate-limit usage.
 
@@ -8435,6 +8753,26 @@ ant messages count-tokens \
     - `output_tokens: number`
 
       The cumulative number of output tokens which were used.
+
+    - `output_tokens_details: object { thinking_tokens }`
+
+      Breakdown of output tokens by category.
+
+      `output_tokens` remains the inclusive, authoritative total used for billing.
+      This object provides a read-only decomposition for observability — for example,
+      how many of the billed output tokens were spent on internal reasoning that may
+      have been summarized before being returned to you.
+
+      - `thinking_tokens: number`
+
+        Number of output tokens the model generated as internal reasoning, including
+        the thinking-block delimiter tokens.
+
+        Reflects the raw reasoning the model produced, not the (possibly shorter)
+        summarized thinking text returned in the response body. Computed by
+        re-tokenizing the raw reasoning text, so it may differ from the model's exact
+        generation count by a small number of tokens. Always ≤ `output_tokens`;
+        `output_tokens - thinking_tokens` approximates the non-reasoning output.
 
     - `server_tool_use: object { web_fetch_requests, web_search_requests }`
 
@@ -8771,13 +9109,15 @@ ant messages count-tokens \
 
           - `web_fetch_tool_result_error_block: object { error_code, type }`
 
-            - `error_code: "invalid_tool_input" or "url_too_long" or "url_not_allowed" or 5 more`
+            - `error_code: "invalid_tool_input" or "url_too_long" or "url_not_allowed" or 6 more`
 
               - `"invalid_tool_input"`
 
               - `"url_too_long"`
 
               - `"url_not_allowed"`
+
+              - `"url_not_in_prior_context"`
 
               - `"url_not_accessible"`
 
@@ -9045,11 +9385,15 @@ ant messages count-tokens \
 
         - `type: "container_upload"`
 
-    - `model: "claude-opus-4-7" or "claude-mythos-preview" or "claude-opus-4-6" or 14 more or string`
+    - `model: "claude-opus-4-8" or "claude-opus-4-7" or "claude-mythos-preview" or 15 more or string`
 
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `"claude-opus-4-8"`
+
+        Frontier intelligence for long-running agents and coding
 
       - `"claude-opus-4-7"`
 
@@ -9186,7 +9530,7 @@ ant messages count-tokens \
 
       For Messages, this is always `"message"`.
 
-    - `usage: object { cache_creation, cache_creation_input_tokens, cache_read_input_tokens, 5 more }`
+    - `usage: object { cache_creation, cache_creation_input_tokens, cache_read_input_tokens, 6 more }`
 
       Billing and rate-limit usage.
 
@@ -9229,6 +9573,26 @@ ant messages count-tokens \
       - `output_tokens: number`
 
         The number of output tokens which were used.
+
+      - `output_tokens_details: object { thinking_tokens }`
+
+        Breakdown of output tokens by category.
+
+        `output_tokens` remains the inclusive, authoritative total used for billing.
+        This object provides a read-only decomposition for observability — for example,
+        how many of the billed output tokens were spent on internal reasoning that may
+        have been summarized before being returned to you.
+
+        - `thinking_tokens: number`
+
+          Number of output tokens the model generated as internal reasoning, including
+          the thinking-block delimiter tokens.
+
+          Reflects the raw reasoning the model produced, not the (possibly shorter)
+          summarized thinking text returned in the response body. Computed by
+          re-tokenizing the raw reasoning text, so it may differ from the model's exact
+          generation count by a small number of tokens. Always ≤ `output_tokens`;
+          `output_tokens - thinking_tokens` approximates the non-reasoning output.
 
       - `server_tool_use: object { web_fetch_requests, web_search_requests }`
 
@@ -9585,13 +9949,15 @@ ant messages count-tokens \
 
             - `web_fetch_tool_result_error_block: object { error_code, type }`
 
-              - `error_code: "invalid_tool_input" or "url_too_long" or "url_not_allowed" or 5 more`
+              - `error_code: "invalid_tool_input" or "url_too_long" or "url_not_allowed" or 6 more`
 
                 - `"invalid_tool_input"`
 
                 - `"url_too_long"`
 
                 - `"url_not_allowed"`
+
+                - `"url_not_in_prior_context"`
 
                 - `"url_not_accessible"`
 
@@ -9859,11 +10225,15 @@ ant messages count-tokens \
 
           - `type: "container_upload"`
 
-      - `model: "claude-opus-4-7" or "claude-mythos-preview" or "claude-opus-4-6" or 14 more or string`
+      - `model: "claude-opus-4-8" or "claude-opus-4-7" or "claude-mythos-preview" or 15 more or string`
 
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-opus-4-8"`
+
+          Frontier intelligence for long-running agents and coding
 
         - `"claude-opus-4-7"`
 
@@ -10000,7 +10370,7 @@ ant messages count-tokens \
 
         For Messages, this is always `"message"`.
 
-      - `usage: object { cache_creation, cache_creation_input_tokens, cache_read_input_tokens, 5 more }`
+      - `usage: object { cache_creation, cache_creation_input_tokens, cache_read_input_tokens, 6 more }`
 
         Billing and rate-limit usage.
 
@@ -10043,6 +10413,26 @@ ant messages count-tokens \
         - `output_tokens: number`
 
           The number of output tokens which were used.
+
+        - `output_tokens_details: object { thinking_tokens }`
+
+          Breakdown of output tokens by category.
+
+          `output_tokens` remains the inclusive, authoritative total used for billing.
+          This object provides a read-only decomposition for observability — for example,
+          how many of the billed output tokens were spent on internal reasoning that may
+          have been summarized before being returned to you.
+
+          - `thinking_tokens: number`
+
+            Number of output tokens the model generated as internal reasoning, including
+            the thinking-block delimiter tokens.
+
+            Reflects the raw reasoning the model produced, not the (possibly shorter)
+            summarized thinking text returned in the response body. Computed by
+            re-tokenizing the raw reasoning text, so it may differ from the model's exact
+            generation count by a small number of tokens. Always ≤ `output_tokens`;
+            `output_tokens - thinking_tokens` approximates the non-reasoning output.
 
         - `server_tool_use: object { web_fetch_requests, web_search_requests }`
 
@@ -10120,7 +10510,7 @@ ant messages count-tokens \
 
     - `type: "message_delta"`
 
-    - `usage: object { cache_creation_input_tokens, cache_read_input_tokens, input_tokens, 2 more }`
+    - `usage: object { cache_creation_input_tokens, cache_read_input_tokens, input_tokens, 3 more }`
 
       Billing and rate-limit usage.
 
@@ -10147,6 +10537,26 @@ ant messages count-tokens \
       - `output_tokens: number`
 
         The cumulative number of output tokens which were used.
+
+      - `output_tokens_details: object { thinking_tokens }`
+
+        Breakdown of output tokens by category.
+
+        `output_tokens` remains the inclusive, authoritative total used for billing.
+        This object provides a read-only decomposition for observability — for example,
+        how many of the billed output tokens were spent on internal reasoning that may
+        have been summarized before being returned to you.
+
+        - `thinking_tokens: number`
+
+          Number of output tokens the model generated as internal reasoning, including
+          the thinking-block delimiter tokens.
+
+          Reflects the raw reasoning the model produced, not the (possibly shorter)
+          summarized thinking text returned in the response body. Computed by
+          re-tokenizing the raw reasoning text, so it may differ from the model's exact
+          generation count by a small number of tokens. Always ≤ `output_tokens`;
+          `output_tokens - thinking_tokens` approximates the non-reasoning output.
 
       - `server_tool_use: object { web_fetch_requests, web_search_requests }`
 
@@ -13755,7 +14165,7 @@ ant messages count-tokens \
 
 ### Usage
 
-- `usage: object { cache_creation, cache_creation_input_tokens, cache_read_input_tokens, 5 more }`
+- `usage: object { cache_creation, cache_creation_input_tokens, cache_read_input_tokens, 6 more }`
 
   - `cache_creation: object { ephemeral_1h_input_tokens, ephemeral_5m_input_tokens }`
 
@@ -13788,6 +14198,26 @@ ant messages count-tokens \
   - `output_tokens: number`
 
     The number of output tokens which were used.
+
+  - `output_tokens_details: object { thinking_tokens }`
+
+    Breakdown of output tokens by category.
+
+    `output_tokens` remains the inclusive, authoritative total used for billing.
+    This object provides a read-only decomposition for observability — for example,
+    how many of the billed output tokens were spent on internal reasoning that may
+    have been summarized before being returned to you.
+
+    - `thinking_tokens: number`
+
+      Number of output tokens the model generated as internal reasoning, including
+      the thinking-block delimiter tokens.
+
+      Reflects the raw reasoning the model produced, not the (possibly shorter)
+      summarized thinking text returned in the response body. Computed by
+      re-tokenizing the raw reasoning text, so it may differ from the model's exact
+      generation count by a small number of tokens. Always ≤ `output_tokens`;
+      `output_tokens - thinking_tokens` approximates the non-reasoning output.
 
   - `server_tool_use: object { web_fetch_requests, web_search_requests }`
 
@@ -14375,13 +14805,15 @@ ant messages count-tokens \
 
     - `web_fetch_tool_result_error_block: object { error_code, type }`
 
-      - `error_code: "invalid_tool_input" or "url_too_long" or "url_not_allowed" or 5 more`
+      - `error_code: "invalid_tool_input" or "url_too_long" or "url_not_allowed" or 6 more`
 
         - `"invalid_tool_input"`
 
         - `"url_too_long"`
 
         - `"url_not_allowed"`
+
+        - `"url_not_in_prior_context"`
 
         - `"url_not_accessible"`
 
@@ -14451,13 +14883,15 @@ ant messages count-tokens \
 
     - `web_fetch_tool_result_error_block_param: object { error_code, type }`
 
-      - `error_code: "invalid_tool_input" or "url_too_long" or "url_not_allowed" or 5 more`
+      - `error_code: "invalid_tool_input" or "url_too_long" or "url_not_allowed" or 6 more`
 
         - `"invalid_tool_input"`
 
         - `"url_too_long"`
 
         - `"url_not_allowed"`
+
+        - `"url_not_in_prior_context"`
 
         - `"url_not_accessible"`
 
@@ -14763,13 +15197,15 @@ ant messages count-tokens \
 
 - `web_fetch_tool_result_error_block: object { error_code, type }`
 
-  - `error_code: "invalid_tool_input" or "url_too_long" or "url_not_allowed" or 5 more`
+  - `error_code: "invalid_tool_input" or "url_too_long" or "url_not_allowed" or 6 more`
 
     - `"invalid_tool_input"`
 
     - `"url_too_long"`
 
     - `"url_not_allowed"`
+
+    - `"url_not_in_prior_context"`
 
     - `"url_not_accessible"`
 
@@ -14787,13 +15223,15 @@ ant messages count-tokens \
 
 - `web_fetch_tool_result_error_block_param: object { error_code, type }`
 
-  - `error_code: "invalid_tool_input" or "url_too_long" or "url_not_allowed" or 5 more`
+  - `error_code: "invalid_tool_input" or "url_too_long" or "url_not_allowed" or 6 more`
 
     - `"invalid_tool_input"`
 
     - `"url_too_long"`
 
     - `"url_not_allowed"`
+
+    - `"url_not_in_prior_context"`
 
     - `"url_not_accessible"`
 
@@ -14809,13 +15247,15 @@ ant messages count-tokens \
 
 ### Web Fetch Tool Result Error Code
 
-- `web_fetch_tool_result_error_code: "invalid_tool_input" or "url_too_long" or "url_not_allowed" or 5 more`
+- `web_fetch_tool_result_error_code: "invalid_tool_input" or "url_too_long" or "url_not_allowed" or 6 more`
 
   - `"invalid_tool_input"`
 
   - `"url_too_long"`
 
   - `"url_not_allowed"`
+
+  - `"url_not_in_prior_context"`
 
   - `"url_not_accessible"`
 
@@ -16276,13 +16716,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
               - `web_fetch_tool_result_error_block: object { error_code, type }`
 
-                - `error_code: "invalid_tool_input" or "url_too_long" or "url_not_allowed" or 5 more`
+                - `error_code: "invalid_tool_input" or "url_too_long" or "url_not_allowed" or 6 more`
 
                   - `"invalid_tool_input"`
 
                   - `"url_too_long"`
 
                   - `"url_not_allowed"`
+
+                  - `"url_not_in_prior_context"`
 
                   - `"url_not_accessible"`
 
@@ -16550,11 +16992,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             - `type: "container_upload"`
 
-        - `model: "claude-opus-4-7" or "claude-mythos-preview" or "claude-opus-4-6" or 14 more or string`
+        - `model: "claude-opus-4-8" or "claude-opus-4-7" or "claude-mythos-preview" or 15 more or string`
 
           The model that will complete your prompt.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `"claude-opus-4-8"`
+
+            Frontier intelligence for long-running agents and coding
 
           - `"claude-opus-4-7"`
 
@@ -16691,7 +17137,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           For Messages, this is always `"message"`.
 
-        - `usage: object { cache_creation, cache_creation_input_tokens, cache_read_input_tokens, 5 more }`
+        - `usage: object { cache_creation, cache_creation_input_tokens, cache_read_input_tokens, 6 more }`
 
           Billing and rate-limit usage.
 
@@ -16734,6 +17180,26 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           - `output_tokens: number`
 
             The number of output tokens which were used.
+
+          - `output_tokens_details: object { thinking_tokens }`
+
+            Breakdown of output tokens by category.
+
+            `output_tokens` remains the inclusive, authoritative total used for billing.
+            This object provides a read-only decomposition for observability — for example,
+            how many of the billed output tokens were spent on internal reasoning that may
+            have been summarized before being returned to you.
+
+            - `thinking_tokens: number`
+
+              Number of output tokens the model generated as internal reasoning, including
+              the thinking-block delimiter tokens.
+
+              Reflects the raw reasoning the model produced, not the (possibly shorter)
+              summarized thinking text returned in the response body. Computed by
+              re-tokenizing the raw reasoning text, so it may differ from the model's exact
+              generation count by a small number of tokens. Always ≤ `output_tokens`;
+              `output_tokens - thinking_tokens` approximates the non-reasoning output.
 
           - `server_tool_use: object { web_fetch_requests, web_search_requests }`
 
@@ -17364,13 +17830,15 @@ ant messages:batches results \
 
               - `web_fetch_tool_result_error_block: object { error_code, type }`
 
-                - `error_code: "invalid_tool_input" or "url_too_long" or "url_not_allowed" or 5 more`
+                - `error_code: "invalid_tool_input" or "url_too_long" or "url_not_allowed" or 6 more`
 
                   - `"invalid_tool_input"`
 
                   - `"url_too_long"`
 
                   - `"url_not_allowed"`
+
+                  - `"url_not_in_prior_context"`
 
                   - `"url_not_accessible"`
 
@@ -17638,11 +18106,15 @@ ant messages:batches results \
 
             - `type: "container_upload"`
 
-        - `model: "claude-opus-4-7" or "claude-mythos-preview" or "claude-opus-4-6" or 14 more or string`
+        - `model: "claude-opus-4-8" or "claude-opus-4-7" or "claude-mythos-preview" or 15 more or string`
 
           The model that will complete your prompt.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `"claude-opus-4-8"`
+
+            Frontier intelligence for long-running agents and coding
 
           - `"claude-opus-4-7"`
 
@@ -17779,7 +18251,7 @@ ant messages:batches results \
 
           For Messages, this is always `"message"`.
 
-        - `usage: object { cache_creation, cache_creation_input_tokens, cache_read_input_tokens, 5 more }`
+        - `usage: object { cache_creation, cache_creation_input_tokens, cache_read_input_tokens, 6 more }`
 
           Billing and rate-limit usage.
 
@@ -17822,6 +18294,26 @@ ant messages:batches results \
           - `output_tokens: number`
 
             The number of output tokens which were used.
+
+          - `output_tokens_details: object { thinking_tokens }`
+
+            Breakdown of output tokens by category.
+
+            `output_tokens` remains the inclusive, authoritative total used for billing.
+            This object provides a read-only decomposition for observability — for example,
+            how many of the billed output tokens were spent on internal reasoning that may
+            have been summarized before being returned to you.
+
+            - `thinking_tokens: number`
+
+              Number of output tokens the model generated as internal reasoning, including
+              the thinking-block delimiter tokens.
+
+              Reflects the raw reasoning the model produced, not the (possibly shorter)
+              summarized thinking text returned in the response body. Computed by
+              re-tokenizing the raw reasoning text, so it may differ from the model's exact
+              generation count by a small number of tokens. Always ≤ `output_tokens`;
+              `output_tokens - thinking_tokens` approximates the non-reasoning output.
 
           - `server_tool_use: object { web_fetch_requests, web_search_requests }`
 
@@ -18282,13 +18774,15 @@ ant messages:batches results \
 
             - `web_fetch_tool_result_error_block: object { error_code, type }`
 
-              - `error_code: "invalid_tool_input" or "url_too_long" or "url_not_allowed" or 5 more`
+              - `error_code: "invalid_tool_input" or "url_too_long" or "url_not_allowed" or 6 more`
 
                 - `"invalid_tool_input"`
 
                 - `"url_too_long"`
 
                 - `"url_not_allowed"`
+
+                - `"url_not_in_prior_context"`
 
                 - `"url_not_accessible"`
 
@@ -18556,11 +19050,15 @@ ant messages:batches results \
 
           - `type: "container_upload"`
 
-      - `model: "claude-opus-4-7" or "claude-mythos-preview" or "claude-opus-4-6" or 14 more or string`
+      - `model: "claude-opus-4-8" or "claude-opus-4-7" or "claude-mythos-preview" or 15 more or string`
 
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-opus-4-8"`
+
+          Frontier intelligence for long-running agents and coding
 
         - `"claude-opus-4-7"`
 
@@ -18697,7 +19195,7 @@ ant messages:batches results \
 
         For Messages, this is always `"message"`.
 
-      - `usage: object { cache_creation, cache_creation_input_tokens, cache_read_input_tokens, 5 more }`
+      - `usage: object { cache_creation, cache_creation_input_tokens, cache_read_input_tokens, 6 more }`
 
         Billing and rate-limit usage.
 
@@ -18740,6 +19238,26 @@ ant messages:batches results \
         - `output_tokens: number`
 
           The number of output tokens which were used.
+
+        - `output_tokens_details: object { thinking_tokens }`
+
+          Breakdown of output tokens by category.
+
+          `output_tokens` remains the inclusive, authoritative total used for billing.
+          This object provides a read-only decomposition for observability — for example,
+          how many of the billed output tokens were spent on internal reasoning that may
+          have been summarized before being returned to you.
+
+          - `thinking_tokens: number`
+
+            Number of output tokens the model generated as internal reasoning, including
+            the thinking-block delimiter tokens.
+
+            Reflects the raw reasoning the model produced, not the (possibly shorter)
+            summarized thinking text returned in the response body. Computed by
+            re-tokenizing the raw reasoning text, so it may differ from the model's exact
+            generation count by a small number of tokens. Always ≤ `output_tokens`;
+            `output_tokens - thinking_tokens` approximates the non-reasoning output.
 
         - `server_tool_use: object { web_fetch_requests, web_search_requests }`
 
@@ -19162,13 +19680,15 @@ ant messages:batches results \
 
           - `web_fetch_tool_result_error_block: object { error_code, type }`
 
-            - `error_code: "invalid_tool_input" or "url_too_long" or "url_not_allowed" or 5 more`
+            - `error_code: "invalid_tool_input" or "url_too_long" or "url_not_allowed" or 6 more`
 
               - `"invalid_tool_input"`
 
               - `"url_too_long"`
 
               - `"url_not_allowed"`
+
+              - `"url_not_in_prior_context"`
 
               - `"url_not_accessible"`
 
@@ -19436,11 +19956,15 @@ ant messages:batches results \
 
         - `type: "container_upload"`
 
-    - `model: "claude-opus-4-7" or "claude-mythos-preview" or "claude-opus-4-6" or 14 more or string`
+    - `model: "claude-opus-4-8" or "claude-opus-4-7" or "claude-mythos-preview" or 15 more or string`
 
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `"claude-opus-4-8"`
+
+        Frontier intelligence for long-running agents and coding
 
       - `"claude-opus-4-7"`
 
@@ -19577,7 +20101,7 @@ ant messages:batches results \
 
       For Messages, this is always `"message"`.
 
-    - `usage: object { cache_creation, cache_creation_input_tokens, cache_read_input_tokens, 5 more }`
+    - `usage: object { cache_creation, cache_creation_input_tokens, cache_read_input_tokens, 6 more }`
 
       Billing and rate-limit usage.
 
@@ -19620,6 +20144,26 @@ ant messages:batches results \
       - `output_tokens: number`
 
         The number of output tokens which were used.
+
+      - `output_tokens_details: object { thinking_tokens }`
+
+        Breakdown of output tokens by category.
+
+        `output_tokens` remains the inclusive, authoritative total used for billing.
+        This object provides a read-only decomposition for observability — for example,
+        how many of the billed output tokens were spent on internal reasoning that may
+        have been summarized before being returned to you.
+
+        - `thinking_tokens: number`
+
+          Number of output tokens the model generated as internal reasoning, including
+          the thinking-block delimiter tokens.
+
+          Reflects the raw reasoning the model produced, not the (possibly shorter)
+          summarized thinking text returned in the response body. Computed by
+          re-tokenizing the raw reasoning text, so it may differ from the model's exact
+          generation count by a small number of tokens. Always ≤ `output_tokens`;
+          `output_tokens - thinking_tokens` approximates the non-reasoning output.
 
       - `server_tool_use: object { web_fetch_requests, web_search_requests }`
 

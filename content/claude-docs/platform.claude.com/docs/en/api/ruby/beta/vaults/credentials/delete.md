@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/vaults/credentials/delete
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 552a5a51b0928c8bef58889eea49baacdc8ff1d9d1651c6532c5bc65127d2d1a
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 1ca7b1b37829bbad8a17b1bfb7912afb395975121c31ce4bb0c9b59e6ccbedab
 ---
 
 ## Delete Credential
@@ -25,7 +25,7 @@ Delete Credential
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 24 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -76,6 +76,10 @@ Delete Credential
     - `:"managed-agents-2026-04-01"`
 
     - `:"cache-diagnosis-2026-04-07"`
+
+    - `:"thinking-token-count-2026-05-13"`
+
+    - `:"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

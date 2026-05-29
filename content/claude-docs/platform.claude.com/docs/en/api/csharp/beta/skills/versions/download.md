@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/skills/versions/download
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 8a51779aa1f2ca5a163038efbfa49b7557a71921d3297ccef99fbc592e5f662b
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 427663450aef163fce1d53d59b5e97dd2e80b086f13dd5f515850cd0d4896582
 ---
 
 ## Download Skill Version Content
@@ -82,6 +82,10 @@ Download a skill version's content as a zip archive.
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
+
+    - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
 
 ### Example
 

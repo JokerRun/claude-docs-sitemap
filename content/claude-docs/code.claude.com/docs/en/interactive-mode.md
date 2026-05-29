@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/interactive-mode
-fetched_at: 2026-05-28T03:18:36.130288Z
-sha256: 640015404ebef3852809b6dfb2e97f86b523b50bb0c6f64a61f485678f4bb664
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 93cb38fbfdbff71b2a14c8a9aeeaf3f462ec7fd2e4d2c4d81f6ce24067d69661
 ---
 
 > ## Documentation Index
@@ -306,7 +306,7 @@ After Claude responds, suggestions continue to appear based on your conversation
 
 The suggestion runs as a background request that reuses the parent conversation's prompt cache, so the additional cost is minimal. Claude Code skips suggestion generation when the cache is cold to avoid unnecessary cost.
 
-Suggestions are automatically skipped after the first turn of a conversation, in non-interactive mode, and in plan mode.
+Suggestions are automatically skipped after the first turn of a conversation and in plan mode. In print mode they are off by default. Pass [`--prompt-suggestions`](/en/cli-reference#cli-flags) with `--output-format stream-json --verbose` to emit a `prompt_suggestion` message after each turn instead.
 
 To disable prompt suggestions entirely, set the environment variable or toggle the setting in `/config`:
 

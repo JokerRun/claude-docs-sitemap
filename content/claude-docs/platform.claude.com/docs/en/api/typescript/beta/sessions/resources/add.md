@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/sessions/resources/add
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 0f667662ab7be0492b3f42b711b3704a68af727f09798870f274f9ca637c8163
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: ea572da8dc946d057ef22949f737e233cf934af0c9fe2083fcc68e2e79cb6e97
 ---
 
 ## Add Session Resource
@@ -39,7 +39,7 @@ Add Session Resource
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 22 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 24 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -90,6 +90,10 @@ Add Session Resource
       - `"managed-agents-2026-04-01"`
 
       - `"cache-diagnosis-2026-04-07"`
+
+      - `"thinking-token-count-2026-05-13"`
+
+      - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

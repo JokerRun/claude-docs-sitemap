@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memories/delete
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: a02196527894400d60f640746ab1ec6f57a15f9c85f9b51ddf90840029281b0b
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: cc62c0d3f901faab66128435b7d35c437ec3425fa1ab96793d06690a1060a581
 ---
 
 ## Delete a memory
@@ -31,7 +31,7 @@ Delete a memory
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 24 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -82,6 +82,10 @@ Delete a memory
     - `"managed-agents-2026-04-01"`
 
     - `"cache-diagnosis-2026-04-07"`
+
+    - `"thinking-token-count-2026-05-13"`
+
+    - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

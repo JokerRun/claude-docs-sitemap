@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/create
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 6ce448c39b2c2dd5d62ee019779dbabacd06bb72cbc67fc6f715cb7120d34bf2
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: f724a422219e4e3b954667542a29aedd1ff1e31d653a134e3f5ca108232a9fdb
 ---
 
 ## Create Agent
@@ -19,7 +19,7 @@ Create Agent
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 24 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -70,6 +70,10 @@ Create Agent
     - `"managed-agents-2026-04-01"`
 
     - `"cache-diagnosis-2026-04-07"`
+
+    - `"thinking-token-count-2026-05-13"`
+
+    - `"mid-conversation-system-2026-04-07"`
 
 ### Body Parameters
 

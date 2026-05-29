@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/vaults/credentials/archive
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 666d4aa1847354fca10d917e2eb12fce73d757eae16155a265093f1360c7aaa5
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: d57de20c269b4422d9b2820cc1a6f24e397ce2d2a4fd76defbc03f25e7e3a337
 ---
 
 ## Archive Credential
@@ -25,7 +25,7 @@ Archive Credential
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 24 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -76,6 +76,10 @@ Archive Credential
     - `:"managed-agents-2026-04-01"`
 
     - `:"cache-diagnosis-2026-04-07"`
+
+    - `:"thinking-token-count-2026-05-13"`
+
+    - `:"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/user_profiles/list
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 0fd29321c84a9253afd6a61209012afbd08520c977329e23bea57acd67b14ed9
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: c3996a4d729f3a1506ddc3c0395e71b0c0693c79140157dc9272fc1545b805ac
 ---
 
 ## List User Profiles
@@ -39,7 +39,7 @@ List User Profiles
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 22 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 24 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -90,6 +90,10 @@ List User Profiles
       - `"managed-agents-2026-04-01"`
 
       - `"cache-diagnosis-2026-04-07"`
+
+      - `"thinking-token-count-2026-05-13"`
+
+      - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

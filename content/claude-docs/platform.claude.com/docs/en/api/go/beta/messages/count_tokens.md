@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/messages/count_tokens
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: c53a9d5f8a43e87b81c5f70984800464e1cb26d27c312e60e22cef03e036abfa
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 38df7928496745c9944fb78f62f354a7c16016ce249f968f77d9cec4a62ec61c
 ---
 
 ## Count tokens in a Message
@@ -589,6 +589,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
                 - `const BetaWebFetchToolResultErrorCodeURLNotAllowed BetaWebFetchToolResultErrorCode = "url_not_allowed"`
 
+                - `const BetaWebFetchToolResultErrorCodeURLNotInPriorContext BetaWebFetchToolResultErrorCode = "url_not_in_prior_context"`
+
                 - `const BetaWebFetchToolResultErrorCodeURLNotAccessible BetaWebFetchToolResultErrorCode = "url_not_accessible"`
 
                 - `const BetaWebFetchToolResultErrorCodeUnsupportedContentType BetaWebFetchToolResultErrorCode = "unsupported_content_type"`
@@ -675,6 +677,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
                 - `const AdvisorResultAdvisorResult AdvisorResult = "advisor_result"`
 
+              - `StopReason string`
+
             - `type BetaAdvisorRedactedResultBlockParamResp struct{…}`
 
               - `EncryptedContent string`
@@ -684,6 +688,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
               - `Type AdvisorRedactedResult`
 
                 - `const AdvisorRedactedResultAdvisorRedactedResult AdvisorRedactedResult = "advisor_redacted_result"`
+
+              - `StopReason string`
 
           - `ToolUseID string`
 
@@ -1020,10 +1026,6 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
           When content is None, the block represents a failed compaction. The server
           treats these as no-ops. Empty string content is not allowed.
 
-          - `Content string`
-
-            Summary of previously compacted content, or null if compaction failed
-
           - `Type Compaction`
 
             - `const CompactionCompaction Compaction = "compaction"`
@@ -1032,15 +1034,50 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
             Create a cache control breakpoint at this content block.
 
+          - `Content string`
+
+            Summary of previously compacted content, or null if compaction failed
+
           - `EncryptedContent string`
 
             Opaque metadata from prior compaction, to be round-tripped verbatim
+
+        - `type BetaMidConversationSystemBlockParamResp struct{…}`
+
+          System instructions that appear mid-conversation.
+
+          Use this block to provide or update system-level instructions at a specific
+          point in the conversation, rather than only via the top-level `system` parameter.
+
+          - `Content []BetaTextBlockParamResp`
+
+            System instruction text blocks.
+
+            - `Text string`
+
+            - `Type Text`
+
+            - `CacheControl BetaCacheControlEphemeral`
+
+              Create a cache control breakpoint at this content block.
+
+            - `Citations []BetaTextCitationParamUnionResp`
+
+          - `Type MidConvSystem`
+
+            - `const MidConvSystemMidConvSystem MidConvSystem = "mid_conv_system"`
+
+          - `CacheControl BetaCacheControlEphemeral`
+
+            Create a cache control breakpoint at this content block.
 
     - `Role BetaMessageParamRole`
 
       - `const BetaMessageParamRoleUser BetaMessageParamRole = "user"`
 
       - `const BetaMessageParamRoleAssistant BetaMessageParamRole = "assistant"`
+
+      - `const BetaMessageParamRoleSystem BetaMessageParamRole = "system"`
 
   - `Model param.Field[Model]`
 
@@ -2060,6 +2097,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `const ModelClaudeOpus4_8 Model = "claude-opus-4-8"`
+
+            Frontier intelligence for long-running agents and coding
+
           - `const ModelClaudeOpus4_7 Model = "claude-opus-4-7"`
 
             Frontier intelligence for long-running agents and coding
@@ -2334,6 +2375,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
       - `const AnthropicBetaManagedAgents2026_04_01 AnthropicBeta = "managed-agents-2026-04-01"`
 
       - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
+
+      - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
+
+      - `const AnthropicBetaMidConversationSystem2026_04_07 AnthropicBeta = "mid-conversation-system-2026-04-07"`
 
 ### Returns
 

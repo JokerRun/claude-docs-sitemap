@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/sessions/update
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 7ebcd6bbbabd40a3b7101f1c6adc8c2f8e0ed53d7882d1e405f78658b6e45b55
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 7e9034aec2eb720e6d23dc45dd325f52f4f37610efe2ea6fa6cd64f62081498b
 ---
 
 ## Update Session
@@ -92,6 +92,10 @@ Update Session
       - `const AnthropicBetaManagedAgents2026_04_01 AnthropicBeta = "managed-agents-2026-04-01"`
 
       - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
+
+      - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
+
+      - `const AnthropicBetaMidConversationSystem2026_04_07 AnthropicBeta = "mid-conversation-system-2026-04-07"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/credentials/create
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 229847bb75db2524720dd2ac859c99d52887b494d04419281d737cea2ee0abbd
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 9cac1a31bba9c8ccac637af0f6cbe372baf4f8497c35b7c1df4ef27fc2c10829
 ---
 
 ## Create Credential
@@ -72,6 +72,10 @@ Create Credential
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
+
+    - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
+
+    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
   - `Auth auth`
 

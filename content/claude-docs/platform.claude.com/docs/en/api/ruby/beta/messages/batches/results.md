@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/messages/batches/results
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 91ce610510428c06340419a07219a59734e89bd9f717d7056fd0fc872e589c23
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 92fc6673908e947a50e23737b540ae502b05a89b900d71ef8daaa12ca344114b
 ---
 
 ## Retrieve Message Batch results
@@ -29,7 +29,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 24 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -80,6 +80,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `:"managed-agents-2026-04-01"`
 
     - `:"cache-diagnosis-2026-04-07"`
+
+    - `:"thinking-token-count-2026-05-13"`
+
+    - `:"mid-conversation-system-2026-04-07"`
 
 ### Returns
 
@@ -468,6 +472,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `:url_not_allowed`
 
+                  - `:url_not_in_prior_context`
+
                   - `:url_not_accessible`
 
                   - `:unsupported_content_type`
@@ -584,6 +590,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
               - `class BetaAdvisorResultBlock`
 
+                - `stop_reason: String`
+
+                  The advisor sub-inference's stop reason (same values as the top-level message `stop_reason`). `max_tokens` indicates the advisor's output was truncated at the tool's `max_tokens` value or the advisor model's policy cap.
+
                 - `text: String`
 
                 - `type: :advisor_result`
@@ -595,6 +605,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
                 - `encrypted_content: String`
 
                   Opaque blob containing the advisor's output. Round-trip verbatim; do not inspect or modify.
+
+                - `stop_reason: String`
+
+                  The advisor sub-inference's stop reason (same values as the top-level message `stop_reason`).
 
                 - `type: :advisor_redacted_result`
 
@@ -1023,11 +1037,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-          - `Model = :"claude-opus-4-7" | :"claude-mythos-preview" | :"claude-opus-4-6" | 14 more`
+          - `Model = :"claude-opus-4-8" | :"claude-opus-4-7" | :"claude-mythos-preview" | 15 more`
 
             The model that will complete your prompt.
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `:"claude-opus-4-8"`
+
+              Frontier intelligence for long-running agents and coding
 
             - `:"claude-opus-4-7"`
 
@@ -1325,6 +1343,26 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           - `output_tokens: Integer`
 
             The number of output tokens which were used.
+
+          - `output_tokens_details: OutputTokensDetails{ thinking_tokens}`
+
+            Breakdown of output tokens by category.
+
+            `output_tokens` remains the inclusive, authoritative total used for billing.
+            This object provides a read-only decomposition for observability — for example,
+            how many of the billed output tokens were spent on internal reasoning that may
+            have been summarized before being returned to you.
+
+            - `thinking_tokens: Integer`
+
+              Number of output tokens the model generated as internal reasoning, including
+              the thinking-block delimiter tokens.
+
+              Reflects the raw reasoning the model produced, not the (possibly shorter)
+              summarized thinking text returned in the response body. Computed by
+              re-tokenizing the raw reasoning text, so it may differ from the model's exact
+              generation count by a small number of tokens. Always ≤ `output_tokens`;
+              `output_tokens - thinking_tokens` approximates the non-reasoning output.
 
           - `server_tool_use: BetaServerToolUsage`
 

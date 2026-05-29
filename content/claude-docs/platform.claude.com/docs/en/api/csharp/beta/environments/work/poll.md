@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/environments/work/poll
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 062e5730b1cf277fb79a91f713167327105f98e396235e8a7cfb50c6891bbe6d
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 727f56472fd49647b19842b6587d8af86d77fd9af86ed54351b2d98191879320
 ---
 
 ## Poll for Work
@@ -84,6 +84,10 @@ Long poll for work items in the queue.
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
+
+    - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
 
   - `string anthropicWorkerID`
 

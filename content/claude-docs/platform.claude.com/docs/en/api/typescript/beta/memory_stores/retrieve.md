@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/memory_stores/retrieve
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 1c2963b066a93e5133d3030c9a50897ffc83f8572e3a9610dd59b70d873a950b
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 5e64468a3ae3b91a670dbac4af792f096b9e05abda3f499a8031e14b6ed1b532
 ---
 
 ## Retrieve a memory store
@@ -25,7 +25,7 @@ Retrieve a memory store
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 22 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 24 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -76,6 +76,10 @@ Retrieve a memory store
       - `"managed-agents-2026-04-01"`
 
       - `"cache-diagnosis-2026-04-07"`
+
+      - `"thinking-token-count-2026-05-13"`
+
+      - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/create
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 4c64f1dd6ca4ba5dc014cf2f93f1ff9d2aa4d2f171799703b2d60e68b27d1ce1
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 5d3bdef51522590c5518daf777cb54c329c9e1cb15adace408e6c251de99bd7b
 ---
 
 ## Create User Profile
@@ -19,7 +19,7 @@ Create User Profile
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 24 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -70,6 +70,10 @@ Create User Profile
     - `"managed-agents-2026-04-01"`
 
     - `"cache-diagnosis-2026-04-07"`
+
+    - `"thinking-token-count-2026-05-13"`
+
+    - `"mid-conversation-system-2026-04-07"`
 
 ### Body Parameters
 

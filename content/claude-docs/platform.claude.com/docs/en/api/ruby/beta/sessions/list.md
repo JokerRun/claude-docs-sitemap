@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/sessions/list
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 3b7c5f3ce29d1a233496d400b9cb95c76f6db74dcac21f0934395e868f43d5ef
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: ebbbe4f382c7ad61f390dda27e7239fa2ac542193c7f1a3b020fc07cbf7539e5
 ---
 
 ## List Sessions
@@ -81,7 +81,7 @@ List Sessions
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 24 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -132,6 +132,10 @@ List Sessions
     - `:"managed-agents-2026-04-01"`
 
     - `:"cache-diagnosis-2026-04-07"`
+
+    - `:"thinking-token-count-2026-05-13"`
+
+    - `:"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

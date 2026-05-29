@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/sessions/threads/archive
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 16fe5355cfd79fd6c41e0c7b2441276cd22bc112c620e9def13c1acdd287badc
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 006ebd252cad6f4faea5dc53d72e2617766aa489501d01f15e634d04721974ba
 ---
 
 ## Archive Session Thread
@@ -25,7 +25,7 @@ Archive Session Thread
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 22 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 24 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -76,6 +76,10 @@ Archive Session Thread
     - `"managed-agents-2026-04-01"`
 
     - `"cache-diagnosis-2026-04-07"`
+
+    - `"thinking-token-count-2026-05-13"`
+
+    - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/environments/work/poll
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 6e954464ca5b11f26215a63ee2b6cdbc7da2c91c018bc61ff10d115ae1dfc0d9
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 56be5cea06210ca9627c09933049a4d43bb2ab9982869551f5eeff545d5c86eb
 ---
 
 ## Poll for Work
@@ -35,7 +35,7 @@ Long poll for work items in the queue.
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 22 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 24 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -86,6 +86,10 @@ Long poll for work items in the queue.
       - `"managed-agents-2026-04-01"`
 
       - `"cache-diagnosis-2026-04-07"`
+
+      - `"thinking-token-count-2026-05-13"`
+
+      - `"mid-conversation-system-2026-04-07"`
 
   - `"Anthropic-Worker-ID"?: string`
 

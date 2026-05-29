@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/permission-modes
-fetched_at: 2026-05-22T03:16:37.965758Z
-sha256: aac066b67feaef0fcb5cab8ecb85abb0883f733758d388323d9b4a9d13758ed7
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: b25b0d799e26cfa9e0ea1ff34f7032095602c6806a5ec65ee5b2017d35cd2ef9
 ---
 
 > ## Documentation Index
@@ -80,9 +80,9 @@ You can switch modes mid-session, at startup, or as a persistent default. The mo
     | Auto mode          | `auto`              |
     | Bypass permissions | `bypassPermissions` |
 
-    Auto mode appears in the mode indicator after you enable **Allow dangerously skip permissions** in the extension settings, but it stays unavailable until your account meets every requirement listed in the [auto mode section](#eliminate-prompts-with-auto-mode). The `claudeCode.initialPermissionMode` setting does not accept `auto`. To start in auto mode by default, set `defaultMode` in your [user settings](/en/settings#settings-files) instead. Claude Code ignores `defaultMode: "auto"` in project and local settings.
+    Auto mode appears in the mode indicator when your account meets every requirement listed in the [auto mode section](#eliminate-prompts-with-auto-mode). The `claudeCode.initialPermissionMode` setting does not accept `auto`. To start in auto mode by default, set `defaultMode` in your [user settings](/en/settings#settings-files) instead. Claude Code ignores `defaultMode: "auto"` in project and local settings.
 
-    Bypass permissions also requires the **Allow dangerously skip permissions** toggle before it appears in the mode indicator.
+    Bypass permissions requires the **Allow dangerously skip permissions** toggle in the extension settings before it appears in the mode indicator.
 
     See the [VS Code guide](/en/vs-code) for extension-specific details.
   </Tab>
@@ -181,7 +181,7 @@ Auto mode is available only when your account meets all of these requirements:
 
 * **Plan**: All plans.
 * **Admin**: on Team and Enterprise, an admin must enable it in [Claude Code admin settings](https://claude.ai/admin-settings/claude-code) before users can turn it on. Admins can also lock it off by setting `permissions.disableAutoMode` to `"disable"` in [managed settings](/en/permissions#managed-settings).
-* **Model**: Claude Sonnet 4.6, Opus 4.6, or Opus 4.7. Older models, including Sonnet 4.5, Opus 4.5, Haiku, and claude-3 models, are not supported.
+* **Model**: Claude Opus 4.6 or later, or Sonnet 4.6. Older models, including Sonnet 4.5, Opus 4.5, Haiku, and claude-3 models, are not supported.
 * **Provider**: Anthropic API only. Not available on Bedrock, Vertex, or Foundry.
 
 If Claude Code reports auto mode as unavailable, one of these requirements is unmet; this is not a transient outage. A separate message that names a model and says auto mode "cannot determine the safety" of an action is a transient classifier outage; see the [error reference](/en/errors#auto-mode-cannot-determine-the-safety-of-an-action).

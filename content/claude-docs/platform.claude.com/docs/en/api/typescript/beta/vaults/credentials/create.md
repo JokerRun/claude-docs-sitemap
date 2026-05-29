@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/vaults/credentials/create
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: a6b5e7f5c2d4b6c26247c8aa3228f1cae3ea92d718d7b5b8d093fbbd43769254
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 4877bc35cb871c70105a4df7c1608aca0bec8760c1e8e7cd7301854c89dce65a
 ---
 
 ## Create Credential
@@ -133,7 +133,7 @@ Create Credential
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 22 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 24 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -184,6 +184,10 @@ Create Credential
       - `"managed-agents-2026-04-01"`
 
       - `"cache-diagnosis-2026-04-07"`
+
+      - `"thinking-token-count-2026-05-13"`
+
+      - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

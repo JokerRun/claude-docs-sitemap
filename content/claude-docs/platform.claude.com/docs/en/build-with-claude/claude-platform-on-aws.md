@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws
-fetched_at: 2026-05-21T03:16:34.837917Z
-sha256: 6acc2a34fa7011427d954685010805e64f67ef1ec515d5051ae0c4fc1652bbd6
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: cb3183ae3817960ff647e2e51956627e424133269354cbd6cab5a4f24778aa26
 ---
 
 # Claude Platform on AWS
@@ -285,14 +285,14 @@ go get github.com/anthropics/anthropic-sdk-go
 
 <Tab title="Java">
 ```kotlin Gradle
-implementation("com.anthropic:anthropic-java-aws:2.33.0")
+implementation("com.anthropic:anthropic-java-aws:2.35.0")
 ```
 
 ```xml Maven
 <dependency>
   <groupId>com.anthropic</groupId>
   <artifactId>anthropic-java-aws</artifactId>
-  <version>2.33.0</version>
+  <version>2.35.0</version>
 </dependency>
 ```
 </Tab>
@@ -320,12 +320,13 @@ The following models are available on Claude Platform on AWS:
 
 | Model | Model ID |
 | :--- | :--- |
-| Claude Opus 4.7 | `claude-opus-4-7` |
-| Claude Opus 4.6 | `claude-opus-4-6` |
-| Claude Sonnet 4.6 | `claude-sonnet-4-6` |
-| Claude Opus 4.5 | `claude-opus-4-5` |
-| Claude Sonnet 4.5 | `claude-sonnet-4-5` |
-| Claude Haiku 4.5 | `claude-haiku-4-5` |
+| <NextOpus /> | <NextOpusId /> |
+| Claude Opus 4.7 | claude-opus-4-7 |
+| Claude Opus 4.6 | claude-opus-4-6 |
+| Claude Sonnet 4.6 | claude-sonnet-4-6 |
+| Claude Opus 4.5 | claude-opus-4-5 |
+| Claude Sonnet 4.5 | claude-sonnet-4-5 |
+| Claude Haiku 4.5 | claude-haiku-4-5 |
 
 Model IDs are identical to the first-party Claude API. There are no Bedrock-style ARNs or `anthropic.` prefixes.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/environments/update
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 3cdd0259008fba2841e9a65abe575f3e79b15fd2a85f13173af24e2b0f00d589
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 18c809c0254941183674c36f18cf6e5003a83d950e1cbbe80753b35484c00f84
 ---
 
 ## Update Environment
@@ -188,6 +188,10 @@ Update an existing environment's configuration.
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
+
+    - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
 
 ### Returns
 

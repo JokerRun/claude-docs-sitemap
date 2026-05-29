@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/messages/batches
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: a23ca0bffeb85208de872ba2541f093e276d310e3b96b7a99b21eb68350ec10d
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: eab5b71da3d8b34bc376fa120262e633b89cad89f5629ff728cdf0f76385fc77
 ---
 
 # Batches
@@ -603,6 +603,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                     - `URL_NOT_ALLOWED("url_not_allowed")`
 
+                    - `URL_NOT_IN_PRIOR_CONTEXT("url_not_in_prior_context")`
+
                     - `URL_NOT_ACCESSIBLE("url_not_accessible")`
 
                     - `UNSUPPORTED_CONTENT_TYPE("unsupported_content_type")`
@@ -922,17 +924,52 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                 Create a cache control breakpoint at this content block.
 
+            - `class MidConversationSystemBlockParam:`
+
+              System instructions that appear mid-conversation.
+
+              Use this block to provide or update system-level instructions at a specific
+              point in the conversation, rather than only via the top-level `system` parameter.
+
+              - `List<TextBlockParam> content`
+
+                System instruction text blocks.
+
+                - `String text`
+
+                - `JsonValue; type "text"constant`
+
+                - `Optional<CacheControlEphemeral> cacheControl`
+
+                  Create a cache control breakpoint at this content block.
+
+                - `Optional<List<TextCitationParam>> citations`
+
+              - `JsonValue; type "mid_conv_system"constant`
+
+                - `MID_CONV_SYSTEM("mid_conv_system")`
+
+              - `Optional<CacheControlEphemeral> cacheControl`
+
+                Create a cache control breakpoint at this content block.
+
         - `Role role`
 
           - `USER("user")`
 
           - `ASSISTANT("assistant")`
 
+          - `SYSTEM("system")`
+
       - `Model model`
 
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `CLAUDE_OPUS_4_8("claude-opus-4-8")`
+
+          Frontier intelligence for long-running agents and coding
 
         - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
 
@@ -3085,6 +3122,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `URL_NOT_ALLOWED("url_not_allowed")`
 
+                  - `URL_NOT_IN_PRIOR_CONTEXT("url_not_in_prior_context")`
+
                   - `URL_NOT_ACCESSIBLE("url_not_accessible")`
 
                   - `UNSUPPORTED_CONTENT_TYPE("unsupported_content_type")`
@@ -3411,6 +3450,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `CLAUDE_OPUS_4_8("claude-opus-4-8")`
+
+            Frontier intelligence for long-running agents and coding
+
           - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
 
             Frontier intelligence for long-running agents and coding
@@ -3595,6 +3638,26 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           - `long outputTokens`
 
             The number of output tokens which were used.
+
+          - `Optional<OutputTokensDetails> outputTokensDetails`
+
+            Breakdown of output tokens by category.
+
+            `output_tokens` remains the inclusive, authoritative total used for billing.
+            This object provides a read-only decomposition for observability — for example,
+            how many of the billed output tokens were spent on internal reasoning that may
+            have been summarized before being returned to you.
+
+            - `long thinkingTokens`
+
+              Number of output tokens the model generated as internal reasoning, including
+              the thinking-block delimiter tokens.
+
+              Reflects the raw reasoning the model produced, not the (possibly shorter)
+              summarized thinking text returned in the response body. Computed by
+              re-tokenizing the raw reasoning text, so it may differ from the model's exact
+              generation count by a small number of tokens. Always ≤ `output_tokens`;
+              `output_tokens - thinking_tokens` approximates the non-reasoning output.
 
           - `Optional<ServerToolUsage> serverToolUse`
 
@@ -4337,6 +4400,8 @@ public final class Main {
 
                   - `URL_NOT_ALLOWED("url_not_allowed")`
 
+                  - `URL_NOT_IN_PRIOR_CONTEXT("url_not_in_prior_context")`
+
                   - `URL_NOT_ACCESSIBLE("url_not_accessible")`
 
                   - `UNSUPPORTED_CONTENT_TYPE("unsupported_content_type")`
@@ -4663,6 +4728,10 @@ public final class Main {
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `CLAUDE_OPUS_4_8("claude-opus-4-8")`
+
+            Frontier intelligence for long-running agents and coding
+
           - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
 
             Frontier intelligence for long-running agents and coding
@@ -4847,6 +4916,26 @@ public final class Main {
           - `long outputTokens`
 
             The number of output tokens which were used.
+
+          - `Optional<OutputTokensDetails> outputTokensDetails`
+
+            Breakdown of output tokens by category.
+
+            `output_tokens` remains the inclusive, authoritative total used for billing.
+            This object provides a read-only decomposition for observability — for example,
+            how many of the billed output tokens were spent on internal reasoning that may
+            have been summarized before being returned to you.
+
+            - `long thinkingTokens`
+
+              Number of output tokens the model generated as internal reasoning, including
+              the thinking-block delimiter tokens.
+
+              Reflects the raw reasoning the model produced, not the (possibly shorter)
+              summarized thinking text returned in the response body. Computed by
+              re-tokenizing the raw reasoning text, so it may differ from the model's exact
+              generation count by a small number of tokens. Always ≤ `output_tokens`;
+              `output_tokens - thinking_tokens` approximates the non-reasoning output.
 
           - `Optional<ServerToolUsage> serverToolUse`
 
@@ -5375,6 +5464,8 @@ public final class Main {
 
                 - `URL_NOT_ALLOWED("url_not_allowed")`
 
+                - `URL_NOT_IN_PRIOR_CONTEXT("url_not_in_prior_context")`
+
                 - `URL_NOT_ACCESSIBLE("url_not_accessible")`
 
                 - `UNSUPPORTED_CONTENT_TYPE("unsupported_content_type")`
@@ -5701,6 +5792,10 @@ public final class Main {
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+        - `CLAUDE_OPUS_4_8("claude-opus-4-8")`
+
+          Frontier intelligence for long-running agents and coding
+
         - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
 
           Frontier intelligence for long-running agents and coding
@@ -5885,6 +5980,26 @@ public final class Main {
         - `long outputTokens`
 
           The number of output tokens which were used.
+
+        - `Optional<OutputTokensDetails> outputTokensDetails`
+
+          Breakdown of output tokens by category.
+
+          `output_tokens` remains the inclusive, authoritative total used for billing.
+          This object provides a read-only decomposition for observability — for example,
+          how many of the billed output tokens were spent on internal reasoning that may
+          have been summarized before being returned to you.
+
+          - `long thinkingTokens`
+
+            Number of output tokens the model generated as internal reasoning, including
+            the thinking-block delimiter tokens.
+
+            Reflects the raw reasoning the model produced, not the (possibly shorter)
+            summarized thinking text returned in the response body. Computed by
+            re-tokenizing the raw reasoning text, so it may differ from the model's exact
+            generation count by a small number of tokens. Always ≤ `output_tokens`;
+            `output_tokens - thinking_tokens` approximates the non-reasoning output.
 
         - `Optional<ServerToolUsage> serverToolUse`
 
@@ -6375,6 +6490,8 @@ public final class Main {
 
               - `URL_NOT_ALLOWED("url_not_allowed")`
 
+              - `URL_NOT_IN_PRIOR_CONTEXT("url_not_in_prior_context")`
+
               - `URL_NOT_ACCESSIBLE("url_not_accessible")`
 
               - `UNSUPPORTED_CONTENT_TYPE("unsupported_content_type")`
@@ -6701,6 +6818,10 @@ public final class Main {
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+      - `CLAUDE_OPUS_4_8("claude-opus-4-8")`
+
+        Frontier intelligence for long-running agents and coding
+
       - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
 
         Frontier intelligence for long-running agents and coding
@@ -6885,6 +7006,26 @@ public final class Main {
       - `long outputTokens`
 
         The number of output tokens which were used.
+
+      - `Optional<OutputTokensDetails> outputTokensDetails`
+
+        Breakdown of output tokens by category.
+
+        `output_tokens` remains the inclusive, authoritative total used for billing.
+        This object provides a read-only decomposition for observability — for example,
+        how many of the billed output tokens were spent on internal reasoning that may
+        have been summarized before being returned to you.
+
+        - `long thinkingTokens`
+
+          Number of output tokens the model generated as internal reasoning, including
+          the thinking-block delimiter tokens.
+
+          Reflects the raw reasoning the model produced, not the (possibly shorter)
+          summarized thinking text returned in the response body. Computed by
+          re-tokenizing the raw reasoning text, so it may differ from the model's exact
+          generation count by a small number of tokens. Always ≤ `output_tokens`;
+          `output_tokens - thinking_tokens` approximates the non-reasoning output.
 
       - `Optional<ServerToolUsage> serverToolUse`
 

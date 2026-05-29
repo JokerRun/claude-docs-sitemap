@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/archive
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 62015a548f3283e1fefdcdf7b7abd034bf883b737d05ddecf0183cd4025ab1c3
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: cf1a67e881fbccbe652e2f4c755cfb8bb5133429876b4e22bee8633be7db6363
 ---
 
 ## Archive Vault
@@ -72,6 +72,10 @@ Archive Vault
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
+
+    - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
+
+    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/files/upload
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: bd28b2ee8fa7a55e2a3c2eb54a657fc93f630fd3bebdf7978f75948ca5150e74
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: dd62921d7b3790028cd96e64ad7ee731ee00c8d6dbbcdca7f13d870bad741a81
 ---
 
 ## Upload File
@@ -78,6 +78,10 @@ Upload File
       - `const AnthropicBetaManagedAgents2026_04_01 AnthropicBeta = "managed-agents-2026-04-01"`
 
       - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
+
+      - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
+
+      - `const AnthropicBetaMidConversationSystem2026_04_07 AnthropicBeta = "mid-conversation-system-2026-04-07"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/messages/batches/delete
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 51525144c36b2dcac926be2dc75ef7f300d2398c9ed8fe087fc02952992fbdbd
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 7b9efc4e560a9806e72788088c71cb9f8371be75ed26ef17c6198d4d78e99a87
 ---
 
 ## Delete a Message Batch
@@ -29,7 +29,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 22 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 24 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -80,6 +80,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `"managed-agents-2026-04-01"`
 
     - `"cache-diagnosis-2026-04-07"`
+
+    - `"thinking-token-count-2026-05-13"`
+
+    - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

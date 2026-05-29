@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/vaults/retrieve
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: cb40968873e5f35c2a5062b078b82bc278375e2e34df19c6fc2212970eca9169
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: add45019c334652cbd5931883b33750683a169247a2c61bb8828247bb1bbe24b
 ---
 
 ## Get Vault
@@ -25,7 +25,7 @@ Get Vault
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 22 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 24 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -76,6 +76,10 @@ Get Vault
       - `"managed-agents-2026-04-01"`
 
       - `"cache-diagnosis-2026-04-07"`
+
+      - `"thinking-token-count-2026-05-13"`
+
+      - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

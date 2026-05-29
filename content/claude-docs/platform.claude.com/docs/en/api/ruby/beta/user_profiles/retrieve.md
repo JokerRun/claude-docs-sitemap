@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/user_profiles/retrieve
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: d2fa9727baf8056290b61494049c69c0d9da2145958f93c8e4794a76efb3e6bd
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 0f27a362da44487fd2b60729f31cb5e75cf3a58bbea0f962e7ab46baeea89834
 ---
 
 ## Get User Profile
@@ -23,7 +23,7 @@ Get User Profile
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 22 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 24 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -74,6 +74,10 @@ Get User Profile
     - `:"managed-agents-2026-04-01"`
 
     - `:"cache-diagnosis-2026-04-07"`
+
+    - `:"thinking-token-count-2026-05-13"`
+
+    - `:"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

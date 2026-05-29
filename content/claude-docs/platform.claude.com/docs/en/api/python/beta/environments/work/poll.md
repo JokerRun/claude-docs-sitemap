@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/environments/work/poll
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: d9b26ec25e632453caeadef07587e62b72bfb81c304cd8d7b8b03ac1762c9045
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: de166d6f7c14e8d7c89ce609bc7aae8615523d076f711b9fff7f2a1aaa502bbc
 ---
 
 ## Poll for Work
@@ -33,7 +33,7 @@ Long poll for work items in the queue.
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 22 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 24 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -84,6 +84,10 @@ Long poll for work items in the queue.
     - `"managed-agents-2026-04-01"`
 
     - `"cache-diagnosis-2026-04-07"`
+
+    - `"thinking-token-count-2026-05-13"`
+
+    - `"mid-conversation-system-2026-04-07"`
 
 - `anthropic_worker_id: Optional[str]`
 

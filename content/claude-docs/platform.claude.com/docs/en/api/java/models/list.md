@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/models/list
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: fc4fdcf70f52fbe55b8fd0d9862f5dd1d87b3b8657185799c3b5a34ad4b81202
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 83e8ea00546482b9f2a23326b613e6d019fcbbbb239400e1420ec60243147912
 ---
 
 ## List Models
@@ -86,6 +86,10 @@ The Models API response can be used to determine which models are available for 
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
+
+    - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
+
+    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/skills/retrieve
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 3ae0c1f1b47998ebaeffbda98a5be13f8851a77642c4a43f90ca0e68e98475e1
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 72cce5022d03da31c0b5dcb5ff343706a75ba40587fea2a88ff18e66225148a7
 ---
 
 ## Get Skill
@@ -29,7 +29,7 @@ Get Skill
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 22 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 24 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -80,6 +80,10 @@ Get Skill
       - `"managed-agents-2026-04-01"`
 
       - `"cache-diagnosis-2026-04-07"`
+
+      - `"thinking-token-count-2026-05-13"`
+
+      - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

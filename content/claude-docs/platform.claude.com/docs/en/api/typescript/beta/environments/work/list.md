@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/environments/work/list
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: f2ce82a7e93e9f8543eb8d2cefb41b2496fbe3b9e93c97950453d9c33effc13a
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 72caffd9b312873b490c19c6d8c2586a7664aa79df31a16459062a9805bcde9d
 ---
 
 ## List Work Items
@@ -35,7 +35,7 @@ List work items in an environment.
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 22 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 24 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -86,6 +86,10 @@ List work items in an environment.
       - `"managed-agents-2026-04-01"`
 
       - `"cache-diagnosis-2026-04-07"`
+
+      - `"thinking-token-count-2026-05-13"`
+
+      - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

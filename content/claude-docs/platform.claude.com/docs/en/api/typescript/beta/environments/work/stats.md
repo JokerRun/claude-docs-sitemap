@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/environments/work/stats
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: e231c635bc88a41c3060ac7527ec3f2df6b90e28802f7788a5ac8b562342c781
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 6147f172d39d297aed7c2873470c41bcc2e2ae2d23a439e5c63fd0aa73b63468
 ---
 
 ## Get Queue Statistics
@@ -25,7 +25,7 @@ Get statistics about the work queue for an environment.
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 22 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 24 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -76,6 +76,10 @@ Get statistics about the work queue for an environment.
       - `"managed-agents-2026-04-01"`
 
       - `"cache-diagnosis-2026-04-07"`
+
+      - `"thinking-token-count-2026-05-13"`
+
+      - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

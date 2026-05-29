@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/agents/retrieve
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 36e79ca762ab2ae6b3b4217f21914829b9b933a2f0651b3309698adca4ccc2d2
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: af07920298ca8d906bc4a4555c9d7f9ba04835ed564c381e993eef31afbd1447
 ---
 
 ## Get Agent
@@ -80,6 +80,10 @@ Get Agent
       - `const AnthropicBetaManagedAgents2026_04_01 AnthropicBeta = "managed-agents-2026-04-01"`
 
       - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
+
+      - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
+
+      - `const AnthropicBetaMidConversationSystem2026_04_07 AnthropicBeta = "mid-conversation-system-2026-04-07"`
 
 ### Returns
 

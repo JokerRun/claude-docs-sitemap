@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/messages/batches/results
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 5d3ba03674f047c2e054fddd290c66f3d5654107a0d1da93c5861f9adf198247
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 13d9b326a78664be693e14ae8abccae3c4462a975990a7b6704520f0e5d57658
 ---
 
 ## Retrieve Message Batch results
@@ -402,6 +402,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `const WebFetchToolResultErrorCodeURLNotAllowed WebFetchToolResultErrorCode = "url_not_allowed"`
 
+                  - `const WebFetchToolResultErrorCodeURLNotInPriorContext WebFetchToolResultErrorCode = "url_not_in_prior_context"`
+
                   - `const WebFetchToolResultErrorCodeURLNotAccessible WebFetchToolResultErrorCode = "url_not_accessible"`
 
                   - `const WebFetchToolResultErrorCodeUnsupportedContentType WebFetchToolResultErrorCode = "unsupported_content_type"`
@@ -734,6 +736,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+            - `const ModelClaudeOpus4_8 Model = "claude-opus-4-8"`
+
+              Frontier intelligence for long-running agents and coding
+
             - `const ModelClaudeOpus4_7 Model = "claude-opus-4-7"`
 
               Frontier intelligence for long-running agents and coding
@@ -920,6 +926,26 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           - `OutputTokens int64`
 
             The number of output tokens which were used.
+
+          - `OutputTokensDetails UsageOutputTokensDetails`
+
+            Breakdown of output tokens by category.
+
+            `output_tokens` remains the inclusive, authoritative total used for billing.
+            This object provides a read-only decomposition for observability — for example,
+            how many of the billed output tokens were spent on internal reasoning that may
+            have been summarized before being returned to you.
+
+            - `ThinkingTokens int64`
+
+              Number of output tokens the model generated as internal reasoning, including
+              the thinking-block delimiter tokens.
+
+              Reflects the raw reasoning the model produced, not the (possibly shorter)
+              summarized thinking text returned in the response body. Computed by
+              re-tokenizing the raw reasoning text, so it may differ from the model's exact
+              generation count by a small number of tokens. Always ≤ `output_tokens`;
+              `output_tokens - thinking_tokens` approximates the non-reasoning output.
 
           - `ServerToolUse ServerToolUsage`
 

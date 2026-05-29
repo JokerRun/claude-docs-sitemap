@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/update
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 0f11f4bd80c1148445ebd4e08ecad0b3c1598806fce4252531d65fda9c7973e1
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: ea70e9b0af46e513fdc57cdeffaa89150ddce223f12e7eccd5bb20f080c26d4b
 ---
 
 ## Update Session
@@ -23,7 +23,7 @@ Update Session
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 24 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -74,6 +74,10 @@ Update Session
     - `"managed-agents-2026-04-01"`
 
     - `"cache-diagnosis-2026-04-07"`
+
+    - `"thinking-token-count-2026-05-13"`
+
+    - `"mid-conversation-system-2026-04-07"`
 
 ### Body Parameters
 

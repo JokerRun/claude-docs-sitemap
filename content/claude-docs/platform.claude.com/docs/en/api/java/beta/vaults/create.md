@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/create
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: a014142b669a853ce5cb64b2a1c86e03eab5b9961cf0f7343907291ca63af9e0
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 79d327890477a5538c1208674799ccfd1fd781d04729f08b83484b6fe37125cd
 ---
 
 ## Create Vault
@@ -70,6 +70,10 @@ Create Vault
     - `MANAGED_AGENTS_2026_04_01("managed-agents-2026-04-01")`
 
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
+
+    - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
+
+    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
   - `String displayName`
 

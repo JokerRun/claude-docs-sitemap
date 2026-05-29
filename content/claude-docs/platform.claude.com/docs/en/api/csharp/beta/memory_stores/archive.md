@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/memory_stores/archive
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 603faee5fe23995782aa0376c0a43edb6c9cb6a385eea4cc1197b7c07360ca9f
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: bce2ef9bd885dc9d40b8ab0f653d353b68748b8ee7481796a18cd6b243356bae
 ---
 
 ## Archive a memory store
@@ -74,6 +74,10 @@ Archive a memory store
     - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
 
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
+
+    - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/update
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 9e682505bbd460d733d8cbc7a60e9654a203490c1d36f8bc03ade66ba55605c1
+fetched_at: 2026-05-29T03:17:00.216417Z
+sha256: 3faba792f38f9473868c861a26e07152d2eb9d25226b7fbc76a10094639dc4c9
 ---
 
 ## Update User Profile
@@ -23,7 +23,7 @@ Update User Profile
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 22 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 24 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -74,6 +74,10 @@ Update User Profile
     - `"managed-agents-2026-04-01"`
 
     - `"cache-diagnosis-2026-04-07"`
+
+    - `"thinking-token-count-2026-05-13"`
+
+    - `"mid-conversation-system-2026-04-07"`
 
 ### Body Parameters
 
