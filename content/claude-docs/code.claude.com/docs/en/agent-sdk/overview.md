@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/overview
-fetched_at: 2026-05-27T03:17:07.219627Z
-sha256: 9e519ae0b1fb51a6db5a5d10229601dc3b22b9c0b70cb9a5c4731c51e13d7a43
+fetched_at: 2026-05-30T03:14:18.300217Z
+sha256: 0f60f0ce8340354476d6a42720ea84231039b554446c60767a2cf3b986befcb6
 ---
 
 > ## Documentation Index
@@ -75,6 +75,8 @@ The Agent SDK includes built-in tools for reading files, running commands, and e
         ```bash theme={null}
         pip install claude-agent-sdk
         ```
+
+        The Python package requires Python 3.10 or later. If pip reports `No matching distribution found for claude-agent-sdk`, your interpreter is older than 3.10. Run `python3 --version` on macOS or Linux, or `py --version` on Windows, to check.
       </Tab>
     </Tabs>
 

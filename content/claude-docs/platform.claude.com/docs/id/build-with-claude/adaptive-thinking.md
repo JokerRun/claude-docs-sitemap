@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/adaptive-thinking
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 6eba6b029cc26fd7c1760d3af90f05961ca1d1a85b695c2e4376090c653b6af5
+fetched_at: 2026-05-30T03:14:18.300217Z
+sha256: 8ef6146fe33b7a6d935d7e8ac008f13fac275f75685ca8d67e144b3cd884c7a0
 ---
 
 # Pemikiran adaptif
@@ -921,6 +921,22 @@ When using `display: "omitted"`:
 <Warning>
 The billed output token count will **not** match the visible token count in the response. You are billed for the full thinking process, not the thinking content visible in the response.
 </Warning>
+
+To see how many billed output tokens were spent on internal reasoning, read `usage.output_tokens_details.thinking_tokens` in the response. This value reflects the raw reasoning the model generated (not the summarized text returned in the body) and is always less than or equal to `output_tokens`. Subtract it from `output_tokens` to approximate the non-reasoning portion of the output.
+
+```json
+{
+  "usage": {
+    "input_tokens": 25,
+    "output_tokens": 348,
+    "output_tokens_details": {
+      "thinking_tokens": 312
+    }
+  }
+}
+```
+
+`output_tokens` remains the inclusive, authoritative total used for billing. `output_tokens_details` is a read-only breakdown for observability.
 
 ### Topik tambahan
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/permission-modes
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: b25b0d799e26cfa9e0ea1ff34f7032095602c6806a5ec65ee5b2017d35cd2ef9
+fetched_at: 2026-05-30T03:14:18.300217Z
+sha256: b558d3081dbe4d8ac204fbd668b395bb66d453902047839c8eed6d0c82358865
 ---
 
 > ## Documentation Index
@@ -307,6 +307,7 @@ Protected directories:
 * `.vscode`
 * `.idea`
 * `.husky`
+* `.cargo`
 * `.claude`, except for `.claude/commands`, `.claude/agents`, `.claude/skills`, and `.claude/worktrees` where Claude routinely creates content
 
 Protected files:

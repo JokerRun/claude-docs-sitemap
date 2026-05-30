@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/keybindings
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: cd9f1c67d5d0ef9e61cb6925ef77916993ed0405e1d0fce3e58ebca4fef90448
+fetched_at: 2026-05-30T03:14:18.300217Z
+sha256: 834f20e2c97c74ea3a4c0bf113027e6b9ee1aa1ca052b5d4cc9e7df5553bbc4d
 ---
 
 > ## Documentation Index
@@ -106,22 +106,22 @@ Actions for navigating command history:
 
 Actions available in the `Chat` context:
 
-| Action                | Default                   | Description                                                                                                                                                    |
-| :-------------------- | :------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `chat:cancel`         | Escape                    | Cancel current input                                                                                                                                           |
-| `chat:clearInput`     | Ctrl+L                    | Force a full screen redraw, preserving input. In [fullscreen rendering](/en/fullscreen#clear-the-conversation), press twice within two seconds to run `/clear` |
-| `chat:clearScreen`    | Cmd+K                     | In [fullscreen rendering](/en/fullscreen#clear-the-conversation), press twice within two seconds to run `/clear`                                               |
-| `chat:killAgents`     | Ctrl+X Ctrl+K             | Kill all running [background subagents](/en/sub-agents#run-subagents-in-foreground-or-background) in this session                                              |
-| `chat:cycleMode`      | Shift+Tab\*               | Cycle permission modes                                                                                                                                         |
-| `chat:modelPicker`    | Meta+P                    | Open model picker                                                                                                                                              |
-| `chat:fastMode`       | Meta+O                    | Toggle fast mode                                                                                                                                               |
-| `chat:thinkingToggle` | Meta+T                    | Toggle extended thinking                                                                                                                                       |
-| `chat:submit`         | Enter                     | Submit message                                                                                                                                                 |
-| `chat:newline`        | Ctrl+J                    | Insert a newline without submitting                                                                                                                            |
-| `chat:undo`           | Ctrl+\_, Ctrl+Shift+-     | Undo last action                                                                                                                                               |
-| `chat:externalEditor` | Ctrl+G, Ctrl+X Ctrl+E     | Open in external editor                                                                                                                                        |
-| `chat:stash`          | Ctrl+S                    | Stash current prompt                                                                                                                                           |
-| `chat:imagePaste`     | Ctrl+V (Alt+V on Windows) | Paste image                                                                                                                                                    |
+| Action                | Default                           | Description                                                                                                                                                    |
+| :-------------------- | :-------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `chat:cancel`         | Escape                            | Cancel current input                                                                                                                                           |
+| `chat:clearInput`     | Ctrl+L                            | Force a full screen redraw, preserving input. In [fullscreen rendering](/en/fullscreen#clear-the-conversation), press twice within two seconds to run `/clear` |
+| `chat:clearScreen`    | Cmd+K                             | In [fullscreen rendering](/en/fullscreen#clear-the-conversation), press twice within two seconds to run `/clear`                                               |
+| `chat:killAgents`     | Ctrl+X Ctrl+K                     | Kill all running [background subagents](/en/sub-agents#run-subagents-in-foreground-or-background) in this session                                              |
+| `chat:cycleMode`      | Shift+Tab\*                       | Cycle permission modes                                                                                                                                         |
+| `chat:modelPicker`    | Meta+P                            | Open model picker                                                                                                                                              |
+| `chat:fastMode`       | Meta+O                            | Toggle fast mode                                                                                                                                               |
+| `chat:thinkingToggle` | Meta+T                            | Toggle extended thinking                                                                                                                                       |
+| `chat:submit`         | Enter                             | Submit message                                                                                                                                                 |
+| `chat:newline`        | Ctrl+J                            | Insert a newline without submitting                                                                                                                            |
+| `chat:undo`           | Ctrl+\_, Ctrl+Shift+-             | Undo last action                                                                                                                                               |
+| `chat:externalEditor` | Ctrl+G, Ctrl+X Ctrl+E             | Open in external editor                                                                                                                                        |
+| `chat:stash`          | Ctrl+S                            | Stash current prompt                                                                                                                                           |
+| `chat:imagePaste`     | Ctrl+V (Alt+V on Windows and WSL) | Paste image from clipboard. On WSL, both shortcuts are bound by default                                                                                        |
 
 \*On Windows without VT mode (Node \<24.2.0/\<22.17.0, Bun \<1.2.23), defaults to Meta+M.
 

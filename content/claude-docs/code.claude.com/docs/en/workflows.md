@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/workflows
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: ea852411145cc40cec0e71b51deae8073fa8ee6d3ec437d527c82140c3375d61
+fetched_at: 2026-05-30T03:14:18.300217Z
+sha256: eafee774ea1cc9a2272872122e001651cc14cfb70abaef5f4c4258414f936113
 ---
 
 > ## Documentation Index
@@ -135,7 +135,7 @@ Claude Code highlights the word in your input and Claude writes a workflow scrip
 
 If the run does what you wanted, you can [save it as a command](#save-the-workflow-for-reuse) afterward.
 
-If Claude Code highlights the word when you didn't mean to trigger one, press `alt+w` to ignore it for this prompt.
+If Claude Code highlights the word when you didn't mean to trigger one, press `alt+w` to ignore it for this prompt, or press backspace while the cursor is right after the highlighted word. To stop the word from triggering at all, turn off Workflow keyword trigger in `/config`.
 
 ### Let Claude decide with ultracode
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/errors
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: b26b779c991b216aa29c4b87d89af32978bc62c6f916e7dfbae6993f042596f2
+fetched_at: 2026-05-30T03:14:18.300217Z
+sha256: 8f76812bf5b8989830545ac405dda9db4dd58a7c4c407c5de50d05c3942aa158
 ---
 
 > ## Documentation Index
@@ -617,6 +617,7 @@ All three variants mean the same thing: the sequence of `tool_use`, `tool_result
 
 **What to do:**
 
+* {/* max-version: 2.1.155 */}If you are using Opus 4.7 or Opus 4.8, run `claude update` first. Versions before v2.1.156 can trigger this error during normal tool use, and `/rewind` does not clear it.
 * Run `/rewind`, or press Esc twice, to step back to a checkpoint before the corrupted turn and continue from there. See [Checkpointing](/en/checkpointing) for how checkpoints are created and restored.
 
 ### Usage Policy refusal

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugin-marketplaces
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: f63b02451ec91045d89197e32bc55f2e3a329392d2e7821e1363373cc401af31
+fetched_at: 2026-05-30T03:14:18.300217Z
+sha256: 7366bb344b899c7be72355c5f94406dd3bd3a47a854caa35c35e1e506a4f2f37
 ---
 
 > ## Documentation Index
@@ -161,11 +161,11 @@ Each plugin entry needs at minimum a `name` and `source` (where to fetch it from
 
 ### Required fields
 
-| Field     | Type   | Description                                                                                                                                                            | Example        |
-| :-------- | :----- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------- |
-| `name`    | string | Marketplace identifier (kebab-case, no spaces). This is public-facing: users see it when installing plugins (for example, `/plugin install my-tool@your-marketplace`). | `"acme-tools"` |
-| `owner`   | object | Marketplace maintainer information ([see fields below](#owner-fields))                                                                                                 |                |
-| `plugins` | array  | List of available plugins                                                                                                                                              | See below      |
+| Field     | Type   | Description                                                                                                                                                                                                                                                                                                                                                                                                                           | Example        |
+| :-------- | :----- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :------------- |
+| `name`    | string | Marketplace identifier (kebab-case, no spaces). This is public-facing: users see it when installing plugins (for example, `/plugin install my-tool@your-marketplace`). Each user can register only one marketplace per name: adding a second marketplace with the same name replaces the first. To publish multiple plugins under one marketplace name, list them all in a [single `marketplace.json`](#create-the-marketplace-file). | `"acme-tools"` |
+| `owner`   | object | Marketplace maintainer information ([see fields below](#owner-fields))                                                                                                                                                                                                                                                                                                                                                                |                |
+| `plugins` | array  | List of available plugins                                                                                                                                                                                                                                                                                                                                                                                                             | See below      |
 
 <Note>
   **Reserved names**: The following marketplace names are reserved for official Anthropic use and cannot be used by third-party marketplaces: `claude-code-marketplace`, `claude-code-plugins`, `claude-plugins-official`, `anthropic-marketplace`, `anthropic-plugins`, `agent-skills`, `anthropic-agent-skills`, `knowledge-work-plugins`, `life-sciences`, `claude-for-legal`, `claude-for-financial-services`, `financial-services-plugins`. Names that impersonate official marketplaces, such as `official-claude-plugins` or `anthropic-tools-v2`, are also blocked.

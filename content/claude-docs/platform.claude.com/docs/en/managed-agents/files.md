@@ -1,17 +1,17 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/files
-fetched_at: 2026-05-21T03:16:34.837917Z
-sha256: 63185ecc9c58db16683b331065c4d6a31787e2e26044c80fff6c78ca7df0ee4c
+fetched_at: 2026-05-30T03:14:18.300217Z
+sha256: 0027680b0288af3e3784b27122ac7a5d912d3f77aefba43416df55a6ca334a62
 ---
 
 # Adding files
 
-Upload files and mount them in your container for reading and processing.
+Upload files and mount them in your sandbox for reading and processing.
 
 ---
 
-You can provide files to your agent by uploading them via the Files API and mounting them in the session's container.
+You can provide files to your agent by uploading them via the Files API and mounting them in the session's sandbox.
 
 <Note>
 All Managed Agents API requests require the `managed-agents-2026-04-01` beta header. The SDK sets the beta header automatically.
@@ -102,7 +102,7 @@ puts "File ID: #{file.id}"
 
 ## Mounting files in a session
 
-Mount uploaded files into the container by adding them to the `resources` array when creating a session:
+Mount uploaded files into the sandbox by adding them to the `resources` array when creating a session:
 
 <Tip>
 The `mount_path` is optional, but make sure the uploaded file has a descriptive name so the agent knows what it is looking for.
@@ -720,7 +720,7 @@ The agent can work with any file type, including:
 ## File paths
 
 <Note>
-Files mounted in the container are read-only copies. The agent can read them but cannot modify the original uploaded file. To work with modified versions, the agent writes to new paths within the container.
+Files mounted in the sandbox are read-only copies. The agent can read them but cannot modify the original uploaded file. To work with modified versions, the agent writes to new paths within the sandbox.
 </Note>
 
 - Files are mounted at the exact path you specify

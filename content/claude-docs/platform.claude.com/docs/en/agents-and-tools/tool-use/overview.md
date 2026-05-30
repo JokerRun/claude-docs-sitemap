@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 00b38f55f627ee3007b5013185befb7c06907dfd2c2ad2e31d4ae8ccee8b9cf2
+fetched_at: 2026-05-30T03:14:18.300217Z
+sha256: 90d100e0799afda1e88fd988d490dcd1a7eceb69413ab4702cf0b92a58f1b7df
 ---
 
 # Tool use with Claude
@@ -81,6 +81,18 @@ Add `strict: true` to your tool definitions to ensure Claude's tool calls always
 </Tip>
 
 Tool access is one of the highest-leverage primitives you can give an agent. On benchmarks like [LAB-Bench FigQA](https://lab-bench.org/) (scientific figure interpretation) and [SWE-bench](https://www.swebench.com/) (real-world software engineering), adding even basic tools produces outsized capability gains, often surpassing human expert baselines.
+
+---
+
+## When Claude uses tools
+
+With the default `tool_choice` of `{"type": "auto"}`, Claude decides on each turn whether to call a tool or respond directly. It calls a tool when the request maps to that tool's described capability and the answer isn't already in context; it responds directly for stable knowledge, creative tasks, and conversational turns.
+
+This boundary is steerable through your system prompt. If Claude isn't calling tools when you expect, a light instruction like `"Use the tools to investigate before responding."` measurably increases tool use; a stronger form like `"Always call a tool first before responding."` pushes further. Conversely, `"Use your judgment about whether to call a tool or respond directly."` keeps triggering behavior conservative.
+
+For a hard guarantee rather than a nudge, use [`tool_choice`](/docs/en/agents-and-tools/tool-use/define-tools#forcing-tool-use).
+
+Each server tool's page describes its own trigger boundary in more detail. See for example [the web search tool](/docs/en/agents-and-tools/tool-use/web-search-tool) or [the code execution tool](/docs/en/agents-and-tools/tool-use/code-execution-tool).
 
 ---
 

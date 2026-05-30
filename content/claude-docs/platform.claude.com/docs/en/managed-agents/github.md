@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/github
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 750b4ceeec6bcf3078a13895152e4db60b4871d76e872575272fee7407d239d8
+fetched_at: 2026-05-30T03:14:18.300217Z
+sha256: 3091526e48c464af60c6b7343f3e5f5938ad60d6586f3d80522f5b08b52adaac
 ---
 
 # Accessing GitHub
@@ -11,7 +11,7 @@ Connect your agent to GitHub repositories for cloning, reading, and creating pul
 
 ---
 
-You can mount a GitHub repository to your session container and connect to the GitHub MCP for making pull requests.
+You can mount a GitHub repository to your session sandbox and connect to the GitHub MCP for making pull requests.
 
 GitHub repositories are cached, so future sessions that use the same repository start faster.
 
@@ -668,12 +668,7 @@ await client.beta.sessions.resources.update(repoResourceId, {
 ````csharp
 // List resources on the session
 var listed = await client.Beta.Sessions.Resources.List(session.ID);
-string repoResourceId = null!;
-await foreach (var entry in listed.Paginate())
-{
-    repoResourceId = entry.ID;
-    break;
-}
+var repoResourceId = (await listed.Paginate().FirstAsync()).ID;
 Console.WriteLine(repoResourceId); // "sesrsc_01ABC..."
 
 // Rotate the authorization token

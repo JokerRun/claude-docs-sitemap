@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: fa645557f8cec0058610efb8566d0ee46c06022604bf472aa5e1db4adf3717e7
+fetched_at: 2026-05-30T03:14:18.300217Z
+sha256: 4ecd0af14b5f8e225870bc195199a9f2a277b634bf3c41b0f2005fa46e44d845
 ---
 
 # Advisor tool
@@ -589,7 +589,7 @@ If your agent exposes other planner-like tools (for example, a todo list tool), 
 
 #### Suggested system prompt for coding tasks
 
-For coding tasks where you want consistent advisor timing and around two to three calls per task, prepend the following blocks to your executor system prompt before any other sentences that mention the advisor. On internal coding evaluations this pattern produced the highest intelligence at near-Sonnet cost.
+Without system-prompt steering, the executor tends to under-call the advisor in some domains — coding tasks in particular. For coding tasks where you want consistent advisor timing and around two to three calls per task, prepend the following blocks to your executor system prompt before any other sentences that mention the advisor.
 
 Timing guidance:
 

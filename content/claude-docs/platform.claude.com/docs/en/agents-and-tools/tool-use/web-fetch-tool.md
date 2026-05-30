@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-fetch-tool
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: a47fbe004b19c157cd59fbcba50f353fd3f1808439f55f2fd6b7033c0eac4238
+fetched_at: 2026-05-30T03:14:18.300217Z
+sha256: 3d08bdc8b096aa87274e6211e274687f31144365536fa5ab0f3c0d62041b6d25
 ---
 
 # Web fetch tool
@@ -50,6 +50,15 @@ When you add the web fetch tool to your API request:
 <Note>
 The web fetch tool currently does not support websites dynamically rendered with JavaScript.
 </Note>
+
+### When Claude fetches
+
+Claude fetches when the request points at a specific page or document:
+
+- A URL is provided in the conversation (or a previous tool result)
+- The user names a specific resource (a particular article, README, pricing page, or documentation section) without a URL, and the [web search tool](/docs/en/agents-and-tools/tool-use/web-search-tool) is also enabled so Claude can locate it first (see [Combined search and fetch](#combined-search-and-fetch))
+
+Claude does **not** fetch for general-knowledge or open-ended questions that don't reference a specific page. "Summarize this article: `<url>`" triggers a fetch; "what are best practices for REST API design?" is answered directly.
 
 ### Dynamic filtering
 
@@ -697,6 +706,8 @@ In this workflow, Claude will:
 2. Select the most promising results
 3. Use web fetch to retrieve full content
 4. Provide detailed analysis with citations
+
+When both the web search and web fetch tools are enabled, and the user names a specific page or document without providing a URL (for example, "read the README from the anthropics/anthropic-sdk-python repository"), Claude uses web search to locate it, then fetches the result.
 
 ## Prompt caching
 

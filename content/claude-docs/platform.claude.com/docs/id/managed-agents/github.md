@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/github
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 54ee432c55484858269281d94c044d5977476d052e229417ba39e9185b772a56
+fetched_at: 2026-05-30T03:14:18.300217Z
+sha256: 4912a7b4adf7236f2f0aac1144bb70f284f9328091fd38d77d327aa2aae49d23
 ---
 
 # Mengakses GitHub
@@ -668,12 +668,7 @@ await client.beta.sessions.resources.update(repoResourceId, {
 ````csharp
 // List resources on the session
 var listed = await client.Beta.Sessions.Resources.List(session.ID);
-string repoResourceId = null!;
-await foreach (var entry in listed.Paginate())
-{
-    repoResourceId = entry.ID;
-    break;
-}
+var repoResourceId = (await listed.Paginate().FirstAsync()).ID;
 Console.WriteLine(repoResourceId); // "sesrsc_01ABC..."
 
 // Rotate the authorization token

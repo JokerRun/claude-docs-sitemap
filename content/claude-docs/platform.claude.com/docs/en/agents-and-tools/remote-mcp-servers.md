@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/remote-mcp-servers
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 42aeab377e3bd764a9661a58119f60b92a3da01cdcd96feefd935df1c4b47c98
+fetched_at: 2026-05-30T03:14:18.300217Z
+sha256: e7b7901764047e563daf5c5e850ea949e90e7c9414d011a144b0df0c6eabf4b0
 ---
 
 # Remote MCP servers
@@ -26,6 +26,10 @@ To connect to a remote MCP server:
 3. Follow the server-specific connection instructions provided by each company.
 
 For more information about using remote MCP servers with the Claude API, see the [MCP connector docs](/docs/en/agents-and-tools/mcp-connector).
+
+<Note>
+Once connected, remote MCP tools follow the same triggering behavior as any other tool. See [When Claude uses MCP tools](/docs/en/agents-and-tools/mcp-connector#when-claude-uses-mcp-tools).
+</Note>
 
 ## Remote MCP server examples
 

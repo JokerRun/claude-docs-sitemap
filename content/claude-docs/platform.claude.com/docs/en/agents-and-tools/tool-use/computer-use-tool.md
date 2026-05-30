@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 29ffacfe39a255db94e0abc6176c1383267fd3fcd2ce9ec402601ece96f9bae2
+fetched_at: 2026-05-30T03:14:18.300217Z
+sha256: 0dce2a27a25db5479dbc2c3be3025923bd33a817a84bc38f0616aea9f84f3e2b
 ---
 
 # Computer use tool
@@ -750,6 +750,7 @@ Here are some tips on how to get the best quality outputs:
 4. For repeatable tasks or UI interactions, include example screenshots and tool calls of successful outcomes in your prompt.
 5. If you need the model to log in, provide it with the username and password in your prompt inside XML tags such as `<robot_credentials>`. Using computer use within applications that require login increases the risk of bad outcomes as a result of prompt injection. Review [Mitigate jailbreaks and prompt injections](/docs/en/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks) before providing the model with login credentials.
 6. When constructing a user turn's `content` array, place the instruction text *before* the screenshot image. Providing the target description before the image is processed improves click accuracy.
+7. When using `computer_20251124` with `enable_zoom: true` set, Claude zooms in on a region when asked about small text or specific UI elements that aren't legible at the screenshot's default resolution, such as file names in a sidebar, tab titles, status-bar text, line numbers, or button labels. If Claude isn't zooming when you expect, ask about a specific region or element rather than the screen as a whole.
 
 <Tip>
   If you repeatedly encounter a clear set of issues or know in advance the tasks

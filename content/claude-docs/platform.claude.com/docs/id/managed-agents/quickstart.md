@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/quickstart
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 3643ab7eca01ba4044c319f6e23caa0e92434123165360849abdee6721578d01
+fetched_at: 2026-05-30T03:14:18.300217Z
+sha256: c2afd761f8061376f075746c7545beef4bcb62976e7cb8dfd89bd5f9b8be38d8
 ---
 
 # Mulai dengan Claude Managed Agents
@@ -18,7 +18,7 @@ Panduan ini memandu Anda membuat agen, menyiapkan lingkungan, memulai sesi, dan 
 | Concept | Description |
 |---------|-------------|
 | **Agent** | The model, system prompt, tools, MCP servers, and skills |
-| **Environment** | Configuration for where sessions run: an Anthropic-managed cloud container, or a self-hosted sandbox on your own infrastructure |
+| **Environment** | Configuration for where sessions run: an Anthropic-managed cloud sandbox, or a self-hosted sandbox on your own infrastructure |
 | **Session** | A running agent instance within an environment, performing a specific task and generating outputs |
 | **Events** | Messages exchanged between your application and the agent (user turns, tool results, status updates) |
 
@@ -280,12 +280,12 @@ import com.anthropic.models.beta.agents.AgentCreateParams;
 import com.anthropic.models.beta.agents.BetaManagedAgentsAgentToolset20260401Params;
 import com.anthropic.models.beta.agents.BetaManagedAgentsModel;
 import com.anthropic.models.beta.environments.BetaCloudConfigParams;
-import com.anthropic.models.beta.environments.EnvironmentCreateParams;
 import com.anthropic.models.beta.environments.BetaUnrestrictedNetwork;
+import com.anthropic.models.beta.environments.EnvironmentCreateParams;
 import com.anthropic.models.beta.sessions.SessionCreateParams;
+import com.anthropic.models.beta.sessions.events.BetaManagedAgentsStreamSessionEvents;
 import com.anthropic.models.beta.sessions.events.BetaManagedAgentsUserMessageEventParams;
 import com.anthropic.models.beta.sessions.events.EventSendParams;
-import com.anthropic.models.beta.sessions.events.BetaManagedAgentsStreamSessionEvents;
 
 void main() {
     var client = AnthropicOkHttpClient.fromEnv();

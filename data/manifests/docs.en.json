@@ -52,8 +52,8 @@
     "source": "code",
     "url": "https://code.claude.com/docs/en/agent-sdk/hosting",
     "local_path": "content/claude-docs/code.claude.com/docs/en/agent-sdk/hosting.md",
-    "fetched_at": "2026-05-06T03:14:02.071100Z",
-    "sha256": "32785bb3e8eadbcf4de102e97d11e6b3dd73f8f9e6f107ed2627bcc4ca7dceb1"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "f6b5de85c87a8b0a1bce75dc8f3dbd5ea79adbf8c5c89f7090b15a65df6e9753"
   },
   {
     "source": "code",
@@ -87,8 +87,8 @@
     "source": "code",
     "url": "https://code.claude.com/docs/en/agent-sdk/overview",
     "local_path": "content/claude-docs/code.claude.com/docs/en/agent-sdk/overview.md",
-    "fetched_at": "2026-05-27T03:17:07.219627Z",
-    "sha256": "9e519ae0b1fb51a6db5a5d10229601dc3b22b9c0b70cb9a5c4731c51e13d7a43"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "0f60f0ce8340354476d6a42720ea84231039b554446c60767a2cf3b986befcb6"
   },
   {
     "source": "code",
@@ -115,8 +115,8 @@
     "source": "code",
     "url": "https://code.claude.com/docs/en/agent-sdk/quickstart",
     "local_path": "content/claude-docs/code.claude.com/docs/en/agent-sdk/quickstart.md",
-    "fetched_at": "2026-05-23T03:13:35.851650Z",
-    "sha256": "c5246ae71179efe675b29e9ccdcb579cd386a741af621a03d3ae4c0c4c981cf4"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "8658a765c682d6b5a83042c59f81c5ce6e3a8941f35170e7975ce11a2768fe06"
   },
   {
     "source": "code",
@@ -178,8 +178,8 @@
     "source": "code",
     "url": "https://code.claude.com/docs/en/agent-sdk/subagents",
     "local_path": "content/claude-docs/code.claude.com/docs/en/agent-sdk/subagents.md",
-    "fetched_at": "2026-05-23T03:13:35.851650Z",
-    "sha256": "cb702ff2d919c9f03db429fe4440babbc3bf18d39f9577fb6dc80f11930ca92d"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "aa808802fb24f315da6f2d5b138bdf7cc940b2df851309010b0e6836d788fc7b"
   },
   {
     "source": "code",
@@ -199,8 +199,8 @@
     "source": "code",
     "url": "https://code.claude.com/docs/en/agent-sdk/typescript",
     "local_path": "content/claude-docs/code.claude.com/docs/en/agent-sdk/typescript.md",
-    "fetched_at": "2026-05-28T03:18:36.130288Z",
-    "sha256": "085aa1d86758e0ef7d1f47de02e7969953730271e3484eb8eb7c54f00f721f5a"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "b2af48d558896c7d5fb3a948fe6d7c24e25c4b92619ce0c4d3f6d215f471f20b"
   },
   {
     "source": "code",
@@ -213,8 +213,8 @@
     "source": "code",
     "url": "https://code.claude.com/docs/en/agent-sdk/user-input",
     "local_path": "content/claude-docs/code.claude.com/docs/en/agent-sdk/user-input.md",
-    "fetched_at": "2026-05-13T03:15:22.791986Z",
-    "sha256": "0ccb98956bca7325f1b535c8f97714e663725e56f60878c4029d93bd035e4b9c"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "e3498a2643abd10b9bf69b20654059fbb2c16813608cab5ae7b4ac990f3955b0"
   },
   {
     "source": "code",
@@ -227,8 +227,8 @@
     "source": "code",
     "url": "https://code.claude.com/docs/en/agent-view",
     "local_path": "content/claude-docs/code.claude.com/docs/en/agent-view.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "090c45acefb0f0fd7210e74c33a034c5f765d4b39234a4a34613d0d0454d2d95"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "c9461e7f96b7262795de612ee7100ed80ec8e8c1aabc039977257c3cd740e9bf"
   },
   {
     "source": "code",
@@ -283,8 +283,8 @@
     "source": "code",
     "url": "https://code.claude.com/docs/en/changelog",
     "local_path": "content/claude-docs/code.claude.com/docs/en/changelog.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "868ab937cb41a11dc6c5f9923e9e4a23efa8889ac7f4f9907835f1cc809e9d58"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "6c885402b3b2932ff6daeedcabbcb8a7a5f994afcdf5a9313c034de70a85378a"
   },
   {
     "source": "code",
@@ -339,8 +339,8 @@
     "source": "code",
     "url": "https://code.claude.com/docs/en/cli-reference",
     "local_path": "content/claude-docs/code.claude.com/docs/en/cli-reference.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "49bf49708a287aef431d09ad2ac5c00197d5d0b14123e9415283cb580a4c72f9"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "a57756e3622ffbd54b9cd3cec261b045555dda1b1c227d0eba2d89eea1eb6e05"
   },
   {
     "source": "code",
@@ -416,8 +416,8 @@
     "source": "code",
     "url": "https://code.claude.com/docs/en/desktop",
     "local_path": "content/claude-docs/code.claude.com/docs/en/desktop.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "d607f535cd8d3f910b642f15c07a0d798c37a417e67bb9153e51835b1673c51e"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "160fa0e6dac4c2e5164846d6568cb64c87ddcf7932e90f987250e9dd2539ade9"
   },
   {
     "source": "code",
@@ -451,15 +451,15 @@
     "source": "code",
     "url": "https://code.claude.com/docs/en/env-vars",
     "local_path": "content/claude-docs/code.claude.com/docs/en/env-vars.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "81b9837f5ab868aa89165a55fb6a46105fa532b5c70d91e6072689cb4c9beaea"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "c331afc69c405eabb9c907b729ac7989402c908fd0e379429ebec39166efa2c8"
   },
   {
     "source": "code",
     "url": "https://code.claude.com/docs/en/errors",
     "local_path": "content/claude-docs/code.claude.com/docs/en/errors.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "b26b779c991b216aa29c4b87d89af32978bc62c6f916e7dfbae6993f042596f2"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "8f76812bf5b8989830545ac405dda9db4dd58a7c4c407c5de50d05c3942aa158"
   },
   {
     "source": "code",
@@ -535,8 +535,8 @@
     "source": "code",
     "url": "https://code.claude.com/docs/en/hooks",
     "local_path": "content/claude-docs/code.claude.com/docs/en/hooks.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "7b7f16e75388e75a88dd02a3387543ff3578e0aa18eccf703aec6e556a4f1928"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "daeced051b0adf891906e267d1db16fbb5159ba0f7cf2b0963a3e160306ceac4"
   },
   {
     "source": "code",
@@ -556,8 +556,8 @@
     "source": "code",
     "url": "https://code.claude.com/docs/en/interactive-mode",
     "local_path": "content/claude-docs/code.claude.com/docs/en/interactive-mode.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "93cb38fbfdbff71b2a14c8a9aeeaf3f462ec7fd2e4d2c4d81f6ce24067d69661"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "4ab7591234fb2e7ab1497f252d2c76faa49c2fb2502c7ce0e4732892f03ef6d1"
   },
   {
     "source": "code",
@@ -570,8 +570,8 @@
     "source": "code",
     "url": "https://code.claude.com/docs/en/keybindings",
     "local_path": "content/claude-docs/code.claude.com/docs/en/keybindings.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "cd9f1c67d5d0ef9e61cb6925ef77916993ed0405e1d0fce3e58ebca4fef90448"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "834f20e2c97c74ea3a4c0bf113027e6b9ee1aa1ca052b5d4cc9e7df5553bbc4d"
   },
   {
     "source": "code",
@@ -605,15 +605,15 @@
     "source": "code",
     "url": "https://code.claude.com/docs/en/mcp",
     "local_path": "content/claude-docs/code.claude.com/docs/en/mcp.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "a3cded050f65ee11346191e627436cb0834cfd42d8c87846cd4d9e284ffd1b69"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "77d4075c7a29ded96f38e6bdfe3e8dd58c64c3bbed45934761bc226c34daac79"
   },
   {
     "source": "code",
     "url": "https://code.claude.com/docs/en/memory",
     "local_path": "content/claude-docs/code.claude.com/docs/en/memory.md",
-    "fetched_at": "2026-05-27T03:17:07.219627Z",
-    "sha256": "533da459958a35d21f7bf9eba3bd87fb08cad6e1e8d4bf4d8f4308875c0d2784"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "c5dc0aecc48d27f0ce98d4c5d87c311a251aaa419e6dfd403f351f225e7c9eef"
   },
   {
     "source": "code",
@@ -633,8 +633,8 @@
     "source": "code",
     "url": "https://code.claude.com/docs/en/monitoring-usage",
     "local_path": "content/claude-docs/code.claude.com/docs/en/monitoring-usage.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "a89a23c54c7448db7caab2a0b7fa7dca9a21e43b52a690b50dab75934ac32301"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "34bef140e8ef72a735c3877558b8792cd1bbcca7b9cf9b965ce9f87330253f1f"
   },
   {
     "source": "code",
@@ -661,15 +661,15 @@
     "source": "code",
     "url": "https://code.claude.com/docs/en/permission-modes",
     "local_path": "content/claude-docs/code.claude.com/docs/en/permission-modes.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "b25b0d799e26cfa9e0ea1ff34f7032095602c6806a5ec65ee5b2017d35cd2ef9"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "b558d3081dbe4d8ac204fbd668b395bb66d453902047839c8eed6d0c82358865"
   },
   {
     "source": "code",
     "url": "https://code.claude.com/docs/en/permissions",
     "local_path": "content/claude-docs/code.claude.com/docs/en/permissions.md",
-    "fetched_at": "2026-05-26T03:16:13.081831Z",
-    "sha256": "6e42acc38cecd9b2fa57066779c0d0d7021974dbd605c657227bc0a4098c84df"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "419d5a24b214e0001b6e7064565d6d3afacdd424f832b0f6cacbfe771f8e5803"
   },
   {
     "source": "code",
@@ -696,22 +696,22 @@
     "source": "code",
     "url": "https://code.claude.com/docs/en/plugin-marketplaces",
     "local_path": "content/claude-docs/code.claude.com/docs/en/plugin-marketplaces.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "f63b02451ec91045d89197e32bc55f2e3a329392d2e7821e1363373cc401af31"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "7366bb344b899c7be72355c5f94406dd3bd3a47a854caa35c35e1e506a4f2f37"
   },
   {
     "source": "code",
     "url": "https://code.claude.com/docs/en/plugins",
     "local_path": "content/claude-docs/code.claude.com/docs/en/plugins.md",
-    "fetched_at": "2026-05-20T03:15:44.945478Z",
-    "sha256": "f162c7b46b69ea7d7769560a443dc1ae9732eb7e02b670daec06fd3fe91ccdd3"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "477e046cfd3c180df95d419d74e5342850dcb998028a1fe8648e812c30a520aa"
   },
   {
     "source": "code",
     "url": "https://code.claude.com/docs/en/plugins-reference",
     "local_path": "content/claude-docs/code.claude.com/docs/en/plugins-reference.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "b7b39ddfee55027a7caccf164ff6cee7f452a92c6938dbaa4534843275391bcc"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "9c2c90692bb36112e4387585210901d51c4017b10014e27b9bc6857a39c94248"
   },
   {
     "source": "code",
@@ -801,8 +801,8 @@
     "source": "code",
     "url": "https://code.claude.com/docs/en/settings",
     "local_path": "content/claude-docs/code.claude.com/docs/en/settings.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "120afba392ddb5dbd877ad13a4791e942cc09a6ace0b2a85203b9d9a910adb1b"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "92b949624a83820462c4672448e93701e9259c19ec00cc5b3be2918db6be1d21"
   },
   {
     "source": "code",
@@ -815,8 +815,8 @@
     "source": "code",
     "url": "https://code.claude.com/docs/en/skills",
     "local_path": "content/claude-docs/code.claude.com/docs/en/skills.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "89e8bdee19a1d20c43780a89b23cd76136a2f19497e4b64c0f374fe63315bdef"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "ac720bf63d8ded1aa7bd0b2f4249b725e531d272958ce0d60016b5737bfe6976"
   },
   {
     "source": "code",
@@ -829,22 +829,22 @@
     "source": "code",
     "url": "https://code.claude.com/docs/en/statusline",
     "local_path": "content/claude-docs/code.claude.com/docs/en/statusline.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "5fe293c26f4eaf70fcf2fb56b61f7417b34e1b2da8f856010c534205a905133c"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "4f1178cd373a97c799eebcf81f42800881e752a572e8954ed290acae13432400"
   },
   {
     "source": "code",
     "url": "https://code.claude.com/docs/en/sub-agents",
     "local_path": "content/claude-docs/code.claude.com/docs/en/sub-agents.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "9e98a234dae80c27c150ba9f5b880de898b9d8218d2d81a5dedb3daa78fd2357"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "99285ec6898ea5d8f30d979b5a779196ff90106ee8c0e0d87ccf0720fd1bcf20"
   },
   {
     "source": "code",
     "url": "https://code.claude.com/docs/en/terminal-config",
     "local_path": "content/claude-docs/code.claude.com/docs/en/terminal-config.md",
-    "fetched_at": "2026-05-09T03:13:52.260309Z",
-    "sha256": "3a475013710a2c7f7651977357165b4cbed29541cce956b59ffdff3f7f1be869"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "ad5e5785d465c6f612abca7d79db0c8b254af8bc7313243a4511c1871278583b"
   },
   {
     "source": "code",
@@ -857,8 +857,8 @@
     "source": "code",
     "url": "https://code.claude.com/docs/en/tools-reference",
     "local_path": "content/claude-docs/code.claude.com/docs/en/tools-reference.md",
-    "fetched_at": "2026-05-26T03:16:13.081831Z",
-    "sha256": "78cd603ba48dc696bf4d8a96c5c065dbd7598cbe94fa502b7405d1a2e9b8cc1b"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "3d2251ac8c40506ebeaf3779d0539af0b8cb390de3d0eee3c67fd7f7ab0e322d"
   },
   {
     "source": "code",
@@ -976,15 +976,15 @@
     "source": "code",
     "url": "https://code.claude.com/docs/en/workflows",
     "local_path": "content/claude-docs/code.claude.com/docs/en/workflows.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "ea852411145cc40cec0e71b51deae8073fa8ee6d3ec437d527c82140c3375d61"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "eafee774ea1cc9a2272872122e001651cc14cfb70abaef5f4c4258414f936113"
   },
   {
     "source": "code",
     "url": "https://code.claude.com/docs/en/worktrees",
     "local_path": "content/claude-docs/code.claude.com/docs/en/worktrees.md",
-    "fetched_at": "2026-05-23T03:13:35.851650Z",
-    "sha256": "e100605f712de0b1abc031ad949f67a59c72648f48a7ec0ff3414a07f7c4001a"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "d993aaa4835cf36dea667b6abe3dd0f89d7016659cadcbab0b86a9b8ef9cb8f1"
   },
   {
     "source": "code",
@@ -1025,8 +1025,8 @@
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/agents-and-tools/mcp-connector",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/agents-and-tools/mcp-connector.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "592849f1c4c9860d4c8e963e81557583d0eef4684d70f4d7e9b29238a0bba8d6"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "616338d56d2633ed2f057feb677040f56ef86ca7dee5ac061f6eca227292e5df"
   },
   {
     "source": "platform",
@@ -1088,15 +1088,15 @@
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/agents-and-tools/remote-mcp-servers",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/agents-and-tools/remote-mcp-servers.md",
-    "fetched_at": "2026-01-18T03:48:37.713242Z",
-    "sha256": "42aeab377e3bd764a9661a58119f60b92a3da01cdcd96feefd935df1c4b47c98"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "e7b7901764047e563daf5c5e850ea949e90e7c9414d011a144b0df0c6eabf4b0"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "fa645557f8cec0058610efb8566d0ee46c06022604bf472aa5e1db4adf3717e7"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "4ecd0af14b5f8e225870bc195199a9f2a277b634bf3c41b0f2005fa46e44d845"
   },
   {
     "source": "platform",
@@ -1123,8 +1123,8 @@
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "29ffacfe39a255db94e0abc6176c1383267fd3fcd2ce9ec402601ece96f9bae2"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "0dce2a27a25db5479dbc2c3be3025923bd33a817a84bc38f0616aea9f84f3e2b"
   },
   {
     "source": "platform",
@@ -1172,8 +1172,8 @@
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/agents-and-tools/tool-use/overview.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "00b38f55f627ee3007b5013185befb7c06907dfd2c2ad2e31d4ae8ccee8b9cf2"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "90d100e0799afda1e88fd988d490dcd1a7eceb69413ab4702cf0b92a58f1b7df"
   },
   {
     "source": "platform",
@@ -1256,8 +1256,8 @@
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-fetch-tool",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/agents-and-tools/tool-use/web-fetch-tool.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "a47fbe004b19c157cd59fbcba50f353fd3f1808439f55f2fd6b7033c0eac4238"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "3d08bdc8b096aa87274e6211e274687f31144365536fa5ab0f3c0d62041b6d25"
   },
   {
     "source": "platform",
@@ -9362,932 +9362,932 @@
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "4c61c3d6ac2a02fb15b5431920aaf7926d0ea7da116a2e3eb2398499f6c44188"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "e57b31ae98f89595003032461eb6bd1e66575d3895a86acd647792114d4a9784"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/agents",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/agents.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "610c0dd2887fee40514fbbffdd50bc88290456fe4ec742d22556454dd367df7f"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "d40832859f31744e5b7b1d0223fc6d0d79564b79bf8974a63db552a2fa5faa82"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/agents/archive",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/agents/archive.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "eaca1ec77e3608b5e15536298fca562f5beb67c493d495dc5e3504152371b7bd"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "8cc039dbcc8318d68f2c1b506dd6af68a2b378f597abf2dffed283d32aa7e661"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/agents/create",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/agents/create.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "f6806acc11a4e7fd39259493563ece2e4194c59be56d43347580ed1139666417"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "8b3ee8b470b5dbf54e5aad7dd7aa838dbbd3b2d0ea48a4a7be61aa76c833afd3"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/agents/list",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/agents/list.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "8bbe329af4ba7b4c482be0b74d0174470c68db711672f4581194249cea6a5d7f"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "fd53a9ff6950f96a97818ca07108af95f72713b1dedea5f76aed800758181167"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/agents/retrieve",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/agents/retrieve.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "f5e5dc56439e6c3a2f9a3957b8e3108615799be3776899365594d8fb8ac01334"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "f5142a79e04dfd4cc0a8ecaa667aba968e229567354f991665cdebe0ff494230"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/agents/update",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/agents/update.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "bea3a0629f04851d5e4cb6db9d14ebbc36d5ae0a79fe073313cf76d1c8279913"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "3aa6bce6d652120e9e4201076828aede31f006a09c0ce83d7aca98a82b15979b"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/agents/versions",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/agents/versions.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "ea143447cc92173386511c9d19b02feacbd8bbf760e4312a3f580025dbc4e494"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "6beb6f8843e0d229cb60451bc83221f733bd074a5e6f0a60f9749930c90fec8b"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/agents/versions/list",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/agents/versions/list.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "2120a8c1d10f98601053ce7a366f627ec14721ab6e65f37e023abb5ace68081d"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "3e9218cbbec74f1a4a43aa5d43e2654216b7446bb35a1fd15be23791bf13f66d"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/environments",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/environments.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "1f4ce7052580e1a4eb1b7aaf0a325907416e0cb31af063fcc9781252cf3a75fa"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "c3b55f68b2873fdb34d96d9a8e129ed14c1d4065b584a39562e7ea7a1cc4db9b"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/environments/archive",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/environments/archive.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "8f6bb1fa9c152bd843ea2ccc8926d3d386a670cef3b11bbfe6884ad6f8bdb541"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "bee8db1f0471a111999da0cf986cff47fab0fcd37d66ab203dabf30fcacafd47"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/environments/create",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/environments/create.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "755393ab35f6b60f3bbb0c62204b3de3b8a2689a37950731a6936a4e01962ad6"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "b665037a631f0faf2508ba052ee0b9b9a51a23ba1af8f1d83fe5c2a3c74f8efe"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/environments/delete",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/environments/delete.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "98eb28567c71ab78df0585b1e4afc0c45edf60745c6a70433383b460ec89ceb8"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "eb42de944395036719e4ef427b4ae0cd3f3ecff2d6a6701f2ec3e791e16eb575"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/environments/list",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/environments/list.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "460b9119957351bf1ea1f4ead0c87e022a363ead21d91dd4f90d356103cef528"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "a7a335840a3d930e6c587d3c5000de57edfae5019785f19b94aa2ba984fd4e0c"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/environments/retrieve",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/environments/retrieve.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "87966c9764918e3cd823d0bb1a3ef1798e077c81417c4dcded3711326552d104"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "104af146e599ccd5bb7a0a7723d82f750b5ab5a7ea1fc5beeec1abe5c3e5a8b0"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/environments/update",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/environments/update.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "65a139de1233f76a3859761065697bb13594d01e4d19b64eb82da2431a66d978"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "fcc4ab59ccbf886f999a28ccb9ed93cd747519e1893ad14c568142e726d95d93"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/environments/work",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/environments/work.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "40b60ec191e6438b83491fd73e133047e7e6ebb6dbcdb128b0e3973e141ff1a7"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "3b687f0bf65d0285fec24a47bd4740fc632e4e7ef42a9b4830c6a888593a6b4f"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/environments/work/ack",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/environments/work/ack.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "e5c6accc8ec1495be8c4346d31d40747ae907717be489a7fae8f444f4b10d156"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "ad2f3929dc3224bf36e263c5258e331e4e1c6fe70d4af57d8e00797371c38b12"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/environments/work/heartbeat",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/environments/work/heartbeat.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "ce2a12807fc3ee9d35af35975d173288f69d67dae834eb70100e24c3bbab6ce1"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "060ee2b66309e1cb06e5d6f87ae1da5120e0c6a6e7a2b026c1733b7fec05ec87"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/environments/work/list",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/environments/work/list.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "c4da72dab8489a22c4d77e42f0b5569f2bf0748b7879c38c7a77d35f68c6a501"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "8c70661e244677342e889fb8635348bdf1821eb0d46fee36812cfbfdad3c0c1e"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/environments/work/poll",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/environments/work/poll.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "ab19f5fafa061e206d845a549e82997c6f6b615e2f23e0c594ced95a17cce4e2"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "b8659ebb18810122f15d156cea364746d4b1604536c1a38e5d16d260965d7ccf"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/environments/work/retrieve",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/environments/work/retrieve.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "1643956506ca97045b460eac1c58efe3836ca601b57f683346ba530c8cf3b76b"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "2c27da7692c507cf5d22441a3cdf85065b19e04b777f63d38b8b6c70f4c4299e"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/environments/work/stats",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/environments/work/stats.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "0a2edf233ae5d4d0c119ad91dd2558ec3fc559a384edfe1b51ee71b7ee67df39"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "5c0cf1dd775e5e691d13b19f9be7ba7de09a741bedf8beecbcfbe2e83462c548"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/environments/work/stop",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/environments/work/stop.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "82eaf8953193b155158ac6c8b69a64c58ee6a7de09696a9e9fc325d508f0be75"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "00c46faf13f88c29c917fe152526f681f203de49919645217b24c58420872ff5"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/environments/work/update",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/environments/work/update.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "e821cda6bcbffc063123f4b94693ea8f55fef7043da08cb1c921d21cb0d1b0b6"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "bcf7e380490a5792d76816b579aaa91ba81dd98ac892a3ef068e7ff5a7cbd4be"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/files",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/files.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "b92074e1cf0944fe994de997fbe95aa7591af690e63950ca4a944b5f6ea2e2b9"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "8898ced38fc10ee631e3edbac3131317d50229f1bd59074cb786f532c2777a6b"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/files/delete",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/files/delete.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "8e72a66a9dc4f86580c9f89469fc56fbac2d61305d284be29c9908ae1882dc7a"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "f4e080a9a96c5362c10a5ccfeb4906d81939bd9e5491ebfba0c1028f90aad272"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/files/download",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/files/download.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "f2d19f7eea76b7ba992ee9c3ac8a968244d328737ac2c455110a55011fbff8de"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "aad1fc6265f49ef043d1dabd06c3be4ad248a90ca18ac9b51772910e9889b8fd"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/files/list",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/files/list.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "ae9a103a4a4ff05efffabf15ba926bd417b8f67ec215341e08936249df36ac76"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "5d019201d07c8091a6a4f7e7e77cc977ede5fb8ee3a3bbcdad947dc9118fad3c"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/files/retrieve_metadata",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/files/retrieve_metadata.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "440891060d7d66d5d7e387958ec818e325e1cdf26d3a996e800ec39b608bff5a"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "3e1475b3ff69ae7d9a41f4c01fee24fbdf2553719e97b1aac80a0d1123765661"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/files/upload",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/files/upload.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "af5ec915702a5fe92a4f0ee9c15a645cc16e10987d4721434336c033e0979241"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "eee01a633d0d37b9048008986d592ed7bf42a26dd3269a2f50da3813402667df"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/memory_stores",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/memory_stores.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "f39f9b2f1ccc29fdfb469ab6dbfe5ab780824595ee2bb650c10f8f6a6a31e452"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "10bdc71a670455f2387513b22d7bcf6d2e13b56ca319fbfaa1b9bab695d3cb47"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/memory_stores/archive",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/memory_stores/archive.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "dc1bc126ff7b43d5068ad72305ed3e7fde86bb5cbd5218b2cd3e439410cd7685"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "a22e2925dbd43556adf09ef8527111bbd6e066083cf1f904a36d749867af0a1b"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/memory_stores/create",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/memory_stores/create.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "dd02814e79f4e894ac89b1549835f349e3a3951cdf98400e93b46ef3e941f235"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "c844d8121ccda20f1a7f7b488045e374ae4151e9b6895b89c361dd7eda18793e"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/memory_stores/delete",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/memory_stores/delete.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "f6a2b5d8248440d87891618dedd656f2d4f495541dca947f03d1678b179edc1c"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "5e80c3578ceef75afa483159c8e0eff26d9fd2202974a35287f6e7792ecd7891"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/memory_stores/list",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/memory_stores/list.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "5c520b37710009eeb77c35f8ea89f7f9a4fd4c9bc051adfac07fbdabbbeedfbf"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "e952423b8b00e139681ba6861cc4cddd5766b4c4a3955925f13f51b562197655"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/memory_stores/memories",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/memory_stores/memories.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "8735043aa8726b147930503a1a5dd0df407701c5b9874443ad64074bf1665f08"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "e3079bb8ddeaf1d1dcafae1a9902ae40934fedc3d6b1a14a6800776a4839a5c8"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/memory_stores/memories/create",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/memory_stores/memories/create.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "338a535b07f8a667ccc237bdf70a3508ecbc26494c055a9d6d824d5017cb4dea"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "ccb1146bdf9eb9747f072024c9171aa6f121a1d3058ed1b8008344a22e10437e"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/memory_stores/memories/delete",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/memory_stores/memories/delete.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "f0f675285ea436f0940889cd74e265968f8b610ea115efbc495592015077180e"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "206a256dfaa63703303bff38eee2ef7952019b7651915d3eaf83a29cfdf960ce"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/memory_stores/memories/list",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/memory_stores/memories/list.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "6199abbeed624a48f3bf756486965e586fed00b2e6b0bdd3181a6bc1da440bef"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "9bce8cb50d5a2b2db2a27626ae8cb3f91e1f083299fb02c6e751654b30d3a2bf"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/memory_stores/memories/retrieve",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/memory_stores/memories/retrieve.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "55a534a8a68c81204d1826c773ab428d398481387e5dc5529168221e15b208e4"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "53cfe79f324de5fe5f381f55ba8da21c4e8d2b7bcdfed1454fe3938d27327663"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/memory_stores/memories/update",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/memory_stores/memories/update.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "c7c5aef05f58eaa7f509301839bcf98bc3d9e63d6bd863289b2ea17d7e215620"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "9f605fd000d9b6a57f03897e7059df7824838c4c678d153156b3da1d5871b5a2"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/memory_stores/memory_versions",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/memory_stores/memory_versions.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "a66de7293ce1376af2385e3d64334126abb734caf31bb4ce4327f6bc9a46ad6e"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "a3d832438f06f745676351979feb2f8e22ae2b0d2b53e017e09f50acc9e3eff2"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/memory_stores/memory_versions/list",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/memory_stores/memory_versions/list.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "7ed0556dd27c9ff74755ece644fa70efbe6f860ae813eb88e17be13eb4d59151"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "1dec25c97e04725d7bb050186b704eb6a42570cfd9d21c42eab774d2c77d80fc"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/memory_stores/memory_versions/redact",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/memory_stores/memory_versions/redact.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "57079ee4f74acb937f55cc1c8474410c7f86ff116db7a91c3836a9deafa0c9e3"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "8bdfed6aec4d2c03c4128151478a1f368555e9af5e5f4c265d40324c4958495b"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/memory_stores/memory_versions/retrieve",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/memory_stores/memory_versions/retrieve.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "9b67e75e651fc2e76ac3ef8e09ff207d64142c3ee9ca64bf9021a4a5fc8ab69f"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "10f677335b4c278baac807e51e2583b37ebceffe431d4b7b9fa89ffc6ccdf90a"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/memory_stores/retrieve",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/memory_stores/retrieve.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "52d532ed21ab3071c19cdb4142f19ef8fe45a3e839ad4e35dc776a54e3c8587a"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "f1c14fe1449008bb37629ae028cf9bc27421935e9c93df3e6a9e07fe0874cb5a"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/memory_stores/update",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/memory_stores/update.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "5789b800236f382082801a1e2e1140da5ec99dfecc4d195c2ba702414f324071"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "2c822fe595d245e484cdfae72136eba98250eab3e94cd0c10eab373beebf94b6"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/messages",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/messages.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "7816de3fec7435a6bbe9bb8afd1e5793f3e45b1081ee8b54df5f650cd9e704ad"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "6c301e6130e828e934d71298eec4f341ec4f11d0813aac95ef6d5990cd945d89"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/messages/batches",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/messages/batches.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "f7ae5e55b3df6f9cd320be9ce949d163bf95756d32f3f13c5413e6f78a51f39a"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "bdb252b72a1ad62b21617d24ebec869572f5ca48feae7bb9a0f89144b718785d"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/messages/batches/cancel",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/messages/batches/cancel.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "468ee6f09d5ed12ff044a5ef3cde1c83570a88f37b8bba6e036c3a105b7fe2f3"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "aec5ade3984713c242904dfc3c7093206fe78ec5d223f23cc237cb844bb44fae"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/messages/batches/create",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/messages/batches/create.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "7fbf392381030825614670ed32997db13e89727a3ce068bfe6feebaa87c712fb"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "081110c8abc8a7e5291dfacec7ee4bfa3278a1e889e932d4ce4d1c99d99a7c91"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/messages/batches/delete",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/messages/batches/delete.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "ab9aa3bbcd99d2cf171310593b7ced433dd3d00051beab87ec105810bbfbd991"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "ac830ae456eb8db8a675d5206dab876561eb9bdf12184ceaa802e6dd294c5fb7"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/messages/batches/list",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/messages/batches/list.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "5e2b0534319265d32c4fe229d01b5abdbc591807d38c0db50039ed1010b800a9"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "377f7b59fc19e6a52afefbe2ec1f0e38a9b0c1698e5fae4e34db0d6ba80b6b40"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/messages/batches/results",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/messages/batches/results.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "8d52d3cff476fbf3877e51a7c0bd5d97609d9ba18cbcfbc0e2ea526371bf2273"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "6ee5bd959304b11f1021c84bbdc3ad2b159da091f2399a5b189119566a954c60"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/messages/batches/retrieve",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/messages/batches/retrieve.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "0cb5de1f3aeaebc54272630d1664904cd1dba82af19d8190be0d9ea05f710821"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "2ce05a10d7ae142d2572ea651e77c03d84511448d10511160585e82702d5c24f"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/messages/count_tokens",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/messages/count_tokens.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "c220cbe2d7f40bea79f7f1a82fc97cb3ff76cb5c0a8fea1c909a6db67e5cecbe"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "f57bd996fd5a6b89d6ca2137f035737eec2aaf3947c6dbaff90e7b98b9209dce"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/messages/create",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/messages/create.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "f83d53feb7d9876ba2278effa22cd31b574530200aaa0374d8ce2a0d3c6df511"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "862f66882ff3edfdefb3c16df1da962484a25b798e78ad28cf782563059bd543"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/models",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/models.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "96f4717222754a00877011676c8b2dfb2f3cf72c2f0b1bb1328ec4c93801e787"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "9babb931eb0a7f6e107fdfd207acb392005590408f6d1e6106fa8bc92a1015a5"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/models/list",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/models/list.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "ed24784f89326e37d3574ee429d9558a8ba71bd3b1c8965c0f1d0ebe4b843d0c"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "ad04f1b132601e8f3b2ebed7154cf39adb265ff89b36f090add28afc46fbf346"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/models/retrieve",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/models/retrieve.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "71f7cb1b38629e794ccaca8bfa3cda8f35b4b56a01ace173cbd265a1285d36cb"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "fbc5aece58fc24b47dbff21db7faad7ebe4cfcad9ea1bae7d1b5b049fba5b38f"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/sessions",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/sessions.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "bc4aaddb5cf4c40583201922e6fb6a98ebf0680419826b98bb168d25359282da"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "68d7786b1a3aee521a0082793b97e920063477928305c9d89a7ccd5dee161cc1"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/sessions/archive",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/sessions/archive.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "282602c671fffaeb6b53f567666bcf5052595432ca8509dd004cb80d451e4611"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "8b15e83b6d0bad76ed86d43a3ca41659a5720e1959139798a3c53caa81dcd0a5"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/sessions/create",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/sessions/create.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "c5f1c4e51873349745664553c06fd31c4f9445e5e7d23c3d7761cdc9ed09daff"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "33238165225faad43a6e703c65d4a34a56a30456cd3ba5d5970bb41f0d7c2bea"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/sessions/delete",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/sessions/delete.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "d9927820256abf5b1b437fff15418580fd5ecf559fa308ffe0c08695bc4d37df"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "126bb2e0e654a9158346d8638f2792d4eeee5dd2801b20e1f0abaabfecade6ec"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/sessions/events",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/sessions/events.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "bbfe61af0aba456fe4fc9a808061ab2282887239d69c477a4e07c19f9acc63c0"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "5d9a681e6365e07399b50088ed6a42ace09ef71371e31254dec7bf74dd83e1a1"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/sessions/events/list",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/sessions/events/list.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "cdc57c9023e5198a27d18669bd34a5159bf83be0b14c1d98b63d3094cd8d0cb5"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "e4ad8723bff60a154294e606f1af8a89aec6a8fadd3f1f2e6e04bbb8c7772bcb"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/sessions/events/send",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/sessions/events/send.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "fb1da721464bfe315ba9aba11d833c49bbaf6c2bbcda0918d8023c551e44af2f"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "8252b602fb828095fbe0502005fc23ab397bcb0874c81db8eb72864d6723eec5"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/sessions/events/stream",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/sessions/events/stream.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "c82111c7092e548534b75d11baaeb11929f036c83132b87a0fd8c4cf87d53d4d"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "98ae2284ced4962fd0e5a6cf7de95e6a551455fa34819d7a2ad99ca93059a461"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/sessions/list",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/sessions/list.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "c229eda53f23138087ec2bcdc17b44b913e382b97a24e96f5e144b61cd401469"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "af05098c762225d23b5a198e0506314b3fe9de9f700998ea8d7aa55a10884dc0"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/sessions/resources",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/sessions/resources.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "96351e6fa793291b88edba514add741fc197009823279b7d113302e2bd62ad30"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "02a114018cbb10c120861763b823115d5d0f3d959a09a21b8ab436f70da4207a"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/sessions/resources/add",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/sessions/resources/add.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "8f51f48d9d2f9bc1ecc4dbc4c998efb813f1be036d170a1b717d0e5352f2ae87"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "e79dfb66aa7549b9523aaef0339373af4e386477dfc532b5c5f16b1ac4876f86"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/sessions/resources/delete",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/sessions/resources/delete.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "287e3fe66eb416a21e8590b1d38c4dfc4ff3eb54dd0ea7fc6dc6b2d897f0815b"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "e31f25346eab3c2bdd46e5c2619e012f12b19ef2f2beb0b9100f400b9d5f06ec"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/sessions/resources/list",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/sessions/resources/list.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "a92fd4c328b8728a002dea107be3b795b6ed52fdde0e801fcd79aa00609290e5"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "a3b117194d85bfa5011742e47fe38948ccc97abed13185ba2ca1f50a4144415d"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/sessions/resources/retrieve",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/sessions/resources/retrieve.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "1f5367805f59c7c52362033301579873254572403376fc8e868c2d3bfaa295e6"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "0d0a9b22f67fe057e008d063c84886744f90106b409bd529f22863bd63b5ad61"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/sessions/resources/update",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/sessions/resources/update.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "9ec03c55b6f157bd8edb79ce0e27c3e25e94f93698aee27f7744743e9aa3ec6a"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "fad6ab4a94a06327549ec5e93d5f090a4df534e4e3244012018cb63a5b314d2b"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/sessions/retrieve",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/sessions/retrieve.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "a10b9b1854f00a41e48b0f6b7b7c9109d9dd82594ef3fbf478a62cfc6e81bc35"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "1aab9c47328caa29f65f1c0db157190dd75f003c9dc00b0ed1d7c1a126e24085"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/sessions/threads",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/sessions/threads.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "d6e51eb7f903a67fc906df14cf7daef2c2405c76df352c4520f3325bd3d4f68c"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "e5a35ff8ae1e5bd3317c6a125e15495e129bc1fa6d15b1e8f5be4c360b7d8a2b"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/sessions/threads/archive",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/sessions/threads/archive.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "7eb656c0ab740895fdc6c4e67615fd0cbb3341aa13020c307da3663c83333eaa"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "63551fb0a76163301d39013e2b5fdf0d55eb9c5e983739d4464b6dd4b2b978cc"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/sessions/threads/events",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/sessions/threads/events.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "3a1eeeb2048aa409fd490ed01a64f67c9590f6ccbcd18f45d4d86949745e8cb8"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "46e57953ec9d02073131fb590354f56f31c2f1c2762361bea0145a1176f3d072"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/sessions/threads/events/list",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/sessions/threads/events/list.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "47d76cc45605cb5c0be4576ebd7d10fa7226ea5c8593a6c9855dbf08d0377f1a"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "518370a53cf1e25427447a89209d2d6c983a1da4c6c85c15afc6f8cdedea3a2a"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/sessions/threads/events/stream",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/sessions/threads/events/stream.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "58c97072a5136542031e33b7fa24ab771febbbdeb3c1156511cdc80bfd6ce02c"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "0b2aeedca81dad01e44130556a00f2371626c2e987f832611ca1d715102cfec5"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/sessions/threads/list",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/sessions/threads/list.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "e72371b471ad9e9274cd9ec63bba2aedc1eb9781267db9f2a65da8b351ceee1a"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "502f7fe01d5c775551b3285d2dacf824140f9a8811d4b35ff8c4641968ef35fd"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/sessions/threads/retrieve",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/sessions/threads/retrieve.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "381ec8c71fdb8993f04db19beaf42e3f6e1f353e3bf9d136fc180b57488a6139"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "1b7cbf6a8005e45cd0a77dac0c2a76d6eeb36e50ac5028bcce53ad1f7ea5868e"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/sessions/update",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/sessions/update.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "3810c3c1fe7295901ca3dd31eb9c43a2d9e0334785d96c84b6d0d6e5f1d7fd84"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "0c032e2de69f67edda34184323ced8e4bcc6c110e9a609a6d6f7d53a02fcfc73"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/skills",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/skills.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "4107d9c109b16f98411c7246de660e1938267518dca42fd822ef3655327c50b4"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "9241e8dc534d529edeb02a6c321a78a463354350919f3f0f980989bfb0fc582b"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/skills/create",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/skills/create.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "c0a67b72b4b4984731aef6862cc03eda2aa50800d6fbf1bf186ac49b5f600366"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "857b5941c4596468f306ce185bf1522efd227f7aac15345ed2d583c2f5b6614d"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/skills/delete",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/skills/delete.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "94283bc5b4b99a80e7abe6d8cb691e4990667bf6d67f88704ef4b96ea767b860"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "3e8e813048b4ce05e367b4ce404144f7a0b6c275b7bd50f85ec1f463ec35c0f9"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/skills/list",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/skills/list.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "ac1e5e66713a59bafd4dd3358744a7b3fc212ceb28dec21791943a24a45593b6"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "a6620233cd3808298b1195d1a7a75c857a49e3cc3eb7ce962922390f633c16d2"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/skills/retrieve",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/skills/retrieve.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "ad9118179093bcd6e3e806cba1ece41e2f4c9883aeae7db374e31289afc99a48"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "35d6e4a3293e986d64b9a8ff9068e68f4dbc105f4268466cb0abec58fb40f763"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/skills/versions",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/skills/versions.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "a0d4086a9f264f110af64b30e7741b343e88726ef9d5b11afd05a99d7ced1f35"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "a6f9b15463e80357ab5aaa7293cfb87226727dfb72aa75997edc57a40a26fda8"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/skills/versions/create",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/skills/versions/create.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "95de5d8d2bfc5ca08161eba9007c6b8ca26750cfbe8c360269da290ca3071b87"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "6dd7272ca652c6a72392ced75f9135962a6fcd9bee4b4f9ef9f6766f50b9030c"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/skills/versions/delete",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/skills/versions/delete.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "6a57f7bfd10840d1dcd44c90b8b15504ff9486c8288c4d2e17a05b746c558b06"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "8036b50fc50946445cc95f1e01ba5e239bbce0e7a7da2f94d89e5c0c480952a1"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/skills/versions/download",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/skills/versions/download.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "a5a1fff254082d0098ee7bc7efbf5dda1658f1cfd9947b56afc62edd1d5db51b"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "b204ebc31948c5d11d3e5403c9870917ec73be7135b3f7ecbd9fd9d91d379dcc"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/skills/versions/list",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/skills/versions/list.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "f1e687dac67837da43da4c25e65863f1fe86a4fcd155521cfef5f60b8f26fc5b"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "927dbf7bb5878383412246672d1fa272847926f6d7d95b0fa721a0980a1f8229"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/skills/versions/retrieve",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/skills/versions/retrieve.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "c61b2ef0c37b1c502350d3ba6c5b039be8c010c6fc1cb0ea09cbd498959d97f3"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "f1e272984ceececf85bdf86942d272e1e48f6c11f382baefaa86d18e704ce9eb"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/user_profiles",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/user_profiles.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "e239460ec67ffee936e794234ff1d8db743cd0bed3dadfc6145ee4788afcbe29"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "7772896ec5717e2e643568b451a25b3a5d75d7f0cd9253d7174f01036d493127"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/user_profiles/create",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/user_profiles/create.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "3074f3a97acd84f5c973ec761b5266cd7d13fc8c1d200f38410c1df9cf3d5419"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "04f5df603d128b2ee815feb8cad09e8a845786d54e6c0ca7f49c0ad7b926ef82"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/user_profiles/create_enrollment_url",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/user_profiles/create_enrollment_url.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "60f26f93bc0df423bd30b161a5318af1652d431863544e9ba9bc40a6da53e6a0"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "ead3bb99780b63318e192c16ccfb38d97dc7926c1686d1a36b4b6231ace62edf"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/user_profiles/list",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/user_profiles/list.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "6f131f25530bead718a63b6c798e26f1a56e14900729afd7840d3ddede0ac3f5"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "eaaaca5c804dcaa09bcba603af4385bad07ab0ed3992836123390c6a36a33383"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/user_profiles/retrieve",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/user_profiles/retrieve.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "b9511931b9db971b5c9550f229abd4aa95c4d5f8300787f07fbebe1cb211de61"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "8e221231ccb70d81a6966cf8db876266a6c93b1b2bca7c6ab557fc1feaf53813"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/user_profiles/update",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/user_profiles/update.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "571cdba8a253be89beff6ae8ab26307db3a5a559971cfac9a70582f5a2517d31"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "b93cde9666722d8f2dfaa37edd3c7cd36117bbe12adee55fd8e9ba8f1140d12d"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/vaults",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/vaults.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "690aa4232318e109b79e3457c67919397ee3f81293f9b9df170b6d026dea39c1"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "b39d4fc2ffca7d1682491b03b9eba9307b512388f6eca71586471ab944b46e0b"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/vaults/archive",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/vaults/archive.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "e155add0026e9acf4c95028e54586932b64b963afcdb63a463c397de7d0afb38"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "58fa66c03c47fe3951b6b25edf1f67671a46ddd3729103e7bbbf3b379dfb7a75"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/vaults/create",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/vaults/create.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "0adea4500906fcbb9beac025f8af3c0f368051001c5bdcbc0bcdfabe9739ea0f"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "89335225158636ee3c777530afbaabfd8bc1c6d11f97515296d0bf3a643ccd15"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/vaults/credentials",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/vaults/credentials.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "b622d981e81061825f736c104acd6660c1a8df0cc6b85135d5a80fc66c9d44ab"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "558df99d02102beacf265be0c650eb864bb2b5036f0ea3bc355a4bf2276d674e"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/vaults/credentials/archive",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/vaults/credentials/archive.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "321088f847b9d942b0d3d39c05dd331b95233a3283037ebc358d79c2069600ba"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "b2e5cbbc7a70b51c9699c6dfd41b56e5040e3cb50480bd5c1aab7e2c9ab7c760"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/vaults/credentials/create",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/vaults/credentials/create.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "0ab56308a7027d348b0edb4f51e5f065b269caa48772b06d52d8a988678ec5ef"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "f885f5cb47f4be1f370f3501220396554090d0f6851a125913a597a28b5ded00"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/vaults/credentials/delete",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/vaults/credentials/delete.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "6c4a3a08dd916d5473e2926ddc84494948ac926397e523fa549fcec4578a1c38"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "0ef3e0edc21a050e1247f1040ad7145f01f643c9f606a519cec254db33bc1c12"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/vaults/credentials/list",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/vaults/credentials/list.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "ebe88e2a5d2a446bcb3d4b80140b3a03b07569bb3415f16392cda39f77fbc635"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "88485c892d4902cb402997dbd95525a7c5b981cc999a3e5431eace99e9416c3f"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/vaults/credentials/mcp_oauth_validate",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/vaults/credentials/mcp_oauth_validate.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "355752d2ca66978f984f61cda61b3fa1d26e45599fe260b9f570fce01f73d9ce"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "93b81b402f15080d01227a478fda87f74af1100a423a45c5c5debb7ed9feb5b4"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/vaults/credentials/retrieve",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/vaults/credentials/retrieve.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "581e0d9ba8f5e6709f99485b7e4ef0dd7ac9ec286235e0a893320d7a9fa089f6"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "ce48a35e48342123ad3c7145d122d45c36e0d346e2017790efa4dc59995aba96"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/vaults/credentials/update",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/vaults/credentials/update.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "b05c14bf4cf09d8ff584c1bfdb21644a216b02fdee7a5a3128685530c82a25a7"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "fe1db3286f15aeca910b8363708fb33d4ec6349f29dffe3ad34f025ff52c1f41"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/vaults/delete",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/vaults/delete.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "ea9e4343318cd17a0a073cd3a947c6cfab8542770b7ed580a122ca4666acb753"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "5fad019a4df8f608e880afbade4e87d4137833fbb445b34255d00bd7ba660b8d"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/vaults/list",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/vaults/list.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "731f4caec86cb9f64d6b55de44bbc1bec7a9d31ba0b2bd82da15e483c3891aeb"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "8396b43f7196aeed29ea1aef17ed5dffdec3e9264fb15e2d2dcccd477eecc43f"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/vaults/retrieve",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/vaults/retrieve.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "9548610339fabf6e0d12f4f198871296c37c1637202ee1a0eb192bcabcad397f"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "bc9111d426a852dcb2a96dd669e8f82fd68dc03b7c643272f29488702d250554"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/vaults/update",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/vaults/update.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "d2abb0b0f30763dbef56636d4d0b4e02dc54734ac3eaa06ffacfaf7c1763bab8"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "68772149286c22c9b1d351b6337ffe98b007a2f29439188f16031ac18052a9a6"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/beta/webhooks",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/beta/webhooks.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "76384ad4d6cca9c0a32a4f4e883c670b05c37e10ca4d4a1db5d53126dca4b9b8"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "961ff7d9a87ccaf3f8ec1cb063e3e4a761bf800fe64c548a57ee28d5055fe9b0"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/completions",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/completions.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "285fd2614409c4bfd4aee410d46bd87a15328622cfb6d8a6eacceaa3d67dc140"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "934b77f222b54137ae19190cbfab0da7e2efdc131635edb5e9fe56df53bdabcb"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/completions/create",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/completions/create.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "b11d08395705700aed150e5e86fb69060a9581c8c00ac8c3e62f90b7f7d4ff99"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "283d490c7a65e34f070a1e346497903d0763c6f22eb93c78e2b286e2ec76af95"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/messages",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/messages.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "e2a49ebb1b3c7c29fb6f49632aaf94dbd93321d8bc9bea7f06e3775b2f2fd7b2"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "6cf6485b569d35a71e0b721ed9295b433de0d4cdfaa1046dcf475b0dd9beda3e"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/messages/batches",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/messages/batches.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "7cef83f96e92227cfd5a3b8b7015d6c09e4a3044d37f613ac9207dc6f491d2d9"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "da9d6b9bf3fa2035799fad08ced15624fb0b3cd5adfbf5121f7ce48f10a3cd41"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/messages/batches/cancel",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/messages/batches/cancel.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "1f94d5fe79bef7c31e1533aa6b7f445969dbfffa66e5e9b8a6f698e9746c5a47"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "ee6dd2c461baeb25bd130ab6cac62610a9d2217979920aace5ffa7989e9b1e8f"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/messages/batches/create",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/messages/batches/create.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "5464f592f6affc6f9a572cdb72b1f02ac3f83e9f6df0fe4a23dc6deaad63c9cb"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "2f232e17d4e6f22ce897a545115d9149e1bba55994a276a8b9592f1d82b8ede9"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/messages/batches/delete",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/messages/batches/delete.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "c6343c2802b4ce145a5482c491fe3240027008a524fa58b5d608950484f6be86"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "77019231b0a6d17860f1f6a78b9e9d06e8b6331e0f6f6a8d3ef2f101bd0574e5"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/messages/batches/list",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/messages/batches/list.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "b826363c9e910d34af33a1e07e160893e4bfb0e2f5a3c61de825c1c8e8f847dd"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "93e0c90be9498756edb8024902799035c9471f97d42c2ad802d8d9c3cf4acfdc"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/messages/batches/results",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/messages/batches/results.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "c43b4b729bd32cb349bdfcbb76717558a20a8b7f2a9b8bdbcefe59c6142abef9"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "d3e7b56a663604148184e0a5875a3a383e892feab23d406d81107f3d09a7340a"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/messages/batches/retrieve",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/messages/batches/retrieve.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "1d43077fffa41bc98cbf0287fe2bd29b1f3fc5c7a2f8cbb9eb693117fc45f518"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "dadb8fd5513b7d2a78ef0715ad1a6388b1332283a2adc413567a7e966e615311"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/messages/count_tokens",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/messages/count_tokens.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "8963790f20f9a784517249546c3175d6ccc429d4c452f174399de9a272bcf0bc"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "09840ed58ba5c9ddcf07aa22ace147e2e6ef25649de7ec81756e4c8f2947a583"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/messages/create",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/messages/create.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "f1e7b7c37c33aca4e54fd58473b163ad951ca230d059416093024052d8c3f539"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "3687643a6edb0c6b5c29e50d309ed263a8a5b57f6073cf00cd1ea1659a4d3b70"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/models",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/models.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "2fb573719abb3562134fbb1fc9b656b717d13b63cc9a652086b507997d611355"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "55e5e09f5058c82a4d00e7e424b3de759f0bb16bbb4eef7aa74ea98f01d34f5d"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/models/list",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/models/list.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "a59320537beba07c6324e6157b3baabded3aa228531581c0b40f023f646a5110"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "15e6b7ee7d2b7dbc7e306f5e1fe3ce2a2ffdd7883ee6ecfa0ad0a083bb44ec3c"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/api/terraform/models/retrieve",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/api/terraform/models/retrieve.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "c8f01fe86242fc40b410622afff8d51e318155e457e2dfb1fcc124e7d6657607"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "e4d1c2de2df912a691b72ab9cdbccf4fc20ec2e877147d1ba28a2d5e5076443a"
   },
   {
     "source": "platform",
@@ -11224,8 +11224,8 @@
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/build-with-claude/adaptive-thinking",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/build-with-claude/adaptive-thinking.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "d0aadb347eb151bc1a5819ddee15f8e4d0b8b0f6f726f7472112ca8cbe70b97a"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "df578279b50ca66e564cd560579389b7344720fd894a6e0b7bb88591bdc3b6b2"
   },
   {
     "source": "platform",
@@ -11280,8 +11280,8 @@
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "cb3183ae3817960ff647e2e51956627e424133269354cbd6cab5a4f24778aa26"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "cffeaaf2deb06ba515f2f5f99831eca0cfa1d32c076c6c039ffda52894d8f42f"
   },
   {
     "source": "platform",
@@ -11301,8 +11301,8 @@
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/build-with-claude/context-windows",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/build-with-claude/context-windows.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "3c8fdca7eee3bf2227b14af520b0a96179d718ed5342e4935ecc9dfbbec9a48a"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "d798f05f496f8896ece5023559396adebed630e3c456eb2c987e1e828b9c70cd"
   },
   {
     "source": "platform",
@@ -11322,8 +11322,8 @@
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/build-with-claude/extended-thinking",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/build-with-claude/extended-thinking.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "feec9d601da61c6b54382e0a1a4632f8a1cd874dc46b6d3f8e0f2842da368524"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "e3cfe86a33efa5a372ddf60110d17d58adcea07567d2b7eead994e09fbd3de90"
   },
   {
     "source": "platform",
@@ -11357,8 +11357,8 @@
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/build-with-claude/mid-conversation-system-messages",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/build-with-claude/mid-conversation-system-messages.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "93e660eb2dbb7f1e154af1c7b1e373070271374d98bf30f4a9e8f9fd9b26023d"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "83b2b86abda6c6e6c6ca82ebabe62805639e50503faeb38428a4d7ac080df5e0"
   },
   {
     "source": "platform",
@@ -11637,22 +11637,22 @@
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/managed-agents/agent-setup",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/managed-agents/agent-setup.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "11190d9d8d464839c2882c94ee562e3574f896b62cc2650168ddc70f7a84c696"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "1f7b711b45d3945e8a2493a75af3fb02271b0eed473b44c7e9b82306665f993a"
   },
   {
     "source": "platform",
-    "url": "https://platform.claude.com/docs/en/managed-agents/cloud-containers",
-    "local_path": "content/claude-docs/platform.claude.com/docs/en/managed-agents/cloud-containers.md",
-    "fetched_at": "2026-05-20T03:15:44.945478Z",
-    "sha256": "5759ae312ce173f4be0ee6ac27ff99cbda2a3cd25f7290f8112d02669e3373c1"
+    "url": "https://platform.claude.com/docs/en/managed-agents/cloud-sandboxes-reference",
+    "local_path": "content/claude-docs/platform.claude.com/docs/en/managed-agents/cloud-sandboxes-reference.md",
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "e67963f867c80e595b927a92551dea3a4f8eedc52e4a0594368e33d332c490a7"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/managed-agents/define-outcomes",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/managed-agents/define-outcomes.md",
-    "fetched_at": "2026-05-12T03:14:46.254373Z",
-    "sha256": "5daa2359c4d99edad05e9fef866c0724e4c55d3613a7758a4e1ffcc91eb0bbaa"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "e593a293812293ae0809edd63719831e327134000b8e845fea0ab7c36f7b2842"
   },
   {
     "source": "platform",
@@ -11665,29 +11665,29 @@
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/managed-agents/environments",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/managed-agents/environments.md",
-    "fetched_at": "2026-05-21T03:16:34.837917Z",
-    "sha256": "13b18f54d8a3e17c9447c77a95c5a979a9b7f15ef7d44f385b6ffcac1dd7c82f"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "512a8e164742018dba7c42fcd790433031eb7840c66adbc2981767fb155cfa6e"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/managed-agents/events-and-streaming",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/managed-agents/events-and-streaming.md",
-    "fetched_at": "2026-05-21T03:16:34.837917Z",
-    "sha256": "6f535558de2fb765b3bf22c37781cf5b6b21cfd4249f3cde1fa41d8485cb7821"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "28dc375b8d449e4cd18862f745f15079aed4cb9c5bb1aa4a89a2c2cc794f2218"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/managed-agents/files",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/managed-agents/files.md",
-    "fetched_at": "2026-05-21T03:16:34.837917Z",
-    "sha256": "63185ecc9c58db16683b331065c4d6a31787e2e26044c80fff6c78ca7df0ee4c"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "0027680b0288af3e3784b27122ac7a5d912d3f77aefba43416df55a6ca334a62"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/managed-agents/github",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/managed-agents/github.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "750b4ceeec6bcf3078a13895152e4db60b4871d76e872575272fee7407d239d8"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "3091526e48c464af60c6b7343f3e5f5938ad60d6586f3d80522f5b08b52adaac"
   },
   {
     "source": "platform",
@@ -11700,15 +11700,15 @@
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/managed-agents/memory",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/managed-agents/memory.md",
-    "fetched_at": "2026-05-21T03:16:34.837917Z",
-    "sha256": "b1662edf7a6528582133dc37bafad63f82d77cefae829ce03e726a661df88d61"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "f19c9b0dba986cf2ec005b70d56984f20437c10e16e3cc32ac91a264b2ce081d"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/managed-agents/multi-agent",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/managed-agents/multi-agent.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "622a426680003bd2999ca489a353649e5df21ae9292133b023b3aefdd2e5203c"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "fb3e0b10dd0af67188136b1aca9d09d5903f0539556be792bc5221f9aa5e1784"
   },
   {
     "source": "platform",
@@ -11721,8 +11721,8 @@
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/managed-agents/overview",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/managed-agents/overview.md",
-    "fetched_at": "2026-05-21T03:16:34.837917Z",
-    "sha256": "b1edf313afa85208adae8a9a147156cbfa3fd4cc01df75b92cfaf99b076df724"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "ae73e091becfe529d51ba9f52241ab0c3df7644ad363cb74fcdb37b77005ddc9"
   },
   {
     "source": "platform",
@@ -11735,29 +11735,29 @@
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/managed-agents/quickstart",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/managed-agents/quickstart.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "de5f04e264df8ab45c8422b5c2eeb17094c2af67634fb862ab6ce4b9565a70ef"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "82cf628463b29835a928ceb1390236065197851cbf5acab8f259a235f0a88df3"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "b4060168a0ff0ba6cf9324e61154469d2d8dc61050ed4eba75cb56268b40b950"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "54df00587463a536e2c674d57da14040a625c874ce3f2ba6c5491e62e758f724"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes-security",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes-security.md",
-    "fetched_at": "2026-05-20T03:15:44.945478Z",
-    "sha256": "9cb3ab332e1d73b8a3ee18551dfedddeef4a96698cda2cbe2e91d9346be50ec9"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "fc6e9f96df90b43f49b7ec93d39e317552f61c89d11c5cdcdae15a681e54fbc8"
   },
   {
     "source": "platform",
     "url": "https://platform.claude.com/docs/en/managed-agents/sessions",
     "local_path": "content/claude-docs/platform.claude.com/docs/en/managed-agents/sessions.md",
-    "fetched_at": "2026-05-20T03:15:44.945478Z",
-    "sha256": "c7771cfdfdbe7c73fea0c13c41a46c3c7b9b94242dd639f0bafbf30fd4f94cee"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "407891cccd3d8705de42d8e0bb74b0bce9a866bab82feceeb03bbdbb2d1492e1"
   },
   {
     "source": "platform",
@@ -12239,8 +12239,8 @@
     "source": "platform",
     "url": "https://platform.claude.com/docs/id/build-with-claude/adaptive-thinking",
     "local_path": "content/claude-docs/platform.claude.com/docs/id/build-with-claude/adaptive-thinking.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "6eba6b029cc26fd7c1760d3af90f05961ca1d1a85b695c2e4376090c653b6af5"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "8ef6146fe33b7a6d935d7e8ac008f13fac275f75685ca8d67e144b3cd884c7a0"
   },
   {
     "source": "platform",
@@ -12351,8 +12351,8 @@
     "source": "platform",
     "url": "https://platform.claude.com/docs/id/build-with-claude/extended-thinking",
     "local_path": "content/claude-docs/platform.claude.com/docs/id/build-with-claude/extended-thinking.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "e64bfe281f1cf2ea4579a0d9989dab3ee2acda9217e0a1bd4a9401062f577fc1"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "251f9681044b5abb046d4f168bf3a821ec045c268559ba112ba1aadff71d018e"
   },
   {
     "source": "platform",
@@ -12519,8 +12519,8 @@
     "source": "platform",
     "url": "https://platform.claude.com/docs/id/managed-agents/cloud-containers",
     "local_path": "content/claude-docs/platform.claude.com/docs/id/managed-agents/cloud-containers.md",
-    "fetched_at": "2026-04-10T03:11:42.436400Z",
-    "sha256": "a94d2a42b739ae2e4e799d98abc4e4e911b49f5b73b077067a704f76529c4918"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "5dd33b872b0c1c9878f6f8cca41e5d8cecbb795602da742bcb79863d42c46a73"
   },
   {
     "source": "platform",
@@ -12554,8 +12554,8 @@
     "source": "platform",
     "url": "https://platform.claude.com/docs/id/managed-agents/github",
     "local_path": "content/claude-docs/platform.claude.com/docs/id/managed-agents/github.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "54ee432c55484858269281d94c044d5977476d052e229417ba39e9185b772a56"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "4912a7b4adf7236f2f0aac1144bb70f284f9328091fd38d77d327aa2aae49d23"
   },
   {
     "source": "platform",
@@ -12596,8 +12596,8 @@
     "source": "platform",
     "url": "https://platform.claude.com/docs/id/managed-agents/overview",
     "local_path": "content/claude-docs/platform.claude.com/docs/id/managed-agents/overview.md",
-    "fetched_at": "2026-05-20T03:15:44.945478Z",
-    "sha256": "96b3fae3b6c3718e1283dd5c272a2846723152f2c87432f2da2ff090b73274f9"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "639b95323759ebb6dd873309e893b8e030647205f3bedaf084d09885f56c984b"
   },
   {
     "source": "platform",
@@ -12610,8 +12610,8 @@
     "source": "platform",
     "url": "https://platform.claude.com/docs/id/managed-agents/quickstart",
     "local_path": "content/claude-docs/platform.claude.com/docs/id/managed-agents/quickstart.md",
-    "fetched_at": "2026-05-29T03:17:00.216417Z",
-    "sha256": "3643ab7eca01ba4044c319f6e23caa0e92434123165360849abdee6721578d01"
+    "fetched_at": "2026-05-30T03:14:18.300217Z",
+    "sha256": "c2afd761f8061376f075746c7545beef4bcb62976e7cb8dfd89bd5f9b8be38d8"
   },
   {
     "source": "platform",

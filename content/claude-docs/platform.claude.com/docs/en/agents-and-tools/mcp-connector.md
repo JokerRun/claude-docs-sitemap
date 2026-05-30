@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/mcp-connector
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 592849f1c4c9860d4c8e963e81557583d0eef4684d70f4d7e9b29238a0bba8d6
+fetched_at: 2026-05-30T03:14:18.300217Z
+sha256: 616338d56d2633ed2f057feb677040f56ef86ca7dee5ac061f6eca227292e5df
 ---
 
 # MCP connector
@@ -29,6 +29,14 @@ This feature is **not** eligible for [Zero Data Retention (ZDR)](/docs/en/build-
 - **Per-tool configuration**: Configure individual tools with custom settings
 - **OAuth authentication**: Support for OAuth Bearer tokens for authenticated servers
 - **Multiple servers**: Connect to multiple MCP servers in a single request
+
+## When Claude uses MCP tools
+
+Once an MCP server is connected, Claude calls its tools when the user's request maps to a tool's described capability, either explicitly ("search Jira for open bugs") or implicitly ("what's blocking the release?" with a Jira server attached).
+
+Claude does **not** call an MCP tool for general knowledge questions about a connected service. Asking "how do Notion databases work?" with a Notion server attached is answered directly; asking "what's in my Projects database?" triggers the tool.
+
+You can steer how readily Claude calls MCP tools through your system prompt. See [When Claude uses tools](/docs/en/agents-and-tools/tool-use/overview#when-claude-uses-tools) for general guidance and example phrasings.
 
 ## Limitations
 
@@ -461,7 +469,7 @@ Set `enabled: false` as the default, then explicitly enable specific tools:
 
 ### Denylist: disable specific tools
 
-Enable all tools by default, then explicitly disable unwanted tools:
+Enable all tools by default, then explicitly disable unwanted tools. Denylisting write or destructive tools is recommended when building read-only assistants, or when you want a human confirmation step before state changes:
 
 ```json
 {
@@ -591,6 +599,8 @@ You can connect to multiple MCP servers by including multiple server definitions
   ]
 }
 ```
+
+With many tools available, Claude selects based on tool names and descriptions. Clear, specific tool descriptions improve selection accuracy. For large tool sets (dozens of tools across several servers), consider enabling [`defer_loading`](#tool-configuration-options) with the [Tool search tool](/docs/en/agents-and-tools/tool-use/tool-search-tool) so only relevant tools are surfaced per query.
 
 ## Authentication
 

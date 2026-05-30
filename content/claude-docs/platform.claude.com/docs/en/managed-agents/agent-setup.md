@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/agent-setup
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 11190d9d8d464839c2882c94ee562e3574f896b62cc2650168ddc70f7a84c696
+fetched_at: 2026-05-30T03:14:18.300217Z
+sha256: 1f7b711b45d3945e8a2493a75af3fb02271b0eed473b44c7e9b82306665f993a
 ---
 
 # Define your agent
@@ -326,6 +326,8 @@ puts "New version: #{updated_agent.version}"
 - **Metadata** is merged at the key level. Keys you provide are added or updated. Keys you omit are preserved. To delete a specific key, set its value to an empty string.
 
 - **No-op detection.** If the update produces no change relative to the current version, no new version is created and the existing version is returned.
+
+- **Coordinator rosters are not updated.** Coordinators that reference this agent in their `multiagent.agents` roster keep the version that was pinned when the coordinator was created or last updated, even if the reference omits `version`. To delegate to the new version, [update the coordinator](/docs/en/managed-agents/multi-agent#configure-the-coordinator) so its roster references it.
 
 ## Agent lifecycle
 

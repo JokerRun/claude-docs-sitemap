@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/define-outcomes
-fetched_at: 2026-05-12T03:14:46.254373Z
-sha256: 5daa2359c4d99edad05e9fef866c0724e4c55d3613a7758a4e1ffcc91eb0bbaa
+fetched_at: 2026-05-30T03:14:18.300217Z
+sha256: e593a293812293ae0809edd63719831e327134000b8e845fea0ab7c36f7b2842
 ---
 
 # Define outcomes
@@ -574,7 +574,7 @@ end
 
 ## Retrieving deliverables
 
-The agent writes output files to `/mnt/session/outputs/` inside the container. Once the session is idle, fetch them via the [Files API](/docs/en/build-with-claude/files) scoped to the session:
+The agent writes output files to `/mnt/session/outputs/` inside the sandbox. Once the session is idle, fetch them via the [Files API](/docs/en/build-with-claude/files) scoped to the session:
 
 <CodeGroup>
   

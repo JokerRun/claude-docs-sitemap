@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/context-windows
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 3c8fdca7eee3bf2227b14af520b0a96179d718ed5342e4935ecc9dfbbec9a48a
+fetched_at: 2026-05-30T03:14:18.300217Z
+sha256: d798f05f496f8896ece5023559396adebed630e3c456eb2c987e1e828b9c70cd
 ---
 
 # Context windows
@@ -99,6 +99,8 @@ Claude 4 models support [interleaved thinking](/docs/en/build-with-claude/extend
 
 For more information about using tools with extended thinking, see the [extended thinking guide](/docs/en/build-with-claude/extended-thinking#extended-thinking-with-tool-use).
 </Note>
+
+Claude's tool selection is designed to hold with large input documents — choosing the right tool (or correctly abstaining) when the conversation includes 100K+ tokens of non-tool context. For reducing context consumed by the tools themselves, see [Manage tool context](/docs/en/agents-and-tools/tool-use/manage-tool-context), or defer tool definitions with the [tool search tool](/docs/en/agents-and-tools/tool-use/tool-search-tool).
 
 <NextOpus />, [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.7, Claude Opus 4.6, and Claude Sonnet 4.6 have a 1M-token context window on the Claude API, Amazon Bedrock, and Vertex AI. On Microsoft Foundry, <NextOpus /> has a 200k-token context window. Other Claude models, including Claude Sonnet 4.5 and Sonnet 4 (deprecated), have a 200k-token context window.
 
