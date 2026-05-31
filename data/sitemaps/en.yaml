@@ -121,7 +121,7 @@
   lastmod: '2026-04-28T15:54:10.733Z'
 - source: code
   loc: https://code.claude.com/docs/en/changelog
-  lastmod: '2026-05-29T20:27:48.954Z'
+  lastmod: '2026-05-30T07:00:01.776Z'
 - source: code
   loc: https://code.claude.com/docs/en/channels
   lastmod: '2026-05-11T23:27:14.149Z'
@@ -391,7 +391,7 @@
   lastmod: '2026-05-12T23:21:52.634Z'
 - source: code
   loc: https://code.claude.com/docs/en/whats-new
-  lastmod: '2026-05-19T14:12:04.030Z'
+  lastmod: '2026-05-30T18:09:40.354Z'
 - source: code
   loc: https://code.claude.com/docs/en/whats-new/2026-w13
   lastmod: '2026-05-19T14:12:03.980Z'
@@ -416,6 +416,12 @@
 - source: code
   loc: https://code.claude.com/docs/en/whats-new/2026-w20
   lastmod: '2026-05-19T14:12:04.033Z'
+- source: code
+  loc: https://code.claude.com/docs/en/whats-new/2026-w21
+  lastmod: '2026-05-30T18:09:40.355Z'
+- source: code
+  loc: https://code.claude.com/docs/en/whats-new/2026-w22
+  lastmod: '2026-05-30T18:09:40.352Z'
 - source: code
   loc: https://code.claude.com/docs/en/workflows
   lastmod: '2026-05-30T00:09:42.256Z'
