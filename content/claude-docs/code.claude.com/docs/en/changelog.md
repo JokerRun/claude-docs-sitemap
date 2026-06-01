@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/changelog
-fetched_at: 2026-05-31T03:17:15.839962Z
-sha256: f659fefb280d0272e8ebfd34b72d49483bad4e6344786d238004deaabb25b0f4
+fetched_at: 2026-06-01T03:19:02.596599Z
+sha256: 9ffec20b2039643af61b6c7a43496f70443a931438e107a3653c3d4a08364687
 ---
 
 > ## Documentation Index
@@ -16,6 +16,10 @@ sha256: f659fefb280d0272e8ebfd34b72d49483bad4e6344786d238004deaabb25b0f4
 This page is generated from the [CHANGELOG.md on GitHub](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md).
 
 Run `claude --version` to check your installed version.
+
+<Update label="2.1.159" description="May 31, 2026">
+  * Internal infrastructure improvements (no user-facing changes)
+</Update>
 
 <Update label="2.1.158" description="May 30, 2026">
   * Auto mode is now available on Bedrock, Vertex, and Foundry for Opus 4.7 and Opus 4.8. Opt in by setting `CLAUDE_CODE_ENABLE_AUTO_MODE=1`
