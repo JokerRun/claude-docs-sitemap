@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/features-overview
-fetched_at: 2026-05-26T03:16:13.081831Z
-sha256: b59f856702ee1e204bd136b632f3b78925f06f078b3ecd1209106c74f346d39c
+fetched_at: 2026-06-02T03:18:54.775717Z
+sha256: 6a2c8ec4a6225b7449ccb999d3cd36921454733ea7bd3f266e65f00fd7638df0
 ---
 
 > ## Documentation Index
@@ -337,7 +337,7 @@ Each feature has its own guide with setup instructions, examples, and configurat
   </Card>
 
   <Card title="Hooks" icon="bolt" href="/en/hooks-guide">
-    Automate workflows with hooks
+    Automate actions with hooks
   </Card>
 
   <Card title="Plugins" icon="puzzle-piece" href="/en/plugins">

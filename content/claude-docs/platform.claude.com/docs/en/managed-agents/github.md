@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/github
-fetched_at: 2026-05-30T03:14:18.300217Z
-sha256: 3091526e48c464af60c6b7343f3e5f5938ad60d6586f3d80522f5b08b52adaac
+fetched_at: 2026-06-02T03:18:54.775717Z
+sha256: 1597fcd4d2e1f05f674f017319ad37721239a9db66d7fd769bc382a1552d4998
 ---
 
 # Accessing GitHub
@@ -19,7 +19,7 @@ GitHub repositories are cached, so future sessions that use the same repository 
 All Managed Agents API requests require the `managed-agents-2026-04-01` beta header. The SDK sets the beta header automatically.
 </Note>
 
-## GitHub MCP and Session Resources
+## GitHub MCP and session resources
 
 First, create an agent that declares the GitHub MCP server. The agent definition holds the server URL but no auth token:
 
@@ -596,7 +596,7 @@ resources = [
 
 ## Managing repositories on a running session
 
-After a session is created, you can list its repository resources and rotate their authorization tokens. Each resource has an `id` returned at session creation time (or via `resources.list`) that you use for updates. Repositories are attached for the lifetime of the session; to change which repositories are mounted, create a new session.
+After a session is created, you can list its repository resources and rotate their authorization tokens. Each resource has an `id` returned at session creation time (or through `resources.list`) that you use for updates. Repositories are attached for the lifetime of the session; to change which repositories are mounted, create a new session.
 
 <CodeGroup>
   
@@ -919,3 +919,17 @@ client.beta.sessions.events.send_(
 ````
 
 </CodeGroup>
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Session event stream" icon="lightning" href="/docs/en/managed-agents/events-and-streaming">
+    Stream events and steer the agent while it opens the pull request
+  </Card>
+  <Card title="MCP connector" icon="link" href="/docs/en/managed-agents/mcp-connector">
+    Connect more MCP servers to give the agent additional tools
+  </Card>
+  <Card title="Adding files" icon="file" href="/docs/en/managed-agents/files">
+    Mount files in the sandbox alongside your repositories
+  </Card>
+</CardGroup>

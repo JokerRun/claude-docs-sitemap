@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/changelog
-fetched_at: 2026-06-01T03:19:02.596599Z
-sha256: 9ffec20b2039643af61b6c7a43496f70443a931438e107a3653c3d4a08364687
+fetched_at: 2026-06-02T03:18:54.775717Z
+sha256: a8354c2d82632aff18ba8e027d0a25b55da00a3354fb671f9a40c134efa5b0ed
 ---
 
 > ## Documentation Index
@@ -16,6 +16,36 @@ sha256: 9ffec20b2039643af61b6c7a43496f70443a931438e107a3653c3d4a08364687
 This page is generated from the [CHANGELOG.md on GitHub](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md).
 
 Run `claude --version` to check your installed version.
+
+<Update label="2.1.160" description="June 2, 2026">
+  * Added a prompt before writing to shell startup files (`.zshenv`, `.zlogin`, `.bash_login`) and `~/.config/git/`, which could otherwise lead to unintended command execution
+  * `acceptEdits` mode now prompts before writing build-tool config files that grant code execution (`.npmrc`, `.yarnrc*`, `bunfig.toml`, `.bazelrc`, `.pre-commit-config.yaml`, `.devcontainer/`, etc.)
+  * Edit no longer requires a separate Read after viewing a file with `grep`: single-file `grep`/`egrep`/`fgrep` commands now satisfy the read-before-edit check
+  * Fixed copy-on-select not writing to the Windows clipboard on WSL — now uses PowerShell interop instead of OSC 52, which terminals like MobaXterm don't support
+  * Fixed restoring a completed session from `claude agents` dropping chat history and re-running the original prompt
+  * Fixed background sessions re-attached after overnight retire losing their conversation and re-running the original prompt
+  * Fixed `claude --bg` occasionally failing with "socket missing" when the background daemon was cold-starting on a loaded machine
+  * Fixed an issue on Windows where the directory a background session was started in could not be deleted after `claude rm` until the background daemon exited
+  * Fixed background agents that resumed work being shown under Completed in the agents list
+  * Fixed `claude agents` freezing for several seconds when returning to the session list due to the auto-updater re-checking on every exit
+  * Fixed Esc, arrow keys, and typing becoming unresponsive on Windows when attached to a background session or in the agent view while the host is under heavy CPU load
+  * Fixed background agents emitting terminal sync-output markers to terminals that don't support them (Apple Terminal, tmux), causing render artifacts when entering a running agent
+  * Fixed mouse wheel scrolling prompt history instead of the transcript right after opening a session from the agents list
+  * Fixed CJK IME composition appearing at the bottom-left of the screen instead of at the input caret in the `claude agents` view
+  * Fixed valid `file:///C:/...` links being rewritten to a broken path on Windows terminals with hyperlink support
+  * Fixed voice mode failing to connect when the project directory or branch name contains non-ASCII or special characters
+  * Fixed the auto mode unavailability message on third-party providers (Bedrock/Vertex/Foundry) to point to the `CLAUDE_CODE_ENABLE_AUTO_MODE` opt-in instead of incorrectly blaming the model
+  * Fixed `/effort ultracode` incorrectly blaming the dynamic workflows setting when the model cannot run xhigh; ultracode is no longer offered on models that do not support it
+  * Fixed model-not-found errors suggesting `--model` when running via the SDK or other hosts where the CLI flag doesn't apply
+  * Fixed Claude's past replies disappearing from scrollback when resuming a brief mode session with brief mode turned off
+  * Fixed vim mode `p` pasting on the line below instead of at the cursor when the register was yanked with `v$`
+  * Improved performance of opening recently-inactive background agent sessions in `claude agents`
+  * Improved auto mode classifier latency by reducing reasoning on routine actions, lowering the chance of "could not evaluate this action" blocks
+  * Improved background-session teardown (`claude rm`/`stop`, idle reap) to send SIGTERM to running shell subprocesses before SIGKILL, so cleanup handlers run
+  * Removed `CLAUDE_CODE_OPUS_4_6_FAST_MODE_OVERRIDE`; the environment variable is now a no-op
+  * Removed the JetBrains plugin install suggestion from startup
+  * Renamed the dynamic-workflow trigger keyword from `workflow` to `ultracode`. The word "workflow" no longer triggers a run; asking for one in your own words still works. The trigger keyword is highlighted in violet in the prompt input
+</Update>
 
 <Update label="2.1.159" description="May 31, 2026">
   * Internal infrastructure improvements (no user-facing changes)

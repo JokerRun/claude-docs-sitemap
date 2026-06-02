@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins-reference
-fetched_at: 2026-05-30T03:14:18.300217Z
-sha256: 9c2c90692bb36112e4387585210901d51c4017b10014e27b9bc6857a39c94248
+fetched_at: 2026-06-02T03:18:54.775717Z
+sha256: f6e9308b165f187c7a8b18a0d7a12cf556a88ba890443394f1be3f779cf62b47
 ---
 
 > ## Documentation Index
@@ -250,18 +250,16 @@ LSP integration provides:
 
 **Optional fields:**
 
-| Field                   | Description                                               |
-| :---------------------- | :-------------------------------------------------------- |
-| `args`                  | Command-line arguments for the LSP server                 |
-| `transport`             | Communication transport: `stdio` (default) or `socket`    |
-| `env`                   | Environment variables to set when starting the server     |
-| `initializationOptions` | Options passed to the server during initialization        |
-| `settings`              | Settings passed via `workspace/didChangeConfiguration`    |
-| `workspaceFolder`       | Workspace folder path for the server                      |
-| `startupTimeout`        | Max time to wait for server startup (milliseconds)        |
-| `shutdownTimeout`       | Max time to wait for graceful shutdown (milliseconds)     |
-| `restartOnCrash`        | Whether to automatically restart the server if it crashes |
-| `maxRestarts`           | Maximum number of restart attempts before giving up       |
+| Field                   | Description                                            |
+| :---------------------- | :----------------------------------------------------- |
+| `args`                  | Command-line arguments for the LSP server              |
+| `transport`             | Communication transport: `stdio` (default) or `socket` |
+| `env`                   | Environment variables to set when starting the server  |
+| `initializationOptions` | Options passed to the server during initialization     |
+| `settings`              | Settings passed via `workspace/didChangeConfiguration` |
+| `workspaceFolder`       | Workspace folder path for the server                   |
+| `startupTimeout`        | Max time to wait for server startup (milliseconds)     |
+| `maxRestarts`           | Maximum number of restart attempts before giving up    |
 
 <Warning>
   **You must install the language server binary separately.** LSP plugins configure how Claude Code connects to a language server, but they don't include the server itself. If you see `Executable not found in $PATH` in the `/plugin` Errors tab, install the required binary for your language.

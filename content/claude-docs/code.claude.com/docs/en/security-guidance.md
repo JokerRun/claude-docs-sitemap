@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/security-guidance
-fetched_at: 2026-05-27T03:17:07.219627Z
-sha256: 240a7ca5b16954cd7e06bade2ea5609697da6ffb79187858aba954cceb77a5e6
+fetched_at: 2026-06-02T03:18:54.775717Z
+sha256: cba70f0391eca6c06e9c5d162324ef43bacef6b62c66234b2267d9d03d92db63
 ---
 
 > ## Documentation Index
@@ -242,5 +242,5 @@ Common reasons a review layer skips without a message in the conversation:
 To go deeper on the pieces this page touches:
 
 * [Code Review](/en/code-review): set up the PR-time multi-agent review
-* [Automate workflows with hooks](/en/hooks-guide): build your own checks at the same lifecycle points
+* [Automate actions with hooks](/en/hooks-guide): build your own checks at the same lifecycle points
 * [Discover and install plugins](/en/discover-plugins#official-anthropic-marketplace): browse other official plugins

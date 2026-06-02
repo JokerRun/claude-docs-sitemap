@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/streaming-output
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: c7a5c316f33354d7d4a41461dfce8f1fd8cc5ed44084b1b7db5664a49a4e2bd9
+fetched_at: 2026-06-02T03:18:54.775717Z
+sha256: 1e1d63d26fb98f75fa0a15f7cdcdb824e47ad435ee37915ce23491df458b6486
 ---
 
 > ## Documentation Index
@@ -389,9 +389,6 @@ This example combines text and tool streaming into a cohesive UI. It tracks whet
 
 ## Known limitations
 
-Some SDK features are incompatible with streaming:
-
-* **Extended thinking**: when you explicitly set `max_thinking_tokens` (Python) or `maxThinkingTokens` (TypeScript), `StreamEvent` messages are not emitted. You'll only receive complete messages after each turn. Note that thinking is disabled by default in the SDK, so streaming works unless you enable it.
 * **Structured output**: the JSON result appears only in the final `ResultMessage.structured_output`, not as streaming deltas. See [structured outputs](/en/agent-sdk/structured-outputs) for details.
 
 ## Next steps

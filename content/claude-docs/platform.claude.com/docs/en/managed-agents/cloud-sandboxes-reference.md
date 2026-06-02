@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/cloud-sandboxes-reference
-fetched_at: 2026-05-30T03:14:18.300217Z
-sha256: e67963f867c80e595b927a92551dea3a4f8eedc52e4a0594368e33d332c490a7
+fetched_at: 2026-06-02T03:18:54.775717Z
+sha256: 006bf1385fd3477727e601ebf0c7c79f7f9387b9279e1b4c5245c5a3350c1318
 ---
 
 # Cloud sandbox reference
@@ -41,7 +41,7 @@ All Managed Agents API requests require the `managed-agents-2026-04-01` beta hea
 | Redis client | `redis-cli` for connecting to external instances |
 
 <Note>
-Database servers (PostgreSQL, Redis, etc.) are not running in the sandbox by default. The sandbox includes client tools for connecting to external database instances. SQLite is fully available for local use.
+Database servers (such as PostgreSQL and Redis) are not running in the sandbox by default. The sandbox includes client tools for connecting to external database instances. SQLite is fully available for local use.
 </Note>
 
 ## Utilities

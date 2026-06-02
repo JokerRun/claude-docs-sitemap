@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-reference
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 73b4586472957d6d7c543bc0c044f274ede9f90098f0c1589d6925bb395806cf
+fetched_at: 2026-06-02T03:18:54.775717Z
+sha256: 623dc0b08c4ab3f1478ba53005a8cec44b89ea68f9f753e3f1e1bb86324bc37e
 ---
 
 # Tool reference
@@ -73,7 +73,7 @@ Every tool in the `tools` array, including user-defined tools, accepts optional 
 | `"direct"`                  | The model can call this tool directly in a `tool_use` block. This is the default if `allowed_callers` is omitted. |
 | `"code_execution_20260120"` | Code running inside a `code_execution_20260120` sandbox can call this tool.                                       |
 
-Omitting `"direct"` from the array (for example, `"allowed_callers": ["code_execution_20260120"]`) means the tool is callable only from within code execution. The response's `tool_use` block includes a `caller` field that identifies which caller called the tool. See [Programmatic tool calling](/docs/en/agents-and-tools/tool-use/programmatic-tool-calling#the-allowed-callers-field) for the full treatment, including the `caller` response shape and error behavior.
+Omitting `"direct"` from the array (for example, `"allowed_callers": ["code_execution_20260120"]`) guides Claude to call the tool only from within code execution. The response's `tool_use` block includes a `caller` field that identifies which caller called the tool. See [Programmatic tool calling](/docs/en/agents-and-tools/tool-use/programmatic-tool-calling#the-allowed-callers-field) for the full treatment, including the `caller` response shape and error behavior.
 
 ### `defer_loading` and prompt caching
 

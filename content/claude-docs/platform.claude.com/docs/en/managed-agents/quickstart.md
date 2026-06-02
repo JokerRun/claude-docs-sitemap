@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/quickstart
-fetched_at: 2026-05-30T03:14:18.300217Z
-sha256: 82cf628463b29835a928ceb1390236065197851cbf5acab8f259a235f0a88df3
+fetched_at: 2026-06-02T03:18:54.775717Z
+sha256: 44cd9caa90a6180e28fd9b0b13281bb360801b655fa72b752a2d7faf0e08d16c
 ---
 
 # Get started with Claude Managed Agents
@@ -28,7 +28,7 @@ This guide walks you through creating an agent, setting up an environment, start
 
 ## Prerequisites
 
-- An Anthropic [Console account](/)
+- An Anthropic [Console account](https://platform.claude.com)
 - An [API key](/settings/keys)
 
 ## Install the CLI
@@ -58,7 +58,7 @@ You can find all releases on the [GitHub releases page](https://github.com/anthr
 </Tab>
 <Tab title="Go">
 
-You may also install the CLI from source using `go install`. Requires Go 1.22 or later.
+You may also install the CLI from source using `go install`. Requires Go 1.25 or later.
 
 ```bash
 go install github.com/anthropics/anthropic-cli/cmd/ant@latest
@@ -879,7 +879,7 @@ end
 
     </CodeGroup>
 
-    The agent will write a Python script, execute it in the sandbox, and verify the output file was created. Your output will look similar to this:
+    The agent writes a Python script, executes it in the sandbox, and verifies the output file was created. Your output looks similar to this:
 
     ```text
     I'll create a Python script that generates the first 20 Fibonacci numbers and saves them to a file.
@@ -899,10 +899,10 @@ end
 When you send a user event, Claude Managed Agents:
 
 1. **Provisions a sandbox:** Your environment configuration determines how it's built.
-2. **Runs the agent loop:** Claude decides which tools to use based on your message
-3. **Executes tools:** File writes, bash commands, and other tool calls run inside the sandbox
-4. **Streams events:** You receive real-time updates as the agent works
-5. **Goes idle:** The agent emits a `session.status_idle` event when it has nothing more to do
+2. **Runs the agent loop:** Claude determines which tools to use based on your message.
+3. **Executes tools:** File writes, bash commands, and other tool calls run inside the sandbox.
+4. **Streams events:** You receive real-time updates as the agent works.
+5. **Goes idle:** The agent emits a `session.status_idle` event when it has nothing more to do.
 
 ## Next steps
 
@@ -916,7 +916,7 @@ When you send a user event, Claude Managed Agents:
   <Card title="Agent tools" icon="tool" href="/docs/en/managed-agents/tools">
     Enable specific tools for your agent
   </Card>
-  <Card title="Events and streaming" icon="lightning" href="/docs/en/managed-agents/events-and-streaming">
+  <Card title="Session event stream" icon="lightning" href="/docs/en/managed-agents/events-and-streaming">
     Handle events and steer the agent mid-execution
   </Card>
 </CardGroup>

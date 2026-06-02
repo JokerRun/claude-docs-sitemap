@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/agent-setup
-fetched_at: 2026-05-30T03:14:18.300217Z
-sha256: 1f7b711b45d3945e8a2493a75af3fb02271b0eed473b44c7e9b82306665f993a
+fetched_at: 2026-06-02T03:18:54.775717Z
+sha256: d548d581f75bb880ccaa55e19b6751e926449320f7503f4ec6a83b140d1793f2
 ---
 
 # Define your agent
@@ -24,8 +24,8 @@ All Managed Agents API requests require the `managed-agents-2026-04-01` beta hea
 | Field | Description |
 | --- | --- |
 | `name` | Required. A human-readable name for the agent. |
-| `model` | Required. The Claude [model](/docs/en/about-claude/models/overview) that powers the agent. All Claude 4.5 and later models are supported. |
-| `system` | A [system prompt](/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#give-claude-a-role) that defines the agent's behavior and persona. The system prompt is distinct from [user messages](/docs/en/managed-agents/events-and-streaming#user-events), which should describe the work to be done. |
+| `model` | Required. The Claude [model](/docs/en/about-claude/models/overview) that powers the agent. All Claude 4.5-family and later models are supported. |
+| `system` | A [system prompt](/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#give-claude-a-role) that defines the agent's behavior and persona. The system prompt is distinct from [user messages](/docs/en/managed-agents/reference#event-types), which should describe the work to be done. |
 | `tools` | The tools available to the agent. Combines [pre-built agent tools](/docs/en/managed-agents/tools), [MCP tools](/docs/en/managed-agents/mcp-connector), and [custom tools](/docs/en/managed-agents/tools#custom-tools). |
 | `mcp_servers` | MCP servers that provide standardized third-party capabilities. |
 | `skills` | [Skills](/docs/en/managed-agents/skills) that supply domain-specific context with progressive disclosure. |

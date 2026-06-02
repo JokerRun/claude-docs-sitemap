@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/multi-agent
-fetched_at: 2026-05-30T03:14:18.300217Z
-sha256: fb3e0b10dd0af67188136b1aca9d09d5903f0539556be792bc5221f9aa5e1784
+fetched_at: 2026-06-02T03:18:54.775717Z
+sha256: 1d268c092263f08940cee1fdf29022aa4ff4e13a21a4828eda91260403f98512
 ---
 
 # Multiagent sessions
@@ -14,7 +14,7 @@ Coordinate multiple agents within a single session.
 Multiagent orchestration lets one agent coordinate with others to complete complex work. Agents can act in parallel with their own isolated context, which helps improve output quality and can also improve time to completion.
 
 <Note>
-All Managed Agents API requests require the `managed-agents-2026-04-01` beta header. The SDK sets this beta header automatically.
+All Managed Agents API requests require the `managed-agents-2026-04-01` beta header. The SDK sets the beta header automatically.
 </Note>
 
 ## How it works
@@ -714,7 +714,7 @@ If an agent's MCP calls fail to authenticate after you declare the server, confi
 
 ## Threads
 
-The **session-level event stream** (`/v1/sessions/:id/events/stream`) is considered the **primary thread**, containing a condensed view of all activity across all threads. You won't see the full activity from subagents, but you will see the start and end of their work, and blocking events such as tool permission requests.
+The **session-level event stream** (`/v1/sessions/:id/events/stream`) is considered the **primary thread**, containing a condensed view of all activity across all threads. You don't see the full activity from subagents, but you do see the start and end of their work, and blocking events such as tool permission requests.
 
 **Session threads** are where you drill into a specific agent's activity.
 

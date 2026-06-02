@@ -1,15 +1,15 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/hooks-guide
-fetched_at: 2026-05-28T03:18:36.130288Z
-sha256: d71d0e36b19ce6b5d45927139f784f804771b06184f38b9b507559486b24e267
+fetched_at: 2026-06-02T03:18:54.775717Z
+sha256: fc85fd4685cd967f73e82d5212f6f96134ad4f05b73b0d5229ab89c85dc5076f
 ---
 
 > ## Documentation Index
 > Fetch the complete documentation index at: https://code.claude.com/docs/llms.txt
 > Use this file to discover all available pages before exploring further.
 
-# Automate workflows with hooks
+# Automate actions with hooks
 
 > Run shell commands automatically when Claude Code edits files, finishes tasks, or needs input. Format code, send notifications, validate commands, and enforce project rules.
 
@@ -876,7 +876,7 @@ For full configuration options and response handling, see [HTTP hooks](/en/hooks
 
 * Command hooks communicate through stdout, stderr, and exit codes only. They cannot trigger `/` commands or tool calls. Text returned via `additionalContext` is injected as a system reminder that Claude reads as plain text. HTTP hooks communicate through the response body instead.
 * Hook timeouts vary by type. Override per hook with the `timeout` field in seconds.
-  * `command`, `http`, `mcp_tool`: 10 minutes. `UserPromptSubmit` lowers these to 30 seconds.
+  * `command`, `http`, `mcp_tool`: 10 minutes. `UserPromptSubmit` lowers these to 30 seconds, and `MessageDisplay` lowers them to 10 seconds.
   * `prompt`: 30 seconds.
   * `agent`: 60 seconds.
 * `PostToolUse` hooks cannot undo actions since the tool has already executed.

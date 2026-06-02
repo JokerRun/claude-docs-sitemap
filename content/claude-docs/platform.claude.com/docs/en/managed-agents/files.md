@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/files
-fetched_at: 2026-05-30T03:14:18.300217Z
-sha256: 0027680b0288af3e3784b27122ac7a5d912d3f77aefba43416df55a6ca334a62
+fetched_at: 2026-06-02T03:18:54.775717Z
+sha256: 850d07b7a58cdc7cc8a8b4ca2f2184bb1f3892b6b67a7686822e4c8b78d2c8c6
 ---
 
 # Adding files
@@ -11,7 +11,7 @@ Upload files and mount them in your sandbox for reading and processing.
 
 ---
 
-You can provide files to your agent by uploading them via the Files API and mounting them in the session's sandbox.
+You can provide files to your agent by uploading them through the Files API and mounting them in the session's sandbox.
 
 <Note>
 All Managed Agents API requests require the `managed-agents-2026-04-01` beta header. The SDK sets the beta header automatically.
@@ -105,7 +105,7 @@ puts "File ID: #{file.id}"
 Mount uploaded files into the sandbox by adding them to the `resources` array when creating a session:
 
 <Tip>
-The `mount_path` is optional, but make sure the uploaded file has a descriptive name so the agent knows what it is looking for.
+The `mount_path` is optional, but make sure the uploaded file has a descriptive name so the agent can identify it.
 </Tip>
 
 <CodeGroup>
@@ -262,7 +262,7 @@ session = client.beta.sessions.create(
 
 </CodeGroup>
 
-A new `file_id` will be created that references the instance of the file in the session. These copies do not count against your [storage limits](/docs/en/build-with-claude/files).
+A new `file_id` is created that references the instance of the file in the session. These copies do not count against your [storage limits](/docs/en/build-with-claude/files).
 
 ## Multiple files
 
@@ -663,8 +663,13 @@ if err != nil {
 	panic(err)
 }
 defer resp.Body.Close()
-fileContent, _ := io.ReadAll(resp.Body)
-os.WriteFile("output.txt", fileContent, 0644)
+fileContent, err := io.ReadAll(resp.Body)
+if err != nil {
+	panic(err)
+}
+if err := os.WriteFile("output.txt", fileContent, 0644); err != nil {
+	panic(err)
+}
 ```
 
 ```java Java nocheck
@@ -711,7 +716,7 @@ File.binwrite("output.txt", content.read)
 
 The agent can work with any file type, including:
 
-- Source code (`.py`, `.js`, `.ts`, `.go`, `.rs`, etc.)
+- Source code (`.py`, `.js`, `.ts`, `.go`, `.rs`, and others)
 - Data files (`.csv`, `.json`, `.xml`, `.yaml`)
 - Documents (`.txt`, `.md`)
 - Archives (`.zip`, `.tar.gz`) - the agent can extract these using bash

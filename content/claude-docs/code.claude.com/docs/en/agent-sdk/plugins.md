@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/plugins
-fetched_at: 2026-05-27T03:17:07.219627Z
-sha256: a7228a0d4a361374980f8080843fe7d9ae3fd6ea0836a3051a7065bb6d7ca3e8
+fetched_at: 2026-06-02T03:18:54.775717Z
+sha256: 8975ffbfd10b03e66e6677c900bf1b0858f6b15158eaec9f031bc21fe400eb75
 ---
 
 > ## Documentation Index
@@ -82,7 +82,7 @@ Plugin paths can be:
 * **Absolute paths**: Full file system paths (for example, `"/home/user/plugins/my-plugin"`)
 
 <Note>
-  The path should point to the plugin's root directory (the directory containing `.claude-plugin/plugin.json`).
+  The path should point to the plugin's root directory: the parent of `skills/`, `agents/`, `hooks/`, `commands/` (legacy), or `.claude-plugin/`, not a subdirectory.
 </Note>
 
 ## Verifying plugin installation
@@ -278,12 +278,12 @@ Here's a full example demonstrating plugin loading and usage:
 
 ## Plugin structure reference
 
-A plugin directory must contain a `.claude-plugin/plugin.json` manifest file. It can optionally include:
+A plugin directory typically contains a `.claude-plugin/plugin.json` manifest file. The manifest is optional. When omitted, Claude Code auto-discovers components from the directory layout. The directory can include:
 
 ```text theme={null}
 my-plugin/
 ├── .claude-plugin/
-│   └── plugin.json          # Required: plugin manifest
+│   └── plugin.json          # Plugin manifest (optional, components auto-discovered without it)
 ├── skills/                   # Agent Skills (invoked autonomously or via /skill-name)
 │   └── my-skill/
 │       └── SKILL.md
@@ -336,9 +336,9 @@ plugins: [
 
 If your plugin doesn't appear in the init message:
 
-1. **Check the path**: Ensure the path points to the plugin root directory (containing `.claude-plugin/`)
-2. **Validate plugin.json**: Ensure your manifest file has valid JSON syntax
-3. **Check file permissions**: Ensure the plugin directory is readable
+1. **Check the path**: ensure the path points to the plugin root directory, the parent of `skills/`, `agents/`, `hooks/`, `commands/` (legacy), or `.claude-plugin/`
+2. **Validate plugin.json**: if your plugin includes a manifest, ensure it has valid JSON syntax
+3. **Check file permissions**: ensure the plugin directory is readable
 
 ### Skills not appearing
 

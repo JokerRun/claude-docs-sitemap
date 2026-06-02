@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/slash-commands
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 637a972e697eef622534a4515ebc41e4af1a04dcf3b4a973fb2891ebad7f3251
+fetched_at: 2026-06-02T03:18:54.775717Z
+sha256: aa70d4c5c4f5d22a52417b4d8fec15a553aedde466a947e0a048659946d54993
 ---
 
 > ## Documentation Index
@@ -258,7 +258,7 @@ argument-hint: [issue-number] [priority]
 description: Fix a GitHub issue
 ---
 
-Fix issue #$1 with priority $2.
+Fix issue #$0 with priority $1.
 Check the issue description and implement the necessary changes.
 ```
 
@@ -273,7 +273,7 @@ Use in SDK:
     prompt: "/fix-issue 123 high",
     options: { maxTurns: 5 }
   })) {
-    // Command will process with $1="123" and $2="high"
+    // Command will process with $0="123" and $1="high"
     if (message.type === "result" && message.subtype === "success") {
       console.log("Issue fixed:", message.result);
     }
@@ -288,7 +288,7 @@ Use in SDK:
   async def main():
       # Pass arguments to custom command
       async for message in query(prompt="/fix-issue 123 high", options=ClaudeAgentOptions(max_turns=5)):
-          # Command will process with $1="123" and $2="high"
+          # Command will process with $0="123" and $1="high"
           if isinstance(message, ResultMessage):
               print("Issue fixed:", message.result)
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/glossary
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: b3f394765f4d5f7d090cfc98ff1fb17cab77eea99cec5b0412d841a092a9ebef
+fetched_at: 2026-06-02T03:18:54.775717Z
+sha256: 6c81a41c5781db1b6d909b0d04517afee03f5859f5415e3a7ec2ccc6a8888816
 ---
 
 > ## Documentation Index
@@ -89,9 +89,9 @@ Learn more: [The `.claude` directory](/en/claude-directory)
 
 ### CLAUDE.md
 
-A markdown file of persistent instructions you write for Claude, loaded at the start of every session as a user message after the system prompt. Put project conventions, architecture notes, and "always do X" rules here. CLAUDE.md survives [compaction](#compaction) and is re-read fresh from disk afterward.
+A markdown file of persistent instructions you write for Claude, loaded at the start of every session as a user message after the system prompt. Put project conventions, architecture notes, and "always do X" rules here. Project-root CLAUDE.md survives [compaction](#compaction) and is re-read fresh from disk afterward.
 
-You can place CLAUDE.md at project scope in `./CLAUDE.md` or `./.claude/CLAUDE.md`, at user scope in `~/.claude/CLAUDE.md`, or as [managed policy](#managed-settings) for your organization. More specific locations take precedence.
+You can place CLAUDE.md at project scope in `./CLAUDE.md` or `./.claude/CLAUDE.md`, at user scope in `~/.claude/CLAUDE.md`, or as [managed policy](#managed-settings) for your organization. All discovered files are concatenated into context rather than overriding each other, ordered from broadest scope to most specific.
 
 Learn more: [CLAUDE.md files](/en/memory#claude-md-files)
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws
-fetched_at: 2026-05-30T03:14:18.300217Z
-sha256: cffeaaf2deb06ba515f2f5f99831eca0cfa1d32c076c6c039ffda52894d8f42f
+fetched_at: 2026-06-02T03:18:54.775717Z
+sha256: cc7830cb8664acd78d5a8c9732bfa2058ea5e6726b9cd3f831749eef534c1b4b
 ---
 
 # Claude Platform on AWS
@@ -524,7 +524,7 @@ See the [comparison table](#claude-platform-on-aws-vs-amazon-bedrock) for featur
 
 Session behavior on Claude Platform on AWS differs from first-party Claude Managed Agents in one way:
 
-- **Autonomous-session reauthentication:** A session can run autonomously, without any [user events](/docs/en/managed-agents/events-and-streaming#event-types), for up to 6 hours. After 6 hours, the session requires reauthentication before it continues. To reauthenticate, send any user-role event to the session (see [Events and streaming](/docs/en/managed-agents/events-and-streaming)). First-party Claude Managed Agents has no autonomous-session runtime limit.
+- **Autonomous-session reauthentication:** A session can run autonomously, without any [user events](/docs/en/managed-agents/reference#event-types), for up to 6 hours. After 6 hours, the session requires reauthentication before it continues. To reauthenticate, send any user-role event to the session (see [Events and streaming](/docs/en/managed-agents/events-and-streaming)). First-party Claude Managed Agents has no autonomous-session runtime limit.
 
 ### Features not supported
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/mcp-connector
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: ec1d6d2a5953249ee7bd911d81f449099211b5beb40db3988dba5303bdab019a
+fetched_at: 2026-06-02T03:18:54.775717Z
+sha256: fd90f6332b8040de76ea82a83017110bf5f1f40a3df4c8d3a4fa62f5fa7b425b
 ---
 
 # MCP connector
@@ -287,7 +287,7 @@ See [configuring the toolset](/docs/en/managed-agents/tools#configuring-the-tool
 
 ### MCP tool output handling
 
-When an MCP tool output exceeds 100k tokens, it is automatically written to a file in the sandbox. The model receives a truncated preview with the file path and can read the full content from there.
+When an MCP tool output exceeds 100,000 tokens, it is automatically written to a file in the sandbox. The model receives a truncated preview with the file path and can read the full content from there.
 
 ## Provide authentication at session creation
 
@@ -405,8 +405,4 @@ Session creation does not validate MCP connectivity or credentials. If an MCP se
 
 You can decide whether to block further interaction on this error, trigger a credential rotation, or let the session continue without the affected server's tools. The connection is retried on the next `session.status_idle` to `session.status_running` transition. See [Session event stream](/docs/en/managed-agents/events-and-streaming) for details on consuming `session.error` and other events.
 
-## Supported MCP server types
-
-Claude Managed Agents connects to [remote MCP servers](/docs/en/agents-and-tools/remote-mcp-servers) that expose an HTTP endpoint, or to private MCP servers through [MCP tunnels](/docs/en/agents-and-tools/mcp-tunnels/overview). The server must support the MCP protocol's streamable HTTP transport.
-
-For more information on MCP and building MCP servers, see the [MCP documentation](https://modelcontextprotocol.io).
+See [Supported MCP server types](/docs/en/managed-agents/reference#supported-mcp-server-types) in the reference for transport requirements.

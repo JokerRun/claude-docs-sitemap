@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/streaming-vs-single-mode
-fetched_at: 2026-05-16T03:13:19.414477Z
-sha256: d08141c422dacd2401ae08ea10983919f94d59a64548594415a6ca5f060d1248
+fetched_at: 2026-06-02T03:18:54.775717Z
+sha256: de19a46bc1c5adf688eda11ff7b0e29fab3ca4ea20a2a1e3efb986f042f36497
 ---
 
 > ## Documentation Index
@@ -79,10 +79,6 @@ sequenceDiagram
 
   <Card title="Tool Integration" icon="wrench">
     Full access to all tools and custom MCP servers during the session
-  </Card>
-
-  <Card title="Hooks Support" icon="link">
-    Use lifecycle hooks to customize behavior at various points
   </Card>
 
   <Card title="Real-time Feedback" icon="lightning">
@@ -228,7 +224,7 @@ Single message input is simpler but more limited.
 Use single message input when:
 
 * You need a one-shot response
-* You do not need image attachments, hooks, etc.
+* You do not need image attachments or mid-session control methods
 * You need to operate in a stateless environment, such as a lambda function
 
 ### Limitations
@@ -239,7 +235,6 @@ Use single message input when:
   * Direct image attachments in messages
   * Dynamic message queueing
   * Real-time interruption
-  * Hook integration
   * Natural multi-turn conversations
 </Warning>
 

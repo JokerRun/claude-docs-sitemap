@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/permission-modes
-fetched_at: 2026-05-30T03:14:18.300217Z
-sha256: b558d3081dbe4d8ac204fbd668b395bb66d453902047839c8eed6d0c82358865
+fetched_at: 2026-06-02T03:18:54.775717Z
+sha256: 042e4afdb637e62cea3109a7c4183d1191175b7092642c1a2adb69031b0b79d4
 ---
 
 > ## Documentation Index
@@ -233,7 +233,7 @@ Repeated blocks usually mean the classifier is missing context about your infras
   <Accordion title="How the classifier evaluates actions">
     Each action goes through a fixed decision order. The first matching step wins:
 
-    1. Actions matching your [allow or deny rules](/en/permissions#manage-permissions) resolve immediately
+    1. Actions matching your [allow or deny rules](/en/permissions#manage-permissions) resolve immediately, except writes to [protected paths](#protected-paths), which route to the classifier even when an allow rule matches
     2. Read-only actions and file edits in your working directory are auto-approved, except writes to [protected paths](#protected-paths)
     3. Everything else goes to the classifier
     4. If the classifier blocks, Claude receives the reason and tries an alternative

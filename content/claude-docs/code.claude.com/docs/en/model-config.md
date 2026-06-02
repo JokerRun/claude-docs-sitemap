@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/model-config
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 9524f4d49b06a7c7d6d0c36e69ad0480839526e3bf31c08316f4aa416bbf3333
+fetched_at: 2026-06-02T03:18:54.775717Z
+sha256: 4f25f6577dc3d2a55f10c2432b36b29d795a80db8e4bb3eb664f35650181f53e
 ---
 
 > ## Documentation Index
@@ -345,7 +345,7 @@ To enable [extended context](#extended-context) for a pinned model, append `[1m]
 export ANTHROPIC_DEFAULT_OPUS_MODEL='claude-opus-4-8[1m]'
 ```
 
-The `[1m]` suffix applies the 1M context window to all usage of that alias, including `opusplan`.
+The `[1m]` suffix applies the 1M context window to all usage of the `opus` and `sonnet` aliases. It does not extend the plan-mode Opus phase of `opusplan`, which [remains capped at 200K](#opusplan-model-setting).
 
 * Claude Code strips the suffix before sending the model ID to your provider.
 * Only append `[1m]` when the underlying model [supports 1M context](https://platform.claude.com/docs/en/build-with-claude/context-windows#1m-token-context-window).

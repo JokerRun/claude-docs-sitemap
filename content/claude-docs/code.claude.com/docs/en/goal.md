@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/goal
-fetched_at: 2026-05-15T03:15:49.552363Z
-sha256: d1ed30854d47fa94d4b2994c890a5e1dca68878cd7e0a2711ddd733f5da07e51
+fetched_at: 2026-06-02T03:18:54.775717Z
+sha256: 33e2de6e0f25631098f27c266d622b3d7d5676f513dd45d1f2d259cfa1fd1fed
 ---
 
 > ## Documentation Index
@@ -28,12 +28,12 @@ Use a goal for substantial work with a verifiable end state:
 
 This page covers how to:
 
-* [Compare autonomous workflow approaches](#compare-to-other-autonomous-workflows): `/loop`, Stop hooks, and auto mode
+* [Compare ways to keep a session running](#compare-ways-to-keep-a-session-running): `/loop`, Stop hooks, and auto mode
 * [Set a goal](#set-a-goal) and [write an effective condition](#write-an-effective-condition)
 * [Check status](#check-status), [clear early](#clear-a-goal), and [run non-interactively](#run-non-interactively)
 * See [how evaluation works](#how-evaluation-works) and [requirements](#requirements)
 
-## Compare to other autonomous workflows
+## Compare ways to keep a session running
 
 Three approaches keep the current session running between prompts. Pick based on what should start the next turn:
 

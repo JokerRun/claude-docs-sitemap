@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/large-codebases
-fetched_at: 2026-05-27T03:17:07.219627Z
-sha256: a20ae8e338c2530b51857750a03cec3affacf7e6143822657a70950412cbc0ab
+fetched_at: 2026-06-02T03:18:54.775717Z
+sha256: 99bf0f07d4d955027342299c7c83e404fcbd0c5ec011dc564fc8af998508ffaa
 ---
 
 > ## Documentation Index
@@ -387,7 +387,7 @@ See [server-managed or endpoint-managed settings](/en/server-managed-settings#ch
 
 Once conventions live in plugins, a teammate starting Claude in an unfamiliar part of the tree has no signal about which plugin that area's owners maintain. A [`SessionStart` hook](/en/hooks#sessionstart) can close that gap, since anything the hook prints to stdout is added to Claude's context before the first prompt.
 
-For example, you can write a script that reads the launch directory from the [hook input](/en/hooks#common-input-fields), looks it up in a path-to-plugin map committed to the repository, and prints the recommendation for Claude to relay in its first reply. See [Automate workflows with hooks](/en/hooks-guide) to write and register the hook.
+For example, you can write a script that reads the launch directory from the [hook input](/en/hooks#common-input-fields), looks it up in a path-to-plugin map committed to the repository, and prints the recommendation for Claude to relay in its first reply. See [Automate actions with hooks](/en/hooks-guide) to write and register the hook.
 
 ## Put it together
 

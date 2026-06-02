@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/wif-reference
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: a715d7546f0a71bb1bb286f5b778710283f3fb974668f8764aa48cfa12f6a518
+fetched_at: 2026-06-02T03:18:54.775717Z
+sha256: 96930820cf7a8e51aa988e9611dbf7902edf220685fb71756059a9723aeea04c
 ---
 
 # WIF reference
@@ -15,7 +15,7 @@ This page collects the configuration surfaces, validation constraints, and error
 
 ## Token exchange request
 
-`POST /v1/oauth/token` accepts a JSON body using the [RFC 7523](https://www.rfc-editor.org/rfc/rfc7523) `jwt-bearer` grant. The SDKs build this request for you from the [environment variables](#environment-variables) below; the cURL examples on each provider guide show the raw body.
+`POST /v1/oauth/token` accepts a JSON body using the [RFC 7523](https://www.rfc-editor.org/rfc/rfc7523) `jwt-bearer` grant. The SDKs build this request for you from the [environment variables](#environment-variables); the cURL examples on each provider guide show the raw body.
 
 | Field | Required | Description |
 | :--- | :--- | :--- |
@@ -67,7 +67,7 @@ The SDK resolves credentials in this order. The first source that yields a crede
 | 2 | `ANTHROPIC_API_KEY` or `ANTHROPIC_AUTH_TOKEN` | Shadows federation entirely. Unset these when migrating from API keys. |
 | 3 | `ANTHROPIC_PROFILE` | Loads `<config_dir>/configs/<name>.json`. A missing named profile is an error, not a fall-through. |
 | 4 | Federation environment variables | `ANTHROPIC_FEDERATION_RULE_ID` + `ANTHROPIC_ORGANIZATION_ID` + `ANTHROPIC_SERVICE_ACCOUNT_ID` + `ANTHROPIC_IDENTITY_TOKEN[_FILE]`. |
-| 5 | Active profile | Resolved via `<config_dir>/active_config`, falling back to a profile named `default`. |
+| 5 | Active profile | Resolved from `<config_dir>/active_config`, falling back to a profile named `default`. |
 
 When a profile is loaded, environment variables fill any fields the profile omits but never override fields the profile sets explicitly. For example, `ANTHROPIC_WORKSPACE_ID` fills `workspace_id` only when the active profile does not set it.
 
