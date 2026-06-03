@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/skills/versions/delete
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 68dda0e5d5305360410ba9bcda53b9b9faeb7f1956bb11884f2db1a41e3eb113
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: cc4e8ed04cda040d88dce207d208d0c45a10722676626d64bb1e933f9ffebc28
 ---
 
 ## Delete Skill Version
@@ -84,8 +84,6 @@ Delete Skill Version
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
-
-    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
 
 ### Returns
 

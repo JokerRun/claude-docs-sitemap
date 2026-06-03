@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/messages/batches/retrieve
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: b34577e596ef3a75dc2a43818216caadf083244d9a362296beb2e0c549b8c673
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: bca49f8a8326d90dfffa104b772ac742bc274da90945df4a38b582e412b65ff8
 ---
 
 ## Retrieve a Message Batch
@@ -78,8 +78,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
-
-    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
 ### Returns
 

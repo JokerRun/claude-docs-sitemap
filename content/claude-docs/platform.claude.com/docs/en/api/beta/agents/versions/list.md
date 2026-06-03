@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/versions/list
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: f313892ab523d9e1983126d222e6e7ccf4eb9b92f743abe023b8410f98d59287
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 11ae30fdcf8a838004f44a8064493ea59e353f006b3786184b9c66cf8846c34b
 ---
 
 ## List Agent Versions
@@ -33,7 +33,7 @@ List Agent Versions
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 24 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 23 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -87,8 +87,6 @@ List Agent Versions
 
     - `"thinking-token-count-2026-05-13"`
 
-    - `"mid-conversation-system-2026-04-07"`
-
 ### Returns
 
 - `data: optional array of BetaManagedAgentsAgent`
@@ -129,11 +127,15 @@ List Agent Versions
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `"claude-opus-4-7" or "claude-opus-4-6" or "claude-sonnet-4-6" or 6 more`
+      - `"claude-opus-4-8" or "claude-opus-4-7" or "claude-opus-4-6" or 7 more`
 
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-opus-4-8"`
+
+          Frontier intelligence for long-running agents and coding
 
         - `"claude-opus-4-7"`
 

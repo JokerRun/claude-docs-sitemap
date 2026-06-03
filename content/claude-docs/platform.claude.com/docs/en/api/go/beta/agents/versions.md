@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/agents/versions
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 5e1e36265b73726d7f1a13afa2c77f86a4a5b4955a4bc90c4a2cb6c4a3c5f622
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: c9422cbe2f014127e07dcc8b0dd4f5fe4448f708d1aec9605716232e5530c81b
 ---
 
 # Versions
@@ -89,8 +89,6 @@ List Agent Versions
 
       - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
 
-      - `const AnthropicBetaMidConversationSystem2026_04_07 AnthropicBeta = "mid-conversation-system-2026-04-07"`
-
 ### Returns
 
 - `type BetaManagedAgentsAgent struct{…}`
@@ -136,6 +134,10 @@ List Agent Versions
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `const BetaManagedAgentsModelClaudeOpus4_8 BetaManagedAgentsModel = "claude-opus-4-8"`
+
+          Frontier intelligence for long-running agents and coding
 
         - `const BetaManagedAgentsModelClaudeOpus4_7 BetaManagedAgentsModel = "claude-opus-4-7"`
 

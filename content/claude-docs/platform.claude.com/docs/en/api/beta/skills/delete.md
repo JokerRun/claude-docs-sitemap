@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/delete
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 17cff23463009c867d137bb320c90e8873007f9a8ff1973931da2b7cbdb76dce
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 0d613cdbe14c93cb623e2aac5e7e80b08bc9e90a7f93ac2c101171b5923871b7
 ---
 
 ## Delete Skill
@@ -27,7 +27,7 @@ Delete Skill
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 24 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 23 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -80,8 +80,6 @@ Delete Skill
     - `"cache-diagnosis-2026-04-07"`
 
     - `"thinking-token-count-2026-05-13"`
-
-    - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

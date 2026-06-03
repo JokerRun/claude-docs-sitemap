@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/archive
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 2e4027c9e0de933b5cf28d29779319f308ae34065f3b33d7ca310ab6b82bddd7
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 74e96d9bcc052fe224b93eac8eb51467aa8b38adae62cf45046935239216b29e
 ---
 
 ## Archive a memory store
@@ -23,7 +23,7 @@ Archive a memory store
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 24 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 23 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -76,8 +76,6 @@ Archive a memory store
     - `"cache-diagnosis-2026-04-07"`
 
     - `"thinking-token-count-2026-05-13"`
-
-    - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

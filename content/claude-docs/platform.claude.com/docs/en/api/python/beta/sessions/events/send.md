@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/sessions/events/send
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: a854cbd48ce78bdc6ea28520e04c358a834d5908702de9f1a5edb56a6fd223c1
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: ee74f1da465077388d212f9ae70d17f489478a64af1a245563e15e59235686cb
 ---
 
 ## Send Events
@@ -365,7 +365,7 @@ Send Events
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 24 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 23 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -418,8 +418,6 @@ Send Events
     - `"cache-diagnosis-2026-04-07"`
 
     - `"thinking-token-count-2026-05-13"`
-
-    - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

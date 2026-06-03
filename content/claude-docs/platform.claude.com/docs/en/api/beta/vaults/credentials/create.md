@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/create
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: d9c129bced29ef913052a755cc5d3e7677fbd8bfb1a9af8e5b7aaf2dc11eefba
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 59758ebd3f69f73f357b49dee0e8c8cb4dfbbc2fe6bea019a2ed84d7d605995f
 ---
 
 ## Create Credential
@@ -23,7 +23,7 @@ Create Credential
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 24 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 23 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -76,8 +76,6 @@ Create Credential
     - `"cache-diagnosis-2026-04-07"`
 
     - `"thinking-token-count-2026-05-13"`
-
-    - `"mid-conversation-system-2026-04-07"`
 
 ### Body Parameters
 

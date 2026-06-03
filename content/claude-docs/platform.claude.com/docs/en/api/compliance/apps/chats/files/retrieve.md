@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats/files/retrieve
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 14b8d0b81373f966a2b70e1ebd4f81b91785b3580e5adb8c42817d2f33097e33
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: ce22b8a3068c219bb35f764131032a28d834c9ef1170428ae06ba81cbc3ff50d
 ---
 
 ## Get file metadata
@@ -28,6 +28,10 @@ download the bytes.
 - `id: string`
 
   File ID
+
+- `claude_chat_ids: array of string`
+
+  Chats this file is attached to. A file can be referenced by messages across multiple chats.
 
 - `created_at: string`
 
@@ -72,6 +76,9 @@ curl https://api.anthropic.com/v1/compliance/apps/chats/files/$CLAUDE_FILE_ID \
   "created_at": "2024-01-15T10:30:00Z",
   "message_ids": [
     "claude_chat_msg_abc123"
+  ],
+  "claude_chat_ids": [
+    "claude_chat_def456"
   ]
 }
 ```

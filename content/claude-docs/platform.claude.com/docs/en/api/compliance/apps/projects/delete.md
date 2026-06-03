@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/delete
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 1c3a893ad2ed5714faf5f5545f3ed4bddfb6842b948198b6f07dc0c191fbff5f
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 94c50c671589621f4a04796d42274119efc916785677c49cbc698dd97a8b756c
 ---
 
 ## Delete project
@@ -19,13 +19,6 @@ Hard-deletes the project and all its associated data including:
 - Sync sources
 
 Project must have no attached chats - returns 409 if chats exist.
-
-Returns:
-ClaudeProjectDeleteResponse confirming the deletion
-
-Raises:
-ConflictException: If project has chats attached
-NotFoundException: If project doesn't exist or already deleted
 
 ### Path Parameters
 

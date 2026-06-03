@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/messages/batches
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: efdc13e9aaaa73e3cd28af923e92eb411cf3d02b35e6267d792f4684b8859a74
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 51fdd9f88c5ced530e0f3eafff70e5245f90ae200bc597266bd9c1a77e9cbdbf
 ---
 
 # Batches
@@ -2763,8 +2763,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
 
-      - `const AnthropicBetaMidConversationSystem2026_04_07 AnthropicBeta = "mid-conversation-system-2026-04-07"`
-
 ### Returns
 
 - `type BetaMessageBatch struct{…}`
@@ -2996,8 +2994,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
 
       - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
-
-      - `const AnthropicBetaMidConversationSystem2026_04_07 AnthropicBeta = "mid-conversation-system-2026-04-07"`
 
 ### Returns
 
@@ -3231,8 +3227,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
 
-      - `const AnthropicBetaMidConversationSystem2026_04_07 AnthropicBeta = "mid-conversation-system-2026-04-07"`
-
 ### Returns
 
 - `type BetaMessageBatch struct{…}`
@@ -3460,8 +3454,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
 
-      - `const AnthropicBetaMidConversationSystem2026_04_07 AnthropicBeta = "mid-conversation-system-2026-04-07"`
-
 ### Returns
 
 - `type BetaMessageBatch struct{…}`
@@ -3686,8 +3678,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
 
-      - `const AnthropicBetaMidConversationSystem2026_04_07 AnthropicBeta = "mid-conversation-system-2026-04-07"`
-
 ### Returns
 
 - `type BetaDeletedMessageBatch struct{…}`
@@ -3823,8 +3813,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
 
       - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
-
-      - `const AnthropicBetaMidConversationSystem2026_04_07 AnthropicBeta = "mid-conversation-system-2026-04-07"`
 
 ### Returns
 
@@ -5085,7 +5073,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             The number of output tokens which were used.
 
-          - `OutputTokensDetails BetaUsageOutputTokensDetails`
+          - `OutputTokensDetails BetaOutputTokensDetails`
 
             Breakdown of output tokens by category.
 
@@ -6746,7 +6734,7 @@ func main() {
 
             The number of output tokens which were used.
 
-          - `OutputTokensDetails BetaUsageOutputTokensDetails`
+          - `OutputTokensDetails BetaOutputTokensDetails`
 
             Breakdown of output tokens by category.
 
@@ -8181,7 +8169,7 @@ func main() {
 
           The number of output tokens which were used.
 
-        - `OutputTokensDetails BetaUsageOutputTokensDetails`
+        - `OutputTokensDetails BetaOutputTokensDetails`
 
           Breakdown of output tokens by category.
 
@@ -9578,7 +9566,7 @@ func main() {
 
         The number of output tokens which were used.
 
-      - `OutputTokensDetails BetaUsageOutputTokensDetails`
+      - `OutputTokensDetails BetaOutputTokensDetails`
 
         Breakdown of output tokens by category.
 

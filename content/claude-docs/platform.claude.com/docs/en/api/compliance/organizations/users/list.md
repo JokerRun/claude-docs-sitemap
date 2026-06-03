@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/users/list
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 71f7fd603b1d7d10cbad8eb38f22f56ca2be23468937c702db24fd932d1e86a8
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 942a40ad8978cb87a78c634c8532742c005ef07752dfa124ce5931cfc0cb67e7
 ---
 
 ## List organization users
@@ -10,9 +10,6 @@ sha256: 71f7fd603b1d7d10cbad8eb38f22f56ca2be23468937c702db24fd932d1e86a8
 **get** `/v1/compliance/organizations/{org_uuid}/users`
 
 List current user members of an organization.
-
-Returns:
-List of user members with pagination info
 
 ### Path Parameters
 

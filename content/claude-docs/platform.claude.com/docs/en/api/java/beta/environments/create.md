@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/environments/create
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 85183e21b93f518663e0d589700ade292038b1944130ddf7fbcfcfd1f9671353
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: ead7f16e1b604e9ace4a7f3ed5bdc3c0237be102947c7a05b19cbd0465af1a29
 ---
 
 ## Create Environment
@@ -72,8 +72,6 @@ Create a new environment with the specified configuration.
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
-
-    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
   - `String name`
 

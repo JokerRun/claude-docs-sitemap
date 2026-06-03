@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/messages
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 0c491f098129aefa8412404994a4733a4c48321356b86b062c518f4bff7c68f6
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: dda7befb310130f14ea4b4d425797cf4ae07b0e9bdcf0b3ba1594dd1e84b94c8
 ---
 
 # Messages
@@ -11625,6 +11625,21 @@ print(message_tokens_count.input_tokens)
 
       - `"json_schema"`
 
+### Output Tokens Details
+
+- `class OutputTokensDetails: …`
+
+  - `thinking_tokens: int`
+
+    Number of output tokens the model generated as internal reasoning, including
+    the thinking-block delimiter tokens.
+
+    Reflects the raw reasoning the model produced, not the (possibly shorter)
+    summarized thinking text returned in the response body. Computed by
+    re-tokenizing the raw reasoning text, so it may differ from the model's exact
+    generation count by a small number of tokens. Always ≤ `output_tokens`;
+    `output_tokens - thinking_tokens` approximates the non-reasoning output.
+
 ### Plain Text Source
 
 - `class PlainTextSource: …`
@@ -14705,17 +14720,6 @@ print(message_tokens_count.input_tokens)
         This object provides a read-only decomposition for observability — for example,
         how many of the billed output tokens were spent on internal reasoning that may
         have been summarized before being returned to you.
-
-        - `thinking_tokens: int`
-
-          Number of output tokens the model generated as internal reasoning, including
-          the thinking-block delimiter tokens.
-
-          Reflects the raw reasoning the model produced, not the (possibly shorter)
-          summarized thinking text returned in the response body. Computed by
-          re-tokenizing the raw reasoning text, so it may differ from the model's exact
-          generation count by a small number of tokens. Always ≤ `output_tokens`;
-          `output_tokens - thinking_tokens` approximates the non-reasoning output.
 
       - `server_tool_use: Optional[ServerToolUsage]`
 

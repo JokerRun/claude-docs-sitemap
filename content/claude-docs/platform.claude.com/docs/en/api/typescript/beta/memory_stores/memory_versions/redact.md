@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/memory_stores/memory_versions/redact
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 9252048638133779be22b882f3bb1bbac929395a897664c26e9eb4205b37e344
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 85dc34cd495589ee4fed3cf3890782df4a5adcfe2b546c211c2d243c1d921a41
 ---
 
 ## Redact a memory version
@@ -29,7 +29,7 @@ Redact a memory version
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 24 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 23 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -82,8 +82,6 @@ Redact a memory version
       - `"cache-diagnosis-2026-04-07"`
 
       - `"thinking-token-count-2026-05-13"`
-
-      - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

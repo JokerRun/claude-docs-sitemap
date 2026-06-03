@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/memory_stores/memories/update
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 48724afc0eee918a204b0e2d399fff2564cdbe6db3103f1ce636489961476664
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 822c4bbd4145786859fac18fa92d5ec8c840db67e3897e1f037aa24512a93b4b
 ---
 
 ## Update a memory
@@ -53,7 +53,7 @@ Update a memory
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 24 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 23 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -106,8 +106,6 @@ Update a memory
     - `"cache-diagnosis-2026-04-07"`
 
     - `"thinking-token-count-2026-05-13"`
-
-    - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

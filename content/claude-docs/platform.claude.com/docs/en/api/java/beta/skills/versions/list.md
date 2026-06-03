@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/skills/versions/list
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 660fbf3f9df5f9bc0c70b652c20d8d000abe363229d7a6933c7e03d6f0e622f2
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: b6dec7af2de00f32093f23f31eb98660a60550a9a7df85c2ae1ed6761b793e99
 ---
 
 ## List Skill Versions
@@ -88,8 +88,6 @@ List Skill Versions
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
-
-    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
 ### Returns
 

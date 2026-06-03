@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/messages/batches
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 4dc10f2d45171c376e228e45890c22bf51bb58e982d78e51b5e86d8ea7bb03fd
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: f384a962ab46192e4a7a78f7f4627883e3e6ed2dc0ffff046d4053ec9a5eab33
 ---
 
 # Batches
@@ -3668,7 +3668,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             The number of output tokens which were used.
 
-          - `OutputTokensDetails UsageOutputTokensDetails`
+          - `OutputTokensDetails OutputTokensDetails`
 
             Breakdown of output tokens by category.
 
@@ -4960,7 +4960,7 @@ func main() {
 
             The number of output tokens which were used.
 
-          - `OutputTokensDetails UsageOutputTokensDetails`
+          - `OutputTokensDetails OutputTokensDetails`
 
             Breakdown of output tokens by category.
 
@@ -6032,7 +6032,7 @@ func main() {
 
           The number of output tokens which were used.
 
-        - `OutputTokensDetails UsageOutputTokensDetails`
+        - `OutputTokensDetails OutputTokensDetails`
 
           Breakdown of output tokens by category.
 
@@ -7066,7 +7066,7 @@ func main() {
 
         The number of output tokens which were used.
 
-      - `OutputTokensDetails UsageOutputTokensDetails`
+      - `OutputTokensDetails OutputTokensDetails`
 
         Breakdown of output tokens by category.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/messages/batches/create
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 946d9bf0ac311fb7f67c7082fc4b3205378bcdc219a38d4b8b7e0e495d17584c
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: d1dadb99a8307fa953b1311f094dbb312a74beed247529372d8b1bd4a25c106b
 ---
 
 ## Create a Message Batch
@@ -2760,8 +2760,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
 
       - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
-
-      - `const AnthropicBetaMidConversationSystem2026_04_07 AnthropicBeta = "mid-conversation-system-2026-04-07"`
 
 ### Returns
 

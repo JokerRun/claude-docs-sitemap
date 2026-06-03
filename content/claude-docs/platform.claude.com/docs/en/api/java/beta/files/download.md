@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/files/download
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 6788737e6acc4bc13ab781a59d29751a5166e0ba0e0612cb62c894af420277af
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 8e64b25fd7cabac62b4db56f3715faded9b12f661ae25b3e230cd679b23b1740
 ---
 
 ## Download File
@@ -76,8 +76,6 @@ Download File
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
-
-    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
 ### Example
 

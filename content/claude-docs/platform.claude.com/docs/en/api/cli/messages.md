@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/messages
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: bb7655e3a7f2a0664654c5a9cfd5f1046dec5496b053e59181b36eaa2fdc4e0e
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: c64d5323e343b2b871b40d073759f678fa0ba0a77b92fed3fc51d91db4e1768a
 ---
 
 # Messages
@@ -7817,6 +7817,21 @@ ant messages count-tokens \
       The JSON schema of the format
 
     - `type: "json_schema"`
+
+### Output Tokens Details
+
+- `output_tokens_details: object { thinking_tokens }`
+
+  - `thinking_tokens: number`
+
+    Number of output tokens the model generated as internal reasoning, including
+    the thinking-block delimiter tokens.
+
+    Reflects the raw reasoning the model produced, not the (possibly shorter)
+    summarized thinking text returned in the response body. Computed by
+    re-tokenizing the raw reasoning text, so it may differ from the model's exact
+    generation count by a small number of tokens. Always ≤ `output_tokens`;
+    `output_tokens - thinking_tokens` approximates the non-reasoning output.
 
 ### Plain Text Source
 

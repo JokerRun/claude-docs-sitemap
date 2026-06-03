@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/troubleshooting-tool-use
-fetched_at: 2026-03-27T03:10:39.282195Z
-sha256: e25c7591a5b27a96fab7d14b22f76ffe27e0a1bbfdb45bc2302c8d0251cb8fc2
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: f4429af8adbe7bc5acafac24a6a88ef2576aeaf64e0ec2a96b8e25c450cfcb8c
 ---
 
 # Troubleshooting tool use
@@ -49,6 +49,12 @@ Symptom-to-fix tables for the most common tool-use errors. Each fix cross-refere
 | `tool_use ids were found without tool_result blocks immediately after` | Missing `tool_result` for some `tool_use` ids, or `tool_result` is not the first content block in the user message | Return one `tool_result` for every `tool_use` block in the assistant response. Put `tool_result` blocks before any text. See [Handle tool calls](/docs/en/agents-and-tools/tool-use/handle-tool-calls) and [Parallel tool use](/docs/en/agents-and-tools/tool-use/parallel-tool-use). |
 | `Input schema is not compatible with strict mode: string patterns are not supported` | Using `pattern` with `strict: true` | Remove the pattern or drop `strict: true`. The `pattern` keyword is not in the supported JSON Schema subset yet. |
 | `All tools have defer_loading: true` | No tools visible to the model | At least one tool must be immediately loaded. The tool search tool itself must never have `defer_loading: true`. |
+
+## Claude flags tool results as prompt injection
+
+| Symptom | Likely cause | Fix |
+|---|---|---|
+| Claude refuses to act on a tool result, or asks the user to confirm instructions that came from it | Your own instructions are being delivered inside the `tool_result` content | Claude is trained to treat instructions inside tool results as potentially untrusted third-party content. Move your instructions out of the tool result: send them in a `user` turn after the `tool_result` block, or (on Claude Opus 4.8 and later) in a [mid-conversation system message](/docs/en/build-with-claude/mid-conversation-system-messages). Keep the tool result to just the data. See [Mitigate jailbreaks and prompt injections](/docs/en/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks#indirect-prompt-injection). |
 
 ## JSON escaping differences (Opus 4.6+)
 

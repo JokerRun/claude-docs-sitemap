@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/retrieve
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: f694c66a4f2d07d415f20c049c0b2787d7f35497b89759b007f38508fb9405cf
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 6c20dcb6d1a6fc6c89fcfc6b6433b2bd93d45da12e6fe41abdeaf6f8c8ad5dc5
 ---
 
 ## Get Vault
@@ -74,8 +74,6 @@ Get Vault
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
-
-    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
 ### Returns
 

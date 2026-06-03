@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/vaults/credentials/archive
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: f118ca6c330a5366d8512e6786022c898d2d4da9c226d97e36b65ecee0d5d3fd
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: cf341d7ab0a22b34b233796cab72c6f0412969de5f45ff24514c30091760f76d
 ---
 
 ## Archive Credential
@@ -29,7 +29,7 @@ Archive Credential
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 24 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 23 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -82,8 +82,6 @@ Archive Credential
       - `"cache-diagnosis-2026-04-07"`
 
       - `"thinking-token-count-2026-05-13"`
-
-      - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

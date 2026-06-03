@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/messages/batches
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: c08530bf16feaae0223ea0a00d128a1945e304ac4385ef0efa415181370f33e4
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: f926ae5cf459bc3d7a2a842c48776749d589069fbdfb8ffaf9f112cdcac787d6
 ---
 
 # Batches
@@ -3594,7 +3594,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             The number of output tokens which were used.
 
-          - `output_tokens_details: OutputTokensDetails{ thinking_tokens}`
+          - `output_tokens_details: OutputTokensDetails`
 
             Breakdown of output tokens by category.
 
@@ -4870,7 +4870,7 @@ puts(message_batch_individual_response)
 
             The number of output tokens which were used.
 
-          - `output_tokens_details: OutputTokensDetails{ thinking_tokens}`
+          - `output_tokens_details: OutputTokensDetails`
 
             Breakdown of output tokens by category.
 
@@ -5942,7 +5942,7 @@ puts(message_batch_individual_response)
 
           The number of output tokens which were used.
 
-        - `output_tokens_details: OutputTokensDetails{ thinking_tokens}`
+        - `output_tokens_details: OutputTokensDetails`
 
           Breakdown of output tokens by category.
 
@@ -6976,7 +6976,7 @@ puts(message_batch_individual_response)
 
         The number of output tokens which were used.
 
-      - `output_tokens_details: OutputTokensDetails{ thinking_tokens}`
+      - `output_tokens_details: OutputTokensDetails`
 
         Breakdown of output tokens by category.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/sessions/events/send
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 529b77abe6e6eb6cc51bf3b7cf37fbdf35a03f9f344f4f5047dc237ca91a31b0
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: f30ad6c0555cb674a10d16792100ee9cfef26d0019e735204933ab5055716c25
 ---
 
 ## Send Events
@@ -418,8 +418,6 @@ Send Events
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
-
-    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
 
 ### Returns
 

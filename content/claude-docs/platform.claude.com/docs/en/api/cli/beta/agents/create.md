@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/agents/create
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 31cab4407d715ec7eeb35dfb5f4172ef77a0be0e7d2bacf037bc83c4db386140
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 3d65199f2a2053ba642ec455ca06bfc246132e1ba39d1faa3d3e6690f21cce59
 ---
 
 ## Create Agent
@@ -89,11 +89,15 @@ Create Agent
 
     Model identifier and configuration.
 
-    - `id: "claude-opus-4-7" or "claude-opus-4-6" or "claude-sonnet-4-6" or 6 more or string`
+    - `id: "claude-opus-4-8" or "claude-opus-4-7" or "claude-opus-4-6" or 7 more or string`
 
       The model that will power your agent.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `"claude-opus-4-8"`
+
+        Frontier intelligence for long-running agents and coding
 
       - `"claude-opus-4-7"`
 

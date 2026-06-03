@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/messages/create
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: caf1654b88f9db0f0c4466e4c0b8c9c5debd719b0b1c6ad59a69af100d170b2d
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: b043fb28930f5185c5fc0ab51fbc71c805a22d3c6872233ab4359c52681e6a61
 ---
 
 ## Create a Message
@@ -76,8 +76,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
-
-    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
   - `long maxTokens`
 
@@ -3708,7 +3706,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       The number of output tokens which were used.
 
-    - `Optional<OutputTokensDetails> outputTokensDetails`
+    - `Optional<BetaOutputTokensDetails> outputTokensDetails`
 
       Breakdown of output tokens by category.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/models
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 1dfb8e3dcc00486c7840041cdfb296cf642dd527e9134bf68f2e9d94540b99c7
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: bef3257a2c9507afe78b8a242514b146d6cf0fe6cf9aeab58e8150b7e386e13e
 ---
 
 # Models
@@ -90,8 +90,6 @@ The Models API response can be used to determine which models are available for 
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
-
-    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
 
 ### Returns
 
@@ -403,8 +401,6 @@ The Models API response can be used to determine information about a specific mo
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
-
-    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
 
 ### Returns
 

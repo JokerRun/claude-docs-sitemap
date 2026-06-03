@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/mcp-connector
-fetched_at: 2026-05-30T03:14:18.300217Z
-sha256: 616338d56d2633ed2f057feb677040f56ef86ca7dee5ac061f6eca227292e5df
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 1e76be1564e828d806b9bcc637c3cc4dea07f13f96205159b1f95ac187d6950d
 ---
 
 # MCP connector
@@ -277,7 +277,7 @@ void main() {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 $message = $client->beta->messages->create(
     maxTokens: 1000,

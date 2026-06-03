@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/vaults/credentials/mcp_oauth_validate
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 36bd68fc68e15fafc50f1f20a8dfa0a9a54a0b92c28786961a521da3a931f021
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 73a2b204ad99d35695636870c7b818462cc39b00641dc829768905372f11fdc5
 ---
 
 ## Validate Credential
@@ -82,8 +82,6 @@ Validate Credential
       - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
 
       - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
-
-      - `const AnthropicBetaMidConversationSystem2026_04_07 AnthropicBeta = "mid-conversation-system-2026-04-07"`
 
 ### Returns
 

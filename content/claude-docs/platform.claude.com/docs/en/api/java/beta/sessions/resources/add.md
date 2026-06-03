@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/resources/add
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 81eb9fd38b27be74b7811e758ffa385e1cf43b848cbec51d48dfd1b9cb3db337
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 46ce3fb242d8effbdb5756dec9d29d2790b3feff9e66d7ccf6b8f1cbf4461c4f
 ---
 
 ## Add Session Resource
@@ -74,8 +74,6 @@ Add Session Resource
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
-
-    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
   - `BetaManagedAgentsFileResourceParams betaManagedAgentsFileResourceParams`
 

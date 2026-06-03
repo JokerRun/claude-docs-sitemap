@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 56ad9a31fce24668f637d3b49bdab20dbc8363b4075d77342554a60c9aab67ea
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 8e427a833e81829e8acb2850471f9b8a596c1cc2afc8b4491d4a540f53f683fe
 ---
 
 # Tool search tool
@@ -445,7 +445,7 @@ void main() {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 $message = $client->messages->create(
     maxTokens: 2048,

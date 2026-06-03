@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/mid-conversation-system-messages
-fetched_at: 2026-06-02T03:18:54.775717Z
-sha256: 952d3bbf1fc4069b87db6c23e4001bdffcbd3c047072356a73917b12c2266cdf
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 576b7b0cde2ee31087f687b372944d5d925dbb4c2bb49dae7f222fcf1c1c3606
 ---
 
 # Mid-conversation system messages
@@ -22,7 +22,7 @@ Mid-conversation system messages close that gap. You append a `{"role": "system"
 <Note>
 Mid-conversation system messages are available on the Claude API and [Claude Platform on AWS](/docs/en/build-with-claude/claude-platform-on-aws). They are not available on [Amazon Bedrock](/docs/en/build-with-claude/claude-in-amazon-bedrock), [Vertex AI](/docs/en/build-with-claude/claude-on-vertex-ai), or [Microsoft Foundry](/docs/en/build-with-claude/claude-in-microsoft-foundry).
 
-This feature is available on <NextOpus /> only. No beta header is required.
+This feature is available on Claude Opus 4.8 only. No beta header is required.
 </Note>
 
 ## When to use a mid-conversation system message

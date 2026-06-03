@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/messages/batches/create
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: a73c310c90cd7519d3ee75bfcb4e1c7a0fc8c72426ed29d28a880342a0eb8ebf
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: be803dff66769cdb9eaba1bbeb735d02841494a87085cf57b21f71fc61b35a1b
 ---
 
 ## Create a Message Batch
@@ -2709,7 +2709,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 24 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 23 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -2762,8 +2762,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       - `"cache-diagnosis-2026-04-07"`
 
       - `"thinking-token-count-2026-05-13"`
-
-      - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

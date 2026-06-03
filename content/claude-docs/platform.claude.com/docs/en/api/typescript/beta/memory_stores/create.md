@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/memory_stores/create
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 03fba396032fae5d87d9fcc728b8103d24be6475faa69918aad3300b4bc82b87
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: f8e4d20ef2c81764922e8c1c8701861941dd565aa378bea1284a165c867d0903
 ---
 
 ## Create a memory store
@@ -35,7 +35,7 @@ Create a memory store
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 24 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 23 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -88,8 +88,6 @@ Create a memory store
       - `"cache-diagnosis-2026-04-07"`
 
       - `"thinking-token-count-2026-05-13"`
-
-      - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

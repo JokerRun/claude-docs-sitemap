@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/environments/work/ack
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 8a1ae47ed73d8e0eebfdbdcc249e11234d3ae1ba11dcb1a1a488b48cdf695ec7
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 1815aa6af01d3fcacb027f75a02286a7f722da4e21acbeb92e212e47c4a6adb4
 ---
 
 ## Acknowledge Work
@@ -31,7 +31,7 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 24 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 23 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -84,8 +84,6 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
       - `"cache-diagnosis-2026-04-07"`
 
       - `"thinking-token-count-2026-05-13"`
-
-      - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

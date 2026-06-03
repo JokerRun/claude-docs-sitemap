@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: ed7d7031510991474392feafe05b481e89eb3658e42d0ba45571fbd888c89a43
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: b31af5d3f9f1adefecafc41617b45f7abe13b218c0c054d9b7f8cb76e84d0220
 ---
 
 # Memory tool
@@ -309,7 +309,7 @@ public class MemoryToolExample {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 $message = $client->messages->create(
     maxTokens: 2048,

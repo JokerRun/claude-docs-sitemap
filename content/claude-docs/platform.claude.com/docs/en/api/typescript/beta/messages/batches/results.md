@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/messages/batches/results
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 4c9e78d6dde56633203784d1b156664ed49af7a4ad588729f6f084c9c9baae3a
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 3b0fdc4f46e2b9d4ff01e27c78d9b06648fcf6a28b4154ea2281d895ec1af077
 ---
 
 ## Retrieve Message Batch results
@@ -31,7 +31,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 24 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 23 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -84,8 +84,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       - `"cache-diagnosis-2026-04-07"`
 
       - `"thinking-token-count-2026-05-13"`
-
-      - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 
@@ -1342,7 +1340,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             The number of output tokens which were used.
 
-          - `output_tokens_details: OutputTokensDetails | null`
+          - `output_tokens_details: BetaOutputTokensDetails | null`
 
             Breakdown of output tokens by category.
 

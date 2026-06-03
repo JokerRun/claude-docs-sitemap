@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool
-fetched_at: 2026-05-30T03:14:18.300217Z
-sha256: 0dce2a27a25db5479dbc2c3be3025923bd33a817a84bc38f0616aea9f84f3e2b
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: b967f5c38e12396a06f6c1cd90991ed30c04d2e6796a7ef8f10df9867fc81729
 ---
 
 # Computer use tool
@@ -297,7 +297,7 @@ void main() {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 $response = $client->beta->messages->create(
     maxTokens: 1024,

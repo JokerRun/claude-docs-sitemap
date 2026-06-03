@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/sessions/events/list
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 82bdf6ce6a022339a0b9cba2c2f4aa0897e9d8d4a7f4de08458b9e208082eec0
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 9d36559a1c853dd9aed6c85f970c50e5a3b84ef5bce530fe19cdb836945f87ca
 ---
 
 ## List Events
@@ -112,8 +112,6 @@ List Events
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
-
-    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
 
 ### Returns
 
@@ -1544,6 +1542,10 @@ List Events
             The model that will power your agent.
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `"claude-opus-4-8"ClaudeOpus4_8`
+
+              Frontier intelligence for long-running agents and coding
 
             - `"claude-opus-4-7"ClaudeOpus4_7`
 

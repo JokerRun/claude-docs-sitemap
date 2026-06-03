@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/skills/versions/delete
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: dfda91e2158cff3172bda28bc7be25c20fa0ef6169b717f85f17942e1d444616
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: a0007235054419cb60f84c710c90ff07bcfb2a0570f97b181ab04b5286686b18
 ---
 
 ## Delete Skill Version
@@ -33,7 +33,7 @@ Delete Skill Version
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 24 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 23 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -86,8 +86,6 @@ Delete Skill Version
     - `"cache-diagnosis-2026-04-07"`
 
     - `"thinking-token-count-2026-05-13"`
-
-    - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/download
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: acca2a0533fcda08dd582eb4d9b2cdc5926c7d3ac6253293fa3b26ae8ff464bf
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 7d34d499cbc9bae2beeef059488a79218795631a3d20fd6224d0ee040929e433
 ---
 
 ## Download File
@@ -25,7 +25,7 @@ Download File
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 24 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 23 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -78,8 +78,6 @@ Download File
     - `"cache-diagnosis-2026-04-07"`
 
     - `"thinking-token-count-2026-05-13"`
-
-    - `"mid-conversation-system-2026-04-07"`
 
 ### Example
 

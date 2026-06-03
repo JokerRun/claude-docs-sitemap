@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/attachments/list
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 950a63600bfc6ee4e0cd6007e6aca7780e3150be55b2fec878733734cd1d98ca
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 33337b01102e45188a1528c7f12eebd001103b5e65124a5daad63ce972ff48d5
 ---
 
 ## List project attachments
@@ -19,12 +19,6 @@ GET /v1/compliance/apps/chats/files/{claude_file_id}/content endpoint.
 
 The text content of attached project documents can be fetched using the
 GET /v1/compliance/apps/projects/documents/{claude_proj_doc_id} endpoint.
-
-Returns:
-List of project attachments with pagination info
-
-Raises:
-NotFoundException: If project doesn't exist or project_id format is invalid
 
 ### Path Parameters
 

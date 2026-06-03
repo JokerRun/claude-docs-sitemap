@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/memory_stores/create
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: d96e20fed7d8c04599391b30b760324b918fbe4d66a38c10e6f4873ebd7355de
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: ae833395a954fa27a81870702cb5a22259437913182e4b2845b3d47e4a0d739d
 ---
 
 ## Create a memory store
@@ -84,8 +84,6 @@ Create a memory store
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
-
-    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
 
 ### Returns
 

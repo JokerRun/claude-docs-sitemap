@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 2406d7e7c96cf40f13c14fb7efa94b3014d75d0497f1d5c576605916de6c155e
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: d9cd3fe690b877ffa75d508319412a5414d0fbedc3ddd70522dc0c339bbfbf3a
 ---
 
 # Define tools
@@ -487,7 +487,7 @@ void main() {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 $message = $client->messages->create(
     maxTokens: 1024,

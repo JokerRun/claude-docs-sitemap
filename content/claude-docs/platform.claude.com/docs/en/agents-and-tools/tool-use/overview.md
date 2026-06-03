@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview
-fetched_at: 2026-05-30T03:14:18.300217Z
-sha256: 90d100e0799afda1e88fd988d490dcd1a7eceb69413ab4702cf0b92a58f1b7df
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 7d1fbe03717b979c44f560d8c9387dc627bdd819838cd99f67b66b773ac5f49a
 ---
 
 # Tool use with Claude
@@ -140,7 +140,7 @@ When you use `tools`, the API also automatically includes a special system promp
 
 | Model                    | Tool choice                                          | Tool use system prompt token count          |
 |--------------------------|------------------------------------------------------|---------------------------------------------|
-| <NextOpus />                   | `auto`, `none`<hr />`any`, `tool`   | 290 tokens<hr />410 tokens |
+| Claude Opus 4.8                | `auto`, `none`<hr />`any`, `tool`   | 290 tokens<hr />410 tokens |
 | Claude Opus 4.7                | `auto`, `none`<hr />`any`, `tool`   | 675 tokens<hr />804 tokens |
 | Claude Opus 4.6              | `auto`, `none`<hr />`any`, `tool`   | 497 tokens<hr />589 tokens |
 | Claude Opus 4.5            | `auto`, `none`<hr />`any`, `tool`   | 496 tokens<hr />588 tokens |

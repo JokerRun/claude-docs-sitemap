@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/models/retrieve
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 3ec7683be346a38a3e5cc5047151103eda324c2daf07dc63a71e8b76443ee496
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: c2dd0252c9de9845bf5b8447d63ad165bebc85ae6372fb9d9fbd5fd827ce333c
 ---
 
 ## Get a Model
@@ -27,7 +27,7 @@ The Models API response can be used to determine information about a specific mo
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 24 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 23 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -80,8 +80,6 @@ The Models API response can be used to determine information about a specific mo
     - `"cache-diagnosis-2026-04-07"`
 
     - `"thinking-token-count-2026-05-13"`
-
-    - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

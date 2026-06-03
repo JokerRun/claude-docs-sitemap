@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/vaults/archive
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: ebbeb9ae7e571641100173721e239ad9662b2399078f2ff8c039b30e70b20de8
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 9c4ab321c5fa0c3226b6ac29a0d6c8ef5a5af939bd22aa0807b15815bd34f894
 ---
 
 ## Archive Vault
@@ -23,7 +23,7 @@ Archive Vault
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 24 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 23 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -76,8 +76,6 @@ Archive Vault
     - `"cache-diagnosis-2026-04-07"`
 
     - `"thinking-token-count-2026-05-13"`
-
-    - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

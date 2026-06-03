@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/skills-guide
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 316cb559990e3def0467c3310bfa3bdc9d8984c72a1a83ec681174dcc1d87582
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: f084f710e04d5f2fc3fb73e12fc7f38b10784ca4b4e55c393254859dddbfb786
 ---
 
 # Using Agent Skills with the API
@@ -328,7 +328,7 @@ public class Main {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 $message = $client->beta->messages->create(
     maxTokens: 4096,
@@ -829,7 +829,7 @@ public class SkillsFileDownload {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 // Step 1: Use a Skill to create a file
 $response = $client->beta->messages->create(
@@ -1108,7 +1108,7 @@ public class FileManagement {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 $fileId = "file_abc123";
 
 // Get file metadata
@@ -1477,7 +1477,7 @@ public class ContainerReuse {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 $response1 = $client->beta->messages->create(
     maxTokens: 4096,
@@ -1992,7 +1992,7 @@ public class Main {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 $messages = [
     ['role' => 'user', 'content' => 'Process this large dataset']
@@ -2407,7 +2407,7 @@ public class SkillsExample {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 $message = $client->beta->messages->create(
     maxTokens: 4096,
@@ -2731,7 +2731,7 @@ public class SkillCreate {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 // Option 1: Using a zip file
 $skill = $client->beta->skills->create(
@@ -2942,7 +2942,7 @@ public class ListSkills {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 // List all Skills
 $skills = $client->beta->skills->list();
@@ -3085,7 +3085,7 @@ public class RetrieveSkill {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 $skill = $client->beta->skills->retrieve(
     skillID: "skill_01AbCdEfGhIjKlMnOpQrStUv",
@@ -3276,7 +3276,7 @@ public class DeleteSkill {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 // Step 1: Delete all versions
 $versions = $client->beta->skills->versions->list(
@@ -3781,7 +3781,7 @@ public class SkillVersioning {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 // Create a new version
 $newVersion = $client->beta->skills->versions->create(
@@ -4245,7 +4245,7 @@ public class CustomSkillExample {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 // Custom DCF analysis Skill (ID obtained from Skills API create response)
 $dcfSkillId = "skill_01AbCdEfGhIjKlMnOpQrStUv";
@@ -4736,7 +4736,7 @@ public class SkillsCaching {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 // First request creates cache
 $response1 = $client->beta->messages->create(
@@ -5069,7 +5069,7 @@ public class SkillErrorHandling {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 try {
     $message = $client->beta->messages->create(

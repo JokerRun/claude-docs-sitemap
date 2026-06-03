@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/messages/batches
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 566b813e606deaaf2b17ca5f2a7b3ddbd68717cd8a5abf372eac7d16567ccae2
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 48571e5a1b53897e1d0d97ff162ff65103ac16344bc2fc38bce685e10f088af6
 ---
 
 # Batches
@@ -78,8 +78,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
-
-    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
   - `List<Request> requests`
 
@@ -2978,8 +2976,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
 
-    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
-
 ### Returns
 
 - `class BetaMessageBatch:`
@@ -3198,8 +3194,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
 
-    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
-
 ### Returns
 
 - `class BetaMessageBatch:`
@@ -3417,8 +3411,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
 
-    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
-
 ### Returns
 
 - `class BetaMessageBatch:`
@@ -3629,8 +3621,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
 
-    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
-
 ### Returns
 
 - `class BetaDeletedMessageBatch:`
@@ -3752,8 +3742,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
-
-    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
 ### Returns
 
@@ -5006,7 +4994,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             The number of output tokens which were used.
 
-          - `Optional<OutputTokensDetails> outputTokensDetails`
+          - `Optional<BetaOutputTokensDetails> outputTokensDetails`
 
             Breakdown of output tokens by category.
 
@@ -6647,7 +6635,7 @@ public final class Main {
 
             The number of output tokens which were used.
 
-          - `Optional<OutputTokensDetails> outputTokensDetails`
+          - `Optional<BetaOutputTokensDetails> outputTokensDetails`
 
             Breakdown of output tokens by category.
 
@@ -8074,7 +8062,7 @@ public final class Main {
 
           The number of output tokens which were used.
 
-        - `Optional<OutputTokensDetails> outputTokensDetails`
+        - `Optional<BetaOutputTokensDetails> outputTokensDetails`
 
           Breakdown of output tokens by category.
 
@@ -9463,7 +9451,7 @@ public final class Main {
 
         The number of output tokens which were used.
 
-      - `Optional<OutputTokensDetails> outputTokensDetails`
+      - `Optional<BetaOutputTokensDetails> outputTokensDetails`
 
         Breakdown of output tokens by category.
 

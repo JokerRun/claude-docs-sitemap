@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/messages/count_tokens
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 774fa203328d3db1e92bcb91441df5f87b165e9747f5ceea30f79fc2a90e5cc9
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 6f0deb7d434114423f87342bd7698f11e783576964b4ae6fd46b5993c3b6dae6
 ---
 
 ## Count tokens in a Message
@@ -76,8 +76,6 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
-
-    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
   - `List<BetaMessageParam> messages`
 

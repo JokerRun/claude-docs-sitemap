@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/messages
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 3bdd6c87f6a2a1ae6c862a3f780c6d6693c1a8948d45e26e9377f5ce412619d3
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: a02d5e002aaaa1db944c2c7044d1856f24465d9b8008d9b4b4c6daafdd513e5c
 ---
 
 # Messages
@@ -2697,7 +2697,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       The number of output tokens which were used.
 
-    - `OutputTokensDetails UsageOutputTokensDetails`
+    - `OutputTokensDetails OutputTokensDetails`
 
       Breakdown of output tokens by category.
 
@@ -9154,7 +9154,7 @@ func main() {
 
       The number of output tokens which were used.
 
-    - `OutputTokensDetails UsageOutputTokensDetails`
+    - `OutputTokensDetails OutputTokensDetails`
 
       Breakdown of output tokens by category.
 
@@ -9949,7 +9949,7 @@ func main() {
 
     The cumulative number of output tokens which were used.
 
-  - `OutputTokensDetails MessageDeltaUsageOutputTokensDetails`
+  - `OutputTokensDetails OutputTokensDetails`
 
     Breakdown of output tokens by category.
 
@@ -11134,6 +11134,21 @@ func main() {
 
       - `const JSONSchemaJSONSchema JSONSchema = "json_schema"`
 
+### Output Tokens Details
+
+- `type OutputTokensDetails struct{…}`
+
+  - `ThinkingTokens int64`
+
+    Number of output tokens the model generated as internal reasoning, including
+    the thinking-block delimiter tokens.
+
+    Reflects the raw reasoning the model produced, not the (possibly shorter)
+    summarized thinking text returned in the response body. Computed by
+    re-tokenizing the raw reasoning text, so it may differ from the model's exact
+    generation count by a small number of tokens. Always ≤ `output_tokens`;
+    `output_tokens - thinking_tokens` approximates the non-reasoning output.
+
 ### Plain Text Source
 
 - `type PlainTextSource struct{…}`
@@ -12210,7 +12225,7 @@ func main() {
 
       The cumulative number of output tokens which were used.
 
-    - `OutputTokensDetails MessageDeltaUsageOutputTokensDetails`
+    - `OutputTokensDetails OutputTokensDetails`
 
       Breakdown of output tokens by category.
 
@@ -13130,7 +13145,7 @@ func main() {
 
         The number of output tokens which were used.
 
-      - `OutputTokensDetails UsageOutputTokensDetails`
+      - `OutputTokensDetails OutputTokensDetails`
 
         Breakdown of output tokens by category.
 
@@ -14074,7 +14089,7 @@ func main() {
 
           The number of output tokens which were used.
 
-        - `OutputTokensDetails UsageOutputTokensDetails`
+        - `OutputTokensDetails OutputTokensDetails`
 
           Breakdown of output tokens by category.
 
@@ -14168,7 +14183,7 @@ func main() {
 
         The cumulative number of output tokens which were used.
 
-      - `OutputTokensDetails MessageDeltaUsageOutputTokensDetails`
+      - `OutputTokensDetails OutputTokensDetails`
 
         Breakdown of output tokens by category.
 
@@ -14176,17 +14191,6 @@ func main() {
         This object provides a read-only decomposition for observability — for example,
         how many of the billed output tokens were spent on internal reasoning that may
         have been summarized before being returned to you.
-
-        - `ThinkingTokens int64`
-
-          Number of output tokens the model generated as internal reasoning, including
-          the thinking-block delimiter tokens.
-
-          Reflects the raw reasoning the model produced, not the (possibly shorter)
-          summarized thinking text returned in the response body. Computed by
-          re-tokenizing the raw reasoning text, so it may differ from the model's exact
-          generation count by a small number of tokens. Always ≤ `output_tokens`;
-          `output_tokens - thinking_tokens` approximates the non-reasoning output.
 
       - `ServerToolUse ServerToolUsage`
 
@@ -17693,7 +17697,7 @@ func main() {
 
     The number of output tokens which were used.
 
-  - `OutputTokensDetails UsageOutputTokensDetails`
+  - `OutputTokensDetails OutputTokensDetails`
 
     Breakdown of output tokens by category.
 
@@ -23024,7 +23028,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             The number of output tokens which were used.
 
-          - `OutputTokensDetails UsageOutputTokensDetails`
+          - `OutputTokensDetails OutputTokensDetails`
 
             Breakdown of output tokens by category.
 
@@ -24316,7 +24320,7 @@ func main() {
 
             The number of output tokens which were used.
 
-          - `OutputTokensDetails UsageOutputTokensDetails`
+          - `OutputTokensDetails OutputTokensDetails`
 
             Breakdown of output tokens by category.
 
@@ -25388,7 +25392,7 @@ func main() {
 
           The number of output tokens which were used.
 
-        - `OutputTokensDetails UsageOutputTokensDetails`
+        - `OutputTokensDetails OutputTokensDetails`
 
           Breakdown of output tokens by category.
 
@@ -26422,7 +26426,7 @@ func main() {
 
         The number of output tokens which were used.
 
-      - `OutputTokensDetails UsageOutputTokensDetails`
+      - `OutputTokensDetails OutputTokensDetails`
 
         Breakdown of output tokens by category.
 

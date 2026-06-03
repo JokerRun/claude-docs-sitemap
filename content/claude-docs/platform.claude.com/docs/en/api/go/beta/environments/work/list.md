@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/environments/work/list
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 81c81c946d7d5974ab08ba65b094cbc6b5ac059783b0eb29acf0cb60dfeaf1fc
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 2bb57352724fabbdb811eeaae792424ff8489290e403e2498a995b640995551f
 ---
 
 ## List Work Items
@@ -88,8 +88,6 @@ List work items in an environment.
       - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
 
       - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
-
-      - `const AnthropicBetaMidConversationSystem2026_04_07 AnthropicBeta = "mid-conversation-system-2026-04-07"`
 
 ### Returns
 

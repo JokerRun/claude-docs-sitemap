@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/sessions/threads/events/stream
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 7a398f4ed6e5686566f59993321d390f950722ee851ff5033054138398218fa5
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: ca74ce65bbd3df407f29e0f3435907cae775fcfb01effb5123921a85bbf1cb18
 ---
 
 ## Stream Session Thread Events
@@ -82,8 +82,6 @@ Stream Session Thread Events
       - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
 
       - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
-
-      - `const AnthropicBetaMidConversationSystem2026_04_07 AnthropicBeta = "mid-conversation-system-2026-04-07"`
 
 ### Returns
 
@@ -1516,6 +1514,10 @@ Stream Session Thread Events
             The model that will power your agent.
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `const BetaManagedAgentsModelClaudeOpus4_8 BetaManagedAgentsModel = "claude-opus-4-8"`
+
+              Frontier intelligence for long-running agents and coding
 
             - `const BetaManagedAgentsModelClaudeOpus4_7 BetaManagedAgentsModel = "claude-opus-4-7"`
 

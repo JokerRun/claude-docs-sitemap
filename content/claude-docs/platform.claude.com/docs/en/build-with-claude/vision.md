@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/vision
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 42dbae077a55f0d599856b8cb8f64fe2219183b13f7a003af15fa9de3a5dde07
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 0eaf62075521bef0b5960329a0a3762d53b933f8119a0475fa226ef5ca3aba42
 ---
 
 # Vision
@@ -50,7 +50,7 @@ An image uses approximately `width * height / 750` tokens, where the width and h
 
 The maximal native image resolution is:
 
-- For <NextOpus />: 4784 tokens, and at most 2576 pixels on the long edge.
+- For Claude Opus 4.8: 4784 tokens, and at most 2576 pixels on the long edge.
 - For Claude Opus 4.7: 4784 tokens, and at most 2576 pixels on the long edge.
 - For other models: 1568 tokens, and at most 1568 pixels on the long edge.
 
@@ -80,13 +80,13 @@ Note that the last three images are downscaled before processing.
 
 #### High-resolution image support \{#high-resolution-image-support-on-claude-opus-4-7}
 
-Claude Opus 4.7 is the first Claude model with high-resolution image support; <NextOpus /> and later models also support it. The maximum image resolution is 2576 pixels on the long edge, up from 1568 px on prior models. This unlocks performance gains on vision-heavy workloads and is particularly valuable for computer use, screenshot understanding, and document analysis.
+Claude Opus 4.7 is the first Claude model with high-resolution image support; Claude Opus 4.8 and later models also support it. The maximum image resolution is 2576 pixels on the long edge, up from 1568 px on prior models. This unlocks performance gains on vision-heavy workloads and is particularly valuable for computer use, screenshot understanding, and document analysis.
 
 High-resolution support is automatic on Claude Opus 4.7 and later models and requires no beta header or client-side opt-in.
 
-High-resolution images on Claude Opus 4.7 and <NextOpus /> can use up to approximately 3x more image tokens than on prior models (4784 versus 1568 tokens per image). If you don't need the additional fidelity, downsample images before sending to control token costs.
+High-resolution images on Claude Opus 4.7 and Claude Opus 4.8 can use up to approximately 3x more image tokens than on prior models (4784 versus 1568 tokens per image). If you don't need the additional fidelity, downsample images before sending to control token costs.
 
-Here are the same image sizes tokenized for Claude Opus 4.7 and <NextOpus />, based on their per-token price of $5 per million input tokens:
+Here are the same image sizes tokenized for Claude Opus 4.7 and Claude Opus 4.8, based on their per-token price of $5 per million input tokens:
 
 | Image size                    | \# of Tokens | Cost / image | Cost / 1k images |
 | ----------------------------- | ------------ | ------------ | ---------------- |
@@ -538,7 +538,7 @@ Below are examples of how to include images in a Messages API request using base
 
     use Anthropic\Client;
 
-    $client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+    $client = new Client();
 
     $imageData = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGP4z8AAAAMBAQDJ/pLvAAAAAElFTkSuQmCC";
 
@@ -809,7 +809,7 @@ Below are examples of how to include images in a Messages API request using base
 
     use Anthropic\Client;
 
-    $client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+    $client = new Client();
 
     $message = $client->messages->create(
         maxTokens: 1024,
@@ -1155,7 +1155,7 @@ public class ImageFilesExample {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 // Upload the image file
 $fileUpload = $client->beta->files->upload(

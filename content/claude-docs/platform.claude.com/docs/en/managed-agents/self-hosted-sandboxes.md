@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes
-fetched_at: 2026-06-02T03:18:54.775717Z
-sha256: 51531398d0ea581bbe5a38229ac20a178203c9d451cd313be4b2263afc34decc
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: c13f0453d578f63eff1a67e21f7ca8a952f3f86251b90ac8392e265b01b4b9e4
 ---
 
 # Self-hosted sandboxes
@@ -16,7 +16,7 @@ By default, Managed Agents executes tools and code inside [Anthropic-managed clo
 Tool execution stays on your host: the filesystem the agent reads and writes, the processes it spawns, and the network it can reach are all under your control. Tool inputs and outputs still flow to Anthropic's control plane (where Claude runs) so the model can see results and determine what to do next. See the [security model](/docs/en/managed-agents/self-hosted-sandboxes-security) for the full data-flow boundary.
 
 <Note>
-Self-hosted sandboxes support all Claude models available in Managed Agents, including <NextOpus />. The model is configured on the [agent](/docs/en/managed-agents/agent-setup), not the environment.
+Self-hosted sandboxes support all Claude models available in Managed Agents, including Claude Opus 4.8. The model is configured on the [agent](/docs/en/managed-agents/agent-setup), not the environment.
 </Note>
 
 ## How it differs from cloud environments

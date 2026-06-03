@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/sessions/resources/add
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 8ee720e1a3974c4f497ae1c24d987b82fe8e9498672ca6295957aacf52f81040
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: aa27eb42e7fc305c81890b4d727deedf861a5e7012094c0e0eeb00161792e14a
 ---
 
 ## Add Session Resource
@@ -35,7 +35,7 @@ Add Session Resource
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 24 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 23 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -88,8 +88,6 @@ Add Session Resource
     - `:"cache-diagnosis-2026-04-07"`
 
     - `:"thinking-token-count-2026-05-13"`
-
-    - `:"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

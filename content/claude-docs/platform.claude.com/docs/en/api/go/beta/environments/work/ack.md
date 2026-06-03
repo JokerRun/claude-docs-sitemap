@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/environments/work/ack
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 0eea07e2b694edfc047b6ac4a8d7fa3b41d354d3e638a52f20a3b807086e1a58
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: a9ff6354226f8e903bae0553314bd39d7c2e9b481f42bad98283b67fe8fca64f
 ---
 
 ## Acknowledge Work
@@ -84,8 +84,6 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
       - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
 
       - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
-
-      - `const AnthropicBetaMidConversationSystem2026_04_07 AnthropicBeta = "mid-conversation-system-2026-04-07"`
 
 ### Returns
 

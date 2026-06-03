@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/vaults/delete
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: a7e3b9b71ff4771db5f3023adef6dacacd53b2c574b9d3dd53ea5f968426ca38
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 2494d1dd87b85ec4381fd33d77ba41f0a599038045922e1ea02a53a48dae96c2
 ---
 
 ## Delete Vault
@@ -76,8 +76,6 @@ Delete Vault
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
-
-    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
 
 ### Returns
 

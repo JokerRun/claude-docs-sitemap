@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/batches
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: ee4d9a283f0a496f11d02663a1540e508db3438dc8a1ac6623311f3acc533f9c
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 872c58fe89d9a7c634dbce6f0f73b162534ad0aedc12cf15ff02be4b00d361d7
 ---
 
 # Batches
@@ -3587,7 +3587,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             The number of output tokens which were used.
 
-          - `output_tokens_details: object { thinking_tokens }`
+          - `output_tokens_details: OutputTokensDetails`
 
             Breakdown of output tokens by category.
 
@@ -4859,7 +4859,7 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
             The number of output tokens which were used.
 
-          - `output_tokens_details: object { thinking_tokens }`
+          - `output_tokens_details: OutputTokensDetails`
 
             Breakdown of output tokens by category.
 
@@ -5931,7 +5931,7 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
           The number of output tokens which were used.
 
-        - `output_tokens_details: object { thinking_tokens }`
+        - `output_tokens_details: OutputTokensDetails`
 
           Breakdown of output tokens by category.
 
@@ -6965,7 +6965,7 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
         The number of output tokens which were used.
 
-      - `output_tokens_details: object { thinking_tokens }`
+      - `output_tokens_details: OutputTokensDetails`
 
         Breakdown of output tokens by category.
 

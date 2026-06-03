@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/archive
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 8cbd7d22108f5b85aacae1d5356d6558d8fe26d3c7f5289b001733aed0255296
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 07b565784bb724fa86a7c1aa9d64c720361d9f697db86c22e3f1f6582daa9bfc
 ---
 
 ## Archive Session
@@ -23,7 +23,7 @@ Archive Session
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 24 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 23 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -77,8 +77,6 @@ Archive Session
 
     - `"thinking-token-count-2026-05-13"`
 
-    - `"mid-conversation-system-2026-04-07"`
-
 ### Returns
 
 - `BetaManagedAgentsSession object { id, agent, archived_at, 12 more }`
@@ -115,11 +113,15 @@ Archive Session
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-        - `"claude-opus-4-7" or "claude-opus-4-6" or "claude-sonnet-4-6" or 6 more`
+        - `"claude-opus-4-8" or "claude-opus-4-7" or "claude-opus-4-6" or 7 more`
 
           The model that will power your agent.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `"claude-opus-4-8"`
+
+            Frontier intelligence for long-running agents and coding
 
           - `"claude-opus-4-7"`
 

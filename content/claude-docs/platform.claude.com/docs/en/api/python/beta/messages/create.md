@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/messages/create
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 422240d404a508f3b6eb6c10192a8de512c42d178430978653b940ccd52b4faf
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 756b2f2af8d0381f319777fd8f6504ccb116b22ee3f30cc1869882d319e41699
 ---
 
 ## Create a Message
@@ -2716,7 +2716,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 24 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 23 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -2769,8 +2769,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     - `"cache-diagnosis-2026-04-07"`
 
     - `"thinking-token-count-2026-05-13"`
-
-    - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 
@@ -4032,7 +4030,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       The number of output tokens which were used.
 
-    - `output_tokens_details: Optional[OutputTokensDetails]`
+    - `output_tokens_details: Optional[BetaOutputTokensDetails]`
 
       Breakdown of output tokens by category.
 

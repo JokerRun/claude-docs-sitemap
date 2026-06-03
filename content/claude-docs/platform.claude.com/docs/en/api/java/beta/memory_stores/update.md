@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/memory_stores/update
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 5a5b9d47940ef5beed155a2e3d6dcaf861ddfee19d525bc6d422842f6a5a53dd
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: ad8080d50d84eda96817767ebad9ee55ef31766c34c9c7d1081ac6031171a107
 ---
 
 ## Update a memory store
@@ -74,8 +74,6 @@ Update a memory store
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
-
-    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
   - `Optional<String> description`
 

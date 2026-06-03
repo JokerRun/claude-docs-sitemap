@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/environments/work/heartbeat
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: ad545f177d001dfe9a3859c7590118e52d264383f9d33a0802a480edcb7dc1dc
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 67c5353d016f02e5a2c4a74ab3f448c1e4d1fc09d010e0e748884f9f55d22876
 ---
 
 ## Record Heartbeat
@@ -86,8 +86,6 @@ Record a heartbeat for a work item to maintain the lease.
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
-
-    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
 ### Returns
 

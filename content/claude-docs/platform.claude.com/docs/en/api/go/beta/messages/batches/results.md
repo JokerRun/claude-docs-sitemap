@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/messages/batches/results
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: c1b9d7bef35e510ecd6f9ee396886e1cc249daf754e5a74da15f4df5edfe048d
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 9f7f1778d8c244fd059e212e0d0679a44d794583db9cf47063b671c12144766f
 ---
 
 ## Retrieve Message Batch results
@@ -84,8 +84,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
 
       - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
-
-      - `const AnthropicBetaMidConversationSystem2026_04_07 AnthropicBeta = "mid-conversation-system-2026-04-07"`
 
 ### Returns
 
@@ -1346,7 +1344,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             The number of output tokens which were used.
 
-          - `OutputTokensDetails BetaUsageOutputTokensDetails`
+          - `OutputTokensDetails BetaOutputTokensDetails`
 
             Breakdown of output tokens by category.
 

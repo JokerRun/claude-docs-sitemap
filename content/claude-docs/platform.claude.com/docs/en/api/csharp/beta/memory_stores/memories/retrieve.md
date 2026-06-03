@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/memory_stores/memories/retrieve
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 7e669b0970a0dcbc79643654e7b8d9a4fc5a5dd4806c8f4acce1167b2aae3426
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 26e920e72401ba72878edfa79c55371255620668e7a472205df80dfd1529c3f0
 ---
 
 ## Retrieve a memory
@@ -84,8 +84,6 @@ Retrieve a memory
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
-
-    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
 
 ### Returns
 

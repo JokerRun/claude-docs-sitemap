@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/environments/work/retrieve
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 68b5634cca0e660b0f8eda5ca3b75eb7d41846992277ca77394fd4dac48d34d0
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 5ff88c9e53d398dc3867ba41ec87a2b46282e30311b2f34c5c356aedb20f24ea
 ---
 
 ## Get Work Item
@@ -78,8 +78,6 @@ Retrieve detailed information about a specific work item.
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
-
-    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
 ### Returns
 

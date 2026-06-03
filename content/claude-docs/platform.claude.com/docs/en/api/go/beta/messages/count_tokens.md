@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/messages/count_tokens
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 38df7928496745c9944fb78f62f354a7c16016ce249f968f77d9cec4a62ec61c
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 5f0a4780ddfe5cb67379f1635d0dbf9c09647a6f6e555e8533441faf820352c6
 ---
 
 ## Count tokens in a Message
@@ -2377,8 +2377,6 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
       - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
 
       - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
-
-      - `const AnthropicBetaMidConversationSystem2026_04_07 AnthropicBeta = "mid-conversation-system-2026-04-07"`
 
 ### Returns
 

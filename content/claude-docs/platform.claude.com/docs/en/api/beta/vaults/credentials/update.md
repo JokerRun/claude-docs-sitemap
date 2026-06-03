@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/update
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: daa209c08159e0726dbe4606df1c7d9e1f3fab433a082ca7867938260a1a0a6e
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 353f48f0da0a7109f5e6eb80efa8b2bd863b196ae1d8b0d0b5d054ef203595b4
 ---
 
 ## Update Credential
@@ -25,7 +25,7 @@ Update Credential
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 24 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 23 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -78,8 +78,6 @@ Update Credential
     - `"cache-diagnosis-2026-04-07"`
 
     - `"thinking-token-count-2026-05-13"`
-
-    - `"mid-conversation-system-2026-04-07"`
 
 ### Body Parameters
 

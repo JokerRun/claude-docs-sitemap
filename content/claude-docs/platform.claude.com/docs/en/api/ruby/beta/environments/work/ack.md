@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/environments/work/ack
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 5a5be8dafbdf79902c0757e4a05b6cd4184591c87b68ecd8778f3c5d85aed9e9
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 8ad0d893e361ff2fee533f4a8ddce41226635c363b491b86c28d066053679325
 ---
 
 ## Acknowledge Work
@@ -27,7 +27,7 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 24 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 23 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -80,8 +80,6 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
     - `:"cache-diagnosis-2026-04-07"`
 
     - `:"thinking-token-count-2026-05-13"`
-
-    - `:"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

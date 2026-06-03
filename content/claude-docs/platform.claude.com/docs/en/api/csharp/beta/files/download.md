@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/files/download
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 5093e33721ad13cc1cd4f301984d4eb2d68675a1047921aca534cb91e4e2fd71
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 4cc8fa3aa1303415ce4298eade10ad21450eba29e3360b9d42fb191199c0a543
 ---
 
 ## Download File
@@ -76,8 +76,6 @@ Download File
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
-
-    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
 
 ### Example
 

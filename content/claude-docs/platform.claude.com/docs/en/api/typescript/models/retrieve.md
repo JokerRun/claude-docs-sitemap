@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/models/retrieve
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 0cbd0c86310e7a800a4381bf6b10ccdcba20b1abba77ccc36e5fae6661051265
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 1d8d9c7abcc113069bdc1c58145749719a72b2f85bcbb1a4c601000a3d5f8d99
 ---
 
 ## Get a Model
@@ -29,7 +29,7 @@ The Models API response can be used to determine information about a specific mo
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 24 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 23 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -82,8 +82,6 @@ The Models API response can be used to determine information about a specific mo
       - `"cache-diagnosis-2026-04-07"`
 
       - `"thinking-token-count-2026-05-13"`
-
-      - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

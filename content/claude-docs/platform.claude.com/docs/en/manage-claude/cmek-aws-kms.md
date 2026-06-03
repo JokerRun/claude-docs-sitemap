@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/cmek-aws-kms
-fetched_at: 2026-06-02T03:18:54.775717Z
-sha256: 16677ee796c956826b7faf0188298aa119d4e72dca51cdfdfb9f24dbcf4714c2
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 0701b55f885c6e02e6e16d7bbfa95d37a0aa0c188ec67cbe5b5594c1260f9f2b
 ---
 
 # Configure AWS KMS for CMEK
@@ -111,7 +111,7 @@ arn:aws:iam::915198916910:role/anthropic-cmek-client-us
       ![AWS KMS Define key administrative permissions step listing IAM roles that can administer the key.](/docs/images/cmek/aws-admin-permissions.png)
     </Frame>
 
-    <Frame caption="Do not add Anthropic's account ID here — this wizard step produces an over-permissive policy. Leave usage permissions empty and edit the Key policy JSON after creation (see above).">
+    <Frame caption="Do not add Anthropic's account ID here. This wizard step produces an over-permissive policy. Leave usage permissions empty and edit the Key policy JSON after creation (see above).">
       ![AWS KMS Define key usage permissions step shown as an anti-pattern: adding Anthropic's account ID 915198916910 under Other AWS accounts here yields an over-permissive policy. Skip this step and leave it empty.](/docs/images/cmek/aws-usage-permissions.png)
     </Frame>
   </Step>

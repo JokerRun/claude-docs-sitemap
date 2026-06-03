@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/user_profiles/retrieve
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: b796e97d31ba0bfada6df4e3d6bf74decc78ab9f7296998785325ce03df52228
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: d68e4c08fb94fff43b8a33b0edd7b8ab785a434db8010888f652048e1a1f654a
 ---
 
 ## Get User Profile
@@ -74,8 +74,6 @@ Get User Profile
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
-
-    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/messages/batches
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: a36608ed63002a00f9d65695a7788985a658a38109c3b2b407c27ff2777208c4
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: fa17a47a3e199fb08fcd0341e0dfedc4c5af480f815df6cb5b2ec72b7071b5ba
 ---
 
 # Batches
@@ -2509,8 +2509,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
-    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
-
 ### Returns
 
 - `class BetaMessageBatch:`
@@ -2884,8 +2882,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
-    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
-
 ### Returns
 
 - `class BetaMessageBatch:`
@@ -3090,8 +3086,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
-
-    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
 
 ### Returns
 
@@ -3313,8 +3307,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
-    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
-
 ### Returns
 
 - `class BetaMessageBatch:`
@@ -3512,8 +3504,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
-    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
-
 ### Returns
 
 - `class BetaDeletedMessageBatch:`
@@ -3622,8 +3612,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
-
-    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
 
 ### Returns
 
@@ -4748,7 +4736,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             The number of output tokens which were used.
 
-          - `required OutputTokensDetails? OutputTokensDetails`
+          - `required BetaOutputTokensDetails? OutputTokensDetails`
 
             Breakdown of output tokens by category.
 
@@ -6192,7 +6180,7 @@ await foreach (var betaMessageBatchIndividualResponse in client.Beta.Messages.Ba
 
             The number of output tokens which were used.
 
-          - `required OutputTokensDetails? OutputTokensDetails`
+          - `required BetaOutputTokensDetails? OutputTokensDetails`
 
             Breakdown of output tokens by category.
 
@@ -7463,7 +7451,7 @@ await foreach (var betaMessageBatchIndividualResponse in client.Beta.Messages.Ba
 
           The number of output tokens which were used.
 
-        - `required OutputTokensDetails? OutputTokensDetails`
+        - `required BetaOutputTokensDetails? OutputTokensDetails`
 
           Breakdown of output tokens by category.
 
@@ -8696,7 +8684,7 @@ await foreach (var betaMessageBatchIndividualResponse in client.Beta.Messages.Ba
 
         The number of output tokens which were used.
 
-      - `required OutputTokensDetails? OutputTokensDetails`
+      - `required BetaOutputTokensDetails? OutputTokensDetails`
 
         Breakdown of output tokens by category.
 

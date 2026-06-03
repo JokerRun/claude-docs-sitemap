@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/server-tools
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 053f3c4f062481d33f6511f8e48cac01b6773e0e9ff88d932a7cd9a7e798c317
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: d7c38abd6c39d6d74f665404e2d6fb7b45fa6e537014ca7607fd3edae2bac152
 ---
 
 # Server tools
@@ -301,7 +301,7 @@ void main() {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 $response = $client->messages->create(
     maxTokens: 1024,

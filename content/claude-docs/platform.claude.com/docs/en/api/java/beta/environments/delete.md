@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/environments/delete
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 8119bf64715535492d8a4ab7fd6505c83bd8177326690d7937ee0de339e0d805
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 420c3ae9b2cf6602ad8f67bea6811952c0aac3d0e2a3f43e685235444ee96552
 ---
 
 ## Delete Environment
@@ -74,8 +74,6 @@ Delete an environment by ID. Returns a confirmation of the deletion.
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
-
-    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
 ### Returns
 

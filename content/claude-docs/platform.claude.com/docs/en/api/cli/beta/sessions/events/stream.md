@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/sessions/events/stream
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 97e304410ae5a689d97b73f5d75e75b3431ce52bece6fb100ed08dd9a938f70d
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 2b690c5dbc4645d3ee344cd3718d2115602a51b6d79155763724505adfb18a41
 ---
 
 ## Stream Events
@@ -1463,11 +1463,15 @@ Stream Events
 
         Model identifier and configuration.
 
-        - `id: "claude-opus-4-7" or "claude-opus-4-6" or "claude-sonnet-4-6" or 6 more or string`
+        - `id: "claude-opus-4-8" or "claude-opus-4-7" or "claude-opus-4-6" or 7 more or string`
 
           The model that will power your agent.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `"claude-opus-4-8"`
+
+            Frontier intelligence for long-running agents and coding
 
           - `"claude-opus-4-7"`
 
@@ -1537,7 +1541,7 @@ Stream Events
 
             Model identifier and configuration.
 
-            - `id: "claude-opus-4-7" or "claude-opus-4-6" or "claude-sonnet-4-6" or 6 more or string`
+            - `id: "claude-opus-4-8" or "claude-opus-4-7" or "claude-opus-4-6" or 7 more or string`
 
               The model that will power your agent.
 

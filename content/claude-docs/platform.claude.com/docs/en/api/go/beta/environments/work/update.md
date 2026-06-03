@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/environments/work/update
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 43fd8f10d7d023313b1a2254fc6c7fa4eda6a67384ebd3f7d7b7fd092a9148bf
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 6e64e387bf0cc36fd5c56b03477fc7924003b0973066a3827deec0765e7e6a8b
 ---
 
 ## Update Work Item
@@ -88,8 +88,6 @@ Update work item metadata with merge semantics.
       - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
 
       - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
-
-      - `const AnthropicBetaMidConversationSystem2026_04_07 AnthropicBeta = "mid-conversation-system-2026-04-07"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 068ddc3db939b35c2380ee7ae4eaa270d0edba13bb20a25aaefcd41f1ed64c91
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 7c5bf75f4b91b4491bbb20ff1c40e02b4763ca903adcbcd2694f559293255352
 ---
 
 # Messages
@@ -2911,7 +2911,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       The number of output tokens which were used.
 
-    - `output_tokens_details: object { thinking_tokens }`
+    - `output_tokens_details: OutputTokensDetails`
 
       Breakdown of output tokens by category.
 
@@ -9590,7 +9590,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       The number of output tokens which were used.
 
-    - `output_tokens_details: object { thinking_tokens }`
+    - `output_tokens_details: OutputTokensDetails`
 
       Breakdown of output tokens by category.
 
@@ -10385,7 +10385,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
     The cumulative number of output tokens which were used.
 
-  - `output_tokens_details: object { thinking_tokens }`
+  - `output_tokens_details: OutputTokensDetails`
 
     Breakdown of output tokens by category.
 
@@ -11574,6 +11574,21 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       - `"json_schema"`
 
+### Output Tokens Details
+
+- `OutputTokensDetails object { thinking_tokens }`
+
+  - `thinking_tokens: number`
+
+    Number of output tokens the model generated as internal reasoning, including
+    the thinking-block delimiter tokens.
+
+    Reflects the raw reasoning the model produced, not the (possibly shorter)
+    summarized thinking text returned in the response body. Computed by
+    re-tokenizing the raw reasoning text, so it may differ from the model's exact
+    generation count by a small number of tokens. Always ≤ `output_tokens`;
+    `output_tokens - thinking_tokens` approximates the non-reasoning output.
+
 ### Plain Text Source
 
 - `PlainTextSource object { data, media_type, type }`
@@ -12650,7 +12665,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
       The cumulative number of output tokens which were used.
 
-    - `output_tokens_details: object { thinking_tokens }`
+    - `output_tokens_details: OutputTokensDetails`
 
       Breakdown of output tokens by category.
 
@@ -13570,7 +13585,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
         The number of output tokens which were used.
 
-      - `output_tokens_details: object { thinking_tokens }`
+      - `output_tokens_details: OutputTokensDetails`
 
         Breakdown of output tokens by category.
 
@@ -14514,7 +14529,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
           The number of output tokens which were used.
 
-        - `output_tokens_details: object { thinking_tokens }`
+        - `output_tokens_details: OutputTokensDetails`
 
           Breakdown of output tokens by category.
 
@@ -14608,7 +14623,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
         The cumulative number of output tokens which were used.
 
-      - `output_tokens_details: object { thinking_tokens }`
+      - `output_tokens_details: OutputTokensDetails`
 
         Breakdown of output tokens by category.
 
@@ -14616,17 +14631,6 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
         This object provides a read-only decomposition for observability — for example,
         how many of the billed output tokens were spent on internal reasoning that may
         have been summarized before being returned to you.
-
-        - `thinking_tokens: number`
-
-          Number of output tokens the model generated as internal reasoning, including
-          the thinking-block delimiter tokens.
-
-          Reflects the raw reasoning the model produced, not the (possibly shorter)
-          summarized thinking text returned in the response body. Computed by
-          re-tokenizing the raw reasoning text, so it may differ from the model's exact
-          generation count by a small number of tokens. Always ≤ `output_tokens`;
-          `output_tokens - thinking_tokens` approximates the non-reasoning output.
 
       - `server_tool_use: ServerToolUsage`
 
@@ -18135,7 +18139,7 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 
     The number of output tokens which were used.
 
-  - `output_tokens_details: object { thinking_tokens }`
+  - `output_tokens_details: OutputTokensDetails`
 
     Breakdown of output tokens by category.
 
@@ -23385,7 +23389,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             The number of output tokens which were used.
 
-          - `output_tokens_details: object { thinking_tokens }`
+          - `output_tokens_details: OutputTokensDetails`
 
             Breakdown of output tokens by category.
 
@@ -24657,7 +24661,7 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
             The number of output tokens which were used.
 
-          - `output_tokens_details: object { thinking_tokens }`
+          - `output_tokens_details: OutputTokensDetails`
 
             Breakdown of output tokens by category.
 
@@ -25729,7 +25733,7 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
           The number of output tokens which were used.
 
-        - `output_tokens_details: object { thinking_tokens }`
+        - `output_tokens_details: OutputTokensDetails`
 
           Breakdown of output tokens by category.
 
@@ -26763,7 +26767,7 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
         The number of output tokens which were used.
 
-      - `output_tokens_details: object { thinking_tokens }`
+      - `output_tokens_details: OutputTokensDetails`
 
         Breakdown of output tokens by category.
 

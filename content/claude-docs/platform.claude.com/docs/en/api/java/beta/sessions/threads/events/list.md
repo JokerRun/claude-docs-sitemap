@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/threads/events/list
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: ec1037c8e868007ff6d4db980d8d65621b16f70bff6552aaab56c51322736e66
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: d5fbe3e9af1d4a54be647bbcfa0b372990beaf6969b7431a7eee3c0f834de5ba
 ---
 
 ## List Session Thread Events
@@ -84,8 +84,6 @@ List Session Thread Events
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
-
-    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
 ### Returns
 
@@ -1512,6 +1510,10 @@ List Session Thread Events
           The model that will power your agent.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `CLAUDE_OPUS_4_8("claude-opus-4-8")`
+
+            Frontier intelligence for long-running agents and coding
 
           - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/create
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: a7a0ebcd5ef34d3515b7d56dd35222edd515b6bed30129e6fa7ac42d51682101
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 22d8a21b1cad8c7b782f06c4128636ca00bf94a7d0d98cf68339a320214436f2
 ---
 
 ## Create a Message
@@ -23,7 +23,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 24 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 23 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -76,8 +76,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     - `"cache-diagnosis-2026-04-07"`
 
     - `"thinking-token-count-2026-05-13"`
-
-    - `"mid-conversation-system-2026-04-07"`
 
 ### Body Parameters
 
@@ -3992,7 +3990,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       The number of output tokens which were used.
 
-    - `output_tokens_details: object { thinking_tokens }`
+    - `output_tokens_details: BetaOutputTokensDetails`
 
       Breakdown of output tokens by category.
 

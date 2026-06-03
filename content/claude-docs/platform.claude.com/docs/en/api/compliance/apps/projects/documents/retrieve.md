@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/documents/retrieve
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 44032102ca1f540aa09febf262c987feac5067d5913c0723768d85e82a860d3b
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: fdea299c67267c34c733727c2c3cccb1aa59dee591c6971f0594addcf8c0e505
 ---
 
 ## Get project document content
@@ -10,9 +10,6 @@ sha256: 44032102ca1f540aa09febf262c987feac5067d5913c0723768d85e82a860d3b
 **get** `/v1/compliance/apps/projects/documents/{document_id}`
 
 Get detailed information for a specific project document.
-
-Returns:
-Project document information including content and metadata
 
 ### Path Parameters
 
@@ -44,7 +41,11 @@ Project document information including content and metadata
 
 - `user: object { id, email_address }`
 
-  User information for project creator.
+  The user who created a project or project document.
+
+  Fields that reference this type are null when the creator's account has
+  been deleted or the creator is no longer a member of any organization
+  under the parent organization.
 
   - `id: string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/memory_stores/create
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 1c41a44785dcf9db93d836bc5a9472e364536d7be80a02981fc9bf0111edd041
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: d39e49425b9ad65b1529ce2661ba64651b44343419e4cc952090f6823261a241
 ---
 
 ## Create a memory store
@@ -72,8 +72,6 @@ Create a memory store
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
-
-    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
   - `String name`
 

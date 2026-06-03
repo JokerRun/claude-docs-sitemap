@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/sessions/archive
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 17392af0bf9bf0729cd17961e8932a4c1b28502d61680ea1213d48e079a9ae56
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: d0f185f052b29d9a5d591958c5bda79402a9a4fecdd44e9bd3ac838d682e739b
 ---
 
 ## Archive Session
@@ -53,11 +53,15 @@ Archive Session
 
       Model identifier and configuration.
 
-      - `id: "claude-opus-4-7" or "claude-opus-4-6" or "claude-sonnet-4-6" or 6 more or string`
+      - `id: "claude-opus-4-8" or "claude-opus-4-7" or "claude-opus-4-6" or 7 more or string`
 
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-opus-4-8"`
+
+          Frontier intelligence for long-running agents and coding
 
         - `"claude-opus-4-7"`
 
@@ -127,7 +131,7 @@ Archive Session
 
           Model identifier and configuration.
 
-          - `id: "claude-opus-4-7" or "claude-opus-4-6" or "claude-sonnet-4-6" or 6 more or string`
+          - `id: "claude-opus-4-8" or "claude-opus-4-7" or "claude-opus-4-6" or 7 more or string`
 
             The model that will power your agent.
 

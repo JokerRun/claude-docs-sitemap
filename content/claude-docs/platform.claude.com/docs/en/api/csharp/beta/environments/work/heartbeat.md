@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/environments/work/heartbeat
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 520e7f00b43889a81a5afaa5c5751439806881ea1e805e821987563c2baff20b
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: a88487f12f2afe27c2a4ca8ab9b60d09158beac8c1558aed679f21b315feb33f
 ---
 
 ## Record Heartbeat
@@ -90,8 +90,6 @@ Record a heartbeat for a work item to maintain the lease.
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
-
-    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
 
 ### Returns
 

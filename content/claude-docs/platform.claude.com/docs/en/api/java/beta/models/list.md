@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/models/list
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 3b6220f50a27427fb47bd014119125cfe7f649e8b4e11be50c4d67f708478d28
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: e13043a9a010d04f9aab3f6f63394b3867084c4637edba19a3ec1420a7fcf8e2
 ---
 
 ## List Models
@@ -88,8 +88,6 @@ The Models API response can be used to determine which models are available for 
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
-
-    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
 ### Returns
 

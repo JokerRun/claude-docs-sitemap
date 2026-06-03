@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/adaptive-thinking
-fetched_at: 2026-05-30T03:14:18.300217Z
-sha256: df578279b50ca66e564cd560579389b7344720fd894a6e0b7bb88591bdc3b6b2
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: bf0b5836e2a5bdffbc26438e1f51a4406e78796879e5536b345c2c65b381d2cc
 ---
 
 # Adaptive thinking
@@ -255,7 +255,7 @@ public class ExtendedThinkingExample {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 $message = $client->messages->create(
     maxTokens: 16000,
@@ -502,7 +502,7 @@ public class Main {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 $message = $client->messages->create(
     maxTokens: 16000,
@@ -725,7 +725,7 @@ public class StreamingThinkingExample {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 $stream = $client->messages->createStream(
     maxTokens: 16000,

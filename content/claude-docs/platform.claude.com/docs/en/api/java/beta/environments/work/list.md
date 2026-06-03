@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/environments/work/list
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 44200530582a0eff12e3581cd21d35ecb7464cecbe3d14afdce43c9a16c58261
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 8d3bac130f80bf1cebd35c1d7ba0dff81b06a388b42352afb890abf7d6a1c4df
 ---
 
 ## List Work Items
@@ -84,8 +84,6 @@ List work items in an environment.
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
-
-    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
 ### Returns
 

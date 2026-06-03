@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/user_profiles/update
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 62ea7d77339fa1aaade916d7e8a74026dd3780dfb0e45071f40a5dae0d6365f2
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 6b705bf280e06611335e07171881c683f8dd9e76ea7823f0f64207f9cd4a88d2
 ---
 
 ## Update User Profile
@@ -45,7 +45,7 @@ Update User Profile
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 24 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 23 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -98,8 +98,6 @@ Update User Profile
     - `"cache-diagnosis-2026-04-07"`
 
     - `"thinking-token-count-2026-05-13"`
-
-    - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

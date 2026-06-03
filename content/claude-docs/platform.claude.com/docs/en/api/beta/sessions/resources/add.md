@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/resources/add
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 3c5c1d1a7d44c8ce3b8b6c7ba0dd8ef2a40d74fe6efa9caf14e08e524445869c
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: f8a86220c6991f45740c85815886eceb2ea6d739e7c4508d2a4cf2824ce9f2e3
 ---
 
 ## Add Session Resource
@@ -23,7 +23,7 @@ Add Session Resource
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 24 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 23 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -76,8 +76,6 @@ Add Session Resource
     - `"cache-diagnosis-2026-04-07"`
 
     - `"thinking-token-count-2026-05-13"`
-
-    - `"mid-conversation-system-2026-04-07"`
 
 ### Body Parameters
 

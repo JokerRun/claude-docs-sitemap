@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/stop
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 0fb41b9dc31d9e0992a5b628f4f91d9c1292dca99e27cc1ae9f8e023cbf13350
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 6c86168a7cc1e98cf17f35cdc8b7b03e80333246590995f9c808585075754480
 ---
 
 ## Stop Work
@@ -27,7 +27,7 @@ Stop a work item, initiating graceful or forced shutdown.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 24 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 23 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -80,8 +80,6 @@ Stop a work item, initiating graceful or forced shutdown.
     - `"cache-diagnosis-2026-04-07"`
 
     - `"thinking-token-count-2026-05-13"`
-
-    - `"mid-conversation-system-2026-04-07"`
 
 ### Body Parameters
 

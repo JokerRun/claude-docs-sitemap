@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/streaming
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 8a9274f431817bac1680fef42da5e20713c903b92ff32f583520555e4618e8f6
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 8e1d05b08d3034aa50756a276d164c7a3611e0edc9ec8fe6e4b26f4d1dfb212a
 ---
 
 # Streaming messages
@@ -154,7 +154,7 @@ The [Python](https://github.com/anthropics/anthropic-sdk-python) and [TypeScript
 
     use Anthropic\Client;
 
-    $client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+    $client = new Client();
 
     $stream = $client->messages->createStream(
         maxTokens: 1024,
@@ -337,7 +337,7 @@ If you don't need to process text as it arrives, the SDKs provide a way to use s
 
     use Anthropic\Client;
 
-    $client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+    $client = new Client();
 
     $stream = $client->messages->createStream(
         maxTokens: 128000,
@@ -621,7 +621,7 @@ public class StreamingExample {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 $stream = $client->messages->createStream(
     maxTokens: 256,
@@ -976,7 +976,7 @@ public class StreamingToolUse {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 $stream = $client->messages->createStream(
     maxTokens: 1024,
@@ -1319,7 +1319,7 @@ void main() {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 $stream = $client->messages->createStream(
     maxTokens: 20000,
@@ -1580,7 +1580,7 @@ public class WebSearchStreaming {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 $stream = $client->messages->createStream(
     maxTokens: 1024,

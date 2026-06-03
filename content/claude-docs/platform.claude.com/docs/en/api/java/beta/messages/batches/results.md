@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/messages/batches/results
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: a527f01b40350756c811d3ee7f05ff3da361a4636e0c11043abbcf8e5c515596
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 5b6180b7c11612223cde7f5afe0e2c0af97c86e0a5aeb59931c48880dbd031c3
 ---
 
 ## Retrieve Message Batch results
@@ -80,8 +80,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
-
-    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
 ### Returns
 
@@ -1334,7 +1332,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             The number of output tokens which were used.
 
-          - `Optional<OutputTokensDetails> outputTokensDetails`
+          - `Optional<BetaOutputTokensDetails> outputTokensDetails`
 
             Breakdown of output tokens by category.
 

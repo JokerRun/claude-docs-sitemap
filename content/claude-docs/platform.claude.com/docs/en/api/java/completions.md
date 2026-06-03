@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/completions
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 1eecfb0d0a359a29b5c75db1920c9d2383231b58a40f11f63b745eca6497f149
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 1a9df3c0f80f40985e80b1bf58fe6cb0a5002618cbf8135606c957c549a10afe
 ---
 
 # Completions
@@ -78,8 +78,6 @@ Future models and features will not be compatible with Text Completions. See our
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
-
-    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
   - `long maxTokensToSample`
 

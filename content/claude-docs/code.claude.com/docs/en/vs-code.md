@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/vs-code
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 8391b4e439b13290e3ebee674427ba4ff7e6fa3b701cef8221e7ec8aed9bec05
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: d91903216e5d11d34f4b0db7b679a61c83f15036b2481ee42406b546c67ed819
 ---
 
 > ## Documentation Index
@@ -39,7 +39,7 @@ Click the link for your IDE to install directly:
 
 Or in VS Code, press `Cmd+Shift+X` (Mac) or `Ctrl+Shift+X` (Windows/Linux) to open the Extensions view, search for "Claude Code", and click **Install**.
 
-The extension also installs in other VS Code forks like Windsurf or Kiro. Search for "Claude Code" in the editor's Extensions view, or install from the [Open VSX registry](https://open-vsx.org/extension/Anthropic/claude-code). If your editor can't install the extension, run `claude` in its integrated terminal instead. The [CLI](/en/quickstart) works in any terminal.
+The extension also installs in other VS Code forks like Devin Desktop or Kiro. Search for "Claude Code" in the editor's Extensions view, or install from the [Open VSX registry](https://open-vsx.org/extension/Anthropic/claude-code). If your editor can't install the extension, run `claude` in its integrated terminal instead. The [CLI](/en/quickstart) works in any terminal.
 
 <Note>If the extension doesn't appear after installation, restart VS Code or run "Developer: Reload Window" from the Command Palette.</Note>
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/files
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: dc4d726d4467fe7cd144892b96b9d4e2bbe5786c16ad19c2c71db928c218df7f
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 4c4e25240a127c51e19bfae69aaac3e614331e9f205c8c084026a0e55d8916dd
 ---
 
 # Files
@@ -78,8 +78,6 @@ Upload File
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
-
-    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
 
 ### Returns
 
@@ -245,8 +243,6 @@ List Files
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
-
-    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
 
 ### Returns
 
@@ -421,8 +417,6 @@ Download File
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
-    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
-
 ### Example
 
 ```csharp
@@ -504,8 +498,6 @@ Get File Metadata
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
-
-    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
 
 ### Returns
 
@@ -654,8 +646,6 @@ Delete File
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
-
-    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
 
 ### Returns
 

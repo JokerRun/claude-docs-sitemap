@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 3e4942c5d7ad4fb9b849bd4d7d613667fa708ef802fb0a4fba5dcaf4bb730873
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: c0381e8c0f141f327ae18b73199b7c1ddd7cabc7d680a91dfe8cb24655d93e4c
 ---
 
 # Handling stop reasons
@@ -328,7 +328,7 @@ if (response.stopReason().isPresent() && response.stopReason().get().equals(Stop
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 $response = $client->messages->create(
     maxTokens: 1024,

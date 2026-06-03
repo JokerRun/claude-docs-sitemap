@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/interactive-mode
-fetched_at: 2026-05-30T03:14:18.300217Z
-sha256: 4ab7591234fb2e7ab1497f252d2c76faa49c2fb2502c7ce0e4732892f03ef6d1
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: bee2d7b2a92817a585ffc089da68177e147e57b05eb4594206d0041feda90848
 ---
 
 > ## Documentation Index
@@ -81,7 +81,7 @@ sha256: 4ab7591234fb2e7ab1497f252d2c76faa49c2fb2502c7ce0e4732892f03ef6d1
 | Paste mode       | Paste directly | For code blocks, logs                                                                              |
 
 <Tip>
-  Shift+Enter works without configuration in iTerm2, WezTerm, Ghostty, Kitty, Warp, Apple Terminal, and Windows Terminal. For VS Code, Cursor, Windsurf, Alacritty, and Zed, run `/terminal-setup` to install the binding.
+  Shift+Enter works without configuration in iTerm2, WezTerm, Ghostty, Kitty, Warp, Apple Terminal, and Windows Terminal. For VS Code, Cursor, Devin Desktop, Alacritty, and Zed, run `/terminal-setup` to install the binding.
 </Tip>
 
 ### Quick commands

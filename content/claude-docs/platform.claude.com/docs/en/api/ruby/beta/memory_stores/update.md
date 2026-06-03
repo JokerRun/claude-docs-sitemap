@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/memory_stores/update
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: af841cbf1e7e07403bd8de59827be7b4f671edadfec48470f84de514a53ef70b
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 822cf1a381502b7643a7226b87841f8b04e3ea6577a1c5561286786c7e228a87
 ---
 
 ## Update a memory store
@@ -35,7 +35,7 @@ Update a memory store
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 24 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 23 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -88,8 +88,6 @@ Update a memory store
     - `:"cache-diagnosis-2026-04-07"`
 
     - `:"thinking-token-count-2026-05-13"`
-
-    - `:"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

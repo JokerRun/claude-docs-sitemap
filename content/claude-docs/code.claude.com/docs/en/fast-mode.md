@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/fast-mode
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 1223f48e73fb6226bcfeef9856a9458127db75e967e24c98ed2504069203b17d
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 9bd26e5105204d981e641807613152b9b4fee39cc2641dfaad8f48a058435e6b
 ---
 
 > ## Documentation Index
@@ -32,7 +32,7 @@ Fast mode is not a different model. It uses Claude Opus with a different API con
 What to know:
 
 * Use `/fast` to toggle on fast mode in the Claude Code CLI. Fast mode is not supported in the VS Code extension.
-* Fast mode pricing is \$10/\$50 MTok on Opus 4.8 and \$30/\$150 MTok on Opus 4.7 and Opus 4.6.
+* Fast mode pricing per MTok input/output is \$10/\$50 on Opus 4.8 and \$30/\$150 on Opus 4.7 and Opus 4.6.
 * Available to all Claude Code users on subscription plans (Pro/Max/Team/Enterprise) and Claude Console.
 * For Claude Code users on subscription plans (Pro/Max/Team/Enterprise), fast mode is available via usage credits only and not included in the subscription rate limits.
 
@@ -58,7 +58,7 @@ When you enable fast mode:
 
 When you disable fast mode with `/fast` again, you remain on Opus. The model does not revert to your previous model. To switch to a different model, use `/model`.
 
-Opus 4.8 is the fast mode default in Claude Code v2.1.154 and later. On v2.1.142 through v2.1.153, fast mode defaults to Opus 4.7. To pin fast mode to Opus 4.6 instead, set `CLAUDE_CODE_OPUS_4_6_FAST_MODE_OVERRIDE=1`; this override will be removed when fast mode for Opus 4.6 is retired.
+Opus 4.8 is the fast mode default in Claude Code v2.1.154 and later. On v2.1.142 through v2.1.153, fast mode defaults to Opus 4.7.
 
 ## Understand the cost tradeoff
 

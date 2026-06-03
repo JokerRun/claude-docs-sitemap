@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/environments/work/stop
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 46b727d29089e62b0549081207de79c8aecf489c59f590c9694c79e705446da0
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 361f07aeab5d694ef54c9c1142531bc6ee152046efbbca1b7c128d97f8c4218d
 ---
 
 ## Stop Work
@@ -35,7 +35,7 @@ Stop a work item, initiating graceful or forced shutdown.
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 24 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 23 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -88,8 +88,6 @@ Stop a work item, initiating graceful or forced shutdown.
       - `"cache-diagnosis-2026-04-07"`
 
       - `"thinking-token-count-2026-05-13"`
-
-      - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

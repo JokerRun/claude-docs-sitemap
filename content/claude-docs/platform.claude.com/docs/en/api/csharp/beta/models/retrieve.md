@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/models/retrieve
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 6769e27c524a5b6df8710c7112e1eb60bafe1d82086742bfaf471c244a6740f1
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 4d957587bd4132aab80d7272b34c9ed753340b1bf3190e9c3b7faf125ce6a6d2
 ---
 
 ## Get a Model
@@ -78,8 +78,6 @@ The Models API response can be used to determine information about a specific mo
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
-
-    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
 
 ### Returns
 

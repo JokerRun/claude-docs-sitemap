@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/messages
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 6ceed2d88065fff8a5e49e0b2a3715f411293f5043d24875c41288cb20f31761
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: b4f805d3c0f64b9324f0e231b1e97c31299eeba50256a07cb72d3e2a3acedebb
 ---
 
 # Messages
@@ -10081,6 +10081,21 @@ ant beta:messages count-tokens \
     - `remaining: optional number`
 
       Remaining tokens in the budget. Use this to track usage across contexts when implementing compaction client-side. Defaults to total if not provided.
+
+### Beta Output Tokens Details
+
+- `beta_output_tokens_details: object { thinking_tokens }`
+
+  - `thinking_tokens: number`
+
+    Number of output tokens the model generated as internal reasoning, including
+    the thinking-block delimiter tokens.
+
+    Reflects the raw reasoning the model produced, not the (possibly shorter)
+    summarized thinking text returned in the response body. Computed by
+    re-tokenizing the raw reasoning text, so it may differ from the model's exact
+    generation count by a small number of tokens. Always ≤ `output_tokens`;
+    `output_tokens - thinking_tokens` approximates the non-reasoning output.
 
 ### Beta Plain Text Source
 

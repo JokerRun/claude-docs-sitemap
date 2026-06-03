@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/intro
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: b52986717ec007bd268e2034aabe3cd8c0261222ef0a2a4f11a0248b860a7b7a
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 8a77c99461ef9472f4467329cf0b0481f0a277983ad270516d084823677a14cd
 ---
 
 # Intro to Claude
@@ -15,7 +15,7 @@ Claude is a highly performant, trustworthy, and intelligent AI platform built by
 
 The latest generation of Claude models:
 
-**<NextOpus />** - Anthropic's most capable model for complex reasoning and agentic coding. Read the [<NextOpus /> announcement](https://www.anthropic.com/news/claude-opus-4-8).
+**Claude Opus 4.8** - Anthropic's most capable model for complex reasoning and agentic coding. Read the [Claude Opus 4.8 announcement](https://www.anthropic.com/news/claude-opus-4-8).
 
 **Claude Sonnet 4.6** - Frontier intelligence at scale, built for coding, agents, and enterprise workflows. Read the [Claude Sonnet 4.6 announcement](https://www.anthropic.com/news/claude-sonnet-4-6).
 

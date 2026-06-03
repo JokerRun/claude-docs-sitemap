@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/events/stream
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: d0848d1fe97dd6b3385c86efe69e69a9198d727bc5539ab0021e5ef04b57bd1f
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: c23dae9b17d10827804768f028e2543276bfcca2894fa988cc706556421a5e82
 ---
 
 ## Stream Events
@@ -74,8 +74,6 @@ Stream Events
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
-
-    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
 ### Returns
 
@@ -1502,6 +1500,10 @@ Stream Events
           The model that will power your agent.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `CLAUDE_OPUS_4_8("claude-opus-4-8")`
+
+            Frontier intelligence for long-running agents and coding
 
           - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
 

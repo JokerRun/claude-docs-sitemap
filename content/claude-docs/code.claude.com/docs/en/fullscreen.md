@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/fullscreen
-fetched_at: 2026-05-21T03:16:34.837917Z
-sha256: e7cbb1cce99777ef4062945b2ddeebfe9f513c8fb3502307b1be85705a1a74ef
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 224b04c2e781a2c2d24d46bfcdc790088d95f45eefa2783286203df0b666680f
 ---
 
 > ## Documentation Index
@@ -175,3 +175,5 @@ Fullscreen rendering is a research preview feature. It has been tested on common
 If you encounter a problem, run `/feedback` inside Claude Code to report it, or open an issue on the [claude-code GitHub repo](https://github.com/anthropics/claude-code/issues). Include your terminal emulator name and version.
 
 To turn fullscreen rendering off, run `/tui default`, or unset `CLAUDE_CODE_NO_FLICKER` if you enabled it that way. To force the classic renderer regardless of the saved `tui` setting, set `CLAUDE_CODE_DISABLE_ALTERNATE_SCREEN=1`. The classic renderer keeps the conversation in your terminal's native scrollback so `Cmd+f` and tmux copy mode work as usual.
+
+Background sessions opened from [agent view](/en/agent-view) or `claude attach` always use fullscreen rendering. The attaching terminal enters the alternate screen buffer to show the session, and the classic renderer has no scrollback or mouse handling there, so the `tui` setting and `CLAUDE_CODE_DISABLE_ALTERNATE_SCREEN` do not apply to them.

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/models/retrieve
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 2506bb75026f5b6d88df7bc2fe8a181d4aa97ca04ec435c703a92ae15f11526a
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 74a6136c5d0e2df143b266fc3d22920e3f2c5f3032ba5331a675b6ec6dad3175
 ---
 
 ## Get a Model
@@ -27,7 +27,7 @@ The Models API response can be used to determine information about a specific mo
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 24 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 23 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -80,8 +80,6 @@ The Models API response can be used to determine information about a specific mo
     - `:"cache-diagnosis-2026-04-07"`
 
     - `:"thinking-token-count-2026-05-13"`
-
-    - `:"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

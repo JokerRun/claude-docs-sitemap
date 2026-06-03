@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/user_profiles/create_enrollment_url
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 1081f5a2949e0a6e3d55e4555be675f4aef6a61ff7d167caada16a6c0e750a30
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 8b311bf4c4fb64fa5aa07f433fc57373c3f07666a782ea22fac8b28c510340e9
 ---
 
 ## Create Enrollment URL
@@ -25,7 +25,7 @@ Create Enrollment URL
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 24 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 23 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -78,8 +78,6 @@ Create Enrollment URL
       - `"cache-diagnosis-2026-04-07"`
 
       - `"thinking-token-count-2026-05-13"`
-
-      - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

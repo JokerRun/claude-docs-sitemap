@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/environments/archive
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 51266ac72824ace4a0ddcba00941a43af8649b8b571807ac2443fa8c86d56c0d
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: e3304146106691b99ef01521581b9299502a3a3d12b46342233a410e7b9cfb1b
 ---
 
 ## Archive Environment
@@ -25,7 +25,7 @@ Archive an environment by ID. Archived environments cannot be used to create new
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 24 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 23 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -78,8 +78,6 @@ Archive an environment by ID. Archived environments cannot be used to create new
       - `"cache-diagnosis-2026-04-07"`
 
       - `"thinking-token-count-2026-05-13"`
-
-      - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

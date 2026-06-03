@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/search-results
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 7e4a6f80107ad3e73557128646dae4fd5012191709a260de4e5511ae46a96307
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 5955290c71ff81be7488968f5f32729e74867e5b0a873a4f87c6893914962537
 ---
 
 # Search results
@@ -19,7 +19,7 @@ Search result content blocks enable natural citations with proper source attribu
 
 The search results feature is available on the following models:
 
-- <NextOpus /> (<NextOpusId />)
+- Claude Opus 4.8 (claude-opus-4-8)
 - Claude Opus 4.7 (`claude-opus-4-7`)
 - Claude Opus 4.6 (`claude-opus-4-6`)
 - Claude Sonnet 4.6 (`claude-sonnet-4-6`)
@@ -612,7 +612,7 @@ public class SearchKnowledgeBaseExample {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 $knowledgeBaseTool = [
     'name' => 'search_knowledge_base',
@@ -1154,7 +1154,7 @@ public class SearchResultExample {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 $message = $client->messages->create(
     maxTokens: 1024,

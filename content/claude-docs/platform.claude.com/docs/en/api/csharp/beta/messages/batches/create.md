@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/messages/batches/create
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 61f041d471c59cecd8824fb0a21377a80507d248bb829938d11c7fcc63988633
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 2c11762cfa99d1002d5643f9c5254d459b0d945ae276411bf3943c3596b04a7d
 ---
 
 ## Create a Message Batch
@@ -2506,8 +2506,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
-
-    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memories/create
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 3bb7d2e05ff2b732c2d0e421ed391f4e550c3639708560d06e74b05fb329b57b
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 207cc6ca45d823ea56e154326c60d187ecc17bf624d6750e0ff9808f7e24cdef
 ---
 
 ## Create a memory
@@ -33,7 +33,7 @@ Create a memory
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 24 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 23 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -86,8 +86,6 @@ Create a memory
     - `"cache-diagnosis-2026-04-07"`
 
     - `"thinking-token-count-2026-05-13"`
-
-    - `"mid-conversation-system-2026-04-07"`
 
 ### Body Parameters
 

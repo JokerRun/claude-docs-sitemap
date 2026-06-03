@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/sessions/resources/add
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 5d949de1b2de96f18e5ca4c138b4254c9fdae237a6de41690257e60e5a91fcbb
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: edc1d99069c39b62184737a3e1829f0e62fcad0d400b810f8d59e9a05658cff1
 ---
 
 ## Add Session Resource
@@ -35,7 +35,7 @@ Add Session Resource
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 24 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 23 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -88,8 +88,6 @@ Add Session Resource
     - `"cache-diagnosis-2026-04-07"`
 
     - `"thinking-token-count-2026-05-13"`
-
-    - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

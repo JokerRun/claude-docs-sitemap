@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/agents/versions
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 48568851de4a207619e290de0be31d16e80974f67bc76df8e5f321e8e841c2b1
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 06b7c4e9df54eb64f07978c8784806f4f1b18c5323cac5d4ef08a8977010b76e
 ---
 
 # Versions
@@ -87,8 +87,6 @@ List Agent Versions
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
-    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
-
 ### Returns
 
 - `class VersionListPageResponse:`
@@ -132,6 +130,10 @@ List Agent Versions
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-opus-4-8"ClaudeOpus4_8`
+
+          Frontier intelligence for long-running agents and coding
 
         - `"claude-opus-4-7"ClaudeOpus4_7`
 

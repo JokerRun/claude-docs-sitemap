@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/sessions/events/list
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: df21097895630c3047408861d77d3b0bca1c84838a8c968990efd2c88fe0186c
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 9a3f5cd8990a4bb0eb3e8ab3a9ef00310202ddf51fd9151bc61cc5e5470659d5
 ---
 
 ## List Events
@@ -59,7 +59,7 @@ List Events
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 24 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 23 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -112,8 +112,6 @@ List Events
     - `:"cache-diagnosis-2026-04-07"`
 
     - `:"thinking-token-count-2026-05-13"`
-
-    - `:"mid-conversation-system-2026-04-07"`
 
 ### Returns
 
@@ -1541,11 +1539,15 @@ List Events
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-          - `BetaManagedAgentsModel = :"claude-opus-4-7" | :"claude-opus-4-6" | :"claude-sonnet-4-6" | 6 more`
+          - `BetaManagedAgentsModel = :"claude-opus-4-8" | :"claude-opus-4-7" | :"claude-opus-4-6" | 7 more`
 
             The model that will power your agent.
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `:"claude-opus-4-8"`
+
+              Frontier intelligence for long-running agents and coding
 
             - `:"claude-opus-4-7"`
 

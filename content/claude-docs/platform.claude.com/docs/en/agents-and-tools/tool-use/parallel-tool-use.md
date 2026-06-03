@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/parallel-tool-use
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: f845937cfb626ef697f41ea2e322d2ab75dd256421a69322fffc82145ec95667
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: a97a44efb6315ec88f9d30cc0496cf4cb3355bfff288eb21abf541f82274c5c4
 ---
 
 # Parallel tool use
@@ -665,7 +665,7 @@ void main() {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 $tools = [
     [

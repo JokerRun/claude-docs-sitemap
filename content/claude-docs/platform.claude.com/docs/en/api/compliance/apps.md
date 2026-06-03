@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 6e238ca516a07f63aedcd6c64a179a32e68c472ec5131435c6aeab551f97db58
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: e8bcb0ecb09e2384ee8c2a511c9323e4cd7ff78d89190e0eeaeecd8d52feb6b2
 ---
 
 # Apps
@@ -363,6 +363,14 @@ Retrieves message history and file metadata for a specific chat.
 
   - `"desc"`
 
+- `tool_result_max_chars: optional number`
+
+  Maximum characters returned per tool-result text item. Items longer than this are shortened and the block's `truncated` field is set. Pass -1 to disable the limit.
+
+- `tool_use_input_max_chars: optional number`
+
+  Maximum characters of JSON-encoded tool input returned per tool_use block. Inputs longer than this are shortened and the block's `truncated` field is set. Pass -1 to disable the limit.
+
 - `updated_at: optional object { gt, gte, lt, lte }`
 
   - `gt: optional string`
@@ -419,17 +427,97 @@ Retrieves message history and file metadata for a specific chat.
 
       Artifact version ID e.g. 'claude_artifact_version_abc123'
 
-  - `content: array of object { text, type }`
+  - `content: array of object { text, type }  or object { id, input, integration_name, 4 more }  or object { content, integration_name, is_error, 5 more }`
 
     Content blocks within the message
 
-    - `text: string`
+    - `Text object { text, type }`
 
-      Text content from human or assistant
+      Text content block.
 
-    - `type: "text"`
+      - `text: string`
 
-      - `"text"`
+        Text content from human or assistant
+
+      - `type: "text"`
+
+        - `"text"`
+
+    - `ToolUse object { id, input, integration_name, 4 more }`
+
+      Tool invocation requested by the assistant.
+
+      - `id: string`
+
+        Tool-use ID, e.g. 'toolu_01AbC...'
+
+      - `input: string`
+
+        Arguments passed to the tool, as a JSON-encoded string. May be shortened — see the `truncated` field
+
+      - `integration_name: string`
+
+        Name of the integration that provides this tool, when applicable
+
+      - `mcp_server_url: string`
+
+        Base URL (scheme, host, and path only) of the MCP server that provides this tool, when applicable
+
+      - `name: string`
+
+        Name of the tool invoked
+
+      - `truncated: boolean`
+
+        True when `input` was shortened. Pass tool_use_input_max_chars=-1 to disable the limit
+
+      - `type: "tool_use"`
+
+        - `"tool_use"`
+
+    - `ToolResult object { content, integration_name, is_error, 5 more }`
+
+      Result returned by a tool invocation.
+
+      - `content: array of object { text, type }`
+
+        Text content returned by the tool. Generated files are surfaced via the message's `generated_files` list; other non-text item types (including images and links) are omitted.
+
+        - `text: string`
+
+          Text returned by the tool
+
+        - `type: "text"`
+
+          - `"text"`
+
+      - `integration_name: string`
+
+        Name of the integration that provides this tool, when applicable
+
+      - `is_error: boolean`
+
+        True when the tool reported an error
+
+      - `mcp_server_url: string`
+
+        Base URL (scheme, host, and path only) of the MCP server that provides this tool, when applicable
+
+      - `name: string`
+
+        Name of the tool that produced this result
+
+      - `tool_use_id: string`
+
+        ID of the tool_use block this result responds to
+
+      - `truncated: boolean`
+
+        True when one or more text items in `content` were shortened. Pass tool_result_max_chars=-1 to retrieve full content.
+
+      - `type: "tool_result"`
+
+        - `"tool_result"`
 
   - `created_at: string`
 
@@ -636,17 +724,97 @@ curl https://api.anthropic.com/v1/compliance/apps/chats/$CLAUDE_CHAT_ID/messages
 
       Artifact version ID e.g. 'claude_artifact_version_abc123'
 
-  - `content: array of object { text, type }`
+  - `content: array of object { text, type }  or object { id, input, integration_name, 4 more }  or object { content, integration_name, is_error, 5 more }`
 
     Content blocks within the message
 
-    - `text: string`
+    - `Text object { text, type }`
 
-      Text content from human or assistant
+      Text content block.
 
-    - `type: "text"`
+      - `text: string`
 
-      - `"text"`
+        Text content from human or assistant
+
+      - `type: "text"`
+
+        - `"text"`
+
+    - `ToolUse object { id, input, integration_name, 4 more }`
+
+      Tool invocation requested by the assistant.
+
+      - `id: string`
+
+        Tool-use ID, e.g. 'toolu_01AbC...'
+
+      - `input: string`
+
+        Arguments passed to the tool, as a JSON-encoded string. May be shortened — see the `truncated` field
+
+      - `integration_name: string`
+
+        Name of the integration that provides this tool, when applicable
+
+      - `mcp_server_url: string`
+
+        Base URL (scheme, host, and path only) of the MCP server that provides this tool, when applicable
+
+      - `name: string`
+
+        Name of the tool invoked
+
+      - `truncated: boolean`
+
+        True when `input` was shortened. Pass tool_use_input_max_chars=-1 to disable the limit
+
+      - `type: "tool_use"`
+
+        - `"tool_use"`
+
+    - `ToolResult object { content, integration_name, is_error, 5 more }`
+
+      Result returned by a tool invocation.
+
+      - `content: array of object { text, type }`
+
+        Text content returned by the tool. Generated files are surfaced via the message's `generated_files` list; other non-text item types (including images and links) are omitted.
+
+        - `text: string`
+
+          Text returned by the tool
+
+        - `type: "text"`
+
+          - `"text"`
+
+      - `integration_name: string`
+
+        Name of the integration that provides this tool, when applicable
+
+      - `is_error: boolean`
+
+        True when the tool reported an error
+
+      - `mcp_server_url: string`
+
+        Base URL (scheme, host, and path only) of the MCP server that provides this tool, when applicable
+
+      - `name: string`
+
+        Name of the tool that produced this result
+
+      - `tool_use_id: string`
+
+        ID of the tool_use block this result responds to
+
+      - `truncated: boolean`
+
+        True when one or more text items in `content` were shortened. Pass tool_result_max_chars=-1 to retrieve full content.
+
+      - `type: "tool_result"`
+
+        - `"tool_result"`
 
   - `created_at: string`
 
@@ -718,6 +886,10 @@ download the bytes.
 
   File ID
 
+- `claude_chat_ids: array of string`
+
+  Chats this file is attached to. A file can be referenced by messages across multiple chats.
+
 - `created_at: string`
 
   File creation timestamp
@@ -761,6 +933,9 @@ curl https://api.anthropic.com/v1/compliance/apps/chats/files/$CLAUDE_FILE_ID \
   "created_at": "2024-01-15T10:30:00Z",
   "message_ids": [
     "claude_chat_msg_abc123"
+  ],
+  "claude_chat_ids": [
+    "claude_chat_def456"
   ]
 }
 ```
@@ -838,7 +1013,7 @@ curl https://api.anthropic.com/v1/compliance/apps/chats/files/$CLAUDE_FILE_ID/co
 
 ### File Retrieve Response
 
-- `FileRetrieveResponse object { id, created_at, filename, 4 more }`
+- `FileRetrieveResponse object { id, claude_chat_ids, created_at, 5 more }`
 
   File metadata for GET /v1/compliance/apps/chats/files/{claude_file_id}.
 
@@ -848,6 +1023,10 @@ curl https://api.anthropic.com/v1/compliance/apps/chats/files/$CLAUDE_FILE_ID/co
   - `id: string`
 
     File ID
+
+  - `claude_chat_ids: array of string`
+
+    Chats this file is attached to. A file can be referenced by messages across multiple chats.
 
   - `created_at: string`
 
@@ -1116,7 +1295,11 @@ are sorted chronologically (time ascending) by created_at.
 
   - `user: object { id, email_address }`
 
-    User information for project creator.
+    The user who created a project or project document.
+
+    Fields that reference this type are null when the creator's account has
+    been deleted or the creator is no longer a member of any organization
+    under the parent organization.
 
     - `id: string`
 
@@ -1170,9 +1353,6 @@ curl https://api.anthropic.com/v1/compliance/apps/projects \
 **get** `/v1/compliance/apps/projects/{project_id}`
 
 Get detailed information for a specific project.
-
-Returns:
-Detailed project information including description, instructions, and counts
 
 ### Path Parameters
 
@@ -1236,7 +1416,11 @@ Detailed project information including description, instructions, and counts
 
 - `user: object { id, email_address }`
 
-  User information for project creator.
+  The user who created a project or project document.
+
+  Fields that reference this type are null when the creator's account has
+  been deleted or the creator is no longer a member of any organization
+  under the parent organization.
 
   - `id: string`
 
@@ -1290,13 +1474,6 @@ Hard-deletes the project and all its associated data including:
 - Sync sources
 
 Project must have no attached chats - returns 409 if chats exist.
-
-Returns:
-ClaudeProjectDeleteResponse confirming the deletion
-
-Raises:
-ConflictException: If project has chats attached
-NotFoundException: If project doesn't exist or already deleted
 
 ### Path Parameters
 
@@ -1379,7 +1556,11 @@ curl https://api.anthropic.com/v1/compliance/apps/projects/$PROJECT_ID \
 
   - `user: object { id, email_address }`
 
-    User information for project creator.
+    The user who created a project or project document.
+
+    Fields that reference this type are null when the creator's account has
+    been deleted or the creator is no longer a member of any organization
+    under the parent organization.
 
     - `id: string`
 
@@ -1445,7 +1626,11 @@ curl https://api.anthropic.com/v1/compliance/apps/projects/$PROJECT_ID \
 
   - `user: object { id, email_address }`
 
-    User information for project creator.
+    The user who created a project or project document.
+
+    Fields that reference this type are null when the creator's account has
+    been deleted or the creator is no longer a member of any organization
+    under the parent organization.
 
     - `id: string`
 
@@ -1487,12 +1672,6 @@ GET /v1/compliance/apps/chats/files/{claude_file_id}/content endpoint.
 
 The text content of attached project documents can be fetched using the
 GET /v1/compliance/apps/projects/documents/{claude_proj_doc_id} endpoint.
-
-Returns:
-List of project attachments with pagination info
-
-Raises:
-NotFoundException: If project doesn't exist or project_id format is invalid
 
 ### Path Parameters
 
@@ -1677,9 +1856,6 @@ curl https://api.anthropic.com/v1/compliance/apps/projects/$PROJECT_ID/attachmen
 
 Get detailed information for a specific project document.
 
-Returns:
-Project document information including content and metadata
-
 ### Path Parameters
 
 - `document_id: string`
@@ -1710,7 +1886,11 @@ Project document information including content and metadata
 
 - `user: object { id, email_address }`
 
-  User information for project creator.
+  The user who created a project or project document.
+
+  Fields that reference this type are null when the creator's account has
+  been deleted or the creator is no longer a member of any organization
+  under the parent organization.
 
   - `id: string`
 
@@ -1797,7 +1977,11 @@ consumer can dedupe or match hashes without downloading every document.
 
 - `user: object { id, email_address }`
 
-  User information for project creator.
+  The user who created a project or project document.
+
+  Fields that reference this type are null when the creator's account has
+  been deleted or the creator is no longer a member of any organization
+  under the parent organization.
 
   - `id: string`
 
@@ -1839,9 +2023,6 @@ curl https://api.anthropic.com/v1/compliance/apps/projects/documents/$DOCUMENT_I
 Delete a project document for compliance purposes.
 
 Hard-deletes the project document permanently.
-
-Returns:
-ComplianceProjectDocumentDeleteResponse confirming the deletion
 
 ### Path Parameters
 
@@ -1908,7 +2089,11 @@ curl https://api.anthropic.com/v1/compliance/apps/projects/documents/$DOCUMENT_I
 
   - `user: object { id, email_address }`
 
-    User information for project creator.
+    The user who created a project or project document.
+
+    Fields that reference this type are null when the creator's account has
+    been deleted or the creator is no longer a member of any organization
+    under the parent organization.
 
     - `id: string`
 
@@ -1959,7 +2144,11 @@ curl https://api.anthropic.com/v1/compliance/apps/projects/documents/$DOCUMENT_I
 
   - `user: object { id, email_address }`
 
-    User information for project creator.
+    The user who created a project or project document.
+
+    Fields that reference this type are null when the creator's account has
+    been deleted or the creator is no longer a member of any organization
+    under the parent organization.
 
     - `id: string`
 

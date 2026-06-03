@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/user_profiles/list
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 4fd1bf5e4ce9f4da2723f14120b1ebba6b29e0666d1540c4e9df9ee7e632556b
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 8604e20a8c35b98c5186a9a7f7810ef5930377aa54ebec4da8d55677c43c9451
 ---
 
 ## List User Profiles
@@ -88,8 +88,6 @@ List User Profiles
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
-
-    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
 
 ### Returns
 

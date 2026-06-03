@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/memory_stores/list
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: c6937dccaa1d64f34a5c639a95e7c05ac3cea1a78c394a75838eb64127109cf1
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 20d8655f5c0d73245898a942e60dae0d7977f5dbf17c7f06ca71707e74f0991b
 ---
 
 ## List memory stores
@@ -41,7 +41,7 @@ List memory stores
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 24 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 23 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -94,8 +94,6 @@ List memory stores
     - `:"cache-diagnosis-2026-04-07"`
 
     - `:"thinking-token-count-2026-05-13"`
-
-    - `:"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

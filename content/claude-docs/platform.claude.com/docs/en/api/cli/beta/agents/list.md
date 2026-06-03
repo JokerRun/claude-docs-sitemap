@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/agents/list
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 4844dd2c0c2b0245cbf16186a85e80347d4821d015c69419c8331b1c921b0feb
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 8503e97d46341c3fb3b745ba1c96ff4dd323fb3eb38af43d28518e3db5731747
 ---
 
 ## List Agents
@@ -77,11 +77,15 @@ List Agents
 
       Model identifier and configuration.
 
-      - `id: "claude-opus-4-7" or "claude-opus-4-6" or "claude-sonnet-4-6" or 6 more or string`
+      - `id: "claude-opus-4-8" or "claude-opus-4-7" or "claude-opus-4-6" or 7 more or string`
 
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-opus-4-8"`
+
+          Frontier intelligence for long-running agents and coding
 
         - `"claude-opus-4-7"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/memory_stores/archive
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 646bfa76f1ccab4a8eeac78979b21fd43df46e4fe7fc4ba39417603a06980ca3
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 3db3777060f50e76d4c2e027365ca99228befd3c7e4a7578bfdd25b230e4c268
 ---
 
 ## Archive a memory store
@@ -74,8 +74,6 @@ Archive a memory store
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
-
-    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
 ### Returns
 

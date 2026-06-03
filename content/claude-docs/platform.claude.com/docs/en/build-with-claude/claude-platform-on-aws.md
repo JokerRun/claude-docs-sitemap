@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws
-fetched_at: 2026-06-02T03:18:54.775717Z
-sha256: cc7830cb8664acd78d5a8c9732bfa2058ea5e6726b9cd3f831749eef534c1b4b
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 9d508464bcb102ef4d30acb8f22a39369f3f09acbbe37a474b0e7784eb777e50
 ---
 
 # Claude Platform on AWS
@@ -320,7 +320,7 @@ The following models are available on Claude Platform on AWS:
 
 | Model | Model ID |
 | :--- | :--- |
-| <NextOpus /> | <NextOpusId /> |
+| Claude Opus 4.8 | claude-opus-4-8 |
 | Claude Opus 4.7 | claude-opus-4-7 |
 | Claude Opus 4.6 | claude-opus-4-6 |
 | Claude Sonnet 4.6 | claude-sonnet-4-6 |

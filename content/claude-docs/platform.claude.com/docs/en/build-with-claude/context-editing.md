@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/context-editing
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: a853722361823d4d224780286321b64fd4cdd4de0d6583aea4267aa33d363b84
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 13d54e814b1e31d83de64f4e7985493e14300903d756c030e3e775aa618cacda
 ---
 
 # Context editing
@@ -274,7 +274,7 @@ public class WebSearchExample {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 $response = $client->beta->messages->create(
     maxTokens: 4096,
@@ -690,7 +690,7 @@ public class ContextManagementExample {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 $message = $client->beta->messages->create(
     maxTokens: 4096,
@@ -1021,7 +1021,7 @@ public class Main {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 $message = $client->beta->messages->create(
     maxTokens: 16000,
@@ -1376,7 +1376,7 @@ public class ContextManagementExample {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 $message = $client->beta->messages->create(
     maxTokens: 16000,
@@ -1788,7 +1788,7 @@ public class TokenCountExample {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 $response = $client->beta->messages->countTokens(
     messages: [
@@ -2045,7 +2045,7 @@ public class Main {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 $response = $client->beta->messages->create(
     maxTokens: 4096,

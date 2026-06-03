@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/vaults/list
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 3714bee4a6a084b270ef0b4c55d5a65f110f8d9cf9ed0280dafc119374538209
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 3bff824ec5d1d3c0b25f883256c9960b17506e3b7a3039b89002e5c029d74612
 ---
 
 ## List Vaults
@@ -88,8 +88,6 @@ List Vaults
       - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
 
       - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
-
-      - `const AnthropicBetaMidConversationSystem2026_04_07 AnthropicBeta = "mid-conversation-system-2026-04-07"`
 
 ### Returns
 

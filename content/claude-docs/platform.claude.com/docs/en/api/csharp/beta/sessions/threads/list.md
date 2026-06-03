@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/sessions/threads/list
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 50779ab54bf226dcc99e839308342851a4563337e3807756628bf20b6a4c8a50
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: fe432ae8713d24f2ece0695de1010525e0dffa739f063fd8cbc59659a3ab0d0e
 ---
 
 ## List Session Threads
@@ -85,8 +85,6 @@ List Session Threads
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
-    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
-
 ### Returns
 
 - `class ThreadListPageResponse:`
@@ -128,6 +126,10 @@ List Session Threads
           The model that will power your agent.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `"claude-opus-4-8"ClaudeOpus4_8`
+
+            Frontier intelligence for long-running agents and coding
 
           - `"claude-opus-4-7"ClaudeOpus4_7`
 

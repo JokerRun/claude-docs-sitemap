@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/sessions/update
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 7e9034aec2eb720e6d23dc45dd325f52f4f37610efe2ea6fa6cd64f62081498b
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 58c5937dd23bf4d84bdc2bace1f4cfcbc4f434fc7b82a25bd2d74d8873cff4d7
 ---
 
 ## Update Session
@@ -95,8 +95,6 @@ Update Session
 
       - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
 
-      - `const AnthropicBetaMidConversationSystem2026_04_07 AnthropicBeta = "mid-conversation-system-2026-04-07"`
-
 ### Returns
 
 - `type BetaManagedAgentsSession struct{…}`
@@ -138,6 +136,10 @@ Update Session
           The model that will power your agent.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `const BetaManagedAgentsModelClaudeOpus4_8 BetaManagedAgentsModel = "claude-opus-4-8"`
+
+            Frontier intelligence for long-running agents and coding
 
           - `const BetaManagedAgentsModelClaudeOpus4_7 BetaManagedAgentsModel = "claude-opus-4-7"`
 

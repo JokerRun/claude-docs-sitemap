@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/messages/create
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 6c053dc1392a38d5b995400eb365489fa73fae35211024d575d42bd2fe0413b0
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: c9bdad6e58c76d8b620cee92073f99d66d1c0b198664b2ed9cafa0bc185c621d
 ---
 
 ## Create a Message
@@ -2263,8 +2263,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
-    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
-
 ### Returns
 
 - `class BetaMessage:`
@@ -3370,7 +3368,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       The number of output tokens which were used.
 
-    - `required OutputTokensDetails? OutputTokensDetails`
+    - `required BetaOutputTokensDetails? OutputTokensDetails`
 
       Breakdown of output tokens by category.
 

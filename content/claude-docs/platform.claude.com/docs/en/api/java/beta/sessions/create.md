@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/create
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 37abbfe7d7a2c1ade36559db6c3ca712acef288ec06184f14596b3f108dc6092
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: e12b4763052a35702603ec3317bd5665870f78daa1c3924be5e5c5ed2cf23cb0
 ---
 
 ## Create Session
@@ -72,8 +72,6 @@ Create Session
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
-
-    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
   - `Agent agent`
 
@@ -236,6 +234,10 @@ Create Session
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `CLAUDE_OPUS_4_8("claude-opus-4-8")`
+
+          Frontier intelligence for long-running agents and coding
 
         - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
 

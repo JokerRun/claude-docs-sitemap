@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/environments/work/stop
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 89767586a334f5f21024e77160602fa11dda033e7310f15b90e728534486cbf7
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 2730d1d93b6008f9286f00b3da40d95bbaf8d7f01007f8d1f94e1c709c6b9f5e
 ---
 
 ## Stop Work
@@ -88,8 +88,6 @@ Stop a work item, initiating graceful or forced shutdown.
       - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
 
       - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
-
-      - `const AnthropicBetaMidConversationSystem2026_04_07 AnthropicBeta = "mid-conversation-system-2026-04-07"`
 
 ### Returns
 

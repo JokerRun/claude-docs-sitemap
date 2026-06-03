@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/memory_stores/memory_versions
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 79febda7d363a001dea0fa37cdf873e4757672da694c87a7479798f49c69f68e
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: f61fedb611787d2aa2afeda0bd96d04f126218356a0e15e822ce7d30ba4d0c62
 ---
 
 # Memory Versions
@@ -112,8 +112,6 @@ List memory versions
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
-
-    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
 ### Returns
 
@@ -343,8 +341,6 @@ Retrieve a memory version
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
 
-    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
-
 ### Returns
 
 - `class BetaManagedAgentsMemoryVersion:`
@@ -567,8 +563,6 @@ Redact a memory version
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
-
-    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
 ### Returns
 

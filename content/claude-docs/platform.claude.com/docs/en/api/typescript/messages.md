@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/messages
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: e6310ec16806cd3b2f8c6c4276e9e1392331060a825388024b9f1d98af2fee2b
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: a92cd3031066e8376c56561ab8daee1918d2ffeec95cc7c2bfcf7aa86a121fbc
 ---
 
 # Messages
@@ -11530,6 +11530,21 @@ console.log(messageTokensCount.input_tokens);
 
       - `"json_schema"`
 
+### Output Tokens Details
+
+- `OutputTokensDetails`
+
+  - `thinking_tokens: number`
+
+    Number of output tokens the model generated as internal reasoning, including
+    the thinking-block delimiter tokens.
+
+    Reflects the raw reasoning the model produced, not the (possibly shorter)
+    summarized thinking text returned in the response body. Computed by
+    re-tokenizing the raw reasoning text, so it may differ from the model's exact
+    generation count by a small number of tokens. Always ≤ `output_tokens`;
+    `output_tokens - thinking_tokens` approximates the non-reasoning output.
+
 ### Plain Text Source
 
 - `PlainTextSource`
@@ -14564,17 +14579,6 @@ console.log(messageTokensCount.input_tokens);
         This object provides a read-only decomposition for observability — for example,
         how many of the billed output tokens were spent on internal reasoning that may
         have been summarized before being returned to you.
-
-        - `thinking_tokens: number`
-
-          Number of output tokens the model generated as internal reasoning, including
-          the thinking-block delimiter tokens.
-
-          Reflects the raw reasoning the model produced, not the (possibly shorter)
-          summarized thinking text returned in the response body. Computed by
-          re-tokenizing the raw reasoning text, so it may differ from the model's exact
-          generation count by a small number of tokens. Always ≤ `output_tokens`;
-          `output_tokens - thinking_tokens` approximates the non-reasoning output.
 
       - `server_tool_use: ServerToolUsage | null`
 

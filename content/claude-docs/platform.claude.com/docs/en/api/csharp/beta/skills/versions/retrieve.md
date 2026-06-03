@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/skills/versions/retrieve
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: e05289424a913f2da7c2de69a4d96918b4e61db837a97e4a68ee73b2724dc70d
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 424d4faf88f1f63c2d913db16e44622a33f0f50ed7ff68cfc789e2f664dbc1de
 ---
 
 ## Get Skill Version
@@ -84,8 +84,6 @@ Get Skill Version
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
-
-    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
 
 ### Returns
 

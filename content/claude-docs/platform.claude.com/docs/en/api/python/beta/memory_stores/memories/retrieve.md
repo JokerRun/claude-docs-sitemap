@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/memory_stores/memories/retrieve
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 933fbdb940d4a04d7fd0f042571fa0f4643616d07b30efbee547143807a8d648
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: c49fa148dd25f0948cc1e1225fb5df07e9ad7cc99b09949bf35e88947d5d7250
 ---
 
 ## Retrieve a memory
@@ -33,7 +33,7 @@ Retrieve a memory
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 24 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 23 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -86,8 +86,6 @@ Retrieve a memory
     - `"cache-diagnosis-2026-04-07"`
 
     - `"thinking-token-count-2026-05-13"`
-
-    - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

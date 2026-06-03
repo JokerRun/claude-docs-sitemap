@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/messages/batches/results
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 13d9b326a78664be693e14ae8abccae3c4462a975990a7b6704520f0e5d57658
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 5a2feff8b91666144ecb53ba75966a69e9cf8eb20dbd303f75cfa4c758f81a92
 ---
 
 ## Retrieve Message Batch results
@@ -927,7 +927,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             The number of output tokens which were used.
 
-          - `OutputTokensDetails UsageOutputTokensDetails`
+          - `OutputTokensDetails OutputTokensDetails`
 
             Breakdown of output tokens by category.
 

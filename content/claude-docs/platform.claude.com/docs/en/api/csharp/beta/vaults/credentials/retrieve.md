@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/vaults/credentials/retrieve
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: a1eb6948bc2ccd3b8e6d709200c2832d21c0f039aabcbe3eba3b6a89ae69396d
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 341687c831365ae01fcc140914dc7dd0453d685c94e060debb1c8b4661bcf90b
 ---
 
 ## Get Credential
@@ -80,8 +80,6 @@ Get Credential
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
-
-    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
 
 ### Returns
 

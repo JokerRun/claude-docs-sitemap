@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/messages/create
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 75a2ad4e51d889fbbe00c264d9416627d06383e3f73ea33ed5be356fd206d92a
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: db0e29b4387945297815420aea11188c15f3bcfe2abd6d1fc6f1204ddd32c6ef
 ---
 
 ## Create a Message
@@ -2695,7 +2695,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       The number of output tokens which were used.
 
-    - `OutputTokensDetails UsageOutputTokensDetails`
+    - `OutputTokensDetails OutputTokensDetails`
 
       Breakdown of output tokens by category.
 

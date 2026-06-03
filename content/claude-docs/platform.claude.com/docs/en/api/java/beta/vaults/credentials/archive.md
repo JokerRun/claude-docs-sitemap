@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/credentials/archive
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 1c92f8404d4481078dc7ec1f6fd537def845c0a74b9bb6615c40b2ef963c8853
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 99e956832dea94ac011693af5b9f98d2bf07d42aaaa650995bbc079a648659f0
 ---
 
 ## Archive Credential
@@ -76,8 +76,6 @@ Archive Credential
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
-
-    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
 ### Returns
 

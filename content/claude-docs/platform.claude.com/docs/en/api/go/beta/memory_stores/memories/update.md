@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/memory_stores/memories/update
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 75ec8dbca41e3021eb354512b1cf1e034e43071598ecce09b4a6e411df64f79b
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 571930e2983ae2dae9c913c76358b1a422a17787be84dcc7d2337095cfe3ade9
 ---
 
 ## Update a memory
@@ -98,8 +98,6 @@ Update a memory
       - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
 
       - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
-
-      - `const AnthropicBetaMidConversationSystem2026_04_07 AnthropicBeta = "mid-conversation-system-2026-04-07"`
 
 ### Returns
 

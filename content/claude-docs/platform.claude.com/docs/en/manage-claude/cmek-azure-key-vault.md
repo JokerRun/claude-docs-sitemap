@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/cmek-azure-key-vault
-fetched_at: 2026-06-02T03:18:54.775717Z
-sha256: 101bcd3ec458540f965d5663425fd91bd79907500436f6cda0e2038f616d8994
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 86396aa06e5fe68e565df41dec84dec5f11fbb4a605fe7146407583b050f84fa
 ---
 
 # Configure Azure Key Vault for CMEK
@@ -136,7 +136,7 @@ In order to have Anthropic use your encryption key, you must configure an Anthro
     Confirm that:
 
     - `rbac` is `true`.
-    - `purge` is `true`. If it is `false` or `null`, enable purge protection on the vault before proceeding — without it, a soft-deleted key can be permanently purged during the retention window, making your CMEK-protected data unrecoverable.
+    - `purge` is `true`. If it is `false` or `null`, enable purge protection on the vault before proceeding. Without it, a soft-deleted key can be permanently purged during the retention window, making your CMEK-protected data unrecoverable.
     - `pub` is `"Enabled"`. If it is `"Disabled"`, Anthropic cannot reach the vault over its public data-plane endpoint and validation fails.
     - `net` is `"Allow"`, or, if it is `"Deny"`, that `ipRules` include Anthropic's egress ranges (contact Anthropic for the current list).
     - `uri` is the vault URI you use when you register the key.

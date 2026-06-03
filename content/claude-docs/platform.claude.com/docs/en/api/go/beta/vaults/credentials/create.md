@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/vaults/credentials/create
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: d069c41ec05077b7103f37714a4234f2e3b1daa29d66dff3b7cc4b4bf266ccf3
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: d0c20a49b16723fef2e097654f3d682899e5096c62086838f0a5b2c98d7ad454
 ---
 
 ## Create Credential
@@ -186,8 +186,6 @@ Create Credential
       - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
 
       - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
-
-      - `const AnthropicBetaMidConversationSystem2026_04_07 AnthropicBeta = "mid-conversation-system-2026-04-07"`
 
 ### Returns
 

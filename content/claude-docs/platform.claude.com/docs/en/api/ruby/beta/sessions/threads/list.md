@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/sessions/threads/list
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 9d263103f76ccd49efb37bf7c3c7790fa74089625ec75078ecf11eba42b3b4ad
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: ed7c477139daf16a6bd76bee931c6fbf5a6db807db5bb808ce98cf8a8b52c283
 ---
 
 ## List Session Threads
@@ -31,7 +31,7 @@ List Session Threads
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 24 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 23 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -85,8 +85,6 @@ List Session Threads
 
     - `:"thinking-token-count-2026-05-13"`
 
-    - `:"mid-conversation-system-2026-04-07"`
-
 ### Returns
 
 - `class BetaManagedAgentsSessionThread`
@@ -125,11 +123,15 @@ List Session Threads
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-        - `BetaManagedAgentsModel = :"claude-opus-4-7" | :"claude-opus-4-6" | :"claude-sonnet-4-6" | 6 more`
+        - `BetaManagedAgentsModel = :"claude-opus-4-8" | :"claude-opus-4-7" | :"claude-opus-4-6" | 7 more`
 
           The model that will power your agent.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `:"claude-opus-4-8"`
+
+            Frontier intelligence for long-running agents and coding
 
           - `:"claude-opus-4-7"`
 

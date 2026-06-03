@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/messages/batches/cancel
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 7fe30cad8f4b6b374e52b718a93a687f07553a087d27ae4030f390e0e130e08b
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: d7d0659bf844bc8300d97c08f69f2c1634fc176ac9402b52bbfa35e62cab3d6a
 ---
 
 ## Cancel a Message Batch
@@ -80,8 +80,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
-
-    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/messages/create
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 40b15f6db515a1826b4ebecc9931bb758c990b7df5c6d6a0355b470761f8d8fc
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: b027784f483bdaffd8ef93f87d60ea768da37f87f978d1b3c751485e65ab6610
 ---
 
 ## Create a Message
@@ -2911,7 +2911,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       The number of output tokens which were used.
 
-    - `output_tokens_details: OutputTokensDetails{ thinking_tokens}`
+    - `output_tokens_details: OutputTokensDetails`
 
       Breakdown of output tokens by category.
 

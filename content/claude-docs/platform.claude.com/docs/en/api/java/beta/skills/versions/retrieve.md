@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/skills/versions/retrieve
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: cce8faadce2dcb4538289f57ddc75fdc1fa60297c5a4b86183d2d8b8d79d1434
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: aba4d69a880cab14e8a667a3b22ffeb21cd09f048ee9741cda326ce1564e556b
 ---
 
 ## Get Skill Version
@@ -84,8 +84,6 @@ Get Skill Version
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
-
-    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/sessions/threads/retrieve
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 7825719e68285cd1f3349713c1cc1b44bcfd02c34bcc86e64482ef76b2f1a44e
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 7cbd47eb1e5524e638c845315cc6b650e6b2cae84c8da8ba5c71cd0d2d55237b
 ---
 
 ## Get Session Thread
@@ -83,8 +83,6 @@ Get Session Thread
 
       - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
 
-      - `const AnthropicBetaMidConversationSystem2026_04_07 AnthropicBeta = "mid-conversation-system-2026-04-07"`
-
 ### Returns
 
 - `type BetaManagedAgentsSessionThread struct{…}`
@@ -128,6 +126,10 @@ Get Session Thread
           The model that will power your agent.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `const BetaManagedAgentsModelClaudeOpus4_8 BetaManagedAgentsModel = "claude-opus-4-8"`
+
+            Frontier intelligence for long-running agents and coding
 
           - `const BetaManagedAgentsModelClaudeOpus4_7 BetaManagedAgentsModel = "claude-opus-4-7"`
 

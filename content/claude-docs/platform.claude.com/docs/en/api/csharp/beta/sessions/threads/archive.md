@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/sessions/threads/archive
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: fe8e8ec310b88dfbdfe35c5f0fc1044c81ef3a767b85e274c2e61b4a9c199932
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 8cd0ae616025d91ec23d8d2311425118f8b6a275480ee7ae1c7d45c645847466
 ---
 
 ## Archive Session Thread
@@ -81,8 +81,6 @@ Archive Session Thread
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
-    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
-
 ### Returns
 
 - `class BetaManagedAgentsSessionThread:`
@@ -120,6 +118,10 @@ Archive Session Thread
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-opus-4-8"ClaudeOpus4_8`
+
+          Frontier intelligence for long-running agents and coding
 
         - `"claude-opus-4-7"ClaudeOpus4_7`
 

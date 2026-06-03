@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/archive
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 63429ae0f219d295ce8bafc1b87665c208a456f324d528737f4bf622e352c0be
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 9f4ee315de653bdf29a7f6824d4b6d86a7b2d055ea2099e301c30858c08dffbe
 ---
 
 ## Archive Session
@@ -75,8 +75,6 @@ Archive Session
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
 
-    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
-
 ### Returns
 
 - `class BetaManagedAgentsSession:`
@@ -112,6 +110,10 @@ Archive Session
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `CLAUDE_OPUS_4_8("claude-opus-4-8")`
+
+          Frontier intelligence for long-running agents and coding
 
         - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
 

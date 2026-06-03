@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/sessions/update
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 139058926ae95fcdb91f1532d92a2766df132cf8a63e97568d9a32788f16bb4b
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 2db3c780db48d6d6c6f980e8eaf57fbee8c20a15a7d5806694897851cd1561bc
 ---
 
 ## Update Session
@@ -69,11 +69,15 @@ Update Session
 
       Model identifier and configuration.
 
-      - `id: "claude-opus-4-7" or "claude-opus-4-6" or "claude-sonnet-4-6" or 6 more or string`
+      - `id: "claude-opus-4-8" or "claude-opus-4-7" or "claude-opus-4-6" or 7 more or string`
 
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-opus-4-8"`
+
+          Frontier intelligence for long-running agents and coding
 
         - `"claude-opus-4-7"`
 
@@ -143,7 +147,7 @@ Update Session
 
           Model identifier and configuration.
 
-          - `id: "claude-opus-4-7" or "claude-opus-4-6" or "claude-sonnet-4-6" or 6 more or string`
+          - `id: "claude-opus-4-8" or "claude-opus-4-7" or "claude-opus-4-6" or 7 more or string`
 
             The model that will power your agent.
 

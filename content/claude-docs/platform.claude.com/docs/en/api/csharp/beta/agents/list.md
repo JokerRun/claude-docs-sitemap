@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/agents/list
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: bbe1785a73cf669e7cb70e1ce872113d5b3ed85ca5b52769b80e4adf2fc0b8b4
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 17d9f2d60747983a5e7cde5c2889733c50224bccc661c136d6186f82afc0eeaf
 ---
 
 ## List Agents
@@ -93,8 +93,6 @@ List Agents
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
-    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
-
 ### Returns
 
 - `class AgentListPageResponse:`
@@ -138,6 +136,10 @@ List Agents
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-opus-4-8"ClaudeOpus4_8`
+
+          Frontier intelligence for long-running agents and coding
 
         - `"claude-opus-4-7"ClaudeOpus4_7`
 

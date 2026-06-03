@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/environments/list
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 36e037a999b1671ce8cd024d2d460618c9f60514aee801a637d474abbecbeb6e
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: b3be66f4362b73591f0919706a74be3a8fc9db17f29cf4e58578595e4a460d8c
 ---
 
 ## List Environments
@@ -84,8 +84,6 @@ List environments with pagination support.
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
-
-    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
 ### Returns
 

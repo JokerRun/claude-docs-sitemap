@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/resources/retrieve
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 3c8e609ef11864f8806a51d9f0dc0b96aed65a3a97553880bce303e9f68681da
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 21c604d49b4dcc84598eb5fb1f1b6bd76c07cb5e195fc500b8596c34d878513f
 ---
 
 ## Get Session Resource
@@ -76,8 +76,6 @@ Get Session Resource
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
-
-    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
 ### Returns
 

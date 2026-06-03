@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/skills/versions/retrieve
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 1cc87ea5888fd09054f2202a68079483dab9645e609e40555d4f073593c3508c
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: e8178186fe22c274a9f813a7fdd98406985cde66279907e8053561d6d6ce09c2
 ---
 
 ## Get Skill Version
@@ -88,8 +88,6 @@ Get Skill Version
       - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
 
       - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
-
-      - `const AnthropicBetaMidConversationSystem2026_04_07 AnthropicBeta = "mid-conversation-system-2026-04-07"`
 
 ### Returns
 

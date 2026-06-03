@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/create
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 15d243bee62fa0b689f9a70d849c38f85f0c39abaed743008cf826ae6b4f8ae8
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 9eaddd2efab1a7285fb9266c6a3ee880a27fff16b9d3a5dc8a6013e7c3fcc3a6
 ---
 
 ## Create Vault
@@ -19,7 +19,7 @@ Create Vault
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 24 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 23 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -72,8 +72,6 @@ Create Vault
     - `"cache-diagnosis-2026-04-07"`
 
     - `"thinking-token-count-2026-05-13"`
-
-    - `"mid-conversation-system-2026-04-07"`
 
 ### Body Parameters
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/environments/create
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 95b7aa50b1202100839393bed9668e0c06338433fc580493cb78a4aad717876f
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 578f66f8829536ec42d2afde93fc8f43dee1a3e7a24d74ff1ba3e97b9c30f4f7
 ---
 
 ## Create Environment
@@ -186,8 +186,6 @@ Create a new environment with the specified configuration.
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
-
-    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
 
 ### Returns
 

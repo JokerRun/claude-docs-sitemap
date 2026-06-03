@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/memory_stores/memory_versions/list
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 4fe3f67f884ff8e7867ae778c46e7a472c26942f61867507c0b75525c98f9fe2
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 7b14c3cf6d5b604a0a7b9f0d3feb5833881d0404ef220d529979941cdd145752
 ---
 
 ## List memory versions
@@ -69,7 +69,7 @@ List memory versions
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 24 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 23 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -122,8 +122,6 @@ List memory versions
     - `:"cache-diagnosis-2026-04-07"`
 
     - `:"thinking-token-count-2026-05-13"`
-
-    - `:"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

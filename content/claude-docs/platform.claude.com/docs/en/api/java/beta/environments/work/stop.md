@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/environments/work/stop
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 81d1f5be6b6a27e22bbe384d489a9174ba597891a7228d90547c9f28db49710a
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 642cc8454ca660ff9efc46b2a2b80fbe62b0f6307e83a3838340a521aa362d26
 ---
 
 ## Stop Work
@@ -78,8 +78,6 @@ Stop a work item, initiating graceful or forced shutdown.
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
-
-    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
   - `BetaSelfHostedWorkStopRequest betaSelfHostedWorkStopRequest`
 

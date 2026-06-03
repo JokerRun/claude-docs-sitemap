@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/memory_stores/memory_versions
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: b76385e2066d9775cbaa4c83e2dedb7f42336eeb702efff29c2931da619e5959
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: cba8e0470806b17670b37c5e83ce223e255d631b45b117e1998e68534b5fc05e
 ---
 
 # Memory Versions
@@ -114,8 +114,6 @@ List memory versions
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
-
-    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
 
 ### Returns
 
@@ -351,8 +349,6 @@ Retrieve a memory version
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
-    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
-
 ### Returns
 
 - `class BetaManagedAgentsMemoryVersion:`
@@ -568,8 +564,6 @@ Redact a memory version
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
-
-    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
 
 ### Returns
 

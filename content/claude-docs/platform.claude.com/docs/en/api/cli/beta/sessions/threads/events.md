@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/sessions/threads/events
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 9ebd6f5c44afbcbc99dda262eb9b0300cba73f4d34e89d1d8349793971c7fa7b
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: d93fb7bbf72906bf26cad4ddd62185a2b7551957e6967f4436d54cfd4168873d
 ---
 
 # Events
@@ -1481,11 +1481,15 @@ List Session Thread Events
 
           Model identifier and configuration.
 
-          - `id: "claude-opus-4-7" or "claude-opus-4-6" or "claude-sonnet-4-6" or 6 more or string`
+          - `id: "claude-opus-4-8" or "claude-opus-4-7" or "claude-opus-4-6" or 7 more or string`
 
             The model that will power your agent.
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `"claude-opus-4-8"`
+
+              Frontier intelligence for long-running agents and coding
 
             - `"claude-opus-4-7"`
 
@@ -1555,7 +1559,7 @@ List Session Thread Events
 
               Model identifier and configuration.
 
-              - `id: "claude-opus-4-7" or "claude-opus-4-6" or "claude-sonnet-4-6" or 6 more or string`
+              - `id: "claude-opus-4-8" or "claude-opus-4-7" or "claude-opus-4-6" or 7 more or string`
 
                 The model that will power your agent.
 
@@ -3283,11 +3287,15 @@ Stream Session Thread Events
 
         Model identifier and configuration.
 
-        - `id: "claude-opus-4-7" or "claude-opus-4-6" or "claude-sonnet-4-6" or 6 more or string`
+        - `id: "claude-opus-4-8" or "claude-opus-4-7" or "claude-opus-4-6" or 7 more or string`
 
           The model that will power your agent.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `"claude-opus-4-8"`
+
+            Frontier intelligence for long-running agents and coding
 
           - `"claude-opus-4-7"`
 
@@ -3357,7 +3365,7 @@ Stream Session Thread Events
 
             Model identifier and configuration.
 
-            - `id: "claude-opus-4-7" or "claude-opus-4-6" or "claude-sonnet-4-6" or 6 more or string`
+            - `id: "claude-opus-4-8" or "claude-opus-4-7" or "claude-opus-4-6" or 7 more or string`
 
               The model that will power your agent.
 

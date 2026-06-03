@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/php/beta
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: f32bfd7254a9b01e2dd1ae033788e84e33b35d981b0f4c971f8c5ebaf5037dbb
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 40e8f8ae9a39caad2f3945bfd4a0d435d5b9fdac0063c54a03f9f5e440746fd1
 ---
 
 # Beta
@@ -64,8 +64,6 @@ sha256: f32bfd7254a9b01e2dd1ae033788e84e33b35d981b0f4c971f8c5ebaf5037dbb
   - `"cache-diagnosis-2026-04-07"`
 
   - `"thinking-token-count-2026-05-13"`
-
-  - `"mid-conversation-system-2026-04-07"`
 
 ### Beta API Error
 
@@ -3746,7 +3744,7 @@ var_dump($betaMessageTokensCount);
 
     The cumulative number of output tokens which were used.
 
-  - `?OutputTokensDetails outputTokensDetails`
+  - `?BetaOutputTokensDetails outputTokensDetails`
 
     Breakdown of output tokens by category.
 
@@ -3846,6 +3844,21 @@ var_dump($betaMessageTokensCount);
   - `?BetaTokenTaskBudget taskBudget`
 
     User-configurable total token budget across contexts.
+
+### Beta Output Tokens Details
+
+- `BetaOutputTokensDetails`
+
+  - `int thinkingTokens`
+
+    Number of output tokens the model generated as internal reasoning, including
+    the thinking-block delimiter tokens.
+
+    Reflects the raw reasoning the model produced, not the (possibly shorter)
+    summarized thinking text returned in the response body. Computed by
+    re-tokenizing the raw reasoning text, so it may differ from the model's exact
+    generation count by a small number of tokens. Always ≤ `output_tokens`;
+    `output_tokens - thinking_tokens` approximates the non-reasoning output.
 
 ### Beta Plain Text Source
 
@@ -6173,7 +6186,7 @@ var_dump($betaMessageTokensCount);
 
     The number of output tokens which were used.
 
-  - `?OutputTokensDetails outputTokensDetails`
+  - `?BetaOutputTokensDetails outputTokensDetails`
 
     Breakdown of output tokens by category.
 
@@ -8902,6 +8915,10 @@ var_dump($betaManagedAgentsAgent);
 ### Beta Managed Agents Model
 
 - `BetaManagedAgentsModel`
+
+  - `"claude-opus-4-8"`
+
+    Frontier intelligence for long-running agents and coding
 
   - `"claude-opus-4-7"`
 

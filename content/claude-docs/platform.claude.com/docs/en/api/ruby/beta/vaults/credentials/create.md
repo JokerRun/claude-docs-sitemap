@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/vaults/credentials/create
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: db89a8c8cd63098864fb0d2a26d29cc824145e8516d2577ec382ec961abde24a
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: c9ad4def8573031175d35b72e5cfab72d5e2ead49155d97a617201218707fb92
 ---
 
 ## Create Credential
@@ -131,7 +131,7 @@ Create Credential
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 24 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 23 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -184,8 +184,6 @@ Create Credential
     - `:"cache-diagnosis-2026-04-07"`
 
     - `:"thinking-token-count-2026-05-13"`
-
-    - `:"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

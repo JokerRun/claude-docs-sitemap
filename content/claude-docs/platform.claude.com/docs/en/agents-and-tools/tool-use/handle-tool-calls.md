@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: e193df409a3de3f9abcb78e320f5a2d0d08ce84fd32e966b4b80b41db4c566a6
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 87f9c3eead1b6cae2696223189657f90283780c463b224d7962bcbaede1a02a3
 ---
 
 # Handle tool calls
@@ -90,6 +90,10 @@ This is correct:
 
 If you receive an error like "tool_use ids were found without tool_result blocks immediately after", check that your tool results are formatted correctly.
 </Note>
+
+<Warning>
+Tool results often carry content from sources outside your control: web pages, inbound email, user uploads, third-party APIs. Treat that content as untrusted: an attacker who can influence it may embed instructions that try to redirect Claude (indirect prompt injection). Keep untrusted content inside `tool_result` blocks rather than `system` prompts or plain user `text` blocks, and see [Mitigate jailbreaks and prompt injections](/docs/en/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks#indirect-prompt-injection) for further hardening.
+</Warning>
 
 <section title="Example of successful tool result">
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 12b5ba8848b26c5f42ff6c086eb03630a8a31935c6eaa41f4d9a60a770fd45aa
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 0f6f573379f9ee608d976230de9c705ab1ad2da4ce96c71198b102e4a7067f59
 ---
 
 # Code execution tool
@@ -239,7 +239,7 @@ public class CodeExecution {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 $message = $client->messages->create(
     maxTokens: 4096,
@@ -624,7 +624,7 @@ public class CodeExecutionWithFiles {
 use Anthropic\Client;
 use Anthropic\Core\FileParam;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 // Upload a file
 $fileObject = $client->beta->files->upload(
@@ -1022,7 +1022,7 @@ List<String> extractFileIds(BetaMessage response) {
 use Anthropic\Beta\Messages\BetaMessage;
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 $response = $client->beta->messages->create(
     maxTokens: 4096,
@@ -1624,7 +1624,7 @@ public class ContainerReuse {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 $response1 = $client->messages->create(
     maxTokens: 4096,

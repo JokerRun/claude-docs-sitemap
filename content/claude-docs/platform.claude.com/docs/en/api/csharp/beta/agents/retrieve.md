@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/agents/retrieve
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: d1e5edd61f256b70b5da5108766953c944ae215e25101ab49f798218f0d2016a
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: f29ac767678f4f7eea1fe60fdbc16aa023a11a0df89449d92a747b87c06c3031
 ---
 
 ## Get Agent
@@ -81,8 +81,6 @@ Get Agent
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
-    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
-
 ### Returns
 
 - `class BetaManagedAgentsAgent:`
@@ -122,6 +120,10 @@ Get Agent
       The model that will power your agent.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `"claude-opus-4-8"ClaudeOpus4_8`
+
+        Frontier intelligence for long-running agents and coding
 
       - `"claude-opus-4-7"ClaudeOpus4_7`
 

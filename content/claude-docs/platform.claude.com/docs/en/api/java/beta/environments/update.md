@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/environments/update
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: fc05757f7f01fb8bf03bf3472b59c44f6400e14fc4775bb321ce3ccd13d4d903
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: b6a3144a0cafb4052344e5f26bd7a3308c58045434fb39a34ee2c67d46461eeb
 ---
 
 ## Update Environment
@@ -74,8 +74,6 @@ Update an existing environment's configuration.
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
-
-    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
   - `Optional<Config> config`
 

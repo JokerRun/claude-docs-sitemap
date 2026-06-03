@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/documents/metadata
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 86d991716b052fb0d708c0be69803fc2053b946942845523d3f114039e7d3146
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 7871e6d8bb41a24651e588d6bfd9eee3508ef168d8469cf0bf0cf63ff07fbf30
 ---
 
 ## Get project document metadata
@@ -60,7 +60,11 @@ consumer can dedupe or match hashes without downloading every document.
 
 - `user: object { id, email_address }`
 
-  User information for project creator.
+  The user who created a project or project document.
+
+  Fields that reference this type are null when the creator's account has
+  been deleted or the creator is no longer a member of any organization
+  under the parent organization.
 
   - `id: string`
 

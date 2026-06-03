@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/environments/work/stop
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 88923e04177161a838e588dc018eb945c561ddec412d69cd8031bf2403310536
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 8169cb70b89cd2a192d6a7250b9054d6604f1f01709a824c3dc77767221f1e3c
 ---
 
 ## Stop Work
@@ -86,8 +86,6 @@ Stop a work item, initiating graceful or forced shutdown.
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
-
-    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/user_profiles/create
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: c66d2a7deba2a4f53cedaae724befbab3f50104595530a6b5983c502d8070d5e
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 483a33990bca0c726b283293a1a6e74ac5301bd253022365461b01cf83ee9eae
 ---
 
 ## Create User Profile
@@ -94,8 +94,6 @@ Create User Profile
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
-
-    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
 
 ### Returns
 

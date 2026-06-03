@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: de3a24ae2ade8ae13e583cbfa3c011288624c3b5797453faf32ca941aa517311
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 541f09b1ade4da96ffb6d328dee891d3810c621ea16e23fc42cb37de976e24a9
 ---
 
 # Organizations
@@ -91,9 +91,6 @@ curl https://api.anthropic.com/v1/compliance/organizations \
 **get** `/v1/compliance/organizations/{org_uuid}/users`
 
 List current user members of an organization.
-
-Returns:
-List of user members with pagination info
 
 ### Path Parameters
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/pricing
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 0c8d44969edfeb61f05b191dab25dfc440861b999e8dc40a29a4e944cf8c91e4
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: f9fa4c642f1334d2c5a4d4b301aca7dd637f1e389aec4053fbcc6fc0fdd24fd3
 ---
 
 # Harga
@@ -21,7 +21,7 @@ Tabel berikut menunjukkan harga untuk semua model Claude di berbagai tingkat pen
 
 | Model             | Base Input Tokens | 5m Cache Writes | 1h Cache Writes | Cache Hits & Refreshes | Output Tokens |
 |-------------------|-------------------|-----------------|-----------------|----------------------|---------------|
-| <NextOpus />      | $5 / MTok         | $6.25 / MTok    | $10 / MTok      | $0.50 / MTok | $25 / MTok    |
+| Claude Opus 4.8     | $5 / MTok         | $6.25 / MTok    | $10 / MTok      | $0.50 / MTok | $25 / MTok    |
 | Claude Opus 4.7     | $5 / MTok         | $6.25 / MTok    | $10 / MTok      | $0.50 / MTok | $25 / MTok    |
 | Claude Opus 4.6     | $5 / MTok         | $6.25 / MTok    | $10 / MTok      | $0.50 / MTok | $25 / MTok    |
 | Claude Opus 4.5   | $5 / MTok         | $6.25 / MTok    | $10 / MTok      | $0.50 / MTok | $25 / MTok    |
@@ -119,7 +119,7 @@ Batch API memungkinkan pemrosesan asinkron dari volume besar permintaan dengan d
 
 | Model             | Batch input      | Batch output    |
 |-------------------|------------------|-----------------|
-| <NextOpus />          | $2.50 / MTok     | $12.50 / MTok   |
+| Claude Opus 4.8       | $2.50 / MTok     | $12.50 / MTok   |
 | Claude Opus 4.7       | $2.50 / MTok     | $12.50 / MTok   |
 | Claude Opus 4.6       | $2.50 / MTok     | $12.50 / MTok   |
 | Claude Opus 4.5     | $2.50 / MTok     | $12.50 / MTok   |
@@ -156,7 +156,7 @@ When you use `tools`, the API also automatically includes a special system promp
 
 | Model                    | Tool choice                                          | Tool use system prompt token count          |
 |--------------------------|------------------------------------------------------|---------------------------------------------|
-| <NextOpus />                   | `auto`, `none`<hr />`any`, `tool`   | 290 tokens<hr />410 tokens |
+| Claude Opus 4.8                | `auto`, `none`<hr />`any`, `tool`   | 290 tokens<hr />410 tokens |
 | Claude Opus 4.7                | `auto`, `none`<hr />`any`, `tool`   | 675 tokens<hr />804 tokens |
 | Claude Opus 4.6              | `auto`, `none`<hr />`any`, `tool`   | 497 tokens<hr />589 tokens |
 | Claude Opus 4.5            | `auto`, `none`<hr />`any`, `tool`   | 496 tokens<hr />588 tokens |

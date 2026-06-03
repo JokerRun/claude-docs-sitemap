@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/messages
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 371eba1479497283bf56f780ed18f0b4e8887503dd3017cd49a096cdc951fc13
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 965d8752741dafb85632fe4e38bbcdf570e1042c919ac7f43913f9221abadc48
 ---
 
 # Messages
@@ -9864,6 +9864,21 @@ Console.WriteLine(messageTokensCount);
 
     - `JsonElement Type "json_schema"constant`
 
+### Output Tokens Details
+
+- `class OutputTokensDetails:`
+
+  - `required Long ThinkingTokens`
+
+    Number of output tokens the model generated as internal reasoning, including
+    the thinking-block delimiter tokens.
+
+    Reflects the raw reasoning the model produced, not the (possibly shorter)
+    summarized thinking text returned in the response body. Computed by
+    re-tokenizing the raw reasoning text, so it may differ from the model's exact
+    generation count by a small number of tokens. Always ≤ `output_tokens`;
+    `output_tokens - thinking_tokens` approximates the non-reasoning output.
+
 ### Plain Text Source
 
 - `class PlainTextSource:`
@@ -12558,17 +12573,6 @@ Console.WriteLine(messageTokensCount);
         This object provides a read-only decomposition for observability — for example,
         how many of the billed output tokens were spent on internal reasoning that may
         have been summarized before being returned to you.
-
-        - `required Long ThinkingTokens`
-
-          Number of output tokens the model generated as internal reasoning, including
-          the thinking-block delimiter tokens.
-
-          Reflects the raw reasoning the model produced, not the (possibly shorter)
-          summarized thinking text returned in the response body. Computed by
-          re-tokenizing the raw reasoning text, so it may differ from the model's exact
-          generation count by a small number of tokens. Always ≤ `output_tokens`;
-          `output_tokens - thinking_tokens` approximates the non-reasoning output.
 
       - `required ServerToolUsage? ServerToolUse`
 

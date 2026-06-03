@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/messages/batches/delete
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: a4b2762025e90d8a3058e9a46422464707bad6fa6e53ca262513edb4a757453a
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: f537ca6e3812223834693f1cb9c0809685672169c42203062105208d1c1adea7
 ---
 
 ## Delete a Message Batch
@@ -29,7 +29,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 24 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 23 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -82,8 +82,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `:"cache-diagnosis-2026-04-07"`
 
     - `:"thinking-token-count-2026-05-13"`
-
-    - `:"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

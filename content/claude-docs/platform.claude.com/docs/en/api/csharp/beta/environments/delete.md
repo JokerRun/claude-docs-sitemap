@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/environments/delete
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 85a9da69bc16974ee1f936ea153bda1785e3b81fbb03b04637064ff3bfd82c4e
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: e9c021462bf422b35de188797bd372880ae912f44a007af97ff3b5f13664971b
 ---
 
 ## Delete Environment
@@ -74,8 +74,6 @@ Delete an environment by ID. Returns a confirmation of the deletion.
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
-
-    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
 
 ### Returns
 

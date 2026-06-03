@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/sessions/threads/events/list
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 988acafd3790978c350eb6e41c471e1828baff52562f232290cb8fe03dd82c9d
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 795f131e703a98b9766d381749189264c84fcf130cd577c24a354857cc88fa6b
 ---
 
 ## List Session Thread Events
@@ -1479,11 +1479,15 @@ List Session Thread Events
 
           Model identifier and configuration.
 
-          - `id: "claude-opus-4-7" or "claude-opus-4-6" or "claude-sonnet-4-6" or 6 more or string`
+          - `id: "claude-opus-4-8" or "claude-opus-4-7" or "claude-opus-4-6" or 7 more or string`
 
             The model that will power your agent.
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `"claude-opus-4-8"`
+
+              Frontier intelligence for long-running agents and coding
 
             - `"claude-opus-4-7"`
 
@@ -1553,7 +1557,7 @@ List Session Thread Events
 
               Model identifier and configuration.
 
-              - `id: "claude-opus-4-7" or "claude-opus-4-6" or "claude-sonnet-4-6" or 6 more or string`
+              - `id: "claude-opus-4-8" or "claude-opus-4-7" or "claude-opus-4-6" or 7 more or string`
 
                 The model that will power your agent.
 

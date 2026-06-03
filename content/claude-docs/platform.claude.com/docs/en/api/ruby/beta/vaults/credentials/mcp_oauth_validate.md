@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/vaults/credentials/mcp_oauth_validate
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 806088377e6b3f6e57505dca1f22832257cbc0f5d108a996f5d2a9c3d3f3ac94
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 42503abcacd7aa912a749fb27e5f7daa8b7d2b0bb36be4d753d2983812f4d754
 ---
 
 ## Validate Credential
@@ -25,7 +25,7 @@ Validate Credential
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 24 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 23 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -78,8 +78,6 @@ Validate Credential
     - `:"cache-diagnosis-2026-04-07"`
 
     - `:"thinking-token-count-2026-05-13"`
-
-    - `:"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

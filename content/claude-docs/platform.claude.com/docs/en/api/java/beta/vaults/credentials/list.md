@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/credentials/list
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: dc9a68b073ca321f25e6f2d916e6a0a5559a5dcde517c90d1b95c482d13de28d
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 35a8bc26173be1f5d905a685eea432a902a67c1ca69827a4e2f9db4de6f0963d
 ---
 
 ## List Credentials
@@ -86,8 +86,6 @@ List Credentials
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
-
-    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/agents/archive
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: b622e1eadb573d57a722ed69702ca27667aa6a1a9936b2fd301d9c449ab8065d
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: b147e9636f7711f1bbdb1f5df1f0724160ce9de54cf69621c701b1d6f32bc2ac
 ---
 
 ## Archive Agent
@@ -75,8 +75,6 @@ Archive Agent
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
 
-    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
-
 ### Returns
 
 - `class BetaManagedAgentsAgent:`
@@ -116,6 +114,10 @@ Archive Agent
       The model that will power your agent.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `CLAUDE_OPUS_4_8("claude-opus-4-8")`
+
+        Frontier intelligence for long-running agents and coding
 
       - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
 

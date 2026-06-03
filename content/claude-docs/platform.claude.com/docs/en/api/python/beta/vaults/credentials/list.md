@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/vaults/credentials/list
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 12d3f009283facb526b7dbf1fa5d7e7bf3076ca833b98f500951d239d9875534
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 80d130ad74ca64e245316007b5e9ae40c845d97cc6d9b7d7e3733d55cd17ac7e
 ---
 
 ## List Credentials
@@ -35,7 +35,7 @@ List Credentials
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 24 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 23 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -88,8 +88,6 @@ List Credentials
     - `"cache-diagnosis-2026-04-07"`
 
     - `"thinking-token-count-2026-05-13"`
-
-    - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

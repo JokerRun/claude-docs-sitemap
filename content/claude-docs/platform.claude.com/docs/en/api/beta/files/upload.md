@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/upload
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: ef107d2ddf931962f1bb76cd0b49cc74636b9c6ebceb934220ae795b957a007f
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 68530862e476c13ea16305973d8c6aaa7bf485fb791c25e753be997b761818f3
 ---
 
 ## Upload File
@@ -19,7 +19,7 @@ Upload File
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 24 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 23 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -72,8 +72,6 @@ Upload File
     - `"cache-diagnosis-2026-04-07"`
 
     - `"thinking-token-count-2026-05-13"`
-
-    - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

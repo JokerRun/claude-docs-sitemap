@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/memory_stores/list
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: fc778e0f9dd406663687c2085694c4c4f7baa7986dd35c3847e9318a55381541
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 369d438fd65ef8aa0ea50ddf094fafbc3cf0ce1733b52ca900c4b55a51b16279
 ---
 
 ## List memory stores
@@ -96,8 +96,6 @@ List memory stores
       - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
 
       - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
-
-      - `const AnthropicBetaMidConversationSystem2026_04_07 AnthropicBeta = "mid-conversation-system-2026-04-07"`
 
 ### Returns
 

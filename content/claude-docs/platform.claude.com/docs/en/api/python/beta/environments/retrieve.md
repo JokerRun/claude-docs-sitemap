@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/environments/retrieve
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: a4720427abdd5f4ecfe3e956630a4ddba985460e7f0c8cb9d3687d55ee919816
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 81b9d351a8721f506f43202d0a7110d8f4e987e57c104478319670f5a8440b0c
 ---
 
 ## Get Environment
@@ -23,7 +23,7 @@ Retrieve a specific environment by ID.
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 24 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 23 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -76,8 +76,6 @@ Retrieve a specific environment by ID.
     - `"cache-diagnosis-2026-04-07"`
 
     - `"thinking-token-count-2026-05-13"`
-
-    - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

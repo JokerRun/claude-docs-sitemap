@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/php/beta/agents
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: b5b16a4197ed7c7080c797f61fc57d53c5600f98bf498332be831ef4d6addaeb
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 850654cb4a189d6cd0394a8ba2196983f8ff0c4fc0bd2ea3edec10d440e421d0
 ---
 
 # Agents
@@ -1364,6 +1364,10 @@ var_dump($betaManagedAgentsAgent);
 ### Beta Managed Agents Model
 
 - `BetaManagedAgentsModel`
+
+  - `"claude-opus-4-8"`
+
+    Frontier intelligence for long-running agents and coding
 
   - `"claude-opus-4-7"`
 

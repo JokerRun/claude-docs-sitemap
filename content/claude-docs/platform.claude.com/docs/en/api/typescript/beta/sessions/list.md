@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/sessions/list
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 29957e605963b476b58d4fed2a3b6a64a87cd1914cd5a4f4f13b031d0c13e0e8
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 37d1557832c7efb63540284f91bef8089fa6ab8fc2573fbeeaca0d6818d71f2a
 ---
 
 ## List Sessions
@@ -83,7 +83,7 @@ List Sessions
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 24 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 23 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -137,8 +137,6 @@ List Sessions
 
       - `"thinking-token-count-2026-05-13"`
 
-      - `"mid-conversation-system-2026-04-07"`
-
 ### Returns
 
 - `BetaManagedAgentsSession`
@@ -175,7 +173,11 @@ List Sessions
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-        - `"claude-opus-4-7" | "claude-opus-4-6" | "claude-sonnet-4-6" | 6 more`
+        - `"claude-opus-4-8" | "claude-opus-4-7" | "claude-opus-4-6" | 7 more`
+
+          - `"claude-opus-4-8"`
+
+            Frontier intelligence for long-running agents and coding
 
           - `"claude-opus-4-7"`
 

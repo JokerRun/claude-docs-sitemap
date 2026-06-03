@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/list
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 7620e13ba82caa41c59401eb85cbc62cebd749235365c3a7eebe79030006e669
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 7a3c1cc58ef8c25c037029e907596611e33dee74a643e10334a21eb5509d7dfa
 ---
 
 ## List memory stores
@@ -41,7 +41,7 @@ List memory stores
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 24 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 23 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -94,8 +94,6 @@ List memory stores
     - `"cache-diagnosis-2026-04-07"`
 
     - `"thinking-token-count-2026-05-13"`
-
-    - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/skills/versions/delete
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: d404c59c9304b1605af4c3f02a47cb0e246a6f582ed203346e7cca43731a2971
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: d43f4a2fc2dc5c74bc90453736a1dcff04670eee20c85f1a25e5f7b730b7ab5b
 ---
 
 ## Delete Skill Version
@@ -84,8 +84,6 @@ Delete Skill Version
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
-
-    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
 ### Returns
 

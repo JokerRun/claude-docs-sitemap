@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/user_profiles/create_enrollment_url
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 4b024e3f6cdf32ff210614660a49d892ae05752fded15ee3cd76d1972ed12e06
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 45ea4e99786a72b00c24c42608b305a751ba68c7e01142669a0949754ba913ac
 ---
 
 ## Create Enrollment URL
@@ -23,7 +23,7 @@ Create Enrollment URL
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 24 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 23 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -76,8 +76,6 @@ Create Enrollment URL
     - `"cache-diagnosis-2026-04-07"`
 
     - `"thinking-token-count-2026-05-13"`
-
-    - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

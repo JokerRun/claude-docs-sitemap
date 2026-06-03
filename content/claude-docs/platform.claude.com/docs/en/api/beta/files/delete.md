@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/delete
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: b0316d493d5b884bf993a6e31814de28f04287e1874c19d433c22e36c67dc7d6
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: d10aebb233d6bc8c837b162d30d07a2b43792c6a704670754c9b8b7e88dfa166
 ---
 
 ## Delete File
@@ -25,7 +25,7 @@ Delete File
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 24 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 23 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -78,8 +78,6 @@ Delete File
     - `"cache-diagnosis-2026-04-07"`
 
     - `"thinking-token-count-2026-05-13"`
-
-    - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

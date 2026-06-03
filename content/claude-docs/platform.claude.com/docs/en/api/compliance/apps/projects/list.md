@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/list
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 88e00a31fb982f97797f1d4888d5b89b64ac4348437bf81447f98c26868e91a3
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 9da3fde50401424ea824c059a6827c14848c2f6d3a16e935c5ea4928c27d1abc
 ---
 
 ## List projects
@@ -92,7 +92,11 @@ are sorted chronologically (time ascending) by created_at.
 
   - `user: object { id, email_address }`
 
-    User information for project creator.
+    The user who created a project or project document.
+
+    Fields that reference this type are null when the creator's account has
+    been deleted or the creator is no longer a member of any organization
+    under the parent organization.
 
     - `id: string`
 

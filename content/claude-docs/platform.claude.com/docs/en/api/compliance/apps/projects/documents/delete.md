@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/documents/delete
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: f663f5f801ba806a917d7019eba5e9c6b1e758114d14ff150c36712db4c02a7b
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 6b72ab613ca3c3322b54d56fccd41ebe54c9e41cab11104cf3bea6e5ba5fc419
 ---
 
 ## Delete project document
@@ -12,9 +12,6 @@ sha256: f663f5f801ba806a917d7019eba5e9c6b1e758114d14ff150c36712db4c02a7b
 Delete a project document for compliance purposes.
 
 Hard-deletes the project document permanently.
-
-Returns:
-ComplianceProjectDocumentDeleteResponse confirming the deletion
 
 ### Path Parameters
 

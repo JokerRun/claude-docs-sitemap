@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/sessions/resources/retrieve
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 5081719c2925a890eac757cbe697e93232888ee92099af198003d4a03c087289
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 52d0b10066fac2809536211e8e8a56d90de53a55e65f68ad3b09b8d9e9b1d1c9
 ---
 
 ## Get Session Resource
@@ -82,8 +82,6 @@ Get Session Resource
       - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
 
       - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
-
-      - `const AnthropicBetaMidConversationSystem2026_04_07 AnthropicBeta = "mid-conversation-system-2026-04-07"`
 
 ### Returns
 

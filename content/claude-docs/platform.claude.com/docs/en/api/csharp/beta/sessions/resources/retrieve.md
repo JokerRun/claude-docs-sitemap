@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/sessions/resources/retrieve
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 35fb6704f7d05461b61155722c1f859b812ed4c8e5a39da0921f17917c77adb1
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: e70e586335aa5c7d93f710e942f423a6e34a5f6e6e6af547055bca4f66a78db5
 ---
 
 ## Get Session Resource
@@ -80,8 +80,6 @@ Get Session Resource
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
-
-    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
 
 ### Returns
 

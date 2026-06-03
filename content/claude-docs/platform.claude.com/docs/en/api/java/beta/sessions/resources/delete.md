@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/resources/delete
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: e4ceaddfb9dde73718f24ad77a08bcaae3b60346f028723227b9e913e5127d71
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: e8182eb904fd233793ccbae261af7b45298d54011a60877371dadd66a7c0229a
 ---
 
 ## Delete Session Resource
@@ -76,8 +76,6 @@ Delete Session Resource
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
-
-    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
 ### Returns
 

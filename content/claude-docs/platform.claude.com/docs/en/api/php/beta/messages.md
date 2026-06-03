@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/php/beta/messages
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: e278140ac29dce4f35d7246b12a44ede74727155a4dd66e6f22672aa3ed05301
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 8281702578a60d163013d56506916cd7f8911d93135e83cce2da5fc3e2f75f5c
 ---
 
 # Messages
@@ -3078,7 +3078,7 @@ var_dump($betaMessageTokensCount);
 
     The cumulative number of output tokens which were used.
 
-  - `?OutputTokensDetails outputTokensDetails`
+  - `?BetaOutputTokensDetails outputTokensDetails`
 
     Breakdown of output tokens by category.
 
@@ -3178,6 +3178,21 @@ var_dump($betaMessageTokensCount);
   - `?BetaTokenTaskBudget taskBudget`
 
     User-configurable total token budget across contexts.
+
+### Beta Output Tokens Details
+
+- `BetaOutputTokensDetails`
+
+  - `int thinkingTokens`
+
+    Number of output tokens the model generated as internal reasoning, including
+    the thinking-block delimiter tokens.
+
+    Reflects the raw reasoning the model produced, not the (possibly shorter)
+    summarized thinking text returned in the response body. Computed by
+    re-tokenizing the raw reasoning text, so it may differ from the model's exact
+    generation count by a small number of tokens. Always ≤ `output_tokens`;
+    `output_tokens - thinking_tokens` approximates the non-reasoning output.
 
 ### Beta Plain Text Source
 
@@ -5505,7 +5520,7 @@ var_dump($betaMessageTokensCount);
 
     The number of output tokens which were used.
 
-  - `?OutputTokensDetails outputTokensDetails`
+  - `?BetaOutputTokensDetails outputTokensDetails`
 
     Breakdown of output tokens by category.
 

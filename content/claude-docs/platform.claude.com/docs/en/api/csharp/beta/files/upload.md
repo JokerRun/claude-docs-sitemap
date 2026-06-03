@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/files/upload
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: cdd762ce385c9bd2d19f079990022b6283b33c7c94a1cc29feaf651e49b4b206
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: e1a6e35f7e9ccf1cff72e8de4c75f8e03bd56bfde50f75398eee4d3640646915
 ---
 
 ## Upload File
@@ -76,8 +76,6 @@ Upload File
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
-
-    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
 
 ### Returns
 

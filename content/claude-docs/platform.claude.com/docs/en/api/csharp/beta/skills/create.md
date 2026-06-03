@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/skills/create
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 64e68119fd03a8db4980865b123b2f1b96c66b4a3b4b97aca1b87fb39b594ed5
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 13c3c3a6a5c6681b18a3fbe24d7ed0d99d7a26b92dbdf8c19697633b610f962f
 ---
 
 ## Create Skill
@@ -84,8 +84,6 @@ Create Skill
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
-
-    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
 
 ### Returns
 

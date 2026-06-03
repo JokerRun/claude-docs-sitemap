@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/memory_stores/delete
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: fcaa3d97a2ad6821cc6b3509057b85ae6b996c3f32c58cb200ac2466f6cc8dea
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: f8a6ae5c0fbcacaab621e0d7509ee9ee6e5c681d47088bed136a8a5515fcc09c
 ---
 
 ## Delete a memory store
@@ -76,8 +76,6 @@ Delete a memory store
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
-
-    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
 
 ### Returns
 

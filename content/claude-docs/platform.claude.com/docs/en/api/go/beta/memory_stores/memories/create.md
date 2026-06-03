@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/memory_stores/memories/create
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 3ef22261f750e60e2bc9f0d6eae670f9e531b356735f9d466856f8af15c24ade
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: cd0aeb7ec5d7daeae732e0b71a4d50012b4b66011cc237bc22b2421b3a4a387e
 ---
 
 ## Create a memory
@@ -90,8 +90,6 @@ Create a memory
       - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
 
       - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
-
-      - `const AnthropicBetaMidConversationSystem2026_04_07 AnthropicBeta = "mid-conversation-system-2026-04-07"`
 
 ### Returns
 

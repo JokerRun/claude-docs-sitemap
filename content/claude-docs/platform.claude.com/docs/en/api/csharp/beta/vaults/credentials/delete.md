@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/vaults/credentials/delete
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 2cd0089971950b0a4999b829f70c44d47955f97f9d1c601eb5c2bc06c0841228
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: c19ea90c35383f00aea54dea5509f93498c41e2ecb79bd9f7fa45c24c1c2a2bb
 ---
 
 ## Delete Credential
@@ -80,8 +80,6 @@ Delete Credential
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
-
-    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
 
 ### Returns
 

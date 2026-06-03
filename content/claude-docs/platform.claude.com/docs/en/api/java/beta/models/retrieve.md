@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/models/retrieve
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 088c0e5912e29757d813e740a5ceccdb98d55dd6119d3cb36823eb3191064a37
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 7c61d8ba8bf82cdf8f9377f1ab471dc8c6ab43da251b42e112dbb54659bec2fa
 ---
 
 ## Get a Model
@@ -78,8 +78,6 @@ The Models API response can be used to determine information about a specific mo
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
-
-    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
 ### Returns
 

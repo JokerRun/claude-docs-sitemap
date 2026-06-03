@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/files
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: b8267d413afcebc9f0437c94eb7740ebe589cde2d35f84735c45a12b546ebfec
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 39848a59a62912dc11fefe833c4f5a5873fc17535b1bcd6378d03836d3c5fd48
 ---
 
 # Files API
@@ -626,7 +626,7 @@ public class FileUploadExample {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 // Example: Reading a text file
 $textContent = file_get_contents("document.txt");
@@ -805,7 +805,7 @@ public class ListFiles {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 $files = $client->beta->files->list();
 print_r($files);

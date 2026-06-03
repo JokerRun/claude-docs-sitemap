@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/files/delete
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 2fcf23a92f4e27eb826ee8eca6cb66d8a1b5aa9ecf9017f5c7865fe68ffeae64
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 8c1cba461101a2f901848b17600326217886498479685d472ba408193d385271
 ---
 
 ## Delete File
@@ -80,8 +80,6 @@ Delete File
       - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
 
       - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
-
-      - `const AnthropicBetaMidConversationSystem2026_04_07 AnthropicBeta = "mid-conversation-system-2026-04-07"`
 
 ### Returns
 

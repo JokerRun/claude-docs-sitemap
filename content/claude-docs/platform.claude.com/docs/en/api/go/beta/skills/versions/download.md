@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/skills/versions/download
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 6993a807a72039590f79bf3af2eb0cb3e2b7f46137c6c5f2a0e02cab07cfa75b
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 8ac54463cb1d937eb1c385b2f1854718960eadd32281f7a5676f0aa603d02409
 ---
 
 ## Download Skill Version Content
@@ -88,8 +88,6 @@ Download a skill version's content as a zip archive.
       - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
 
       - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
-
-      - `const AnthropicBetaMidConversationSystem2026_04_07 AnthropicBeta = "mid-conversation-system-2026-04-07"`
 
 ### Returns
 

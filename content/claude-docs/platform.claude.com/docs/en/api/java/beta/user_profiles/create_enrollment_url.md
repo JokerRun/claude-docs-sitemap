@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/user_profiles/create_enrollment_url
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: af351da80933112272c70e1a72dddef4deaab99212f076682e7ba2bf5e91dad2
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: b4f210d4469d8513faac6b831b91d9365cd87ffc92d110dc201ab8f750dabf59
 ---
 
 ## Create Enrollment URL
@@ -74,8 +74,6 @@ Create Enrollment URL
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
-
-    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
 ### Returns
 

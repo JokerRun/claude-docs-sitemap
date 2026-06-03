@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/glossary
-fetched_at: 2026-06-02T03:18:54.775717Z
-sha256: 6c81a41c5781db1b6d909b0d04517afee03f5859f5415e3a7ec2ccc6a8888816
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: d49de552ce6f14f4d2f7deb13aca119c1c762347df43678afe1ab3b66f5695d3
 ---
 
 > ## Documentation Index
@@ -49,7 +49,7 @@ Learn more: [Auto memory](/en/memory#auto-memory)
 
 ### Auto mode
 
-A [permission mode](#permission-mode) where a separate classifier model reviews each action in the background instead of showing you approval prompts. The classifier blocks scope escalation, untrusted infrastructure, and [prompt injection](#prompt-injection). It never sees tool results, so injected instructions cannot influence its decisions. Auto mode is a research preview available to all users on the Anthropic API.
+A [permission mode](#permission-mode) where a separate classifier model reviews each action in the background instead of showing you approval prompts. The classifier blocks scope escalation, untrusted infrastructure, and [prompt injection](#prompt-injection). It never sees tool results, so injected instructions cannot influence its decisions. Auto mode is a research preview.
 
 Learn more: [Eliminate prompts with auto mode](/en/permission-modes#eliminate-prompts-with-auto-mode)
 

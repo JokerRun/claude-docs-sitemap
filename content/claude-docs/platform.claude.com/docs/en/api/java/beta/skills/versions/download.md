@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/skills/versions/download
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 9dbcc14e5905e072524daed54523078e4da6e94814e13c73184b0164b8c7e3c3
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 5dd625d4828459f7b4c88919972361dfb5af77325081c4ed2cf6542146e9fd83
 ---
 
 ## Download Skill Version Content
@@ -84,8 +84,6 @@ Download a skill version's content as a zip archive.
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
-
-    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
 ### Example
 

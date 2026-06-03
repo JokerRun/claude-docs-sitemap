@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/memory_stores/create
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 72574506a32e005ca046e296857f17d0f85c8193a7e927f52b17103f56fdc807
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 45a743383d608d86ad2df9754b2bd5788343b86c6288f3fc3d0077268de66092
 ---
 
 ## Create a memory store
@@ -33,7 +33,7 @@ Create a memory store
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 24 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 23 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -86,8 +86,6 @@ Create a memory store
     - `:"cache-diagnosis-2026-04-07"`
 
     - `:"thinking-token-count-2026-05-13"`
-
-    - `:"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

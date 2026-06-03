@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/programmatic-tool-calling
-fetched_at: 2026-06-02T03:18:54.775717Z
-sha256: 9022e3fa7ae54550375014fdd8684a9f964b391d8977300ba29f5596362f90b4
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 05d166dd63e3b9355459fc3dd577ecbedea4184ae27b540580b9267fa601afb9
 ---
 
 # Programmatic tool calling
@@ -334,7 +334,7 @@ public class Main {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 $message = $client->messages->create(
     maxTokens: 4096,
@@ -910,7 +910,7 @@ public class ContainerReuse {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 $message = $client->messages->create(
     maxTokens: 4096,

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/events/send
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 63a5e27f15c404bc21d55179aea3874e631646a12984bc11f13832714812d547
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: b1f12c8a2cdcdc9e6a115da664671ed67bcfec60c0d2dc6752f1e9dcb8c88fcf
 ---
 
 ## Send Events
@@ -23,7 +23,7 @@ Send Events
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 24 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 23 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -76,8 +76,6 @@ Send Events
     - `"cache-diagnosis-2026-04-07"`
 
     - `"thinking-token-count-2026-05-13"`
-
-    - `"mid-conversation-system-2026-04-07"`
 
 ### Body Parameters
 

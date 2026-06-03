@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/vaults/delete
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: e543919fc72a2566a5231951bc7cc88ab4fec3652df3e72c88ef019714f18fdf
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: e825c2fc869139886fbe42ec59592ddc2b3564b0392cf0bde4e89259b2b86327
 ---
 
 ## Delete Vault
@@ -25,7 +25,7 @@ Delete Vault
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 24 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 23 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -78,8 +78,6 @@ Delete Vault
       - `"cache-diagnosis-2026-04-07"`
 
       - `"thinking-token-count-2026-05-13"`
-
-      - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

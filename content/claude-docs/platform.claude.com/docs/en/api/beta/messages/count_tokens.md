@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/count_tokens
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: ccff25ab8a09cbbc2a075ec0c9ddfa8009af1253bdb2a70ff7b04df3fd9735e6
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: c8fb62cbca20d61117e8176c41473b8b2c8553ef5d113bc09a619a94abe7cd72
 ---
 
 ## Count tokens in a Message
@@ -23,7 +23,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 24 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 23 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -76,8 +76,6 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
     - `"cache-diagnosis-2026-04-07"`
 
     - `"thinking-token-count-2026-05-13"`
-
-    - `"mid-conversation-system-2026-04-07"`
 
 ### Body Parameters
 

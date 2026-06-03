@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/skills/versions/delete
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: fd4e3ac01b10a59293d0b5c44cd4e1ef8607a05dae1562dd6d47aca38bb09269
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 0ff7dba566aba709efcc29e241a6e85767a54d05f0ac4a3754dd349522cca6e6
 ---
 
 ## Delete Skill Version
@@ -33,7 +33,7 @@ Delete Skill Version
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 24 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 23 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -86,8 +86,6 @@ Delete Skill Version
     - `:"cache-diagnosis-2026-04-07"`
 
     - `:"thinking-token-count-2026-05-13"`
-
-    - `:"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

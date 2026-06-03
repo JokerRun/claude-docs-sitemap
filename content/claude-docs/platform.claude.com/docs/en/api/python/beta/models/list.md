@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/models/list
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 57567615227b37efcc979ec66c50d580761ac1b698c29c1298f85d8bc370f684
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 2c239f5e7f7abf559118829e6faa9aad5017cd61f2b227d56dee5c19878982b7
 ---
 
 ## List Models
@@ -37,7 +37,7 @@ The Models API response can be used to determine which models are available for 
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 24 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 23 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -90,8 +90,6 @@ The Models API response can be used to determine which models are available for 
     - `"cache-diagnosis-2026-04-07"`
 
     - `"thinking-token-count-2026-05-13"`
-
-    - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

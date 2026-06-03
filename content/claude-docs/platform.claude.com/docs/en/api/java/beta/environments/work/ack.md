@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/environments/work/ack
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 2d7213d1865a1138c30e0a4594310b7557a3e04deeaf112065563c1d18f1b463
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 32a2ba806f947cc320b2143a302b1ec2070f288aa63b975f6b1dadc2f099bda4
 ---
 
 ## Acknowledge Work
@@ -78,8 +78,6 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
-
-    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
 ### Returns
 

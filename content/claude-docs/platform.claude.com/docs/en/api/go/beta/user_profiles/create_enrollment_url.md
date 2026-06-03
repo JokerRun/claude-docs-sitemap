@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/user_profiles/create_enrollment_url
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: bd0ec16a6c436c6bb177cd14940b638c93819331cf42c8ec7ae1d82335f5b987
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 7139e76b2da5d0fab6c208e2003b790df8f0507e200db7e26f20c5777e8dfe4b
 ---
 
 ## Create Enrollment URL
@@ -78,8 +78,6 @@ Create Enrollment URL
       - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
 
       - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
-
-      - `const AnthropicBetaMidConversationSystem2026_04_07 AnthropicBeta = "mid-conversation-system-2026-04-07"`
 
 ### Returns
 

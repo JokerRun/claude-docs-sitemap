@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/memory_stores/memory_versions/list
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 4a01a479f6e6270f217b63028bb495c3c5ba08d125d4e113c20e183ec0212692
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 8ae9189f40954adad6905e8674b5d3141604a1950321d091184a88fd54559c2c
 ---
 
 ## List memory versions
@@ -110,8 +110,6 @@ List memory versions
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
-
-    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
 ### Returns
 

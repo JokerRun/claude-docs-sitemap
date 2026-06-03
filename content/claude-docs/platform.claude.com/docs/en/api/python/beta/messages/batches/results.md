@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/messages/batches/results
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: a246b490c2633c9877b058130b222382ed67e6d57ac94ae2ed5bdc32a53bfc3f
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 6350ccad22e02c02bc4c84cfb37adb2f67da60fd10403d7edd764e2774cdcc34
 ---
 
 ## Retrieve Message Batch results
@@ -29,7 +29,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 24 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 23 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -82,8 +82,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `"cache-diagnosis-2026-04-07"`
 
     - `"thinking-token-count-2026-05-13"`
-
-    - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 
@@ -1363,7 +1361,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             The number of output tokens which were used.
 
-          - `output_tokens_details: Optional[OutputTokensDetails]`
+          - `output_tokens_details: Optional[BetaOutputTokensDetails]`
 
             Breakdown of output tokens by category.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/sessions/threads/events/stream
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 7d3e5b5c4fd77fc595bfdc8193cf69db8d7c8b37fd6ade3a5c0b8f414de00d7c
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: c79a83aed894c9508b86b4c12867c96f9694a7c566bbcc7ccca51dd3303a5447
 ---
 
 ## Stream Session Thread Events
@@ -80,8 +80,6 @@ Stream Session Thread Events
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
-
-    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
 
 ### Returns
 
@@ -1508,6 +1506,10 @@ Stream Session Thread Events
           The model that will power your agent.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `"claude-opus-4-8"ClaudeOpus4_8`
+
+            Frontier intelligence for long-running agents and coding
 
           - `"claude-opus-4-7"ClaudeOpus4_7`
 

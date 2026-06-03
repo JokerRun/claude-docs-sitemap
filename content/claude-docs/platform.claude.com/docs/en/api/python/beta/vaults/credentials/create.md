@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/vaults/credentials/create
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: ddb34a179ad53016106f6b92e78937a33db99f3c47b738d26c142447af7f5bd6
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 84669665f0ff7baa3ab33f77e71b9c4612dfae0de8df4f4f59befaded8b84aa4
 ---
 
 ## Create Credential
@@ -131,7 +131,7 @@ Create Credential
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 24 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 23 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -184,8 +184,6 @@ Create Credential
     - `"cache-diagnosis-2026-04-07"`
 
     - `"thinking-token-count-2026-05-13"`
-
-    - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

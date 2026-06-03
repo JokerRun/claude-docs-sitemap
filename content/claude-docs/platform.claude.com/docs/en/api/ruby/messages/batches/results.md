@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/messages/batches/results
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: d47bf9f2104b0e4b11591b883c1f64be0ff4567bbb5dedf1838a07f3bd369f6e
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: b38b362c6fa798dd9e4fdbbef3d7a9f5c5d4a4bb67caa15beed0e012920cc9de
 ---
 
 ## Retrieve Message Batch results
@@ -927,7 +927,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             The number of output tokens which were used.
 
-          - `output_tokens_details: OutputTokensDetails{ thinking_tokens}`
+          - `output_tokens_details: OutputTokensDetails`
 
             Breakdown of output tokens by category.
 

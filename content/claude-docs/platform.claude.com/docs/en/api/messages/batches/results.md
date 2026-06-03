@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/batches/results
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 77412b419b91aa9f1f1c8efe26d702a583f08afebcc6146a65e5b3882e9e088f
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 774d5fbf5ed7bc1f0714469c7454ddb5e4cf4e098e2ba675ef766d43d280557c
 ---
 
 ## Retrieve Message Batch results
@@ -925,7 +925,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             The number of output tokens which were used.
 
-          - `output_tokens_details: object { thinking_tokens }`
+          - `output_tokens_details: OutputTokensDetails`
 
             Breakdown of output tokens by category.
 

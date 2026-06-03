@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/vaults/credentials/list
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 06c8b01b8bb545d9989d49655bb6e4355f39d1d536b59dde889a667d88ccfe22
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 693b27b905883109a4684af81db36e34420b7a5d94047140dcfd3ef3216a335f
 ---
 
 ## List Credentials
@@ -88,8 +88,6 @@ List Credentials
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
-
-    - `"mid-conversation-system-2026-04-07"MidConversationSystem2026_04_07`
 
 ### Returns
 

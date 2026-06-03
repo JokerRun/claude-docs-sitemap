@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/completions
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 5eb871c47d47ff6c9b18ed9939554bd8bfd24e69b7977df63c16f730642e86f9
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: bb051cf37b57159cc0be5d257a2c16ed29a17bc1a656054ccebbf6f90b33201b
 ---
 
 # Completions
@@ -187,7 +187,7 @@ Future models and features will not be compatible with Text Completions. See our
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 24 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 23 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -240,8 +240,6 @@ Future models and features will not be compatible with Text Completions. See our
     - `:"cache-diagnosis-2026-04-07"`
 
     - `:"thinking-token-count-2026-05-13"`
-
-    - `:"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/token-counting
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 9f2a33c1bc1ab3a5a937ea3a1edbe1a7a183ee2dcb166674522779e9dbe403d7
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 720f127890f5c0fa3917d455628e6a28adde09374c1c7e0af5390b24ebe8f4c0
 ---
 
 # Token counting
@@ -177,7 +177,7 @@ public class CountTokensExample {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 $response = $client->messages->countTokens(
     messages: [
@@ -473,7 +473,7 @@ public class CountTokensWithToolsExample {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 $response = $client->messages->countTokens(
     messages: [
@@ -827,7 +827,7 @@ $imageUrl = "https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flav
 $imageMediaType = "image/jpeg";
 $imageData = base64_encode(file_get_contents($imageUrl));
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 $response = $client->messages->countTokens(
     messages: [
@@ -1185,7 +1185,7 @@ public class CountTokensThinkingExample {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 $response = $client->messages->countTokens(
     messages: [
@@ -1532,7 +1532,7 @@ public class CountTokensPdfExample {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 $pdfBase64 = base64_encode(file_get_contents("document.pdf"));
 

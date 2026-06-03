@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-fetch-tool
-fetched_at: 2026-05-30T03:14:18.300217Z
-sha256: 3d08bdc8b096aa87274e6211e274687f31144365536fa5ab0f3c0d62041b6d25
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: c2dcb8bb39220e14023c2b3a9938a916970f59de1b40826e9058444374b59a33
 ---
 
 # Web fetch tool
@@ -234,7 +234,7 @@ void main() {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 $message = $client->messages->create(
     maxTokens: 4096,
@@ -435,7 +435,7 @@ void main() {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 $message = $client->messages->create(
     maxTokens: 1024,

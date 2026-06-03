@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/messages/create
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 2a8030e49807eb87ea3516526a44eec1ff6ee5b219b612859821ddf32bca1c41
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: a6bfc7ea2d3bb909e643d46a863ad4aca6c2c9870f1f51ff251e5e9854256c03
 ---
 
 ## Create a Message
@@ -2481,8 +2481,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
 
-      - `const AnthropicBetaMidConversationSystem2026_04_07 AnthropicBeta = "mid-conversation-system-2026-04-07"`
-
 ### Returns
 
 - `type BetaMessage struct{…}`
@@ -3724,7 +3722,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       The number of output tokens which were used.
 
-    - `OutputTokensDetails BetaUsageOutputTokensDetails`
+    - `OutputTokensDetails BetaOutputTokensDetails`
 
       Breakdown of output tokens by category.
 

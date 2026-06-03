@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/handle-streaming-refusals
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: e387728223972a29cba3f0fe0e55a65274c30020270b4d303b7b6fb7d75dc623
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: d90edec721bb5523d41ca54cace7079dbca9125b38e9ec74a37cfcd744eb71b9
 ---
 
 # Streaming refusals
@@ -41,9 +41,9 @@ No additional refusal message is included. You must handle the response and prov
 When you receive **`stop_reason`: `refusal`**, you must reset the conversation context before continuing. You can remove or rephrase the turn that triggered the refusal, or clear the conversation history entirely. Attempting to continue without resetting will result in continued refusals.
 
 <Note>
-Usage metrics are still provided in the response for billing purposes, even when the response is refused.
+Usage metrics are still provided in the response, even when the response is refused.
 
-You will be billed for output tokens up until the refusal.
+When a refusal arrives before Claude generates any output, you are not billed for the request on the Claude API, and the usage counts in that response are informational only. When Claude generates output before the refusal, you are billed for that request.
 </Note>
 
 <Tip>
@@ -279,7 +279,7 @@ void resetConversation() {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 $messages = [];
 
 function resetConversation(&$messages) {

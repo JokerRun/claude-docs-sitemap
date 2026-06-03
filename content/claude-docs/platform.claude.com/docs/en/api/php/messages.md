@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/php/messages
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 2eace8b3b582f38c9ac138bce00bfd1561b7b6ca93a0ee7c688b1f7d33e0ff84
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 787f3136965b53b520c40f176b5d90778beed5e827cff2e26390d8ace4f82a34
 ---
 
 # Messages
@@ -2637,6 +2637,21 @@ var_dump($messageTokensCount);
   - `?JSONOutputFormat format`
 
     A schema to specify Claude's output format in responses. See [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
+
+### Output Tokens Details
+
+- `OutputTokensDetails`
+
+  - `int thinkingTokens`
+
+    Number of output tokens the model generated as internal reasoning, including
+    the thinking-block delimiter tokens.
+
+    Reflects the raw reasoning the model produced, not the (possibly shorter)
+    summarized thinking text returned in the response body. Computed by
+    re-tokenizing the raw reasoning text, so it may differ from the model's exact
+    generation count by a small number of tokens. Always ≤ `output_tokens`;
+    `output_tokens - thinking_tokens` approximates the non-reasoning output.
 
 ### Plain Text Source
 

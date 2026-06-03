@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/update
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: b307e3f5097b8f2607770be32e12a9db35440fad271657e054e9c022749f3dcc
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 983f5d3c13ce78b027002642153c866237fb369416cc41629e9f1617e1d8c851
 ---
 
 ## Update Session
@@ -75,8 +75,6 @@ Update Session
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
 
-    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
-
   - `Optional<BetaManagedAgentsSessionAgentUpdate> agent`
 
     Mid-session agent configuration update. Only `tools` and `mcp_servers` are updatable. Full replacement: the provided array becomes the new value. To preserve existing entries, GET the session, modify the array, and POST it back.
@@ -128,6 +126,10 @@ Update Session
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `CLAUDE_OPUS_4_8("claude-opus-4-8")`
+
+          Frontier intelligence for long-running agents and coding
 
         - `CLAUDE_OPUS_4_7("claude-opus-4-7")`
 

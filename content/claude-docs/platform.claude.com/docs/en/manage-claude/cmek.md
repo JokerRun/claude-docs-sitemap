@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/cmek
-fetched_at: 2026-06-02T03:18:54.775717Z
-sha256: f676c892a2f87ea76f8748e8d9e4470f18bd7299a3247f1b3b09c213b2469f46
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 1a82ac5d0c609c4bdbe54b009be1cff53efcb54b60c1ce7c1b7642804d44a944
 ---
 
 # Customer-managed encryption keys
@@ -67,7 +67,7 @@ For minimal latency, choose a region close to Anthropic's US infrastructure:
 
 Some features are turned off or substantially modified when CMEK is enabled:
 
-- Skills, sessions, server-side stateful tools, the standalone Files API (`/v1/files`), Batch API, and code execution.
+- Managed agent memory and agent dreaming are disabled.
 - Beta and research preview features may not be covered by CMEK.
 
 ### Not encrypted
@@ -77,6 +77,23 @@ These features remain available, but their data is not encrypted under your key.
 - Workbench in the Console.
 - Data that is not at rest (such as cache) and data with a TTL shorter than 24 hours.
 - Activity Feed, audit logs and telemetry network traffic like OTEL, so customers can maintain compliance even if a key is revoked.
+
+### Feature support
+
+The following APIs, managed agent resources, and tools store data at rest under your key when CMEK is enabled:
+
+| APIs | Managed Agents | Tools and features |
+|:-----|:---------------|:-------------------|
+| Messages | Agents | Web search |
+| Models | Environments | Web fetch |
+| Files | Sessions | Code execution |
+| Batch | Vaults | Bash tool |
+| Skills | | Text editor tool |
+| User profiles | | MCP connector |
+| | | Structured outputs (Claude Sonnet 4.6 and Claude Haiku 4.5 only) |
+| | | Advisor tool |
+| | | Computer use |
+| | | Context management |
 
 ## Limitations
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/strict-tool-use
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 47e748bf1da6e036f3596227a878116147f4e03de16598ee228c5e7e9bba748f
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 68966a352b281d80f700435588d0ff36288e4ceff545eb0e02c09cc0c47f54f7
 ---
 
 # Strict tool use
@@ -316,7 +316,7 @@ void main() {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 $message = $client->messages->create(
     maxTokens: 1024,
@@ -664,7 +664,7 @@ void main() {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 $message = $client->messages->create(
     maxTokens: 1024,
@@ -1062,7 +1062,7 @@ void main() {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 $message = $client->messages->create(
     maxTokens: 1024,

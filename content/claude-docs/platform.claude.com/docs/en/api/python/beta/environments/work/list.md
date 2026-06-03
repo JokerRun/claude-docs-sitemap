@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/environments/work/list
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 71897bc3b38228bff118cbf4eaf0f37c7ae5d4e2929ba5318da88de966216329
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: af1fa8aafddce242fd10d637ac0ab5a67f9263c8497507ad46b53481564956fb
 ---
 
 ## List Work Items
@@ -33,7 +33,7 @@ List work items in an environment.
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 24 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 23 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -86,8 +86,6 @@ List work items in an environment.
     - `"cache-diagnosis-2026-04-07"`
 
     - `"thinking-token-count-2026-05-13"`
-
-    - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/agents/archive
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: ae871c853e47f1df407ad13ad133f6bc7d0d87f16d3a15b4a7d2dcfc27bda336
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: ac3ffb344fee1a962f3359cef85c98a1351908c2cc9418f1037a2f685119c308
 ---
 
 ## Archive Agent
@@ -57,11 +57,15 @@ Archive Agent
 
     Model identifier and configuration.
 
-    - `id: "claude-opus-4-7" or "claude-opus-4-6" or "claude-sonnet-4-6" or 6 more or string`
+    - `id: "claude-opus-4-8" or "claude-opus-4-7" or "claude-opus-4-6" or 7 more or string`
 
       The model that will power your agent.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `"claude-opus-4-8"`
+
+        Frontier intelligence for long-running agents and coding
 
       - `"claude-opus-4-7"`
 

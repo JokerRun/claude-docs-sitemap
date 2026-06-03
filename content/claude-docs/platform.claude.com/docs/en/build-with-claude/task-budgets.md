@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/task-budgets
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 04d79d202992ca05580e303f1c0cd52fe49a9ded8c0f19cc97af5167e6258df3
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 016bb2b7860fab6aed2a796a59d7897c4d724eb5fc4e251060070aadaa2df124
 ---
 
 # Task budgets
@@ -18,7 +18,7 @@ This feature is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-cla
 Task budgets let you tell Claude how many tokens it has for a full agentic loop, including thinking, tool calls, tool results, and output. The model sees a running countdown and uses it to prioritize work and finish gracefully as the budget is consumed.
 
 <Note>
-Task budgets are in beta on <NextOpus /> and Claude Opus 4.7. Set the `task-budgets-2026-03-13` beta header to opt in.
+Task budgets are in beta on Claude Opus 4.8 and Claude Opus 4.7. Set the `task-budgets-2026-03-13` beta header to opt in.
 </Note>
 
 ## When to use task budgets
@@ -229,7 +229,7 @@ void main() {
 use Anthropic\Client;
 use Anthropic\Beta\Messages\BetaRawMessageDeltaEvent;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 $stream = $client->beta->messages->createStream(
     model: 'claude-opus-4-8',
@@ -560,7 +560,7 @@ The minimum accepted `task_budget.total` is **20,000 tokens**; values below the 
 
 | Model | Support |
 |-------|---------|
-| <NextOpus /> | Beta (set `task-budgets-2026-03-13` header) |
+| Claude Opus 4.8 | Beta (set `task-budgets-2026-03-13` header) |
 | Claude Opus 4.7 | Beta (set `task-budgets-2026-03-13` header) |
 | Claude Opus 4.6 | Not supported |
 | Claude Sonnet 4.6 | Not supported |

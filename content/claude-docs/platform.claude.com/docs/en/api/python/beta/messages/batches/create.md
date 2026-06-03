@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/messages/batches/create
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 3f07c606db0110b17c520aa64d18d9d6637d431e0ed5a298df9ac0e0e09cf151
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 997d27d6832779ac5093508413703d3f94fe0ae4df2c1ddf52986808dd3b9941
 ---
 
 ## Create a Message Batch
@@ -2730,7 +2730,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 24 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 23 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -2783,8 +2783,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `"cache-diagnosis-2026-04-07"`
 
     - `"thinking-token-count-2026-05-13"`
-
-    - `"mid-conversation-system-2026-04-07"`
 
 ### Returns
 

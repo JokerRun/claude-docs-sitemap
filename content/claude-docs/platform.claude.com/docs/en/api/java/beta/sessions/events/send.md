@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/events/send
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 1b7e6f35ae8b86a54cd6c05b0cadb486fca188b0d567f2b9c67d2dfeb8e80e35
+fetched_at: 2026-06-03T03:18:49.025048Z
+sha256: 31e9153ea7253130b36346c6cc4fe5209e91cd3f651cc3a5650d14636ea772be
 ---
 
 ## Send Events
@@ -74,8 +74,6 @@ Send Events
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
-
-    - `MID_CONVERSATION_SYSTEM_2026_04_07("mid-conversation-system-2026-04-07")`
 
   - `List<BetaManagedAgentsEventParams> events`
 
