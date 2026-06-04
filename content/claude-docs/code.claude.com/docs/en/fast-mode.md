@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/fast-mode
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 9bd26e5105204d981e641807613152b9b4fee39cc2641dfaad8f48a058435e6b
+fetched_at: 2026-06-04T03:18:26.079997Z
+sha256: 3c9b0d4d461416d9f4c9bb3716276ba05d07db6e541007f479c47d8c0128d0bd
 ---
 
 > ## Documentation Index
@@ -71,7 +71,7 @@ Fast mode has higher per-token pricing than standard Opus, with the multiplier v
 
 Fast mode pricing is flat across the full 1M token context window. For the standard Opus rate to compare against, see the [Claude pricing reference](https://platform.claude.com/docs/en/about-claude/pricing).
 
-When you switch into fast mode mid-conversation, you pay the full fast mode uncached input token price for the entire conversation context. This costs more than if you had enabled fast mode from the start.
+The first time you enable fast mode in a conversation, you pay the full fast mode uncached input token price for the entire conversation context. The deeper into a conversation you are, the more this costs, so enabling fast mode from the start is cheaper. The cost applies once per conversation, so toggling fast mode off and on again later does not repeat it. For the mechanism, see [how fast mode interacts with the prompt cache](/en/prompt-caching#turning-on-fast-mode).
 
 ## Decide when to use fast mode
 

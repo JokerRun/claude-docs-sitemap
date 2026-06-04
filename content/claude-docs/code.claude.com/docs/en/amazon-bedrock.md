@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/amazon-bedrock
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: f02bba36390009b277adfc1b14c9d6d1d34fb2f9490ecdbabe65535971fc8aaf
+fetched_at: 2026-06-04T03:18:26.079997Z
+sha256: e17bad12755d34452f9c7b2fe3a7ad6fe0f27cd59761002dd55792b37ca501af
 ---
 
 > ## Documentation Index
@@ -231,6 +231,7 @@ When enabling Bedrock for Claude Code, keep the following in mind:
 
 * `AWS_REGION` is a required environment variable. Claude Code does not read from the `.aws` config file for this setting.
 * When using Bedrock, the `/logout` command is unavailable since authentication is handled through AWS credentials.
+* The WebSearch tool is not available on Bedrock. See [WebSearch tool behavior](/en/tools-reference#websearch-tool-behavior).
 * You can use settings files for environment variables like `AWS_PROFILE` that you don't want to leak to other processes. See [Settings](/en/settings) for more information.
 
 ### 4. Pin model versions

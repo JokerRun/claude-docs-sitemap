@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/quickstart
-fetched_at: 2026-05-30T03:14:18.300217Z
-sha256: 8658a765c682d6b5a83042c59f81c5ce6e3a8941f35170e7975ce11a2768fe06
+fetched_at: 2026-06-04T03:18:26.079997Z
+sha256: f7237f7cc6fac76bb124ccd47efff82eceddf406052315612e0c0231fa042801
 ---
 
 > ## Documentation Index
@@ -211,15 +211,23 @@ The message handling inside the loop filters for human-readable output. Without 
 Your agent is ready. Run it with the following command:
 
 <Tabs>
-  <Tab title="Python">
-    ```bash theme={null}
-    python3 agent.py
-    ```
-  </Tab>
-
   <Tab title="TypeScript">
     ```bash theme={null}
     npx tsx agent.ts
+    ```
+  </Tab>
+
+  <Tab title="Python (uv)">
+    ```bash theme={null}
+    uv run agent.py
+    ```
+  </Tab>
+
+  <Tab title="Python (pip)">
+    With your virtual environment still activated:
+
+    ```bash theme={null}
+    python agent.py
     ```
   </Tab>
 </Tabs>

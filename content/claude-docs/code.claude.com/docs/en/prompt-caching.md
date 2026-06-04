@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/prompt-caching
-fetched_at: 2026-06-02T03:18:54.775717Z
-sha256: dab2d1f33ee3f06a2469e16370737bf9de2da8baa0c9b3a2a9e6de7172d80adf
+fetched_at: 2026-06-04T03:18:26.079997Z
+sha256: 5a4394c8e9b6f7a7eab2efffeb1df120818af6d7339cedfcd48470af5f214da0
 ---
 
 > ## Documentation Index
@@ -65,6 +65,7 @@ These actions cause the next request to miss part or all of the cache. You see a
 
 * [Switching models](#switching-models)
 * [Changing effort level](#changing-effort-level)
+* [Turning on fast mode](#turning-on-fast-mode)
 * [Connecting or disconnecting an MCP server](#connecting-or-disconnecting-an-mcp-server)
 * [Enabling or disabling a plugin](#enabling-or-disabling-a-plugin)
 * [Denying an entire tool](#denying-an-entire-tool)
@@ -80,6 +81,16 @@ The [`opusplan` model setting](/en/model-config#opusplan-model-setting) resolves
 ### Changing effort level
 
 The cache is keyed by [effort level](/en/model-config#adjust-effort-level) as well as model, so switching with `/effort` means the next request reads the entire conversation history with no cache hits. Once a conversation has started, Claude Code shows a confirmation dialog before applying an effort change that would invalidate the cache. A change that resolves to the same level already in effect, such as setting the model's default explicitly, skips the dialog and keeps the cache.
+
+### Turning on fast mode
+
+Enabling [fast mode](/en/fast-mode) adds a request header that is part of the cache key, so the next request reads the entire conversation history with no cache hits. Those uncached input tokens are billed at [fast mode rates](/en/fast-mode#understand-the-cost-tradeoff), which is why turning it on at the start of a session costs less than turning it on deep into a long one. Enabling fast mode from a non-Opus model also [switches your model](#switching-models), which starts a fresh cache on its own.
+
+The cost applies once per conversation. After the first fast mode turn, Claude Code keeps sending the header and varies only the request's speed setting, which is not part of the cache key. Turning fast mode off, the [automatic fallback to standard speed](/en/fast-mode#handle-rate-limits) after a rate limit, and turning it back on later all keep the cache. `/clear` and `/compact` reset this, since they rebuild the cache at those points anyway.
+
+<Note>
+  Keeping the header across toggles requires Claude Code v2.1.86 or later. On earlier versions, every fast mode toggle and rate-limit fallback invalidates the cache.
+</Note>
 
 ### Connecting or disconnecting an MCP server
 

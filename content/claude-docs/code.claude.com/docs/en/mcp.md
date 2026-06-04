@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/mcp
-fetched_at: 2026-06-02T03:18:54.775717Z
-sha256: 1f2e9282e8f44038ba3523e146f00e02ed4ee1072448c537f07de9171287b2ca
+fetched_at: 2026-06-04T03:18:26.079997Z
+sha256: a6031469b08fdb57755aa01a6f0b336723252a008d7362725fe5acdcfa07ad83
 ---
 
 > ## Documentation Index
@@ -794,6 +794,8 @@ If you've logged into Claude Code with a [Claude.ai](https://claude.ai) account,
     Claude.ai servers appear in the list with indicators showing they come from Claude.ai.
   </Step>
 </Steps>
+
+From v2.1.161, connectors you have never signed in to are collapsed behind a `Show unused connectors` row at the end of the claude.ai section, so an organization-provisioned list doesn't fill the panel. Select the row to expand them. A connector you signed in to before stays visible even when it currently needs re-authentication.
 
 Claude.ai connectors are fetched only when your active [authentication method](/en/authentication#authentication-precedence) is your Claude.ai subscription. They are not loaded when `ANTHROPIC_API_KEY`, `ANTHROPIC_AUTH_TOKEN`, `apiKeyHelper`, or a third-party provider such as Bedrock or Vertex is active, even if you previously ran `/login`. If `/mcp` does not list a connector you added, run `/status` to confirm which authentication method is active, unset that environment variable or remove the `apiKeyHelper` setting, then run `/login` to select your Claude.ai account.
 

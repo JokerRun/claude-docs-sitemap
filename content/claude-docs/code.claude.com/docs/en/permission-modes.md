@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/permission-modes
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 092d8508a3f4c00336f7f3b9025b10db42d67a00de34d5991ef4babea5a6b99a
+fetched_at: 2026-06-04T03:18:26.079997Z
+sha256: 72dd1305d3fafdb72e37dc78f49a89fc1b9ad046351b96f262b4d65bc0ce4af6
 ---
 
 > ## Documentation Index
@@ -186,11 +186,11 @@ Auto mode is available only when your account meets all of these requirements:
 
 If Claude Code reports auto mode as unavailable, one of these requirements is unmet; this is not a transient outage. A separate message that names a model and says auto mode "cannot determine the safety" of an action is a transient classifier outage; see the [error reference](/en/errors#auto-mode-cannot-determine-the-safety-of-an-action).
 
-If you set `defaultMode: "auto"` in [settings](/en/settings#available-settings) and the session starts in `default` mode with no error, the setting is likely in `.claude/settings.json` or `.claude/settings.local.json`. Claude Code ignores `auto` from those files so a repository cannot grant itself auto mode. Move it to `~/.claude/settings.json`.
+If you set `defaultMode: "auto"` in [settings](/en/settings#available-settings) and the session starts in `default` mode with no error, the setting is likely in `.claude/settings.json` or `.claude/settings.local.json`. Claude Code v2.1.142 and later ignore `auto` from those files so a repository cannot grant itself auto mode. Move it to `~/.claude/settings.json`.
 
 ### Enable auto mode on Bedrock, Vertex AI, or Foundry
 
-On [Amazon Bedrock](/en/amazon-bedrock), [Google Cloud Vertex AI](/en/google-vertex-ai), and [Microsoft Foundry](/en/microsoft-foundry), auto mode does not appear in the `Shift+Tab` cycle until `CLAUDE_CODE_ENABLE_AUTO_MODE` is set to `1`. Only Claude Opus 4.7 and Opus 4.8 are supported on these providers.
+On [Amazon Bedrock](/en/amazon-bedrock), [Google Cloud Vertex AI](/en/google-vertex-ai), and [Microsoft Foundry](/en/microsoft-foundry), auto mode does not appear in the `Shift+Tab` cycle until `CLAUDE_CODE_ENABLE_AUTO_MODE` is set to `1`. The variable works in Claude Code v2.1.158 and later. Only Claude Opus 4.7 and Opus 4.8 are supported on these providers.
 
 To enable it for one developer, add the variable to the `env` block in `~/.claude/settings.json`:
 
@@ -341,7 +341,7 @@ Protected directories:
 * `.devcontainer`
 * `.yarn`
 * `.mvn`
-* `.claude`, except for `.claude/commands`, `.claude/agents`, `.claude/skills`, and `.claude/worktrees` where Claude routinely creates content
+* `.claude`, except for `.claude/worktrees` where Claude stores its own git worktrees
 
 Protected files:
 
