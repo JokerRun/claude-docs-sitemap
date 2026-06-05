@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/memory
-fetched_at: 2026-05-30T03:14:18.300217Z
-sha256: c5dc0aecc48d27f0ce98d4c5d87c311a251aaa419e6dfd403f351f225e7c9eef
+fetched_at: 2026-06-05T03:17:10.786387Z
+sha256: 150353b3b6f766e4ff3ae44fedab63931f873ff6d8582e6afacf874eb6a20f26
 ---
 
 > ## Documentation Index
@@ -147,7 +147,7 @@ ln -s AGENTS.md CLAUDE.md
 
 On Windows, creating a symlink requires Administrator privileges or Developer Mode, so use the `@AGENTS.md` import instead.
 
-Running [`/init`](/en/commands) in a repo that already has an `AGENTS.md` reads it and incorporates the relevant parts into the generated `CLAUDE.md`. It also reads other tool configs like `.cursorrules` and `.windsurfrules`.
+Running [`/init`](/en/commands) in a repo that already has an `AGENTS.md` reads it and incorporates the relevant parts into the generated `CLAUDE.md`. It also reads other tool configs like `.cursorrules`, `.devin/rules/`, and `.windsurfrules`.
 
 ### How CLAUDE.md files load
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/intro
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 8a77c99461ef9472f4467329cf0b0481f0a277983ad270516d084823677a14cd
+fetched_at: 2026-06-05T03:17:10.786387Z
+sha256: cfdd56a992d7fbb0ca3ccff53f30c8d9a1db9025630a2f91b604172ca6aed37d
 ---
 
 # Intro to Claude
@@ -24,7 +24,7 @@ The latest generation of Claude models:
 </Tip>
 
 <Note>
-Looking to chat with Claude? Visit [claude.ai](https://www.claude.ai).
+Looking to chat with Claude? Visit [claude.ai](https://claude.ai).
 </Note>
 
 Anthropic offers two ways to build with Claude, each suited to different use cases:

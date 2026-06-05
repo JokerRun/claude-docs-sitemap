@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-view
-fetched_at: 2026-06-04T03:18:26.079997Z
-sha256: af99d9e071f03c6958d090075c212e8442a74d16855c7aa74a8a05528e877049
+fetched_at: 2026-06-05T03:17:10.786387Z
+sha256: c2fc1b166b6f9529e5474c0f436e8ede821d221ca407e1f7a66e7e2428e54b14
 ---
 
 > ## Documentation Index
@@ -450,7 +450,7 @@ Every background session has a short ID you can use from the shell. The ID is pr
 | :--------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `claude agents`              | Open agent view                                                                                                                                                                                                                                                                                                                         |
 | `claude agents --cwd <path>` | Open agent view scoped to sessions started under `<path>`                                                                                                                                                                                                                                                                               |
-| `claude agents --json`       | Print live sessions as a JSON array and exit. Each entry has `pid`, `cwd`, `kind`, and `startedAt`, plus `sessionId`, `name`, and `status` when set. Combine with `--cwd <path>` to filter                                                                                                                                              |
+| `claude agents --json`       | Print live sessions as a JSON array and exit. Each entry has `pid`, `cwd`, `kind`, and `startedAt`, plus `sessionId`, `name`, and `status` when set. When `status` is `waiting`, `waitingFor` says what the session is blocked on, such as `permission prompt` or `input needed`. Combine with `--cwd <path>` to filter                 |
 | `claude attach <id>`         | Attach to a session in this terminal                                                                                                                                                                                                                                                                                                    |
 | `claude logs <id>`           | Print the session's recent output                                                                                                                                                                                                                                                                                                       |
 | `claude stop <id>`           | Stop a session. Also accepts `claude kill`                                                                                                                                                                                                                                                                                              |

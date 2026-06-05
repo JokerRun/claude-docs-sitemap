@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/citations
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 41f25f1401e65894126cab0cf9a1ff085ca3631711ebc0931cbfcb086bb6ff46
+fetched_at: 2026-06-05T03:17:10.786387Z
+sha256: b5b4ef4578c5170d37990b8822e74aa5e529fb27f9d7f1ae634d06bec8e108ff
 ---
 
 # Citations
@@ -437,7 +437,7 @@ Plain text documents are automatically chunked into sentences. You can provide t
 
 ### PDF documents
 
-PDF documents can be provided as base64-encoded data or by `file_id`. PDF text is extracted and chunked into sentences. As image citations are not yet supported, PDFs that are scans of documents and do not contain extractable text will not be citable.
+PDF documents can be provided as base64-encoded data, a URL, or by `file_id`. PDF text is extracted and chunked into sentences. As image citations are not yet supported, PDFs that are scans of documents and do not contain extractable text will not be citable.
 
 <Tabs>
 <Tab title="Base64">
@@ -449,6 +449,17 @@ PDF documents can be provided as base64-encoded data or by `file_id`. PDF text i
         "media_type": "application/pdf",
         "data": base64_encoded_pdf_data,
     },
+    "title": "Document Title",  # optional
+    "context": "Context about the document that will not be cited from",  # optional
+    "citations": {"enabled": True},
+}
+```
+</Tab>
+<Tab title="URL">
+```python
+{
+    "type": "document",
+    "source": {"type": "url", "url": "https://example.com/document.pdf"},
     "title": "Document Title",  # optional
     "context": "Context about the document that will not be cited from",  # optional
     "citations": {"enabled": True},

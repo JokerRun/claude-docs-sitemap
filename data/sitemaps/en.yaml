@@ -46,7 +46,7 @@
   lastmod: '2026-06-01T23:00:07.291Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/python
-  lastmod: '2026-06-01T23:21:34.276Z'
+  lastmod: '2026-06-04T19:37:58.689Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/quickstart
   lastmod: '2026-06-03T18:25:43.836Z'
@@ -97,7 +97,7 @@
   lastmod: '2026-05-12T19:04:25.875Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-view
-  lastmod: '2026-06-03T19:45:17.322Z'
+  lastmod: '2026-06-04T23:12:20.088Z'
 - source: code
   loc: https://code.claude.com/docs/en/agents
   lastmod: '2026-05-28T17:22:52.044Z'
@@ -121,7 +121,7 @@
   lastmod: '2026-04-28T15:54:10.733Z'
 - source: code
   loc: https://code.claude.com/docs/en/changelog
-  lastmod: '2026-06-03T21:38:00.616Z'
+  lastmod: '2026-06-04T22:02:46.274Z'
 - source: code
   loc: https://code.claude.com/docs/en/channels
   lastmod: '2026-05-11T23:27:14.149Z'
@@ -175,7 +175,7 @@
   lastmod: '2026-05-18T19:03:28.833Z'
 - source: code
   loc: https://code.claude.com/docs/en/deep-links
-  lastmod: '2026-05-02T17:52:37.329Z'
+  lastmod: '2026-06-04T23:12:20.062Z'
 - source: code
   loc: https://code.claude.com/docs/en/desktop
   lastmod: '2026-06-02T22:06:59.064Z'
@@ -193,7 +193,7 @@
   lastmod: '2026-06-01T20:19:51.798Z'
 - source: code
   loc: https://code.claude.com/docs/en/env-vars
-  lastmod: '2026-06-03T19:45:17.330Z'
+  lastmod: '2026-06-04T23:12:20.118Z'
 - source: code
   loc: https://code.claude.com/docs/en/errors
   lastmod: '2026-06-02T18:19:56.270Z'
@@ -259,13 +259,13 @@
   lastmod: '2026-05-25T19:31:27.585Z'
 - source: code
   loc: https://code.claude.com/docs/en/mcp
-  lastmod: '2026-06-03T19:45:17.323Z'
+  lastmod: '2026-06-04T23:12:20.064Z'
 - source: code
   loc: https://code.claude.com/docs/en/mcp-quickstart
   lastmod: '2026-06-02T00:41:06.482Z'
 - source: code
   loc: https://code.claude.com/docs/en/memory
-  lastmod: '2026-05-30T00:09:32.381Z'
+  lastmod: '2026-06-04T23:12:20.057Z'
 - source: code
   loc: https://code.claude.com/docs/en/microsoft-foundry
   lastmod: '2026-05-28T17:05:05.801Z'
@@ -274,7 +274,7 @@
   lastmod: '2026-06-01T20:18:55.672Z'
 - source: code
   loc: https://code.claude.com/docs/en/monitoring-usage
-  lastmod: '2026-06-03T19:45:24.926Z'
+  lastmod: '2026-06-04T23:12:20.066Z'
 - source: code
   loc: https://code.claude.com/docs/en/network-config
   lastmod: '2026-05-05T21:29:58.999Z'
@@ -370,10 +370,10 @@
   lastmod: '2026-05-11T19:13:22.904Z'
 - source: code
   loc: https://code.claude.com/docs/en/tools-reference
-  lastmod: '2026-06-02T22:07:04.214Z'
+  lastmod: '2026-06-04T23:12:20.056Z'
 - source: code
   loc: https://code.claude.com/docs/en/troubleshoot-install
-  lastmod: '2026-05-22T01:32:20.255Z'
+  lastmod: '2026-06-04T15:51:08.106Z'
 - source: code
   loc: https://code.claude.com/docs/en/troubleshooting
   lastmod: '2026-06-03T19:45:24.918Z'
@@ -388,7 +388,7 @@
   lastmod: '2026-06-01T21:53:33.591Z'
 - source: code
   loc: https://code.claude.com/docs/en/vs-code
-  lastmod: '2026-06-02T20:00:00.650Z'
+  lastmod: '2026-06-04T15:51:08.109Z'
 - source: code
   loc: https://code.claude.com/docs/en/web-quickstart
   lastmod: '2026-05-12T23:21:52.634Z'

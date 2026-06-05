@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 0f6f573379f9ee608d976230de9c705ab1ad2da4ce96c71198b102e4a7067f59
+fetched_at: 2026-06-05T03:17:10.786387Z
+sha256: c28234271b5a0867efe37460f49ef918a1c167b4d1777c0b05418e9fb4bf702c
 ---
 
 # Code execution tool
@@ -298,6 +298,23 @@ When you add the code execution tool to your API request:
 3. Claude can use any combination of these capabilities in a single request
 4. All operations run in a secure sandbox environment
 5. Claude provides results with any generated charts, calculations, or analysis
+
+### When Claude runs code
+
+Claude runs code when the request benefits from computation or file handling:
+
+- Non-trivial math (large numbers, many steps, precision-sensitive results)
+- Data analysis, file parsing, or visualization
+- Algorithm execution or simulation
+- Explicit requests to "run", "compute", or "execute"
+
+Claude answers directly without running code for:
+
+- Simple arithmetic and well-known math facts
+- Factual, conversational, or creative requests
+- Simple unit conversions or translations
+
+If you want Claude to run code for a borderline request, ask explicitly (for example, "run code to verify this").
 
 ## Using code execution with other execution tools
 
