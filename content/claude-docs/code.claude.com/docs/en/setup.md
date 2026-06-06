@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/setup
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 0f3777e78c4b08ccffb077c6e9b3799bf7c64403fa5640b096396ddbef5d3246
+fetched_at: 2026-06-06T03:14:11.045838Z
+sha256: b1242497ffc022fca48e72534fecc1d4159ab2b0d9f57bf8a9c7d913f4622367
 ---
 
 > ## Documentation Index
@@ -48,19 +48,19 @@ To install Claude Code, use one of the following methods:
   <Tab title="Native Install (Recommended)">
     **macOS, Linux, WSL:**
 
-    ```bash theme={null}
+    ```bash theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null}
     curl -fsSL https://claude.ai/install.sh | bash
     ```
 
     **Windows PowerShell:**
 
-    ```powershell theme={null}
+    ```powershell theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null}
     irm https://claude.ai/install.ps1 | iex
     ```
 
     **Windows CMD:**
 
-    ```batch theme={null}
+    ```batch theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null}
     curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd
     ```
 
@@ -74,7 +74,7 @@ To install Claude Code, use one of the following methods:
   </Tab>
 
   <Tab title="Homebrew">
-    ```bash theme={null}
+    ```bash theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null}
     brew install --cask claude-code
     ```
 
@@ -86,7 +86,7 @@ To install Claude Code, use one of the following methods:
   </Tab>
 
   <Tab title="WinGet">
-    ```powershell theme={null}
+    ```powershell theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null}
     winget install Anthropic.ClaudeCode
     ```
 
@@ -242,6 +242,8 @@ Add it to your [settings.json file](/en/settings) to pin a floor explicitly:
 ```
 
 In [managed settings](/en/permissions#managed-settings), this enforces an organization-wide minimum that user and project settings cannot override.
+
+The `minimumVersion` pin only constrains updates. To make Claude Code refuse to start outside a version range, use the managed settings `requiredMinimumVersion` and `requiredMaximumVersion` instead. Updates also respect the `requiredMaximumVersion` ceiling. See [available settings](/en/settings#available-settings).
 
 ### Disable auto-updates
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/google-vertex-ai
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 4695086b4a9261643f60660367b12f35b0d53ba2f2313e9b79d34f83cc35bdaf
+fetched_at: 2026-06-06T03:14:11.045838Z
+sha256: cb4b3aa4341047841a0208c3511a4fe8cdcd3068046be15dc0e64bf5829a5b44
 ---
 
 > ## Documentation Index
@@ -214,7 +214,7 @@ Claude Code disables [MCP tool search](/en/mcp#scale-with-mcp-tool-search) by de
 ### 5. Pin model versions
 
 <Warning>
-  Pin specific model versions when deploying to multiple users. Without pinning, model aliases such as `sonnet` and `opus` resolve to the latest version, which may not yet be enabled in your Vertex AI project when Anthropic releases an update. Claude Code [falls back](#startup-model-checks) to the previous version at startup when the latest is unavailable, but pinning lets you control when your users move to a new model.
+  Pin specific model versions when deploying to multiple users. Without pinning, model aliases such as `sonnet` and `opus` resolve to Claude Code's built-in default for Vertex AI, which can lag the newest release and may not yet be enabled in your project. Claude Code [falls back](#startup-model-checks) to the previous version at startup when the default is unavailable, but pinning lets you control when your users move to a new model.
 </Warning>
 
 Set these environment variables to specific Vertex AI model IDs.

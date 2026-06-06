@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/prompt-caching
-fetched_at: 2026-06-04T03:18:26.079997Z
-sha256: 5a4394c8e9b6f7a7eab2efffeb1df120818af6d7339cedfcd48470af5f214da0
+fetched_at: 2026-06-06T03:14:11.045838Z
+sha256: 2338dfafe3583780d8852d515334afe5f62fb8424f7bb7d98493f0da1afe9c7d
 ---
 
 > ## Documentation Index
@@ -109,7 +109,7 @@ Editing your MCP config does not by itself change the cache. The new config take
 
 The exception is a plugin that provides [MCP servers](/en/plugins-reference#mcp-servers). Enabling or disabling one follows the same rules as [connecting or disconnecting an MCP server](#connecting-or-disconnecting-an-mcp-server): the cache survives when the server's tools are deferred, and the next request re-reads the entire conversation when they load into the prefix.
 
-Plugin changes apply when you run [`/reload-plugins`](/en/discover-plugins#apply-plugin-changes-without-restarting) or start a new session. The cost, whether appended announcements or a full re-read, shows up on the first turn after the reload, not when you run `/plugin install`, `/plugin enable`, or `/plugin disable`.
+Plugin changes apply when you run [`/reload-plugins`](/en/discover-plugins#apply-plugin-changes-without-restarting) or start a new session. The cost, whether appended announcements or a full re-read, shows up on the first turn after the reload, not when you run `/plugin install`, `/plugin enable`, or `/plugin disable`. {/* min-version: 2.1.163 */}As of v2.1.163, when a reload would trigger the full re-read, `/reload-plugins` warns and holds instead of applying it. Pass `--force` to apply anyway.
 
 Disabling a plugin you enabled earlier in the session restores the previous request shape. If that prefix is still within its [cache lifetime](#cache-lifetime), the next request reads the older cache entry instead of rebuilding.
 

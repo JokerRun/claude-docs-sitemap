@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/interactive-mode
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: bee2d7b2a92817a585ffc089da68177e147e57b05eb4594206d0041feda90848
+fetched_at: 2026-06-06T03:14:11.045838Z
+sha256: 49cbb333890b74c0f668fe569a9dabffbe0ce1906d260825067aa4dcee262e23
 ---
 
 > ## Documentation Index
@@ -335,6 +335,7 @@ Once the answer appears, the overlay accepts these keys. Earlier side questions 
 | :------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `Space`, `Enter`, `Escape` | Dismiss the answer and return to the prompt                                                                                                                                                                                                                               |
 | `Up` / `Down`              | Scroll the answer                                                                                                                                                                                                                                                         |
+| `c`                        | Copy the answer to your clipboard as raw Markdown. Use this instead of mouse selection, which captures the hard-wrapped terminal rendering rather than the source text                                                                                                    |
 | `f`                        | Fork into a new session. The fork inherits the parent conversation plus this question and answer as real transcript turns, so you can continue with full tool access. The original session is preserved under [`/resume`](/en/commands). Available in local sessions only |
 | `x`                        | Clear the list of earlier `/btw` exchanges shown above the current answer                                                                                                                                                                                                 |
 

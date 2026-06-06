@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: c0381e8c0f141f327ae18b73199b7c1ddd7cabc7d680a91dfe8cb24655d93e4c
+fetched_at: 2026-06-06T03:14:11.045838Z
+sha256: b581e7aa95fd5643e4cf663cc20dfcfc3ec88ea9b65ee60de0d386ad87034117
 ---
 
 # Handling stop reasons
@@ -494,7 +494,7 @@ if response.stop_reason == "refusal":
 ```
 
 <Tip>
-If you encounter `refusal` stop reasons frequently while using Claude Sonnet 4.5 or Opus 4.1, you can try updating your API calls to use Haiku 4.5 (`claude-haiku-4-5-20251001`), which has different usage restrictions. Learn more about [understanding Sonnet 4.5's API safety filters](https://support.claude.com/en/articles/12449294-understanding-sonnet-4-5-s-api-safety-filters).
+If you encounter `refusal` stop reasons frequently while using Claude Sonnet 4.5 or Opus 4.1 ([deprecated](/docs/en/about-claude/model-deprecations)), you can try updating your API calls to use Haiku 4.5 (`claude-haiku-4-5-20251001`), which has different usage restrictions. Learn more about [understanding Sonnet 4.5's API safety filters](https://support.claude.com/en/articles/12449294-understanding-sonnet-4-5-s-api-safety-filters).
 </Tip>
 
 #### Refusal categories

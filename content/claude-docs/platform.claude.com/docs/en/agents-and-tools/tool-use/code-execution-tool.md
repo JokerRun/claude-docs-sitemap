@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool
-fetched_at: 2026-06-05T03:17:10.786387Z
-sha256: c28234271b5a0867efe37460f49ef918a1c167b4d1777c0b05418e9fb4bf702c
+fetched_at: 2026-06-06T03:14:11.045838Z
+sha256: 51ab2cddce7eaacfd3a1ef57342b36f11edc0a3d77af5b67d2137b3c052b1c62
 ---
 
 # Code execution tool
@@ -38,7 +38,7 @@ The code execution tool is available on the following models:
 | Claude Opus 4.5 (claude-opus-4-5-20251101) | `code_execution_20250825`, `code_execution_20260120` |
 | Claude Sonnet 4.5 (claude-sonnet-4-5-20250929) | `code_execution_20250825`, `code_execution_20260120` |
 | Claude Haiku 4.5 (claude-haiku-4-5-20251001) | `code_execution_20250825` |
-| Claude Opus 4.1 (claude-opus-4-1-20250805) | `code_execution_20250825` |
+| Claude Opus 4.1 (claude-opus-4-1-20250805) ([deprecated](/docs/en/about-claude/model-deprecations)) | `code_execution_20250825` |
 | Claude Opus 4 (claude-opus-4-20250514) ([deprecated](/docs/en/about-claude/model-deprecations)) | `code_execution_20250825` |
 | Claude Sonnet 4 (claude-sonnet-4-20250514) ([deprecated](/docs/en/about-claude/model-deprecations)) | `code_execution_20250825` |
 

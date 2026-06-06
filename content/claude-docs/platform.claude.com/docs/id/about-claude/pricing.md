@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/pricing
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: f9fa4c642f1334d2c5a4d4b301aca7dd637f1e389aec4053fbcc6fc0fdd24fd3
+fetched_at: 2026-06-06T03:14:11.045838Z
+sha256: d070bd25a18866426d7d3c4184ad73241dafde0480c3fb6b0b6bd57821bbfe7f
 ---
 
 # Harga
@@ -25,7 +25,7 @@ Tabel berikut menunjukkan harga untuk semua model Claude di berbagai tingkat pen
 | Claude Opus 4.7     | $5 / MTok         | $6.25 / MTok    | $10 / MTok      | $0.50 / MTok | $25 / MTok    |
 | Claude Opus 4.6     | $5 / MTok         | $6.25 / MTok    | $10 / MTok      | $0.50 / MTok | $25 / MTok    |
 | Claude Opus 4.5   | $5 / MTok         | $6.25 / MTok    | $10 / MTok      | $0.50 / MTok | $25 / MTok    |
-| Claude Opus 4.1   | $15 / MTok        | $18.75 / MTok   | $30 / MTok      | $1.50 / MTok | $75 / MTok    |
+| Claude Opus 4.1 ([deprecated](/docs/en/about-claude/model-deprecations)) | $15 / MTok        | $18.75 / MTok   | $30 / MTok      | $1.50 / MTok | $75 / MTok    |
 | Claude Opus 4 ([deprecated](/docs/en/about-claude/model-deprecations)) | $15 / MTok        | $18.75 / MTok   | $30 / MTok      | $1.50 / MTok | $75 / MTok    |
 | Claude Sonnet 4.6   | $3 / MTok         | $3.75 / MTok    | $6 / MTok       | $0.30 / MTok | $15 / MTok    |
 | Claude Sonnet 4.5   | $3 / MTok         | $3.75 / MTok    | $6 / MTok       | $0.30 / MTok | $15 / MTok    |
@@ -123,7 +123,7 @@ Batch API memungkinkan pemrosesan asinkron dari volume besar permintaan dengan d
 | Claude Opus 4.7       | $2.50 / MTok     | $12.50 / MTok   |
 | Claude Opus 4.6       | $2.50 / MTok     | $12.50 / MTok   |
 | Claude Opus 4.5     | $2.50 / MTok     | $12.50 / MTok   |
-| Claude Opus 4.1     | $7.50 / MTok     | $37.50 / MTok   |
+| Claude Opus 4.1 ([deprecated](/docs/en/about-claude/model-deprecations)) | $7.50 / MTok     | $37.50 / MTok   |
 | Claude Opus 4 ([deprecated](/docs/en/about-claude/model-deprecations)) | $7.50 / MTok     | $37.50 / MTok   |
 | Claude Sonnet 4.6   | $1.50 / MTok     | $7.50 / MTok    |
 | Claude Sonnet 4.5   | $1.50 / MTok     | $7.50 / MTok    |
@@ -160,7 +160,7 @@ When you use `tools`, the API also automatically includes a special system promp
 | Claude Opus 4.7                | `auto`, `none`<hr />`any`, `tool`   | 675 tokens<hr />804 tokens |
 | Claude Opus 4.6              | `auto`, `none`<hr />`any`, `tool`   | 497 tokens<hr />589 tokens |
 | Claude Opus 4.5            | `auto`, `none`<hr />`any`, `tool`   | 496 tokens<hr />588 tokens |
-| Claude Opus 4.1            | `auto`, `none`<hr />`any`, `tool`   | 313 tokens<hr />315 tokens |
+| Claude Opus 4.1 ([deprecated](/docs/en/about-claude/model-deprecations)) | `auto`, `none`<hr />`any`, `tool`   | 313 tokens<hr />315 tokens |
 | Claude Opus 4 ([deprecated](/docs/en/about-claude/model-deprecations)) | `auto`, `none`<hr />`any`, `tool`   | 313 tokens<hr />315 tokens |
 | Claude Sonnet 4.6          | `auto`, `none`<hr />`any`, `tool`   | 497 tokens<hr />589 tokens |
 | Claude Sonnet 4.5          | `auto`, `none`<hr />`any`, `tool`   | 496 tokens<hr />588 tokens |

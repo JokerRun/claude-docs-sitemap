@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/amazon-bedrock
-fetched_at: 2026-06-04T03:18:26.079997Z
-sha256: e17bad12755d34452f9c7b2fe3a7ad6fe0f27cd59761002dd55792b37ca501af
+fetched_at: 2026-06-06T03:14:11.045838Z
+sha256: 6fa3051219b86e762c5e5230877c2957db549e84f8e7fd4cea4dca4f7be6091b
 ---
 
 > ## Documentation Index
@@ -237,7 +237,7 @@ When enabling Bedrock for Claude Code, keep the following in mind:
 ### 4. Pin model versions
 
 <Warning>
-  Pin specific model versions when deploying to multiple users. Without pinning, model aliases such as `sonnet` and `opus` resolve to the latest version, which may not yet be available in your Bedrock account when Anthropic releases an update. Claude Code [falls back](#startup-model-checks) to the previous version at startup when the latest is unavailable, but pinning lets you control when your users move to a new model.
+  Pin specific model versions when deploying to multiple users. Without pinning, model aliases such as `sonnet` and `opus` resolve to Claude Code's built-in default for Bedrock, which can lag the newest release and may not yet be available in your account. Claude Code [falls back](#startup-model-checks) to the previous version at startup when the default is unavailable, but pinning lets you control when your users move to a new model.
 </Warning>
 
 Set these environment variables to specific Bedrock model IDs.

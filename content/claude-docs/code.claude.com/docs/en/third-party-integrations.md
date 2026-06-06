@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/third-party-integrations
-fetched_at: 2026-05-12T03:14:46.254373Z
-sha256: 3b4bee8a74c0cc939186efce8d26ef9361e12289e4e851cc88c315a3710147ac
+fetched_at: 2026-06-06T03:14:11.045838Z
+sha256: ec0f9313eea5d93623cb152e81146eb0090fd024ec8b0154fb547d90ebe6a2b5
 ---
 
 > ## Documentation Index
@@ -330,7 +330,7 @@ Encourage new users to try Claude Code for codebase Q\&A, or on smaller bug fixe
 
 ### Pin model versions for cloud providers
 
-If you deploy through [Bedrock](/en/amazon-bedrock), [Vertex AI](/en/google-vertex-ai), [Foundry](/en/microsoft-foundry), or [Claude Platform on AWS](/en/claude-platform-on-aws), pin specific model versions using `ANTHROPIC_DEFAULT_OPUS_MODEL`, `ANTHROPIC_DEFAULT_SONNET_MODEL`, and `ANTHROPIC_DEFAULT_HAIKU_MODEL`. Without pinning, model aliases resolve to the latest version, which may not yet be enabled in your account when Anthropic releases an update. Pinning lets you control when your users move to a new model. See [Model configuration](/en/model-config#pin-models-for-third-party-deployments) for what each provider does when the latest version is unavailable.
+If you deploy through [Bedrock](/en/amazon-bedrock), [Vertex AI](/en/google-vertex-ai), [Foundry](/en/microsoft-foundry), or [Claude Platform on AWS](/en/claude-platform-on-aws), pin specific model versions using `ANTHROPIC_DEFAULT_OPUS_MODEL`, `ANTHROPIC_DEFAULT_SONNET_MODEL`, and `ANTHROPIC_DEFAULT_HAIKU_MODEL`. Without pinning, model aliases resolve to Claude Code's built-in default for that provider, which can lag the newest release and may not yet be enabled in your account. Pinning lets you control when your users move to a new model. See [Model configuration](/en/model-config#pin-models-for-third-party-deployments) for what each provider does when the default is unavailable.
 
 ### Configure security policies
 

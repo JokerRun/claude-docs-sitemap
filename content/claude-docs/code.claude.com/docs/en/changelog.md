@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/changelog
-fetched_at: 2026-06-05T03:17:10.786387Z
-sha256: b5d02280feb69a25ebcdd965dc8c4f137d1f09feab334bc65e7cad72f8a81309
+fetched_at: 2026-06-06T03:14:11.045838Z
+sha256: 892bc5a31a8609cfc21f62c9c5903fb20d3d0c30c72ac1f24d18d8989b85eb5d
 ---
 
 > ## Documentation Index
@@ -16,6 +16,38 @@ sha256: b5d02280feb69a25ebcdd965dc8c4f137d1f09feab334bc65e7cad72f8a81309
 This page is generated from the [CHANGELOG.md on GitHub](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md).
 
 Run `claude --version` to check your installed version.
+
+<Update label="2.1.167" description="June 6, 2026">
+  * Bug fixes and reliability improvements
+</Update>
+
+<Update label="2.1.166" description="June 6, 2026">
+  * Added `fallbackModel` setting to configure up to three fallback models tried in order when the primary model is overloaded or unavailable; `--fallback-model` now also applies to interactive sessions
+  * Added glob pattern support in deny rule tool-name position (`"*"` denies all tools); allow rules reject non-MCP globs, and unknown tool names in deny rules warn at startup
+  * Hardened cross-session messaging: messages relayed via `SendMessage` from other Claude sessions no longer carry user authority — receivers refuse relayed permission requests, and auto mode blocks them
+  * `MAX_THINKING_TOKENS=0`, `--thinking disabled`, and the per-model thinking toggle now disable thinking on models that think by default via the Claude API (3P providers unchanged)
+  * Claude Code now retries a turn once on the fallback model when the API rejects an unexpected non-retryable error; auth, rate-limit, request-size, and transport errors still surface immediately
+  * `claude update` now announces the target version before downloading instead of going silent
+  * `claude agents`: typing a URL into the list now filters to the session whose first prompt contained it
+  * Fixed a recurring "image could not be processed" error and extra token usage when an unprocessable image was sent in a session
+  * Fixed remote sessions becoming permanently stuck when a brief backend disruption occurred during worker registration at startup
+  * Fixed flickering in JetBrains IDE terminals (IntelliJ, PyCharm, WebStorm, etc.) on 2026.1+ by enabling synchronized output
+  * Fixed Shift+non-ASCII characters (e.g. Shift+ä → Ä) being dropped in terminals using the Kitty keyboard protocol (WezTerm, Ghostty, kitty)
+  * Fixed PowerShell command validation occasionally hanging far past its time budget on Windows when a killed process's children held its output pipes
+  * Fixed orphaned `claude --bg-pty-host` processes spinning at 100% CPU after the daemon dies while connected on macOS
+  * Fixed voice mode requiring `/login` to clear a stale auth check after toggling `/voice`
+  * Fixed managed settings with an invalid entry silently disabling enforcement of their remaining valid policies
+  * Fixed managed-settings `allowedMcpServers`/`deniedMcpServers` predicates not matching when they use `${VAR}` references
+  * Fixed background agent sessions that entered a git worktree crash-looping with "No conversation found" when reopened from `claude agents`
+  * Fixed duplicated thinking text in the Ctrl+O transcript view while streaming
+  * Fixed `/doctor` showing a contradictory failed "Not inside a remote session" check when run inside a remote session
+  * Fixed the cursor sticking at the end of the first line when typing a multiline prompt in the `claude agents` dispatch and reply inputs
+  * Fixed blank lines appearing between background agent rows in the task list on terminals without Unicode support
+</Update>
+
+<Update label="2.1.165" description="June 5, 2026">
+  * Bug fixes and reliability improvements
+</Update>
 
 <Update label="2.1.163" description="June 4, 2026">
   * Added `requiredMinimumVersion` and `requiredMaximumVersion` managed settings — Claude Code refuses to start if its version is outside the allowed range and directs the user to an approved version

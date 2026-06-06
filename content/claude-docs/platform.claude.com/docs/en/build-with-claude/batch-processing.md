@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/batch-processing
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 6aaab282de7ac910a13becb52042730661123f0dd69e209a592a8fa753be6f8c
+fetched_at: 2026-06-06T03:14:11.045838Z
+sha256: 9e8c005047fd9f4a6430c3ccbd6c4e3bcd04487574e261850d2e9b9d9e8b29bf
 ---
 
 # Batch processing
@@ -95,7 +95,7 @@ The Batches API offers significant cost savings. All usage is charged at 50% of 
 | Claude Opus 4.7       | $2.50 / MTok     | $12.50 / MTok   |
 | Claude Opus 4.6       | $2.50 / MTok     | $12.50 / MTok   |
 | Claude Opus 4.5     | $2.50 / MTok     | $12.50 / MTok   |
-| Claude Opus 4.1     | $7.50 / MTok     | $37.50 / MTok   |
+| Claude Opus 4.1 ([deprecated](/docs/en/about-claude/model-deprecations)) | $7.50 / MTok     | $37.50 / MTok   |
 | Claude Opus 4 ([deprecated](/docs/en/about-claude/model-deprecations)) | $7.50 / MTok     | $37.50 / MTok   |
 | Claude Sonnet 4.6   | $1.50 / MTok     | $7.50 / MTok    |
 | Claude Sonnet 4.5   | $1.50 / MTok     | $7.50 / MTok    |

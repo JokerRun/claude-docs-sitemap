@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-caching
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: ccf23303df3f66ed123d715ad25ee337a1f1d5173bfcbdca6789fc52240de82e
+fetched_at: 2026-06-06T03:14:11.045838Z
+sha256: 56e1762988198f9fda7c8589b716c7a3a9accfaf555f04db0b1d5a8d4a8ffc17
 ---
 
 # Prompt caching
@@ -280,7 +280,7 @@ Prompt caching memperkenalkan struktur harga baru. Tabel di bawah menunjukkan ha
 | Claude Opus 4.7     | $5 / MTok         | $6.25 / MTok    | $10 / MTok      | $0.50 / MTok | $25 / MTok    |
 | Claude Opus 4.6     | $5 / MTok         | $6.25 / MTok    | $10 / MTok      | $0.50 / MTok | $25 / MTok    |
 | Claude Opus 4.5   | $5 / MTok         | $6.25 / MTok    | $10 / MTok      | $0.50 / MTok | $25 / MTok    |
-| Claude Opus 4.1   | $15 / MTok        | $18.75 / MTok   | $30 / MTok      | $1.50 / MTok | $75 / MTok    |
+| Claude Opus 4.1 ([deprecated](/docs/en/about-claude/model-deprecations)) | $15 / MTok        | $18.75 / MTok   | $30 / MTok      | $1.50 / MTok | $75 / MTok    |
 | Claude Opus 4 ([deprecated](/docs/en/about-claude/model-deprecations)) | $15 / MTok        | $18.75 / MTok   | $30 / MTok      | $1.50 / MTok | $75 / MTok    |
 | Claude Sonnet 4.6   | $3 / MTok         | $3.75 / MTok    | $6 / MTok       | $0.30 / MTok | $15 / MTok    |
 | Claude Sonnet 4.5   | $3 / MTok         | $3.75 / MTok    | $6 / MTok       | $0.30 / MTok | $15 / MTok    |

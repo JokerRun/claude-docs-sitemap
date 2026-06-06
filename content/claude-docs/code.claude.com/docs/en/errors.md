@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/errors
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: cc40295dd36246f541615a483b5a53cfbfac250e2e5cca8fe46173f2b3d41cf8
+fetched_at: 2026-06-06T03:14:11.045838Z
+sha256: e64ae9bf08641032eb34cdd707f9fb5c37af1fcb1539ce1b6bff304abeeed254
 ---
 
 > ## Documentation Index
@@ -558,7 +558,7 @@ There's an issue with the selected model (claude-...). It may not exist or you m
 * **Interactive CLI**: run `/model` to pick from models available to your account.
 * **Non-interactive mode (`-p`)**: pass `--model` with a valid alias or ID, or set [`ANTHROPIC_MODEL`](/en/env-vars). The error text shows `Run --model` on this surface.
 * **Agent SDK**: the error text omits the hint because the model is set programmatically. Set [`model` on `Options`](/en/agent-sdk/typescript#options) in TypeScript or [`ClaudeAgentOptions(model=...)`](/en/agent-sdk/python#claudeagentoptions) in Python, and handle the structured `model_not_found` error to surface your own retry or model picker.
-* Use an alias such as `sonnet` or `opus` instead of a full versioned ID. Aliases track the latest release so they do not go stale. See [Model configuration](/en/model-config).
+* Use an alias such as `sonnet` or `opus` instead of a full versioned ID. Aliases resolve to a maintained default so they do not go stale. See [Model configuration](/en/model-config).
 * If the wrong model keeps coming back in the CLI, a stale ID is set somewhere. Check in [priority order](/en/model-config#setting-your-model): the `--model` flag, the `ANTHROPIC_MODEL` environment variable, then the `model` field in `.claude/settings.local.json`, your project's `.claude/settings.json`, and `~/.claude/settings.json`. Remove the stale value and Claude Code falls back to your account default.
 * For Vertex AI deployments, see [Vertex AI troubleshooting](/en/google-vertex-ai#troubleshooting).
 

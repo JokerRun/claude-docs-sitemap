@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/context-editing
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 13d54e814b1e31d83de64f4e7985493e14300903d756c030e3e775aa618cacda
+fetched_at: 2026-06-06T03:14:11.045838Z
+sha256: 947482f1f7af48991cf8e094b029419643f3b5aedd64b14292be8e6273f08232
 ---
 
 # Context editing
@@ -55,7 +55,7 @@ The `clear_thinking_20251015` strategy manages `thinking` blocks in conversation
 
 | Model class | Keep all prior thinking | Keep only the last turn's thinking |
 | --- | --- | --- |
-| Opus | Claude Opus 4.5 and later | Claude Opus 4.1 and earlier |
+| Opus | Claude Opus 4.5 and later | Claude Opus 4.1 (deprecated) and earlier |
 | Sonnet | Claude Sonnet 4.6 and later | Claude Sonnet 4.5 and earlier |
 | Haiku | (none) | All models through Claude Haiku 4.5 |
 

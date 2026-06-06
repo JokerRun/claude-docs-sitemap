@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: b967f5c38e12396a06f6c1cd90991ed30c04d2e6796a7ef8f10df9867fc81729
+fetched_at: 2026-06-06T03:14:11.045838Z
+sha256: 8700eb110803433b51f69f1b9964f6cfe0d5baef2cc5185036413e3d1aa34ca6
 ---
 
 # Computer use tool
@@ -14,7 +14,7 @@ Claude can interact with computer environments through the computer use tool, wh
 <Note>
 Computer use is in beta and requires a [beta header](/docs/en/api/beta-headers):
 - `"computer-use-2025-11-24"` for Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 4.6, and Claude Opus 4.5
-- `"computer-use-2025-01-24"` for Claude Sonnet 4.5, Claude Haiku 4.5, Claude Opus 4.1, Claude Sonnet 4 ([deprecated](/docs/en/about-claude/model-deprecations)), and Claude Opus 4 ([deprecated](/docs/en/about-claude/model-deprecations))
+- `"computer-use-2025-01-24"` for Claude Sonnet 4.5, Claude Haiku 4.5, Claude Opus 4.1 ([deprecated](/docs/en/about-claude/model-deprecations)), Claude Sonnet 4 ([deprecated](/docs/en/about-claude/model-deprecations)), and Claude Opus 4 ([deprecated](/docs/en/about-claude/model-deprecations))
 
 Reach out through the [feedback form](https://forms.gle/H6UFuXaaLywri9hz6) to share your feedback on this feature.
 </Note>
