@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/changelog
-fetched_at: 2026-06-06T03:14:11.045838Z
-sha256: 892bc5a31a8609cfc21f62c9c5903fb20d3d0c30c72ac1f24d18d8989b85eb5d
+fetched_at: 2026-06-07T03:17:21.798062Z
+sha256: 956144722171be1a461338c633605bc8d20e442e139159c3d5578d59fcafa0a7
 ---
 
 > ## Documentation Index
@@ -16,6 +16,10 @@ sha256: 892bc5a31a8609cfc21f62c9c5903fb20d3d0c30c72ac1f24d18d8989b85eb5d
 This page is generated from the [CHANGELOG.md on GitHub](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md).
 
 Run `claude --version` to check your installed version.
+
+<Update label="2.1.168" description="June 6, 2026">
+  * Bug fixes and reliability improvements
+</Update>
 
 <Update label="2.1.167" description="June 6, 2026">
   * Bug fixes and reliability improvements
