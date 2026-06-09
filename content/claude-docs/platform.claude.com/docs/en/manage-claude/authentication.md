@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/authentication
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 7d00594adc3a7edfea22a29a1f3306f3e78c4da96974446632c57f184cf37098
+fetched_at: 2026-06-09T03:16:00.501901Z
+sha256: 3c9b3690c1c8eab63a1653a8510bb933c24fe0cf6e590e20b3f43a1b45398fcd
 ---
 
 # Authentication
@@ -25,7 +25,7 @@ Both methods grant the same access to Claude API endpoints. Choose API keys to g
 API keys are static secrets that you generate in the Claude Console and pass on every request.
 
 - **Create a key:** Go to [Settings → API keys](https://platform.claude.com/settings/keys) in the Claude Console. Use [workspaces](https://platform.claude.com/settings/workspaces) to scope keys by project or environment.
-- **Send the key:** Set the `x-api-key` header on direct HTTP requests, or set the `ANTHROPIC_API_KEY` environment variable and the [client SDKs](/docs/en/api/client-sdks) pick it up automatically.
+- **Send the key:** Set the `x-api-key` header on direct HTTP requests, or set the `ANTHROPIC_API_KEY` environment variable and the [client SDKs](/docs/en/cli-sdks-libraries/overview) pick it up automatically.
 
 ```http
 POST /v1/messages
@@ -123,7 +123,7 @@ anthropic = Anthropic::Client.new
 ```
 
 ```bash CLI
-# See /docs/en/api/sdks/cli#api-key for zsh, bash, and Windows variants
+# See /docs/en/cli-sdks-libraries/cli/authentication#api-key for zsh, bash, and Windows variants
 export ANTHROPIC_API_KEY=sk-ant-api03-...
 ```
 
@@ -149,7 +149,7 @@ To configure federation, you create three resources in the Claude Console (a ser
   <Card title="WIF reference" icon="book" href="/docs/en/manage-claude/wif-reference">
     Environment variables, validation rules, profile configuration, and error reference
   </Card>
-  <Card title="Client SDKs" icon="code" href="/docs/en/api/client-sdks">
-    Python, TypeScript, Go, Java, C#, Ruby, PHP, and the CLI
+  <Card title="Client SDKs" icon="code" href="/docs/en/cli-sdks-libraries/overview">
+    Python, TypeScript, C#, Go, Java, PHP, Ruby, and the CLI
   </Card>
 </CardGroup>

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 9d508464bcb102ef4d30acb8f22a39369f3f09acbbe37a474b0e7784eb777e50
+fetched_at: 2026-06-09T03:16:00.501901Z
+sha256: bb1c4aef5f9042063b9c0a80f0f32a2632104355c7a995be2cbec67a9d9858dc
 ---
 
 # Claude Platform on AWS
@@ -14,7 +14,7 @@ Access Claude's full platform capabilities through AWS with Anthropic-managed in
 Claude Platform on AWS gives you the full Anthropic platform experience, including the Messages API, Agent Skills, code execution, and beta features, accessible through your AWS account. Unlike [Amazon Bedrock](/docs/en/build-with-claude/claude-in-amazon-bedrock), where AWS operates the inference stack, Anthropic operates Claude Platform on AWS. AWS provides the authentication layer (SigV4 or API key), IAM-based access control, and billing integration through AWS Marketplace.
 
 <Note>
-The Anthropic SDKs support Claude Platform on AWS. For per-language client availability, see [Client SDKs](/docs/en/api/client-sdks).
+The Anthropic SDKs support Claude Platform on AWS.
 </Note>
 
 ## How the platform integration works
@@ -252,7 +252,7 @@ The client reads `AWS_REGION` from the environment if `aws_region`/`awsRegion` i
 
 ## Install an SDK
 
-Anthropic's [client SDKs](/docs/en/api/client-sdks) support Claude Platform on AWS. Each SDK provides a platform-specific client class that handles SigV4 signing, region-based base URL construction, and the `anthropic-workspace-id` header.
+Anthropic's [client SDKs](/docs/en/cli-sdks-libraries/overview) support Claude Platform on AWS. Each SDK provides a platform-specific client class that handles SigV4 signing, region-based base URL construction, and the `anthropic-workspace-id` header.
 
 <Tabs>
 <Tab title="Python">
@@ -760,7 +760,7 @@ Two Claude Console roles are available: **Admin** and **Developer**. The Admin r
 
 ### Available pages
 
-The **Through AWS gateway** column indicates whether the page reads and writes data through the AWS gateway (and is therefore governed by [IAM actions](/docs/en/api/claude-platform-on-aws-iam-actions)). Pages marked **No** read organization-level metadata directly through Anthropic APIs and bypass IAM action checks.
+The **Through AWS gateway** column indicates whether the page reads and writes data through the AWS gateway (and is therefore governed by [IAM actions](/docs/en/api/claude-platform-on-aws-iam-actions)). Pages marked **No** read organization-level metadata directly from Anthropic and bypass IAM action checks.
 
 | Page | Available | Through AWS gateway | Notes |
 | :--- | :--- | :--- | :--- |

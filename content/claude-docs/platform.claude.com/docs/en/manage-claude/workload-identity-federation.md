@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/workload-identity-federation
-fetched_at: 2026-06-02T03:18:54.775717Z
-sha256: 8acac585488c99429b45467fd07e7442329ead00119eb6966e22a184cfee5ba5
+fetched_at: 2026-06-09T03:16:00.501901Z
+sha256: b2443f1270b2f7430b021954b8784e9d70e06a3a57e0fdb4f179cfc9435d2c3c
 ---
 
 # Workload Identity Federation
@@ -372,7 +372,7 @@ Every SDK resolves credentials in the same five-tier order: constructor argument
   `ANTHROPIC_API_KEY` sits above the federation tiers, so a leftover key in the
   environment silently shadows federation. When migrating a workload from API
   keys to Workload Identity Federation, confirm `ANTHROPIC_API_KEY` is unset everywhere that workload
-  runs (container env, CI secrets, shell profiles). The CLI's [`ant auth status`](/docs/en/api/sdks/cli#check-authentication-status)
+  runs (container env, CI secrets, shell profiles). The CLI's [`ant auth status`](/docs/en/cli-sdks-libraries/cli/authentication#check-authentication-status)
   command reports which source won.
 </Warning>
 

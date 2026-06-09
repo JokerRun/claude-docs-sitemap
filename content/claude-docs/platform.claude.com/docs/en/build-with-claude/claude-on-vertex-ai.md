@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai
-fetched_at: 2026-06-06T03:14:11.045838Z
-sha256: ab34ee7d1a97c45f8ae492d1cf61758dbbffa70675bc315b12927a73dd60c4f4
+fetched_at: 2026-06-09T03:16:00.501901Z
+sha256: a349f3022388accb93992e1ab1cd6bad6b0a9c43a836cec2520b741c426e7b0a
 ---
 
 # Claude on Vertex AI
@@ -16,13 +16,13 @@ The Vertex API for accessing Claude is nearly identical to the [Messages API](/d
 * In Vertex, `model` is not passed in the request body. Instead, it is specified in the Google Cloud endpoint URL.
 * In Vertex, `anthropic_version` is passed in the request body (rather than as a header), and must be set to the value `vertex-2023-10-16`.
 
-Vertex is also supported by Anthropic's official [client SDKs](/docs/en/api/client-sdks). This guide walks you through making a request to Claude on Vertex AI using one of Anthropic's client SDKs.
+Vertex is also supported by Anthropic's official [client SDKs](/docs/en/cli-sdks-libraries/overview). This guide walks you through making a request to Claude on Vertex AI using one of Anthropic's client SDKs.
 
 Note that this guide assumes you already have a GCP project that is able to use Vertex AI. See [Anthropic Claude models on Vertex AI](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/claude) for more information on the setup required and a full walkthrough.
 
 ## Install an SDK for accessing Vertex AI
 
-First, install Anthropic's [client SDK](/docs/en/api/client-sdks) for your language of choice.
+First, install Anthropic's [client SDK](/docs/en/cli-sdks-libraries/overview) for your language of choice.
 
 <Tabs>
 <Tab title="Python">
@@ -349,7 +349,7 @@ The following examples show how to generate text from Claude on Vertex AI:
   ```
 </CodeGroup>
 
-See the [client SDKs](/docs/en/api/client-sdks) and the official [Vertex AI docs](https://cloud.google.com/vertex-ai/docs) for more details.
+See the [client SDKs](/docs/en/cli-sdks-libraries/overview) and the official [Vertex AI docs](https://cloud.google.com/vertex-ai/docs) for more details.
 
 Claude is also available through [Amazon Bedrock](/docs/en/build-with-claude/claude-in-amazon-bedrock), [Claude Platform on AWS](/docs/en/build-with-claude/claude-platform-on-aws), and [Microsoft Foundry](/docs/en/build-with-claude/claude-in-microsoft-foundry).
 

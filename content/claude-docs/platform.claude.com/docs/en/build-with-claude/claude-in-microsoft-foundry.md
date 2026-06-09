@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry
-fetched_at: 2026-06-06T03:14:11.045838Z
-sha256: ce25971bbd68ebb99a1de69c9d8cdee916e85b4cf3fc6640146b92c13b1412a5
+fetched_at: 2026-06-09T03:16:00.501901Z
+sha256: 8879fde1fe64afb8ef016985df02be47f6f11a58b421777d2ec5be3c2a4563b3
 ---
 
 # Claude in Microsoft Foundry
@@ -16,7 +16,7 @@ This guide walks you through the process of setting up and making API calls to C
 Regional availability: At launch, Claude is available as a Global Standard deployment type in Foundry resources. Pricing for Claude in the Microsoft Marketplace uses Anthropic's standard API pricing. Visit [Pricing](https://claude.com/pricing#api) for details.
 
 <Note>
-Foundry is supported by the C#, Java, PHP, Python, and TypeScript SDKs. The Go and Ruby SDKs do not currently support Microsoft Foundry. For available SDK platform integrations, see [Client SDKs](/docs/en/api/client-sdks).
+Foundry is supported by the C#, Java, PHP, Python, and TypeScript SDKs. The Go and Ruby SDKs do not currently support Microsoft Foundry.
 </Note>
 
 ## Preview
@@ -33,7 +33,7 @@ Before you begin, ensure you have:
 
 ## Install an SDK
 
-Anthropic's [client SDKs](/docs/en/api/client-sdks) support Foundry through a platform-specific package or client class.
+Anthropic's [client SDKs](/docs/en/cli-sdks-libraries/overview) support Foundry through a platform-specific package or client class.
 
 <Tabs>
 <Tab title="Python">

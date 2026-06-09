@@ -23,7 +23,7 @@ Automated daily English sitemap collection from Claude documentation sources.
 <!-- tsv_preview_start -->
 | source | loc | lastmod | priority |
 |--------|--------|--------|--------|
-| code | https://code.claude.com/docs/en/admin-setup | 2026-06-05 |  |
+| code | https://code.claude.com/docs/en/admin-setup | 2026-06-08 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/agent-loop | 2026-05-27 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/claude-cod... | 2026-06-01 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/cost-tracking | 2026-05-05 |  |

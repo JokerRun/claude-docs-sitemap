@@ -1,7 +1,7 @@
 ---
 - source: code
   loc: https://code.claude.com/docs/en/admin-setup
-  lastmod: '2026-06-05T20:11:59.556Z'
+  lastmod: '2026-06-08T20:40:07.701Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/agent-loop
   lastmod: '2026-05-27T00:11:13.175Z'
@@ -100,7 +100,7 @@
   lastmod: '2026-06-04T23:12:20.088Z'
 - source: code
   loc: https://code.claude.com/docs/en/agents
-  lastmod: '2026-05-28T17:22:52.044Z'
+  lastmod: '2026-06-09T01:23:13.533Z'
 - source: code
   loc: https://code.claude.com/docs/en/amazon-bedrock
   lastmod: '2026-06-05T21:14:21.913Z'
@@ -121,7 +121,7 @@
   lastmod: '2026-04-28T15:54:10.733Z'
 - source: code
   loc: https://code.claude.com/docs/en/changelog
-  lastmod: '2026-06-06T23:53:39.040Z'
+  lastmod: '2026-06-08T22:04:58.279Z'
 - source: code
   loc: https://code.claude.com/docs/en/channels
   lastmod: '2026-05-11T23:27:14.149Z'
@@ -169,7 +169,7 @@
   lastmod: '2026-05-25T19:31:27.580Z'
 - source: code
   loc: https://code.claude.com/docs/en/data-usage
-  lastmod: '2026-05-15T22:07:07.615Z'
+  lastmod: '2026-06-08T20:40:07.706Z'
 - source: code
   loc: https://code.claude.com/docs/en/debug-your-config
   lastmod: '2026-05-18T19:03:28.833Z'
@@ -352,7 +352,7 @@
   lastmod: '2026-06-05T20:12:17.417Z'
 - source: code
   loc: https://code.claude.com/docs/en/skills
-  lastmod: '2026-06-05T20:12:17.420Z'
+  lastmod: '2026-06-08T18:30:52.227Z'
 - source: code
   loc: https://code.claude.com/docs/en/slack
   lastmod: '2026-04-08T18:15:55.057Z'
@@ -427,13 +427,13 @@
   lastmod: '2026-06-03T18:25:43.840Z'
 - source: code
   loc: https://code.claude.com/docs/en/workflows
-  lastmod: '2026-06-02T22:07:04.216Z'
+  lastmod: '2026-06-09T01:23:13.539Z'
 - source: code
   loc: https://code.claude.com/docs/en/worktrees
   lastmod: '2026-05-30T00:09:45.912Z'
 - source: code
   loc: https://code.claude.com/docs/en/zero-data-retention
-  lastmod: '2026-05-02T18:10:10.308Z'
+  lastmod: '2026-06-08T20:40:07.704Z'
 - source: platform
   loc: https://platform.claude.com/docs
   priority: '0.8'

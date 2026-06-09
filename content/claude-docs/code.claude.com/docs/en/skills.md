@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/skills
-fetched_at: 2026-06-06T03:14:11.045838Z
-sha256: 66eff8091edc01275e41a5c1c045073fdfbc5efc1cc0a64deaceee7d8f2d59eb
+fetched_at: 2026-06-09T03:16:00.501901Z
+sha256: 49e578de5a478bdb7aaf245a1c37c2d7259b6c73a16b9c94da56e8c9579b0142
 ---
 
 > ## Documentation Index
@@ -370,7 +370,7 @@ allowed-tools: Bash(git add *) Bash(git commit *) Bash(git status *)
 ---
 ```
 
-To block a skill from using certain tools, add deny rules in your [permission settings](/en/permissions) instead.
+To remove tools from Claude's available pool while a skill is active, list them in `disallowed-tools` in the skill's frontmatter. The restriction clears when you send your next message. To block tools across all skills and prompts, add deny rules in your [permission settings](/en/permissions).
 
 ### Pass arguments to skills
 

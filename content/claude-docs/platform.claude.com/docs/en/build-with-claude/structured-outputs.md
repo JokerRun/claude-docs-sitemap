@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/structured-outputs
-fetched_at: 2026-06-02T03:18:54.775717Z
-sha256: d97872af5ecb5cff33974394cf5c20ae45ac75bfa061b4597735988d3d549ed4
+fetched_at: 2026-06-09T03:16:00.501901Z
+sha256: 8c225dd2f6ee9876f2397116d4ccd0a63a8c3fcd9e4bf97081d83e4e23b82c35
 ---
 
 # Structured outputs
@@ -1009,7 +1009,7 @@ func main() {
 </Tab>
 <Tab title="Java">
 
-Java examples on this page use [JDK 25 compact source file](https://openjdk.org/jeps/512) syntax; see the [Java SDK requirements](/docs/en/api/sdks/java#requirements) for the substitution on earlier JDKs.
+Java examples on this page use [JDK 25 compact source file](https://openjdk.org/jeps/512) syntax; see the [Java SDK requirements](/docs/en/cli-sdks-libraries/sdks/java#requirements) for the substitution on earlier JDKs.
 
 **`outputConfig(Class<T>)` method**
 

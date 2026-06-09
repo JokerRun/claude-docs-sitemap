@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/quickstart
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: e9e23e89a174fbe775bfab4152e90c67f084a3307ae79892aba2eaaaacfc861f
+fetched_at: 2026-06-09T03:16:00.501901Z
+sha256: 65556eebf4d0b2f2295f1a7b5107e113a543eba4aa083a159d4232820667ea17
 ---
 
 # Get started with Agent Skills in the API
@@ -394,6 +394,10 @@ Let's break down what each part does:
 - **`version: "latest"`:** The Skill version set to the most recently published
 - **`tools`:** Enables code execution (required for Skills)
 - **Beta headers:** `code-execution-2025-08-25` and `skills-2025-10-02`
+
+<Note>
+The examples here use the `code_execution_20250825` tool version with its matching `code-execution-2025-08-25` beta header. Skills also work with the newer [code execution tool](/docs/en/agents-and-tools/tool-use/code-execution-tool) revisions (`code_execution_20260120` and later); any code execution tool version satisfies the Skills requirement. Whichever version you use, keep its tool `type` and beta header consistent with the code execution tool page, and always include `skills-2025-10-02`.
+</Note>
 
 When you make this request, Claude automatically matches your task to the relevant Skill. Since you asked for a presentation, Claude determines the PowerPoint Skill is relevant and loads its full instructions: the second level of progressive disclosure. Then Claude executes the Skill's code to create your presentation.
 

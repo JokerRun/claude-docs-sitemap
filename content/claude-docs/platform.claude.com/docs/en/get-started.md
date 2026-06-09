@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/get-started
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 04a2de679dbc157b1d7b1dad12084d47c4888b7558ad2f7bc3b2381366aad06b
+fetched_at: 2026-06-09T03:16:00.501901Z
+sha256: 4343aa5b86e08751647e3d3cb0a453e14fdd5ead4295b2e94c1df282b9592110
 ---
 
 # Get started with Claude
@@ -83,7 +83,7 @@ Make your first API call to Claude and build a simple web search assistant.
         brew install anthropics/tap/ant
         ```
 
-        For other installation methods, see [Installation](/docs/en/api/sdks/cli#installation) in the CLI reference.
+        For other installation methods, see [Installation](/docs/en/cli-sdks-libraries/cli/quickstart#installation) in the CLI quickstart.
       </Step>
 
       <Step title="Authenticate">
@@ -99,7 +99,7 @@ Make your first API call to Claude and build a simple web search assistant.
         ant auth status
         ```
 
-        On a remote host without a browser, pass `--no-browser` to get a URL you can open on another device, then paste the returned code back into the terminal. If `ANTHROPIC_API_KEY` is set in your environment, it takes precedence over the login credentials. For non-interactive environments such as CI, see [Authentication](/docs/en/api/sdks/cli#authentication).
+        On a remote host without a browser, pass `--no-browser` to get a URL you can open on another device, then paste the returned code back into the terminal. If `ANTHROPIC_API_KEY` is set in your environment, it takes precedence over the login credentials. For non-interactive environments such as CI, see [CLI authentication options](/docs/en/cli-sdks-libraries/cli/authentication).
       </Step>
 
       <Step title="Make your first API call">
@@ -645,7 +645,7 @@ Once you're comfortable with the basics, explore further:
   <Card title="Features overview" icon="list" href="/docs/en/build-with-claude/overview">
     Browse all Claude capabilities: tools, context management, structured outputs, and more.
   </Card>
-  <Card title="Client SDKs" icon="code-brackets" href="/docs/en/api/client-sdks">
-    Reference documentation for Python, TypeScript, Java, and other client libraries.
+  <Card title="Client SDKs" icon="code-brackets" href="/docs/en/cli-sdks-libraries/overview">
+    Reference documentation for Python, TypeScript, C#, and other client libraries.
   </Card>
 </CardGroup>

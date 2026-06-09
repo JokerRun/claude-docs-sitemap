@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: c1f676b9c4e4c4afee545abe3889cf1a179d38b8d831eed9edfd5f8782b1b477
+fetched_at: 2026-06-09T03:16:00.501901Z
+sha256: e2b90b3357b20a4b1444582184a0c64714e3cb8d30e5b1f756eea0e745d590c6
 ---
 
 # Advisor tool
@@ -304,6 +304,8 @@ The advisor itself runs without tools and without context management. Its thinki
 | `caching`               | object \| null | `null` (off) | Enables prompt caching for the advisor's own transcript across calls within a conversation. See [Advisor prompt caching](#advisor-prompt-caching). |
 
 The `caching` object has the shape `{"type": "ephemeral", "ttl": "5m" | "1h"}`. Unlike `cache_control` on content blocks, this is not a breakpoint marker; it is an on/off switch. The server decides where cache boundaries go.
+
+The advisor tool also accepts the generic properties available on any tool definition: `cache_control`, `allowed_callers`, `defer_loading`, and `strict` (covered in [structured outputs](/docs/en/build-with-claude/structured-outputs)). See the [Tool reference](/docs/en/agents-and-tools/tool-use/tool-reference#tool-definition-properties) for their semantics.
 
 ## Response structure
 

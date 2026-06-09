@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/admin-setup
-fetched_at: 2026-06-06T03:14:11.045838Z
-sha256: 190b6d3439aebf12e56c26bf2a8ea1ea2cc095d4150fb4466065e2be58d604d5
+fetched_at: 2026-06-09T03:16:00.501901Z
+sha256: ae715734998dcf940dc74a09532ab32a508b24bb4614fcb43a27615800172b37
 ---
 
 > ## Documentation Index
@@ -108,11 +108,11 @@ Cloud providers expose spend through AWS Cost Explorer, GCP Billing, or Azure Co
 
 On Team, Enterprise, Claude API, and cloud provider plans, Anthropic does not train models on your code or prompts. Your API provider determines retention and compliance posture.
 
-| Topic                     | What to know                                                                    | Where to start                                 |
-| :------------------------ | :------------------------------------------------------------------------------ | :--------------------------------------------- |
-| Data usage policy         | What Anthropic collects, how long it's retained, what's never used for training | [Data usage](/en/data-usage)                   |
-| Zero Data Retention (ZDR) | Nothing stored after the request completes. Available on Claude for Enterprise  | [Zero data retention](/en/zero-data-retention) |
-| Security architecture     | Network model, encryption, authentication, audit trail                          | [Security](/en/security)                       |
+| Topic                     | What to know                                                                                         | Where to start                                 |
+| :------------------------ | :--------------------------------------------------------------------------------------------------- | :--------------------------------------------- |
+| Data usage policy         | What Anthropic collects, how long it's retained, what's never used for training                      | [Data usage](/en/data-usage)                   |
+| Zero Data Retention (ZDR) | Nothing stored after the request completes. Available to qualified accounts on Claude for Enterprise | [Zero data retention](/en/zero-data-retention) |
+| Security architecture     | Network model, encryption, authentication, audit trail                                               | [Security](/en/security)                       |
 
 If you need request-level audit logging or to route traffic by data sensitivity, place an [LLM gateway](/en/llm-gateway) between developers and your provider. For regulatory requirements and certifications, see [Legal and compliance](/en/legal-and-compliance).
 
