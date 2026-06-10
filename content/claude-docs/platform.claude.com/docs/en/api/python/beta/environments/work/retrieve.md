@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/environments/work/retrieve
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 1752dab2ff0aee88201d99643ffbb1bcc9be478226670a72cbe7ed539bf5eeec
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 6a62c7c46596df62e8c9db249ad2016e734d5ae74f73b9e1a241ca8fd4256644
 ---
 
 ## Get Work Item
@@ -27,7 +27,7 @@ Retrieve detailed information about a specific work item.
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 23 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 25 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -80,6 +80,10 @@ Retrieve detailed information about a specific work item.
     - `"cache-diagnosis-2026-04-07"`
 
     - `"thinking-token-count-2026-05-13"`
+
+    - `"server-side-fallback-2026-06-01"`
+
+    - `"fallback-credit-2026-06-01"`
 
 ### Returns
 

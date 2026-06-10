@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/environments/work/list
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 2573173ff309e335d08c2bcbf6f353e2d190506d5647234cb2bc122b553e5f6f
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: d3256eba8c35acaa43732c79d89dca21284ea3853affc4e819e9a0b0dd1698e8
 ---
 
 ## List Work Items
@@ -86,6 +86,10 @@ List work items in an environment.
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 

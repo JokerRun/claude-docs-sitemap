@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/agents/list
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 17d9f2d60747983a5e7cde5c2889733c50224bccc661c136d6186f82afc0eeaf
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 77c6aa3bdce5f16760853d6292f0ab7df41e72285a5bd7c67763e148069bcbc5
 ---
 
 ## List Agents
@@ -93,13 +93,17 @@ List Agents
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Returns
 
 - `class AgentListPageResponse:`
 
   Paginated list of agents.
 
-  - `IReadOnlyList<BetaManagedAgentsAgent> Data`
+  - `required IReadOnlyList<BetaManagedAgentsAgent> Data`
 
     List of agents.
 
@@ -136,6 +140,10 @@ List Agents
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-fable-5"ClaudeFable5`
+
+          Next generation of intelligence for the hardest knowledge work and coding problems
 
         - `"claude-opus-4-8"ClaudeOpus4_8`
 
@@ -359,19 +367,11 @@ List Agents
 
           JSON Schema for custom tool input parameters.
 
+          - `JsonElement Type "object"constant`
+
           - `IReadOnlyDictionary<string, JsonElement>? Properties`
 
-            JSON Schema properties defining the tool's input parameters.
-
-          - `IReadOnlyList<string> Required`
-
-            List of required property names.
-
-          - `Type Type`
-
-            Must be 'object' for tool input schemas.
-
-            - `"object"Object`
+          - `IReadOnlyList<string>? Required`
 
         - `required string Name`
 

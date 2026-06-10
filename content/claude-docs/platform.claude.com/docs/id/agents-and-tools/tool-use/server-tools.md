@@ -1,21 +1,21 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools
-fetched_at: 2026-04-25T03:09:48.142425Z
-sha256: 5ed9e48c18223817f4edc1202a40b0ad145458a6d91ce570f049574e77e07cf8
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 76d2834b0c6e031f0e67de8fa2091f07b3036068ba47da117e78fbbbf2fcde55
 ---
 
 # Alat server
 
-Bekerja dengan alat yang dieksekusi Anthropic: blok server_tool_use, kelanjutan pause_turn, dan penyaringan domain.
+Bekerja dengan alat yang dieksekusi Anthropic: blok server_tool_use, kelanjutan pause_turn, dan pemfilteran domain.
 
 ---
 
-Halaman ini mencakup mekanika bersama alat yang dieksekusi server: blok `server_tool_use`, kelanjutan `pause_turn`, pertimbangan ZDR, dan penyaringan domain. Untuk alat individual, lihat [referensi alat](/docs/id/agents-and-tools/tool-use/tool-reference).
+Halaman ini membahas mekanisme bersama dari alat yang dieksekusi server: blok `server_tool_use`, kelanjutan `pause_turn`, pertimbangan ZDR, dan pemfilteran domain. Untuk alat individual, lihat [referensi alat](/docs/id/agents-and-tools/tool-use/tool-reference).
 
-## Blok server_tool_use
+## Blok server_tool_use \{#the-server-tool-use-block}
 
-Blok `server_tool_use` muncul dalam respons Claude ketika alat yang dieksekusi server berjalan. Bidang `id` menggunakan awalan `srvtoolu_` untuk membedakannya dari panggilan alat klien:
+Blok `server_tool_use` muncul dalam respons Claude ketika alat yang dieksekusi server dijalankan. Field `id`-nya menggunakan prefiks `srvtoolu_` untuk membedakannya dari panggilan alat klien:
 
 ```json
 {
@@ -26,13 +26,13 @@ Blok `server_tool_use` muncul dalam respons Claude ketika alat yang dieksekusi s
 }
 ```
 
-API mengeksekusi alat secara internal. Anda melihat panggilan dan hasilnya dalam respons, tetapi Anda tidak menangani eksekusi. Tidak seperti blok `tool_use` klien, Anda tidak perlu merespons dengan `tool_result`. Blok hasil muncul segera setelah blok `server_tool_use` dalam giliran asisten yang sama.
+API mengeksekusi alat tersebut secara internal. Anda melihat panggilan dan hasilnya dalam respons, tetapi Anda tidak menangani eksekusinya. Tidak seperti blok `tool_use` klien, Anda tidak perlu merespons dengan `tool_result`. Blok hasil muncul segera setelah blok `server_tool_use` dalam giliran asisten yang sama.
 
-## Loop sisi server dan pause_turn
+## Loop sisi server dan pause_turn \{#the-server-side-loop-and-pause-turn}
 
-Saat menggunakan alat server seperti pencarian web, API dapat mengembalikan alasan penghentian `pause_turn`, menunjukkan bahwa API telah menjeda giliran yang berjalan lama.
+Saat menggunakan alat server seperti pencarian web, API dapat mengembalikan stop reason `pause_turn`, yang menunjukkan bahwa API telah menjeda giliran yang berjalan lama.
 
-Berikut cara menangani alasan penghentian `pause_turn`:
+Berikut cara menangani stop reason `pause_turn`:
 
 <CodeGroup>
 ```python Python hidelines={1..4}
@@ -40,9 +40,9 @@ import anthropic
 
 client = anthropic.Anthropic()
 
-# Initial request with web search
+# Permintaan awal dengan pencarian web
 response = client.messages.create(
-    model="claude-opus-4-7",
+    model="claude-opus-4-8",
     max_tokens=1024,
     messages=[
         {
@@ -53,9 +53,9 @@ response = client.messages.create(
     tools=[{"type": "web_search_20250305", "name": "web_search", "max_uses": 10}],
 )
 
-# Check if the response has pause_turn stop reason
+# Periksa apakah respons memiliki stop_reason pause_turn
 if response.stop_reason == "pause_turn":
-    # Continue the conversation with the paused content
+    # Lanjutkan percakapan dengan konten yang dijeda
     messages = [
         {
             "role": "user",
@@ -64,9 +64,9 @@ if response.stop_reason == "pause_turn":
         {"role": "assistant", "content": response.content},
     ]
 
-    # Send the continuation request
+    # Kirim permintaan lanjutan
     continuation = client.messages.create(
-        model="claude-opus-4-7",
+        model="claude-opus-4-8",
         max_tokens=1024,
         messages=messages,
         tools=[{"type": "web_search_20250305", "name": "web_search", "max_uses": 10}],
@@ -83,9 +83,9 @@ import Anthropic from "@anthropic-ai/sdk";
 const client = new Anthropic();
 
 async function main() {
-  // Initial request with web search
+  // Permintaan awal dengan pencarian web
   const response = await client.messages.create({
-    model: "claude-opus-4-7",
+    model: "claude-opus-4-8",
     max_tokens: 1024,
     messages: [
       {
@@ -103,9 +103,9 @@ async function main() {
     ]
   });
 
-  // Check if the response has pause_turn stop reason
+  // Periksa apakah respons memiliki stop_reason pause_turn
   if (response.stop_reason === "pause_turn") {
-    // Continue the conversation with the paused content
+    // Lanjutkan percakapan dengan konten yang dijeda
     const messages: Anthropic.MessageParam[] = [
       {
         role: "user",
@@ -115,9 +115,9 @@ async function main() {
       { role: "assistant", content: response.content }
     ];
 
-    // Send the continuation request
+    // Kirim permintaan lanjutan
     const continuation = await client.messages.create({
-      model: "claude-opus-4-7",
+      model: "claude-opus-4-8",
       max_tokens: 1024,
       messages: messages,
       tools: [
@@ -153,7 +153,7 @@ class Program
 
         var parameters = new MessageCreateParams
         {
-            Model = "claude-opus-4-7",
+            Model = "claude-opus-4-8",
             MaxTokens = 1024,
             Messages = [
                 new() {
@@ -170,7 +170,7 @@ class Program
         {
             var continuationParams = new MessageCreateParams
             {
-                Model = "claude-opus-4-7",
+                Model = "claude-opus-4-8",
                 MaxTokens = 1024,
                 Messages = [
                     new() {
@@ -217,7 +217,7 @@ func main() {
 	}
 
 	response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-		Model:     anthropic.ModelClaudeOpus4_7,
+		Model:     anthropic.ModelClaudeOpus4_8,
 		MaxTokens: 1024,
 		Messages: []anthropic.MessageParam{
 			anthropic.NewUserMessage(anthropic.NewTextBlock("Search for comprehensive information about quantum computing breakthroughs in 2025")),
@@ -229,14 +229,14 @@ func main() {
 	}
 
 	if response.StopReason == "pause_turn" {
-		// Convert response content to param types for the assistant message
+		// Konversi konten respons ke tipe param untuk pesan asisten
 		var contentParams []anthropic.ContentBlockParamUnion
 		for _, block := range response.Content {
 			contentParams = append(contentParams, block.ToParam())
 		}
 
 		continuation, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-			Model:     anthropic.ModelClaudeOpus4_7,
+			Model:     anthropic.ModelClaudeOpus4_8,
 			MaxTokens: 1024,
 			Messages: []anthropic.MessageParam{
 				anthropic.NewUserMessage(anthropic.NewTextBlock("Search for comprehensive information about quantum computing breakthroughs in 2025")),
@@ -266,7 +266,7 @@ void main() {
     AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
     MessageCreateParams params = MessageCreateParams.builder()
-        .model("claude-opus-4-7")
+        .model("claude-opus-4-8")
         .maxTokens(1024L)
         .addUserMessage("Search for comprehensive information about quantum computing breakthroughs in 2025")
         .addTool(WebSearchTool20250305.builder()
@@ -279,7 +279,7 @@ void main() {
     if (response.stopReason().isPresent()
             && response.stopReason().get().equals(StopReason.PAUSE_TURN)) {
         MessageCreateParams continuationParams = MessageCreateParams.builder()
-            .model("claude-opus-4-7")
+            .model("claude-opus-4-8")
             .maxTokens(1024L)
             .addUserMessage("Search for comprehensive information about quantum computing breakthroughs in 2025")
             .addMessage(response)
@@ -301,7 +301,7 @@ void main() {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 $response = $client->messages->create(
     maxTokens: 1024,
@@ -311,7 +311,7 @@ $response = $client->messages->create(
             'content' => 'Search for comprehensive information about quantum computing breakthroughs in 2025'
         ]
     ],
-    model: 'claude-opus-4-7',
+    model: 'claude-opus-4-8',
     tools: [
         [
             'type' => 'web_search_20250305',
@@ -336,7 +336,7 @@ if ($response->stopReason === 'pause_turn') {
     $continuation = $client->messages->create(
         maxTokens: 1024,
         messages: $messages,
-        model: 'claude-opus-4-7',
+        model: 'claude-opus-4-8',
         tools: [
             [
                 'type' => 'web_search_20250305',
@@ -358,7 +358,7 @@ require "anthropic"
 client = Anthropic::Client.new
 
 response = client.messages.create(
-  model: "claude-opus-4-7",
+  model: "claude-opus-4-8",
   max_tokens: 1024,
   messages: [
     {
@@ -389,7 +389,7 @@ if response.stop_reason == :pause_turn
   ]
 
   continuation = client.messages.create(
-    model: "claude-opus-4-7",
+    model: "claude-opus-4-8",
     max_tokens: 1024,
     messages: messages,
     tools: [
@@ -409,17 +409,17 @@ end
 </CodeGroup>
 
 Saat menangani `pause_turn`:
-- **Lanjutkan percakapan:** Teruskan respons yang dijeda kembali apa adanya dalam permintaan berikutnya untuk membiarkan Claude melanjutkan gilirannya
-- **Modifikasi jika diperlukan:** Anda dapat secara opsional memodifikasi konten sebelum melanjutkan jika Anda ingin mengganggu atau mengalihkan percakapan
+- **Lanjutkan percakapan:** Kirim kembali respons yang dijeda apa adanya dalam permintaan berikutnya agar Claude dapat melanjutkan gilirannya
+- **Modifikasi jika diperlukan:** Anda dapat secara opsional memodifikasi konten sebelum melanjutkan jika Anda ingin menginterupsi atau mengalihkan percakapan
 - **Pertahankan status alat:** Sertakan alat yang sama dalam permintaan kelanjutan untuk mempertahankan fungsionalitas
 
-## ZDR dan allowed_callers
+## ZDR dan allowed_callers \{#zdr-and-allowed-callers}
 
-Versi dasar pencarian web (`web_search_20250305`) dan pengambilan web (`web_fetch_20250910`) memenuhi syarat untuk [Zero Data Retention (ZDR)](/docs/id/build-with-claude/zero-data-retention).
+Versi dasar dari pencarian web (`web_search_20250305`) dan pengambilan web (`web_fetch_20250910`) memenuhi syarat untuk [Zero Data Retention (ZDR)](/docs/id/manage-claude/api-and-data-retention).
 
-Versi `_20260209` dengan penyaringan dinamis **bukan** memenuhi syarat ZDR secara default karena penyaringan dinamis bergantung pada eksekusi kode secara internal.
+Versi `_20260209` dengan pemfilteran dinamis **tidak** memenuhi syarat ZDR secara default karena pemfilteran dinamis bergantung pada eksekusi kode secara internal.
 
-Untuk menggunakan alat server `_20260209` dengan ZDR, nonaktifkan penyaringan dinamis dengan menetapkan `"allowed_callers": ["direct"]` pada alat:
+Untuk menggunakan alat server `_20260209` dengan ZDR, nonaktifkan pemfilteran dinamis dengan mengatur `"allowed_callers": ["direct"]` pada alat tersebut:
 
 ```json
 {
@@ -432,74 +432,76 @@ Untuk menggunakan alat server `_20260209` dengan ZDR, nonaktifkan penyaringan di
 Ini membatasi alat hanya untuk pemanggilan langsung, melewati langkah eksekusi kode internal.
 
 <Note>
-Meskipun alat pengambilan web itu sendiri memenuhi syarat ZDR, penerbit situs web dapat mempertahankan parameter apa pun yang diteruskan ke URL jika Claude mengambil konten dari situs mereka.
+Bahkan ketika pengambilan web digunakan dalam konfigurasi yang memenuhi syarat ZDR, penerbit situs web dapat menyimpan parameter apa pun yang diteruskan ke URL jika Claude mengambil konten dari situs mereka.
 </Note>
 
-## Penyaringan domain
+## Pemfilteran domain \{#domain-filtering}
 
 Alat server yang mengakses web menerima parameter `allowed_domains` dan `blocked_domains` untuk mengontrol domain mana yang dapat dijangkau Claude.
 
 Saat menggunakan filter domain:
 
-- Domain tidak boleh menyertakan skema HTTP/HTTPS (gunakan `example.com` bukan `https://example.com`)
-- Subdomain secara otomatis disertakan (`example.com` mencakup `docs.example.com`)
-- Subdomain spesifik membatasi hasil hanya ke subdomain itu (`docs.example.com` mengembalikan hanya hasil dari subdomain itu, bukan dari `example.com` atau `api.example.com`)
-- Subpath didukung dan cocok dengan apa pun setelah path (`example.com/blog` cocok dengan `example.com/blog/post-1`)
+- Domain tidak boleh menyertakan skema HTTP/HTTPS (gunakan `example.com` alih-alih `https://example.com`)
+- Subdomain disertakan secara otomatis (`example.com` mencakup `docs.example.com`)
+- Subdomain spesifik membatasi hasil hanya ke subdomain tersebut (`docs.example.com` hanya mengembalikan hasil dari subdomain tersebut, bukan dari `example.com` atau `api.example.com`)
+- Subpath didukung dan mencocokkan apa pun setelah path tersebut (`example.com/blog` cocok dengan `example.com/blog/post-1`)
 - Anda dapat menggunakan `allowed_domains` atau `blocked_domains`, tetapi tidak keduanya dalam permintaan yang sama
 
 **Dukungan wildcard:**
 
-- Hanya satu wildcard (`*`) yang diizinkan per entri domain, dan harus muncul setelah bagian domain (di path)
+- Hanya satu wildcard (`*`) yang diizinkan per entri domain, dan harus muncul setelah bagian domain (di dalam path)
 - Valid: `example.com/*`, `example.com/*/articles`
 - Tidak valid: `*.example.com`, `ex*.com`, `example.com/*/news/*`
 
-Format domain yang tidak valid mengembalikan kesalahan alat `invalid_tool_input`.
+Format domain yang tidak valid mengembalikan error alat `invalid_tool_input`.
 
 <Note>
-Pembatasan domain tingkat permintaan harus kompatibel dengan pembatasan domain tingkat organisasi yang dikonfigurasi di Console. Domain tingkat permintaan hanya dapat membatasi domain lebih lanjut, bukan mengganti atau memperluas di luar daftar tingkat organisasi. Jika permintaan Anda menyertakan domain yang bertentangan dengan pengaturan organisasi, API mengembalikan kesalahan validasi.
+Pembatasan domain tingkat permintaan harus kompatibel dengan pembatasan domain tingkat organisasi yang dikonfigurasi di Claude Console. Domain tingkat permintaan hanya dapat membatasi domain lebih lanjut, bukan menimpa atau memperluas melampaui daftar tingkat organisasi. Jika permintaan Anda menyertakan domain yang bertentangan dengan pengaturan organisasi, API mengembalikan error validasi.
 </Note>
 
 <Warning>
-Waspadai bahwa karakter Unicode dalam nama domain dapat menciptakan kerentanan keamanan melalui serangan homograf, di mana karakter yang terlihat serupa dari skrip berbeda dapat melewati filter domain. Misalnya, `аmazon.com` (menggunakan 'а' Cyrillic) mungkin terlihat identik dengan `amazon.com` tetapi mewakili domain yang berbeda.
+Perlu diketahui bahwa karakter Unicode dalam nama domain dapat menciptakan kerentanan keamanan melalui serangan homograf, di mana karakter yang secara visual mirip dari skrip yang berbeda dapat melewati filter domain. Misalnya, `аmazon.com` (menggunakan 'а' Sirilik) mungkin tampak identik dengan `amazon.com` tetapi mewakili domain yang berbeda.
 
 Saat mengonfigurasi daftar izin/blokir domain:
-- Gunakan nama domain ASCII-only jika memungkinkan
-- Pertimbangkan bahwa parser URL dapat menangani normalisasi Unicode secara berbeda
+- Gunakan nama domain ASCII saja jika memungkinkan
+- Pertimbangkan bahwa parser URL mungkin menangani normalisasi Unicode secara berbeda
 - Uji filter domain Anda dengan variasi homograf potensial
-- Audit konfigurasi domain Anda secara teratur untuk karakter Unicode yang mencurigakan
+- Audit konfigurasi domain Anda secara berkala untuk karakter Unicode yang mencurigakan
 </Warning>
 
-## Penyaringan dinamis dengan eksekusi kode
+## Pemfilteran dinamis dengan eksekusi kode \{#dynamic-filtering-with-code-execution}
 
 Versi `_20260209` dari pencarian web dan pengambilan web menggunakan eksekusi kode secara internal untuk menerapkan filter dinamis terhadap hasil pencarian.
 
 <Warning>
-Menyertakan alat `code_execution` mandiri bersama versi `_20260209` dari alat web menciptakan dua lingkungan eksekusi, yang dapat membingungkan model. Gunakan satu atau yang lain, atau pin keduanya ke versi yang sama.
+Menyertakan alat `code_execution` mandiri bersama dengan versi `_20260209` dari alat web akan menciptakan dua lingkungan eksekusi, yang dapat membingungkan model. Gunakan salah satu saja, atau sematkan keduanya ke versi yang sama.
 </Warning>
 
-## Streaming acara alat server
+## Streaming event alat server \{#streaming-server-tool-events}
 
-Acara alat server streaming sebagai bagian dari aliran SSE normal. Blok `server_tool_use` dan hasilnya tiba sebagai acara `content_block_start` dan `content_block_delta`, dengan cara yang sama teks dan panggilan alat klien stream.
+Event alat server di-stream sebagai bagian dari alur SSE normal. Blok `server_tool_use` dan hasilnya tiba sebagai event `content_block_start` dan `content_block_delta`, dengan cara yang sama seperti teks dan panggilan alat klien di-stream.
 
-Lihat [Streaming](/docs/id/build-with-claude/streaming) untuk referensi acara lengkap. Halaman alat individual mendokumentasikan nama acara khusus alat di mana mereka berbeda.
+Lihat [Streaming](/docs/id/build-with-claude/streaming) untuk referensi event lengkap. Halaman alat individual mendokumentasikan nama event spesifik alat jika berbeda.
 
-## Permintaan batch
+## Permintaan batch \{#batch-requests}
 
-Semua alat server mendukung pemrosesan batch. Lihat [Pemrosesan batch](/docs/id/build-with-claude/batch-processing).
+Semua alat server mendukung pemrosesan batch. Dalam sebuah batch, loop agentik berjalan sama seperti pada permintaan sinkron, dengan batas iterasi per giliran yang lebih tinggi. Jika loop mencapai batas tersebut, respons berakhir dengan `stop_reason: "pause_turn"`; Anda dapat melanjutkannya dengan mengirimkan permintaan lanjutan berisi konten yang dikembalikan. Lihat [Alat server dan loop agentik](/docs/id/build-with-claude/batch-processing#server-tools-and-the-agentic-loop) untuk detailnya.
 
-## Langkah berikutnya
+Beban kerja batch yang umum untuk alat server meliputi memperkaya dataset atau katalog dengan informasi yang diambil dari web, memeriksa sekumpulan besar dokumen terhadap sumber terkini, memantau daftar halaman atau topik dari waktu ke waktu, dan menjalankan kode analisis pada banyak file.
+
+## Langkah selanjutnya \{#next-steps}
 
 <CardGroup cols={2}>
   <Card title="Pencarian web" icon="magnifying-glass" href="/docs/id/agents-and-tools/tool-use/web-search-tool">
-    Cari web dan kutip hasil.
+    Cari di web dan kutip hasilnya.
   </Card>
   <Card title="Pengambilan web" icon="globe" href="/docs/id/agents-and-tools/tool-use/web-fetch-tool">
-    Ambil konten dari URL spesifik.
+    Ambil konten dari URL tertentu.
   </Card>
   <Card title="Eksekusi kode" icon="terminal" href="/docs/id/agents-and-tools/tool-use/code-execution-tool">
-    Jalankan Python dalam kontainer bersandbox.
+    Jalankan Python dalam kontainer sandbox.
   </Card>
   <Card title="Pencarian alat" icon="list-magnifying-glass" href="/docs/id/agents-and-tools/tool-use/tool-search-tool">
-    Temukan dan muat alat sesuai permintaan.
+    Temukan dan muat alat sesuai kebutuhan.
   </Card>
 </CardGroup>

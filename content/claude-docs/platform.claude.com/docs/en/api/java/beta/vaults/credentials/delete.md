@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/credentials/delete
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: b448b62290e1e0d940c9e5e27cb4a4e1356899cb099a1f3370cc8211913da84b
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: c6cd45107918fbd067e28f47dcc260e182e61e7a84d166f6b52076c653b6260e
 ---
 
 ## Delete Credential
@@ -76,6 +76,10 @@ Delete Credential
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
+
+    - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
+
+    - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
 
 ### Returns
 

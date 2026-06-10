@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/messages/batches/create
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 8a6e8abfb99f5f191c6f387b1d469fe4163aef047c33088dfa4877ee50d36d7b
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: ffcb16b65babab4d17b1300c1ec30596634a1a5742814b959d3694b3992a86bd
 ---
 
 ## Create a Message Batch
@@ -877,6 +877,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                     - `const ToolSearchToolResultErrorToolSearchToolResultError ToolSearchToolResultError = "tool_search_tool_result_error"`
 
+                  - `ErrorMessage string`
+
                 - `type ToolSearchToolSearchResultBlockParamResp struct{…}`
 
                   - `ToolReferences []ToolReferenceBlockParamResp`
@@ -966,6 +968,14 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           The model that will complete your prompt.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `const ModelClaudeFable5 Model = "claude-fable-5"`
+
+            Next generation of intelligence for the hardest knowledge work and coding problems
+
+          - `const ModelClaudeMythos5 Model = "claude-mythos-5"`
+
+            Most capable model for cybersecurity and biology research
 
           - `const ModelClaudeOpus4_8 Model = "claude-opus-4-8"`
 

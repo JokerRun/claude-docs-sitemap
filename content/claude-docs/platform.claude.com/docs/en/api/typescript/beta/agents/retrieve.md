@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/agents/retrieve
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: c714c9d0889f5f13d2a87b939a2d61b918077d3a8a7471e11f9b26d4f4e8dea0
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: e507f5586fc29565cd64fef5f703033acedb18f26fb6e8a31907168fcc46fe85
 ---
 
 ## Get Agent
@@ -29,7 +29,7 @@ Get Agent
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 23 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -83,6 +83,10 @@ Get Agent
 
       - `"thinking-token-count-2026-05-13"`
 
+      - `"server-side-fallback-2026-06-01"`
+
+      - `"fallback-credit-2026-06-01"`
+
 ### Returns
 
 - `BetaManagedAgentsAgent`
@@ -123,7 +127,11 @@ Get Agent
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `"claude-opus-4-8" | "claude-opus-4-7" | "claude-opus-4-6" | 7 more`
+      - `"claude-fable-5" | "claude-opus-4-8" | "claude-opus-4-7" | 8 more`
+
+        - `"claude-fable-5"`
+
+          Next generation of intelligence for the hardest knowledge work and coding problems
 
         - `"claude-opus-4-8"`
 
@@ -349,19 +357,13 @@ Get Agent
 
         JSON Schema for custom tool input parameters.
 
-        - `properties?: Record<string, unknown> | null`
-
-          JSON Schema properties defining the tool's input parameters.
-
-        - `required?: Array<string>`
-
-          List of required property names.
-
-        - `type?: "object"`
-
-          Must be 'object' for tool input schemas.
+        - `type: "object"`
 
           - `"object"`
+
+        - `properties?: Record<string, unknown> | null`
+
+        - `required?: Array<string> | null`
 
       - `name: string`
 

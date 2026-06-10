@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/php/beta/agents
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 850654cb4a189d6cd0394a8ba2196983f8ff0c4fc0bd2ea3edec10d440e421d0
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: f274b8c02051c2c69419d92b912218b56586c2540cc3bed226ca8ea831e383e6
 ---
 
 # Agents
@@ -23,11 +23,11 @@ Create Agent
 
 - `name: string`
 
-  Human-readable name for the agent. 1-256 characters.
+  Human-readable name for the agent.
 
 - `description?:optional string`
 
-  Description of what the agent does. Up to 2048 characters.
+  Description of what the agent does.
 
 - `mcpServers?:optional list<BetaManagedAgentsURLMCPServerParams>`
 
@@ -43,11 +43,11 @@ Create Agent
 
 - `skills?:optional list<BetaManagedAgentsSkillParams>`
 
-  Skills available to the agent. Maximum 20.
+  Skills available to the agent.
 
 - `system?:optional string`
 
-  System prompt for the agent. Up to 100,000 characters.
+  System prompt for the agent.
 
 - `tools?:optional list<Tool>`
 
@@ -575,7 +575,7 @@ Update Agent
 
 - `description?:optional string`
 
-  Description. Up to 2048 characters. Omit to preserve; send empty string or null to clear.
+  Description. Omit to preserve; send empty string or null to clear.
 
 - `mcpServers?:optional list<BetaManagedAgentsURLMCPServerParams>`
 
@@ -595,15 +595,15 @@ Update Agent
 
 - `name?:optional string`
 
-  Human-readable name. 1-256 characters. Omit to preserve. Cannot be cleared.
+  Human-readable name. Must be non-empty. Omit to preserve. Cannot be cleared.
 
 - `skills?:optional list<BetaManagedAgentsSkillParams>`
 
-  Skills. Full replacement. Omit to preserve; send empty array or null to clear. Maximum 20.
+  Skills. Full replacement. Omit to preserve; send empty array or null to clear.
 
 - `system?:optional string`
 
-  System prompt. Up to 100,000 characters. Omit to preserve; send empty string or null to clear.
+  System prompt. Omit to preserve; send empty string or null to clear.
 
 - `tools?:optional list<Tool>`
 
@@ -1239,17 +1239,11 @@ var_dump($betaManagedAgentsAgent);
 
 - `BetaManagedAgentsCustomToolInputSchema`
 
+  - `"object" type`
+
   - `?array<string,mixed> properties`
 
-    JSON Schema properties defining the tool's input parameters.
-
   - `?list<string> required`
-
-    List of required property names.
-
-  - `?Type type`
-
-    Must be 'object' for tool input schemas.
 
 ### Beta Managed Agents Custom Tool Params
 
@@ -1364,6 +1358,10 @@ var_dump($betaManagedAgentsAgent);
 ### Beta Managed Agents Model
 
 - `BetaManagedAgentsModel`
+
+  - `"claude-fable-5"`
+
+    Next generation of intelligence for the hardest knowledge work and coding problems
 
   - `"claude-opus-4-8"`
 

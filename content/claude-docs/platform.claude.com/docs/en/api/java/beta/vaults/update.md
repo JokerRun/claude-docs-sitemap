@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/update
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 6f64d145dfd5998c359e3e1eb7962d627465a127afb9578177ff88f75635a502
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 7ecdc2f6e4fabbf6ed28c0ebf3991b2bc5e4fb70330ac1aa11471d2161592b68
 ---
 
 ## Update Vault
@@ -74,6 +74,10 @@ Update Vault
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
+
+    - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
+
+    - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
 
   - `Optional<String> displayName`
 

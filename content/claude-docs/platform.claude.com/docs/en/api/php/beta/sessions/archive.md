@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/php/beta/sessions/archive
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 53a497b822028581ce01d35979b1948beffbcf82c3f4a8223decaac413737ebd
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 3ba7b7e56a17cc8bcf480fa585e36fc1d8d91ddac0b18899e79d7fe09b77e092
 ---
 
 ## Archive Session
@@ -72,6 +72,10 @@ Archive Session
   - `list<string> vaultIDs`
 
     Vault IDs attached to the session at creation. Empty when no vaults were supplied.
+
+  - `?string deploymentID`
+
+    Deployment ID when the session was created from a deployment reference. Null otherwise.
 
 ### Example
 
@@ -252,6 +256,7 @@ var_dump($betaManagedAgentsSession);
   },
   "vault_ids": [
     "vlt_011CZkZDLs7fYzm1hXNPeRjv"
-  ]
+  ],
+  "deployment_id": "deployment_id"
 }
 ```

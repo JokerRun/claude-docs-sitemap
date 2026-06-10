@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/sessions/archive
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: a6346712460ea4f992eace3503da94b8a0045f8b201c970d2e9f2e7cc802c33e
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 050f182c32bedab4cd9e7d9c00f620fd2c9a0ef42f40b1010a264bd04fc6f921
 ---
 
 ## Archive Session
@@ -23,7 +23,7 @@ Archive Session
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 23 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 25 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -77,6 +77,10 @@ Archive Session
 
     - `:"thinking-token-count-2026-05-13"`
 
+    - `:"server-side-fallback-2026-06-01"`
+
+    - `:"fallback-credit-2026-06-01"`
+
 ### Returns
 
 - `class BetaManagedAgentsSession`
@@ -113,11 +117,15 @@ Archive Session
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-        - `BetaManagedAgentsModel = :"claude-opus-4-8" | :"claude-opus-4-7" | :"claude-opus-4-6" | 7 more`
+        - `BetaManagedAgentsModel = :"claude-fable-5" | :"claude-opus-4-8" | :"claude-opus-4-7" | 8 more`
 
           The model that will power your agent.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `:"claude-fable-5"`
+
+            Next generation of intelligence for the hardest knowledge work and coding problems
 
           - `:"claude-opus-4-8"`
 
@@ -347,19 +355,13 @@ Archive Session
 
               JSON Schema for custom tool input parameters.
 
-              - `properties: Hash[Symbol, untyped]`
-
-                JSON Schema properties defining the tool's input parameters.
-
-              - `required: Array[String]`
-
-                List of required property names.
-
               - `type: :object`
 
-                Must be 'object' for tool input schemas.
-
                 - `:object`
+
+              - `properties: Hash[Symbol, untyped]`
+
+              - `required: Array[String]`
 
             - `name: String`
 
@@ -617,6 +619,10 @@ Archive Session
 
     Vault IDs attached to the session at creation. Empty when no vaults were supplied.
 
+  - `deployment_id: String`
+
+    Deployment ID when the session was created from a deployment reference. Null otherwise.
+
 ### Example
 
 ```ruby
@@ -792,6 +798,7 @@ puts(beta_managed_agents_session)
   },
   "vault_ids": [
     "vlt_011CZkZDLs7fYzm1hXNPeRjv"
-  ]
+  ],
+  "deployment_id": "deployment_id"
 }
 ```

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/streaming-output
-fetched_at: 2026-06-02T03:18:54.775717Z
-sha256: 1e1d63d26fb98f75fa0a15f7cdcdb824e47ad435ee37915ce23491df458b6486
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 373f30b609f22d74493bb8fd4e3f020b36e55ebc4ad2aeebefdf0ab891fbb7b5
 ---
 
 > ## Documentation Index
@@ -104,6 +104,7 @@ Both contain raw Claude API events, not accumulated text. You need to extract an
     parent_tool_use_id: string | null;
     uuid: UUID;
     session_id: string;
+    ttft_ms?: number; // Time to first token in ms, present only on message_start events
   };
   ```
 </CodeGroup>

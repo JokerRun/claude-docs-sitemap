@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/user_profiles/update
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 48423d07d25a1739eb6e841cb18e0d9d4f451441f5f9b7f28d1dfd87cd30f159
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: f30f4070fc91be59f413d7adf2eb4b366fba2ca1b06f87922145ac8c915eaafb
 ---
 
 ## Update User Profile
@@ -100,6 +100,10 @@ Update User Profile
       - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
 
       - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
+
+      - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
+
+      - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
 
 ### Returns
 

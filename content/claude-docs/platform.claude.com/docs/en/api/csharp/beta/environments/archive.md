@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/environments/archive
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 8160fc95dac81f5d560e3a63deac624dae3d2f46d8c51e37c533f876ab920e26
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 999c7f5d5275f72a7b0f2677efb0c158bffff98cd319bec2c6973a2a56269eee
 ---
 
 ## Archive Environment
@@ -74,6 +74,10 @@ Archive an environment by ID. Archived environments cannot be used to create new
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 

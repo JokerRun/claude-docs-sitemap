@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/sessions/retrieve
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 903ec785c85e6a31246af37664586f1e77b1e77b347b8b0492f2742882c9fcfa
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 68fd3472c6c8a6a9495333f9a2a2f47409715dc5ea55283d35776ff8815bb159
 ---
 
 ## Get Session
@@ -77,6 +77,10 @@ Get Session
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Returns
 
 - `class BetaManagedAgentsSession:`
@@ -112,6 +116,10 @@ Get Session
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-fable-5"ClaudeFable5`
+
+          Next generation of intelligence for the hardest knowledge work and coding problems
 
         - `"claude-opus-4-8"ClaudeOpus4_8`
 
@@ -339,19 +347,11 @@ Get Session
 
               JSON Schema for custom tool input parameters.
 
+              - `JsonElement Type "object"constant`
+
               - `IReadOnlyDictionary<string, JsonElement>? Properties`
 
-                JSON Schema properties defining the tool's input parameters.
-
-              - `IReadOnlyList<string> Required`
-
-                List of required property names.
-
-              - `Type Type`
-
-                Must be 'object' for tool input schemas.
-
-                - `"object"Object`
+              - `IReadOnlyList<string>? Required`
 
             - `required string Name`
 
@@ -609,6 +609,10 @@ Get Session
 
     Vault IDs attached to the session at creation. Empty when no vaults were supplied.
 
+  - `string? DeploymentID`
+
+    Deployment ID when the session was created from a deployment reference. Null otherwise.
+
 ### Example
 
 ```csharp
@@ -785,6 +789,7 @@ Console.WriteLine(betaManagedAgentsSession);
   },
   "vault_ids": [
     "vlt_011CZkZDLs7fYzm1hXNPeRjv"
-  ]
+  ],
+  "deployment_id": "deployment_id"
 }
 ```

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/agents/create
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: b1d2de90e4f6c1937b8f9e7ce56becd56bce64c0101ddb18b7f519694474290c
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 2f207cd59a92ba561971da4f6c924212ed69cb0038e068d6c5ebb0b9f3dba1cf
 ---
 
 ## Create Agent
@@ -36,6 +36,10 @@ Create Agent
           The model that will power your agent.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `const BetaManagedAgentsModelClaudeFable5 BetaManagedAgentsModel = "claude-fable-5"`
+
+            Next generation of intelligence for the hardest knowledge work and coding problems
 
           - `const BetaManagedAgentsModelClaudeOpus4_8 BetaManagedAgentsModel = "claude-opus-4-8"`
 
@@ -89,11 +93,11 @@ Create Agent
 
   - `Name param.Field[string]`
 
-    Body param: Human-readable name for the agent. 1-256 characters.
+    Body param: Human-readable name for the agent.
 
   - `Description param.Field[string]`
 
-    Body param: Description of what the agent does. Up to 2048 characters.
+    Body param: Description of what the agent does.
 
   - `MCPServers param.Field[[]BetaManagedAgentsURLMCPServerParamsResp]`
 
@@ -121,7 +125,7 @@ Create Agent
 
   - `Skills param.Field[[]BetaManagedAgentsSkillParamsUnionResp]`
 
-    Body param: Skills available to the agent. Maximum 20.
+    Body param: Skills available to the agent.
 
     - `type BetaManagedAgentsAnthropicSkillParamsResp struct{…}`
 
@@ -157,7 +161,7 @@ Create Agent
 
   - `System param.Field[string]`
 
-    Body param: System prompt for the agent. Up to 100,000 characters.
+    Body param: System prompt for the agent.
 
   - `Tools param.Field[[]BetaAgentNewParamsToolUnion]`
 
@@ -307,19 +311,13 @@ Create Agent
 
         JSON Schema for custom tool input parameters.
 
+        - `Type Object`
+
+          - `const ObjectObject Object = "object"`
+
         - `Properties map[string, any]`
 
-          JSON Schema properties defining the tool's input parameters.
-
         - `Required []string`
-
-          List of required property names.
-
-        - `Type BetaManagedAgentsCustomToolInputSchemaType`
-
-          Must be 'object' for tool input schemas.
-
-          - `const BetaManagedAgentsCustomToolInputSchemaTypeObject BetaManagedAgentsCustomToolInputSchemaType = "object"`
 
       - `Name string`
 
@@ -389,6 +387,10 @@ Create Agent
 
       - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
 
+      - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
+
+      - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
+
 ### Returns
 
 - `type BetaManagedAgentsAgent struct{…}`
@@ -434,6 +436,10 @@ Create Agent
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `const BetaManagedAgentsModelClaudeFable5 BetaManagedAgentsModel = "claude-fable-5"`
+
+          Next generation of intelligence for the hardest knowledge work and coding problems
 
         - `const BetaManagedAgentsModelClaudeOpus4_8 BetaManagedAgentsModel = "claude-opus-4-8"`
 
@@ -659,19 +665,13 @@ Create Agent
 
         JSON Schema for custom tool input parameters.
 
+        - `Type Object`
+
+          - `const ObjectObject Object = "object"`
+
         - `Properties map[string, any]`
 
-          JSON Schema properties defining the tool's input parameters.
-
         - `Required []string`
-
-          List of required property names.
-
-        - `Type BetaManagedAgentsCustomToolInputSchemaType`
-
-          Must be 'object' for tool input schemas.
-
-          - `const BetaManagedAgentsCustomToolInputSchemaTypeObject BetaManagedAgentsCustomToolInputSchemaType = "object"`
 
       - `Name string`
 

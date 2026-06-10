@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/changelog
-fetched_at: 2026-06-09T03:16:00.501901Z
-sha256: b3b2d1adea215d4f80620162e46ee3aff6146eb08d2445e3bd6164971ccf4470
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 6037e4130f2faf5244e5747da420388855bf7973ea81ba0c586ea6b0bb037f5a
 ---
 
 > ## Documentation Index
@@ -17,7 +17,13 @@ This page is generated from the [CHANGELOG.md on GitHub](https://github.com/anth
 
 Run `claude --version` to check your installed version.
 
+<Update label="2.1.170" description="June 9, 2026">
+  * Introducing Claude Fable 5: a Mythos-class model that we’ve made safe for general use. Fable’s capabilities exceed those of any model we’ve ever made generally available. Update to version 2.1.170 for access. [https://www.anthropic.com/news/claude-fable-5-mythos-5](https://www.anthropic.com/news/claude-fable-5-mythos-5)
+  * Fixed sessions not saving transcripts (and not appearing in --resume) when launched from the VS Code integrated terminal or any shell that inherited Claude Code environment variables.
+</Update>
+
 <Update label="2.1.169" description="June 8, 2026">
+  * Self-hosted runner: added a `post-session` lifecycle hook that runs after the session ends and before the workspace is deleted, so you can snapshot uncommitted work or export logs; also made the child-process SIGTERM→SIGKILL window configurable (default unchanged at 5s)
   * Added `--safe-mode` flag (and `CLAUDE_CODE_SAFE_MODE`) to start Claude Code with all customizations (CLAUDE.md, plugins, skills, hooks, MCP servers) disabled for troubleshooting
   * Added `/cd` command to move a session to a new working directory without breaking the prompt cache mid-session
   * Added a `disableBundledSkills` setting and `CLAUDE_CODE_DISABLE_BUNDLED_SKILLS` environment variable to hide bundled skills, workflows, and built-in slash commands from the model

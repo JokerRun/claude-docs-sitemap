@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/webhooks
-fetched_at: 2026-05-08T03:11:40.925611Z
-sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 0fa63e72ca23e36ed7511674a7b347106ec680af9586d5e8983b07002b85c562
 ---
 
 # Webhooks
@@ -27,7 +27,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
       - `id: string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `organization_id: string`
 
@@ -39,7 +39,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
       - `id: string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `organization_id: string`
 
@@ -51,7 +51,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
       - `id: string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `organization_id: string`
 
@@ -63,7 +63,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
       - `id: string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `organization_id: string`
 
@@ -75,7 +75,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
       - `id: string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `organization_id: string`
 
@@ -87,7 +87,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
       - `id: string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `organization_id: string`
 
@@ -99,7 +99,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
       - `id: string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `organization_id: string`
 
@@ -111,7 +111,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
       - `id: string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `organization_id: string`
 
@@ -123,7 +123,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
       - `id: string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `organization_id: string`
 
@@ -135,7 +135,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
       - `id: string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `organization_id: string`
 
@@ -147,7 +147,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
       - `id: string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `organization_id: string`
 
@@ -155,37 +155,49 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
       - `workspace_id: string`
 
-    - `beta_webhook_session_thread_created_event_data: object { id, organization_id, type, workspace_id }`
+    - `beta_webhook_session_thread_created_event_data: object { id, organization_id, session_thread_id, 2 more }`
 
       - `id: string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `organization_id: string`
+
+      - `session_thread_id: string`
+
+        ID of the session thread this event refers to.
 
       - `type: "session.thread_created"`
 
       - `workspace_id: string`
 
-    - `beta_webhook_session_thread_idled_event_data: object { id, organization_id, type, workspace_id }`
+    - `beta_webhook_session_thread_idled_event_data: object { id, organization_id, session_thread_id, 2 more }`
 
       - `id: string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `organization_id: string`
+
+      - `session_thread_id: string`
+
+        ID of the session thread this event refers to.
 
       - `type: "session.thread_idled"`
 
       - `workspace_id: string`
 
-    - `beta_webhook_session_thread_terminated_event_data: object { id, organization_id, type, workspace_id }`
+    - `beta_webhook_session_thread_terminated_event_data: object { id, organization_id, session_thread_id, 2 more }`
 
       - `id: string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `organization_id: string`
+
+      - `session_thread_id: string`
+
+        ID of the session thread this event refers to.
 
       - `type: "session.thread_terminated"`
 
@@ -195,7 +207,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
       - `id: string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `organization_id: string`
 
@@ -207,7 +219,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
       - `id: string`
 
-        ID of the resource that triggered the event.
+        ID of the vault that triggered the event.
 
       - `organization_id: string`
 
@@ -219,7 +231,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
       - `id: string`
 
-        ID of the resource that triggered the event.
+        ID of the vault that triggered the event.
 
       - `organization_id: string`
 
@@ -231,7 +243,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
       - `id: string`
 
-        ID of the resource that triggered the event.
+        ID of the vault that triggered the event.
 
       - `organization_id: string`
 
@@ -243,7 +255,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
       - `id: string`
 
-        ID of the resource that triggered the event.
+        ID of the vault credential that triggered the event.
 
       - `organization_id: string`
 
@@ -259,7 +271,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
       - `id: string`
 
-        ID of the resource that triggered the event.
+        ID of the vault credential that triggered the event.
 
       - `organization_id: string`
 
@@ -275,7 +287,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
       - `id: string`
 
-        ID of the resource that triggered the event.
+        ID of the vault credential that triggered the event.
 
       - `organization_id: string`
 
@@ -291,7 +303,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
       - `id: string`
 
-        ID of the resource that triggered the event.
+        ID of the vault credential that triggered the event.
 
       - `organization_id: string`
 
@@ -315,7 +327,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
     - `id: string`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `organization_id: string`
 
@@ -327,7 +339,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
     - `id: string`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `organization_id: string`
 
@@ -339,7 +351,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
     - `id: string`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `organization_id: string`
 
@@ -351,7 +363,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
     - `id: string`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `organization_id: string`
 
@@ -363,7 +375,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
     - `id: string`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `organization_id: string`
 
@@ -375,7 +387,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
     - `id: string`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `organization_id: string`
 
@@ -387,7 +399,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
     - `id: string`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `organization_id: string`
 
@@ -399,7 +411,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
     - `id: string`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `organization_id: string`
 
@@ -411,7 +423,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
     - `id: string`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `organization_id: string`
 
@@ -423,7 +435,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
     - `id: string`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `organization_id: string`
 
@@ -435,7 +447,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
     - `id: string`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `organization_id: string`
 
@@ -443,37 +455,49 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
     - `workspace_id: string`
 
-  - `beta_webhook_session_thread_created_event_data: object { id, organization_id, type, workspace_id }`
+  - `beta_webhook_session_thread_created_event_data: object { id, organization_id, session_thread_id, 2 more }`
 
     - `id: string`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `organization_id: string`
+
+    - `session_thread_id: string`
+
+      ID of the session thread this event refers to.
 
     - `type: "session.thread_created"`
 
     - `workspace_id: string`
 
-  - `beta_webhook_session_thread_idled_event_data: object { id, organization_id, type, workspace_id }`
+  - `beta_webhook_session_thread_idled_event_data: object { id, organization_id, session_thread_id, 2 more }`
 
     - `id: string`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `organization_id: string`
+
+    - `session_thread_id: string`
+
+      ID of the session thread this event refers to.
 
     - `type: "session.thread_idled"`
 
     - `workspace_id: string`
 
-  - `beta_webhook_session_thread_terminated_event_data: object { id, organization_id, type, workspace_id }`
+  - `beta_webhook_session_thread_terminated_event_data: object { id, organization_id, session_thread_id, 2 more }`
 
     - `id: string`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `organization_id: string`
+
+    - `session_thread_id: string`
+
+      ID of the session thread this event refers to.
 
     - `type: "session.thread_terminated"`
 
@@ -483,7 +507,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
     - `id: string`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `organization_id: string`
 
@@ -495,7 +519,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
     - `id: string`
 
-      ID of the resource that triggered the event.
+      ID of the vault that triggered the event.
 
     - `organization_id: string`
 
@@ -507,7 +531,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
     - `id: string`
 
-      ID of the resource that triggered the event.
+      ID of the vault that triggered the event.
 
     - `organization_id: string`
 
@@ -519,7 +543,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
     - `id: string`
 
-      ID of the resource that triggered the event.
+      ID of the vault that triggered the event.
 
     - `organization_id: string`
 
@@ -531,7 +555,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
     - `id: string`
 
-      ID of the resource that triggered the event.
+      ID of the vault credential that triggered the event.
 
     - `organization_id: string`
 
@@ -547,7 +571,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
     - `id: string`
 
-      ID of the resource that triggered the event.
+      ID of the vault credential that triggered the event.
 
     - `organization_id: string`
 
@@ -563,7 +587,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
     - `id: string`
 
-      ID of the resource that triggered the event.
+      ID of the vault credential that triggered the event.
 
     - `organization_id: string`
 
@@ -579,7 +603,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
     - `id: string`
 
-      ID of the resource that triggered the event.
+      ID of the vault credential that triggered the event.
 
     - `organization_id: string`
 
@@ -597,7 +621,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
   - `id: string`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `organization_id: string`
 
@@ -611,7 +635,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
   - `id: string`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `organization_id: string`
 
@@ -625,7 +649,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
   - `id: string`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `organization_id: string`
 
@@ -639,7 +663,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
   - `id: string`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `organization_id: string`
 
@@ -653,7 +677,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
   - `id: string`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `organization_id: string`
 
@@ -667,7 +691,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
   - `id: string`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `organization_id: string`
 
@@ -681,7 +705,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
   - `id: string`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `organization_id: string`
 
@@ -695,7 +719,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
   - `id: string`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `organization_id: string`
 
@@ -709,7 +733,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
   - `id: string`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `organization_id: string`
 
@@ -723,7 +747,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
   - `id: string`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `organization_id: string`
 
@@ -737,7 +761,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
   - `id: string`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `organization_id: string`
 
@@ -751,7 +775,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
   - `id: string`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `organization_id: string`
 
@@ -761,13 +785,17 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
 ### Beta Webhook Session Thread Created Event Data
 
-- `beta_webhook_session_thread_created_event_data: object { id, organization_id, type, workspace_id }`
+- `beta_webhook_session_thread_created_event_data: object { id, organization_id, session_thread_id, 2 more }`
 
   - `id: string`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `organization_id: string`
+
+  - `session_thread_id: string`
+
+    ID of the session thread this event refers to.
 
   - `type: "session.thread_created"`
 
@@ -775,13 +803,17 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
 ### Beta Webhook Session Thread Idled Event Data
 
-- `beta_webhook_session_thread_idled_event_data: object { id, organization_id, type, workspace_id }`
+- `beta_webhook_session_thread_idled_event_data: object { id, organization_id, session_thread_id, 2 more }`
 
   - `id: string`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `organization_id: string`
+
+  - `session_thread_id: string`
+
+    ID of the session thread this event refers to.
 
   - `type: "session.thread_idled"`
 
@@ -789,13 +821,17 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
 ### Beta Webhook Session Thread Terminated Event Data
 
-- `beta_webhook_session_thread_terminated_event_data: object { id, organization_id, type, workspace_id }`
+- `beta_webhook_session_thread_terminated_event_data: object { id, organization_id, session_thread_id, 2 more }`
 
   - `id: string`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `organization_id: string`
+
+  - `session_thread_id: string`
+
+    ID of the session thread this event refers to.
 
   - `type: "session.thread_terminated"`
 
@@ -807,7 +843,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
   - `id: string`
 
-    ID of the resource that triggered the event.
+    ID of the vault that triggered the event.
 
   - `organization_id: string`
 
@@ -821,7 +857,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
   - `id: string`
 
-    ID of the resource that triggered the event.
+    ID of the vault that triggered the event.
 
   - `organization_id: string`
 
@@ -835,7 +871,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
   - `id: string`
 
-    ID of the resource that triggered the event.
+    ID of the vault credential that triggered the event.
 
   - `organization_id: string`
 
@@ -853,7 +889,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
   - `id: string`
 
-    ID of the resource that triggered the event.
+    ID of the vault credential that triggered the event.
 
   - `organization_id: string`
 
@@ -871,7 +907,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
   - `id: string`
 
-    ID of the resource that triggered the event.
+    ID of the vault credential that triggered the event.
 
   - `organization_id: string`
 
@@ -889,7 +925,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
   - `id: string`
 
-    ID of the resource that triggered the event.
+    ID of the vault credential that triggered the event.
 
   - `organization_id: string`
 
@@ -907,7 +943,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
   - `id: string`
 
-    ID of the resource that triggered the event.
+    ID of the vault that triggered the event.
 
   - `organization_id: string`
 
@@ -933,7 +969,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
       - `id: string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `organization_id: string`
 
@@ -945,7 +981,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
       - `id: string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `organization_id: string`
 
@@ -957,7 +993,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
       - `id: string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `organization_id: string`
 
@@ -969,7 +1005,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
       - `id: string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `organization_id: string`
 
@@ -981,7 +1017,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
       - `id: string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `organization_id: string`
 
@@ -993,7 +1029,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
       - `id: string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `organization_id: string`
 
@@ -1005,7 +1041,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
       - `id: string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `organization_id: string`
 
@@ -1017,7 +1053,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
       - `id: string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `organization_id: string`
 
@@ -1029,7 +1065,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
       - `id: string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `organization_id: string`
 
@@ -1041,7 +1077,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
       - `id: string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `organization_id: string`
 
@@ -1053,7 +1089,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
       - `id: string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `organization_id: string`
 
@@ -1061,37 +1097,49 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
       - `workspace_id: string`
 
-    - `beta_webhook_session_thread_created_event_data: object { id, organization_id, type, workspace_id }`
+    - `beta_webhook_session_thread_created_event_data: object { id, organization_id, session_thread_id, 2 more }`
 
       - `id: string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `organization_id: string`
+
+      - `session_thread_id: string`
+
+        ID of the session thread this event refers to.
 
       - `type: "session.thread_created"`
 
       - `workspace_id: string`
 
-    - `beta_webhook_session_thread_idled_event_data: object { id, organization_id, type, workspace_id }`
+    - `beta_webhook_session_thread_idled_event_data: object { id, organization_id, session_thread_id, 2 more }`
 
       - `id: string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `organization_id: string`
+
+      - `session_thread_id: string`
+
+        ID of the session thread this event refers to.
 
       - `type: "session.thread_idled"`
 
       - `workspace_id: string`
 
-    - `beta_webhook_session_thread_terminated_event_data: object { id, organization_id, type, workspace_id }`
+    - `beta_webhook_session_thread_terminated_event_data: object { id, organization_id, session_thread_id, 2 more }`
 
       - `id: string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `organization_id: string`
+
+      - `session_thread_id: string`
+
+        ID of the session thread this event refers to.
 
       - `type: "session.thread_terminated"`
 
@@ -1101,7 +1149,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
       - `id: string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `organization_id: string`
 
@@ -1113,7 +1161,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
       - `id: string`
 
-        ID of the resource that triggered the event.
+        ID of the vault that triggered the event.
 
       - `organization_id: string`
 
@@ -1125,7 +1173,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
       - `id: string`
 
-        ID of the resource that triggered the event.
+        ID of the vault that triggered the event.
 
       - `organization_id: string`
 
@@ -1137,7 +1185,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
       - `id: string`
 
-        ID of the resource that triggered the event.
+        ID of the vault that triggered the event.
 
       - `organization_id: string`
 
@@ -1149,7 +1197,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
       - `id: string`
 
-        ID of the resource that triggered the event.
+        ID of the vault credential that triggered the event.
 
       - `organization_id: string`
 
@@ -1165,7 +1213,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
       - `id: string`
 
-        ID of the resource that triggered the event.
+        ID of the vault credential that triggered the event.
 
       - `organization_id: string`
 
@@ -1181,7 +1229,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
       - `id: string`
 
-        ID of the resource that triggered the event.
+        ID of the vault credential that triggered the event.
 
       - `organization_id: string`
 
@@ -1197,7 +1245,7 @@ sha256: 73f200c4acff2f83a7c9e9fbf5150db5faa61bb063a46b951a087bd257ad3751
 
       - `id: string`
 
-        ID of the resource that triggered the event.
+        ID of the vault credential that triggered the event.
 
       - `organization_id: string`
 

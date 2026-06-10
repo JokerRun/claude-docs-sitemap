@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/vaults/credentials/update
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 819b9bb0cdd10ed705c2f6732eb9ef5832452fe524d2712ba34d8b33cf4ecc21
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 45086675eb81552da66ba7fa3769f95c8ac76717239d06ab8a72560f606e3d6b
 ---
 
 ## Update Credential
@@ -97,6 +97,42 @@ Update Credential
 
         Updated static bearer token value.
 
+    - `class BetaManagedAgentsEnvironmentVariableUpdateParams:`
+
+      Parameters for updating an environment variable credential. `secret_name` is immutable.
+
+      - `required Type Type`
+
+        - `"environment_variable"EnvironmentVariable`
+
+      - `BetaManagedAgentsCredentialNetworkingParams? Networking`
+
+        Updated networking scope. Full replacement.
+
+        - `class BetaManagedAgentsUnrestrictedCredentialNetworkingParams:`
+
+          Substitute the secret on any host the session's Environment network policy permits egress to. The Environment's network policy is the only boundary on where the secret can reach.
+
+          - `required Type Type`
+
+            - `"unrestricted"Unrestricted`
+
+        - `class BetaManagedAgentsLimitedCredentialNetworkingParams:`
+
+          Substitute the secret only on requests to the listed hosts.
+
+          - `required IReadOnlyList<string> AllowedHosts`
+
+            Hostnames on which the secret will be substituted. Each entry is a bare hostname (`api.example.com`), an IPv4 address (`192.0.2.1`), or a `*.`-prefixed wildcard (`*.example.com`). URLs, ports, paths, and IPv6 addresses are not accepted. At most 16 entries.
+
+          - `required Type Type`
+
+            - `"limited"Limited`
+
+      - `string? SecretValue`
+
+        Updated secret value.
+
   - `string? displayName`
 
     Body param: Updated human-readable name for the credential. 1-255 characters.
@@ -160,6 +196,10 @@ Update Credential
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 
@@ -254,6 +294,42 @@ Update Credential
       - `required Type Type`
 
         - `"static_bearer"StaticBearer`
+
+    - `class BetaManagedAgentsEnvironmentVariableAuthResponse:`
+
+      Environment variable credential details. The secret value is never returned.
+
+      - `required Networking Networking`
+
+        Outbound hosts the secret value is substituted on.
+
+        - `class BetaManagedAgentsUnrestrictedCredentialNetworkingResponse:`
+
+          The secret is substituted on any host the session's Environment network policy permits egress to.
+
+          - `required Type Type`
+
+            - `"unrestricted"Unrestricted`
+
+        - `class BetaManagedAgentsLimitedCredentialNetworkingResponse:`
+
+          The secret is substituted only on requests to the listed hosts.
+
+          - `required IReadOnlyList<string> AllowedHosts`
+
+            Hostnames on which the secret will be substituted. An entry matches the request host exactly; a `*.`-prefixed entry matches any subdomain of the named domain but not the domain itself.
+
+          - `required Type Type`
+
+            - `"limited"Limited`
+
+      - `required string SecretName`
+
+        Name of the environment variable.
+
+      - `required Type Type`
+
+        - `"environment_variable"EnvironmentVariable`
 
   - `required DateTimeOffset CreatedAt`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/sessions/resources/delete
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: b66f172d8bb0916d15781d32c38daf1b31ce11a5bcb0b8df771034ff2c08d2df
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: c7465ea60b19af00599c1205b824e930f09dc78f5d15d66dd9fc52ca961ff2ef
 ---
 
 ## Delete Session Resource
@@ -82,6 +82,10 @@ Delete Session Resource
       - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
 
       - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
+
+      - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
+
+      - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/environments/work/stats
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 926eefd1f529a8096bead7cd79b074bc4af9348d8790c20c7930ed2600ae2b06
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 8688bef0e5cd9d40e71535b69fac758edff696eca1670d01075212a1a9cbb82f
 ---
 
 ## Get Queue Statistics
@@ -78,6 +78,10 @@ Get statistics about the work queue for an environment.
       - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
 
       - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
+
+      - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
+
+      - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
 
 ### Returns
 

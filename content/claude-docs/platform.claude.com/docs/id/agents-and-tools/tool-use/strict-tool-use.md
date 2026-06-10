@@ -1,47 +1,47 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use
-fetched_at: 2026-04-25T03:09:48.142425Z
-sha256: 65daf7188e8406c04a749c4c68d76c43ff19e77f5f77e9206b2c4fd31b3feaee
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: a199e2f2310fb4d2264e52b481b159d746a73f7b5780de045dbef0c220ec969e
 ---
 
-# Penggunaan alat yang ketat
+# Penggunaan alat strict
 
-Paksakan kepatuhan JSON Schema pada input alat Claude dengan sampling yang dibatasi tata bahasa.
+Terapkan kepatuhan JSON Schema pada input alat Claude dengan grammar-constrained sampling.
 
 ---
 
-Mengatur `strict: true` pada definisi alat menggunakan sampling yang dibatasi tata bahasa untuk menjamin input alat Claude sesuai dengan JSON Schema Anda. Halaman ini mencakup mengapa mode ketat penting untuk agen, cara mengaktifkannya, dan kasus penggunaan umum. Untuk subset JSON Schema yang didukung, lihat [Batasan JSON Schema](/docs/id/build-with-claude/structured-outputs#json-schema-limitations). Untuk panduan skema non-ketat, lihat [Tentukan alat](/docs/id/agents-and-tools/tool-use/define-tools).
+Menetapkan `strict: true` pada definisi alat menjamin bahwa input alat Claude sesuai dengan JSON Schema Anda dengan membatasi pengambilan sampel token model hanya pada output yang valid menurut skema (teknik yang disebut "grammar-constrained sampling" (pengambilan sampel yang dibatasi tata bahasa)). Halaman ini membahas mengapa mode strict penting untuk agen, cara mengaktifkannya, dan kasus penggunaan umum. Untuk subset JSON Schema yang didukung, lihat [Batasan JSON Schema](/docs/id/build-with-claude/structured-outputs#json-schema-limitations). Untuk panduan skema non-strict, lihat [Mendefinisikan alat](/docs/id/agents-and-tools/tool-use/define-tools).
 
-Penggunaan alat yang ketat memvalidasi parameter alat, memastikan Claude memanggil fungsi Anda dengan argumen yang diketik dengan benar. Gunakan penggunaan alat yang ketat ketika Anda perlu:
+Penggunaan alat strict memvalidasi parameter alat, memastikan Claude memanggil fungsi Anda dengan argumen yang bertipe benar. Gunakan penggunaan alat strict ketika Anda perlu:
 
 - Memvalidasi parameter alat
-- Membangun alur kerja yang bersifat agen
-- Memastikan panggilan fungsi yang aman tipe
+- Membangun alur kerja agentik
+- Memastikan pemanggilan fungsi yang type-safe
 - Menangani alat kompleks dengan properti bersarang
 
-## Mengapa penggunaan alat yang ketat penting untuk agen
+## Mengapa penggunaan alat strict penting untuk agen \{#why-strict-tool-use-matters-for-agents}
 
-Membangun sistem agen yang andal memerlukan kepatuhan skema yang dijamin. Tanpa mode ketat, Claude mungkin mengembalikan tipe yang tidak kompatibel (`"2"` bukan `2`) atau bidang yang diperlukan hilang, merusak fungsi Anda dan menyebabkan kesalahan runtime.
+Membangun sistem agentik yang andal memerlukan jaminan kesesuaian skema. Tanpa mode strict, Claude mungkin mengembalikan tipe yang tidak kompatibel (`"2"` alih-alih `2`) atau field wajib yang hilang, sehingga merusak fungsi Anda dan menyebabkan error runtime.
 
-Penggunaan alat yang ketat menjamin parameter yang aman tipe:
-- Fungsi menerima argumen yang diketik dengan benar setiap saat
-- Tidak perlu memvalidasi dan mencoba ulang panggilan alat
+Penggunaan alat strict menjamin parameter yang type-safe:
+- Fungsi menerima argumen dengan tipe yang benar setiap saat
+- Tidak perlu memvalidasi dan mencoba ulang pemanggilan alat
 - Agen siap produksi yang bekerja secara konsisten dalam skala besar
 
-Misalnya, anggaplah sistem pemesanan memerlukan `passengers: int`. Tanpa mode ketat, Claude mungkin memberikan `passengers: "two"` atau `passengers: "2"`. Dengan `strict: true`, respons akan selalu berisi `passengers: 2`.
+Sebagai contoh, misalkan sistem pemesanan memerlukan `passengers: int`. Tanpa mode strict, Claude mungkin memberikan `passengers: "two"` atau `passengers: "2"`. Dengan `strict: true`, respons selalu berisi `passengers: 2`.
 
-## Mulai cepat
+## Mulai cepat \{#quick-start}
 
 <CodeGroup>
 
-```bash Shell
+```bash cURL
 curl https://api.anthropic.com/v1/messages \
   -H "content-type: application/json" \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
   -d '{
-    "model": "claude-opus-4-7",
+    "model": "claude-opus-4-8",
     "max_tokens": 1024,
     "messages": [
       {"role": "user", "content": "What is the weather in San Francisco?"}
@@ -71,7 +71,7 @@ curl https://api.anthropic.com/v1/messages \
 
 ```bash CLI
 ant messages create --transform content <<'YAML'
-model: claude-opus-4-7
+model: claude-opus-4-8
 max_tokens: 1024
 messages:
   - role: user
@@ -100,7 +100,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 response = client.messages.create(
-    model="claude-opus-4-7",
+    model="claude-opus-4-8",
     max_tokens=1024,
     messages=[{"role": "user", "content": "What's the weather like in San Francisco?"}],
     tools=[
@@ -138,7 +138,7 @@ const client = new Anthropic({
 });
 
 const response = await client.messages.create({
-  model: "claude-opus-4-7",
+  model: "claude-opus-4-8",
   max_tokens: 1024,
   messages: [
     {
@@ -177,41 +177,35 @@ using System.Text.Json;
 using Anthropic;
 using Anthropic.Models.Messages;
 
-public class Program
+AnthropicClient client = new();
+
+var parameters = new MessageCreateParams
 {
-    public static async Task Main(string[] args)
-    {
-        AnthropicClient client = new();
-
-        var parameters = new MessageCreateParams
+    Model = Model.ClaudeOpus4_8,
+    MaxTokens = 1024,
+    Messages = [new() { Role = Role.User, Content = "What's the weather like in San Francisco?" }],
+    Tools = [
+        new ToolUnion(new Tool()
         {
-            Model = Model.ClaudeOpus4_7,
-            MaxTokens = 1024,
-            Messages = [new() { Role = Role.User, Content = "What's the weather like in San Francisco?" }],
-            Tools = [
-                new ToolUnion(new Tool()
+            Name = "get_weather",
+            Description = "Get the current weather in a given location",
+            Strict = true,
+            InputSchema = new InputSchema(new Dictionary<string, JsonElement>
+            {
+                ["properties"] = JsonSerializer.SerializeToElement(new Dictionary<string, object>
                 {
-                    Name = "get_weather",
-                    Description = "Get the current weather in a given location",
-                    Strict = true,
-                    InputSchema = new InputSchema(new Dictionary<string, JsonElement>
-                    {
-                        ["properties"] = JsonSerializer.SerializeToElement(new Dictionary<string, object>
-                        {
-                            ["location"] = new { type = "string", description = "The city and state, e.g. San Francisco, CA" },
-                            ["unit"] = new { type = "string", @enum = new[] { "celsius", "fahrenheit" } },
-                        }),
-                        ["required"] = JsonSerializer.SerializeToElement(new[] { "location" }),
-                        ["additionalProperties"] = JsonSerializer.SerializeToElement(false),
-                    }),
+                    ["location"] = new { type = "string", description = "The city and state, e.g. San Francisco, CA" },
+                    ["unit"] = new { type = "string", @enum = new[] { "celsius", "fahrenheit" } },
                 }),
-            ]
-        };
+                ["required"] = JsonSerializer.SerializeToElement(new[] { "location" }),
+                ["additionalProperties"] = JsonSerializer.SerializeToElement(false),
+            }),
+        }),
+    ]
+};
 
-        var message = await client.Messages.Create(parameters);
-        Console.WriteLine(message);
-    }
-}
+var message = await client.Messages.Create(parameters);
+Console.WriteLine(message);
 ```
 
 ```go Go hidelines={1..11,-1}
@@ -229,7 +223,7 @@ func main() {
 	client := anthropic.NewClient()
 
 	response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-		Model:     anthropic.ModelClaudeOpus4_7,
+		Model:     anthropic.ModelClaudeOpus4_8,
 		MaxTokens: 1024,
 		Messages: []anthropic.MessageParam{
 			anthropic.NewUserMessage(anthropic.NewTextBlock("What's the weather like in San Francisco?")),
@@ -299,7 +293,7 @@ void main() {
         .build();
 
     MessageCreateParams params = MessageCreateParams.builder()
-        .model(Model.CLAUDE_OPUS_4_7)
+        .model(Model.CLAUDE_OPUS_4_8)
         .maxTokens(1024L)
         .addUserMessage("What's the weather like in San Francisco?")
         .addTool(
@@ -322,14 +316,14 @@ void main() {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 $message = $client->messages->create(
     maxTokens: 1024,
     messages: [
         ['role' => 'user', 'content' => "What's the weather like in San Francisco?"]
     ],
-    model: 'claude-opus-4-7',
+    model: 'claude-opus-4-8',
     tools: [
         [
             'name' => 'get_weather',
@@ -363,7 +357,7 @@ require "anthropic"
 client = Anthropic::Client.new
 
 message = client.messages.create(
-  model: "claude-opus-4-7",
+  model: "claude-opus-4-8",
   max_tokens: 1024,
   messages: [
     { role: "user", content: "What's the weather like in San Francisco?" }
@@ -396,7 +390,7 @@ puts message.content
 
 </CodeGroup>
 
-**Format respons:** Blok penggunaan alat dengan input yang divalidasi dalam `response.content[x].input`
+**Format respons:** Blok tool use dengan input yang tervalidasi di `response.content[x].input`
 
 ```json Output
 {
@@ -409,26 +403,26 @@ puts message.content
 ```
 
 **Jaminan:**
-- Input alat `input` secara ketat mengikuti `input_schema`
-- Nama alat `name` selalu valid (dari alat yang disediakan atau alat server)
+- `input` alat secara ketat mengikuti `input_schema`
+- `name` alat selalu valid (dari alat yang disediakan atau alat server)
 
-## Cara kerjanya
+## Cara kerjanya \{#how-it-works}
 
 <Steps>
-  <Step title="Tentukan skema alat Anda">
-    Buat skema JSON untuk `input_schema` alat Anda. Skema menggunakan format JSON Schema standar dengan beberapa batasan (lihat [Batasan JSON Schema](/docs/id/build-with-claude/structured-outputs#json-schema-limitations)).
+  <Step title="Definisikan skema alat Anda">
+    Buat JSON schema untuk `input_schema` alat Anda. Skema ini menggunakan format JSON Schema standar dengan beberapa batasan (lihat [Batasan JSON Schema](/docs/id/build-with-claude/structured-outputs#json-schema-limitations)).
   </Step>
   <Step title="Tambahkan strict: true">
-    Atur `"strict": true` sebagai properti tingkat atas dalam definisi alat Anda, bersama dengan `name`, `description`, dan `input_schema`.
+    Tetapkan `"strict": true` sebagai properti tingkat atas dalam definisi alat Anda, bersama dengan `name`, `description`, dan `input_schema`.
   </Step>
-  <Step title="Tangani panggilan alat">
-    Ketika Claude menggunakan alat, bidang `input` dalam blok tool_use akan secara ketat mengikuti `input_schema` Anda, dan `name` akan selalu valid.
+  <Step title="Tangani pemanggilan alat">
+    Ketika Claude menggunakan alat tersebut, field `input` dalam blok tool_use secara ketat mengikuti `input_schema` Anda, dan `name` selalu valid.
   </Step>
 </Steps>
 
-## Kasus penggunaan umum
+## Kasus penggunaan umum \{#common-use-cases}
 
-<section title="Input alat yang divalidasi">
+<section title="Input alat yang tervalidasi">
 
 Pastikan parameter alat sesuai persis dengan skema Anda:
 
@@ -436,7 +430,7 @@ Pastikan parameter alat sesuai persis dengan skema Anda:
 
 ```bash CLI
 ant messages create <<'YAML'
-model: claude-opus-4-7
+model: claude-opus-4-8
 max_tokens: 1024
 messages:
   - role: user
@@ -465,7 +459,7 @@ from anthropic import Anthropic
 
 client = Anthropic()
 response = client.messages.create(
-    model="claude-opus-4-7",
+    model="claude-opus-4-8",
     max_tokens=1024,
     messages=[
         {
@@ -518,7 +512,7 @@ const searchFlightsTool: Anthropic.Tool = {
 };
 
 const response = await client.messages.create({
-  model: "claude-opus-4-7",
+  model: "claude-opus-4-8",
   max_tokens: 1024,
   messages: [{ role: "user", content: "Search for flights to Tokyo departing June 1, 2026" }],
   tools: [searchFlightsTool]
@@ -528,50 +522,39 @@ console.log(response);
 ```
 
 ```csharp C#
-using System;
 using System.Text.Json;
-using System.Threading.Tasks;
 using Anthropic;
 using Anthropic.Models.Messages;
 
-class Program
+AnthropicClient client = new();
+
+var parameters = new MessageCreateParams
 {
-    static async Task Main(string[] args)
-    {
-        AnthropicClient client = new()
+    Model = Model.ClaudeOpus4_8,
+    MaxTokens = 1024,
+    Messages = [new() { Role = Role.User, Content = "Search for flights to Tokyo departing June 1, 2026" }],
+    Tools = [
+        new ToolUnion(new Tool()
         {
-            ApiKey = Environment.GetEnvironmentVariable("ANTHROPIC_API_KEY")
-        };
-
-        var parameters = new MessageCreateParams
-        {
-            Model = Model.ClaudeOpus4_7,
-            MaxTokens = 1024,
-            Messages = [new() { Role = Role.User, Content = "Search for flights to Tokyo departing June 1, 2026" }],
-            Tools = [
-                new ToolUnion(new Tool()
+            Name = "search_flights",
+            Strict = true,
+            InputSchema = new InputSchema(new Dictionary<string, JsonElement>
+            {
+                ["properties"] = JsonSerializer.SerializeToElement(new Dictionary<string, object>
                 {
-                    Name = "search_flights",
-                    Strict = true,
-                    InputSchema = new InputSchema(new Dictionary<string, JsonElement>
-                    {
-                        ["properties"] = JsonSerializer.SerializeToElement(new Dictionary<string, object>
-                        {
-                            ["destination"] = new { type = "string" },
-                            ["departure_date"] = new { type = "string", format = "date" },
-                            ["passengers"] = new { type = "integer", @enum = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 } },
-                        }),
-                        ["required"] = JsonSerializer.SerializeToElement(new[] { "destination", "departure_date" }),
-                        ["additionalProperties"] = JsonSerializer.SerializeToElement(false),
-                    }),
+                    ["destination"] = new { type = "string" },
+                    ["departure_date"] = new { type = "string", format = "date" },
+                    ["passengers"] = new { type = "integer", @enum = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 } },
                 }),
-            ]
-        };
+                ["required"] = JsonSerializer.SerializeToElement(new[] { "destination", "departure_date" }),
+                ["additionalProperties"] = JsonSerializer.SerializeToElement(false),
+            }),
+        }),
+    ]
+};
 
-        var message = await client.Messages.Create(parameters);
-        Console.WriteLine(message);
-    }
-}
+var message = await client.Messages.Create(parameters);
+Console.WriteLine(message);
 ```
 
 ```go Go hidelines={1..11,-1}
@@ -589,7 +572,7 @@ func main() {
 	client := anthropic.NewClient()
 
 	response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-		Model:     anthropic.ModelClaudeOpus4_7,
+		Model:     anthropic.ModelClaudeOpus4_8,
 		MaxTokens: 1024,
 		Messages: []anthropic.MessageParam{
 			anthropic.NewUserMessage(anthropic.NewTextBlock("Search for flights to Tokyo departing June 1, 2026")),
@@ -659,7 +642,7 @@ void main() {
         .build();
 
     MessageCreateParams params = MessageCreateParams.builder()
-        .model(Model.CLAUDE_OPUS_4_7)
+        .model(Model.CLAUDE_OPUS_4_8)
         .maxTokens(1024L)
         .addUserMessage("Search for flights to Tokyo departing June 1, 2026")
         .addTool(
@@ -681,14 +664,14 @@ void main() {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 $message = $client->messages->create(
     maxTokens: 1024,
     messages: [
         ['role' => 'user', 'content' => 'Search for flights to Tokyo departing June 1, 2026']
     ],
-    model: 'claude-opus-4-7',
+    model: 'claude-opus-4-8',
     tools: [
         [
             'name' => 'search_flights',
@@ -709,6 +692,8 @@ $message = $client->messages->create(
         ]
     ],
 );
+
+echo $message;
 ```
 
 ```ruby Ruby hidelines={1..2}
@@ -717,7 +702,7 @@ require "anthropic"
 client = Anthropic::Client.new
 
 message = client.messages.create(
-  model: "claude-opus-4-7",
+  model: "claude-opus-4-8",
   max_tokens: 1024,
   messages: [
     { role: "user", content: "Search for flights to Tokyo departing June 1, 2026" }
@@ -749,15 +734,15 @@ puts message
 
 </section>
 
-<section title="Alur kerja agentic dengan beberapa alat yang divalidasi">
+<section title="Alur kerja agentik dengan beberapa alat yang tervalidasi">
 
-Bangun agen multi-langkah yang andal dengan parameter alat yang dijamin:
+Bangun agen multi-langkah yang andal dengan parameter alat yang terjamin:
 
 <CodeGroup>
 
 ```bash CLI
 ant messages create <<'YAML'
-model: claude-opus-4-7
+model: claude-opus-4-8
 max_tokens: 1024
 messages:
   - role: user
@@ -794,7 +779,7 @@ from anthropic import Anthropic
 
 client = Anthropic()
 response = client.messages.create(
-    model="claude-opus-4-7",
+    model="claude-opus-4-8",
     max_tokens=1024,
     messages=[
         {
@@ -876,7 +861,7 @@ const tools: Anthropic.Tool[] = [
 ];
 
 const response = await client.messages.create({
-  model: "claude-opus-4-7",
+  model: "claude-opus-4-8",
   max_tokens: 1024,
   messages: [
     {
@@ -896,58 +881,52 @@ using System.Text.Json;
 using Anthropic;
 using Anthropic.Models.Messages;
 
-class Program
+AnthropicClient client = new();
+
+var parameters = new MessageCreateParams
 {
-    static async Task Main(string[] args)
-    {
-        AnthropicClient client = new();
-
-        var parameters = new MessageCreateParams
+    Model = Model.ClaudeOpus4_8,
+    MaxTokens = 1024,
+    Messages = [new() { Role = Role.User, Content = "Help me plan a trip from New York to Paris for 2 people, departing June 1, 2026" }],
+    Tools = [
+        new ToolUnion(new Tool()
         {
-            Model = Model.ClaudeOpus4_7,
-            MaxTokens = 1024,
-            Messages = [new() { Role = Role.User, Content = "Help me plan a trip from New York to Paris for 2 people, departing June 1, 2026" }],
-            Tools = [
-                new ToolUnion(new Tool()
+            Name = "search_flights",
+            Strict = true,
+            InputSchema = new InputSchema(new Dictionary<string, JsonElement>
+            {
+                ["properties"] = JsonSerializer.SerializeToElement(new Dictionary<string, object>
                 {
-                    Name = "search_flights",
-                    Strict = true,
-                    InputSchema = new InputSchema(new Dictionary<string, JsonElement>
-                    {
-                        ["properties"] = JsonSerializer.SerializeToElement(new Dictionary<string, object>
-                        {
-                            ["origin"] = new { type = "string" },
-                            ["destination"] = new { type = "string" },
-                            ["departure_date"] = new { type = "string", format = "date" },
-                            ["travelers"] = new { type = "integer", @enum = new[] { 1, 2, 3, 4, 5, 6 } },
-                        }),
-                        ["required"] = JsonSerializer.SerializeToElement(new[] { "origin", "destination", "departure_date" }),
-                        ["additionalProperties"] = JsonSerializer.SerializeToElement(false),
-                    }),
+                    ["origin"] = new { type = "string" },
+                    ["destination"] = new { type = "string" },
+                    ["departure_date"] = new { type = "string", format = "date" },
+                    ["travelers"] = new { type = "integer", @enum = new[] { 1, 2, 3, 4, 5, 6 } },
                 }),
-                new ToolUnion(new Tool()
+                ["required"] = JsonSerializer.SerializeToElement(new[] { "origin", "destination", "departure_date" }),
+                ["additionalProperties"] = JsonSerializer.SerializeToElement(false),
+            }),
+        }),
+        new ToolUnion(new Tool()
+        {
+            Name = "search_hotels",
+            Strict = true,
+            InputSchema = new InputSchema(new Dictionary<string, JsonElement>
+            {
+                ["properties"] = JsonSerializer.SerializeToElement(new Dictionary<string, object>
                 {
-                    Name = "search_hotels",
-                    Strict = true,
-                    InputSchema = new InputSchema(new Dictionary<string, JsonElement>
-                    {
-                        ["properties"] = JsonSerializer.SerializeToElement(new Dictionary<string, object>
-                        {
-                            ["city"] = new { type = "string" },
-                            ["check_in"] = new { type = "string", format = "date" },
-                            ["guests"] = new { type = "integer", @enum = new[] { 1, 2, 3, 4 } },
-                        }),
-                        ["required"] = JsonSerializer.SerializeToElement(new[] { "city", "check_in" }),
-                        ["additionalProperties"] = JsonSerializer.SerializeToElement(false),
-                    }),
+                    ["city"] = new { type = "string" },
+                    ["check_in"] = new { type = "string", format = "date" },
+                    ["guests"] = new { type = "integer", @enum = new[] { 1, 2, 3, 4 } },
                 }),
-            ]
-        };
+                ["required"] = JsonSerializer.SerializeToElement(new[] { "city", "check_in" }),
+                ["additionalProperties"] = JsonSerializer.SerializeToElement(false),
+            }),
+        }),
+    ]
+};
 
-        var message = await client.Messages.Create(parameters);
-        Console.WriteLine(message);
-    }
-}
+var message = await client.Messages.Create(parameters);
+Console.WriteLine(message);
 ```
 
 ```go Go hidelines={1..11,-1}
@@ -965,7 +944,7 @@ func main() {
 	client := anthropic.NewClient()
 
 	response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-		Model:     anthropic.ModelClaudeOpus4_7,
+		Model:     anthropic.ModelClaudeOpus4_8,
 		MaxTokens: 1024,
 		Messages: []anthropic.MessageParam{
 			anthropic.NewUserMessage(anthropic.NewTextBlock("Help me plan a trip from New York to Paris for 2 people, departing June 1, 2026")),
@@ -1054,7 +1033,7 @@ void main() {
         .build();
 
     MessageCreateParams params = MessageCreateParams.builder()
-        .model(Model.CLAUDE_OPUS_4_7)
+        .model(Model.CLAUDE_OPUS_4_8)
         .maxTokens(1024L)
         .addUserMessage("Help me plan a trip from New York to Paris for 2 people, departing June 1, 2026")
         .addTool(
@@ -1083,14 +1062,14 @@ void main() {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 $message = $client->messages->create(
     maxTokens: 1024,
     messages: [
         ['role' => 'user', 'content' => 'Help me plan a trip from New York to Paris for 2 people, departing June 1, 2026']
     ],
-    model: 'claude-opus-4-7',
+    model: 'claude-opus-4-8',
     tools: [
         [
             'name' => 'search_flights',
@@ -1124,7 +1103,7 @@ $message = $client->messages->create(
     ],
 );
 
-echo $message->content[0]->text;
+echo $message;
 ```
 
 ```ruby Ruby hidelines={1..2}
@@ -1133,7 +1112,7 @@ require "anthropic"
 client = Anthropic::Client.new
 
 message = client.messages.create(
-  model: "claude-opus-4-7",
+  model: "claude-opus-4-8",
   max_tokens: 1024,
   messages: [
     { role: "user", content: "Help me plan a trip from New York to Paris for 2 people, departing June 1, 2026" }
@@ -1177,10 +1156,10 @@ puts message
 
 </section>
 
-## Retensi data
+## Retensi data \{#data-retention}
 
-Penggunaan alat ketat mengompilasi definisi `input_schema` alat menjadi tata bahasa menggunakan pipeline yang sama seperti [keluaran terstruktur](/docs/id/build-with-claude/structured-outputs). Skema alat disimpan dalam cache sementara selama hingga 24 jam sejak penggunaan terakhir. Prompt dan respons tidak disimpan setelah respons API.
+Penggunaan alat strict mengompilasi definisi `input_schema` alat menjadi grammar menggunakan pipeline yang sama dengan [structured outputs](/docs/id/build-with-claude/structured-outputs). Skema alat disimpan sementara dalam cache hingga 24 jam sejak penggunaan terakhir. Prompt dan respons tidak disimpan setelah respons API dikembalikan.
 
-Penggunaan alat ketat memenuhi syarat HIPAA, tetapi **PHI tidak boleh disertakan dalam definisi skema alat**. API menyimpan skema yang dikompilasi secara terpisah dari konten pesan, dan skema yang disimpan dalam cache ini tidak menerima perlindungan PHI yang sama seperti prompt dan respons. Jangan sertakan PHI dalam nama properti `input_schema`, nilai `enum`, nilai `const`, atau ekspresi reguler `pattern`. PHI hanya boleh muncul dalam konten pesan (prompt dan respons), di mana dilindungi di bawah perlindungan HIPAA.
+Penggunaan alat strict memenuhi syarat HIPAA, tetapi **PHI tidak boleh disertakan dalam definisi skema alat**. API menyimpan skema yang telah dikompilasi dalam cache secara terpisah dari konten pesan, dan skema yang di-cache ini tidak menerima perlindungan PHI yang sama seperti prompt dan respons. Jangan sertakan PHI dalam nama properti `input_schema`, nilai `enum`, nilai `const`, atau ekspresi reguler `pattern`. PHI hanya boleh muncul dalam konten pesan (prompt dan respons), di mana PHI dilindungi di bawah pengamanan HIPAA.
 
-Untuk kelayakan ZDR dan HIPAA di semua fitur, lihat [Retensi API dan data](/docs/id/build-with-claude/api-and-data-retention).
+Untuk kelayakan ZDR dan HIPAA di seluruh fitur, lihat [API dan retensi data](/docs/id/manage-claude/api-and-data-retention).

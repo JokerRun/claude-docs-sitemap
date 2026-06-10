@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/environments/retrieve
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: fbcdfe2f2841887203cb57a2cf489038e41d8cb47443139a935d191c027bb99f
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 533ac937ebfdc9aaee4e98a1ae0bf74f9c1fb0fc2ec8ddfd5a11e11165d785e0
 ---
 
 ## Get Environment
@@ -78,6 +78,10 @@ Retrieve a specific environment by ID.
       - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
 
       - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
+
+      - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
+
+      - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
 
 ### Returns
 

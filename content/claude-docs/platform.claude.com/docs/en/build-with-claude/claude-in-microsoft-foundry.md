@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry
-fetched_at: 2026-06-09T03:16:00.501901Z
-sha256: 8879fde1fe64afb8ef016985df02be47f6f11a58b421777d2ec5be3c2a4563b3
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 2a9019fcb81d5eef63b03818c5b6ea593a0c1db8de1b6cd0198c14d978c5821c
 ---
 
 # Claude in Microsoft Foundry
@@ -58,7 +58,7 @@ dotnet add package Anthropic.Foundry
 <Tabs>
 <Tab title="Gradle">
 ```kotlin
-implementation("com.anthropic:anthropic-java-foundry:2.35.0")
+implementation("com.anthropic:anthropic-java-foundry:2.39.0")
 ```
 </Tab>
 <Tab title="Maven">
@@ -66,7 +66,7 @@ implementation("com.anthropic:anthropic-java-foundry:2.35.0")
 <dependency>
     <groupId>com.anthropic</groupId>
     <artifactId>anthropic-java-foundry</artifactId>
-    <version>2.35.0</version>
+    <version>2.39.0</version>
 </dependency>
 ```
 </Tab>
@@ -503,7 +503,7 @@ Claude in Foundry supports most of Claude's powerful features. You can find all 
 
 ### Context window
 
-Claude Opus 4.7, Claude Opus 4.6, and Claude Sonnet 4.6 have a [1M-token context window](/docs/en/build-with-claude/context-windows) on Microsoft Foundry. Other Claude models, including Claude Opus 4.8 and Sonnet 4.5, have a 200k-token context window.
+Claude Fable 5, Claude Opus 4.7, Claude Opus 4.6, and Claude Sonnet 4.6 have a [1M-token context window](/docs/en/build-with-claude/context-windows) on Microsoft Foundry. Other Claude models, including Claude Opus 4.8 and Sonnet 4.5, have a 200k-token context window.
 
 ### Features not supported
 
@@ -511,6 +511,7 @@ Claude Opus 4.7, Claude Opus 4.6, and Claude Sonnet 4.6 have a [1M-token context
 - Compliance API
 - Models API
 - Message Batches API
+- Server-side fallback (the [`fallbacks` parameter](/docs/en/build-with-claude/refusals-and-fallback#server-side-fallback); use the [client-side fallback pattern](/docs/en/build-with-claude/refusals-and-fallback#client-side-fallback) instead)
 
 ## API responses
 
@@ -522,10 +523,11 @@ For details on response headers specific to Foundry, see [Correlation request ID
 
 Lifecycle terms (Deprecated, Retired) are defined in [Model deprecations](/docs/en/about-claude/model-deprecations). Microsoft Foundry follows the Claude API lifecycle schedule.
 
-The following Claude models are available through Foundry. The latest generation models (Claude Opus 4.8, Opus 4.7, Opus 4.6, Sonnet 4.6, and Haiku 4.5) offer the most advanced capabilities:
+The following Claude models are available through Foundry. The latest generation models (Claude Fable 5, Opus 4.8, Opus 4.7, Opus 4.6, Sonnet 4.6, and Haiku 4.5) offer the most advanced capabilities:
 
 | Model             | Default deployment name     |
 | :---------------- | :-------------------------- |
+| Claude Fable 5    | claude-fable-5 |
 | Claude Opus 4.8   | claude-opus-4-8 |
 | Claude Opus 4.7   | claude-opus-4-7           |
 | Claude Opus 4.6   | claude-opus-4-6           |

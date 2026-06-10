@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/messages/create
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: f1ce42d64234d037c2c4f74fc8efef600b0048de6010a0b78af35110fb92d87e
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: b9c4511cc06d5fcb422294014b466350c92392d7d95bba7a83e356bfb33cad7e
 ---
 
 ## Create a Message
@@ -867,6 +867,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
                   - `"tool_search_tool_result_error"`
 
+                - `error_message?: string | null`
+
               - `ToolSearchToolSearchResultBlockParam`
 
                 - `tool_references: Array<ToolReferenceBlockParam>`
@@ -951,7 +953,15 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `"claude-opus-4-8" | "claude-opus-4-7" | "claude-mythos-preview" | 15 more`
+      - `"claude-fable-5" | "claude-mythos-5" | "claude-opus-4-8" | 17 more`
+
+        - `"claude-fable-5"`
+
+          Next generation of intelligence for the hardest knowledge work and coding problems
+
+        - `"claude-mythos-5"`
+
+          Most capable model for cybersecurity and biology research
 
         - `"claude-opus-4-8"`
 
@@ -2734,7 +2744,15 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `"claude-opus-4-8" | "claude-opus-4-7" | "claude-mythos-preview" | 15 more`
+    - `"claude-fable-5" | "claude-mythos-5" | "claude-opus-4-8" | 17 more`
+
+      - `"claude-fable-5"`
+
+        Next generation of intelligence for the hardest knowledge work and coding problems
+
+      - `"claude-mythos-5"`
+
+        Most capable model for cybersecurity and biology research
 
       - `"claude-opus-4-8"`
 
@@ -2822,7 +2840,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     Structured information about a refusal.
 
-    - `category: "cyber" | "bio" | null`
+    - `category: "cyber" | "bio" | "reasoning_extraction" | null`
 
       The policy category that triggered the refusal.
 
@@ -2831,6 +2849,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       - `"cyber"`
 
       - `"bio"`
+
+      - `"reasoning_extraction"`
 
     - `explanation: string | null`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/environments/work/poll
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 4003fdaa82e564454c6d16658b8e2b3bb03149439f381451ee867a525e8b5a24
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 59e4f2bac19dc3b73503af5208a7bbf09d638d0365fd8f073151bb03f282564f
 ---
 
 ## Poll for Work
@@ -88,6 +88,10 @@ Long poll for work items in the queue.
       - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
 
       - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
+
+      - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
+
+      - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
 
   - `AnthropicWorkerID param.Field[string]`
 

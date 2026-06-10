@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/list
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 0b9bea5ce937d1470ea95b621478734438458c01fb7ebcda59e7f7c5071d6f1f
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 1437302f068a2e2b5d3b1e31590a042d846d2d0451cae002c76bf458db101ef5
 ---
 
 ## List Agents
@@ -41,7 +41,7 @@ List Agents
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 23 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 25 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -95,9 +95,13 @@ List Agents
 
     - `"thinking-token-count-2026-05-13"`
 
+    - `"server-side-fallback-2026-06-01"`
+
+    - `"fallback-credit-2026-06-01"`
+
 ### Returns
 
-- `data: optional array of BetaManagedAgentsAgent`
+- `data: array of BetaManagedAgentsAgent`
 
   List of agents.
 
@@ -135,11 +139,15 @@ List Agents
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `"claude-opus-4-8" or "claude-opus-4-7" or "claude-opus-4-6" or 7 more`
+      - `"claude-fable-5" or "claude-opus-4-8" or "claude-opus-4-7" or 8 more`
 
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-fable-5"`
+
+          Next generation of intelligence for the hardest knowledge work and coding problems
 
         - `"claude-opus-4-8"`
 
@@ -365,19 +373,13 @@ List Agents
 
         JSON Schema for custom tool input parameters.
 
-        - `properties: optional map[unknown]`
-
-          JSON Schema properties defining the tool's input parameters.
-
-        - `required: optional array of string`
-
-          List of required property names.
-
-        - `type: optional "object"`
-
-          Must be 'object' for tool input schemas.
+        - `type: "object"`
 
           - `"object"`
+
+        - `properties: optional map[unknown]`
+
+        - `required: optional array of string`
 
       - `name: string`
 

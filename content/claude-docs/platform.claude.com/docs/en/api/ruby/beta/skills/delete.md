@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/skills/delete
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 56a6fe79b8c45bd838e1a360e570b1a508f2f213d78ca9f5ea3c9e68da8c64d1
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 1d67cbd3240cb9bb30edcba04c1082648529d1d606763a6405cce6469f414708
 ---
 
 ## Delete Skill
@@ -27,7 +27,7 @@ Delete Skill
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 23 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 25 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -80,6 +80,10 @@ Delete Skill
     - `:"cache-diagnosis-2026-04-07"`
 
     - `:"thinking-token-count-2026-05-13"`
+
+    - `:"server-side-fallback-2026-06-01"`
+
+    - `:"fallback-credit-2026-06-01"`
 
 ### Returns
 

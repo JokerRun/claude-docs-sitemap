@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/messages/create
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 36dca904c49eb46565328833a491802f9a3f69fd481258621c75a05882ecbcd3
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 09b5b44eb6bca6f1915eaeab93361c308d65a8f0c179ecc44a6c537d3da9a78d
 ---
 
 ## Create a Message
@@ -768,6 +768,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
                 - `"execution_time_exceeded"ExecutionTimeExceeded`
 
               - `JsonElement Type "tool_search_tool_result_error"constant`
+
+              - `string? ErrorMessage`
 
             - `class ToolSearchToolSearchResultBlockParam:`
 
@@ -2252,6 +2254,14 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+    - `"claude-fable-5"ClaudeFable5`
+
+      Next generation of intelligence for the hardest knowledge work and coding problems
+
+    - `"claude-mythos-5"ClaudeMythos5`
+
+      Most capable model for cybersecurity and biology research
+
     - `"claude-opus-4-8"ClaudeOpus4_8`
 
       Frontier intelligence for long-running agents and coding
@@ -2343,6 +2353,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       - `"cyber"Cyber`
 
       - `"bio"Bio`
+
+      - `"reasoning_extraction"ReasoningExtraction`
 
     - `required string? Explanation`
 

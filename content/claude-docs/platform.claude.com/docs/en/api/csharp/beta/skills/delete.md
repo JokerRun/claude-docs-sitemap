@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/skills/delete
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 820a6013812676ad534ca075b0cae03b57e17904325ce993eb411893ce7d343a
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 5525d3af56e6de5848c8fbe6c94ca05396440f2f23b8ba933347adca3c3692c1
 ---
 
 ## Delete Skill
@@ -78,6 +78,10 @@ Delete Skill
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 

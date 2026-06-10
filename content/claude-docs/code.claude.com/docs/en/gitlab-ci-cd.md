@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/gitlab-ci-cd
-fetched_at: 2026-05-03T03:13:42.903452Z
-sha256: 79ae00d548540892c6a7068cb4f5f2e33f6ca6d1c27aeb8b5b6e794480862820
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 249c57b717146afc236218ee565be76fe2ce9688251e0e1230ccf5e48a8a22e8
 ---
 
 > ## Documentation Index
@@ -105,7 +105,7 @@ claude:
 After adding the job and your `ANTHROPIC_API_KEY` variable, test by running the job manually from **CI/CD** → **Pipelines**, or trigger it from an MR to let Claude propose updates in a branch and open an MR if needed.
 
 <Note>
-  To run on Amazon Bedrock or Google Vertex AI instead of the Claude API, see the [Using with Amazon Bedrock & Google Vertex AI](#using-with-amazon-bedrock--google-vertex-ai) section below for authentication and environment setup.
+  To run on Amazon Bedrock or Google Vertex AI instead of the Claude API, see the [Using with Amazon Bedrock & Google Vertex AI](#using-with-amazon-bedrock-%26-google-vertex-ai) section below for authentication and environment setup.
 </Note>
 
 ### Manual setup (recommended for production)

@@ -1,29 +1,29 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/build-a-tool-using-agent
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 6676c604bb8bf94ef5569a72bc35055b8369f4428de7bbec5a90c68b704674a8
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: c928edb55035210b808458add1e517310b9f393e5d31530ec4defab40234ef67
 ---
 
-# Tutorial: Bangun agen yang menggunakan alat
+# Tutorial: Membangun agen yang menggunakan alat
 
-Panduan langkah demi langkah dari satu panggilan alat hingga loop agentic yang siap produksi.
+Panduan langkah demi langkah dari satu pemanggilan alat hingga loop agentik yang siap produksi.
 
 ---
 
-Tutorial ini membangun agen manajemen kalender dalam lima cincin konsentris. Setiap cincin adalah program lengkap yang dapat dijalankan dan menambahkan tepat satu konsep ke cincin sebelumnya. Di akhir, Anda akan telah menulis loop agentic dengan tangan dan kemudian menggantinya dengan abstraksi Tool Runner SDK.
+Tutorial ini membangun agen manajemen kalender dalam lima lapisan konsentris. Setiap lapisan adalah program lengkap yang dapat dijalankan dan menambahkan tepat satu konsep ke lapisan sebelumnya. Pada akhirnya, Anda akan menulis "agentic loop" (loop agentik) secara manual dan kemudian menggantinya dengan abstraksi SDK Tool Runner.
 
-Alat contoh adalah `create_calendar_event`. Skemanya menggunakan objek bersarang, array, dan bidang opsional, sehingga Anda akan melihat bagaimana Claude menangani bentuk input yang realistis daripada sekadar string datar tunggal.
+Alat contoh yang digunakan adalah `create_calendar_event`. Skemanya menggunakan objek bersarang, array, dan field opsional, sehingga Anda akan melihat bagaimana Claude menangani bentuk input yang realistis, bukan sekadar satu string datar.
 
 <Note>
-Setiap cincin berjalan mandiri. Salin cincin apa pun ke file baru dan itu akan dijalankan tanpa kode dari cincin sebelumnya.
+Setiap lapisan dapat dijalankan secara mandiri. Salin lapisan mana pun ke dalam file baru dan kode tersebut akan berjalan tanpa memerlukan kode dari lapisan sebelumnya.
 </Note>
 
-## Cincin 1: Satu alat, satu putaran
+## Lapisan 1: Satu alat, satu giliran \{#ring-1-single-tool-single-turn}
 
-Program penggunaan alat terkecil yang mungkin: satu alat, satu pesan pengguna, satu panggilan alat, satu hasil. Kode diberi komentar berat sehingga Anda dapat memetakan setiap baris ke [siklus hidup penggunaan alat](/docs/id/agents-and-tools/tool-use/how-tool-use-works).
+Program penggunaan alat sekecil mungkin: satu alat, satu pesan pengguna, satu pemanggilan alat, satu hasil. Kode ini diberi banyak komentar sehingga Anda dapat memetakan setiap baris ke [siklus hidup penggunaan alat](/docs/id/agents-and-tools/tool-use/how-tool-use-works).
 
-Permintaan mengirimkan array `tools` bersama pesan pengguna. Ketika Claude memutuskan untuk memanggil alat, respons kembali dengan `stop_reason: "tool_use"` dan blok konten `tool_use` yang berisi nama alat, `id` unik, dan `input` terstruktur. Kode Anda menjalankan alat, kemudian mengirimkan hasil kembali dalam blok `tool_result` yang `tool_use_id`-nya cocok dengan `id` dari panggilan.
+Permintaan mengirimkan array `tools` bersama dengan pesan pengguna. Ketika Claude memutuskan untuk memanggil sebuah alat, respons kembali dengan `stop_reason: "tool_use"` dan blok konten `tool_use` yang berisi nama alat, `id` unik, dan `input` terstruktur. Kode Anda mengeksekusi alat tersebut, lalu mengirimkan hasilnya kembali dalam blok `tool_result` yang `tool_use_id`-nya cocok dengan `id` dari pemanggilan tersebut.
 
 <CodeGroup>
   
@@ -448,13 +448,13 @@ stop_reason: end_turn
 I've scheduled your 30-minute sync with Alice and Bob for next Monday at 10am.
 ```
 
-`stop_reason` pertama adalah `tool_use` karena Claude menunggu hasil kalender. Setelah Anda mengirimkan hasil, `stop_reason` kedua adalah `end_turn` dan kontennya adalah bahasa alami untuk pengguna.
+`stop_reason` pertama adalah `tool_use` karena Claude sedang menunggu hasil dari kalender. Setelah Anda mengirimkan hasilnya, `stop_reason` kedua adalah `end_turn` dan kontennya berupa bahasa alami untuk pengguna.
 
-## Cincin 2: Loop agentic
+## Lapisan 2: Loop agentik \{#ring-2-the-agentic-loop}
 
-Cincin 1 mengasumsikan Claude akan memanggil alat tepat satu kali. Tugas nyata sering memerlukan beberapa panggilan: Claude mungkin membuat acara, membaca konfirmasi, kemudian membuat yang lain. Solusinya adalah loop `while` yang terus menjalankan alat dan memberi umpan balik hasil hingga `stop_reason` tidak lagi `"tool_use"`.
+Lapisan 1 mengasumsikan Claude akan memanggil alat tepat satu kali. Tugas nyata sering kali membutuhkan beberapa pemanggilan: Claude mungkin membuat sebuah acara, membaca konfirmasinya, lalu membuat acara lain. Solusinya adalah loop `while` yang terus menjalankan alat dan mengirimkan hasilnya kembali hingga `stop_reason` tidak lagi bernilai `"tool_use"`.
 
-Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun kembali array `messages` dari awal pada setiap permintaan, simpan daftar yang berjalan dan tambahkan ke dalamnya. Setiap putaran melihat konteks sebelumnya yang lengkap.
+Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `messages` dari awal pada setiap permintaan, simpan daftar yang terus berjalan dan tambahkan ke dalamnya. Setiap giliran melihat konteks lengkap sebelumnya.
 
 <CodeGroup>
   
@@ -816,13 +816,13 @@ for (const block of response.content) {
 I've set up your weekly team standup for the next 4 Mondays at 9am with Alice, Bob, and Carol invited.
 ```
 
-Loop dapat berjalan sekali atau beberapa kali tergantung pada bagaimana Claude memecah tugas. Kode Anda tidak perlu lagi mengetahui sebelumnya.
+Loop ini mungkin berjalan sekali atau beberapa kali tergantung pada bagaimana Claude memecah tugas tersebut. Kode Anda tidak lagi perlu mengetahuinya di awal.
 
-## Cincin 3: Beberapa alat, panggilan paralel
+## Lapisan 3: Beberapa alat, pemanggilan paralel \{#ring-3-multiple-tools-parallel-calls}
 
-Agen jarang memiliki hanya satu kemampuan. Tambahkan alat kedua, `list_calendar_events`, sehingga Claude dapat memeriksa jadwal yang ada sebelum membuat sesuatu yang baru.
+Agen jarang hanya memiliki satu kemampuan. Tambahkan alat kedua, `list_calendar_events`, sehingga Claude dapat memeriksa jadwal yang ada sebelum membuat sesuatu yang baru.
 
-Ketika Claude memiliki beberapa panggilan alat independen untuk dibuat, itu dapat mengembalikan beberapa blok `tool_use` dalam satu respons. Loop Anda perlu memproses semuanya dan mengirimkan semua hasil bersama-sama dalam satu pesan pengguna. Ulangi setiap blok `tool_use` dalam `response.content`, bukan hanya yang pertama.
+Ketika Claude memiliki beberapa pemanggilan alat independen yang perlu dilakukan, Claude mungkin mengembalikan beberapa blok `tool_use` dalam satu respons. Loop Anda perlu memproses semuanya dan mengirimkan semua hasil bersama-sama dalam satu pesan pengguna. Lakukan iterasi pada setiap blok `tool_use` dalam `response.content`, bukan hanya yang pertama.
 
 <CodeGroup>
   
@@ -1217,11 +1217,11 @@ for (const block of response.content) {
 I checked your calendar for next Monday and found an existing meeting from 2pm to 3pm. I've scheduled the planning session for 10am to 11am to avoid the conflict.
 ```
 
-Untuk informasi lebih lanjut tentang eksekusi bersamaan dan jaminan pengurutan, lihat [Penggunaan alat paralel](/docs/id/agents-and-tools/tool-use/parallel-tool-use).
+Untuk informasi lebih lanjut tentang eksekusi bersamaan dan jaminan urutan, lihat [Penggunaan alat paralel](/docs/id/agents-and-tools/tool-use/parallel-tool-use).
 
-## Cincin 4: Penanganan kesalahan
+## Lapisan 4: Penanganan error \{#ring-4-error-handling}
 
-Alat gagal. API kalender mungkin menolak acara dengan terlalu banyak peserta, atau tanggal mungkin salah format. Ketika alat memunculkan kesalahan, kirimkan pesan kesalahan kembali dengan `is_error: true` alih-alih mogok. Claude membaca kesalahan dan dapat mencoba lagi dengan input yang diperbaiki, meminta klarifikasi dari pengguna, atau menjelaskan keterbatasan.
+Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak peserta, atau format tanggal mungkin salah. Ketika sebuah alat menghasilkan error, kirimkan pesan error kembali dengan `is_error: true` alih-alih membiarkan program crash. Claude membaca error tersebut dan dapat mencoba lagi dengan input yang diperbaiki, meminta klarifikasi dari pengguna, atau menjelaskan keterbatasannya.
 
 <CodeGroup>
   
@@ -1658,16 +1658,16 @@ for (const block of response.content) {
 I tried to schedule the all-hands but the calendar only allows 10 attendees per event. I can split this into two sessions, or you can let me know which 10 people to prioritize.
 ```
 
-Bendera `is_error` adalah satu-satunya perbedaan dari hasil yang berhasil. Claude melihat bendera dan teks kesalahan, dan merespons sesuai. Lihat [Tangani panggilan alat](/docs/id/agents-and-tools/tool-use/handle-tool-calls) untuk referensi penanganan kesalahan lengkap.
+Flag `is_error` adalah satu-satunya perbedaan dari hasil yang berhasil. Claude melihat flag tersebut dan teks error-nya, lalu merespons sesuai dengan itu. Lihat [Menangani pemanggilan alat](/docs/id/agents-and-tools/tool-use/handle-tool-calls) untuk referensi lengkap penanganan error.
 
-## Cincin 5: Abstraksi Tool Runner SDK
+## Lapisan 5: Abstraksi SDK Tool Runner \{#ring-5-the-tool-runner-sdk-abstraction}
 
-Cincin 2 hingga 4 menulis loop yang sama dengan tangan: panggil API, periksa `stop_reason`, jalankan alat, tambahkan hasil, ulangi. Tool Runner melakukan ini untuk Anda. Tentukan setiap alat sebagai fungsi, berikan daftar ke `tool_runner`, dan ambil pesan akhir setelah loop selesai. Pembungkus kesalahan, pemformatan hasil, dan manajemen percakapan ditangani secara internal.
+Lapisan 2 hingga 4 menulis loop yang sama secara manual: memanggil API, memeriksa `stop_reason`, menjalankan alat, menambahkan hasil, ulangi. Tool Runner melakukan ini untuk Anda. Definisikan setiap alat sebagai fungsi, berikan daftarnya ke `tool_runner`, dan ambil pesan akhir setelah loop selesai. Pembungkusan error, pemformatan hasil, dan manajemen percakapan ditangani secara internal.
 
-Python SDK menggunakan dekorator `@beta_tool` untuk menyimpulkan skema dari petunjuk tipe dan docstring. TypeScript SDK menggunakan `betaZodTool` dengan skema Zod.
+SDK Python menggunakan dekorator `@beta_tool` untuk menyimpulkan skema dari type hints dan docstring. SDK TypeScript menggunakan `betaZodTool` dengan skema Zod.
 
 <Note>
-Tool Runner tersedia di Python, TypeScript, dan Ruby SDK. Tab Shell dan CLI menampilkan catatan alih-alih kode; pertahankan loop Ring 4 untuk skrip berbasis shell.
+Tool Runner tersedia di SDK Python, TypeScript, dan Ruby. Tab cURL dan CLI menampilkan catatan alih-alih kode; tetap gunakan loop Lapisan 4 untuk skrip berbasis curl atau CLI.
 </Note>
 
 <CodeGroup>
@@ -1834,22 +1834,22 @@ for (const block of finalMessage.content) {
 I checked your calendar for next Monday and found an existing meeting from 2pm to 3pm. I've scheduled the planning session for 10am to 11am to avoid the conflict.
 ```
 
-Output identik dengan Cincin 3. Perbedaannya ada di kode: kira-kira setengah dari jumlah baris, tidak ada loop manual, dan skema hidup di samping implementasi.
+Output-nya identik dengan Lapisan 3. Perbedaannya ada pada kode: kira-kira setengah jumlah baris, tanpa loop manual, dan skema berada tepat di samping implementasinya.
 
-## Apa yang Anda bangun
+## Apa yang telah Anda bangun \{#what-you-built}
 
-Anda memulai dengan satu panggilan alat yang dikodekan keras dan berakhir dengan agen berbentuk produksi yang menangani beberapa alat, panggilan paralel, dan kesalahan, kemudian menciutkan semuanya ke dalam Tool Runner. Sepanjang jalan Anda melihat setiap bagian dari protokol penggunaan alat: blok `tool_use`, blok `tool_result`, pencocokan `tool_use_id`, pemeriksaan `stop_reason`, dan sinyal `is_error`.
+Anda memulai dengan satu pemanggilan alat yang di-hardcode dan berakhir dengan agen berbentuk produksi yang menangani beberapa alat, pemanggilan paralel, dan error, lalu meringkas semua itu ke dalam Tool Runner. Sepanjang proses, Anda telah melihat setiap bagian dari protokol penggunaan alat: blok `tool_use`, blok `tool_result`, pencocokan `tool_use_id`, pemeriksaan `stop_reason`, dan pensinyalan `is_error`.
 
-## Langkah berikutnya
+## Langkah selanjutnya \{#next-steps}
 
 <CardGroup>
-  <Card href="/docs/id/agents-and-tools/tool-use/define-tools" title="Asah skema Anda">
+  <Card href="/docs/id/agents-and-tools/tool-use/define-tools" title="Pertajam skema Anda">
     Spesifikasi skema dan praktik terbaik.
   </Card>
-  <Card href="/docs/id/agents-and-tools/tool-use/tool-runner" title="Penyelaman mendalam Tool Runner">
-    Referensi abstraksi SDK lengkap.
+  <Card href="/docs/id/agents-and-tools/tool-use/tool-runner" title="Pendalaman Tool Runner">
+    Referensi lengkap abstraksi SDK.
   </Card>
   <Card href="/docs/id/agents-and-tools/tool-use/troubleshooting-tool-use" title="Pemecahan masalah">
-    Perbaiki kesalahan penggunaan alat umum.
+    Perbaiki error umum dalam penggunaan alat.
   </Card>
 </CardGroup>

@@ -1,25 +1,25 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/github
-fetched_at: 2026-05-30T03:14:18.300217Z
-sha256: 4912a7b4adf7236f2f0aac1144bb70f284f9328091fd38d77d327aa2aae49d23
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 9da735fae733378d41e896a04efaecf0d5465ba61f944dd1afd2e525dc9d1939
 ---
 
 # Mengakses GitHub
 
-Hubungkan agen Anda ke repositori GitHub untuk melakukan cloning, membaca, dan membuat pull request.
+Hubungkan agen Anda ke repositori GitHub untuk melakukan clone, membaca, dan membuat pull request.
 
 ---
 
-Anda dapat memasang repositori GitHub ke container sesi Anda dan terhubung ke GitHub MCP untuk membuat pull request.
+Anda dapat memasang (mount) repositori GitHub ke sandbox sesi Anda dan terhubung ke GitHub MCP untuk membuat pull request.
 
-Repositori GitHub di-cache, sehingga sesi mendatang yang menggunakan repositori yang sama akan dimulai lebih cepat.
+Repositori GitHub di-cache, sehingga sesi berikutnya yang menggunakan repositori yang sama akan dimulai lebih cepat.
 
 <Note>
-Semua permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`. SDK menetapkan header beta secara otomatis.
+Semua permintaan Managed Agents API memerlukan beta header `managed-agents-2026-04-01`. SDK menetapkan beta header tersebut secara otomatis.
 </Note>
 
-## GitHub MCP dan Sumber Daya Sesi
+## GitHub MCP dan sumber daya sesi \{#git-hub-mcp-and-session-resources}
 
 Pertama, buat agen yang mendeklarasikan server GitHub MCP. Definisi agen menyimpan URL server tetapi tidak menyimpan token autentikasi:
 
@@ -406,22 +406,22 @@ session = client.beta.sessions.create(
 
 `resources[].authorization_token` mengautentikasi operasi clone repositori dan tidak ditampilkan kembali dalam respons API.
 
-## Izin token
+## Izin token \{#token-permissions}
 
 Saat menyediakan token GitHub, gunakan izin minimum yang diperlukan:
 
-| Tindakan | Cakupan yang diperlukan |
+| Tindakan | Scope yang diperlukan |
 |--------|----------------|
 | Clone repositori privat | `repo` |
 | Membuat PR | `repo` |
-| Membaca isu | `repo` (privat) atau `public_repo` |
-| Membuat isu | `repo` (privat) atau `public_repo` |
+| Membaca issue | `repo` (privat) atau `public_repo` |
+| Membuat issue | `repo` (privat) atau `public_repo` |
 
 <Warning>
-Gunakan personal access token berbutir halus dengan izin minimum yang diperlukan. Hindari penggunaan token dengan akses luas ke akun GitHub Anda.
+Gunakan fine-grained personal access token dengan izin minimum yang diperlukan. Hindari menggunakan token dengan akses luas ke akun GitHub Anda.
 </Warning>
 
-## Beberapa repositori
+## Beberapa repositori \{#multiple-repositories}
 
 Pasang beberapa repositori dengan menambahkan entri ke array `resources`:
 
@@ -594,9 +594,9 @@ resources = [
 
 </CodeGroup>
 
-## Mengelola repositori pada sesi yang sedang berjalan
+## Mengelola repositori pada sesi yang sedang berjalan \{#managing-repositories-on-a-running-session}
 
-Setelah sesi dibuat, Anda dapat mencantumkan sumber daya repositorinya dan merotasi token otorisasinya. Setiap sumber daya memiliki `id` yang dikembalikan pada saat pembuatan sesi (atau melalui `resources.list`) yang Anda gunakan untuk pembaruan. Repositori dilampirkan selama masa hidup sesi; untuk mengubah repositori mana yang dipasang, buat sesi baru.
+Setelah sesi dibuat, Anda dapat menampilkan daftar sumber daya repositorinya dan merotasi token otorisasinya. Setiap sumber daya memiliki `id` yang dikembalikan pada saat pembuatan sesi (atau melalui `resources.list`) yang Anda gunakan untuk pembaruan. Repositori terpasang selama masa hidup sesi; untuk mengubah repositori mana yang dipasang, buat sesi baru.
 
 <CodeGroup>
   
@@ -745,9 +745,9 @@ client.beta.sessions.resources.update(
 
 </CodeGroup>
 
-## Membuat pull request
+## Membuat pull request \{#creating-pull-requests}
 
-Dengan server GitHub MCP, agen dapat membuat branch, melakukan commit perubahan, dan mendorongnya:
+Dengan server GitHub MCP, agen dapat membuat branch, melakukan commit perubahan, dan melakukan push:
 
 <CodeGroup>
   
@@ -919,3 +919,17 @@ client.beta.sessions.events.send_(
 ````
 
 </CodeGroup>
+
+## Langkah selanjutnya \{#next-steps}
+
+<CardGroup cols={2}>
+  <Card title="Stream event sesi" icon="lightning" href="/docs/id/managed-agents/events-and-streaming">
+    Lakukan streaming event dan arahkan agen saat membuka pull request
+  </Card>
+  <Card title="Konektor MCP" icon="link" href="/docs/id/managed-agents/mcp-connector">
+    Hubungkan lebih banyak server MCP untuk memberikan alat tambahan kepada agen
+  </Card>
+  <Card title="Menambahkan file" icon="file" href="/docs/id/managed-agents/files">
+    Pasang file di sandbox bersama dengan repositori Anda
+  </Card>
+</CardGroup>

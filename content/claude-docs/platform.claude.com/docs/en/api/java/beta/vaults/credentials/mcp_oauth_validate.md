@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/credentials/mcp_oauth_validate
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: e5aaa72b332b048b82fcf469ca86aea5738ff2c8712e8b680e75c4ef5297ebe1
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: dcd3ff89a8727fb5d446db80e391549e708a1184a614875588393562026f2bf2
 ---
 
 ## Validate Credential
@@ -76,6 +76,10 @@ Validate Credential
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
+
+    - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
+
+    - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
 
 ### Returns
 

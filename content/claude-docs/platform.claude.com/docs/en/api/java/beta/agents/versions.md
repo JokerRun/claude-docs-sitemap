@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/agents/versions
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 61e16705f1e176d076f9dc14a424e7b2ff1cb4a1d5d5bee38db3a769ce34a6b5
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: c938690a005978ee6fc768e32d166cfe42d268803824180f5c9f6cf0cfb160af
 ---
 
 # Versions
@@ -85,6 +85,10 @@ List Agent Versions
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
 
+    - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
+
+    - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
 ### Returns
 
 - `class BetaManagedAgentsAgent:`
@@ -124,6 +128,10 @@ List Agent Versions
       The model that will power your agent.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `CLAUDE_FABLE_5("claude-fable-5")`
+
+        Next generation of intelligence for the hardest knowledge work and coding problems
 
       - `CLAUDE_OPUS_4_8("claude-opus-4-8")`
 
@@ -347,19 +355,13 @@ List Agent Versions
 
         JSON Schema for custom tool input parameters.
 
-        - `Optional<Properties> properties`
-
-          JSON Schema properties defining the tool's input parameters.
-
-        - `Optional<List<String>> required`
-
-          List of required property names.
-
-        - `Optional<Type> type`
-
-          Must be 'object' for tool input schemas.
+        - `JsonValue; type "object"constant`
 
           - `OBJECT("object")`
+
+        - `Optional<Properties> properties`
+
+        - `Optional<List<String>> required`
 
       - `String name`
 

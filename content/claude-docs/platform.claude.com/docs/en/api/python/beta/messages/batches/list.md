@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/messages/batches/list
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: fec3cba5dadfde58a56833195f2955d1b029115bdca0a8dc3408efa0509d78d3
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 18dd1b55c37a78edac46ac6fb8cf1c4f4c92680467416f046989ba49f1b317e1
 ---
 
 ## List Message Batches
@@ -37,7 +37,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 23 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 25 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -90,6 +90,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `"cache-diagnosis-2026-04-07"`
 
     - `"thinking-token-count-2026-05-13"`
+
+    - `"server-side-fallback-2026-06-01"`
+
+    - `"fallback-credit-2026-06-01"`
 
 ### Returns
 

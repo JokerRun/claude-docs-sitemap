@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/messages/batches
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 723a5c499408e630cf6bb0d0121baf6d2d31766329f3f9e4d52ae587625deaa7
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: addfb5daee6070d1c0b489c4ea3388316d69d5e96567432926320e51bf4b3265
 ---
 
 # Batches
@@ -1109,7 +1109,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
               - `beta_advisor_tool_result_error: object { error_code, type }`
 
-                - `error_code: "max_uses_exceeded" or "prompt_too_long" or "too_many_requests" or 3 more`
+                - `error_code: "max_uses_exceeded" or "prompt_too_long" or "too_many_requests" or 4 more`
 
                   - `"max_uses_exceeded"`
 
@@ -1122,6 +1122,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
                   - `"unavailable"`
 
                   - `"execution_time_exceeded"`
+
+                  - `"model_not_found"`
 
                 - `type: "advisor_tool_result_error"`
 
@@ -1415,6 +1417,122 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             - `type: "compaction"`
 
+          - `beta_fallback_block: object { from, to, type }`
+
+            Marks the point in `content` where one model's output gives way to the next.
+
+            One block appears per hop where a preceding model actually ran this turn and
+            declined. A turn routed directly by the sticky decision has no such boundary
+            and carries no block — the signal for whether a fallback model served the
+            response is the presence of a `fallback_message` entry in
+            `usage.iterations`, not this block.
+
+            The block is treated like a server-tool content block for streaming: it
+            arrives via the standard `content_block_start` / `content_block_stop`
+            pair and carries no deltas.
+
+            - `from: object { model }`
+
+              The model whose output ends at this point — the model that declined at this hop. When the declining hop is the requested model, its `model` echoes the top-level `model` string the caller sent (alias or canonical); when the declining hop is a fallback model, its `model` is that model's canonical id.
+
+              - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+
+                The model that will complete your prompt.
+
+                See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+                - `"claude-fable-5"`
+
+                  Next generation of intelligence for the hardest knowledge work and coding problems
+
+                - `"claude-mythos-5"`
+
+                  Most capable model for cybersecurity and biology research
+
+                - `"claude-opus-4-8"`
+
+                  Frontier intelligence for long-running agents and coding
+
+                - `"claude-opus-4-7"`
+
+                  Frontier intelligence for long-running agents and coding
+
+                - `"claude-mythos-preview"`
+
+                  New class of intelligence, strongest in coding and cybersecurity
+
+                - `"claude-opus-4-6"`
+
+                  Frontier intelligence for long-running agents and coding
+
+                - `"claude-sonnet-4-6"`
+
+                  Best combination of speed and intelligence
+
+                - `"claude-haiku-4-5"`
+
+                  Fastest model with near-frontier intelligence
+
+                - `"claude-haiku-4-5-20251001"`
+
+                  Fastest model with near-frontier intelligence
+
+                - `"claude-opus-4-5"`
+
+                  Premium model combining maximum intelligence with practical performance
+
+                - `"claude-opus-4-5-20251101"`
+
+                  Premium model combining maximum intelligence with practical performance
+
+                - `"claude-sonnet-4-5"`
+
+                  High-performance model for agents and coding
+
+                - `"claude-sonnet-4-5-20250929"`
+
+                  High-performance model for agents and coding
+
+                - `"claude-opus-4-1"`
+
+                  Exceptional model for specialized complex tasks
+
+                - `"claude-opus-4-1-20250805"`
+
+                  Exceptional model for specialized complex tasks
+
+                - `"claude-opus-4-0"`
+
+                  Powerful model for complex tasks
+
+                - `"claude-opus-4-20250514"`
+
+                  Powerful model for complex tasks
+
+                - `"claude-sonnet-4-0"`
+
+                  High-performance model with extended thinking
+
+                - `"claude-sonnet-4-20250514"`
+
+                  High-performance model with extended thinking
+
+                - `"claude-3-haiku-20240307"`
+
+                  Fast and cost-effective model
+
+            - `to: object { model }`
+
+              The fallback model producing the content that follows this block. Its `model` is always the canonical id.
+
+              - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+
+                The model that will complete your prompt.
+
+                See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `type: "fallback"`
+
         - `context_management: object { applied_edits }`
 
           Context management response.
@@ -1502,11 +1620,19 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
               - `type: "unavailable"`
 
-        - `model: "claude-opus-4-8" or "claude-opus-4-7" or "claude-mythos-preview" or 15 more or string`
+        - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
 
           The model that will complete your prompt.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `"claude-fable-5"`
+
+            Next generation of intelligence for the hardest knowledge work and coding problems
+
+          - `"claude-mythos-5"`
+
+            Most capable model for cybersecurity and biology research
 
           - `"claude-opus-4-8"`
 
@@ -1586,11 +1712,11 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           This will always be `"assistant"`.
 
-        - `stop_details: object { category, explanation, type }`
+        - `stop_details: object { category, explanation, fallback_credit_token, 3 more }`
 
           Structured information about a refusal.
 
-          - `category: "cyber" or "bio"`
+          - `category: "cyber" or "bio" or "reasoning_extraction"`
 
             The policy category that triggered the refusal.
 
@@ -1600,11 +1726,62 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             - `"bio"`
 
+            - `"reasoning_extraction"`
+
           - `explanation: string`
 
             Human-readable explanation of the refusal.
 
             This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+          - `fallback_credit_token: string`
+
+            Opaque code that refunds the cache-miss cost when retrying this refused
+            request on the fallback model. Pass it as `fallback_credit_token` on the
+            retry request. Expires 5 minutes after the refusal.
+
+            The retry is sent either with the same request body (`system`, `messages`,
+            `tools`, and other render-shaping fields), or with the same body plus one
+            appended `assistant` message whose content is the partial text (with any
+            trailing whitespace stripped from the final text block) and paired
+            server-tool blocks from this refusal — which also authorizes that
+            appended turn as an assistant-prefill continuation on models that otherwise
+            disallow prefill. A token minted mid-server-tool-loop whose partial content
+            was continuable may only be redeemed the second way — if a same-body retry
+            is rejected with a 400 saying the token must be redeemed by continuing the
+            partial response, retry the second way instead. Either way: same workspace,
+            same platform; a mismatch is a 400. Resending a token for an already-warm
+            prefix is permitted but yields no additional credit.
+
+            `null` when the refused model isn't eligible for a fallback credit.
+
+          - `fallback_has_prefill_claim: boolean`
+
+            Whether the accompanying `fallback_credit_token` may be redeemed with the
+            appended-assistant retry form. Only set when `fallback_credit_token` is
+            present.
+
+            `true`: retry by resending the same request body plus one appended
+            `assistant` message whose content is this response's `content` with any
+            trailing whitespace stripped from the final text block and unpaired
+            `tool_use` blocks omitted (the same appended-turn shape described on
+            `fallback_credit_token`), with the token attached. `false`: retry by
+            resending the original request body unchanged, with the token attached —
+            the appended-assistant form is not available for this refusal (no
+            continuable partial content, or the request uses `output_format` or a
+            `tool_choice` that forces tool use). One exception: when the request used
+            `output_format` or a forced `tool_choice` and the refusal arrived after
+            server tools (including MCP connector tools) had already executed, the
+            token may not be redeemable by either retry form; if the exact-body retry
+            is then rejected with a 400 saying the token must be redeemed by
+            continuing the partial response, discard the token and retry without it.
+
+            Advisory: if an appended-assistant retry is rejected with a 400 despite
+            `true`, fall back to resending the original request body with the token.
+
+          - `recommended_model: string`
+
+            The server's suggested retry target for this refusal. Populated when a fallback attempt could not be made (the fallback model's rate limit was exhausted, or it was overloaded); names the fallback model the caller can retry directly. Null otherwise.
 
           - `type: "refusal"`
 
@@ -1691,7 +1868,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             The number of input tokens which were used.
 
-          - `iterations: array of BetaMessageIterationUsage or BetaCompactionIterationUsage or BetaAdvisorMessageIterationUsage`
+          - `iterations: array of BetaMessageIterationUsage or BetaCompactionIterationUsage or BetaAdvisorMessageIterationUsage or BetaFallbackMessageIterationUsage`
 
             Per-iteration token usage breakdown.
 
@@ -1701,7 +1878,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - Calculate the true context window size from the last iteration
             - Understand token accumulation across server-side tool use loops
 
-            - `beta_message_iteration_usage: object { cache_creation, cache_creation_input_tokens, cache_read_input_tokens, 3 more }`
+            - `beta_message_iteration_usage: object { cache_creation, cache_creation_input_tokens, cache_read_input_tokens, 4 more }`
 
               Token usage for a sampling iteration.
 
@@ -1728,6 +1905,92 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
               - `input_tokens: number`
 
                 The number of input tokens which were used.
+
+              - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+
+                The model that will complete your prompt.
+
+                See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+                - `"claude-fable-5"`
+
+                  Next generation of intelligence for the hardest knowledge work and coding problems
+
+                - `"claude-mythos-5"`
+
+                  Most capable model for cybersecurity and biology research
+
+                - `"claude-opus-4-8"`
+
+                  Frontier intelligence for long-running agents and coding
+
+                - `"claude-opus-4-7"`
+
+                  Frontier intelligence for long-running agents and coding
+
+                - `"claude-mythos-preview"`
+
+                  New class of intelligence, strongest in coding and cybersecurity
+
+                - `"claude-opus-4-6"`
+
+                  Frontier intelligence for long-running agents and coding
+
+                - `"claude-sonnet-4-6"`
+
+                  Best combination of speed and intelligence
+
+                - `"claude-haiku-4-5"`
+
+                  Fastest model with near-frontier intelligence
+
+                - `"claude-haiku-4-5-20251001"`
+
+                  Fastest model with near-frontier intelligence
+
+                - `"claude-opus-4-5"`
+
+                  Premium model combining maximum intelligence with practical performance
+
+                - `"claude-opus-4-5-20251101"`
+
+                  Premium model combining maximum intelligence with practical performance
+
+                - `"claude-sonnet-4-5"`
+
+                  High-performance model for agents and coding
+
+                - `"claude-sonnet-4-5-20250929"`
+
+                  High-performance model for agents and coding
+
+                - `"claude-opus-4-1"`
+
+                  Exceptional model for specialized complex tasks
+
+                - `"claude-opus-4-1-20250805"`
+
+                  Exceptional model for specialized complex tasks
+
+                - `"claude-opus-4-0"`
+
+                  Powerful model for complex tasks
+
+                - `"claude-opus-4-20250514"`
+
+                  Powerful model for complex tasks
+
+                - `"claude-sonnet-4-0"`
+
+                  High-performance model with extended thinking
+
+                - `"claude-sonnet-4-20250514"`
+
+                  High-performance model with extended thinking
+
+                - `"claude-3-haiku-20240307"`
+
+                  Fast and cost-effective model
 
               - `output_tokens: number`
 
@@ -1801,11 +2064,19 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                 The number of input tokens which were used.
 
-              - `model: "claude-opus-4-8" or "claude-opus-4-7" or "claude-mythos-preview" or 15 more or string`
+              - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
 
                 The model that will complete your prompt.
 
                 See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+                - `"claude-fable-5"`
+
+                  Next generation of intelligence for the hardest knowledge work and coding problems
+
+                - `"claude-mythos-5"`
+
+                  Most capable model for cybersecurity and biology research
 
                 - `"claude-opus-4-8"`
 
@@ -1886,6 +2157,133 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
               - `type: "advisor_message"`
 
                 Usage for an advisor sub-inference iteration
+
+            - `beta_fallback_message_iteration_usage: object { cache_creation, cache_creation_input_tokens, cache_read_input_tokens, 4 more }`
+
+              Token usage for the fallback-model attempt of a server-side fallback request.
+
+              Produced in place of a `message` entry for whichever hop served the
+              response. A declined hop produces the existing `message` entry. Whether
+              a fallback model served the response is signalled by the presence of this
+              entry in `usage.iterations`.
+
+              - `cache_creation: object { ephemeral_1h_input_tokens, ephemeral_5m_input_tokens }`
+
+                Breakdown of cached tokens by TTL
+
+                - `ephemeral_1h_input_tokens: number`
+
+                  The number of input tokens used to create the 1 hour cache entry.
+
+                - `ephemeral_5m_input_tokens: number`
+
+                  The number of input tokens used to create the 5 minute cache entry.
+
+              - `cache_creation_input_tokens: number`
+
+                The number of input tokens used to create the cache entry.
+
+              - `cache_read_input_tokens: number`
+
+                The number of input tokens read from the cache.
+
+              - `input_tokens: number`
+
+                The number of input tokens which were used.
+
+              - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+
+                The model that will complete your prompt.
+
+                See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+                - `"claude-fable-5"`
+
+                  Next generation of intelligence for the hardest knowledge work and coding problems
+
+                - `"claude-mythos-5"`
+
+                  Most capable model for cybersecurity and biology research
+
+                - `"claude-opus-4-8"`
+
+                  Frontier intelligence for long-running agents and coding
+
+                - `"claude-opus-4-7"`
+
+                  Frontier intelligence for long-running agents and coding
+
+                - `"claude-mythos-preview"`
+
+                  New class of intelligence, strongest in coding and cybersecurity
+
+                - `"claude-opus-4-6"`
+
+                  Frontier intelligence for long-running agents and coding
+
+                - `"claude-sonnet-4-6"`
+
+                  Best combination of speed and intelligence
+
+                - `"claude-haiku-4-5"`
+
+                  Fastest model with near-frontier intelligence
+
+                - `"claude-haiku-4-5-20251001"`
+
+                  Fastest model with near-frontier intelligence
+
+                - `"claude-opus-4-5"`
+
+                  Premium model combining maximum intelligence with practical performance
+
+                - `"claude-opus-4-5-20251101"`
+
+                  Premium model combining maximum intelligence with practical performance
+
+                - `"claude-sonnet-4-5"`
+
+                  High-performance model for agents and coding
+
+                - `"claude-sonnet-4-5-20250929"`
+
+                  High-performance model for agents and coding
+
+                - `"claude-opus-4-1"`
+
+                  Exceptional model for specialized complex tasks
+
+                - `"claude-opus-4-1-20250805"`
+
+                  Exceptional model for specialized complex tasks
+
+                - `"claude-opus-4-0"`
+
+                  Powerful model for complex tasks
+
+                - `"claude-opus-4-20250514"`
+
+                  Powerful model for complex tasks
+
+                - `"claude-sonnet-4-0"`
+
+                  High-performance model with extended thinking
+
+                - `"claude-sonnet-4-20250514"`
+
+                  High-performance model with extended thinking
+
+                - `"claude-3-haiku-20240307"`
+
+                  Fast and cost-effective model
+
+              - `output_tokens: number`
+
+                The number of output tokens which were used.
+
+              - `type: "fallback_message"`
+
+                Usage for the fallback-model attempt that served the response
 
           - `output_tokens: number`
 
@@ -2646,7 +3044,7 @@ ant beta:messages:batches results \
 
               - `beta_advisor_tool_result_error: object { error_code, type }`
 
-                - `error_code: "max_uses_exceeded" or "prompt_too_long" or "too_many_requests" or 3 more`
+                - `error_code: "max_uses_exceeded" or "prompt_too_long" or "too_many_requests" or 4 more`
 
                   - `"max_uses_exceeded"`
 
@@ -2659,6 +3057,8 @@ ant beta:messages:batches results \
                   - `"unavailable"`
 
                   - `"execution_time_exceeded"`
+
+                  - `"model_not_found"`
 
                 - `type: "advisor_tool_result_error"`
 
@@ -2952,6 +3352,122 @@ ant beta:messages:batches results \
 
             - `type: "compaction"`
 
+          - `beta_fallback_block: object { from, to, type }`
+
+            Marks the point in `content` where one model's output gives way to the next.
+
+            One block appears per hop where a preceding model actually ran this turn and
+            declined. A turn routed directly by the sticky decision has no such boundary
+            and carries no block — the signal for whether a fallback model served the
+            response is the presence of a `fallback_message` entry in
+            `usage.iterations`, not this block.
+
+            The block is treated like a server-tool content block for streaming: it
+            arrives via the standard `content_block_start` / `content_block_stop`
+            pair and carries no deltas.
+
+            - `from: object { model }`
+
+              The model whose output ends at this point — the model that declined at this hop. When the declining hop is the requested model, its `model` echoes the top-level `model` string the caller sent (alias or canonical); when the declining hop is a fallback model, its `model` is that model's canonical id.
+
+              - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+
+                The model that will complete your prompt.
+
+                See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+                - `"claude-fable-5"`
+
+                  Next generation of intelligence for the hardest knowledge work and coding problems
+
+                - `"claude-mythos-5"`
+
+                  Most capable model for cybersecurity and biology research
+
+                - `"claude-opus-4-8"`
+
+                  Frontier intelligence for long-running agents and coding
+
+                - `"claude-opus-4-7"`
+
+                  Frontier intelligence for long-running agents and coding
+
+                - `"claude-mythos-preview"`
+
+                  New class of intelligence, strongest in coding and cybersecurity
+
+                - `"claude-opus-4-6"`
+
+                  Frontier intelligence for long-running agents and coding
+
+                - `"claude-sonnet-4-6"`
+
+                  Best combination of speed and intelligence
+
+                - `"claude-haiku-4-5"`
+
+                  Fastest model with near-frontier intelligence
+
+                - `"claude-haiku-4-5-20251001"`
+
+                  Fastest model with near-frontier intelligence
+
+                - `"claude-opus-4-5"`
+
+                  Premium model combining maximum intelligence with practical performance
+
+                - `"claude-opus-4-5-20251101"`
+
+                  Premium model combining maximum intelligence with practical performance
+
+                - `"claude-sonnet-4-5"`
+
+                  High-performance model for agents and coding
+
+                - `"claude-sonnet-4-5-20250929"`
+
+                  High-performance model for agents and coding
+
+                - `"claude-opus-4-1"`
+
+                  Exceptional model for specialized complex tasks
+
+                - `"claude-opus-4-1-20250805"`
+
+                  Exceptional model for specialized complex tasks
+
+                - `"claude-opus-4-0"`
+
+                  Powerful model for complex tasks
+
+                - `"claude-opus-4-20250514"`
+
+                  Powerful model for complex tasks
+
+                - `"claude-sonnet-4-0"`
+
+                  High-performance model with extended thinking
+
+                - `"claude-sonnet-4-20250514"`
+
+                  High-performance model with extended thinking
+
+                - `"claude-3-haiku-20240307"`
+
+                  Fast and cost-effective model
+
+            - `to: object { model }`
+
+              The fallback model producing the content that follows this block. Its `model` is always the canonical id.
+
+              - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+
+                The model that will complete your prompt.
+
+                See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `type: "fallback"`
+
         - `context_management: object { applied_edits }`
 
           Context management response.
@@ -3039,11 +3555,19 @@ ant beta:messages:batches results \
 
               - `type: "unavailable"`
 
-        - `model: "claude-opus-4-8" or "claude-opus-4-7" or "claude-mythos-preview" or 15 more or string`
+        - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
 
           The model that will complete your prompt.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `"claude-fable-5"`
+
+            Next generation of intelligence for the hardest knowledge work and coding problems
+
+          - `"claude-mythos-5"`
+
+            Most capable model for cybersecurity and biology research
 
           - `"claude-opus-4-8"`
 
@@ -3123,11 +3647,11 @@ ant beta:messages:batches results \
 
           This will always be `"assistant"`.
 
-        - `stop_details: object { category, explanation, type }`
+        - `stop_details: object { category, explanation, fallback_credit_token, 3 more }`
 
           Structured information about a refusal.
 
-          - `category: "cyber" or "bio"`
+          - `category: "cyber" or "bio" or "reasoning_extraction"`
 
             The policy category that triggered the refusal.
 
@@ -3137,11 +3661,62 @@ ant beta:messages:batches results \
 
             - `"bio"`
 
+            - `"reasoning_extraction"`
+
           - `explanation: string`
 
             Human-readable explanation of the refusal.
 
             This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+          - `fallback_credit_token: string`
+
+            Opaque code that refunds the cache-miss cost when retrying this refused
+            request on the fallback model. Pass it as `fallback_credit_token` on the
+            retry request. Expires 5 minutes after the refusal.
+
+            The retry is sent either with the same request body (`system`, `messages`,
+            `tools`, and other render-shaping fields), or with the same body plus one
+            appended `assistant` message whose content is the partial text (with any
+            trailing whitespace stripped from the final text block) and paired
+            server-tool blocks from this refusal — which also authorizes that
+            appended turn as an assistant-prefill continuation on models that otherwise
+            disallow prefill. A token minted mid-server-tool-loop whose partial content
+            was continuable may only be redeemed the second way — if a same-body retry
+            is rejected with a 400 saying the token must be redeemed by continuing the
+            partial response, retry the second way instead. Either way: same workspace,
+            same platform; a mismatch is a 400. Resending a token for an already-warm
+            prefix is permitted but yields no additional credit.
+
+            `null` when the refused model isn't eligible for a fallback credit.
+
+          - `fallback_has_prefill_claim: boolean`
+
+            Whether the accompanying `fallback_credit_token` may be redeemed with the
+            appended-assistant retry form. Only set when `fallback_credit_token` is
+            present.
+
+            `true`: retry by resending the same request body plus one appended
+            `assistant` message whose content is this response's `content` with any
+            trailing whitespace stripped from the final text block and unpaired
+            `tool_use` blocks omitted (the same appended-turn shape described on
+            `fallback_credit_token`), with the token attached. `false`: retry by
+            resending the original request body unchanged, with the token attached —
+            the appended-assistant form is not available for this refusal (no
+            continuable partial content, or the request uses `output_format` or a
+            `tool_choice` that forces tool use). One exception: when the request used
+            `output_format` or a forced `tool_choice` and the refusal arrived after
+            server tools (including MCP connector tools) had already executed, the
+            token may not be redeemable by either retry form; if the exact-body retry
+            is then rejected with a 400 saying the token must be redeemed by
+            continuing the partial response, discard the token and retry without it.
+
+            Advisory: if an appended-assistant retry is rejected with a 400 despite
+            `true`, fall back to resending the original request body with the token.
+
+          - `recommended_model: string`
+
+            The server's suggested retry target for this refusal. Populated when a fallback attempt could not be made (the fallback model's rate limit was exhausted, or it was overloaded); names the fallback model the caller can retry directly. Null otherwise.
 
           - `type: "refusal"`
 
@@ -3228,7 +3803,7 @@ ant beta:messages:batches results \
 
             The number of input tokens which were used.
 
-          - `iterations: array of BetaMessageIterationUsage or BetaCompactionIterationUsage or BetaAdvisorMessageIterationUsage`
+          - `iterations: array of BetaMessageIterationUsage or BetaCompactionIterationUsage or BetaAdvisorMessageIterationUsage or BetaFallbackMessageIterationUsage`
 
             Per-iteration token usage breakdown.
 
@@ -3238,7 +3813,7 @@ ant beta:messages:batches results \
             - Calculate the true context window size from the last iteration
             - Understand token accumulation across server-side tool use loops
 
-            - `beta_message_iteration_usage: object { cache_creation, cache_creation_input_tokens, cache_read_input_tokens, 3 more }`
+            - `beta_message_iteration_usage: object { cache_creation, cache_creation_input_tokens, cache_read_input_tokens, 4 more }`
 
               Token usage for a sampling iteration.
 
@@ -3265,6 +3840,92 @@ ant beta:messages:batches results \
               - `input_tokens: number`
 
                 The number of input tokens which were used.
+
+              - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+
+                The model that will complete your prompt.
+
+                See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+                - `"claude-fable-5"`
+
+                  Next generation of intelligence for the hardest knowledge work and coding problems
+
+                - `"claude-mythos-5"`
+
+                  Most capable model for cybersecurity and biology research
+
+                - `"claude-opus-4-8"`
+
+                  Frontier intelligence for long-running agents and coding
+
+                - `"claude-opus-4-7"`
+
+                  Frontier intelligence for long-running agents and coding
+
+                - `"claude-mythos-preview"`
+
+                  New class of intelligence, strongest in coding and cybersecurity
+
+                - `"claude-opus-4-6"`
+
+                  Frontier intelligence for long-running agents and coding
+
+                - `"claude-sonnet-4-6"`
+
+                  Best combination of speed and intelligence
+
+                - `"claude-haiku-4-5"`
+
+                  Fastest model with near-frontier intelligence
+
+                - `"claude-haiku-4-5-20251001"`
+
+                  Fastest model with near-frontier intelligence
+
+                - `"claude-opus-4-5"`
+
+                  Premium model combining maximum intelligence with practical performance
+
+                - `"claude-opus-4-5-20251101"`
+
+                  Premium model combining maximum intelligence with practical performance
+
+                - `"claude-sonnet-4-5"`
+
+                  High-performance model for agents and coding
+
+                - `"claude-sonnet-4-5-20250929"`
+
+                  High-performance model for agents and coding
+
+                - `"claude-opus-4-1"`
+
+                  Exceptional model for specialized complex tasks
+
+                - `"claude-opus-4-1-20250805"`
+
+                  Exceptional model for specialized complex tasks
+
+                - `"claude-opus-4-0"`
+
+                  Powerful model for complex tasks
+
+                - `"claude-opus-4-20250514"`
+
+                  Powerful model for complex tasks
+
+                - `"claude-sonnet-4-0"`
+
+                  High-performance model with extended thinking
+
+                - `"claude-sonnet-4-20250514"`
+
+                  High-performance model with extended thinking
+
+                - `"claude-3-haiku-20240307"`
+
+                  Fast and cost-effective model
 
               - `output_tokens: number`
 
@@ -3338,11 +3999,19 @@ ant beta:messages:batches results \
 
                 The number of input tokens which were used.
 
-              - `model: "claude-opus-4-8" or "claude-opus-4-7" or "claude-mythos-preview" or 15 more or string`
+              - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
 
                 The model that will complete your prompt.
 
                 See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+                - `"claude-fable-5"`
+
+                  Next generation of intelligence for the hardest knowledge work and coding problems
+
+                - `"claude-mythos-5"`
+
+                  Most capable model for cybersecurity and biology research
 
                 - `"claude-opus-4-8"`
 
@@ -3423,6 +4092,133 @@ ant beta:messages:batches results \
               - `type: "advisor_message"`
 
                 Usage for an advisor sub-inference iteration
+
+            - `beta_fallback_message_iteration_usage: object { cache_creation, cache_creation_input_tokens, cache_read_input_tokens, 4 more }`
+
+              Token usage for the fallback-model attempt of a server-side fallback request.
+
+              Produced in place of a `message` entry for whichever hop served the
+              response. A declined hop produces the existing `message` entry. Whether
+              a fallback model served the response is signalled by the presence of this
+              entry in `usage.iterations`.
+
+              - `cache_creation: object { ephemeral_1h_input_tokens, ephemeral_5m_input_tokens }`
+
+                Breakdown of cached tokens by TTL
+
+                - `ephemeral_1h_input_tokens: number`
+
+                  The number of input tokens used to create the 1 hour cache entry.
+
+                - `ephemeral_5m_input_tokens: number`
+
+                  The number of input tokens used to create the 5 minute cache entry.
+
+              - `cache_creation_input_tokens: number`
+
+                The number of input tokens used to create the cache entry.
+
+              - `cache_read_input_tokens: number`
+
+                The number of input tokens read from the cache.
+
+              - `input_tokens: number`
+
+                The number of input tokens which were used.
+
+              - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+
+                The model that will complete your prompt.
+
+                See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+                - `"claude-fable-5"`
+
+                  Next generation of intelligence for the hardest knowledge work and coding problems
+
+                - `"claude-mythos-5"`
+
+                  Most capable model for cybersecurity and biology research
+
+                - `"claude-opus-4-8"`
+
+                  Frontier intelligence for long-running agents and coding
+
+                - `"claude-opus-4-7"`
+
+                  Frontier intelligence for long-running agents and coding
+
+                - `"claude-mythos-preview"`
+
+                  New class of intelligence, strongest in coding and cybersecurity
+
+                - `"claude-opus-4-6"`
+
+                  Frontier intelligence for long-running agents and coding
+
+                - `"claude-sonnet-4-6"`
+
+                  Best combination of speed and intelligence
+
+                - `"claude-haiku-4-5"`
+
+                  Fastest model with near-frontier intelligence
+
+                - `"claude-haiku-4-5-20251001"`
+
+                  Fastest model with near-frontier intelligence
+
+                - `"claude-opus-4-5"`
+
+                  Premium model combining maximum intelligence with practical performance
+
+                - `"claude-opus-4-5-20251101"`
+
+                  Premium model combining maximum intelligence with practical performance
+
+                - `"claude-sonnet-4-5"`
+
+                  High-performance model for agents and coding
+
+                - `"claude-sonnet-4-5-20250929"`
+
+                  High-performance model for agents and coding
+
+                - `"claude-opus-4-1"`
+
+                  Exceptional model for specialized complex tasks
+
+                - `"claude-opus-4-1-20250805"`
+
+                  Exceptional model for specialized complex tasks
+
+                - `"claude-opus-4-0"`
+
+                  Powerful model for complex tasks
+
+                - `"claude-opus-4-20250514"`
+
+                  Powerful model for complex tasks
+
+                - `"claude-sonnet-4-0"`
+
+                  High-performance model with extended thinking
+
+                - `"claude-sonnet-4-20250514"`
+
+                  High-performance model with extended thinking
+
+                - `"claude-3-haiku-20240307"`
+
+                  Fast and cost-effective model
+
+              - `output_tokens: number`
+
+                The number of output tokens which were used.
+
+              - `type: "fallback_message"`
+
+                Usage for the fallback-model attempt that served the response
 
           - `output_tokens: number`
 
@@ -4013,7 +4809,7 @@ ant beta:messages:batches results \
 
             - `beta_advisor_tool_result_error: object { error_code, type }`
 
-              - `error_code: "max_uses_exceeded" or "prompt_too_long" or "too_many_requests" or 3 more`
+              - `error_code: "max_uses_exceeded" or "prompt_too_long" or "too_many_requests" or 4 more`
 
                 - `"max_uses_exceeded"`
 
@@ -4026,6 +4822,8 @@ ant beta:messages:batches results \
                 - `"unavailable"`
 
                 - `"execution_time_exceeded"`
+
+                - `"model_not_found"`
 
               - `type: "advisor_tool_result_error"`
 
@@ -4319,6 +5117,122 @@ ant beta:messages:batches results \
 
           - `type: "compaction"`
 
+        - `beta_fallback_block: object { from, to, type }`
+
+          Marks the point in `content` where one model's output gives way to the next.
+
+          One block appears per hop where a preceding model actually ran this turn and
+          declined. A turn routed directly by the sticky decision has no such boundary
+          and carries no block — the signal for whether a fallback model served the
+          response is the presence of a `fallback_message` entry in
+          `usage.iterations`, not this block.
+
+          The block is treated like a server-tool content block for streaming: it
+          arrives via the standard `content_block_start` / `content_block_stop`
+          pair and carries no deltas.
+
+          - `from: object { model }`
+
+            The model whose output ends at this point — the model that declined at this hop. When the declining hop is the requested model, its `model` echoes the top-level `model` string the caller sent (alias or canonical); when the declining hop is a fallback model, its `model` is that model's canonical id.
+
+            - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+
+              The model that will complete your prompt.
+
+              See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+              - `"claude-fable-5"`
+
+                Next generation of intelligence for the hardest knowledge work and coding problems
+
+              - `"claude-mythos-5"`
+
+                Most capable model for cybersecurity and biology research
+
+              - `"claude-opus-4-8"`
+
+                Frontier intelligence for long-running agents and coding
+
+              - `"claude-opus-4-7"`
+
+                Frontier intelligence for long-running agents and coding
+
+              - `"claude-mythos-preview"`
+
+                New class of intelligence, strongest in coding and cybersecurity
+
+              - `"claude-opus-4-6"`
+
+                Frontier intelligence for long-running agents and coding
+
+              - `"claude-sonnet-4-6"`
+
+                Best combination of speed and intelligence
+
+              - `"claude-haiku-4-5"`
+
+                Fastest model with near-frontier intelligence
+
+              - `"claude-haiku-4-5-20251001"`
+
+                Fastest model with near-frontier intelligence
+
+              - `"claude-opus-4-5"`
+
+                Premium model combining maximum intelligence with practical performance
+
+              - `"claude-opus-4-5-20251101"`
+
+                Premium model combining maximum intelligence with practical performance
+
+              - `"claude-sonnet-4-5"`
+
+                High-performance model for agents and coding
+
+              - `"claude-sonnet-4-5-20250929"`
+
+                High-performance model for agents and coding
+
+              - `"claude-opus-4-1"`
+
+                Exceptional model for specialized complex tasks
+
+              - `"claude-opus-4-1-20250805"`
+
+                Exceptional model for specialized complex tasks
+
+              - `"claude-opus-4-0"`
+
+                Powerful model for complex tasks
+
+              - `"claude-opus-4-20250514"`
+
+                Powerful model for complex tasks
+
+              - `"claude-sonnet-4-0"`
+
+                High-performance model with extended thinking
+
+              - `"claude-sonnet-4-20250514"`
+
+                High-performance model with extended thinking
+
+              - `"claude-3-haiku-20240307"`
+
+                Fast and cost-effective model
+
+          - `to: object { model }`
+
+            The fallback model producing the content that follows this block. Its `model` is always the canonical id.
+
+            - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+
+              The model that will complete your prompt.
+
+              See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `type: "fallback"`
+
       - `context_management: object { applied_edits }`
 
         Context management response.
@@ -4406,11 +5320,19 @@ ant beta:messages:batches results \
 
             - `type: "unavailable"`
 
-      - `model: "claude-opus-4-8" or "claude-opus-4-7" or "claude-mythos-preview" or 15 more or string`
+      - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
 
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-fable-5"`
+
+          Next generation of intelligence for the hardest knowledge work and coding problems
+
+        - `"claude-mythos-5"`
+
+          Most capable model for cybersecurity and biology research
 
         - `"claude-opus-4-8"`
 
@@ -4490,11 +5412,11 @@ ant beta:messages:batches results \
 
         This will always be `"assistant"`.
 
-      - `stop_details: object { category, explanation, type }`
+      - `stop_details: object { category, explanation, fallback_credit_token, 3 more }`
 
         Structured information about a refusal.
 
-        - `category: "cyber" or "bio"`
+        - `category: "cyber" or "bio" or "reasoning_extraction"`
 
           The policy category that triggered the refusal.
 
@@ -4504,11 +5426,62 @@ ant beta:messages:batches results \
 
           - `"bio"`
 
+          - `"reasoning_extraction"`
+
         - `explanation: string`
 
           Human-readable explanation of the refusal.
 
           This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+        - `fallback_credit_token: string`
+
+          Opaque code that refunds the cache-miss cost when retrying this refused
+          request on the fallback model. Pass it as `fallback_credit_token` on the
+          retry request. Expires 5 minutes after the refusal.
+
+          The retry is sent either with the same request body (`system`, `messages`,
+          `tools`, and other render-shaping fields), or with the same body plus one
+          appended `assistant` message whose content is the partial text (with any
+          trailing whitespace stripped from the final text block) and paired
+          server-tool blocks from this refusal — which also authorizes that
+          appended turn as an assistant-prefill continuation on models that otherwise
+          disallow prefill. A token minted mid-server-tool-loop whose partial content
+          was continuable may only be redeemed the second way — if a same-body retry
+          is rejected with a 400 saying the token must be redeemed by continuing the
+          partial response, retry the second way instead. Either way: same workspace,
+          same platform; a mismatch is a 400. Resending a token for an already-warm
+          prefix is permitted but yields no additional credit.
+
+          `null` when the refused model isn't eligible for a fallback credit.
+
+        - `fallback_has_prefill_claim: boolean`
+
+          Whether the accompanying `fallback_credit_token` may be redeemed with the
+          appended-assistant retry form. Only set when `fallback_credit_token` is
+          present.
+
+          `true`: retry by resending the same request body plus one appended
+          `assistant` message whose content is this response's `content` with any
+          trailing whitespace stripped from the final text block and unpaired
+          `tool_use` blocks omitted (the same appended-turn shape described on
+          `fallback_credit_token`), with the token attached. `false`: retry by
+          resending the original request body unchanged, with the token attached —
+          the appended-assistant form is not available for this refusal (no
+          continuable partial content, or the request uses `output_format` or a
+          `tool_choice` that forces tool use). One exception: when the request used
+          `output_format` or a forced `tool_choice` and the refusal arrived after
+          server tools (including MCP connector tools) had already executed, the
+          token may not be redeemable by either retry form; if the exact-body retry
+          is then rejected with a 400 saying the token must be redeemed by
+          continuing the partial response, discard the token and retry without it.
+
+          Advisory: if an appended-assistant retry is rejected with a 400 despite
+          `true`, fall back to resending the original request body with the token.
+
+        - `recommended_model: string`
+
+          The server's suggested retry target for this refusal. Populated when a fallback attempt could not be made (the fallback model's rate limit was exhausted, or it was overloaded); names the fallback model the caller can retry directly. Null otherwise.
 
         - `type: "refusal"`
 
@@ -4595,7 +5568,7 @@ ant beta:messages:batches results \
 
           The number of input tokens which were used.
 
-        - `iterations: array of BetaMessageIterationUsage or BetaCompactionIterationUsage or BetaAdvisorMessageIterationUsage`
+        - `iterations: array of BetaMessageIterationUsage or BetaCompactionIterationUsage or BetaAdvisorMessageIterationUsage or BetaFallbackMessageIterationUsage`
 
           Per-iteration token usage breakdown.
 
@@ -4605,7 +5578,7 @@ ant beta:messages:batches results \
           - Calculate the true context window size from the last iteration
           - Understand token accumulation across server-side tool use loops
 
-          - `beta_message_iteration_usage: object { cache_creation, cache_creation_input_tokens, cache_read_input_tokens, 3 more }`
+          - `beta_message_iteration_usage: object { cache_creation, cache_creation_input_tokens, cache_read_input_tokens, 4 more }`
 
             Token usage for a sampling iteration.
 
@@ -4632,6 +5605,92 @@ ant beta:messages:batches results \
             - `input_tokens: number`
 
               The number of input tokens which were used.
+
+            - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+
+              The model that will complete your prompt.
+
+              See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+              - `"claude-fable-5"`
+
+                Next generation of intelligence for the hardest knowledge work and coding problems
+
+              - `"claude-mythos-5"`
+
+                Most capable model for cybersecurity and biology research
+
+              - `"claude-opus-4-8"`
+
+                Frontier intelligence for long-running agents and coding
+
+              - `"claude-opus-4-7"`
+
+                Frontier intelligence for long-running agents and coding
+
+              - `"claude-mythos-preview"`
+
+                New class of intelligence, strongest in coding and cybersecurity
+
+              - `"claude-opus-4-6"`
+
+                Frontier intelligence for long-running agents and coding
+
+              - `"claude-sonnet-4-6"`
+
+                Best combination of speed and intelligence
+
+              - `"claude-haiku-4-5"`
+
+                Fastest model with near-frontier intelligence
+
+              - `"claude-haiku-4-5-20251001"`
+
+                Fastest model with near-frontier intelligence
+
+              - `"claude-opus-4-5"`
+
+                Premium model combining maximum intelligence with practical performance
+
+              - `"claude-opus-4-5-20251101"`
+
+                Premium model combining maximum intelligence with practical performance
+
+              - `"claude-sonnet-4-5"`
+
+                High-performance model for agents and coding
+
+              - `"claude-sonnet-4-5-20250929"`
+
+                High-performance model for agents and coding
+
+              - `"claude-opus-4-1"`
+
+                Exceptional model for specialized complex tasks
+
+              - `"claude-opus-4-1-20250805"`
+
+                Exceptional model for specialized complex tasks
+
+              - `"claude-opus-4-0"`
+
+                Powerful model for complex tasks
+
+              - `"claude-opus-4-20250514"`
+
+                Powerful model for complex tasks
+
+              - `"claude-sonnet-4-0"`
+
+                High-performance model with extended thinking
+
+              - `"claude-sonnet-4-20250514"`
+
+                High-performance model with extended thinking
+
+              - `"claude-3-haiku-20240307"`
+
+                Fast and cost-effective model
 
             - `output_tokens: number`
 
@@ -4705,11 +5764,19 @@ ant beta:messages:batches results \
 
               The number of input tokens which were used.
 
-            - `model: "claude-opus-4-8" or "claude-opus-4-7" or "claude-mythos-preview" or 15 more or string`
+            - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
 
               The model that will complete your prompt.
 
               See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+              - `"claude-fable-5"`
+
+                Next generation of intelligence for the hardest knowledge work and coding problems
+
+              - `"claude-mythos-5"`
+
+                Most capable model for cybersecurity and biology research
 
               - `"claude-opus-4-8"`
 
@@ -4790,6 +5857,133 @@ ant beta:messages:batches results \
             - `type: "advisor_message"`
 
               Usage for an advisor sub-inference iteration
+
+          - `beta_fallback_message_iteration_usage: object { cache_creation, cache_creation_input_tokens, cache_read_input_tokens, 4 more }`
+
+            Token usage for the fallback-model attempt of a server-side fallback request.
+
+            Produced in place of a `message` entry for whichever hop served the
+            response. A declined hop produces the existing `message` entry. Whether
+            a fallback model served the response is signalled by the presence of this
+            entry in `usage.iterations`.
+
+            - `cache_creation: object { ephemeral_1h_input_tokens, ephemeral_5m_input_tokens }`
+
+              Breakdown of cached tokens by TTL
+
+              - `ephemeral_1h_input_tokens: number`
+
+                The number of input tokens used to create the 1 hour cache entry.
+
+              - `ephemeral_5m_input_tokens: number`
+
+                The number of input tokens used to create the 5 minute cache entry.
+
+            - `cache_creation_input_tokens: number`
+
+              The number of input tokens used to create the cache entry.
+
+            - `cache_read_input_tokens: number`
+
+              The number of input tokens read from the cache.
+
+            - `input_tokens: number`
+
+              The number of input tokens which were used.
+
+            - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+
+              The model that will complete your prompt.
+
+              See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+              - `"claude-fable-5"`
+
+                Next generation of intelligence for the hardest knowledge work and coding problems
+
+              - `"claude-mythos-5"`
+
+                Most capable model for cybersecurity and biology research
+
+              - `"claude-opus-4-8"`
+
+                Frontier intelligence for long-running agents and coding
+
+              - `"claude-opus-4-7"`
+
+                Frontier intelligence for long-running agents and coding
+
+              - `"claude-mythos-preview"`
+
+                New class of intelligence, strongest in coding and cybersecurity
+
+              - `"claude-opus-4-6"`
+
+                Frontier intelligence for long-running agents and coding
+
+              - `"claude-sonnet-4-6"`
+
+                Best combination of speed and intelligence
+
+              - `"claude-haiku-4-5"`
+
+                Fastest model with near-frontier intelligence
+
+              - `"claude-haiku-4-5-20251001"`
+
+                Fastest model with near-frontier intelligence
+
+              - `"claude-opus-4-5"`
+
+                Premium model combining maximum intelligence with practical performance
+
+              - `"claude-opus-4-5-20251101"`
+
+                Premium model combining maximum intelligence with practical performance
+
+              - `"claude-sonnet-4-5"`
+
+                High-performance model for agents and coding
+
+              - `"claude-sonnet-4-5-20250929"`
+
+                High-performance model for agents and coding
+
+              - `"claude-opus-4-1"`
+
+                Exceptional model for specialized complex tasks
+
+              - `"claude-opus-4-1-20250805"`
+
+                Exceptional model for specialized complex tasks
+
+              - `"claude-opus-4-0"`
+
+                Powerful model for complex tasks
+
+              - `"claude-opus-4-20250514"`
+
+                Powerful model for complex tasks
+
+              - `"claude-sonnet-4-0"`
+
+                High-performance model with extended thinking
+
+              - `"claude-sonnet-4-20250514"`
+
+                High-performance model with extended thinking
+
+              - `"claude-3-haiku-20240307"`
+
+                Fast and cost-effective model
+
+            - `output_tokens: number`
+
+              The number of output tokens which were used.
+
+            - `type: "fallback_message"`
+
+              Usage for the fallback-model attempt that served the response
 
         - `output_tokens: number`
 
@@ -5342,7 +6536,7 @@ ant beta:messages:batches results \
 
           - `beta_advisor_tool_result_error: object { error_code, type }`
 
-            - `error_code: "max_uses_exceeded" or "prompt_too_long" or "too_many_requests" or 3 more`
+            - `error_code: "max_uses_exceeded" or "prompt_too_long" or "too_many_requests" or 4 more`
 
               - `"max_uses_exceeded"`
 
@@ -5355,6 +6549,8 @@ ant beta:messages:batches results \
               - `"unavailable"`
 
               - `"execution_time_exceeded"`
+
+              - `"model_not_found"`
 
             - `type: "advisor_tool_result_error"`
 
@@ -5648,6 +6844,122 @@ ant beta:messages:batches results \
 
         - `type: "compaction"`
 
+      - `beta_fallback_block: object { from, to, type }`
+
+        Marks the point in `content` where one model's output gives way to the next.
+
+        One block appears per hop where a preceding model actually ran this turn and
+        declined. A turn routed directly by the sticky decision has no such boundary
+        and carries no block — the signal for whether a fallback model served the
+        response is the presence of a `fallback_message` entry in
+        `usage.iterations`, not this block.
+
+        The block is treated like a server-tool content block for streaming: it
+        arrives via the standard `content_block_start` / `content_block_stop`
+        pair and carries no deltas.
+
+        - `from: object { model }`
+
+          The model whose output ends at this point — the model that declined at this hop. When the declining hop is the requested model, its `model` echoes the top-level `model` string the caller sent (alias or canonical); when the declining hop is a fallback model, its `model` is that model's canonical id.
+
+          - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+
+            The model that will complete your prompt.
+
+            See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `"claude-fable-5"`
+
+              Next generation of intelligence for the hardest knowledge work and coding problems
+
+            - `"claude-mythos-5"`
+
+              Most capable model for cybersecurity and biology research
+
+            - `"claude-opus-4-8"`
+
+              Frontier intelligence for long-running agents and coding
+
+            - `"claude-opus-4-7"`
+
+              Frontier intelligence for long-running agents and coding
+
+            - `"claude-mythos-preview"`
+
+              New class of intelligence, strongest in coding and cybersecurity
+
+            - `"claude-opus-4-6"`
+
+              Frontier intelligence for long-running agents and coding
+
+            - `"claude-sonnet-4-6"`
+
+              Best combination of speed and intelligence
+
+            - `"claude-haiku-4-5"`
+
+              Fastest model with near-frontier intelligence
+
+            - `"claude-haiku-4-5-20251001"`
+
+              Fastest model with near-frontier intelligence
+
+            - `"claude-opus-4-5"`
+
+              Premium model combining maximum intelligence with practical performance
+
+            - `"claude-opus-4-5-20251101"`
+
+              Premium model combining maximum intelligence with practical performance
+
+            - `"claude-sonnet-4-5"`
+
+              High-performance model for agents and coding
+
+            - `"claude-sonnet-4-5-20250929"`
+
+              High-performance model for agents and coding
+
+            - `"claude-opus-4-1"`
+
+              Exceptional model for specialized complex tasks
+
+            - `"claude-opus-4-1-20250805"`
+
+              Exceptional model for specialized complex tasks
+
+            - `"claude-opus-4-0"`
+
+              Powerful model for complex tasks
+
+            - `"claude-opus-4-20250514"`
+
+              Powerful model for complex tasks
+
+            - `"claude-sonnet-4-0"`
+
+              High-performance model with extended thinking
+
+            - `"claude-sonnet-4-20250514"`
+
+              High-performance model with extended thinking
+
+            - `"claude-3-haiku-20240307"`
+
+              Fast and cost-effective model
+
+        - `to: object { model }`
+
+          The fallback model producing the content that follows this block. Its `model` is always the canonical id.
+
+          - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+
+            The model that will complete your prompt.
+
+            See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `type: "fallback"`
+
     - `context_management: object { applied_edits }`
 
       Context management response.
@@ -5735,11 +7047,19 @@ ant beta:messages:batches results \
 
           - `type: "unavailable"`
 
-    - `model: "claude-opus-4-8" or "claude-opus-4-7" or "claude-mythos-preview" or 15 more or string`
+    - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
 
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `"claude-fable-5"`
+
+        Next generation of intelligence for the hardest knowledge work and coding problems
+
+      - `"claude-mythos-5"`
+
+        Most capable model for cybersecurity and biology research
 
       - `"claude-opus-4-8"`
 
@@ -5819,11 +7139,11 @@ ant beta:messages:batches results \
 
       This will always be `"assistant"`.
 
-    - `stop_details: object { category, explanation, type }`
+    - `stop_details: object { category, explanation, fallback_credit_token, 3 more }`
 
       Structured information about a refusal.
 
-      - `category: "cyber" or "bio"`
+      - `category: "cyber" or "bio" or "reasoning_extraction"`
 
         The policy category that triggered the refusal.
 
@@ -5833,11 +7153,62 @@ ant beta:messages:batches results \
 
         - `"bio"`
 
+        - `"reasoning_extraction"`
+
       - `explanation: string`
 
         Human-readable explanation of the refusal.
 
         This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+      - `fallback_credit_token: string`
+
+        Opaque code that refunds the cache-miss cost when retrying this refused
+        request on the fallback model. Pass it as `fallback_credit_token` on the
+        retry request. Expires 5 minutes after the refusal.
+
+        The retry is sent either with the same request body (`system`, `messages`,
+        `tools`, and other render-shaping fields), or with the same body plus one
+        appended `assistant` message whose content is the partial text (with any
+        trailing whitespace stripped from the final text block) and paired
+        server-tool blocks from this refusal — which also authorizes that
+        appended turn as an assistant-prefill continuation on models that otherwise
+        disallow prefill. A token minted mid-server-tool-loop whose partial content
+        was continuable may only be redeemed the second way — if a same-body retry
+        is rejected with a 400 saying the token must be redeemed by continuing the
+        partial response, retry the second way instead. Either way: same workspace,
+        same platform; a mismatch is a 400. Resending a token for an already-warm
+        prefix is permitted but yields no additional credit.
+
+        `null` when the refused model isn't eligible for a fallback credit.
+
+      - `fallback_has_prefill_claim: boolean`
+
+        Whether the accompanying `fallback_credit_token` may be redeemed with the
+        appended-assistant retry form. Only set when `fallback_credit_token` is
+        present.
+
+        `true`: retry by resending the same request body plus one appended
+        `assistant` message whose content is this response's `content` with any
+        trailing whitespace stripped from the final text block and unpaired
+        `tool_use` blocks omitted (the same appended-turn shape described on
+        `fallback_credit_token`), with the token attached. `false`: retry by
+        resending the original request body unchanged, with the token attached —
+        the appended-assistant form is not available for this refusal (no
+        continuable partial content, or the request uses `output_format` or a
+        `tool_choice` that forces tool use). One exception: when the request used
+        `output_format` or a forced `tool_choice` and the refusal arrived after
+        server tools (including MCP connector tools) had already executed, the
+        token may not be redeemable by either retry form; if the exact-body retry
+        is then rejected with a 400 saying the token must be redeemed by
+        continuing the partial response, discard the token and retry without it.
+
+        Advisory: if an appended-assistant retry is rejected with a 400 despite
+        `true`, fall back to resending the original request body with the token.
+
+      - `recommended_model: string`
+
+        The server's suggested retry target for this refusal. Populated when a fallback attempt could not be made (the fallback model's rate limit was exhausted, or it was overloaded); names the fallback model the caller can retry directly. Null otherwise.
 
       - `type: "refusal"`
 
@@ -5924,7 +7295,7 @@ ant beta:messages:batches results \
 
         The number of input tokens which were used.
 
-      - `iterations: array of BetaMessageIterationUsage or BetaCompactionIterationUsage or BetaAdvisorMessageIterationUsage`
+      - `iterations: array of BetaMessageIterationUsage or BetaCompactionIterationUsage or BetaAdvisorMessageIterationUsage or BetaFallbackMessageIterationUsage`
 
         Per-iteration token usage breakdown.
 
@@ -5934,7 +7305,7 @@ ant beta:messages:batches results \
         - Calculate the true context window size from the last iteration
         - Understand token accumulation across server-side tool use loops
 
-        - `beta_message_iteration_usage: object { cache_creation, cache_creation_input_tokens, cache_read_input_tokens, 3 more }`
+        - `beta_message_iteration_usage: object { cache_creation, cache_creation_input_tokens, cache_read_input_tokens, 4 more }`
 
           Token usage for a sampling iteration.
 
@@ -5961,6 +7332,92 @@ ant beta:messages:batches results \
           - `input_tokens: number`
 
             The number of input tokens which were used.
+
+          - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+
+            The model that will complete your prompt.
+
+            See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `"claude-fable-5"`
+
+              Next generation of intelligence for the hardest knowledge work and coding problems
+
+            - `"claude-mythos-5"`
+
+              Most capable model for cybersecurity and biology research
+
+            - `"claude-opus-4-8"`
+
+              Frontier intelligence for long-running agents and coding
+
+            - `"claude-opus-4-7"`
+
+              Frontier intelligence for long-running agents and coding
+
+            - `"claude-mythos-preview"`
+
+              New class of intelligence, strongest in coding and cybersecurity
+
+            - `"claude-opus-4-6"`
+
+              Frontier intelligence for long-running agents and coding
+
+            - `"claude-sonnet-4-6"`
+
+              Best combination of speed and intelligence
+
+            - `"claude-haiku-4-5"`
+
+              Fastest model with near-frontier intelligence
+
+            - `"claude-haiku-4-5-20251001"`
+
+              Fastest model with near-frontier intelligence
+
+            - `"claude-opus-4-5"`
+
+              Premium model combining maximum intelligence with practical performance
+
+            - `"claude-opus-4-5-20251101"`
+
+              Premium model combining maximum intelligence with practical performance
+
+            - `"claude-sonnet-4-5"`
+
+              High-performance model for agents and coding
+
+            - `"claude-sonnet-4-5-20250929"`
+
+              High-performance model for agents and coding
+
+            - `"claude-opus-4-1"`
+
+              Exceptional model for specialized complex tasks
+
+            - `"claude-opus-4-1-20250805"`
+
+              Exceptional model for specialized complex tasks
+
+            - `"claude-opus-4-0"`
+
+              Powerful model for complex tasks
+
+            - `"claude-opus-4-20250514"`
+
+              Powerful model for complex tasks
+
+            - `"claude-sonnet-4-0"`
+
+              High-performance model with extended thinking
+
+            - `"claude-sonnet-4-20250514"`
+
+              High-performance model with extended thinking
+
+            - `"claude-3-haiku-20240307"`
+
+              Fast and cost-effective model
 
           - `output_tokens: number`
 
@@ -6034,11 +7491,19 @@ ant beta:messages:batches results \
 
             The number of input tokens which were used.
 
-          - `model: "claude-opus-4-8" or "claude-opus-4-7" or "claude-mythos-preview" or 15 more or string`
+          - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
 
             The model that will complete your prompt.
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `"claude-fable-5"`
+
+              Next generation of intelligence for the hardest knowledge work and coding problems
+
+            - `"claude-mythos-5"`
+
+              Most capable model for cybersecurity and biology research
 
             - `"claude-opus-4-8"`
 
@@ -6119,6 +7584,133 @@ ant beta:messages:batches results \
           - `type: "advisor_message"`
 
             Usage for an advisor sub-inference iteration
+
+        - `beta_fallback_message_iteration_usage: object { cache_creation, cache_creation_input_tokens, cache_read_input_tokens, 4 more }`
+
+          Token usage for the fallback-model attempt of a server-side fallback request.
+
+          Produced in place of a `message` entry for whichever hop served the
+          response. A declined hop produces the existing `message` entry. Whether
+          a fallback model served the response is signalled by the presence of this
+          entry in `usage.iterations`.
+
+          - `cache_creation: object { ephemeral_1h_input_tokens, ephemeral_5m_input_tokens }`
+
+            Breakdown of cached tokens by TTL
+
+            - `ephemeral_1h_input_tokens: number`
+
+              The number of input tokens used to create the 1 hour cache entry.
+
+            - `ephemeral_5m_input_tokens: number`
+
+              The number of input tokens used to create the 5 minute cache entry.
+
+          - `cache_creation_input_tokens: number`
+
+            The number of input tokens used to create the cache entry.
+
+          - `cache_read_input_tokens: number`
+
+            The number of input tokens read from the cache.
+
+          - `input_tokens: number`
+
+            The number of input tokens which were used.
+
+          - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+
+            The model that will complete your prompt.
+
+            See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `"claude-fable-5"`
+
+              Next generation of intelligence for the hardest knowledge work and coding problems
+
+            - `"claude-mythos-5"`
+
+              Most capable model for cybersecurity and biology research
+
+            - `"claude-opus-4-8"`
+
+              Frontier intelligence for long-running agents and coding
+
+            - `"claude-opus-4-7"`
+
+              Frontier intelligence for long-running agents and coding
+
+            - `"claude-mythos-preview"`
+
+              New class of intelligence, strongest in coding and cybersecurity
+
+            - `"claude-opus-4-6"`
+
+              Frontier intelligence for long-running agents and coding
+
+            - `"claude-sonnet-4-6"`
+
+              Best combination of speed and intelligence
+
+            - `"claude-haiku-4-5"`
+
+              Fastest model with near-frontier intelligence
+
+            - `"claude-haiku-4-5-20251001"`
+
+              Fastest model with near-frontier intelligence
+
+            - `"claude-opus-4-5"`
+
+              Premium model combining maximum intelligence with practical performance
+
+            - `"claude-opus-4-5-20251101"`
+
+              Premium model combining maximum intelligence with practical performance
+
+            - `"claude-sonnet-4-5"`
+
+              High-performance model for agents and coding
+
+            - `"claude-sonnet-4-5-20250929"`
+
+              High-performance model for agents and coding
+
+            - `"claude-opus-4-1"`
+
+              Exceptional model for specialized complex tasks
+
+            - `"claude-opus-4-1-20250805"`
+
+              Exceptional model for specialized complex tasks
+
+            - `"claude-opus-4-0"`
+
+              Powerful model for complex tasks
+
+            - `"claude-opus-4-20250514"`
+
+              Powerful model for complex tasks
+
+            - `"claude-sonnet-4-0"`
+
+              High-performance model with extended thinking
+
+            - `"claude-sonnet-4-20250514"`
+
+              High-performance model with extended thinking
+
+            - `"claude-3-haiku-20240307"`
+
+              Fast and cost-effective model
+
+          - `output_tokens: number`
+
+            The number of output tokens which were used.
+
+          - `type: "fallback_message"`
+
+            Usage for the fallback-model attempt that served the response
 
       - `output_tokens: number`
 

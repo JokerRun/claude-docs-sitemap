@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/models
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: bef3257a2c9507afe78b8a242514b146d6cf0fe6cf9aeab58e8150b7e386e13e
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 311353c2090d8131a2f8cbfa3790f3d2e562a6892e0858bb114b7bb30ac506e5
 ---
 
 # Models
@@ -90,6 +90,10 @@ The Models API response can be used to determine which models are available for 
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 
@@ -401,6 +405,10 @@ The Models API response can be used to determine information about a specific mo
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 

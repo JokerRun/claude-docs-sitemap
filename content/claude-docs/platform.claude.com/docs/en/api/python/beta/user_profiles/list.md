@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/user_profiles/list
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 386cfabbae134346fd4e6f116715d5295d2a840213c2314fc556abbb00990507
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: fa82a553c679e685397f90e537410dea9d2d77cf5539eb0aeff63c4f69619b56
 ---
 
 ## List User Profiles
@@ -37,7 +37,7 @@ List User Profiles
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 23 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 25 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -90,6 +90,10 @@ List User Profiles
     - `"cache-diagnosis-2026-04-07"`
 
     - `"thinking-token-count-2026-05-13"`
+
+    - `"server-side-fallback-2026-06-01"`
+
+    - `"fallback-credit-2026-06-01"`
 
 ### Returns
 

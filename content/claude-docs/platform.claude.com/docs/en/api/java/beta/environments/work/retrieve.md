@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/environments/work/retrieve
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 5ff88c9e53d398dc3867ba41ec87a2b46282e30311b2f34c5c356aedb20f24ea
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: a594f8f9815b6d970ccc3ebcf27fbb6fea6a439344fb3fd7f7ad0107f9637add
 ---
 
 ## Get Work Item
@@ -78,6 +78,10 @@ Retrieve detailed information about a specific work item.
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
+
+    - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
+
+    - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
 
 ### Returns
 

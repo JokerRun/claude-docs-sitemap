@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/streaming
-fetched_at: 2026-06-09T03:16:00.501901Z
-sha256: 0788cbd6f6ec897f9613d6c4690235af9e90f1e352ed5ac697c990f2060b71bd
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: c4c0d262052f04df6d5b7bd6b40f5c921af804b5b8035c5ac55b97933d792cdc
 ---
 
 # Streaming messages
@@ -381,7 +381,7 @@ Each server-sent event includes a named event type and associated JSON data. Eac
 Each stream uses the following event flow:
 
 1. `message_start`: contains a `Message` object with empty `content`.
-2. A series of content blocks, each of which have a `content_block_start`, one or more `content_block_delta` events, and a `content_block_stop` event. Each content block has an `index` that corresponds to its index in the final Message `content` array.
+2. A series of content blocks, each of which has a `content_block_start`, one or more `content_block_delta` events, and a `content_block_stop` event. Each content block has an `index` that corresponds to its index in the final Message `content` array. One exception: during [server-side fallback](/docs/en/build-with-claude/refusals-and-fallback#server-side-fallback) responses, a `fallback` content block arrives at each model boundary as a `content_block_start` and `content_block_stop` pair with no deltas in between.
 3. One or more `message_delta` events, indicating top-level changes to the final `Message` object.
 4. A final `message_stop` event.
 

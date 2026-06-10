@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/agents/list
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: ed9e2845b42b71366d79fd88109972a2625e2c80cce75db6d5d4c4caef88cd7a
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: b839ffe202ef835db9859b1891652c4eb757350bdf0ba294ab7e4ff0a4f731cd
 ---
 
 ## List Agents
@@ -41,7 +41,7 @@ List Agents
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 23 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 25 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -95,6 +95,10 @@ List Agents
 
     - `"thinking-token-count-2026-05-13"`
 
+    - `"server-side-fallback-2026-06-01"`
+
+    - `"fallback-credit-2026-06-01"`
+
 ### Returns
 
 - `class BetaManagedAgentsAgent: …`
@@ -135,12 +139,13 @@ List Agents
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `Literal["claude-opus-4-8", "claude-opus-4-7", "claude-opus-4-6", 7 more]`
+      - `Literal["claude-fable-5", "claude-opus-4-8", "claude-opus-4-7", 8 more]`
 
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+        - `claude-fable-5` - Next generation of intelligence for the hardest knowledge work and coding problems
         - `claude-opus-4-8` - Frontier intelligence for long-running agents and coding
         - `claude-opus-4-7` - Frontier intelligence for long-running agents and coding
         - `claude-opus-4-6` - Most intelligent model for building agents and coding
@@ -151,6 +156,10 @@ List Agents
         - `claude-opus-4-5-20251101` - Premium model combining maximum intelligence with practical performance
         - `claude-sonnet-4-5` - High-performance model for agents and coding
         - `claude-sonnet-4-5-20250929` - High-performance model for agents and coding
+
+        - `"claude-fable-5"`
+
+          Next generation of intelligence for the hardest knowledge work and coding problems
 
         - `"claude-opus-4-8"`
 
@@ -376,19 +385,13 @@ List Agents
 
         JSON Schema for custom tool input parameters.
 
-        - `properties: Optional[Dict[str, object]]`
-
-          JSON Schema properties defining the tool's input parameters.
-
-        - `required: Optional[List[str]]`
-
-          List of required property names.
-
-        - `type: Optional[Literal["object"]]`
-
-          Must be 'object' for tool input schemas.
+        - `type: Literal["object"]`
 
           - `"object"`
+
+        - `properties: Optional[Dict[str, object]]`
+
+        - `required: Optional[List[str]]`
 
       - `name: str`
 

@@ -1,54 +1,54 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/search-results
-fetched_at: 2026-04-18T03:10:04.936408Z
-sha256: 7e8506ed43f218c5d5a2e951ec0530bb32f92cecc8e585b2501dd89b26af059f
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 5fd82d688647236d0be767d2be2cb658d8143fb8b22444d7091fedbd69a17b7e
 ---
 
 # Hasil pencarian
 
-Aktifkan kutipan alami untuk aplikasi RAG dengan menyediakan hasil pencarian dengan atribusi sumber
+Aktifkan sitasi alami untuk aplikasi RAG dengan menyediakan hasil pencarian beserta atribusi sumber
 
 ---
 
 <Note>
-This feature is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/api-and-data-retention). When your organization has a ZDR arrangement, data sent through this feature is not stored after the API response is returned.
+Fitur ini memenuhi syarat untuk [Zero Data Retention (ZDR)](/docs/id/build-with-claude/api-and-data-retention). Ketika organisasi Anda memiliki pengaturan ZDR, data yang dikirim melalui fitur ini tidak disimpan setelah respons API dikembalikan.
 </Note>
 
-Blok konten hasil pencarian memungkinkan kutipan alami dengan atribusi sumber yang tepat, membawa kutipan berkualitas pencarian web ke aplikasi kustom Anda. Fitur ini sangat kuat untuk aplikasi RAG (Retrieval-Augmented Generation) di mana Anda memerlukan Claude untuk mengutip sumber secara akurat.
+Blok konten hasil pencarian memungkinkan sitasi alami dengan atribusi sumber yang tepat, menghadirkan sitasi berkualitas setara pencarian web ke aplikasi kustom Anda. Fitur ini sangat berguna untuk aplikasi "RAG" (Retrieval-Augmented Generation) di mana Anda membutuhkan Claude untuk mengutip sumber secara akurat.
 
-Fitur hasil pencarian tersedia pada model berikut:
+Fitur hasil pencarian tersedia pada model-model berikut:
 
+- Claude Opus 4.8 (claude-opus-4-8)
 - Claude Opus 4.7 (`claude-opus-4-7`)
 - Claude Opus 4.6 (`claude-opus-4-6`)
 - Claude Sonnet 4.6 (`claude-sonnet-4-6`)
 - Claude Sonnet 4.5 (`claude-sonnet-4-5-20250929`)
 - Claude Opus 4.5 (`claude-opus-4-5-20251101`)
-- Claude Opus 4.1 (`claude-opus-4-1-20250805`)
-- Claude Opus 4 ([deprecated](/docs/id/about-claude/model-deprecations)) (`claude-opus-4-20250514`)
-- Claude Sonnet 4 ([deprecated](/docs/id/about-claude/model-deprecations)) (`claude-sonnet-4-20250514`)
-- Claude Sonnet 3.7 ([deprecated](/docs/id/about-claude/model-deprecations)) (`claude-3-7-sonnet-20250219`)
+- Claude Opus 4.1 ([tidak digunakan lagi](/docs/id/about-claude/model-deprecations)) (`claude-opus-4-1-20250805`)
+- Claude Opus 4 ([tidak digunakan lagi](/docs/id/about-claude/model-deprecations)) (`claude-opus-4-20250514`)
+- Claude Sonnet 4 ([tidak digunakan lagi](/docs/id/about-claude/model-deprecations)) (`claude-sonnet-4-20250514`)
 - Claude Haiku 4.5 (`claude-haiku-4-5-20251001`)
-- Claude Haiku 3.5 ([deprecated](/docs/id/about-claude/model-deprecations)) (`claude-3-5-haiku-20241022`)
+- Claude Haiku 3.5 ([dihentikan, kecuali di Bedrock dan Vertex AI](/docs/id/about-claude/model-deprecations)) (`claude-3-5-haiku-20241022`)
 
-## Manfaat utama
+## Manfaat utama \{#key-benefits}
 
-- **Kutipan alami** - Capai kualitas kutipan yang sama seperti pencarian web untuk konten apa pun
-- **Integrasi fleksibel** - Gunakan dalam pengembalian alat untuk RAG dinamis atau sebagai konten tingkat atas untuk data yang sudah diambil
-- **Atribusi sumber yang tepat** - Setiap hasil mencakup informasi sumber dan judul untuk atribusi yang jelas
-- **Tidak perlu solusi berbasis dokumen** - Menghilangkan kebutuhan akan solusi berbasis dokumen
-- **Format kutipan yang konsisten** - Cocok dengan kualitas dan format kutipan dari fungsi pencarian web Claude
+- **Sitasi alami:** Mencapai kualitas sitasi yang sama seperti pencarian web untuk konten apa pun
+- **Integrasi fleksibel:** Gunakan dalam hasil pengembalian alat untuk RAG dinamis atau sebagai konten tingkat atas untuk data yang telah diambil sebelumnya
+- **Atribusi sumber yang tepat:** Setiap hasil menyertakan informasi sumber dan judul untuk atribusi yang jelas
+- **Tidak perlu solusi alternatif berbasis dokumen:** Menghilangkan kebutuhan akan solusi alternatif berbasis dokumen
+- **Format sitasi yang konsisten:** Sesuai dengan kualitas dan format sitasi dari fungsionalitas pencarian web Claude
 
-## Cara kerjanya
+## Cara kerjanya \{#how-it-works}
 
-Hasil pencarian dapat disediakan dalam dua cara:
+Hasil pencarian dapat disediakan dengan dua cara:
 
-1. **Dari panggilan alat** - Alat kustom Anda mengembalikan hasil pencarian, memungkinkan aplikasi RAG dinamis
-2. **Sebagai konten tingkat atas** - Anda menyediakan hasil pencarian langsung dalam pesan pengguna untuk konten yang sudah diambil atau di-cache
+1. **Dari pemanggilan alat:** Alat kustom Anda mengembalikan hasil pencarian, memungkinkan aplikasi RAG dinamis
+2. **Sebagai konten tingkat atas:** Anda menyediakan hasil pencarian secara langsung dalam pesan pengguna untuk konten yang telah diambil sebelumnya atau di-cache
 
-Dalam kedua kasus, Claude dapat secara otomatis mengutip informasi dari hasil pencarian dengan atribusi sumber yang tepat.
+Dalam kedua kasus tersebut, Claude dapat secara otomatis mengutip informasi dari hasil pencarian dengan atribusi sumber yang tepat.
 
-### Skema hasil pencarian
+### Skema hasil pencarian \{#search-result-schema}
 
 Hasil pencarian menggunakan struktur berikut:
 
@@ -71,31 +71,31 @@ Hasil pencarian menggunakan struktur berikut:
 }
 ```
 
-### Bidang yang diperlukan
+### Field wajib \{#required-fields}
 
-| Field | Type | Description |
+| Field | Tipe | Deskripsi |
 |-------|------|-------------|
-| `type` | string | Harus `"search_result"` |
-| `source` | string | URL sumber atau pengenal untuk konten |
+| `type` | string | Harus berupa `"search_result"` |
+| `source` | string | URL sumber atau pengidentifikasi untuk konten |
 | `title` | string | Judul deskriptif untuk hasil pencarian |
-| `content` | array | Larik blok teks yang berisi konten sebenarnya |
+| `content` | array | Array blok teks yang berisi konten sebenarnya |
 
-### Bidang opsional
+### Field opsional \{#optional-fields}
 
-| Field | Type | Description |
+| Field | Tipe | Deskripsi |
 |-------|------|-------------|
-| `citations` | object | Konfigurasi kutipan dengan bidang boolean `enabled` |
+| `citations` | object | Konfigurasi sitasi dengan field boolean `enabled` |
 | `cache_control` | object | Pengaturan kontrol cache (misalnya, `{"type": "ephemeral"}`) |
 
-Setiap item dalam larik `content` harus berupa blok teks dengan:
-- `type`: Harus `"text"`
-- `text`: Konten teks sebenarnya (string tidak kosong)
+Setiap item dalam array `content` harus berupa blok teks dengan:
+- `type`: Harus berupa `"text"`
+- `text`: Konten teks sebenarnya (string yang tidak kosong)
 
-## Metode 1: Hasil pencarian dari panggilan alat
+## Metode 1: Hasil pencarian dari pemanggilan alat \{#method-1-search-results-from-tool-calls}
 
-Kasus penggunaan paling kuat adalah mengembalikan hasil pencarian dari alat kustom Anda. Ini memungkinkan aplikasi RAG dinamis di mana alat mengambil dan mengembalikan konten yang relevan dengan kutipan otomatis.
+Kasus penggunaan yang paling kuat adalah mengembalikan hasil pencarian dari alat kustom Anda. Ini memungkinkan aplikasi RAG dinamis di mana alat mengambil dan mengembalikan konten yang relevan dengan sitasi otomatis.
 
-### Contoh: Alat basis pengetahuan
+### Contoh: Alat basis pengetahuan \{#example-knowledge-base-tool}
 
 <CodeGroup>
 
@@ -110,7 +110,7 @@ from anthropic.types import (
 
 client = Anthropic()
 
-# Define a knowledge base search tool
+# Definisikan alat pencarian basis pengetahuan
 knowledge_base_tool = {
     "name": "search_knowledge_base",
     "description": "Search the company knowledge base for information",
@@ -122,10 +122,10 @@ knowledge_base_tool = {
 }
 
 
-# Function to handle the tool call
+# Fungsi untuk menangani panggilan alat
 def search_knowledge_base(query):
-    # Your search logic here
-    # Returns search results in the correct format
+    # Logika pencarian Anda di sini
+    # Mengembalikan hasil pencarian dalam format yang benar
     return [
         SearchResultBlockParam(
             type="search_result",
@@ -154,9 +154,9 @@ def search_knowledge_base(query):
     ]
 
 
-# Create a message with the tool
+# Buat pesan dengan alat tersebut
 response = client.messages.create(
-    model="claude-opus-4-7",  # Works with all supported models
+    model="claude-opus-4-8",  # Works with all supported models
     max_tokens=1024,
     tools=[knowledge_base_tool],
     messages=[
@@ -164,13 +164,13 @@ response = client.messages.create(
     ],
 )
 
-# When Claude calls the tool, provide the search results
+# Ketika Claude memanggil alat, berikan hasil pencarian
 if response.content[0].type == "tool_use":
     tool_result = search_knowledge_base(response.content[0].input["query"])
 
-    # Send the tool result back
+    # Kirim kembali hasil alat
     final_response = client.messages.create(
-        model="claude-opus-4-7",  # Works with all supported models
+        model="claude-opus-4-8",  # Works with all supported models
         max_tokens=1024,
         messages=[
             MessageParam(
@@ -196,7 +196,7 @@ import Anthropic from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic();
 
-// Define a knowledge base search tool
+// Definisikan alat pencarian basis pengetahuan
 const knowledgeBaseTool: Anthropic.Messages.Tool = {
   name: "search_knowledge_base",
   description: "Search the company knowledge base for information",
@@ -212,10 +212,10 @@ const knowledgeBaseTool: Anthropic.Messages.Tool = {
   }
 };
 
-// Function to handle the tool call
+// Fungsi untuk menangani pemanggilan alat
 function searchKnowledgeBase(query: string) {
-  // Your search logic here
-  // Returns search results in the correct format
+  // Logika pencarian Anda di sini
+  // Mengembalikan hasil pencarian dalam format yang benar
   return [
     {
       type: "search_result" as const,
@@ -244,9 +244,9 @@ function searchKnowledgeBase(query: string) {
   ];
 }
 
-// Create a message with the tool
+// Buat pesan dengan alat tersebut
 const response = await anthropic.messages.create({
-  model: "claude-opus-4-7", // Works with all supported models
+  model: "claude-opus-4-8", // Works with all supported models
   max_tokens: 1024,
   tools: [knowledgeBaseTool],
   messages: [
@@ -257,13 +257,13 @@ const response = await anthropic.messages.create({
   ]
 });
 
-// Handle tool use and provide results
+// Tangani penggunaan alat dan berikan hasilnya
 if (response.content[0].type === "tool_use") {
   const input = response.content[0].input as { query: string };
   const toolResult = searchKnowledgeBase(input.query);
 
   const finalResponse = await anthropic.messages.create({
-    model: "claude-opus-4-7", // Works with all supported models
+    model: "claude-opus-4-8", // Works with all supported models
     max_tokens: 1024,
     messages: [
       { role: "user", content: "How do I configure the timeout settings?" },
@@ -317,7 +317,7 @@ public class Program
 
         var parameters = new MessageCreateParams
         {
-            Model = Model.ClaudeOpus4_7,
+            Model = Model.ClaudeOpus4_8,
             MaxTokens = 1024,
             Tools = new[] { knowledgeBaseTool },
             Messages = new[]
@@ -338,7 +338,7 @@ public class Program
 
             var finalParameters = new MessageCreateParams
             {
-                Model = Model.ClaudeOpus4_7,
+                Model = Model.ClaudeOpus4_8,
                 MaxTokens = 1024,
                 Messages = new[]
                 {
@@ -431,7 +431,7 @@ func main() {
 	}
 
 	response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-		Model:     anthropic.ModelClaudeOpus4_7,
+		Model:     anthropic.ModelClaudeOpus4_8,
 		MaxTokens: 1024,
 		Tools:     []anthropic.ToolUnionParam{knowledgeBaseTool},
 		Messages: []anthropic.MessageParam{
@@ -453,11 +453,11 @@ func main() {
 			}
 			toolResults := searchKnowledgeBase(input.Query)
 
-			// Build assistant message from the response
+			// Bangun pesan asisten dari respons
 			assistantParam := response.ToParam()
 
 			finalResponse, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-				Model:     anthropic.ModelClaudeOpus4_7,
+				Model:     anthropic.ModelClaudeOpus4_8,
 				MaxTokens: 1024,
 				Messages: []anthropic.MessageParam{
 					anthropic.NewUserMessage(anthropic.NewTextBlock("How do I configure the timeout settings?")),
@@ -537,7 +537,7 @@ public class SearchKnowledgeBaseExample {
             .build();
 
         MessageCreateParams params = MessageCreateParams.builder()
-            .model(Model.CLAUDE_OPUS_4_7)
+            .model(Model.CLAUDE_OPUS_4_8)
             .maxTokens(1024L)
             .addTool(knowledgeBaseTool)
             .addUserMessage("How do I configure the timeout settings?")
@@ -551,9 +551,8 @@ public class SearchKnowledgeBaseExample {
             );
 
             MessageCreateParams finalParams = MessageCreateParams.builder()
-                .model(Model.CLAUDE_OPUS_4_7)
+                .model(Model.CLAUDE_OPUS_4_8)
                 .maxTokens(1024L)
-                .addTool(knowledgeBaseTool)
                 .addUserMessage("How do I configure the timeout settings?")
                 .addAssistantMessageOfBlockParams(List.of(
                     ContentBlockParam.ofToolUse(ToolUseBlockParam.builder()
@@ -613,7 +612,7 @@ public class SearchKnowledgeBaseExample {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 $knowledgeBaseTool = [
     'name' => 'search_knowledge_base',
@@ -664,7 +663,7 @@ $response = $client->messages->create(
     messages: [
         ['role' => 'user', 'content' => 'How do I configure the timeout settings?']
     ],
-    model: 'claude-opus-4-7',
+    model: 'claude-opus-4-8',
     tools: [$knowledgeBaseTool],
 );
 
@@ -695,7 +694,7 @@ if ($toolUseBlock !== null) {
                 ]
             ]
         ],
-        model: 'claude-opus-4-7',
+        model: 'claude-opus-4-8',
     );
     echo $finalResponse;
 } else {
@@ -750,7 +749,7 @@ def search_knowledge_base(query)
 end
 
 response = client.messages.create(
-  model: "claude-opus-4-7",
+  model: "claude-opus-4-8",
   max_tokens: 1024,
   tools: [knowledge_base_tool],
   messages: [
@@ -762,7 +761,7 @@ if response.content.first.type == :tool_use
   tool_result = search_knowledge_base(response.content.first.input["query"])
 
   final_response = client.messages.create(
-    model: "claude-opus-4-7",
+    model: "claude-opus-4-8",
     max_tokens: 1024,
     messages: [
       { role: "user", content: "How do I configure the timeout settings?" },
@@ -784,18 +783,18 @@ end
 ```
 </CodeGroup>
 
-## Metode 2: Hasil pencarian sebagai konten tingkat atas
+## Metode 2: Hasil pencarian sebagai konten tingkat atas \{#method-2-search-results-as-top-level-content}
 
-Anda juga dapat menyediakan hasil pencarian langsung dalam pesan pengguna. Ini berguna untuk:
-- Konten yang sudah diambil dari infrastruktur pencarian Anda
+Anda juga dapat menyediakan hasil pencarian secara langsung dalam pesan pengguna. Ini berguna untuk:
+- Konten yang telah diambil sebelumnya dari infrastruktur pencarian Anda
 - Hasil pencarian yang di-cache dari kueri sebelumnya
 - Konten dari layanan pencarian eksternal
 - Pengujian dan pengembangan
 
-### Contoh: Hasil pencarian langsung
+### Contoh: Hasil pencarian langsung \{#example-direct-search-results}
 
 <CodeGroup>
-```bash Shell
+```bash cURL
 #!/bin/sh
 curl https://api.anthropic.com/v1/messages \
      --header "x-api-key: $ANTHROPIC_API_KEY" \
@@ -803,7 +802,7 @@ curl https://api.anthropic.com/v1/messages \
      --header "content-type: application/json" \
      --data \
 '{
-    "model": "claude-opus-4-7",
+    "model": "claude-opus-4-8",
     "max_tokens": 1024,
     "messages": [
         {
@@ -849,7 +848,7 @@ curl https://api.anthropic.com/v1/messages \
 
 ```bash CLI
 ant messages create <<'YAML'
-model: claude-opus-4-7
+model: claude-opus-4-8
 max_tokens: 1024
 messages:
   - role: user
@@ -889,9 +888,9 @@ from anthropic.types import MessageParam, TextBlockParam, SearchResultBlockParam
 
 client = Anthropic()
 
-# Provide search results directly in the user message
+# Berikan hasil pencarian langsung dalam pesan pengguna
 response = client.messages.create(
-    model="claude-opus-4-7",
+    model="claude-opus-4-8",
     max_tokens=1024,
     messages=[
         MessageParam(
@@ -930,7 +929,7 @@ response = client.messages.create(
     ],
 )
 
-print(response.model_dump_json(indent=2))
+print(response)
 ```
 
 ```typescript TypeScript hidelines={1..2}
@@ -938,9 +937,9 @@ import Anthropic from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic();
 
-// Provide search results directly in the user message
+// Berikan hasil pencarian langsung dalam pesan pengguna
 const response = await anthropic.messages.create({
-  model: "claude-opus-4-7",
+  model: "claude-opus-4-8",
   max_tokens: 1024,
   messages: [
     {
@@ -996,7 +995,7 @@ class Program
 
         var parameters = new MessageCreateParams
         {
-            Model = Model.ClaudeOpus4_7,
+            Model = Model.ClaudeOpus4_8,
             MaxTokens = 1024,
             Messages =
             [
@@ -1061,7 +1060,7 @@ func main() {
 	client := anthropic.NewClient()
 
 	response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-		Model:     anthropic.ModelClaudeOpus4_7,
+		Model:     anthropic.ModelClaudeOpus4_8,
 		MaxTokens: 1024,
 		Messages: []anthropic.MessageParam{
 			anthropic.NewUserMessage(
@@ -1109,7 +1108,7 @@ public class SearchResultExample {
         AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
         MessageCreateParams params = MessageCreateParams.builder()
-            .model(Model.CLAUDE_OPUS_4_7)
+            .model(Model.CLAUDE_OPUS_4_8)
             .maxTokens(1024L)
             .addUserMessageOfBlockParams(List.of(
                 ContentBlockParam.ofSearchResult(
@@ -1155,7 +1154,7 @@ public class SearchResultExample {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 $message = $client->messages->create(
     maxTokens: 1024,
@@ -1194,7 +1193,7 @@ $message = $client->messages->create(
             ]
         ]
     ],
-    model: 'claude-opus-4-7',
+    model: 'claude-opus-4-8',
 );
 
 echo json_encode($message, JSON_PRETTY_PRINT);
@@ -1206,7 +1205,7 @@ require "anthropic"
 client = Anthropic::Client.new
 
 message = client.messages.create(
-  model: "claude-opus-4-7",
+  model: "claude-opus-4-8",
   max_tokens: 1024,
   messages: [
     {
@@ -1249,9 +1248,9 @@ puts message
 ```
 </CodeGroup>
 
-## Respons Claude dengan kutipan
+## Respons Claude dengan sitasi \{#claudes-response-with-citations}
 
-Terlepas dari bagaimana hasil pencarian disediakan, Claude secara otomatis menyertakan kutipan saat menggunakan informasi dari hasil tersebut:
+Terlepas dari bagaimana hasil pencarian disediakan, Claude secara otomatis menyertakan sitasi saat menggunakan informasi dari hasil tersebut:
 
 ```json
 {
@@ -1259,46 +1258,35 @@ Terlepas dari bagaimana hasil pencarian disediakan, Claude secara otomatis menye
   "content": [
     {
       "type": "text",
-      "text": "To authenticate API requests, you need to include an API key in the Authorization header",
+      "text": "All API requests must include an API key in the Authorization header. Keys can be generated from the dashboard.",
       "citations": [
         {
           "type": "search_result_location",
+          "cited_text": "All API requests must include an API key in the Authorization header. Keys can be generated from the dashboard. Rate limits: 1000 requests per hour for standard tier, 10000 for premium.",
           "source": "https://docs.company.com/api-reference",
           "title": "API Reference - Authentication",
-          "cited_text": "All API requests must include an API key in the Authorization header",
           "search_result_index": 0,
           "start_block_index": 0,
-          "end_block_index": 0
+          "end_block_index": 1
         }
       ]
     },
     {
       "type": "text",
-      "text": ". You can generate API keys from your dashboard",
-      "citations": [
-        {
-          "type": "search_result_location",
-          "source": "https://docs.company.com/api-reference",
-          "title": "API Reference - Authentication",
-          "cited_text": "Keys can be generated from the dashboard",
-          "search_result_index": 0,
-          "start_block_index": 0,
-          "end_block_index": 0
-        }
-      ]
+      "text": "\n\nTo set this up from scratch, you'll need to "
     },
     {
       "type": "text",
-      "text": ". The rate limits are 1,000 requests per hour for the standard tier and 10,000 requests per hour for the premium tier.",
+      "text": "sign up for an account, generate an API key from the dashboard, install the SDK using `pip install company-sdk`, and initialize the client with your API key.",
       "citations": [
         {
           "type": "search_result_location",
-          "source": "https://docs.company.com/api-reference",
-          "title": "API Reference - Authentication",
-          "cited_text": "Rate limits: 1000 requests per hour for standard tier, 10000 for premium",
-          "search_result_index": 0,
+          "cited_text": "To get started: 1) Sign up for an account, 2) Generate an API key from the dashboard, 3) Install our SDK using pip install company-sdk, 4) Initialize the client with your API key.",
+          "source": "https://docs.company.com/quickstart",
+          "title": "Getting Started Guide",
+          "search_result_index": 1,
           "start_block_index": 0,
-          "end_block_index": 0
+          "end_block_index": 1
         }
       ]
     }
@@ -1306,23 +1294,23 @@ Terlepas dari bagaimana hasil pencarian disediakan, Claude secara otomatis menye
 }
 ```
 
-### Bidang kutipan
+### Field sitasi \{#citation-fields}
 
-Setiap kutipan mencakup:
+Setiap sitasi mencakup:
 
-| Bidang | Tipe | Deskripsi |
+| Field | Tipe | Deskripsi |
 |-------|------|-------------|
-| `type` | string | Selalu `"search_result_location"` untuk kutipan hasil pencarian |
+| `type` | string | Selalu `"search_result_location"` untuk sitasi hasil pencarian |
 | `source` | string | Sumber dari hasil pencarian asli |
 | `title` | string atau null | Judul dari hasil pencarian asli |
-| `cited_text` | string | Teks yang tepat sedang dikutip |
-| `search_result_index` | integer | Indeks hasil pencarian (berbasis 0) |
-| `start_block_index` | integer | Posisi awal dalam array konten |
-| `end_block_index` | integer | Posisi akhir dalam array konten |
+| `cited_text` | string | Teks lengkap dari blok yang dikutip, digabungkan. Sama dengan isi dari `content[start_block_index:end_block_index]` yang digabungkan bersama. Tidak dihitung terhadap token output. |
+| `search_result_index` | integer | Indeks berbasis 0 dari hasil pencarian yang dikutip di antara semua blok `search_result` dalam permintaan, sesuai urutan kemunculannya (di seluruh pesan dan hasil alat). |
+| `start_block_index` | integer | Indeks berbasis 0 dari blok pertama yang dikutip dalam array `content` hasil pencarian. |
+| `end_block_index` | integer | Indeks akhir eksklusif dari rentang blok yang dikutip dalam array `content` hasil pencarian. Selalu lebih besar dari `start_block_index`. |
 
-Catatan: `search_result_index` mengacu pada indeks blok konten hasil pencarian (berbasis 0), terlepas dari bagaimana hasil pencarian disediakan (panggilan alat atau konten tingkat atas).
+Indeks blok mengidentifikasi potongan dari array `content` hasil pencarian, dan `cited_text` adalah teks lengkap dari potongan tersebut. Blok teks adalah unit terkecil yang dapat dikutip: Claude mengutip seluruh blok, bukan substring di dalam sebuah blok. Untuk mendapatkan sitasi yang lebih terperinci, pisahkan konten hasil pencarian Anda menjadi blok-blok yang lebih kecil (lihat [Beberapa blok konten](#multiple-content-blocks)).
 
-## Blok konten berganda
+## Beberapa blok konten \{#multiple-content-blocks}
 
 Hasil pencarian dapat berisi beberapa blok teks dalam array `content`:
 
@@ -1348,18 +1336,32 @@ Hasil pencarian dapat berisi beberapa blok teks dalam array `content`:
 }
 ```
 
-Claude dapat mengutip blok spesifik menggunakan bidang `start_block_index` dan `end_block_index`.
+Sitasi yang mereferensikan blok batas laju terlihat seperti ini:
 
-## Penggunaan lanjutan
+```json
+{
+  "type": "search_result_location",
+  "cited_text": "Rate Limits: The API allows 1000 requests per hour per key.",
+  "source": "https://docs.company.com/api-guide",
+  "title": "API Documentation",
+  "search_result_index": 0,
+  "start_block_index": 1,
+  "end_block_index": 2
+}
+```
 
-### Menggabungkan kedua metode
+Ketika hasil pencarian ini dikutip, `start_block_index` dan `end_block_index` mengidentifikasi blok mana dari blok-blok ini yang dicakup oleh sitasi, dan `cited_text` berisi persis teks dari blok-blok tersebut. Memisahkan konten menjadi blok-blok yang lebih kecil dan terfokus memberi Claude batas sitasi yang lebih terperinci; menggabungkan konten menjadi satu blok berarti setiap sitasi mengembalikan teks lengkap. Ini adalah model yang sama yang digunakan oleh [dokumen konten kustom](/docs/id/build-with-claude/citations#custom-content-documents) dalam fitur Citations.
+
+## Penggunaan lanjutan \{#advanced-usage}
+
+### Menggabungkan kedua metode \{#combining-both-methods}
 
 Anda dapat menggunakan hasil pencarian berbasis alat dan tingkat atas dalam percakapan yang sama:
 
 ```python nocheck
 from anthropic.types import MessageParam, SearchResultBlockParam, TextBlockParam
 
-# First message with top-level search results
+# Pesan pertama dengan hasil pencarian tingkat atas
 messages = [
     MessageParam(
         role="user",
@@ -1383,18 +1385,18 @@ messages = [
     )
 ]
 
-# Claude might respond and call a tool to search for pricing
-# Then you provide tool results with more search results
+# Claude mungkin merespons dan memanggil alat untuk mencari harga
+# Kemudian Anda memberikan hasil alat dengan lebih banyak hasil pencarian
 ```
 
-### Menggabungkan dengan tipe konten lainnya
+### Menggabungkan dengan tipe konten lain \{#combining-with-other-content-types}
 
-Kedua metode mendukung pencampuran hasil pencarian dengan konten lainnya:
+Kedua metode mendukung pencampuran hasil pencarian dengan konten lain:
 
 ```python nocheck
 from anthropic.types import SearchResultBlockParam, TextBlockParam
 
-# In tool results
+# Dalam hasil alat
 tool_result = [
     SearchResultBlockParam(
         type="search_result",
@@ -1408,7 +1410,7 @@ tool_result = [
     ),
 ]
 
-# In top-level content
+# Dalam konten tingkat atas
 user_content = [
     SearchResultBlockParam(
         type="search_result",
@@ -1427,7 +1429,7 @@ user_content = [
 ]
 ```
 
-### Kontrol cache
+### Kontrol cache \{#cache-control}
 
 Tambahkan kontrol cache untuk performa yang lebih baik:
 
@@ -1443,9 +1445,9 @@ Tambahkan kontrol cache untuk performa yang lebih baik:
 }
 ```
 
-### Kontrol kutipan
+### Kontrol sitasi \{#citation-control}
 
-Secara default, kutipan dinonaktifkan untuk hasil pencarian. Anda dapat mengaktifkan kutipan dengan secara eksplisit menetapkan konfigurasi `citations`:
+Secara default, sitasi dinonaktifkan untuk hasil pencarian. Anda dapat mengaktifkan sitasi dengan secara eksplisit mengatur konfigurasi `citations`:
 
 ```json
 {
@@ -1459,44 +1461,42 @@ Secara default, kutipan dinonaktifkan untuk hasil pencarian. Anda dapat mengakti
 }
 ```
 
-Ketika `citations.enabled` diatur ke `true`, Claude menyertakan referensi kutipan saat menggunakan informasi dari hasil pencarian. Ini memungkinkan:
-- Kutipan alami untuk aplikasi RAG kustom Anda
+Ketika `citations.enabled` diatur ke `true`, Claude menyertakan referensi sitasi saat menggunakan informasi dari hasil pencarian. Ini memungkinkan:
+- Sitasi alami untuk aplikasi RAG kustom Anda
 - Atribusi sumber saat berinteraksi dengan basis pengetahuan proprietary
-- Kutipan berkualitas pencarian web untuk alat kustom apa pun yang mengembalikan hasil pencarian
-
-Jika bidang `citations` dihilangkan, kutipan dinonaktifkan secara default.
+- Sitasi berkualitas setara pencarian web untuk alat kustom apa pun yang mengembalikan hasil pencarian
 
 <Warning>
-Kutipan adalah semua-atau-tidak-sama-sekali: baik semua hasil pencarian dalam permintaan harus memiliki kutipan diaktifkan, atau semua harus dinonaktifkan. Mencampur hasil pencarian dengan pengaturan kutipan yang berbeda menghasilkan kesalahan. Jika Anda perlu menonaktifkan kutipan untuk beberapa sumber, Anda harus menonaktifkannya untuk semua hasil pencarian dalam permintaan tersebut.
+Sitasi bersifat semua-atau-tidak-sama-sekali: semua hasil pencarian dalam sebuah permintaan harus mengaktifkan sitasi, atau semuanya harus menonaktifkannya. Mencampur hasil pencarian dengan pengaturan sitasi yang berbeda akan menghasilkan error.
 </Warning>
 
-## Praktik terbaik
+## Praktik terbaik \{#best-practices}
 
-### Untuk pencarian berbasis alat (Metode 1)
+### Untuk pencarian berbasis alat (Metode 1) \{#for-tool-based-search-method-1}
 
 - **Konten dinamis:** Gunakan untuk pencarian real-time dan aplikasi RAG dinamis
-- **Penanganan kesalahan:** Kembalikan pesan yang sesuai ketika pencarian gagal
-- **Batas hasil:** Kembalikan hanya hasil yang paling relevan untuk menghindari overflow konteks
+- **Penanganan error:** Kembalikan pesan yang sesuai ketika pencarian gagal
+- **Batas hasil:** Kembalikan hanya hasil yang paling relevan untuk menghindari konteks yang meluap
 
-### Untuk pencarian tingkat atas (Metode 2)
+### Untuk pencarian tingkat atas (Metode 2) \{#for-top-level-search-method-2}
 
-- **Konten yang sudah diambil:** Gunakan ketika Anda sudah memiliki hasil pencarian
+- **Konten yang telah diambil sebelumnya:** Gunakan ketika Anda sudah memiliki hasil pencarian
 - **Pemrosesan batch:** Ideal untuk memproses beberapa hasil pencarian sekaligus
-- **Pengujian:** Bagus untuk menguji perilaku kutipan dengan konten yang diketahui
+- **Pengujian:** Sangat baik untuk menguji perilaku sitasi dengan konten yang diketahui
 
-### Praktik terbaik umum
+### Praktik terbaik umum \{#general-best-practices}
 
-1. **Struktur hasil secara efektif**
+1. **Strukturkan hasil secara efektif:**
    - Gunakan URL sumber yang jelas dan permanen
    - Berikan judul yang deskriptif
-   - Pisahkan konten panjang menjadi blok teks logis
+   - Pecah konten panjang menjadi blok teks yang logis untuk memberi Claude batas sitasi yang lebih terperinci
 
-2. **Pertahankan konsistensi**
+2. **Jaga konsistensi:**
    - Gunakan format sumber yang konsisten di seluruh aplikasi Anda
    - Pastikan judul secara akurat mencerminkan konten
-   - Pertahankan pemformatan yang konsisten
+   - Jaga format tetap konsisten
 
-3. **Tangani kesalahan dengan baik**
+3. **Tangani error dengan baik:**
    
    ```python nocheck
    def search_with_fallback(query):
@@ -1509,8 +1509,8 @@ Kutipan adalah semua-atau-tidak-sama-sekali: baik semua hasil pencarian dalam pe
            return {"type": "text", "text": f"Search error: {str(e)}"}
    ```
 
-## Keterbatasan
+## Batasan \{#limitations}
 
-- Blok konten hasil pencarian tersedia di Claude API, Amazon Bedrock, dan Google Cloud's Vertex AI
+- Blok konten hasil pencarian tersedia di Claude API, Amazon Bedrock, dan Vertex AI dari Google Cloud
 - Hanya konten teks yang didukung dalam hasil pencarian (tidak ada gambar atau media lainnya)
 - Array `content` harus berisi setidaknya satu blok teks

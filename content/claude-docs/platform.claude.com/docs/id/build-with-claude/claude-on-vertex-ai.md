@@ -1,28 +1,28 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai
-fetched_at: 2026-04-18T03:10:04.936408Z
-sha256: 9897da3ec75fd2942b638d746ad8cd3a29c3fb03d867f2b71d2f912b189eb0e1
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 94866fb06caa1b13d8edcb05c1e76fb56e1417f89dce8b688aee7c85fdf0dbd2
 ---
 
 # Claude di Vertex AI
 
-Model Claude dari Anthropic kini tersedia secara umum melalui [Vertex AI](https://cloud.google.com/vertex-ai).
+Model Claude dari Anthropic tersedia melalui [Vertex AI](https://cloud.google.com/vertex-ai).
 
 ---
 
-Vertex API untuk mengakses Claude hampir identik dengan [Messages API](/docs/id/api/messages/create) dan mendukung semua opsi yang sama, dengan dua perbedaan utama:
+API Vertex untuk mengakses Claude hampir identik dengan [Messages API](/docs/id/api/messages/create), dengan dua perbedaan utama dalam format permintaan:
 
-* Di Vertex, `model` tidak diteruskan dalam badan permintaan. Sebaliknya, model ditentukan dalam URL endpoint Google Cloud.
-* Di Vertex, `anthropic_version` diteruskan dalam badan permintaan (bukan sebagai header), dan harus diatur ke nilai `vertex-2023-10-16`.
+* Di Vertex, `model` tidak dikirimkan dalam body permintaan. Sebagai gantinya, model ditentukan dalam URL endpoint Google Cloud.
+* Di Vertex, `anthropic_version` dikirimkan dalam body permintaan (bukan sebagai header), dan harus diatur ke nilai `vertex-2023-10-16`.
 
-Vertex juga didukung oleh [client SDKs](/docs/id/api/client-sdks) resmi Anthropic. Panduan ini memandu Anda membuat permintaan ke Claude di Vertex AI menggunakan salah satu client SDKs Anthropic.
+Vertex juga didukung oleh [SDK klien](/docs/id/cli-sdks-libraries/overview) resmi Anthropic. Panduan ini memandu Anda membuat permintaan ke Claude di Vertex AI menggunakan salah satu SDK klien Anthropic.
 
-Perhatikan bahwa panduan ini mengasumsikan Anda sudah memiliki proyek GCP yang dapat menggunakan Vertex AI. Lihat [menggunakan model Claude 3 dari Anthropic](https://cloud.google.com/vertex-ai/generative-ai/docs/partner-models/use-claude) untuk informasi lebih lanjut tentang setup yang diperlukan, serta panduan lengkap.
+Perhatikan bahwa panduan ini mengasumsikan Anda sudah memiliki proyek GCP yang dapat menggunakan Vertex AI. Lihat [Model Claude Anthropic di Vertex AI](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/claude) untuk informasi lebih lanjut tentang penyiapan yang diperlukan dan panduan lengkapnya.
 
-## Instal SDK untuk mengakses Vertex AI
+## Menginstal SDK untuk mengakses Vertex AI \{#install-an-sdk-for-accessing-vertex-ai}
 
-Pertama, instal [client SDK](/docs/id/api/client-sdks) Anthropic untuk bahasa pilihan Anda.
+Pertama, instal [SDK klien](/docs/id/cli-sdks-libraries/overview) Anthropic untuk bahasa pilihan Anda.
 
 <Tabs>
 <Tab title="Python">
@@ -52,14 +52,14 @@ go get github.com/anthropics/anthropic-sdk-go
 <Tab title="Java">
 <CodeGroup>
 ```groovy Gradle
-implementation("com.anthropic:anthropic-java-vertex:2.20.0")
+implementation("com.anthropic:anthropic-java-vertex:2.39.0")
 ```
 
 ```xml Maven
 <dependency>
     <groupId>com.anthropic</groupId>
     <artifactId>anthropic-java-vertex</artifactId>
-    <version>2.20.0</version>
+    <version>2.39.0</version>
 </dependency>
 ```
 
@@ -78,7 +78,7 @@ public class BasicMessage {
             .build();
 
         MessageCreateParams params = MessageCreateParams.builder()
-            .model(Model.CLAUDE_OPUS_4_7)
+            .model(Model.CLAUDE_OPUS_4_8)
             .maxTokens(1024L)
             .addUserMessage("What is the capital of France?")
             .build();
@@ -108,39 +108,46 @@ gem "googleauth"
 </Tab>
 </Tabs>
 
-## Mengakses Vertex AI
+## Mengakses Vertex AI \{#accessing-vertex-ai}
 
-### Ketersediaan model
+### Ketersediaan model \{#model-availability}
 
-Perhatikan bahwa ketersediaan model Anthropic bervariasi menurut wilayah. Cari "Claude" di [Vertex AI Model Garden](https://cloud.google.com/model-garden) atau buka [Gunakan Claude 3](https://cloud.google.com/vertex-ai/generative-ai/docs/partner-models/use-claude) untuk informasi terbaru.
+Perhatikan bahwa ketersediaan model Anthropic bervariasi berdasarkan region. Cari "Claude" di [Vertex AI Model Garden](https://cloud.google.com/model-garden) atau kunjungi [Model Claude Anthropic](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/claude) untuk informasi terbaru.
 
-#### ID model API
+#### ID model API \{#api-model-ids}
 
-| Model                          | ID model Vertex AI API |
+Istilah siklus hidup (Deprecated, Retired) didefinisikan dalam [Penghentian model](/docs/id/about-claude/model-deprecations). Tanggal siklus hidup pada platform yang dioperasikan mitra ditetapkan oleh mitra dan dapat berbeda dari jadwal API Claude. Untuk tanggal penghentian terkini dari model apa pun di Vertex AI, lihat [dokumentasi Google Cloud untuk model Claude di Vertex AI](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/claude).
+
+| Model                          | ID model API Vertex AI |
 | ------------------------------ | ------------------------ |
+| Claude Fable 5                     | claude-fable-5 |
+| Claude Opus 4.8                    | claude-opus-4-8 |
 | Claude Opus 4.7                    | claude-opus-4-7 |
 | Claude Opus 4.6                  | claude-opus-4-6 |
 | Claude Sonnet 4.6              | claude-sonnet-4-6 |
 | Claude Sonnet 4.5              | claude-sonnet-4-5@20250929 |
-| Claude Sonnet 4 <Tooltip tooltipContent="Deprecated as of April 14, 2026. Retiring September 14, 2026.">⚠️</Tooltip> | claude-sonnet-4@20250514 |
-| Claude Sonnet 3.7 <Tooltip tooltipContent="Retired as of February 19, 2026.">⚠️</Tooltip> | claude-3-7-sonnet@20250219 |
+| Claude Sonnet 4 <br /><small>Deprecated.</small> | claude-sonnet-4@20250514 |
+| Claude Sonnet 3.7 <br /><small>Retired.</small> | claude-3-7-sonnet@20250219 |
 | Claude Opus 4.5                | claude-opus-4-5@20251101 |
-| Claude Opus 4.1                | claude-opus-4-1@20250805 |
-| Claude Opus 4 <Tooltip tooltipContent="Deprecated as of April 14, 2026. Retiring September 14, 2026.">⚠️</Tooltip> | claude-opus-4@20250514   |
+| Claude Opus 4.1 <br /><small>Deprecated.</small> | claude-opus-4-1@20250805 |
+| Claude Opus 4 <br /><small>Deprecated.</small> | claude-opus-4@20250514   |
 | Claude Haiku 4.5               | claude-haiku-4-5@20251001 |
-| Claude Haiku 3.5 <Tooltip tooltipContent="Retired as of February 19, 2026.">⚠️</Tooltip> | claude-3-5-haiku@20241022 |
-| Claude Haiku 3 <Tooltip tooltipContent="Deprecated as of February 19, 2026. Retiring April 19, 2026.">⚠️</Tooltip> | claude-3-haiku@20240307  |
+| Claude Haiku 3.5 <br /><small>Deprecated.</small> | claude-3-5-haiku@20241022 |
 
-### Membuat permintaan
+<Tip>
+Melakukan upgrade ke model Claude yang lebih baru? Di Claude Code, jalankan `/claude-api migrate` untuk menerapkan penggantian ID model dan perubahan parameter yang bersifat breaking di seluruh codebase Anda. Skill ini mendeteksi platform cloud mana yang ditargetkan oleh kode Anda dan menyesuaikan format ID model serta perubahan fitur untuk platform tersebut. Lihat [Migrasi ke model Claude yang lebih baru](/docs/id/agents-and-tools/agent-skills/claude-api-skill#migrating-to-a-newer-claude-model).
+</Tip>
 
-Sebelum menjalankan permintaan, Anda mungkin perlu menjalankan `gcloud auth application-default login` untuk autentikasi dengan GCP.
+### Membuat permintaan \{#making-requests}
+
+Sebelum menjalankan permintaan, Anda mungkin perlu menjalankan `gcloud auth application-default login` untuk melakukan autentikasi dengan GCP.
 
 Contoh berikut menunjukkan cara menghasilkan teks dari Claude di Vertex AI:
 <CodeGroup>
 
   
-  ```bash Shell nocheck
-  MODEL_ID=claude-opus-4-7
+  ```bash cURL nocheck
+  MODEL_ID=claude-opus-4-8
   LOCATION=global
   PROJECT_ID=MY_PROJECT_ID
 
@@ -155,12 +162,12 @@ Contoh berikut menunjukkan cara menghasilkan teks dari Claude di Vertex AI:
       "role": "user",
       "content": "Hey Claude!"
     }],
-    "max_tokens": 100,
+    "max_tokens": 100
   }'
   ```
 
   ```bash CLI
-  # The ant CLI does not yet support Vertex AI.
+  # CLI ant tidak mendukung Vertex AI.
   ```
 
   
@@ -173,7 +180,7 @@ Contoh berikut menunjukkan cara menghasilkan teks dari Claude di Vertex AI:
   client = AnthropicVertex(project_id=project_id, region=region)
 
   message = client.messages.create(
-      model="claude-opus-4-7",
+      model="claude-opus-4-8",
       max_tokens=100,
       messages=[
           {
@@ -192,7 +199,7 @@ Contoh berikut menunjukkan cara menghasilkan teks dari Claude di Vertex AI:
   const projectId = "MY_PROJECT_ID";
   const region = "global";
 
-  // Goes through the standard `google-auth-library` flow.
+  // Melalui alur standar `google-auth-library`.
   const client = new AnthropicVertex({
     projectId,
     region
@@ -200,7 +207,7 @@ Contoh berikut menunjukkan cara menghasilkan teks dari Claude di Vertex AI:
 
   async function main() {
     const result = await client.messages.create({
-      model: "claude-opus-4-7",
+      model: "claude-opus-4-8",
       max_tokens: 100,
       messages: [
         {
@@ -231,7 +238,7 @@ Contoh berikut menunjukkan cara menghasilkan teks dari Claude di Vertex AI:
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeOpus4_7,
+      Model = Model.ClaudeOpus4_8,
       MaxTokens = 100,
       Messages = [new() { Role = Role.User, Content = "Hey Claude!" }]
   };
@@ -253,13 +260,13 @@ Contoh berikut menunjukkan cara menghasilkan teks dari Claude di Vertex AI:
   )
 
   func main() {
-  	// Uses default Google Cloud credentials
+  	// Menggunakan kredensial Google Cloud default
   	client := anthropic.NewClient(
   		vertex.WithGoogleAuth(context.Background(), "global", "MY_PROJECT_ID"),
   	)
 
   	message, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
-  		Model:     "claude-opus-4-7",
+  		Model:     "claude-opus-4-8",
   		MaxTokens: 100,
   		Messages: []anthropic.MessageParam{
   			anthropic.NewUserMessage(anthropic.NewTextBlock("Hey Claude!")),
@@ -283,7 +290,7 @@ Contoh berikut menunjukkan cara menghasilkan teks dari Claude di Vertex AI:
   public class VertexExample {
 
     public static void main(String[] args) {
-      // Uses default Google Cloud credentials
+      // Menggunakan kredensial Google Cloud default
       AnthropicClient client = AnthropicOkHttpClient.builder()
         .backend(VertexBackend.fromEnv())
         .build();
@@ -292,7 +299,7 @@ Contoh berikut menunjukkan cara menghasilkan teks dari Claude di Vertex AI:
         .messages()
         .create(
           MessageCreateParams.builder()
-            .model("claude-opus-4-7")
+            .model("claude-opus-4-8")
             .maxTokens(100)
             .addUserMessage("Hey Claude!")
             .build()
@@ -319,7 +326,7 @@ Contoh berikut menunjukkan cara menghasilkan teks dari Claude di Vertex AI:
       messages: [
           ['role' => 'user', 'content' => 'Hey Claude!']
       ],
-      model: 'claude-opus-4-7',
+      model: 'claude-opus-4-8',
   );
   echo $message->content[0]->text;
   ```
@@ -334,7 +341,7 @@ Contoh berikut menunjukkan cara menghasilkan teks dari Claude di Vertex AI:
   )
 
   message = client.messages.create(
-    model: "claude-opus-4-7",
+    model: "claude-opus-4-8",
     max_tokens: 100,
     messages: [{role: "user", content: "Hey Claude!"}]
   )
@@ -343,65 +350,88 @@ Contoh berikut menunjukkan cara menghasilkan teks dari Claude di Vertex AI:
   ```
 </CodeGroup>
 
-Lihat [client SDKs](/docs/id/api/client-sdks) dan [dokumentasi Vertex AI](https://cloud.google.com/vertex-ai/docs) resmi untuk detail lebih lanjut.
+Lihat [SDK klien](/docs/id/cli-sdks-libraries/overview) dan [dokumentasi Vertex AI](https://cloud.google.com/vertex-ai/docs) resmi untuk detail lebih lanjut.
 
-Claude juga tersedia melalui [Amazon Bedrock](/docs/id/build-with-claude/claude-on-amazon-bedrock) dan [Microsoft Foundry](/docs/id/build-with-claude/claude-in-microsoft-foundry).
+Claude juga tersedia melalui [Amazon Bedrock](/docs/id/build-with-claude/claude-in-amazon-bedrock), [Claude Platform di AWS](/docs/id/build-with-claude/claude-platform-on-aws), dan [Microsoft Foundry](/docs/id/build-with-claude/claude-in-microsoft-foundry).
 
-## Pencatatan aktivitas
+## Retensi data \{#data-retention}
 
-Vertex menyediakan [layanan pencatatan permintaan-respons](https://cloud.google.com/vertex-ai/generative-ai/docs/multimodal/request-response-logging) yang memungkinkan pelanggan untuk mencatat prompt dan penyelesaian yang terkait dengan penggunaan Anda.
+Penanganan data untuk penawaran ini diatur oleh Google Cloud Vertex AI. Untuk detailnya, lihat [Vertex AI dan zero data retention](https://cloud.google.com/vertex-ai/generative-ai/docs/data-governance).
 
-Anthropic merekomendasikan agar Anda mencatat aktivitas Anda setidaknya pada dasar rolling 30 hari untuk memahami aktivitas Anda dan menyelidiki potensi penyalahgunaan.
+## Pencatatan aktivitas \{#activity-logging}
+
+Vertex menyediakan [layanan pencatatan permintaan-respons](https://cloud.google.com/vertex-ai/generative-ai/docs/multimodal/request-response-logging) yang memungkinkan pelanggan mencatat prompt dan completion yang terkait dengan penggunaan Anda.
+
+Anthropic merekomendasikan agar Anda mencatat aktivitas Anda setidaknya secara bergulir selama 30 hari untuk memahami aktivitas Anda dan menyelidiki potensi penyalahgunaan.
 
 <Note>
 Mengaktifkan layanan ini tidak memberikan Google atau Anthropic akses apa pun ke konten Anda.
 </Note>
 
-## Dukungan fitur
-Untuk semua fitur yang saat ini didukung di Vertex AI, lihat [ringkasan fitur API](/docs/id/api/overview).
+## Dukungan fitur \{#feature-support}
+Untuk daftar fitur lengkap dengan ketersediaan Vertex AI, lihat [Ikhtisar fitur](/docs/id/build-with-claude/overview).
 
-### Jendela konteks
+### Sorotan fitur yang didukung \{#supported-feature-highlights}
 
-Claude Opus 4.7, Claude Opus 4.6, dan Claude Sonnet 4.6 memiliki [jendela konteks 1M-token](/docs/id/build-with-claude/context-windows) di Vertex AI. Model Claude lainnya, termasuk Sonnet 4.5 dan Sonnet 4 (deprecated), memiliki jendela konteks 200k-token.
+- [Messages API](/docs/id/api/messages/create)
+- [Caching prompt](/docs/id/build-with-claude/prompt-caching)
+- [Pemikiran diperpanjang](/docs/id/build-with-claude/extended-thinking)
+- [Penggunaan alat](/docs/id/agents-and-tools/tool-use/overview), termasuk [alat Bash](/docs/id/agents-and-tools/tool-use/bash-tool), [alat Computer use](/docs/id/agents-and-tools/tool-use/computer-use-tool), [alat Memory](/docs/id/agents-and-tools/tool-use/memory-tool), dan [alat Text editor](/docs/id/agents-and-tools/tool-use/text-editor-tool)
+- [Alat pencarian web](/docs/id/agents-and-tools/tool-use/web-search-tool)
+- [Sitasi](/docs/id/build-with-claude/citations)
+- [Output terstruktur](/docs/id/build-with-claude/structured-outputs)
 
-Vertex AI membatasi payload permintaan hingga 30 MB. Saat mengirim dokumen besar atau banyak gambar, Anda mungkin mencapai batas ini sebelum batas token.
+### Fitur yang tidak didukung \{#features-not-supported}
 
-## Endpoint global, multi-region, dan regional
+- Sumber input (sumber URL untuk gambar dan dokumen, Files API)
+- Alat sisi server (code execution, web fetch, advisor)
+- Infrastruktur agen (Agent Skills, konektor MCP, pemanggilan alat terprogram)
+- Endpoint API (Message Batches, Models, Admin, Compliance, Usage and Cost)
+- Claude Managed Agents
+- Fallback sisi server ([parameter `fallbacks`](/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback); gunakan [pola fallback sisi klien](/docs/id/build-with-claude/refusals-and-fallback#client-side-fallback) sebagai gantinya)
 
-Google Vertex AI menawarkan tiga jenis endpoint:
+### Jendela konteks \{#context-window}
 
-- **Endpoint global:** Perutean dinamis untuk ketersediaan maksimal
+Claude Fable 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, dan Claude Sonnet 4.6 memiliki ["context window" (jendela konteks) 1 juta token](/docs/id/build-with-claude/context-windows) di Vertex AI. Model Claude lainnya, termasuk Sonnet 4.5 dan Sonnet 4 (deprecated), memiliki jendela konteks 200 ribu token.
+
+Vertex AI membatasi payload permintaan hingga 30 MB. Saat mengirim dokumen besar atau banyak gambar, Anda mungkin mencapai batas ini sebelum mencapai batas token.
+
+## Endpoint global, multi-region, dan regional \{#global-multi-region-and-regional-endpoints}
+
+Vertex AI menawarkan tiga jenis endpoint:
+
+- **Endpoint global:** Perutean dinamis untuk ketersediaan maksimum
 - **Endpoint multi-region:** Perutean dinamis dalam area geografis (misalnya, Amerika Serikat atau Uni Eropa) untuk residensi data dengan ketersediaan tinggi
-- **Endpoint regional:** Perutean data terjamin melalui wilayah geografis tertentu
+- **Endpoint regional:** Perutean data yang dijamin melalui region geografis tertentu
 
-Endpoint regional dan multi-region mencakup premium harga 10% di atas endpoint global.
+Endpoint regional dan multi-region mencakup premium harga 10% dibandingkan endpoint global.
 
 <Note>
-Ini berlaku untuk Claude Sonnet 4.5 dan model masa depan saja. Model yang lebih lama (Claude Sonnet 4 (deprecated), Opus 4 (deprecated), dan sebelumnya) mempertahankan struktur harga yang ada.
+Ini berlaku untuk Claude Sonnet 4.5 dan model yang lebih baru saja. Model yang lebih lama (Claude Sonnet 4 (deprecated), Opus 4 (deprecated), dan sebelumnya) mempertahankan struktur harga yang sudah ada.
 </Note>
 
-### Kapan menggunakan setiap opsi
+### Kapan menggunakan setiap opsi \{#when-to-use-each-option}
 
 **Endpoint global (direkomendasikan):**
-- Memberikan ketersediaan dan uptime maksimal
-- Secara dinamis merutkan permintaan ke wilayah dengan kapasitas tersedia
-- Tidak ada premium harga
-- Terbaik untuk aplikasi di mana residensi data fleksibel
-- Hanya mendukung lalu lintas bayar sesuai penggunaan (throughput yang disediakan memerlukan endpoint regional)
+- Menyediakan ketersediaan dan uptime maksimum
+- Merutekan permintaan secara dinamis ke region dengan kapasitas yang tersedia
+- Tanpa premium harga
+- Terbaik untuk aplikasi di mana residensi data bersifat fleksibel
+- Hanya mendukung lalu lintas pay-as-you-go (provisioned throughput memerlukan endpoint regional)
 
 **Endpoint multi-region:**
-- Secara dinamis merutkan permintaan di seluruh wilayah dalam area geografis (saat ini `us` dan `eu`)
-- Berguna ketika Anda memerlukan residensi data dalam geografi yang luas tetapi menginginkan ketersediaan lebih tinggi daripada satu wilayah
-- Premium harga 10% di atas endpoint global
-- Hanya mendukung lalu lintas bayar sesuai penggunaan (throughput yang disediakan memerlukan endpoint regional)
+- Merutekan permintaan secara dinamis di seluruh region dalam area geografis (saat ini `us` dan `eu`)
+- Berguna ketika Anda memerlukan residensi data dalam geografi yang luas tetapi menginginkan ketersediaan yang lebih tinggi daripada satu region
+- Premium harga 10% dibandingkan endpoint global
+- Hanya mendukung lalu lintas pay-as-you-go (provisioned throughput memerlukan endpoint regional)
 
 **Endpoint regional:**
-- Merutkan lalu lintas melalui wilayah geografis tertentu
-- Diperlukan untuk residensi data satu wilayah, mandat kepatuhan ketat, atau throughput yang disediakan
-- Mendukung lalu lintas bayar sesuai penggunaan dan throughput yang disediakan
-- Premium harga 10% mencerminkan biaya infrastruktur untuk kapasitas regional yang didedikasikan
+- Merutekan lalu lintas melalui region geografis tertentu
+- Diperlukan untuk residensi data region tunggal, mandat kepatuhan yang ketat, atau provisioned throughput
+- Mendukung pay-as-you-go dan provisioned throughput
+- Premium harga 10% mencerminkan biaya infrastruktur untuk kapasitas regional khusus
 
-### Implementasi
+### Implementasi \{#implementation}
 
 **Menggunakan endpoint global (direkomendasikan):**
 
@@ -410,7 +440,7 @@ Atur parameter `region` ke `"global"` saat menginisialisasi klien:
 <CodeGroup>
 
 ```bash CLI
-# The ant CLI does not yet support Vertex AI.
+# CLI ant tidak mendukung Vertex AI.
 ```
 
 ```python Python nocheck
@@ -422,7 +452,7 @@ region = "global"
 client = AnthropicVertex(project_id=project_id, region=region)
 
 message = client.messages.create(
-    model="claude-opus-4-7",
+    model="claude-opus-4-8",
     max_tokens=100,
     messages=[
         {
@@ -446,7 +476,7 @@ const client = new AnthropicVertex({
 });
 
 const result = await client.messages.create({
-  model: "claude-opus-4-7",
+  model: "claude-opus-4-8",
   max_tokens: 100,
   messages: [
     {
@@ -472,7 +502,7 @@ var client = new AnthropicClient
 
 var parameters = new MessageCreateParams
 {
-    Model = Model.ClaudeOpus4_7,
+    Model = Model.ClaudeOpus4_8,
     MaxTokens = 100,
     Messages = [new() { Role = Role.User, Content = "Hey Claude!" }]
 };
@@ -492,13 +522,13 @@ import (
 )
 
 func main() {
-	// Uses default Google Cloud credentials
+	// Menggunakan kredensial Google Cloud default
 	client := anthropic.NewClient(
 		vertex.WithGoogleAuth(context.Background(), "global", "MY_PROJECT_ID"),
 	)
 
 	message, _ := client.Messages.New(context.Background(), anthropic.MessageNewParams{
-		Model:     "claude-opus-4-7",
+		Model:     "claude-opus-4-8",
 		MaxTokens: 100,
 		Messages: []anthropic.MessageParam{
 			anthropic.NewUserMessage(anthropic.NewTextBlock("Hey Claude!")),
@@ -514,20 +544,29 @@ import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.messages.MessageCreateParams;
 import com.anthropic.vertex.backends.VertexBackend;
 
-// Uses default Google Cloud credentials
-AnthropicClient client = AnthropicOkHttpClient.builder()
-  .backend(VertexBackend.fromEnv())
-  .build();
+void main() {
+    // Menggunakan kredensial Google Cloud default
+    AnthropicClient client = AnthropicOkHttpClient.builder()
+        .backend(
+            VertexBackend.builder()
+                .region("global")
+                .project("MY_PROJECT_ID")
+                .build()
+        )
+        .build();
 
-var message = client
-  .messages()
-  .create(
-    MessageCreateParams.builder()
-      .model("claude-opus-4-7")
-      .maxTokens(100)
-      .addUserMessage("Hey Claude!")
-      .build()
-  );
+    var message = client
+        .messages()
+        .create(
+            MessageCreateParams.builder()
+                .model("claude-opus-4-8")
+                .maxTokens(100)
+                .addUserMessage("Hey Claude!")
+                .build()
+        );
+
+    IO.println(message);
+}
 ```
 
 ```php PHP nocheck
@@ -545,7 +584,7 @@ $message = $client->messages->create(
     messages: [
         ['role' => 'user', 'content' => 'Hey Claude!']
     ],
-    model: 'claude-opus-4-7',
+    model: 'claude-opus-4-8',
 );
 
 echo $message->content[0]->text;
@@ -560,7 +599,7 @@ client = Anthropic::VertexClient.new(
 )
 
 message = client.messages.create(
-  model: "claude-opus-4-7",
+  model: "claude-opus-4-8",
   max_tokens: 100,
   messages: [{role: "user", content: "Hey Claude!"}]
 )
@@ -571,9 +610,13 @@ puts message.content.first.text
 
 **Menggunakan endpoint multi-region:**
 
-Atur parameter `region` ke pengidentifikasi multi-region: `"us"` untuk Amerika Serikat atau `"eu"` untuk Uni Eropa. SDK merutkan permintaan ke endpoint multi-region yang sesuai (`https://aiplatform.us.rep.googleapis.com` atau `https://aiplatform.eu.rep.googleapis.com`), yang secara dinamis menyeimbangkan lalu lintas di seluruh wilayah dalam geografi tersebut.
+Atur parameter `region` ke pengidentifikasi multi-region: `"us"` untuk Amerika Serikat atau `"eu"` untuk Uni Eropa. SDK merutekan permintaan ke endpoint multi-region yang sesuai (`https://aiplatform.us.rep.googleapis.com` atau `https://aiplatform.eu.rep.googleapis.com`), yang secara dinamis menyeimbangkan lalu lintas di seluruh region dalam geografi tersebut.
 
 <CodeGroup>
+
+```bash CLI
+# CLI ant tidak mendukung Vertex AI.
+```
 
 ```python Python nocheck
 from anthropic import AnthropicVertex
@@ -584,7 +627,7 @@ region = "us"  # Multi-region identifier: "us" or "eu"
 client = AnthropicVertex(project_id=project_id, region=region)
 
 message = client.messages.create(
-    model="claude-opus-4-7",
+    model="claude-opus-4-8",
     max_tokens=100,
     messages=[
         {
@@ -608,7 +651,7 @@ const client = new AnthropicVertex({
 });
 
 const result = await client.messages.create({
-  model: "claude-opus-4-7",
+  model: "claude-opus-4-8",
   max_tokens: 100,
   messages: [
     {
@@ -634,7 +677,7 @@ var client = new AnthropicClient
 
 var parameters = new MessageCreateParams
 {
-    Model = Model.ClaudeOpus4_7,
+    Model = Model.ClaudeOpus4_8,
     MaxTokens = 100,
     Messages = [new() { Role = Role.User, Content = "Hey Claude!" }]
 };
@@ -654,13 +697,13 @@ import (
 )
 
 func main() {
-	// Multi-region identifier: "us" or "eu"
+	// Pengidentifikasi multi-region: "us" atau "eu"
 	client := anthropic.NewClient(
 		vertex.WithGoogleAuth(context.Background(), "us", "MY_PROJECT_ID"),
 	)
 
 	message, _ := client.Messages.New(context.Background(), anthropic.MessageNewParams{
-		Model:     "claude-opus-4-7",
+		Model:     "claude-opus-4-8",
 		MaxTokens: 100,
 		Messages: []anthropic.MessageParam{
 			anthropic.NewUserMessage(anthropic.NewTextBlock("Hey Claude!")),
@@ -676,25 +719,29 @@ import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.messages.MessageCreateParams;
 import com.anthropic.vertex.backends.VertexBackend;
 
-// Multi-region identifier: "us" or "eu"
-AnthropicClient client = AnthropicOkHttpClient.builder()
-  .backend(
-    VertexBackend.builder()
-      .region("us")
-      .project("MY_PROJECT_ID")
-      .build()
-  )
-  .build();
+void main() {
+    // Pengidentifikasi multi-region: "us" atau "eu"
+    AnthropicClient client = AnthropicOkHttpClient.builder()
+        .backend(
+            VertexBackend.builder()
+                .region("us")
+                .project("MY_PROJECT_ID")
+                .build()
+        )
+        .build();
 
-var message = client
-  .messages()
-  .create(
-    MessageCreateParams.builder()
-      .model("claude-opus-4-7")
-      .maxTokens(100)
-      .addUserMessage("Hey Claude!")
-      .build()
-  );
+    var message = client
+        .messages()
+        .create(
+            MessageCreateParams.builder()
+                .model("claude-opus-4-8")
+                .maxTokens(100)
+                .addUserMessage("Hey Claude!")
+                .build()
+        );
+
+    IO.println(message);
+}
 ```
 
 ```php PHP nocheck
@@ -712,7 +759,7 @@ $message = $client->messages->create(
     messages: [
         ['role' => 'user', 'content' => 'Hey Claude!']
     ],
-    model: 'claude-opus-4-7',
+    model: 'claude-opus-4-8',
 );
 echo $message->content[0]->text;
 ```
@@ -726,7 +773,7 @@ client = Anthropic::VertexClient.new(
 )
 
 message = client.messages.create(
-  model: "claude-opus-4-7",
+  model: "claude-opus-4-8",
   max_tokens: 100,
   messages: [{role: "user", content: "Hey Claude!"}]
 )
@@ -737,12 +784,12 @@ puts message.content.first.text
 
 **Menggunakan endpoint regional:**
 
-Tentukan wilayah tertentu seperti `"us-east1"` atau `"europe-west1"`:
+Tentukan region spesifik seperti `"us-east1"` atau `"europe-west1"`:
 
 <CodeGroup>
 
 ```bash CLI
-# The ant CLI does not yet support Vertex AI.
+# CLI ant tidak mendukung Vertex AI.
 ```
 
 ```python Python nocheck
@@ -754,7 +801,7 @@ region = "us-east1"  # Specify a specific region
 client = AnthropicVertex(project_id=project_id, region=region)
 
 message = client.messages.create(
-    model="claude-opus-4-7",
+    model="claude-opus-4-8",
     max_tokens=100,
     messages=[
         {
@@ -778,7 +825,7 @@ const client = new AnthropicVertex({
 });
 
 const result = await client.messages.create({
-  model: "claude-opus-4-7",
+  model: "claude-opus-4-8",
   max_tokens: 100,
   messages: [
     {
@@ -804,7 +851,7 @@ AnthropicClient client = new()
 
 var parameters = new MessageCreateParams
 {
-    Model = Model.ClaudeOpus4_7,
+    Model = Model.ClaudeOpus4_8,
     MaxTokens = 100,
     Messages = [new() { Role = Role.User, Content = "Hey Claude!" }]
 };
@@ -824,13 +871,13 @@ import (
 )
 
 func main() {
-	// Specify a specific region
+	// Tentukan region tertentu
 	client := anthropic.NewClient(
 		vertex.WithGoogleAuth(context.Background(), "us-east1", "MY_PROJECT_ID"),
 	)
 
 	message, _ := client.Messages.New(context.Background(), anthropic.MessageNewParams{
-		Model:     "claude-opus-4-7",
+		Model:     "claude-opus-4-8",
 		MaxTokens: 100,
 		Messages: []anthropic.MessageParam{
 			anthropic.NewUserMessage(anthropic.NewTextBlock("Hey Claude!")),
@@ -846,25 +893,29 @@ import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.messages.MessageCreateParams;
 import com.anthropic.vertex.backends.VertexBackend;
 
-// Uses default Google Cloud credentials with specific region
-AnthropicClient client = AnthropicOkHttpClient.builder()
-  .backend(
-    VertexBackend.builder()
-      .region("us-east1") // Specify a specific region
-      .project("MY_PROJECT_ID")
-      .build()
-  )
-  .build();
+void main() {
+    // Menggunakan kredensial Google Cloud default dengan region tertentu
+    AnthropicClient client = AnthropicOkHttpClient.builder()
+        .backend(
+            VertexBackend.builder()
+                .region("us-east1") // Specify a specific region
+                .project("MY_PROJECT_ID")
+                .build()
+        )
+        .build();
 
-var message = client
-  .messages()
-  .create(
-    MessageCreateParams.builder()
-      .model("claude-opus-4-7")
-      .maxTokens(100)
-      .addUserMessage("Hey Claude!")
-      .build()
-  );
+    var message = client
+        .messages()
+        .create(
+            MessageCreateParams.builder()
+                .model("claude-opus-4-8")
+                .maxTokens(100)
+                .addUserMessage("Hey Claude!")
+                .build()
+        );
+
+    IO.println(message);
+}
 ```
 
 ```php PHP nocheck
@@ -882,7 +933,7 @@ $message = $client->messages->create(
     messages: [
         ['role' => 'user', 'content' => 'Hey Claude!']
     ],
-    model: 'claude-opus-4-7',
+    model: 'claude-opus-4-8',
 );
 echo $message->content[0]->text;
 ```
@@ -896,7 +947,7 @@ client = Anthropic::VertexClient.new(
 )
 
 message = client.messages.create(
-  model: "claude-opus-4-7",
+  model: "claude-opus-4-8",
   max_tokens: 100,
   messages: [{role: "user", content: "Hey Claude!"}]
 )
@@ -906,12 +957,12 @@ puts message.content.first.text
 </CodeGroup>
 
 <Note>
-Claude Mythos Preview adalah pratinjau penelitian yang tersedia untuk pelanggan yang diundang di Google Vertex AI. Untuk informasi lebih lanjut, lihat [Project Glasswing](https://anthropic.com/glasswing).
+Claude Mythos Preview adalah pratinjau riset yang tersedia untuk pelanggan yang diundang di Vertex AI. Untuk informasi lebih lanjut, lihat [Project Glasswing](https://anthropic.com/glasswing).
 </Note>
 
-### Sumber daya tambahan
+## Sumber daya tambahan \{#additional-resources}
 
-- **Harga Google Vertex AI:** [cloud.google.com/vertex-ai/generative-ai/pricing](https://cloud.google.com/vertex-ai/generative-ai/pricing)
-- **Dokumentasi model Claude:** [Claude di Vertex AI](https://cloud.google.com/vertex-ai/generative-ai/docs/partner-models/claude)
-- **Posting blog Google:** [Global endpoint untuk model Claude](https://cloud.google.com/blog/products/ai-machine-learning/global-endpoint-for-claude-models-generally-available-on-vertex-ai)
-- **Detail harga Anthropic:** [Dokumentasi harga](/docs/id/about-claude/pricing#third-party-platform-pricing)
+- **Harga Vertex AI:** [cloud.google.com/vertex-ai/generative-ai/pricing](https://cloud.google.com/vertex-ai/generative-ai/pricing)
+- **Dokumentasi model Claude:** [Claude di Vertex AI](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/claude)
+- **Postingan blog Google:** [Endpoint global untuk model Claude](https://cloud.google.com/blog/products/ai-machine-learning/global-endpoint-for-claude-models-generally-available-on-vertex-ai)
+- **Detail harga Anthropic:** [Harga platform cloud](/docs/id/about-claude/pricing#cloud-platform-pricing)

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/php/beta/sessions/retrieve
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 50cdac741d9e73662cda9dd7d71d048b9ee274794c0d91a21cee378bf9bf736d
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 6123d540356458b0e58362876182131387f52c757ca9104328abad1c2b18f7c6
 ---
 
 ## Get Session
@@ -72,6 +72,10 @@ Get Session
   - `list<string> vaultIDs`
 
     Vault IDs attached to the session at creation. Empty when no vaults were supplied.
+
+  - `?string deploymentID`
+
+    Deployment ID when the session was created from a deployment reference. Null otherwise.
 
 ### Example
 
@@ -252,6 +256,7 @@ var_dump($betaManagedAgentsSession);
   },
   "vault_ids": [
     "vlt_011CZkZDLs7fYzm1hXNPeRjv"
-  ]
+  ],
+  "deployment_id": "deployment_id"
 }
 ```

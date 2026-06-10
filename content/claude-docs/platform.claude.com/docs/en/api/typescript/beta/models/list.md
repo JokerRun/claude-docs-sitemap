@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/models/list
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: c042dac155decd22766dce9e40848df8a8b925a54efa112219bc0f7a983197da
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 50011184f2726b1e050fc3c4a5e5d4df175fcc068cca372370bf2d69d73f26e5
 ---
 
 ## List Models
@@ -39,7 +39,7 @@ The Models API response can be used to determine which models are available for 
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 23 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -93,6 +93,10 @@ The Models API response can be used to determine which models are available for 
 
       - `"thinking-token-count-2026-05-13"`
 
+      - `"server-side-fallback-2026-06-01"`
+
+      - `"fallback-credit-2026-06-01"`
+
 ### Returns
 
 - `BetaModelInfo`
@@ -100,6 +104,10 @@ The Models API response can be used to determine which models are available for 
   - `id: string`
 
     Unique model identifier.
+
+  - `allowed_fallback_models: Array<string> | null`
+
+    Model IDs this model accepts as `fallbacks[i].model` on the Messages API. An empty list means the `fallbacks` parameter is not supported for this model as primary.
 
   - `capabilities: BetaModelCapabilities | null`
 
@@ -247,6 +255,9 @@ for await (const betaModelInfo of client.beta.models.list()) {
   "data": [
     {
       "id": "claude-opus-4-6",
+      "allowed_fallback_models": [
+        "string"
+      ],
       "capabilities": {
         "batch": {
           "supported": true

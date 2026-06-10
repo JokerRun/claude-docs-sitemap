@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/memory_stores/memory_versions/redact
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 40b82940c3790e3a7e046347d591cca27aee7ce185e71e8dd82cde8dde1a2a9f
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 6d6ea0f2741dc335277e9eb8954366d0e000c8dc92a4aa1c8eac813344b147a5
 ---
 
 ## Redact a memory version
@@ -25,7 +25,7 @@ Redact a memory version
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 23 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 25 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -78,6 +78,10 @@ Redact a memory version
     - `:"cache-diagnosis-2026-04-07"`
 
     - `:"thinking-token-count-2026-05-13"`
+
+    - `:"server-side-fallback-2026-06-01"`
+
+    - `:"fallback-credit-2026-06-01"`
 
 ### Returns
 

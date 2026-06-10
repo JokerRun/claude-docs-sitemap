@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/sessions/events/send
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: bba536eb6a8d1bc9d1d4e0e34ad2e641dcc19b5f62be952653839bf4a9086a53
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 3c6c517372e8345d45a00001559d8baba837fe83877f760b0d993d31e26be2fc
 ---
 
 ## Send Events
@@ -33,7 +33,7 @@ Send Events
 
   Events that were successfully sent to the session.
 
-  - `data: optional array of BetaManagedAgentsUserMessageEvent or BetaManagedAgentsUserInterruptEvent or BetaManagedAgentsUserToolConfirmationEvent or 3 more`
+  - `data: optional array of BetaManagedAgentsUserMessageEvent or BetaManagedAgentsUserInterruptEvent or BetaManagedAgentsUserToolConfirmationEvent or 4 more`
 
     Sent events
 
@@ -438,6 +438,34 @@ Send Events
       - `session_thread_id: optional string`
 
         Routes this result to a subagent thread. Copy from the `agent.tool_use` event's `session_thread_id`.
+
+    - `beta_managed_agents_system_message_event: object { id, content, type, processed_at }`
+
+      A mid-conversation system message event. Carries system-role content that is appended to the session as a `role: "system"` turn.
+
+      - `id: string`
+
+        Unique identifier for this event.
+
+      - `content: array of BetaManagedAgentsSystemContentBlock`
+
+        System content blocks. Text-only.
+
+        - `text: string`
+
+          The text content.
+
+        - `type: "text"`
+
+          - `"text"`
+
+      - `type: "system.message"`
+
+        - `"system.message"`
+
+      - `processed_at: optional string`
+
+        A timestamp in RFC 3339 format
 
 ### Example
 

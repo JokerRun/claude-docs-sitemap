@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/threads/retrieve
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: db5c6d8bad80011419425b714b7fbdb2e0f69bec47c7973682c9607cf6b7a9cc
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: ad068abea6cc61067b9bc5fff33c7daa0a5465b11298985e39ba4190aaf1f179
 ---
 
 ## Get Session Thread
@@ -25,7 +25,7 @@ Get Session Thread
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 23 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 25 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -79,6 +79,10 @@ Get Session Thread
 
     - `"thinking-token-count-2026-05-13"`
 
+    - `"server-side-fallback-2026-06-01"`
+
+    - `"fallback-credit-2026-06-01"`
+
 ### Returns
 
 - `BetaManagedAgentsSessionThread object { id, agent, archived_at, 8 more }`
@@ -117,11 +121,15 @@ Get Session Thread
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-        - `"claude-opus-4-8" or "claude-opus-4-7" or "claude-opus-4-6" or 7 more`
+        - `"claude-fable-5" or "claude-opus-4-8" or "claude-opus-4-7" or 8 more`
 
           The model that will power your agent.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `"claude-fable-5"`
+
+            Next generation of intelligence for the hardest knowledge work and coding problems
 
           - `"claude-opus-4-8"`
 
@@ -327,19 +335,13 @@ Get Session Thread
 
           JSON Schema for custom tool input parameters.
 
-          - `properties: optional map[unknown]`
-
-            JSON Schema properties defining the tool's input parameters.
-
-          - `required: optional array of string`
-
-            List of required property names.
-
-          - `type: optional "object"`
-
-            Must be 'object' for tool input schemas.
+          - `type: "object"`
 
             - `"object"`
+
+          - `properties: optional map[unknown]`
+
+          - `required: optional array of string`
 
         - `name: string`
 

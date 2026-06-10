@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/agents/versions/list
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 970bbd7b5bed0eec30fa76388c51913466067d764fd572c24ebc2f5d5ec03673
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: dced86b709f4e942dbdac2ec064f958fd9ed898c16c62248cb439af0bb493f18
 ---
 
 ## List Agent Versions
@@ -85,13 +85,17 @@ List Agent Versions
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Returns
 
 - `class VersionListPageResponse:`
 
   Paginated list of agent versions.
 
-  - `IReadOnlyList<BetaManagedAgentsAgent> Data`
+  - `required IReadOnlyList<BetaManagedAgentsAgent> Data`
 
     Agent versions.
 
@@ -128,6 +132,10 @@ List Agent Versions
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-fable-5"ClaudeFable5`
+
+          Next generation of intelligence for the hardest knowledge work and coding problems
 
         - `"claude-opus-4-8"ClaudeOpus4_8`
 
@@ -351,19 +359,11 @@ List Agent Versions
 
           JSON Schema for custom tool input parameters.
 
+          - `JsonElement Type "object"constant`
+
           - `IReadOnlyDictionary<string, JsonElement>? Properties`
 
-            JSON Schema properties defining the tool's input parameters.
-
-          - `IReadOnlyList<string> Required`
-
-            List of required property names.
-
-          - `Type Type`
-
-            Must be 'object' for tool input schemas.
-
-            - `"object"Object`
+          - `IReadOnlyList<string>? Required`
 
         - `required string Name`
 

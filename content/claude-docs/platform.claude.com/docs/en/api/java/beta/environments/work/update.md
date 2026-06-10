@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/environments/work/update
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: d373292179733aef0c2142a9b21103425c76b36abbfd353a1dccfbefa3aea1cc
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: df267c26357cc628110fdc3f0e40496464463554b0cc92a8bbe0d248af9f989b
 ---
 
 ## Update Work Item
@@ -78,6 +78,10 @@ Update work item metadata with merge semantics.
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
+
+    - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
+
+    - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
 
   - `BetaSelfHostedWorkUpdateRequest betaSelfHostedWorkUpdateRequest`
 

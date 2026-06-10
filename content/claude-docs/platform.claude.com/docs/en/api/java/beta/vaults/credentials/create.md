@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/credentials/create
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 7cd16addd617562b72743dc849cd61392539abe2684c4dc8a4368a71b347d8f6
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: beb14b5c49ba1a4395282e93d4662f0fb98ff2ca1d79bd853b3432d399d57743
 ---
 
 ## Create Credential
@@ -74,6 +74,10 @@ Create Credential
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
+
+    - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
+
+    - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
 
   - `Auth auth`
 
@@ -174,6 +178,46 @@ Create Credential
       - `Type type`
 
         - `STATIC_BEARER("static_bearer")`
+
+    - `class BetaManagedAgentsEnvironmentVariableCreateParams:`
+
+      Parameters for creating an environment variable credential.
+
+      - `BetaManagedAgentsCredentialNetworkingParams networking`
+
+        Outbound hosts the secret value is substituted on.
+
+        - `class BetaManagedAgentsUnrestrictedCredentialNetworkingParams:`
+
+          Substitute the secret on any host the session's Environment network policy permits egress to. The Environment's network policy is the only boundary on where the secret can reach.
+
+          - `Type type`
+
+            - `UNRESTRICTED("unrestricted")`
+
+        - `class BetaManagedAgentsLimitedCredentialNetworkingParams:`
+
+          Substitute the secret only on requests to the listed hosts.
+
+          - `List<String> allowedHosts`
+
+            Hostnames on which the secret will be substituted. Each entry is a bare hostname (`api.example.com`), an IPv4 address (`192.0.2.1`), or a `*.`-prefixed wildcard (`*.example.com`). URLs, ports, paths, and IPv6 addresses are not accepted. At most 16 entries.
+
+          - `Type type`
+
+            - `LIMITED("limited")`
+
+      - `String secretName`
+
+        Name of the environment variable. Immutable after create.
+
+      - `String secretValue`
+
+        Secret value. Write-only; never returned in responses.
+
+      - `Type type`
+
+        - `ENVIRONMENT_VARIABLE("environment_variable")`
 
   - `Optional<String> displayName`
 
@@ -276,6 +320,42 @@ Create Credential
       - `Type type`
 
         - `STATIC_BEARER("static_bearer")`
+
+    - `class BetaManagedAgentsEnvironmentVariableAuthResponse:`
+
+      Environment variable credential details. The secret value is never returned.
+
+      - `Networking networking`
+
+        Outbound hosts the secret value is substituted on.
+
+        - `class BetaManagedAgentsUnrestrictedCredentialNetworkingResponse:`
+
+          The secret is substituted on any host the session's Environment network policy permits egress to.
+
+          - `Type type`
+
+            - `UNRESTRICTED("unrestricted")`
+
+        - `class BetaManagedAgentsLimitedCredentialNetworkingResponse:`
+
+          The secret is substituted only on requests to the listed hosts.
+
+          - `List<String> allowedHosts`
+
+            Hostnames on which the secret will be substituted. An entry matches the request host exactly; a `*.`-prefixed entry matches any subdomain of the named domain but not the domain itself.
+
+          - `Type type`
+
+            - `LIMITED("limited")`
+
+      - `String secretName`
+
+        Name of the environment variable.
+
+      - `Type type`
+
+        - `ENVIRONMENT_VARIABLE("environment_variable")`
 
   - `LocalDateTime createdAt`
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugin-hints
-fetched_at: 2026-05-21T03:16:34.837917Z
-sha256: e4f31d5ad098c9a9a9ecb39c3ec5e4dad1490b31d8e0bec6437667983f7482be
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 8e3e7a2cb3afd9802c148cec6ccefa99423eb859b5a65cc72b6764c4a240767c
 ---
 
 > ## Documentation Index
@@ -89,7 +89,7 @@ When the hint passes all checks, Claude Code shows a prompt like the following:
 
 ```text theme={null}
 ─────────────────────────────────────────────────────────────
-  Plugin Recommendation
+  Plugin recommendation
 
     The example-cli command suggests installing a plugin.
 

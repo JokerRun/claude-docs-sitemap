@@ -1,34 +1,42 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/skills
-fetched_at: 2026-04-18T03:10:04.936408Z
-sha256: a21c5f31d2b014f43fd50631322bba4252f2183466c42e18a9b46d1df64d76d6
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 00850f2fb29d90ab315b86d17cec768a78c1b6b50613f3ada0bf7461960bcd61
 ---
 
-# Keterampilan
+# Skills
 
-Lampirkan keahlian berbasis sistem file yang dapat digunakan kembali ke agen Anda untuk alur kerja khusus domain.
+Lampirkan keahlian berbasis sistem file yang dapat digunakan kembali ke agen Anda untuk alur kerja spesifik domain.
 
 ---
 
-Keterampilan adalah sumber daya berbasis sistem file yang dapat digunakan kembali dan memberikan agen Anda keahlian khusus domain: alur kerja, konteks, dan praktik terbaik yang mengubah agen tujuan umum menjadi spesialis. Tidak seperti prompt (instruksi tingkat percakapan untuk tugas sekali jadi), keterampilan dimuat sesuai permintaan, hanya berdampak pada jendela konteks saat diperlukan.
+"Skills" (keterampilan) adalah sumber daya berbasis sistem file yang dapat digunakan kembali dan memberikan keahlian spesifik domain kepada agen Anda: alur kerja, konteks, dan praktik terbaik yang mengubah agen serbaguna menjadi spesialis. Tidak seperti prompt (instruksi tingkat percakapan untuk tugas sekali pakai), skills dimuat sesuai kebutuhan, dan hanya memengaruhi jendela konteks saat diperlukan.
 
-Dua jenis keterampilan didukung. Keduanya bekerja dengan cara yang sama: agen Anda menginvokasinya secara otomatis ketika relevan dengan tugas.
+Anda dapat melampirkan dua jenis skill. Keduanya bekerja dengan cara yang sama: agen Anda memanggilnya secara otomatis ketika relevan dengan tugas.
 
-- **Keterampilan Anthropic pra-bangun:** Tugas dokumen umum seperti penanganan PowerPoint, Excel, Word, dan PDF.
-- **Keterampilan khusus:** Keterampilan yang Anda buat dan unggah ke organisasi Anda.
+- **Skill bawaan Anthropic:** Tugas dokumen umum seperti penanganan PowerPoint, Excel, Word, dan PDF.
+- **Skill kustom:** Skill yang Anda buat dan unggah ke workspace Anda.
 
-Untuk mempelajari cara membuat keterampilan khusus, lihat [gambaran umum Agent Skills](/docs/id/agents-and-tools/agent-skills/overview) dan [praktik terbaik](/docs/id/agents-and-tools/agent-skills/best-practices). Halaman ini mengasumsikan Anda sudah memiliki keterampilan yang tersedia di organisasi Anda atau menggunakan keterampilan pra-bangun Anthropic.
+Untuk mempelajari cara membuat skill kustom, lihat [Agent Skills](/docs/id/agents-and-tools/agent-skills/overview) dan [Praktik terbaik pembuatan skill](/docs/id/agents-and-tools/agent-skills/best-practices). Halaman ini mengasumsikan Anda sudah memiliki skill yang tersedia di workspace Anda atau menggunakan skill bawaan Anthropic.
 
 <Note>
-Semua permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`. SDK menetapkan header beta secara otomatis.
+Semua permintaan Managed Agents API memerlukan beta header `managed-agents-2026-04-01`. SDK menetapkan beta header tersebut secara otomatis.
 </Note>
 
-## Aktifkan keterampilan pada sesi
+## Melampirkan skill ke agen \{#attach-skills-to-an-agent}
 
-Lampirkan keterampilan saat membuat agen. Maksimum 20 keterampilan per sesi didukung - ini mencakup keterampilan di semua agen untuk sesi, jika Anda bekerja dengan [beberapa agen](/docs/id/managed-agents/multi-agent).
+Lampirkan skill saat membuat agen. Setiap sesi mendukung hingga 20 skill secara total, dihitung di seluruh agen dalam sesi tersebut (lihat [Sesi multiagen](/docs/id/managed-agents/multi-agent)).
 
-<CodeGroup>
+Setiap entri dalam array `skills` menggunakan field berikut:
+
+| Field | Deskripsi |
+| --- | --- |
+| `type` | Bernilai `anthropic` untuk skill bawaan atau `custom` untuk skill yang dibuat di workspace. |
+| `skill_id` | Pengidentifikasi skill. Untuk skill Anthropic, gunakan nama pendek (misalnya, `xlsx`). Untuk skill kustom, gunakan ID `skill_*` yang dikembalikan saat pembuatan. |
+| `version` | Hanya untuk skill kustom. Tetapkan ke versi tertentu atau gunakan `latest`. |
+
+<CodeGroup defaultLanguage="CLI">
 ```bash curl
 agent=$(curl -sS https://api.anthropic.com/v1/agents \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -37,7 +45,7 @@ agent=$(curl -sS https://api.anthropic.com/v1/agents \
   --json @- <<'EOF'
 {
   "name": "Financial Analyst",
-  "model": "claude-opus-4-7",
+  "model": "claude-opus-4-8",
   "system": "You are a financial analysis agent.",
   "skills": [
     {"type": "anthropic", "skill_id": "xlsx"},
@@ -48,10 +56,10 @@ EOF
 )
 ```
 
-```bash CLI
+```bash CLI nocheck
 ant beta:agents create <<'YAML'
 name: Financial Analyst
-model: claude-opus-4-7
+model: claude-opus-4-8
 system: You are a financial analysis agent.
 skills:
   - type: anthropic
@@ -65,7 +73,7 @@ YAML
 ```python Python
 agent = client.beta.agents.create(
     name="Financial Analyst",
-    model="claude-opus-4-7",
+    model="claude-opus-4-8",
     system="You are a financial analysis agent.",
     skills=[
         {
@@ -84,7 +92,7 @@ agent = client.beta.agents.create(
 ```typescript TypeScript
 const agent = await client.beta.agents.create({
   name: "Financial Analyst",
-  model: "claude-opus-4-7",
+  model: "claude-opus-4-8",
   system: "You are a financial analysis agent.",
   skills: [
     {
@@ -104,25 +112,24 @@ const agent = await client.beta.agents.create({
 var agent = await client.Beta.Agents.Create(new()
 {
     Name = "Financial Analyst",
-    Model = BetaManagedAgentsModel.ClaudeOpus4_7,
+    Model = BetaManagedAgentsModel.ClaudeOpus4_8,
     System = "You are a financial analysis agent.",
     Skills =
     [
-        new BetaManagedAgentsAnthropicSkillParams { Type = "anthropic", SkillID = "xlsx" },
-        new BetaManagedAgentsCustomSkillParams { Type = "custom", SkillID = "skill_abc123", Version = "latest" },
+        new BetaManagedAgentsAnthropicSkillParams { Type = BetaManagedAgentsAnthropicSkillParamsType.Anthropic, SkillID = "xlsx" },
+        new BetaManagedAgentsCustomSkillParams { Type = BetaManagedAgentsCustomSkillParamsType.Custom, SkillID = "skill_abc123", Version = "latest" },
     ],
 });
 ```
 
-```go Go
+```go Go nocheck
 agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
 	Name: "Financial Analyst",
 	Model: anthropic.BetaManagedAgentsModelConfigParams{
-		ID:   "claude-opus-4-7",
-		Type: anthropic.BetaManagedAgentsModelConfigParamsTypeModelConfig,
+		ID: "claude-opus-4-8",
 	},
 	System: anthropic.String("You are a financial analysis agent."),
-	Skills: []anthropic.ManagedAgentsSkillParamUnion{
+	Skills: []anthropic.BetaManagedAgentsSkillParamsUnion{
 		{OfAnthropic: &anthropic.BetaManagedAgentsAnthropicSkillParams{
 			SkillID: "xlsx",
 			Type:    anthropic.BetaManagedAgentsAnthropicSkillParamsTypeAnthropic,
@@ -137,13 +144,14 @@ agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
 if err != nil {
 	panic(err)
 }
+_ = agent
 ```
 
 ```java Java
 var agent = client.beta().agents().create(
     AgentCreateParams.builder()
         .name("Financial Analyst")
-        .model(BetaManagedAgentsModel.CLAUDE_OPUS_4_7)
+        .model(BetaManagedAgentsModel.CLAUDE_OPUS_4_8)
         .system("You are a financial analysis agent.")
         .addSkill(
             BetaManagedAgentsAnthropicSkillParams.builder()
@@ -165,7 +173,7 @@ var agent = client.beta().agents().create(
 ```php PHP
 $agent = $client->beta->agents->create(
     name: 'Financial Analyst',
-    model: 'claude-opus-4-7',
+    model: 'claude-opus-4-8',
     system: 'You are a financial analysis agent.',
     skills: [
         ['type' => 'anthropic', 'skill_id' => 'xlsx'],
@@ -177,7 +185,7 @@ $agent = $client->beta->agents->create(
 ```ruby Ruby
 agent = client.beta.agents.create(
   name: "Financial Analyst",
-  model: "claude-opus-4-7",
+  model: "claude-opus-4-8",
   system_: "You are a financial analysis agent.",
   skills: [
     {type: "anthropic", skill_id: "xlsx"},
@@ -186,11 +194,3 @@ agent = client.beta.agents.create(
 )
 ```
 </CodeGroup>
-
-## Jenis keterampilan
-
-| Bidang | Deskripsi |
-| --- | --- |
-| `type` | Baik `anthropic` untuk keterampilan pra-bangun atau `custom` untuk keterampilan yang dibuat organisasi. |
-| `skill_id` | Pengenal keterampilan. Untuk keterampilan Anthropic, gunakan nama pendek (misalnya, `xlsx`). Untuk keterampilan khusus, gunakan ID `skill_*` yang dikembalikan saat pembuatan. |
-| `version` | Keterampilan khusus saja. Sematkan ke versi tertentu atau gunakan `latest`. |

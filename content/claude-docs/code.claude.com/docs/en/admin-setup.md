@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/admin-setup
-fetched_at: 2026-06-09T03:16:00.501901Z
-sha256: ae715734998dcf940dc74a09532ab32a508b24bb4614fcb43a27615800172b37
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 79f6bc3f913e582dbe224968871ed0faf178f965c6a43881a47a8d748b7a0adc
 ---
 
 > ## Documentation Index
@@ -49,7 +49,7 @@ Proxy and firewall requirements in [Network configuration](/en/network-config) a
 
 ## Decide how settings reach devices
 
-Managed settings define policy that takes precedence over local developer configuration. Claude Code looks for them in four places and uses the first one it finds on a given device.
+Managed settings define policy that takes precedence over local developer configuration. Claude Code checks the four sources below in priority order and applies the first one that returns a non-empty configuration.
 
 | Mechanism               | Delivery                                                                                                                                                                                              | Priority | Platforms      |
 | :---------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------- | :------------- |

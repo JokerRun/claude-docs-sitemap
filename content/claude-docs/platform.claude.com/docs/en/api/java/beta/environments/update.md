@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/environments/update
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: b6a3144a0cafb4052344e5f26bd7a3308c58045434fb39a34ee2c67d46461eeb
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 82b5ec955fc38d341b4ac1488d7cdf8a083f102aab8f3c2b98dd301e6e20fd93
 ---
 
 ## Update Environment
@@ -74,6 +74,10 @@ Update an existing environment's configuration.
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
+
+    - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
+
+    - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
 
   - `Optional<Config> config`
 

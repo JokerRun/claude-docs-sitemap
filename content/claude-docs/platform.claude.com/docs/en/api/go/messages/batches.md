@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/messages/batches
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: f384a962ab46192e4a7a78f7f4627883e3e6ed2dc0ffff046d4053ec9a5eab33
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 805d1b33a148306377966a9d56b2b86322c7938a215223056ff42340099fc319
 ---
 
 # Batches
@@ -879,6 +879,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                     - `const ToolSearchToolResultErrorToolSearchToolResultError ToolSearchToolResultError = "tool_search_tool_result_error"`
 
+                  - `ErrorMessage string`
+
                 - `type ToolSearchToolSearchResultBlockParamResp struct{…}`
 
                   - `ToolReferences []ToolReferenceBlockParamResp`
@@ -968,6 +970,14 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
           The model that will complete your prompt.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `const ModelClaudeFable5 Model = "claude-fable-5"`
+
+            Next generation of intelligence for the hardest knowledge work and coding problems
+
+          - `const ModelClaudeMythos5 Model = "claude-mythos-5"`
+
+            Most capable model for cybersecurity and biology research
 
           - `const ModelClaudeOpus4_8 Model = "claude-opus-4-8"`
 
@@ -3477,6 +3487,14 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+            - `const ModelClaudeFable5 Model = "claude-fable-5"`
+
+              Next generation of intelligence for the hardest knowledge work and coding problems
+
+            - `const ModelClaudeMythos5 Model = "claude-mythos-5"`
+
+              Most capable model for cybersecurity and biology research
+
             - `const ModelClaudeOpus4_8 Model = "claude-opus-4-8"`
 
               Frontier intelligence for long-running agents and coding
@@ -3572,6 +3590,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `const RefusalStopDetailsCategoryCyber RefusalStopDetailsCategory = "cyber"`
 
             - `const RefusalStopDetailsCategoryBio RefusalStopDetailsCategory = "bio"`
+
+            - `const RefusalStopDetailsCategoryReasoningExtraction RefusalStopDetailsCategory = "reasoning_extraction"`
 
           - `Explanation string`
 
@@ -4769,6 +4789,14 @@ func main() {
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+            - `const ModelClaudeFable5 Model = "claude-fable-5"`
+
+              Next generation of intelligence for the hardest knowledge work and coding problems
+
+            - `const ModelClaudeMythos5 Model = "claude-mythos-5"`
+
+              Most capable model for cybersecurity and biology research
+
             - `const ModelClaudeOpus4_8 Model = "claude-opus-4-8"`
 
               Frontier intelligence for long-running agents and coding
@@ -4864,6 +4892,8 @@ func main() {
             - `const RefusalStopDetailsCategoryCyber RefusalStopDetailsCategory = "cyber"`
 
             - `const RefusalStopDetailsCategoryBio RefusalStopDetailsCategory = "bio"`
+
+            - `const RefusalStopDetailsCategoryReasoningExtraction RefusalStopDetailsCategory = "reasoning_extraction"`
 
           - `Explanation string`
 
@@ -5841,6 +5871,14 @@ func main() {
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `const ModelClaudeFable5 Model = "claude-fable-5"`
+
+            Next generation of intelligence for the hardest knowledge work and coding problems
+
+          - `const ModelClaudeMythos5 Model = "claude-mythos-5"`
+
+            Most capable model for cybersecurity and biology research
+
           - `const ModelClaudeOpus4_8 Model = "claude-opus-4-8"`
 
             Frontier intelligence for long-running agents and coding
@@ -5936,6 +5974,8 @@ func main() {
           - `const RefusalStopDetailsCategoryCyber RefusalStopDetailsCategory = "cyber"`
 
           - `const RefusalStopDetailsCategoryBio RefusalStopDetailsCategory = "bio"`
+
+          - `const RefusalStopDetailsCategoryReasoningExtraction RefusalStopDetailsCategory = "reasoning_extraction"`
 
         - `Explanation string`
 
@@ -6875,6 +6915,14 @@ func main() {
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+        - `const ModelClaudeFable5 Model = "claude-fable-5"`
+
+          Next generation of intelligence for the hardest knowledge work and coding problems
+
+        - `const ModelClaudeMythos5 Model = "claude-mythos-5"`
+
+          Most capable model for cybersecurity and biology research
+
         - `const ModelClaudeOpus4_8 Model = "claude-opus-4-8"`
 
           Frontier intelligence for long-running agents and coding
@@ -6970,6 +7018,8 @@ func main() {
         - `const RefusalStopDetailsCategoryCyber RefusalStopDetailsCategory = "cyber"`
 
         - `const RefusalStopDetailsCategoryBio RefusalStopDetailsCategory = "bio"`
+
+        - `const RefusalStopDetailsCategoryReasoningExtraction RefusalStopDetailsCategory = "reasoning_extraction"`
 
       - `Explanation string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/user_profiles/list
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 924c46bcade0ddf4c5bfc3fba69d3c8cd01e9f3484df47a5f33a19f19e605208
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 9946b2378af79bbd8cad8e951f25dfc3da3013a70dd60f52df90c1c8d975b757
 ---
 
 ## List User Profiles
@@ -88,6 +88,10 @@ List User Profiles
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
+
+    - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
+
+    - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
 
 ### Returns
 

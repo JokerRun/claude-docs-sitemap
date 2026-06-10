@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/environments/work/stats
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: feb038811e63b3781bb60e3acfd953d37e332e91ad095a7779e5acabeec62613
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: b4c4f86475ac4afefa596f1502388d8fcc1f31891e1337e14c4d2edf5b7fbb5b
 ---
 
 ## Get Queue Statistics
@@ -74,6 +74,10 @@ Get statistics about the work queue for an environment.
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/completions/create
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 8b04eda6d9a07c995c5eb440e6df7f308e90ffbdf85350466c3fe1e7e8f3003c
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 8eae4ab01005e71a04ae885f0582abf12e6c97ba54a4022e6bfcaf892dc70fc1
 ---
 
 ## Create a Text Completion
@@ -35,7 +35,15 @@ Future models and features will not be compatible with Text Completions. See our
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `"claude-opus-4-8" | "claude-opus-4-7" | "claude-mythos-preview" | 15 more`
+      - `"claude-fable-5" | "claude-mythos-5" | "claude-opus-4-8" | 17 more`
+
+        - `"claude-fable-5"`
+
+          Next generation of intelligence for the hardest knowledge work and coding problems
+
+        - `"claude-mythos-5"`
+
+          Most capable model for cybersecurity and biology research
 
         - `"claude-opus-4-8"`
 
@@ -187,7 +195,7 @@ Future models and features will not be compatible with Text Completions. See our
 
       - `(string & {})`
 
-      - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 23 more`
+      - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
 
         - `"message-batches-2024-09-24"`
 
@@ -241,6 +249,10 @@ Future models and features will not be compatible with Text Completions. See our
 
         - `"thinking-token-count-2026-05-13"`
 
+        - `"server-side-fallback-2026-06-01"`
+
+        - `"fallback-credit-2026-06-01"`
+
   - `CompletionCreateParamsNonStreaming extends CompletionCreateParamsBase`
 
     - `stream?: false`
@@ -279,7 +291,15 @@ Future models and features will not be compatible with Text Completions. See our
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `"claude-opus-4-8" | "claude-opus-4-7" | "claude-mythos-preview" | 15 more`
+    - `"claude-fable-5" | "claude-mythos-5" | "claude-opus-4-8" | 17 more`
+
+      - `"claude-fable-5"`
+
+        Next generation of intelligence for the hardest knowledge work and coding problems
+
+      - `"claude-mythos-5"`
+
+        Most capable model for cybersecurity and biology research
 
       - `"claude-opus-4-8"`
 

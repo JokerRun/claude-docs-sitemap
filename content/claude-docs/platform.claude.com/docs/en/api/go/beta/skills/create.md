@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/skills/create
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 2fb65e0f29f9a541f14509d3384cba128c75ca6bf30fcf6b09da4314cb2b8b0a
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 730b314f25a2f3ecfd8fb32a86e29dd842758a0c532e9a7c369f678189b50a1e
 ---
 
 ## Create Skill
@@ -88,6 +88,10 @@ Create Skill
       - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
 
       - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
+
+      - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
+
+      - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
 
 ### Returns
 

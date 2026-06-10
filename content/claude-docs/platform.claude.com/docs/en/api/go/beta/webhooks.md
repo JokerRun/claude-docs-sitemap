@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/webhooks
-fetched_at: 2026-05-08T03:11:40.925611Z
-sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 73299a231e64ebead9b003eeadde744ca23d1e321effd65ced1d6cd022c87aa5
 ---
 
 # Webhooks
@@ -27,7 +27,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
       - `ID string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `OrganizationID string`
 
@@ -41,7 +41,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
       - `ID string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `OrganizationID string`
 
@@ -55,7 +55,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
       - `ID string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `OrganizationID string`
 
@@ -69,7 +69,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
       - `ID string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `OrganizationID string`
 
@@ -83,7 +83,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
       - `ID string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `OrganizationID string`
 
@@ -97,7 +97,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
       - `ID string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `OrganizationID string`
 
@@ -111,7 +111,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
       - `ID string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `OrganizationID string`
 
@@ -125,7 +125,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
       - `ID string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `OrganizationID string`
 
@@ -139,7 +139,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
       - `ID string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `OrganizationID string`
 
@@ -153,7 +153,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
       - `ID string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `OrganizationID string`
 
@@ -167,7 +167,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
       - `ID string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `OrganizationID string`
 
@@ -181,9 +181,13 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
       - `ID string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `OrganizationID string`
+
+      - `SessionThreadID string`
+
+        ID of the session thread this event refers to.
 
       - `Type SessionThreadCreated`
 
@@ -195,9 +199,13 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
       - `ID string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `OrganizationID string`
+
+      - `SessionThreadID string`
+
+        ID of the session thread this event refers to.
 
       - `Type SessionThreadIdled`
 
@@ -209,9 +217,13 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
       - `ID string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `OrganizationID string`
+
+      - `SessionThreadID string`
+
+        ID of the session thread this event refers to.
 
       - `Type SessionThreadTerminated`
 
@@ -223,7 +235,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
       - `ID string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `OrganizationID string`
 
@@ -237,7 +249,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
       - `ID string`
 
-        ID of the resource that triggered the event.
+        ID of the vault that triggered the event.
 
       - `OrganizationID string`
 
@@ -251,7 +263,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
       - `ID string`
 
-        ID of the resource that triggered the event.
+        ID of the vault that triggered the event.
 
       - `OrganizationID string`
 
@@ -265,7 +277,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
       - `ID string`
 
-        ID of the resource that triggered the event.
+        ID of the vault that triggered the event.
 
       - `OrganizationID string`
 
@@ -279,7 +291,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
       - `ID string`
 
-        ID of the resource that triggered the event.
+        ID of the vault credential that triggered the event.
 
       - `OrganizationID string`
 
@@ -297,7 +309,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
       - `ID string`
 
-        ID of the resource that triggered the event.
+        ID of the vault credential that triggered the event.
 
       - `OrganizationID string`
 
@@ -315,7 +327,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
       - `ID string`
 
-        ID of the resource that triggered the event.
+        ID of the vault credential that triggered the event.
 
       - `OrganizationID string`
 
@@ -333,7 +345,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
       - `ID string`
 
-        ID of the resource that triggered the event.
+        ID of the vault credential that triggered the event.
 
       - `OrganizationID string`
 
@@ -361,7 +373,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
     - `ID string`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `OrganizationID string`
 
@@ -375,7 +387,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
     - `ID string`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `OrganizationID string`
 
@@ -389,7 +401,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
     - `ID string`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `OrganizationID string`
 
@@ -403,7 +415,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
     - `ID string`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `OrganizationID string`
 
@@ -417,7 +429,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
     - `ID string`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `OrganizationID string`
 
@@ -431,7 +443,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
     - `ID string`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `OrganizationID string`
 
@@ -445,7 +457,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
     - `ID string`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `OrganizationID string`
 
@@ -459,7 +471,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
     - `ID string`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `OrganizationID string`
 
@@ -473,7 +485,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
     - `ID string`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `OrganizationID string`
 
@@ -487,7 +499,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
     - `ID string`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `OrganizationID string`
 
@@ -501,7 +513,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
     - `ID string`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `OrganizationID string`
 
@@ -515,9 +527,13 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
     - `ID string`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `OrganizationID string`
+
+    - `SessionThreadID string`
+
+      ID of the session thread this event refers to.
 
     - `Type SessionThreadCreated`
 
@@ -529,9 +545,13 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
     - `ID string`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `OrganizationID string`
+
+    - `SessionThreadID string`
+
+      ID of the session thread this event refers to.
 
     - `Type SessionThreadIdled`
 
@@ -543,9 +563,13 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
     - `ID string`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `OrganizationID string`
+
+    - `SessionThreadID string`
+
+      ID of the session thread this event refers to.
 
     - `Type SessionThreadTerminated`
 
@@ -557,7 +581,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
     - `ID string`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `OrganizationID string`
 
@@ -571,7 +595,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
     - `ID string`
 
-      ID of the resource that triggered the event.
+      ID of the vault that triggered the event.
 
     - `OrganizationID string`
 
@@ -585,7 +609,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
     - `ID string`
 
-      ID of the resource that triggered the event.
+      ID of the vault that triggered the event.
 
     - `OrganizationID string`
 
@@ -599,7 +623,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
     - `ID string`
 
-      ID of the resource that triggered the event.
+      ID of the vault that triggered the event.
 
     - `OrganizationID string`
 
@@ -613,7 +637,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
     - `ID string`
 
-      ID of the resource that triggered the event.
+      ID of the vault credential that triggered the event.
 
     - `OrganizationID string`
 
@@ -631,7 +655,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
     - `ID string`
 
-      ID of the resource that triggered the event.
+      ID of the vault credential that triggered the event.
 
     - `OrganizationID string`
 
@@ -649,7 +673,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
     - `ID string`
 
-      ID of the resource that triggered the event.
+      ID of the vault credential that triggered the event.
 
     - `OrganizationID string`
 
@@ -667,7 +691,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
     - `ID string`
 
-      ID of the resource that triggered the event.
+      ID of the vault credential that triggered the event.
 
     - `OrganizationID string`
 
@@ -687,7 +711,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
   - `ID string`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `OrganizationID string`
 
@@ -703,7 +727,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
   - `ID string`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `OrganizationID string`
 
@@ -719,7 +743,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
   - `ID string`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `OrganizationID string`
 
@@ -735,7 +759,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
   - `ID string`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `OrganizationID string`
 
@@ -751,7 +775,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
   - `ID string`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `OrganizationID string`
 
@@ -767,7 +791,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
   - `ID string`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `OrganizationID string`
 
@@ -783,7 +807,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
   - `ID string`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `OrganizationID string`
 
@@ -799,7 +823,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
   - `ID string`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `OrganizationID string`
 
@@ -815,7 +839,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
   - `ID string`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `OrganizationID string`
 
@@ -831,7 +855,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
   - `ID string`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `OrganizationID string`
 
@@ -847,7 +871,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
   - `ID string`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `OrganizationID string`
 
@@ -863,7 +887,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
   - `ID string`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `OrganizationID string`
 
@@ -879,9 +903,13 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
   - `ID string`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `OrganizationID string`
+
+  - `SessionThreadID string`
+
+    ID of the session thread this event refers to.
 
   - `Type SessionThreadCreated`
 
@@ -895,9 +923,13 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
   - `ID string`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `OrganizationID string`
+
+  - `SessionThreadID string`
+
+    ID of the session thread this event refers to.
 
   - `Type SessionThreadIdled`
 
@@ -911,9 +943,13 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
   - `ID string`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `OrganizationID string`
+
+  - `SessionThreadID string`
+
+    ID of the session thread this event refers to.
 
   - `Type SessionThreadTerminated`
 
@@ -927,7 +963,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
   - `ID string`
 
-    ID of the resource that triggered the event.
+    ID of the vault that triggered the event.
 
   - `OrganizationID string`
 
@@ -943,7 +979,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
   - `ID string`
 
-    ID of the resource that triggered the event.
+    ID of the vault that triggered the event.
 
   - `OrganizationID string`
 
@@ -959,7 +995,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
   - `ID string`
 
-    ID of the resource that triggered the event.
+    ID of the vault credential that triggered the event.
 
   - `OrganizationID string`
 
@@ -979,7 +1015,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
   - `ID string`
 
-    ID of the resource that triggered the event.
+    ID of the vault credential that triggered the event.
 
   - `OrganizationID string`
 
@@ -999,7 +1035,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
   - `ID string`
 
-    ID of the resource that triggered the event.
+    ID of the vault credential that triggered the event.
 
   - `OrganizationID string`
 
@@ -1019,7 +1055,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
   - `ID string`
 
-    ID of the resource that triggered the event.
+    ID of the vault credential that triggered the event.
 
   - `OrganizationID string`
 
@@ -1039,7 +1075,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
   - `ID string`
 
-    ID of the resource that triggered the event.
+    ID of the vault that triggered the event.
 
   - `OrganizationID string`
 
@@ -1067,7 +1103,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
       - `ID string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `OrganizationID string`
 
@@ -1081,7 +1117,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
       - `ID string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `OrganizationID string`
 
@@ -1095,7 +1131,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
       - `ID string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `OrganizationID string`
 
@@ -1109,7 +1145,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
       - `ID string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `OrganizationID string`
 
@@ -1123,7 +1159,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
       - `ID string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `OrganizationID string`
 
@@ -1137,7 +1173,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
       - `ID string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `OrganizationID string`
 
@@ -1151,7 +1187,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
       - `ID string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `OrganizationID string`
 
@@ -1165,7 +1201,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
       - `ID string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `OrganizationID string`
 
@@ -1179,7 +1215,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
       - `ID string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `OrganizationID string`
 
@@ -1193,7 +1229,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
       - `ID string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `OrganizationID string`
 
@@ -1207,7 +1243,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
       - `ID string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `OrganizationID string`
 
@@ -1221,9 +1257,13 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
       - `ID string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `OrganizationID string`
+
+      - `SessionThreadID string`
+
+        ID of the session thread this event refers to.
 
       - `Type SessionThreadCreated`
 
@@ -1235,9 +1275,13 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
       - `ID string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `OrganizationID string`
+
+      - `SessionThreadID string`
+
+        ID of the session thread this event refers to.
 
       - `Type SessionThreadIdled`
 
@@ -1249,9 +1293,13 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
       - `ID string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `OrganizationID string`
+
+      - `SessionThreadID string`
+
+        ID of the session thread this event refers to.
 
       - `Type SessionThreadTerminated`
 
@@ -1263,7 +1311,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
       - `ID string`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `OrganizationID string`
 
@@ -1277,7 +1325,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
       - `ID string`
 
-        ID of the resource that triggered the event.
+        ID of the vault that triggered the event.
 
       - `OrganizationID string`
 
@@ -1291,7 +1339,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
       - `ID string`
 
-        ID of the resource that triggered the event.
+        ID of the vault that triggered the event.
 
       - `OrganizationID string`
 
@@ -1305,7 +1353,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
       - `ID string`
 
-        ID of the resource that triggered the event.
+        ID of the vault that triggered the event.
 
       - `OrganizationID string`
 
@@ -1319,7 +1367,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
       - `ID string`
 
-        ID of the resource that triggered the event.
+        ID of the vault credential that triggered the event.
 
       - `OrganizationID string`
 
@@ -1337,7 +1385,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
       - `ID string`
 
-        ID of the resource that triggered the event.
+        ID of the vault credential that triggered the event.
 
       - `OrganizationID string`
 
@@ -1355,7 +1403,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
       - `ID string`
 
-        ID of the resource that triggered the event.
+        ID of the vault credential that triggered the event.
 
       - `OrganizationID string`
 
@@ -1373,7 +1421,7 @@ sha256: 4f726ec0d2976574cc028b4442f06175dc07330945bd63c0f80788e27d02a3c4
 
       - `ID string`
 
-        ID of the resource that triggered the event.
+        ID of the vault credential that triggered the event.
 
       - `OrganizationID string`
 

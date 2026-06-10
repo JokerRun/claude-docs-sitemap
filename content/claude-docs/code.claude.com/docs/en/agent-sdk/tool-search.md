@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/tool-search
-fetched_at: 2026-05-16T03:13:19.414477Z
-sha256: 4e48740f2815b81b30f4d5f90e78fc5b554722cf853881210281bc405396afb8
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 1ebf110eb3cca0d9bb2dda624ad2decc5090d2c9347953be8c1f9f89f3ea7efa
 ---
 
 > ## Documentation Index
@@ -31,7 +31,7 @@ Tool search adds one extra round-trip the first time Claude discovers a tool (th
 For details on the underlying API mechanism, see [Tool search in the API](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool).
 
 <Note>
-  Tool search requires Claude Sonnet 4 or later, or Claude Opus 4 or later. Haiku models do not support tool search.
+  Tool search is supported on every Claude model except Haiku.
 </Note>
 
 ## Configure tool search
@@ -125,7 +125,7 @@ You can search for tools to interact with Slack, GitHub, and Jira.
 
 * **Maximum tools:** 10,000 tools in your catalog
 * **Search results:** Returns 3-5 most relevant tools per search
-* **Model support:** Claude Sonnet 4 and later, Claude Opus 4 and later (no Haiku)
+* **Model support:** every Claude model except Haiku
 
 ## Related documentation
 

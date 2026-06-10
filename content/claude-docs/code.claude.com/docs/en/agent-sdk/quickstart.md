@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/quickstart
-fetched_at: 2026-06-04T03:18:26.079997Z
-sha256: f7237f7cc6fac76bb124ccd47efff82eceddf406052315612e0c0231fa042801
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 682e1677652f78441c67c142a709c9f15de829d9b1e6eb4f819c213ffd36cd88
 ---
 
 > ## Documentation Index
@@ -330,13 +330,13 @@ With `Bash` enabled, try: `"Write unit tests for utils.py, run them, and fix any
 
 **Permission modes** control how much human oversight you want:
 
-| Mode                     | Behavior                                                                        | Use case                                 |
-| ------------------------ | ------------------------------------------------------------------------------- | ---------------------------------------- |
-| `acceptEdits`            | Auto-approves file edits and common filesystem commands, asks for other actions | Trusted development workflows            |
-| `dontAsk`                | Denies anything not in `allowedTools`                                           | Locked-down headless agents              |
-| `auto` (TypeScript only) | A model classifier approves or denies each tool call                            | Autonomous agents with safety guardrails |
-| `bypassPermissions`      | Runs every tool without prompts                                                 | Sandboxed CI, fully trusted environments |
-| `default`                | Requires a `canUseTool` callback to handle approval                             | Custom approval flows                    |
+| Mode                     | Behavior                                                                                                                            | Use case                                 |
+| ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
+| `acceptEdits`            | Auto-approves file edits and common filesystem commands, asks for other actions                                                     | Trusted development workflows            |
+| `dontAsk`                | Denies anything not in `allowedTools`                                                                                               | Locked-down headless agents              |
+| `auto` (TypeScript only) | A model classifier approves or denies each tool call                                                                                | Autonomous agents with safety guardrails |
+| `bypassPermissions`      | Runs every tool without prompting, unless an explicit [`ask` rule](/en/agent-sdk/permissions#how-permissions-are-evaluated) matches | Sandboxed CI, fully trusted environments |
+| `default`                | Requires a `canUseTool` callback to handle approval                                                                                 | Custom approval flows                    |
 
 The example above uses `acceptEdits` mode, which auto-approves file operations so the agent can run without interactive prompts. If you want to prompt users for approval, use `default` mode and provide a [`canUseTool` callback](/en/agent-sdk/user-input) that collects user input. For more control, see [Permissions](/en/agent-sdk/permissions).
 

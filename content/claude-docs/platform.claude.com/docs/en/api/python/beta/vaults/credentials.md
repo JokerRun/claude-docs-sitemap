@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/vaults/credentials
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: bd1a0353c108d0d7d6804880c1364208b96e1dafd09573f0009a9a7e0f7831f7
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 39aef21adac9051464f65473521a98d8a68536fda2b109850170e75ece249ebb
 ---
 
 # Credentials
@@ -119,6 +119,46 @@ Create Credential
 
       - `"static_bearer"`
 
+  - `class BetaManagedAgentsEnvironmentVariableCreateParams: …`
+
+    Parameters for creating an environment variable credential.
+
+    - `networking: BetaManagedAgentsCredentialNetworkingParams`
+
+      Outbound hosts the secret value is substituted on.
+
+      - `class BetaManagedAgentsUnrestrictedCredentialNetworkingParams: …`
+
+        Substitute the secret on any host the session's Environment network policy permits egress to. The Environment's network policy is the only boundary on where the secret can reach.
+
+        - `type: Literal["unrestricted"]`
+
+          - `"unrestricted"`
+
+      - `class BetaManagedAgentsLimitedCredentialNetworkingParams: …`
+
+        Substitute the secret only on requests to the listed hosts.
+
+        - `allowed_hosts: List[str]`
+
+          Hostnames on which the secret will be substituted. Each entry is a bare hostname (`api.example.com`), an IPv4 address (`192.0.2.1`), or a `*.`-prefixed wildcard (`*.example.com`). URLs, ports, paths, and IPv6 addresses are not accepted. At most 16 entries.
+
+        - `type: Literal["limited"]`
+
+          - `"limited"`
+
+    - `secret_name: str`
+
+      Name of the environment variable. Immutable after create.
+
+    - `secret_value: str`
+
+      Secret value. Write-only; never returned in responses.
+
+    - `type: Literal["environment_variable"]`
+
+      - `"environment_variable"`
+
 - `display_name: Optional[str]`
 
   Human-readable name for the credential. Up to 255 characters.
@@ -133,7 +173,7 @@ Create Credential
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 23 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 25 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -186,6 +226,10 @@ Create Credential
     - `"cache-diagnosis-2026-04-07"`
 
     - `"thinking-token-count-2026-05-13"`
+
+    - `"server-side-fallback-2026-06-01"`
+
+    - `"fallback-credit-2026-06-01"`
 
 ### Returns
 
@@ -280,6 +324,42 @@ Create Credential
       - `type: Literal["static_bearer"]`
 
         - `"static_bearer"`
+
+    - `class BetaManagedAgentsEnvironmentVariableAuthResponse: …`
+
+      Environment variable credential details. The secret value is never returned.
+
+      - `networking: Networking`
+
+        Outbound hosts the secret value is substituted on.
+
+        - `class BetaManagedAgentsUnrestrictedCredentialNetworkingResponse: …`
+
+          The secret is substituted on any host the session's Environment network policy permits egress to.
+
+          - `type: Literal["unrestricted"]`
+
+            - `"unrestricted"`
+
+        - `class BetaManagedAgentsLimitedCredentialNetworkingResponse: …`
+
+          The secret is substituted only on requests to the listed hosts.
+
+          - `allowed_hosts: List[str]`
+
+            Hostnames on which the secret will be substituted. An entry matches the request host exactly; a `*.`-prefixed entry matches any subdomain of the named domain but not the domain itself.
+
+          - `type: Literal["limited"]`
+
+            - `"limited"`
+
+      - `secret_name: str`
+
+        Name of the environment variable.
+
+      - `type: Literal["environment_variable"]`
+
+        - `"environment_variable"`
 
   - `created_at: datetime`
 
@@ -376,7 +456,7 @@ List Credentials
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 23 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 25 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -429,6 +509,10 @@ List Credentials
     - `"cache-diagnosis-2026-04-07"`
 
     - `"thinking-token-count-2026-05-13"`
+
+    - `"server-side-fallback-2026-06-01"`
+
+    - `"fallback-credit-2026-06-01"`
 
 ### Returns
 
@@ -523,6 +607,42 @@ List Credentials
       - `type: Literal["static_bearer"]`
 
         - `"static_bearer"`
+
+    - `class BetaManagedAgentsEnvironmentVariableAuthResponse: …`
+
+      Environment variable credential details. The secret value is never returned.
+
+      - `networking: Networking`
+
+        Outbound hosts the secret value is substituted on.
+
+        - `class BetaManagedAgentsUnrestrictedCredentialNetworkingResponse: …`
+
+          The secret is substituted on any host the session's Environment network policy permits egress to.
+
+          - `type: Literal["unrestricted"]`
+
+            - `"unrestricted"`
+
+        - `class BetaManagedAgentsLimitedCredentialNetworkingResponse: …`
+
+          The secret is substituted only on requests to the listed hosts.
+
+          - `allowed_hosts: List[str]`
+
+            Hostnames on which the secret will be substituted. An entry matches the request host exactly; a `*.`-prefixed entry matches any subdomain of the named domain but not the domain itself.
+
+          - `type: Literal["limited"]`
+
+            - `"limited"`
+
+      - `secret_name: str`
+
+        Name of the environment variable.
+
+      - `type: Literal["environment_variable"]`
+
+        - `"environment_variable"`
 
   - `created_at: datetime`
 
@@ -610,7 +730,7 @@ Get Credential
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 23 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 25 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -663,6 +783,10 @@ Get Credential
     - `"cache-diagnosis-2026-04-07"`
 
     - `"thinking-token-count-2026-05-13"`
+
+    - `"server-side-fallback-2026-06-01"`
+
+    - `"fallback-credit-2026-06-01"`
 
 ### Returns
 
@@ -757,6 +881,42 @@ Get Credential
       - `type: Literal["static_bearer"]`
 
         - `"static_bearer"`
+
+    - `class BetaManagedAgentsEnvironmentVariableAuthResponse: …`
+
+      Environment variable credential details. The secret value is never returned.
+
+      - `networking: Networking`
+
+        Outbound hosts the secret value is substituted on.
+
+        - `class BetaManagedAgentsUnrestrictedCredentialNetworkingResponse: …`
+
+          The secret is substituted on any host the session's Environment network policy permits egress to.
+
+          - `type: Literal["unrestricted"]`
+
+            - `"unrestricted"`
+
+        - `class BetaManagedAgentsLimitedCredentialNetworkingResponse: …`
+
+          The secret is substituted only on requests to the listed hosts.
+
+          - `allowed_hosts: List[str]`
+
+            Hostnames on which the secret will be substituted. An entry matches the request host exactly; a `*.`-prefixed entry matches any subdomain of the named domain but not the domain itself.
+
+          - `type: Literal["limited"]`
+
+            - `"limited"`
+
+      - `secret_name: str`
+
+        Name of the environment variable.
+
+      - `type: Literal["environment_variable"]`
+
+        - `"environment_variable"`
 
   - `created_at: datetime`
 
@@ -905,6 +1065,42 @@ Update Credential
 
       Updated static bearer token value.
 
+  - `class BetaManagedAgentsEnvironmentVariableUpdateParams: …`
+
+    Parameters for updating an environment variable credential. `secret_name` is immutable.
+
+    - `type: Literal["environment_variable"]`
+
+      - `"environment_variable"`
+
+    - `networking: Optional[BetaManagedAgentsCredentialNetworkingParams]`
+
+      Updated networking scope. Full replacement.
+
+      - `class BetaManagedAgentsUnrestrictedCredentialNetworkingParams: …`
+
+        Substitute the secret on any host the session's Environment network policy permits egress to. The Environment's network policy is the only boundary on where the secret can reach.
+
+        - `type: Literal["unrestricted"]`
+
+          - `"unrestricted"`
+
+      - `class BetaManagedAgentsLimitedCredentialNetworkingParams: …`
+
+        Substitute the secret only on requests to the listed hosts.
+
+        - `allowed_hosts: List[str]`
+
+          Hostnames on which the secret will be substituted. Each entry is a bare hostname (`api.example.com`), an IPv4 address (`192.0.2.1`), or a `*.`-prefixed wildcard (`*.example.com`). URLs, ports, paths, and IPv6 addresses are not accepted. At most 16 entries.
+
+        - `type: Literal["limited"]`
+
+          - `"limited"`
+
+    - `secret_value: Optional[str]`
+
+      Updated secret value.
+
 - `display_name: Optional[str]`
 
   Updated human-readable name for the credential. 1-255 characters.
@@ -919,7 +1115,7 @@ Update Credential
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 23 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 25 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -972,6 +1168,10 @@ Update Credential
     - `"cache-diagnosis-2026-04-07"`
 
     - `"thinking-token-count-2026-05-13"`
+
+    - `"server-side-fallback-2026-06-01"`
+
+    - `"fallback-credit-2026-06-01"`
 
 ### Returns
 
@@ -1066,6 +1266,42 @@ Update Credential
       - `type: Literal["static_bearer"]`
 
         - `"static_bearer"`
+
+    - `class BetaManagedAgentsEnvironmentVariableAuthResponse: …`
+
+      Environment variable credential details. The secret value is never returned.
+
+      - `networking: Networking`
+
+        Outbound hosts the secret value is substituted on.
+
+        - `class BetaManagedAgentsUnrestrictedCredentialNetworkingResponse: …`
+
+          The secret is substituted on any host the session's Environment network policy permits egress to.
+
+          - `type: Literal["unrestricted"]`
+
+            - `"unrestricted"`
+
+        - `class BetaManagedAgentsLimitedCredentialNetworkingResponse: …`
+
+          The secret is substituted only on requests to the listed hosts.
+
+          - `allowed_hosts: List[str]`
+
+            Hostnames on which the secret will be substituted. An entry matches the request host exactly; a `*.`-prefixed entry matches any subdomain of the named domain but not the domain itself.
+
+          - `type: Literal["limited"]`
+
+            - `"limited"`
+
+      - `secret_name: str`
+
+        Name of the environment variable.
+
+      - `type: Literal["environment_variable"]`
+
+        - `"environment_variable"`
 
   - `created_at: datetime`
 
@@ -1148,7 +1384,7 @@ Delete Credential
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 23 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 25 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -1201,6 +1437,10 @@ Delete Credential
     - `"cache-diagnosis-2026-04-07"`
 
     - `"thinking-token-count-2026-05-13"`
+
+    - `"server-side-fallback-2026-06-01"`
+
+    - `"fallback-credit-2026-06-01"`
 
 ### Returns
 
@@ -1261,7 +1501,7 @@ Archive Credential
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 23 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 25 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -1314,6 +1554,10 @@ Archive Credential
     - `"cache-diagnosis-2026-04-07"`
 
     - `"thinking-token-count-2026-05-13"`
+
+    - `"server-side-fallback-2026-06-01"`
+
+    - `"fallback-credit-2026-06-01"`
 
 ### Returns
 
@@ -1409,6 +1653,42 @@ Archive Credential
 
         - `"static_bearer"`
 
+    - `class BetaManagedAgentsEnvironmentVariableAuthResponse: …`
+
+      Environment variable credential details. The secret value is never returned.
+
+      - `networking: Networking`
+
+        Outbound hosts the secret value is substituted on.
+
+        - `class BetaManagedAgentsUnrestrictedCredentialNetworkingResponse: …`
+
+          The secret is substituted on any host the session's Environment network policy permits egress to.
+
+          - `type: Literal["unrestricted"]`
+
+            - `"unrestricted"`
+
+        - `class BetaManagedAgentsLimitedCredentialNetworkingResponse: …`
+
+          The secret is substituted only on requests to the listed hosts.
+
+          - `allowed_hosts: List[str]`
+
+            Hostnames on which the secret will be substituted. An entry matches the request host exactly; a `*.`-prefixed entry matches any subdomain of the named domain but not the domain itself.
+
+          - `type: Literal["limited"]`
+
+            - `"limited"`
+
+      - `secret_name: str`
+
+        Name of the environment variable.
+
+      - `type: Literal["environment_variable"]`
+
+        - `"environment_variable"`
+
   - `created_at: datetime`
 
     A timestamp in RFC 3339 format
@@ -1490,7 +1770,7 @@ Validate Credential
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 23 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 25 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -1543,6 +1823,10 @@ Validate Credential
     - `"cache-diagnosis-2026-04-07"`
 
     - `"thinking-token-count-2026-05-13"`
+
+    - `"server-side-fallback-2026-06-01"`
+
+    - `"fallback-credit-2026-06-01"`
 
 ### Returns
 
@@ -1771,6 +2055,42 @@ print(beta_managed_agents_credential_validation.credential_id)
 
         - `"static_bearer"`
 
+    - `class BetaManagedAgentsEnvironmentVariableAuthResponse: …`
+
+      Environment variable credential details. The secret value is never returned.
+
+      - `networking: Networking`
+
+        Outbound hosts the secret value is substituted on.
+
+        - `class BetaManagedAgentsUnrestrictedCredentialNetworkingResponse: …`
+
+          The secret is substituted on any host the session's Environment network policy permits egress to.
+
+          - `type: Literal["unrestricted"]`
+
+            - `"unrestricted"`
+
+        - `class BetaManagedAgentsLimitedCredentialNetworkingResponse: …`
+
+          The secret is substituted only on requests to the listed hosts.
+
+          - `allowed_hosts: List[str]`
+
+            Hostnames on which the secret will be substituted. An entry matches the request host exactly; a `*.`-prefixed entry matches any subdomain of the named domain but not the domain itself.
+
+          - `type: Literal["limited"]`
+
+            - `"limited"`
+
+      - `secret_name: str`
+
+        Name of the environment variable.
+
+      - `type: Literal["environment_variable"]`
+
+        - `"environment_variable"`
+
   - `created_at: datetime`
 
     A timestamp in RFC 3339 format
@@ -1794,6 +2114,32 @@ print(beta_managed_agents_credential_validation.credential_id)
   - `display_name: Optional[str]`
 
     Human-readable name for the credential.
+
+### Beta Managed Agents Credential Networking Params
+
+- `BetaManagedAgentsCredentialNetworkingParams`
+
+  Substitute the secret on any host the session's Environment network policy permits egress to. The Environment's network policy is the only boundary on where the secret can reach.
+
+  - `class BetaManagedAgentsUnrestrictedCredentialNetworkingParams: …`
+
+    Substitute the secret on any host the session's Environment network policy permits egress to. The Environment's network policy is the only boundary on where the secret can reach.
+
+    - `type: Literal["unrestricted"]`
+
+      - `"unrestricted"`
+
+  - `class BetaManagedAgentsLimitedCredentialNetworkingParams: …`
+
+    Substitute the secret only on requests to the listed hosts.
+
+    - `allowed_hosts: List[str]`
+
+      Hostnames on which the secret will be substituted. Each entry is a bare hostname (`api.example.com`), an IPv4 address (`192.0.2.1`), or a `*.`-prefixed wildcard (`*.example.com`). URLs, ports, paths, and IPv6 addresses are not accepted. At most 16 entries.
+
+    - `type: Literal["limited"]`
+
+      - `"limited"`
 
 ### Beta Managed Agents Credential Validation
 
@@ -1904,6 +2250,152 @@ print(beta_managed_agents_credential_validation.credential_id)
   - `type: Literal["vault_credential_deleted"]`
 
     - `"vault_credential_deleted"`
+
+### Beta Managed Agents Environment Variable Auth Response
+
+- `class BetaManagedAgentsEnvironmentVariableAuthResponse: …`
+
+  Environment variable credential details. The secret value is never returned.
+
+  - `networking: Networking`
+
+    Outbound hosts the secret value is substituted on.
+
+    - `class BetaManagedAgentsUnrestrictedCredentialNetworkingResponse: …`
+
+      The secret is substituted on any host the session's Environment network policy permits egress to.
+
+      - `type: Literal["unrestricted"]`
+
+        - `"unrestricted"`
+
+    - `class BetaManagedAgentsLimitedCredentialNetworkingResponse: …`
+
+      The secret is substituted only on requests to the listed hosts.
+
+      - `allowed_hosts: List[str]`
+
+        Hostnames on which the secret will be substituted. An entry matches the request host exactly; a `*.`-prefixed entry matches any subdomain of the named domain but not the domain itself.
+
+      - `type: Literal["limited"]`
+
+        - `"limited"`
+
+  - `secret_name: str`
+
+    Name of the environment variable.
+
+  - `type: Literal["environment_variable"]`
+
+    - `"environment_variable"`
+
+### Beta Managed Agents Environment Variable Create Params
+
+- `class BetaManagedAgentsEnvironmentVariableCreateParams: …`
+
+  Parameters for creating an environment variable credential.
+
+  - `networking: BetaManagedAgentsCredentialNetworkingParams`
+
+    Outbound hosts the secret value is substituted on.
+
+    - `class BetaManagedAgentsUnrestrictedCredentialNetworkingParams: …`
+
+      Substitute the secret on any host the session's Environment network policy permits egress to. The Environment's network policy is the only boundary on where the secret can reach.
+
+      - `type: Literal["unrestricted"]`
+
+        - `"unrestricted"`
+
+    - `class BetaManagedAgentsLimitedCredentialNetworkingParams: …`
+
+      Substitute the secret only on requests to the listed hosts.
+
+      - `allowed_hosts: List[str]`
+
+        Hostnames on which the secret will be substituted. Each entry is a bare hostname (`api.example.com`), an IPv4 address (`192.0.2.1`), or a `*.`-prefixed wildcard (`*.example.com`). URLs, ports, paths, and IPv6 addresses are not accepted. At most 16 entries.
+
+      - `type: Literal["limited"]`
+
+        - `"limited"`
+
+  - `secret_name: str`
+
+    Name of the environment variable. Immutable after create.
+
+  - `secret_value: str`
+
+    Secret value. Write-only; never returned in responses.
+
+  - `type: Literal["environment_variable"]`
+
+    - `"environment_variable"`
+
+### Beta Managed Agents Environment Variable Update Params
+
+- `class BetaManagedAgentsEnvironmentVariableUpdateParams: …`
+
+  Parameters for updating an environment variable credential. `secret_name` is immutable.
+
+  - `type: Literal["environment_variable"]`
+
+    - `"environment_variable"`
+
+  - `networking: Optional[BetaManagedAgentsCredentialNetworkingParams]`
+
+    Updated networking scope. Full replacement.
+
+    - `class BetaManagedAgentsUnrestrictedCredentialNetworkingParams: …`
+
+      Substitute the secret on any host the session's Environment network policy permits egress to. The Environment's network policy is the only boundary on where the secret can reach.
+
+      - `type: Literal["unrestricted"]`
+
+        - `"unrestricted"`
+
+    - `class BetaManagedAgentsLimitedCredentialNetworkingParams: …`
+
+      Substitute the secret only on requests to the listed hosts.
+
+      - `allowed_hosts: List[str]`
+
+        Hostnames on which the secret will be substituted. Each entry is a bare hostname (`api.example.com`), an IPv4 address (`192.0.2.1`), or a `*.`-prefixed wildcard (`*.example.com`). URLs, ports, paths, and IPv6 addresses are not accepted. At most 16 entries.
+
+      - `type: Literal["limited"]`
+
+        - `"limited"`
+
+  - `secret_value: Optional[str]`
+
+    Updated secret value.
+
+### Beta Managed Agents Limited Credential Networking Params
+
+- `class BetaManagedAgentsLimitedCredentialNetworkingParams: …`
+
+  Substitute the secret only on requests to the listed hosts.
+
+  - `allowed_hosts: List[str]`
+
+    Hostnames on which the secret will be substituted. Each entry is a bare hostname (`api.example.com`), an IPv4 address (`192.0.2.1`), or a `*.`-prefixed wildcard (`*.example.com`). URLs, ports, paths, and IPv6 addresses are not accepted. At most 16 entries.
+
+  - `type: Literal["limited"]`
+
+    - `"limited"`
+
+### Beta Managed Agents Limited Credential Networking Response
+
+- `class BetaManagedAgentsLimitedCredentialNetworkingResponse: …`
+
+  The secret is substituted only on requests to the listed hosts.
+
+  - `allowed_hosts: List[str]`
+
+    Hostnames on which the secret will be substituted. An entry matches the request host exactly; a `*.`-prefixed entry matches any subdomain of the named domain but not the domain itself.
+
+  - `type: Literal["limited"]`
+
+    - `"limited"`
 
 ### Beta Managed Agents MCP OAuth Auth Response
 
@@ -2496,3 +2988,23 @@ print(beta_managed_agents_credential_validation.credential_id)
   - `client_secret: Optional[str]`
 
     Updated OAuth client secret.
+
+### Beta Managed Agents Unrestricted Credential Networking Params
+
+- `class BetaManagedAgentsUnrestrictedCredentialNetworkingParams: …`
+
+  Substitute the secret on any host the session's Environment network policy permits egress to. The Environment's network policy is the only boundary on where the secret can reach.
+
+  - `type: Literal["unrestricted"]`
+
+    - `"unrestricted"`
+
+### Beta Managed Agents Unrestricted Credential Networking Response
+
+- `class BetaManagedAgentsUnrestrictedCredentialNetworkingResponse: …`
+
+  The secret is substituted on any host the session's Environment network policy permits egress to.
+
+  - `type: Literal["unrestricted"]`
+
+    - `"unrestricted"`

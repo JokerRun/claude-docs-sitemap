@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/vaults/credentials/create
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: d0c20a49b16723fef2e097654f3d682899e5096c62086838f0a5b2c98d7ad454
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: de5968466322936cc314ccfb3052ddea8dda3099e0bb1fa88e6798182e229a4b
 ---
 
 ## Create Credential
@@ -119,6 +119,46 @@ Create Credential
 
         - `const BetaManagedAgentsStaticBearerCreateParamsTypeStaticBearer BetaManagedAgentsStaticBearerCreateParamsType = "static_bearer"`
 
+    - `type BetaManagedAgentsEnvironmentVariableCreateParamsResp struct{…}`
+
+      Parameters for creating an environment variable credential.
+
+      - `Networking BetaManagedAgentsCredentialNetworkingParamsUnionResp`
+
+        Outbound hosts the secret value is substituted on.
+
+        - `type BetaManagedAgentsUnrestrictedCredentialNetworkingParamsResp struct{…}`
+
+          Substitute the secret on any host the session's Environment network policy permits egress to. The Environment's network policy is the only boundary on where the secret can reach.
+
+          - `Type BetaManagedAgentsUnrestrictedCredentialNetworkingParamsType`
+
+            - `const BetaManagedAgentsUnrestrictedCredentialNetworkingParamsTypeUnrestricted BetaManagedAgentsUnrestrictedCredentialNetworkingParamsType = "unrestricted"`
+
+        - `type BetaManagedAgentsLimitedCredentialNetworkingParamsResp struct{…}`
+
+          Substitute the secret only on requests to the listed hosts.
+
+          - `AllowedHosts []string`
+
+            Hostnames on which the secret will be substituted. Each entry is a bare hostname (`api.example.com`), an IPv4 address (`192.0.2.1`), or a `*.`-prefixed wildcard (`*.example.com`). URLs, ports, paths, and IPv6 addresses are not accepted. At most 16 entries.
+
+          - `Type BetaManagedAgentsLimitedCredentialNetworkingParamsType`
+
+            - `const BetaManagedAgentsLimitedCredentialNetworkingParamsTypeLimited BetaManagedAgentsLimitedCredentialNetworkingParamsType = "limited"`
+
+      - `SecretName string`
+
+        Name of the environment variable. Immutable after create.
+
+      - `SecretValue string`
+
+        Secret value. Write-only; never returned in responses.
+
+      - `Type BetaManagedAgentsEnvironmentVariableCreateParamsType`
+
+        - `const BetaManagedAgentsEnvironmentVariableCreateParamsTypeEnvironmentVariable BetaManagedAgentsEnvironmentVariableCreateParamsType = "environment_variable"`
+
   - `DisplayName param.Field[string]`
 
     Body param: Human-readable name for the credential. Up to 255 characters.
@@ -186,6 +226,10 @@ Create Credential
       - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
 
       - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
+
+      - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
+
+      - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
 
 ### Returns
 
@@ -280,6 +324,42 @@ Create Credential
       - `Type BetaManagedAgentsStaticBearerAuthResponseType`
 
         - `const BetaManagedAgentsStaticBearerAuthResponseTypeStaticBearer BetaManagedAgentsStaticBearerAuthResponseType = "static_bearer"`
+
+    - `type BetaManagedAgentsEnvironmentVariableAuthResponse struct{…}`
+
+      Environment variable credential details. The secret value is never returned.
+
+      - `Networking BetaManagedAgentsEnvironmentVariableAuthResponseNetworkingUnion`
+
+        Outbound hosts the secret value is substituted on.
+
+        - `type BetaManagedAgentsUnrestrictedCredentialNetworkingResponse struct{…}`
+
+          The secret is substituted on any host the session's Environment network policy permits egress to.
+
+          - `Type BetaManagedAgentsUnrestrictedCredentialNetworkingResponseType`
+
+            - `const BetaManagedAgentsUnrestrictedCredentialNetworkingResponseTypeUnrestricted BetaManagedAgentsUnrestrictedCredentialNetworkingResponseType = "unrestricted"`
+
+        - `type BetaManagedAgentsLimitedCredentialNetworkingResponse struct{…}`
+
+          The secret is substituted only on requests to the listed hosts.
+
+          - `AllowedHosts []string`
+
+            Hostnames on which the secret will be substituted. An entry matches the request host exactly; a `*.`-prefixed entry matches any subdomain of the named domain but not the domain itself.
+
+          - `Type BetaManagedAgentsLimitedCredentialNetworkingResponseType`
+
+            - `const BetaManagedAgentsLimitedCredentialNetworkingResponseTypeLimited BetaManagedAgentsLimitedCredentialNetworkingResponseType = "limited"`
+
+      - `SecretName string`
+
+        Name of the environment variable.
+
+      - `Type BetaManagedAgentsEnvironmentVariableAuthResponseType`
+
+        - `const BetaManagedAgentsEnvironmentVariableAuthResponseTypeEnvironmentVariable BetaManagedAgentsEnvironmentVariableAuthResponseType = "environment_variable"`
 
   - `CreatedAt Time`
 

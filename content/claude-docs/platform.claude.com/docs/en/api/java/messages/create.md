@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/messages/create
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 8b82395d272ec898bd96100acc7dbb1bf8404eb8284a787cdc3053c8d98cbc8b
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: a3494e7d45d2c71caaa03429327815e06a09e054c45177217bc8c328cf002c8e
 ---
 
 ## Create a Message
@@ -864,6 +864,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
               - `JsonValue; type "tool_search_tool_result_error"constant`
 
                 - `TOOL_SEARCH_TOOL_RESULT_ERROR("tool_search_tool_result_error")`
+
+              - `Optional<String> errorMessage`
 
             - `class ToolSearchToolSearchResultBlockParam:`
 
@@ -2502,6 +2504,14 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+    - `CLAUDE_FABLE_5("claude-fable-5")`
+
+      Next generation of intelligence for the hardest knowledge work and coding problems
+
+    - `CLAUDE_MYTHOS_5("claude-mythos-5")`
+
+      Most capable model for cybersecurity and biology research
+
     - `CLAUDE_OPUS_4_8("claude-opus-4-8")`
 
       Frontier intelligence for long-running agents and coding
@@ -2595,6 +2605,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       - `CYBER("cyber")`
 
       - `BIO("bio")`
+
+      - `REASONING_EXTRACTION("reasoning_extraction")`
 
     - `Optional<String> explanation`
 

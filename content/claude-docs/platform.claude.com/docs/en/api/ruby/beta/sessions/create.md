@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/sessions/create
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 0371bd5160a34595ad4c9c7dcb0b95536f9c7f2a6c88f557b1f945e5d8180e99
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 1bc80b10217e794d0c32dd0de14e28728bf153f47a57a25954b4fc6c1505ac52
 ---
 
 ## Create Session
@@ -147,7 +147,7 @@ Create Session
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 23 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 25 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -201,6 +201,10 @@ Create Session
 
     - `:"thinking-token-count-2026-05-13"`
 
+    - `:"server-side-fallback-2026-06-01"`
+
+    - `:"fallback-credit-2026-06-01"`
+
 ### Returns
 
 - `class BetaManagedAgentsSession`
@@ -237,11 +241,15 @@ Create Session
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-        - `BetaManagedAgentsModel = :"claude-opus-4-8" | :"claude-opus-4-7" | :"claude-opus-4-6" | 7 more`
+        - `BetaManagedAgentsModel = :"claude-fable-5" | :"claude-opus-4-8" | :"claude-opus-4-7" | 8 more`
 
           The model that will power your agent.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `:"claude-fable-5"`
+
+            Next generation of intelligence for the hardest knowledge work and coding problems
 
           - `:"claude-opus-4-8"`
 
@@ -471,19 +479,13 @@ Create Session
 
               JSON Schema for custom tool input parameters.
 
-              - `properties: Hash[Symbol, untyped]`
-
-                JSON Schema properties defining the tool's input parameters.
-
-              - `required: Array[String]`
-
-                List of required property names.
-
               - `type: :object`
 
-                Must be 'object' for tool input schemas.
-
                 - `:object`
+
+              - `properties: Hash[Symbol, untyped]`
+
+              - `required: Array[String]`
 
             - `name: String`
 
@@ -741,6 +743,10 @@ Create Session
 
     Vault IDs attached to the session at creation. Empty when no vaults were supplied.
 
+  - `deployment_id: String`
+
+    Deployment ID when the session was created from a deployment reference. Null otherwise.
+
 ### Example
 
 ```ruby
@@ -919,6 +925,7 @@ puts(beta_managed_agents_session)
   },
   "vault_ids": [
     "vlt_011CZkZDLs7fYzm1hXNPeRjv"
-  ]
+  ],
+  "deployment_id": "deployment_id"
 }
 ```

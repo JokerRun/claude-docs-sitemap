@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/environments/work/poll
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: c2538f8f3fc19bc5d8827f36cb62f7c20d6216752b50d6a80a24352e419cf914
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 7026d791cd338e58eed40debd08812eb7b10e1be675713db29370d79a24dc984
 ---
 
 ## Poll for Work
@@ -33,7 +33,7 @@ Long poll for work items in the queue.
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 23 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 25 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -86,6 +86,10 @@ Long poll for work items in the queue.
     - `:"cache-diagnosis-2026-04-07"`
 
     - `:"thinking-token-count-2026-05-13"`
+
+    - `:"server-side-fallback-2026-06-01"`
+
+    - `:"fallback-credit-2026-06-01"`
 
 - `anthropic_worker_id: String`
 

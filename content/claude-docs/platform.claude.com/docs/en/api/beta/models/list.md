@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/models/list
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 430b2b5decd3241569f49d63f18aec7a9bafb20847f4776f0fa68861d245acaa
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: d71ce0ecac7187dbd8067a4866a6c467fdaec54bc64d8d6662e98763f6a4c560
 ---
 
 ## List Models
@@ -37,7 +37,7 @@ The Models API response can be used to determine which models are available for 
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 23 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 25 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -91,6 +91,10 @@ The Models API response can be used to determine which models are available for 
 
     - `"thinking-token-count-2026-05-13"`
 
+    - `"server-side-fallback-2026-06-01"`
+
+    - `"fallback-credit-2026-06-01"`
+
 ### Returns
 
 - `data: array of BetaModelInfo`
@@ -98,6 +102,10 @@ The Models API response can be used to determine which models are available for 
   - `id: string`
 
     Unique model identifier.
+
+  - `allowed_fallback_models: array of string`
+
+    Model IDs this model accepts as `fallbacks[i].model` on the Messages API. An empty list means the `fallbacks` parameter is not supported for this model as primary.
 
   - `capabilities: BetaModelCapabilities`
 
@@ -250,6 +258,9 @@ curl https://api.anthropic.com/v1/models \
   "data": [
     {
       "id": "claude-opus-4-6",
+      "allowed_fallback_models": [
+        "string"
+      ],
       "capabilities": {
         "batch": {
           "supported": true

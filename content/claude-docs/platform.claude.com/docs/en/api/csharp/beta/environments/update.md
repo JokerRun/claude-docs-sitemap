@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/environments/update
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: a9c3346d15257617d71bfafb84091c5798f6c5ba2b5b073764ee509bd4cacb63
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 083949a8f327aaf9ca33c5fcd4c3ee9e6e7f29118b4314217bd01af99f0e5b04
 ---
 
 ## Update Environment
@@ -190,6 +190,10 @@ Update an existing environment's configuration.
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/skills/versions/list
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: c5aca6387bb57cb8630339223264fe3882707f3004af5389dd346dffd7719eba
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 3a0cc03c8c0d1dbb8732e5f1e7ea60c8ad1e9cacf36b4934d109a1df01fc9b3f
 ---
 
 ## List Skill Versions
@@ -37,7 +37,7 @@ List Skill Versions
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 23 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 25 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -90,6 +90,10 @@ List Skill Versions
     - `"cache-diagnosis-2026-04-07"`
 
     - `"thinking-token-count-2026-05-13"`
+
+    - `"server-side-fallback-2026-06-01"`
+
+    - `"fallback-credit-2026-06-01"`
 
 ### Returns
 

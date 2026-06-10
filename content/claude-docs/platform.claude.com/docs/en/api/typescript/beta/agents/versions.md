@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/agents/versions
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 7bbd5dc3079169ebfd5820333001ff6cca4ee97ea5992110fd085d32a4461617
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: c852263c96ec0ed218c6e8802d4b47f68ea5b0e3be368bd30af8da9b2692124e
 ---
 
 # Versions
@@ -35,7 +35,7 @@ List Agent Versions
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 23 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -89,6 +89,10 @@ List Agent Versions
 
       - `"thinking-token-count-2026-05-13"`
 
+      - `"server-side-fallback-2026-06-01"`
+
+      - `"fallback-credit-2026-06-01"`
+
 ### Returns
 
 - `BetaManagedAgentsAgent`
@@ -129,7 +133,11 @@ List Agent Versions
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `"claude-opus-4-8" | "claude-opus-4-7" | "claude-opus-4-6" | 7 more`
+      - `"claude-fable-5" | "claude-opus-4-8" | "claude-opus-4-7" | 8 more`
+
+        - `"claude-fable-5"`
+
+          Next generation of intelligence for the hardest knowledge work and coding problems
 
         - `"claude-opus-4-8"`
 
@@ -355,19 +363,13 @@ List Agent Versions
 
         JSON Schema for custom tool input parameters.
 
-        - `properties?: Record<string, unknown> | null`
-
-          JSON Schema properties defining the tool's input parameters.
-
-        - `required?: Array<string>`
-
-          List of required property names.
-
-        - `type?: "object"`
-
-          Must be 'object' for tool input schemas.
+        - `type: "object"`
 
           - `"object"`
+
+        - `properties?: Record<string, unknown> | null`
+
+        - `required?: Array<string> | null`
 
       - `name: string`
 

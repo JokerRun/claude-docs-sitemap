@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/environments/retrieve
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: f034a8ef285b8aa66991b349ddc1f42140bb98e0ce89d29a4a02c27c4f9c060e
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: ceb7d6337b2d2f06906f95ddc4f33a1930cfbc5f1eb79eb99c4ecf51e1413135
 ---
 
 ## Get Environment
@@ -25,7 +25,7 @@ Retrieve a specific environment by ID.
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 23 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -78,6 +78,10 @@ Retrieve a specific environment by ID.
       - `"cache-diagnosis-2026-04-07"`
 
       - `"thinking-token-count-2026-05-13"`
+
+      - `"server-side-fallback-2026-06-01"`
+
+      - `"fallback-credit-2026-06-01"`
 
 ### Returns
 

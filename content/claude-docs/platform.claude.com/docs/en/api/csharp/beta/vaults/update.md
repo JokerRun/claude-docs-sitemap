@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/vaults/update
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 0641ce8d8216351390485459d0525f0a2fbd70a9e554bd0f06dbfd59bca74cd6
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: d7d03c5b9e2ff2ac5a2e6d0dfc62124c743f01c3584e74a3025587127d604d75
 ---
 
 ## Update Vault
@@ -84,6 +84,10 @@ Update Vault
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 

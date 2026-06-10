@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/memory_stores/memories/list
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 7845a2199f7ec82ae68cb1e95d1d893698b633ccd8626145d8acc315e02595c9
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 17c8229d14b98471c20bdb75aa64ee9ef80d44122c76040530c74a2d6c386f72
 ---
 
 ## List memories
@@ -106,6 +106,10 @@ List memories
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
+
+    - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
+
+    - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
 
 ### Returns
 

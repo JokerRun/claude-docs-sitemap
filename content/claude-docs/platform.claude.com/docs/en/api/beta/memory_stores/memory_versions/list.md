@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memory_versions/list
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 4b7e55e5dfdd10cc866f103f07c807d2008f0281ea7d3c5d36b802233382c15c
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 3dcfa956122238275870cf2755329e1b93750e8e92740ba5036a1cc61452419d
 ---
 
 ## List memory versions
@@ -71,7 +71,7 @@ List memory versions
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 23 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 25 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -124,6 +124,10 @@ List memory versions
     - `"cache-diagnosis-2026-04-07"`
 
     - `"thinking-token-count-2026-05-13"`
+
+    - `"server-side-fallback-2026-06-01"`
+
+    - `"fallback-credit-2026-06-01"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/user_profiles/update
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 773360dd92310fd3ee6f031de116af72c92fac9f3fb7f1f8b02cb8e3872daaad
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 56edc711d82de229b65b24bc628e637525d8379330196fa47031a6c4e5ef8438
 ---
 
 ## Update User Profile
@@ -74,6 +74,10 @@ Update User Profile
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
+
+    - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
+
+    - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
 
   - `Optional<String> externalId`
 

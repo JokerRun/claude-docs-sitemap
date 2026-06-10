@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/messages/count_tokens
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 9f29dd9040ffb8b65eba466182167f324272fd4c08b3e376675f2d1b78f4580a
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: b4056d79a58635f3b21093499eafd246e715d5f8c162536546c0bb7e8ba94d43
 ---
 
 ## Count tokens in a Message
@@ -854,6 +854,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
               - `JsonValue; type "tool_search_tool_result_error"constant`
 
                 - `TOOL_SEARCH_TOOL_RESULT_ERROR("tool_search_tool_result_error")`
+
+              - `Optional<String> errorMessage`
 
             - `class ToolSearchToolSearchResultBlockParam:`
 

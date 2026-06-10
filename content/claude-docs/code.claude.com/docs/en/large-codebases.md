@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/large-codebases
-fetched_at: 2026-06-02T03:18:54.775717Z
-sha256: 99bf0f07d4d955027342299c7c83e404fcbd0c5ec011dc564fc8af998508ffaa
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 635f89df8d3c9643859bca0757c9391a8cd03d499796c0166151bdbdff554e43
 ---
 
 > ## Documentation Index
@@ -141,7 +141,7 @@ When you start Claude from the repository root, each subdirectory's CLAUDE.md lo
 
 Use this for directories you never work in, such as other teams' packages, legacy code, or vendored subtrees. The exclusion list is static, not a per-task switch. To focus on one package today and another tomorrow, [start Claude from that package's directory](#choose-where-to-start-claude) instead of editing exclusions.
 
-If you only want these exclusions for yourself, put the setting in `.claude/settings.local.json`, which is gitignored and not committed. Patterns use glob syntax matched against absolute file paths, so start relative-style patterns with `**/` to match anywhere in the tree. The example below excludes packages owned by other teams:
+If you only want these exclusions for yourself, put the setting in `.claude/settings.local.json`. Claude Code gitignores that file when it creates it; since you're creating it by hand here, add it to your gitignore. Patterns use glob syntax matched against absolute file paths, so start relative-style patterns with `**/` to match anywhere in the tree. The example below excludes packages owned by other teams:
 
 ```json .claude/settings.local.json theme={null}
 {

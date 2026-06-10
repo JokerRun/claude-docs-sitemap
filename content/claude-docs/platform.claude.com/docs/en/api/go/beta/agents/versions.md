@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/agents/versions
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: c9422cbe2f014127e07dcc8b0dd4f5fe4448f708d1aec9605716232e5530c81b
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: ff2e22e87775c53d46e72d8b70eb21405aab5593b2c1641950bf08dcf3c90d9b
 ---
 
 # Versions
@@ -89,6 +89,10 @@ List Agent Versions
 
       - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
 
+      - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
+
+      - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
+
 ### Returns
 
 - `type BetaManagedAgentsAgent struct{…}`
@@ -134,6 +138,10 @@ List Agent Versions
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `const BetaManagedAgentsModelClaudeFable5 BetaManagedAgentsModel = "claude-fable-5"`
+
+          Next generation of intelligence for the hardest knowledge work and coding problems
 
         - `const BetaManagedAgentsModelClaudeOpus4_8 BetaManagedAgentsModel = "claude-opus-4-8"`
 
@@ -359,19 +367,13 @@ List Agent Versions
 
         JSON Schema for custom tool input parameters.
 
+        - `Type Object`
+
+          - `const ObjectObject Object = "object"`
+
         - `Properties map[string, any]`
 
-          JSON Schema properties defining the tool's input parameters.
-
         - `Required []string`
-
-          List of required property names.
-
-        - `Type BetaManagedAgentsCustomToolInputSchemaType`
-
-          Must be 'object' for tool input schemas.
-
-          - `const BetaManagedAgentsCustomToolInputSchemaTypeObject BetaManagedAgentsCustomToolInputSchemaType = "object"`
 
       - `Name string`
 

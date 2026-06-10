@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/working-with-messages
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 4bead6b281f48f9ebeec7db1d6d60b9c9710f254147621a34682ba6379d516d9
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: f622484d902ad48d1b243e05d874493698994c267bb77adb32ffff48beb075b7
 ---
 
 # Using the Messages API
@@ -198,7 +198,7 @@ The `temperature`, `top_p`, and `top_k` sampling parameters are not supported on
 }
 ```
 
-On Claude Opus 4.7 and later models, refusal responses (`stop_reason: "refusal"`) also include a `stop_details` object identifying the policy category that triggered the refusal. See [Handling stop reasons](/docs/en/build-with-claude/handling-stop-reasons#refusal-categories) for the field reference and example handling code.
+On Claude Opus 4.7 and later models, refusal responses (`stop_reason: "refusal"`) also include a `stop_details` object identifying the policy category that triggered the refusal. See [Handling stop reasons](/docs/en/build-with-claude/refusals-and-fallback#refusal-response) for the field reference and example handling code.
 
 ## Multiple conversational turns
 
@@ -414,7 +414,7 @@ See [Mid-conversation system messages](/docs/en/build-with-claude/mid-conversati
 You can pre-fill part of Claude's response in the last position of the input messages list. This can be used to shape Claude's response. The example below uses `"max_tokens": 1` to get a single multiple choice answer from Claude.
 
 <Warning>
-Prefilling is not supported on [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, and Claude Sonnet 4.6. Requests using prefill with these models return a 400 error. Use [structured outputs](/docs/en/build-with-claude/structured-outputs) or system prompt instructions instead. See the [migration guide](/docs/en/about-claude/models/migration-guide) for migration patterns.
+Prefilling is not supported on Claude Fable 5, [Claude Mythos 5](https://anthropic.com/glasswing), [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, and Claude Sonnet 4.6. Requests using prefill with these models return a 400 error. Use [structured outputs](/docs/en/build-with-claude/structured-outputs) on models that support it, or system prompt instructions, instead. See the [migration guide](/docs/en/about-claude/models/migration-guide) for migration patterns.
 </Warning>
 
 <CodeGroup>

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/memory_stores/memories/update
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 11bbff84348fd3665d5aca7d027cc0d804796c569c36e13a83b77573703bf53a
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 50719ef7247d065f0071dad9b5d220a1c2206111020ff24c0a9012dcaea51f9a
 ---
 
 ## Update a memory
@@ -57,7 +57,7 @@ Update a memory
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 23 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -110,6 +110,10 @@ Update a memory
       - `"cache-diagnosis-2026-04-07"`
 
       - `"thinking-token-count-2026-05-13"`
+
+      - `"server-side-fallback-2026-06-01"`
+
+      - `"fallback-credit-2026-06-01"`
 
 ### Returns
 

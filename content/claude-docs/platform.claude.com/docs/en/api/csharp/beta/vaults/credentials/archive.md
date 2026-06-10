@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/vaults/credentials/archive
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 3fae4778368ce4a9b08af774f6cb1dc8adced71df0373723d06f8ab68234e6e4
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: b2540248125f8c55ee111d7be4be57c466af70772f1e4fc0cf2c8f417555bd06
 ---
 
 ## Archive Credential
@@ -80,6 +80,10 @@ Archive Credential
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 
@@ -174,6 +178,42 @@ Archive Credential
       - `required Type Type`
 
         - `"static_bearer"StaticBearer`
+
+    - `class BetaManagedAgentsEnvironmentVariableAuthResponse:`
+
+      Environment variable credential details. The secret value is never returned.
+
+      - `required Networking Networking`
+
+        Outbound hosts the secret value is substituted on.
+
+        - `class BetaManagedAgentsUnrestrictedCredentialNetworkingResponse:`
+
+          The secret is substituted on any host the session's Environment network policy permits egress to.
+
+          - `required Type Type`
+
+            - `"unrestricted"Unrestricted`
+
+        - `class BetaManagedAgentsLimitedCredentialNetworkingResponse:`
+
+          The secret is substituted only on requests to the listed hosts.
+
+          - `required IReadOnlyList<string> AllowedHosts`
+
+            Hostnames on which the secret will be substituted. An entry matches the request host exactly; a `*.`-prefixed entry matches any subdomain of the named domain but not the domain itself.
+
+          - `required Type Type`
+
+            - `"limited"Limited`
+
+      - `required string SecretName`
+
+        Name of the environment variable.
+
+      - `required Type Type`
+
+        - `"environment_variable"EnvironmentVariable`
 
   - `required DateTimeOffset CreatedAt`
 

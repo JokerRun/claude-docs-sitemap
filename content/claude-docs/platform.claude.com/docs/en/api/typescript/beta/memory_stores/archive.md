@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/memory_stores/archive
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 7679a3039fa7d5fccfcbdb941e1ddeb141854992a4ddba2701e325811ea7b278
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 692025072d9d605ef950f9e82a55081968c1c93aedf2e0c7992d436347757c8a
 ---
 
 ## Archive a memory store
@@ -25,7 +25,7 @@ Archive a memory store
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 23 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -78,6 +78,10 @@ Archive a memory store
       - `"cache-diagnosis-2026-04-07"`
 
       - `"thinking-token-count-2026-05-13"`
+
+      - `"server-side-fallback-2026-06-01"`
+
+      - `"fallback-credit-2026-06-01"`
 
 ### Returns
 

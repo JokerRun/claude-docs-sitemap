@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/messages/create
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: b027784f483bdaffd8ef93f87d60ea768da37f87f978d1b3c751485e65ab6610
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: a5c6601a0b09f88cce2d563a53eb9f59bf907a2bcd9eb48cfac8cd874a9eea1f
 ---
 
 ## Create a Message
@@ -863,6 +863,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
               - `:tool_search_tool_result_error`
 
+            - `error_message: String`
+
           - `class ToolSearchToolSearchResultBlockParam`
 
             - `tool_references: Array[ToolReferenceBlockParam]`
@@ -947,11 +949,19 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-  - `Model = :"claude-opus-4-8" | :"claude-opus-4-7" | :"claude-mythos-preview" | 15 more`
+  - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 17 more`
 
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+    - `:"claude-fable-5"`
+
+      Next generation of intelligence for the hardest knowledge work and coding problems
+
+    - `:"claude-mythos-5"`
+
+      Most capable model for cybersecurity and biology research
 
     - `:"claude-opus-4-8"`
 
@@ -2714,11 +2724,19 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `Model = :"claude-opus-4-8" | :"claude-opus-4-7" | :"claude-mythos-preview" | 15 more`
+    - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 17 more`
 
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `:"claude-fable-5"`
+
+        Next generation of intelligence for the hardest knowledge work and coding problems
+
+      - `:"claude-mythos-5"`
+
+        Most capable model for cybersecurity and biology research
 
       - `:"claude-opus-4-8"`
 
@@ -2806,7 +2824,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     Structured information about a refusal.
 
-    - `category: :cyber | :bio`
+    - `category: :cyber | :bio | :reasoning_extraction`
 
       The policy category that triggered the refusal.
 
@@ -2815,6 +2833,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       - `:cyber`
 
       - `:bio`
+
+      - `:reasoning_extraction`
 
     - `explanation: String`
 

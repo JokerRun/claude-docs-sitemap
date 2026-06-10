@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/environments/delete
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 1761e5341677571289fcf90b7c664b22328f36b748d6f28d3ecba23c5a847a2f
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 7aca2cc15e3d0756c7a396af69f30cf8b8bd6e81afb508c7fc61f677669ec06a
 ---
 
 ## Delete Environment
@@ -23,7 +23,7 @@ Delete an environment by ID. Returns a confirmation of the deletion.
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 23 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 25 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -76,6 +76,10 @@ Delete an environment by ID. Returns a confirmation of the deletion.
     - `:"cache-diagnosis-2026-04-07"`
 
     - `:"thinking-token-count-2026-05-13"`
+
+    - `:"server-side-fallback-2026-06-01"`
+
+    - `:"fallback-credit-2026-06-01"`
 
 ### Returns
 

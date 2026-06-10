@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/vaults/create
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 5232abccd8ccb8fb21b838d7ff065ab042104218f663d1916756e164224151ab
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 38bccab9c910255891c090f54bf4ea1e796be67448d44034b274b1fff2acd616
 ---
 
 ## Create Vault
@@ -80,6 +80,10 @@ Create Vault
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 

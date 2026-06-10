@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/sessions/threads/list
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 51223835e2392da427fb8c896e935cb323abff089178b39789e6b24b03558f28
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 1e13fe631b1933df1ac445fd323e1e943c4dbcc9f0f595af8348e38e8de6464c
 ---
 
 ## List Session Threads
@@ -33,7 +33,7 @@ List Session Threads
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 23 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -87,6 +87,10 @@ List Session Threads
 
       - `"thinking-token-count-2026-05-13"`
 
+      - `"server-side-fallback-2026-06-01"`
+
+      - `"fallback-credit-2026-06-01"`
+
 ### Returns
 
 - `BetaManagedAgentsSessionThread`
@@ -125,7 +129,11 @@ List Session Threads
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-        - `"claude-opus-4-8" | "claude-opus-4-7" | "claude-opus-4-6" | 7 more`
+        - `"claude-fable-5" | "claude-opus-4-8" | "claude-opus-4-7" | 8 more`
+
+          - `"claude-fable-5"`
+
+            Next generation of intelligence for the hardest knowledge work and coding problems
 
           - `"claude-opus-4-8"`
 
@@ -331,19 +339,13 @@ List Session Threads
 
           JSON Schema for custom tool input parameters.
 
-          - `properties?: Record<string, unknown> | null`
-
-            JSON Schema properties defining the tool's input parameters.
-
-          - `required?: Array<string>`
-
-            List of required property names.
-
-          - `type?: "object"`
-
-            Must be 'object' for tool input schemas.
+          - `type: "object"`
 
             - `"object"`
+
+          - `properties?: Record<string, unknown> | null`
+
+          - `required?: Array<string> | null`
 
         - `name: string`
 

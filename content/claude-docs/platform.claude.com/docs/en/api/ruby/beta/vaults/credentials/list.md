@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/vaults/credentials/list
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 94194d296b4a15c4fe761bf6ecbd727ead89341ab3ad992301ff5bb47bed4dbe
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 17adaf5e642bfb79a3293b39a5fee5ac436537d43e219e97da58b2521b621f95
 ---
 
 ## List Credentials
@@ -35,7 +35,7 @@ List Credentials
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 23 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 25 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -89,6 +89,10 @@ List Credentials
 
     - `:"thinking-token-count-2026-05-13"`
 
+    - `:"server-side-fallback-2026-06-01"`
+
+    - `:"fallback-credit-2026-06-01"`
+
 ### Returns
 
 - `class BetaManagedAgentsCredential`
@@ -103,7 +107,7 @@ List Credentials
 
     A timestamp in RFC 3339 format
 
-  - `auth: BetaManagedAgentsMCPOAuthAuthResponse | BetaManagedAgentsStaticBearerAuthResponse`
+  - `auth: BetaManagedAgentsMCPOAuthAuthResponse | BetaManagedAgentsStaticBearerAuthResponse | BetaManagedAgentsEnvironmentVariableAuthResponse`
 
     Authentication details for a credential.
 
@@ -182,6 +186,42 @@ List Credentials
       - `type: :static_bearer`
 
         - `:static_bearer`
+
+    - `class BetaManagedAgentsEnvironmentVariableAuthResponse`
+
+      Environment variable credential details. The secret value is never returned.
+
+      - `networking: BetaManagedAgentsUnrestrictedCredentialNetworkingResponse | BetaManagedAgentsLimitedCredentialNetworkingResponse`
+
+        Outbound hosts the secret value is substituted on.
+
+        - `class BetaManagedAgentsUnrestrictedCredentialNetworkingResponse`
+
+          The secret is substituted on any host the session's Environment network policy permits egress to.
+
+          - `type: :unrestricted`
+
+            - `:unrestricted`
+
+        - `class BetaManagedAgentsLimitedCredentialNetworkingResponse`
+
+          The secret is substituted only on requests to the listed hosts.
+
+          - `allowed_hosts: Array[String]`
+
+            Hostnames on which the secret will be substituted. An entry matches the request host exactly; a `*.`-prefixed entry matches any subdomain of the named domain but not the domain itself.
+
+          - `type: :limited`
+
+            - `:limited`
+
+      - `secret_name: String`
+
+        Name of the environment variable.
+
+      - `type: :environment_variable`
+
+        - `:environment_variable`
 
   - `created_at: Time`
 

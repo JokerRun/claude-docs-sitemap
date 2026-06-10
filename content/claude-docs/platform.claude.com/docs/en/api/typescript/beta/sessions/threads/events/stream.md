@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/sessions/threads/events/stream
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: e1891b3ea0b714524b72fcc4f0955c53712e02e78b0c669262963656f7f796d9
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 5b0d6424a3c9c3ce21b27e3ad3402345a4ce4a32ca3749c55d5294fa1a08d476
 ---
 
 ## Stream Session Thread Events
@@ -29,7 +29,7 @@ Stream Session Thread Events
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 23 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -83,9 +83,13 @@ Stream Session Thread Events
 
       - `"thinking-token-count-2026-05-13"`
 
+      - `"server-side-fallback-2026-06-01"`
+
+      - `"fallback-credit-2026-06-01"`
+
 ### Returns
 
-- `BetaManagedAgentsStreamSessionThreadEvents = BetaManagedAgentsUserMessageEvent | BetaManagedAgentsUserInterruptEvent | BetaManagedAgentsUserToolConfirmationEvent | 30 more`
+- `BetaManagedAgentsStreamSessionThreadEvents = BetaManagedAgentsUserMessageEvent | BetaManagedAgentsUserInterruptEvent | BetaManagedAgentsUserToolConfirmationEvent | 31 more`
 
   Server-sent event in a single thread's stream.
 
@@ -729,7 +733,7 @@ Stream Session Thread Events
 
       Unique identifier for this event.
 
-    - `error: BetaManagedAgentsUnknownError | BetaManagedAgentsModelOverloadedError | BetaManagedAgentsModelRateLimitedError | 4 more`
+    - `error: BetaManagedAgentsUnknownError | BetaManagedAgentsModelOverloadedError | BetaManagedAgentsModelRateLimitedError | 5 more`
 
       An unknown or unexpected error occurred during session execution. A fallback variant; clients that don't recognize a new error code can match on `retry_status` and `message` alone.
 
@@ -948,6 +952,42 @@ Stream Session Thread Events
         - `type: "billing_error"`
 
           - `"billing_error"`
+
+      - `BetaManagedAgentsCredentialHostUnreachableError`
+
+        An `environment_variable` credential's `auth.networking.allowed_hosts` includes a host the environment's network policy does not permit.
+
+        - `credential_id: string`
+
+          ID of the affected credential.
+
+        - `message: string`
+
+          Human-readable error description.
+
+        - `retry_status: BetaManagedAgentsRetryStatusRetrying | BetaManagedAgentsRetryStatusExhausted | BetaManagedAgentsRetryStatusTerminal`
+
+          What the client should do next in response to this error.
+
+          - `BetaManagedAgentsRetryStatusRetrying`
+
+            The server is retrying automatically. Client should wait; the same error type may fire again as retrying, then once as exhausted when the retry budget runs out.
+
+          - `BetaManagedAgentsRetryStatusExhausted`
+
+            This turn is dead; queued inputs are flushed and the session returns to idle. Client may send a new prompt.
+
+          - `BetaManagedAgentsRetryStatusTerminal`
+
+            The session encountered a terminal error and will transition to `terminated` state.
+
+        - `type: "credential_host_unreachable_error"`
+
+          - `"credential_host_unreachable_error"`
+
+        - `vault_id: string`
+
+          ID of the vault containing the affected credential.
 
     - `processed_at: string`
 
@@ -1509,7 +1549,11 @@ Stream Session Thread Events
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-          - `"claude-opus-4-8" | "claude-opus-4-7" | "claude-opus-4-6" | 7 more`
+          - `"claude-fable-5" | "claude-opus-4-8" | "claude-opus-4-7" | 8 more`
+
+            - `"claude-fable-5"`
+
+              Next generation of intelligence for the hardest knowledge work and coding problems
 
             - `"claude-opus-4-8"`
 
@@ -1739,19 +1783,13 @@ Stream Session Thread Events
 
                 JSON Schema for custom tool input parameters.
 
-                - `properties?: Record<string, unknown> | null`
-
-                  JSON Schema properties defining the tool's input parameters.
-
-                - `required?: Array<string>`
-
-                  List of required property names.
-
-                - `type?: "object"`
-
-                  Must be 'object' for tool input schemas.
+                - `type: "object"`
 
                   - `"object"`
+
+                - `properties?: Record<string, unknown> | null`
+
+                - `required?: Array<string> | null`
 
               - `name: string`
 
@@ -1806,6 +1844,34 @@ Stream Session Thread Events
     - `title?: string | null`
 
       The session's new title. Present only when the update changed it.
+
+  - `BetaManagedAgentsSystemMessageEvent`
+
+    A mid-conversation system message event. Carries system-role content that is appended to the session as a `role: "system"` turn.
+
+    - `id: string`
+
+      Unique identifier for this event.
+
+    - `content: Array<BetaManagedAgentsSystemContentBlock>`
+
+      System content blocks. Text-only.
+
+      - `text: string`
+
+        The text content.
+
+      - `type: "text"`
+
+        - `"text"`
+
+    - `type: "system.message"`
+
+      - `"system.message"`
+
+    - `processed_at?: string | null`
+
+      A timestamp in RFC 3339 format
 
 ### Example
 

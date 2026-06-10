@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/php/beta/sessions/create
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 7b24344d2acc07fe7bf7d0813a5212ea318b82eda5435f923afb3c433d587de8
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: a3652c55a616bd0aefc0ebb778b29ee6aaa8a13f3d4ba993a0c83b9f090a9024
 ---
 
 ## Create Session
@@ -94,6 +94,10 @@ Create Session
   - `list<string> vaultIDs`
 
     Vault IDs attached to the session at creation. Empty when no vaults were supplied.
+
+  - `?string deploymentID`
+
+    Deployment ID when the session was created from a deployment reference. Null otherwise.
 
 ### Example
 
@@ -286,6 +290,7 @@ var_dump($betaManagedAgentsSession);
   },
   "vault_ids": [
     "vlt_011CZkZDLs7fYzm1hXNPeRjv"
-  ]
+  ],
+  "deployment_id": "deployment_id"
 }
 ```

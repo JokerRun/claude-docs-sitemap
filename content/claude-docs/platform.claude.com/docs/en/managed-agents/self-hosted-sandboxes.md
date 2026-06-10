@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes
-fetched_at: 2026-06-04T03:18:26.079997Z
-sha256: 5641c281de5562e8e3511032cb8e38e8c97e1a638317455bad68972e0a373d0d
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: aee4b6b28d919ea5357c1af0108e1cecbe77e66f5dc2c7fe21d9786e6067b687
 ---
 
 # Self-hosted sandboxes
@@ -230,7 +230,7 @@ Choose **always-on** for the simplest setup: a long-running process polls the qu
 
         
         ```bash nocheck
-        VERSION=1.10.0
+        VERSION=1.11.0
         OS=$(uname -s | tr '[:upper:]' '[:lower:]')
         ARCH=$(uname -m | sed -e 's/x86_64/amd64/' -e 's/aarch64/arm64/')
         curl -fsSL "https://github.com/anthropics/anthropic-cli/releases/download/v${VERSION}/ant_${VERSION}_${OS}_${ARCH}.tar.gz" \
@@ -257,7 +257,7 @@ Choose **always-on** for the simplest setup: a long-running process polls the qu
 
         ```text
         FROM your-base-image
-        ARG ANT_VERSION=1.10.0
+        ARG ANT_VERSION=1.11.0
         ARG TARGETARCH
         RUN ARCH=$([ "$TARGETARCH" = "arm64" ] && echo arm64 || echo amd64) && \
             curl -fsSL "https://github.com/anthropics/anthropic-cli/releases/download/v${ANT_VERSION}/ant_${ANT_VERSION}_linux_${ARCH}.tar.gz" \

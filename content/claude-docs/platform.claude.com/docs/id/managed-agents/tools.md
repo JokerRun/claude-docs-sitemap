@@ -1,42 +1,44 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/tools
-fetched_at: 2026-04-18T03:10:04.936408Z
-sha256: 1edd0ea70df6c7d306603ec79398c8a97e36035186c6dcba841d45b1de918778
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 12f27850eb87205adc45741327d7ed88d70605a9cc4196a408e620abf0033b57
 ---
 
 # Alat
 
-Konfigurasi alat yang tersedia untuk agen Anda.
+Konfigurasikan alat yang tersedia untuk agen Anda.
 
 ---
 
-Claude Managed Agents menyediakan serangkaian alat bawaan yang dapat digunakan Claude secara otonom dalam sesi. Anda mengontrol alat mana yang tersedia dengan menentukan alat tersebut dalam konfigurasi agen.
+Claude Managed Agents menyediakan serangkaian alat bawaan yang dapat digunakan Claude secara otonom dalam sebuah sesi. Anda mengontrol alat mana yang tersedia dengan menentukannya dalam konfigurasi agen.
 
-Alat khusus yang ditentukan pengguna juga didukung. Aplikasi Anda menjalankan alat ini secara terpisah dan mengirimkan hasil alat kembali ke Claude; Claude dapat menggunakan hasil untuk melanjutkan tugas yang sedang berlangsung.
+Alat kustom yang didefinisikan pengguna juga didukung. Aplikasi Anda mengeksekusi alat-alat ini secara terpisah dan mengirimkan hasil alat kembali ke Claude; Claude dapat menggunakan hasil tersebut untuk melanjutkan tugas yang sedang dikerjakan.
 
 <Note>
-Semua permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`. SDK menetapkan header beta secara otomatis.
+Semua permintaan Managed Agents API memerlukan beta header `managed-agents-2026-04-01`. SDK menetapkan beta header tersebut secara otomatis.
 </Note>
 
-## Alat yang tersedia
+## Alat yang tersedia \{#available-tools}
 
-Set alat agen mencakup alat berikut. Semua diaktifkan secara default ketika Anda menyertakan set alat dalam konfigurasi agen Anda.
+Toolset agen mencakup alat-alat berikut. Semuanya diaktifkan secara default ketika Anda menyertakan toolset dalam konfigurasi agen Anda.
 
 | Alat | Nama | Deskripsi |
 |---|---|---|
-| Bash | `bash` | Jalankan perintah bash dalam sesi shell |
-| Baca | `read` | Baca file dari sistem file lokal |
-| Tulis | `write` | Tulis file ke sistem file lokal |
-| Edit | `edit` | Lakukan penggantian string dalam file |
-| Glob | `glob` | Pencocokan pola file cepat menggunakan pola glob |
+| Bash | `bash` | Menjalankan perintah bash dalam sesi shell |
+| Read | `read` | Membaca file dari filesystem lokal |
+| Write | `write` | Menulis file ke filesystem lokal |
+| Edit | `edit` | Melakukan penggantian string dalam file |
+| Glob | `glob` | Pencocokan pola file yang cepat menggunakan pola glob |
 | Grep | `grep` | Pencarian teks menggunakan pola regex |
-| Pengambilan web | `web_fetch` | Ambil konten dari URL |
-| Pencarian web | `web_search` | Cari web untuk informasi |
+| Web fetch | `web_fetch` | Mengambil konten dari URL |
+| Web search | `web_search` | Mencari informasi di web |
 
-## Mengonfigurasi set alat
+Ketika output alat melebihi 100.000 token, output tersebut secara otomatis ditulis ke file di dalam sandbox. Model menerima pratinjau yang terpotong beserta path file dan dapat membaca konten lengkapnya dari sana.
 
-Aktifkan set alat lengkap dengan `agent_toolset_20260401` saat membuat agen. Gunakan array `configs` untuk menonaktifkan alat tertentu atau mengganti pengaturan mereka.
+## Mengonfigurasi toolset \{#configuring-the-toolset}
+
+Aktifkan toolset lengkap dengan `agent_toolset_20260401` saat membuat agen. Gunakan array `configs` untuk menonaktifkan alat tertentu atau mengganti pengaturannya.
 
 <CodeGroup defaultLanguage="CLI">
 ```bash curl
@@ -48,7 +50,7 @@ agent=$(curl -fsSL https://api.anthropic.com/v1/agents \
   -d @- <<'EOF'
 {
   "name": "Coding Assistant",
-  "model": "claude-opus-4-7",
+  "model": "claude-opus-4-8",
   "tools": [
     {
       "type": "agent_toolset_20260401",
@@ -65,7 +67,7 @@ EOF
 ```bash CLI
 ant beta:agents create <<'YAML'
 name: Coding Assistant
-model: claude-opus-4-7
+model: claude-opus-4-8
 tools:
   - type: agent_toolset_20260401
     configs:
@@ -77,7 +79,7 @@ YAML
 ```python Python
 agent = client.beta.agents.create(
     name="Coding Assistant",
-    model="claude-opus-4-7",
+    model="claude-opus-4-8",
     tools=[
         {
             "type": "agent_toolset_20260401",
@@ -92,7 +94,7 @@ agent = client.beta.agents.create(
 ```typescript TypeScript
 const agent = await client.beta.agents.create({
   name: "Coding Assistant",
-  model: "claude-opus-4-7",
+  model: "claude-opus-4-8",
   tools: [
     {
       type: "agent_toolset_20260401",
@@ -106,7 +108,7 @@ const agent = await client.beta.agents.create({
 var agent = await client.Beta.Agents.Create(new()
 {
     Name = "Coding Assistant",
-    Model = new("claude-opus-4-7"),
+    Model = new("claude-opus-4-8"),
     Tools =
     [
         new BetaManagedAgentsAgentToolset20260401Params
@@ -125,8 +127,7 @@ var agent = await client.Beta.Agents.Create(new()
 agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
 	Name: "Coding Assistant",
 	Model: anthropic.BetaManagedAgentsModelConfigParams{
-		ID:   "claude-opus-4-7",
-		Type: anthropic.BetaManagedAgentsModelConfigParamsTypeModelConfig,
+		ID: "claude-opus-4-8",
 	},
 	Tools: []anthropic.BetaAgentNewParamsToolUnion{{
 		OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{
@@ -141,12 +142,13 @@ agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
 if err != nil {
 	panic(err)
 }
+_ = agent
 ```
 
 ```java Java
 var agent = client.beta().agents().create(AgentCreateParams.builder()
     .name("Coding Assistant")
-    .model(BetaManagedAgentsModel.CLAUDE_OPUS_4_7)
+    .model(BetaManagedAgentsModel.CLAUDE_OPUS_4_8)
     .addTool(BetaManagedAgentsAgentToolset20260401Params.builder()
         .type(BetaManagedAgentsAgentToolset20260401Params.Type.AGENT_TOOLSET_20260401)
         .addConfig(BetaManagedAgentsAgentToolConfigParams.builder()
@@ -161,7 +163,7 @@ var agent = client.beta().agents().create(AgentCreateParams.builder()
 
 $agent = $client->beta->agents->create(
     name: 'Coding Assistant',
-    model: 'claude-opus-4-7',
+    model: 'claude-opus-4-8',
     tools: [
         BetaManagedAgentsAgentToolset20260401Params::with(
             type: 'agent_toolset_20260401',
@@ -176,7 +178,7 @@ $agent = $client->beta->agents->create(
 ```ruby Ruby
 agent = client.beta.agents.create(
   name: "Coding Assistant",
-  model: "claude-opus-4-7",
+  model: "claude-opus-4-8",
   tools: [
     {
       type: :agent_toolset_20260401,
@@ -189,9 +191,9 @@ agent = client.beta.agents.create(
 ```
 </CodeGroup>
 
-### Menonaktifkan alat tertentu
+### Menonaktifkan alat tertentu \{#disabling-specific-tools}
 
-Untuk menonaktifkan alat, atur `enabled: false` dalam entri konfigurasinya:
+Untuk menonaktifkan sebuah alat, atur `enabled: false` dalam entri konfigurasinya:
 
 ```json
 {
@@ -203,9 +205,9 @@ Untuk menonaktifkan alat, atur `enabled: false` dalam entri konfigurasinya:
 }
 ```
 
-### Mengaktifkan hanya alat tertentu
+### Mengaktifkan hanya alat tertentu \{#enabling-only-specific-tools}
 
-Untuk memulai dengan semuanya dimatikan dan mengaktifkan hanya apa yang Anda butuhkan, atur `default_config.enabled` ke `false`:
+Untuk memulai dengan semua alat dinonaktifkan dan hanya mengaktifkan yang Anda butuhkan, atur `default_config.enabled` ke `false`:
 
 ```json
 {
@@ -219,11 +221,11 @@ Untuk memulai dengan semuanya dimatikan dan mengaktifkan hanya apa yang Anda but
 }
 ```
 
-## Alat khusus
+## Alat kustom \{#custom-tools}
 
-Selain alat bawaan, Anda dapat menentukan alat khusus. Alat khusus analog dengan [alat yang ditentukan pengguna yang dijalankan klien](/docs/id/agents-and-tools/tool-use/how-tool-use-works#user-defined-tools-client-executed) dalam Messages API.
+Selain alat bawaan, Anda dapat mendefinisikan alat kustom. Alat kustom serupa dengan [alat klien yang didefinisikan pengguna](/docs/id/agents-and-tools/tool-use/how-tool-use-works#user-defined-tools-client-executed) di Messages API.
 
-Alat khusus memungkinkan Anda memperluas kemampuan Claude untuk melakukan berbagai tugas. Setiap alat mendefinisikan kontrak: Anda menentukan operasi apa yang tersedia dan apa yang mereka kembalikan; Claude memutuskan kapan dan bagaimana memanggilnya. Model tidak pernah menjalankan apa pun sendiri. Ini mengeluarkan permintaan terstruktur, kode Anda menjalankan operasi, dan hasilnya mengalir kembali ke percakapan.
+Alat kustom memungkinkan Anda memperluas kemampuan Claude untuk melakukan berbagai tugas yang lebih luas. Setiap alat mendefinisikan sebuah kontrak: Anda menentukan operasi apa yang tersedia dan apa yang dikembalikannya; Claude menentukan kapan dan bagaimana memanggilnya. Model tidak pernah mengeksekusi apa pun sendiri. Model mengeluarkan permintaan terstruktur, kode Anda menjalankan operasinya, dan hasilnya mengalir kembali ke dalam percakapan.
 
 <CodeGroup defaultLanguage="CLI">
 ```bash curl
@@ -235,7 +237,7 @@ agent=$(curl -fsSL https://api.anthropic.com/v1/agents \
   -d @- <<'EOF'
 {
   "name": "Weather Agent",
-  "model": "claude-opus-4-7",
+  "model": "claude-opus-4-8",
   "tools": [
     {
       "type": "agent_toolset_20260401"
@@ -261,7 +263,7 @@ EOF
 ```bash CLI
 ant beta:agents create <<'YAML'
 name: Weather Agent
-model: claude-opus-4-7
+model: claude-opus-4-8
 tools:
   - type: agent_toolset_20260401
   - type: custom
@@ -281,7 +283,7 @@ YAML
 ```python Python
 agent = client.beta.agents.create(
     name="Weather Agent",
-    model="claude-opus-4-7",
+    model="claude-opus-4-8",
     tools=[
         {
             "type": "agent_toolset_20260401",
@@ -305,7 +307,7 @@ agent = client.beta.agents.create(
 ```typescript TypeScript
 const agent = await client.beta.agents.create({
   name: "Weather Agent",
-  model: "claude-opus-4-7",
+  model: "claude-opus-4-8",
   tools: [
     { type: "agent_toolset_20260401" },
     {
@@ -327,7 +329,7 @@ const agent = await client.beta.agents.create({
 var agent = await client.Beta.Agents.Create(new()
 {
     Name = "Weather Agent",
-    Model = new("claude-opus-4-7"),
+    Model = new("claude-opus-4-8"),
     Tools =
     [
         new BetaManagedAgentsAgentToolset20260401Params
@@ -359,8 +361,7 @@ var agent = await client.Beta.Agents.Create(new()
 agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
 	Name: "Weather Agent",
 	Model: anthropic.BetaManagedAgentsModelConfigParams{
-		ID:   "claude-opus-4-7",
-		Type: anthropic.BetaManagedAgentsModelConfigParamsTypeModelConfig,
+		ID: "claude-opus-4-8",
 	},
 	Tools: []anthropic.BetaAgentNewParamsToolUnion{{
 		OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{
@@ -387,12 +388,13 @@ agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
 if err != nil {
 	panic(err)
 }
+_ = agent
 ```
 
 ```java Java
 var agent = client.beta().agents().create(AgentCreateParams.builder()
     .name("Weather Agent")
-    .model(BetaManagedAgentsModel.CLAUDE_OPUS_4_7)
+    .model(BetaManagedAgentsModel.CLAUDE_OPUS_4_8)
     .addTool(BetaManagedAgentsAgentToolset20260401Params.builder()
         .type(BetaManagedAgentsAgentToolset20260401Params.Type.AGENT_TOOLSET_20260401)
         .build())
@@ -419,7 +421,7 @@ use Anthropic\Beta\Agents\BetaManagedAgentsCustomToolParams;
 
 $agent = $client->beta->agents->create(
     name: 'Weather Agent',
-    model: 'claude-opus-4-7',
+    model: 'claude-opus-4-8',
     tools: [
         BetaManagedAgentsAgentToolset20260401Params::with(
             type: 'agent_toolset_20260401',
@@ -441,7 +443,7 @@ $agent = $client->beta->agents->create(
 ```ruby Ruby
 agent = client.beta.agents.create(
   name: "Weather Agent",
-  model: "claude-opus-4-7",
+  model: "claude-opus-4-8",
   tools: [
     {type: :agent_toolset_20260401},
     {
@@ -459,11 +461,11 @@ agent = client.beta.agents.create(
 ```
 </CodeGroup>
 
-Setelah Anda menentukan alat di tingkat agen, agen akan memanggil alat selama sesi. Lihat [Aliran acara sesi](/docs/id/managed-agents/events-and-streaming#handling-custom-tool-calls) untuk alur lengkapnya.
+Setelah Anda mendefinisikan alat di tingkat agen, agen akan memanggil alat tersebut selama berlangsungnya sesi. Lihat [Aliran event sesi](/docs/id/managed-agents/events-and-streaming#handling-custom-tool-calls) untuk alur lengkapnya.
 
-### Praktik terbaik untuk definisi alat khusus
+### Praktik terbaik untuk definisi alat kustom \{#best-practices-for-custom-tool-definitions}
 
-- **Berikan deskripsi yang sangat detail.** Ini adalah faktor paling penting dalam kinerja alat. Deskripsi Anda harus menjelaskan apa yang dilakukan alat, kapan alat harus digunakan (dan kapan tidak), apa arti setiap parameter dan bagaimana hal itu mempengaruhi perilaku alat, dan peringatan atau batasan penting apa pun. Semakin banyak konteks yang dapat Anda berikan Claude tentang alat Anda, semakin baik dalam memutuskan kapan dan bagaimana menggunakannya. Targetkan setidaknya 3-4 kalimat per deskripsi alat, lebih banyak jika alat tersebut kompleks.
-- **Konsolidasikan operasi terkait ke dalam lebih sedikit alat.** Daripada membuat alat terpisah untuk setiap tindakan (`create_pr`, `review_pr`, `merge_pr`), kelompokkan mereka ke dalam satu alat dengan parameter `action`. Lebih sedikit alat yang lebih mampu mengurangi ambiguitas pemilihan dan membuat permukaan alat Anda lebih mudah dinavigasi oleh Claude.
-- **Gunakan penamaan namespace yang bermakna dalam nama alat.** Ketika alat Anda mencakup beberapa layanan atau sumber daya, awali nama dengan sumber daya (misalnya, `db_query`, `storage_read`). Ini membuat pemilihan alat tidak ambigu saat perpustakaan Anda berkembang.
-- **Desain respons alat untuk mengembalikan hanya informasi sinyal tinggi.** Kembalikan pengidentifikasi semantik yang stabil (misalnya, slug atau UUID) daripada referensi internal yang buram, dan sertakan hanya bidang yang Claude butuhkan untuk bernalar tentang langkah berikutnya. Respons yang membengkak membuang konteks dan membuat lebih sulit bagi Claude untuk mengekstrak apa yang penting.
+- **Berikan deskripsi yang sangat detail.** Ini adalah faktor terpenting dalam performa alat. Deskripsi Anda harus menjelaskan apa yang dilakukan alat tersebut, kapan alat tersebut harus digunakan (dan kapan tidak), apa arti setiap parameter dan bagaimana pengaruhnya terhadap perilaku alat, serta peringatan atau batasan penting apa pun. Semakin banyak konteks yang dapat Anda berikan kepada Claude tentang alat Anda, semakin baik Claude dalam menentukan kapan dan bagaimana menggunakannya. Usahakan setidaknya 3-4 kalimat per deskripsi alat, lebih banyak jika alatnya kompleks.
+- **Konsolidasikan operasi terkait ke dalam lebih sedikit alat.** Daripada membuat alat terpisah untuk setiap tindakan (`create_pr`, `review_pr`, `merge_pr`), kelompokkan ke dalam satu alat dengan parameter `action`. Alat yang lebih sedikit namun lebih mumpuni mengurangi ambiguitas pemilihan dan membuat kumpulan alat Anda lebih mudah dinavigasi oleh Claude.
+- **Gunakan namespacing yang bermakna dalam nama alat.** Ketika alat Anda mencakup beberapa layanan atau sumber daya, beri prefiks pada nama dengan sumber dayanya (misalnya, `db_query` atau `storage_read`). Ini membuat pemilihan alat tidak ambigu seiring bertambahnya pustaka alat Anda.
+- **Rancang respons alat agar hanya mengembalikan informasi bernilai tinggi.** Kembalikan pengidentifikasi yang semantik dan stabil (misalnya, slug atau UUID) daripada referensi internal yang tidak jelas, dan sertakan hanya field yang dibutuhkan Claude untuk menalar langkah berikutnya. Respons yang membengkak membuang-buang konteks dan mempersulit Claude untuk mengekstrak hal yang penting.

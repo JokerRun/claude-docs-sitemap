@@ -1,48 +1,40 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner
-fetched_at: 2026-04-25T03:09:48.142425Z
-sha256: 6ba333a7d7c99e377f1bff09f29091a5acbbb9ba4bc274cb43f81091c4b294c4
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: f1d7fb96baf54c7a70277ed9e5bb04b185a52ccfaa0e287ff18096e7d90467cc
 ---
 
 # Tool Runner (SDK)
 
-Gunakan abstraksi Tool Runner SDK untuk menangani loop agentic, pembungkus error, dan keamanan tipe secara otomatis.
+Gunakan abstraksi Tool Runner dari SDK untuk menangani loop agentik, pembungkusan error, dan keamanan tipe secara otomatis.
 
 ---
 
-Tool Runner menangani loop agentic, pembungkus error, dan keamanan tipe sehingga Anda tidak perlu melakukannya. Gunakan [loop manual](/docs/id/agents-and-tools/tool-use/handle-tool-calls) hanya ketika Anda memerlukan persetujuan manusia-dalam-loop, logging khusus, atau eksekusi bersyarat. Tersedia di Python, TypeScript, dan Ruby SDKs.
+Tool Runner menangani loop agentik, pembungkusan error, dan keamanan tipe sehingga Anda tidak perlu melakukannya sendiri. Ketika Anda membutuhkan persetujuan human-in-the-loop, logging kustom, atau eksekusi kondisional, gunakan [loop manual](/docs/id/agents-and-tools/tool-use/handle-tool-calls) sebagai gantinya.
 
-Tool runner menyediakan solusi siap pakai untuk menjalankan tools dengan Claude. Alih-alih menangani tool calls, hasil tool, dan manajemen percakapan secara manual, tool runner secara otomatis:
+Tool runner menyediakan solusi siap pakai untuk menjalankan alat dengan Claude. Tool runner dapat menyederhanakan sebagian besar implementasi penggunaan alat. Alih-alih menangani pemanggilan alat, hasil alat, dan manajemen percakapan secara manual, tool runner secara otomatis:
 
-- Menjalankan tools ketika Claude memanggilnya
+- Menjalankan alat ketika Claude memanggilnya
 - Menangani siklus permintaan/respons
 - Mengelola status percakapan
 - Menyediakan keamanan tipe dan validasi
 
-Gunakan tool runner untuk sebagian besar implementasi tool use.
-
 <Note>
-Tool runner saat ini dalam beta dan tersedia di [Python](https://github.com/anthropics/anthropic-sdk-python/blob/main/tools.md), [TypeScript](https://github.com/anthropics/anthropic-sdk-typescript/blob/main/helpers.md#tool-helpers), dan [Ruby](https://github.com/anthropics/anthropic-sdk-ruby/blob/main/helpers.md#3-auto-looping-tool-runner-beta) SDKs.
+Tool runner saat ini dalam versi beta dan tersedia di [Python SDK](https://github.com/anthropics/anthropic-sdk-python/blob/main/tools.md), [TypeScript SDK](https://github.com/anthropics/anthropic-sdk-typescript/blob/main/helpers.md#tool-helpers), [C# SDK](https://github.com/anthropics/anthropic-sdk-csharp/blob/main/examples/ToolRunnerExample/Program.cs), [Go SDK](https://github.com/anthropics/anthropic-sdk-go/blob/main/tools.md), [Java SDK](https://github.com/anthropics/anthropic-sdk-java/blob/main/anthropic-java-example/src/main/java/com/anthropic/example/BetaToolRunnerExample.java), [PHP SDK](https://github.com/anthropics/anthropic-sdk-php/blob/main/examples/beta/beta_tool_runner.php), dan [Ruby SDK](https://github.com/anthropics/anthropic-sdk-ruby/blob/main/helpers.md#3-auto-looping-tool-runner-beta).
 </Note>
 
-<Tip>
-**Manajemen konteks otomatis dengan pemadatan**
+## Penggunaan dasar \{#basic-usage}
 
-Tool runner mendukung [pemadatan](/docs/id/build-with-claude/context-editing#client-side-compaction-sdk) otomatis, yang menghasilkan ringkasan ketika penggunaan token melebihi ambang batas. Ini memungkinkan tugas agentic jangka panjang untuk melanjutkan melampaui batas jendela konteks.
-</Tip>
-
-## Penggunaan dasar
-
-Tentukan tools menggunakan helper SDK, kemudian gunakan tool runner untuk menjalankannya.
+Definisikan alat menggunakan helper SDK, lalu gunakan tool runner untuk menjalankannya.
 
 <Tabs>
 <Tab title="Python">
 
-Gunakan dekorator `@beta_tool` untuk mendefinisikan tools dengan type hints dan docstrings.
+Gunakan decorator `@beta_tool` untuk mendefinisikan alat dengan type hint dan docstring.
 
 <Note>
-Jika Anda menggunakan async client, ganti `@beta_tool` dengan `@beta_async_tool` dan tentukan fungsi dengan `async def`.
+Jika Anda menggunakan klien async, ganti `@beta_tool` dengan `@beta_async_tool` dan definisikan fungsi dengan `async def`.
 </Note>
 
 ```python
@@ -75,7 +67,7 @@ def calculate_sum(a: int, b: int) -> str:
 
 
 runner = client.beta.messages.tool_runner(
-    model="claude-opus-4-7",
+    model="claude-opus-4-8",
     max_tokens=1024,
     tools=[get_weather, calculate_sum],
     messages=[
@@ -89,40 +81,16 @@ for message in runner:
     print(message)
 ```
 
-Dekorator `@beta_tool` memeriksa argumen fungsi dan docstring untuk mengekstrak representasi skema JSON. Misalnya, `calculate_sum` menjadi:
-
-```json
-{
-  "name": "calculate_sum",
-  "description": "Add two numbers together.",
-  "input_schema": {
-    "additionalProperties": false,
-    "properties": {
-      "a": {
-        "description": "First number",
-        "title": "A",
-        "type": "integer"
-      },
-      "b": {
-        "description": "Second number",
-        "title": "B",
-        "type": "integer"
-      }
-    },
-    "required": ["a", "b"],
-    "type": "object"
-  }
-}
-```
+Decorator `@beta_tool` memeriksa argumen fungsi dan docstring untuk menurunkan JSON schema untuk Anda.
 
 </Tab>
 <Tab title="TypeScript">
 
-Gunakan `betaZodTool()` untuk definisi tool yang aman tipe dengan validasi Zod, atau `betaTool()` untuk definisi berbasis JSON Schema.
+Gunakan `betaZodTool()` untuk definisi alat yang type-safe dengan validasi Zod, atau `betaTool()` untuk definisi berbasis JSON Schema.
 
-TypeScript menawarkan dua pendekatan untuk mendefinisikan tools:
+TypeScript menawarkan dua pendekatan untuk mendefinisikan alat:
 
-**Menggunakan Zod (direkomendasikan)** - Gunakan `betaZodTool()` untuk definisi tool yang aman tipe dengan validasi Zod (memerlukan Zod 3.25.0 atau lebih tinggi):
+**Menggunakan Zod (direkomendasikan)** - Gunakan `betaZodTool()` untuk definisi alat yang type-safe dengan validasi Zod (memerlukan Zod 3.25.0 atau lebih tinggi):
 
 ```typescript hidelines={1}
 import Anthropic from "@anthropic-ai/sdk";
@@ -144,7 +112,7 @@ const getWeatherTool = betaZodTool({
 });
 
 const finalMessage = await client.beta.messages.toolRunner({
-  model: "claude-opus-4-7",
+  model: "claude-opus-4-8",
   max_tokens: 1024,
   tools: [getWeatherTool],
   messages: [{ role: "user", content: "What's the weather like in Paris?" }]
@@ -157,10 +125,10 @@ for (const block of finalMessage.content) {
 }
 ```
 
-**Menggunakan JSON Schema** - Gunakan `betaTool()` untuk definisi tool yang aman tipe tanpa Zod:
+**Menggunakan JSON Schema** - Gunakan `betaTool()` untuk definisi alat yang type-safe tanpa Zod:
 
 <Note>
-Input yang dihasilkan oleh Claude tidak akan divalidasi pada runtime. Lakukan validasi di dalam fungsi `run` jika diperlukan.
+Input yang dihasilkan oleh Claude tidak divalidasi saat runtime. Lakukan validasi di dalam fungsi `run` jika diperlukan.
 </Note>
 
 ```typescript hidelines={1}
@@ -186,7 +154,7 @@ const calculateSumTool = betaTool({
 });
 
 const finalMessage = await client.beta.messages.toolRunner({
-  model: "claude-opus-4-7",
+  model: "claude-opus-4-8",
   max_tokens: 1024,
   tools: [calculateSumTool],
   messages: [{ role: "user", content: "What's 15 + 27?" }]
@@ -200,30 +168,377 @@ for (const block of finalMessage.content) {
 ```
 
 </Tab>
+<Tab title="C#">
+
+Definisikan setiap alat sebagai `BetaRunnableTool`, dengan menyediakan `Definition` yang berisi JSON schema dan delegate `Run` yang dijalankan ketika Claude memanggil alat tersebut.
+
+```csharp
+using System.Text.Json;
+using Anthropic;
+using Anthropic.Helpers.Beta;
+using Anthropic.Models.Beta.Messages;
+using MessageCreateParams = Anthropic.Models.Beta.Messages.MessageCreateParams;
+using InputSchema = Anthropic.Models.Beta.Messages.InputSchema;
+using Role = Anthropic.Models.Beta.Messages.Role;
+using Model = Anthropic.Models.Messages.Model;
+
+var client = new AnthropicClient();
+
+var getWeatherTool = new BetaRunnableTool
+{
+    Name = "get_weather",
+    Definition = new BetaTool
+    {
+        Name = "get_weather",
+        Description = "Get the current weather in a given location.",
+        InputSchema = new InputSchema
+        {
+            Properties = new Dictionary<string, JsonElement>
+            {
+                ["location"] = JsonSerializer.SerializeToElement(
+                    new { type = "string", description = "The city and state, e.g. San Francisco, CA" }
+                ),
+            },
+            Required = ["location"],
+        },
+    },
+    Run = (toolUse, _) =>
+    {
+        var location = toolUse.Input["location"].GetString();
+        return Task.FromResult<BetaToolResultBlockParamContent>(
+            $"Weather in {location}: 20°C, sunny"
+        );
+    },
+};
+
+var calculateSumTool = new BetaRunnableTool
+{
+    Name = "calculate_sum",
+    Definition = new BetaTool
+    {
+        Name = "calculate_sum",
+        Description = "Add two numbers together.",
+        InputSchema = new InputSchema
+        {
+            Properties = new Dictionary<string, JsonElement>
+            {
+                ["a"] = JsonSerializer.SerializeToElement(new { type = "number" }),
+                ["b"] = JsonSerializer.SerializeToElement(new { type = "number" }),
+            },
+            Required = ["a", "b"],
+        },
+    },
+    Run = (toolUse, _) =>
+    {
+        var a = toolUse.Input["a"].GetDouble();
+        var b = toolUse.Input["b"].GetDouble();
+        return Task.FromResult<BetaToolResultBlockParamContent>($"{a + b}");
+    },
+};
+
+var runner = client.Beta.Messages.ToolRunner(
+    new MessageCreateParams
+    {
+        Model = Model.ClaudeOpus4_8,
+        MaxTokens = 1024,
+        Messages =
+        [
+            new()
+            {
+                Role = Role.User,
+                Content = "What's the weather like in Paris? Also, what's 15 + 27?",
+            },
+        ],
+    },
+    [getWeatherTool, calculateSumTool]
+);
+
+await foreach (var message in runner)
+{
+    Console.WriteLine(message);
+}
+```
+
+</Tab>
+<Tab title="Go">
+
+Definisikan alat dengan `toolrunner.NewBetaToolFromJSONSchema`. Tipe input handler adalah struct dengan tag `jsonschema:`; SDK melakukan refleksi terhadapnya untuk menghasilkan JSON schema.
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"log"
+
+	"github.com/anthropics/anthropic-sdk-go"
+	"github.com/anthropics/anthropic-sdk-go/toolrunner"
+)
+
+type GetWeatherInput struct {
+	Location string `json:"location" jsonschema:"required,description=The city and state, e.g. San Francisco, CA"`
+	Unit     string `json:"unit,omitempty" jsonschema:"enum=celsius,enum=fahrenheit,description=Temperature unit"`
+}
+
+type CalculateSumInput struct {
+	A int `json:"a" jsonschema:"required,description=First number"`
+	B int `json:"b" jsonschema:"required,description=Second number"`
+}
+
+func main() {
+	client := anthropic.NewClient()
+	ctx := context.Background()
+
+	getWeather, err := toolrunner.NewBetaToolFromJSONSchema(
+		"get_weather",
+		"Get the current weather in a given location.",
+		func(ctx context.Context, input GetWeatherInput) (anthropic.BetaToolResultBlockParamContentUnion, error) {
+			return anthropic.BetaToolResultBlockParamContentUnion{
+				OfText: &anthropic.BetaTextBlockParam{Text: "20°C, Sunny"},
+			}, nil
+		},
+	)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	calculateSum, err := toolrunner.NewBetaToolFromJSONSchema(
+		"calculate_sum",
+		"Add two numbers together.",
+		func(ctx context.Context, input CalculateSumInput) (anthropic.BetaToolResultBlockParamContentUnion, error) {
+			return anthropic.BetaToolResultBlockParamContentUnion{
+				OfText: &anthropic.BetaTextBlockParam{Text: fmt.Sprintf("%d", input.A+input.B)},
+			}, nil
+		},
+	)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	runner := client.Beta.Messages.NewToolRunner(
+		[]anthropic.BetaTool{getWeather, calculateSum},
+		anthropic.BetaToolRunnerParams{
+			BetaMessageNewParams: anthropic.BetaMessageNewParams{
+				Model:     anthropic.ModelClaudeOpus4_8,
+				MaxTokens: 1024,
+				Messages: []anthropic.BetaMessageParam{
+					anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock(
+						"What's the weather like in Paris? Also, what's 15 + 27?",
+					)),
+				},
+			},
+		},
+	)
+
+	for message, err := range runner.All(ctx) {
+		if err != nil {
+			log.Fatal(err)
+		}
+		fmt.Println(message)
+	}
+}
+```
+
+Tag struct `jsonschema:` menghasilkan input schema. Sebagai contoh, `CalculateSumInput` menjadi:
+
+```json
+{
+  "name": "calculate_sum",
+  "description": "Add two numbers together.",
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "a": { "type": "integer", "description": "First number" },
+      "b": { "type": "integer", "description": "Second number" }
+    },
+    "required": ["a", "b"]
+  }
+}
+```
+
+</Tab>
+<Tab title="Java">
+
+Definisikan setiap alat sebagai kelas yang mengimplementasikan `Supplier<String>`. Anotasi kelas dengan `@JsonClassDescription` untuk deskripsi alat, dan setiap field publik dengan `@JsonPropertyDescription` untuk deskripsi parameter. SDK menurunkan JSON schema, nama alat (nama kelas dalam format snake_case), dan parsing input dari kelas tersebut.
+
+```java
+import com.anthropic.client.AnthropicClient;
+import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+import com.anthropic.helpers.BetaToolRunner;
+import com.anthropic.models.beta.messages.BetaMessage;
+import com.anthropic.models.beta.messages.MessageCreateParams;
+import com.anthropic.models.messages.Model;
+import com.fasterxml.jackson.annotation.JsonClassDescription;
+import com.fasterxml.jackson.annotation.JsonPropertyDescription;
+import java.util.function.Supplier;
+
+@JsonClassDescription("Get the current weather in a given location")
+static class GetWeather implements Supplier<String> {
+    @JsonPropertyDescription("The city and state, e.g. San Francisco, CA")
+    public String location;
+
+    @JsonPropertyDescription("Temperature unit, either 'celsius' or 'fahrenheit'")
+    public String unit;
+
+    @Override
+    public String get() {
+        return "{\"temperature\": \"20°C\", \"condition\": \"Sunny\"}";
+    }
+}
+
+@JsonClassDescription("Add two numbers together")
+static class CalculateSum implements Supplier<String> {
+    @JsonPropertyDescription("First number")
+    public double a;
+
+    @JsonPropertyDescription("Second number")
+    public double b;
+
+    @Override
+    public String get() {
+        return String.valueOf(a + b);
+    }
+}
+
+void main() {
+    AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+    BetaToolRunner runner = client.beta()
+            .messages()
+            .toolRunner(MessageCreateParams.builder()
+                    .model(Model.CLAUDE_OPUS_4_8)
+                    .maxTokens(1024)
+                    .addBeta("structured-outputs-2025-11-13")
+                    .addUserMessage("What's the weather like in Paris? Also, what's 15 + 27?")
+                    .addTool(GetWeather.class)
+                    .addTool(CalculateSum.class)
+                    .build());
+
+    for (BetaMessage message : runner) {
+        IO.println(message);
+    }
+}
+```
+
+Nama kelas `CalculateSum` menjadi nama alat `calculate_sum`, dan SDK menghasilkan JSON schema dari field yang dianotasi:
+
+```json
+{
+  "name": "calculate_sum",
+  "description": "Add two numbers together",
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "a": { "description": "First number", "type": "number" },
+      "b": { "description": "Second number", "type": "number" }
+    },
+    "required": ["a", "b"],
+    "additionalProperties": false
+  }
+}
+```
+
+</Tab>
+<Tab title="PHP">
+
+Definisikan setiap alat sebagai `BetaRunnableTool` yang memasangkan definisi JSON schema alat dengan closure yang menjalankannya.
+
+```php
+<?php
+
+use Anthropic\Client;
+use Anthropic\Lib\Tools\BetaRunnableTool;
+use Anthropic\Messages\Model;
+
+$client = new Client();
+
+$getWeather = new BetaRunnableTool(
+    definition: [
+        'name' => 'get_weather',
+        'description' => 'Get the current weather in a given location.',
+        'input_schema' => [
+            'type' => 'object',
+            'properties' => [
+                'location' => [
+                    'type' => 'string',
+                    'description' => 'The city and state, e.g. San Francisco, CA',
+                ],
+                'unit' => [
+                    'type' => 'string',
+                    'enum' => ['celsius', 'fahrenheit'],
+                ],
+            ],
+            'required' => ['location'],
+        ],
+    ],
+    run: fn (array $input): string => json_encode([
+        'temperature' => '20°C',
+        'condition' => 'Sunny',
+    ]),
+);
+
+$calculateSum = new BetaRunnableTool(
+    definition: [
+        'name' => 'calculate_sum',
+        'description' => 'Add two numbers together.',
+        'input_schema' => [
+            'type' => 'object',
+            'properties' => [
+                'a' => ['type' => 'number', 'description' => 'First number'],
+                'b' => ['type' => 'number', 'description' => 'Second number'],
+            ],
+            'required' => ['a', 'b'],
+        ],
+    ],
+    run: fn (array $input): string => (string) ($input['a'] + $input['b']),
+);
+
+$runner = $client->beta->messages->toolRunner(
+    maxTokens: 1024,
+    messages: [
+        ['role' => 'user', 'content' => "What's the weather like in Paris? Also, what's 15 + 27?"],
+    ],
+    model: Model::CLAUDE_OPUS_4_8,
+    tools: [$getWeather, $calculateSum],
+);
+
+foreach ($runner as $message) {
+    foreach ($message->content as $block) {
+        if ($block->type === 'text') {
+            echo $block->text, "\n";
+        } elseif ($block->type === 'tool_use') {
+            echo "[Tool call: {$block->name}]\n";
+        }
+    }
+}
+```
+
+</Tab>
 <Tab title="Ruby">
 
-Gunakan kelas `Anthropic::BaseTool` untuk mendefinisikan tools dengan skema input yang diketik.
+Gunakan kelas `Anthropic::BaseTool` untuk mendefinisikan alat dengan input schema bertipe.
 
 ```ruby
 require "anthropic"
 
-# Initialize client
+# Inisialisasi klien
 client = Anthropic::Client.new
 
-# Define input schema
+# Definisikan skema input
 class GetWeatherInput < Anthropic::BaseModel
   required :location, String, doc: "The city and state, e.g. San Francisco, CA"
   optional :unit, Anthropic::InputSchema::EnumOf["celsius", "fahrenheit"],
            doc: "Temperature unit"
 end
 
-# Define tool
+# Definisikan alat
 class GetWeather < Anthropic::BaseTool
   doc "Get the current weather in a given location"
   input_schema GetWeatherInput
 
   def call(input)
-    # In a full implementation, you'd call a weather API here
+    # Dalam implementasi lengkap, Anda akan memanggil API cuaca di sini
     JSON.generate({temperature: "20°C", condition: "Sunny"})
   end
 end
@@ -242,9 +557,9 @@ class CalculateSum < Anthropic::BaseTool
   end
 end
 
-# Use the tool runner
+# Gunakan tool runner
 runner = client.beta.messages.tool_runner(
-  model: "claude-opus-4-7",
+  model: "claude-opus-4-8",
   max_tokens: 1024,
   tools: [GetWeather.new, CalculateSum.new],
   messages: [
@@ -259,27 +574,27 @@ runner.each_message do |message|
 end
 ```
 
-Kelas `Anthropic::BaseTool` menggunakan metode `doc` untuk deskripsi tool dan `input_schema` untuk mendefinisikan parameter yang diharapkan. SDK secara otomatis mengonversi ini ke format skema JSON yang sesuai.
+Kelas `Anthropic::BaseTool` menggunakan metode `doc` untuk deskripsi alat dan `input_schema` untuk mendefinisikan parameter yang diharapkan. SDK secara otomatis mengonversi ini ke format JSON schema yang sesuai.
 
 </Tab>
 </Tabs>
 
-Fungsi tool harus mengembalikan blok konten atau array blok konten, termasuk teks, gambar, atau blok dokumen. Ini memungkinkan tools untuk mengembalikan respons kaya dan multimodal. String yang dikembalikan akan dikonversi ke blok konten teks. Jika Anda ingin mengembalikan objek JSON terstruktur ke Claude, enkode ke string JSON sebelum mengembalikannya. Angka, boolean, atau primitif non-string lainnya juga harus dikonversi ke string.
+Fungsi alat harus mengembalikan content block atau array content block, termasuk blok teks, gambar, atau dokumen. Ini memungkinkan alat untuk mengembalikan respons multimodal yang kaya. String yang dikembalikan akan dikonversi menjadi content block teks. Jika Anda ingin mengembalikan objek JSON terstruktur ke Claude, encode menjadi string JSON sebelum mengembalikannya. Angka, Boolean, atau primitif non-string lainnya juga harus dikonversi menjadi string.
 
-## Iterasi di atas tool runner
+## Melakukan iterasi pada tool runner \{#iterating-over-the-tool-runner}
 
-Tool runner adalah iterable yang menghasilkan pesan dari Claude. Ini sering disebut sebagai "tool call loop". Setiap iterasi, runner memeriksa apakah Claude meminta penggunaan tool. Jika ya, ia memanggil tool dan mengirim hasilnya kembali ke Claude secara otomatis, kemudian menghasilkan pesan berikutnya dari Claude untuk melanjutkan loop Anda.
+Tool runner adalah iterable yang menghasilkan pesan dari Claude. Ini sering disebut sebagai "tool call loop" (loop pemanggilan alat). Pada setiap iterasi, runner memeriksa apakah Claude meminta penggunaan alat. Jika ya, runner memanggil alat tersebut dan mengirimkan hasilnya kembali ke Claude secara otomatis, lalu menghasilkan pesan berikutnya dari Claude untuk melanjutkan loop Anda.
 
-Anda dapat mengakhiri loop di iterasi mana pun dengan pernyataan `break`. Runner akan loop sampai Claude mengembalikan pesan tanpa penggunaan tool.
+Anda dapat mengakhiri loop pada iterasi mana pun dengan pernyataan `break`. Runner melakukan loop hingga Claude mengembalikan pesan tanpa penggunaan alat.
 
-Jika Anda tidak memerlukan pesan perantara, Anda dapat mendapatkan pesan final secara langsung:
+Jika Anda tidak membutuhkan pesan perantara, Anda dapat langsung mendapatkan pesan akhir:
 
 <Tabs>
 <Tab title="Python">
 
-Gunakan `runner.until_done()` untuk mendapatkan pesan final.
+Gunakan `runner.until_done()` untuk mendapatkan pesan akhir.
 
-```python hidelines={1..16}
+```python hidelines={1..18}
 import anthropic
 from anthropic import beta_tool
 
@@ -299,7 +614,7 @@ def calculate_sum(a: int, b: int) -> str:
 
 
 runner = client.beta.messages.tool_runner(
-    model="claude-opus-4-7",
+    model="claude-opus-4-8",
     max_tokens=1024,
     tools=[get_weather, calculate_sum],
     messages=[
@@ -310,13 +625,15 @@ runner = client.beta.messages.tool_runner(
     ],
 )
 final_message = runner.until_done()
-print(final_message.content[0].text)
+for block in final_message.content:
+    if block.type == "text":
+        print(block.text)
 ```
 
 </Tab>
 <Tab title="TypeScript">
 
-Cukup `await` runner untuk mendapatkan pesan final.
+Gunakan `await` pada runner untuk mendapatkan pesan akhir.
 
 ```typescript hidelines={1..13}
 import Anthropic from "@anthropic-ai/sdk";
@@ -333,14 +650,268 @@ const getWeatherTool = betaZodTool({
 });
 
 const runner = client.beta.messages.toolRunner({
-  model: "claude-opus-4-7",
+  model: "claude-opus-4-8",
   max_tokens: 1024,
   tools: [getWeatherTool],
   messages: [{ role: "user", content: "What's the weather like in Paris?" }]
 });
 
 const finalMessage = await runner;
-console.log(finalMessage.content[0].text);
+for (const block of finalMessage.content) {
+  if (block.type === "text") {
+    console.log(block.text);
+  }
+}
+```
+
+</Tab>
+<Tab title="C#">
+
+Gunakan `runner.RunUntilDoneAsync()` untuk mendapatkan pesan akhir.
+
+```csharp hidelines={1..33}
+using System.Text.Json;
+using Anthropic;
+using Anthropic.Helpers.Beta;
+using Anthropic.Models.Beta.Messages;
+using MessageCreateParams = Anthropic.Models.Beta.Messages.MessageCreateParams;
+using InputSchema = Anthropic.Models.Beta.Messages.InputSchema;
+using Role = Anthropic.Models.Beta.Messages.Role;
+using Model = Anthropic.Models.Messages.Model;
+
+var client = new AnthropicClient();
+
+var getWeatherTool = new BetaRunnableTool
+{
+    Name = "get_weather",
+    Definition = new BetaTool
+    {
+        Name = "get_weather",
+        Description = "Get the current weather in a given location.",
+        InputSchema = new InputSchema
+        {
+            Properties = new Dictionary<string, JsonElement>
+            {
+                ["location"] = JsonSerializer.SerializeToElement(new { type = "string" }),
+            },
+            Required = ["location"],
+        },
+    },
+    Run = (toolUse, _) =>
+        Task.FromResult<BetaToolResultBlockParamContent>(
+            $"Weather in {toolUse.Input["location"].GetString()}: 20°C, sunny"
+        ),
+};
+
+var runner = client.Beta.Messages.ToolRunner(
+    new MessageCreateParams
+    {
+        Model = Model.ClaudeOpus4_8,
+        MaxTokens = 1024,
+        Messages =
+        [
+            new()
+            {
+                Role = Role.User,
+                Content = "What's the weather like in Paris?",
+            },
+        ],
+    },
+    [getWeatherTool]
+);
+
+var finalMessage = await runner.RunUntilDoneAsync();
+foreach (var block in finalMessage.Content)
+{
+    if (block.TryPickText(out var textBlock))
+    {
+        Console.WriteLine(textBlock.Text);
+    }
+}
+```
+
+</Tab>
+<Tab title="Go">
+
+Gunakan `runner.RunToCompletion(ctx)` untuk mendapatkan pesan akhir.
+
+```go hidelines={1..32,-1}
+package main
+
+import (
+	"context"
+	"fmt"
+	"log"
+
+	"github.com/anthropics/anthropic-sdk-go"
+	"github.com/anthropics/anthropic-sdk-go/toolrunner"
+)
+
+type GetWeatherInput struct {
+	Location string `json:"location" jsonschema:"required,description=The city and state"`
+}
+
+func main() {
+	client := anthropic.NewClient()
+	ctx := context.Background()
+
+	getWeather, err := toolrunner.NewBetaToolFromJSONSchema(
+		"get_weather",
+		"Get the current weather in a given location.",
+		func(ctx context.Context, input GetWeatherInput) (anthropic.BetaToolResultBlockParamContentUnion, error) {
+			return anthropic.BetaToolResultBlockParamContentUnion{
+				OfText: &anthropic.BetaTextBlockParam{Text: "20°C, Sunny"},
+			}, nil
+		},
+	)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	runner := client.Beta.Messages.NewToolRunner(
+		[]anthropic.BetaTool{getWeather},
+		anthropic.BetaToolRunnerParams{
+			BetaMessageNewParams: anthropic.BetaMessageNewParams{
+				Model:     anthropic.ModelClaudeOpus4_8,
+				MaxTokens: 1024,
+				Messages: []anthropic.BetaMessageParam{
+					anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock(
+						"What's the weather like in Paris?",
+					)),
+				},
+			},
+		},
+	)
+
+	finalMessage, err := runner.RunToCompletion(ctx)
+	if err != nil {
+		log.Fatal(err)
+	}
+	for _, block := range finalMessage.Content {
+		if textBlock, ok := block.AsAny().(anthropic.BetaTextBlock); ok {
+			fmt.Println(textBlock.Text)
+		}
+	}
+}
+```
+
+</Tab>
+<Tab title="Java">
+
+Java SDK tidak memiliki pintasan `until_done()`. Lakukan iterasi hingga selesai dan simpan pesan terakhir.
+
+```java hidelines={1..39,-1}
+import com.anthropic.client.AnthropicClient;
+import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+import com.anthropic.helpers.BetaToolRunner;
+import com.anthropic.models.beta.messages.BetaContentBlock;
+import com.anthropic.models.beta.messages.BetaMessage;
+import com.anthropic.models.beta.messages.MessageCreateParams;
+import com.anthropic.models.messages.Model;
+import com.fasterxml.jackson.annotation.JsonClassDescription;
+import com.fasterxml.jackson.annotation.JsonPropertyDescription;
+import java.util.function.Supplier;
+
+@JsonClassDescription("Get the current weather in a given location")
+static class GetWeather implements Supplier<String> {
+    @JsonPropertyDescription("The city and state, e.g. San Francisco, CA")
+    public String location;
+
+    @Override
+    public String get() {
+        return "20°C, Sunny";
+    }
+}
+
+@JsonClassDescription("Add two numbers together")
+static class CalculateSum implements Supplier<String> {
+    @JsonPropertyDescription("First number")
+    public double a;
+
+    @JsonPropertyDescription("Second number")
+    public double b;
+
+    @Override
+    public String get() {
+        return String.valueOf(a + b);
+    }
+}
+
+void main() {
+    AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+    BetaToolRunner runner = client.beta()
+            .messages()
+            .toolRunner(MessageCreateParams.builder()
+                    .model(Model.CLAUDE_OPUS_4_8)
+                    .maxTokens(1024)
+                    .addBeta("structured-outputs-2025-11-13")
+                    .addUserMessage("What's the weather like in Paris? Also, what's 15 + 27?")
+                    .addTool(GetWeather.class)
+                    .addTool(CalculateSum.class)
+                    .build());
+
+    BetaMessage finalMessage = null;
+    for (BetaMessage message : runner) {
+        finalMessage = message;
+    }
+    for (BetaContentBlock block : finalMessage.content()) {
+        block.text().ifPresent(textBlock -> IO.println(textBlock.text()));
+    }
+}
+```
+
+</Tab>
+<Tab title="PHP">
+
+Gunakan `runUntilDone()` untuk mendapatkan pesan akhir.
+
+```php hidelines={1..30}
+<?php
+
+use Anthropic\Client;
+use Anthropic\Lib\Tools\BetaRunnableTool;
+use Anthropic\Messages\Model;
+
+$client = new Client();
+
+$getWeather = new BetaRunnableTool(
+    definition: [
+        'name' => 'get_weather',
+        'description' => 'Get the current weather in a given location.',
+        'input_schema' => [
+            'type' => 'object',
+            'properties' => ['location' => ['type' => 'string']],
+            'required' => ['location'],
+        ],
+    ],
+    run: fn (array $input): string => '20°C, Sunny',
+);
+
+$calculateSum = new BetaRunnableTool(
+    definition: [
+        'name' => 'calculate_sum',
+        'description' => 'Add two numbers together.',
+        'input_schema' => ['type' => 'object', 'properties' => ['a' => ['type' => 'number'], 'b' => ['type' => 'number']], 'required' => ['a', 'b']],
+    ],
+    run: fn (array $input): string => (string) ($input['a'] + $input['b']),
+);
+
+$runner = $client->beta->messages->toolRunner(
+    maxTokens: 1024,
+    messages: [
+        ['role' => 'user', 'content' => "What's the weather like in Paris? Also, what's 15 + 27?"],
+    ],
+    model: Model::CLAUDE_OPUS_4_8,
+    tools: [$getWeather, $calculateSum],
+);
+
+$finalMessage = $runner->runUntilDone();
+foreach ($finalMessage->content as $block) {
+    if ($block->type === 'text') {
+        echo $block->text, "\n";
+    }
+}
 ```
 
 </Tab>
@@ -348,7 +919,11 @@ console.log(finalMessage.content[0].text);
 
 Gunakan `runner.run_until_finished` untuk mendapatkan semua pesan.
 
-```ruby hidelines={1..25}
+```ruby hidelines={1..29}
+require "anthropic"
+
+client = Anthropic::Client.new
+
 class GetWeatherInput < Anthropic::BaseModel
   required :location, String
 end
@@ -375,7 +950,7 @@ class CalculateSum < Anthropic::BaseTool
 end
 
 runner = client.beta.messages.tool_runner(
-  model: "claude-opus-4-7",
+  model: "claude-opus-4-8",
   max_tokens: 1024,
   tools: [GetWeather.new, CalculateSum.new],
   messages: [
@@ -390,140 +965,364 @@ all_messages.each { |msg| puts msg.content }
 </Tab>
 </Tabs>
 
-## Penggunaan lanjutan
+## Penggunaan lanjutan \{#advanced-usage}
 
-Dalam loop, Anda dapat sepenuhnya menyesuaikan permintaan berikutnya tool runner ke Messages API. Runner secara otomatis menambahkan hasil tool ke riwayat pesan, jadi Anda tidak perlu mengelolanya secara manual. Anda dapat secara opsional memeriksa hasil tool untuk logging atau debugging, dan memodifikasi parameter permintaan sebelum panggilan API berikutnya.
+Di dalam loop, Anda dapat membaca setiap pesan respons dan memodifikasi status runner sebelum panggilan API berikutnya. Setiap iterasi mengikuti siklus hidup berikut:
+
+1. Runner mengirim permintaan ke Messages API dengan status saat ini.
+2. Runner menghasilkan pesan respons ke badan loop Anda.
+3. Badan loop Anda dijalankan. Anda dapat membaca pesan dan secara opsional memodifikasi status runner.
+4. Ketika badan loop Anda selesai, runner memeriksa apakah Anda memodifikasi riwayat pesannya.
+   - **Jika Anda tidak memodifikasi riwayat pesan:** Runner menambahkan pesan asisten ke statusnya. Jika pesan berisi pemanggilan alat, runner menjalankannya dan menambahkan hasilnya. Jika tidak ada pemanggilan alat, loop keluar.
+   - **Jika Anda memodifikasi riwayat pesan:** Runner melewati penambahan otomatisnya dan menggunakan status Anda tanpa perubahan. Lihat [Mengambil alih riwayat pesan](#mengambil-alih-riwayat-pesan).
+
+```mermaid
+sequenceDiagram
+  participant U as Your code
+  participant TR as ToolRunner
+  participant API as Messages API
+
+  loop For each iteration
+    TR->>API: Send request with current state
+    API-->>TR: Response message
+    TR-->>U: Yield message
+    note over U: Your loop body runs
+    U->>TR: Resume
+    alt Message history unchanged
+      TR->>TR: Append assistant message,<br/>run tools, append results<br/>(exit if no tool calls)
+    else Message history changed
+      TR->>TR: Use your state unchanged
+    end
+  end
+```
+
+### Mengambil alih riwayat pesan \{#taking-over-message-history}
+
+Secara default, runner mengelola status percakapan untuk Anda: setelah setiap giliran, runner menambahkan pesan asisten dan hasil alat apa pun ke riwayat pesannya sendiri. Anda mengambil alih riwayat pesan ketika Anda ingin mencoba ulang suatu giliran (membuang respons dan mengirim ulang), menyisipkan pesan tindak lanjut, atau membangun hasil alat sendiri.
+
+Anda mengambil alih dengan memodifikasi pesan runner dari dalam badan loop. Metode persisnya bergantung pada SDK; lihat tab per bahasa berikut.
+
+Ketika Anda mengambil alih untuk suatu iterasi, runner tidak menambahkan pesan asisten atau hasil alat dari giliran tersebut. Anda menjadi bertanggung jawab untuk menjaga percakapan tetap valid: tambahkan sendiri pesan asisten dan hasil alat (jika Anda ingin giliran tersebut dihitung), modifikasi status secara kondisional agar loop masih dapat keluar ketika tidak ada pemanggilan alat, dan berikan `max_iterations` untuk membatasi loop. Ketujuh SDK mendukung `max_iterations`.
 
 <Tabs>
 <Tab title="Python">
 
-Gunakan `generate_tool_call_response()` untuk secara opsional memeriksa hasil tool (runner menambahkannya secara otomatis). Gunakan `set_messages_params()` dan `append_messages()` untuk memodifikasi permintaan.
+Gunakan `generate_tool_call_response()` untuk memeriksa atau menghitung hasil alat. Memanggil `append_messages()` di dalam loop memberi tahu runner bahwa Anda mengelola riwayat sendiri, jadi sertakan pesan asisten dan hasil alat dalam apa yang Anda tambahkan.
 
-```python nocheck
+````python
 runner = client.beta.messages.tool_runner(
-    model="claude-opus-4-7",
+    model="claude-opus-4-8",
     max_tokens=1024,
+    max_iterations=10,
     tools=[get_weather],
     messages=[{"role": "user", "content": "What's the weather in San Francisco?"}],
 )
+
 for message in runner:
-    # Optional: inspect the tool response (automatically appended by the runner)
     tool_response = runner.generate_tool_call_response()
-    if tool_response:
-        print(f"Tool result: {tool_response}")
+    if tool_response is not None:
+        # append_messages() flags state as modified, so the runner skips its
+        # automatic append for this iteration. Append the assistant message and
+        # tool result yourself, plus any follow-up.
+        runner.append_messages(
+            message,
+            tool_response,
+            {"role": "user", "content": "Please be concise."},
+        )
+    # When there's no tool call, leave state untouched so the loop exits.
+````
 
-    # Customize the next request
-    runner.set_messages_params(
-        lambda params: {
-            **params,
-            "max_tokens": 2048,  # Increase tokens for next request
-        }
-    )
+Untuk mengubah parameter permintaan seperti `max_tokens` tanpa mengambil alih riwayat pesan, gunakan `set_messages_params()`. Runner tetap menambahkan pesan asisten dan hasil alat secara otomatis.
 
-    # Or add additional messages
-    runner.append_messages(
-        {"role": "user", "content": "Please be concise in your response."}
-    )
-```
+````python
+for message in runner:
+    runner.set_messages_params(lambda params: {**params, "max_tokens": 2048})
+````
 
 </Tab>
 <Tab title="TypeScript">
 
-Gunakan `generateToolResponse()` untuk secara opsional memeriksa hasil tool (runner menambahkannya secara otomatis). Gunakan `setMessagesParams()` dan `pushMessages()` untuk memodifikasi permintaan.
+Gunakan `runner.params` untuk membaca parameter permintaan saat ini dan `setMessagesParams()` untuk menggantinya. Memanggil `setMessagesParams()` atau `pushMessages()` di dalam loop memberi tahu runner bahwa Anda mengelola status sendiri: pesan asisten dan hasil alat dari iterasi ini dibuang, dan permintaan berikutnya dikirim dengan status Anda.
 
-```typescript nocheck
+Contoh berikut mencoba ulang respons yang terpotong dengan anggaran `max_tokens` yang lebih besar.
+
+````typescript
 const runner = client.beta.messages.toolRunner({
-  model: "claude-opus-4-7",
+  model: "claude-opus-4-8",
   max_tokens: 1024,
+  max_iterations: 10,
   tools: [getWeatherTool],
-  messages: [{ role: "user", content: "What's the weather in San Francisco?" }]
+  messages: [
+    {
+      role: "user",
+      content: "Give me a detailed weather report for every major US city."
+    }
+  ]
 });
 
+const MAX_TOKEN_CEILING = 8192;
+
 for await (const message of runner) {
-  // Optional: inspect the tool result message (automatically appended by the runner)
-  const toolResultMessage = await runner.generateToolResponse();
-  if (toolResultMessage) {
-    console.log("Tool result:", toolResultMessage);
+  if (message.stop_reason === "max_tokens") {
+    const current = runner.params.max_tokens;
+    if (current >= MAX_TOKEN_CEILING) {
+      console.warn(`Hit ceiling (${MAX_TOKEN_CEILING}); stopping.`);
+      break;
+    }
+    const doubled = Math.min(current * 2, MAX_TOKEN_CEILING);
+    console.log(`Response truncated at ${current} tokens; retrying with ${doubled}.`);
+    // Bump the budget. setMessagesParams() flags state as modified, so the
+    // runner does NOT append the truncated message. The next iteration retries
+    // the same turn with the larger budget.
+    runner.setMessagesParams((params) => ({ ...params, max_tokens: doubled }));
   }
-
-  // Customize the next request
-  runner.setMessagesParams((params) => ({
-    ...params,
-    max_tokens: 2048 // Increase tokens for next request
-  }));
-
-  // Or add additional messages
-  runner.pushMessages({ role: "user", content: "Please be concise in your response." });
+  // Otherwise leave state untouched so the runner auto-appends and continues.
 }
-```
+````
+
+</Tab>
+<Tab title="C#">
+
+Memanggil `SetParams()` atau `PushMessages()` menandai status sebagai dimodifikasi, yang menyebabkan runner melewati penambahan otomatisnya untuk giliran tersebut. Ketika Anda mengambil alih, tambahkan sendiri pesan asisten dan hasil alat; jika tidak, percakapan tidak akan membuat kemajuan. Runner C# selalu keluar ketika respons tidak memiliki pemanggilan alat, jadi kondisikan setiap mutasi status pada keberadaan blok `tool_use`.
+
+````csharp
+var runner = client.Beta.Messages.ToolRunner(
+    new MessageCreateParams
+    {
+        Model = Model.ClaudeOpus4_8,
+        MaxTokens = 1024,
+        Messages = [new() { Role = Role.User, Content = "What's the weather in San Francisco?" }],
+    },
+    [getWeatherTool],
+    maxIterations: 10
+);
+
+await foreach (var message in runner)
+{
+    var toolUseBlock = message
+        .Content.Select(block => block.TryPickToolUse(out var toolUse) ? toolUse : null)
+        .FirstOrDefault(toolUse => toolUse is not null);
+
+    if (toolUseBlock is null)
+    {
+        // No tool call: leave state untouched so the loop exits normally.
+        continue;
+    }
+
+    // Run the tool yourself and build the result block.
+    var toolResult = new BetaToolResultBlockParam(toolUseBlock.ID)
+    {
+        Content = await getWeatherTool.ExecuteAsync(toolUseBlock, default),
+    };
+
+    // PushMessages() flags state as modified; the runner skips its auto-append.
+    // Supply the assistant turn and the tool result yourself, then add a follow-up.
+    runner.PushMessages(
+        new()
+        {
+            Role = Role.Assistant,
+            Content = new BetaMessageParamContent(
+                JsonSerializer.SerializeToElement(
+                    message.Content.Select(block => block.Json).ToArray()
+                )
+            ),
+        },
+        new()
+        {
+            Role = Role.User,
+            Content = new List<BetaContentBlockParam> { toolResult },
+        },
+        new() { Role = Role.User, Content = "Please be concise in your response." }
+    );
+}
+````
+
+</Tab>
+<Tab title="Go">
+
+Runner Go mengekspos parameter sebagai field publik `Params`. Memodifikasi `runner.Params` di antara panggilan ke `NextMessage(ctx)` berlaku untuk permintaan API berikutnya. Tidak seperti SDK lainnya, runner Go selalu menambahkan pesan asisten dan hasil alat tanpa syarat; memodifikasi `Params` tidak menekan langkah tersebut.
+
+````go
+runner := client.Beta.Messages.NewToolRunner(
+	[]anthropic.BetaTool{getWeather},
+	anthropic.BetaToolRunnerParams{
+		BetaMessageNewParams: anthropic.BetaMessageNewParams{
+			Model:     anthropic.ModelClaudeOpus4_8,
+			MaxTokens: 1024,
+			Messages: []anthropic.BetaMessageParam{
+				anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock(
+					"What's the weather in San Francisco?",
+				)),
+			},
+		},
+		MaxIterations: 10,
+	},
+)
+
+for {
+	message, err := runner.NextMessage(ctx)
+	if err != nil {
+		log.Fatal(err)
+	}
+	if message == nil {
+		break // conversation complete
+	}
+
+	// The Go runner always appends the assistant message and tool results.
+	// Param changes here apply to the next iteration.
+	runner.Params.MaxTokens = 2048
+}
+````
+
+</Tab>
+<Tab title="Java">
+
+Gunakan `runner.params()` untuk membaca parameter saat ini dan `runner.setNextParams()` untuk menggantinya untuk iterasi berikutnya. Ketika Anda memanggil `setNextParams()` di dalam loop, runner melewati penambahan otomatisnya. Pesan yang baru saja dihasilkan dibuang, dan iterasi berikutnya mengirim parameter baru Anda tanpa perubahan.
+
+Contoh berikut mencoba ulang giliran yang mencapai batas token dengan menggandakan `max_tokens`. Melakukan mutasi hanya pada cabang `max_tokens` menjaga loop tetap konvergen: giliran yang selesai secara normal akan dilewati, dan runner menambahkan secara otomatis dan keluar ketika tidak ada lagi pemanggilan alat.
+
+````java
+BetaToolRunner runner = client.beta()
+        .messages()
+        .toolRunner(ToolRunnerCreateParams.builder()
+                .initialMessageParams(MessageCreateParams.builder()
+                        .model(Model.CLAUDE_OPUS_4_8)
+                        .maxTokens(1024)
+                        .addBeta("structured-outputs-2025-11-13")
+                        .addUserMessage("Give me a detailed weather report for every major US city.")
+                        .addTool(GetWeather.class)
+                        .build())
+                .maxIterations(10L)
+                .build());
+
+long ceiling = 8192;
+
+for (BetaMessage message : runner) {
+    if (BetaStopReason.MAX_TOKENS.equals(message.stopReason().orElse(null))) {
+        long current = runner.params().maxTokens();
+        if (current >= ceiling) {
+            IO.println("Hit ceiling (" + ceiling + "), accepting truncated response.");
+            break;
+        }
+        long doubled = Math.min(current * 2, ceiling);
+        IO.println("Response truncated at " + current + " tokens, retrying with " + doubled + ".");
+
+        // Calling setNextParams() flags this turn as user-managed: the runner
+        // does NOT auto-append the truncated message, so the next iteration
+        // re-sends the same conversation prefix with the larger budget.
+        runner.setNextParams(runner.params().toBuilder().maxTokens(doubled).build());
+    }
+    // No mutation on a normal turn: the runner auto-appends and continues.
+}
+````
+
+</Tab>
+<Tab title="PHP">
+
+Gunakan `setMessagesParams()` dan `pushMessages()` untuk memodifikasi status runner, dan `getParams()` untuk membacanya. Memanggil salah satu setter di dalam loop memberi tahu runner untuk melewati penambahan otomatisnya, sehingga percakapan berlanjut dari status yang Anda modifikasi.
+
+Contoh berikut menggandakan `max_tokens` dan mencoba ulang ketika respons terpotong.
+
+````php
+use Anthropic\Beta\Messages\BetaStopReason;
+
+$runner = $client->beta->messages->toolRunner(
+    maxTokens: 1024,
+    messages: [
+        ['role' => 'user', 'content' => 'Give a detailed weather report for every major US city.'],
+    ],
+    model: Model::CLAUDE_OPUS_4_8,
+    tools: [$getWeather],
+    maxIterations: 10,
+);
+
+$maxTokenCeiling = 8192;
+
+foreach ($runner as $message) {
+    if ($message->stopReason === BetaStopReason::MAX_TOKENS->value) {
+        $current = $runner->getParams()['maxTokens'];
+
+        if ($current >= $maxTokenCeiling) {
+            echo "Hit ceiling ({$maxTokenCeiling}), accepting truncated response.\n";
+            break;
+        }
+
+        $doubled = min($current * 2, $maxTokenCeiling);
+        echo "Response truncated at {$current} tokens, retrying with {$doubled}.\n";
+
+        // Calling setMessagesParams() inside the loop tells the runner to skip
+        // its automatic append. The truncated message is discarded; the next
+        // iteration retries with the larger budget.
+        // Keys are camelCase, matching the toolRunner() named parameters.
+        $runner->setMessagesParams(['maxTokens' => $doubled]);
+    }
+}
+````
 
 </Tab>
 <Tab title="Ruby">
 
-Gunakan `next_message` untuk kontrol langkah demi langkah. Gunakan `feed_messages` untuk menyuntikkan pesan dan `params` untuk mengakses parameter.
+Gunakan `next_message` untuk kontrol langkah demi langkah. Pada saat `next_message` selesai, pesan asisten dan hasil alat untuk giliran tersebut sudah ditambahkan. Gunakan `feed_messages` untuk menyisipkan pesan tindak lanjut di antara giliran, dan `runner.params.update(...)` untuk mengubah parameter permintaan secara langsung.
 
-```ruby hidelines={1..12}
-class GetWeatherInput < Anthropic::BaseModel
-  required :location, String
-end
+Anda mengambil alih riwayat pesan ketika Anda menetapkan ulang `runner.params[:messages]`, atau memanggil `feed_messages` dari dalam blok `each_message`. Pola berikut memanggil `feed_messages` di antara panggilan `next_message`, yang tidak mengambil alih.
 
-class GetWeather < Anthropic::BaseTool
-  doc "Get the current weather in a given location"
-  input_schema GetWeatherInput
-  def call(input)
-    "Weather in #{input.location}: 20°C, Sunny"
-  end
-end
-
+````ruby
 runner = client.beta.messages.tool_runner(
-  model: "claude-opus-4-7",
+  model: "claude-opus-4-8",
   max_tokens: 1024,
+  max_iterations: 10,
   tools: [GetWeather.new],
   messages: [{role: "user", content: "What's the weather in San Francisco?"}]
 )
 
-# Manual step-by-step control
+# Step the runner once. The assistant message and tool result are appended
+# to runner.params[:messages] before next_message returns.
 message = runner.next_message
 puts message.content
 
-# Inject follow-up messages
-runner.feed_messages([
-  {role: "user", content: "Also check Boston"}
-])
+# Inject a follow-up before continuing. feed_messages takes a splat, not an array.
+runner.feed_messages({role: "user", content: "Also check Boston."})
 
-# Access current parameters
-puts runner.params
-```
+# Change parameters in place. Reassigning runner.params[:messages] would tell
+# the runner to skip its automatic append on the next turn.
+runner.params.update(max_tokens: 2048)
+
+runner.run_until_finished
+````
 
 </Tab>
 </Tabs>
 
-### Debugging eksekusi tool
+### Manajemen konteks otomatis \{#automatic-context-management}
 
-Ketika tool melempar pengecualian, tool runner menangkapnya dan mengembalikan error ke Claude sebagai hasil tool dengan `is_error: true`. Secara default, hanya pesan pengecualian yang disertakan, bukan stack trace lengkap.
+Untuk tugas agentik yang berjalan lama, tool runner mendukung [compaction](/docs/id/build-with-claude/context-editing#client-side-compaction-sdk) (pemadatan) otomatis, yang menghasilkan ringkasan ketika penggunaan token melebihi ambang batas sehingga percakapan dapat berlanjut melampaui batas jendela konteks.
+
+### Melakukan debug eksekusi alat \{#debugging-tool-execution}
+
+Ketika alat melempar exception, tool runner menangkapnya dan mengembalikan error ke Claude sebagai hasil alat dengan `is_error: true`. Secara default, hanya pesan exception yang disertakan, bukan stack trace lengkap.
 
 Untuk melihat stack trace lengkap dan informasi debug, atur variabel lingkungan `ANTHROPIC_LOG`:
 
 ```bash
-# View info-level logs including tool errors
+# Lihat log level info termasuk error alat
 export ANTHROPIC_LOG=info
 
-# View debug-level logs for more verbose output
+# Lihat log level debug untuk output yang lebih detail
 export ANTHROPIC_LOG=debug
 ```
 
-Ketika diaktifkan, SDK mencatat detail pengecualian lengkap (menggunakan modul `logging` Python, konsol di TypeScript, atau logger Ruby), termasuk stack trace lengkap ketika tool gagal.
+Ketika diaktifkan, SDK mencatat detail exception lengkap ke fasilitas logging standar bahasa Anda, termasuk stack trace lengkap ketika alat gagal.
 
-### Mengintersepsi error tool
+### Mencegat error alat \{#intercepting-tool-errors}
 
-Secara default, error tool diteruskan kembali ke Claude, yang kemudian dapat merespons dengan tepat. Namun, Anda mungkin ingin mendeteksi error dan menanganinya secara berbeda, misalnya, untuk menghentikan eksekusi lebih awal atau menerapkan penanganan error khusus.
+Secara default, error alat diteruskan kembali ke Claude, yang kemudian dapat merespons dengan tepat. Namun, Anda mungkin ingin mendeteksi error dan menanganinya secara berbeda, misalnya, untuk menghentikan eksekusi lebih awal atau mengimplementasikan penanganan error kustom.
 
-Gunakan metode respons tool untuk mengintersepsi hasil tool dan memeriksa error sebelum dikirim ke Claude:
+Gunakan metode respons alat untuk mencegat hasil alat dan memeriksa error sebelum dikirim ke Claude:
 
 <Tabs>
 <Tab title="Python">
 
-```python hidelines={1..11}
+```python hidelines={1..13}
 import anthropic
 import json
 from anthropic import beta_tool
@@ -538,27 +1337,27 @@ def my_tool(query: str) -> str:
 
 
 runner = client.beta.messages.tool_runner(
-    model="claude-opus-4-7",
+    model="claude-opus-4-8",
     max_tokens=1024,
     tools=[my_tool],
-    messages=[{"role": "user", "content": "Run the tool"}],
+    messages=[{"role": "user", "content": "Run my_tool with the query 'hello'."}],
 )
 
 for message in runner:
     tool_response = runner.generate_tool_call_response()
 
     if tool_response is not None:
-        # tool_response is a dict: {"role": "user", "content": [...]}
-        # Check if any tool result has an error
+        # tool_response adalah dict: {"role": "user", "content": [...]}
+        # Periksa apakah ada hasil alat yang mengandung error
         for block in tool_response["content"]:
             if block.get("is_error"):
-                # Option 1: Raise an exception to stop the loop
+                # Opsi 1: Lempar exception untuk menghentikan loop
                 raise RuntimeError(f"Tool failed: {json.dumps(block['content'])}")
 
-                # Option 2: Log and continue (let Claude handle it)
+                # Opsi 2: Catat log dan lanjutkan (biarkan Claude menanganinya)
                 # logger.error(f"Tool error: {json.dumps(block['content'])}")
 
-    # Process the message normally
+    # Proses pesan seperti biasa
     print(message.content)
 ```
 
@@ -580,37 +1379,125 @@ const myTool = betaZodTool({
 });
 
 const runner = client.beta.messages.toolRunner({
-  model: "claude-opus-4-7",
+  model: "claude-opus-4-8",
   max_tokens: 1024,
   tools: [myTool],
-  messages: [{ role: "user", content: "Run the tool" }]
+  messages: [{ role: "user", content: "Run my_tool with the query 'hello'." }]
 });
 
 for await (const message of runner) {
   const toolResultMessage = await runner.generateToolResponse();
 
   if (toolResultMessage) {
-    // Check if any tool result has an error
+    // Periksa apakah ada hasil alat yang mengandung error
     for (const block of toolResultMessage.content) {
       if (block.type === "tool_result" && block.is_error) {
-        // Option 1: Throw to stop the loop
+        // Opsi 1: Lempar error untuk menghentikan loop
         throw new Error(`Tool failed: ${JSON.stringify(block.content)}`);
 
-        // Option 2: Log and continue (let Claude handle it)
+        // Opsi 2: Catat log dan lanjutkan (biarkan Claude menanganinya)
         // console.error(`Tool error: ${JSON.stringify(block.content)}`);
       }
     }
   }
 
-  // Process the message normally
+  // Proses pesan seperti biasa
   console.log(message.content);
 }
 ```
 
 </Tab>
+<Tab title="C#">
+
+Tool runner C# tidak mengekspos hook untuk memeriksa hasil alat sebelum dikirim ke Claude. Untuk mengontrol konten error, lempar `BetaToolError` dari dalam badan alat; runner mengonversinya menjadi `tool_result` dengan `is_error: true` dan konten yang Anda berikan.
+
+```csharp hidelines={1..14}
+using System.Text.Json;
+using Anthropic;
+using Anthropic.Helpers.Beta;
+using Anthropic.Models.Beta.Messages;
+using MessageCreateParams = Anthropic.Models.Beta.Messages.MessageCreateParams;
+using InputSchema = Anthropic.Models.Beta.Messages.InputSchema;
+using Role = Anthropic.Models.Beta.Messages.Role;
+using Model = Anthropic.Models.Messages.Model;
+
+static Task<string> CallExternalWeatherService(string location, CancellationToken ct) =>
+    throw new HttpRequestException("simulated outage");
+
+var client = new AnthropicClient();
+
+var getWeatherTool = new BetaRunnableTool
+{
+    Name = "get_weather",
+    Definition = new BetaTool
+    {
+        Name = "get_weather",
+        Description = "Get the current weather in a given location.",
+        InputSchema = new InputSchema
+        {
+            Properties = new Dictionary<string, JsonElement>
+            {
+                ["location"] = JsonSerializer.SerializeToElement(new { type = "string" }),
+            },
+            Required = ["location"],
+        },
+    },
+    Run = async (toolUse, cancellationToken) =>
+    {
+        try
+        {
+            return await CallExternalWeatherService(
+                toolUse.Input["location"].GetString()!,
+                cancellationToken
+            );
+        }
+        catch (HttpRequestException ex)
+        {
+            // Tulis log di sini jika Anda perlu memeriksa kegagalan sebelum Claude melihatnya.
+            throw new BetaToolError($"Weather service unavailable: {ex.Message}");
+        }
+    },
+};
+
+var runner = client.Beta.Messages.ToolRunner(
+    new MessageCreateParams
+    {
+        Model = Model.ClaudeOpus4_8,
+        MaxTokens = 1024,
+        Messages =
+        [
+            new() { Role = Role.User, Content = "What's the weather in San Francisco?" },
+        ],
+    },
+    [getWeatherTool]
+);
+
+Console.WriteLine(await runner.RunUntilDoneAsync());
+```
+
+</Tab>
+<Tab title="Go">
+
+Mencegat error alat sebelum dikirim ke Claude saat ini tidak didukung di Go SDK. Runner mengonversi error yang dikembalikan dari handler Anda menjadi hasil alat dengan `is_error: true` secara internal. Untuk menyesuaikan konten error, tangkap error di dalam handler Anda dan kembalikan hasil alih-alih mengembalikan error.
+
+</Tab>
+<Tab title="Java">
+
+Mencegat error alat sebelum dikirim ke Claude saat ini tidak didukung di Java SDK. Runner menangkap exception apa pun yang dilempar dari metode `get()` alat dan mengonversinya menjadi hasil alat dengan `is_error: true` secara otomatis. Untuk mengontrol konten error, tangkap exception di dalam alat Anda dan kembalikan string kustom.
+
+</Tab>
+<Tab title="PHP">
+
+Tool runner PHP saat ini tidak mengekspos hasil alat sebelum ditambahkan. Exception yang dilempar dari closure `run` alat ditangkap dan dikirim ke Claude sebagai hasil alat dengan `is_error: true` secara otomatis. Untuk memeriksa atau mengganti konten error, gunakan pola `pushMessages()` manual yang ditunjukkan di [Memodifikasi hasil alat](#memodifikasi-hasil-alat).
+
+</Tab>
 <Tab title="Ruby">
 
-```ruby hidelines={1..12}
+```ruby hidelines={1..16}
+require "anthropic"
+
+client = Anthropic::Client.new
+
 class MyToolInput < Anthropic::BaseModel
   required :query, String
 end
@@ -624,25 +1511,25 @@ class MyTool < Anthropic::BaseTool
 end
 
 runner = client.beta.messages.tool_runner(
-  model: "claude-opus-4-7",
+  model: "claude-opus-4-8",
   max_tokens: 1024,
   tools: [MyTool.new],
-  messages: [{role: "user", content: "Run the tool"}]
+  messages: [{role: "user", content: "Run my_tool with the query 'hello'."}]
 )
 
 runner.each_message do |message|
-  # Get the tool response to check for errors
-  # Note: The runner automatically handles tool execution and appends results
-  # This is just for error checking/logging purposes
+  # Dapatkan respons alat untuk memeriksa kesalahan
+  # Catatan: Runner secara otomatis menangani eksekusi alat dan menambahkan hasilnya
+  # Ini hanya untuk keperluan pemeriksaan kesalahan/pencatatan log
   tool_results = runner.params[:messages].last
 
   if tool_results && tool_results[:role] == :user && tool_results[:content].is_a?(Array)
     tool_results[:content].each do |block|
       if block[:type] == :tool_result && block[:is_error]
-        # Option 1: Raise an exception to stop the loop
+        # Opsi 1: Lempar exception untuk menghentikan loop
         raise "Tool failed: #{block[:content]}"
 
-        # Option 2: Log and continue (let Claude handle it)
+        # Opsi 2: Catat log dan lanjutkan (biarkan Claude menanganinya)
         # logger.error("Tool error: #{block[:content]}")
       end
     end
@@ -655,16 +1542,16 @@ end
 </Tab>
 </Tabs>
 
-### Memodifikasi hasil tool
+### Memodifikasi hasil alat \{#modifying-tool-results}
 
-Anda dapat memodifikasi hasil tool sebelum dikirim kembali ke Claude. Ini berguna untuk menambahkan metadata seperti `cache_control` untuk mengaktifkan [prompt caching](/docs/id/build-with-claude/prompt-caching) pada hasil tool, atau untuk mengubah output tool.
+Anda dapat memodifikasi hasil alat sebelum dikirim kembali ke Claude. Ini berguna untuk menambahkan metadata seperti `cache_control` untuk mengaktifkan [caching prompt](/docs/id/build-with-claude/prompt-caching) pada hasil alat, atau untuk mentransformasi output alat.
 
-Gunakan metode respons tool untuk mendapatkan hasil tool, kemudian modifikasi sebelum runner melanjutkan. Apakah Anda secara eksplisit menambahkan hasil yang dimodifikasi atau memutasinya di tempat tergantung pada SDK; lihat komentar kode di setiap tab.
+Gunakan metode respons alat untuk mendapatkan hasil alat, lalu modifikasi sebelum runner melanjutkan. Apakah Anda secara eksplisit menambahkan hasil yang dimodifikasi atau memutasinya secara langsung bergantung pada SDK; lihat komentar kode di setiap tab.
 
 <Tabs>
 <Tab title="Python">
 
-```python hidelines={1..10}
+```python hidelines={1..12}
 import anthropic
 from anthropic import beta_tool
 
@@ -678,7 +1565,7 @@ def search_documents(query: str) -> str:
 
 
 runner = client.beta.messages.tool_runner(
-    model="claude-opus-4-7",
+    model="claude-opus-4-8",
     max_tokens=1024,
     tools=[search_documents],
     messages=[
@@ -693,14 +1580,14 @@ for message in runner:
     tool_response = runner.generate_tool_call_response()
 
     if tool_response is not None:
-        # tool_response is a dict: {"role": "user", "content": [...]}
-        # Modify the tool result to add cache control
+        # tool_response adalah dict: {"role": "user", "content": [...]}
+        # Modifikasi hasil alat untuk menambahkan cache control
         for block in tool_response["content"]:
             if block["type"] == "tool_result":
-                # Add cache_control to cache this tool result
+                # Tambahkan cache_control untuk meng-cache hasil alat ini
                 block["cache_control"] = {"type": "ephemeral"}
 
-        # Append the modified response (this prevents auto-append of the original)
+        # Tambahkan respons yang telah dimodifikasi (ini mencegah auto-append dari respons asli)
         runner.append_messages(message, tool_response)
 
     print(message.content)
@@ -724,7 +1611,7 @@ const searchDocuments = betaZodTool({
 });
 
 const runner = client.beta.messages.toolRunner({
-  model: "claude-opus-4-7",
+  model: "claude-opus-4-8",
   max_tokens: 1024,
   tools: [searchDocuments],
   messages: [
@@ -736,15 +1623,15 @@ for await (const message of runner) {
   const toolResultMessage = await runner.generateToolResponse();
 
   if (toolResultMessage && typeof toolResultMessage.content !== "string") {
-    // Modify the tool result to add cache control
+    // Modifikasi hasil alat untuk menambahkan cache control
     for (const block of toolResultMessage.content) {
       if (block.type === "tool_result") {
-        // Add cache_control to cache this tool result
+        // Tambahkan cache_control untuk meng-cache hasil alat ini
         block.cache_control = { type: "ephemeral" };
       }
     }
-    // No pushMessages call needed: the runner auto-appends both the assistant
-    // message and the (now-mutated) cached tool response.
+    // Tidak perlu memanggil pushMessages: runner otomatis menambahkan pesan
+    // asisten dan respons alat yang di-cache (yang kini telah dimutasi).
   }
 
   console.log(message.content);
@@ -752,9 +1639,204 @@ for await (const message of runner) {
 ```
 
 </Tab>
+<Tab title="C#">
+
+Memodifikasi hasil alat sebelum ditambahkan (misalnya, untuk menambahkan `cache_control`) saat ini tidak didukung di C# SDK. Runner membangun blok `tool_result` secara internal dan tidak menyediakan hook untuk mengubahnya.
+
+</Tab>
+<Tab title="Go">
+
+Runner Go tidak mengekspos hook untuk memodifikasi blok `tool_result` luar. Namun, Anda dapat mengatur `cache_control` pada content block dalam yang dikembalikan handler Anda.
+
+```go hidelines={1..19,-1}
+package main
+
+import (
+	"context"
+	"fmt"
+	"log"
+
+	"github.com/anthropics/anthropic-sdk-go"
+	"github.com/anthropics/anthropic-sdk-go/toolrunner"
+)
+
+type SearchDocumentsInput struct {
+	Query string `json:"query" jsonschema:"required,description=Search query"`
+}
+
+func main() {
+	client := anthropic.NewClient()
+	ctx := context.Background()
+
+	searchDocuments, err := toolrunner.NewBetaToolFromJSONSchema(
+		"search_documents",
+		"Search documents for relevant information.",
+		func(ctx context.Context, input SearchDocumentsInput) (anthropic.BetaToolResultBlockParamContentUnion, error) {
+			return anthropic.BetaToolResultBlockParamContentUnion{
+				OfText: &anthropic.BetaTextBlockParam{
+					Text: fmt.Sprintf("Found 3 documents matching: %s", input.Query),
+					// Atur cache_control pada blok konten bagian dalam. cache_control
+					// pada blok tool_result bagian luar saat ini tidak dapat
+					// diatur melalui runner Go.
+					CacheControl: anthropic.NewBetaCacheControlEphemeralParam(),
+				},
+			}, nil
+		},
+	)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	runner := client.Beta.Messages.NewToolRunner(
+		[]anthropic.BetaTool{searchDocuments},
+		anthropic.BetaToolRunnerParams{
+			BetaMessageNewParams: anthropic.BetaMessageNewParams{
+				Model:     anthropic.ModelClaudeOpus4_8,
+				MaxTokens: 1024,
+				Messages: []anthropic.BetaMessageParam{
+					anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock(
+						"Search for information about the climate of San Francisco",
+					)),
+				},
+			},
+		},
+	)
+
+	finalMessage, err := runner.RunToCompletion(ctx)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(finalMessage)
+}
+```
+
+</Tab>
+<Tab title="Java">
+
+Untuk mengatur `cache_control` pada hasil alat, kembalikan `BetaToolResultBlockParam.Content` dari alat alih-alih `String` dan atur `cacheControl` pada blok teks dalam. Runner saat ini tidak mendukung pengaturan `cache_control` pada blok `tool_result` luar.
+
+```java hidelines={1..14,31..48}
+import com.anthropic.client.AnthropicClient;
+import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+import com.anthropic.helpers.BetaToolRunner;
+import com.anthropic.models.beta.messages.BetaCacheControlEphemeral;
+import com.anthropic.models.beta.messages.BetaMessage;
+import com.anthropic.models.beta.messages.BetaTextBlockParam;
+import com.anthropic.models.beta.messages.BetaToolResultBlockParam;
+import com.anthropic.models.beta.messages.MessageCreateParams;
+import com.anthropic.models.messages.Model;
+import com.fasterxml.jackson.annotation.JsonClassDescription;
+import com.fasterxml.jackson.annotation.JsonPropertyDescription;
+import java.util.List;
+import java.util.function.Supplier;
+
+@JsonClassDescription("Look up reference documentation for a topic")
+static class SearchDocuments implements Supplier<BetaToolResultBlockParam.Content> {
+    @JsonPropertyDescription("The search query")
+    public String query;
+
+    @Override
+    public BetaToolResultBlockParam.Content get() {
+        String largeResult = "..."; // a long document worth caching
+        return BetaToolResultBlockParam.Content.ofBlocks(List.of(
+                BetaToolResultBlockParam.Content.Block.ofText(
+                        BetaTextBlockParam.builder()
+                                .text(largeResult)
+                                .cacheControl(BetaCacheControlEphemeral.builder().build())
+                                .build())));
+    }
+}
+
+void main() {
+    AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+    BetaToolRunner runner = client.beta()
+            .messages()
+            .toolRunner(MessageCreateParams.builder()
+                    .model(Model.CLAUDE_OPUS_4_8)
+                    .maxTokens(1024)
+                    .addBeta("structured-outputs-2025-11-13")
+                    .addUserMessage("Search the docs for prompt caching.")
+                    .addTool(SearchDocuments.class)
+                    .build());
+
+    for (BetaMessage message : runner) {
+        IO.println(message);
+    }
+}
+```
+
+</Tab>
+<Tab title="PHP">
+
+Tool runner PHP tidak memiliki callback untuk memutasi blok `tool_result` yang dihasilkan secara otomatis. Untuk menambahkan field seperti `cache_control`, bangun sendiri hasil alat dan tambahkan. Memanggil `pushMessages()` melewati penambahan otomatis runner untuk giliran tersebut.
+
+```php hidelines={1..22}
+<?php
+
+use Anthropic\Beta\Messages\BetaToolUseBlock;
+use Anthropic\Client;
+use Anthropic\Lib\Tools\BetaRunnableTool;
+use Anthropic\Messages\Model;
+
+$client = new Client();
+
+$searchDocuments = new BetaRunnableTool(
+    definition: [
+        'name' => 'search_documents',
+        'description' => 'Search documents for relevant information.',
+        'input_schema' => [
+            'type' => 'object',
+            'properties' => ['query' => ['type' => 'string']],
+            'required' => ['query'],
+        ],
+    ],
+    run: fn (array $input): string => "Found 3 documents matching: {$input['query']}",
+);
+
+$runner = $client->beta->messages->toolRunner(
+    maxTokens: 1024,
+    messages: [
+        ['role' => 'user', 'content' => 'Search for information about the climate of San Francisco.'],
+    ],
+    model: Model::CLAUDE_OPUS_4_8,
+    tools: [$searchDocuments],
+);
+
+foreach ($runner as $message) {
+    $toolResults = [];
+    foreach ($message->content as $block) {
+        if ($block instanceof BetaToolUseBlock) {
+            $toolResults[] = [
+                'type' => 'tool_result',
+                'tool_use_id' => $block->id,
+                'content' => $searchDocuments->run($block->input),
+                // Tambahkan cache_control untuk meng-cache hasil alat ini
+                'cache_control' => ['type' => 'ephemeral'],
+            ];
+        }
+    }
+
+    if ($toolResults !== []) {
+        // pushMessages() menandai state sebagai termutasi, sehingga runner melewati
+        // penambahan otomatisnya. Push pesan asisten dan hasil alat.
+        $runner->pushMessages(
+            ['role' => 'assistant', 'content' => $message->content],
+            ['role' => 'user', 'content' => $toolResults],
+        );
+    }
+    // Tidak ada pemanggilan alat: biarkan state tidak tersentuh agar loop keluar.
+}
+```
+
+</Tab>
 <Tab title="Ruby">
 
-```ruby hidelines={1..12}
+```ruby hidelines={1..16}
+require "anthropic"
+
+client = Anthropic::Client.new
+
 class SearchDocumentsInput < Anthropic::BaseModel
   required :query, String
 end
@@ -768,7 +1850,7 @@ class SearchDocuments < Anthropic::BaseTool
 end
 
 runner = client.beta.messages.tool_runner(
-  model: "claude-opus-4-7",
+  model: "claude-opus-4-8",
   max_tokens: 1024,
   tools: [SearchDocuments.new],
   messages: [{role: "user", content: "Search for information about the climate of San Francisco"}]
@@ -778,14 +1860,14 @@ loop do
   message = runner.next_message
   break unless message
 
-  # Access the most recent tool results from the messages array
-  # The runner automatically adds tool results, but we can modify them
+  # Akses hasil alat terbaru dari array messages
+  # Runner secara otomatis menambahkan hasil alat, tetapi Anda dapat memodifikasinya
   tool_results_message = runner.params[:messages].last
 
-  if tool_results_message && tool_results_message[:role] == :user
+  if tool_results_message && tool_results_message[:role] == :user && tool_results_message[:content].is_a?(Array)
     tool_results_message[:content].each do |block|
       if block[:type] == :tool_result
-        # Modify the tool result to add cache control
+        # Modifikasi hasil alat untuk menambahkan cache control
         block[:cache_control] = {type: "ephemeral"}
       end
     end
@@ -800,19 +1882,19 @@ end
 </Tabs>
 
 <Tip>
-Menambahkan `cache_control` ke hasil tool sangat berguna ketika tools mengembalikan jumlah data besar (seperti hasil pencarian dokumen) yang ingin Anda cache untuk panggilan API berikutnya. Lihat [Prompt caching](/docs/id/build-with-claude/prompt-caching) untuk detail lebih lanjut tentang strategi caching.
+Menambahkan `cache_control` ke hasil alat sangat berguna ketika alat mengembalikan data dalam jumlah besar (seperti hasil pencarian dokumen) yang ingin Anda cache untuk panggilan API berikutnya. Lihat [Caching prompt](/docs/id/build-with-claude/prompt-caching) untuk detail lebih lanjut tentang strategi caching.
 </Tip>
 
-## Streaming
+## Streaming \{#streaming}
 
-Aktifkan streaming untuk menerima event saat tiba. Setiap iterasi menghasilkan objek stream yang dapat Anda iterasi untuk event.
+Aktifkan streaming untuk memproses respons setiap giliran secara inkremental. Setiap iterasi menghasilkan objek stream yang dapat Anda iterasi untuk mendapatkan event.
 
 <Tabs>
 <Tab title="Python">
 
 Atur `stream=True` dan gunakan `get_final_message()` untuk mendapatkan pesan yang terakumulasi.
 
-```python hidelines={1..10}
+```python hidelines={1..12}
 import anthropic
 from anthropic import beta_tool
 
@@ -826,14 +1908,14 @@ def calculate_sum(a: int, b: int) -> str:
 
 
 runner = client.beta.messages.tool_runner(
-    model="claude-opus-4-7",
+    model="claude-opus-4-8",
     max_tokens=1024,
     tools=[calculate_sum],
     messages=[{"role": "user", "content": "What is 15 + 27?"}],
     stream=True,
 )
 
-# When streaming, the runner returns BetaMessageStream
+# Saat streaming, runner mengembalikan BetaMessageStream
 for message_stream in runner:
     for event in message_stream:
         print("event:", event)
@@ -862,14 +1944,14 @@ const getWeatherTool = betaZodTool({
 });
 
 const runner = client.beta.messages.toolRunner({
-  model: "claude-opus-4-7",
-  max_tokens: 1000,
+  model: "claude-opus-4-8",
+  max_tokens: 1024,
   messages: [{ role: "user", content: "What is the weather in San Francisco?" }],
   tools: [getWeatherTool],
   stream: true
 });
 
-// When streaming, the runner returns BetaMessageStream
+// Saat streaming, runner mengembalikan BetaMessageStream
 for await (const messageStream of runner) {
   for await (const event of messageStream) {
     console.log("event:", event);
@@ -881,11 +1963,219 @@ console.log(await runner);
 ```
 
 </Tab>
+<Tab title="C#">
+
+Panggil `runner.Streaming()` untuk mendapatkan async sequence bersarang: satu stream dalam untuk setiap panggilan API.
+
+```csharp hidelines={1..36}
+using System.Text.Json;
+using Anthropic;
+using Anthropic.Helpers.Beta;
+using Anthropic.Models.Beta.Messages;
+using MessageCreateParams = Anthropic.Models.Beta.Messages.MessageCreateParams;
+using InputSchema = Anthropic.Models.Beta.Messages.InputSchema;
+using Role = Anthropic.Models.Beta.Messages.Role;
+using Model = Anthropic.Models.Messages.Model;
+
+var client = new AnthropicClient();
+
+var calculateSumTool = new BetaRunnableTool
+{
+    Name = "calculate_sum",
+    Definition = new BetaTool
+    {
+        Name = "calculate_sum",
+        Description = "Add two numbers together.",
+        InputSchema = new InputSchema
+        {
+            Properties = new Dictionary<string, JsonElement>
+            {
+                ["a"] = JsonSerializer.SerializeToElement(new { type = "number" }),
+                ["b"] = JsonSerializer.SerializeToElement(new { type = "number" }),
+            },
+            Required = ["a", "b"],
+        },
+    },
+    Run = (toolUse, _) =>
+    {
+        var a = toolUse.Input["a"].GetDouble();
+        var b = toolUse.Input["b"].GetDouble();
+        return Task.FromResult<BetaToolResultBlockParamContent>($"{a + b}");
+    },
+};
+
+var runner = client.Beta.Messages.ToolRunner(
+    new MessageCreateParams
+    {
+        Model = Model.ClaudeOpus4_8,
+        MaxTokens = 1024,
+        Messages =
+        [
+            new() { Role = Role.User, Content = "What is 15 + 27?" },
+        ],
+    },
+    [calculateSumTool]
+);
+
+await foreach (var stream in runner.Streaming())
+{
+    await foreach (var streamEvent in stream)
+    {
+        if (
+            streamEvent.TryPickContentBlockDelta(out var deltaEvent)
+            && deltaEvent.Delta.TryPickText(out var textDelta)
+        )
+        {
+            Console.Write(textDelta.Text);
+        }
+    }
+    Console.WriteLine();
+}
+```
+
+</Tab>
+<Tab title="Go">
+
+Gunakan `NewToolRunnerStreaming` dan iterasi `runner.AllStreaming(ctx)`. Setiap iterasi luar menghasilkan stream event untuk satu panggilan API.
+
+```go hidelines={1..33,-1}
+package main
+
+import (
+	"context"
+	"fmt"
+	"log"
+
+	"github.com/anthropics/anthropic-sdk-go"
+	"github.com/anthropics/anthropic-sdk-go/toolrunner"
+)
+
+type CalculateSumInput struct {
+	A int `json:"a" jsonschema:"required,description=First number"`
+	B int `json:"b" jsonschema:"required,description=Second number"`
+}
+
+func main() {
+	client := anthropic.NewClient()
+	ctx := context.Background()
+
+	calculateSum, err := toolrunner.NewBetaToolFromJSONSchema(
+		"calculate_sum",
+		"Add two numbers together.",
+		func(ctx context.Context, input CalculateSumInput) (anthropic.BetaToolResultBlockParamContentUnion, error) {
+			return anthropic.BetaToolResultBlockParamContentUnion{
+				OfText: &anthropic.BetaTextBlockParam{Text: fmt.Sprintf("%d", input.A+input.B)},
+			}, nil
+		},
+	)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	runner := client.Beta.Messages.NewToolRunnerStreaming(
+		[]anthropic.BetaTool{calculateSum},
+		anthropic.BetaToolRunnerParams{
+			BetaMessageNewParams: anthropic.BetaMessageNewParams{
+				Model:     anthropic.ModelClaudeOpus4_8,
+				MaxTokens: 1024,
+				Messages: []anthropic.BetaMessageParam{
+					anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("What is 15 + 27?")),
+				},
+			},
+		},
+	)
+
+	for events, err := range runner.AllStreaming(ctx) {
+		if err != nil {
+			log.Fatal(err)
+		}
+		for event, err := range events {
+			if err != nil {
+				log.Fatal(err)
+			}
+			switch eventVariant := event.AsAny().(type) {
+			case anthropic.BetaRawContentBlockDeltaEvent:
+				switch deltaVariant := eventVariant.Delta.AsAny().(type) {
+				case anthropic.BetaTextDelta:
+					fmt.Print(deltaVariant.Text)
+				case anthropic.BetaInputJSONDelta:
+					fmt.Print(deltaVariant.PartialJSON)
+				}
+			case anthropic.BetaRawMessageStopEvent:
+				fmt.Println()
+			}
+		}
+	}
+}
+```
+
+</Tab>
+<Tab title="Java">
+
+Panggil `runner.streaming()` untuk mendapatkan stream untuk setiap giliran. Setiap `StreamResponse` harus ditutup setelah digunakan.
+
+```java hidelines={1..25}
+import com.anthropic.client.AnthropicClient;
+import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+import com.anthropic.core.http.StreamResponse;
+import com.anthropic.helpers.BetaToolRunner;
+import com.anthropic.models.beta.messages.BetaRawMessageStreamEvent;
+import com.anthropic.models.beta.messages.MessageCreateParams;
+import com.anthropic.models.messages.Model;
+import com.fasterxml.jackson.annotation.JsonClassDescription;
+import com.fasterxml.jackson.annotation.JsonPropertyDescription;
+import java.util.function.Supplier;
+
+@JsonClassDescription("Add two numbers together")
+static class CalculateSum implements Supplier<String> {
+    @JsonPropertyDescription("First number")
+    public double a;
+
+    @JsonPropertyDescription("Second number")
+    public double b;
+
+    @Override
+    public String get() {
+        return String.valueOf(a + b);
+    }
+}
+
+void main() {
+    AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+    BetaToolRunner runner = client.beta()
+            .messages()
+            .toolRunner(MessageCreateParams.builder()
+                    .model(Model.CLAUDE_OPUS_4_8)
+                    .maxTokens(1024)
+                    .addBeta("structured-outputs-2025-11-13")
+                    .addUserMessage("What is 15 + 27?")
+                    .addTool(CalculateSum.class)
+                    .build());
+
+    for (StreamResponse<BetaRawMessageStreamEvent> stream : runner.streaming()) {
+        try (stream) {
+            stream.stream().forEach(event -> IO.println("event: " + event));
+        }
+    }
+}
+```
+
+</Tab>
+<Tab title="PHP">
+
+Streaming saat ini tidak tersedia dengan tool runner PHP.
+
+</Tab>
 <Tab title="Ruby">
 
-Gunakan `each_streaming` untuk iterasi di atas event streaming.
+Gunakan `each_streaming` untuk melakukan iterasi pada event streaming.
 
-```ruby hidelines={1..13}
+```ruby hidelines={1..17}
+require "anthropic"
+
+client = Anthropic::Client.new
+
 class CalculateSumInput < Anthropic::BaseModel
   required :a, Integer
   required :b, Integer
@@ -900,27 +2190,30 @@ class CalculateSum < Anthropic::BaseTool
 end
 
 runner = client.beta.messages.tool_runner(
-  model: "claude-opus-4-7",
+  model: "claude-opus-4-8",
   max_tokens: 1024,
   tools: [CalculateSum.new],
   messages: [{role: "user", content: "What is 15 + 27?"}]
 )
 
-runner.each_streaming do |event|
-  case event
-  when Anthropic::Streaming::TextEvent
-    print event.text
-  when Anthropic::Streaming::InputJsonEvent
-    puts "\nTool input: #{event.partial_json}"
+runner.each_streaming do |stream|
+  stream.each do |event|
+    case event
+    when Anthropic::Streaming::TextEvent
+      print event.text
+    when Anthropic::Streaming::InputJsonEvent
+      print event.partial_json
+    end
   end
+  puts
 end
 ```
 
 </Tab>
 </Tabs>
 
-## Langkah berikutnya
+## Langkah selanjutnya \{#next-steps}
 
-- Untuk kontrol manual atas loop tool-call, lihat [Handle tool calls](/docs/id/agents-and-tools/tool-use/handle-tool-calls).
-- Untuk menjalankan multiple tools secara bersamaan, lihat [Parallel tool use](/docs/id/agents-and-tools/tool-use/parallel-tool-use).
-- Untuk workflow tool-use lengkap, lihat [Define tools](/docs/id/agents-and-tools/tool-use/define-tools).
+- Untuk kontrol manual atas loop pemanggilan alat, lihat [Menangani pemanggilan alat](/docs/id/agents-and-tools/tool-use/handle-tool-calls).
+- Untuk menjalankan beberapa alat secara bersamaan, lihat [Penggunaan alat paralel](/docs/id/agents-and-tools/tool-use/parallel-tool-use).
+- Untuk alur kerja penggunaan alat lengkap, lihat [Mendefinisikan alat](/docs/id/agents-and-tools/tool-use/define-tools).

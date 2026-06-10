@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/messages/count_tokens
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: b53a073ad9ce23421820c42eca58180933e6ef11f93c6834b59dadf202c0e771
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: ea7b45ef291cd4dd4f7a39d6cdba4048583dff8f0a2d2a870158a4c09c22a8f4
 ---
 
 ## Count tokens in a Message
@@ -855,6 +855,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
                 - `"tool_search_tool_result_error"`
 
+              - `error_message?: string | null`
+
             - `ToolSearchToolSearchResultBlockParam`
 
               - `tool_references: Array<ToolReferenceBlockParam>`
@@ -939,7 +941,15 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `"claude-opus-4-8" | "claude-opus-4-7" | "claude-mythos-preview" | 15 more`
+    - `"claude-fable-5" | "claude-mythos-5" | "claude-opus-4-8" | 17 more`
+
+      - `"claude-fable-5"`
+
+        Next generation of intelligence for the hardest knowledge work and coding problems
+
+      - `"claude-mythos-5"`
+
+        Most capable model for cybersecurity and biology research
 
       - `"claude-opus-4-8"`
 

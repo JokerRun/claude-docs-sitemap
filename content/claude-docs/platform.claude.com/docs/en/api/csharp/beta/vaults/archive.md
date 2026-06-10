@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/vaults/archive
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 5c43fab9f47d608f5fcfd1075b2e44e563a10c29d324e0a8447094cd4466eeb4
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 954144d021d0d17f5dd9068ca8a9ff2ce8a3e0b445ba32cbcbe1203d48ac74e3
 ---
 
 ## Archive Vault
@@ -76,6 +76,10 @@ Archive Vault
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 

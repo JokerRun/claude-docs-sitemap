@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/environments/list
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 7225abc999632b8ae3dd5c4b592779b8b3efc0db51198c200a2eecffb4109440
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: cd2d3a4f3c57525dfb7b4a437849cb197df9cfe256c3f3bb6a07e33de3bf3ad4
 ---
 
 ## List Environments
@@ -88,6 +88,10 @@ List environments with pagination support.
       - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
 
       - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
+
+      - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
+
+      - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
 
 ### Returns
 

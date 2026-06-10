@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/vaults/credentials/archive
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: cd71377c44d7033a985851173852dbc9a29fbabc44841291bca825bcb427763e
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 9cc80519134353d2a4601d1c2524fc01efcff2443f5b8861b35b3553cf84ffd8
 ---
 
 ## Archive Credential
@@ -41,7 +41,7 @@ Archive Credential
 
     A timestamp in RFC 3339 format
 
-  - `auth: BetaManagedAgentsMCPOAuthAuthResponse or BetaManagedAgentsStaticBearerAuthResponse`
+  - `auth: BetaManagedAgentsMCPOAuthAuthResponse or BetaManagedAgentsStaticBearerAuthResponse or BetaManagedAgentsEnvironmentVariableAuthResponse`
 
     Authentication details for a credential.
 
@@ -120,6 +120,42 @@ Archive Credential
       - `type: "static_bearer"`
 
         - `"static_bearer"`
+
+    - `beta_managed_agents_environment_variable_auth_response: object { networking, secret_name, type }`
+
+      Environment variable credential details. The secret value is never returned.
+
+      - `networking: BetaManagedAgentsUnrestrictedCredentialNetworkingResponse or BetaManagedAgentsLimitedCredentialNetworkingResponse`
+
+        Outbound hosts the secret value is substituted on.
+
+        - `beta_managed_agents_unrestricted_credential_networking_response: object { type }`
+
+          The secret is substituted on any host the session's Environment network policy permits egress to.
+
+          - `type: "unrestricted"`
+
+            - `"unrestricted"`
+
+        - `beta_managed_agents_limited_credential_networking_response: object { allowed_hosts, type }`
+
+          The secret is substituted only on requests to the listed hosts.
+
+          - `allowed_hosts: array of string`
+
+            Hostnames on which the secret will be substituted. An entry matches the request host exactly; a `*.`-prefixed entry matches any subdomain of the named domain but not the domain itself.
+
+          - `type: "limited"`
+
+            - `"limited"`
+
+      - `secret_name: string`
+
+        Name of the environment variable.
+
+      - `type: "environment_variable"`
+
+        - `"environment_variable"`
 
   - `created_at: string`
 

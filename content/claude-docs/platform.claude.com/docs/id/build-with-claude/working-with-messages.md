@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/working-with-messages
-fetched_at: 2026-04-18T03:10:04.936408Z
-sha256: 38aebdd46ff5b4d47a3a66c3cb2d6fab7ba3747d6bae2163f883f57a440fb0b1
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: d2950ff26a116a1d7793c5925fc2a3b92835763ff083c4728c955431aac5b628
 ---
 
 # Menggunakan Messages API
@@ -11,24 +11,28 @@ Pola praktis dan contoh untuk menggunakan Messages API secara efektif
 
 ---
 
-Anthropic offers two ways to build with Claude, each suited to different use cases:
+Anthropic menawarkan dua cara untuk membangun dengan Claude, masing-masing cocok untuk kasus penggunaan yang berbeda:
 
 | | Messages API | Claude Managed Agents |
 |---|---|---|
-| **What it is** | Direct model prompting access | Pre-built, configurable agent harness that runs in managed infrastructure |
-| **Best for** | Custom agent loops and fine-grained control | Long-running tasks and asynchronous work |
-| **Learn more** | [Messages API docs](/docs/en/build-with-claude/working-with-messages) | [Claude Managed Agents docs](/docs/en/managed-agents/overview) |
+| **Apa itu** | Akses langsung untuk memberikan prompt ke model | Kerangka agen yang sudah dibangun dan dapat dikonfigurasi, berjalan di infrastruktur terkelola |
+| **Paling cocok untuk** | Loop agen kustom dan kontrol yang sangat terperinci | Tugas yang berjalan lama dan pekerjaan asinkron |
+| **Pelajari lebih lanjut** | [Dokumentasi Messages API](/docs/id/build-with-claude/working-with-messages) | [Dokumentasi Claude Managed Agents](/docs/id/managed-agents/overview) |
 
-Panduan ini mencakup pola umum untuk bekerja dengan Messages API, termasuk permintaan dasar, percakapan multi-giliran, teknik prefill, dan kemampuan visi. Untuk spesifikasi API lengkap, lihat [referensi Messages API](/docs/id/api/messages/create).
+Panduan ini membahas pola umum untuk bekerja dengan Messages API, termasuk permintaan dasar, percakapan multi-giliran, teknik prefill, dan kemampuan vision. Untuk spesifikasi API lengkap, lihat [referensi Messages API](/docs/id/api/messages/create).
 
 <Note>
-This feature is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/api-and-data-retention). When your organization has a ZDR arrangement, data sent through this feature is not stored after the API response is returned.
+Fitur ini memenuhi syarat untuk [Zero Data Retention (ZDR)](/docs/id/build-with-claude/api-and-data-retention). Ketika organisasi Anda memiliki pengaturan ZDR, data yang dikirim melalui fitur ini tidak disimpan setelah respons API dikembalikan.
 </Note>
 
-## Permintaan dan respons dasar
+## Permintaan dan respons dasar \{#basic-request-and-response}
+
+<Note>
+Parameter sampling `temperature`, `top_p`, dan `top_k` tidak didukung pada Claude Opus 4.7 dan model yang lebih baru, termasuk Claude Opus 4.8. Mengaturnya ke nilai non-default akan mengembalikan error 400. Hilangkan parameter tersebut dari payload permintaan dan gunakan prompting untuk memandu perilaku model sebagai gantinya. Lihat [panduan migrasi](/docs/id/about-claude/models/migration-guide#migrating-from-claude-opus-47).
+</Note>
 
 <CodeGroup>
-  ```bash Shell
+  ```bash cURL
   #!/bin/sh
   curl https://api.anthropic.com/v1/messages \
        --header "x-api-key: $ANTHROPIC_API_KEY" \
@@ -36,7 +40,7 @@ This feature is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-cla
        --header "content-type: application/json" \
        --data \
   '{
-      "model": "claude-opus-4-7",
+      "model": "claude-opus-4-8",
       "max_tokens": 1024,
       "messages": [
           {"role": "user", "content": "Hello, Claude"}
@@ -46,7 +50,7 @@ This feature is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-cla
 
   ```bash CLI
   ant messages create \
-    --model claude-opus-4-7 \
+    --model claude-opus-4-8 \
     --max-tokens 1024 \
     --message '{role: user, content: "Hello, Claude"}'
   ```
@@ -55,7 +59,7 @@ This feature is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-cla
   import anthropic
 
   message = anthropic.Anthropic().messages.create(
-      model="claude-opus-4-7",
+      model="claude-opus-4-8",
       max_tokens=1024,
       messages=[{"role": "user", "content": "Hello, Claude"}],
   )
@@ -68,7 +72,7 @@ This feature is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-cla
   const anthropic = new Anthropic();
 
   const message = await anthropic.messages.create({
-    model: "claude-opus-4-7",
+    model: "claude-opus-4-8",
     max_tokens: 1024,
     messages: [{ role: "user", content: "Hello, Claude" }]
   });
@@ -76,27 +80,19 @@ This feature is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-cla
   ```
 
   ```csharp C#
-  using System;
-  using System.Threading.Tasks;
   using Anthropic;
   using Anthropic.Models.Messages;
 
-  class Program
-  {
-      static async Task Main()
-      {
-          AnthropicClient client = new();
+  AnthropicClient client = new();
 
-          var parameters = new MessageCreateParams
-          {
-              Model = Model.ClaudeOpus4_7,
-              MaxTokens = 1024,
-              Messages = [new() { Role = Role.User, Content = "Hello, Claude" }]
-          };
-          var message = await client.Messages.Create(parameters);
-          Console.WriteLine(message);
-      }
-  }
+  var parameters = new MessageCreateParams
+  {
+      Model = Model.ClaudeOpus4_8,
+      MaxTokens = 1024,
+      Messages = [new() { Role = Role.User, Content = "Hello, Claude" }]
+  };
+  var message = await client.Messages.Create(parameters);
+  Console.WriteLine(message);
   ```
 
   ```go Go hidelines={1..11,-1}
@@ -114,7 +110,7 @@ This feature is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-cla
   	client := anthropic.NewClient()
 
   	response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  		Model:     anthropic.ModelClaudeOpus4_7,
+  		Model:     anthropic.ModelClaudeOpus4_8,
   		MaxTokens: 1024,
   		Messages: []anthropic.MessageParam{
   			anthropic.NewUserMessage(anthropic.NewTextBlock("Hello, Claude")),
@@ -139,7 +135,7 @@ This feature is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-cla
           AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
           MessageCreateParams params = MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_4_7)
+              .model(Model.CLAUDE_OPUS_4_8)
               .maxTokens(1024L)
               .addUserMessage("Hello, Claude")
               .build();
@@ -155,12 +151,12 @@ This feature is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-cla
 
   use Anthropic\Client;
 
-  $client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+  $client = new Client();
 
   $message = $client->messages->create(
       maxTokens: 1024,
       messages: [['role' => 'user', 'content' => 'Hello, Claude']],
-      model: 'claude-opus-4-7',
+      model: 'claude-opus-4-8',
   );
   echo $message->content[0]->text;
   ```
@@ -171,7 +167,7 @@ This feature is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-cla
   client = Anthropic::Client.new
 
   message = client.messages.create(
-    model: "claude-opus-4-7",
+    model: "claude-opus-4-8",
     max_tokens: 1024,
     messages: [
       { role: "user", content: "Hello, Claude" }
@@ -192,7 +188,7 @@ This feature is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-cla
       "text": "Hello!"
     }
   ],
-  "model": "claude-opus-4-7",
+  "model": "claude-opus-4-8",
   "stop_reason": "end_turn",
   "stop_sequence": null,
   "usage": {
@@ -202,12 +198,14 @@ This feature is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-cla
 }
 ```
 
-## Beberapa giliran percakapan
+Pada Claude Opus 4.7 dan model yang lebih baru, respons penolakan (`stop_reason: "refusal"`) juga menyertakan objek `stop_details` yang mengidentifikasi kategori kebijakan yang memicu penolakan tersebut. Lihat [Menangani stop reason](/docs/id/build-with-claude/refusals-and-fallback#refusal-response) untuk referensi field dan contoh kode penanganannya.
 
-Messages API bersifat stateless, yang berarti Anda selalu mengirimkan riwayat percakapan lengkap ke API. Anda dapat menggunakan pola ini untuk membangun percakapan dari waktu ke waktu. Giliran percakapan sebelumnya tidak perlu benar-benar berasal dari Claude. Anda dapat menggunakan pesan `assistant` sintetis.
+## Beberapa giliran percakapan \{#multiple-conversational-turns}
+
+Messages API bersifat stateless, yang berarti Anda selalu mengirimkan riwayat percakapan lengkap ke API. Anda dapat menggunakan pola ini untuk membangun percakapan dari waktu ke waktu. Giliran percakapan sebelumnya tidak harus benar-benar berasal dari Claude. Anda dapat menggunakan pesan `assistant` sintetis.
 
 <CodeGroup>
-```bash Shell
+```bash cURL
 #!/bin/sh
 curl https://api.anthropic.com/v1/messages \
      --header "x-api-key: $ANTHROPIC_API_KEY" \
@@ -215,7 +213,7 @@ curl https://api.anthropic.com/v1/messages \
      --header "content-type: application/json" \
      --data \
 '{
-    "model": "claude-opus-4-7",
+    "model": "claude-opus-4-8",
     "max_tokens": 1024,
     "messages": [
         {"role": "user", "content": "Hello, Claude"},
@@ -228,7 +226,7 @@ curl https://api.anthropic.com/v1/messages \
 
 ```bash CLI
 ant messages create \
-  --model claude-opus-4-7 \
+  --model claude-opus-4-8 \
   --max-tokens 1024 \
   --message '{role: user, content: "Hello, Claude"}' \
   --message '{role: assistant, content: "Hello!"}' \
@@ -239,7 +237,7 @@ ant messages create \
 import anthropic
 
 message = anthropic.Anthropic().messages.create(
-    model="claude-opus-4-7",
+    model="claude-opus-4-8",
     max_tokens=1024,
     messages=[
         {"role": "user", "content": "Hello, Claude"},
@@ -255,8 +253,8 @@ import Anthropic from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic();
 
-await anthropic.messages.create({
-  model: "claude-opus-4-7",
+const message = await anthropic.messages.create({
+  model: "claude-opus-4-8",
   max_tokens: 1024,
   messages: [
     { role: "user", content: "Hello, Claude" },
@@ -264,36 +262,29 @@ await anthropic.messages.create({
     { role: "user", content: "Can you describe LLMs to me?" }
   ]
 });
+console.log(message);
 ```
 
 ```csharp C#
-using System;
-using System.Threading.Tasks;
 using Anthropic;
 using Anthropic.Models.Messages;
 
-class Program
+AnthropicClient client = new();
+
+var parameters = new MessageCreateParams
 {
-    static async Task Main(string[] args)
-    {
-        AnthropicClient client = new();
+    Model = Model.ClaudeOpus4_8,
+    MaxTokens = 1024,
+    Messages =
+    [
+        new() { Role = Role.User, Content = "Hello, Claude" },
+        new() { Role = Role.Assistant, Content = "Hello!" },
+        new() { Role = Role.User, Content = "Can you describe LLMs to me?" }
+    ]
+};
 
-        var parameters = new MessageCreateParams
-        {
-            Model = Model.ClaudeOpus4_7,
-            MaxTokens = 1024,
-            Messages =
-            [
-                new() { Role = Role.User, Content = "Hello, Claude" },
-                new() { Role = Role.Assistant, Content = "Hello!" },
-                new() { Role = Role.User, Content = "Can you describe LLMs to me?" }
-            ]
-        };
-
-        var message = await client.Messages.Create(parameters);
-        Console.WriteLine(message);
-    }
-}
+var message = await client.Messages.Create(parameters);
+Console.WriteLine(message);
 ```
 
 ```go Go hidelines={1..11,-1}
@@ -311,7 +302,7 @@ func main() {
 	client := anthropic.NewClient()
 
 	response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-		Model:     anthropic.ModelClaudeOpus4_7,
+		Model:     anthropic.ModelClaudeOpus4_8,
 		MaxTokens: 1024,
 		Messages: []anthropic.MessageParam{
 			anthropic.NewUserMessage(anthropic.NewTextBlock("Hello, Claude")),
@@ -338,7 +329,7 @@ public class MultiTurnConversation {
         AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
         MessageCreateParams params = MessageCreateParams.builder()
-            .model(Model.CLAUDE_OPUS_4_7)
+            .model(Model.CLAUDE_OPUS_4_8)
             .maxTokens(1024L)
             .addUserMessage("Hello, Claude")
             .addAssistantMessage("Hello!")
@@ -356,7 +347,7 @@ public class MultiTurnConversation {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 $message = $client->messages->create(
     maxTokens: 1024,
@@ -365,7 +356,7 @@ $message = $client->messages->create(
         ['role' => 'assistant', 'content' => 'Hello!'],
         ['role' => 'user', 'content' => 'Can you describe LLMs to me?'],
     ],
-    model: 'claude-opus-4-7',
+    model: 'claude-opus-4-8',
 );
 
 echo $message->content[0]->text;
@@ -377,7 +368,7 @@ require "anthropic"
 client = Anthropic::Client.new
 
 message = client.messages.create(
-  model: "claude-opus-4-7",
+  model: "claude-opus-4-8",
   max_tokens: 1024,
   messages: [
     { role: "user", content: "Hello, Claude" },
@@ -400,6 +391,7 @@ puts message
       "text": "Sure, I'd be happy to provide..."
     }
   ],
+  "model": "claude-opus-4-8",
   "stop_reason": "end_turn",
   "stop_sequence": null,
   "usage": {
@@ -409,12 +401,24 @@ puts message
 }
 ```
 
-## Memasukkan kata-kata ke mulut Claude
+### Peran system dalam pesan \{#system-role-in-messages}
 
-Anda dapat mengisi sebelumnya bagian dari respons Claude di posisi terakhir daftar pesan input. Ini dapat digunakan untuk membentuk respons Claude. Contoh di bawah menggunakan `"max_tokens": 1` untuk mendapatkan jawaban pilihan ganda tunggal dari Claude.
+Pada Claude Opus 4.8, Anda dapat menyertakan pesan dengan `"role": "system"` setelah giliran user (tunduk pada [aturan penempatan](/docs/id/build-with-claude/mid-conversation-system-messages#limitations)) untuk menambahkan instruksi sistem baru di tengah percakapan. Pesan `system` tidak boleh menjadi entri pertama dalam `messages`; gunakan field `system` tingkat atas untuk instruksi yang berlaku sejak awal.
+
+Pesan sistem di tengah percakapan memiliki otoritas yang sama dengan field `system` tingkat atas, tetapi karena ditambahkan di akhir riwayat pesan, pesan ini tidak membatalkan prefix yang telah di-cache sebelumnya. Gunakan field `system` tingkat atas untuk instruksi yang harus berlaku sejak giliran pertama, dan pesan sistem di tengah percakapan untuk instruksi yang baru menjadi relevan di kemudian waktu.
+
+Lihat [Pesan sistem di tengah percakapan](/docs/id/build-with-claude/mid-conversation-system-messages) untuk panduan lengkap, termasuk cara menggabungkannya dengan [caching prompt](/docs/id/build-with-claude/prompt-caching).
+
+## Menempatkan kata-kata di mulut Claude \{#putting-words-in-claudes-mouth}
+
+Anda dapat mengisi sebagian respons Claude terlebih dahulu di posisi terakhir dari daftar pesan input. Ini dapat digunakan untuk membentuk respons Claude. Contoh di bawah ini menggunakan `"max_tokens": 1` untuk mendapatkan satu jawaban pilihan ganda dari Claude.
+
+<Warning>
+Prefilling tidak didukung pada Claude Fable 5, [Claude Mythos 5](https://anthropic.com/glasswing), [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, dan Claude Sonnet 4.6. Permintaan yang menggunakan prefill dengan model-model ini akan mengembalikan error 400. Gunakan [structured outputs](/docs/id/build-with-claude/structured-outputs) pada model yang mendukungnya, atau instruksi prompt sistem, sebagai gantinya. Lihat [panduan migrasi](/docs/id/about-claude/models/migration-guide) untuk pola migrasi.
+</Warning>
 
 <CodeGroup>
-  ```bash Shell
+  ```bash cURL
   #!/bin/sh
   curl https://api.anthropic.com/v1/messages \
        --header "x-api-key: $ANTHROPIC_API_KEY" \
@@ -480,31 +484,23 @@ Anda dapat mengisi sebelumnya bagian dari respons Claude di posisi terakhir daft
   ```
 
   ```csharp C#
-  using System;
-  using System.Threading.Tasks;
   using Anthropic;
   using Anthropic.Models.Messages;
 
-  class Program
+  AnthropicClient client = new();
+
+  var parameters = new MessageCreateParams
   {
-      static async Task Main(string[] args)
-      {
-          AnthropicClient client = new();
+      Model = Model.ClaudeSonnet4_5,
+      MaxTokens = 1,
+      Messages = [
+          new() { Role = Role.User, Content = "What is latin for Ant? (A) Apoidea, (B) Rhopalocera, (C) Formicidae" },
+          new() { Role = Role.Assistant, Content = "The answer is (" }
+      ]
+  };
 
-          var parameters = new MessageCreateParams
-          {
-              Model = Model.ClaudeSonnet4_5,
-              MaxTokens = 1,
-              Messages = [
-                  new() { Role = Role.User, Content = "What is latin for Ant? (A) Apoidea, (B) Rhopalocera, (C) Formicidae" },
-                  new() { Role = Role.Assistant, Content = "The answer is (" }
-              ]
-          };
-
-          var message = await client.Messages.Create(parameters);
-          Console.WriteLine(message);
-      }
-  }
+  var message = await client.Messages.Create(parameters);
+  Console.WriteLine(message);
   ```
 
   ```go Go hidelines={1..11,-1}
@@ -565,7 +561,7 @@ Anda dapat mengisi sebelumnya bagian dari respons Claude di posisi terakhir daft
 
   use Anthropic\Client;
 
-  $client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+  $client = new Client();
 
   $message = $client->messages->create(
       maxTokens: 1,
@@ -619,19 +615,15 @@ Anda dapat mengisi sebelumnya bagian dari respons Claude di posisi terakhir daft
 }
 ```
 
-<Warning>
-Prefilling tidak didukung pada [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.7, Claude Opus 4.6, dan Claude Sonnet 4.6. Permintaan menggunakan prefill dengan model ini mengembalikan kesalahan 400. Gunakan [structured outputs](/docs/id/build-with-claude/structured-outputs) atau instruksi system prompt sebagai gantinya. Lihat [panduan migrasi](/docs/id/about-claude/models/migration-guide) untuk pola migrasi.
-</Warning>
+## Vision \{#vision}
 
-## Visi
-
-Claude dapat membaca teks dan gambar dalam permintaan. Gambar dapat disediakan menggunakan jenis sumber `base64`, `url`, atau `file`. Jenis sumber `file` mereferensikan gambar yang diunggah melalui [Files API](/docs/id/build-with-claude/files). Jenis media yang didukung adalah `image/jpeg`, `image/png`, `image/gif`, dan `image/webp`. Lihat [panduan visi](/docs/id/build-with-claude/vision) untuk detail lebih lanjut.
+Claude dapat membaca teks dan gambar dalam permintaan. Gambar dapat disediakan menggunakan tipe sumber `base64`, `url`, atau `file`. Tipe sumber `file` mereferensikan gambar yang diunggah melalui [Files API](/docs/id/build-with-claude/files). Tipe media yang didukung adalah `image/jpeg`, `image/png`, `image/gif`, dan `image/webp`. Lihat [panduan vision](/docs/id/build-with-claude/vision) untuk detail lebih lanjut.
 
 <CodeGroup>
-  ```bash Shell
+  ```bash cURL
   #!/bin/sh
 
-  # Option 1: Base64-encoded image
+  # Opsi 1: Gambar yang dienkode Base64
   IMAGE_URL="https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg"
   IMAGE_MEDIA_TYPE="image/jpeg"
   IMAGE_BASE64=$(curl "$IMAGE_URL" | base64 | tr -d '\n')
@@ -642,7 +634,7 @@ Claude dapat membaca teks dan gambar dalam permintaan. Gambar dapat disediakan m
        --header "content-type: application/json" \
        --data \
   '{
-      "model": "claude-opus-4-7",
+      "model": "claude-opus-4-8",
       "max_tokens": 1024,
       "messages": [
           {"role": "user", "content": [
@@ -656,14 +648,14 @@ Claude dapat membaca teks dan gambar dalam permintaan. Gambar dapat disediakan m
       ]
   }'
 
-  # Option 2: URL-referenced image
+  # Opsi 2: Gambar yang direferensikan melalui URL
   curl https://api.anthropic.com/v1/messages \
        --header "x-api-key: $ANTHROPIC_API_KEY" \
        --header "anthropic-version: 2023-06-01" \
        --header "content-type: application/json" \
        --data \
   '{
-      "model": "claude-opus-4-7",
+      "model": "claude-opus-4-8",
       "max_tokens": 1024,
       "messages": [
           {"role": "user", "content": [
@@ -681,11 +673,11 @@ Claude dapat membaca teks dan gambar dalam permintaan. Gambar dapat disediakan m
   ```bash CLI nocheck
   IMAGE_URL="https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg"
 
-  # Option 1: Base64-encoded image (CLI auto-encodes binary @file refs)
+  # Opsi 1: Gambar yang dienkode Base64 (CLI otomatis mengenkode referensi @file biner)
   curl -s "$IMAGE_URL" -o ./ant.jpg
 
   ant messages create <<'YAML'
-  model: claude-opus-4-7
+  model: claude-opus-4-8
   max_tokens: 1024
   messages:
     - role: user
@@ -699,9 +691,9 @@ Claude dapat membaca teks dan gambar dalam permintaan. Gambar dapat disediakan m
           text: What is in the above image?
   YAML
 
-  # Option 2: URL-referenced image
+  # Opsi 2: Gambar yang direferensikan melalui URL
   ant messages create <<YAML
-  model: claude-opus-4-7
+  model: claude-opus-4-8
   max_tokens: 1024
   messages:
     - role: user
@@ -721,13 +713,13 @@ Claude dapat membaca teks dan gambar dalam permintaan. Gambar dapat disediakan m
   import base64
   import httpx
 
-  # Option 1: Base64-encoded image
+  # Opsi 1: Gambar yang dienkode Base64
   image_url = "https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg"
   image_media_type = "image/jpeg"
   image_data = base64.standard_b64encode(httpx.get(image_url).content).decode("utf-8")
 
   message = anthropic.Anthropic().messages.create(
-      model="claude-opus-4-7",
+      model="claude-opus-4-8",
       max_tokens=1024,
       messages=[
           {
@@ -748,9 +740,9 @@ Claude dapat membaca teks dan gambar dalam permintaan. Gambar dapat disediakan m
   )
   print(message)
 
-  # Option 2: URL-referenced image
+  # Opsi 2: Gambar yang direferensikan melalui URL
   message_from_url = anthropic.Anthropic().messages.create(
-      model="claude-opus-4-7",
+      model="claude-opus-4-8",
       max_tokens=1024,
       messages=[
           {
@@ -777,7 +769,7 @@ Claude dapat membaca teks dan gambar dalam permintaan. Gambar dapat disediakan m
 
   const anthropic = new Anthropic();
 
-  // Option 1: Base64-encoded image
+  // Opsi 1: Gambar yang dienkode Base64
   const image_url =
     "https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg";
   const image_media_type = "image/jpeg";
@@ -785,7 +777,7 @@ Claude dapat membaca teks dan gambar dalam permintaan. Gambar dapat disediakan m
   const image_data = Buffer.from(image_array_buffer).toString("base64");
 
   const message = await anthropic.messages.create({
-    model: "claude-opus-4-7",
+    model: "claude-opus-4-8",
     max_tokens: 1024,
     messages: [
       {
@@ -809,9 +801,9 @@ Claude dapat membaca teks dan gambar dalam permintaan. Gambar dapat disediakan m
   });
   console.log(message);
 
-  // Option 2: URL-referenced image
+  // Opsi 2: Gambar yang direferensikan melalui URL
   const messageFromUrl = await anthropic.messages.create({
-    model: "claude-opus-4-7",
+    model: "claude-opus-4-8",
     max_tokens: 1024,
     messages: [
       {
@@ -837,81 +829,73 @@ Claude dapat membaca teks dan gambar dalam permintaan. Gambar dapat disediakan m
 
   
   ```csharp C# nocheck
-  using System;
   using System.Collections.Generic;
   using System.Net.Http;
-  using System.Threading.Tasks;
   using Anthropic;
   using Anthropic.Models.Messages;
 
-  public class Program
+  AnthropicClient client = new();
+
+  // Opsi 1: Gambar yang dienkode Base64
+  string imageUrl = "https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg";
+
+  using HttpClient httpClient = new();
+  byte[] imageBytes = await httpClient.GetByteArrayAsync(imageUrl);
+  string imageData = Convert.ToBase64String(imageBytes);
+
+  var parameters = new MessageCreateParams
   {
-      public static async Task Main(string[] args)
-      {
-          AnthropicClient client = new();
-
-          // Option 1: Base64-encoded image
-          string imageUrl = "https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg";
-
-          using HttpClient httpClient = new();
-          byte[] imageBytes = await httpClient.GetByteArrayAsync(imageUrl);
-          string imageData = Convert.ToBase64String(imageBytes);
-
-          var parameters = new MessageCreateParams
+      Model = Model.ClaudeOpus4_8,
+      MaxTokens = 1024,
+      Messages =
+      [
+          new()
           {
-              Model = Model.ClaudeOpus4_7,
-              MaxTokens = 1024,
-              Messages =
-              [
-                  new()
-                  {
-                      Role = Role.User,
-                      Content = new MessageParamContent(new List<ContentBlockParam>
+              Role = Role.User,
+              Content = new MessageParamContent(new List<ContentBlockParam>
+              {
+                  new ContentBlockParam(new ImageBlockParam(
+                      new ImageBlockParamSource(new Base64ImageSource()
                       {
-                          new ContentBlockParam(new ImageBlockParam(
-                              new ImageBlockParamSource(new Base64ImageSource()
-                              {
-                                  Data = imageData,
-                                  MediaType = MediaType.ImageJpeg,
-                              })
-                          )),
-                          new ContentBlockParam(new TextBlockParam("What is in the above image?")),
-                      }),
-                  }
-              ]
-          };
+                          Data = imageData,
+                          MediaType = MediaType.ImageJpeg,
+                      })
+                  )),
+                  new ContentBlockParam(new TextBlockParam("What is in the above image?")),
+              }),
+          }
+      ]
+  };
 
-          var message = await client.Messages.Create(parameters);
-          Console.WriteLine(message);
+  var message = await client.Messages.Create(parameters);
+  Console.WriteLine(message);
 
-          // Option 2: URL-referenced image
-          var parametersFromUrl = new MessageCreateParams
+  // Opsi 2: Gambar yang direferensikan melalui URL
+  var parametersFromUrl = new MessageCreateParams
+  {
+      Model = Model.ClaudeOpus4_8,
+      MaxTokens = 1024,
+      Messages =
+      [
+          new()
           {
-              Model = Model.ClaudeOpus4_7,
-              MaxTokens = 1024,
-              Messages =
-              [
-                  new()
-                  {
-                      Role = Role.User,
-                      Content = new MessageParamContent(new List<ContentBlockParam>
+              Role = Role.User,
+              Content = new MessageParamContent(new List<ContentBlockParam>
+              {
+                  new ContentBlockParam(new ImageBlockParam(
+                      new ImageBlockParamSource(new UrlImageSource()
                       {
-                          new ContentBlockParam(new ImageBlockParam(
-                              new ImageBlockParamSource(new UrlImageSource()
-                              {
-                                  Url = new Uri("https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg"),
-                              })
-                          )),
-                          new ContentBlockParam(new TextBlockParam("What is in the above image?")),
-                      }),
-                  }
-              ]
-          };
+                          Url = new Uri("https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg"),
+                      })
+                  )),
+                  new ContentBlockParam(new TextBlockParam("What is in the above image?")),
+              }),
+          }
+      ]
+  };
 
-          var messageFromUrl = await client.Messages.Create(parametersFromUrl);
-          Console.WriteLine(messageFromUrl);
-      }
-  }
+  var messageFromUrl = await client.Messages.Create(parametersFromUrl);
+  Console.WriteLine(messageFromUrl);
   ```
 
   
@@ -932,7 +916,7 @@ Claude dapat membaca teks dan gambar dalam permintaan. Gambar dapat disediakan m
   func main() {
   	client := anthropic.NewClient()
 
-  	// Option 1: Base64-encoded image
+  	// Opsi 1: Gambar yang dienkode Base64
   	imageURL := "https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg"
 
   	req, err := http.NewRequest("GET", imageURL, nil)
@@ -954,7 +938,7 @@ Claude dapat membaca teks dan gambar dalam permintaan. Gambar dapat disediakan m
   	imageData := base64.StdEncoding.EncodeToString(imageBytes)
 
   	message, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  		Model:     anthropic.ModelClaudeOpus4_7,
+  		Model:     anthropic.ModelClaudeOpus4_8,
   		MaxTokens: 1024,
   		Messages: []anthropic.MessageParam{
   			anthropic.NewUserMessage(
@@ -968,9 +952,9 @@ Claude dapat membaca teks dan gambar dalam permintaan. Gambar dapat disediakan m
   	}
   	fmt.Println(message)
 
-  	// Option 2: URL-referenced image
+  	// Opsi 2: Gambar yang direferensikan melalui URL
   	messageFromURL, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  		Model:     anthropic.ModelClaudeOpus4_7,
+  		Model:     anthropic.ModelClaudeOpus4_8,
   		MaxTokens: 1024,
   		Messages: []anthropic.MessageParam{
   			anthropic.NewUserMessage(
@@ -1004,7 +988,7 @@ Claude dapat membaca teks dan gambar dalam permintaan. Gambar dapat disediakan m
       public static void main(String[] args) throws Exception {
           AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-          // Option 1: Base64-encoded image
+          // Opsi 1: Gambar yang dienkode Base64
           String imageUrl = "https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg";
 
           HttpClient httpClient = HttpClient.newHttpClient();
@@ -1028,13 +1012,13 @@ Claude dapat membaca teks dan gambar dalam permintaan. Gambar dapat disediakan m
 
           Message message = client.messages().create(
               MessageCreateParams.builder()
-                  .model(Model.CLAUDE_OPUS_4_7)
+                  .model(Model.CLAUDE_OPUS_4_8)
                   .maxTokens(1024L)
                   .addUserMessageOfBlockParams(base64Content)
                   .build());
           System.out.println(message);
 
-          // Option 2: URL-referenced image
+          // Opsi 2: Gambar yang direferensikan melalui URL
           List<ContentBlockParam> urlContent = List.of(
               ContentBlockParam.ofImage(
                   ImageBlockParam.builder()
@@ -1050,7 +1034,7 @@ Claude dapat membaca teks dan gambar dalam permintaan. Gambar dapat disediakan m
 
           Message messageFromUrl = client.messages().create(
               MessageCreateParams.builder()
-                  .model(Model.CLAUDE_OPUS_4_7)
+                  .model(Model.CLAUDE_OPUS_4_8)
                   .maxTokens(1024L)
                   .addUserMessageOfBlockParams(urlContent)
                   .build());
@@ -1065,9 +1049,9 @@ Claude dapat membaca teks dan gambar dalam permintaan. Gambar dapat disediakan m
 
   use Anthropic\Client;
 
-  $client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+  $client = new Client();
 
-  // Option 1: Base64-encoded image
+  // Opsi 1: Gambar yang dienkode Base64
   $image_url = "https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg";
   $image_media_type = "image/jpeg";
   $image_data = base64_encode(file_get_contents($image_url));
@@ -1093,11 +1077,11 @@ Claude dapat membaca teks dan gambar dalam permintaan. Gambar dapat disediakan m
               ],
           ],
       ],
-      model: 'claude-opus-4-7',
+      model: 'claude-opus-4-8',
   );
   echo $message;
 
-  // Option 2: URL-referenced image
+  // Opsi 2: Gambar yang direferensikan melalui URL
   $message_from_url = $client->messages->create(
       maxTokens: 1024,
       messages: [
@@ -1118,7 +1102,7 @@ Claude dapat membaca teks dan gambar dalam permintaan. Gambar dapat disediakan m
               ],
           ],
       ],
-      model: 'claude-opus-4-7',
+      model: 'claude-opus-4-8',
   );
   echo $message_from_url;
   ```
@@ -1131,13 +1115,13 @@ Claude dapat membaca teks dan gambar dalam permintaan. Gambar dapat disediakan m
 
   client = Anthropic::Client.new
 
-  # Option 1: Base64-encoded image
+  # Opsi 1: Gambar yang dienkode Base64
   image_url = "https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg"
   image_media_type = "image/jpeg"
   image_data = Base64.strict_encode64(Net::HTTP.get(URI(image_url)))
 
   message = client.messages.create(
-    model: "claude-opus-4-7",
+    model: "claude-opus-4-8",
     max_tokens: 1024,
     messages: [
       {
@@ -1161,9 +1145,9 @@ Claude dapat membaca teks dan gambar dalam permintaan. Gambar dapat disediakan m
   )
   puts message
 
-  # Option 2: URL-referenced image
+  # Opsi 2: Gambar yang direferensikan melalui URL
   message_from_url = client.messages.create(
-    model: "claude-opus-4-7",
+    model: "claude-opus-4-8",
     max_tokens: 1024,
     messages: [
       {
@@ -1199,7 +1183,7 @@ Claude dapat membaca teks dan gambar dalam permintaan. Gambar dapat disediakan m
       "text": "This image shows an ant, specifically a close-up view of an ant. The ant is shown in detail, with its distinct head, antennae, and legs clearly visible. The image is focused on capturing the intricate details and features of the ant, likely taken with a macro lens to get an extreme close-up perspective."
     }
   ],
-  "model": "claude-opus-4-7",
+  "model": "claude-opus-4-8",
   "stop_reason": "end_turn",
   "stop_sequence": null,
   "usage": {
@@ -1209,8 +1193,9 @@ Claude dapat membaca teks dan gambar dalam permintaan. Gambar dapat disediakan m
 }
 ```
 
-## Penggunaan alat dan penggunaan komputer
+## Penggunaan alat dan penggunaan komputer \{#tool-use-and-computer-use}
 
 Lihat [panduan penggunaan alat](/docs/id/agents-and-tools/tool-use/overview) untuk contoh cara menggunakan alat dengan Messages API.
-Lihat [panduan penggunaan komputer](/docs/id/agents-and-tools/tool-use/computer-use-tool) untuk contoh cara mengontrol lingkungan desktop komputer dengan Messages API.
-Untuk output JSON yang dijamin, lihat [Structured Outputs](/docs/id/build-with-claude/structured-outputs).
+Lihat [panduan penggunaan komputer](/docs/id/agents-and-tools/tool-use/computer-use-tool) untuk contoh cara mengontrol lingkungan komputer desktop dengan Messages API.
+Untuk output JSON yang terjamin, lihat [Structured Outputs](/docs/id/build-with-claude/structured-outputs).
+Untuk anggaran token yang bersifat advisory di seluruh loop agentik penuh, atur `output_config.task_budget`; lihat [Task budgets](/docs/id/build-with-claude/task-budgets).

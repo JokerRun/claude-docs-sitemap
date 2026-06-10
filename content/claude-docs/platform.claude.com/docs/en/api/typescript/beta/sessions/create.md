@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/sessions/create
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 43e680eab880c47b92b20a6f3af32f25b1d396b41c9dd5eae11afd0da28d993c
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 343ffae30f37dc76d2484f10b5c794c1ff6dfeb46b8bd4863c40a5eef3d42bbf
 ---
 
 ## Create Session
@@ -149,7 +149,7 @@ Create Session
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 23 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -203,6 +203,10 @@ Create Session
 
       - `"thinking-token-count-2026-05-13"`
 
+      - `"server-side-fallback-2026-06-01"`
+
+      - `"fallback-credit-2026-06-01"`
+
 ### Returns
 
 - `BetaManagedAgentsSession`
@@ -239,7 +243,11 @@ Create Session
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-        - `"claude-opus-4-8" | "claude-opus-4-7" | "claude-opus-4-6" | 7 more`
+        - `"claude-fable-5" | "claude-opus-4-8" | "claude-opus-4-7" | 8 more`
+
+          - `"claude-fable-5"`
+
+            Next generation of intelligence for the hardest knowledge work and coding problems
 
           - `"claude-opus-4-8"`
 
@@ -469,19 +477,13 @@ Create Session
 
               JSON Schema for custom tool input parameters.
 
-              - `properties?: Record<string, unknown> | null`
-
-                JSON Schema properties defining the tool's input parameters.
-
-              - `required?: Array<string>`
-
-                List of required property names.
-
-              - `type?: "object"`
-
-                Must be 'object' for tool input schemas.
+              - `type: "object"`
 
                 - `"object"`
+
+              - `properties?: Record<string, unknown> | null`
+
+              - `required?: Array<string> | null`
 
             - `name: string`
 
@@ -739,6 +741,10 @@ Create Session
 
     Vault IDs attached to the session at creation. Empty when no vaults were supplied.
 
+  - `deployment_id?: string | null`
+
+    Deployment ID when the session was created from a deployment reference. Null otherwise.
+
 ### Example
 
 ```typescript
@@ -919,6 +925,7 @@ console.log(betaManagedAgentsSession.id);
   },
   "vault_ids": [
     "vlt_011CZkZDLs7fYzm1hXNPeRjv"
-  ]
+  ],
+  "deployment_id": "deployment_id"
 }
 ```

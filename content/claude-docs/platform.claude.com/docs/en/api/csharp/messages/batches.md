@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/messages/batches
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: ee5e2db17db270185612f87d568d8115e84c6b94c9b27597cbc325d298bfee3b
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: dd1e4cf66945982e799830f62649d441a5b724c6c4dace4992f61b202d92ab9f
 ---
 
 # Batches
@@ -787,6 +787,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `JsonElement Type "tool_search_tool_result_error"constant`
 
+                  - `string? ErrorMessage`
+
                 - `class ToolSearchToolSearchResultBlockParam:`
 
                   - `required IReadOnlyList<ToolReferenceBlockParam> ToolReferences`
@@ -862,6 +864,14 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-fable-5"ClaudeFable5`
+
+          Next generation of intelligence for the hardest knowledge work and coding problems
+
+        - `"claude-mythos-5"ClaudeMythos5`
+
+          Most capable model for cybersecurity and biology research
 
         - `"claude-opus-4-8"ClaudeOpus4_8`
 
@@ -3238,6 +3248,14 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `"claude-fable-5"ClaudeFable5`
+
+            Next generation of intelligence for the hardest knowledge work and coding problems
+
+          - `"claude-mythos-5"ClaudeMythos5`
+
+            Most capable model for cybersecurity and biology research
+
           - `"claude-opus-4-8"ClaudeOpus4_8`
 
             Frontier intelligence for long-running agents and coding
@@ -3329,6 +3347,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `"cyber"Cyber`
 
             - `"bio"Bio`
+
+            - `"reasoning_extraction"ReasoningExtraction`
 
           - `required string? Explanation`
 
@@ -4355,6 +4375,14 @@ await foreach (var messageBatchIndividualResponse in client.Messages.Batches.Res
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `"claude-fable-5"ClaudeFable5`
+
+            Next generation of intelligence for the hardest knowledge work and coding problems
+
+          - `"claude-mythos-5"ClaudeMythos5`
+
+            Most capable model for cybersecurity and biology research
+
           - `"claude-opus-4-8"ClaudeOpus4_8`
 
             Frontier intelligence for long-running agents and coding
@@ -4446,6 +4474,8 @@ await foreach (var messageBatchIndividualResponse in client.Messages.Batches.Res
             - `"cyber"Cyber`
 
             - `"bio"Bio`
+
+            - `"reasoning_extraction"ReasoningExtraction`
 
           - `required string? Explanation`
 
@@ -5299,6 +5329,14 @@ await foreach (var messageBatchIndividualResponse in client.Messages.Batches.Res
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+        - `"claude-fable-5"ClaudeFable5`
+
+          Next generation of intelligence for the hardest knowledge work and coding problems
+
+        - `"claude-mythos-5"ClaudeMythos5`
+
+          Most capable model for cybersecurity and biology research
+
         - `"claude-opus-4-8"ClaudeOpus4_8`
 
           Frontier intelligence for long-running agents and coding
@@ -5390,6 +5428,8 @@ await foreach (var messageBatchIndividualResponse in client.Messages.Batches.Res
           - `"cyber"Cyber`
 
           - `"bio"Bio`
+
+          - `"reasoning_extraction"ReasoningExtraction`
 
         - `required string? Explanation`
 
@@ -6205,6 +6245,14 @@ await foreach (var messageBatchIndividualResponse in client.Messages.Batches.Res
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+      - `"claude-fable-5"ClaudeFable5`
+
+        Next generation of intelligence for the hardest knowledge work and coding problems
+
+      - `"claude-mythos-5"ClaudeMythos5`
+
+        Most capable model for cybersecurity and biology research
+
       - `"claude-opus-4-8"ClaudeOpus4_8`
 
         Frontier intelligence for long-running agents and coding
@@ -6296,6 +6344,8 @@ await foreach (var messageBatchIndividualResponse in client.Messages.Batches.Res
         - `"cyber"Cyber`
 
         - `"bio"Bio`
+
+        - `"reasoning_extraction"ReasoningExtraction`
 
       - `required string? Explanation`
 

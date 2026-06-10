@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/models/list
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: dc38ac9e8a66d4875fc1848e383ef4ae100b2e96cfbcefe5ac33e2366cc9f79b
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 0c9645a5ea3c8a03b8d87530a5367c7cc8001a58c4c5b528d0cb1f86a52be9d7
 ---
 
 ## List Models
@@ -88,6 +88,10 @@ The Models API response can be used to determine which models are available for 
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
+
+    - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
+
+    - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
 
 ### Returns
 

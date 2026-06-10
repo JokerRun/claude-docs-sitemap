@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/environments/retrieve
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 0b48c85a439140e58bf826c0a7b042c48f104290ef968b57ac43b70268ce14c4
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 1f3a8b405569f08a3dbab49352b56ae0ebbc865dd53e1c19fe2c3530ec85d24b
 ---
 
 ## Get Environment
@@ -74,6 +74,10 @@ Retrieve a specific environment by ID.
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
+
+    - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
+
+    - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
 
 ### Returns
 

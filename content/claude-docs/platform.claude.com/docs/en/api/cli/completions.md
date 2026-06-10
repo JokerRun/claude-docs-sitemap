@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/completions
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: d15c3cf238a508d2b94c63172cc84f174b04545396ad86348a81c4d7b3c1a65d
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: a6ee2925c235e6754e109e7078bbd8503eef9a4add4732034f4286aea74cf4b5
 ---
 
 # Completions
@@ -27,7 +27,7 @@ Future models and features will not be compatible with Text Completions. See our
 
   Note that our models may stop _before_ reaching this maximum. This parameter only specifies the absolute maximum number of tokens to generate.
 
-- `--model: "claude-opus-4-8" or "claude-opus-4-7" or "claude-mythos-preview" or 15 more or string`
+- `--model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
 
   Body param: The model that will complete your prompt.
 
@@ -107,11 +107,19 @@ Future models and features will not be compatible with Text Completions. See our
 
     The resulting completion up to and excluding the stop sequences.
 
-  - `model: "claude-opus-4-8" or "claude-opus-4-7" or "claude-mythos-preview" or 15 more or string`
+  - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
 
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+    - `"claude-fable-5"`
+
+      Next generation of intelligence for the hardest knowledge work and coding problems
+
+    - `"claude-mythos-5"`
+
+      Most capable model for cybersecurity and biology research
 
     - `"claude-opus-4-8"`
 
@@ -206,7 +214,7 @@ Future models and features will not be compatible with Text Completions. See our
 ant completions create \
   --api-key my-anthropic-api-key \
   --max-tokens-to-sample 256 \
-  --model claude-opus-4-8 \
+  --model claude-fable-5 \
   --prompt '
 
 Human: Hello, world!
@@ -242,11 +250,19 @@ Assistant:'
 
     The resulting completion up to and excluding the stop sequences.
 
-  - `model: "claude-opus-4-8" or "claude-opus-4-7" or "claude-mythos-preview" or 15 more or string`
+  - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
 
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+    - `"claude-fable-5"`
+
+      Next generation of intelligence for the hardest knowledge work and coding problems
+
+    - `"claude-mythos-5"`
+
+      Most capable model for cybersecurity and biology research
 
     - `"claude-opus-4-8"`
 

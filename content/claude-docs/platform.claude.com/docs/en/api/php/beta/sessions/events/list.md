@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/php/beta/sessions/events/list
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 7c07119ff183f79c0f8aa6707689dd8b515af5780e1a097fbe3953f2b41cb637
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: d4a37938d729e6f7d9b2f9b1752d3c31a6d4e4f459e3db4b7fa0d8cb2299812b
 ---
 
 ## List Events
@@ -740,6 +740,22 @@ List Events
     - `?string title`
 
       The session's new title. Present only when the update changed it.
+
+  - `BetaManagedAgentsSystemMessageEvent`
+
+    - `string id`
+
+      Unique identifier for this event.
+
+    - `list<BetaManagedAgentsSystemContentBlock> content`
+
+      System content blocks. Text-only.
+
+    - `Type type`
+
+    - `?\Datetime processedAt`
+
+      A timestamp in RFC 3339 format
 
 ### Example
 

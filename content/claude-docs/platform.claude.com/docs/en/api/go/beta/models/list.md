@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/models/list
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 672413c4bb03f71c78d532dc8224ed40bd4933ff961bb4d0edbda7f4abb6219c
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: bace8e8cb45322e89e24b91a2aa2ca4f3718d54ebf4d6607b2c12a156e1d3851
 ---
 
 ## List Models
@@ -93,6 +93,10 @@ The Models API response can be used to determine which models are available for 
 
       - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
 
+      - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
+
+      - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
+
 ### Returns
 
 - `type BetaModelInfo struct{…}`
@@ -100,6 +104,10 @@ The Models API response can be used to determine which models are available for 
   - `ID string`
 
     Unique model identifier.
+
+  - `AllowedFallbackModels []string`
+
+    Model IDs this model accepts as `fallbacks[i].model` on the Messages API. An empty list means the `fallbacks` parameter is not supported for this model as primary.
 
   - `Capabilities BetaModelCapabilities`
 
@@ -259,6 +267,9 @@ func main() {
   "data": [
     {
       "id": "claude-opus-4-6",
+      "allowed_fallback_models": [
+        "string"
+      ],
       "capabilities": {
         "batch": {
           "supported": true

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/models/retrieve
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 4d957587bd4132aab80d7272b34c9ed753340b1bf3190e9c3b7faf125ce6a6d2
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: fa4d45766718bae411a8947613a8800d13df9664c8189390231fd80f9aac2ce0
 ---
 
 ## Get a Model
@@ -79,6 +79,10 @@ The Models API response can be used to determine information about a specific mo
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Returns
 
 - `class BetaModelInfo:`
@@ -86,6 +90,10 @@ The Models API response can be used to determine information about a specific mo
   - `required string ID`
 
     Unique model identifier.
+
+  - `required IReadOnlyList<string>? AllowedFallbackModels`
+
+    Model IDs this model accepts as `fallbacks[i].model` on the Messages API. An empty list means the `fallbacks` parameter is not supported for this model as primary.
 
   - `required BetaModelCapabilities? Capabilities`
 
@@ -224,6 +232,9 @@ Console.WriteLine(betaModelInfo);
 ```json
 {
   "id": "claude-opus-4-6",
+  "allowed_fallback_models": [
+    "string"
+  ],
   "capabilities": {
     "batch": {
       "supported": true

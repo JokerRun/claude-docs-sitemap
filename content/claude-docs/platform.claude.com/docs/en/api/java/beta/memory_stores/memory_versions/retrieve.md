@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/memory_stores/memory_versions/retrieve
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 2e110fd87dc3ab6c8a33f98e2b07682445cf3b615e5860dee4ffaa8997eb7e26
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: da4c6eaab5d71aa16119d1498b95c241c37285119fec3ac24ed98da635de7ec2
 ---
 
 ## Retrieve a memory version
@@ -80,6 +80,10 @@ Retrieve a memory version
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
+
+    - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
+
+    - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
 
 ### Returns
 

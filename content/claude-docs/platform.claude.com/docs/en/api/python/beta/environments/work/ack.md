@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/environments/work/ack
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: a50331b7201b4635b45d00a820b7bfcd7867b18feb0cbacdf0901c2d7da6a96b
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 19e2e6efb13bb89c1c87c324e68671659d16b4bb026ea3ba2f2f28ae0b42ec98
 ---
 
 ## Acknowledge Work
@@ -27,7 +27,7 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 23 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 25 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -80,6 +80,10 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
     - `"cache-diagnosis-2026-04-07"`
 
     - `"thinking-token-count-2026-05-13"`
+
+    - `"server-side-fallback-2026-06-01"`
+
+    - `"fallback-credit-2026-06-01"`
 
 ### Returns
 

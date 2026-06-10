@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/costs
-fetched_at: 2026-05-26T03:16:13.081831Z
-sha256: 07c1c058678c09eaff7fa8f8ed659f1b74fbb22e1767dbf605a1c48e4ecb0095
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 8f0ba05de97cf5da00849f127f371fc829f864cf982be5719c935a009c5e8c2c
 ---
 
 > ## Documentation Index
@@ -177,7 +177,7 @@ Your [CLAUDE.md](/en/memory) file is loaded into context at session start. If it
 
 ### Adjust extended thinking
 
-Extended thinking is enabled by default because it significantly improves performance on complex planning and reasoning tasks. Thinking tokens are billed as output tokens, and the default budget can be tens of thousands of tokens per request depending on the model. For simpler tasks where deep reasoning isn't needed, you can reduce costs by lowering the [effort level](/en/model-config#adjust-effort-level) with `/effort` or in `/model`, disabling thinking in `/config`, or lowering the budget with `MAX_THINKING_TOKENS=8000`.
+Extended thinking is enabled by default because it significantly improves performance on complex planning and reasoning tasks. Thinking tokens are billed as output tokens, and the default budget can be tens of thousands of tokens per request depending on the model. For simpler tasks where deep reasoning isn't needed, you can reduce costs by lowering the [effort level](/en/model-config#adjust-effort-level) with `/effort` or in `/model`, disabling thinking in `/config`, or, on models with a [fixed thinking budget](/en/model-config#adaptive-reasoning-and-fixed-thinking-budgets), lowering the budget with `MAX_THINKING_TOKENS=8000`. Adaptive-reasoning models ignore nonzero budgets, so use effort levels there instead. Disabling thinking is not available on Fable 5, which always uses extended thinking.
 
 ### Delegate verbose operations to subagents
 

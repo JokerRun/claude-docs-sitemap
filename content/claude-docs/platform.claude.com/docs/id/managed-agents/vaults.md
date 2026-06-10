@@ -1,31 +1,31 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/vaults
-fetched_at: 2026-05-12T03:14:46.254373Z
-sha256: 79fa9cf4872291b7b5aaf7505417c4f734986261dc40e022823f76d3dd96a9a0
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 4f2ba8b1891fdfa2585a4166f4ff85ab543f1d20e5d3dc971e5cd266bb079b3f
 ---
 
 # Autentikasi dengan vault
 
-Daftarkan kredensial per-pengguna saat membuat sesi.
+Daftarkan kredensial per pengguna saat membuat sesi.
 
 ---
 
-Vault dan kredensial adalah primitif autentikasi yang memungkinkan Anda mendaftarkan kredensial untuk layanan pihak ketiga sekali dan mereferensikannya berdasarkan ID saat pembuatan sesi. Ini berarti Anda tidak perlu menjalankan penyimpanan rahasia Anda sendiri, mengirimkan token pada setiap panggilan, atau kehilangan jejak pengguna akhir mana yang ditindaklanjuti oleh agen.
+Vault dan kredensial adalah primitif autentikasi yang memungkinkan Anda mendaftarkan kredensial untuk layanan pihak ketiga satu kali dan mereferensikannya berdasarkan ID saat pembuatan sesi. Ini berarti Anda tidak perlu menjalankan penyimpanan rahasia sendiri, mengirimkan token pada setiap panggilan, atau kehilangan jejak pengguna akhir mana yang diwakili oleh agen saat bertindak.
 
-Referensi vault adalah parameter per-sesi, sehingga Anda dapat mengelola produk Anda di tingkat agen dan pengguna Anda di tingkat sesi.
+Referensi vault adalah parameter per sesi, sehingga Anda dapat mengelola produk Anda pada tingkat granularitas resource `agent` dan pengguna Anda pada tingkat granularitas resource `session`.
 
 <Note>
-Semua permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`. SDK mengatur header beta secara otomatis.
+Semua permintaan Managed Agents API memerlukan beta header `managed-agents-2026-04-01`. SDK menetapkan beta header tersebut secara otomatis.
 </Note>
 
-## Buat vault
+## Membuat vault \{#create-a-vault}
 
 <Warning>
-Vault dan kredensial memiliki cakupan ruang kerja, artinya siapa pun dengan akses kunci API dapat menggunakannya untuk mengotorisasi agen menyelesaikan tugas. Untuk mencabut akses, hapus vault atau kredensial.
+Vault dan kredensial memiliki cakupan workspace, yang berarti siapa pun dengan kunci API untuk workspace yang sama dapat mereferensikannya saat membuat sesi. Untuk mencabut akses, hapus vault atau kredensial tersebut.
 </Warning>
 
-Vault adalah koleksi `credentials` yang terkait dengan pengguna akhir. Berikan `display_name` dan secara opsional tandai dengan `metadata` sehingga Anda dapat memetakannya kembali ke catatan pengguna Anda sendiri.
+Vault adalah kumpulan `credentials` yang terkait dengan pengguna akhir. Berikan `display_name` dan secara opsional tandai dengan `metadata` agar Anda dapat memetakannya kembali ke catatan pengguna Anda sendiri.
 
 <CodeGroup defaultLanguage="CLI">
   
@@ -51,6 +51,7 @@ VAULT_ID=$(ant beta:vaults create \
   --display-name "Alice" \
   --metadata '{external_user_id: usr_abc123}' \
   --transform id --raw-output)
+echo "$VAULT_ID"  # "vlt_01ABC..."
 ````
 
   
@@ -124,7 +125,7 @@ puts vault.id # "vlt_01ABC..."
 
 </CodeGroup>
 
-Respons adalah catatan vault lengkap:
+Responsnya adalah catatan vault lengkap:
 
 ```json
 {
@@ -138,19 +139,28 @@ Respons adalah catatan vault lengkap:
 }
 ```
 
-## Tambahkan kredensial
+## Menambahkan kredensial \{#add-a-credential}
 
-Setiap kredensial mengikat ke satu `mcp_server_url`. Ketika agen terhubung ke server MCP saat runtime sesi, API mencocokkan URL server terhadap kredensial aktif di vault yang direferensikan dan menyuntikkan token.
+Dua kategori kredensial didukung:
+
+- **Kredensial MCP** (`mcp_oauth`, `static_bearer`): setiap kredensial dikunci oleh `mcp_server_url`. Ketika agen terhubung ke server pada URL tersebut saat runtime sesi, token disuntikkan secara otomatis.
+- **Variabel lingkungan** (`environment_variable`): setiap kredensial dikunci oleh `secret_name` (nama variabel lingkungan) dan disimpan di sandbox sebagai placeholder opaque. Ketika agen memulai permintaan keluar, placeholder opaque tersebut disubstitusi dengan rahasia asli saat egress. Agen tidak pernah melihat nilai rahasia. Gunakan ini untuk layanan apa pun yang mengautentikasi melalui variabel lingkungan, seperti CLI, SDK, atau panggilan API langsung.
+
+Nilai kredensial aktual yang Anda berikan (`token`, `access_token`, `refresh_token`, `client_secret`, `secret_value`) diperlakukan sebagai field sensitif yang hanya dapat ditulis dan tidak pernah dikembalikan dalam respons API.
+
+<Note>
+Kredensial variabel lingkungan (`environment_variable`) belum didukung dengan [sandbox yang di-host sendiri](/docs/id/managed-agents/self-hosted-sandboxes).
+</Note>
 
 <Tabs>
-  <Tab title="Kredensial MCP OAuth">
+  <Tab title="MCP OAuth">
 
-Gunakan `mcp_oauth` ketika server MCP menggunakan OAuth 2.0. Jika Anda menyediakan blok `refresh`, Anthropic menyegarkan token akses atas nama Anda ketika kadaluarsa.
+Gunakan `mcp_oauth` ketika server MCP menggunakan OAuth 2.0. Jika Anda menyediakan blok `refresh`, Anthropic akan me-refresh access token atas nama Anda ketika token tersebut kedaluwarsa.
 
-Bidang `refresh.token_endpoint_auth.type` menunjukkan cara mengautentikasi panggilan refresh:
-- `none`: klien publik
-- `client_secret_basic`: HTTP Basic auth dengan rahasia klien
-- `client_secret_post`: rahasia klien di badan POST
+Field `refresh.token_endpoint_auth.type` menunjukkan cara mengautentikasi panggilan refresh:
+- `none`: public client
+- `client_secret_basic`: autentikasi HTTP Basic dengan client secret
+- `client_secret_post`: client secret di dalam body POST
 
 <CodeGroup defaultLanguage="CLI">
   
@@ -186,7 +196,7 @@ EOF
 CREDENTIAL_ID=$(ant beta:vaults:credentials create \
   --vault-id "$VAULT_ID" \
   --display-name "Alice's Slack" \
-  --transform id --raw-output <<'EOF'
+  --transform id --raw-output <<'YAML'
 auth:
   type: mcp_oauth
   mcp_server_url: https://mcp.slack.com/mcp
@@ -200,7 +210,7 @@ auth:
     token_endpoint_auth:
       type: client_secret_post
       client_secret: abc123...
-EOF
+YAML
 )
 ````
 
@@ -255,7 +265,7 @@ var credential = await client.Beta.Vaults.Credentials.Create(vault.ID, new()
     DisplayName = "Alice's Slack",
     Auth = new BetaManagedAgentsMcpOAuthCreateParams
     {
-        Type = "mcp_oauth",
+        Type = BetaManagedAgentsMcpOAuthCreateParamsType.McpOAuth,
         McpServerUrl = "https://mcp.slack.com/mcp",
         AccessToken = "xoxp-...",
         ExpiresAt = DateTimeOffset.Parse("2099-12-31T23:59:59Z"),
@@ -267,7 +277,7 @@ var credential = await client.Beta.Vaults.Credentials.Create(vault.ID, new()
             RefreshToken = "xoxe-1-...",
             TokenEndpointAuth = new BetaManagedAgentsTokenEndpointAuthPostParam
             {
-                Type = "client_secret_post",
+                Type = BetaManagedAgentsTokenEndpointAuthPostParamType.ClientSecretPost,
                 ClientSecret = "abc123...",
             },
         },
@@ -331,22 +341,22 @@ var credential = client.beta().vaults().credentials().create(vault.id(),
 $credential = $client->beta->vaults->credentials->create(
     vaultID: $vault->id,
     displayName: "Alice's Slack",
-    auth: [
-        'type' => 'mcp_oauth',
-        'mcp_server_url' => 'https://mcp.slack.com/mcp',
-        'access_token' => 'xoxp-...',
-        'expires_at' => '2099-12-31T23:59:59Z',
-        'refresh' => [
-            'token_endpoint' => 'https://slack.com/api/oauth.v2.access',
-            'client_id' => '1234567890.0987654321',
-            'scope' => 'channels:read chat:write',
-            'refresh_token' => 'xoxe-1-...',
-            'token_endpoint_auth' => [
-                'type' => 'client_secret_post',
-                'client_secret' => 'abc123...',
-            ],
-        ],
-    ],
+    auth: ManagedAgentsMCPOAuthCreateParams::with(
+        type: 'mcp_oauth',
+        mcpServerURL: 'https://mcp.slack.com/mcp',
+        accessToken: 'xoxp-...',
+        expiresAt: new DateTimeImmutable('2099-12-31T23:59:59Z'),
+        refresh: ManagedAgentsMCPOAuthRefreshParams::with(
+            tokenEndpoint: 'https://slack.com/api/oauth.v2.access',
+            clientID: '1234567890.0987654321',
+            scope: 'channels:read chat:write',
+            refreshToken: 'xoxe-1-...',
+            tokenEndpointAuth: ManagedAgentsTokenEndpointAuthPostParam::with(
+                type: 'client_secret_post',
+                clientSecret: 'abc123...',
+            ),
+        ),
+    ),
 );
 ````
 
@@ -377,28 +387,32 @@ credential = client.beta.vaults.credentials.create(
 </CodeGroup>
 
   </Tab>
-  <Tab title="Kredensial bearer statis">
+  <Tab title="MCP static bearer">
 
-Gunakan `static_bearer` ketika server MCP menerima token bearer tetap (kunci API, token akses pribadi, atau serupa). Tidak ada alur refresh yang diperlukan.
+Gunakan `static_bearer` ketika server MCP menerima bearer token tetap (kunci API, personal access token, atau sejenisnya). Tidak diperlukan alur refresh.
 
 <CodeGroup defaultLanguage="CLI">
-```bash curl
-curl -fsSL "https://api.anthropic.com/v1/vaults/$VAULT_ID/credentials" \
+  
+````bash
+curl --fail-with-body -sS "https://api.anthropic.com/v1/vaults/$vault_id/credentials" \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
   -H "anthropic-beta: managed-agents-2026-04-01" \
   -H "content-type: application/json" \
-  -d '{
-    "display_name": "Linear API key",
-    "auth": {
-      "type": "static_bearer",
-      "mcp_server_url": "https://mcp.linear.app/mcp",
-      "token": "lin_api_your_linear_key"
-    }
-  }'
-```
+  --data @- <<'EOF'
+{
+  "display_name": "Linear API key",
+  "auth": {
+    "type": "static_bearer",
+    "mcp_server_url": "https://mcp.linear.app/mcp",
+    "token": "lin_api_your_linear_key"
+  }
+}
+EOF
+````
 
-```bash CLI
+  
+````bash
 ant beta:vaults:credentials create --vault-id "$VAULT_ID" <<'YAML'
 display_name: Linear API key
 auth:
@@ -406,10 +420,11 @@ auth:
   mcp_server_url: https://mcp.linear.app/mcp
   token: lin_api_your_linear_key
 YAML
-```
+````
 
-```python Python
-credential = client.beta.vaults.credentials.create(
+  
+````python
+bearer_credential = client.beta.vaults.credentials.create(
     vault_id=vault.id,
     display_name="Linear API key",
     auth={
@@ -418,34 +433,37 @@ credential = client.beta.vaults.credentials.create(
         "token": "lin_api_your_linear_key",
     },
 )
-```
+````
 
-```typescript TypeScript
-const credential = await client.beta.vaults.credentials.create(vault.id, {
+  
+````typescript
+const bearerCredential = await client.beta.vaults.credentials.create(vault.id, {
   display_name: "Linear API key",
   auth: {
     type: "static_bearer",
     mcp_server_url: "https://mcp.linear.app/mcp",
-    token: "lin_api_your_linear_key"
-  }
+    token: "lin_api_your_linear_key",
+  },
 });
-```
+````
 
-```csharp C#
-var credential = await client.Beta.Vaults.Credentials.Create(vault.ID, new()
+  
+````csharp
+var bearerCredential = await client.Beta.Vaults.Credentials.Create(vault.ID, new()
 {
     DisplayName = "Linear API key",
     Auth = new BetaManagedAgentsStaticBearerCreateParams
     {
-        Type = "static_bearer",
+        Type = BetaManagedAgentsStaticBearerCreateParamsType.StaticBearer,
         McpServerUrl = "https://mcp.linear.app/mcp",
         Token = "lin_api_your_linear_key",
     },
 });
-```
+````
 
-```go Go
-credential, err := client.Beta.Vaults.Credentials.New(ctx, vault.ID, anthropic.BetaVaultCredentialNewParams{
+  
+````go
+bearerCredential, err := client.Beta.Vaults.Credentials.New(ctx, vault.ID, anthropic.BetaVaultCredentialNewParams{
 	DisplayName: anthropic.String("Linear API key"),
 	Auth: anthropic.BetaVaultCredentialNewParamsAuthUnion{
 		OfStaticBearer: &anthropic.BetaManagedAgentsStaticBearerCreateParams{
@@ -458,10 +476,12 @@ credential, err := client.Beta.Vaults.Credentials.New(ctx, vault.ID, anthropic.B
 if err != nil {
 	panic(err)
 }
-```
+_ = bearerCredential
+````
 
-```java Java
-var credential = client.beta().vaults().credentials().create(vault.id(),
+  
+````java
+var bearerCredential = client.beta().vaults().credentials().create(vault.id(),
     CredentialCreateParams.builder()
         .displayName("Linear API key")
         .auth(BetaManagedAgentsStaticBearerCreateParams.builder()
@@ -470,22 +490,24 @@ var credential = client.beta().vaults().credentials().create(vault.id(),
             .token("lin_api_your_linear_key")
             .build())
         .build());
-```
+````
 
-```php PHP
-$credential = $client->beta->vaults->credentials->create(
+  
+````php
+$bearerCredential = $client->beta->vaults->credentials->create(
     vaultID: $vault->id,
-    displayName: 'Notion token',
-    auth: [
-        'type' => 'static_bearer',
-        'mcp_server_url' => 'https://mcp.linear.app/mcp',
-        'token' => 'lin_api_your_linear_key',
-    ],
+    displayName: 'Linear API key',
+    auth: ManagedAgentsStaticBearerCreateParams::with(
+        type: 'static_bearer',
+        mcpServerURL: 'https://mcp.linear.app/mcp',
+        token: 'lin_api_your_linear_key',
+    ),
 );
-```
+````
 
-```ruby Ruby
-credential = client.beta.vaults.credentials.create(
+  
+````ruby
+bearer_credential = client.beta.vaults.credentials.create(
   vault.id,
   display_name: "Linear API key",
   auth: {
@@ -494,118 +516,127 @@ credential = client.beta.vaults.credentials.create(
     token: "lin_api_your_linear_key"
   }
 )
-```
+````
+
 </CodeGroup>
 
   </Tab>
-</Tabs>
+  <Tab title="Variabel lingkungan">
 
-<Warning>
-Bidang rahasia (`token`, `access_token`, `refresh_token`, `client_secret`) hanya dapat ditulis. Mereka tidak pernah dikembalikan dalam respons API.
-</Warning>
+Gunakan `environment_variable` untuk mengautentikasi ke layanan eksternal melalui variabel lingkungan, seperti CLI, SDK, atau panggilan API langsung.
 
-Kredensial disimpan seperti yang disediakan dan tidak divalidasi sampai runtime sesi. Token yang buruk muncul sebagai kesalahan auth MCP selama sesi, yang dipancarkan tetapi tidak memblokir sesi dari melanjutkan.
+Array `networking.allowed_hosts` mengontrol host keluar mana yang dapat disubstitusi dengan rahasia tersebut. Gunakan `"type": "limited"` dengan daftar spesifik, atau `"type": "unrestricted"` jika pemanggil menjangkau domain yang tidak dapat Anda enumerasi sebelumnya.
 
-Batasan:
+Membatasi domain sangat disarankan untuk tujuan keamanan, dan mencegah kunci Anda dibagikan ke host yang tidak diotorisasi.
 
-- **Satu kredensial aktif per `mcp_server_url` per vault.** Membuat kredensial kedua untuk URL yang sama mengembalikan 409.
-- **`mcp_server_url` tidak dapat diubah.** Untuk menunjuk ke server yang berbeda, arsipkan kredensial ini dan buat yang baru.
-- **Maksimal 20 kredensial per vault.** Ini sesuai dengan jumlah maksimal server MCP per agen.
-
-## Putar kredensial
-
-Hanya muatan rahasia dan beberapa bidang metadata yang dapat diubah. `mcp_server_url`, `token_endpoint`, dan `client_id` terkunci setelah pembuatan.
+<Note>
+`networking.allowed_hosts` pada kredensial vault mengontrol permintaan mana yang menggunakan rahasia tersebut, bukan permintaan mana yang diizinkan. Agar agen benar-benar dapat menjangkau suatu domain, domain tersebut juga harus diizinkan pada [tingkat environment](/docs/id/managed-agents/environments). Kedua tingkat harus menyertakan domain tersebut (baik melalui networking `unrestricted` atau dengan secara eksplisit mencantumkan domain di `allowed_hosts`) agar permintaan yang disubstitusi rahasia dapat berhasil.
+</Note>
 
 <CodeGroup defaultLanguage="CLI">
   
 ````bash
-curl --fail-with-body -sS \
-  "https://api.anthropic.com/v1/vaults/$vault_id/credentials/$credential_id" \
+curl --fail-with-body -sS "https://api.anthropic.com/v1/vaults/$vault_id/credentials" \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
   -H "anthropic-beta: managed-agents-2026-04-01" \
   -H "content-type: application/json" \
-  --data @- <<'EOF' > /dev/null
+  --data @- <<'EOF'
 {
   "auth": {
-    "type": "mcp_oauth",
-    "access_token": "xoxp-new-...",
-    "expires_at": "2099-12-31T23:59:59Z",
-    "refresh": {"refresh_token": "xoxe-1-new-..."}
-  }
+    "type": "environment_variable",
+    "secret_name": "TWILIO_API_KEY",
+    "secret_value": "sk-your-secret-here",
+    "networking": {
+      "type": "limited",
+      "allowed_hosts": ["api.twilio.com", "*.twilio.com"]
+    }
+  },
+  "display_name": "Twilio API key for sandbox"
 }
 EOF
 ````
 
   
 ````bash
-ant beta:vaults:credentials update \
-  --vault-id "$VAULT_ID" \
-  --credential-id "$CREDENTIAL_ID" <<'EOF'
+ant beta:vaults:credentials create --vault-id "$VAULT_ID" <<'YAML'
+display_name: Twilio API key for sandbox
 auth:
-  type: mcp_oauth
-  access_token: xoxp-new-...
-  expires_at: "2099-12-31T23:59:59Z"
-  refresh:
-    refresh_token: xoxe-1-new-...
-EOF
+  type: environment_variable
+  secret_name: TWILIO_API_KEY
+  secret_value: sk-your-secret-here
+  networking:
+    type: limited
+    allowed_hosts: [api.twilio.com, "*.twilio.com"]
+YAML
 ````
 
   
 ````python
-client.beta.vaults.credentials.update(
-    credential.id,
+env_credential = client.beta.vaults.credentials.create(
     vault_id=vault.id,
     auth={
-        "type": "mcp_oauth",
-        "access_token": "xoxp-new-...",
-        "expires_at": "2099-12-31T23:59:59Z",
-        "refresh": {"refresh_token": "xoxe-1-new-..."},
+        "type": "environment_variable",
+        "secret_name": "TWILIO_API_KEY",
+        "secret_value": "sk-your-secret-here",
+        "networking": {
+            "type": "limited",
+            "allowed_hosts": ["api.twilio.com", "*.twilio.com"],
+        },
     },
+    display_name="Twilio API key for sandbox",
 )
 ````
 
   
 ````typescript
-await client.beta.vaults.credentials.update(credential.id, {
-  vault_id: vault.id,
+const envVarCredential = await client.beta.vaults.credentials.create(vault.id, {
   auth: {
-    type: "mcp_oauth",
-    access_token: "xoxp-new-...",
-    expires_at: "2099-12-31T23:59:59Z",
-    refresh: {
-      refresh_token: "xoxe-1-new-...",
+    type: "environment_variable",
+    secret_name: "TWILIO_API_KEY",
+    secret_value: "sk-your-secret-here",
+    networking: {
+      type: "limited",
+      allowed_hosts: ["api.twilio.com", "*.twilio.com"],
     },
   },
+  display_name: "Twilio API key for sandbox",
 });
 ````
 
   
 ````csharp
-await client.Beta.Vaults.Credentials.Update(credential.ID, new()
+var envVarCredential = await client.Beta.Vaults.Credentials.Create(vault.ID, new()
 {
-    VaultID = vault.ID,
-    Auth = new BetaManagedAgentsMcpOAuthUpdateParams
+    DisplayName = "Twilio API key for sandbox",
+    Auth = new BetaManagedAgentsEnvironmentVariableCreateParams
     {
-        Type = "mcp_oauth",
-        AccessToken = "xoxp-new-...",
-        ExpiresAt = DateTimeOffset.Parse("2099-12-31T23:59:59Z"),
-        Refresh = new() { RefreshToken = "xoxe-1-new-..." },
+        Type = BetaManagedAgentsEnvironmentVariableCreateParamsType.EnvironmentVariable,
+        SecretName = "TWILIO_API_KEY",
+        SecretValue = "sk-your-secret-here",
+        Networking = new BetaManagedAgentsLimitedCredentialNetworkingParams
+        {
+            Type = BetaManagedAgentsLimitedCredentialNetworkingParamsType.Limited,
+            AllowedHosts = ["api.twilio.com", "*.twilio.com"],
+        },
     },
 });
 ````
 
   
 ````go
-_, err = client.Beta.Vaults.Credentials.Update(ctx, credential.ID, anthropic.BetaVaultCredentialUpdateParams{
-	VaultID: vault.ID,
-	Auth: anthropic.BetaVaultCredentialUpdateParamsAuthUnion{
-		OfMCPOAuth: &anthropic.BetaManagedAgentsMCPOAuthUpdateParams{
-			Type:        anthropic.BetaManagedAgentsMCPOAuthUpdateParamsTypeMCPOAuth,
-			AccessToken: anthropic.String("xoxp-new-..."),
-			ExpiresAt:   anthropic.Time(time.Date(2099, time.December, 31, 23, 59, 59, 0, time.UTC)),
-			Refresh: anthropic.BetaManagedAgentsMCPOAuthRefreshUpdateParams{
-				RefreshToken: anthropic.String("xoxe-1-new-..."),
+envVarCredential, err := client.Beta.Vaults.Credentials.New(ctx, vault.ID, anthropic.BetaVaultCredentialNewParams{
+	DisplayName: anthropic.String("Twilio API key for sandbox"),
+	Auth: anthropic.BetaVaultCredentialNewParamsAuthUnion{
+		OfEnvironmentVariable: &anthropic.BetaManagedAgentsEnvironmentVariableCreateParams{
+			Type:        anthropic.BetaManagedAgentsEnvironmentVariableCreateParamsTypeEnvironmentVariable,
+			SecretName:  "TWILIO_API_KEY",
+			SecretValue: "sk-your-secret-here",
+			Networking: anthropic.BetaManagedAgentsCredentialNetworkingParamsUnion{
+				OfLimited: &anthropic.BetaManagedAgentsLimitedCredentialNetworkingParams{
+					Type:         anthropic.BetaManagedAgentsLimitedCredentialNetworkingParamsTypeLimited,
+					AllowedHosts: []string{"api.twilio.com", "*.twilio.com"},
+				},
 			},
 		},
 	},
@@ -613,59 +644,83 @@ _, err = client.Beta.Vaults.Credentials.Update(ctx, credential.ID, anthropic.Bet
 if err != nil {
 	panic(err)
 }
+_ = envVarCredential
 ````
 
   
 ````java
-client.beta().vaults().credentials().update(credential.id(),
-    CredentialUpdateParams.builder()
-        .vaultId(vault.id())
-        .auth(BetaManagedAgentsMcpOAuthUpdateParams.builder()
-            .type(BetaManagedAgentsMcpOAuthUpdateParams.Type.MCP_OAUTH)
-            .accessToken("xoxp-new-...")
-            .expiresAt(OffsetDateTime.parse("2099-12-31T23:59:59Z"))
-            .refresh(BetaManagedAgentsMcpOAuthRefreshUpdateParams.builder()
-                .refreshToken("xoxe-1-new-...")
-                .build())
+var envVarCredential = client.beta().vaults().credentials().create(vault.id(),
+    CredentialCreateParams.builder()
+        .displayName("Twilio API key for sandbox")
+        .auth(BetaManagedAgentsEnvironmentVariableCreateParams.builder()
+            .type(BetaManagedAgentsEnvironmentVariableCreateParams.Type.ENVIRONMENT_VARIABLE)
+            .secretName("TWILIO_API_KEY")
+            .secretValue("sk-your-secret-here")
+            .limitedNetworking(List.of("api.twilio.com", "*.twilio.com"))
             .build())
         .build());
 ````
 
   
 ````php
-$client->beta->vaults->credentials->update(
-    $credential->id,
+$envVarCredential = $client->beta->vaults->credentials->create(
     vaultID: $vault->id,
-    auth: [
-        'type' => 'mcp_oauth',
-        'access_token' => 'xoxp-new-...',
-        'expires_at' => '2099-12-31T23:59:59Z',
-        'refresh' => ['refresh_token' => 'xoxe-1-new-...'],
-    ],
+    displayName: 'Twilio API key for sandbox',
+    auth: ManagedAgentsEnvironmentVariableCreateParams::with(
+        type: 'environment_variable',
+        secretName: 'TWILIO_API_KEY',
+        secretValue: 'sk-your-secret-here',
+        networking: ManagedAgentsLimitedCredentialNetworkingParams::with(
+            type: 'limited',
+            allowedHosts: ['api.twilio.com', '*.twilio.com'],
+        ),
+    ),
 );
 ````
 
   
 ````ruby
-client.beta.vaults.credentials.update(
-  credential.id,
-  vault_id: vault.id,
+env_credential = client.beta.vaults.credentials.create(
+  vault.id,
+  display_name: "Twilio API key for sandbox",
   auth: {
-    type: "mcp_oauth",
-    access_token: "xoxp-new-...",
-    expires_at: "2099-12-31T23:59:59Z",
-    refresh: {refresh_token: "xoxe-1-new-..."}
+    type: "environment_variable",
+    secret_name: "TWILIO_API_KEY",
+    secret_value: "sk-your-secret-here",
+    networking: {
+      type: "limited",
+      allowed_hosts: ["api.twilio.com", "*.twilio.com"]
+    }
   }
 )
 ````
 
 </CodeGroup>
 
-## Referensikan vault saat pembuatan sesi
+Substitusi terjadi saat egress, bukan di dalam sandbox. Apa pun yang memproses kredensial secara lokal akan melihat placeholder opaque, bukan nilai aslinya: klien yang memvalidasi format kredensial saat startup mungkin menolaknya, dan klien yang menghitung signature permintaan dari rahasia tersebut (misalnya, AWS SigV4) akan menghasilkan signature yang tidak valid. Kredensial variabel lingkungan berfungsi untuk klien yang mengirim nilai rahasia secara verbatim dalam permintaan keluar.
 
-Lewatkan `vault_ids` saat membuat sesi:
+Substitusi hanya berlaku untuk arah keluar. Jika klien menggunakan rahasia yang tersimpan untuk mengambil session token (misalnya, OAuth client-credentials grant), token yang dikembalikan tiba di sandbox tanpa diredaksi. Untuk alur berbasis pertukaran, lakukan pertukaran tersebut sendiri dan simpan token yang dihasilkan di vault sebagai gantinya.
 
-<CodeGroup>
+<Tip>
+Batasi cakupan kunci API hanya pada izin yang dibutuhkan agen. Agen dapat melakukan apa pun yang diizinkan oleh kunci tersebut, sehingga kunci dengan izin yang lebih luas dari yang diperlukan akan meningkatkan radius dampak jika agen berperilaku tidak terduga.
+</Tip>
+
+  </Tab>
+</Tabs>
+
+Kredensial disimpan sebagaimana diberikan dan tidak divalidasi hingga runtime sesi. Kredensial yang tidak valid akan muncul sebagai error autentikasi atau error downstream selama sesi, yang dipancarkan tetapi tidak menghalangi sesi untuk terus berjalan.
+
+Batasan:
+
+- **Kunci unik per vault.** `mcp_server_url` (kredensial MCP) dan `secret_name` (kredensial variabel lingkungan) harus unik di antara kredensial aktif dalam sebuah vault. Membuat duplikat akan mengembalikan 409.
+- **Kunci bersifat immutable.** Untuk mengubah `mcp_server_url` atau `secret_name`, arsipkan kredensial dan buat yang baru.
+- **Maksimum 20 kredensial per vault.**
+
+## Mereferensikan vault saat pembuatan sesi \{#reference-the-vault-at-session-creation}
+
+Berikan `vault_ids` saat membuat sesi:
+
+<CodeGroup defaultLanguage="CLI">
   
 ````bash
 session_id=$(curl --fail-with-body -sS https://api.anthropic.com/v1/sessions \
@@ -773,14 +828,303 @@ session = client.beta.sessions.create(
 </CodeGroup>
 
 Perilaku runtime:
+- Ketika tidak ada kredensial MCP yang cocok berdasarkan `mcp_server_url`, koneksi dicoba tanpa autentikasi dan akan menghasilkan error jika server memerlukan autentikasi.
+- Ketika beberapa vault berisi kredensial yang cocok, vault pertama dengan kecocokan yang menang.
+- Dalam [sesi multi-agen](/docs/id/managed-agents/multi-agent), kredensial vault berlaku untuk setiap thread. Agen yang definisinya sendiri mendeklarasikan server MCP yang cocok akan mengautentikasi dengan kredensial ini. Lihat [Menghubungkan agen ke server MCP](/docs/id/managed-agents/multi-agent#connect-agents-to-mcp-servers).
 
-- Kredensial diselesaikan kembali secara berkala selama sesi, sehingga rotasi atau arsip menyebar ke sesi yang berjalan tanpa restart.
-- Ketika vault tidak memiliki kredensial untuk server MCP, koneksi dicoba tanpa autentikasi dan menghasilkan kesalahan.
-- Ketika beberapa vault mencakup server MCP, vault pertama dengan kecocokan menang.
+## Merotasi kredensial \{#rotate-a-credential}
 
-## Operasi lainnya
+Nilai rahasia dan `display_name` dapat diperbarui. Field struktural (`mcp_server_url`, `secret_name`, `token_endpoint`, `client_id`) dikunci setelah pembuatan. Untuk mengubahnya, arsipkan kredensial dan buat yang baru.
 
-- **Daftar vault atau kredensial:** Dipaginasi, terbaru terlebih dahulu. Catatan yang diarsipkan dikecualikan secara default (lewatkan `include_archived=true` untuk memasukkannya).
-- **Arsipkan vault:** `POST /v1/vaults/{id}/archive`. Kaskade ke semua kredensial. Rahasia dihapus; catatan dipertahankan untuk audit. Sesi masa depan yang mereferensikan vault ini gagal; sesi yang berjalan berlanjut.
-- **Arsipkan kredensial:** `POST /v1/vaults/{id}/credentials/{cred_id}/archive`. Menghapus muatan rahasia; `mcp_server_url` tetap terlihat. Membebaskan `mcp_server_url` untuk kredensial pengganti.
-- **Hapus vault atau kredensial:** Penghapusan keras. Catatan tidak dipertahankan. Gunakan arsip jika Anda memerlukan jejak audit.
+<CodeGroup defaultLanguage="CLI">
+  
+````bash
+curl --fail-with-body -sS \
+  "https://api.anthropic.com/v1/vaults/$vault_id/credentials/$credential_id" \
+  -H "x-api-key: $ANTHROPIC_API_KEY" \
+  -H "anthropic-version: 2023-06-01" \
+  -H "anthropic-beta: managed-agents-2026-04-01" \
+  -H "content-type: application/json" \
+  --data @- <<'EOF' > /dev/null
+{
+  "auth": {
+    "type": "mcp_oauth",
+    "access_token": "xoxp-new-...",
+    "expires_at": "2099-12-31T23:59:59Z",
+    "refresh": {"refresh_token": "xoxe-1-new-..."}
+  }
+}
+EOF
+````
+
+  
+````bash
+ant beta:vaults:credentials update \
+  --vault-id "$VAULT_ID" \
+  --credential-id "$CREDENTIAL_ID" <<'YAML'
+auth:
+  type: mcp_oauth
+  access_token: xoxp-new-...
+  expires_at: "2099-12-31T23:59:59Z"
+  refresh:
+    refresh_token: xoxe-1-new-...
+YAML
+````
+
+  
+````python
+client.beta.vaults.credentials.update(
+    credential.id,
+    vault_id=vault.id,
+    auth={
+        "type": "mcp_oauth",
+        "access_token": "xoxp-new-...",
+        "expires_at": "2099-12-31T23:59:59Z",
+        "refresh": {"refresh_token": "xoxe-1-new-..."},
+    },
+)
+````
+
+  
+````typescript
+await client.beta.vaults.credentials.update(credential.id, {
+  vault_id: vault.id,
+  auth: {
+    type: "mcp_oauth",
+    access_token: "xoxp-new-...",
+    expires_at: "2099-12-31T23:59:59Z",
+    refresh: {
+      refresh_token: "xoxe-1-new-...",
+    },
+  },
+});
+````
+
+  
+````csharp
+await client.Beta.Vaults.Credentials.Update(credential.ID, new()
+{
+    VaultID = vault.ID,
+    Auth = new BetaManagedAgentsMcpOAuthUpdateParams
+    {
+        Type = BetaManagedAgentsMcpOAuthUpdateParamsType.McpOAuth,
+        AccessToken = "xoxp-new-...",
+        ExpiresAt = DateTimeOffset.Parse("2099-12-31T23:59:59Z"),
+        Refresh = new() { RefreshToken = "xoxe-1-new-..." },
+    },
+});
+````
+
+  
+````go
+_, err = client.Beta.Vaults.Credentials.Update(ctx, credential.ID, anthropic.BetaVaultCredentialUpdateParams{
+	VaultID: vault.ID,
+	Auth: anthropic.BetaVaultCredentialUpdateParamsAuthUnion{
+		OfMCPOAuth: &anthropic.BetaManagedAgentsMCPOAuthUpdateParams{
+			Type:        anthropic.BetaManagedAgentsMCPOAuthUpdateParamsTypeMCPOAuth,
+			AccessToken: anthropic.String("xoxp-new-..."),
+			ExpiresAt:   anthropic.Time(time.Date(2099, time.December, 31, 23, 59, 59, 0, time.UTC)),
+			Refresh: anthropic.BetaManagedAgentsMCPOAuthRefreshUpdateParams{
+				RefreshToken: anthropic.String("xoxe-1-new-..."),
+			},
+		},
+	},
+})
+if err != nil {
+	panic(err)
+}
+````
+
+  
+````java
+client.beta().vaults().credentials().update(credential.id(),
+    CredentialUpdateParams.builder()
+        .vaultId(vault.id())
+        .auth(BetaManagedAgentsMcpOAuthUpdateParams.builder()
+            .type(BetaManagedAgentsMcpOAuthUpdateParams.Type.MCP_OAUTH)
+            .accessToken("xoxp-new-...")
+            .expiresAt(OffsetDateTime.parse("2099-12-31T23:59:59Z"))
+            .refresh(BetaManagedAgentsMcpOAuthRefreshUpdateParams.builder()
+                .refreshToken("xoxe-1-new-...")
+                .build())
+            .build())
+        .build());
+````
+
+  
+````php
+$client->beta->vaults->credentials->update(
+    $credential->id,
+    vaultID: $vault->id,
+    auth: ManagedAgentsMCPOAuthUpdateParams::with(
+        type: 'mcp_oauth',
+        accessToken: 'xoxp-new-...',
+        expiresAt: new DateTimeImmutable('2099-12-31T23:59:59Z'),
+        refresh: ManagedAgentsMCPOAuthRefreshUpdateParams::with(refreshToken: 'xoxe-1-new-...'),
+    ),
+);
+````
+
+  
+````ruby
+client.beta.vaults.credentials.update(
+  credential.id,
+  vault_id: vault.id,
+  auth: {
+    type: "mcp_oauth",
+    access_token: "xoxp-new-...",
+    expires_at: "2099-12-31T23:59:59Z",
+    refresh: {refresh_token: "xoxe-1-new-..."}
+  }
+)
+````
+
+</CodeGroup>
+
+## Siklus hidup kredensial \{#credential-lifecycle}
+
+Kredensial di-resolve ulang secara berkala, baik selama sesi maupun selama siklus hidup vault. Ini memastikan bahwa rotasi, pengarsipan, atau penghapusan kredensial terpropagasi ke sesi yang sedang berjalan tanpa perlu restart.
+
+Untuk mendapatkan notifikasi jika kredensial diarsipkan, dihapus, atau gagal di-refresh, Anda dapat berlangganan [webhook](/docs/id/managed-agents/webhooks) vault dan kredensial yang terkait dengan perubahan siklus hidup tersebut.
+
+| Event | Pemicu |
+| ----- | ------- |
+| `vault.archived` | Vault diarsipkan. Event `vault_credential.archived` juga dipancarkan untuk setiap kredensial yang mendasarinya. |
+| `vault.deleted` | Vault dihapus. Event `vault_credential.deleted` juga dipancarkan untuk setiap kredensial yang mendasarinya. |
+| `vault_credential.archived` | Kredensial diarsipkan, baik secara langsung maupun sebagai akibat dari pengarsipan vault. |
+| `vault_credential.deleted` | Kredensial dihapus, baik secara langsung maupun sebagai akibat dari penghapusan vault. |
+| `vault_credential.refresh_failed` | Kredensial `mcp_oauth` tidak dapat di-refresh (refresh token tidak valid, atau error yang tidak dapat dipulihkan dari server OAuth). |
+
+<Note>
+Ini adalah daftar webhook yang tidak lengkap; lihat [Berlangganan webhook](/docs/id/managed-agents/webhooks) untuk daftar lengkapnya.
+</Note>
+
+Untuk kredensial `mcp_oauth`, resolusi ulang juga me-refresh access token jika telah kedaluwarsa. Jika refresh gagal, event `vault_credential.refresh_failed` akan dipancarkan.
+
+### Mendiagnosis kegagalan refresh OAuth \{#diagnose-an-o-auth-refresh-failure}
+
+Untuk mendiagnosis mengapa refresh gagal, panggil `POST /v1/vaults/{vault_id}/credentials/{credential_id}/mcp_oauth_validate` (atau `client.beta.vaults.credentials.mcp_oauth_validate(...)` di SDK). Ini memungkinkan Anda memutuskan cara menangani kegagalan tersebut; tindakan yang tepat bergantung pada jenis error.
+
+`status` tingkat atas memberi tahu Anda apa yang harus dilakukan selanjutnya:
+
+- `valid`: token berfungsi; tidak ada tindakan yang diperlukan.
+- `invalid`: grant telah hilang atau server OAuth menolak refresh dengan 4xx. Minta pengguna akhir untuk mengotorisasi ulang.
+- `unknown`: error sementara (5xx, 429, atau kegagalan jaringan). Tunggu dan coba lagi.
+
+<CodeGroup defaultLanguage="CLI">
+  
+````bash
+curl --fail-with-body -sS -X POST \
+  "https://api.anthropic.com/v1/vaults/$vault_id/credentials/$credential_id/mcp_oauth_validate?beta=true" \
+  -H "x-api-key: $ANTHROPIC_API_KEY" \
+  -H "anthropic-version: 2023-06-01" \
+  -H "anthropic-beta: managed-agents-2026-04-01"
+````
+
+  
+````bash
+ant beta:vaults:credentials mcp-oauth-validate \
+  --vault-id "$VAULT_ID" \
+  --credential-id "$CREDENTIAL_ID" \
+  --transform status --raw-output  # "valid", "invalid", or "unknown"
+````
+
+  
+````python
+validation = client.beta.vaults.credentials.mcp_oauth_validate(
+    credential.id,
+    vault_id=vault.id,
+)
+print(validation.status)  # "valid", "invalid", or "unknown"
+````
+
+  
+````typescript
+const validation = await client.beta.vaults.credentials.mcpOAuthValidate(
+  credential.id,
+  { vault_id: vault.id },
+);
+console.log(validation.status); // "valid", "invalid", or "unknown"
+````
+
+  
+````csharp
+var validation = await client.Beta.Vaults.Credentials.McpOAuthValidate(credential.ID, new()
+{
+    VaultID = vault.ID,
+});
+Console.WriteLine(validation.Status.Raw()); // "valid", "invalid", or "unknown"
+````
+
+  
+````go
+validation, err := client.Beta.Vaults.Credentials.MCPOAuthValidate(ctx, credential.ID, anthropic.BetaVaultCredentialMCPOAuthValidateParams{
+	VaultID: vault.ID,
+})
+if err != nil {
+	panic(err)
+}
+fmt.Println(validation.Status) // "valid", "invalid", or "unknown"
+````
+
+  
+````java
+var validation = client.beta().vaults().credentials().mcpOAuthValidate(credential.id(),
+    CredentialMcpOAuthValidateParams.builder()
+        .vaultId(vault.id())
+        .build());
+IO.println(validation.status()); // valid, invalid, or unknown
+````
+
+  
+````php
+$validation = $client->beta->vaults->credentials->mcpOAuthValidate(
+    $credential->id,
+    vaultID: $vault->id,
+);
+echo $validation->status . "\n"; // "valid", "invalid", or "unknown"
+````
+
+  
+````ruby
+validation = client.beta.vaults.credentials.mcp_oauth_validate(
+  credential.id,
+  vault_id: vault.id
+)
+puts validation.status # :valid, :invalid, or :unknown
+````
+
+</CodeGroup>
+
+Responsnya adalah objek `vault_credential_validation`. `mcp_probe` menyertakan langkah handshake MCP yang gagal; `refresh` menyertakan hasil dari percobaan refresh.
+
+```json
+{
+  "type": "vault_credential_validation",
+  "credential_id": "vcrd_01ABC...",
+  "vault_id": "vlt_01XYZ...",
+  "validated_at": "2026-04-29T17:12:00Z",
+  "has_refresh_token": false,
+  "status": "invalid",
+  "mcp_probe": {
+    "method": "initialize",
+    "http_response": {
+      "status_code": 401,
+      "content_type": "application/json",
+      "body": "{\"error\":\"invalid_token\"}",
+      "body_truncated": false
+    }
+  },
+  "refresh": {
+    "status": "no_refresh_token",
+    "http_response": null
+  }
+}
+```
+
+## Operasi lainnya \{#other-operations}
+
+- **Mendaftar vault atau kredensial:** Dipaginasi, terbaru lebih dulu. Catatan yang diarsipkan dikecualikan secara default (berikan `include_archived=true` untuk menyertakannya).
+- **Mengarsipkan vault:** `POST /v1/vaults/{id}/archive`. Berlaku secara kaskade ke semua kredensial. Rahasia dihapus; catatan dipertahankan untuk audit. Sesi mendatang yang mereferensikan vault ini akan gagal; sesi yang sedang berjalan tetap berlanjut.
+- **Mengarsipkan kredensial:** `POST /v1/vaults/{id}/credentials/{cred_id}/archive`. Menghapus payload rahasia; kunci kredensial (`mcp_server_url` atau `secret_name`) tetap terlihat dan dibebaskan untuk kredensial pengganti.
+- **Menghapus vault atau kredensial:** Hard delete. Catatan tidak dipertahankan. Gunakan arsip jika Anda memerlukan jejak audit.

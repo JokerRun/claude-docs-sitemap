@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/list
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 724a4cb31a847b69409deb1bc44f9cac56055335d3ecea27a6c304074e4838b8
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: f30406a720828eb97ec7316cb528e06a780f21018e776ffa8e03dcc74f0a3ac5
 ---
 
 ## List Vaults
@@ -33,7 +33,7 @@ List Vaults
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 23 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 25 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -86,6 +86,10 @@ List Vaults
     - `"cache-diagnosis-2026-04-07"`
 
     - `"thinking-token-count-2026-05-13"`
+
+    - `"server-side-fallback-2026-06-01"`
+
+    - `"fallback-credit-2026-06-01"`
 
 ### Returns
 

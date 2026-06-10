@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/completions
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 1909a9dce49df469df7fb5293fe4149619090293ef7ace12bc7abc01ded06422
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 30dff0cc2ef0bdc641624c0913219291a53ac57c3449ec4fc5d1bf6b211522df
 ---
 
 # Completions
@@ -153,6 +153,10 @@ Future models and features will not be compatible with Text Completions. See our
 
       - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
 
+      - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
+
+      - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
+
 ### Returns
 
 - `type Completion struct{…}`
@@ -178,6 +182,14 @@ Future models and features will not be compatible with Text Completions. See our
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `const ModelClaudeFable5 Model = "claude-fable-5"`
+
+        Next generation of intelligence for the hardest knowledge work and coding problems
+
+      - `const ModelClaudeMythos5 Model = "claude-mythos-5"`
+
+        Most capable model for cybersecurity and biology research
 
       - `const ModelClaudeOpus4_8 Model = "claude-opus-4-8"`
 
@@ -289,7 +301,7 @@ func main() {
   )
   completion, err := client.Completions.New(context.TODO(), anthropic.CompletionNewParams{
     MaxTokensToSample: 256,
-    Model: anthropic.ModelClaudeOpus4_8,
+    Model: anthropic.ModelClaudeFable5,
     Prompt: "\n\nHuman: Hello, world!\n\nAssistant:",
   })
   if err != nil {
@@ -338,6 +350,14 @@ func main() {
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `const ModelClaudeFable5 Model = "claude-fable-5"`
+
+        Next generation of intelligence for the hardest knowledge work and coding problems
+
+      - `const ModelClaudeMythos5 Model = "claude-mythos-5"`
+
+        Most capable model for cybersecurity and biology research
 
       - `const ModelClaudeOpus4_8 Model = "claude-opus-4-8"`
 

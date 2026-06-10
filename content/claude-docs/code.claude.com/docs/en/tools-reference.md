@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/tools-reference
-fetched_at: 2026-06-05T03:17:10.786387Z
-sha256: 45619a60e4dd177ef67458b34c174d5c488c069dc8005f663e4a72c9a15b295e
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 62876e3a28aa157db6e1360307cb8e427d7e6480b8f61fcd3dea08e5cdca3653
 ---
 
 > ## Documentation Index
@@ -322,6 +322,10 @@ What tools do you have access to?
 ```
 
 Claude gives a conversational summary. For exact MCP tool names, run `/mcp`.
+
+<Note>
+  The [advisor tool](/en/advisor) is a [server tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool) that the API runs, rather than a tool that Claude Code implements. It has no name you can reference in permission rules or hook matchers.
+</Note>
 
 ## See also
 

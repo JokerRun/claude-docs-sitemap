@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/models
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 4427c8cc83c5f0c38854413110f4a1306e176f7a81e85c8696ec2ba0b540bd0b
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: ceca77c4d3b068a707fd7d01ad2eecc4b7d73b134d3337f8c22eaf9fd7e13c25
 ---
 
 # Models
@@ -46,6 +46,10 @@ The Models API response can be used to determine which models are available for 
     - `id: string`
 
       Unique model identifier.
+
+    - `allowed_fallback_models: array of string`
+
+      Model IDs this model accepts as `fallbacks[i].model` on the Messages API. An empty list means the `fallbacks` parameter is not supported for this model as primary.
 
     - `capabilities: object { batch, citations, code_execution, 6 more }`
 
@@ -255,6 +259,9 @@ ant beta:models list \
   "data": [
     {
       "id": "claude-opus-4-6",
+      "allowed_fallback_models": [
+        "string"
+      ],
       "capabilities": {
         "batch": {
           "supported": true
@@ -351,11 +358,15 @@ The Models API response can be used to determine information about a specific mo
 
 ### Returns
 
-- `beta_model_info: object { id, capabilities, created_at, 4 more }`
+- `beta_model_info: object { id, allowed_fallback_models, capabilities, 5 more }`
 
   - `id: string`
 
     Unique model identifier.
+
+  - `allowed_fallback_models: array of string`
+
+    Model IDs this model accepts as `fallbacks[i].model` on the Messages API. An empty list means the `fallbacks` parameter is not supported for this model as primary.
 
   - `capabilities: object { batch, citations, code_execution, 6 more }`
 
@@ -552,6 +563,9 @@ ant beta:models retrieve \
 ```json
 {
   "id": "claude-opus-4-6",
+  "allowed_fallback_models": [
+    "string"
+  ],
   "capabilities": {
     "batch": {
       "supported": true
@@ -881,11 +895,15 @@ ant beta:models retrieve \
 
 ### Beta Model Info
 
-- `beta_model_info: object { id, capabilities, created_at, 4 more }`
+- `beta_model_info: object { id, allowed_fallback_models, capabilities, 5 more }`
 
   - `id: string`
 
     Unique model identifier.
+
+  - `allowed_fallback_models: array of string`
+
+    Model IDs this model accepts as `fallbacks[i].model` on the Messages API. An empty list means the `fallbacks` parameter is not supported for this model as primary.
 
   - `capabilities: object { batch, citations, code_execution, 6 more }`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/php/beta/models
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 723fb31994dc5d49bb0578b7f4208d6e94f5f50dd8529d852cf9d7e6414efbb1
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 62daa885f67f028e2365f65c1f8cebb21d188c2c7db3bea1ceda729368fe7839
 ---
 
 # Models
@@ -44,6 +44,10 @@ The Models API response can be used to determine which models are available for 
   - `string id`
 
     Unique model identifier.
+
+  - `?list<string> allowedFallbackModels`
+
+    Model IDs this model accepts as `fallbacks[i].model` on the Messages API. An empty list means the `fallbacks` parameter is not supported for this model as primary.
 
   - `?BetaModelCapabilities capabilities`
 
@@ -97,6 +101,9 @@ var_dump($page);
   "data": [
     {
       "id": "claude-opus-4-6",
+      "allowed_fallback_models": [
+        "string"
+      ],
       "capabilities": {
         "batch": {
           "supported": true
@@ -199,6 +206,10 @@ The Models API response can be used to determine information about a specific mo
 
     Unique model identifier.
 
+  - `?list<string> allowedFallbackModels`
+
+    Model IDs this model accepts as `fallbacks[i].model` on the Messages API. An empty list means the `fallbacks` parameter is not supported for this model as primary.
+
   - `?BetaModelCapabilities capabilities`
 
     Model capability information.
@@ -246,6 +257,9 @@ var_dump($betaModelInfo);
 ```json
 {
   "id": "claude-opus-4-6",
+  "allowed_fallback_models": [
+    "string"
+  ],
   "capabilities": {
     "batch": {
       "supported": true
@@ -420,6 +434,10 @@ var_dump($betaModelInfo);
   - `string id`
 
     Unique model identifier.
+
+  - `?list<string> allowedFallbackModels`
+
+    Model IDs this model accepts as `fallbacks[i].model` on the Messages API. An empty list means the `fallbacks` parameter is not supported for this model as primary.
 
   - `?BetaModelCapabilities capabilities`
 

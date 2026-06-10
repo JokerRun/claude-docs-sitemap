@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/list
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 6b881a714c05050301995d2a750adc2542c18611a65ee070c3b59cdb1b0e41ab
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: c2894e819442f16e38f75408ed6206088d0c79d8d3b68d2433231ffbf60c621c
 ---
 
 ## List Sessions
@@ -41,6 +41,10 @@ List Sessions
 
     Return sessions created at or before this time (inclusive).
 
+  - `Optional<String> deploymentId`
+
+    Filter sessions created by this deployment ID.
+
   - `Optional<Boolean> includeArchived`
 
     When true, includes archived sessions. Default: false (exclude archived).
@@ -63,7 +67,7 @@ List Sessions
 
   - `Optional<String> page`
 
-    Opaque pagination cursor from a previous response's next_page.
+    Opaque pagination cursor from a previous response.
 
   - `Optional<List<Status>> statuses`
 
@@ -133,6 +137,10 @@ List Sessions
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
 
+    - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
+
+    - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
 ### Returns
 
 - `class BetaManagedAgentsSession:`
@@ -168,6 +176,10 @@ List Sessions
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `CLAUDE_FABLE_5("claude-fable-5")`
+
+          Next generation of intelligence for the hardest knowledge work and coding problems
 
         - `CLAUDE_OPUS_4_8("claude-opus-4-8")`
 
@@ -395,19 +407,13 @@ List Sessions
 
               JSON Schema for custom tool input parameters.
 
-              - `Optional<Properties> properties`
-
-                JSON Schema properties defining the tool's input parameters.
-
-              - `Optional<List<String>> required`
-
-                List of required property names.
-
-              - `Optional<Type> type`
-
-                Must be 'object' for tool input schemas.
+              - `JsonValue; type "object"constant`
 
                 - `OBJECT("object")`
+
+              - `Optional<Properties> properties`
+
+              - `Optional<List<String>> required`
 
             - `String name`
 
@@ -665,6 +671,10 @@ List Sessions
 
     Vault IDs attached to the session at creation. Empty when no vaults were supplied.
 
+  - `Optional<String> deploymentId`
+
+    Deployment ID when the session was created from a deployment reference. Null otherwise.
+
 ### Example
 
 ```java
@@ -851,7 +861,8 @@ public final class Main {
       },
       "vault_ids": [
         "vlt_011CZkZDLs7fYzm1hXNPeRjv"
-      ]
+      ],
+      "deployment_id": "deployment_id"
     }
   ],
   "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="

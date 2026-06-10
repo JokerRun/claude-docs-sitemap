@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/agents/retrieve
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: e0a60a0df5daffae5f04c05ef5b2e8c4820a77cbf5c1f79d864bb41b711ed0f2
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: df3d1cb66f778b774fa8af67d306db69f1b3fe904f714f1740cebc7b9522f13c
 ---
 
 ## Get Agent
@@ -61,11 +61,15 @@ Get Agent
 
     Model identifier and configuration.
 
-    - `id: "claude-opus-4-8" or "claude-opus-4-7" or "claude-opus-4-6" or 7 more or string`
+    - `id: "claude-fable-5" or "claude-opus-4-8" or "claude-opus-4-7" or 8 more or string`
 
       The model that will power your agent.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `"claude-fable-5"`
+
+        Next generation of intelligence for the hardest knowledge work and coding problems
 
       - `"claude-opus-4-8"`
 
@@ -285,23 +289,15 @@ Get Agent
 
       - `description: string`
 
-      - `input_schema: object { properties, required, type }`
+      - `input_schema: object { type, properties, required }`
 
         JSON Schema for custom tool input parameters.
 
+        - `type: "object"`
+
         - `properties: optional map[unknown]`
 
-          JSON Schema properties defining the tool's input parameters.
-
         - `required: optional array of string`
-
-          List of required property names.
-
-        - `type: optional "object"`
-
-          Must be 'object' for tool input schemas.
-
-          - `"object"`
 
       - `name: string`
 

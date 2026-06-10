@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/sessions/resources/delete
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 4b523141067f653ba02af9cbc4ee4070bdc37fc6578b454bc5c8b7ab7ea2c519
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 60752eb7e79480e34ede711e799b41cdabf2ec159f9bb3189ff76c9310d7ca41
 ---
 
 ## Delete Session Resource
@@ -25,7 +25,7 @@ Delete Session Resource
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 23 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 25 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -78,6 +78,10 @@ Delete Session Resource
     - `"cache-diagnosis-2026-04-07"`
 
     - `"thinking-token-count-2026-05-13"`
+
+    - `"server-side-fallback-2026-06-01"`
+
+    - `"fallback-credit-2026-06-01"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/versions/retrieve
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 1cbbc4534f7d51641711e194fdda4612abf62566ce011b3b2d4ced666a249579
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 1ed7dba280c710c2fb4e01628ae5bc0cbd3439e4609b23b75e2bb9b0a4ba2852
 ---
 
 ## Get Skill Version
@@ -33,7 +33,7 @@ Get Skill Version
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 23 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 25 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -86,6 +86,10 @@ Get Skill Version
     - `"cache-diagnosis-2026-04-07"`
 
     - `"thinking-token-count-2026-05-13"`
+
+    - `"server-side-fallback-2026-06-01"`
+
+    - `"fallback-credit-2026-06-01"`
 
 ### Returns
 

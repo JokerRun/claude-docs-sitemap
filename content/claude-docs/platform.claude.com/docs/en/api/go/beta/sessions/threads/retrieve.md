@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/sessions/threads/retrieve
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 7cbd47eb1e5524e638c845315cc6b650e6b2cae84c8da8ba5c71cd0d2d55237b
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 8a8033fa665aa0fdff0198529b31a51698f2e6f0ebf5cb8a7e7c6ea67eb0936a
 ---
 
 ## Get Session Thread
@@ -83,6 +83,10 @@ Get Session Thread
 
       - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
 
+      - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
+
+      - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
+
 ### Returns
 
 - `type BetaManagedAgentsSessionThread struct{…}`
@@ -126,6 +130,10 @@ Get Session Thread
           The model that will power your agent.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `const BetaManagedAgentsModelClaudeFable5 BetaManagedAgentsModel = "claude-fable-5"`
+
+            Next generation of intelligence for the hardest knowledge work and coding problems
 
           - `const BetaManagedAgentsModelClaudeOpus4_8 BetaManagedAgentsModel = "claude-opus-4-8"`
 
@@ -331,19 +339,13 @@ Get Session Thread
 
           JSON Schema for custom tool input parameters.
 
+          - `Type Object`
+
+            - `const ObjectObject Object = "object"`
+
           - `Properties map[string, any]`
 
-            JSON Schema properties defining the tool's input parameters.
-
           - `Required []string`
-
-            List of required property names.
-
-          - `Type BetaManagedAgentsCustomToolInputSchemaType`
-
-            Must be 'object' for tool input schemas.
-
-            - `const BetaManagedAgentsCustomToolInputSchemaTypeObject BetaManagedAgentsCustomToolInputSchemaType = "object"`
 
         - `Name string`
 

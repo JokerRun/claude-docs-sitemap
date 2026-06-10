@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/user_profiles/create
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 6581422fdc86f44c98c4e9954df1c91e53ed5f408b52b31ab5fcd8c83f0765c7
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 03f9f1982345b77b37c37dadeebe786f73c442eaab8cda1d9135a3aec6541387
 ---
 
 ## Create User Profile
@@ -72,6 +72,10 @@ Create User Profile
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
+
+    - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
+
+    - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
 
   - `Optional<String> externalId`
 

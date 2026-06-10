@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/vaults/list
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: dfb3baba4bfdf9fe547bd7ce98a0430799e968fb94f8a9e89a524ae28ee048cd
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 9bda5b7055f87df8eda0e2af83179b7d08912997a0a12e11543de4e2018348f9
 ---
 
 ## List Vaults
@@ -33,7 +33,7 @@ List Vaults
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 23 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 25 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -86,6 +86,10 @@ List Vaults
     - `"cache-diagnosis-2026-04-07"`
 
     - `"thinking-token-count-2026-05-13"`
+
+    - `"server-side-fallback-2026-06-01"`
+
+    - `"fallback-credit-2026-06-01"`
 
 ### Returns
 

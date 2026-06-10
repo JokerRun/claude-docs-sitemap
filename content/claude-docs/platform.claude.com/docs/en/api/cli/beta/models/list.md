@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/models/list
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: cbcb686a6502d248e3fd0384e4c0668ced67c1bcb76e0741e1b1a48de0924510
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 3b285c81679e10e5e4c5609b75af4b000b5a959b1b982f75e784c777181cec7a
 ---
 
 ## List Models
@@ -44,6 +44,10 @@ The Models API response can be used to determine which models are available for 
     - `id: string`
 
       Unique model identifier.
+
+    - `allowed_fallback_models: array of string`
+
+      Model IDs this model accepts as `fallbacks[i].model` on the Messages API. An empty list means the `fallbacks` parameter is not supported for this model as primary.
 
     - `capabilities: object { batch, citations, code_execution, 6 more }`
 
@@ -253,6 +257,9 @@ ant beta:models list \
   "data": [
     {
       "id": "claude-opus-4-6",
+      "allowed_fallback_models": [
+        "string"
+      ],
       "capabilities": {
         "batch": {
           "supported": true

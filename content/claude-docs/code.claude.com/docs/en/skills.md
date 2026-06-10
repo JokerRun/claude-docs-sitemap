@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/skills
-fetched_at: 2026-06-09T03:16:00.501901Z
-sha256: 49e578de5a478bdb7aaf245a1c37c2d7259b6c73a16b9c94da56e8c9579b0142
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: d7d367c7d0040ba05b96688511727ff9456a9057f22b417c5e1f279b7f6b08d7
 ---
 
 > ## Documentation Index
@@ -27,7 +27,7 @@ Claude Code skills follow the [Agent Skills](https://agentskills.io) open standa
 
 ## Bundled skills
 
-Claude Code includes a set of bundled skills that are available in every session, including `/code-review`, `/batch`, `/debug`, `/loop`, and `/claude-api`. Unlike most built-in commands, which execute fixed logic directly, bundled skills are prompt-based: they give Claude detailed instructions and let it orchestrate the work using its tools. You invoke them the same way as any other skill, by typing `/` followed by the skill name.
+Claude Code includes a set of bundled skills that are available in every session unless disabled with the [`disableBundledSkills`](/en/settings#available-settings) setting, including `/code-review`, `/batch`, `/debug`, `/loop`, and `/claude-api`. Unlike most built-in commands, which execute fixed logic directly, bundled skills are prompt-based: they give Claude detailed instructions and let it orchestrate the work using its tools. You invoke them the same way as any other skill, by typing `/` followed by the skill name.
 
 Bundled skills are listed alongside built-in commands in the [commands reference](/en/commands), marked **Skill** in the Purpose column.
 
@@ -269,7 +269,7 @@ Skills support string substitution for dynamic values in the skill content:
 
 Indexed arguments use shell-style quoting, so wrap multi-word values in quotes to pass them as a single argument. For example, `/my-skill "hello world" second` makes `$0` expand to `hello world` and `$1` to `second`. The `$ARGUMENTS` placeholder always expands to the full argument string as typed.
 
-To include a literal `$` before a digit, `ARGUMENTS`, or a declared argument name, such as `$1.00` in prose, escape it with a backslash: `\$1.00`. A backslash before any other `$` is left unchanged. Only a single backslash directly before the token escapes it; a doubled backslash such as `\\$1` keeps both backslashes and substitutes as before.
+To include a literal `$` before a digit, `ARGUMENTS`, or a declared argument name, such as `$1.00` in prose, escape it with a backslash: `\$1.00`. A backslash before any other `$` is left unchanged. Only a single backslash directly before the token escapes it. A doubled backslash such as `\\$1` leaves both backslashes in place, and `$1` still expands to the argument value.
 
 **Example using substitutions:**
 

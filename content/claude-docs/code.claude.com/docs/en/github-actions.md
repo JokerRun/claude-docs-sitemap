@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/github-actions
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 1cc9b31a860195d98e3a9a8c5022ca4bc86a662a47b5e30a3dae30ac2361ab71
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 31f7521bcfc91d2d01d5159203e481b9863b0f84b59539a053b0f9b4970233e6
 ---
 
 > ## Documentation Index
@@ -18,10 +18,6 @@ Claude Code GitHub Actions brings AI-powered automation to your GitHub workflow.
 <Note>
   Claude Code GitHub Actions is built on top of the [Claude Agent SDK](/en/agent-sdk/overview), which enables programmatic integration of Claude Code into your applications. You can use the SDK to build custom automation workflows beyond GitHub Actions.
 </Note>
-
-<Info>
-  **Claude Opus 4.8 is now available.** Claude Code GitHub Actions default to Sonnet. To use Opus 4.8, configure the [model parameter](#breaking-changes-reference) to use `claude-opus-4-8`.
-</Info>
 
 ## Why use Claude Code GitHub Actions?
 

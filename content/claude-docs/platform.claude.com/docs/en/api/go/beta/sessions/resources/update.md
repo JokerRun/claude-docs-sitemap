@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/sessions/resources/update
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: c0cbee42f572fcc28262da30029ac131338fea9f9e846f29fa17b22f7bffc209
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 41840c405217ed84c9958701ce5cdfbe39c16c6d0ac60f6627363659f1969849
 ---
 
 ## Update Session Resource
@@ -86,6 +86,10 @@ Update Session Resource
       - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
 
       - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
+
+      - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
+
+      - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
 
 ### Returns
 

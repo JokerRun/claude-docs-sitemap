@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/sessions/threads/retrieve
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 140466cb9a303d76433950338d97dc7b0fbca8e22dd14be4346f9b03f8e05ca8
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: c21774a2cc9dd194f5681449ebe233036e4808c0e0cdbed67324cf1cc3e06db9
 ---
 
 ## Get Session Thread
@@ -81,6 +81,10 @@ Get Session Thread
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Returns
 
 - `class BetaManagedAgentsSessionThread:`
@@ -118,6 +122,10 @@ Get Session Thread
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-fable-5"ClaudeFable5`
+
+          Next generation of intelligence for the hardest knowledge work and coding problems
 
         - `"claude-opus-4-8"ClaudeOpus4_8`
 
@@ -321,19 +329,11 @@ Get Session Thread
 
           JSON Schema for custom tool input parameters.
 
+          - `JsonElement Type "object"constant`
+
           - `IReadOnlyDictionary<string, JsonElement>? Properties`
 
-            JSON Schema properties defining the tool's input parameters.
-
-          - `IReadOnlyList<string> Required`
-
-            List of required property names.
-
-          - `Type Type`
-
-            Must be 'object' for tool input schemas.
-
-            - `"object"Object`
+          - `IReadOnlyList<string>? Required`
 
         - `required string Name`
 

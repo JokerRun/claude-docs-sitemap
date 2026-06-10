@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/token-counting
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 720f127890f5c0fa3917d455628e6a28adde09374c1c7e0af5390b24ebe8f4c0
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 73c1a47f2f3b3e42c76c7842f06a6facaa360c379f9cf8e78a88272be8b2b688
 ---
 
 # Token counting
@@ -1600,6 +1600,16 @@ puts response
 ```json Output
 { "input_tokens": 2188 }
 ```
+
+---
+
+## Token counts on Claude Fable 5 and Claude Mythos 5 \{#token-counts-on-claude-fable-5}
+
+Claude Fable 5 and Claude Mythos 5 use the tokenizer introduced with Claude Opus 4.7, which produces roughly 30% more tokens than models before Claude Opus 4.7 for the same text. The token counting endpoint returns the count under the tokenizer of the `model` you pass, so to measure the difference for your workload, count the same request twice: once with your current model and once with `model: "claude-fable-5"` (or `"claude-mythos-5"`), and compare the two `input_tokens` values.
+
+<Note>
+**Billing and migration:** Usage and billing on Claude Fable 5 and Claude Mythos 5 reflect this tokenizer's counts. If you're migrating from a model before Claude Opus 4.7, the same content consumes roughly 30% more tokens. When migrating a workload to Claude Fable 5 and Claude Mythos 5, don't reuse token counts measured on a model before Claude Opus 4.7 to estimate costs or context window fit. Count your prompts with `model: "claude-fable-5"` (or `"claude-mythos-5"`).
+</Note>
 
 ---
 

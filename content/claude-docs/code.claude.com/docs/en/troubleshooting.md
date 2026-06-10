@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/troubleshooting
-fetched_at: 2026-06-04T03:18:26.079997Z
-sha256: 88a2dfd4dbb45269773cdd3f313825c957a970860f76cc755f1c01c2feb51133
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 1bda7d934121ad2e8a1ad8106ea10dda8b94d7d94cbab2be31f5e5b33f4c7424
 ---
 
 > ## Documentation Index
@@ -39,6 +39,7 @@ Claude Code is designed to work with most development environments, but may cons
 1. Use `/compact` regularly to reduce context size
 2. Close and restart Claude Code between major tasks
 3. Consider adding large build directories to your `.gitignore` file
+4. Restart with [`claude --safe-mode`](/en/cli-reference#cli-flags) to check whether a plugin, MCP server, or hook is the source. It disables all customizations for the session; if usage drops, see [Debug your configuration](/en/debug-your-config#test-against-a-clean-configuration) to find which one
 
 If memory usage stays high after these steps, run `/heapdump` to write a JavaScript heap snapshot and a memory breakdown to `~/Desktop`. On Linux without a Desktop folder, the files are written to your home directory.
 

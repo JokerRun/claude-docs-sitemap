@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/files/list
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: a38fb86fe85747c932c09337c1041df555e6b9eb36c77dcdb13b5a8845fb0440
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: cc1f8a94c9b3522dfe5e170bccded4d5101bd57a488c7dd6cd66cbeb75b13478
 ---
 
 ## List Files
@@ -90,6 +90,10 @@ List Files
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 

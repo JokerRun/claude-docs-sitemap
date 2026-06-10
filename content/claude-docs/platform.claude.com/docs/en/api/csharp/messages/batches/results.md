@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/messages/batches/results
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 434f55b5a460d76bb56c3e43e9997c6282d2e33d5d50865821ab2d6cce340f10
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: dd1e12af1880810e72e6de4831727293da88b9c861ca23a1473013667746a807
 ---
 
 ## Retrieve Message Batch results
@@ -646,6 +646,14 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `"claude-fable-5"ClaudeFable5`
+
+            Next generation of intelligence for the hardest knowledge work and coding problems
+
+          - `"claude-mythos-5"ClaudeMythos5`
+
+            Most capable model for cybersecurity and biology research
+
           - `"claude-opus-4-8"ClaudeOpus4_8`
 
             Frontier intelligence for long-running agents and coding
@@ -737,6 +745,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `"cyber"Cyber`
 
             - `"bio"Bio`
+
+            - `"reasoning_extraction"ReasoningExtraction`
 
           - `required string? Explanation`
 

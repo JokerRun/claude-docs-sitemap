@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/messages/batches/results
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: b38b362c6fa798dd9e4fdbbef3d7a9f5c5d4a4bb67caa15beed0e012920cc9de
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 724a2e6ba1ca77fbee1c3db8aa5da29f3e6dea98685d82e6c176437ad5d3ff1b
 ---
 
 ## Retrieve Message Batch results
@@ -730,11 +730,19 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-          - `Model = :"claude-opus-4-8" | :"claude-opus-4-7" | :"claude-mythos-preview" | 15 more`
+          - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 17 more`
 
             The model that will complete your prompt.
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `:"claude-fable-5"`
+
+              Next generation of intelligence for the hardest knowledge work and coding problems
+
+            - `:"claude-mythos-5"`
+
+              Most capable model for cybersecurity and biology research
 
             - `:"claude-opus-4-8"`
 
@@ -822,7 +830,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           Structured information about a refusal.
 
-          - `category: :cyber | :bio`
+          - `category: :cyber | :bio | :reasoning_extraction`
 
             The policy category that triggered the refusal.
 
@@ -831,6 +839,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `:cyber`
 
             - `:bio`
+
+            - `:reasoning_extraction`
 
           - `explanation: String`
 

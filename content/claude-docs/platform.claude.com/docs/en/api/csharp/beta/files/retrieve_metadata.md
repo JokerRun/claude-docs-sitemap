@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/files/retrieve_metadata
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 0af1476afea270677c41d7cc629ee376fb0116d9d0985774238d7f370ab59728
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 0a46e1c93901392fc1d63b8a13884de69b4a5dd546c7c93f18a11ee5f9fb7f02
 ---
 
 ## Get File Metadata
@@ -76,6 +76,10 @@ Get File Metadata
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 

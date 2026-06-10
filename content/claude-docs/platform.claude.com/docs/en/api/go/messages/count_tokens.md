@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/messages/count_tokens
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: f4f005580a6a2440d96dc1ee059317539a1151e38e3a3a316c108d6c66192ff9
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 00217131165e30acd35ad5d8f2d4971ca05744e0adf477cdb15e2219addf5f54
 ---
 
 ## Count tokens in a Message
@@ -850,6 +850,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
               - `Type ToolSearchToolResultError`
 
                 - `const ToolSearchToolResultErrorToolSearchToolResultError ToolSearchToolResultError = "tool_search_tool_result_error"`
+
+              - `ErrorMessage string`
 
             - `type ToolSearchToolSearchResultBlockParamResp struct{…}`
 

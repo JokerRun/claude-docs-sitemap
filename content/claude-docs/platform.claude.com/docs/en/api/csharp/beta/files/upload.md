@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/files/upload
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: e1a6e35f7e9ccf1cff72e8de4c75f8e03bd56bfde50f75398eee4d3640646915
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: f2eee9bee841ef1cca16a120a7c2c0d76b7d70b4dfaf0bc1d0e89bbca3d21799
 ---
 
 ## Upload File
@@ -76,6 +76,10 @@ Upload File
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 

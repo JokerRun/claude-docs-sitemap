@@ -1,52 +1,56 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/intro
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 2e43cbc741aafe1f420054521135a9461f4fdc5b64236485d36cd4e76a2c656e
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 0a058edc42a1243d89ebbacae253aea992b5956a52c8a495eac22b2490656995
 ---
 
 # Pengenalan Claude
 
-Claude adalah platform AI yang sangat berkinerja, dapat dipercaya, dan cerdas yang dibangun oleh Anthropic. Claude unggul dalam tugas-tugas yang melibatkan bahasa, penalaran, analisis, pengkodean, dan banyak lagi.
+Claude adalah platform AI yang sangat berkinerja tinggi, tepercaya, dan cerdas yang dibangun oleh Anthropic. Claude unggul dalam tugas-tugas yang melibatkan bahasa, penalaran, analisis, pengodean, dan banyak lagi.
 
 ---
 
 <Tip>
 
-The latest generation of Claude models:
+Generasi terbaru model Claude:
 
-**Claude Opus 4.8** - Anthropic's most capable model for complex reasoning and agentic coding. Read the [Claude Opus 4.8 announcement](https://www.anthropic.com/news/claude-opus-4-8).
+**Claude Fable 5** - Model Anthropic paling mumpuni yang dirilis secara luas untuk penalaran paling menuntut dan pekerjaan agentik jangka panjang. Baca [pengumuman Claude Fable 5](https://www.anthropic.com/news/claude-fable-5).
 
-**Claude Sonnet 4.6** - Frontier intelligence at scale, built for coding, agents, and enterprise workflows. Read the [Claude Sonnet 4.6 announcement](https://www.anthropic.com/news/claude-sonnet-4-6).
+**Claude Mythos 5** - Memiliki kemampuan yang sama dengan Claude Fable 5 tanpa pengklasifikasi keamanan. Tersedia dalam rilis terbatas melalui [Project Glasswing](https://anthropic.com/glasswing).
 
-**Claude Haiku 4.5** - Fastest model with near-frontier intelligence. Read the [Claude Haiku 4.5 announcement](https://www.anthropic.com/news/claude-haiku-4-5).
+**Claude Opus 4.8** - Model tingkat Opus paling mumpuni dari Anthropic untuk penalaran kompleks dan pengodean agentik. Baca [pengumuman Claude Opus 4.8](https://www.anthropic.com/news/claude-opus-4-8).
+
+**Claude Sonnet 4.6** - Kecerdasan terdepan dalam skala besar, dibangun untuk pengodean, agen, dan alur kerja enterprise. Baca [pengumuman Claude Sonnet 4.6](https://www.anthropic.com/news/claude-sonnet-4-6).
+
+**Claude Haiku 4.5** - Model tercepat dengan kecerdasan mendekati terdepan. Baca [pengumuman Claude Haiku 4.5](https://www.anthropic.com/news/claude-haiku-4-5).
 
 </Tip>
 
 <Note>
-Ingin mengobrol dengan Claude? Kunjungi [claude.ai](https://www.claude.ai).
+Ingin mengobrol dengan Claude? Kunjungi [claude.ai](https://claude.ai).
 </Note>
 
-Anthropic offers two ways to build with Claude, each suited to different use cases:
+Anthropic menawarkan dua cara untuk membangun dengan Claude, masing-masing cocok untuk kasus penggunaan yang berbeda:
 
 | | Messages API | Claude Managed Agents |
 |---|---|---|
-| **What it is** | Direct model prompting access | Pre-built, configurable agent harness that runs in managed infrastructure |
-| **Best for** | Custom agent loops and fine-grained control | Long-running tasks and asynchronous work |
-| **Learn more** | [Messages API docs](/docs/en/build-with-claude/working-with-messages) | [Claude Managed Agents docs](/docs/en/managed-agents/overview) |
+| **Apa itu** | Akses langsung untuk memberikan prompt ke model | Kerangka agen yang sudah dibangun dan dapat dikonfigurasi, berjalan di infrastruktur terkelola |
+| **Paling cocok untuk** | Loop agen kustom dan kontrol yang sangat terperinci | Tugas yang berjalan lama dan pekerjaan asinkron |
+| **Pelajari lebih lanjut** | [Dokumentasi Messages API](/docs/id/build-with-claude/working-with-messages) | [Dokumentasi Claude Managed Agents](/docs/id/managed-agents/overview) |
 
-## Jalur yang direkomendasikan untuk pengembang baru
+## Jalur yang direkomendasikan untuk developer baru \{#recommended-path-for-new-developers}
 
-Ikuti langkah-langkah ini untuk pergi dari nol ke integrasi Claude yang berfungsi.
+Ikuti langkah-langkah ini untuk memulai dari nol hingga memiliki integrasi Claude yang berfungsi.
 
 <Steps>
-  <Step title="Buat panggilan API pertama Anda">
+  <Step title="Lakukan panggilan API pertama Anda">
     Siapkan lingkungan Anda, instal SDK, dan kirim pesan pertama Anda ke Claude.
 
-    [Buka panduan memulai](/docs/id/get-started)
+    [Buka panduan memulai cepat](/docs/id/get-started)
   </Step>
   <Step title="Pahami Messages API">
-    Pelajari struktur permintaan dan respons inti, termasuk percakapan multi-putaran, prompt sistem, dan alasan berhenti.
+    Pelajari struktur inti permintaan dan respons, termasuk percakapan multi-giliran, prompt sistem, dan alasan penghentian.
 
     [Baca panduan Messages API](/docs/id/build-with-claude/working-with-messages)
   </Step>
@@ -56,55 +60,55 @@ Ikuti langkah-langkah ini untuk pergi dari nol ke integrasi Claude yang berfungs
     [Lihat ikhtisar model](/docs/id/about-claude/models/overview)
   </Step>
   <Step title="Jelajahi fitur dan alat">
-    Temukan apa yang dapat dilakukan Claude: pemikiran yang diperluas, pencarian web, penanganan file, output terstruktur, dan banyak lagi.
+    Temukan apa yang dapat dilakukan Claude: pemikiran diperpanjang, pencarian web, penanganan file, output terstruktur, dan banyak lagi.
 
-    [Jelajahi ikhtisar fitur](/docs/id/build-with-claude/overview)
+    [Telusuri ikhtisar fitur](/docs/id/build-with-claude/overview)
   </Step>
 </Steps>
 
 ---
 
-## Kembangkan dengan Claude
+## Mengembangkan dengan Claude \{#develop-with-claude}
 
-Anthropic menyediakan alat pengembang untuk membantu Anda membangun dan menskalakan aplikasi dengan Claude.
+Anthropic menyediakan alat developer untuk membantu Anda membangun dan menskalakan aplikasi dengan Claude.
 
 <CardGroup cols={3}>
   <Card title="Developer Console" icon="computer" href="/">
-    Prototipe dan uji prompt di browser Anda dengan Workbench dan pembuat prompt.
+    Buat prototipe dan uji prompt di browser Anda dengan Workbench dan generator prompt.
   </Card>
-  <Card title="API Reference" icon="code" href="/docs/id/api/overview">
-    Jelajahi dokumentasi Claude API lengkap dan SDK klien.
+  <Card title="Referensi API" icon="code" href="/docs/id/api/overview">
+    Jelajahi dokumentasi lengkap API Claude dan SDK klien.
   </Card>
   <Card title="Claude Cookbook" icon="chef-hat" href="https://platform.claude.com/cookbooks">
-    Pelajari dengan notebook Jupyter interaktif yang mencakup PDF, embedding, dan banyak lagi.
+    Belajar dengan notebook Jupyter interaktif yang mencakup PDF, embeddings, dan banyak lagi.
   </Card>
 </CardGroup>
 
 ---
 
-## Kemampuan utama
+## Kemampuan utama \{#key-capabilities}
 
-Claude dapat membantu dengan banyak tugas yang melibatkan teks, kode, dan gambar.
+Claude dapat membantu banyak tugas yang melibatkan teks, kode, dan gambar.
 
 <CardGroup cols={2}>
-  <Card title="Pembuatan teks dan kode" icon="text-aa" href="/docs/id/build-with-claude/text-generation">
-    Ringkas teks, jawab pertanyaan, ekstrak data, terjemahkan teks, dan jelaskan serta hasilkan kode.
+  <Card title="Pembuatan teks dan kode" icon="text-aa" href="/docs/id/build-with-claude/overview">
+    Merangkum teks, menjawab pertanyaan, mengekstrak data, menerjemahkan teks, serta menjelaskan dan menghasilkan kode.
   </Card>
   <Card title="Vision" icon="image" href="/docs/id/build-with-claude/vision">
-    Proses dan analisis input visual serta hasilkan teks dan kode dari gambar.
+    Memproses dan menganalisis input visual serta menghasilkan teks dan kode dari gambar.
   </Card>
 </CardGroup>
 
 ---
 
-## Dukungan
+## Dukungan \{#support}
 
 <CardGroup cols={2}>
-  <Card title="Help Center" icon="help" href="https://support.claude.com/en/">
-    Temukan jawaban untuk pertanyaan akun dan penagihan yang sering diajukan.
+  <Card title="Pusat Bantuan" icon="help" href="https://support.claude.com/en/">
+    Temukan jawaban atas pertanyaan umum seputar akun dan penagihan.
   </Card>
 
-  <Card title="Service Status" icon="chart" href="https://status.claude.com">
+  <Card title="Status Layanan" icon="chart" href="https://status.claude.com">
     Periksa status layanan Anthropic.
   </Card>
 </CardGroup>

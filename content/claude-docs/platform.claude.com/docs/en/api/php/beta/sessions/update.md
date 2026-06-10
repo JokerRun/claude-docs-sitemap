@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/php/beta/sessions/update
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: aaa409b09804cae91ab0858ffba78066abc15fee4537d3375570aacd85ee732e
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 0278c7c7ebbdab26018affa4b4d575ff77aaf5da6a714043dc0368e7d73592eb
 ---
 
 ## Update Session
@@ -88,6 +88,10 @@ Update Session
   - `list<string> vaultIDs`
 
     Vault IDs attached to the session at creation. Empty when no vaults were supplied.
+
+  - `?string deploymentID`
+
+    Deployment ID when the session was created from a deployment reference. Null otherwise.
 
 ### Example
 
@@ -296,6 +300,7 @@ var_dump($betaManagedAgentsSession);
   },
   "vault_ids": [
     "vlt_011CZkZDLs7fYzm1hXNPeRjv"
-  ]
+  ],
+  "deployment_id": "deployment_id"
 }
 ```

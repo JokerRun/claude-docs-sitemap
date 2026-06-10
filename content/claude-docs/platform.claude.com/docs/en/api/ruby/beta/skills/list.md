@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/skills/list
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 5ba4bfcbef35bf1dfa1e7968a6617da2fe88267d8b071e7c33a0fe1a80159a6b
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 44241d7541fc83333e5a035dd65c86627b541008cc0fbd5a41e96da19a3577af
 ---
 
 ## List Skills
@@ -42,7 +42,7 @@ List Skills
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 23 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 25 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -95,6 +95,10 @@ List Skills
     - `:"cache-diagnosis-2026-04-07"`
 
     - `:"thinking-token-count-2026-05-13"`
+
+    - `:"server-side-fallback-2026-06-01"`
+
+    - `:"fallback-credit-2026-06-01"`
 
 ### Returns
 

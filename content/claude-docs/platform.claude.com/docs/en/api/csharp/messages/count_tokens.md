@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/messages/count_tokens
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: c267f0df39a36b99efe29077177ea20618a895c25619254853111a467d6c484e
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: b783e0fedbbde2ea7d54345b3f98b73d9fd6e35149c1f311d3c11cfaacfc6309
 ---
 
 ## Count tokens in a Message
@@ -758,6 +758,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
                 - `"execution_time_exceeded"ExecutionTimeExceeded`
 
               - `JsonElement Type "tool_search_tool_result_error"constant`
+
+              - `string? ErrorMessage`
 
             - `class ToolSearchToolSearchResultBlockParam:`
 

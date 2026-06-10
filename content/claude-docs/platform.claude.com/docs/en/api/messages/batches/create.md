@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/batches/create
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: af616edb028e10ae50cb6652e6f047bcf3644d9c8ad25925a860e0e13a888a85
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 422449b6f444dc69fe1acb1186099de04346f937597567c9d95aedbc2d10d822
 ---
 
 ## Create a Message Batch
@@ -861,7 +861,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             - `content: ToolSearchToolResultErrorParam or ToolSearchToolSearchResultBlockParam`
 
-              - `ToolSearchToolResultErrorParam object { error_code, type }`
+              - `ToolSearchToolResultErrorParam object { error_code, type, error_message }`
 
                 - `error_code: ToolSearchToolResultErrorCode`
 
@@ -876,6 +876,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
                 - `type: "tool_search_tool_result_error"`
 
                   - `"tool_search_tool_result_error"`
+
+                - `error_message: optional string`
 
               - `ToolSearchToolSearchResultBlockParam object { tool_references, type }`
 
@@ -961,11 +963,19 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `"claude-opus-4-8" or "claude-opus-4-7" or "claude-mythos-preview" or 15 more`
+      - `"claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more`
 
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-fable-5"`
+
+          Next generation of intelligence for the hardest knowledge work and coding problems
+
+        - `"claude-mythos-5"`
+
+          Most capable model for cybersecurity and biology research
 
         - `"claude-opus-4-8"`
 

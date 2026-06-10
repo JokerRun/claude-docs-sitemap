@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/completions
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 1a9df3c0f80f40985e80b1bf58fe6cb0a5002618cbf8135606c957c549a10afe
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: affc503065da066ebe36b299ff02c77d8924f7696bfb48910a3298525a389615
 ---
 
 # Completions
@@ -78,6 +78,10 @@ Future models and features will not be compatible with Text Completions. See our
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
+
+    - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
+
+    - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
 
   - `long maxTokensToSample`
 
@@ -166,6 +170,14 @@ Future models and features will not be compatible with Text Completions. See our
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+    - `CLAUDE_FABLE_5("claude-fable-5")`
+
+      Next generation of intelligence for the hardest knowledge work and coding problems
+
+    - `CLAUDE_MYTHOS_5("claude-mythos-5")`
+
+      Most capable model for cybersecurity and biology research
 
     - `CLAUDE_OPUS_4_8("claude-opus-4-8")`
 
@@ -275,7 +287,7 @@ public final class Main {
 
         CompletionCreateParams params = CompletionCreateParams.builder()
             .maxTokensToSample(256L)
-            .model(Model.CLAUDE_OPUS_4_8)
+            .model(Model.CLAUDE_FABLE_5)
             .prompt("\n\nHuman: Hello, world!\n\nAssistant:")
             .build();
         Completion completion = client.completions().create(params);
@@ -316,6 +328,14 @@ public final class Main {
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+    - `CLAUDE_FABLE_5("claude-fable-5")`
+
+      Next generation of intelligence for the hardest knowledge work and coding problems
+
+    - `CLAUDE_MYTHOS_5("claude-mythos-5")`
+
+      Most capable model for cybersecurity and biology research
 
     - `CLAUDE_OPUS_4_8("claude-opus-4-8")`
 

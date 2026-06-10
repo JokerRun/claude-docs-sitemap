@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/php/beta/models/retrieve
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 3d2f07dd531dd44fd3d7319938958a7b8a1b902930be345d20a43abf924521a9
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: e84da02933c0ddb489830c192d8fd7b4d58b90c61c2501f024f7c6bd7686d18f
 ---
 
 ## Get a Model
@@ -32,6 +32,10 @@ The Models API response can be used to determine information about a specific mo
   - `string id`
 
     Unique model identifier.
+
+  - `?list<string> allowedFallbackModels`
+
+    Model IDs this model accepts as `fallbacks[i].model` on the Messages API. An empty list means the `fallbacks` parameter is not supported for this model as primary.
 
   - `?BetaModelCapabilities capabilities`
 
@@ -80,6 +84,9 @@ var_dump($betaModelInfo);
 ```json
 {
   "id": "claude-opus-4-6",
+  "allowed_fallback_models": [
+    "string"
+  ],
   "capabilities": {
     "batch": {
       "supported": true

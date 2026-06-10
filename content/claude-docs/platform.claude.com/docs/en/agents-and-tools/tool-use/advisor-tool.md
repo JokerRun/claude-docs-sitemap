@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool
-fetched_at: 2026-06-09T03:16:00.501901Z
-sha256: e2b90b3357b20a4b1444582184a0c64714e3cb8d30e5b1f756eea0e745d590c6
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: c7e160631405c0988c0ccfd6dc7789636bd0eaaf2ce01e3d73d115efe2ad40f0
 ---
 
 # Advisor tool
@@ -47,6 +47,8 @@ The executor model (the top-level `model` field) and the advisor model (the `mod
 | Claude Opus 4.6 (claude-opus-4-6)            | Claude Opus 4.8 (claude-opus-4-8), Claude Opus 4.7 (claude-opus-4-7) |
 | Claude Opus 4.7 (claude-opus-4-7)            | Claude Opus 4.8 (claude-opus-4-8), Claude Opus 4.7 (claude-opus-4-7) |
 | Claude Opus 4.8 (claude-opus-4-8)            | Claude Opus 4.8 (claude-opus-4-8)                                                     |
+| Claude Fable 5 (`claude-fable-5`)                             | Claude Fable 5 (`claude-fable-5`)                                                                       |
+| Claude Mythos 5 (`claude-mythos-5`)                           | Claude Mythos 5 (`claude-mythos-5`)                                                                     |
 
 If you request an invalid pair, the API returns a `400 invalid_request_error` naming the unsupported combination.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/list
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: d8d9a0e80c2710fc4963f805bcc979e9b9be69f2afe5950d23545428885d9471
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 0604b3aa81ed5a715a87ce6337165bbfd935df702c8718538965020d43af4061
 ---
 
 ## List Credentials
@@ -37,7 +37,7 @@ List Credentials
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 23 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 25 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -91,6 +91,10 @@ List Credentials
 
     - `"thinking-token-count-2026-05-13"`
 
+    - `"server-side-fallback-2026-06-01"`
+
+    - `"fallback-credit-2026-06-01"`
+
 ### Returns
 
 - `data: optional array of BetaManagedAgentsCredential`
@@ -105,7 +109,7 @@ List Credentials
 
     A timestamp in RFC 3339 format
 
-  - `auth: BetaManagedAgentsMCPOAuthAuthResponse or BetaManagedAgentsStaticBearerAuthResponse`
+  - `auth: BetaManagedAgentsMCPOAuthAuthResponse or BetaManagedAgentsStaticBearerAuthResponse or BetaManagedAgentsEnvironmentVariableAuthResponse`
 
     Authentication details for a credential.
 
@@ -184,6 +188,42 @@ List Credentials
       - `type: "static_bearer"`
 
         - `"static_bearer"`
+
+    - `BetaManagedAgentsEnvironmentVariableAuthResponse object { networking, secret_name, type }`
+
+      Environment variable credential details. The secret value is never returned.
+
+      - `networking: BetaManagedAgentsUnrestrictedCredentialNetworkingResponse or BetaManagedAgentsLimitedCredentialNetworkingResponse`
+
+        Outbound hosts the secret value is substituted on.
+
+        - `BetaManagedAgentsUnrestrictedCredentialNetworkingResponse object { type }`
+
+          The secret is substituted on any host the session's Environment network policy permits egress to.
+
+          - `type: "unrestricted"`
+
+            - `"unrestricted"`
+
+        - `BetaManagedAgentsLimitedCredentialNetworkingResponse object { allowed_hosts, type }`
+
+          The secret is substituted only on requests to the listed hosts.
+
+          - `allowed_hosts: array of string`
+
+            Hostnames on which the secret will be substituted. An entry matches the request host exactly; a `*.`-prefixed entry matches any subdomain of the named domain but not the domain itself.
+
+          - `type: "limited"`
+
+            - `"limited"`
+
+      - `secret_name: string`
+
+        Name of the environment variable.
+
+      - `type: "environment_variable"`
+
+        - `"environment_variable"`
 
   - `created_at: string`
 

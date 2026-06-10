@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/environments/work/retrieve
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 4648d15e524084319188eb055be9598630276b7ad524b67176522f246607571b
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: f8146f243778ca930430321e8ef2ad698424f46c15ecbdbf10ea55401cf84128
 ---
 
 ## Get Work Item
@@ -31,7 +31,7 @@ Retrieve detailed information about a specific work item.
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 23 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -84,6 +84,10 @@ Retrieve detailed information about a specific work item.
       - `"cache-diagnosis-2026-04-07"`
 
       - `"thinking-token-count-2026-05-13"`
+
+      - `"server-side-fallback-2026-06-01"`
+
+      - `"fallback-credit-2026-06-01"`
 
 ### Returns
 

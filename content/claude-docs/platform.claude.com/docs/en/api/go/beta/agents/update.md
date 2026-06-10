@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/agents/update
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: d0bf489021e0cc1d80e5ae706891123cf220b4671c8fb9c07749abbabe032ef2
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: c04d3d639b3fc5977b2aa5f044d1c1e37c04331f42009065438f6fbd4c2875f2
 ---
 
 ## Update Agent
@@ -25,7 +25,7 @@ Update Agent
 
   - `Description param.Field[string]`
 
-    Body param: Description. Up to 2048 characters. Omit to preserve; send empty string or null to clear.
+    Body param: Description. Omit to preserve; send empty string or null to clear.
 
   - `MCPServers param.Field[[]BetaManagedAgentsURLMCPServerParamsResp]`
 
@@ -66,6 +66,10 @@ Update Agent
           The model that will power your agent.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `const BetaManagedAgentsModelClaudeFable5 BetaManagedAgentsModel = "claude-fable-5"`
+
+            Next generation of intelligence for the hardest knowledge work and coding problems
 
           - `const BetaManagedAgentsModelClaudeOpus4_8 BetaManagedAgentsModel = "claude-opus-4-8"`
 
@@ -123,11 +127,11 @@ Update Agent
 
   - `Name param.Field[string]`
 
-    Body param: Human-readable name. 1-256 characters. Omit to preserve. Cannot be cleared.
+    Body param: Human-readable name. Must be non-empty. Omit to preserve. Cannot be cleared.
 
   - `Skills param.Field[[]BetaManagedAgentsSkillParamsUnionResp]`
 
-    Body param: Skills. Full replacement. Omit to preserve; send empty array or null to clear. Maximum 20.
+    Body param: Skills. Full replacement. Omit to preserve; send empty array or null to clear.
 
     - `type BetaManagedAgentsAnthropicSkillParamsResp struct{…}`
 
@@ -163,7 +167,7 @@ Update Agent
 
   - `System param.Field[string]`
 
-    Body param: System prompt. Up to 100,000 characters. Omit to preserve; send empty string or null to clear.
+    Body param: System prompt. Omit to preserve; send empty string or null to clear.
 
   - `Tools param.Field[[]BetaAgentUpdateParamsToolUnion]`
 
@@ -313,19 +317,13 @@ Update Agent
 
         JSON Schema for custom tool input parameters.
 
+        - `Type Object`
+
+          - `const ObjectObject Object = "object"`
+
         - `Properties map[string, any]`
 
-          JSON Schema properties defining the tool's input parameters.
-
         - `Required []string`
-
-          List of required property names.
-
-        - `Type BetaManagedAgentsCustomToolInputSchemaType`
-
-          Must be 'object' for tool input schemas.
-
-          - `const BetaManagedAgentsCustomToolInputSchemaTypeObject BetaManagedAgentsCustomToolInputSchemaType = "object"`
 
       - `Name string`
 
@@ -395,6 +393,10 @@ Update Agent
 
       - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
 
+      - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
+
+      - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
+
 ### Returns
 
 - `type BetaManagedAgentsAgent struct{…}`
@@ -440,6 +442,10 @@ Update Agent
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `const BetaManagedAgentsModelClaudeFable5 BetaManagedAgentsModel = "claude-fable-5"`
+
+          Next generation of intelligence for the hardest knowledge work and coding problems
 
         - `const BetaManagedAgentsModelClaudeOpus4_8 BetaManagedAgentsModel = "claude-opus-4-8"`
 
@@ -665,19 +671,13 @@ Update Agent
 
         JSON Schema for custom tool input parameters.
 
+        - `Type Object`
+
+          - `const ObjectObject Object = "object"`
+
         - `Properties map[string, any]`
 
-          JSON Schema properties defining the tool's input parameters.
-
         - `Required []string`
-
-          List of required property names.
-
-        - `Type BetaManagedAgentsCustomToolInputSchemaType`
-
-          Must be 'object' for tool input schemas.
-
-          - `const BetaManagedAgentsCustomToolInputSchemaTypeObject BetaManagedAgentsCustomToolInputSchemaType = "object"`
 
       - `Name string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/vaults/archive
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 24c1703a1c951cc3e6259ed3886e44e61edd9451cc6c8869bef3a4171b296692
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 1d7b0f1124e58e45b33e840c07ef581f6ede82b21d9211c4a732a96d367b3a86
 ---
 
 ## Archive Vault
@@ -78,6 +78,10 @@ Archive Vault
       - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
 
       - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
+
+      - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
+
+      - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
 
 ### Returns
 

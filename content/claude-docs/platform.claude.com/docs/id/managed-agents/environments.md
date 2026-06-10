@@ -1,23 +1,25 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/environments
-fetched_at: 2026-05-21T03:16:34.837917Z
-sha256: 56fecb027634a74e4d2a9a366071efce54809d54886b5aac08ba86a6e9f0d7cf
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 588d25461f2ce51ed7f178b4ff122c8fa48459245b92fd10d9dccacaf90aea69
 ---
 
 # Penyiapan lingkungan cloud
 
-Sesuaikan kontainer cloud untuk sesi Anda.
+Sesuaikan sandbox cloud untuk sesi Anda.
 
 ---
 
-Lingkungan mendefinisikan konfigurasi kontainer tempat agen Anda berjalan. Anda membuat lingkungan sekali, kemudian mereferensikan ID-nya setiap kali Anda memulai sesi. Beberapa sesi dapat berbagi lingkungan yang sama, tetapi setiap sesi mendapatkan instans kontainer terisolasi sendiri.
+Lingkungan (environment) mendefinisikan konfigurasi sandbox tempat agen Anda berjalan. Anda membuat lingkungan satu kali, lalu mereferensikan ID-nya setiap kali Anda memulai sesi. Beberapa sesi dapat berbagi lingkungan yang sama, tetapi setiap sesi mendapatkan sandbox terisolasinya sendiri (kontainer Linux yang baru).
+
+Halaman ini membahas lingkungan dengan `type: cloud`. Untuk menjalankan sandbox pada infrastruktur Anda sendiri, lihat [Sandbox yang di-host sendiri](/docs/id/managed-agents/self-hosted-sandboxes).
 
 <Note>
-Semua permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`. SDK menetapkan header beta secara otomatis.
+Semua permintaan Managed Agents API memerlukan beta header `managed-agents-2026-04-01`. SDK menetapkan beta header tersebut secara otomatis.
 </Note>
 
-## Buat lingkungan
+## Membuat lingkungan \{#create-an-environment}
 
 <CodeGroup defaultLanguage="CLI">
   
@@ -143,11 +145,11 @@ puts "Environment ID: #{environment.id}"
 
 </CodeGroup>
 
-`name` harus unik dalam organisasi dan ruang kerja Anda.
+`name` harus unik dalam organisasi dan workspace Anda.
 
-## Gunakan lingkungan dalam sesi
+## Menggunakan lingkungan dalam sesi \{#use-the-environment-in-a-session}
 
-Teruskan ID lingkungan sebagai string saat membuat sesi.
+Berikan ID lingkungan sebagai string saat [membuat sesi](/docs/id/managed-agents/sessions).
 
 <CodeGroup>
   
@@ -230,11 +232,11 @@ session = client.beta.sessions.create(
 
 </CodeGroup>
 
-## Opsi konfigurasi
+## Opsi konfigurasi \{#configuration-options}
 
-### Paket
+### Paket \{#packages}
 
-Bidang `packages` pra-menginstal paket ke dalam kontainer sebelum agen dimulai. Paket diinstal oleh manajer paket masing-masing dan di-cache di seluruh sesi yang berbagi lingkungan yang sama. Ketika beberapa manajer paket ditentukan, mereka berjalan dalam urutan abjad (apt, cargo, gem, go, npm, pip). Anda dapat secara opsional menyematkan versi spesifik; defaultnya adalah terbaru.
+Field `packages` melakukan pra-instalasi paket ke dalam sandbox sebelum agen dimulai. Paket diinstal oleh package manager masing-masing dan di-cache di seluruh sesi yang berbagi lingkungan yang sama. Ketika beberapa package manager ditentukan, mereka dijalankan dalam urutan alfabetis (apt, cargo, gem, go, npm, pip). Anda dapat secara opsional menyematkan versi tertentu; default-nya adalah versi terbaru.
 
 <CodeGroup defaultLanguage="CLI">
 ```bash curl
@@ -308,14 +310,14 @@ const environment = await client.beta.environments.create({
 var environment = await client.Beta.Environments.Create(new()
 {
     Name = "data-analysis",
-    Config = new()
+    Config = new BetaCloudConfigParams
     {
         Packages = new()
         {
             Pip = ["pandas", "numpy", "scikit-learn"],
             Npm = ["express"],
         },
-        Networking = new UnrestrictedNetwork(),
+        Networking = new BetaUnrestrictedNetwork(),
     },
 });
 ```
@@ -323,19 +325,22 @@ var environment = await client.Beta.Environments.Create(new()
 ```go Go
 environment, err := client.Beta.Environments.New(ctx, anthropic.BetaEnvironmentNewParams{
 	Name: "data-analysis",
-	Config: anthropic.BetaCloudConfigParams{
-		Packages: anthropic.BetaPackagesParams{
-			Pip: []string{"pandas", "numpy", "scikit-learn"},
-			Npm: []string{"express"},
-		},
-		Networking: anthropic.BetaCloudConfigParamsNetworkingUnion{
-			OfUnrestricted: &anthropic.UnrestrictedNetworkParam{},
+	Config: anthropic.BetaEnvironmentNewParamsConfigUnion{
+		OfCloud: &anthropic.BetaCloudConfigParams{
+			Packages: anthropic.BetaPackagesParams{
+				Pip: []string{"pandas", "numpy", "scikit-learn"},
+				Npm: []string{"express"},
+			},
+			Networking: anthropic.BetaCloudConfigParamsNetworkingUnion{
+				OfUnrestricted: &anthropic.BetaUnrestrictedNetworkParam{},
+			},
 		},
 	},
 })
 if err != nil {
 	panic(err)
 }
+_ = environment
 ```
 
 ```java Java
@@ -346,7 +351,7 @@ var environment = client.beta().environments().create(EnvironmentCreateParams.bu
             .pip(List.of("pandas", "numpy", "scikit-learn"))
             .npm(List.of("express"))
             .build())
-        .networking(UnrestrictedNetwork.builder().build())
+        .networking(BetaUnrestrictedNetwork.builder().build())
         .build())
     .build());
 ```
@@ -380,9 +385,9 @@ environment = client.beta.environments.create(
 ```
 </CodeGroup>
 
-Manajer paket yang didukung:
+Package manager yang didukung:
 
-| Bidang | Manajer paket | Contoh |
+| Field | Package manager | Contoh |
 | --- | --- | --- |
 | `apt` | Paket sistem (apt-get) | `"ffmpeg"` |
 | `cargo` | Rust (cargo) | `"ripgrep@14.0.0"` |
@@ -391,14 +396,14 @@ Manajer paket yang didukung:
 | `npm` | Node.js (npm) | `"express@4.18.0"` |
 | `pip` | Python (pip) | `"pandas==2.2.0"` |
 
-### Jaringan
+### Jaringan \{#networking}
 
-Bidang `networking` mengontrol akses jaringan keluar kontainer. Ini tidak memengaruhi domain yang diizinkan oleh alat `web_search` atau `web_fetch`.
+Field `networking` mengontrol akses jaringan keluar dari sandbox. Ini tidak memengaruhi domain yang diizinkan untuk alat `web_search` atau `web_fetch`.
 
 | Mode | Deskripsi |
 | --- | --- |
-| `unrestricted` | Akses jaringan keluar penuh, kecuali untuk daftar pemblokiran keamanan umum. Ini adalah default. |
-| `limited` | Membatasi akses jaringan kontainer ke daftar `allowed_hosts`. Akses lebih lanjut diaktifkan melalui bool `allow_package_managers` dan `allow_mcp_servers`. |
+| `unrestricted` | Akses jaringan keluar penuh, kecuali untuk daftar blokir keamanan umum. Ini adalah default. |
+| `limited` | Membatasi akses jaringan sandbox ke daftar `allowed_hosts`. Akses lebih lanjut diaktifkan melalui bool `allow_package_managers` dan `allow_mcp_servers`.|
 
 <CodeGroup>
 ```bash curl
@@ -462,6 +467,7 @@ config := anthropic.BetaCloudConfigParams{
 		},
 	},
 }
+_ = config
 ```
 
 ```java Java
@@ -500,22 +506,22 @@ config = {
 </CodeGroup>
 
 <Info>
-Untuk penerapan produksi, gunakan jaringan `limited` dengan daftar `allowed_hosts` eksplisit. Ikuti prinsip hak istimewa minimal dengan memberikan hanya akses jaringan minimum yang diperlukan agen Anda, dan audit domain yang diizinkan secara teratur.
+Untuk deployment produksi, gunakan jaringan `limited` dengan daftar `allowed_hosts` yang eksplisit. Ikuti prinsip hak istimewa minimum (least privilege) dengan hanya memberikan akses jaringan minimum yang dibutuhkan agen Anda, dan audit domain yang diizinkan secara berkala.
 </Info>
 
 Saat menggunakan jaringan `limited`:
-- `allowed_hosts` menentukan domain yang dapat dijangkau kontainer. Ini harus diawali dengan HTTPS.
-- `allow_mcp_servers` memungkinkan akses keluar ke titik akhir server MCP yang dikonfigurasi pada agen, di luar yang tercantum dalam array `allowed_hosts`. Default ke `false`.
-- `allow_package_managers` memungkinkan akses keluar ke registri paket publik (PyPI, npm, dll.) di luar yang tercantum dalam array `allowed_hosts`. Default ke `false`.
+- `allowed_hosts` menentukan domain yang dapat dijangkau oleh sandbox. Tentukan hostname biasa atau pola wildcard (seperti `*.example.com`); jangan sertakan skema URL.
+- `allow_mcp_servers` mengizinkan akses keluar ke endpoint server MCP yang dikonfigurasi pada agen, di luar yang tercantum dalam array `allowed_hosts`. Default-nya adalah `false`.
+- `allow_package_managers` mengizinkan akses keluar ke registri paket publik (seperti PyPI dan npm) di luar yang tercantum dalam array `allowed_hosts`. Default-nya adalah `false`.
 
-## Siklus hidup lingkungan
+## Siklus hidup lingkungan \{#environment-lifecycle}
 
-- Lingkungan bertahan sampai secara eksplisit diarsipkan atau dihapus.
+- Lingkungan tetap ada hingga diarsipkan atau dihapus secara eksplisit.
 - Beberapa sesi dapat mereferensikan lingkungan yang sama.
-- Setiap sesi mendapatkan instans kontainer sendiri. Sesi tidak berbagi status sistem file.
-- Lingkungan tidak diversi. Jika Anda sering memperbarui lingkungan Anda, Anda mungkin ingin mencatat pembaruan ini di sisi Anda, untuk memetakan status lingkungan dengan sesi.
+- Setiap sesi mendapatkan instance sandbox-nya sendiri. Sesi tidak berbagi state sistem file.
+- Lingkungan tidak memiliki versi. Jika Anda sering memperbarui lingkungan Anda, Anda mungkin ingin mencatat pembaruan ini di sisi Anda, untuk memetakan state lingkungan dengan sesi.
 
-## Kelola lingkungan
+## Mengelola lingkungan \{#manage-environments}
 
 <CodeGroup defaultLanguage="CLI">
   
@@ -673,6 +679,6 @@ client.beta.environments.delete(environment.id)
 
 </CodeGroup>
 
-## Runtime pra-instal
+## Runtime yang sudah terinstal \{#pre-installed-runtimes}
 
-Kontainer cloud menyertakan runtime umum di luar kotak. Lihat [Referensi Kontainer](/docs/id/managed-agents/cloud-containers) untuk daftar lengkap bahasa, database, dan utilitas yang pra-diinstal.
+Sandbox cloud menyertakan runtime umum secara bawaan. Lihat [Referensi sandbox](/docs/id/managed-agents/cloud-sandboxes-reference) untuk daftar lengkap bahasa, database, dan utilitas yang sudah terinstal.

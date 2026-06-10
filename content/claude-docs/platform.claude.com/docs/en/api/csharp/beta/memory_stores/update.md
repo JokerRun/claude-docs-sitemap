@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/memory_stores/update
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: e08fe4896f7f78353d7d51a93a8c03cfff3671b132a89937cc97eff9ba36280d
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 7261fa0ddbf154ad0ebb2bb66272ffb8fabebf84e6f2c080ed563bae3ce9eecd
 ---
 
 ## Update a memory store
@@ -88,6 +88,10 @@ Update a memory store
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 

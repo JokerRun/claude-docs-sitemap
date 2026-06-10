@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/session-storage
-fetched_at: 2026-05-21T03:16:34.837917Z
-sha256: a3b4abef343de5806b608b9b5b60ac7cf5579fc0329009d27d2b3e4a2b5bc84c
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 3654433877d67ad6de7499345ba5c68219404d48dbe7c735d2d5e9fb56b8d8fb
 ---
 
 > ## Documentation Index
@@ -152,6 +152,8 @@ The SDK ships an `InMemorySessionStore` for development and testing. The example
   asyncio.run(main())
   ```
 </CodeGroup>
+
+The second query prints a summary of the files from the first query, which shows the agent resumed with full context from the store.
 
 ## Write your own adapter
 

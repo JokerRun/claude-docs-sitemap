@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/update
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 983f5d3c13ce78b027002642153c866237fb369416cc41629e9f1617e1d8c851
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: efb8863c2e26e56883974a34f7d429e0a75bf788bc58d33d5a3c9ceb193ca103
 ---
 
 ## Update Session
@@ -75,6 +75,10 @@ Update Session
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
 
+    - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
+
+    - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
   - `Optional<BetaManagedAgentsSessionAgentUpdate> agent`
 
     Mid-session agent configuration update. Only `tools` and `mcp_servers` are updatable. Full replacement: the provided array becomes the new value. To preserve existing entries, GET the session, modify the array, and POST it back.
@@ -126,6 +130,10 @@ Update Session
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `CLAUDE_FABLE_5("claude-fable-5")`
+
+          Next generation of intelligence for the hardest knowledge work and coding problems
 
         - `CLAUDE_OPUS_4_8("claude-opus-4-8")`
 
@@ -353,19 +361,13 @@ Update Session
 
               JSON Schema for custom tool input parameters.
 
-              - `Optional<Properties> properties`
-
-                JSON Schema properties defining the tool's input parameters.
-
-              - `Optional<List<String>> required`
-
-                List of required property names.
-
-              - `Optional<Type> type`
-
-                Must be 'object' for tool input schemas.
+              - `JsonValue; type "object"constant`
 
                 - `OBJECT("object")`
+
+              - `Optional<Properties> properties`
+
+              - `Optional<List<String>> required`
 
             - `String name`
 
@@ -623,6 +625,10 @@ Update Session
 
     Vault IDs attached to the session at creation. Empty when no vaults were supplied.
 
+  - `Optional<String> deploymentId`
+
+    Deployment ID when the session was created from a deployment reference. Null otherwise.
+
 ### Example
 
 ```java
@@ -807,6 +813,7 @@ public final class Main {
   },
   "vault_ids": [
     "vlt_011CZkZDLs7fYzm1hXNPeRjv"
-  ]
+  ],
+  "deployment_id": "deployment_id"
 }
 ```

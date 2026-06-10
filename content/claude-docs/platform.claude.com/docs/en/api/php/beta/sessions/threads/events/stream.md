@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/php/beta/sessions/threads/events/stream
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: c520cf38f4f38ffd6448b69f59b6b56211b4f6be4954e1625354eb22a348f1c7
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 83dc52ad8877f431f6f232a48475ea0f3ad790cde78d4310d4f8236fd5bb2689
 ---
 
 ## Stream Session Thread Events
@@ -710,6 +710,22 @@ Stream Session Thread Events
     - `?string title`
 
       The session's new title. Present only when the update changed it.
+
+  - `BetaManagedAgentsSystemMessageEvent`
+
+    - `string id`
+
+      Unique identifier for this event.
+
+    - `list<BetaManagedAgentsSystemContentBlock> content`
+
+      System content blocks. Text-only.
+
+    - `Type type`
+
+    - `?\Datetime processedAt`
+
+      A timestamp in RFC 3339 format
 
 ### Example
 

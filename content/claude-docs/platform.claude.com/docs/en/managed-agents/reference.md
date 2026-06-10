@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/reference
-fetched_at: 2026-06-02T03:18:54.775717Z
-sha256: 9991bb9581b5e011ca2ded7ca35d9d6f02d8138653c22c598c341a05586b94af
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 8451128bd66dcf782eeff2daa3de972d095a27823455b61aa4a50aa7694bb559
 ---
 
 # Reference
@@ -79,6 +79,13 @@ Span events are observability markers that wrap activity for timing and usage tr
 | `span.outcome_evaluation_start` | [Outcome](/docs/en/managed-agents/define-outcomes) evaluation has started.  |
 | `span.outcome_evaluation_ongoing` | Heartbeat during an ongoing [outcome](/docs/en/managed-agents/define-outcomes) evaluation.  |
 | `span.outcome_evaluation_end` | [Outcome](/docs/en/managed-agents/define-outcomes) evaluation has completed.  |
+
+  </Tab>
+  <Tab title="System events">
+
+| Type | Description |
+|------|-------------|
+| `system.message` | Update the agent's system prompt between turns. Only supported on Claude Opus 4.8. |
 
   </Tab>
 </Tabs>

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/threads/archive
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 05c15c0af6a3e08d8ff6fd065aaaec38fa688417591815f104269eef9452fb3a
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: d54316cbe31c216601484ee69cf34d4b5a8992929b814fdf947173b2b61d01d3
 ---
 
 ## Archive Session Thread
@@ -77,6 +77,10 @@ Archive Session Thread
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
 
+    - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
+
+    - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
 ### Returns
 
 - `class BetaManagedAgentsSessionThread:`
@@ -114,6 +118,10 @@ Archive Session Thread
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `CLAUDE_FABLE_5("claude-fable-5")`
+
+          Next generation of intelligence for the hardest knowledge work and coding problems
 
         - `CLAUDE_OPUS_4_8("claude-opus-4-8")`
 
@@ -317,19 +325,13 @@ Archive Session Thread
 
           JSON Schema for custom tool input parameters.
 
-          - `Optional<Properties> properties`
-
-            JSON Schema properties defining the tool's input parameters.
-
-          - `Optional<List<String>> required`
-
-            List of required property names.
-
-          - `Optional<Type> type`
-
-            Must be 'object' for tool input schemas.
+          - `JsonValue; type "object"constant`
 
             - `OBJECT("object")`
+
+          - `Optional<Properties> properties`
+
+          - `Optional<List<String>> required`
 
         - `String name`
 

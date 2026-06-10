@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/sessions/update
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 58c5937dd23bf4d84bdc2bace1f4cfcbc4f434fc7b82a25bd2d74d8873cff4d7
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: a0255ac97c740e687163f994449cbeb760adb611e427114a3e24229a1a9b2fa2
 ---
 
 ## Update Session
@@ -95,6 +95,10 @@ Update Session
 
       - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
 
+      - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
+
+      - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
+
 ### Returns
 
 - `type BetaManagedAgentsSession struct{…}`
@@ -136,6 +140,10 @@ Update Session
           The model that will power your agent.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `const BetaManagedAgentsModelClaudeFable5 BetaManagedAgentsModel = "claude-fable-5"`
+
+            Next generation of intelligence for the hardest knowledge work and coding problems
 
           - `const BetaManagedAgentsModelClaudeOpus4_8 BetaManagedAgentsModel = "claude-opus-4-8"`
 
@@ -365,19 +373,13 @@ Update Session
 
               JSON Schema for custom tool input parameters.
 
+              - `Type Object`
+
+                - `const ObjectObject Object = "object"`
+
               - `Properties map[string, any]`
 
-                JSON Schema properties defining the tool's input parameters.
-
               - `Required []string`
-
-                List of required property names.
-
-              - `Type BetaManagedAgentsCustomToolInputSchemaType`
-
-                Must be 'object' for tool input schemas.
-
-                - `const BetaManagedAgentsCustomToolInputSchemaTypeObject BetaManagedAgentsCustomToolInputSchemaType = "object"`
 
             - `Name string`
 
@@ -635,6 +637,10 @@ Update Session
 
     Vault IDs attached to the session at creation. Empty when no vaults were supplied.
 
+  - `DeploymentID string`
+
+    Deployment ID when the session was created from a deployment reference. Null otherwise.
+
 ### Example
 
 ```go
@@ -829,6 +835,7 @@ func main() {
   },
   "vault_ids": [
     "vlt_011CZkZDLs7fYzm1hXNPeRjv"
-  ]
+  ],
+  "deployment_id": "deployment_id"
 }
 ```

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/messages/batches
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 2380342afa401826e95bd011dd2c90facd49f915f225c5b747117ac1b6793fc9
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 14e2fec233f8e577203620f94299a291014914069e13e4529686d5f99c2e5249
 ---
 
 # Batches
@@ -883,6 +883,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                     - `"tool_search_tool_result_error"`
 
+                  - `error_message?: string | null`
+
                 - `ToolSearchToolSearchResultBlockParam`
 
                   - `tool_references: Array<ToolReferenceBlockParam>`
@@ -967,7 +969,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-        - `"claude-opus-4-8" | "claude-opus-4-7" | "claude-mythos-preview" | 15 more`
+        - `"claude-fable-5" | "claude-mythos-5" | "claude-opus-4-8" | 17 more`
+
+          - `"claude-fable-5"`
+
+            Next generation of intelligence for the hardest knowledge work and coding problems
+
+          - `"claude-mythos-5"`
+
+            Most capable model for cybersecurity and biology research
 
           - `"claude-opus-4-8"`
 
@@ -3412,7 +3422,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-          - `"claude-opus-4-8" | "claude-opus-4-7" | "claude-mythos-preview" | 15 more`
+          - `"claude-fable-5" | "claude-mythos-5" | "claude-opus-4-8" | 17 more`
+
+            - `"claude-fable-5"`
+
+              Next generation of intelligence for the hardest knowledge work and coding problems
+
+            - `"claude-mythos-5"`
+
+              Most capable model for cybersecurity and biology research
 
             - `"claude-opus-4-8"`
 
@@ -3500,7 +3518,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           Structured information about a refusal.
 
-          - `category: "cyber" | "bio" | null`
+          - `category: "cyber" | "bio" | "reasoning_extraction" | null`
 
             The policy category that triggered the refusal.
 
@@ -3509,6 +3527,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `"cyber"`
 
             - `"bio"`
+
+            - `"reasoning_extraction"`
 
           - `explanation: string | null`
 
@@ -4686,7 +4706,15 @@ console.log(messageBatchIndividualResponse.custom_id);
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-          - `"claude-opus-4-8" | "claude-opus-4-7" | "claude-mythos-preview" | 15 more`
+          - `"claude-fable-5" | "claude-mythos-5" | "claude-opus-4-8" | 17 more`
+
+            - `"claude-fable-5"`
+
+              Next generation of intelligence for the hardest knowledge work and coding problems
+
+            - `"claude-mythos-5"`
+
+              Most capable model for cybersecurity and biology research
 
             - `"claude-opus-4-8"`
 
@@ -4774,7 +4802,7 @@ console.log(messageBatchIndividualResponse.custom_id);
 
           Structured information about a refusal.
 
-          - `category: "cyber" | "bio" | null`
+          - `category: "cyber" | "bio" | "reasoning_extraction" | null`
 
             The policy category that triggered the refusal.
 
@@ -4783,6 +4811,8 @@ console.log(messageBatchIndividualResponse.custom_id);
             - `"cyber"`
 
             - `"bio"`
+
+            - `"reasoning_extraction"`
 
           - `explanation: string | null`
 
@@ -5754,7 +5784,15 @@ console.log(messageBatchIndividualResponse.custom_id);
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-        - `"claude-opus-4-8" | "claude-opus-4-7" | "claude-mythos-preview" | 15 more`
+        - `"claude-fable-5" | "claude-mythos-5" | "claude-opus-4-8" | 17 more`
+
+          - `"claude-fable-5"`
+
+            Next generation of intelligence for the hardest knowledge work and coding problems
+
+          - `"claude-mythos-5"`
+
+            Most capable model for cybersecurity and biology research
 
           - `"claude-opus-4-8"`
 
@@ -5842,7 +5880,7 @@ console.log(messageBatchIndividualResponse.custom_id);
 
         Structured information about a refusal.
 
-        - `category: "cyber" | "bio" | null`
+        - `category: "cyber" | "bio" | "reasoning_extraction" | null`
 
           The policy category that triggered the refusal.
 
@@ -5851,6 +5889,8 @@ console.log(messageBatchIndividualResponse.custom_id);
           - `"cyber"`
 
           - `"bio"`
+
+          - `"reasoning_extraction"`
 
         - `explanation: string | null`
 
@@ -6784,7 +6824,15 @@ console.log(messageBatchIndividualResponse.custom_id);
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `"claude-opus-4-8" | "claude-opus-4-7" | "claude-mythos-preview" | 15 more`
+      - `"claude-fable-5" | "claude-mythos-5" | "claude-opus-4-8" | 17 more`
+
+        - `"claude-fable-5"`
+
+          Next generation of intelligence for the hardest knowledge work and coding problems
+
+        - `"claude-mythos-5"`
+
+          Most capable model for cybersecurity and biology research
 
         - `"claude-opus-4-8"`
 
@@ -6872,7 +6920,7 @@ console.log(messageBatchIndividualResponse.custom_id);
 
       Structured information about a refusal.
 
-      - `category: "cyber" | "bio" | null`
+      - `category: "cyber" | "bio" | "reasoning_extraction" | null`
 
         The policy category that triggered the refusal.
 
@@ -6881,6 +6929,8 @@ console.log(messageBatchIndividualResponse.custom_id);
         - `"cyber"`
 
         - `"bio"`
+
+        - `"reasoning_extraction"`
 
       - `explanation: string | null`
 

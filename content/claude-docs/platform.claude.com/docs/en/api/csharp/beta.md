@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: ab80b0d232ece1b0e9ae1412c1a7467c1b47184c085d4a5064099f63dcf368e4
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 484c9fc61d932646d1bce1b77f12886a0154212586093614199cf28f47009c79
 ---
 
 # Beta
@@ -289,6 +289,10 @@ The Models API response can be used to determine which models are available for 
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Returns
 
 - `class ModelListPageResponse:`
@@ -298,6 +302,10 @@ The Models API response can be used to determine which models are available for 
     - `required string ID`
 
       Unique model identifier.
+
+    - `required IReadOnlyList<string>? AllowedFallbackModels`
+
+      Model IDs this model accepts as `fallbacks[i].model` on the Messages API. An empty list means the `fallbacks` parameter is not supported for this model as primary.
 
     - `required BetaModelCapabilities? Capabilities`
 
@@ -452,6 +460,9 @@ await foreach (var item in page.Paginate())
   "data": [
     {
       "id": "claude-opus-4-6",
+      "allowed_fallback_models": [
+        "string"
+      ],
       "capabilities": {
         "batch": {
           "supported": true
@@ -600,6 +611,10 @@ The Models API response can be used to determine information about a specific mo
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Returns
 
 - `class BetaModelInfo:`
@@ -607,6 +622,10 @@ The Models API response can be used to determine information about a specific mo
   - `required string ID`
 
     Unique model identifier.
+
+  - `required IReadOnlyList<string>? AllowedFallbackModels`
+
+    Model IDs this model accepts as `fallbacks[i].model` on the Messages API. An empty list means the `fallbacks` parameter is not supported for this model as primary.
 
   - `required BetaModelCapabilities? Capabilities`
 
@@ -745,6 +764,9 @@ Console.WriteLine(betaModelInfo);
 ```json
 {
   "id": "claude-opus-4-6",
+  "allowed_fallback_models": [
+    "string"
+  ],
   "capabilities": {
     "batch": {
       "supported": true
@@ -995,6 +1017,10 @@ Console.WriteLine(betaModelInfo);
   - `required string ID`
 
     Unique model identifier.
+
+  - `required IReadOnlyList<string>? AllowedFallbackModels`
+
+    Model IDs this model accepts as `fallbacks[i].model` on the Messages API. An empty list means the `fallbacks` parameter is not supported for this model as primary.
 
   - `required BetaModelCapabilities? Capabilities`
 
@@ -1768,6 +1794,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
                 - `"execution_time_exceeded"ExecutionTimeExceeded`
 
+                - `"model_not_found"ModelNotFound`
+
               - `JsonElement Type "advisor_tool_result_error"constant`
 
             - `class BetaAdvisorResultBlockParam:`
@@ -1990,6 +2018,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
               - `JsonElement Type "tool_search_tool_result_error"constant`
 
+              - `string? ErrorMessage`
+
             - `class BetaToolSearchToolSearchResultBlockParam:`
 
               - `required IReadOnlyList<BetaToolReferenceBlockParam> ToolReferences`
@@ -2122,6 +2152,120 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
             Create a cache control breakpoint at this content block.
 
+        - `class BetaFallbackBlockParam:`
+
+          A `fallback` block echoed back from a prior response.
+
+          Accepted in `messages[].content` and never rendered into the prompt,
+          not validated against the request's `fallbacks` chain or top-level
+          `model`, and stripped before the sticky-routing cache key is computed.
+
+          Callers should echo the assistant turn verbatim — block included. The
+          block's position is load-bearing for thinking verification: the thinking
+          runs on either side of a fallback hop carry independently-rooted
+          verification hash chains, and this block is the only record of where one
+          chain ends and the next begins. When thinking runs flank the boundary,
+          omitting the block merges the runs into one contiguous span whose hashes
+          cannot verify (the request is rejected), and moving it into the middle of
+          a single run splits that run's chain and is likewise rejected; between
+          non-thinking blocks the block's placement has no verification effect.
+
+          - `required BetaFallbackInfoParam From`
+
+            Identifies one hop of a fallback transition.
+
+            - `required Model Model`
+
+              The model that will complete your prompt.
+
+              See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+              - `"claude-fable-5"ClaudeFable5`
+
+                Next generation of intelligence for the hardest knowledge work and coding problems
+
+              - `"claude-mythos-5"ClaudeMythos5`
+
+                Most capable model for cybersecurity and biology research
+
+              - `"claude-opus-4-8"ClaudeOpus4_8`
+
+                Frontier intelligence for long-running agents and coding
+
+              - `"claude-opus-4-7"ClaudeOpus4_7`
+
+                Frontier intelligence for long-running agents and coding
+
+              - `"claude-mythos-preview"ClaudeMythosPreview`
+
+                New class of intelligence, strongest in coding and cybersecurity
+
+              - `"claude-opus-4-6"ClaudeOpus4_6`
+
+                Frontier intelligence for long-running agents and coding
+
+              - `"claude-sonnet-4-6"ClaudeSonnet4_6`
+
+                Best combination of speed and intelligence
+
+              - `"claude-haiku-4-5"ClaudeHaiku4_5`
+
+                Fastest model with near-frontier intelligence
+
+              - `"claude-haiku-4-5-20251001"ClaudeHaiku4_5_20251001`
+
+                Fastest model with near-frontier intelligence
+
+              - `"claude-opus-4-5"ClaudeOpus4_5`
+
+                Premium model combining maximum intelligence with practical performance
+
+              - `"claude-opus-4-5-20251101"ClaudeOpus4_5_20251101`
+
+                Premium model combining maximum intelligence with practical performance
+
+              - `"claude-sonnet-4-5"ClaudeSonnet4_5`
+
+                High-performance model for agents and coding
+
+              - `"claude-sonnet-4-5-20250929"ClaudeSonnet4_5_20250929`
+
+                High-performance model for agents and coding
+
+              - `"claude-opus-4-1"ClaudeOpus4_1`
+
+                Exceptional model for specialized complex tasks
+
+              - `"claude-opus-4-1-20250805"ClaudeOpus4_1_20250805`
+
+                Exceptional model for specialized complex tasks
+
+              - `"claude-opus-4-0"ClaudeOpus4_0`
+
+                Powerful model for complex tasks
+
+              - `"claude-opus-4-20250514"ClaudeOpus4_20250514`
+
+                Powerful model for complex tasks
+
+              - `"claude-sonnet-4-0"ClaudeSonnet4_0`
+
+                High-performance model with extended thinking
+
+              - `"claude-sonnet-4-20250514"ClaudeSonnet4_20250514`
+
+                High-performance model with extended thinking
+
+              - `"claude-3-haiku-20240307"Claude_3_Haiku_20240307`
+
+                Fast and cost-effective model
+
+          - `required BetaFallbackInfoParam To`
+
+            Identifies one hop of a fallback transition.
+
+          - `JsonElement Type "fallback"constant`
+
     - `required Role Role`
 
       - `"user"User`
@@ -2184,6 +2328,127 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     Body param: Request-level diagnostics. Currently carries the previous response
     id for prompt-cache divergence reporting.
+
+  - `string? fallbackCreditToken`
+
+    Body param: The `fallback_credit_token` from a prior refusal's `stop_details`.
+
+    When a preceding request was refused and returned a `fallback_credit_token`,
+    pass that code here on the retry to have the retry's cache-creation tokens
+    for the prefix that was warm on the refused model billed at the cache-read
+    rate. Must be redeemed by the same organization and workspace, with the same
+    request body (optionally extended by one appended `assistant` message whose
+    content is the partial text — with any trailing whitespace stripped from
+    the final text block — and paired server-tool blocks streamed before the
+    refusal; the appended-assistant form is not available for requests with
+    `output_format` set or forced `tool_choice`), on an eligible fallback
+    model, on the same platform,
+    and within 5 minutes of the refusal; a mismatch is a 400. A token minted
+    mid-server-tool-loop whose partial content was continuable may only be
+    redeemed with the appended-assistant form — if an exact-body retry is
+    rejected with a 400 saying the token must be redeemed by continuing the
+    partial response, retry with the appended-assistant form instead.
+
+    When the appended-assistant form is used on a model that otherwise disallows
+    assistant-turn prefill, this token also authorizes that one prefill.
+
+  - `IReadOnlyList<BetaFallbackParam>? fallbacks`
+
+    Body param: Opt-in server-side retry on one or more substitute models when the requested model declines for policy reasons. Tried in order: if the first entry also declines, the second is tried, and so on.
+
+    - `required Model Model`
+
+      The model that will complete your prompt.
+
+      See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+    - `Long? MaxTokens`
+
+    - `BetaOutputConfig? OutputConfig`
+
+      - `Effort? Effort`
+
+        All possible effort levels.
+
+        - `"low"Low`
+
+        - `"medium"Medium`
+
+        - `"high"High`
+
+        - `"xhigh"Xhigh`
+
+        - `"max"Max`
+
+      - `BetaJsonOutputFormat? Format`
+
+        A schema to specify Claude's output format in responses. See [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
+
+        - `required IReadOnlyDictionary<string, JsonElement> Schema`
+
+          The JSON schema of the format
+
+        - `JsonElement Type "json_schema"constant`
+
+      - `BetaTokenTaskBudget? TaskBudget`
+
+        User-configurable total token budget across contexts.
+
+        - `required Long Total`
+
+          Total token budget across all contexts in the session.
+
+        - `JsonElement Type "tokens"constant`
+
+          The budget type. Currently only 'tokens' is supported.
+
+        - `Long? Remaining`
+
+          Remaining tokens in the budget. Use this to track usage across contexts when implementing compaction client-side. Defaults to total if not provided.
+
+    - `Speed? Speed`
+
+      - `"standard"Standard`
+
+      - `"fast"Fast`
+
+    - `Thinking? Thinking`
+
+      - `class BetaThinkingConfigEnabled:`
+
+        - `required Long BudgetTokens`
+
+          Determines how many tokens Claude can use for its internal reasoning process. Larger budgets can enable more thorough analysis for complex problems, improving response quality.
+
+          Must be ≥1024 and less than `max_tokens`.
+
+          See [extended thinking](https://docs.claude.com/en/docs/build-with-claude/extended-thinking) for details.
+
+        - `JsonElement Type "enabled"constant`
+
+        - `Display? Display`
+
+          Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+          - `"summarized"Summarized`
+
+          - `"omitted"Omitted`
+
+      - `class BetaThinkingConfigDisabled:`
+
+        - `JsonElement Type "disabled"constant`
+
+      - `class BetaThinkingConfigAdaptive:`
+
+        - `JsonElement Type "adaptive"constant`
+
+        - `Display? Display`
+
+          Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+          - `"summarized"Summarized`
+
+          - `"omitted"Omitted`
 
   - `string? inferenceGeo`
 
@@ -3137,78 +3402,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-        - `"claude-opus-4-8"ClaudeOpus4_8`
-
-          Frontier intelligence for long-running agents and coding
-
-        - `"claude-opus-4-7"ClaudeOpus4_7`
-
-          Frontier intelligence for long-running agents and coding
-
-        - `"claude-mythos-preview"ClaudeMythosPreview`
-
-          New class of intelligence, strongest in coding and cybersecurity
-
-        - `"claude-opus-4-6"ClaudeOpus4_6`
-
-          Frontier intelligence for long-running agents and coding
-
-        - `"claude-sonnet-4-6"ClaudeSonnet4_6`
-
-          Best combination of speed and intelligence
-
-        - `"claude-haiku-4-5"ClaudeHaiku4_5`
-
-          Fastest model with near-frontier intelligence
-
-        - `"claude-haiku-4-5-20251001"ClaudeHaiku4_5_20251001`
-
-          Fastest model with near-frontier intelligence
-
-        - `"claude-opus-4-5"ClaudeOpus4_5`
-
-          Premium model combining maximum intelligence with practical performance
-
-        - `"claude-opus-4-5-20251101"ClaudeOpus4_5_20251101`
-
-          Premium model combining maximum intelligence with practical performance
-
-        - `"claude-sonnet-4-5"ClaudeSonnet4_5`
-
-          High-performance model for agents and coding
-
-        - `"claude-sonnet-4-5-20250929"ClaudeSonnet4_5_20250929`
-
-          High-performance model for agents and coding
-
-        - `"claude-opus-4-1"ClaudeOpus4_1`
-
-          Exceptional model for specialized complex tasks
-
-        - `"claude-opus-4-1-20250805"ClaudeOpus4_1_20250805`
-
-          Exceptional model for specialized complex tasks
-
-        - `"claude-opus-4-0"ClaudeOpus4_0`
-
-          Powerful model for complex tasks
-
-        - `"claude-opus-4-20250514"ClaudeOpus4_20250514`
-
-          Powerful model for complex tasks
-
-        - `"claude-sonnet-4-0"ClaudeSonnet4_0`
-
-          High-performance model with extended thinking
-
-        - `"claude-sonnet-4-20250514"ClaudeSonnet4_20250514`
-
-          High-performance model with extended thinking
-
-        - `"claude-3-haiku-20240307"Claude_3_Haiku_20240307`
-
-          Fast and cost-effective model
-
       - `JsonElement Name "advisor"constant`
 
         Name of the tool.
@@ -3236,6 +3429,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       - `Boolean DeferLoading`
 
         If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+      - `Long? MaxTokens`
+
+        Bounds the advisor's total output (thinking + text) per call. When the advisor hits this cap, the returned advisor_result or advisor_redacted_result block carries stop_reason='max_tokens', and a truncation note is appended to the advice text the worker model sees (inside the encrypted blob in redacted mode). When set, the server also emits a remaining-tokens budget block in the advisor's prompt so the advisor self-shapes toward the cap. When omitted, the advisor model's default output cap applies and no budget block is emitted.
 
       - `Long? MaxUses`
 
@@ -3421,6 +3618,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 
@@ -3855,6 +4056,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
             - `"execution_time_exceeded"ExecutionTimeExceeded`
 
+            - `"model_not_found"ModelNotFound`
+
           - `JsonElement Type "advisor_tool_result_error"constant`
 
         - `class BetaAdvisorResultBlock:`
@@ -4147,6 +4350,116 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `JsonElement Type "compaction"constant`
 
+    - `class BetaFallbackBlock:`
+
+      Marks the point in `content` where one model's output gives way to the next.
+
+      One block appears per hop where a preceding model actually ran this turn and
+      declined. A turn routed directly by the sticky decision has no such boundary
+      and carries no block — the signal for whether a fallback model served the
+      response is the presence of a `fallback_message` entry in
+      `usage.iterations`, not this block.
+
+      The block is treated like a server-tool content block for streaming: it
+      arrives via the standard `content_block_start` / `content_block_stop`
+      pair and carries no deltas.
+
+      - `required BetaFallbackInfo From`
+
+        The model whose output ends at this point — the model that declined at this hop. When the declining hop is the requested model, its `model` echoes the top-level `model` string the caller sent (alias or canonical); when the declining hop is a fallback model, its `model` is that model's canonical id.
+
+        - `required Model Model`
+
+          The model that will complete your prompt.
+
+          See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `"claude-fable-5"ClaudeFable5`
+
+            Next generation of intelligence for the hardest knowledge work and coding problems
+
+          - `"claude-mythos-5"ClaudeMythos5`
+
+            Most capable model for cybersecurity and biology research
+
+          - `"claude-opus-4-8"ClaudeOpus4_8`
+
+            Frontier intelligence for long-running agents and coding
+
+          - `"claude-opus-4-7"ClaudeOpus4_7`
+
+            Frontier intelligence for long-running agents and coding
+
+          - `"claude-mythos-preview"ClaudeMythosPreview`
+
+            New class of intelligence, strongest in coding and cybersecurity
+
+          - `"claude-opus-4-6"ClaudeOpus4_6`
+
+            Frontier intelligence for long-running agents and coding
+
+          - `"claude-sonnet-4-6"ClaudeSonnet4_6`
+
+            Best combination of speed and intelligence
+
+          - `"claude-haiku-4-5"ClaudeHaiku4_5`
+
+            Fastest model with near-frontier intelligence
+
+          - `"claude-haiku-4-5-20251001"ClaudeHaiku4_5_20251001`
+
+            Fastest model with near-frontier intelligence
+
+          - `"claude-opus-4-5"ClaudeOpus4_5`
+
+            Premium model combining maximum intelligence with practical performance
+
+          - `"claude-opus-4-5-20251101"ClaudeOpus4_5_20251101`
+
+            Premium model combining maximum intelligence with practical performance
+
+          - `"claude-sonnet-4-5"ClaudeSonnet4_5`
+
+            High-performance model for agents and coding
+
+          - `"claude-sonnet-4-5-20250929"ClaudeSonnet4_5_20250929`
+
+            High-performance model for agents and coding
+
+          - `"claude-opus-4-1"ClaudeOpus4_1`
+
+            Exceptional model for specialized complex tasks
+
+          - `"claude-opus-4-1-20250805"ClaudeOpus4_1_20250805`
+
+            Exceptional model for specialized complex tasks
+
+          - `"claude-opus-4-0"ClaudeOpus4_0`
+
+            Powerful model for complex tasks
+
+          - `"claude-opus-4-20250514"ClaudeOpus4_20250514`
+
+            Powerful model for complex tasks
+
+          - `"claude-sonnet-4-0"ClaudeSonnet4_0`
+
+            High-performance model with extended thinking
+
+          - `"claude-sonnet-4-20250514"ClaudeSonnet4_20250514`
+
+            High-performance model with extended thinking
+
+          - `"claude-3-haiku-20240307"Claude_3_Haiku_20240307`
+
+            Fast and cost-effective model
+
+      - `required BetaFallbackInfo To`
+
+        The fallback model producing the content that follows this block. Its `model` is always the canonical id.
+
+      - `JsonElement Type "fallback"constant`
+
   - `required BetaContextManagementResponse? ContextManagement`
 
     Context management response.
@@ -4240,78 +4553,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `"claude-opus-4-8"ClaudeOpus4_8`
-
-      Frontier intelligence for long-running agents and coding
-
-    - `"claude-opus-4-7"ClaudeOpus4_7`
-
-      Frontier intelligence for long-running agents and coding
-
-    - `"claude-mythos-preview"ClaudeMythosPreview`
-
-      New class of intelligence, strongest in coding and cybersecurity
-
-    - `"claude-opus-4-6"ClaudeOpus4_6`
-
-      Frontier intelligence for long-running agents and coding
-
-    - `"claude-sonnet-4-6"ClaudeSonnet4_6`
-
-      Best combination of speed and intelligence
-
-    - `"claude-haiku-4-5"ClaudeHaiku4_5`
-
-      Fastest model with near-frontier intelligence
-
-    - `"claude-haiku-4-5-20251001"ClaudeHaiku4_5_20251001`
-
-      Fastest model with near-frontier intelligence
-
-    - `"claude-opus-4-5"ClaudeOpus4_5`
-
-      Premium model combining maximum intelligence with practical performance
-
-    - `"claude-opus-4-5-20251101"ClaudeOpus4_5_20251101`
-
-      Premium model combining maximum intelligence with practical performance
-
-    - `"claude-sonnet-4-5"ClaudeSonnet4_5`
-
-      High-performance model for agents and coding
-
-    - `"claude-sonnet-4-5-20250929"ClaudeSonnet4_5_20250929`
-
-      High-performance model for agents and coding
-
-    - `"claude-opus-4-1"ClaudeOpus4_1`
-
-      Exceptional model for specialized complex tasks
-
-    - `"claude-opus-4-1-20250805"ClaudeOpus4_1_20250805`
-
-      Exceptional model for specialized complex tasks
-
-    - `"claude-opus-4-0"ClaudeOpus4_0`
-
-      Powerful model for complex tasks
-
-    - `"claude-opus-4-20250514"ClaudeOpus4_20250514`
-
-      Powerful model for complex tasks
-
-    - `"claude-sonnet-4-0"ClaudeSonnet4_0`
-
-      High-performance model with extended thinking
-
-    - `"claude-sonnet-4-20250514"ClaudeSonnet4_20250514`
-
-      High-performance model with extended thinking
-
-    - `"claude-3-haiku-20240307"Claude_3_Haiku_20240307`
-
-      Fast and cost-effective model
-
   - `JsonElement Role "assistant"constant`
 
     Conversational role of the generated message.
@@ -4332,11 +4573,62 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `"bio"Bio`
 
+      - `"reasoning_extraction"ReasoningExtraction`
+
     - `required string? Explanation`
 
       Human-readable explanation of the refusal.
 
       This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+    - `required string? FallbackCreditToken`
+
+      Opaque code that refunds the cache-miss cost when retrying this refused
+      request on the fallback model. Pass it as `fallback_credit_token` on the
+      retry request. Expires 5 minutes after the refusal.
+
+      The retry is sent either with the same request body (`system`, `messages`,
+      `tools`, and other render-shaping fields), or with the same body plus one
+      appended `assistant` message whose content is the partial text (with any
+      trailing whitespace stripped from the final text block) and paired
+      server-tool blocks from this refusal — which also authorizes that
+      appended turn as an assistant-prefill continuation on models that otherwise
+      disallow prefill. A token minted mid-server-tool-loop whose partial content
+      was continuable may only be redeemed the second way — if a same-body retry
+      is rejected with a 400 saying the token must be redeemed by continuing the
+      partial response, retry the second way instead. Either way: same workspace,
+      same platform; a mismatch is a 400. Resending a token for an already-warm
+      prefix is permitted but yields no additional credit.
+
+      `null` when the refused model isn't eligible for a fallback credit.
+
+    - `required Boolean? FallbackHasPrefillClaim`
+
+      Whether the accompanying `fallback_credit_token` may be redeemed with the
+      appended-assistant retry form. Only set when `fallback_credit_token` is
+      present.
+
+      `true`: retry by resending the same request body plus one appended
+      `assistant` message whose content is this response's `content` with any
+      trailing whitespace stripped from the final text block and unpaired
+      `tool_use` blocks omitted (the same appended-turn shape described on
+      `fallback_credit_token`), with the token attached. `false`: retry by
+      resending the original request body unchanged, with the token attached —
+      the appended-assistant form is not available for this refusal (no
+      continuable partial content, or the request uses `output_format` or a
+      `tool_choice` that forces tool use). One exception: when the request used
+      `output_format` or a forced `tool_choice` and the refusal arrived after
+      server tools (including MCP connector tools) had already executed, the
+      token may not be redeemable by either retry form; if the exact-body retry
+      is then rejected with a 400 saying the token must be redeemed by
+      continuing the partial response, discard the token and retry without it.
+
+      Advisory: if an appended-assistant retry is rejected with a 400 despite
+      `true`, fall back to resending the original request body with the token.
+
+    - `required string? RecommendedModel`
+
+      The server's suggested retry target for this refusal. Populated when a fallback attempt could not be made (the fallback model's rate limit was exhausted, or it was overloaded); names the fallback model the caller can retry directly. Null otherwise.
 
     - `JsonElement Type "refusal"constant`
 
@@ -4453,6 +4745,12 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
           The number of input tokens which were used.
 
+        - `required Model Model`
+
+          The model that will complete your prompt.
+
+          See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
         - `required Long OutputTokens`
 
           The number of output tokens which were used.
@@ -4522,6 +4820,45 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         - `JsonElement Type "advisor_message"constant`
 
           Usage for an advisor sub-inference iteration
+
+      - `class BetaFallbackMessageIterationUsage:`
+
+        Token usage for the fallback-model attempt of a server-side fallback request.
+
+        Produced in place of a `message` entry for whichever hop served the
+        response. A declined hop produces the existing `message` entry. Whether
+        a fallback model served the response is signalled by the presence of this
+        entry in `usage.iterations`.
+
+        - `required BetaCacheCreation? CacheCreation`
+
+          Breakdown of cached tokens by TTL
+
+        - `required Long CacheCreationInputTokens`
+
+          The number of input tokens used to create the cache entry.
+
+        - `required Long CacheReadInputTokens`
+
+          The number of input tokens read from the cache.
+
+        - `required Long InputTokens`
+
+          The number of input tokens which were used.
+
+        - `required Model Model`
+
+          The model that will complete your prompt.
+
+          See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `required Long OutputTokens`
+
+          The number of output tokens which were used.
+
+        - `JsonElement Type "fallback_message"constant`
+
+          Usage for the fallback-model attempt that served the response
 
     - `required Long OutputTokens`
 
@@ -4652,6 +4989,9 @@ Console.WriteLine(betaMessage);
   "stop_details": {
     "category": "cyber",
     "explanation": "explanation",
+    "fallback_credit_token": "fallback_credit_token",
+    "fallback_has_prefill_claim": true,
+    "recommended_model": "recommended_model",
     "type": "refusal"
   },
   "stop_reason": "end_turn",
@@ -4675,6 +5015,7 @@ Console.WriteLine(betaMessage);
         "cache_creation_input_tokens": 0,
         "cache_read_input_tokens": 0,
         "input_tokens": 0,
+        "model": "claude-fable-5",
         "output_tokens": 0,
         "type": "message"
       }
@@ -5287,6 +5628,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
                 - `"execution_time_exceeded"ExecutionTimeExceeded`
 
+                - `"model_not_found"ModelNotFound`
+
               - `JsonElement Type "advisor_tool_result_error"constant`
 
             - `class BetaAdvisorResultBlockParam:`
@@ -5509,6 +5852,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
               - `JsonElement Type "tool_search_tool_result_error"constant`
 
+              - `string? ErrorMessage`
+
             - `class BetaToolSearchToolSearchResultBlockParam:`
 
               - `required IReadOnlyList<BetaToolReferenceBlockParam> ToolReferences`
@@ -5640,6 +5985,120 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
           - `BetaCacheControlEphemeral? CacheControl`
 
             Create a cache control breakpoint at this content block.
+
+        - `class BetaFallbackBlockParam:`
+
+          A `fallback` block echoed back from a prior response.
+
+          Accepted in `messages[].content` and never rendered into the prompt,
+          not validated against the request's `fallbacks` chain or top-level
+          `model`, and stripped before the sticky-routing cache key is computed.
+
+          Callers should echo the assistant turn verbatim — block included. The
+          block's position is load-bearing for thinking verification: the thinking
+          runs on either side of a fallback hop carry independently-rooted
+          verification hash chains, and this block is the only record of where one
+          chain ends and the next begins. When thinking runs flank the boundary,
+          omitting the block merges the runs into one contiguous span whose hashes
+          cannot verify (the request is rejected), and moving it into the middle of
+          a single run splits that run's chain and is likewise rejected; between
+          non-thinking blocks the block's placement has no verification effect.
+
+          - `required BetaFallbackInfoParam From`
+
+            Identifies one hop of a fallback transition.
+
+            - `required Model Model`
+
+              The model that will complete your prompt.
+
+              See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+              - `"claude-fable-5"ClaudeFable5`
+
+                Next generation of intelligence for the hardest knowledge work and coding problems
+
+              - `"claude-mythos-5"ClaudeMythos5`
+
+                Most capable model for cybersecurity and biology research
+
+              - `"claude-opus-4-8"ClaudeOpus4_8`
+
+                Frontier intelligence for long-running agents and coding
+
+              - `"claude-opus-4-7"ClaudeOpus4_7`
+
+                Frontier intelligence for long-running agents and coding
+
+              - `"claude-mythos-preview"ClaudeMythosPreview`
+
+                New class of intelligence, strongest in coding and cybersecurity
+
+              - `"claude-opus-4-6"ClaudeOpus4_6`
+
+                Frontier intelligence for long-running agents and coding
+
+              - `"claude-sonnet-4-6"ClaudeSonnet4_6`
+
+                Best combination of speed and intelligence
+
+              - `"claude-haiku-4-5"ClaudeHaiku4_5`
+
+                Fastest model with near-frontier intelligence
+
+              - `"claude-haiku-4-5-20251001"ClaudeHaiku4_5_20251001`
+
+                Fastest model with near-frontier intelligence
+
+              - `"claude-opus-4-5"ClaudeOpus4_5`
+
+                Premium model combining maximum intelligence with practical performance
+
+              - `"claude-opus-4-5-20251101"ClaudeOpus4_5_20251101`
+
+                Premium model combining maximum intelligence with practical performance
+
+              - `"claude-sonnet-4-5"ClaudeSonnet4_5`
+
+                High-performance model for agents and coding
+
+              - `"claude-sonnet-4-5-20250929"ClaudeSonnet4_5_20250929`
+
+                High-performance model for agents and coding
+
+              - `"claude-opus-4-1"ClaudeOpus4_1`
+
+                Exceptional model for specialized complex tasks
+
+              - `"claude-opus-4-1-20250805"ClaudeOpus4_1_20250805`
+
+                Exceptional model for specialized complex tasks
+
+              - `"claude-opus-4-0"ClaudeOpus4_0`
+
+                Powerful model for complex tasks
+
+              - `"claude-opus-4-20250514"ClaudeOpus4_20250514`
+
+                Powerful model for complex tasks
+
+              - `"claude-sonnet-4-0"ClaudeSonnet4_0`
+
+                High-performance model with extended thinking
+
+              - `"claude-sonnet-4-20250514"ClaudeSonnet4_20250514`
+
+                High-performance model with extended thinking
+
+              - `"claude-3-haiku-20240307"Claude_3_Haiku_20240307`
+
+                Fast and cost-effective model
+
+          - `required BetaFallbackInfoParam To`
+
+            Identifies one hop of a fallback transition.
+
+          - `JsonElement Type "fallback"constant`
 
     - `required Role Role`
 
@@ -6583,78 +7042,6 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-        - `"claude-opus-4-8"ClaudeOpus4_8`
-
-          Frontier intelligence for long-running agents and coding
-
-        - `"claude-opus-4-7"ClaudeOpus4_7`
-
-          Frontier intelligence for long-running agents and coding
-
-        - `"claude-mythos-preview"ClaudeMythosPreview`
-
-          New class of intelligence, strongest in coding and cybersecurity
-
-        - `"claude-opus-4-6"ClaudeOpus4_6`
-
-          Frontier intelligence for long-running agents and coding
-
-        - `"claude-sonnet-4-6"ClaudeSonnet4_6`
-
-          Best combination of speed and intelligence
-
-        - `"claude-haiku-4-5"ClaudeHaiku4_5`
-
-          Fastest model with near-frontier intelligence
-
-        - `"claude-haiku-4-5-20251001"ClaudeHaiku4_5_20251001`
-
-          Fastest model with near-frontier intelligence
-
-        - `"claude-opus-4-5"ClaudeOpus4_5`
-
-          Premium model combining maximum intelligence with practical performance
-
-        - `"claude-opus-4-5-20251101"ClaudeOpus4_5_20251101`
-
-          Premium model combining maximum intelligence with practical performance
-
-        - `"claude-sonnet-4-5"ClaudeSonnet4_5`
-
-          High-performance model for agents and coding
-
-        - `"claude-sonnet-4-5-20250929"ClaudeSonnet4_5_20250929`
-
-          High-performance model for agents and coding
-
-        - `"claude-opus-4-1"ClaudeOpus4_1`
-
-          Exceptional model for specialized complex tasks
-
-        - `"claude-opus-4-1-20250805"ClaudeOpus4_1_20250805`
-
-          Exceptional model for specialized complex tasks
-
-        - `"claude-opus-4-0"ClaudeOpus4_0`
-
-          Powerful model for complex tasks
-
-        - `"claude-opus-4-20250514"ClaudeOpus4_20250514`
-
-          Powerful model for complex tasks
-
-        - `"claude-sonnet-4-0"ClaudeSonnet4_0`
-
-          High-performance model with extended thinking
-
-        - `"claude-sonnet-4-20250514"ClaudeSonnet4_20250514`
-
-          High-performance model with extended thinking
-
-        - `"claude-3-haiku-20240307"Claude_3_Haiku_20240307`
-
-          Fast and cost-effective model
-
       - `JsonElement Name "advisor"constant`
 
         Name of the tool.
@@ -6682,6 +7069,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
       - `Boolean DeferLoading`
 
         If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+      - `Long? MaxTokens`
+
+        Bounds the advisor's total output (thinking + text) per call. When the advisor hits this cap, the returned advisor_result or advisor_redacted_result block carries stop_reason='max_tokens', and a truncation note is appended to the advice text the worker model sees (inside the encrypted blob in redacted mode). When set, the server also emits a remaining-tokens budget block in the advisor's prompt so the advisor self-shapes toward the cap. When omitted, the advisor model's default output cap applies and no budget block is emitted.
 
       - `Long? MaxUses`
 
@@ -6848,6 +7239,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Returns
 
 - `class BetaMessageTokensCount:`
@@ -6933,6 +7328,14 @@ Console.WriteLine(betaMessageTokensCount);
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+    - `"claude-fable-5"ClaudeFable5`
+
+      Next generation of intelligence for the hardest knowledge work and coding problems
+
+    - `"claude-mythos-5"ClaudeMythos5`
+
+      Most capable model for cybersecurity and biology research
 
     - `"claude-opus-4-8"ClaudeOpus4_8`
 
@@ -7072,6 +7475,14 @@ Console.WriteLine(betaMessageTokensCount);
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+    - `"claude-fable-5"ClaudeFable5`
+
+      Next generation of intelligence for the hardest knowledge work and coding problems
+
+    - `"claude-mythos-5"ClaudeMythos5`
+
+      Most capable model for cybersecurity and biology research
+
     - `"claude-opus-4-8"ClaudeOpus4_8`
 
       Frontier intelligence for long-running agents and coding
@@ -7189,6 +7600,10 @@ Console.WriteLine(betaMessageTokensCount);
 
     If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
 
+  - `Long? MaxTokens`
+
+    Bounds the advisor's total output (thinking + text) per call. When the advisor hits this cap, the returned advisor_result or advisor_redacted_result block carries stop_reason='max_tokens', and a truncation note is appended to the advice text the worker model sees (inside the encrypted blob in redacted mode). When set, the server also emits a remaining-tokens budget block in the advisor's prompt so the advisor self-shapes toward the cap. When omitted, the advisor model's default output cap applies and no budget block is emitted.
+
   - `Long? MaxUses`
 
     Maximum number of times the tool can be used in the API request.
@@ -7218,6 +7633,8 @@ Console.WriteLine(betaMessageTokensCount);
         - `"unavailable"Unavailable`
 
         - `"execution_time_exceeded"ExecutionTimeExceeded`
+
+        - `"model_not_found"ModelNotFound`
 
       - `JsonElement Type "advisor_tool_result_error"constant`
 
@@ -7268,6 +7685,8 @@ Console.WriteLine(betaMessageTokensCount);
         - `"unavailable"Unavailable`
 
         - `"execution_time_exceeded"ExecutionTimeExceeded`
+
+        - `"model_not_found"ModelNotFound`
 
       - `JsonElement Type "advisor_tool_result_error"constant`
 
@@ -7332,6 +7751,8 @@ Console.WriteLine(betaMessageTokensCount);
 
     - `"execution_time_exceeded"ExecutionTimeExceeded`
 
+    - `"model_not_found"ModelNotFound`
+
   - `JsonElement Type "advisor_tool_result_error"constant`
 
 ### Beta Advisor Tool Result Error Param
@@ -7351,6 +7772,8 @@ Console.WriteLine(betaMessageTokensCount);
     - `"unavailable"Unavailable`
 
     - `"execution_time_exceeded"ExecutionTimeExceeded`
+
+    - `"model_not_found"ModelNotFound`
 
   - `JsonElement Type "advisor_tool_result_error"constant`
 
@@ -9209,6 +9632,8 @@ Console.WriteLine(betaMessageTokensCount);
 
           - `"execution_time_exceeded"ExecutionTimeExceeded`
 
+          - `"model_not_found"ModelNotFound`
+
         - `JsonElement Type "advisor_tool_result_error"constant`
 
       - `class BetaAdvisorResultBlock:`
@@ -9500,6 +9925,116 @@ Console.WriteLine(betaMessageTokensCount);
       Opaque metadata from prior compaction, to be round-tripped verbatim
 
     - `JsonElement Type "compaction"constant`
+
+  - `class BetaFallbackBlock:`
+
+    Marks the point in `content` where one model's output gives way to the next.
+
+    One block appears per hop where a preceding model actually ran this turn and
+    declined. A turn routed directly by the sticky decision has no such boundary
+    and carries no block — the signal for whether a fallback model served the
+    response is the presence of a `fallback_message` entry in
+    `usage.iterations`, not this block.
+
+    The block is treated like a server-tool content block for streaming: it
+    arrives via the standard `content_block_start` / `content_block_stop`
+    pair and carries no deltas.
+
+    - `required BetaFallbackInfo From`
+
+      The model whose output ends at this point — the model that declined at this hop. When the declining hop is the requested model, its `model` echoes the top-level `model` string the caller sent (alias or canonical); when the declining hop is a fallback model, its `model` is that model's canonical id.
+
+      - `required Model Model`
+
+        The model that will complete your prompt.
+
+        See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-fable-5"ClaudeFable5`
+
+          Next generation of intelligence for the hardest knowledge work and coding problems
+
+        - `"claude-mythos-5"ClaudeMythos5`
+
+          Most capable model for cybersecurity and biology research
+
+        - `"claude-opus-4-8"ClaudeOpus4_8`
+
+          Frontier intelligence for long-running agents and coding
+
+        - `"claude-opus-4-7"ClaudeOpus4_7`
+
+          Frontier intelligence for long-running agents and coding
+
+        - `"claude-mythos-preview"ClaudeMythosPreview`
+
+          New class of intelligence, strongest in coding and cybersecurity
+
+        - `"claude-opus-4-6"ClaudeOpus4_6`
+
+          Frontier intelligence for long-running agents and coding
+
+        - `"claude-sonnet-4-6"ClaudeSonnet4_6`
+
+          Best combination of speed and intelligence
+
+        - `"claude-haiku-4-5"ClaudeHaiku4_5`
+
+          Fastest model with near-frontier intelligence
+
+        - `"claude-haiku-4-5-20251001"ClaudeHaiku4_5_20251001`
+
+          Fastest model with near-frontier intelligence
+
+        - `"claude-opus-4-5"ClaudeOpus4_5`
+
+          Premium model combining maximum intelligence with practical performance
+
+        - `"claude-opus-4-5-20251101"ClaudeOpus4_5_20251101`
+
+          Premium model combining maximum intelligence with practical performance
+
+        - `"claude-sonnet-4-5"ClaudeSonnet4_5`
+
+          High-performance model for agents and coding
+
+        - `"claude-sonnet-4-5-20250929"ClaudeSonnet4_5_20250929`
+
+          High-performance model for agents and coding
+
+        - `"claude-opus-4-1"ClaudeOpus4_1`
+
+          Exceptional model for specialized complex tasks
+
+        - `"claude-opus-4-1-20250805"ClaudeOpus4_1_20250805`
+
+          Exceptional model for specialized complex tasks
+
+        - `"claude-opus-4-0"ClaudeOpus4_0`
+
+          Powerful model for complex tasks
+
+        - `"claude-opus-4-20250514"ClaudeOpus4_20250514`
+
+          Powerful model for complex tasks
+
+        - `"claude-sonnet-4-0"ClaudeSonnet4_0`
+
+          High-performance model with extended thinking
+
+        - `"claude-sonnet-4-20250514"ClaudeSonnet4_20250514`
+
+          High-performance model with extended thinking
+
+        - `"claude-3-haiku-20240307"Claude_3_Haiku_20240307`
+
+          Fast and cost-effective model
+
+    - `required BetaFallbackInfo To`
+
+      The fallback model producing the content that follows this block. Its `model` is always the canonical id.
+
+    - `JsonElement Type "fallback"constant`
 
 ### Beta Content Block Param
 
@@ -10028,6 +10563,8 @@ Console.WriteLine(betaMessageTokensCount);
 
           - `"execution_time_exceeded"ExecutionTimeExceeded`
 
+          - `"model_not_found"ModelNotFound`
+
         - `JsonElement Type "advisor_tool_result_error"constant`
 
       - `class BetaAdvisorResultBlockParam:`
@@ -10250,6 +10787,8 @@ Console.WriteLine(betaMessageTokensCount);
 
         - `JsonElement Type "tool_search_tool_result_error"constant`
 
+        - `string? ErrorMessage`
+
       - `class BetaToolSearchToolSearchResultBlockParam:`
 
         - `required IReadOnlyList<BetaToolReferenceBlockParam> ToolReferences`
@@ -10381,6 +10920,120 @@ Console.WriteLine(betaMessageTokensCount);
     - `BetaCacheControlEphemeral? CacheControl`
 
       Create a cache control breakpoint at this content block.
+
+  - `class BetaFallbackBlockParam:`
+
+    A `fallback` block echoed back from a prior response.
+
+    Accepted in `messages[].content` and never rendered into the prompt,
+    not validated against the request's `fallbacks` chain or top-level
+    `model`, and stripped before the sticky-routing cache key is computed.
+
+    Callers should echo the assistant turn verbatim — block included. The
+    block's position is load-bearing for thinking verification: the thinking
+    runs on either side of a fallback hop carry independently-rooted
+    verification hash chains, and this block is the only record of where one
+    chain ends and the next begins. When thinking runs flank the boundary,
+    omitting the block merges the runs into one contiguous span whose hashes
+    cannot verify (the request is rejected), and moving it into the middle of
+    a single run splits that run's chain and is likewise rejected; between
+    non-thinking blocks the block's placement has no verification effect.
+
+    - `required BetaFallbackInfoParam From`
+
+      Identifies one hop of a fallback transition.
+
+      - `required Model Model`
+
+        The model that will complete your prompt.
+
+        See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-fable-5"ClaudeFable5`
+
+          Next generation of intelligence for the hardest knowledge work and coding problems
+
+        - `"claude-mythos-5"ClaudeMythos5`
+
+          Most capable model for cybersecurity and biology research
+
+        - `"claude-opus-4-8"ClaudeOpus4_8`
+
+          Frontier intelligence for long-running agents and coding
+
+        - `"claude-opus-4-7"ClaudeOpus4_7`
+
+          Frontier intelligence for long-running agents and coding
+
+        - `"claude-mythos-preview"ClaudeMythosPreview`
+
+          New class of intelligence, strongest in coding and cybersecurity
+
+        - `"claude-opus-4-6"ClaudeOpus4_6`
+
+          Frontier intelligence for long-running agents and coding
+
+        - `"claude-sonnet-4-6"ClaudeSonnet4_6`
+
+          Best combination of speed and intelligence
+
+        - `"claude-haiku-4-5"ClaudeHaiku4_5`
+
+          Fastest model with near-frontier intelligence
+
+        - `"claude-haiku-4-5-20251001"ClaudeHaiku4_5_20251001`
+
+          Fastest model with near-frontier intelligence
+
+        - `"claude-opus-4-5"ClaudeOpus4_5`
+
+          Premium model combining maximum intelligence with practical performance
+
+        - `"claude-opus-4-5-20251101"ClaudeOpus4_5_20251101`
+
+          Premium model combining maximum intelligence with practical performance
+
+        - `"claude-sonnet-4-5"ClaudeSonnet4_5`
+
+          High-performance model for agents and coding
+
+        - `"claude-sonnet-4-5-20250929"ClaudeSonnet4_5_20250929`
+
+          High-performance model for agents and coding
+
+        - `"claude-opus-4-1"ClaudeOpus4_1`
+
+          Exceptional model for specialized complex tasks
+
+        - `"claude-opus-4-1-20250805"ClaudeOpus4_1_20250805`
+
+          Exceptional model for specialized complex tasks
+
+        - `"claude-opus-4-0"ClaudeOpus4_0`
+
+          Powerful model for complex tasks
+
+        - `"claude-opus-4-20250514"ClaudeOpus4_20250514`
+
+          Powerful model for complex tasks
+
+        - `"claude-sonnet-4-0"ClaudeSonnet4_0`
+
+          High-performance model with extended thinking
+
+        - `"claude-sonnet-4-20250514"ClaudeSonnet4_20250514`
+
+          High-performance model with extended thinking
+
+        - `"claude-3-haiku-20240307"Claude_3_Haiku_20240307`
+
+          Fast and cost-effective model
+
+    - `required BetaFallbackInfoParam To`
+
+      Identifies one hop of a fallback transition.
+
+    - `JsonElement Type "fallback"constant`
 
 ### Beta Content Block Source
 
@@ -11001,6 +11654,732 @@ Console.WriteLine(betaMessageTokensCount);
   - `required string Stderr`
 
   - `JsonElement Type "encrypted_code_execution_result"constant`
+
+### Beta Fallback Block
+
+- `class BetaFallbackBlock:`
+
+  Marks the point in `content` where one model's output gives way to the next.
+
+  One block appears per hop where a preceding model actually ran this turn and
+  declined. A turn routed directly by the sticky decision has no such boundary
+  and carries no block — the signal for whether a fallback model served the
+  response is the presence of a `fallback_message` entry in
+  `usage.iterations`, not this block.
+
+  The block is treated like a server-tool content block for streaming: it
+  arrives via the standard `content_block_start` / `content_block_stop`
+  pair and carries no deltas.
+
+  - `required BetaFallbackInfo From`
+
+    The model whose output ends at this point — the model that declined at this hop. When the declining hop is the requested model, its `model` echoes the top-level `model` string the caller sent (alias or canonical); when the declining hop is a fallback model, its `model` is that model's canonical id.
+
+    - `required Model Model`
+
+      The model that will complete your prompt.
+
+      See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `"claude-fable-5"ClaudeFable5`
+
+        Next generation of intelligence for the hardest knowledge work and coding problems
+
+      - `"claude-mythos-5"ClaudeMythos5`
+
+        Most capable model for cybersecurity and biology research
+
+      - `"claude-opus-4-8"ClaudeOpus4_8`
+
+        Frontier intelligence for long-running agents and coding
+
+      - `"claude-opus-4-7"ClaudeOpus4_7`
+
+        Frontier intelligence for long-running agents and coding
+
+      - `"claude-mythos-preview"ClaudeMythosPreview`
+
+        New class of intelligence, strongest in coding and cybersecurity
+
+      - `"claude-opus-4-6"ClaudeOpus4_6`
+
+        Frontier intelligence for long-running agents and coding
+
+      - `"claude-sonnet-4-6"ClaudeSonnet4_6`
+
+        Best combination of speed and intelligence
+
+      - `"claude-haiku-4-5"ClaudeHaiku4_5`
+
+        Fastest model with near-frontier intelligence
+
+      - `"claude-haiku-4-5-20251001"ClaudeHaiku4_5_20251001`
+
+        Fastest model with near-frontier intelligence
+
+      - `"claude-opus-4-5"ClaudeOpus4_5`
+
+        Premium model combining maximum intelligence with practical performance
+
+      - `"claude-opus-4-5-20251101"ClaudeOpus4_5_20251101`
+
+        Premium model combining maximum intelligence with practical performance
+
+      - `"claude-sonnet-4-5"ClaudeSonnet4_5`
+
+        High-performance model for agents and coding
+
+      - `"claude-sonnet-4-5-20250929"ClaudeSonnet4_5_20250929`
+
+        High-performance model for agents and coding
+
+      - `"claude-opus-4-1"ClaudeOpus4_1`
+
+        Exceptional model for specialized complex tasks
+
+      - `"claude-opus-4-1-20250805"ClaudeOpus4_1_20250805`
+
+        Exceptional model for specialized complex tasks
+
+      - `"claude-opus-4-0"ClaudeOpus4_0`
+
+        Powerful model for complex tasks
+
+      - `"claude-opus-4-20250514"ClaudeOpus4_20250514`
+
+        Powerful model for complex tasks
+
+      - `"claude-sonnet-4-0"ClaudeSonnet4_0`
+
+        High-performance model with extended thinking
+
+      - `"claude-sonnet-4-20250514"ClaudeSonnet4_20250514`
+
+        High-performance model with extended thinking
+
+      - `"claude-3-haiku-20240307"Claude_3_Haiku_20240307`
+
+        Fast and cost-effective model
+
+  - `required BetaFallbackInfo To`
+
+    The fallback model producing the content that follows this block. Its `model` is always the canonical id.
+
+  - `JsonElement Type "fallback"constant`
+
+### Beta Fallback Block Param
+
+- `class BetaFallbackBlockParam:`
+
+  A `fallback` block echoed back from a prior response.
+
+  Accepted in `messages[].content` and never rendered into the prompt,
+  not validated against the request's `fallbacks` chain or top-level
+  `model`, and stripped before the sticky-routing cache key is computed.
+
+  Callers should echo the assistant turn verbatim — block included. The
+  block's position is load-bearing for thinking verification: the thinking
+  runs on either side of a fallback hop carry independently-rooted
+  verification hash chains, and this block is the only record of where one
+  chain ends and the next begins. When thinking runs flank the boundary,
+  omitting the block merges the runs into one contiguous span whose hashes
+  cannot verify (the request is rejected), and moving it into the middle of
+  a single run splits that run's chain and is likewise rejected; between
+  non-thinking blocks the block's placement has no verification effect.
+
+  - `required BetaFallbackInfoParam From`
+
+    Identifies one hop of a fallback transition.
+
+    - `required Model Model`
+
+      The model that will complete your prompt.
+
+      See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `"claude-fable-5"ClaudeFable5`
+
+        Next generation of intelligence for the hardest knowledge work and coding problems
+
+      - `"claude-mythos-5"ClaudeMythos5`
+
+        Most capable model for cybersecurity and biology research
+
+      - `"claude-opus-4-8"ClaudeOpus4_8`
+
+        Frontier intelligence for long-running agents and coding
+
+      - `"claude-opus-4-7"ClaudeOpus4_7`
+
+        Frontier intelligence for long-running agents and coding
+
+      - `"claude-mythos-preview"ClaudeMythosPreview`
+
+        New class of intelligence, strongest in coding and cybersecurity
+
+      - `"claude-opus-4-6"ClaudeOpus4_6`
+
+        Frontier intelligence for long-running agents and coding
+
+      - `"claude-sonnet-4-6"ClaudeSonnet4_6`
+
+        Best combination of speed and intelligence
+
+      - `"claude-haiku-4-5"ClaudeHaiku4_5`
+
+        Fastest model with near-frontier intelligence
+
+      - `"claude-haiku-4-5-20251001"ClaudeHaiku4_5_20251001`
+
+        Fastest model with near-frontier intelligence
+
+      - `"claude-opus-4-5"ClaudeOpus4_5`
+
+        Premium model combining maximum intelligence with practical performance
+
+      - `"claude-opus-4-5-20251101"ClaudeOpus4_5_20251101`
+
+        Premium model combining maximum intelligence with practical performance
+
+      - `"claude-sonnet-4-5"ClaudeSonnet4_5`
+
+        High-performance model for agents and coding
+
+      - `"claude-sonnet-4-5-20250929"ClaudeSonnet4_5_20250929`
+
+        High-performance model for agents and coding
+
+      - `"claude-opus-4-1"ClaudeOpus4_1`
+
+        Exceptional model for specialized complex tasks
+
+      - `"claude-opus-4-1-20250805"ClaudeOpus4_1_20250805`
+
+        Exceptional model for specialized complex tasks
+
+      - `"claude-opus-4-0"ClaudeOpus4_0`
+
+        Powerful model for complex tasks
+
+      - `"claude-opus-4-20250514"ClaudeOpus4_20250514`
+
+        Powerful model for complex tasks
+
+      - `"claude-sonnet-4-0"ClaudeSonnet4_0`
+
+        High-performance model with extended thinking
+
+      - `"claude-sonnet-4-20250514"ClaudeSonnet4_20250514`
+
+        High-performance model with extended thinking
+
+      - `"claude-3-haiku-20240307"Claude_3_Haiku_20240307`
+
+        Fast and cost-effective model
+
+  - `required BetaFallbackInfoParam To`
+
+    Identifies one hop of a fallback transition.
+
+  - `JsonElement Type "fallback"constant`
+
+### Beta Fallback Info
+
+- `class BetaFallbackInfo:`
+
+  Identifies one hop of a fallback transition.
+
+  - `required Model Model`
+
+    The model that will complete your prompt.
+
+    See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+    - `"claude-fable-5"ClaudeFable5`
+
+      Next generation of intelligence for the hardest knowledge work and coding problems
+
+    - `"claude-mythos-5"ClaudeMythos5`
+
+      Most capable model for cybersecurity and biology research
+
+    - `"claude-opus-4-8"ClaudeOpus4_8`
+
+      Frontier intelligence for long-running agents and coding
+
+    - `"claude-opus-4-7"ClaudeOpus4_7`
+
+      Frontier intelligence for long-running agents and coding
+
+    - `"claude-mythos-preview"ClaudeMythosPreview`
+
+      New class of intelligence, strongest in coding and cybersecurity
+
+    - `"claude-opus-4-6"ClaudeOpus4_6`
+
+      Frontier intelligence for long-running agents and coding
+
+    - `"claude-sonnet-4-6"ClaudeSonnet4_6`
+
+      Best combination of speed and intelligence
+
+    - `"claude-haiku-4-5"ClaudeHaiku4_5`
+
+      Fastest model with near-frontier intelligence
+
+    - `"claude-haiku-4-5-20251001"ClaudeHaiku4_5_20251001`
+
+      Fastest model with near-frontier intelligence
+
+    - `"claude-opus-4-5"ClaudeOpus4_5`
+
+      Premium model combining maximum intelligence with practical performance
+
+    - `"claude-opus-4-5-20251101"ClaudeOpus4_5_20251101`
+
+      Premium model combining maximum intelligence with practical performance
+
+    - `"claude-sonnet-4-5"ClaudeSonnet4_5`
+
+      High-performance model for agents and coding
+
+    - `"claude-sonnet-4-5-20250929"ClaudeSonnet4_5_20250929`
+
+      High-performance model for agents and coding
+
+    - `"claude-opus-4-1"ClaudeOpus4_1`
+
+      Exceptional model for specialized complex tasks
+
+    - `"claude-opus-4-1-20250805"ClaudeOpus4_1_20250805`
+
+      Exceptional model for specialized complex tasks
+
+    - `"claude-opus-4-0"ClaudeOpus4_0`
+
+      Powerful model for complex tasks
+
+    - `"claude-opus-4-20250514"ClaudeOpus4_20250514`
+
+      Powerful model for complex tasks
+
+    - `"claude-sonnet-4-0"ClaudeSonnet4_0`
+
+      High-performance model with extended thinking
+
+    - `"claude-sonnet-4-20250514"ClaudeSonnet4_20250514`
+
+      High-performance model with extended thinking
+
+    - `"claude-3-haiku-20240307"Claude_3_Haiku_20240307`
+
+      Fast and cost-effective model
+
+### Beta Fallback Info Param
+
+- `class BetaFallbackInfoParam:`
+
+  Identifies one hop of a fallback transition.
+
+  - `required Model Model`
+
+    The model that will complete your prompt.
+
+    See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+    - `"claude-fable-5"ClaudeFable5`
+
+      Next generation of intelligence for the hardest knowledge work and coding problems
+
+    - `"claude-mythos-5"ClaudeMythos5`
+
+      Most capable model for cybersecurity and biology research
+
+    - `"claude-opus-4-8"ClaudeOpus4_8`
+
+      Frontier intelligence for long-running agents and coding
+
+    - `"claude-opus-4-7"ClaudeOpus4_7`
+
+      Frontier intelligence for long-running agents and coding
+
+    - `"claude-mythos-preview"ClaudeMythosPreview`
+
+      New class of intelligence, strongest in coding and cybersecurity
+
+    - `"claude-opus-4-6"ClaudeOpus4_6`
+
+      Frontier intelligence for long-running agents and coding
+
+    - `"claude-sonnet-4-6"ClaudeSonnet4_6`
+
+      Best combination of speed and intelligence
+
+    - `"claude-haiku-4-5"ClaudeHaiku4_5`
+
+      Fastest model with near-frontier intelligence
+
+    - `"claude-haiku-4-5-20251001"ClaudeHaiku4_5_20251001`
+
+      Fastest model with near-frontier intelligence
+
+    - `"claude-opus-4-5"ClaudeOpus4_5`
+
+      Premium model combining maximum intelligence with practical performance
+
+    - `"claude-opus-4-5-20251101"ClaudeOpus4_5_20251101`
+
+      Premium model combining maximum intelligence with practical performance
+
+    - `"claude-sonnet-4-5"ClaudeSonnet4_5`
+
+      High-performance model for agents and coding
+
+    - `"claude-sonnet-4-5-20250929"ClaudeSonnet4_5_20250929`
+
+      High-performance model for agents and coding
+
+    - `"claude-opus-4-1"ClaudeOpus4_1`
+
+      Exceptional model for specialized complex tasks
+
+    - `"claude-opus-4-1-20250805"ClaudeOpus4_1_20250805`
+
+      Exceptional model for specialized complex tasks
+
+    - `"claude-opus-4-0"ClaudeOpus4_0`
+
+      Powerful model for complex tasks
+
+    - `"claude-opus-4-20250514"ClaudeOpus4_20250514`
+
+      Powerful model for complex tasks
+
+    - `"claude-sonnet-4-0"ClaudeSonnet4_0`
+
+      High-performance model with extended thinking
+
+    - `"claude-sonnet-4-20250514"ClaudeSonnet4_20250514`
+
+      High-performance model with extended thinking
+
+    - `"claude-3-haiku-20240307"Claude_3_Haiku_20240307`
+
+      Fast and cost-effective model
+
+### Beta Fallback Message Iteration Usage
+
+- `class BetaFallbackMessageIterationUsage:`
+
+  Token usage for the fallback-model attempt of a server-side fallback request.
+
+  Produced in place of a `message` entry for whichever hop served the
+  response. A declined hop produces the existing `message` entry. Whether
+  a fallback model served the response is signalled by the presence of this
+  entry in `usage.iterations`.
+
+  - `required BetaCacheCreation? CacheCreation`
+
+    Breakdown of cached tokens by TTL
+
+    - `required Long Ephemeral1hInputTokens`
+
+      The number of input tokens used to create the 1 hour cache entry.
+
+    - `required Long Ephemeral5mInputTokens`
+
+      The number of input tokens used to create the 5 minute cache entry.
+
+  - `required Long CacheCreationInputTokens`
+
+    The number of input tokens used to create the cache entry.
+
+  - `required Long CacheReadInputTokens`
+
+    The number of input tokens read from the cache.
+
+  - `required Long InputTokens`
+
+    The number of input tokens which were used.
+
+  - `required Model Model`
+
+    The model that will complete your prompt.
+
+    See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+    - `"claude-fable-5"ClaudeFable5`
+
+      Next generation of intelligence for the hardest knowledge work and coding problems
+
+    - `"claude-mythos-5"ClaudeMythos5`
+
+      Most capable model for cybersecurity and biology research
+
+    - `"claude-opus-4-8"ClaudeOpus4_8`
+
+      Frontier intelligence for long-running agents and coding
+
+    - `"claude-opus-4-7"ClaudeOpus4_7`
+
+      Frontier intelligence for long-running agents and coding
+
+    - `"claude-mythos-preview"ClaudeMythosPreview`
+
+      New class of intelligence, strongest in coding and cybersecurity
+
+    - `"claude-opus-4-6"ClaudeOpus4_6`
+
+      Frontier intelligence for long-running agents and coding
+
+    - `"claude-sonnet-4-6"ClaudeSonnet4_6`
+
+      Best combination of speed and intelligence
+
+    - `"claude-haiku-4-5"ClaudeHaiku4_5`
+
+      Fastest model with near-frontier intelligence
+
+    - `"claude-haiku-4-5-20251001"ClaudeHaiku4_5_20251001`
+
+      Fastest model with near-frontier intelligence
+
+    - `"claude-opus-4-5"ClaudeOpus4_5`
+
+      Premium model combining maximum intelligence with practical performance
+
+    - `"claude-opus-4-5-20251101"ClaudeOpus4_5_20251101`
+
+      Premium model combining maximum intelligence with practical performance
+
+    - `"claude-sonnet-4-5"ClaudeSonnet4_5`
+
+      High-performance model for agents and coding
+
+    - `"claude-sonnet-4-5-20250929"ClaudeSonnet4_5_20250929`
+
+      High-performance model for agents and coding
+
+    - `"claude-opus-4-1"ClaudeOpus4_1`
+
+      Exceptional model for specialized complex tasks
+
+    - `"claude-opus-4-1-20250805"ClaudeOpus4_1_20250805`
+
+      Exceptional model for specialized complex tasks
+
+    - `"claude-opus-4-0"ClaudeOpus4_0`
+
+      Powerful model for complex tasks
+
+    - `"claude-opus-4-20250514"ClaudeOpus4_20250514`
+
+      Powerful model for complex tasks
+
+    - `"claude-sonnet-4-0"ClaudeSonnet4_0`
+
+      High-performance model with extended thinking
+
+    - `"claude-sonnet-4-20250514"ClaudeSonnet4_20250514`
+
+      High-performance model with extended thinking
+
+    - `"claude-3-haiku-20240307"Claude_3_Haiku_20240307`
+
+      Fast and cost-effective model
+
+  - `required Long OutputTokens`
+
+    The number of output tokens which were used.
+
+  - `JsonElement Type "fallback_message"constant`
+
+    Usage for the fallback-model attempt that served the response
+
+### Beta Fallback Param
+
+- `class BetaFallbackParam:`
+
+  One entry in the `fallbacks` chain on a `/v1/messages` request.
+
+  `model` is required. The four override fields (`max_tokens`, `thinking`,
+  `output_config`, and `speed`) replace the corresponding top-level field
+  for this attempt only and are validated as if the request were made to
+  `model`. Any other key is rejected at parse time.
+
+  - `required Model Model`
+
+    The model that will complete your prompt.
+
+    See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+    - `"claude-fable-5"ClaudeFable5`
+
+      Next generation of intelligence for the hardest knowledge work and coding problems
+
+    - `"claude-mythos-5"ClaudeMythos5`
+
+      Most capable model for cybersecurity and biology research
+
+    - `"claude-opus-4-8"ClaudeOpus4_8`
+
+      Frontier intelligence for long-running agents and coding
+
+    - `"claude-opus-4-7"ClaudeOpus4_7`
+
+      Frontier intelligence for long-running agents and coding
+
+    - `"claude-mythos-preview"ClaudeMythosPreview`
+
+      New class of intelligence, strongest in coding and cybersecurity
+
+    - `"claude-opus-4-6"ClaudeOpus4_6`
+
+      Frontier intelligence for long-running agents and coding
+
+    - `"claude-sonnet-4-6"ClaudeSonnet4_6`
+
+      Best combination of speed and intelligence
+
+    - `"claude-haiku-4-5"ClaudeHaiku4_5`
+
+      Fastest model with near-frontier intelligence
+
+    - `"claude-haiku-4-5-20251001"ClaudeHaiku4_5_20251001`
+
+      Fastest model with near-frontier intelligence
+
+    - `"claude-opus-4-5"ClaudeOpus4_5`
+
+      Premium model combining maximum intelligence with practical performance
+
+    - `"claude-opus-4-5-20251101"ClaudeOpus4_5_20251101`
+
+      Premium model combining maximum intelligence with practical performance
+
+    - `"claude-sonnet-4-5"ClaudeSonnet4_5`
+
+      High-performance model for agents and coding
+
+    - `"claude-sonnet-4-5-20250929"ClaudeSonnet4_5_20250929`
+
+      High-performance model for agents and coding
+
+    - `"claude-opus-4-1"ClaudeOpus4_1`
+
+      Exceptional model for specialized complex tasks
+
+    - `"claude-opus-4-1-20250805"ClaudeOpus4_1_20250805`
+
+      Exceptional model for specialized complex tasks
+
+    - `"claude-opus-4-0"ClaudeOpus4_0`
+
+      Powerful model for complex tasks
+
+    - `"claude-opus-4-20250514"ClaudeOpus4_20250514`
+
+      Powerful model for complex tasks
+
+    - `"claude-sonnet-4-0"ClaudeSonnet4_0`
+
+      High-performance model with extended thinking
+
+    - `"claude-sonnet-4-20250514"ClaudeSonnet4_20250514`
+
+      High-performance model with extended thinking
+
+    - `"claude-3-haiku-20240307"Claude_3_Haiku_20240307`
+
+      Fast and cost-effective model
+
+  - `Long? MaxTokens`
+
+  - `BetaOutputConfig? OutputConfig`
+
+    - `Effort? Effort`
+
+      All possible effort levels.
+
+      - `"low"Low`
+
+      - `"medium"Medium`
+
+      - `"high"High`
+
+      - `"xhigh"Xhigh`
+
+      - `"max"Max`
+
+    - `BetaJsonOutputFormat? Format`
+
+      A schema to specify Claude's output format in responses. See [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
+
+      - `required IReadOnlyDictionary<string, JsonElement> Schema`
+
+        The JSON schema of the format
+
+      - `JsonElement Type "json_schema"constant`
+
+    - `BetaTokenTaskBudget? TaskBudget`
+
+      User-configurable total token budget across contexts.
+
+      - `required Long Total`
+
+        Total token budget across all contexts in the session.
+
+      - `JsonElement Type "tokens"constant`
+
+        The budget type. Currently only 'tokens' is supported.
+
+      - `Long? Remaining`
+
+        Remaining tokens in the budget. Use this to track usage across contexts when implementing compaction client-side. Defaults to total if not provided.
+
+  - `Speed? Speed`
+
+    - `"standard"Standard`
+
+    - `"fast"Fast`
+
+  - `Thinking? Thinking`
+
+    - `class BetaThinkingConfigEnabled:`
+
+      - `required Long BudgetTokens`
+
+        Determines how many tokens Claude can use for its internal reasoning process. Larger budgets can enable more thorough analysis for complex problems, improving response quality.
+
+        Must be ≥1024 and less than `max_tokens`.
+
+        See [extended thinking](https://docs.claude.com/en/docs/build-with-claude/extended-thinking) for details.
+
+      - `JsonElement Type "enabled"constant`
+
+      - `Display? Display`
+
+        Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+        - `"summarized"Summarized`
+
+        - `"omitted"Omitted`
+
+    - `class BetaThinkingConfigDisabled:`
+
+      - `JsonElement Type "disabled"constant`
+
+    - `class BetaThinkingConfigAdaptive:`
+
+      - `JsonElement Type "adaptive"constant`
+
+      - `Display? Display`
+
+        Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+        - `"summarized"Summarized`
+
+        - `"omitted"Omitted`
 
 ### Beta File Document Source
 
@@ -12038,6 +13417,8 @@ Console.WriteLine(betaMessageTokensCount);
 
             - `"execution_time_exceeded"ExecutionTimeExceeded`
 
+            - `"model_not_found"ModelNotFound`
+
           - `JsonElement Type "advisor_tool_result_error"constant`
 
         - `class BetaAdvisorResultBlock:`
@@ -12330,6 +13711,116 @@ Console.WriteLine(betaMessageTokensCount);
 
       - `JsonElement Type "compaction"constant`
 
+    - `class BetaFallbackBlock:`
+
+      Marks the point in `content` where one model's output gives way to the next.
+
+      One block appears per hop where a preceding model actually ran this turn and
+      declined. A turn routed directly by the sticky decision has no such boundary
+      and carries no block — the signal for whether a fallback model served the
+      response is the presence of a `fallback_message` entry in
+      `usage.iterations`, not this block.
+
+      The block is treated like a server-tool content block for streaming: it
+      arrives via the standard `content_block_start` / `content_block_stop`
+      pair and carries no deltas.
+
+      - `required BetaFallbackInfo From`
+
+        The model whose output ends at this point — the model that declined at this hop. When the declining hop is the requested model, its `model` echoes the top-level `model` string the caller sent (alias or canonical); when the declining hop is a fallback model, its `model` is that model's canonical id.
+
+        - `required Model Model`
+
+          The model that will complete your prompt.
+
+          See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `"claude-fable-5"ClaudeFable5`
+
+            Next generation of intelligence for the hardest knowledge work and coding problems
+
+          - `"claude-mythos-5"ClaudeMythos5`
+
+            Most capable model for cybersecurity and biology research
+
+          - `"claude-opus-4-8"ClaudeOpus4_8`
+
+            Frontier intelligence for long-running agents and coding
+
+          - `"claude-opus-4-7"ClaudeOpus4_7`
+
+            Frontier intelligence for long-running agents and coding
+
+          - `"claude-mythos-preview"ClaudeMythosPreview`
+
+            New class of intelligence, strongest in coding and cybersecurity
+
+          - `"claude-opus-4-6"ClaudeOpus4_6`
+
+            Frontier intelligence for long-running agents and coding
+
+          - `"claude-sonnet-4-6"ClaudeSonnet4_6`
+
+            Best combination of speed and intelligence
+
+          - `"claude-haiku-4-5"ClaudeHaiku4_5`
+
+            Fastest model with near-frontier intelligence
+
+          - `"claude-haiku-4-5-20251001"ClaudeHaiku4_5_20251001`
+
+            Fastest model with near-frontier intelligence
+
+          - `"claude-opus-4-5"ClaudeOpus4_5`
+
+            Premium model combining maximum intelligence with practical performance
+
+          - `"claude-opus-4-5-20251101"ClaudeOpus4_5_20251101`
+
+            Premium model combining maximum intelligence with practical performance
+
+          - `"claude-sonnet-4-5"ClaudeSonnet4_5`
+
+            High-performance model for agents and coding
+
+          - `"claude-sonnet-4-5-20250929"ClaudeSonnet4_5_20250929`
+
+            High-performance model for agents and coding
+
+          - `"claude-opus-4-1"ClaudeOpus4_1`
+
+            Exceptional model for specialized complex tasks
+
+          - `"claude-opus-4-1-20250805"ClaudeOpus4_1_20250805`
+
+            Exceptional model for specialized complex tasks
+
+          - `"claude-opus-4-0"ClaudeOpus4_0`
+
+            Powerful model for complex tasks
+
+          - `"claude-opus-4-20250514"ClaudeOpus4_20250514`
+
+            Powerful model for complex tasks
+
+          - `"claude-sonnet-4-0"ClaudeSonnet4_0`
+
+            High-performance model with extended thinking
+
+          - `"claude-sonnet-4-20250514"ClaudeSonnet4_20250514`
+
+            High-performance model with extended thinking
+
+          - `"claude-3-haiku-20240307"Claude_3_Haiku_20240307`
+
+            Fast and cost-effective model
+
+      - `required BetaFallbackInfo To`
+
+        The fallback model producing the content that follows this block. Its `model` is always the canonical id.
+
+      - `JsonElement Type "fallback"constant`
+
   - `required BetaContextManagementResponse? ContextManagement`
 
     Context management response.
@@ -12423,78 +13914,6 @@ Console.WriteLine(betaMessageTokensCount);
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `"claude-opus-4-8"ClaudeOpus4_8`
-
-      Frontier intelligence for long-running agents and coding
-
-    - `"claude-opus-4-7"ClaudeOpus4_7`
-
-      Frontier intelligence for long-running agents and coding
-
-    - `"claude-mythos-preview"ClaudeMythosPreview`
-
-      New class of intelligence, strongest in coding and cybersecurity
-
-    - `"claude-opus-4-6"ClaudeOpus4_6`
-
-      Frontier intelligence for long-running agents and coding
-
-    - `"claude-sonnet-4-6"ClaudeSonnet4_6`
-
-      Best combination of speed and intelligence
-
-    - `"claude-haiku-4-5"ClaudeHaiku4_5`
-
-      Fastest model with near-frontier intelligence
-
-    - `"claude-haiku-4-5-20251001"ClaudeHaiku4_5_20251001`
-
-      Fastest model with near-frontier intelligence
-
-    - `"claude-opus-4-5"ClaudeOpus4_5`
-
-      Premium model combining maximum intelligence with practical performance
-
-    - `"claude-opus-4-5-20251101"ClaudeOpus4_5_20251101`
-
-      Premium model combining maximum intelligence with practical performance
-
-    - `"claude-sonnet-4-5"ClaudeSonnet4_5`
-
-      High-performance model for agents and coding
-
-    - `"claude-sonnet-4-5-20250929"ClaudeSonnet4_5_20250929`
-
-      High-performance model for agents and coding
-
-    - `"claude-opus-4-1"ClaudeOpus4_1`
-
-      Exceptional model for specialized complex tasks
-
-    - `"claude-opus-4-1-20250805"ClaudeOpus4_1_20250805`
-
-      Exceptional model for specialized complex tasks
-
-    - `"claude-opus-4-0"ClaudeOpus4_0`
-
-      Powerful model for complex tasks
-
-    - `"claude-opus-4-20250514"ClaudeOpus4_20250514`
-
-      Powerful model for complex tasks
-
-    - `"claude-sonnet-4-0"ClaudeSonnet4_0`
-
-      High-performance model with extended thinking
-
-    - `"claude-sonnet-4-20250514"ClaudeSonnet4_20250514`
-
-      High-performance model with extended thinking
-
-    - `"claude-3-haiku-20240307"Claude_3_Haiku_20240307`
-
-      Fast and cost-effective model
-
   - `JsonElement Role "assistant"constant`
 
     Conversational role of the generated message.
@@ -12515,11 +13934,62 @@ Console.WriteLine(betaMessageTokensCount);
 
       - `"bio"Bio`
 
+      - `"reasoning_extraction"ReasoningExtraction`
+
     - `required string? Explanation`
 
       Human-readable explanation of the refusal.
 
       This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+    - `required string? FallbackCreditToken`
+
+      Opaque code that refunds the cache-miss cost when retrying this refused
+      request on the fallback model. Pass it as `fallback_credit_token` on the
+      retry request. Expires 5 minutes after the refusal.
+
+      The retry is sent either with the same request body (`system`, `messages`,
+      `tools`, and other render-shaping fields), or with the same body plus one
+      appended `assistant` message whose content is the partial text (with any
+      trailing whitespace stripped from the final text block) and paired
+      server-tool blocks from this refusal — which also authorizes that
+      appended turn as an assistant-prefill continuation on models that otherwise
+      disallow prefill. A token minted mid-server-tool-loop whose partial content
+      was continuable may only be redeemed the second way — if a same-body retry
+      is rejected with a 400 saying the token must be redeemed by continuing the
+      partial response, retry the second way instead. Either way: same workspace,
+      same platform; a mismatch is a 400. Resending a token for an already-warm
+      prefix is permitted but yields no additional credit.
+
+      `null` when the refused model isn't eligible for a fallback credit.
+
+    - `required Boolean? FallbackHasPrefillClaim`
+
+      Whether the accompanying `fallback_credit_token` may be redeemed with the
+      appended-assistant retry form. Only set when `fallback_credit_token` is
+      present.
+
+      `true`: retry by resending the same request body plus one appended
+      `assistant` message whose content is this response's `content` with any
+      trailing whitespace stripped from the final text block and unpaired
+      `tool_use` blocks omitted (the same appended-turn shape described on
+      `fallback_credit_token`), with the token attached. `false`: retry by
+      resending the original request body unchanged, with the token attached —
+      the appended-assistant form is not available for this refusal (no
+      continuable partial content, or the request uses `output_format` or a
+      `tool_choice` that forces tool use). One exception: when the request used
+      `output_format` or a forced `tool_choice` and the refusal arrived after
+      server tools (including MCP connector tools) had already executed, the
+      token may not be redeemable by either retry form; if the exact-body retry
+      is then rejected with a 400 saying the token must be redeemed by
+      continuing the partial response, discard the token and retry without it.
+
+      Advisory: if an appended-assistant retry is rejected with a 400 despite
+      `true`, fall back to resending the original request body with the token.
+
+    - `required string? RecommendedModel`
+
+      The server's suggested retry target for this refusal. Populated when a fallback attempt could not be made (the fallback model's rate limit was exhausted, or it was overloaded); names the fallback model the caller can retry directly. Null otherwise.
 
     - `JsonElement Type "refusal"constant`
 
@@ -12636,6 +14106,12 @@ Console.WriteLine(betaMessageTokensCount);
 
           The number of input tokens which were used.
 
+        - `required Model Model`
+
+          The model that will complete your prompt.
+
+          See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
         - `required Long OutputTokens`
 
           The number of output tokens which were used.
@@ -12705,6 +14181,45 @@ Console.WriteLine(betaMessageTokensCount);
         - `JsonElement Type "advisor_message"constant`
 
           Usage for an advisor sub-inference iteration
+
+      - `class BetaFallbackMessageIterationUsage:`
+
+        Token usage for the fallback-model attempt of a server-side fallback request.
+
+        Produced in place of a `message` entry for whichever hop served the
+        response. A declined hop produces the existing `message` entry. Whether
+        a fallback model served the response is signalled by the presence of this
+        entry in `usage.iterations`.
+
+        - `required BetaCacheCreation? CacheCreation`
+
+          Breakdown of cached tokens by TTL
+
+        - `required Long CacheCreationInputTokens`
+
+          The number of input tokens used to create the cache entry.
+
+        - `required Long CacheReadInputTokens`
+
+          The number of input tokens read from the cache.
+
+        - `required Long InputTokens`
+
+          The number of input tokens which were used.
+
+        - `required Model Model`
+
+          The model that will complete your prompt.
+
+          See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `required Long OutputTokens`
+
+          The number of output tokens which were used.
+
+        - `JsonElement Type "fallback_message"constant`
+
+          Usage for the fallback-model attempt that served the response
 
     - `required Long OutputTokens`
 
@@ -12814,67 +14329,19 @@ Console.WriteLine(betaMessageTokensCount);
 
         The number of input tokens which were used.
 
-      - `required Long OutputTokens`
-
-        The number of output tokens which were used.
-
-      - `JsonElement Type "message"constant`
-
-        Usage for a sampling iteration
-
-    - `class BetaCompactionIterationUsage:`
-
-      Token usage for a compaction iteration.
-
-      - `required BetaCacheCreation? CacheCreation`
-
-        Breakdown of cached tokens by TTL
-
-      - `required Long CacheCreationInputTokens`
-
-        The number of input tokens used to create the cache entry.
-
-      - `required Long CacheReadInputTokens`
-
-        The number of input tokens read from the cache.
-
-      - `required Long InputTokens`
-
-        The number of input tokens which were used.
-
-      - `required Long OutputTokens`
-
-        The number of output tokens which were used.
-
-      - `JsonElement Type "compaction"constant`
-
-        Usage for a compaction iteration
-
-    - `class BetaAdvisorMessageIterationUsage:`
-
-      Token usage for an advisor sub-inference iteration.
-
-      - `required BetaCacheCreation? CacheCreation`
-
-        Breakdown of cached tokens by TTL
-
-      - `required Long CacheCreationInputTokens`
-
-        The number of input tokens used to create the cache entry.
-
-      - `required Long CacheReadInputTokens`
-
-        The number of input tokens read from the cache.
-
-      - `required Long InputTokens`
-
-        The number of input tokens which were used.
-
       - `required Model Model`
 
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-fable-5"ClaudeFable5`
+
+          Next generation of intelligence for the hardest knowledge work and coding problems
+
+        - `"claude-mythos-5"ClaudeMythos5`
+
+          Most capable model for cybersecurity and biology research
 
         - `"claude-opus-4-8"ClaudeOpus4_8`
 
@@ -12952,9 +14419,110 @@ Console.WriteLine(betaMessageTokensCount);
 
         The number of output tokens which were used.
 
+      - `JsonElement Type "message"constant`
+
+        Usage for a sampling iteration
+
+    - `class BetaCompactionIterationUsage:`
+
+      Token usage for a compaction iteration.
+
+      - `required BetaCacheCreation? CacheCreation`
+
+        Breakdown of cached tokens by TTL
+
+      - `required Long CacheCreationInputTokens`
+
+        The number of input tokens used to create the cache entry.
+
+      - `required Long CacheReadInputTokens`
+
+        The number of input tokens read from the cache.
+
+      - `required Long InputTokens`
+
+        The number of input tokens which were used.
+
+      - `required Long OutputTokens`
+
+        The number of output tokens which were used.
+
+      - `JsonElement Type "compaction"constant`
+
+        Usage for a compaction iteration
+
+    - `class BetaAdvisorMessageIterationUsage:`
+
+      Token usage for an advisor sub-inference iteration.
+
+      - `required BetaCacheCreation? CacheCreation`
+
+        Breakdown of cached tokens by TTL
+
+      - `required Long CacheCreationInputTokens`
+
+        The number of input tokens used to create the cache entry.
+
+      - `required Long CacheReadInputTokens`
+
+        The number of input tokens read from the cache.
+
+      - `required Long InputTokens`
+
+        The number of input tokens which were used.
+
+      - `required Model Model`
+
+        The model that will complete your prompt.
+
+        See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `required Long OutputTokens`
+
+        The number of output tokens which were used.
+
       - `JsonElement Type "advisor_message"constant`
 
         Usage for an advisor sub-inference iteration
+
+    - `class BetaFallbackMessageIterationUsage:`
+
+      Token usage for the fallback-model attempt of a server-side fallback request.
+
+      Produced in place of a `message` entry for whichever hop served the
+      response. A declined hop produces the existing `message` entry. Whether
+      a fallback model served the response is signalled by the presence of this
+      entry in `usage.iterations`.
+
+      - `required BetaCacheCreation? CacheCreation`
+
+        Breakdown of cached tokens by TTL
+
+      - `required Long CacheCreationInputTokens`
+
+        The number of input tokens used to create the cache entry.
+
+      - `required Long CacheReadInputTokens`
+
+        The number of input tokens read from the cache.
+
+      - `required Long InputTokens`
+
+        The number of input tokens which were used.
+
+      - `required Model Model`
+
+        The model that will complete your prompt.
+
+        See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `required Long OutputTokens`
+
+        The number of output tokens which were used.
+
+      - `JsonElement Type "fallback_message"constant`
+
+        Usage for the fallback-model attempt that served the response
 
   - `required Long OutputTokens`
 
@@ -13021,6 +14589,92 @@ Console.WriteLine(betaMessageTokensCount);
   - `required Long InputTokens`
 
     The number of input tokens which were used.
+
+  - `required Model Model`
+
+    The model that will complete your prompt.
+
+    See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+    - `"claude-fable-5"ClaudeFable5`
+
+      Next generation of intelligence for the hardest knowledge work and coding problems
+
+    - `"claude-mythos-5"ClaudeMythos5`
+
+      Most capable model for cybersecurity and biology research
+
+    - `"claude-opus-4-8"ClaudeOpus4_8`
+
+      Frontier intelligence for long-running agents and coding
+
+    - `"claude-opus-4-7"ClaudeOpus4_7`
+
+      Frontier intelligence for long-running agents and coding
+
+    - `"claude-mythos-preview"ClaudeMythosPreview`
+
+      New class of intelligence, strongest in coding and cybersecurity
+
+    - `"claude-opus-4-6"ClaudeOpus4_6`
+
+      Frontier intelligence for long-running agents and coding
+
+    - `"claude-sonnet-4-6"ClaudeSonnet4_6`
+
+      Best combination of speed and intelligence
+
+    - `"claude-haiku-4-5"ClaudeHaiku4_5`
+
+      Fastest model with near-frontier intelligence
+
+    - `"claude-haiku-4-5-20251001"ClaudeHaiku4_5_20251001`
+
+      Fastest model with near-frontier intelligence
+
+    - `"claude-opus-4-5"ClaudeOpus4_5`
+
+      Premium model combining maximum intelligence with practical performance
+
+    - `"claude-opus-4-5-20251101"ClaudeOpus4_5_20251101`
+
+      Premium model combining maximum intelligence with practical performance
+
+    - `"claude-sonnet-4-5"ClaudeSonnet4_5`
+
+      High-performance model for agents and coding
+
+    - `"claude-sonnet-4-5-20250929"ClaudeSonnet4_5_20250929`
+
+      High-performance model for agents and coding
+
+    - `"claude-opus-4-1"ClaudeOpus4_1`
+
+      Exceptional model for specialized complex tasks
+
+    - `"claude-opus-4-1-20250805"ClaudeOpus4_1_20250805`
+
+      Exceptional model for specialized complex tasks
+
+    - `"claude-opus-4-0"ClaudeOpus4_0`
+
+      Powerful model for complex tasks
+
+    - `"claude-opus-4-20250514"ClaudeOpus4_20250514`
+
+      Powerful model for complex tasks
+
+    - `"claude-sonnet-4-0"ClaudeSonnet4_0`
+
+      High-performance model with extended thinking
+
+    - `"claude-sonnet-4-20250514"ClaudeSonnet4_20250514`
+
+      High-performance model with extended thinking
+
+    - `"claude-3-haiku-20240307"Claude_3_Haiku_20240307`
+
+      Fast and cost-effective model
 
   - `required Long OutputTokens`
 
@@ -13561,6 +15215,8 @@ Console.WriteLine(betaMessageTokensCount);
 
               - `"execution_time_exceeded"ExecutionTimeExceeded`
 
+              - `"model_not_found"ModelNotFound`
+
             - `JsonElement Type "advisor_tool_result_error"constant`
 
           - `class BetaAdvisorResultBlockParam:`
@@ -13783,6 +15439,8 @@ Console.WriteLine(betaMessageTokensCount);
 
             - `JsonElement Type "tool_search_tool_result_error"constant`
 
+            - `string? ErrorMessage`
+
           - `class BetaToolSearchToolSearchResultBlockParam:`
 
             - `required IReadOnlyList<BetaToolReferenceBlockParam> ToolReferences`
@@ -13914,6 +15572,120 @@ Console.WriteLine(betaMessageTokensCount);
         - `BetaCacheControlEphemeral? CacheControl`
 
           Create a cache control breakpoint at this content block.
+
+      - `class BetaFallbackBlockParam:`
+
+        A `fallback` block echoed back from a prior response.
+
+        Accepted in `messages[].content` and never rendered into the prompt,
+        not validated against the request's `fallbacks` chain or top-level
+        `model`, and stripped before the sticky-routing cache key is computed.
+
+        Callers should echo the assistant turn verbatim — block included. The
+        block's position is load-bearing for thinking verification: the thinking
+        runs on either side of a fallback hop carry independently-rooted
+        verification hash chains, and this block is the only record of where one
+        chain ends and the next begins. When thinking runs flank the boundary,
+        omitting the block merges the runs into one contiguous span whose hashes
+        cannot verify (the request is rejected), and moving it into the middle of
+        a single run splits that run's chain and is likewise rejected; between
+        non-thinking blocks the block's placement has no verification effect.
+
+        - `required BetaFallbackInfoParam From`
+
+          Identifies one hop of a fallback transition.
+
+          - `required Model Model`
+
+            The model that will complete your prompt.
+
+            See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `"claude-fable-5"ClaudeFable5`
+
+              Next generation of intelligence for the hardest knowledge work and coding problems
+
+            - `"claude-mythos-5"ClaudeMythos5`
+
+              Most capable model for cybersecurity and biology research
+
+            - `"claude-opus-4-8"ClaudeOpus4_8`
+
+              Frontier intelligence for long-running agents and coding
+
+            - `"claude-opus-4-7"ClaudeOpus4_7`
+
+              Frontier intelligence for long-running agents and coding
+
+            - `"claude-mythos-preview"ClaudeMythosPreview`
+
+              New class of intelligence, strongest in coding and cybersecurity
+
+            - `"claude-opus-4-6"ClaudeOpus4_6`
+
+              Frontier intelligence for long-running agents and coding
+
+            - `"claude-sonnet-4-6"ClaudeSonnet4_6`
+
+              Best combination of speed and intelligence
+
+            - `"claude-haiku-4-5"ClaudeHaiku4_5`
+
+              Fastest model with near-frontier intelligence
+
+            - `"claude-haiku-4-5-20251001"ClaudeHaiku4_5_20251001`
+
+              Fastest model with near-frontier intelligence
+
+            - `"claude-opus-4-5"ClaudeOpus4_5`
+
+              Premium model combining maximum intelligence with practical performance
+
+            - `"claude-opus-4-5-20251101"ClaudeOpus4_5_20251101`
+
+              Premium model combining maximum intelligence with practical performance
+
+            - `"claude-sonnet-4-5"ClaudeSonnet4_5`
+
+              High-performance model for agents and coding
+
+            - `"claude-sonnet-4-5-20250929"ClaudeSonnet4_5_20250929`
+
+              High-performance model for agents and coding
+
+            - `"claude-opus-4-1"ClaudeOpus4_1`
+
+              Exceptional model for specialized complex tasks
+
+            - `"claude-opus-4-1-20250805"ClaudeOpus4_1_20250805`
+
+              Exceptional model for specialized complex tasks
+
+            - `"claude-opus-4-0"ClaudeOpus4_0`
+
+              Powerful model for complex tasks
+
+            - `"claude-opus-4-20250514"ClaudeOpus4_20250514`
+
+              Powerful model for complex tasks
+
+            - `"claude-sonnet-4-0"ClaudeSonnet4_0`
+
+              High-performance model with extended thinking
+
+            - `"claude-sonnet-4-20250514"ClaudeSonnet4_20250514`
+
+              High-performance model with extended thinking
+
+            - `"claude-3-haiku-20240307"Claude_3_Haiku_20240307`
+
+              Fast and cost-effective model
+
+        - `required BetaFallbackInfoParam To`
+
+          Identifies one hop of a fallback transition.
+
+        - `JsonElement Type "fallback"constant`
 
   - `required Role Role`
 
@@ -14830,6 +16602,8 @@ Console.WriteLine(betaMessageTokensCount);
 
             - `"execution_time_exceeded"ExecutionTimeExceeded`
 
+            - `"model_not_found"ModelNotFound`
+
           - `JsonElement Type "advisor_tool_result_error"constant`
 
         - `class BetaAdvisorResultBlock:`
@@ -15122,6 +16896,116 @@ Console.WriteLine(betaMessageTokensCount);
 
       - `JsonElement Type "compaction"constant`
 
+    - `class BetaFallbackBlock:`
+
+      Marks the point in `content` where one model's output gives way to the next.
+
+      One block appears per hop where a preceding model actually ran this turn and
+      declined. A turn routed directly by the sticky decision has no such boundary
+      and carries no block — the signal for whether a fallback model served the
+      response is the presence of a `fallback_message` entry in
+      `usage.iterations`, not this block.
+
+      The block is treated like a server-tool content block for streaming: it
+      arrives via the standard `content_block_start` / `content_block_stop`
+      pair and carries no deltas.
+
+      - `required BetaFallbackInfo From`
+
+        The model whose output ends at this point — the model that declined at this hop. When the declining hop is the requested model, its `model` echoes the top-level `model` string the caller sent (alias or canonical); when the declining hop is a fallback model, its `model` is that model's canonical id.
+
+        - `required Model Model`
+
+          The model that will complete your prompt.
+
+          See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `"claude-fable-5"ClaudeFable5`
+
+            Next generation of intelligence for the hardest knowledge work and coding problems
+
+          - `"claude-mythos-5"ClaudeMythos5`
+
+            Most capable model for cybersecurity and biology research
+
+          - `"claude-opus-4-8"ClaudeOpus4_8`
+
+            Frontier intelligence for long-running agents and coding
+
+          - `"claude-opus-4-7"ClaudeOpus4_7`
+
+            Frontier intelligence for long-running agents and coding
+
+          - `"claude-mythos-preview"ClaudeMythosPreview`
+
+            New class of intelligence, strongest in coding and cybersecurity
+
+          - `"claude-opus-4-6"ClaudeOpus4_6`
+
+            Frontier intelligence for long-running agents and coding
+
+          - `"claude-sonnet-4-6"ClaudeSonnet4_6`
+
+            Best combination of speed and intelligence
+
+          - `"claude-haiku-4-5"ClaudeHaiku4_5`
+
+            Fastest model with near-frontier intelligence
+
+          - `"claude-haiku-4-5-20251001"ClaudeHaiku4_5_20251001`
+
+            Fastest model with near-frontier intelligence
+
+          - `"claude-opus-4-5"ClaudeOpus4_5`
+
+            Premium model combining maximum intelligence with practical performance
+
+          - `"claude-opus-4-5-20251101"ClaudeOpus4_5_20251101`
+
+            Premium model combining maximum intelligence with practical performance
+
+          - `"claude-sonnet-4-5"ClaudeSonnet4_5`
+
+            High-performance model for agents and coding
+
+          - `"claude-sonnet-4-5-20250929"ClaudeSonnet4_5_20250929`
+
+            High-performance model for agents and coding
+
+          - `"claude-opus-4-1"ClaudeOpus4_1`
+
+            Exceptional model for specialized complex tasks
+
+          - `"claude-opus-4-1-20250805"ClaudeOpus4_1_20250805`
+
+            Exceptional model for specialized complex tasks
+
+          - `"claude-opus-4-0"ClaudeOpus4_0`
+
+            Powerful model for complex tasks
+
+          - `"claude-opus-4-20250514"ClaudeOpus4_20250514`
+
+            Powerful model for complex tasks
+
+          - `"claude-sonnet-4-0"ClaudeSonnet4_0`
+
+            High-performance model with extended thinking
+
+          - `"claude-sonnet-4-20250514"ClaudeSonnet4_20250514`
+
+            High-performance model with extended thinking
+
+          - `"claude-3-haiku-20240307"Claude_3_Haiku_20240307`
+
+            Fast and cost-effective model
+
+      - `required BetaFallbackInfo To`
+
+        The fallback model producing the content that follows this block. Its `model` is always the canonical id.
+
+      - `JsonElement Type "fallback"constant`
+
   - `required Long Index`
 
   - `JsonElement Type "content_block_start"constant`
@@ -15222,11 +17106,62 @@ Console.WriteLine(betaMessageTokensCount);
 
         - `"bio"Bio`
 
+        - `"reasoning_extraction"ReasoningExtraction`
+
       - `required string? Explanation`
 
         Human-readable explanation of the refusal.
 
         This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+      - `required string? FallbackCreditToken`
+
+        Opaque code that refunds the cache-miss cost when retrying this refused
+        request on the fallback model. Pass it as `fallback_credit_token` on the
+        retry request. Expires 5 minutes after the refusal.
+
+        The retry is sent either with the same request body (`system`, `messages`,
+        `tools`, and other render-shaping fields), or with the same body plus one
+        appended `assistant` message whose content is the partial text (with any
+        trailing whitespace stripped from the final text block) and paired
+        server-tool blocks from this refusal — which also authorizes that
+        appended turn as an assistant-prefill continuation on models that otherwise
+        disallow prefill. A token minted mid-server-tool-loop whose partial content
+        was continuable may only be redeemed the second way — if a same-body retry
+        is rejected with a 400 saying the token must be redeemed by continuing the
+        partial response, retry the second way instead. Either way: same workspace,
+        same platform; a mismatch is a 400. Resending a token for an already-warm
+        prefix is permitted but yields no additional credit.
+
+        `null` when the refused model isn't eligible for a fallback credit.
+
+      - `required Boolean? FallbackHasPrefillClaim`
+
+        Whether the accompanying `fallback_credit_token` may be redeemed with the
+        appended-assistant retry form. Only set when `fallback_credit_token` is
+        present.
+
+        `true`: retry by resending the same request body plus one appended
+        `assistant` message whose content is this response's `content` with any
+        trailing whitespace stripped from the final text block and unpaired
+        `tool_use` blocks omitted (the same appended-turn shape described on
+        `fallback_credit_token`), with the token attached. `false`: retry by
+        resending the original request body unchanged, with the token attached —
+        the appended-assistant form is not available for this refusal (no
+        continuable partial content, or the request uses `output_format` or a
+        `tool_choice` that forces tool use). One exception: when the request used
+        `output_format` or a forced `tool_choice` and the refusal arrived after
+        server tools (including MCP connector tools) had already executed, the
+        token may not be redeemable by either retry form; if the exact-body retry
+        is then rejected with a 400 saying the token must be redeemed by
+        continuing the partial response, discard the token and retry without it.
+
+        Advisory: if an appended-assistant retry is rejected with a 400 despite
+        `true`, fall back to resending the original request body with the token.
+
+      - `required string? RecommendedModel`
+
+        The server's suggested retry target for this refusal. Populated when a fallback attempt could not be made (the fallback model's rate limit was exhausted, or it was overloaded); names the fallback model the caller can retry directly. Null otherwise.
 
       - `JsonElement Type "refusal"constant`
 
@@ -15314,67 +17249,19 @@ Console.WriteLine(betaMessageTokensCount);
 
           The number of input tokens which were used.
 
-        - `required Long OutputTokens`
-
-          The number of output tokens which were used.
-
-        - `JsonElement Type "message"constant`
-
-          Usage for a sampling iteration
-
-      - `class BetaCompactionIterationUsage:`
-
-        Token usage for a compaction iteration.
-
-        - `required BetaCacheCreation? CacheCreation`
-
-          Breakdown of cached tokens by TTL
-
-        - `required Long CacheCreationInputTokens`
-
-          The number of input tokens used to create the cache entry.
-
-        - `required Long CacheReadInputTokens`
-
-          The number of input tokens read from the cache.
-
-        - `required Long InputTokens`
-
-          The number of input tokens which were used.
-
-        - `required Long OutputTokens`
-
-          The number of output tokens which were used.
-
-        - `JsonElement Type "compaction"constant`
-
-          Usage for a compaction iteration
-
-      - `class BetaAdvisorMessageIterationUsage:`
-
-        Token usage for an advisor sub-inference iteration.
-
-        - `required BetaCacheCreation? CacheCreation`
-
-          Breakdown of cached tokens by TTL
-
-        - `required Long CacheCreationInputTokens`
-
-          The number of input tokens used to create the cache entry.
-
-        - `required Long CacheReadInputTokens`
-
-          The number of input tokens read from the cache.
-
-        - `required Long InputTokens`
-
-          The number of input tokens which were used.
-
         - `required Model Model`
 
           The model that will complete your prompt.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `"claude-fable-5"ClaudeFable5`
+
+            Next generation of intelligence for the hardest knowledge work and coding problems
+
+          - `"claude-mythos-5"ClaudeMythos5`
+
+            Most capable model for cybersecurity and biology research
 
           - `"claude-opus-4-8"ClaudeOpus4_8`
 
@@ -15452,9 +17339,110 @@ Console.WriteLine(betaMessageTokensCount);
 
           The number of output tokens which were used.
 
+        - `JsonElement Type "message"constant`
+
+          Usage for a sampling iteration
+
+      - `class BetaCompactionIterationUsage:`
+
+        Token usage for a compaction iteration.
+
+        - `required BetaCacheCreation? CacheCreation`
+
+          Breakdown of cached tokens by TTL
+
+        - `required Long CacheCreationInputTokens`
+
+          The number of input tokens used to create the cache entry.
+
+        - `required Long CacheReadInputTokens`
+
+          The number of input tokens read from the cache.
+
+        - `required Long InputTokens`
+
+          The number of input tokens which were used.
+
+        - `required Long OutputTokens`
+
+          The number of output tokens which were used.
+
+        - `JsonElement Type "compaction"constant`
+
+          Usage for a compaction iteration
+
+      - `class BetaAdvisorMessageIterationUsage:`
+
+        Token usage for an advisor sub-inference iteration.
+
+        - `required BetaCacheCreation? CacheCreation`
+
+          Breakdown of cached tokens by TTL
+
+        - `required Long CacheCreationInputTokens`
+
+          The number of input tokens used to create the cache entry.
+
+        - `required Long CacheReadInputTokens`
+
+          The number of input tokens read from the cache.
+
+        - `required Long InputTokens`
+
+          The number of input tokens which were used.
+
+        - `required Model Model`
+
+          The model that will complete your prompt.
+
+          See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `required Long OutputTokens`
+
+          The number of output tokens which were used.
+
         - `JsonElement Type "advisor_message"constant`
 
           Usage for an advisor sub-inference iteration
+
+      - `class BetaFallbackMessageIterationUsage:`
+
+        Token usage for the fallback-model attempt of a server-side fallback request.
+
+        Produced in place of a `message` entry for whichever hop served the
+        response. A declined hop produces the existing `message` entry. Whether
+        a fallback model served the response is signalled by the presence of this
+        entry in `usage.iterations`.
+
+        - `required BetaCacheCreation? CacheCreation`
+
+          Breakdown of cached tokens by TTL
+
+        - `required Long CacheCreationInputTokens`
+
+          The number of input tokens used to create the cache entry.
+
+        - `required Long CacheReadInputTokens`
+
+          The number of input tokens read from the cache.
+
+        - `required Long InputTokens`
+
+          The number of input tokens which were used.
+
+        - `required Model Model`
+
+          The model that will complete your prompt.
+
+          See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `required Long OutputTokens`
+
+          The number of output tokens which were used.
+
+        - `JsonElement Type "fallback_message"constant`
+
+          Usage for the fallback-model attempt that served the response
 
     - `required Long OutputTokens`
 
@@ -15927,6 +17915,8 @@ Console.WriteLine(betaMessageTokensCount);
 
               - `"execution_time_exceeded"ExecutionTimeExceeded`
 
+              - `"model_not_found"ModelNotFound`
+
             - `JsonElement Type "advisor_tool_result_error"constant`
 
           - `class BetaAdvisorResultBlock:`
@@ -16219,6 +18209,116 @@ Console.WriteLine(betaMessageTokensCount);
 
         - `JsonElement Type "compaction"constant`
 
+      - `class BetaFallbackBlock:`
+
+        Marks the point in `content` where one model's output gives way to the next.
+
+        One block appears per hop where a preceding model actually ran this turn and
+        declined. A turn routed directly by the sticky decision has no such boundary
+        and carries no block — the signal for whether a fallback model served the
+        response is the presence of a `fallback_message` entry in
+        `usage.iterations`, not this block.
+
+        The block is treated like a server-tool content block for streaming: it
+        arrives via the standard `content_block_start` / `content_block_stop`
+        pair and carries no deltas.
+
+        - `required BetaFallbackInfo From`
+
+          The model whose output ends at this point — the model that declined at this hop. When the declining hop is the requested model, its `model` echoes the top-level `model` string the caller sent (alias or canonical); when the declining hop is a fallback model, its `model` is that model's canonical id.
+
+          - `required Model Model`
+
+            The model that will complete your prompt.
+
+            See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `"claude-fable-5"ClaudeFable5`
+
+              Next generation of intelligence for the hardest knowledge work and coding problems
+
+            - `"claude-mythos-5"ClaudeMythos5`
+
+              Most capable model for cybersecurity and biology research
+
+            - `"claude-opus-4-8"ClaudeOpus4_8`
+
+              Frontier intelligence for long-running agents and coding
+
+            - `"claude-opus-4-7"ClaudeOpus4_7`
+
+              Frontier intelligence for long-running agents and coding
+
+            - `"claude-mythos-preview"ClaudeMythosPreview`
+
+              New class of intelligence, strongest in coding and cybersecurity
+
+            - `"claude-opus-4-6"ClaudeOpus4_6`
+
+              Frontier intelligence for long-running agents and coding
+
+            - `"claude-sonnet-4-6"ClaudeSonnet4_6`
+
+              Best combination of speed and intelligence
+
+            - `"claude-haiku-4-5"ClaudeHaiku4_5`
+
+              Fastest model with near-frontier intelligence
+
+            - `"claude-haiku-4-5-20251001"ClaudeHaiku4_5_20251001`
+
+              Fastest model with near-frontier intelligence
+
+            - `"claude-opus-4-5"ClaudeOpus4_5`
+
+              Premium model combining maximum intelligence with practical performance
+
+            - `"claude-opus-4-5-20251101"ClaudeOpus4_5_20251101`
+
+              Premium model combining maximum intelligence with practical performance
+
+            - `"claude-sonnet-4-5"ClaudeSonnet4_5`
+
+              High-performance model for agents and coding
+
+            - `"claude-sonnet-4-5-20250929"ClaudeSonnet4_5_20250929`
+
+              High-performance model for agents and coding
+
+            - `"claude-opus-4-1"ClaudeOpus4_1`
+
+              Exceptional model for specialized complex tasks
+
+            - `"claude-opus-4-1-20250805"ClaudeOpus4_1_20250805`
+
+              Exceptional model for specialized complex tasks
+
+            - `"claude-opus-4-0"ClaudeOpus4_0`
+
+              Powerful model for complex tasks
+
+            - `"claude-opus-4-20250514"ClaudeOpus4_20250514`
+
+              Powerful model for complex tasks
+
+            - `"claude-sonnet-4-0"ClaudeSonnet4_0`
+
+              High-performance model with extended thinking
+
+            - `"claude-sonnet-4-20250514"ClaudeSonnet4_20250514`
+
+              High-performance model with extended thinking
+
+            - `"claude-3-haiku-20240307"Claude_3_Haiku_20240307`
+
+              Fast and cost-effective model
+
+        - `required BetaFallbackInfo To`
+
+          The fallback model producing the content that follows this block. Its `model` is always the canonical id.
+
+        - `JsonElement Type "fallback"constant`
+
     - `required BetaContextManagementResponse? ContextManagement`
 
       Context management response.
@@ -16312,78 +18412,6 @@ Console.WriteLine(betaMessageTokensCount);
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `"claude-opus-4-8"ClaudeOpus4_8`
-
-        Frontier intelligence for long-running agents and coding
-
-      - `"claude-opus-4-7"ClaudeOpus4_7`
-
-        Frontier intelligence for long-running agents and coding
-
-      - `"claude-mythos-preview"ClaudeMythosPreview`
-
-        New class of intelligence, strongest in coding and cybersecurity
-
-      - `"claude-opus-4-6"ClaudeOpus4_6`
-
-        Frontier intelligence for long-running agents and coding
-
-      - `"claude-sonnet-4-6"ClaudeSonnet4_6`
-
-        Best combination of speed and intelligence
-
-      - `"claude-haiku-4-5"ClaudeHaiku4_5`
-
-        Fastest model with near-frontier intelligence
-
-      - `"claude-haiku-4-5-20251001"ClaudeHaiku4_5_20251001`
-
-        Fastest model with near-frontier intelligence
-
-      - `"claude-opus-4-5"ClaudeOpus4_5`
-
-        Premium model combining maximum intelligence with practical performance
-
-      - `"claude-opus-4-5-20251101"ClaudeOpus4_5_20251101`
-
-        Premium model combining maximum intelligence with practical performance
-
-      - `"claude-sonnet-4-5"ClaudeSonnet4_5`
-
-        High-performance model for agents and coding
-
-      - `"claude-sonnet-4-5-20250929"ClaudeSonnet4_5_20250929`
-
-        High-performance model for agents and coding
-
-      - `"claude-opus-4-1"ClaudeOpus4_1`
-
-        Exceptional model for specialized complex tasks
-
-      - `"claude-opus-4-1-20250805"ClaudeOpus4_1_20250805`
-
-        Exceptional model for specialized complex tasks
-
-      - `"claude-opus-4-0"ClaudeOpus4_0`
-
-        Powerful model for complex tasks
-
-      - `"claude-opus-4-20250514"ClaudeOpus4_20250514`
-
-        Powerful model for complex tasks
-
-      - `"claude-sonnet-4-0"ClaudeSonnet4_0`
-
-        High-performance model with extended thinking
-
-      - `"claude-sonnet-4-20250514"ClaudeSonnet4_20250514`
-
-        High-performance model with extended thinking
-
-      - `"claude-3-haiku-20240307"Claude_3_Haiku_20240307`
-
-        Fast and cost-effective model
-
     - `JsonElement Role "assistant"constant`
 
       Conversational role of the generated message.
@@ -16404,11 +18432,62 @@ Console.WriteLine(betaMessageTokensCount);
 
         - `"bio"Bio`
 
+        - `"reasoning_extraction"ReasoningExtraction`
+
       - `required string? Explanation`
 
         Human-readable explanation of the refusal.
 
         This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+      - `required string? FallbackCreditToken`
+
+        Opaque code that refunds the cache-miss cost when retrying this refused
+        request on the fallback model. Pass it as `fallback_credit_token` on the
+        retry request. Expires 5 minutes after the refusal.
+
+        The retry is sent either with the same request body (`system`, `messages`,
+        `tools`, and other render-shaping fields), or with the same body plus one
+        appended `assistant` message whose content is the partial text (with any
+        trailing whitespace stripped from the final text block) and paired
+        server-tool blocks from this refusal — which also authorizes that
+        appended turn as an assistant-prefill continuation on models that otherwise
+        disallow prefill. A token minted mid-server-tool-loop whose partial content
+        was continuable may only be redeemed the second way — if a same-body retry
+        is rejected with a 400 saying the token must be redeemed by continuing the
+        partial response, retry the second way instead. Either way: same workspace,
+        same platform; a mismatch is a 400. Resending a token for an already-warm
+        prefix is permitted but yields no additional credit.
+
+        `null` when the refused model isn't eligible for a fallback credit.
+
+      - `required Boolean? FallbackHasPrefillClaim`
+
+        Whether the accompanying `fallback_credit_token` may be redeemed with the
+        appended-assistant retry form. Only set when `fallback_credit_token` is
+        present.
+
+        `true`: retry by resending the same request body plus one appended
+        `assistant` message whose content is this response's `content` with any
+        trailing whitespace stripped from the final text block and unpaired
+        `tool_use` blocks omitted (the same appended-turn shape described on
+        `fallback_credit_token`), with the token attached. `false`: retry by
+        resending the original request body unchanged, with the token attached —
+        the appended-assistant form is not available for this refusal (no
+        continuable partial content, or the request uses `output_format` or a
+        `tool_choice` that forces tool use). One exception: when the request used
+        `output_format` or a forced `tool_choice` and the refusal arrived after
+        server tools (including MCP connector tools) had already executed, the
+        token may not be redeemable by either retry form; if the exact-body retry
+        is then rejected with a 400 saying the token must be redeemed by
+        continuing the partial response, discard the token and retry without it.
+
+        Advisory: if an appended-assistant retry is rejected with a 400 despite
+        `true`, fall back to resending the original request body with the token.
+
+      - `required string? RecommendedModel`
+
+        The server's suggested retry target for this refusal. Populated when a fallback attempt could not be made (the fallback model's rate limit was exhausted, or it was overloaded); names the fallback model the caller can retry directly. Null otherwise.
 
       - `JsonElement Type "refusal"constant`
 
@@ -16525,6 +18604,12 @@ Console.WriteLine(betaMessageTokensCount);
 
             The number of input tokens which were used.
 
+          - `required Model Model`
+
+            The model that will complete your prompt.
+
+            See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
           - `required Long OutputTokens`
 
             The number of output tokens which were used.
@@ -16594,6 +18679,45 @@ Console.WriteLine(betaMessageTokensCount);
           - `JsonElement Type "advisor_message"constant`
 
             Usage for an advisor sub-inference iteration
+
+        - `class BetaFallbackMessageIterationUsage:`
+
+          Token usage for the fallback-model attempt of a server-side fallback request.
+
+          Produced in place of a `message` entry for whichever hop served the
+          response. A declined hop produces the existing `message` entry. Whether
+          a fallback model served the response is signalled by the presence of this
+          entry in `usage.iterations`.
+
+          - `required BetaCacheCreation? CacheCreation`
+
+            Breakdown of cached tokens by TTL
+
+          - `required Long CacheCreationInputTokens`
+
+            The number of input tokens used to create the cache entry.
+
+          - `required Long CacheReadInputTokens`
+
+            The number of input tokens read from the cache.
+
+          - `required Long InputTokens`
+
+            The number of input tokens which were used.
+
+          - `required Model Model`
+
+            The model that will complete your prompt.
+
+            See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `required Long OutputTokens`
+
+            The number of output tokens which were used.
+
+          - `JsonElement Type "fallback_message"constant`
+
+            Usage for the fallback-model attempt that served the response
 
       - `required Long OutputTokens`
 
@@ -17094,6 +19218,8 @@ Console.WriteLine(betaMessageTokensCount);
 
                 - `"execution_time_exceeded"ExecutionTimeExceeded`
 
+                - `"model_not_found"ModelNotFound`
+
               - `JsonElement Type "advisor_tool_result_error"constant`
 
             - `class BetaAdvisorResultBlock:`
@@ -17386,6 +19512,116 @@ Console.WriteLine(betaMessageTokensCount);
 
           - `JsonElement Type "compaction"constant`
 
+        - `class BetaFallbackBlock:`
+
+          Marks the point in `content` where one model's output gives way to the next.
+
+          One block appears per hop where a preceding model actually ran this turn and
+          declined. A turn routed directly by the sticky decision has no such boundary
+          and carries no block — the signal for whether a fallback model served the
+          response is the presence of a `fallback_message` entry in
+          `usage.iterations`, not this block.
+
+          The block is treated like a server-tool content block for streaming: it
+          arrives via the standard `content_block_start` / `content_block_stop`
+          pair and carries no deltas.
+
+          - `required BetaFallbackInfo From`
+
+            The model whose output ends at this point — the model that declined at this hop. When the declining hop is the requested model, its `model` echoes the top-level `model` string the caller sent (alias or canonical); when the declining hop is a fallback model, its `model` is that model's canonical id.
+
+            - `required Model Model`
+
+              The model that will complete your prompt.
+
+              See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+              - `"claude-fable-5"ClaudeFable5`
+
+                Next generation of intelligence for the hardest knowledge work and coding problems
+
+              - `"claude-mythos-5"ClaudeMythos5`
+
+                Most capable model for cybersecurity and biology research
+
+              - `"claude-opus-4-8"ClaudeOpus4_8`
+
+                Frontier intelligence for long-running agents and coding
+
+              - `"claude-opus-4-7"ClaudeOpus4_7`
+
+                Frontier intelligence for long-running agents and coding
+
+              - `"claude-mythos-preview"ClaudeMythosPreview`
+
+                New class of intelligence, strongest in coding and cybersecurity
+
+              - `"claude-opus-4-6"ClaudeOpus4_6`
+
+                Frontier intelligence for long-running agents and coding
+
+              - `"claude-sonnet-4-6"ClaudeSonnet4_6`
+
+                Best combination of speed and intelligence
+
+              - `"claude-haiku-4-5"ClaudeHaiku4_5`
+
+                Fastest model with near-frontier intelligence
+
+              - `"claude-haiku-4-5-20251001"ClaudeHaiku4_5_20251001`
+
+                Fastest model with near-frontier intelligence
+
+              - `"claude-opus-4-5"ClaudeOpus4_5`
+
+                Premium model combining maximum intelligence with practical performance
+
+              - `"claude-opus-4-5-20251101"ClaudeOpus4_5_20251101`
+
+                Premium model combining maximum intelligence with practical performance
+
+              - `"claude-sonnet-4-5"ClaudeSonnet4_5`
+
+                High-performance model for agents and coding
+
+              - `"claude-sonnet-4-5-20250929"ClaudeSonnet4_5_20250929`
+
+                High-performance model for agents and coding
+
+              - `"claude-opus-4-1"ClaudeOpus4_1`
+
+                Exceptional model for specialized complex tasks
+
+              - `"claude-opus-4-1-20250805"ClaudeOpus4_1_20250805`
+
+                Exceptional model for specialized complex tasks
+
+              - `"claude-opus-4-0"ClaudeOpus4_0`
+
+                Powerful model for complex tasks
+
+              - `"claude-opus-4-20250514"ClaudeOpus4_20250514`
+
+                Powerful model for complex tasks
+
+              - `"claude-sonnet-4-0"ClaudeSonnet4_0`
+
+                High-performance model with extended thinking
+
+              - `"claude-sonnet-4-20250514"ClaudeSonnet4_20250514`
+
+                High-performance model with extended thinking
+
+              - `"claude-3-haiku-20240307"Claude_3_Haiku_20240307`
+
+                Fast and cost-effective model
+
+          - `required BetaFallbackInfo To`
+
+            The fallback model producing the content that follows this block. Its `model` is always the canonical id.
+
+          - `JsonElement Type "fallback"constant`
+
       - `required BetaContextManagementResponse? ContextManagement`
 
         Context management response.
@@ -17479,78 +19715,6 @@ Console.WriteLine(betaMessageTokensCount);
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-        - `"claude-opus-4-8"ClaudeOpus4_8`
-
-          Frontier intelligence for long-running agents and coding
-
-        - `"claude-opus-4-7"ClaudeOpus4_7`
-
-          Frontier intelligence for long-running agents and coding
-
-        - `"claude-mythos-preview"ClaudeMythosPreview`
-
-          New class of intelligence, strongest in coding and cybersecurity
-
-        - `"claude-opus-4-6"ClaudeOpus4_6`
-
-          Frontier intelligence for long-running agents and coding
-
-        - `"claude-sonnet-4-6"ClaudeSonnet4_6`
-
-          Best combination of speed and intelligence
-
-        - `"claude-haiku-4-5"ClaudeHaiku4_5`
-
-          Fastest model with near-frontier intelligence
-
-        - `"claude-haiku-4-5-20251001"ClaudeHaiku4_5_20251001`
-
-          Fastest model with near-frontier intelligence
-
-        - `"claude-opus-4-5"ClaudeOpus4_5`
-
-          Premium model combining maximum intelligence with practical performance
-
-        - `"claude-opus-4-5-20251101"ClaudeOpus4_5_20251101`
-
-          Premium model combining maximum intelligence with practical performance
-
-        - `"claude-sonnet-4-5"ClaudeSonnet4_5`
-
-          High-performance model for agents and coding
-
-        - `"claude-sonnet-4-5-20250929"ClaudeSonnet4_5_20250929`
-
-          High-performance model for agents and coding
-
-        - `"claude-opus-4-1"ClaudeOpus4_1`
-
-          Exceptional model for specialized complex tasks
-
-        - `"claude-opus-4-1-20250805"ClaudeOpus4_1_20250805`
-
-          Exceptional model for specialized complex tasks
-
-        - `"claude-opus-4-0"ClaudeOpus4_0`
-
-          Powerful model for complex tasks
-
-        - `"claude-opus-4-20250514"ClaudeOpus4_20250514`
-
-          Powerful model for complex tasks
-
-        - `"claude-sonnet-4-0"ClaudeSonnet4_0`
-
-          High-performance model with extended thinking
-
-        - `"claude-sonnet-4-20250514"ClaudeSonnet4_20250514`
-
-          High-performance model with extended thinking
-
-        - `"claude-3-haiku-20240307"Claude_3_Haiku_20240307`
-
-          Fast and cost-effective model
-
       - `JsonElement Role "assistant"constant`
 
         Conversational role of the generated message.
@@ -17571,11 +19735,62 @@ Console.WriteLine(betaMessageTokensCount);
 
           - `"bio"Bio`
 
+          - `"reasoning_extraction"ReasoningExtraction`
+
         - `required string? Explanation`
 
           Human-readable explanation of the refusal.
 
           This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+        - `required string? FallbackCreditToken`
+
+          Opaque code that refunds the cache-miss cost when retrying this refused
+          request on the fallback model. Pass it as `fallback_credit_token` on the
+          retry request. Expires 5 minutes after the refusal.
+
+          The retry is sent either with the same request body (`system`, `messages`,
+          `tools`, and other render-shaping fields), or with the same body plus one
+          appended `assistant` message whose content is the partial text (with any
+          trailing whitespace stripped from the final text block) and paired
+          server-tool blocks from this refusal — which also authorizes that
+          appended turn as an assistant-prefill continuation on models that otherwise
+          disallow prefill. A token minted mid-server-tool-loop whose partial content
+          was continuable may only be redeemed the second way — if a same-body retry
+          is rejected with a 400 saying the token must be redeemed by continuing the
+          partial response, retry the second way instead. Either way: same workspace,
+          same platform; a mismatch is a 400. Resending a token for an already-warm
+          prefix is permitted but yields no additional credit.
+
+          `null` when the refused model isn't eligible for a fallback credit.
+
+        - `required Boolean? FallbackHasPrefillClaim`
+
+          Whether the accompanying `fallback_credit_token` may be redeemed with the
+          appended-assistant retry form. Only set when `fallback_credit_token` is
+          present.
+
+          `true`: retry by resending the same request body plus one appended
+          `assistant` message whose content is this response's `content` with any
+          trailing whitespace stripped from the final text block and unpaired
+          `tool_use` blocks omitted (the same appended-turn shape described on
+          `fallback_credit_token`), with the token attached. `false`: retry by
+          resending the original request body unchanged, with the token attached —
+          the appended-assistant form is not available for this refusal (no
+          continuable partial content, or the request uses `output_format` or a
+          `tool_choice` that forces tool use). One exception: when the request used
+          `output_format` or a forced `tool_choice` and the refusal arrived after
+          server tools (including MCP connector tools) had already executed, the
+          token may not be redeemable by either retry form; if the exact-body retry
+          is then rejected with a 400 saying the token must be redeemed by
+          continuing the partial response, discard the token and retry without it.
+
+          Advisory: if an appended-assistant retry is rejected with a 400 despite
+          `true`, fall back to resending the original request body with the token.
+
+        - `required string? RecommendedModel`
+
+          The server's suggested retry target for this refusal. Populated when a fallback attempt could not be made (the fallback model's rate limit was exhausted, or it was overloaded); names the fallback model the caller can retry directly. Null otherwise.
 
         - `JsonElement Type "refusal"constant`
 
@@ -17692,6 +19907,12 @@ Console.WriteLine(betaMessageTokensCount);
 
               The number of input tokens which were used.
 
+            - `required Model Model`
+
+              The model that will complete your prompt.
+
+              See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
             - `required Long OutputTokens`
 
               The number of output tokens which were used.
@@ -17761,6 +19982,45 @@ Console.WriteLine(betaMessageTokensCount);
             - `JsonElement Type "advisor_message"constant`
 
               Usage for an advisor sub-inference iteration
+
+          - `class BetaFallbackMessageIterationUsage:`
+
+            Token usage for the fallback-model attempt of a server-side fallback request.
+
+            Produced in place of a `message` entry for whichever hop served the
+            response. A declined hop produces the existing `message` entry. Whether
+            a fallback model served the response is signalled by the presence of this
+            entry in `usage.iterations`.
+
+            - `required BetaCacheCreation? CacheCreation`
+
+              Breakdown of cached tokens by TTL
+
+            - `required Long CacheCreationInputTokens`
+
+              The number of input tokens used to create the cache entry.
+
+            - `required Long CacheReadInputTokens`
+
+              The number of input tokens read from the cache.
+
+            - `required Long InputTokens`
+
+              The number of input tokens which were used.
+
+            - `required Model Model`
+
+              The model that will complete your prompt.
+
+              See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `required Long OutputTokens`
+
+              The number of output tokens which were used.
+
+            - `JsonElement Type "fallback_message"constant`
+
+              Usage for the fallback-model attempt that served the response
 
         - `required Long OutputTokens`
 
@@ -17941,6 +20201,20 @@ Console.WriteLine(betaMessageTokensCount);
         summary (e.g., malformed output from the model). Clients may round-trip
         compaction blocks with null content; the server treats them as no-ops.
 
+      - `class BetaFallbackBlock:`
+
+        Marks the point in `content` where one model's output gives way to the next.
+
+        One block appears per hop where a preceding model actually ran this turn and
+        declined. A turn routed directly by the sticky decision has no such boundary
+        and carries no block — the signal for whether a fallback model served the
+        response is the presence of a `fallback_message` entry in
+        `usage.iterations`, not this block.
+
+        The block is treated like a server-tool content block for streaming: it
+        arrives via the standard `content_block_start` / `content_block_stop`
+        pair and carries no deltas.
+
     - `required Long Index`
 
     - `JsonElement Type "content_block_start"constant`
@@ -18045,11 +20319,62 @@ Console.WriteLine(betaMessageTokensCount);
 
     - `"bio"Bio`
 
+    - `"reasoning_extraction"ReasoningExtraction`
+
   - `required string? Explanation`
 
     Human-readable explanation of the refusal.
 
     This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+  - `required string? FallbackCreditToken`
+
+    Opaque code that refunds the cache-miss cost when retrying this refused
+    request on the fallback model. Pass it as `fallback_credit_token` on the
+    retry request. Expires 5 minutes after the refusal.
+
+    The retry is sent either with the same request body (`system`, `messages`,
+    `tools`, and other render-shaping fields), or with the same body plus one
+    appended `assistant` message whose content is the partial text (with any
+    trailing whitespace stripped from the final text block) and paired
+    server-tool blocks from this refusal — which also authorizes that
+    appended turn as an assistant-prefill continuation on models that otherwise
+    disallow prefill. A token minted mid-server-tool-loop whose partial content
+    was continuable may only be redeemed the second way — if a same-body retry
+    is rejected with a 400 saying the token must be redeemed by continuing the
+    partial response, retry the second way instead. Either way: same workspace,
+    same platform; a mismatch is a 400. Resending a token for an already-warm
+    prefix is permitted but yields no additional credit.
+
+    `null` when the refused model isn't eligible for a fallback credit.
+
+  - `required Boolean? FallbackHasPrefillClaim`
+
+    Whether the accompanying `fallback_credit_token` may be redeemed with the
+    appended-assistant retry form. Only set when `fallback_credit_token` is
+    present.
+
+    `true`: retry by resending the same request body plus one appended
+    `assistant` message whose content is this response's `content` with any
+    trailing whitespace stripped from the final text block and unpaired
+    `tool_use` blocks omitted (the same appended-turn shape described on
+    `fallback_credit_token`), with the token attached. `false`: retry by
+    resending the original request body unchanged, with the token attached —
+    the appended-assistant form is not available for this refusal (no
+    continuable partial content, or the request uses `output_format` or a
+    `tool_choice` that forces tool use). One exception: when the request used
+    `output_format` or a forced `tool_choice` and the refusal arrived after
+    server tools (including MCP connector tools) had already executed, the
+    token may not be redeemable by either retry form; if the exact-body retry
+    is then rejected with a 400 saying the token must be redeemed by
+    continuing the partial response, discard the token and retry without it.
+
+    Advisory: if an appended-assistant retry is rejected with a 400 despite
+    `true`, fall back to resending the original request body with the token.
+
+  - `required string? RecommendedModel`
+
+    The server's suggested retry target for this refusal. Populated when a fallback attempt could not be made (the fallback model's rate limit was exhausted, or it was overloaded); names the fallback model the caller can retry directly. Null otherwise.
 
   - `JsonElement Type "refusal"constant`
 
@@ -20647,6 +22972,8 @@ Console.WriteLine(betaMessageTokensCount);
 
       - `JsonElement Type "tool_search_tool_result_error"constant`
 
+      - `string? ErrorMessage`
+
     - `class BetaToolSearchToolSearchResultBlockParam:`
 
       - `required IReadOnlyList<BetaToolReferenceBlockParam> ToolReferences`
@@ -20719,6 +23046,8 @@ Console.WriteLine(betaMessageTokensCount);
     - `"execution_time_exceeded"ExecutionTimeExceeded`
 
   - `JsonElement Type "tool_search_tool_result_error"constant`
+
+  - `string? ErrorMessage`
 
 ### Beta Tool Search Tool Search Result Block
 
@@ -21784,6 +24113,14 @@ Console.WriteLine(betaMessageTokensCount);
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+      - `"claude-fable-5"ClaudeFable5`
+
+        Next generation of intelligence for the hardest knowledge work and coding problems
+
+      - `"claude-mythos-5"ClaudeMythos5`
+
+        Most capable model for cybersecurity and biology research
+
       - `"claude-opus-4-8"ClaudeOpus4_8`
 
         Frontier intelligence for long-running agents and coding
@@ -21883,6 +24220,10 @@ Console.WriteLine(betaMessageTokensCount);
     - `Boolean DeferLoading`
 
       If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+    - `Long? MaxTokens`
+
+      Bounds the advisor's total output (thinking + text) per call. When the advisor hits this cap, the returned advisor_result or advisor_redacted_result block carries stop_reason='max_tokens', and a truncation note is appended to the advice text the worker model sees (inside the encrypted blob in redacted mode). When set, the server also emits a remaining-tokens budget block in the advisor's prompt so the advisor self-shapes toward the cap. When omitted, the advisor model's default output cap applies and no budget block is emitted.
 
     - `Long? MaxUses`
 
@@ -22180,67 +24521,19 @@ Console.WriteLine(betaMessageTokensCount);
 
         The number of input tokens which were used.
 
-      - `required Long OutputTokens`
-
-        The number of output tokens which were used.
-
-      - `JsonElement Type "message"constant`
-
-        Usage for a sampling iteration
-
-    - `class BetaCompactionIterationUsage:`
-
-      Token usage for a compaction iteration.
-
-      - `required BetaCacheCreation? CacheCreation`
-
-        Breakdown of cached tokens by TTL
-
-      - `required Long CacheCreationInputTokens`
-
-        The number of input tokens used to create the cache entry.
-
-      - `required Long CacheReadInputTokens`
-
-        The number of input tokens read from the cache.
-
-      - `required Long InputTokens`
-
-        The number of input tokens which were used.
-
-      - `required Long OutputTokens`
-
-        The number of output tokens which were used.
-
-      - `JsonElement Type "compaction"constant`
-
-        Usage for a compaction iteration
-
-    - `class BetaAdvisorMessageIterationUsage:`
-
-      Token usage for an advisor sub-inference iteration.
-
-      - `required BetaCacheCreation? CacheCreation`
-
-        Breakdown of cached tokens by TTL
-
-      - `required Long CacheCreationInputTokens`
-
-        The number of input tokens used to create the cache entry.
-
-      - `required Long CacheReadInputTokens`
-
-        The number of input tokens read from the cache.
-
-      - `required Long InputTokens`
-
-        The number of input tokens which were used.
-
       - `required Model Model`
 
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-fable-5"ClaudeFable5`
+
+          Next generation of intelligence for the hardest knowledge work and coding problems
+
+        - `"claude-mythos-5"ClaudeMythos5`
+
+          Most capable model for cybersecurity and biology research
 
         - `"claude-opus-4-8"ClaudeOpus4_8`
 
@@ -22318,9 +24611,110 @@ Console.WriteLine(betaMessageTokensCount);
 
         The number of output tokens which were used.
 
+      - `JsonElement Type "message"constant`
+
+        Usage for a sampling iteration
+
+    - `class BetaCompactionIterationUsage:`
+
+      Token usage for a compaction iteration.
+
+      - `required BetaCacheCreation? CacheCreation`
+
+        Breakdown of cached tokens by TTL
+
+      - `required Long CacheCreationInputTokens`
+
+        The number of input tokens used to create the cache entry.
+
+      - `required Long CacheReadInputTokens`
+
+        The number of input tokens read from the cache.
+
+      - `required Long InputTokens`
+
+        The number of input tokens which were used.
+
+      - `required Long OutputTokens`
+
+        The number of output tokens which were used.
+
+      - `JsonElement Type "compaction"constant`
+
+        Usage for a compaction iteration
+
+    - `class BetaAdvisorMessageIterationUsage:`
+
+      Token usage for an advisor sub-inference iteration.
+
+      - `required BetaCacheCreation? CacheCreation`
+
+        Breakdown of cached tokens by TTL
+
+      - `required Long CacheCreationInputTokens`
+
+        The number of input tokens used to create the cache entry.
+
+      - `required Long CacheReadInputTokens`
+
+        The number of input tokens read from the cache.
+
+      - `required Long InputTokens`
+
+        The number of input tokens which were used.
+
+      - `required Model Model`
+
+        The model that will complete your prompt.
+
+        See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `required Long OutputTokens`
+
+        The number of output tokens which were used.
+
       - `JsonElement Type "advisor_message"constant`
 
         Usage for an advisor sub-inference iteration
+
+    - `class BetaFallbackMessageIterationUsage:`
+
+      Token usage for the fallback-model attempt of a server-side fallback request.
+
+      Produced in place of a `message` entry for whichever hop served the
+      response. A declined hop produces the existing `message` entry. Whether
+      a fallback model served the response is signalled by the presence of this
+      entry in `usage.iterations`.
+
+      - `required BetaCacheCreation? CacheCreation`
+
+        Breakdown of cached tokens by TTL
+
+      - `required Long CacheCreationInputTokens`
+
+        The number of input tokens used to create the cache entry.
+
+      - `required Long CacheReadInputTokens`
+
+        The number of input tokens read from the cache.
+
+      - `required Long InputTokens`
+
+        The number of input tokens which were used.
+
+      - `required Model Model`
+
+        The model that will complete your prompt.
+
+        See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `required Long OutputTokens`
+
+        The number of output tokens which were used.
+
+      - `JsonElement Type "fallback_message"constant`
+
+        Usage for the fallback-model attempt that served the response
 
   - `required Long OutputTokens`
 
@@ -24450,6 +26844,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                     - `"execution_time_exceeded"ExecutionTimeExceeded`
 
+                    - `"model_not_found"ModelNotFound`
+
                   - `JsonElement Type "advisor_tool_result_error"constant`
 
                 - `class BetaAdvisorResultBlockParam:`
@@ -24672,6 +27068,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `JsonElement Type "tool_search_tool_result_error"constant`
 
+                  - `string? ErrorMessage`
+
                 - `class BetaToolSearchToolSearchResultBlockParam:`
 
                   - `required IReadOnlyList<BetaToolReferenceBlockParam> ToolReferences`
@@ -24804,6 +27202,120 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                 Create a cache control breakpoint at this content block.
 
+            - `class BetaFallbackBlockParam:`
+
+              A `fallback` block echoed back from a prior response.
+
+              Accepted in `messages[].content` and never rendered into the prompt,
+              not validated against the request's `fallbacks` chain or top-level
+              `model`, and stripped before the sticky-routing cache key is computed.
+
+              Callers should echo the assistant turn verbatim — block included. The
+              block's position is load-bearing for thinking verification: the thinking
+              runs on either side of a fallback hop carry independently-rooted
+              verification hash chains, and this block is the only record of where one
+              chain ends and the next begins. When thinking runs flank the boundary,
+              omitting the block merges the runs into one contiguous span whose hashes
+              cannot verify (the request is rejected), and moving it into the middle of
+              a single run splits that run's chain and is likewise rejected; between
+              non-thinking blocks the block's placement has no verification effect.
+
+              - `required BetaFallbackInfoParam From`
+
+                Identifies one hop of a fallback transition.
+
+                - `required Model Model`
+
+                  The model that will complete your prompt.
+
+                  See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+                  - `"claude-fable-5"ClaudeFable5`
+
+                    Next generation of intelligence for the hardest knowledge work and coding problems
+
+                  - `"claude-mythos-5"ClaudeMythos5`
+
+                    Most capable model for cybersecurity and biology research
+
+                  - `"claude-opus-4-8"ClaudeOpus4_8`
+
+                    Frontier intelligence for long-running agents and coding
+
+                  - `"claude-opus-4-7"ClaudeOpus4_7`
+
+                    Frontier intelligence for long-running agents and coding
+
+                  - `"claude-mythos-preview"ClaudeMythosPreview`
+
+                    New class of intelligence, strongest in coding and cybersecurity
+
+                  - `"claude-opus-4-6"ClaudeOpus4_6`
+
+                    Frontier intelligence for long-running agents and coding
+
+                  - `"claude-sonnet-4-6"ClaudeSonnet4_6`
+
+                    Best combination of speed and intelligence
+
+                  - `"claude-haiku-4-5"ClaudeHaiku4_5`
+
+                    Fastest model with near-frontier intelligence
+
+                  - `"claude-haiku-4-5-20251001"ClaudeHaiku4_5_20251001`
+
+                    Fastest model with near-frontier intelligence
+
+                  - `"claude-opus-4-5"ClaudeOpus4_5`
+
+                    Premium model combining maximum intelligence with practical performance
+
+                  - `"claude-opus-4-5-20251101"ClaudeOpus4_5_20251101`
+
+                    Premium model combining maximum intelligence with practical performance
+
+                  - `"claude-sonnet-4-5"ClaudeSonnet4_5`
+
+                    High-performance model for agents and coding
+
+                  - `"claude-sonnet-4-5-20250929"ClaudeSonnet4_5_20250929`
+
+                    High-performance model for agents and coding
+
+                  - `"claude-opus-4-1"ClaudeOpus4_1`
+
+                    Exceptional model for specialized complex tasks
+
+                  - `"claude-opus-4-1-20250805"ClaudeOpus4_1_20250805`
+
+                    Exceptional model for specialized complex tasks
+
+                  - `"claude-opus-4-0"ClaudeOpus4_0`
+
+                    Powerful model for complex tasks
+
+                  - `"claude-opus-4-20250514"ClaudeOpus4_20250514`
+
+                    Powerful model for complex tasks
+
+                  - `"claude-sonnet-4-0"ClaudeSonnet4_0`
+
+                    High-performance model with extended thinking
+
+                  - `"claude-sonnet-4-20250514"ClaudeSonnet4_20250514`
+
+                    High-performance model with extended thinking
+
+                  - `"claude-3-haiku-20240307"Claude_3_Haiku_20240307`
+
+                    Fast and cost-effective model
+
+              - `required BetaFallbackInfoParam To`
+
+                Identifies one hop of a fallback transition.
+
+              - `JsonElement Type "fallback"constant`
+
         - `required Role Role`
 
           - `"user"User`
@@ -24817,78 +27329,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
-
-        - `"claude-opus-4-8"ClaudeOpus4_8`
-
-          Frontier intelligence for long-running agents and coding
-
-        - `"claude-opus-4-7"ClaudeOpus4_7`
-
-          Frontier intelligence for long-running agents and coding
-
-        - `"claude-mythos-preview"ClaudeMythosPreview`
-
-          New class of intelligence, strongest in coding and cybersecurity
-
-        - `"claude-opus-4-6"ClaudeOpus4_6`
-
-          Frontier intelligence for long-running agents and coding
-
-        - `"claude-sonnet-4-6"ClaudeSonnet4_6`
-
-          Best combination of speed and intelligence
-
-        - `"claude-haiku-4-5"ClaudeHaiku4_5`
-
-          Fastest model with near-frontier intelligence
-
-        - `"claude-haiku-4-5-20251001"ClaudeHaiku4_5_20251001`
-
-          Fastest model with near-frontier intelligence
-
-        - `"claude-opus-4-5"ClaudeOpus4_5`
-
-          Premium model combining maximum intelligence with practical performance
-
-        - `"claude-opus-4-5-20251101"ClaudeOpus4_5_20251101`
-
-          Premium model combining maximum intelligence with practical performance
-
-        - `"claude-sonnet-4-5"ClaudeSonnet4_5`
-
-          High-performance model for agents and coding
-
-        - `"claude-sonnet-4-5-20250929"ClaudeSonnet4_5_20250929`
-
-          High-performance model for agents and coding
-
-        - `"claude-opus-4-1"ClaudeOpus4_1`
-
-          Exceptional model for specialized complex tasks
-
-        - `"claude-opus-4-1-20250805"ClaudeOpus4_1_20250805`
-
-          Exceptional model for specialized complex tasks
-
-        - `"claude-opus-4-0"ClaudeOpus4_0`
-
-          Powerful model for complex tasks
-
-        - `"claude-opus-4-20250514"ClaudeOpus4_20250514`
-
-          Powerful model for complex tasks
-
-        - `"claude-sonnet-4-0"ClaudeSonnet4_0`
-
-          High-performance model with extended thinking
-
-        - `"claude-sonnet-4-20250514"ClaudeSonnet4_20250514`
-
-          High-performance model with extended thinking
-
-        - `"claude-3-haiku-20240307"Claude_3_Haiku_20240307`
-
-          Fast and cost-effective model
 
       - `BetaCacheControlEphemeral? CacheControl`
 
@@ -25033,6 +27473,127 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           The `id` (`msg_...`) from this client's previous /v1/messages response. The server compares that request's prompt fingerprint against this one and returns `diagnostics.cache_miss_reason` when the prompt-cache prefix could not be reused. Pass `null` on the first turn to opt in without a prior message to compare.
 
+      - `string? FallbackCreditToken`
+
+        The `fallback_credit_token` from a prior refusal's `stop_details`.
+
+        When a preceding request was refused and returned a `fallback_credit_token`,
+        pass that code here on the retry to have the retry's cache-creation tokens
+        for the prefix that was warm on the refused model billed at the cache-read
+        rate. Must be redeemed by the same organization and workspace, with the same
+        request body (optionally extended by one appended `assistant` message whose
+        content is the partial text — with any trailing whitespace stripped from
+        the final text block — and paired server-tool blocks streamed before the
+        refusal; the appended-assistant form is not available for requests with
+        `output_format` set or forced `tool_choice`), on an eligible fallback
+        model, on the same platform,
+        and within 5 minutes of the refusal; a mismatch is a 400. A token minted
+        mid-server-tool-loop whose partial content was continuable may only be
+        redeemed with the appended-assistant form — if an exact-body retry is
+        rejected with a 400 saying the token must be redeemed by continuing the
+        partial response, retry with the appended-assistant form instead.
+
+        When the appended-assistant form is used on a model that otherwise disallows
+        assistant-turn prefill, this token also authorizes that one prefill.
+
+      - `IReadOnlyList<BetaFallbackParam>? Fallbacks`
+
+        Opt-in server-side retry on one or more substitute models when the requested model declines for policy reasons. Tried in order: if the first entry also declines, the second is tried, and so on.
+
+        - `required Model Model`
+
+          The model that will complete your prompt.
+
+          See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `Long? MaxTokens`
+
+        - `BetaOutputConfig? OutputConfig`
+
+          - `Effort? Effort`
+
+            All possible effort levels.
+
+            - `"low"Low`
+
+            - `"medium"Medium`
+
+            - `"high"High`
+
+            - `"xhigh"Xhigh`
+
+            - `"max"Max`
+
+          - `BetaJsonOutputFormat? Format`
+
+            A schema to specify Claude's output format in responses. See [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
+
+            - `required IReadOnlyDictionary<string, JsonElement> Schema`
+
+              The JSON schema of the format
+
+            - `JsonElement Type "json_schema"constant`
+
+          - `BetaTokenTaskBudget? TaskBudget`
+
+            User-configurable total token budget across contexts.
+
+            - `required Long Total`
+
+              Total token budget across all contexts in the session.
+
+            - `JsonElement Type "tokens"constant`
+
+              The budget type. Currently only 'tokens' is supported.
+
+            - `Long? Remaining`
+
+              Remaining tokens in the budget. Use this to track usage across contexts when implementing compaction client-side. Defaults to total if not provided.
+
+        - `Speed? Speed`
+
+          - `"standard"Standard`
+
+          - `"fast"Fast`
+
+        - `Thinking? Thinking`
+
+          - `class BetaThinkingConfigEnabled:`
+
+            - `required Long BudgetTokens`
+
+              Determines how many tokens Claude can use for its internal reasoning process. Larger budgets can enable more thorough analysis for complex problems, improving response quality.
+
+              Must be ≥1024 and less than `max_tokens`.
+
+              See [extended thinking](https://docs.claude.com/en/docs/build-with-claude/extended-thinking) for details.
+
+            - `JsonElement Type "enabled"constant`
+
+            - `Display? Display`
+
+              Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+              - `"summarized"Summarized`
+
+              - `"omitted"Omitted`
+
+          - `class BetaThinkingConfigDisabled:`
+
+            - `JsonElement Type "disabled"constant`
+
+          - `class BetaThinkingConfigAdaptive:`
+
+            - `JsonElement Type "adaptive"constant`
+
+            - `Display? Display`
+
+              Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
+
+              - `"summarized"Summarized`
+
+              - `"omitted"Omitted`
+
       - `string? InferenceGeo`
 
         Specifies the geographic region for inference processing. If not specified, the workspace's `default_inference_geo` is used.
@@ -25068,46 +27629,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       - `BetaOutputConfig OutputConfig`
 
         Configuration options for the model's output, such as the output format.
-
-        - `Effort? Effort`
-
-          All possible effort levels.
-
-          - `"low"Low`
-
-          - `"medium"Medium`
-
-          - `"high"High`
-
-          - `"xhigh"Xhigh`
-
-          - `"max"Max`
-
-        - `BetaJsonOutputFormat? Format`
-
-          A schema to specify Claude's output format in responses. See [structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
-
-          - `required IReadOnlyDictionary<string, JsonElement> Schema`
-
-            The JSON schema of the format
-
-          - `JsonElement Type "json_schema"constant`
-
-        - `BetaTokenTaskBudget? TaskBudget`
-
-          User-configurable total token budget across contexts.
-
-          - `required Long Total`
-
-            Total token budget across all contexts in the session.
-
-          - `JsonElement Type "tokens"constant`
-
-            The budget type. Currently only 'tokens' is supported.
-
-          - `Long? Remaining`
-
-            Remaining tokens in the budget. Use this to track usage across contexts when implementing compaction client-side. Defaults to total if not provided.
 
       - `BetaJsonOutputFormat? OutputFormat`
 
@@ -25185,39 +27706,9 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
         - `class BetaThinkingConfigEnabled:`
 
-          - `required Long BudgetTokens`
-
-            Determines how many tokens Claude can use for its internal reasoning process. Larger budgets can enable more thorough analysis for complex problems, improving response quality.
-
-            Must be ≥1024 and less than `max_tokens`.
-
-            See [extended thinking](https://docs.claude.com/en/docs/build-with-claude/extended-thinking) for details.
-
-          - `JsonElement Type "enabled"constant`
-
-          - `Display? Display`
-
-            Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
-
-            - `"summarized"Summarized`
-
-            - `"omitted"Omitted`
-
         - `class BetaThinkingConfigDisabled:`
 
-          - `JsonElement Type "disabled"constant`
-
         - `class BetaThinkingConfigAdaptive:`
-
-          - `JsonElement Type "adaptive"constant`
-
-          - `Display? Display`
-
-            Controls how thinking content appears in the response. When set to `summarized`, thinking is returned normally. When set to `omitted`, thinking content is redacted but a signature is returned for multi-turn continuity. Defaults to `summarized`.
-
-            - `"summarized"Summarized`
-
-            - `"omitted"Omitted`
 
       - `BetaToolChoice ToolChoice`
 
@@ -26147,6 +28638,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
 
+          - `Long? MaxTokens`
+
+            Bounds the advisor's total output (thinking + text) per call. When the advisor hits this cap, the returned advisor_result or advisor_redacted_result block carries stop_reason='max_tokens', and a truncation note is appended to the advice text the worker model sees (inside the encrypted blob in redacted mode). When set, the server also emits a remaining-tokens budget block in the advisor's prompt so the advisor self-shapes toward the cap. When omitted, the advisor model's default output cap applies and no budget block is emitted.
+
           - `Long? MaxUses`
 
             Maximum number of times the tool can be used in the API request.
@@ -26332,6 +28827,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Returns
 
 - `class BetaMessageBatch:`
@@ -26477,6 +28976,37 @@ BatchCreateParams parameters = new()
                 {
                     PreviousMessageID = "previous_message_id"
                 },
+                FallbackCreditToken = "x",
+                Fallbacks =
+                [
+                    new()
+                    {
+                        Model = Model.ClaudeFable5,
+                        MaxTokens = 0,
+                        OutputConfig = new()
+                        {
+                            Effort = Effort.Low,
+                            Format = new()
+                            {
+                                Schema = new Dictionary<string, JsonElement>()
+                                {
+                                    { "foo", JsonSerializer.SerializeToElement("bar") },
+                                },
+                            },
+                            TaskBudget = new()
+                            {
+                                Total = 1024,
+                                Remaining = 0,
+                            },
+                        },
+                        Speed = Speed.Standard,
+                        Thinking = new BetaThinkingConfigEnabled()
+                        {
+                            BudgetTokens = 1024,
+                            Display = Display.Summarized,
+                        },
+                    },
+                ],
                 InferenceGeo = "inference_geo",
                 McpServers =
                 [
@@ -26705,6 +29235,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Returns
 
 - `class BetaMessageBatch:`
@@ -26909,6 +29443,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 
@@ -27130,6 +29668,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Returns
 
 - `class BetaMessageBatch:`
@@ -27327,6 +29869,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Returns
 
 - `class BetaDeletedMessageBatch:`
@@ -27435,6 +29981,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 
@@ -27887,6 +30437,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `"execution_time_exceeded"ExecutionTimeExceeded`
 
+                  - `"model_not_found"ModelNotFound`
+
                 - `JsonElement Type "advisor_tool_result_error"constant`
 
               - `class BetaAdvisorResultBlock:`
@@ -28179,6 +30731,116 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             - `JsonElement Type "compaction"constant`
 
+          - `class BetaFallbackBlock:`
+
+            Marks the point in `content` where one model's output gives way to the next.
+
+            One block appears per hop where a preceding model actually ran this turn and
+            declined. A turn routed directly by the sticky decision has no such boundary
+            and carries no block — the signal for whether a fallback model served the
+            response is the presence of a `fallback_message` entry in
+            `usage.iterations`, not this block.
+
+            The block is treated like a server-tool content block for streaming: it
+            arrives via the standard `content_block_start` / `content_block_stop`
+            pair and carries no deltas.
+
+            - `required BetaFallbackInfo From`
+
+              The model whose output ends at this point — the model that declined at this hop. When the declining hop is the requested model, its `model` echoes the top-level `model` string the caller sent (alias or canonical); when the declining hop is a fallback model, its `model` is that model's canonical id.
+
+              - `required Model Model`
+
+                The model that will complete your prompt.
+
+                See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+                - `"claude-fable-5"ClaudeFable5`
+
+                  Next generation of intelligence for the hardest knowledge work and coding problems
+
+                - `"claude-mythos-5"ClaudeMythos5`
+
+                  Most capable model for cybersecurity and biology research
+
+                - `"claude-opus-4-8"ClaudeOpus4_8`
+
+                  Frontier intelligence for long-running agents and coding
+
+                - `"claude-opus-4-7"ClaudeOpus4_7`
+
+                  Frontier intelligence for long-running agents and coding
+
+                - `"claude-mythos-preview"ClaudeMythosPreview`
+
+                  New class of intelligence, strongest in coding and cybersecurity
+
+                - `"claude-opus-4-6"ClaudeOpus4_6`
+
+                  Frontier intelligence for long-running agents and coding
+
+                - `"claude-sonnet-4-6"ClaudeSonnet4_6`
+
+                  Best combination of speed and intelligence
+
+                - `"claude-haiku-4-5"ClaudeHaiku4_5`
+
+                  Fastest model with near-frontier intelligence
+
+                - `"claude-haiku-4-5-20251001"ClaudeHaiku4_5_20251001`
+
+                  Fastest model with near-frontier intelligence
+
+                - `"claude-opus-4-5"ClaudeOpus4_5`
+
+                  Premium model combining maximum intelligence with practical performance
+
+                - `"claude-opus-4-5-20251101"ClaudeOpus4_5_20251101`
+
+                  Premium model combining maximum intelligence with practical performance
+
+                - `"claude-sonnet-4-5"ClaudeSonnet4_5`
+
+                  High-performance model for agents and coding
+
+                - `"claude-sonnet-4-5-20250929"ClaudeSonnet4_5_20250929`
+
+                  High-performance model for agents and coding
+
+                - `"claude-opus-4-1"ClaudeOpus4_1`
+
+                  Exceptional model for specialized complex tasks
+
+                - `"claude-opus-4-1-20250805"ClaudeOpus4_1_20250805`
+
+                  Exceptional model for specialized complex tasks
+
+                - `"claude-opus-4-0"ClaudeOpus4_0`
+
+                  Powerful model for complex tasks
+
+                - `"claude-opus-4-20250514"ClaudeOpus4_20250514`
+
+                  Powerful model for complex tasks
+
+                - `"claude-sonnet-4-0"ClaudeSonnet4_0`
+
+                  High-performance model with extended thinking
+
+                - `"claude-sonnet-4-20250514"ClaudeSonnet4_20250514`
+
+                  High-performance model with extended thinking
+
+                - `"claude-3-haiku-20240307"Claude_3_Haiku_20240307`
+
+                  Fast and cost-effective model
+
+            - `required BetaFallbackInfo To`
+
+              The fallback model producing the content that follows this block. Its `model` is always the canonical id.
+
+            - `JsonElement Type "fallback"constant`
+
         - `required BetaContextManagementResponse? ContextManagement`
 
           Context management response.
@@ -28272,78 +30934,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-          - `"claude-opus-4-8"ClaudeOpus4_8`
-
-            Frontier intelligence for long-running agents and coding
-
-          - `"claude-opus-4-7"ClaudeOpus4_7`
-
-            Frontier intelligence for long-running agents and coding
-
-          - `"claude-mythos-preview"ClaudeMythosPreview`
-
-            New class of intelligence, strongest in coding and cybersecurity
-
-          - `"claude-opus-4-6"ClaudeOpus4_6`
-
-            Frontier intelligence for long-running agents and coding
-
-          - `"claude-sonnet-4-6"ClaudeSonnet4_6`
-
-            Best combination of speed and intelligence
-
-          - `"claude-haiku-4-5"ClaudeHaiku4_5`
-
-            Fastest model with near-frontier intelligence
-
-          - `"claude-haiku-4-5-20251001"ClaudeHaiku4_5_20251001`
-
-            Fastest model with near-frontier intelligence
-
-          - `"claude-opus-4-5"ClaudeOpus4_5`
-
-            Premium model combining maximum intelligence with practical performance
-
-          - `"claude-opus-4-5-20251101"ClaudeOpus4_5_20251101`
-
-            Premium model combining maximum intelligence with practical performance
-
-          - `"claude-sonnet-4-5"ClaudeSonnet4_5`
-
-            High-performance model for agents and coding
-
-          - `"claude-sonnet-4-5-20250929"ClaudeSonnet4_5_20250929`
-
-            High-performance model for agents and coding
-
-          - `"claude-opus-4-1"ClaudeOpus4_1`
-
-            Exceptional model for specialized complex tasks
-
-          - `"claude-opus-4-1-20250805"ClaudeOpus4_1_20250805`
-
-            Exceptional model for specialized complex tasks
-
-          - `"claude-opus-4-0"ClaudeOpus4_0`
-
-            Powerful model for complex tasks
-
-          - `"claude-opus-4-20250514"ClaudeOpus4_20250514`
-
-            Powerful model for complex tasks
-
-          - `"claude-sonnet-4-0"ClaudeSonnet4_0`
-
-            High-performance model with extended thinking
-
-          - `"claude-sonnet-4-20250514"ClaudeSonnet4_20250514`
-
-            High-performance model with extended thinking
-
-          - `"claude-3-haiku-20240307"Claude_3_Haiku_20240307`
-
-            Fast and cost-effective model
-
         - `JsonElement Role "assistant"constant`
 
           Conversational role of the generated message.
@@ -28364,11 +30954,62 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             - `"bio"Bio`
 
+            - `"reasoning_extraction"ReasoningExtraction`
+
           - `required string? Explanation`
 
             Human-readable explanation of the refusal.
 
             This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+          - `required string? FallbackCreditToken`
+
+            Opaque code that refunds the cache-miss cost when retrying this refused
+            request on the fallback model. Pass it as `fallback_credit_token` on the
+            retry request. Expires 5 minutes after the refusal.
+
+            The retry is sent either with the same request body (`system`, `messages`,
+            `tools`, and other render-shaping fields), or with the same body plus one
+            appended `assistant` message whose content is the partial text (with any
+            trailing whitespace stripped from the final text block) and paired
+            server-tool blocks from this refusal — which also authorizes that
+            appended turn as an assistant-prefill continuation on models that otherwise
+            disallow prefill. A token minted mid-server-tool-loop whose partial content
+            was continuable may only be redeemed the second way — if a same-body retry
+            is rejected with a 400 saying the token must be redeemed by continuing the
+            partial response, retry the second way instead. Either way: same workspace,
+            same platform; a mismatch is a 400. Resending a token for an already-warm
+            prefix is permitted but yields no additional credit.
+
+            `null` when the refused model isn't eligible for a fallback credit.
+
+          - `required Boolean? FallbackHasPrefillClaim`
+
+            Whether the accompanying `fallback_credit_token` may be redeemed with the
+            appended-assistant retry form. Only set when `fallback_credit_token` is
+            present.
+
+            `true`: retry by resending the same request body plus one appended
+            `assistant` message whose content is this response's `content` with any
+            trailing whitespace stripped from the final text block and unpaired
+            `tool_use` blocks omitted (the same appended-turn shape described on
+            `fallback_credit_token`), with the token attached. `false`: retry by
+            resending the original request body unchanged, with the token attached —
+            the appended-assistant form is not available for this refusal (no
+            continuable partial content, or the request uses `output_format` or a
+            `tool_choice` that forces tool use). One exception: when the request used
+            `output_format` or a forced `tool_choice` and the refusal arrived after
+            server tools (including MCP connector tools) had already executed, the
+            token may not be redeemable by either retry form; if the exact-body retry
+            is then rejected with a 400 saying the token must be redeemed by
+            continuing the partial response, discard the token and retry without it.
+
+            Advisory: if an appended-assistant retry is rejected with a 400 despite
+            `true`, fall back to resending the original request body with the token.
+
+          - `required string? RecommendedModel`
+
+            The server's suggested retry target for this refusal. Populated when a fallback attempt could not be made (the fallback model's rate limit was exhausted, or it was overloaded); names the fallback model the caller can retry directly. Null otherwise.
 
           - `JsonElement Type "refusal"constant`
 
@@ -28485,6 +31126,12 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                 The number of input tokens which were used.
 
+              - `required Model Model`
+
+                The model that will complete your prompt.
+
+                See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
               - `required Long OutputTokens`
 
                 The number of output tokens which were used.
@@ -28554,6 +31201,45 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
               - `JsonElement Type "advisor_message"constant`
 
                 Usage for an advisor sub-inference iteration
+
+            - `class BetaFallbackMessageIterationUsage:`
+
+              Token usage for the fallback-model attempt of a server-side fallback request.
+
+              Produced in place of a `message` entry for whichever hop served the
+              response. A declined hop produces the existing `message` entry. Whether
+              a fallback model served the response is signalled by the presence of this
+              entry in `usage.iterations`.
+
+              - `required BetaCacheCreation? CacheCreation`
+
+                Breakdown of cached tokens by TTL
+
+              - `required Long CacheCreationInputTokens`
+
+                The number of input tokens used to create the cache entry.
+
+              - `required Long CacheReadInputTokens`
+
+                The number of input tokens read from the cache.
+
+              - `required Long InputTokens`
+
+                The number of input tokens which were used.
+
+              - `required Model Model`
+
+                The model that will complete your prompt.
+
+                See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+              - `required Long OutputTokens`
+
+                The number of output tokens which were used.
+
+              - `JsonElement Type "fallback_message"constant`
+
+                Usage for the fallback-model attempt that served the response
 
           - `required Long OutputTokens`
 
@@ -29331,6 +32017,8 @@ await foreach (var betaMessageBatchIndividualResponse in client.Beta.Messages.Ba
 
                   - `"execution_time_exceeded"ExecutionTimeExceeded`
 
+                  - `"model_not_found"ModelNotFound`
+
                 - `JsonElement Type "advisor_tool_result_error"constant`
 
               - `class BetaAdvisorResultBlock:`
@@ -29623,6 +32311,116 @@ await foreach (var betaMessageBatchIndividualResponse in client.Beta.Messages.Ba
 
             - `JsonElement Type "compaction"constant`
 
+          - `class BetaFallbackBlock:`
+
+            Marks the point in `content` where one model's output gives way to the next.
+
+            One block appears per hop where a preceding model actually ran this turn and
+            declined. A turn routed directly by the sticky decision has no such boundary
+            and carries no block — the signal for whether a fallback model served the
+            response is the presence of a `fallback_message` entry in
+            `usage.iterations`, not this block.
+
+            The block is treated like a server-tool content block for streaming: it
+            arrives via the standard `content_block_start` / `content_block_stop`
+            pair and carries no deltas.
+
+            - `required BetaFallbackInfo From`
+
+              The model whose output ends at this point — the model that declined at this hop. When the declining hop is the requested model, its `model` echoes the top-level `model` string the caller sent (alias or canonical); when the declining hop is a fallback model, its `model` is that model's canonical id.
+
+              - `required Model Model`
+
+                The model that will complete your prompt.
+
+                See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+                - `"claude-fable-5"ClaudeFable5`
+
+                  Next generation of intelligence for the hardest knowledge work and coding problems
+
+                - `"claude-mythos-5"ClaudeMythos5`
+
+                  Most capable model for cybersecurity and biology research
+
+                - `"claude-opus-4-8"ClaudeOpus4_8`
+
+                  Frontier intelligence for long-running agents and coding
+
+                - `"claude-opus-4-7"ClaudeOpus4_7`
+
+                  Frontier intelligence for long-running agents and coding
+
+                - `"claude-mythos-preview"ClaudeMythosPreview`
+
+                  New class of intelligence, strongest in coding and cybersecurity
+
+                - `"claude-opus-4-6"ClaudeOpus4_6`
+
+                  Frontier intelligence for long-running agents and coding
+
+                - `"claude-sonnet-4-6"ClaudeSonnet4_6`
+
+                  Best combination of speed and intelligence
+
+                - `"claude-haiku-4-5"ClaudeHaiku4_5`
+
+                  Fastest model with near-frontier intelligence
+
+                - `"claude-haiku-4-5-20251001"ClaudeHaiku4_5_20251001`
+
+                  Fastest model with near-frontier intelligence
+
+                - `"claude-opus-4-5"ClaudeOpus4_5`
+
+                  Premium model combining maximum intelligence with practical performance
+
+                - `"claude-opus-4-5-20251101"ClaudeOpus4_5_20251101`
+
+                  Premium model combining maximum intelligence with practical performance
+
+                - `"claude-sonnet-4-5"ClaudeSonnet4_5`
+
+                  High-performance model for agents and coding
+
+                - `"claude-sonnet-4-5-20250929"ClaudeSonnet4_5_20250929`
+
+                  High-performance model for agents and coding
+
+                - `"claude-opus-4-1"ClaudeOpus4_1`
+
+                  Exceptional model for specialized complex tasks
+
+                - `"claude-opus-4-1-20250805"ClaudeOpus4_1_20250805`
+
+                  Exceptional model for specialized complex tasks
+
+                - `"claude-opus-4-0"ClaudeOpus4_0`
+
+                  Powerful model for complex tasks
+
+                - `"claude-opus-4-20250514"ClaudeOpus4_20250514`
+
+                  Powerful model for complex tasks
+
+                - `"claude-sonnet-4-0"ClaudeSonnet4_0`
+
+                  High-performance model with extended thinking
+
+                - `"claude-sonnet-4-20250514"ClaudeSonnet4_20250514`
+
+                  High-performance model with extended thinking
+
+                - `"claude-3-haiku-20240307"Claude_3_Haiku_20240307`
+
+                  Fast and cost-effective model
+
+            - `required BetaFallbackInfo To`
+
+              The fallback model producing the content that follows this block. Its `model` is always the canonical id.
+
+            - `JsonElement Type "fallback"constant`
+
         - `required BetaContextManagementResponse? ContextManagement`
 
           Context management response.
@@ -29716,78 +32514,6 @@ await foreach (var betaMessageBatchIndividualResponse in client.Beta.Messages.Ba
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-          - `"claude-opus-4-8"ClaudeOpus4_8`
-
-            Frontier intelligence for long-running agents and coding
-
-          - `"claude-opus-4-7"ClaudeOpus4_7`
-
-            Frontier intelligence for long-running agents and coding
-
-          - `"claude-mythos-preview"ClaudeMythosPreview`
-
-            New class of intelligence, strongest in coding and cybersecurity
-
-          - `"claude-opus-4-6"ClaudeOpus4_6`
-
-            Frontier intelligence for long-running agents and coding
-
-          - `"claude-sonnet-4-6"ClaudeSonnet4_6`
-
-            Best combination of speed and intelligence
-
-          - `"claude-haiku-4-5"ClaudeHaiku4_5`
-
-            Fastest model with near-frontier intelligence
-
-          - `"claude-haiku-4-5-20251001"ClaudeHaiku4_5_20251001`
-
-            Fastest model with near-frontier intelligence
-
-          - `"claude-opus-4-5"ClaudeOpus4_5`
-
-            Premium model combining maximum intelligence with practical performance
-
-          - `"claude-opus-4-5-20251101"ClaudeOpus4_5_20251101`
-
-            Premium model combining maximum intelligence with practical performance
-
-          - `"claude-sonnet-4-5"ClaudeSonnet4_5`
-
-            High-performance model for agents and coding
-
-          - `"claude-sonnet-4-5-20250929"ClaudeSonnet4_5_20250929`
-
-            High-performance model for agents and coding
-
-          - `"claude-opus-4-1"ClaudeOpus4_1`
-
-            Exceptional model for specialized complex tasks
-
-          - `"claude-opus-4-1-20250805"ClaudeOpus4_1_20250805`
-
-            Exceptional model for specialized complex tasks
-
-          - `"claude-opus-4-0"ClaudeOpus4_0`
-
-            Powerful model for complex tasks
-
-          - `"claude-opus-4-20250514"ClaudeOpus4_20250514`
-
-            Powerful model for complex tasks
-
-          - `"claude-sonnet-4-0"ClaudeSonnet4_0`
-
-            High-performance model with extended thinking
-
-          - `"claude-sonnet-4-20250514"ClaudeSonnet4_20250514`
-
-            High-performance model with extended thinking
-
-          - `"claude-3-haiku-20240307"Claude_3_Haiku_20240307`
-
-            Fast and cost-effective model
-
         - `JsonElement Role "assistant"constant`
 
           Conversational role of the generated message.
@@ -29808,11 +32534,62 @@ await foreach (var betaMessageBatchIndividualResponse in client.Beta.Messages.Ba
 
             - `"bio"Bio`
 
+            - `"reasoning_extraction"ReasoningExtraction`
+
           - `required string? Explanation`
 
             Human-readable explanation of the refusal.
 
             This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+          - `required string? FallbackCreditToken`
+
+            Opaque code that refunds the cache-miss cost when retrying this refused
+            request on the fallback model. Pass it as `fallback_credit_token` on the
+            retry request. Expires 5 minutes after the refusal.
+
+            The retry is sent either with the same request body (`system`, `messages`,
+            `tools`, and other render-shaping fields), or with the same body plus one
+            appended `assistant` message whose content is the partial text (with any
+            trailing whitespace stripped from the final text block) and paired
+            server-tool blocks from this refusal — which also authorizes that
+            appended turn as an assistant-prefill continuation on models that otherwise
+            disallow prefill. A token minted mid-server-tool-loop whose partial content
+            was continuable may only be redeemed the second way — if a same-body retry
+            is rejected with a 400 saying the token must be redeemed by continuing the
+            partial response, retry the second way instead. Either way: same workspace,
+            same platform; a mismatch is a 400. Resending a token for an already-warm
+            prefix is permitted but yields no additional credit.
+
+            `null` when the refused model isn't eligible for a fallback credit.
+
+          - `required Boolean? FallbackHasPrefillClaim`
+
+            Whether the accompanying `fallback_credit_token` may be redeemed with the
+            appended-assistant retry form. Only set when `fallback_credit_token` is
+            present.
+
+            `true`: retry by resending the same request body plus one appended
+            `assistant` message whose content is this response's `content` with any
+            trailing whitespace stripped from the final text block and unpaired
+            `tool_use` blocks omitted (the same appended-turn shape described on
+            `fallback_credit_token`), with the token attached. `false`: retry by
+            resending the original request body unchanged, with the token attached —
+            the appended-assistant form is not available for this refusal (no
+            continuable partial content, or the request uses `output_format` or a
+            `tool_choice` that forces tool use). One exception: when the request used
+            `output_format` or a forced `tool_choice` and the refusal arrived after
+            server tools (including MCP connector tools) had already executed, the
+            token may not be redeemable by either retry form; if the exact-body retry
+            is then rejected with a 400 saying the token must be redeemed by
+            continuing the partial response, discard the token and retry without it.
+
+            Advisory: if an appended-assistant retry is rejected with a 400 despite
+            `true`, fall back to resending the original request body with the token.
+
+          - `required string? RecommendedModel`
+
+            The server's suggested retry target for this refusal. Populated when a fallback attempt could not be made (the fallback model's rate limit was exhausted, or it was overloaded); names the fallback model the caller can retry directly. Null otherwise.
 
           - `JsonElement Type "refusal"constant`
 
@@ -29929,6 +32706,12 @@ await foreach (var betaMessageBatchIndividualResponse in client.Beta.Messages.Ba
 
                 The number of input tokens which were used.
 
+              - `required Model Model`
+
+                The model that will complete your prompt.
+
+                See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
               - `required Long OutputTokens`
 
                 The number of output tokens which were used.
@@ -29998,6 +32781,45 @@ await foreach (var betaMessageBatchIndividualResponse in client.Beta.Messages.Ba
               - `JsonElement Type "advisor_message"constant`
 
                 Usage for an advisor sub-inference iteration
+
+            - `class BetaFallbackMessageIterationUsage:`
+
+              Token usage for the fallback-model attempt of a server-side fallback request.
+
+              Produced in place of a `message` entry for whichever hop served the
+              response. A declined hop produces the existing `message` entry. Whether
+              a fallback model served the response is signalled by the presence of this
+              entry in `usage.iterations`.
+
+              - `required BetaCacheCreation? CacheCreation`
+
+                Breakdown of cached tokens by TTL
+
+              - `required Long CacheCreationInputTokens`
+
+                The number of input tokens used to create the cache entry.
+
+              - `required Long CacheReadInputTokens`
+
+                The number of input tokens read from the cache.
+
+              - `required Long InputTokens`
+
+                The number of input tokens which were used.
+
+              - `required Model Model`
+
+                The model that will complete your prompt.
+
+                See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+              - `required Long OutputTokens`
+
+                The number of output tokens which were used.
+
+              - `JsonElement Type "fallback_message"constant`
+
+                Usage for the fallback-model attempt that served the response
 
           - `required Long OutputTokens`
 
@@ -30602,6 +33424,8 @@ await foreach (var betaMessageBatchIndividualResponse in client.Beta.Messages.Ba
 
                 - `"execution_time_exceeded"ExecutionTimeExceeded`
 
+                - `"model_not_found"ModelNotFound`
+
               - `JsonElement Type "advisor_tool_result_error"constant`
 
             - `class BetaAdvisorResultBlock:`
@@ -30894,6 +33718,116 @@ await foreach (var betaMessageBatchIndividualResponse in client.Beta.Messages.Ba
 
           - `JsonElement Type "compaction"constant`
 
+        - `class BetaFallbackBlock:`
+
+          Marks the point in `content` where one model's output gives way to the next.
+
+          One block appears per hop where a preceding model actually ran this turn and
+          declined. A turn routed directly by the sticky decision has no such boundary
+          and carries no block — the signal for whether a fallback model served the
+          response is the presence of a `fallback_message` entry in
+          `usage.iterations`, not this block.
+
+          The block is treated like a server-tool content block for streaming: it
+          arrives via the standard `content_block_start` / `content_block_stop`
+          pair and carries no deltas.
+
+          - `required BetaFallbackInfo From`
+
+            The model whose output ends at this point — the model that declined at this hop. When the declining hop is the requested model, its `model` echoes the top-level `model` string the caller sent (alias or canonical); when the declining hop is a fallback model, its `model` is that model's canonical id.
+
+            - `required Model Model`
+
+              The model that will complete your prompt.
+
+              See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+              - `"claude-fable-5"ClaudeFable5`
+
+                Next generation of intelligence for the hardest knowledge work and coding problems
+
+              - `"claude-mythos-5"ClaudeMythos5`
+
+                Most capable model for cybersecurity and biology research
+
+              - `"claude-opus-4-8"ClaudeOpus4_8`
+
+                Frontier intelligence for long-running agents and coding
+
+              - `"claude-opus-4-7"ClaudeOpus4_7`
+
+                Frontier intelligence for long-running agents and coding
+
+              - `"claude-mythos-preview"ClaudeMythosPreview`
+
+                New class of intelligence, strongest in coding and cybersecurity
+
+              - `"claude-opus-4-6"ClaudeOpus4_6`
+
+                Frontier intelligence for long-running agents and coding
+
+              - `"claude-sonnet-4-6"ClaudeSonnet4_6`
+
+                Best combination of speed and intelligence
+
+              - `"claude-haiku-4-5"ClaudeHaiku4_5`
+
+                Fastest model with near-frontier intelligence
+
+              - `"claude-haiku-4-5-20251001"ClaudeHaiku4_5_20251001`
+
+                Fastest model with near-frontier intelligence
+
+              - `"claude-opus-4-5"ClaudeOpus4_5`
+
+                Premium model combining maximum intelligence with practical performance
+
+              - `"claude-opus-4-5-20251101"ClaudeOpus4_5_20251101`
+
+                Premium model combining maximum intelligence with practical performance
+
+              - `"claude-sonnet-4-5"ClaudeSonnet4_5`
+
+                High-performance model for agents and coding
+
+              - `"claude-sonnet-4-5-20250929"ClaudeSonnet4_5_20250929`
+
+                High-performance model for agents and coding
+
+              - `"claude-opus-4-1"ClaudeOpus4_1`
+
+                Exceptional model for specialized complex tasks
+
+              - `"claude-opus-4-1-20250805"ClaudeOpus4_1_20250805`
+
+                Exceptional model for specialized complex tasks
+
+              - `"claude-opus-4-0"ClaudeOpus4_0`
+
+                Powerful model for complex tasks
+
+              - `"claude-opus-4-20250514"ClaudeOpus4_20250514`
+
+                Powerful model for complex tasks
+
+              - `"claude-sonnet-4-0"ClaudeSonnet4_0`
+
+                High-performance model with extended thinking
+
+              - `"claude-sonnet-4-20250514"ClaudeSonnet4_20250514`
+
+                High-performance model with extended thinking
+
+              - `"claude-3-haiku-20240307"Claude_3_Haiku_20240307`
+
+                Fast and cost-effective model
+
+          - `required BetaFallbackInfo To`
+
+            The fallback model producing the content that follows this block. Its `model` is always the canonical id.
+
+          - `JsonElement Type "fallback"constant`
+
       - `required BetaContextManagementResponse? ContextManagement`
 
         Context management response.
@@ -30987,78 +33921,6 @@ await foreach (var betaMessageBatchIndividualResponse in client.Beta.Messages.Ba
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-        - `"claude-opus-4-8"ClaudeOpus4_8`
-
-          Frontier intelligence for long-running agents and coding
-
-        - `"claude-opus-4-7"ClaudeOpus4_7`
-
-          Frontier intelligence for long-running agents and coding
-
-        - `"claude-mythos-preview"ClaudeMythosPreview`
-
-          New class of intelligence, strongest in coding and cybersecurity
-
-        - `"claude-opus-4-6"ClaudeOpus4_6`
-
-          Frontier intelligence for long-running agents and coding
-
-        - `"claude-sonnet-4-6"ClaudeSonnet4_6`
-
-          Best combination of speed and intelligence
-
-        - `"claude-haiku-4-5"ClaudeHaiku4_5`
-
-          Fastest model with near-frontier intelligence
-
-        - `"claude-haiku-4-5-20251001"ClaudeHaiku4_5_20251001`
-
-          Fastest model with near-frontier intelligence
-
-        - `"claude-opus-4-5"ClaudeOpus4_5`
-
-          Premium model combining maximum intelligence with practical performance
-
-        - `"claude-opus-4-5-20251101"ClaudeOpus4_5_20251101`
-
-          Premium model combining maximum intelligence with practical performance
-
-        - `"claude-sonnet-4-5"ClaudeSonnet4_5`
-
-          High-performance model for agents and coding
-
-        - `"claude-sonnet-4-5-20250929"ClaudeSonnet4_5_20250929`
-
-          High-performance model for agents and coding
-
-        - `"claude-opus-4-1"ClaudeOpus4_1`
-
-          Exceptional model for specialized complex tasks
-
-        - `"claude-opus-4-1-20250805"ClaudeOpus4_1_20250805`
-
-          Exceptional model for specialized complex tasks
-
-        - `"claude-opus-4-0"ClaudeOpus4_0`
-
-          Powerful model for complex tasks
-
-        - `"claude-opus-4-20250514"ClaudeOpus4_20250514`
-
-          Powerful model for complex tasks
-
-        - `"claude-sonnet-4-0"ClaudeSonnet4_0`
-
-          High-performance model with extended thinking
-
-        - `"claude-sonnet-4-20250514"ClaudeSonnet4_20250514`
-
-          High-performance model with extended thinking
-
-        - `"claude-3-haiku-20240307"Claude_3_Haiku_20240307`
-
-          Fast and cost-effective model
-
       - `JsonElement Role "assistant"constant`
 
         Conversational role of the generated message.
@@ -31079,11 +33941,62 @@ await foreach (var betaMessageBatchIndividualResponse in client.Beta.Messages.Ba
 
           - `"bio"Bio`
 
+          - `"reasoning_extraction"ReasoningExtraction`
+
         - `required string? Explanation`
 
           Human-readable explanation of the refusal.
 
           This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+        - `required string? FallbackCreditToken`
+
+          Opaque code that refunds the cache-miss cost when retrying this refused
+          request on the fallback model. Pass it as `fallback_credit_token` on the
+          retry request. Expires 5 minutes after the refusal.
+
+          The retry is sent either with the same request body (`system`, `messages`,
+          `tools`, and other render-shaping fields), or with the same body plus one
+          appended `assistant` message whose content is the partial text (with any
+          trailing whitespace stripped from the final text block) and paired
+          server-tool blocks from this refusal — which also authorizes that
+          appended turn as an assistant-prefill continuation on models that otherwise
+          disallow prefill. A token minted mid-server-tool-loop whose partial content
+          was continuable may only be redeemed the second way — if a same-body retry
+          is rejected with a 400 saying the token must be redeemed by continuing the
+          partial response, retry the second way instead. Either way: same workspace,
+          same platform; a mismatch is a 400. Resending a token for an already-warm
+          prefix is permitted but yields no additional credit.
+
+          `null` when the refused model isn't eligible for a fallback credit.
+
+        - `required Boolean? FallbackHasPrefillClaim`
+
+          Whether the accompanying `fallback_credit_token` may be redeemed with the
+          appended-assistant retry form. Only set when `fallback_credit_token` is
+          present.
+
+          `true`: retry by resending the same request body plus one appended
+          `assistant` message whose content is this response's `content` with any
+          trailing whitespace stripped from the final text block and unpaired
+          `tool_use` blocks omitted (the same appended-turn shape described on
+          `fallback_credit_token`), with the token attached. `false`: retry by
+          resending the original request body unchanged, with the token attached —
+          the appended-assistant form is not available for this refusal (no
+          continuable partial content, or the request uses `output_format` or a
+          `tool_choice` that forces tool use). One exception: when the request used
+          `output_format` or a forced `tool_choice` and the refusal arrived after
+          server tools (including MCP connector tools) had already executed, the
+          token may not be redeemable by either retry form; if the exact-body retry
+          is then rejected with a 400 saying the token must be redeemed by
+          continuing the partial response, discard the token and retry without it.
+
+          Advisory: if an appended-assistant retry is rejected with a 400 despite
+          `true`, fall back to resending the original request body with the token.
+
+        - `required string? RecommendedModel`
+
+          The server's suggested retry target for this refusal. Populated when a fallback attempt could not be made (the fallback model's rate limit was exhausted, or it was overloaded); names the fallback model the caller can retry directly. Null otherwise.
 
         - `JsonElement Type "refusal"constant`
 
@@ -31200,6 +34113,12 @@ await foreach (var betaMessageBatchIndividualResponse in client.Beta.Messages.Ba
 
               The number of input tokens which were used.
 
+            - `required Model Model`
+
+              The model that will complete your prompt.
+
+              See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
             - `required Long OutputTokens`
 
               The number of output tokens which were used.
@@ -31269,6 +34188,45 @@ await foreach (var betaMessageBatchIndividualResponse in client.Beta.Messages.Ba
             - `JsonElement Type "advisor_message"constant`
 
               Usage for an advisor sub-inference iteration
+
+          - `class BetaFallbackMessageIterationUsage:`
+
+            Token usage for the fallback-model attempt of a server-side fallback request.
+
+            Produced in place of a `message` entry for whichever hop served the
+            response. A declined hop produces the existing `message` entry. Whether
+            a fallback model served the response is signalled by the presence of this
+            entry in `usage.iterations`.
+
+            - `required BetaCacheCreation? CacheCreation`
+
+              Breakdown of cached tokens by TTL
+
+            - `required Long CacheCreationInputTokens`
+
+              The number of input tokens used to create the cache entry.
+
+            - `required Long CacheReadInputTokens`
+
+              The number of input tokens read from the cache.
+
+            - `required Long InputTokens`
+
+              The number of input tokens which were used.
+
+            - `required Model Model`
+
+              The model that will complete your prompt.
+
+              See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `required Long OutputTokens`
+
+              The number of output tokens which were used.
+
+            - `JsonElement Type "fallback_message"constant`
+
+              Usage for the fallback-model attempt that served the response
 
         - `required Long OutputTokens`
 
@@ -31835,6 +34793,8 @@ await foreach (var betaMessageBatchIndividualResponse in client.Beta.Messages.Ba
 
               - `"execution_time_exceeded"ExecutionTimeExceeded`
 
+              - `"model_not_found"ModelNotFound`
+
             - `JsonElement Type "advisor_tool_result_error"constant`
 
           - `class BetaAdvisorResultBlock:`
@@ -32127,6 +35087,116 @@ await foreach (var betaMessageBatchIndividualResponse in client.Beta.Messages.Ba
 
         - `JsonElement Type "compaction"constant`
 
+      - `class BetaFallbackBlock:`
+
+        Marks the point in `content` where one model's output gives way to the next.
+
+        One block appears per hop where a preceding model actually ran this turn and
+        declined. A turn routed directly by the sticky decision has no such boundary
+        and carries no block — the signal for whether a fallback model served the
+        response is the presence of a `fallback_message` entry in
+        `usage.iterations`, not this block.
+
+        The block is treated like a server-tool content block for streaming: it
+        arrives via the standard `content_block_start` / `content_block_stop`
+        pair and carries no deltas.
+
+        - `required BetaFallbackInfo From`
+
+          The model whose output ends at this point — the model that declined at this hop. When the declining hop is the requested model, its `model` echoes the top-level `model` string the caller sent (alias or canonical); when the declining hop is a fallback model, its `model` is that model's canonical id.
+
+          - `required Model Model`
+
+            The model that will complete your prompt.
+
+            See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `"claude-fable-5"ClaudeFable5`
+
+              Next generation of intelligence for the hardest knowledge work and coding problems
+
+            - `"claude-mythos-5"ClaudeMythos5`
+
+              Most capable model for cybersecurity and biology research
+
+            - `"claude-opus-4-8"ClaudeOpus4_8`
+
+              Frontier intelligence for long-running agents and coding
+
+            - `"claude-opus-4-7"ClaudeOpus4_7`
+
+              Frontier intelligence for long-running agents and coding
+
+            - `"claude-mythos-preview"ClaudeMythosPreview`
+
+              New class of intelligence, strongest in coding and cybersecurity
+
+            - `"claude-opus-4-6"ClaudeOpus4_6`
+
+              Frontier intelligence for long-running agents and coding
+
+            - `"claude-sonnet-4-6"ClaudeSonnet4_6`
+
+              Best combination of speed and intelligence
+
+            - `"claude-haiku-4-5"ClaudeHaiku4_5`
+
+              Fastest model with near-frontier intelligence
+
+            - `"claude-haiku-4-5-20251001"ClaudeHaiku4_5_20251001`
+
+              Fastest model with near-frontier intelligence
+
+            - `"claude-opus-4-5"ClaudeOpus4_5`
+
+              Premium model combining maximum intelligence with practical performance
+
+            - `"claude-opus-4-5-20251101"ClaudeOpus4_5_20251101`
+
+              Premium model combining maximum intelligence with practical performance
+
+            - `"claude-sonnet-4-5"ClaudeSonnet4_5`
+
+              High-performance model for agents and coding
+
+            - `"claude-sonnet-4-5-20250929"ClaudeSonnet4_5_20250929`
+
+              High-performance model for agents and coding
+
+            - `"claude-opus-4-1"ClaudeOpus4_1`
+
+              Exceptional model for specialized complex tasks
+
+            - `"claude-opus-4-1-20250805"ClaudeOpus4_1_20250805`
+
+              Exceptional model for specialized complex tasks
+
+            - `"claude-opus-4-0"ClaudeOpus4_0`
+
+              Powerful model for complex tasks
+
+            - `"claude-opus-4-20250514"ClaudeOpus4_20250514`
+
+              Powerful model for complex tasks
+
+            - `"claude-sonnet-4-0"ClaudeSonnet4_0`
+
+              High-performance model with extended thinking
+
+            - `"claude-sonnet-4-20250514"ClaudeSonnet4_20250514`
+
+              High-performance model with extended thinking
+
+            - `"claude-3-haiku-20240307"Claude_3_Haiku_20240307`
+
+              Fast and cost-effective model
+
+        - `required BetaFallbackInfo To`
+
+          The fallback model producing the content that follows this block. Its `model` is always the canonical id.
+
+        - `JsonElement Type "fallback"constant`
+
     - `required BetaContextManagementResponse? ContextManagement`
 
       Context management response.
@@ -32220,78 +35290,6 @@ await foreach (var betaMessageBatchIndividualResponse in client.Beta.Messages.Ba
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `"claude-opus-4-8"ClaudeOpus4_8`
-
-        Frontier intelligence for long-running agents and coding
-
-      - `"claude-opus-4-7"ClaudeOpus4_7`
-
-        Frontier intelligence for long-running agents and coding
-
-      - `"claude-mythos-preview"ClaudeMythosPreview`
-
-        New class of intelligence, strongest in coding and cybersecurity
-
-      - `"claude-opus-4-6"ClaudeOpus4_6`
-
-        Frontier intelligence for long-running agents and coding
-
-      - `"claude-sonnet-4-6"ClaudeSonnet4_6`
-
-        Best combination of speed and intelligence
-
-      - `"claude-haiku-4-5"ClaudeHaiku4_5`
-
-        Fastest model with near-frontier intelligence
-
-      - `"claude-haiku-4-5-20251001"ClaudeHaiku4_5_20251001`
-
-        Fastest model with near-frontier intelligence
-
-      - `"claude-opus-4-5"ClaudeOpus4_5`
-
-        Premium model combining maximum intelligence with practical performance
-
-      - `"claude-opus-4-5-20251101"ClaudeOpus4_5_20251101`
-
-        Premium model combining maximum intelligence with practical performance
-
-      - `"claude-sonnet-4-5"ClaudeSonnet4_5`
-
-        High-performance model for agents and coding
-
-      - `"claude-sonnet-4-5-20250929"ClaudeSonnet4_5_20250929`
-
-        High-performance model for agents and coding
-
-      - `"claude-opus-4-1"ClaudeOpus4_1`
-
-        Exceptional model for specialized complex tasks
-
-      - `"claude-opus-4-1-20250805"ClaudeOpus4_1_20250805`
-
-        Exceptional model for specialized complex tasks
-
-      - `"claude-opus-4-0"ClaudeOpus4_0`
-
-        Powerful model for complex tasks
-
-      - `"claude-opus-4-20250514"ClaudeOpus4_20250514`
-
-        Powerful model for complex tasks
-
-      - `"claude-sonnet-4-0"ClaudeSonnet4_0`
-
-        High-performance model with extended thinking
-
-      - `"claude-sonnet-4-20250514"ClaudeSonnet4_20250514`
-
-        High-performance model with extended thinking
-
-      - `"claude-3-haiku-20240307"Claude_3_Haiku_20240307`
-
-        Fast and cost-effective model
-
     - `JsonElement Role "assistant"constant`
 
       Conversational role of the generated message.
@@ -32312,11 +35310,62 @@ await foreach (var betaMessageBatchIndividualResponse in client.Beta.Messages.Ba
 
         - `"bio"Bio`
 
+        - `"reasoning_extraction"ReasoningExtraction`
+
       - `required string? Explanation`
 
         Human-readable explanation of the refusal.
 
         This text is not guaranteed to be stable. `null` when no explanation is available for the category.
+
+      - `required string? FallbackCreditToken`
+
+        Opaque code that refunds the cache-miss cost when retrying this refused
+        request on the fallback model. Pass it as `fallback_credit_token` on the
+        retry request. Expires 5 minutes after the refusal.
+
+        The retry is sent either with the same request body (`system`, `messages`,
+        `tools`, and other render-shaping fields), or with the same body plus one
+        appended `assistant` message whose content is the partial text (with any
+        trailing whitespace stripped from the final text block) and paired
+        server-tool blocks from this refusal — which also authorizes that
+        appended turn as an assistant-prefill continuation on models that otherwise
+        disallow prefill. A token minted mid-server-tool-loop whose partial content
+        was continuable may only be redeemed the second way — if a same-body retry
+        is rejected with a 400 saying the token must be redeemed by continuing the
+        partial response, retry the second way instead. Either way: same workspace,
+        same platform; a mismatch is a 400. Resending a token for an already-warm
+        prefix is permitted but yields no additional credit.
+
+        `null` when the refused model isn't eligible for a fallback credit.
+
+      - `required Boolean? FallbackHasPrefillClaim`
+
+        Whether the accompanying `fallback_credit_token` may be redeemed with the
+        appended-assistant retry form. Only set when `fallback_credit_token` is
+        present.
+
+        `true`: retry by resending the same request body plus one appended
+        `assistant` message whose content is this response's `content` with any
+        trailing whitespace stripped from the final text block and unpaired
+        `tool_use` blocks omitted (the same appended-turn shape described on
+        `fallback_credit_token`), with the token attached. `false`: retry by
+        resending the original request body unchanged, with the token attached —
+        the appended-assistant form is not available for this refusal (no
+        continuable partial content, or the request uses `output_format` or a
+        `tool_choice` that forces tool use). One exception: when the request used
+        `output_format` or a forced `tool_choice` and the refusal arrived after
+        server tools (including MCP connector tools) had already executed, the
+        token may not be redeemable by either retry form; if the exact-body retry
+        is then rejected with a 400 saying the token must be redeemed by
+        continuing the partial response, discard the token and retry without it.
+
+        Advisory: if an appended-assistant retry is rejected with a 400 despite
+        `true`, fall back to resending the original request body with the token.
+
+      - `required string? RecommendedModel`
+
+        The server's suggested retry target for this refusal. Populated when a fallback attempt could not be made (the fallback model's rate limit was exhausted, or it was overloaded); names the fallback model the caller can retry directly. Null otherwise.
 
       - `JsonElement Type "refusal"constant`
 
@@ -32433,6 +35482,12 @@ await foreach (var betaMessageBatchIndividualResponse in client.Beta.Messages.Ba
 
             The number of input tokens which were used.
 
+          - `required Model Model`
+
+            The model that will complete your prompt.
+
+            See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
           - `required Long OutputTokens`
 
             The number of output tokens which were used.
@@ -32502,6 +35557,45 @@ await foreach (var betaMessageBatchIndividualResponse in client.Beta.Messages.Ba
           - `JsonElement Type "advisor_message"constant`
 
             Usage for an advisor sub-inference iteration
+
+        - `class BetaFallbackMessageIterationUsage:`
+
+          Token usage for the fallback-model attempt of a server-side fallback request.
+
+          Produced in place of a `message` entry for whichever hop served the
+          response. A declined hop produces the existing `message` entry. Whether
+          a fallback model served the response is signalled by the presence of this
+          entry in `usage.iterations`.
+
+          - `required BetaCacheCreation? CacheCreation`
+
+            Breakdown of cached tokens by TTL
+
+          - `required Long CacheCreationInputTokens`
+
+            The number of input tokens used to create the cache entry.
+
+          - `required Long CacheReadInputTokens`
+
+            The number of input tokens read from the cache.
+
+          - `required Long InputTokens`
+
+            The number of input tokens which were used.
+
+          - `required Model Model`
+
+            The model that will complete your prompt.
+
+            See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `required Long OutputTokens`
+
+            The number of output tokens which were used.
+
+          - `JsonElement Type "fallback_message"constant`
+
+            Usage for the fallback-model attempt that served the response
 
       - `required Long OutputTokens`
 
@@ -32583,6 +35677,10 @@ Create Agent
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+      - `"claude-fable-5"ClaudeFable5`
+
+        Next generation of intelligence for the hardest knowledge work and coding problems
+
       - `"claude-opus-4-8"ClaudeOpus4_8`
 
         Frontier intelligence for long-running agents and coding
@@ -32632,6 +35730,10 @@ Create Agent
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-fable-5"ClaudeFable5`
+
+          Next generation of intelligence for the hardest knowledge work and coding problems
 
         - `"claude-opus-4-8"ClaudeOpus4_8`
 
@@ -32683,11 +35785,11 @@ Create Agent
 
   - `required string name`
 
-    Body param: Human-readable name for the agent. 1-256 characters.
+    Body param: Human-readable name for the agent.
 
   - `string? description`
 
-    Body param: Description of what the agent does. Up to 2048 characters.
+    Body param: Description of what the agent does.
 
   - `IReadOnlyList<BetaManagedAgentsUrlMcpServerParams> mcpServers`
 
@@ -32715,7 +35817,7 @@ Create Agent
 
   - `IReadOnlyList<BetaManagedAgentsSkillParams> skills`
 
-    Body param: Skills available to the agent. Maximum 20.
+    Body param: Skills available to the agent.
 
     - `class BetaManagedAgentsAnthropicSkillParams:`
 
@@ -32751,7 +35853,7 @@ Create Agent
 
   - `string? system`
 
-    Body param: System prompt for the agent. Up to 100,000 characters.
+    Body param: System prompt for the agent.
 
   - `IReadOnlyList<Tool> tools`
 
@@ -32901,19 +36003,11 @@ Create Agent
 
         JSON Schema for custom tool input parameters.
 
+        - `JsonElement Type "object"constant`
+
         - `IReadOnlyDictionary<string, JsonElement>? Properties`
 
-          JSON Schema properties defining the tool's input parameters.
-
-        - `IReadOnlyList<string> Required`
-
-          List of required property names.
-
-        - `Type Type`
-
-          Must be 'object' for tool input schemas.
-
-          - `"object"Object`
+        - `IReadOnlyList<string>? Required`
 
       - `required string Name`
 
@@ -32979,6 +36073,10 @@ Create Agent
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Returns
 
 - `class BetaManagedAgentsAgent:`
@@ -33018,6 +36116,10 @@ Create Agent
       The model that will power your agent.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `"claude-fable-5"ClaudeFable5`
+
+        Next generation of intelligence for the hardest knowledge work and coding problems
 
       - `"claude-opus-4-8"ClaudeOpus4_8`
 
@@ -33241,19 +36343,11 @@ Create Agent
 
         JSON Schema for custom tool input parameters.
 
+        - `JsonElement Type "object"constant`
+
         - `IReadOnlyDictionary<string, JsonElement>? Properties`
 
-          JSON Schema properties defining the tool's input parameters.
-
-        - `IReadOnlyList<string> Required`
-
-          List of required property names.
-
-        - `Type Type`
-
-          Must be 'object' for tool input schemas.
-
-          - `"object"Object`
+        - `IReadOnlyList<string>? Required`
 
       - `required string Name`
 
@@ -33447,13 +36541,17 @@ List Agents
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Returns
 
 - `class AgentListPageResponse:`
 
   Paginated list of agents.
 
-  - `IReadOnlyList<BetaManagedAgentsAgent> Data`
+  - `required IReadOnlyList<BetaManagedAgentsAgent> Data`
 
     List of agents.
 
@@ -33490,6 +36588,10 @@ List Agents
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-fable-5"ClaudeFable5`
+
+          Next generation of intelligence for the hardest knowledge work and coding problems
 
         - `"claude-opus-4-8"ClaudeOpus4_8`
 
@@ -33713,19 +36815,11 @@ List Agents
 
           JSON Schema for custom tool input parameters.
 
+          - `JsonElement Type "object"constant`
+
           - `IReadOnlyDictionary<string, JsonElement>? Properties`
 
-            JSON Schema properties defining the tool's input parameters.
-
-          - `IReadOnlyList<string> Required`
-
-            List of required property names.
-
-          - `Type Type`
-
-            Must be 'object' for tool input schemas.
-
-            - `"object"Object`
+          - `IReadOnlyList<string>? Required`
 
         - `required string Name`
 
@@ -33914,6 +37008,10 @@ Get Agent
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Returns
 
 - `class BetaManagedAgentsAgent:`
@@ -33953,6 +37051,10 @@ Get Agent
       The model that will power your agent.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `"claude-fable-5"ClaudeFable5`
+
+        Next generation of intelligence for the hardest knowledge work and coding problems
 
       - `"claude-opus-4-8"ClaudeOpus4_8`
 
@@ -34176,19 +37278,11 @@ Get Agent
 
         JSON Schema for custom tool input parameters.
 
+        - `JsonElement Type "object"constant`
+
         - `IReadOnlyDictionary<string, JsonElement>? Properties`
 
-          JSON Schema properties defining the tool's input parameters.
-
-        - `IReadOnlyList<string> Required`
-
-          List of required property names.
-
-        - `Type Type`
-
-          Must be 'object' for tool input schemas.
-
-          - `"object"Object`
+        - `IReadOnlyList<string>? Required`
 
       - `required string Name`
 
@@ -34315,7 +37409,7 @@ Update Agent
 
   - `string? description`
 
-    Body param: Description. Up to 2048 characters. Omit to preserve; send empty string or null to clear.
+    Body param: Description. Omit to preserve; send empty string or null to clear.
 
   - `IReadOnlyList<BetaManagedAgentsUrlMcpServerParams>? mcpServers`
 
@@ -34346,6 +37440,10 @@ Update Agent
       The model that will power your agent.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `"claude-fable-5"ClaudeFable5`
+
+        Next generation of intelligence for the hardest knowledge work and coding problems
 
       - `"claude-opus-4-8"ClaudeOpus4_8`
 
@@ -34396,6 +37494,10 @@ Update Agent
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-fable-5"ClaudeFable5`
+
+          Next generation of intelligence for the hardest knowledge work and coding problems
 
         - `"claude-opus-4-8"ClaudeOpus4_8`
 
@@ -34451,11 +37553,11 @@ Update Agent
 
   - `string name`
 
-    Body param: Human-readable name. 1-256 characters. Omit to preserve. Cannot be cleared.
+    Body param: Human-readable name. Must be non-empty. Omit to preserve. Cannot be cleared.
 
   - `IReadOnlyList<BetaManagedAgentsSkillParams>? skills`
 
-    Body param: Skills. Full replacement. Omit to preserve; send empty array or null to clear. Maximum 20.
+    Body param: Skills. Full replacement. Omit to preserve; send empty array or null to clear.
 
     - `class BetaManagedAgentsAnthropicSkillParams:`
 
@@ -34491,7 +37593,7 @@ Update Agent
 
   - `string? system`
 
-    Body param: System prompt. Up to 100,000 characters. Omit to preserve; send empty string or null to clear.
+    Body param: System prompt. Omit to preserve; send empty string or null to clear.
 
   - `IReadOnlyList<Tool>? tools`
 
@@ -34641,19 +37743,11 @@ Update Agent
 
         JSON Schema for custom tool input parameters.
 
+        - `JsonElement Type "object"constant`
+
         - `IReadOnlyDictionary<string, JsonElement>? Properties`
 
-          JSON Schema properties defining the tool's input parameters.
-
-        - `IReadOnlyList<string> Required`
-
-          List of required property names.
-
-        - `Type Type`
-
-          Must be 'object' for tool input schemas.
-
-          - `"object"Object`
+        - `IReadOnlyList<string>? Required`
 
       - `required string Name`
 
@@ -34719,6 +37813,10 @@ Update Agent
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Returns
 
 - `class BetaManagedAgentsAgent:`
@@ -34758,6 +37856,10 @@ Update Agent
       The model that will power your agent.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `"claude-fable-5"ClaudeFable5`
+
+        Next generation of intelligence for the hardest knowledge work and coding problems
 
       - `"claude-opus-4-8"ClaudeOpus4_8`
 
@@ -34981,19 +38083,11 @@ Update Agent
 
         JSON Schema for custom tool input parameters.
 
+        - `JsonElement Type "object"constant`
+
         - `IReadOnlyDictionary<string, JsonElement>? Properties`
 
-          JSON Schema properties defining the tool's input parameters.
-
-        - `IReadOnlyList<string> Required`
-
-          List of required property names.
-
-        - `Type Type`
-
-          Must be 'object' for tool input schemas.
-
-          - `"object"Object`
+        - `IReadOnlyList<string>? Required`
 
       - `required string Name`
 
@@ -35171,6 +38265,10 @@ Archive Agent
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Returns
 
 - `class BetaManagedAgentsAgent:`
@@ -35210,6 +38308,10 @@ Archive Agent
       The model that will power your agent.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `"claude-fable-5"ClaudeFable5`
+
+        Next generation of intelligence for the hardest knowledge work and coding problems
 
       - `"claude-opus-4-8"ClaudeOpus4_8`
 
@@ -35433,19 +38535,11 @@ Archive Agent
 
         JSON Schema for custom tool input parameters.
 
+        - `JsonElement Type "object"constant`
+
         - `IReadOnlyDictionary<string, JsonElement>? Properties`
 
-          JSON Schema properties defining the tool's input parameters.
-
-        - `IReadOnlyList<string> Required`
-
-          List of required property names.
-
-        - `Type Type`
-
-          Must be 'object' for tool input schemas.
-
-          - `"object"Object`
+        - `IReadOnlyList<string>? Required`
 
       - `required string Name`
 
@@ -35592,6 +38686,10 @@ Console.WriteLine(betaManagedAgentsAgent);
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+      - `"claude-fable-5"ClaudeFable5`
+
+        Next generation of intelligence for the hardest knowledge work and coding problems
+
       - `"claude-opus-4-8"ClaudeOpus4_8`
 
         Frontier intelligence for long-running agents and coding
@@ -35814,19 +38912,11 @@ Console.WriteLine(betaManagedAgentsAgent);
 
         JSON Schema for custom tool input parameters.
 
+        - `JsonElement Type "object"constant`
+
         - `IReadOnlyDictionary<string, JsonElement>? Properties`
 
-          JSON Schema properties defining the tool's input parameters.
-
-        - `IReadOnlyList<string> Required`
-
-          List of required property names.
-
-        - `Type Type`
-
-          Must be 'object' for tool input schemas.
-
-          - `"object"Object`
+        - `IReadOnlyList<string>? Required`
 
       - `required string Name`
 
@@ -36376,19 +39466,11 @@ Console.WriteLine(betaManagedAgentsAgent);
 
     JSON Schema for custom tool input parameters.
 
+    - `JsonElement Type "object"constant`
+
     - `IReadOnlyDictionary<string, JsonElement>? Properties`
 
-      JSON Schema properties defining the tool's input parameters.
-
-    - `IReadOnlyList<string> Required`
-
-      List of required property names.
-
-    - `Type Type`
-
-      Must be 'object' for tool input schemas.
-
-      - `"object"Object`
+    - `IReadOnlyList<string>? Required`
 
   - `required string Name`
 
@@ -36402,19 +39484,11 @@ Console.WriteLine(betaManagedAgentsAgent);
 
   JSON Schema for custom tool input parameters.
 
+  - `JsonElement Type "object"constant`
+
   - `IReadOnlyDictionary<string, JsonElement>? Properties`
 
-    JSON Schema properties defining the tool's input parameters.
-
-  - `IReadOnlyList<string> Required`
-
-    List of required property names.
-
-  - `Type Type`
-
-    Must be 'object' for tool input schemas.
-
-    - `"object"Object`
+  - `IReadOnlyList<string>? Required`
 
 ### Beta Managed Agents Custom Tool Params
 
@@ -36430,19 +39504,11 @@ Console.WriteLine(betaManagedAgentsAgent);
 
     JSON Schema for custom tool input parameters.
 
+    - `JsonElement Type "object"constant`
+
     - `IReadOnlyDictionary<string, JsonElement>? Properties`
 
-      JSON Schema properties defining the tool's input parameters.
-
-    - `IReadOnlyList<string> Required`
-
-      List of required property names.
-
-    - `Type Type`
-
-      Must be 'object' for tool input schemas.
-
-      - `"object"Object`
+    - `IReadOnlyList<string>? Required`
 
   - `required string Name`
 
@@ -36720,6 +39786,10 @@ Console.WriteLine(betaManagedAgentsAgent);
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+    - `"claude-fable-5"ClaudeFable5`
+
+      Next generation of intelligence for the hardest knowledge work and coding problems
+
     - `"claude-opus-4-8"ClaudeOpus4_8`
 
       Frontier intelligence for long-running agents and coding
@@ -36779,6 +39849,10 @@ Console.WriteLine(betaManagedAgentsAgent);
     The model that will power your agent.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+    - `"claude-fable-5"ClaudeFable5`
+
+      Next generation of intelligence for the hardest knowledge work and coding problems
 
     - `"claude-opus-4-8"ClaudeOpus4_8`
 
@@ -36929,6 +40003,10 @@ Console.WriteLine(betaManagedAgentsAgent);
       The model that will power your agent.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `"claude-fable-5"ClaudeFable5`
+
+        Next generation of intelligence for the hardest knowledge work and coding problems
 
       - `"claude-opus-4-8"ClaudeOpus4_8`
 
@@ -37132,19 +40210,11 @@ Console.WriteLine(betaManagedAgentsAgent);
 
         JSON Schema for custom tool input parameters.
 
+        - `JsonElement Type "object"constant`
+
         - `IReadOnlyDictionary<string, JsonElement>? Properties`
 
-          JSON Schema properties defining the tool's input parameters.
-
-        - `IReadOnlyList<string> Required`
-
-          List of required property names.
-
-        - `Type Type`
-
-          Must be 'object' for tool input schemas.
-
-          - `"object"Object`
+        - `IReadOnlyList<string>? Required`
 
       - `required string Name`
 
@@ -37296,13 +40366,17 @@ List Agent Versions
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Returns
 
 - `class VersionListPageResponse:`
 
   Paginated list of agent versions.
 
-  - `IReadOnlyList<BetaManagedAgentsAgent> Data`
+  - `required IReadOnlyList<BetaManagedAgentsAgent> Data`
 
     Agent versions.
 
@@ -37339,6 +40413,10 @@ List Agent Versions
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-fable-5"ClaudeFable5`
+
+          Next generation of intelligence for the hardest knowledge work and coding problems
 
         - `"claude-opus-4-8"ClaudeOpus4_8`
 
@@ -37562,19 +40640,11 @@ List Agent Versions
 
           JSON Schema for custom tool input parameters.
 
+          - `JsonElement Type "object"constant`
+
           - `IReadOnlyDictionary<string, JsonElement>? Properties`
 
-            JSON Schema properties defining the tool's input parameters.
-
-          - `IReadOnlyList<string> Required`
-
-            List of required property names.
-
-          - `Type Type`
-
-            Must be 'object' for tool input schemas.
-
-            - `"object"Object`
+          - `IReadOnlyList<string>? Required`
 
         - `required string Name`
 
@@ -37874,6 +40944,10 @@ Create a new environment with the specified configuration.
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Returns
 
 - `class BetaEnvironment:`
@@ -38144,6 +41218,10 @@ List environments with pagination support.
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 
@@ -38423,6 +41501,10 @@ Retrieve a specific environment by ID.
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 
@@ -38804,6 +41886,10 @@ Update an existing environment's configuration.
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Returns
 
 - `class BetaEnvironment:`
@@ -39068,6 +42154,10 @@ Delete an environment by ID. Returns a confirmation of the deletion.
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Returns
 
 - `class BetaEnvironmentDeleteResponse:`
@@ -39173,6 +42263,10 @@ Archive an environment by ID. Archived environments cannot be used to create new
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 
@@ -39907,6 +43001,10 @@ Retrieve detailed information about a specific work item.
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Returns
 
 - `class BetaSelfHostedWork:`
@@ -40103,6 +43201,10 @@ Long poll for work items in the queue.
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
   - `string anthropicWorkerID`
 
     Header param: Unique identifier for the specific worker polling, used to track aggregated environment-level work metrics in Console
@@ -40297,6 +43399,10 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 
@@ -40498,6 +43604,10 @@ Record a heartbeat for a work item to maintain the lease.
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Returns
 
 - `class BetaSelfHostedWorkHeartbeatResponse:`
@@ -40641,6 +43751,10 @@ Stop a work item, initiating graceful or forced shutdown.
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 
@@ -40837,6 +43951,10 @@ List work items in an environment.
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 
@@ -41044,6 +44162,10 @@ Update work item metadata with merge semantics.
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Returns
 
 - `class BetaSelfHostedWork:`
@@ -41228,6 +44350,10 @@ Get statistics about the work queue for an environment.
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 
@@ -41737,6 +44863,10 @@ Create Session
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Returns
 
 - `class BetaManagedAgentsSession:`
@@ -41772,6 +44902,10 @@ Create Session
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-fable-5"ClaudeFable5`
+
+          Next generation of intelligence for the hardest knowledge work and coding problems
 
         - `"claude-opus-4-8"ClaudeOpus4_8`
 
@@ -41999,19 +45133,11 @@ Create Session
 
               JSON Schema for custom tool input parameters.
 
+              - `JsonElement Type "object"constant`
+
               - `IReadOnlyDictionary<string, JsonElement>? Properties`
 
-                JSON Schema properties defining the tool's input parameters.
-
-              - `IReadOnlyList<string> Required`
-
-                List of required property names.
-
-              - `Type Type`
-
-                Must be 'object' for tool input schemas.
-
-                - `"object"Object`
+              - `IReadOnlyList<string>? Required`
 
             - `required string Name`
 
@@ -42269,6 +45395,10 @@ Create Session
 
     Vault IDs attached to the session at creation. Empty when no vaults were supplied.
 
+  - `string? DeploymentID`
+
+    Deployment ID when the session was created from a deployment reference. Null otherwise.
+
 ### Example
 
 ```csharp
@@ -42446,7 +45576,8 @@ Console.WriteLine(betaManagedAgentsSession);
   },
   "vault_ids": [
     "vlt_011CZkZDLs7fYzm1hXNPeRjv"
-  ]
+  ],
+  "deployment_id": "deployment_id"
 }
 ```
 
@@ -42486,6 +45617,10 @@ List Sessions
 
     Query param: Return sessions created at or before this time (inclusive).
 
+  - `string deploymentID`
+
+    Query param: Filter sessions created by this deployment ID.
+
   - `Boolean includeArchived`
 
     Query param: When true, includes archived sessions. Default: false (exclude archived).
@@ -42508,7 +45643,7 @@ List Sessions
 
   - `string page`
 
-    Query param: Opaque pagination cursor from a previous response's next_page.
+    Query param: Opaque pagination cursor from a previous response.
 
   - `IReadOnlyList<Status> statuses`
 
@@ -42578,6 +45713,10 @@ List Sessions
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Returns
 
 - `class SessionListPageResponse:`
@@ -42617,6 +45756,10 @@ List Sessions
           The model that will power your agent.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `"claude-fable-5"ClaudeFable5`
+
+            Next generation of intelligence for the hardest knowledge work and coding problems
 
           - `"claude-opus-4-8"ClaudeOpus4_8`
 
@@ -42844,19 +45987,11 @@ List Sessions
 
                 JSON Schema for custom tool input parameters.
 
+                - `JsonElement Type "object"constant`
+
                 - `IReadOnlyDictionary<string, JsonElement>? Properties`
 
-                  JSON Schema properties defining the tool's input parameters.
-
-                - `IReadOnlyList<string> Required`
-
-                  List of required property names.
-
-                - `Type Type`
-
-                  Must be 'object' for tool input schemas.
-
-                  - `"object"Object`
+                - `IReadOnlyList<string>? Required`
 
               - `required string Name`
 
@@ -43114,6 +46249,10 @@ List Sessions
 
       Vault IDs attached to the session at creation. Empty when no vaults were supplied.
 
+    - `string? DeploymentID`
+
+      Deployment ID when the session was created from a deployment reference. Null otherwise.
+
   - `string? NextPage`
 
     Opaque cursor for the next page. Null when no more results.
@@ -43295,7 +46434,8 @@ await foreach (var item in page.Paginate())
       },
       "vault_ids": [
         "vlt_011CZkZDLs7fYzm1hXNPeRjv"
-      ]
+      ],
+      "deployment_id": "deployment_id"
     }
   ],
   "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="
@@ -43374,6 +46514,10 @@ Get Session
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Returns
 
 - `class BetaManagedAgentsSession:`
@@ -43409,6 +46553,10 @@ Get Session
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-fable-5"ClaudeFable5`
+
+          Next generation of intelligence for the hardest knowledge work and coding problems
 
         - `"claude-opus-4-8"ClaudeOpus4_8`
 
@@ -43636,19 +46784,11 @@ Get Session
 
               JSON Schema for custom tool input parameters.
 
+              - `JsonElement Type "object"constant`
+
               - `IReadOnlyDictionary<string, JsonElement>? Properties`
 
-                JSON Schema properties defining the tool's input parameters.
-
-              - `IReadOnlyList<string> Required`
-
-                List of required property names.
-
-              - `Type Type`
-
-                Must be 'object' for tool input schemas.
-
-                - `"object"Object`
+              - `IReadOnlyList<string>? Required`
 
             - `required string Name`
 
@@ -43905,6 +47045,10 @@ Get Session
   - `required IReadOnlyList<string> VaultIds`
 
     Vault IDs attached to the session at creation. Empty when no vaults were supplied.
+
+  - `string? DeploymentID`
+
+    Deployment ID when the session was created from a deployment reference. Null otherwise.
 
 ### Example
 
@@ -44082,7 +47226,8 @@ Console.WriteLine(betaManagedAgentsSession);
   },
   "vault_ids": [
     "vlt_011CZkZDLs7fYzm1hXNPeRjv"
-  ]
+  ],
+  "deployment_id": "deployment_id"
 }
 ```
 
@@ -44174,6 +47319,10 @@ Update Session
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Returns
 
 - `class BetaManagedAgentsSession:`
@@ -44209,6 +47358,10 @@ Update Session
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-fable-5"ClaudeFable5`
+
+          Next generation of intelligence for the hardest knowledge work and coding problems
 
         - `"claude-opus-4-8"ClaudeOpus4_8`
 
@@ -44436,19 +47589,11 @@ Update Session
 
               JSON Schema for custom tool input parameters.
 
+              - `JsonElement Type "object"constant`
+
               - `IReadOnlyDictionary<string, JsonElement>? Properties`
 
-                JSON Schema properties defining the tool's input parameters.
-
-              - `IReadOnlyList<string> Required`
-
-                List of required property names.
-
-              - `Type Type`
-
-                Must be 'object' for tool input schemas.
-
-                - `"object"Object`
+              - `IReadOnlyList<string>? Required`
 
             - `required string Name`
 
@@ -44705,6 +47850,10 @@ Update Session
   - `required IReadOnlyList<string> VaultIds`
 
     Vault IDs attached to the session at creation. Empty when no vaults were supplied.
+
+  - `string? DeploymentID`
+
+    Deployment ID when the session was created from a deployment reference. Null otherwise.
 
 ### Example
 
@@ -44882,7 +48031,8 @@ Console.WriteLine(betaManagedAgentsSession);
   },
   "vault_ids": [
     "vlt_011CZkZDLs7fYzm1hXNPeRjv"
-  ]
+  ],
+  "deployment_id": "deployment_id"
 }
 ```
 
@@ -44957,6 +48107,10 @@ Delete Session
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 
@@ -45064,6 +48218,10 @@ Archive Session
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Returns
 
 - `class BetaManagedAgentsSession:`
@@ -45099,6 +48257,10 @@ Archive Session
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-fable-5"ClaudeFable5`
+
+          Next generation of intelligence for the hardest knowledge work and coding problems
 
         - `"claude-opus-4-8"ClaudeOpus4_8`
 
@@ -45326,19 +48488,11 @@ Archive Session
 
               JSON Schema for custom tool input parameters.
 
+              - `JsonElement Type "object"constant`
+
               - `IReadOnlyDictionary<string, JsonElement>? Properties`
 
-                JSON Schema properties defining the tool's input parameters.
-
-              - `IReadOnlyList<string> Required`
-
-                List of required property names.
-
-              - `Type Type`
-
-                Must be 'object' for tool input schemas.
-
-                - `"object"Object`
+              - `IReadOnlyList<string>? Required`
 
             - `required string Name`
 
@@ -45596,6 +48750,10 @@ Archive Session
 
     Vault IDs attached to the session at creation. Empty when no vaults were supplied.
 
+  - `string? DeploymentID`
+
+    Deployment ID when the session was created from a deployment reference. Null otherwise.
+
 ### Example
 
 ```csharp
@@ -45772,7 +48930,8 @@ Console.WriteLine(betaManagedAgentsSession);
   },
   "vault_ids": [
     "vlt_011CZkZDLs7fYzm1hXNPeRjv"
-  ]
+  ],
+  "deployment_id": "deployment_id"
 }
 ```
 
@@ -46100,6 +49259,10 @@ Console.WriteLine(betaManagedAgentsSession);
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+        - `"claude-fable-5"ClaudeFable5`
+
+          Next generation of intelligence for the hardest knowledge work and coding problems
+
         - `"claude-opus-4-8"ClaudeOpus4_8`
 
           Frontier intelligence for long-running agents and coding
@@ -46326,19 +49489,11 @@ Console.WriteLine(betaManagedAgentsSession);
 
               JSON Schema for custom tool input parameters.
 
+              - `JsonElement Type "object"constant`
+
               - `IReadOnlyDictionary<string, JsonElement>? Properties`
 
-                JSON Schema properties defining the tool's input parameters.
-
-              - `IReadOnlyList<string> Required`
-
-                List of required property names.
-
-              - `Type Type`
-
-                Must be 'object' for tool input schemas.
-
-                - `"object"Object`
+              - `IReadOnlyList<string>? Required`
 
             - `required string Name`
 
@@ -46596,6 +49751,10 @@ Console.WriteLine(betaManagedAgentsSession);
 
     Vault IDs attached to the session at creation. Empty when no vaults were supplied.
 
+  - `string? DeploymentID`
+
+    Deployment ID when the session was created from a deployment reference. Null otherwise.
+
 ### Beta Managed Agents Session Agent
 
 - `class BetaManagedAgentsSessionAgent:`
@@ -46625,6 +49784,10 @@ Console.WriteLine(betaManagedAgentsSession);
       The model that will power your agent.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `"claude-fable-5"ClaudeFable5`
+
+        Next generation of intelligence for the hardest knowledge work and coding problems
 
       - `"claude-opus-4-8"ClaudeOpus4_8`
 
@@ -46852,19 +50015,11 @@ Console.WriteLine(betaManagedAgentsSession);
 
             JSON Schema for custom tool input parameters.
 
+            - `JsonElement Type "object"constant`
+
             - `IReadOnlyDictionary<string, JsonElement>? Properties`
 
-              JSON Schema properties defining the tool's input parameters.
-
-            - `IReadOnlyList<string> Required`
-
-              List of required property names.
-
-            - `Type Type`
-
-              Must be 'object' for tool input schemas.
-
-              - `"object"Object`
+            - `IReadOnlyList<string>? Required`
 
           - `required string Name`
 
@@ -47082,19 +50237,11 @@ Console.WriteLine(betaManagedAgentsSession);
 
         JSON Schema for custom tool input parameters.
 
+        - `JsonElement Type "object"constant`
+
         - `IReadOnlyDictionary<string, JsonElement>? Properties`
 
-          JSON Schema properties defining the tool's input parameters.
-
-        - `IReadOnlyList<string> Required`
-
-          List of required property names.
-
-        - `Type Type`
-
-          Must be 'object' for tool input schemas.
-
-          - `"object"Object`
+        - `IReadOnlyList<string>? Required`
 
       - `required string Name`
 
@@ -47137,6 +50284,10 @@ Console.WriteLine(betaManagedAgentsSession);
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-fable-5"ClaudeFable5`
+
+          Next generation of intelligence for the hardest knowledge work and coding problems
 
         - `"claude-opus-4-8"ClaudeOpus4_8`
 
@@ -47340,19 +50491,11 @@ Console.WriteLine(betaManagedAgentsSession);
 
           JSON Schema for custom tool input parameters.
 
+          - `JsonElement Type "object"constant`
+
           - `IReadOnlyDictionary<string, JsonElement>? Properties`
 
-            JSON Schema properties defining the tool's input parameters.
-
-          - `IReadOnlyList<string> Required`
-
-            List of required property names.
-
-          - `Type Type`
-
-            Must be 'object' for tool input schemas.
-
-            - `"object"Object`
+          - `IReadOnlyList<string>? Required`
 
         - `required string Name`
 
@@ -47429,6 +50572,10 @@ Console.WriteLine(betaManagedAgentsSession);
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-fable-5"ClaudeFable5`
+
+          Next generation of intelligence for the hardest knowledge work and coding problems
 
         - `"claude-opus-4-8"ClaudeOpus4_8`
 
@@ -47656,19 +50803,11 @@ Console.WriteLine(betaManagedAgentsSession);
 
               JSON Schema for custom tool input parameters.
 
+              - `JsonElement Type "object"constant`
+
               - `IReadOnlyDictionary<string, JsonElement>? Properties`
 
-                JSON Schema properties defining the tool's input parameters.
-
-              - `IReadOnlyList<string> Required`
-
-                List of required property names.
-
-              - `Type Type`
-
-                Must be 'object' for tool input schemas.
-
-                - `"object"Object`
+              - `IReadOnlyList<string>? Required`
 
             - `required string Name`
 
@@ -47753,6 +50892,50 @@ Console.WriteLine(betaManagedAgentsSession);
   - `Int OutputTokens`
 
     Total output tokens generated across all turns.
+
+### Beta Managed Agents System Content Block
+
+- `class BetaManagedAgentsSystemContentBlock:`
+
+  Regular text content.
+
+  - `required string Text`
+
+    The text content.
+
+  - `required Type Type`
+
+    - `"text"Text`
+
+### Beta Managed Agents System Message Event
+
+- `class BetaManagedAgentsSystemMessageEvent:`
+
+  A mid-conversation system message event. Carries system-role content that is appended to the session as a `role: "system"` turn.
+
+  - `required string ID`
+
+    Unique identifier for this event.
+
+  - `required IReadOnlyList<BetaManagedAgentsSystemContentBlock> Content`
+
+    System content blocks. Text-only.
+
+    - `required string Text`
+
+      The text content.
+
+    - `required Type Type`
+
+      - `"text"Text`
+
+  - `required Type Type`
+
+    - `"system.message"SystemMessage`
+
+  - `DateTimeOffset? ProcessedAt`
+
+    A timestamp in RFC 3339 format
 
 ### Beta Managed Agents User Tool Result Event
 
@@ -48075,6 +51258,10 @@ List Events
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 
@@ -48946,6 +52133,42 @@ List Events
 
             - `"billing_error"BillingError`
 
+        - `class BetaManagedAgentsCredentialHostUnreachableError:`
+
+          An `environment_variable` credential's `auth.networking.allowed_hosts` includes a host the environment's network policy does not permit.
+
+          - `required string CredentialID`
+
+            ID of the affected credential.
+
+          - `required string Message`
+
+            Human-readable error description.
+
+          - `required RetryStatus RetryStatus`
+
+            What the client should do next in response to this error.
+
+            - `class BetaManagedAgentsRetryStatusRetrying:`
+
+              The server is retrying automatically. Client should wait; the same error type may fire again as retrying, then once as exhausted when the retry budget runs out.
+
+            - `class BetaManagedAgentsRetryStatusExhausted:`
+
+              This turn is dead; queued inputs are flushed and the session returns to idle. Client may send a new prompt.
+
+            - `class BetaManagedAgentsRetryStatusTerminal:`
+
+              The session encountered a terminal error and will transition to `terminated` state.
+
+          - `required Type Type`
+
+            - `"credential_host_unreachable_error"CredentialHostUnreachableError`
+
+          - `required string VaultID`
+
+            ID of the vault containing the affected credential.
+
       - `required DateTimeOffset ProcessedAt`
 
         A timestamp in RFC 3339 format
@@ -49506,6 +52729,10 @@ List Events
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+            - `"claude-fable-5"ClaudeFable5`
+
+              Next generation of intelligence for the hardest knowledge work and coding problems
+
             - `"claude-opus-4-8"ClaudeOpus4_8`
 
               Frontier intelligence for long-running agents and coding
@@ -49732,19 +52959,11 @@ List Events
 
                   JSON Schema for custom tool input parameters.
 
+                  - `JsonElement Type "object"constant`
+
                   - `IReadOnlyDictionary<string, JsonElement>? Properties`
 
-                    JSON Schema properties defining the tool's input parameters.
-
-                  - `IReadOnlyList<string> Required`
-
-                    List of required property names.
-
-                  - `Type Type`
-
-                    Must be 'object' for tool input schemas.
-
-                    - `"object"Object`
+                  - `IReadOnlyList<string>? Required`
 
                 - `required string Name`
 
@@ -49799,6 +53018,34 @@ List Events
       - `string? Title`
 
         The session's new title. Present only when the update changed it.
+
+    - `class BetaManagedAgentsSystemMessageEvent:`
+
+      A mid-conversation system message event. Carries system-role content that is appended to the session as a `role: "system"` turn.
+
+      - `required string ID`
+
+        Unique identifier for this event.
+
+      - `required IReadOnlyList<BetaManagedAgentsSystemContentBlock> Content`
+
+        System content blocks. Text-only.
+
+        - `required string Text`
+
+          The text content.
+
+        - `required Type Type`
+
+          - `"text"Text`
+
+      - `required Type Type`
+
+        - `"system.message"SystemMessage`
+
+      - `DateTimeOffset? ProcessedAt`
+
+        A timestamp in RFC 3339 format
 
   - `string? NextPage`
 
@@ -50209,6 +53456,26 @@ Send Events
 
         Whether the tool execution resulted in an error.
 
+    - `class BetaManagedAgentsSystemMessageEventParams:`
+
+      Privileged context for the accompanying turn and all subsequent turns, appended to the session's system context as a `role: "system"` turn rather than replacing the top-level system prompt. At most one per request: it must be the final event and immediately follow the `user.message`, `user.tool_result`, or `user.custom_tool_result` it accompanies. Only supported on models that accept mid-conversation system messages.
+
+      - `required IReadOnlyList<BetaManagedAgentsSystemContentBlock> Content`
+
+        System content blocks to append. Text-only.
+
+        - `required string Text`
+
+          The text content.
+
+        - `required Type Type`
+
+          - `"text"Text`
+
+      - `required Type Type`
+
+        - `"system.message"SystemMessage`
+
   - `IReadOnlyList<AnthropicBeta> betas`
 
     Header param: Optional header to specify the beta version(s) you want to use.
@@ -50264,6 +53531,10 @@ Send Events
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 
@@ -50677,6 +53948,34 @@ Send Events
 
         Routes this result to a subagent thread. Copy from the `agent.tool_use` event's `session_thread_id`.
 
+    - `class BetaManagedAgentsSystemMessageEvent:`
+
+      A mid-conversation system message event. Carries system-role content that is appended to the session as a `role: "system"` turn.
+
+      - `required string ID`
+
+        Unique identifier for this event.
+
+      - `required IReadOnlyList<BetaManagedAgentsSystemContentBlock> Content`
+
+        System content blocks. Text-only.
+
+        - `required string Text`
+
+          The text content.
+
+        - `required Type Type`
+
+          - `"text"Text`
+
+      - `required Type Type`
+
+        - `"system.message"SystemMessage`
+
+      - `DateTimeOffset? ProcessedAt`
+
+        A timestamp in RFC 3339 format
+
 ### Example
 
 ```csharp
@@ -50796,6 +54095,10 @@ Stream Events
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 
@@ -51663,6 +54966,42 @@ Stream Events
 
           - `"billing_error"BillingError`
 
+      - `class BetaManagedAgentsCredentialHostUnreachableError:`
+
+        An `environment_variable` credential's `auth.networking.allowed_hosts` includes a host the environment's network policy does not permit.
+
+        - `required string CredentialID`
+
+          ID of the affected credential.
+
+        - `required string Message`
+
+          Human-readable error description.
+
+        - `required RetryStatus RetryStatus`
+
+          What the client should do next in response to this error.
+
+          - `class BetaManagedAgentsRetryStatusRetrying:`
+
+            The server is retrying automatically. Client should wait; the same error type may fire again as retrying, then once as exhausted when the retry budget runs out.
+
+          - `class BetaManagedAgentsRetryStatusExhausted:`
+
+            This turn is dead; queued inputs are flushed and the session returns to idle. Client may send a new prompt.
+
+          - `class BetaManagedAgentsRetryStatusTerminal:`
+
+            The session encountered a terminal error and will transition to `terminated` state.
+
+        - `required Type Type`
+
+          - `"credential_host_unreachable_error"CredentialHostUnreachableError`
+
+        - `required string VaultID`
+
+          ID of the vault containing the affected credential.
+
     - `required DateTimeOffset ProcessedAt`
 
       A timestamp in RFC 3339 format
@@ -52223,6 +55562,10 @@ Stream Events
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `"claude-fable-5"ClaudeFable5`
+
+            Next generation of intelligence for the hardest knowledge work and coding problems
+
           - `"claude-opus-4-8"ClaudeOpus4_8`
 
             Frontier intelligence for long-running agents and coding
@@ -52449,19 +55792,11 @@ Stream Events
 
                 JSON Schema for custom tool input parameters.
 
+                - `JsonElement Type "object"constant`
+
                 - `IReadOnlyDictionary<string, JsonElement>? Properties`
 
-                  JSON Schema properties defining the tool's input parameters.
-
-                - `IReadOnlyList<string> Required`
-
-                  List of required property names.
-
-                - `Type Type`
-
-                  Must be 'object' for tool input schemas.
-
-                  - `"object"Object`
+                - `IReadOnlyList<string>? Required`
 
               - `required string Name`
 
@@ -52516,6 +55851,34 @@ Stream Events
     - `string? Title`
 
       The session's new title. Present only when the update changed it.
+
+  - `class BetaManagedAgentsSystemMessageEvent:`
+
+    A mid-conversation system message event. Carries system-role content that is appended to the session as a `role: "system"` turn.
+
+    - `required string ID`
+
+      Unique identifier for this event.
+
+    - `required IReadOnlyList<BetaManagedAgentsSystemContentBlock> Content`
+
+      System content blocks. Text-only.
+
+      - `required string Text`
+
+        The text content.
+
+      - `required Type Type`
+
+        - `"text"Text`
+
+    - `required Type Type`
+
+      - `"system.message"SystemMessage`
+
+    - `DateTimeOffset? ProcessedAt`
+
+      A timestamp in RFC 3339 format
 
 ### Example
 
@@ -53567,6 +56930,56 @@ await foreach (var betaManagedAgentsStreamSessionEvents in client.Beta.Sessions.
 
     - `"billing_error"BillingError`
 
+### Beta Managed Agents Credential Host Unreachable Error
+
+- `class BetaManagedAgentsCredentialHostUnreachableError:`
+
+  An `environment_variable` credential's `auth.networking.allowed_hosts` includes a host the environment's network policy does not permit.
+
+  - `required string CredentialID`
+
+    ID of the affected credential.
+
+  - `required string Message`
+
+    Human-readable error description.
+
+  - `required RetryStatus RetryStatus`
+
+    What the client should do next in response to this error.
+
+    - `class BetaManagedAgentsRetryStatusRetrying:`
+
+      The server is retrying automatically. Client should wait; the same error type may fire again as retrying, then once as exhausted when the retry budget runs out.
+
+      - `required Type Type`
+
+        - `"retrying"Retrying`
+
+    - `class BetaManagedAgentsRetryStatusExhausted:`
+
+      This turn is dead; queued inputs are flushed and the session returns to idle. Client may send a new prompt.
+
+      - `required Type Type`
+
+        - `"exhausted"Exhausted`
+
+    - `class BetaManagedAgentsRetryStatusTerminal:`
+
+      The session encountered a terminal error and will transition to `terminated` state.
+
+      - `required Type Type`
+
+        - `"terminal"Terminal`
+
+  - `required Type Type`
+
+    - `"credential_host_unreachable_error"CredentialHostUnreachableError`
+
+  - `required string VaultID`
+
+    ID of the vault containing the affected credential.
+
 ### Beta Managed Agents Document Block
 
 - `class BetaManagedAgentsDocumentBlock:`
@@ -53990,6 +57403,26 @@ await foreach (var betaManagedAgentsStreamSessionEvents in client.Beta.Sessions.
     - `Boolean? IsError`
 
       Whether the tool execution resulted in an error.
+
+  - `class BetaManagedAgentsSystemMessageEventParams:`
+
+    Privileged context for the accompanying turn and all subsequent turns, appended to the session's system context as a `role: "system"` turn rather than replacing the top-level system prompt. At most one per request: it must be the final event and immediately follow the `user.message`, `user.tool_result`, or `user.custom_tool_result` it accompanies. Only supported on models that accept mid-conversation system messages.
+
+    - `required IReadOnlyList<BetaManagedAgentsSystemContentBlock> Content`
+
+      System content blocks to append. Text-only.
+
+      - `required string Text`
+
+        The text content.
+
+      - `required Type Type`
+
+        - `"text"Text`
+
+    - `required Type Type`
+
+      - `"system.message"SystemMessage`
 
 ### Beta Managed Agents File Document Source
 
@@ -54843,6 +58276,34 @@ await foreach (var betaManagedAgentsStreamSessionEvents in client.Beta.Sessions.
 
         Routes this result to a subagent thread. Copy from the `agent.tool_use` event's `session_thread_id`.
 
+    - `class BetaManagedAgentsSystemMessageEvent:`
+
+      A mid-conversation system message event. Carries system-role content that is appended to the session as a `role: "system"` turn.
+
+      - `required string ID`
+
+        Unique identifier for this event.
+
+      - `required IReadOnlyList<BetaManagedAgentsSystemContentBlock> Content`
+
+        System content blocks. Text-only.
+
+        - `required string Text`
+
+          The text content.
+
+        - `required Type Type`
+
+          - `"text"Text`
+
+      - `required Type Type`
+
+        - `"system.message"SystemMessage`
+
+      - `DateTimeOffset? ProcessedAt`
+
+        A timestamp in RFC 3339 format
+
 ### Beta Managed Agents Session Deleted Event
 
 - `class BetaManagedAgentsSessionDeletedEvent:`
@@ -55100,6 +58561,42 @@ await foreach (var betaManagedAgentsStreamSessionEvents in client.Beta.Sessions.
       - `required Type Type`
 
         - `"billing_error"BillingError`
+
+    - `class BetaManagedAgentsCredentialHostUnreachableError:`
+
+      An `environment_variable` credential's `auth.networking.allowed_hosts` includes a host the environment's network policy does not permit.
+
+      - `required string CredentialID`
+
+        ID of the affected credential.
+
+      - `required string Message`
+
+        Human-readable error description.
+
+      - `required RetryStatus RetryStatus`
+
+        What the client should do next in response to this error.
+
+        - `class BetaManagedAgentsRetryStatusRetrying:`
+
+          The server is retrying automatically. Client should wait; the same error type may fire again as retrying, then once as exhausted when the retry budget runs out.
+
+        - `class BetaManagedAgentsRetryStatusExhausted:`
+
+          This turn is dead; queued inputs are flushed and the session returns to idle. Client may send a new prompt.
+
+        - `class BetaManagedAgentsRetryStatusTerminal:`
+
+          The session encountered a terminal error and will transition to `terminated` state.
+
+      - `required Type Type`
+
+        - `"credential_host_unreachable_error"CredentialHostUnreachableError`
+
+      - `required string VaultID`
+
+        ID of the vault containing the affected credential.
 
   - `required DateTimeOffset ProcessedAt`
 
@@ -55975,6 +59472,42 @@ await foreach (var betaManagedAgentsStreamSessionEvents in client.Beta.Sessions.
 
           - `"billing_error"BillingError`
 
+      - `class BetaManagedAgentsCredentialHostUnreachableError:`
+
+        An `environment_variable` credential's `auth.networking.allowed_hosts` includes a host the environment's network policy does not permit.
+
+        - `required string CredentialID`
+
+          ID of the affected credential.
+
+        - `required string Message`
+
+          Human-readable error description.
+
+        - `required RetryStatus RetryStatus`
+
+          What the client should do next in response to this error.
+
+          - `class BetaManagedAgentsRetryStatusRetrying:`
+
+            The server is retrying automatically. Client should wait; the same error type may fire again as retrying, then once as exhausted when the retry budget runs out.
+
+          - `class BetaManagedAgentsRetryStatusExhausted:`
+
+            This turn is dead; queued inputs are flushed and the session returns to idle. Client may send a new prompt.
+
+          - `class BetaManagedAgentsRetryStatusTerminal:`
+
+            The session encountered a terminal error and will transition to `terminated` state.
+
+        - `required Type Type`
+
+          - `"credential_host_unreachable_error"CredentialHostUnreachableError`
+
+        - `required string VaultID`
+
+          ID of the vault containing the affected credential.
+
     - `required DateTimeOffset ProcessedAt`
 
       A timestamp in RFC 3339 format
@@ -56535,6 +60068,10 @@ await foreach (var betaManagedAgentsStreamSessionEvents in client.Beta.Sessions.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `"claude-fable-5"ClaudeFable5`
+
+            Next generation of intelligence for the hardest knowledge work and coding problems
+
           - `"claude-opus-4-8"ClaudeOpus4_8`
 
             Frontier intelligence for long-running agents and coding
@@ -56761,19 +60298,11 @@ await foreach (var betaManagedAgentsStreamSessionEvents in client.Beta.Sessions.
 
                 JSON Schema for custom tool input parameters.
 
+                - `JsonElement Type "object"constant`
+
                 - `IReadOnlyDictionary<string, JsonElement>? Properties`
 
-                  JSON Schema properties defining the tool's input parameters.
-
-                - `IReadOnlyList<string> Required`
-
-                  List of required property names.
-
-                - `Type Type`
-
-                  Must be 'object' for tool input schemas.
-
-                  - `"object"Object`
+                - `IReadOnlyList<string>? Required`
 
               - `required string Name`
 
@@ -56828,6 +60357,34 @@ await foreach (var betaManagedAgentsStreamSessionEvents in client.Beta.Sessions.
     - `string? Title`
 
       The session's new title. Present only when the update changed it.
+
+  - `class BetaManagedAgentsSystemMessageEvent:`
+
+    A mid-conversation system message event. Carries system-role content that is appended to the session as a `role: "system"` turn.
+
+    - `required string ID`
+
+      Unique identifier for this event.
+
+    - `required IReadOnlyList<BetaManagedAgentsSystemContentBlock> Content`
+
+      System content blocks. Text-only.
+
+      - `required string Text`
+
+        The text content.
+
+      - `required Type Type`
+
+        - `"text"Text`
+
+    - `required Type Type`
+
+      - `"system.message"SystemMessage`
+
+    - `DateTimeOffset? ProcessedAt`
+
+      A timestamp in RFC 3339 format
 
 ### Beta Managed Agents Session Requires Action
 
@@ -58205,6 +61762,42 @@ await foreach (var betaManagedAgentsStreamSessionEvents in client.Beta.Sessions.
 
           - `"billing_error"BillingError`
 
+      - `class BetaManagedAgentsCredentialHostUnreachableError:`
+
+        An `environment_variable` credential's `auth.networking.allowed_hosts` includes a host the environment's network policy does not permit.
+
+        - `required string CredentialID`
+
+          ID of the affected credential.
+
+        - `required string Message`
+
+          Human-readable error description.
+
+        - `required RetryStatus RetryStatus`
+
+          What the client should do next in response to this error.
+
+          - `class BetaManagedAgentsRetryStatusRetrying:`
+
+            The server is retrying automatically. Client should wait; the same error type may fire again as retrying, then once as exhausted when the retry budget runs out.
+
+          - `class BetaManagedAgentsRetryStatusExhausted:`
+
+            This turn is dead; queued inputs are flushed and the session returns to idle. Client may send a new prompt.
+
+          - `class BetaManagedAgentsRetryStatusTerminal:`
+
+            The session encountered a terminal error and will transition to `terminated` state.
+
+        - `required Type Type`
+
+          - `"credential_host_unreachable_error"CredentialHostUnreachableError`
+
+        - `required string VaultID`
+
+          ID of the vault containing the affected credential.
+
     - `required DateTimeOffset ProcessedAt`
 
       A timestamp in RFC 3339 format
@@ -58765,6 +62358,10 @@ await foreach (var betaManagedAgentsStreamSessionEvents in client.Beta.Sessions.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `"claude-fable-5"ClaudeFable5`
+
+            Next generation of intelligence for the hardest knowledge work and coding problems
+
           - `"claude-opus-4-8"ClaudeOpus4_8`
 
             Frontier intelligence for long-running agents and coding
@@ -58991,19 +62588,11 @@ await foreach (var betaManagedAgentsStreamSessionEvents in client.Beta.Sessions.
 
                 JSON Schema for custom tool input parameters.
 
+                - `JsonElement Type "object"constant`
+
                 - `IReadOnlyDictionary<string, JsonElement>? Properties`
 
-                  JSON Schema properties defining the tool's input parameters.
-
-                - `IReadOnlyList<string> Required`
-
-                  List of required property names.
-
-                - `Type Type`
-
-                  Must be 'object' for tool input schemas.
-
-                  - `"object"Object`
+                - `IReadOnlyList<string>? Required`
 
               - `required string Name`
 
@@ -59058,6 +62647,56 @@ await foreach (var betaManagedAgentsStreamSessionEvents in client.Beta.Sessions.
     - `string? Title`
 
       The session's new title. Present only when the update changed it.
+
+  - `class BetaManagedAgentsSystemMessageEvent:`
+
+    A mid-conversation system message event. Carries system-role content that is appended to the session as a `role: "system"` turn.
+
+    - `required string ID`
+
+      Unique identifier for this event.
+
+    - `required IReadOnlyList<BetaManagedAgentsSystemContentBlock> Content`
+
+      System content blocks. Text-only.
+
+      - `required string Text`
+
+        The text content.
+
+      - `required Type Type`
+
+        - `"text"Text`
+
+    - `required Type Type`
+
+      - `"system.message"SystemMessage`
+
+    - `DateTimeOffset? ProcessedAt`
+
+      A timestamp in RFC 3339 format
+
+### Beta Managed Agents System Message Event Params
+
+- `class BetaManagedAgentsSystemMessageEventParams:`
+
+  Privileged context for the accompanying turn and all subsequent turns, appended to the session's system context as a `role: "system"` turn rather than replacing the top-level system prompt. At most one per request: it must be the final event and immediately follow the `user.message`, `user.tool_result`, or `user.custom_tool_result` it accompanies. Only supported on models that accept mid-conversation system messages.
+
+  - `required IReadOnlyList<BetaManagedAgentsSystemContentBlock> Content`
+
+    System content blocks to append. Text-only.
+
+    - `required string Text`
+
+      The text content.
+
+    - `required Type Type`
+
+      - `"text"Text`
+
+  - `required Type Type`
+
+    - `"system.message"SystemMessage`
 
 ### Beta Managed Agents Text Block
 
@@ -60395,6 +64034,10 @@ Add Session Resource
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Returns
 
 - `class BetaManagedAgentsFileResource:`
@@ -60524,6 +64167,10 @@ List Session Resources
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 
@@ -60758,6 +64405,10 @@ Get Session Resource
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Returns
 
 - `class ResourceRetrieveResponse: A class that can be one of several variants.union`
@@ -60973,6 +64624,10 @@ Update Session Resource
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Returns
 
 - `class ResourceUpdateResponse: A class that can be one of several variants.union`
@@ -61184,6 +64839,10 @@ Delete Session Resource
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 
@@ -61524,6 +65183,10 @@ List Session Threads
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Returns
 
 - `class ThreadListPageResponse:`
@@ -61565,6 +65228,10 @@ List Session Threads
           The model that will power your agent.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `"claude-fable-5"ClaudeFable5`
+
+            Next generation of intelligence for the hardest knowledge work and coding problems
 
           - `"claude-opus-4-8"ClaudeOpus4_8`
 
@@ -61768,19 +65435,11 @@ List Session Threads
 
             JSON Schema for custom tool input parameters.
 
+            - `JsonElement Type "object"constant`
+
             - `IReadOnlyDictionary<string, JsonElement>? Properties`
 
-              JSON Schema properties defining the tool's input parameters.
-
-            - `IReadOnlyList<string> Required`
-
-              List of required property names.
-
-            - `Type Type`
-
-              Must be 'object' for tool input schemas.
-
-              - `"object"Object`
+            - `IReadOnlyList<string>? Required`
 
           - `required string Name`
 
@@ -62049,6 +65708,10 @@ Get Session Thread
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Returns
 
 - `class BetaManagedAgentsSessionThread:`
@@ -62086,6 +65749,10 @@ Get Session Thread
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-fable-5"ClaudeFable5`
+
+          Next generation of intelligence for the hardest knowledge work and coding problems
 
         - `"claude-opus-4-8"ClaudeOpus4_8`
 
@@ -62289,19 +65956,11 @@ Get Session Thread
 
           JSON Schema for custom tool input parameters.
 
+          - `JsonElement Type "object"constant`
+
           - `IReadOnlyDictionary<string, JsonElement>? Properties`
 
-            JSON Schema properties defining the tool's input parameters.
-
-          - `IReadOnlyList<string> Required`
-
-            List of required property names.
-
-          - `Type Type`
-
-            Must be 'object' for tool input schemas.
-
-            - `"object"Object`
+          - `IReadOnlyList<string>? Required`
 
         - `required string Name`
 
@@ -62560,6 +66219,10 @@ Archive Session Thread
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Returns
 
 - `class BetaManagedAgentsSessionThread:`
@@ -62597,6 +66260,10 @@ Archive Session Thread
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-fable-5"ClaudeFable5`
+
+          Next generation of intelligence for the hardest knowledge work and coding problems
 
         - `"claude-opus-4-8"ClaudeOpus4_8`
 
@@ -62800,19 +66467,11 @@ Archive Session Thread
 
           JSON Schema for custom tool input parameters.
 
+          - `JsonElement Type "object"constant`
+
           - `IReadOnlyDictionary<string, JsonElement>? Properties`
 
-            JSON Schema properties defining the tool's input parameters.
-
-          - `IReadOnlyList<string> Required`
-
-            List of required property names.
-
-          - `Type Type`
-
-            Must be 'object' for tool input schemas.
-
-            - `"object"Object`
+          - `IReadOnlyList<string>? Required`
 
         - `required string Name`
 
@@ -63035,6 +66694,10 @@ Console.WriteLine(betaManagedAgentsSessionThread);
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+        - `"claude-fable-5"ClaudeFable5`
+
+          Next generation of intelligence for the hardest knowledge work and coding problems
+
         - `"claude-opus-4-8"ClaudeOpus4_8`
 
           Frontier intelligence for long-running agents and coding
@@ -63237,19 +66900,11 @@ Console.WriteLine(betaManagedAgentsSessionThread);
 
           JSON Schema for custom tool input parameters.
 
+          - `JsonElement Type "object"constant`
+
           - `IReadOnlyDictionary<string, JsonElement>? Properties`
 
-            JSON Schema properties defining the tool's input parameters.
-
-          - `IReadOnlyList<string> Required`
-
-            List of required property names.
-
-          - `Type Type`
-
-            Must be 'object' for tool input schemas.
-
-            - `"object"Object`
+          - `IReadOnlyList<string>? Required`
 
         - `required string Name`
 
@@ -64271,6 +67926,42 @@ Console.WriteLine(betaManagedAgentsSessionThread);
 
           - `"billing_error"BillingError`
 
+      - `class BetaManagedAgentsCredentialHostUnreachableError:`
+
+        An `environment_variable` credential's `auth.networking.allowed_hosts` includes a host the environment's network policy does not permit.
+
+        - `required string CredentialID`
+
+          ID of the affected credential.
+
+        - `required string Message`
+
+          Human-readable error description.
+
+        - `required RetryStatus RetryStatus`
+
+          What the client should do next in response to this error.
+
+          - `class BetaManagedAgentsRetryStatusRetrying:`
+
+            The server is retrying automatically. Client should wait; the same error type may fire again as retrying, then once as exhausted when the retry budget runs out.
+
+          - `class BetaManagedAgentsRetryStatusExhausted:`
+
+            This turn is dead; queued inputs are flushed and the session returns to idle. Client may send a new prompt.
+
+          - `class BetaManagedAgentsRetryStatusTerminal:`
+
+            The session encountered a terminal error and will transition to `terminated` state.
+
+        - `required Type Type`
+
+          - `"credential_host_unreachable_error"CredentialHostUnreachableError`
+
+        - `required string VaultID`
+
+          ID of the vault containing the affected credential.
+
     - `required DateTimeOffset ProcessedAt`
 
       A timestamp in RFC 3339 format
@@ -64831,6 +68522,10 @@ Console.WriteLine(betaManagedAgentsSessionThread);
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `"claude-fable-5"ClaudeFable5`
+
+            Next generation of intelligence for the hardest knowledge work and coding problems
+
           - `"claude-opus-4-8"ClaudeOpus4_8`
 
             Frontier intelligence for long-running agents and coding
@@ -65057,19 +68752,11 @@ Console.WriteLine(betaManagedAgentsSessionThread);
 
                 JSON Schema for custom tool input parameters.
 
+                - `JsonElement Type "object"constant`
+
                 - `IReadOnlyDictionary<string, JsonElement>? Properties`
 
-                  JSON Schema properties defining the tool's input parameters.
-
-                - `IReadOnlyList<string> Required`
-
-                  List of required property names.
-
-                - `Type Type`
-
-                  Must be 'object' for tool input schemas.
-
-                  - `"object"Object`
+                - `IReadOnlyList<string>? Required`
 
               - `required string Name`
 
@@ -65124,6 +68811,34 @@ Console.WriteLine(betaManagedAgentsSessionThread);
     - `string? Title`
 
       The session's new title. Present only when the update changed it.
+
+  - `class BetaManagedAgentsSystemMessageEvent:`
+
+    A mid-conversation system message event. Carries system-role content that is appended to the session as a `role: "system"` turn.
+
+    - `required string ID`
+
+      Unique identifier for this event.
+
+    - `required IReadOnlyList<BetaManagedAgentsSystemContentBlock> Content`
+
+      System content blocks. Text-only.
+
+      - `required string Text`
+
+        The text content.
+
+      - `required Type Type`
+
+        - `"text"Text`
+
+    - `required Type Type`
+
+      - `"system.message"SystemMessage`
+
+    - `DateTimeOffset? ProcessedAt`
+
+      A timestamp in RFC 3339 format
 
 # Events
 
@@ -65210,6 +68925,10 @@ List Session Thread Events
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 
@@ -66081,6 +69800,42 @@ List Session Thread Events
 
             - `"billing_error"BillingError`
 
+        - `class BetaManagedAgentsCredentialHostUnreachableError:`
+
+          An `environment_variable` credential's `auth.networking.allowed_hosts` includes a host the environment's network policy does not permit.
+
+          - `required string CredentialID`
+
+            ID of the affected credential.
+
+          - `required string Message`
+
+            Human-readable error description.
+
+          - `required RetryStatus RetryStatus`
+
+            What the client should do next in response to this error.
+
+            - `class BetaManagedAgentsRetryStatusRetrying:`
+
+              The server is retrying automatically. Client should wait; the same error type may fire again as retrying, then once as exhausted when the retry budget runs out.
+
+            - `class BetaManagedAgentsRetryStatusExhausted:`
+
+              This turn is dead; queued inputs are flushed and the session returns to idle. Client may send a new prompt.
+
+            - `class BetaManagedAgentsRetryStatusTerminal:`
+
+              The session encountered a terminal error and will transition to `terminated` state.
+
+          - `required Type Type`
+
+            - `"credential_host_unreachable_error"CredentialHostUnreachableError`
+
+          - `required string VaultID`
+
+            ID of the vault containing the affected credential.
+
       - `required DateTimeOffset ProcessedAt`
 
         A timestamp in RFC 3339 format
@@ -66641,6 +70396,10 @@ List Session Thread Events
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+            - `"claude-fable-5"ClaudeFable5`
+
+              Next generation of intelligence for the hardest knowledge work and coding problems
+
             - `"claude-opus-4-8"ClaudeOpus4_8`
 
               Frontier intelligence for long-running agents and coding
@@ -66867,19 +70626,11 @@ List Session Thread Events
 
                   JSON Schema for custom tool input parameters.
 
+                  - `JsonElement Type "object"constant`
+
                   - `IReadOnlyDictionary<string, JsonElement>? Properties`
 
-                    JSON Schema properties defining the tool's input parameters.
-
-                  - `IReadOnlyList<string> Required`
-
-                    List of required property names.
-
-                  - `Type Type`
-
-                    Must be 'object' for tool input schemas.
-
-                    - `"object"Object`
+                  - `IReadOnlyList<string>? Required`
 
                 - `required string Name`
 
@@ -66934,6 +70685,34 @@ List Session Thread Events
       - `string? Title`
 
         The session's new title. Present only when the update changed it.
+
+    - `class BetaManagedAgentsSystemMessageEvent:`
+
+      A mid-conversation system message event. Carries system-role content that is appended to the session as a `role: "system"` turn.
+
+      - `required string ID`
+
+        Unique identifier for this event.
+
+      - `required IReadOnlyList<BetaManagedAgentsSystemContentBlock> Content`
+
+        System content blocks. Text-only.
+
+        - `required string Text`
+
+          The text content.
+
+        - `required Type Type`
+
+          - `"text"Text`
+
+      - `required Type Type`
+
+        - `"system.message"SystemMessage`
+
+      - `DateTimeOffset? ProcessedAt`
+
+        A timestamp in RFC 3339 format
 
   - `string? NextPage`
 
@@ -67051,6 +70830,10 @@ Stream Session Thread Events
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 
@@ -67918,6 +71701,42 @@ Stream Session Thread Events
 
           - `"billing_error"BillingError`
 
+      - `class BetaManagedAgentsCredentialHostUnreachableError:`
+
+        An `environment_variable` credential's `auth.networking.allowed_hosts` includes a host the environment's network policy does not permit.
+
+        - `required string CredentialID`
+
+          ID of the affected credential.
+
+        - `required string Message`
+
+          Human-readable error description.
+
+        - `required RetryStatus RetryStatus`
+
+          What the client should do next in response to this error.
+
+          - `class BetaManagedAgentsRetryStatusRetrying:`
+
+            The server is retrying automatically. Client should wait; the same error type may fire again as retrying, then once as exhausted when the retry budget runs out.
+
+          - `class BetaManagedAgentsRetryStatusExhausted:`
+
+            This turn is dead; queued inputs are flushed and the session returns to idle. Client may send a new prompt.
+
+          - `class BetaManagedAgentsRetryStatusTerminal:`
+
+            The session encountered a terminal error and will transition to `terminated` state.
+
+        - `required Type Type`
+
+          - `"credential_host_unreachable_error"CredentialHostUnreachableError`
+
+        - `required string VaultID`
+
+          ID of the vault containing the affected credential.
+
     - `required DateTimeOffset ProcessedAt`
 
       A timestamp in RFC 3339 format
@@ -68478,6 +72297,10 @@ Stream Session Thread Events
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `"claude-fable-5"ClaudeFable5`
+
+            Next generation of intelligence for the hardest knowledge work and coding problems
+
           - `"claude-opus-4-8"ClaudeOpus4_8`
 
             Frontier intelligence for long-running agents and coding
@@ -68704,19 +72527,11 @@ Stream Session Thread Events
 
                 JSON Schema for custom tool input parameters.
 
+                - `JsonElement Type "object"constant`
+
                 - `IReadOnlyDictionary<string, JsonElement>? Properties`
 
-                  JSON Schema properties defining the tool's input parameters.
-
-                - `IReadOnlyList<string> Required`
-
-                  List of required property names.
-
-                - `Type Type`
-
-                  Must be 'object' for tool input schemas.
-
-                  - `"object"Object`
+                - `IReadOnlyList<string>? Required`
 
               - `required string Name`
 
@@ -68772,6 +72587,34 @@ Stream Session Thread Events
 
       The session's new title. Present only when the update changed it.
 
+  - `class BetaManagedAgentsSystemMessageEvent:`
+
+    A mid-conversation system message event. Carries system-role content that is appended to the session as a `role: "system"` turn.
+
+    - `required string ID`
+
+      Unique identifier for this event.
+
+    - `required IReadOnlyList<BetaManagedAgentsSystemContentBlock> Content`
+
+      System content blocks. Text-only.
+
+      - `required string Text`
+
+        The text content.
+
+      - `required Type Type`
+
+        - `"text"Text`
+
+    - `required Type Type`
+
+      - `"system.message"SystemMessage`
+
+    - `DateTimeOffset? ProcessedAt`
+
+      A timestamp in RFC 3339 format
+
 ### Example
 
 ```csharp
@@ -68802,6 +72645,9239 @@ await foreach (var betaManagedAgentsStreamSessionThreadEvents in client.Beta.Ses
   "processed_at": "2026-03-15T10:00:00Z"
 }
 ```
+
+# Deployments
+
+## Create Deployment
+
+`BetaManagedAgentsDeployment Beta.Deployments.Create(DeploymentCreateParamsparameters, CancellationTokencancellationToken = default)`
+
+**post** `/v1/deployments`
+
+Create Deployment
+
+### Parameters
+
+- `DeploymentCreateParams parameters`
+
+  - `required Agent agent`
+
+    Body param: Agent to deploy. Accepts the `agent` ID string, which pins the latest version, or an `agent` object with both id and version specified. The agent must exist and not be archived.
+
+    - `string`
+
+    - `class BetaManagedAgentsAgentParams:`
+
+      Specification for an Agent. Provide a specific `version` or use the short-form `agent="agent_id"` for the most recent version
+
+      - `required string ID`
+
+        The `agent` ID.
+
+      - `required Type Type`
+
+        - `"agent"Agent`
+
+      - `Int Version`
+
+        The specific `agent` version to use. Omit to use the latest version. Must be at least 1 if specified.
+
+  - `required string environmentID`
+
+    Body param: ID of the `environment` defining the container configuration for sessions created from this deployment.
+
+  - `required IReadOnlyList<BetaManagedAgentsDeploymentInitialEventParams> initialEvents`
+
+    Body param: Events to send to each session immediately after creation. At least 1, maximum 50.
+
+    - `class BetaManagedAgentsUserMessageEventParams:`
+
+      Parameters for sending a user message to the session.
+
+      - `required IReadOnlyList<Content> Content`
+
+        Array of content blocks for the user message.
+
+        - `class BetaManagedAgentsTextBlock:`
+
+          Regular text content.
+
+          - `required string Text`
+
+            The text content.
+
+          - `required Type Type`
+
+            - `"text"Text`
+
+        - `class BetaManagedAgentsImageBlock:`
+
+          Image content specified directly as base64 data or as a reference via a URL.
+
+          - `required Source Source`
+
+            Union type for image source variants.
+
+            - `class BetaManagedAgentsBase64ImageSource:`
+
+              Base64-encoded image data.
+
+              - `required string Data`
+
+                Base64-encoded image data.
+
+              - `required string MediaType`
+
+                MIME type of the image (e.g., "image/png", "image/jpeg", "image/gif", "image/webp").
+
+              - `required Type Type`
+
+                - `"base64"Base64`
+
+            - `class BetaManagedAgentsUrlImageSource:`
+
+              Image referenced by URL.
+
+              - `required Type Type`
+
+                - `"url"Url`
+
+              - `required string Url`
+
+                URL of the image to fetch.
+
+            - `class BetaManagedAgentsFileImageSource:`
+
+              Image referenced by file ID.
+
+              - `required string FileID`
+
+                ID of a previously uploaded file.
+
+              - `required Type Type`
+
+                - `"file"File`
+
+          - `required Type Type`
+
+            - `"image"Image`
+
+        - `class BetaManagedAgentsDocumentBlock:`
+
+          Document content, either specified directly as base64 data, as text, or as a reference via a URL.
+
+          - `required Source Source`
+
+            Union type for document source variants.
+
+            - `class BetaManagedAgentsBase64DocumentSource:`
+
+              Base64-encoded document data.
+
+              - `required string Data`
+
+                Base64-encoded document data.
+
+              - `required string MediaType`
+
+                MIME type of the document (e.g., "application/pdf").
+
+              - `required Type Type`
+
+                - `"base64"Base64`
+
+            - `class BetaManagedAgentsPlainTextDocumentSource:`
+
+              Plain text document content.
+
+              - `required string Data`
+
+                The plain text content.
+
+              - `required MediaType MediaType`
+
+                MIME type of the text content. Must be "text/plain".
+
+                - `"text/plain"TextPlain`
+
+              - `required Type Type`
+
+                - `"text"Text`
+
+            - `class BetaManagedAgentsUrlDocumentSource:`
+
+              Document referenced by URL.
+
+              - `required Type Type`
+
+                - `"url"Url`
+
+              - `required string Url`
+
+                URL of the document to fetch.
+
+            - `class BetaManagedAgentsFileDocumentSource:`
+
+              Document referenced by file ID.
+
+              - `required string FileID`
+
+                ID of a previously uploaded file.
+
+              - `required Type Type`
+
+                - `"file"File`
+
+          - `required Type Type`
+
+            - `"document"Document`
+
+          - `string? Context`
+
+            Additional context about the document for the model.
+
+          - `string? Title`
+
+            The title of the document.
+
+      - `required Type Type`
+
+        - `"user.message"UserMessage`
+
+    - `class BetaManagedAgentsUserDefineOutcomeEventParams:`
+
+      Parameters for defining an outcome the agent should work toward. The agent begins work on receipt.
+
+      - `required string Description`
+
+        What the agent should produce. This is the task specification.
+
+      - `required Rubric Rubric`
+
+        Rubric for grading the quality of an outcome.
+
+        - `class BetaManagedAgentsFileRubricParams:`
+
+          Rubric referenced by a file uploaded via the Files API.
+
+          - `required string FileID`
+
+            ID of the rubric file.
+
+          - `required Type Type`
+
+            - `"file"File`
+
+        - `class BetaManagedAgentsTextRubricParams:`
+
+          Rubric content provided inline as text.
+
+          - `required string Content`
+
+            Rubric content. Plain text or markdown — the grader treats it as freeform text. Maximum 262144 characters.
+
+          - `required Type Type`
+
+            - `"text"Text`
+
+      - `required Type Type`
+
+        - `"user.define_outcome"UserDefineOutcome`
+
+      - `Int? MaxIterations`
+
+        Eval→revision cycles before giving up. Default 3, max 20.
+
+    - `class BetaManagedAgentsSystemMessageEventParams:`
+
+      Privileged context for the accompanying turn and all subsequent turns, appended to the session's system context as a `role: "system"` turn rather than replacing the top-level system prompt. At most one per request: it must be the final event and immediately follow the `user.message`, `user.tool_result`, or `user.custom_tool_result` it accompanies. Only supported on models that accept mid-conversation system messages.
+
+      - `required IReadOnlyList<BetaManagedAgentsSystemContentBlock> Content`
+
+        System content blocks to append. Text-only.
+
+        - `required string Text`
+
+          The text content.
+
+        - `required Type Type`
+
+          - `"text"Text`
+
+      - `required Type Type`
+
+        - `"system.message"SystemMessage`
+
+  - `required string name`
+
+    Body param: Human-readable name for the deployment.
+
+  - `string? description`
+
+    Body param: Description of what the deployment does.
+
+  - `IReadOnlyDictionary<string, string> metadata`
+
+    Body param: Arbitrary key-value metadata. Maximum 16 pairs, keys up to 64 chars, values up to 512 chars.
+
+  - `IReadOnlyList<Resource> resources`
+
+    Body param: Resources (e.g. repositories, files) to mount into each session's container. Maximum 500.
+
+    - `class BetaManagedAgentsGitHubRepositoryResourceParams:`
+
+      Mount a GitHub repository into the session's container.
+
+      - `required string AuthorizationToken`
+
+        GitHub authorization token used to clone the repository.
+
+      - `required Type Type`
+
+        - `"github_repository"GitHubRepository`
+
+      - `required string Url`
+
+        Github URL of the repository
+
+      - `Checkout? Checkout`
+
+        Branch or commit to check out. Defaults to the repository's default branch.
+
+        - `class BetaManagedAgentsBranchCheckout:`
+
+          - `required string Name`
+
+            Branch name to check out.
+
+          - `required Type Type`
+
+            - `"branch"Branch`
+
+        - `class BetaManagedAgentsCommitCheckout:`
+
+          - `required string Sha`
+
+            Full commit SHA to check out.
+
+          - `required Type Type`
+
+            - `"commit"Commit`
+
+      - `string? MountPath`
+
+        Mount path in the container. Defaults to `/workspace/<repo-name>`.
+
+    - `class BetaManagedAgentsFileResourceParams:`
+
+      Mount a file uploaded via the Files API into the session.
+
+      - `required string FileID`
+
+        ID of a previously uploaded file.
+
+      - `required Type Type`
+
+        - `"file"File`
+
+      - `string? MountPath`
+
+        Mount path in the container. Defaults to `/mnt/session/uploads/<file_id>`.
+
+    - `class BetaManagedAgentsMemoryStoreResourceParam:`
+
+      Parameters for attaching a memory store to an agent session.
+
+      - `required string MemoryStoreID`
+
+        The memory store ID (memstore_...). Must belong to the caller's organization and workspace.
+
+      - `required Type Type`
+
+        - `"memory_store"MemoryStore`
+
+      - `Access? Access`
+
+        Access mode for an attached memory store.
+
+        - `"read_write"ReadWrite`
+
+        - `"read_only"ReadOnly`
+
+      - `string? Instructions`
+
+        Per-attachment guidance for the agent on how to use this store. Rendered into the memory section of the system prompt. Max 4096 chars.
+
+  - `BetaManagedAgentsScheduleParams? schedule`
+
+    Body param: 5-field POSIX cron schedule. Literal wall-clock matching in the configured timezone.
+
+  - `IReadOnlyList<string> vaultIds`
+
+    Body param: Vault IDs for stored credentials the agent can use during sessions created from this deployment. Maximum 50.
+
+  - `IReadOnlyList<AnthropicBeta> betas`
+
+    Header param: Optional header to specify the beta version(s) you want to use.
+
+    - `"message-batches-2024-09-24"MessageBatches2024_09_24`
+
+    - `"prompt-caching-2024-07-31"PromptCaching2024_07_31`
+
+    - `"computer-use-2024-10-22"ComputerUse2024_10_22`
+
+    - `"computer-use-2025-01-24"ComputerUse2025_01_24`
+
+    - `"pdfs-2024-09-25"Pdfs2024_09_25`
+
+    - `"token-counting-2024-11-01"TokenCounting2024_11_01`
+
+    - `"token-efficient-tools-2025-02-19"TokenEfficientTools2025_02_19`
+
+    - `"output-128k-2025-02-19"Output128k2025_02_19`
+
+    - `"files-api-2025-04-14"FilesApi2025_04_14`
+
+    - `"mcp-client-2025-04-04"McpClient2025_04_04`
+
+    - `"mcp-client-2025-11-20"McpClient2025_11_20`
+
+    - `"dev-full-thinking-2025-05-14"DevFullThinking2025_05_14`
+
+    - `"interleaved-thinking-2025-05-14"InterleavedThinking2025_05_14`
+
+    - `"code-execution-2025-05-22"CodeExecution2025_05_22`
+
+    - `"extended-cache-ttl-2025-04-11"ExtendedCacheTtl2025_04_11`
+
+    - `"context-1m-2025-08-07"Context1m2025_08_07`
+
+    - `"context-management-2025-06-27"ContextManagement2025_06_27`
+
+    - `"model-context-window-exceeded-2025-08-26"ModelContextWindowExceeded2025_08_26`
+
+    - `"skills-2025-10-02"Skills2025_10_02`
+
+    - `"fast-mode-2026-02-01"FastMode2026_02_01`
+
+    - `"output-300k-2026-03-24"Output300k2026_03_24`
+
+    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
+
+    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
+    - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
+    - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
+
+    - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+### Returns
+
+- `class BetaManagedAgentsDeployment:`
+
+  A deployment is a configured instance of an agent — it binds the agent to everything needed to run it autonomously: an environment, credentials, initial events, and an optional schedule.
+
+  - `required string ID`
+
+    Unique identifier for this deployment.
+
+  - `required BetaManagedAgentsAgentReference Agent`
+
+    A resolved agent reference with a concrete version.
+
+    - `required string ID`
+
+    - `required Type Type`
+
+      - `"agent"Agent`
+
+    - `required Int Version`
+
+  - `required DateTimeOffset? ArchivedAt`
+
+    A timestamp in RFC 3339 format
+
+  - `required DateTimeOffset CreatedAt`
+
+    A timestamp in RFC 3339 format
+
+  - `required string? Description`
+
+    Description of what the deployment does.
+
+  - `required string EnvironmentID`
+
+    ID of the `environment` where sessions run.
+
+  - `required IReadOnlyList<BetaManagedAgentsDeploymentInitialEvent> InitialEvents`
+
+    Events sent to each session immediately after creation.
+
+    - `class BetaManagedAgentsDeploymentUserMessageEvent:`
+
+      A user message sent to the session.
+
+      - `required IReadOnlyList<Content> Content`
+
+        Array of content blocks for the user message.
+
+        - `class BetaManagedAgentsTextBlock:`
+
+          Regular text content.
+
+          - `required string Text`
+
+            The text content.
+
+          - `required Type Type`
+
+            - `"text"Text`
+
+        - `class BetaManagedAgentsImageBlock:`
+
+          Image content specified directly as base64 data or as a reference via a URL.
+
+          - `required Source Source`
+
+            Union type for image source variants.
+
+            - `class BetaManagedAgentsBase64ImageSource:`
+
+              Base64-encoded image data.
+
+              - `required string Data`
+
+                Base64-encoded image data.
+
+              - `required string MediaType`
+
+                MIME type of the image (e.g., "image/png", "image/jpeg", "image/gif", "image/webp").
+
+              - `required Type Type`
+
+                - `"base64"Base64`
+
+            - `class BetaManagedAgentsUrlImageSource:`
+
+              Image referenced by URL.
+
+              - `required Type Type`
+
+                - `"url"Url`
+
+              - `required string Url`
+
+                URL of the image to fetch.
+
+            - `class BetaManagedAgentsFileImageSource:`
+
+              Image referenced by file ID.
+
+              - `required string FileID`
+
+                ID of a previously uploaded file.
+
+              - `required Type Type`
+
+                - `"file"File`
+
+          - `required Type Type`
+
+            - `"image"Image`
+
+        - `class BetaManagedAgentsDocumentBlock:`
+
+          Document content, either specified directly as base64 data, as text, or as a reference via a URL.
+
+          - `required Source Source`
+
+            Union type for document source variants.
+
+            - `class BetaManagedAgentsBase64DocumentSource:`
+
+              Base64-encoded document data.
+
+              - `required string Data`
+
+                Base64-encoded document data.
+
+              - `required string MediaType`
+
+                MIME type of the document (e.g., "application/pdf").
+
+              - `required Type Type`
+
+                - `"base64"Base64`
+
+            - `class BetaManagedAgentsPlainTextDocumentSource:`
+
+              Plain text document content.
+
+              - `required string Data`
+
+                The plain text content.
+
+              - `required MediaType MediaType`
+
+                MIME type of the text content. Must be "text/plain".
+
+                - `"text/plain"TextPlain`
+
+              - `required Type Type`
+
+                - `"text"Text`
+
+            - `class BetaManagedAgentsUrlDocumentSource:`
+
+              Document referenced by URL.
+
+              - `required Type Type`
+
+                - `"url"Url`
+
+              - `required string Url`
+
+                URL of the document to fetch.
+
+            - `class BetaManagedAgentsFileDocumentSource:`
+
+              Document referenced by file ID.
+
+              - `required string FileID`
+
+                ID of a previously uploaded file.
+
+              - `required Type Type`
+
+                - `"file"File`
+
+          - `required Type Type`
+
+            - `"document"Document`
+
+          - `string? Context`
+
+            Additional context about the document for the model.
+
+          - `string? Title`
+
+            The title of the document.
+
+      - `required Type Type`
+
+        - `"user.message"UserMessage`
+
+    - `class BetaManagedAgentsDeploymentUserDefineOutcomeEvent:`
+
+      An outcome the agent should work toward. The agent begins work on receipt.
+
+      - `required string Description`
+
+        What the agent should produce. This is the task specification.
+
+      - `required Rubric Rubric`
+
+        Rubric for grading the quality of an outcome.
+
+        - `class BetaManagedAgentsFileRubric:`
+
+          Rubric referenced by a file uploaded via the Files API.
+
+          - `required string FileID`
+
+            ID of the rubric file.
+
+          - `required Type Type`
+
+            - `"file"File`
+
+        - `class BetaManagedAgentsTextRubric:`
+
+          Rubric content provided inline as text.
+
+          - `required string Content`
+
+            Rubric content. Plain text or markdown — the grader treats it as freeform text.
+
+          - `required Type Type`
+
+            - `"text"Text`
+
+      - `required Type Type`
+
+        - `"user.define_outcome"UserDefineOutcome`
+
+      - `Int? MaxIterations`
+
+        Eval→revision cycles before giving up. Default 3, max 20.
+
+    - `class BetaManagedAgentsDeploymentSystemMessageEvent:`
+
+      Privileged context for the accompanying turn and all subsequent turns, appended to the session's system context as a `role: "system"` turn rather than replacing the top-level system prompt.
+
+      - `required IReadOnlyList<BetaManagedAgentsSystemContentBlock> Content`
+
+        System content blocks to append. Text-only.
+
+        - `required string Text`
+
+          The text content.
+
+        - `required Type Type`
+
+          - `"text"Text`
+
+      - `required Type Type`
+
+        - `"system.message"SystemMessage`
+
+  - `required IReadOnlyDictionary<string, string> Metadata`
+
+    Arbitrary key-value metadata. Maximum 16 pairs.
+
+  - `required string Name`
+
+    Human-readable name.
+
+  - `required BetaManagedAgentsDeploymentPausedReason? PausedReason`
+
+    Why a deployment is paused. Non-null exactly when `status` is `paused`.
+
+    - `class BetaManagedAgentsManualDeploymentPausedReason:`
+
+      The caller invoked the pause endpoint on the deployment.
+
+      - `required Type Type`
+
+        - `"manual"Manual`
+
+    - `class BetaManagedAgentsErrorDeploymentPausedReason:`
+
+      A scheduled fire recorded a failed run whose error auto-pauses the deployment.
+
+      - `required BetaManagedAgentsDeploymentPausedReasonError Error`
+
+        The error that triggered an auto-pause. Matches the failed run's `error.type`.
+
+        - `class BetaManagedAgentsEnvironmentArchivedDeploymentPausedReasonError:`
+
+          The deployment's environment was archived.
+
+          - `required Type Type`
+
+            - `"environment_archived_error"EnvironmentArchivedError`
+
+        - `class BetaManagedAgentsAgentArchivedDeploymentPausedReasonError:`
+
+          The deployment's agent was archived.
+
+          - `required Type Type`
+
+            - `"agent_archived_error"AgentArchivedError`
+
+        - `class BetaManagedAgentsEnvironmentNotFoundDeploymentPausedReasonError:`
+
+          The deployment's environment no longer exists.
+
+          - `required Type Type`
+
+            - `"environment_not_found_error"EnvironmentNotFoundError`
+
+        - `class BetaManagedAgentsVaultNotFoundDeploymentPausedReasonError:`
+
+          A vault referenced by the deployment no longer exists.
+
+          - `required Type Type`
+
+            - `"vault_not_found_error"VaultNotFoundError`
+
+        - `class BetaManagedAgentsFileNotFoundDeploymentPausedReasonError:`
+
+          A file resource referenced by the deployment no longer exists.
+
+          - `required Type Type`
+
+            - `"file_not_found_error"FileNotFoundError`
+
+        - `class BetaManagedAgentsSessionResourceNotFoundDeploymentPausedReasonError:`
+
+          A referenced resource no longer exists and its kind was not reported.
+
+          - `required Type Type`
+
+            - `"session_resource_not_found_error"SessionResourceNotFoundError`
+
+        - `class BetaManagedAgentsWorkspaceArchivedDeploymentPausedReasonError:`
+
+          The deployment's workspace was archived.
+
+          - `required Type Type`
+
+            - `"workspace_archived_error"WorkspaceArchivedError`
+
+        - `class BetaManagedAgentsOrganizationDisabledDeploymentPausedReasonError:`
+
+          The deployment's organization is disabled.
+
+          - `required Type Type`
+
+            - `"organization_disabled_error"OrganizationDisabledError`
+
+        - `class BetaManagedAgentsMemoryStoreArchivedDeploymentPausedReasonError:`
+
+          A memory store referenced by the deployment is archived.
+
+          - `required Type Type`
+
+            - `"memory_store_archived_error"MemoryStoreArchivedError`
+
+        - `class BetaManagedAgentsSkillNotFoundDeploymentPausedReasonError:`
+
+          A skill referenced by the deployment's agent no longer exists.
+
+          - `required Type Type`
+
+            - `"skill_not_found_error"SkillNotFoundError`
+
+        - `class BetaManagedAgentsVaultArchivedDeploymentPausedReasonError:`
+
+          A vault referenced by the deployment is archived.
+
+          - `required Type Type`
+
+            - `"vault_archived_error"VaultArchivedError`
+
+        - `class BetaManagedAgentsUnknownDeploymentPausedReasonError:`
+
+          An unrecognized error auto-paused the deployment. A fallback variant; matches a run whose `error.type` is `unknown_error`.
+
+          - `required Type Type`
+
+            - `"unknown_error"UnknownError`
+
+        - `class BetaManagedAgentsSelfHostedResourcesUnsupportedDeploymentPausedReasonError:`
+
+          The deployment configures resources, but its environment is self-hosted and cannot mount them.
+
+          - `required Type Type`
+
+            - `"self_hosted_resources_unsupported_error"SelfHostedResourcesUnsupportedError`
+
+        - `class BetaManagedAgentsMcpEgressBlockedDeploymentPausedReasonError:`
+
+          An MCP server host used by the deployment's agent is blocked by the environment's network policy.
+
+          - `required Type Type`
+
+            - `"mcp_egress_blocked_error"McpEgressBlockedError`
+
+      - `required Type Type`
+
+        - `"error"Error`
+
+  - `required IReadOnlyList<BetaManagedAgentsSessionResourceConfig> Resources`
+
+    Resources attached to sessions created from this deployment. Echoes the input minus write-only credentials.
+
+    - `class BetaManagedAgentsGitHubRepositoryResourceConfig:`
+
+      A GitHub repository mounted into each session's container. The authorization token is write-only and never returned.
+
+      - `required Type Type`
+
+        - `"github_repository"GitHubRepository`
+
+      - `required string Url`
+
+        Github URL of the repository
+
+      - `Checkout? Checkout`
+
+        Branch or commit to check out. Defaults to the repository's default branch.
+
+        - `class BetaManagedAgentsBranchCheckout:`
+
+          - `required string Name`
+
+            Branch name to check out.
+
+          - `required Type Type`
+
+            - `"branch"Branch`
+
+        - `class BetaManagedAgentsCommitCheckout:`
+
+          - `required string Sha`
+
+            Full commit SHA to check out.
+
+          - `required Type Type`
+
+            - `"commit"Commit`
+
+      - `string? MountPath`
+
+        Mount path in the container. Defaults to `/workspace/<repo-name>`.
+
+    - `class BetaManagedAgentsFileResourceConfig:`
+
+      A file mounted into each session's container.
+
+      - `required string FileID`
+
+        ID of a previously uploaded file.
+
+      - `required Type Type`
+
+        - `"file"File`
+
+      - `string? MountPath`
+
+        Mount path in the container. Defaults to `/mnt/session/uploads/<file_id>`.
+
+    - `class BetaManagedAgentsMemoryStoreResourceConfig:`
+
+      A memory store attached to each session created from this deployment.
+
+      - `required string MemoryStoreID`
+
+        The memory store ID (memstore_...). Must belong to the caller's organization and workspace.
+
+      - `required Type Type`
+
+        - `"memory_store"MemoryStore`
+
+      - `Access? Access`
+
+        Access mode for an attached memory store.
+
+        - `"read_write"ReadWrite`
+
+        - `"read_only"ReadOnly`
+
+      - `string? Instructions`
+
+        Per-attachment guidance for the agent on how to use this store. Rendered into the memory section of the system prompt. Max 4096 chars.
+
+  - `required BetaManagedAgentsSchedule? Schedule`
+
+    5-field POSIX cron schedule with computed runtime timestamps.
+
+    - `required string Expression`
+
+      5-field POSIX cron expression: minute hour day-of-month month day-of-week (e.g., "0 9 * * 1-5" for weekdays at 9am). Day-of-week is 0-7 where 0 and 7 both mean Sunday. Extended cron syntax - seconds or year fields, and the special characters L, W, #, and ? - is not supported, nor are predefined shortcuts (@daily).
+
+    - `required string Timezone`
+
+      IANA timezone identifier (e.g., "America/Los_Angeles", "UTC").
+
+    - `required Type Type`
+
+      - `"cron"Cron`
+
+    - `DateTimeOffset? LastRunAt`
+
+      A timestamp in RFC 3339 format
+
+    - `IReadOnlyList<DateTimeOffset> UpcomingRunsAt`
+
+      Up to 5 timestamps of upcoming cron occurrences. Non-empty for active and paused deployments (reflects what the schedule would do if unpaused); empty once the deployment is archived (`archived_at` set). Each fire is offset by a small per-schedule jitter, so a run will actually start at or shortly after its listed time.
+
+  - `required BetaManagedAgentsDeploymentStatus Status`
+
+    Lifecycle status of a deployment.
+
+    - `"active"Active`
+
+    - `"paused"Paused`
+
+  - `required Type Type`
+
+    - `"deployment"Deployment`
+
+  - `required DateTimeOffset UpdatedAt`
+
+    A timestamp in RFC 3339 format
+
+  - `required IReadOnlyList<string> VaultIds`
+
+    Vault IDs supplying stored credentials for sessions created from this deployment.
+
+### Example
+
+```csharp
+DeploymentCreateParams parameters = new()
+{
+    Agent = "string",
+    EnvironmentID = "x",
+    InitialEvents =
+    [
+        new BetaManagedAgentsUserMessageEventParams()
+        {
+            Content =
+            [
+                new BetaManagedAgentsTextBlock()
+                {
+                    Text = "Where is my order #1234?",
+                    Type = Type.Text,
+                },
+            ],
+            Type = Type.UserMessage,
+        },
+    ],
+    Name = "x",
+};
+
+var betaManagedAgentsDeployment = await client.Beta.Deployments.Create(parameters);
+
+Console.WriteLine(betaManagedAgentsDeployment);
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "agent": {
+    "id": "agent_011CZkYqphY8vELVzwCUpqiQ",
+    "type": "agent",
+    "version": 1
+  },
+  "archived_at": "2019-12-27T18:11:19.117Z",
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "description": "description",
+  "environment_id": "environment_id",
+  "initial_events": [
+    {
+      "content": [
+        {
+          "text": "Where is my order #1234?",
+          "type": "text"
+        }
+      ],
+      "type": "user.message"
+    }
+  ],
+  "metadata": {
+    "foo": "string"
+  },
+  "name": "name",
+  "paused_reason": {
+    "type": "manual"
+  },
+  "resources": [
+    {
+      "type": "github_repository",
+      "url": "url",
+      "checkout": {
+        "name": "main",
+        "type": "branch"
+      },
+      "mount_path": "mount_path"
+    }
+  ],
+  "schedule": {
+    "expression": "x",
+    "timezone": "x",
+    "type": "cron",
+    "last_run_at": "2019-12-27T18:11:19.117Z",
+    "upcoming_runs_at": [
+      "2019-12-27T18:11:19.117Z"
+    ]
+  },
+  "status": "active",
+  "type": "deployment",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "vault_ids": [
+    "string"
+  ]
+}
+```
+
+## List Deployments
+
+`DeploymentListPageResponse Beta.Deployments.List(DeploymentListParams?parameters, CancellationTokencancellationToken = default)`
+
+**get** `/v1/deployments`
+
+List Deployments
+
+### Parameters
+
+- `DeploymentListParams parameters`
+
+  - `string agentID`
+
+    Query param: Filter by agent ID.
+
+  - `DateTimeOffset createdAtGte`
+
+    Query param: Return deployments created at or after this time (inclusive).
+
+  - `DateTimeOffset createdAtLte`
+
+    Query param: Return deployments created at or before this time (inclusive).
+
+  - `Boolean includeArchived`
+
+    Query param: When true, includes archived deployments. Default: false (exclude archived).
+
+  - `Int limit`
+
+    Query param: Maximum results per page. Default 20, maximum 100.
+
+  - `string page`
+
+    Query param: Opaque pagination cursor.
+
+  - `BetaManagedAgentsDeploymentStatus status`
+
+    Query param: Filter by status: active or paused. Omit for both. To include archived deployments, use include_archived instead; the two cannot be combined.
+
+  - `IReadOnlyList<AnthropicBeta> betas`
+
+    Header param: Optional header to specify the beta version(s) you want to use.
+
+    - `"message-batches-2024-09-24"MessageBatches2024_09_24`
+
+    - `"prompt-caching-2024-07-31"PromptCaching2024_07_31`
+
+    - `"computer-use-2024-10-22"ComputerUse2024_10_22`
+
+    - `"computer-use-2025-01-24"ComputerUse2025_01_24`
+
+    - `"pdfs-2024-09-25"Pdfs2024_09_25`
+
+    - `"token-counting-2024-11-01"TokenCounting2024_11_01`
+
+    - `"token-efficient-tools-2025-02-19"TokenEfficientTools2025_02_19`
+
+    - `"output-128k-2025-02-19"Output128k2025_02_19`
+
+    - `"files-api-2025-04-14"FilesApi2025_04_14`
+
+    - `"mcp-client-2025-04-04"McpClient2025_04_04`
+
+    - `"mcp-client-2025-11-20"McpClient2025_11_20`
+
+    - `"dev-full-thinking-2025-05-14"DevFullThinking2025_05_14`
+
+    - `"interleaved-thinking-2025-05-14"InterleavedThinking2025_05_14`
+
+    - `"code-execution-2025-05-22"CodeExecution2025_05_22`
+
+    - `"extended-cache-ttl-2025-04-11"ExtendedCacheTtl2025_04_11`
+
+    - `"context-1m-2025-08-07"Context1m2025_08_07`
+
+    - `"context-management-2025-06-27"ContextManagement2025_06_27`
+
+    - `"model-context-window-exceeded-2025-08-26"ModelContextWindowExceeded2025_08_26`
+
+    - `"skills-2025-10-02"Skills2025_10_02`
+
+    - `"fast-mode-2026-02-01"FastMode2026_02_01`
+
+    - `"output-300k-2026-03-24"Output300k2026_03_24`
+
+    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
+
+    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
+    - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
+    - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
+
+    - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+### Returns
+
+- `class DeploymentListPageResponse:`
+
+  Paginated list of deployments.
+
+  - `required IReadOnlyList<BetaManagedAgentsDeployment> Data`
+
+    List of deployments.
+
+    - `required string ID`
+
+      Unique identifier for this deployment.
+
+    - `required BetaManagedAgentsAgentReference Agent`
+
+      A resolved agent reference with a concrete version.
+
+      - `required string ID`
+
+      - `required Type Type`
+
+        - `"agent"Agent`
+
+      - `required Int Version`
+
+    - `required DateTimeOffset? ArchivedAt`
+
+      A timestamp in RFC 3339 format
+
+    - `required DateTimeOffset CreatedAt`
+
+      A timestamp in RFC 3339 format
+
+    - `required string? Description`
+
+      Description of what the deployment does.
+
+    - `required string EnvironmentID`
+
+      ID of the `environment` where sessions run.
+
+    - `required IReadOnlyList<BetaManagedAgentsDeploymentInitialEvent> InitialEvents`
+
+      Events sent to each session immediately after creation.
+
+      - `class BetaManagedAgentsDeploymentUserMessageEvent:`
+
+        A user message sent to the session.
+
+        - `required IReadOnlyList<Content> Content`
+
+          Array of content blocks for the user message.
+
+          - `class BetaManagedAgentsTextBlock:`
+
+            Regular text content.
+
+            - `required string Text`
+
+              The text content.
+
+            - `required Type Type`
+
+              - `"text"Text`
+
+          - `class BetaManagedAgentsImageBlock:`
+
+            Image content specified directly as base64 data or as a reference via a URL.
+
+            - `required Source Source`
+
+              Union type for image source variants.
+
+              - `class BetaManagedAgentsBase64ImageSource:`
+
+                Base64-encoded image data.
+
+                - `required string Data`
+
+                  Base64-encoded image data.
+
+                - `required string MediaType`
+
+                  MIME type of the image (e.g., "image/png", "image/jpeg", "image/gif", "image/webp").
+
+                - `required Type Type`
+
+                  - `"base64"Base64`
+
+              - `class BetaManagedAgentsUrlImageSource:`
+
+                Image referenced by URL.
+
+                - `required Type Type`
+
+                  - `"url"Url`
+
+                - `required string Url`
+
+                  URL of the image to fetch.
+
+              - `class BetaManagedAgentsFileImageSource:`
+
+                Image referenced by file ID.
+
+                - `required string FileID`
+
+                  ID of a previously uploaded file.
+
+                - `required Type Type`
+
+                  - `"file"File`
+
+            - `required Type Type`
+
+              - `"image"Image`
+
+          - `class BetaManagedAgentsDocumentBlock:`
+
+            Document content, either specified directly as base64 data, as text, or as a reference via a URL.
+
+            - `required Source Source`
+
+              Union type for document source variants.
+
+              - `class BetaManagedAgentsBase64DocumentSource:`
+
+                Base64-encoded document data.
+
+                - `required string Data`
+
+                  Base64-encoded document data.
+
+                - `required string MediaType`
+
+                  MIME type of the document (e.g., "application/pdf").
+
+                - `required Type Type`
+
+                  - `"base64"Base64`
+
+              - `class BetaManagedAgentsPlainTextDocumentSource:`
+
+                Plain text document content.
+
+                - `required string Data`
+
+                  The plain text content.
+
+                - `required MediaType MediaType`
+
+                  MIME type of the text content. Must be "text/plain".
+
+                  - `"text/plain"TextPlain`
+
+                - `required Type Type`
+
+                  - `"text"Text`
+
+              - `class BetaManagedAgentsUrlDocumentSource:`
+
+                Document referenced by URL.
+
+                - `required Type Type`
+
+                  - `"url"Url`
+
+                - `required string Url`
+
+                  URL of the document to fetch.
+
+              - `class BetaManagedAgentsFileDocumentSource:`
+
+                Document referenced by file ID.
+
+                - `required string FileID`
+
+                  ID of a previously uploaded file.
+
+                - `required Type Type`
+
+                  - `"file"File`
+
+            - `required Type Type`
+
+              - `"document"Document`
+
+            - `string? Context`
+
+              Additional context about the document for the model.
+
+            - `string? Title`
+
+              The title of the document.
+
+        - `required Type Type`
+
+          - `"user.message"UserMessage`
+
+      - `class BetaManagedAgentsDeploymentUserDefineOutcomeEvent:`
+
+        An outcome the agent should work toward. The agent begins work on receipt.
+
+        - `required string Description`
+
+          What the agent should produce. This is the task specification.
+
+        - `required Rubric Rubric`
+
+          Rubric for grading the quality of an outcome.
+
+          - `class BetaManagedAgentsFileRubric:`
+
+            Rubric referenced by a file uploaded via the Files API.
+
+            - `required string FileID`
+
+              ID of the rubric file.
+
+            - `required Type Type`
+
+              - `"file"File`
+
+          - `class BetaManagedAgentsTextRubric:`
+
+            Rubric content provided inline as text.
+
+            - `required string Content`
+
+              Rubric content. Plain text or markdown — the grader treats it as freeform text.
+
+            - `required Type Type`
+
+              - `"text"Text`
+
+        - `required Type Type`
+
+          - `"user.define_outcome"UserDefineOutcome`
+
+        - `Int? MaxIterations`
+
+          Eval→revision cycles before giving up. Default 3, max 20.
+
+      - `class BetaManagedAgentsDeploymentSystemMessageEvent:`
+
+        Privileged context for the accompanying turn and all subsequent turns, appended to the session's system context as a `role: "system"` turn rather than replacing the top-level system prompt.
+
+        - `required IReadOnlyList<BetaManagedAgentsSystemContentBlock> Content`
+
+          System content blocks to append. Text-only.
+
+          - `required string Text`
+
+            The text content.
+
+          - `required Type Type`
+
+            - `"text"Text`
+
+        - `required Type Type`
+
+          - `"system.message"SystemMessage`
+
+    - `required IReadOnlyDictionary<string, string> Metadata`
+
+      Arbitrary key-value metadata. Maximum 16 pairs.
+
+    - `required string Name`
+
+      Human-readable name.
+
+    - `required BetaManagedAgentsDeploymentPausedReason? PausedReason`
+
+      Why a deployment is paused. Non-null exactly when `status` is `paused`.
+
+      - `class BetaManagedAgentsManualDeploymentPausedReason:`
+
+        The caller invoked the pause endpoint on the deployment.
+
+        - `required Type Type`
+
+          - `"manual"Manual`
+
+      - `class BetaManagedAgentsErrorDeploymentPausedReason:`
+
+        A scheduled fire recorded a failed run whose error auto-pauses the deployment.
+
+        - `required BetaManagedAgentsDeploymentPausedReasonError Error`
+
+          The error that triggered an auto-pause. Matches the failed run's `error.type`.
+
+          - `class BetaManagedAgentsEnvironmentArchivedDeploymentPausedReasonError:`
+
+            The deployment's environment was archived.
+
+            - `required Type Type`
+
+              - `"environment_archived_error"EnvironmentArchivedError`
+
+          - `class BetaManagedAgentsAgentArchivedDeploymentPausedReasonError:`
+
+            The deployment's agent was archived.
+
+            - `required Type Type`
+
+              - `"agent_archived_error"AgentArchivedError`
+
+          - `class BetaManagedAgentsEnvironmentNotFoundDeploymentPausedReasonError:`
+
+            The deployment's environment no longer exists.
+
+            - `required Type Type`
+
+              - `"environment_not_found_error"EnvironmentNotFoundError`
+
+          - `class BetaManagedAgentsVaultNotFoundDeploymentPausedReasonError:`
+
+            A vault referenced by the deployment no longer exists.
+
+            - `required Type Type`
+
+              - `"vault_not_found_error"VaultNotFoundError`
+
+          - `class BetaManagedAgentsFileNotFoundDeploymentPausedReasonError:`
+
+            A file resource referenced by the deployment no longer exists.
+
+            - `required Type Type`
+
+              - `"file_not_found_error"FileNotFoundError`
+
+          - `class BetaManagedAgentsSessionResourceNotFoundDeploymentPausedReasonError:`
+
+            A referenced resource no longer exists and its kind was not reported.
+
+            - `required Type Type`
+
+              - `"session_resource_not_found_error"SessionResourceNotFoundError`
+
+          - `class BetaManagedAgentsWorkspaceArchivedDeploymentPausedReasonError:`
+
+            The deployment's workspace was archived.
+
+            - `required Type Type`
+
+              - `"workspace_archived_error"WorkspaceArchivedError`
+
+          - `class BetaManagedAgentsOrganizationDisabledDeploymentPausedReasonError:`
+
+            The deployment's organization is disabled.
+
+            - `required Type Type`
+
+              - `"organization_disabled_error"OrganizationDisabledError`
+
+          - `class BetaManagedAgentsMemoryStoreArchivedDeploymentPausedReasonError:`
+
+            A memory store referenced by the deployment is archived.
+
+            - `required Type Type`
+
+              - `"memory_store_archived_error"MemoryStoreArchivedError`
+
+          - `class BetaManagedAgentsSkillNotFoundDeploymentPausedReasonError:`
+
+            A skill referenced by the deployment's agent no longer exists.
+
+            - `required Type Type`
+
+              - `"skill_not_found_error"SkillNotFoundError`
+
+          - `class BetaManagedAgentsVaultArchivedDeploymentPausedReasonError:`
+
+            A vault referenced by the deployment is archived.
+
+            - `required Type Type`
+
+              - `"vault_archived_error"VaultArchivedError`
+
+          - `class BetaManagedAgentsUnknownDeploymentPausedReasonError:`
+
+            An unrecognized error auto-paused the deployment. A fallback variant; matches a run whose `error.type` is `unknown_error`.
+
+            - `required Type Type`
+
+              - `"unknown_error"UnknownError`
+
+          - `class BetaManagedAgentsSelfHostedResourcesUnsupportedDeploymentPausedReasonError:`
+
+            The deployment configures resources, but its environment is self-hosted and cannot mount them.
+
+            - `required Type Type`
+
+              - `"self_hosted_resources_unsupported_error"SelfHostedResourcesUnsupportedError`
+
+          - `class BetaManagedAgentsMcpEgressBlockedDeploymentPausedReasonError:`
+
+            An MCP server host used by the deployment's agent is blocked by the environment's network policy.
+
+            - `required Type Type`
+
+              - `"mcp_egress_blocked_error"McpEgressBlockedError`
+
+        - `required Type Type`
+
+          - `"error"Error`
+
+    - `required IReadOnlyList<BetaManagedAgentsSessionResourceConfig> Resources`
+
+      Resources attached to sessions created from this deployment. Echoes the input minus write-only credentials.
+
+      - `class BetaManagedAgentsGitHubRepositoryResourceConfig:`
+
+        A GitHub repository mounted into each session's container. The authorization token is write-only and never returned.
+
+        - `required Type Type`
+
+          - `"github_repository"GitHubRepository`
+
+        - `required string Url`
+
+          Github URL of the repository
+
+        - `Checkout? Checkout`
+
+          Branch or commit to check out. Defaults to the repository's default branch.
+
+          - `class BetaManagedAgentsBranchCheckout:`
+
+            - `required string Name`
+
+              Branch name to check out.
+
+            - `required Type Type`
+
+              - `"branch"Branch`
+
+          - `class BetaManagedAgentsCommitCheckout:`
+
+            - `required string Sha`
+
+              Full commit SHA to check out.
+
+            - `required Type Type`
+
+              - `"commit"Commit`
+
+        - `string? MountPath`
+
+          Mount path in the container. Defaults to `/workspace/<repo-name>`.
+
+      - `class BetaManagedAgentsFileResourceConfig:`
+
+        A file mounted into each session's container.
+
+        - `required string FileID`
+
+          ID of a previously uploaded file.
+
+        - `required Type Type`
+
+          - `"file"File`
+
+        - `string? MountPath`
+
+          Mount path in the container. Defaults to `/mnt/session/uploads/<file_id>`.
+
+      - `class BetaManagedAgentsMemoryStoreResourceConfig:`
+
+        A memory store attached to each session created from this deployment.
+
+        - `required string MemoryStoreID`
+
+          The memory store ID (memstore_...). Must belong to the caller's organization and workspace.
+
+        - `required Type Type`
+
+          - `"memory_store"MemoryStore`
+
+        - `Access? Access`
+
+          Access mode for an attached memory store.
+
+          - `"read_write"ReadWrite`
+
+          - `"read_only"ReadOnly`
+
+        - `string? Instructions`
+
+          Per-attachment guidance for the agent on how to use this store. Rendered into the memory section of the system prompt. Max 4096 chars.
+
+    - `required BetaManagedAgentsSchedule? Schedule`
+
+      5-field POSIX cron schedule with computed runtime timestamps.
+
+      - `required string Expression`
+
+        5-field POSIX cron expression: minute hour day-of-month month day-of-week (e.g., "0 9 * * 1-5" for weekdays at 9am). Day-of-week is 0-7 where 0 and 7 both mean Sunday. Extended cron syntax - seconds or year fields, and the special characters L, W, #, and ? - is not supported, nor are predefined shortcuts (@daily).
+
+      - `required string Timezone`
+
+        IANA timezone identifier (e.g., "America/Los_Angeles", "UTC").
+
+      - `required Type Type`
+
+        - `"cron"Cron`
+
+      - `DateTimeOffset? LastRunAt`
+
+        A timestamp in RFC 3339 format
+
+      - `IReadOnlyList<DateTimeOffset> UpcomingRunsAt`
+
+        Up to 5 timestamps of upcoming cron occurrences. Non-empty for active and paused deployments (reflects what the schedule would do if unpaused); empty once the deployment is archived (`archived_at` set). Each fire is offset by a small per-schedule jitter, so a run will actually start at or shortly after its listed time.
+
+    - `required BetaManagedAgentsDeploymentStatus Status`
+
+      Lifecycle status of a deployment.
+
+      - `"active"Active`
+
+      - `"paused"Paused`
+
+    - `required Type Type`
+
+      - `"deployment"Deployment`
+
+    - `required DateTimeOffset UpdatedAt`
+
+      A timestamp in RFC 3339 format
+
+    - `required IReadOnlyList<string> VaultIds`
+
+      Vault IDs supplying stored credentials for sessions created from this deployment.
+
+  - `string? NextPage`
+
+    Opaque cursor for the next page. Null when no more results.
+
+### Example
+
+```csharp
+DeploymentListParams parameters = new();
+
+var page = await client.Beta.Deployments.List(parameters);
+await foreach (var item in page.Paginate())
+{
+    Console.WriteLine(item);
+}
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "id",
+      "agent": {
+        "id": "agent_011CZkYqphY8vELVzwCUpqiQ",
+        "type": "agent",
+        "version": 1
+      },
+      "archived_at": "2019-12-27T18:11:19.117Z",
+      "created_at": "2019-12-27T18:11:19.117Z",
+      "description": "description",
+      "environment_id": "environment_id",
+      "initial_events": [
+        {
+          "content": [
+            {
+              "text": "Where is my order #1234?",
+              "type": "text"
+            }
+          ],
+          "type": "user.message"
+        }
+      ],
+      "metadata": {
+        "foo": "string"
+      },
+      "name": "name",
+      "paused_reason": {
+        "type": "manual"
+      },
+      "resources": [
+        {
+          "type": "github_repository",
+          "url": "url",
+          "checkout": {
+            "name": "main",
+            "type": "branch"
+          },
+          "mount_path": "mount_path"
+        }
+      ],
+      "schedule": {
+        "expression": "x",
+        "timezone": "x",
+        "type": "cron",
+        "last_run_at": "2019-12-27T18:11:19.117Z",
+        "upcoming_runs_at": [
+          "2019-12-27T18:11:19.117Z"
+        ]
+      },
+      "status": "active",
+      "type": "deployment",
+      "updated_at": "2019-12-27T18:11:19.117Z",
+      "vault_ids": [
+        "string"
+      ]
+    }
+  ],
+  "next_page": "next_page"
+}
+```
+
+## Get Deployment
+
+`BetaManagedAgentsDeployment Beta.Deployments.Retrieve(DeploymentRetrieveParamsparameters, CancellationTokencancellationToken = default)`
+
+**get** `/v1/deployments/{deployment_id}`
+
+Get Deployment
+
+### Parameters
+
+- `DeploymentRetrieveParams parameters`
+
+  - `required string deploymentID`
+
+    Path parameter deployment_id
+
+  - `IReadOnlyList<AnthropicBeta> betas`
+
+    Optional header to specify the beta version(s) you want to use.
+
+    - `"message-batches-2024-09-24"MessageBatches2024_09_24`
+
+    - `"prompt-caching-2024-07-31"PromptCaching2024_07_31`
+
+    - `"computer-use-2024-10-22"ComputerUse2024_10_22`
+
+    - `"computer-use-2025-01-24"ComputerUse2025_01_24`
+
+    - `"pdfs-2024-09-25"Pdfs2024_09_25`
+
+    - `"token-counting-2024-11-01"TokenCounting2024_11_01`
+
+    - `"token-efficient-tools-2025-02-19"TokenEfficientTools2025_02_19`
+
+    - `"output-128k-2025-02-19"Output128k2025_02_19`
+
+    - `"files-api-2025-04-14"FilesApi2025_04_14`
+
+    - `"mcp-client-2025-04-04"McpClient2025_04_04`
+
+    - `"mcp-client-2025-11-20"McpClient2025_11_20`
+
+    - `"dev-full-thinking-2025-05-14"DevFullThinking2025_05_14`
+
+    - `"interleaved-thinking-2025-05-14"InterleavedThinking2025_05_14`
+
+    - `"code-execution-2025-05-22"CodeExecution2025_05_22`
+
+    - `"extended-cache-ttl-2025-04-11"ExtendedCacheTtl2025_04_11`
+
+    - `"context-1m-2025-08-07"Context1m2025_08_07`
+
+    - `"context-management-2025-06-27"ContextManagement2025_06_27`
+
+    - `"model-context-window-exceeded-2025-08-26"ModelContextWindowExceeded2025_08_26`
+
+    - `"skills-2025-10-02"Skills2025_10_02`
+
+    - `"fast-mode-2026-02-01"FastMode2026_02_01`
+
+    - `"output-300k-2026-03-24"Output300k2026_03_24`
+
+    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
+
+    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
+    - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
+    - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
+
+    - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+### Returns
+
+- `class BetaManagedAgentsDeployment:`
+
+  A deployment is a configured instance of an agent — it binds the agent to everything needed to run it autonomously: an environment, credentials, initial events, and an optional schedule.
+
+  - `required string ID`
+
+    Unique identifier for this deployment.
+
+  - `required BetaManagedAgentsAgentReference Agent`
+
+    A resolved agent reference with a concrete version.
+
+    - `required string ID`
+
+    - `required Type Type`
+
+      - `"agent"Agent`
+
+    - `required Int Version`
+
+  - `required DateTimeOffset? ArchivedAt`
+
+    A timestamp in RFC 3339 format
+
+  - `required DateTimeOffset CreatedAt`
+
+    A timestamp in RFC 3339 format
+
+  - `required string? Description`
+
+    Description of what the deployment does.
+
+  - `required string EnvironmentID`
+
+    ID of the `environment` where sessions run.
+
+  - `required IReadOnlyList<BetaManagedAgentsDeploymentInitialEvent> InitialEvents`
+
+    Events sent to each session immediately after creation.
+
+    - `class BetaManagedAgentsDeploymentUserMessageEvent:`
+
+      A user message sent to the session.
+
+      - `required IReadOnlyList<Content> Content`
+
+        Array of content blocks for the user message.
+
+        - `class BetaManagedAgentsTextBlock:`
+
+          Regular text content.
+
+          - `required string Text`
+
+            The text content.
+
+          - `required Type Type`
+
+            - `"text"Text`
+
+        - `class BetaManagedAgentsImageBlock:`
+
+          Image content specified directly as base64 data or as a reference via a URL.
+
+          - `required Source Source`
+
+            Union type for image source variants.
+
+            - `class BetaManagedAgentsBase64ImageSource:`
+
+              Base64-encoded image data.
+
+              - `required string Data`
+
+                Base64-encoded image data.
+
+              - `required string MediaType`
+
+                MIME type of the image (e.g., "image/png", "image/jpeg", "image/gif", "image/webp").
+
+              - `required Type Type`
+
+                - `"base64"Base64`
+
+            - `class BetaManagedAgentsUrlImageSource:`
+
+              Image referenced by URL.
+
+              - `required Type Type`
+
+                - `"url"Url`
+
+              - `required string Url`
+
+                URL of the image to fetch.
+
+            - `class BetaManagedAgentsFileImageSource:`
+
+              Image referenced by file ID.
+
+              - `required string FileID`
+
+                ID of a previously uploaded file.
+
+              - `required Type Type`
+
+                - `"file"File`
+
+          - `required Type Type`
+
+            - `"image"Image`
+
+        - `class BetaManagedAgentsDocumentBlock:`
+
+          Document content, either specified directly as base64 data, as text, or as a reference via a URL.
+
+          - `required Source Source`
+
+            Union type for document source variants.
+
+            - `class BetaManagedAgentsBase64DocumentSource:`
+
+              Base64-encoded document data.
+
+              - `required string Data`
+
+                Base64-encoded document data.
+
+              - `required string MediaType`
+
+                MIME type of the document (e.g., "application/pdf").
+
+              - `required Type Type`
+
+                - `"base64"Base64`
+
+            - `class BetaManagedAgentsPlainTextDocumentSource:`
+
+              Plain text document content.
+
+              - `required string Data`
+
+                The plain text content.
+
+              - `required MediaType MediaType`
+
+                MIME type of the text content. Must be "text/plain".
+
+                - `"text/plain"TextPlain`
+
+              - `required Type Type`
+
+                - `"text"Text`
+
+            - `class BetaManagedAgentsUrlDocumentSource:`
+
+              Document referenced by URL.
+
+              - `required Type Type`
+
+                - `"url"Url`
+
+              - `required string Url`
+
+                URL of the document to fetch.
+
+            - `class BetaManagedAgentsFileDocumentSource:`
+
+              Document referenced by file ID.
+
+              - `required string FileID`
+
+                ID of a previously uploaded file.
+
+              - `required Type Type`
+
+                - `"file"File`
+
+          - `required Type Type`
+
+            - `"document"Document`
+
+          - `string? Context`
+
+            Additional context about the document for the model.
+
+          - `string? Title`
+
+            The title of the document.
+
+      - `required Type Type`
+
+        - `"user.message"UserMessage`
+
+    - `class BetaManagedAgentsDeploymentUserDefineOutcomeEvent:`
+
+      An outcome the agent should work toward. The agent begins work on receipt.
+
+      - `required string Description`
+
+        What the agent should produce. This is the task specification.
+
+      - `required Rubric Rubric`
+
+        Rubric for grading the quality of an outcome.
+
+        - `class BetaManagedAgentsFileRubric:`
+
+          Rubric referenced by a file uploaded via the Files API.
+
+          - `required string FileID`
+
+            ID of the rubric file.
+
+          - `required Type Type`
+
+            - `"file"File`
+
+        - `class BetaManagedAgentsTextRubric:`
+
+          Rubric content provided inline as text.
+
+          - `required string Content`
+
+            Rubric content. Plain text or markdown — the grader treats it as freeform text.
+
+          - `required Type Type`
+
+            - `"text"Text`
+
+      - `required Type Type`
+
+        - `"user.define_outcome"UserDefineOutcome`
+
+      - `Int? MaxIterations`
+
+        Eval→revision cycles before giving up. Default 3, max 20.
+
+    - `class BetaManagedAgentsDeploymentSystemMessageEvent:`
+
+      Privileged context for the accompanying turn and all subsequent turns, appended to the session's system context as a `role: "system"` turn rather than replacing the top-level system prompt.
+
+      - `required IReadOnlyList<BetaManagedAgentsSystemContentBlock> Content`
+
+        System content blocks to append. Text-only.
+
+        - `required string Text`
+
+          The text content.
+
+        - `required Type Type`
+
+          - `"text"Text`
+
+      - `required Type Type`
+
+        - `"system.message"SystemMessage`
+
+  - `required IReadOnlyDictionary<string, string> Metadata`
+
+    Arbitrary key-value metadata. Maximum 16 pairs.
+
+  - `required string Name`
+
+    Human-readable name.
+
+  - `required BetaManagedAgentsDeploymentPausedReason? PausedReason`
+
+    Why a deployment is paused. Non-null exactly when `status` is `paused`.
+
+    - `class BetaManagedAgentsManualDeploymentPausedReason:`
+
+      The caller invoked the pause endpoint on the deployment.
+
+      - `required Type Type`
+
+        - `"manual"Manual`
+
+    - `class BetaManagedAgentsErrorDeploymentPausedReason:`
+
+      A scheduled fire recorded a failed run whose error auto-pauses the deployment.
+
+      - `required BetaManagedAgentsDeploymentPausedReasonError Error`
+
+        The error that triggered an auto-pause. Matches the failed run's `error.type`.
+
+        - `class BetaManagedAgentsEnvironmentArchivedDeploymentPausedReasonError:`
+
+          The deployment's environment was archived.
+
+          - `required Type Type`
+
+            - `"environment_archived_error"EnvironmentArchivedError`
+
+        - `class BetaManagedAgentsAgentArchivedDeploymentPausedReasonError:`
+
+          The deployment's agent was archived.
+
+          - `required Type Type`
+
+            - `"agent_archived_error"AgentArchivedError`
+
+        - `class BetaManagedAgentsEnvironmentNotFoundDeploymentPausedReasonError:`
+
+          The deployment's environment no longer exists.
+
+          - `required Type Type`
+
+            - `"environment_not_found_error"EnvironmentNotFoundError`
+
+        - `class BetaManagedAgentsVaultNotFoundDeploymentPausedReasonError:`
+
+          A vault referenced by the deployment no longer exists.
+
+          - `required Type Type`
+
+            - `"vault_not_found_error"VaultNotFoundError`
+
+        - `class BetaManagedAgentsFileNotFoundDeploymentPausedReasonError:`
+
+          A file resource referenced by the deployment no longer exists.
+
+          - `required Type Type`
+
+            - `"file_not_found_error"FileNotFoundError`
+
+        - `class BetaManagedAgentsSessionResourceNotFoundDeploymentPausedReasonError:`
+
+          A referenced resource no longer exists and its kind was not reported.
+
+          - `required Type Type`
+
+            - `"session_resource_not_found_error"SessionResourceNotFoundError`
+
+        - `class BetaManagedAgentsWorkspaceArchivedDeploymentPausedReasonError:`
+
+          The deployment's workspace was archived.
+
+          - `required Type Type`
+
+            - `"workspace_archived_error"WorkspaceArchivedError`
+
+        - `class BetaManagedAgentsOrganizationDisabledDeploymentPausedReasonError:`
+
+          The deployment's organization is disabled.
+
+          - `required Type Type`
+
+            - `"organization_disabled_error"OrganizationDisabledError`
+
+        - `class BetaManagedAgentsMemoryStoreArchivedDeploymentPausedReasonError:`
+
+          A memory store referenced by the deployment is archived.
+
+          - `required Type Type`
+
+            - `"memory_store_archived_error"MemoryStoreArchivedError`
+
+        - `class BetaManagedAgentsSkillNotFoundDeploymentPausedReasonError:`
+
+          A skill referenced by the deployment's agent no longer exists.
+
+          - `required Type Type`
+
+            - `"skill_not_found_error"SkillNotFoundError`
+
+        - `class BetaManagedAgentsVaultArchivedDeploymentPausedReasonError:`
+
+          A vault referenced by the deployment is archived.
+
+          - `required Type Type`
+
+            - `"vault_archived_error"VaultArchivedError`
+
+        - `class BetaManagedAgentsUnknownDeploymentPausedReasonError:`
+
+          An unrecognized error auto-paused the deployment. A fallback variant; matches a run whose `error.type` is `unknown_error`.
+
+          - `required Type Type`
+
+            - `"unknown_error"UnknownError`
+
+        - `class BetaManagedAgentsSelfHostedResourcesUnsupportedDeploymentPausedReasonError:`
+
+          The deployment configures resources, but its environment is self-hosted and cannot mount them.
+
+          - `required Type Type`
+
+            - `"self_hosted_resources_unsupported_error"SelfHostedResourcesUnsupportedError`
+
+        - `class BetaManagedAgentsMcpEgressBlockedDeploymentPausedReasonError:`
+
+          An MCP server host used by the deployment's agent is blocked by the environment's network policy.
+
+          - `required Type Type`
+
+            - `"mcp_egress_blocked_error"McpEgressBlockedError`
+
+      - `required Type Type`
+
+        - `"error"Error`
+
+  - `required IReadOnlyList<BetaManagedAgentsSessionResourceConfig> Resources`
+
+    Resources attached to sessions created from this deployment. Echoes the input minus write-only credentials.
+
+    - `class BetaManagedAgentsGitHubRepositoryResourceConfig:`
+
+      A GitHub repository mounted into each session's container. The authorization token is write-only and never returned.
+
+      - `required Type Type`
+
+        - `"github_repository"GitHubRepository`
+
+      - `required string Url`
+
+        Github URL of the repository
+
+      - `Checkout? Checkout`
+
+        Branch or commit to check out. Defaults to the repository's default branch.
+
+        - `class BetaManagedAgentsBranchCheckout:`
+
+          - `required string Name`
+
+            Branch name to check out.
+
+          - `required Type Type`
+
+            - `"branch"Branch`
+
+        - `class BetaManagedAgentsCommitCheckout:`
+
+          - `required string Sha`
+
+            Full commit SHA to check out.
+
+          - `required Type Type`
+
+            - `"commit"Commit`
+
+      - `string? MountPath`
+
+        Mount path in the container. Defaults to `/workspace/<repo-name>`.
+
+    - `class BetaManagedAgentsFileResourceConfig:`
+
+      A file mounted into each session's container.
+
+      - `required string FileID`
+
+        ID of a previously uploaded file.
+
+      - `required Type Type`
+
+        - `"file"File`
+
+      - `string? MountPath`
+
+        Mount path in the container. Defaults to `/mnt/session/uploads/<file_id>`.
+
+    - `class BetaManagedAgentsMemoryStoreResourceConfig:`
+
+      A memory store attached to each session created from this deployment.
+
+      - `required string MemoryStoreID`
+
+        The memory store ID (memstore_...). Must belong to the caller's organization and workspace.
+
+      - `required Type Type`
+
+        - `"memory_store"MemoryStore`
+
+      - `Access? Access`
+
+        Access mode for an attached memory store.
+
+        - `"read_write"ReadWrite`
+
+        - `"read_only"ReadOnly`
+
+      - `string? Instructions`
+
+        Per-attachment guidance for the agent on how to use this store. Rendered into the memory section of the system prompt. Max 4096 chars.
+
+  - `required BetaManagedAgentsSchedule? Schedule`
+
+    5-field POSIX cron schedule with computed runtime timestamps.
+
+    - `required string Expression`
+
+      5-field POSIX cron expression: minute hour day-of-month month day-of-week (e.g., "0 9 * * 1-5" for weekdays at 9am). Day-of-week is 0-7 where 0 and 7 both mean Sunday. Extended cron syntax - seconds or year fields, and the special characters L, W, #, and ? - is not supported, nor are predefined shortcuts (@daily).
+
+    - `required string Timezone`
+
+      IANA timezone identifier (e.g., "America/Los_Angeles", "UTC").
+
+    - `required Type Type`
+
+      - `"cron"Cron`
+
+    - `DateTimeOffset? LastRunAt`
+
+      A timestamp in RFC 3339 format
+
+    - `IReadOnlyList<DateTimeOffset> UpcomingRunsAt`
+
+      Up to 5 timestamps of upcoming cron occurrences. Non-empty for active and paused deployments (reflects what the schedule would do if unpaused); empty once the deployment is archived (`archived_at` set). Each fire is offset by a small per-schedule jitter, so a run will actually start at or shortly after its listed time.
+
+  - `required BetaManagedAgentsDeploymentStatus Status`
+
+    Lifecycle status of a deployment.
+
+    - `"active"Active`
+
+    - `"paused"Paused`
+
+  - `required Type Type`
+
+    - `"deployment"Deployment`
+
+  - `required DateTimeOffset UpdatedAt`
+
+    A timestamp in RFC 3339 format
+
+  - `required IReadOnlyList<string> VaultIds`
+
+    Vault IDs supplying stored credentials for sessions created from this deployment.
+
+### Example
+
+```csharp
+DeploymentRetrieveParams parameters = new() { DeploymentID = "deployment_id" };
+
+var betaManagedAgentsDeployment = await client.Beta.Deployments.Retrieve(parameters);
+
+Console.WriteLine(betaManagedAgentsDeployment);
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "agent": {
+    "id": "agent_011CZkYqphY8vELVzwCUpqiQ",
+    "type": "agent",
+    "version": 1
+  },
+  "archived_at": "2019-12-27T18:11:19.117Z",
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "description": "description",
+  "environment_id": "environment_id",
+  "initial_events": [
+    {
+      "content": [
+        {
+          "text": "Where is my order #1234?",
+          "type": "text"
+        }
+      ],
+      "type": "user.message"
+    }
+  ],
+  "metadata": {
+    "foo": "string"
+  },
+  "name": "name",
+  "paused_reason": {
+    "type": "manual"
+  },
+  "resources": [
+    {
+      "type": "github_repository",
+      "url": "url",
+      "checkout": {
+        "name": "main",
+        "type": "branch"
+      },
+      "mount_path": "mount_path"
+    }
+  ],
+  "schedule": {
+    "expression": "x",
+    "timezone": "x",
+    "type": "cron",
+    "last_run_at": "2019-12-27T18:11:19.117Z",
+    "upcoming_runs_at": [
+      "2019-12-27T18:11:19.117Z"
+    ]
+  },
+  "status": "active",
+  "type": "deployment",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "vault_ids": [
+    "string"
+  ]
+}
+```
+
+## Update Deployment
+
+`BetaManagedAgentsDeployment Beta.Deployments.Update(DeploymentUpdateParamsparameters, CancellationTokencancellationToken = default)`
+
+**post** `/v1/deployments/{deployment_id}`
+
+Update Deployment
+
+### Parameters
+
+- `DeploymentUpdateParams parameters`
+
+  - `required string deploymentID`
+
+    Path param: Path parameter deployment_id
+
+  - `Agent agent`
+
+    Body param: Agent to deploy. Accepts the `agent` ID string, which re-pins to the latest version, or an `agent` object with both id and version specified. Omit to preserve. Cannot be cleared.
+
+    - `string`
+
+    - `class BetaManagedAgentsAgentParams:`
+
+      Specification for an Agent. Provide a specific `version` or use the short-form `agent="agent_id"` for the most recent version
+
+      - `required string ID`
+
+        The `agent` ID.
+
+      - `required Type Type`
+
+        - `"agent"Agent`
+
+      - `Int Version`
+
+        The specific `agent` version to use. Omit to use the latest version. Must be at least 1 if specified.
+
+  - `string? description`
+
+    Body param: Description. Omit to preserve; send empty string or null to clear.
+
+  - `string environmentID`
+
+    Body param: ID of the `environment` where sessions run. Omit to preserve. Cannot be cleared.
+
+  - `IReadOnlyList<BetaManagedAgentsDeploymentInitialEventParams> initialEvents`
+
+    Body param: Initial events. Full replacement. Omit to preserve. Cannot be cleared. At least 1, maximum 50.
+
+    - `class BetaManagedAgentsUserMessageEventParams:`
+
+      Parameters for sending a user message to the session.
+
+      - `required IReadOnlyList<Content> Content`
+
+        Array of content blocks for the user message.
+
+        - `class BetaManagedAgentsTextBlock:`
+
+          Regular text content.
+
+          - `required string Text`
+
+            The text content.
+
+          - `required Type Type`
+
+            - `"text"Text`
+
+        - `class BetaManagedAgentsImageBlock:`
+
+          Image content specified directly as base64 data or as a reference via a URL.
+
+          - `required Source Source`
+
+            Union type for image source variants.
+
+            - `class BetaManagedAgentsBase64ImageSource:`
+
+              Base64-encoded image data.
+
+              - `required string Data`
+
+                Base64-encoded image data.
+
+              - `required string MediaType`
+
+                MIME type of the image (e.g., "image/png", "image/jpeg", "image/gif", "image/webp").
+
+              - `required Type Type`
+
+                - `"base64"Base64`
+
+            - `class BetaManagedAgentsUrlImageSource:`
+
+              Image referenced by URL.
+
+              - `required Type Type`
+
+                - `"url"Url`
+
+              - `required string Url`
+
+                URL of the image to fetch.
+
+            - `class BetaManagedAgentsFileImageSource:`
+
+              Image referenced by file ID.
+
+              - `required string FileID`
+
+                ID of a previously uploaded file.
+
+              - `required Type Type`
+
+                - `"file"File`
+
+          - `required Type Type`
+
+            - `"image"Image`
+
+        - `class BetaManagedAgentsDocumentBlock:`
+
+          Document content, either specified directly as base64 data, as text, or as a reference via a URL.
+
+          - `required Source Source`
+
+            Union type for document source variants.
+
+            - `class BetaManagedAgentsBase64DocumentSource:`
+
+              Base64-encoded document data.
+
+              - `required string Data`
+
+                Base64-encoded document data.
+
+              - `required string MediaType`
+
+                MIME type of the document (e.g., "application/pdf").
+
+              - `required Type Type`
+
+                - `"base64"Base64`
+
+            - `class BetaManagedAgentsPlainTextDocumentSource:`
+
+              Plain text document content.
+
+              - `required string Data`
+
+                The plain text content.
+
+              - `required MediaType MediaType`
+
+                MIME type of the text content. Must be "text/plain".
+
+                - `"text/plain"TextPlain`
+
+              - `required Type Type`
+
+                - `"text"Text`
+
+            - `class BetaManagedAgentsUrlDocumentSource:`
+
+              Document referenced by URL.
+
+              - `required Type Type`
+
+                - `"url"Url`
+
+              - `required string Url`
+
+                URL of the document to fetch.
+
+            - `class BetaManagedAgentsFileDocumentSource:`
+
+              Document referenced by file ID.
+
+              - `required string FileID`
+
+                ID of a previously uploaded file.
+
+              - `required Type Type`
+
+                - `"file"File`
+
+          - `required Type Type`
+
+            - `"document"Document`
+
+          - `string? Context`
+
+            Additional context about the document for the model.
+
+          - `string? Title`
+
+            The title of the document.
+
+      - `required Type Type`
+
+        - `"user.message"UserMessage`
+
+    - `class BetaManagedAgentsUserDefineOutcomeEventParams:`
+
+      Parameters for defining an outcome the agent should work toward. The agent begins work on receipt.
+
+      - `required string Description`
+
+        What the agent should produce. This is the task specification.
+
+      - `required Rubric Rubric`
+
+        Rubric for grading the quality of an outcome.
+
+        - `class BetaManagedAgentsFileRubricParams:`
+
+          Rubric referenced by a file uploaded via the Files API.
+
+          - `required string FileID`
+
+            ID of the rubric file.
+
+          - `required Type Type`
+
+            - `"file"File`
+
+        - `class BetaManagedAgentsTextRubricParams:`
+
+          Rubric content provided inline as text.
+
+          - `required string Content`
+
+            Rubric content. Plain text or markdown — the grader treats it as freeform text. Maximum 262144 characters.
+
+          - `required Type Type`
+
+            - `"text"Text`
+
+      - `required Type Type`
+
+        - `"user.define_outcome"UserDefineOutcome`
+
+      - `Int? MaxIterations`
+
+        Eval→revision cycles before giving up. Default 3, max 20.
+
+    - `class BetaManagedAgentsSystemMessageEventParams:`
+
+      Privileged context for the accompanying turn and all subsequent turns, appended to the session's system context as a `role: "system"` turn rather than replacing the top-level system prompt. At most one per request: it must be the final event and immediately follow the `user.message`, `user.tool_result`, or `user.custom_tool_result` it accompanies. Only supported on models that accept mid-conversation system messages.
+
+      - `required IReadOnlyList<BetaManagedAgentsSystemContentBlock> Content`
+
+        System content blocks to append. Text-only.
+
+        - `required string Text`
+
+          The text content.
+
+        - `required Type Type`
+
+          - `"text"Text`
+
+      - `required Type Type`
+
+        - `"system.message"SystemMessage`
+
+  - `IReadOnlyDictionary<string, string>? metadata`
+
+    Body param: Metadata patch. Set a key to a string to upsert it, or to null to delete it. Omit the field to preserve. The stored bag is limited to 16 keys (up to 64 chars each) with values up to 512 chars.
+
+  - `string name`
+
+    Body param: Human-readable name. Must be non-empty. Omit to preserve. Cannot be cleared.
+
+  - `IReadOnlyList<Resource>? resources`
+
+    Body param: Session resources. Full replacement. Omit to preserve; send empty array or null to clear. Maximum 500.
+
+    - `class BetaManagedAgentsGitHubRepositoryResourceParams:`
+
+      Mount a GitHub repository into the session's container.
+
+      - `required string AuthorizationToken`
+
+        GitHub authorization token used to clone the repository.
+
+      - `required Type Type`
+
+        - `"github_repository"GitHubRepository`
+
+      - `required string Url`
+
+        Github URL of the repository
+
+      - `Checkout? Checkout`
+
+        Branch or commit to check out. Defaults to the repository's default branch.
+
+        - `class BetaManagedAgentsBranchCheckout:`
+
+          - `required string Name`
+
+            Branch name to check out.
+
+          - `required Type Type`
+
+            - `"branch"Branch`
+
+        - `class BetaManagedAgentsCommitCheckout:`
+
+          - `required string Sha`
+
+            Full commit SHA to check out.
+
+          - `required Type Type`
+
+            - `"commit"Commit`
+
+      - `string? MountPath`
+
+        Mount path in the container. Defaults to `/workspace/<repo-name>`.
+
+    - `class BetaManagedAgentsFileResourceParams:`
+
+      Mount a file uploaded via the Files API into the session.
+
+      - `required string FileID`
+
+        ID of a previously uploaded file.
+
+      - `required Type Type`
+
+        - `"file"File`
+
+      - `string? MountPath`
+
+        Mount path in the container. Defaults to `/mnt/session/uploads/<file_id>`.
+
+    - `class BetaManagedAgentsMemoryStoreResourceParam:`
+
+      Parameters for attaching a memory store to an agent session.
+
+      - `required string MemoryStoreID`
+
+        The memory store ID (memstore_...). Must belong to the caller's organization and workspace.
+
+      - `required Type Type`
+
+        - `"memory_store"MemoryStore`
+
+      - `Access? Access`
+
+        Access mode for an attached memory store.
+
+        - `"read_write"ReadWrite`
+
+        - `"read_only"ReadOnly`
+
+      - `string? Instructions`
+
+        Per-attachment guidance for the agent on how to use this store. Rendered into the memory section of the system prompt. Max 4096 chars.
+
+  - `BetaManagedAgentsScheduleParams? schedule`
+
+    Body param: 5-field POSIX cron schedule. Literal wall-clock matching in the configured timezone.
+
+  - `IReadOnlyList<string>? vaultIds`
+
+    Body param: Vault IDs. Full replacement. Omit to preserve; send empty array or null to clear. Maximum 50.
+
+  - `IReadOnlyList<AnthropicBeta> betas`
+
+    Header param: Optional header to specify the beta version(s) you want to use.
+
+    - `"message-batches-2024-09-24"MessageBatches2024_09_24`
+
+    - `"prompt-caching-2024-07-31"PromptCaching2024_07_31`
+
+    - `"computer-use-2024-10-22"ComputerUse2024_10_22`
+
+    - `"computer-use-2025-01-24"ComputerUse2025_01_24`
+
+    - `"pdfs-2024-09-25"Pdfs2024_09_25`
+
+    - `"token-counting-2024-11-01"TokenCounting2024_11_01`
+
+    - `"token-efficient-tools-2025-02-19"TokenEfficientTools2025_02_19`
+
+    - `"output-128k-2025-02-19"Output128k2025_02_19`
+
+    - `"files-api-2025-04-14"FilesApi2025_04_14`
+
+    - `"mcp-client-2025-04-04"McpClient2025_04_04`
+
+    - `"mcp-client-2025-11-20"McpClient2025_11_20`
+
+    - `"dev-full-thinking-2025-05-14"DevFullThinking2025_05_14`
+
+    - `"interleaved-thinking-2025-05-14"InterleavedThinking2025_05_14`
+
+    - `"code-execution-2025-05-22"CodeExecution2025_05_22`
+
+    - `"extended-cache-ttl-2025-04-11"ExtendedCacheTtl2025_04_11`
+
+    - `"context-1m-2025-08-07"Context1m2025_08_07`
+
+    - `"context-management-2025-06-27"ContextManagement2025_06_27`
+
+    - `"model-context-window-exceeded-2025-08-26"ModelContextWindowExceeded2025_08_26`
+
+    - `"skills-2025-10-02"Skills2025_10_02`
+
+    - `"fast-mode-2026-02-01"FastMode2026_02_01`
+
+    - `"output-300k-2026-03-24"Output300k2026_03_24`
+
+    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
+
+    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
+    - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
+    - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
+
+    - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+### Returns
+
+- `class BetaManagedAgentsDeployment:`
+
+  A deployment is a configured instance of an agent — it binds the agent to everything needed to run it autonomously: an environment, credentials, initial events, and an optional schedule.
+
+  - `required string ID`
+
+    Unique identifier for this deployment.
+
+  - `required BetaManagedAgentsAgentReference Agent`
+
+    A resolved agent reference with a concrete version.
+
+    - `required string ID`
+
+    - `required Type Type`
+
+      - `"agent"Agent`
+
+    - `required Int Version`
+
+  - `required DateTimeOffset? ArchivedAt`
+
+    A timestamp in RFC 3339 format
+
+  - `required DateTimeOffset CreatedAt`
+
+    A timestamp in RFC 3339 format
+
+  - `required string? Description`
+
+    Description of what the deployment does.
+
+  - `required string EnvironmentID`
+
+    ID of the `environment` where sessions run.
+
+  - `required IReadOnlyList<BetaManagedAgentsDeploymentInitialEvent> InitialEvents`
+
+    Events sent to each session immediately after creation.
+
+    - `class BetaManagedAgentsDeploymentUserMessageEvent:`
+
+      A user message sent to the session.
+
+      - `required IReadOnlyList<Content> Content`
+
+        Array of content blocks for the user message.
+
+        - `class BetaManagedAgentsTextBlock:`
+
+          Regular text content.
+
+          - `required string Text`
+
+            The text content.
+
+          - `required Type Type`
+
+            - `"text"Text`
+
+        - `class BetaManagedAgentsImageBlock:`
+
+          Image content specified directly as base64 data or as a reference via a URL.
+
+          - `required Source Source`
+
+            Union type for image source variants.
+
+            - `class BetaManagedAgentsBase64ImageSource:`
+
+              Base64-encoded image data.
+
+              - `required string Data`
+
+                Base64-encoded image data.
+
+              - `required string MediaType`
+
+                MIME type of the image (e.g., "image/png", "image/jpeg", "image/gif", "image/webp").
+
+              - `required Type Type`
+
+                - `"base64"Base64`
+
+            - `class BetaManagedAgentsUrlImageSource:`
+
+              Image referenced by URL.
+
+              - `required Type Type`
+
+                - `"url"Url`
+
+              - `required string Url`
+
+                URL of the image to fetch.
+
+            - `class BetaManagedAgentsFileImageSource:`
+
+              Image referenced by file ID.
+
+              - `required string FileID`
+
+                ID of a previously uploaded file.
+
+              - `required Type Type`
+
+                - `"file"File`
+
+          - `required Type Type`
+
+            - `"image"Image`
+
+        - `class BetaManagedAgentsDocumentBlock:`
+
+          Document content, either specified directly as base64 data, as text, or as a reference via a URL.
+
+          - `required Source Source`
+
+            Union type for document source variants.
+
+            - `class BetaManagedAgentsBase64DocumentSource:`
+
+              Base64-encoded document data.
+
+              - `required string Data`
+
+                Base64-encoded document data.
+
+              - `required string MediaType`
+
+                MIME type of the document (e.g., "application/pdf").
+
+              - `required Type Type`
+
+                - `"base64"Base64`
+
+            - `class BetaManagedAgentsPlainTextDocumentSource:`
+
+              Plain text document content.
+
+              - `required string Data`
+
+                The plain text content.
+
+              - `required MediaType MediaType`
+
+                MIME type of the text content. Must be "text/plain".
+
+                - `"text/plain"TextPlain`
+
+              - `required Type Type`
+
+                - `"text"Text`
+
+            - `class BetaManagedAgentsUrlDocumentSource:`
+
+              Document referenced by URL.
+
+              - `required Type Type`
+
+                - `"url"Url`
+
+              - `required string Url`
+
+                URL of the document to fetch.
+
+            - `class BetaManagedAgentsFileDocumentSource:`
+
+              Document referenced by file ID.
+
+              - `required string FileID`
+
+                ID of a previously uploaded file.
+
+              - `required Type Type`
+
+                - `"file"File`
+
+          - `required Type Type`
+
+            - `"document"Document`
+
+          - `string? Context`
+
+            Additional context about the document for the model.
+
+          - `string? Title`
+
+            The title of the document.
+
+      - `required Type Type`
+
+        - `"user.message"UserMessage`
+
+    - `class BetaManagedAgentsDeploymentUserDefineOutcomeEvent:`
+
+      An outcome the agent should work toward. The agent begins work on receipt.
+
+      - `required string Description`
+
+        What the agent should produce. This is the task specification.
+
+      - `required Rubric Rubric`
+
+        Rubric for grading the quality of an outcome.
+
+        - `class BetaManagedAgentsFileRubric:`
+
+          Rubric referenced by a file uploaded via the Files API.
+
+          - `required string FileID`
+
+            ID of the rubric file.
+
+          - `required Type Type`
+
+            - `"file"File`
+
+        - `class BetaManagedAgentsTextRubric:`
+
+          Rubric content provided inline as text.
+
+          - `required string Content`
+
+            Rubric content. Plain text or markdown — the grader treats it as freeform text.
+
+          - `required Type Type`
+
+            - `"text"Text`
+
+      - `required Type Type`
+
+        - `"user.define_outcome"UserDefineOutcome`
+
+      - `Int? MaxIterations`
+
+        Eval→revision cycles before giving up. Default 3, max 20.
+
+    - `class BetaManagedAgentsDeploymentSystemMessageEvent:`
+
+      Privileged context for the accompanying turn and all subsequent turns, appended to the session's system context as a `role: "system"` turn rather than replacing the top-level system prompt.
+
+      - `required IReadOnlyList<BetaManagedAgentsSystemContentBlock> Content`
+
+        System content blocks to append. Text-only.
+
+        - `required string Text`
+
+          The text content.
+
+        - `required Type Type`
+
+          - `"text"Text`
+
+      - `required Type Type`
+
+        - `"system.message"SystemMessage`
+
+  - `required IReadOnlyDictionary<string, string> Metadata`
+
+    Arbitrary key-value metadata. Maximum 16 pairs.
+
+  - `required string Name`
+
+    Human-readable name.
+
+  - `required BetaManagedAgentsDeploymentPausedReason? PausedReason`
+
+    Why a deployment is paused. Non-null exactly when `status` is `paused`.
+
+    - `class BetaManagedAgentsManualDeploymentPausedReason:`
+
+      The caller invoked the pause endpoint on the deployment.
+
+      - `required Type Type`
+
+        - `"manual"Manual`
+
+    - `class BetaManagedAgentsErrorDeploymentPausedReason:`
+
+      A scheduled fire recorded a failed run whose error auto-pauses the deployment.
+
+      - `required BetaManagedAgentsDeploymentPausedReasonError Error`
+
+        The error that triggered an auto-pause. Matches the failed run's `error.type`.
+
+        - `class BetaManagedAgentsEnvironmentArchivedDeploymentPausedReasonError:`
+
+          The deployment's environment was archived.
+
+          - `required Type Type`
+
+            - `"environment_archived_error"EnvironmentArchivedError`
+
+        - `class BetaManagedAgentsAgentArchivedDeploymentPausedReasonError:`
+
+          The deployment's agent was archived.
+
+          - `required Type Type`
+
+            - `"agent_archived_error"AgentArchivedError`
+
+        - `class BetaManagedAgentsEnvironmentNotFoundDeploymentPausedReasonError:`
+
+          The deployment's environment no longer exists.
+
+          - `required Type Type`
+
+            - `"environment_not_found_error"EnvironmentNotFoundError`
+
+        - `class BetaManagedAgentsVaultNotFoundDeploymentPausedReasonError:`
+
+          A vault referenced by the deployment no longer exists.
+
+          - `required Type Type`
+
+            - `"vault_not_found_error"VaultNotFoundError`
+
+        - `class BetaManagedAgentsFileNotFoundDeploymentPausedReasonError:`
+
+          A file resource referenced by the deployment no longer exists.
+
+          - `required Type Type`
+
+            - `"file_not_found_error"FileNotFoundError`
+
+        - `class BetaManagedAgentsSessionResourceNotFoundDeploymentPausedReasonError:`
+
+          A referenced resource no longer exists and its kind was not reported.
+
+          - `required Type Type`
+
+            - `"session_resource_not_found_error"SessionResourceNotFoundError`
+
+        - `class BetaManagedAgentsWorkspaceArchivedDeploymentPausedReasonError:`
+
+          The deployment's workspace was archived.
+
+          - `required Type Type`
+
+            - `"workspace_archived_error"WorkspaceArchivedError`
+
+        - `class BetaManagedAgentsOrganizationDisabledDeploymentPausedReasonError:`
+
+          The deployment's organization is disabled.
+
+          - `required Type Type`
+
+            - `"organization_disabled_error"OrganizationDisabledError`
+
+        - `class BetaManagedAgentsMemoryStoreArchivedDeploymentPausedReasonError:`
+
+          A memory store referenced by the deployment is archived.
+
+          - `required Type Type`
+
+            - `"memory_store_archived_error"MemoryStoreArchivedError`
+
+        - `class BetaManagedAgentsSkillNotFoundDeploymentPausedReasonError:`
+
+          A skill referenced by the deployment's agent no longer exists.
+
+          - `required Type Type`
+
+            - `"skill_not_found_error"SkillNotFoundError`
+
+        - `class BetaManagedAgentsVaultArchivedDeploymentPausedReasonError:`
+
+          A vault referenced by the deployment is archived.
+
+          - `required Type Type`
+
+            - `"vault_archived_error"VaultArchivedError`
+
+        - `class BetaManagedAgentsUnknownDeploymentPausedReasonError:`
+
+          An unrecognized error auto-paused the deployment. A fallback variant; matches a run whose `error.type` is `unknown_error`.
+
+          - `required Type Type`
+
+            - `"unknown_error"UnknownError`
+
+        - `class BetaManagedAgentsSelfHostedResourcesUnsupportedDeploymentPausedReasonError:`
+
+          The deployment configures resources, but its environment is self-hosted and cannot mount them.
+
+          - `required Type Type`
+
+            - `"self_hosted_resources_unsupported_error"SelfHostedResourcesUnsupportedError`
+
+        - `class BetaManagedAgentsMcpEgressBlockedDeploymentPausedReasonError:`
+
+          An MCP server host used by the deployment's agent is blocked by the environment's network policy.
+
+          - `required Type Type`
+
+            - `"mcp_egress_blocked_error"McpEgressBlockedError`
+
+      - `required Type Type`
+
+        - `"error"Error`
+
+  - `required IReadOnlyList<BetaManagedAgentsSessionResourceConfig> Resources`
+
+    Resources attached to sessions created from this deployment. Echoes the input minus write-only credentials.
+
+    - `class BetaManagedAgentsGitHubRepositoryResourceConfig:`
+
+      A GitHub repository mounted into each session's container. The authorization token is write-only and never returned.
+
+      - `required Type Type`
+
+        - `"github_repository"GitHubRepository`
+
+      - `required string Url`
+
+        Github URL of the repository
+
+      - `Checkout? Checkout`
+
+        Branch or commit to check out. Defaults to the repository's default branch.
+
+        - `class BetaManagedAgentsBranchCheckout:`
+
+          - `required string Name`
+
+            Branch name to check out.
+
+          - `required Type Type`
+
+            - `"branch"Branch`
+
+        - `class BetaManagedAgentsCommitCheckout:`
+
+          - `required string Sha`
+
+            Full commit SHA to check out.
+
+          - `required Type Type`
+
+            - `"commit"Commit`
+
+      - `string? MountPath`
+
+        Mount path in the container. Defaults to `/workspace/<repo-name>`.
+
+    - `class BetaManagedAgentsFileResourceConfig:`
+
+      A file mounted into each session's container.
+
+      - `required string FileID`
+
+        ID of a previously uploaded file.
+
+      - `required Type Type`
+
+        - `"file"File`
+
+      - `string? MountPath`
+
+        Mount path in the container. Defaults to `/mnt/session/uploads/<file_id>`.
+
+    - `class BetaManagedAgentsMemoryStoreResourceConfig:`
+
+      A memory store attached to each session created from this deployment.
+
+      - `required string MemoryStoreID`
+
+        The memory store ID (memstore_...). Must belong to the caller's organization and workspace.
+
+      - `required Type Type`
+
+        - `"memory_store"MemoryStore`
+
+      - `Access? Access`
+
+        Access mode for an attached memory store.
+
+        - `"read_write"ReadWrite`
+
+        - `"read_only"ReadOnly`
+
+      - `string? Instructions`
+
+        Per-attachment guidance for the agent on how to use this store. Rendered into the memory section of the system prompt. Max 4096 chars.
+
+  - `required BetaManagedAgentsSchedule? Schedule`
+
+    5-field POSIX cron schedule with computed runtime timestamps.
+
+    - `required string Expression`
+
+      5-field POSIX cron expression: minute hour day-of-month month day-of-week (e.g., "0 9 * * 1-5" for weekdays at 9am). Day-of-week is 0-7 where 0 and 7 both mean Sunday. Extended cron syntax - seconds or year fields, and the special characters L, W, #, and ? - is not supported, nor are predefined shortcuts (@daily).
+
+    - `required string Timezone`
+
+      IANA timezone identifier (e.g., "America/Los_Angeles", "UTC").
+
+    - `required Type Type`
+
+      - `"cron"Cron`
+
+    - `DateTimeOffset? LastRunAt`
+
+      A timestamp in RFC 3339 format
+
+    - `IReadOnlyList<DateTimeOffset> UpcomingRunsAt`
+
+      Up to 5 timestamps of upcoming cron occurrences. Non-empty for active and paused deployments (reflects what the schedule would do if unpaused); empty once the deployment is archived (`archived_at` set). Each fire is offset by a small per-schedule jitter, so a run will actually start at or shortly after its listed time.
+
+  - `required BetaManagedAgentsDeploymentStatus Status`
+
+    Lifecycle status of a deployment.
+
+    - `"active"Active`
+
+    - `"paused"Paused`
+
+  - `required Type Type`
+
+    - `"deployment"Deployment`
+
+  - `required DateTimeOffset UpdatedAt`
+
+    A timestamp in RFC 3339 format
+
+  - `required IReadOnlyList<string> VaultIds`
+
+    Vault IDs supplying stored credentials for sessions created from this deployment.
+
+### Example
+
+```csharp
+DeploymentUpdateParams parameters = new() { DeploymentID = "deployment_id" };
+
+var betaManagedAgentsDeployment = await client.Beta.Deployments.Update(parameters);
+
+Console.WriteLine(betaManagedAgentsDeployment);
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "agent": {
+    "id": "agent_011CZkYqphY8vELVzwCUpqiQ",
+    "type": "agent",
+    "version": 1
+  },
+  "archived_at": "2019-12-27T18:11:19.117Z",
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "description": "description",
+  "environment_id": "environment_id",
+  "initial_events": [
+    {
+      "content": [
+        {
+          "text": "Where is my order #1234?",
+          "type": "text"
+        }
+      ],
+      "type": "user.message"
+    }
+  ],
+  "metadata": {
+    "foo": "string"
+  },
+  "name": "name",
+  "paused_reason": {
+    "type": "manual"
+  },
+  "resources": [
+    {
+      "type": "github_repository",
+      "url": "url",
+      "checkout": {
+        "name": "main",
+        "type": "branch"
+      },
+      "mount_path": "mount_path"
+    }
+  ],
+  "schedule": {
+    "expression": "x",
+    "timezone": "x",
+    "type": "cron",
+    "last_run_at": "2019-12-27T18:11:19.117Z",
+    "upcoming_runs_at": [
+      "2019-12-27T18:11:19.117Z"
+    ]
+  },
+  "status": "active",
+  "type": "deployment",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "vault_ids": [
+    "string"
+  ]
+}
+```
+
+## Archive Deployment
+
+`BetaManagedAgentsDeployment Beta.Deployments.Archive(DeploymentArchiveParamsparameters, CancellationTokencancellationToken = default)`
+
+**post** `/v1/deployments/{deployment_id}/archive`
+
+Archive Deployment
+
+### Parameters
+
+- `DeploymentArchiveParams parameters`
+
+  - `required string deploymentID`
+
+    Path parameter deployment_id
+
+  - `IReadOnlyList<AnthropicBeta> betas`
+
+    Optional header to specify the beta version(s) you want to use.
+
+    - `"message-batches-2024-09-24"MessageBatches2024_09_24`
+
+    - `"prompt-caching-2024-07-31"PromptCaching2024_07_31`
+
+    - `"computer-use-2024-10-22"ComputerUse2024_10_22`
+
+    - `"computer-use-2025-01-24"ComputerUse2025_01_24`
+
+    - `"pdfs-2024-09-25"Pdfs2024_09_25`
+
+    - `"token-counting-2024-11-01"TokenCounting2024_11_01`
+
+    - `"token-efficient-tools-2025-02-19"TokenEfficientTools2025_02_19`
+
+    - `"output-128k-2025-02-19"Output128k2025_02_19`
+
+    - `"files-api-2025-04-14"FilesApi2025_04_14`
+
+    - `"mcp-client-2025-04-04"McpClient2025_04_04`
+
+    - `"mcp-client-2025-11-20"McpClient2025_11_20`
+
+    - `"dev-full-thinking-2025-05-14"DevFullThinking2025_05_14`
+
+    - `"interleaved-thinking-2025-05-14"InterleavedThinking2025_05_14`
+
+    - `"code-execution-2025-05-22"CodeExecution2025_05_22`
+
+    - `"extended-cache-ttl-2025-04-11"ExtendedCacheTtl2025_04_11`
+
+    - `"context-1m-2025-08-07"Context1m2025_08_07`
+
+    - `"context-management-2025-06-27"ContextManagement2025_06_27`
+
+    - `"model-context-window-exceeded-2025-08-26"ModelContextWindowExceeded2025_08_26`
+
+    - `"skills-2025-10-02"Skills2025_10_02`
+
+    - `"fast-mode-2026-02-01"FastMode2026_02_01`
+
+    - `"output-300k-2026-03-24"Output300k2026_03_24`
+
+    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
+
+    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
+    - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
+    - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
+
+    - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+### Returns
+
+- `class BetaManagedAgentsDeployment:`
+
+  A deployment is a configured instance of an agent — it binds the agent to everything needed to run it autonomously: an environment, credentials, initial events, and an optional schedule.
+
+  - `required string ID`
+
+    Unique identifier for this deployment.
+
+  - `required BetaManagedAgentsAgentReference Agent`
+
+    A resolved agent reference with a concrete version.
+
+    - `required string ID`
+
+    - `required Type Type`
+
+      - `"agent"Agent`
+
+    - `required Int Version`
+
+  - `required DateTimeOffset? ArchivedAt`
+
+    A timestamp in RFC 3339 format
+
+  - `required DateTimeOffset CreatedAt`
+
+    A timestamp in RFC 3339 format
+
+  - `required string? Description`
+
+    Description of what the deployment does.
+
+  - `required string EnvironmentID`
+
+    ID of the `environment` where sessions run.
+
+  - `required IReadOnlyList<BetaManagedAgentsDeploymentInitialEvent> InitialEvents`
+
+    Events sent to each session immediately after creation.
+
+    - `class BetaManagedAgentsDeploymentUserMessageEvent:`
+
+      A user message sent to the session.
+
+      - `required IReadOnlyList<Content> Content`
+
+        Array of content blocks for the user message.
+
+        - `class BetaManagedAgentsTextBlock:`
+
+          Regular text content.
+
+          - `required string Text`
+
+            The text content.
+
+          - `required Type Type`
+
+            - `"text"Text`
+
+        - `class BetaManagedAgentsImageBlock:`
+
+          Image content specified directly as base64 data or as a reference via a URL.
+
+          - `required Source Source`
+
+            Union type for image source variants.
+
+            - `class BetaManagedAgentsBase64ImageSource:`
+
+              Base64-encoded image data.
+
+              - `required string Data`
+
+                Base64-encoded image data.
+
+              - `required string MediaType`
+
+                MIME type of the image (e.g., "image/png", "image/jpeg", "image/gif", "image/webp").
+
+              - `required Type Type`
+
+                - `"base64"Base64`
+
+            - `class BetaManagedAgentsUrlImageSource:`
+
+              Image referenced by URL.
+
+              - `required Type Type`
+
+                - `"url"Url`
+
+              - `required string Url`
+
+                URL of the image to fetch.
+
+            - `class BetaManagedAgentsFileImageSource:`
+
+              Image referenced by file ID.
+
+              - `required string FileID`
+
+                ID of a previously uploaded file.
+
+              - `required Type Type`
+
+                - `"file"File`
+
+          - `required Type Type`
+
+            - `"image"Image`
+
+        - `class BetaManagedAgentsDocumentBlock:`
+
+          Document content, either specified directly as base64 data, as text, or as a reference via a URL.
+
+          - `required Source Source`
+
+            Union type for document source variants.
+
+            - `class BetaManagedAgentsBase64DocumentSource:`
+
+              Base64-encoded document data.
+
+              - `required string Data`
+
+                Base64-encoded document data.
+
+              - `required string MediaType`
+
+                MIME type of the document (e.g., "application/pdf").
+
+              - `required Type Type`
+
+                - `"base64"Base64`
+
+            - `class BetaManagedAgentsPlainTextDocumentSource:`
+
+              Plain text document content.
+
+              - `required string Data`
+
+                The plain text content.
+
+              - `required MediaType MediaType`
+
+                MIME type of the text content. Must be "text/plain".
+
+                - `"text/plain"TextPlain`
+
+              - `required Type Type`
+
+                - `"text"Text`
+
+            - `class BetaManagedAgentsUrlDocumentSource:`
+
+              Document referenced by URL.
+
+              - `required Type Type`
+
+                - `"url"Url`
+
+              - `required string Url`
+
+                URL of the document to fetch.
+
+            - `class BetaManagedAgentsFileDocumentSource:`
+
+              Document referenced by file ID.
+
+              - `required string FileID`
+
+                ID of a previously uploaded file.
+
+              - `required Type Type`
+
+                - `"file"File`
+
+          - `required Type Type`
+
+            - `"document"Document`
+
+          - `string? Context`
+
+            Additional context about the document for the model.
+
+          - `string? Title`
+
+            The title of the document.
+
+      - `required Type Type`
+
+        - `"user.message"UserMessage`
+
+    - `class BetaManagedAgentsDeploymentUserDefineOutcomeEvent:`
+
+      An outcome the agent should work toward. The agent begins work on receipt.
+
+      - `required string Description`
+
+        What the agent should produce. This is the task specification.
+
+      - `required Rubric Rubric`
+
+        Rubric for grading the quality of an outcome.
+
+        - `class BetaManagedAgentsFileRubric:`
+
+          Rubric referenced by a file uploaded via the Files API.
+
+          - `required string FileID`
+
+            ID of the rubric file.
+
+          - `required Type Type`
+
+            - `"file"File`
+
+        - `class BetaManagedAgentsTextRubric:`
+
+          Rubric content provided inline as text.
+
+          - `required string Content`
+
+            Rubric content. Plain text or markdown — the grader treats it as freeform text.
+
+          - `required Type Type`
+
+            - `"text"Text`
+
+      - `required Type Type`
+
+        - `"user.define_outcome"UserDefineOutcome`
+
+      - `Int? MaxIterations`
+
+        Eval→revision cycles before giving up. Default 3, max 20.
+
+    - `class BetaManagedAgentsDeploymentSystemMessageEvent:`
+
+      Privileged context for the accompanying turn and all subsequent turns, appended to the session's system context as a `role: "system"` turn rather than replacing the top-level system prompt.
+
+      - `required IReadOnlyList<BetaManagedAgentsSystemContentBlock> Content`
+
+        System content blocks to append. Text-only.
+
+        - `required string Text`
+
+          The text content.
+
+        - `required Type Type`
+
+          - `"text"Text`
+
+      - `required Type Type`
+
+        - `"system.message"SystemMessage`
+
+  - `required IReadOnlyDictionary<string, string> Metadata`
+
+    Arbitrary key-value metadata. Maximum 16 pairs.
+
+  - `required string Name`
+
+    Human-readable name.
+
+  - `required BetaManagedAgentsDeploymentPausedReason? PausedReason`
+
+    Why a deployment is paused. Non-null exactly when `status` is `paused`.
+
+    - `class BetaManagedAgentsManualDeploymentPausedReason:`
+
+      The caller invoked the pause endpoint on the deployment.
+
+      - `required Type Type`
+
+        - `"manual"Manual`
+
+    - `class BetaManagedAgentsErrorDeploymentPausedReason:`
+
+      A scheduled fire recorded a failed run whose error auto-pauses the deployment.
+
+      - `required BetaManagedAgentsDeploymentPausedReasonError Error`
+
+        The error that triggered an auto-pause. Matches the failed run's `error.type`.
+
+        - `class BetaManagedAgentsEnvironmentArchivedDeploymentPausedReasonError:`
+
+          The deployment's environment was archived.
+
+          - `required Type Type`
+
+            - `"environment_archived_error"EnvironmentArchivedError`
+
+        - `class BetaManagedAgentsAgentArchivedDeploymentPausedReasonError:`
+
+          The deployment's agent was archived.
+
+          - `required Type Type`
+
+            - `"agent_archived_error"AgentArchivedError`
+
+        - `class BetaManagedAgentsEnvironmentNotFoundDeploymentPausedReasonError:`
+
+          The deployment's environment no longer exists.
+
+          - `required Type Type`
+
+            - `"environment_not_found_error"EnvironmentNotFoundError`
+
+        - `class BetaManagedAgentsVaultNotFoundDeploymentPausedReasonError:`
+
+          A vault referenced by the deployment no longer exists.
+
+          - `required Type Type`
+
+            - `"vault_not_found_error"VaultNotFoundError`
+
+        - `class BetaManagedAgentsFileNotFoundDeploymentPausedReasonError:`
+
+          A file resource referenced by the deployment no longer exists.
+
+          - `required Type Type`
+
+            - `"file_not_found_error"FileNotFoundError`
+
+        - `class BetaManagedAgentsSessionResourceNotFoundDeploymentPausedReasonError:`
+
+          A referenced resource no longer exists and its kind was not reported.
+
+          - `required Type Type`
+
+            - `"session_resource_not_found_error"SessionResourceNotFoundError`
+
+        - `class BetaManagedAgentsWorkspaceArchivedDeploymentPausedReasonError:`
+
+          The deployment's workspace was archived.
+
+          - `required Type Type`
+
+            - `"workspace_archived_error"WorkspaceArchivedError`
+
+        - `class BetaManagedAgentsOrganizationDisabledDeploymentPausedReasonError:`
+
+          The deployment's organization is disabled.
+
+          - `required Type Type`
+
+            - `"organization_disabled_error"OrganizationDisabledError`
+
+        - `class BetaManagedAgentsMemoryStoreArchivedDeploymentPausedReasonError:`
+
+          A memory store referenced by the deployment is archived.
+
+          - `required Type Type`
+
+            - `"memory_store_archived_error"MemoryStoreArchivedError`
+
+        - `class BetaManagedAgentsSkillNotFoundDeploymentPausedReasonError:`
+
+          A skill referenced by the deployment's agent no longer exists.
+
+          - `required Type Type`
+
+            - `"skill_not_found_error"SkillNotFoundError`
+
+        - `class BetaManagedAgentsVaultArchivedDeploymentPausedReasonError:`
+
+          A vault referenced by the deployment is archived.
+
+          - `required Type Type`
+
+            - `"vault_archived_error"VaultArchivedError`
+
+        - `class BetaManagedAgentsUnknownDeploymentPausedReasonError:`
+
+          An unrecognized error auto-paused the deployment. A fallback variant; matches a run whose `error.type` is `unknown_error`.
+
+          - `required Type Type`
+
+            - `"unknown_error"UnknownError`
+
+        - `class BetaManagedAgentsSelfHostedResourcesUnsupportedDeploymentPausedReasonError:`
+
+          The deployment configures resources, but its environment is self-hosted and cannot mount them.
+
+          - `required Type Type`
+
+            - `"self_hosted_resources_unsupported_error"SelfHostedResourcesUnsupportedError`
+
+        - `class BetaManagedAgentsMcpEgressBlockedDeploymentPausedReasonError:`
+
+          An MCP server host used by the deployment's agent is blocked by the environment's network policy.
+
+          - `required Type Type`
+
+            - `"mcp_egress_blocked_error"McpEgressBlockedError`
+
+      - `required Type Type`
+
+        - `"error"Error`
+
+  - `required IReadOnlyList<BetaManagedAgentsSessionResourceConfig> Resources`
+
+    Resources attached to sessions created from this deployment. Echoes the input minus write-only credentials.
+
+    - `class BetaManagedAgentsGitHubRepositoryResourceConfig:`
+
+      A GitHub repository mounted into each session's container. The authorization token is write-only and never returned.
+
+      - `required Type Type`
+
+        - `"github_repository"GitHubRepository`
+
+      - `required string Url`
+
+        Github URL of the repository
+
+      - `Checkout? Checkout`
+
+        Branch or commit to check out. Defaults to the repository's default branch.
+
+        - `class BetaManagedAgentsBranchCheckout:`
+
+          - `required string Name`
+
+            Branch name to check out.
+
+          - `required Type Type`
+
+            - `"branch"Branch`
+
+        - `class BetaManagedAgentsCommitCheckout:`
+
+          - `required string Sha`
+
+            Full commit SHA to check out.
+
+          - `required Type Type`
+
+            - `"commit"Commit`
+
+      - `string? MountPath`
+
+        Mount path in the container. Defaults to `/workspace/<repo-name>`.
+
+    - `class BetaManagedAgentsFileResourceConfig:`
+
+      A file mounted into each session's container.
+
+      - `required string FileID`
+
+        ID of a previously uploaded file.
+
+      - `required Type Type`
+
+        - `"file"File`
+
+      - `string? MountPath`
+
+        Mount path in the container. Defaults to `/mnt/session/uploads/<file_id>`.
+
+    - `class BetaManagedAgentsMemoryStoreResourceConfig:`
+
+      A memory store attached to each session created from this deployment.
+
+      - `required string MemoryStoreID`
+
+        The memory store ID (memstore_...). Must belong to the caller's organization and workspace.
+
+      - `required Type Type`
+
+        - `"memory_store"MemoryStore`
+
+      - `Access? Access`
+
+        Access mode for an attached memory store.
+
+        - `"read_write"ReadWrite`
+
+        - `"read_only"ReadOnly`
+
+      - `string? Instructions`
+
+        Per-attachment guidance for the agent on how to use this store. Rendered into the memory section of the system prompt. Max 4096 chars.
+
+  - `required BetaManagedAgentsSchedule? Schedule`
+
+    5-field POSIX cron schedule with computed runtime timestamps.
+
+    - `required string Expression`
+
+      5-field POSIX cron expression: minute hour day-of-month month day-of-week (e.g., "0 9 * * 1-5" for weekdays at 9am). Day-of-week is 0-7 where 0 and 7 both mean Sunday. Extended cron syntax - seconds or year fields, and the special characters L, W, #, and ? - is not supported, nor are predefined shortcuts (@daily).
+
+    - `required string Timezone`
+
+      IANA timezone identifier (e.g., "America/Los_Angeles", "UTC").
+
+    - `required Type Type`
+
+      - `"cron"Cron`
+
+    - `DateTimeOffset? LastRunAt`
+
+      A timestamp in RFC 3339 format
+
+    - `IReadOnlyList<DateTimeOffset> UpcomingRunsAt`
+
+      Up to 5 timestamps of upcoming cron occurrences. Non-empty for active and paused deployments (reflects what the schedule would do if unpaused); empty once the deployment is archived (`archived_at` set). Each fire is offset by a small per-schedule jitter, so a run will actually start at or shortly after its listed time.
+
+  - `required BetaManagedAgentsDeploymentStatus Status`
+
+    Lifecycle status of a deployment.
+
+    - `"active"Active`
+
+    - `"paused"Paused`
+
+  - `required Type Type`
+
+    - `"deployment"Deployment`
+
+  - `required DateTimeOffset UpdatedAt`
+
+    A timestamp in RFC 3339 format
+
+  - `required IReadOnlyList<string> VaultIds`
+
+    Vault IDs supplying stored credentials for sessions created from this deployment.
+
+### Example
+
+```csharp
+DeploymentArchiveParams parameters = new() { DeploymentID = "deployment_id" };
+
+var betaManagedAgentsDeployment = await client.Beta.Deployments.Archive(parameters);
+
+Console.WriteLine(betaManagedAgentsDeployment);
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "agent": {
+    "id": "agent_011CZkYqphY8vELVzwCUpqiQ",
+    "type": "agent",
+    "version": 1
+  },
+  "archived_at": "2019-12-27T18:11:19.117Z",
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "description": "description",
+  "environment_id": "environment_id",
+  "initial_events": [
+    {
+      "content": [
+        {
+          "text": "Where is my order #1234?",
+          "type": "text"
+        }
+      ],
+      "type": "user.message"
+    }
+  ],
+  "metadata": {
+    "foo": "string"
+  },
+  "name": "name",
+  "paused_reason": {
+    "type": "manual"
+  },
+  "resources": [
+    {
+      "type": "github_repository",
+      "url": "url",
+      "checkout": {
+        "name": "main",
+        "type": "branch"
+      },
+      "mount_path": "mount_path"
+    }
+  ],
+  "schedule": {
+    "expression": "x",
+    "timezone": "x",
+    "type": "cron",
+    "last_run_at": "2019-12-27T18:11:19.117Z",
+    "upcoming_runs_at": [
+      "2019-12-27T18:11:19.117Z"
+    ]
+  },
+  "status": "active",
+  "type": "deployment",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "vault_ids": [
+    "string"
+  ]
+}
+```
+
+## Run Deployment Now
+
+`BetaManagedAgentsDeploymentRun Beta.Deployments.Run(DeploymentRunParamsparameters, CancellationTokencancellationToken = default)`
+
+**post** `/v1/deployments/{deployment_id}/run`
+
+Run Deployment Now
+
+### Parameters
+
+- `DeploymentRunParams parameters`
+
+  - `required string deploymentID`
+
+    Path parameter deployment_id
+
+  - `IReadOnlyList<AnthropicBeta> betas`
+
+    Optional header to specify the beta version(s) you want to use.
+
+    - `"message-batches-2024-09-24"MessageBatches2024_09_24`
+
+    - `"prompt-caching-2024-07-31"PromptCaching2024_07_31`
+
+    - `"computer-use-2024-10-22"ComputerUse2024_10_22`
+
+    - `"computer-use-2025-01-24"ComputerUse2025_01_24`
+
+    - `"pdfs-2024-09-25"Pdfs2024_09_25`
+
+    - `"token-counting-2024-11-01"TokenCounting2024_11_01`
+
+    - `"token-efficient-tools-2025-02-19"TokenEfficientTools2025_02_19`
+
+    - `"output-128k-2025-02-19"Output128k2025_02_19`
+
+    - `"files-api-2025-04-14"FilesApi2025_04_14`
+
+    - `"mcp-client-2025-04-04"McpClient2025_04_04`
+
+    - `"mcp-client-2025-11-20"McpClient2025_11_20`
+
+    - `"dev-full-thinking-2025-05-14"DevFullThinking2025_05_14`
+
+    - `"interleaved-thinking-2025-05-14"InterleavedThinking2025_05_14`
+
+    - `"code-execution-2025-05-22"CodeExecution2025_05_22`
+
+    - `"extended-cache-ttl-2025-04-11"ExtendedCacheTtl2025_04_11`
+
+    - `"context-1m-2025-08-07"Context1m2025_08_07`
+
+    - `"context-management-2025-06-27"ContextManagement2025_06_27`
+
+    - `"model-context-window-exceeded-2025-08-26"ModelContextWindowExceeded2025_08_26`
+
+    - `"skills-2025-10-02"Skills2025_10_02`
+
+    - `"fast-mode-2026-02-01"FastMode2026_02_01`
+
+    - `"output-300k-2026-03-24"Output300k2026_03_24`
+
+    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
+
+    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
+    - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
+    - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
+
+    - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+### Returns
+
+- `class BetaManagedAgentsDeploymentRun:`
+
+  A persistent, append-only record of a single deployment execution. Records session creation success or failure — no session lifecycle tracking.
+
+  - `required string ID`
+
+    Unique identifier for this run (`drun_...`).
+
+  - `required BetaManagedAgentsAgentReference Agent`
+
+    A resolved agent reference with a concrete version.
+
+    - `required string ID`
+
+    - `required Type Type`
+
+      - `"agent"Agent`
+
+    - `required Int Version`
+
+  - `required DateTimeOffset CreatedAt`
+
+    A timestamp in RFC 3339 format
+
+  - `required string DeploymentID`
+
+    ID of the deployment that produced this run.
+
+  - `required Error? Error`
+
+    Why the run failed to create a session. The type identifies the failure; message is human-readable detail.
+
+    - `class BetaManagedAgentsEnvironmentArchivedRunError:`
+
+      The deployment's environment was archived.
+
+      - `required string Message`
+
+        Human-readable error description.
+
+      - `required Type Type`
+
+        - `"environment_archived_error"EnvironmentArchivedError`
+
+    - `class BetaManagedAgentsAgentArchivedRunError:`
+
+      The deployment's agent was archived.
+
+      - `required string Message`
+
+        Human-readable error description.
+
+      - `required Type Type`
+
+        - `"agent_archived_error"AgentArchivedError`
+
+    - `class BetaManagedAgentsEnvironmentNotFoundRunError:`
+
+      The deployment's environment no longer exists.
+
+      - `required string Message`
+
+        Human-readable error description.
+
+      - `required Type Type`
+
+        - `"environment_not_found_error"EnvironmentNotFoundError`
+
+    - `class BetaManagedAgentsVaultNotFoundRunError:`
+
+      A vault referenced by the deployment no longer exists.
+
+      - `required string Message`
+
+        Human-readable error description.
+
+      - `required Type Type`
+
+        - `"vault_not_found_error"VaultNotFoundError`
+
+    - `class BetaManagedAgentsVaultArchivedRunError:`
+
+      A vault referenced by the deployment is archived.
+
+      - `required string Message`
+
+        Human-readable error description.
+
+      - `required Type Type`
+
+        - `"vault_archived_error"VaultArchivedError`
+
+    - `class BetaManagedAgentsFileNotFoundRunError:`
+
+      A file resource referenced by the deployment no longer exists.
+
+      - `required string Message`
+
+        Human-readable error description.
+
+      - `required Type Type`
+
+        - `"file_not_found_error"FileNotFoundError`
+
+    - `class BetaManagedAgentsMemoryStoreArchivedRunError:`
+
+      A memory store referenced by the deployment is archived.
+
+      - `required string Message`
+
+        Human-readable error description.
+
+      - `required Type Type`
+
+        - `"memory_store_archived_error"MemoryStoreArchivedError`
+
+    - `class BetaManagedAgentsSkillNotFoundRunError:`
+
+      A skill referenced by the deployment's agent no longer exists.
+
+      - `required string Message`
+
+        Human-readable error description.
+
+      - `required Type Type`
+
+        - `"skill_not_found_error"SkillNotFoundError`
+
+    - `class BetaManagedAgentsSessionResourceNotFoundRunError:`
+
+      A referenced resource no longer exists and its kind was not reported.
+
+      - `required string Message`
+
+        Human-readable error description.
+
+      - `required Type Type`
+
+        - `"session_resource_not_found_error"SessionResourceNotFoundError`
+
+    - `class BetaManagedAgentsWorkspaceArchivedRunError:`
+
+      The deployment's workspace was archived.
+
+      - `required string Message`
+
+        Human-readable error description.
+
+      - `required Type Type`
+
+        - `"workspace_archived_error"WorkspaceArchivedError`
+
+    - `class BetaManagedAgentsOrganizationDisabledRunError:`
+
+      The deployment's organization is disabled.
+
+      - `required string Message`
+
+        Human-readable error description.
+
+      - `required Type Type`
+
+        - `"organization_disabled_error"OrganizationDisabledError`
+
+    - `class BetaManagedAgentsSessionRateLimitedRunError:`
+
+      Session creation was rejected due to rate limiting. The schedule keeps firing; subsequent runs may succeed.
+
+      - `required string Message`
+
+        Human-readable error description.
+
+      - `required Type Type`
+
+        - `"session_rate_limited_error"SessionRateLimitedError`
+
+    - `class BetaManagedAgentsSessionCreationRejectedRunError:`
+
+      The session create request was rejected with a non-retryable validation error.
+
+      - `required string Message`
+
+        Human-readable error description.
+
+      - `required Type Type`
+
+        - `"session_creation_rejected_error"SessionCreationRejectedError`
+
+    - `class BetaManagedAgentsUnknownRunError:`
+
+      An unknown or unexpected error caused the run to fail. A fallback variant; clients that do not recognize a new error type can match on message alone.
+
+      - `required string Message`
+
+        Human-readable error description.
+
+      - `required Type Type`
+
+        - `"unknown_error"UnknownError`
+
+    - `class BetaManagedAgentsSelfHostedResourcesUnsupportedRunError:`
+
+      The deployment configures resources, but its environment is self-hosted and cannot mount them.
+
+      - `required string Message`
+
+        Human-readable error description.
+
+      - `required Type Type`
+
+        - `"self_hosted_resources_unsupported_error"SelfHostedResourcesUnsupportedError`
+
+    - `class BetaManagedAgentsMcpEgressBlockedRunError:`
+
+      An MCP server host used by the deployment's agent is blocked by the environment's network policy.
+
+      - `required string Message`
+
+        Human-readable error description.
+
+      - `required Type Type`
+
+        - `"mcp_egress_blocked_error"McpEgressBlockedError`
+
+  - `required string? SessionID`
+
+    Populated on success. Null on creation failure. Exactly one of session_id or error is non-null.
+
+  - `required BetaManagedAgentsTriggerContext TriggerContext`
+
+    Describes what triggered a deployment run, with trigger-specific metadata.
+
+    - `class BetaManagedAgentsScheduleTriggerContext:`
+
+      The run was fired by the deployment's cron schedule.
+
+      - `required DateTimeOffset ScheduledAt`
+
+        A timestamp in RFC 3339 format
+
+      - `required Type Type`
+
+        - `"schedule"Schedule`
+
+    - `class BetaManagedAgentsManualTriggerContext:`
+
+      The run was started manually by creating a session directly against the deployment.
+
+      - `required Type Type`
+
+        - `"manual"Manual`
+
+  - `required Type Type`
+
+    - `"deployment_run"DeploymentRun`
+
+### Example
+
+```csharp
+DeploymentRunParams parameters = new() { DeploymentID = "deployment_id" };
+
+var betaManagedAgentsDeploymentRun = await client.Beta.Deployments.Run(parameters);
+
+Console.WriteLine(betaManagedAgentsDeploymentRun);
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "agent": {
+    "id": "agent_011CZkYqphY8vELVzwCUpqiQ",
+    "type": "agent",
+    "version": 1
+  },
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "deployment_id": "deployment_id",
+  "error": {
+    "message": "message",
+    "type": "environment_archived_error"
+  },
+  "session_id": "session_id",
+  "trigger_context": {
+    "scheduled_at": "2019-12-27T18:11:19.117Z",
+    "type": "schedule"
+  },
+  "type": "deployment_run"
+}
+```
+
+## Pause Deployment
+
+`BetaManagedAgentsDeployment Beta.Deployments.Pause(DeploymentPauseParamsparameters, CancellationTokencancellationToken = default)`
+
+**post** `/v1/deployments/{deployment_id}/pause`
+
+Pause Deployment
+
+### Parameters
+
+- `DeploymentPauseParams parameters`
+
+  - `required string deploymentID`
+
+    Path parameter deployment_id
+
+  - `IReadOnlyList<AnthropicBeta> betas`
+
+    Optional header to specify the beta version(s) you want to use.
+
+    - `"message-batches-2024-09-24"MessageBatches2024_09_24`
+
+    - `"prompt-caching-2024-07-31"PromptCaching2024_07_31`
+
+    - `"computer-use-2024-10-22"ComputerUse2024_10_22`
+
+    - `"computer-use-2025-01-24"ComputerUse2025_01_24`
+
+    - `"pdfs-2024-09-25"Pdfs2024_09_25`
+
+    - `"token-counting-2024-11-01"TokenCounting2024_11_01`
+
+    - `"token-efficient-tools-2025-02-19"TokenEfficientTools2025_02_19`
+
+    - `"output-128k-2025-02-19"Output128k2025_02_19`
+
+    - `"files-api-2025-04-14"FilesApi2025_04_14`
+
+    - `"mcp-client-2025-04-04"McpClient2025_04_04`
+
+    - `"mcp-client-2025-11-20"McpClient2025_11_20`
+
+    - `"dev-full-thinking-2025-05-14"DevFullThinking2025_05_14`
+
+    - `"interleaved-thinking-2025-05-14"InterleavedThinking2025_05_14`
+
+    - `"code-execution-2025-05-22"CodeExecution2025_05_22`
+
+    - `"extended-cache-ttl-2025-04-11"ExtendedCacheTtl2025_04_11`
+
+    - `"context-1m-2025-08-07"Context1m2025_08_07`
+
+    - `"context-management-2025-06-27"ContextManagement2025_06_27`
+
+    - `"model-context-window-exceeded-2025-08-26"ModelContextWindowExceeded2025_08_26`
+
+    - `"skills-2025-10-02"Skills2025_10_02`
+
+    - `"fast-mode-2026-02-01"FastMode2026_02_01`
+
+    - `"output-300k-2026-03-24"Output300k2026_03_24`
+
+    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
+
+    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
+    - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
+    - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
+
+    - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+### Returns
+
+- `class BetaManagedAgentsDeployment:`
+
+  A deployment is a configured instance of an agent — it binds the agent to everything needed to run it autonomously: an environment, credentials, initial events, and an optional schedule.
+
+  - `required string ID`
+
+    Unique identifier for this deployment.
+
+  - `required BetaManagedAgentsAgentReference Agent`
+
+    A resolved agent reference with a concrete version.
+
+    - `required string ID`
+
+    - `required Type Type`
+
+      - `"agent"Agent`
+
+    - `required Int Version`
+
+  - `required DateTimeOffset? ArchivedAt`
+
+    A timestamp in RFC 3339 format
+
+  - `required DateTimeOffset CreatedAt`
+
+    A timestamp in RFC 3339 format
+
+  - `required string? Description`
+
+    Description of what the deployment does.
+
+  - `required string EnvironmentID`
+
+    ID of the `environment` where sessions run.
+
+  - `required IReadOnlyList<BetaManagedAgentsDeploymentInitialEvent> InitialEvents`
+
+    Events sent to each session immediately after creation.
+
+    - `class BetaManagedAgentsDeploymentUserMessageEvent:`
+
+      A user message sent to the session.
+
+      - `required IReadOnlyList<Content> Content`
+
+        Array of content blocks for the user message.
+
+        - `class BetaManagedAgentsTextBlock:`
+
+          Regular text content.
+
+          - `required string Text`
+
+            The text content.
+
+          - `required Type Type`
+
+            - `"text"Text`
+
+        - `class BetaManagedAgentsImageBlock:`
+
+          Image content specified directly as base64 data or as a reference via a URL.
+
+          - `required Source Source`
+
+            Union type for image source variants.
+
+            - `class BetaManagedAgentsBase64ImageSource:`
+
+              Base64-encoded image data.
+
+              - `required string Data`
+
+                Base64-encoded image data.
+
+              - `required string MediaType`
+
+                MIME type of the image (e.g., "image/png", "image/jpeg", "image/gif", "image/webp").
+
+              - `required Type Type`
+
+                - `"base64"Base64`
+
+            - `class BetaManagedAgentsUrlImageSource:`
+
+              Image referenced by URL.
+
+              - `required Type Type`
+
+                - `"url"Url`
+
+              - `required string Url`
+
+                URL of the image to fetch.
+
+            - `class BetaManagedAgentsFileImageSource:`
+
+              Image referenced by file ID.
+
+              - `required string FileID`
+
+                ID of a previously uploaded file.
+
+              - `required Type Type`
+
+                - `"file"File`
+
+          - `required Type Type`
+
+            - `"image"Image`
+
+        - `class BetaManagedAgentsDocumentBlock:`
+
+          Document content, either specified directly as base64 data, as text, or as a reference via a URL.
+
+          - `required Source Source`
+
+            Union type for document source variants.
+
+            - `class BetaManagedAgentsBase64DocumentSource:`
+
+              Base64-encoded document data.
+
+              - `required string Data`
+
+                Base64-encoded document data.
+
+              - `required string MediaType`
+
+                MIME type of the document (e.g., "application/pdf").
+
+              - `required Type Type`
+
+                - `"base64"Base64`
+
+            - `class BetaManagedAgentsPlainTextDocumentSource:`
+
+              Plain text document content.
+
+              - `required string Data`
+
+                The plain text content.
+
+              - `required MediaType MediaType`
+
+                MIME type of the text content. Must be "text/plain".
+
+                - `"text/plain"TextPlain`
+
+              - `required Type Type`
+
+                - `"text"Text`
+
+            - `class BetaManagedAgentsUrlDocumentSource:`
+
+              Document referenced by URL.
+
+              - `required Type Type`
+
+                - `"url"Url`
+
+              - `required string Url`
+
+                URL of the document to fetch.
+
+            - `class BetaManagedAgentsFileDocumentSource:`
+
+              Document referenced by file ID.
+
+              - `required string FileID`
+
+                ID of a previously uploaded file.
+
+              - `required Type Type`
+
+                - `"file"File`
+
+          - `required Type Type`
+
+            - `"document"Document`
+
+          - `string? Context`
+
+            Additional context about the document for the model.
+
+          - `string? Title`
+
+            The title of the document.
+
+      - `required Type Type`
+
+        - `"user.message"UserMessage`
+
+    - `class BetaManagedAgentsDeploymentUserDefineOutcomeEvent:`
+
+      An outcome the agent should work toward. The agent begins work on receipt.
+
+      - `required string Description`
+
+        What the agent should produce. This is the task specification.
+
+      - `required Rubric Rubric`
+
+        Rubric for grading the quality of an outcome.
+
+        - `class BetaManagedAgentsFileRubric:`
+
+          Rubric referenced by a file uploaded via the Files API.
+
+          - `required string FileID`
+
+            ID of the rubric file.
+
+          - `required Type Type`
+
+            - `"file"File`
+
+        - `class BetaManagedAgentsTextRubric:`
+
+          Rubric content provided inline as text.
+
+          - `required string Content`
+
+            Rubric content. Plain text or markdown — the grader treats it as freeform text.
+
+          - `required Type Type`
+
+            - `"text"Text`
+
+      - `required Type Type`
+
+        - `"user.define_outcome"UserDefineOutcome`
+
+      - `Int? MaxIterations`
+
+        Eval→revision cycles before giving up. Default 3, max 20.
+
+    - `class BetaManagedAgentsDeploymentSystemMessageEvent:`
+
+      Privileged context for the accompanying turn and all subsequent turns, appended to the session's system context as a `role: "system"` turn rather than replacing the top-level system prompt.
+
+      - `required IReadOnlyList<BetaManagedAgentsSystemContentBlock> Content`
+
+        System content blocks to append. Text-only.
+
+        - `required string Text`
+
+          The text content.
+
+        - `required Type Type`
+
+          - `"text"Text`
+
+      - `required Type Type`
+
+        - `"system.message"SystemMessage`
+
+  - `required IReadOnlyDictionary<string, string> Metadata`
+
+    Arbitrary key-value metadata. Maximum 16 pairs.
+
+  - `required string Name`
+
+    Human-readable name.
+
+  - `required BetaManagedAgentsDeploymentPausedReason? PausedReason`
+
+    Why a deployment is paused. Non-null exactly when `status` is `paused`.
+
+    - `class BetaManagedAgentsManualDeploymentPausedReason:`
+
+      The caller invoked the pause endpoint on the deployment.
+
+      - `required Type Type`
+
+        - `"manual"Manual`
+
+    - `class BetaManagedAgentsErrorDeploymentPausedReason:`
+
+      A scheduled fire recorded a failed run whose error auto-pauses the deployment.
+
+      - `required BetaManagedAgentsDeploymentPausedReasonError Error`
+
+        The error that triggered an auto-pause. Matches the failed run's `error.type`.
+
+        - `class BetaManagedAgentsEnvironmentArchivedDeploymentPausedReasonError:`
+
+          The deployment's environment was archived.
+
+          - `required Type Type`
+
+            - `"environment_archived_error"EnvironmentArchivedError`
+
+        - `class BetaManagedAgentsAgentArchivedDeploymentPausedReasonError:`
+
+          The deployment's agent was archived.
+
+          - `required Type Type`
+
+            - `"agent_archived_error"AgentArchivedError`
+
+        - `class BetaManagedAgentsEnvironmentNotFoundDeploymentPausedReasonError:`
+
+          The deployment's environment no longer exists.
+
+          - `required Type Type`
+
+            - `"environment_not_found_error"EnvironmentNotFoundError`
+
+        - `class BetaManagedAgentsVaultNotFoundDeploymentPausedReasonError:`
+
+          A vault referenced by the deployment no longer exists.
+
+          - `required Type Type`
+
+            - `"vault_not_found_error"VaultNotFoundError`
+
+        - `class BetaManagedAgentsFileNotFoundDeploymentPausedReasonError:`
+
+          A file resource referenced by the deployment no longer exists.
+
+          - `required Type Type`
+
+            - `"file_not_found_error"FileNotFoundError`
+
+        - `class BetaManagedAgentsSessionResourceNotFoundDeploymentPausedReasonError:`
+
+          A referenced resource no longer exists and its kind was not reported.
+
+          - `required Type Type`
+
+            - `"session_resource_not_found_error"SessionResourceNotFoundError`
+
+        - `class BetaManagedAgentsWorkspaceArchivedDeploymentPausedReasonError:`
+
+          The deployment's workspace was archived.
+
+          - `required Type Type`
+
+            - `"workspace_archived_error"WorkspaceArchivedError`
+
+        - `class BetaManagedAgentsOrganizationDisabledDeploymentPausedReasonError:`
+
+          The deployment's organization is disabled.
+
+          - `required Type Type`
+
+            - `"organization_disabled_error"OrganizationDisabledError`
+
+        - `class BetaManagedAgentsMemoryStoreArchivedDeploymentPausedReasonError:`
+
+          A memory store referenced by the deployment is archived.
+
+          - `required Type Type`
+
+            - `"memory_store_archived_error"MemoryStoreArchivedError`
+
+        - `class BetaManagedAgentsSkillNotFoundDeploymentPausedReasonError:`
+
+          A skill referenced by the deployment's agent no longer exists.
+
+          - `required Type Type`
+
+            - `"skill_not_found_error"SkillNotFoundError`
+
+        - `class BetaManagedAgentsVaultArchivedDeploymentPausedReasonError:`
+
+          A vault referenced by the deployment is archived.
+
+          - `required Type Type`
+
+            - `"vault_archived_error"VaultArchivedError`
+
+        - `class BetaManagedAgentsUnknownDeploymentPausedReasonError:`
+
+          An unrecognized error auto-paused the deployment. A fallback variant; matches a run whose `error.type` is `unknown_error`.
+
+          - `required Type Type`
+
+            - `"unknown_error"UnknownError`
+
+        - `class BetaManagedAgentsSelfHostedResourcesUnsupportedDeploymentPausedReasonError:`
+
+          The deployment configures resources, but its environment is self-hosted and cannot mount them.
+
+          - `required Type Type`
+
+            - `"self_hosted_resources_unsupported_error"SelfHostedResourcesUnsupportedError`
+
+        - `class BetaManagedAgentsMcpEgressBlockedDeploymentPausedReasonError:`
+
+          An MCP server host used by the deployment's agent is blocked by the environment's network policy.
+
+          - `required Type Type`
+
+            - `"mcp_egress_blocked_error"McpEgressBlockedError`
+
+      - `required Type Type`
+
+        - `"error"Error`
+
+  - `required IReadOnlyList<BetaManagedAgentsSessionResourceConfig> Resources`
+
+    Resources attached to sessions created from this deployment. Echoes the input minus write-only credentials.
+
+    - `class BetaManagedAgentsGitHubRepositoryResourceConfig:`
+
+      A GitHub repository mounted into each session's container. The authorization token is write-only and never returned.
+
+      - `required Type Type`
+
+        - `"github_repository"GitHubRepository`
+
+      - `required string Url`
+
+        Github URL of the repository
+
+      - `Checkout? Checkout`
+
+        Branch or commit to check out. Defaults to the repository's default branch.
+
+        - `class BetaManagedAgentsBranchCheckout:`
+
+          - `required string Name`
+
+            Branch name to check out.
+
+          - `required Type Type`
+
+            - `"branch"Branch`
+
+        - `class BetaManagedAgentsCommitCheckout:`
+
+          - `required string Sha`
+
+            Full commit SHA to check out.
+
+          - `required Type Type`
+
+            - `"commit"Commit`
+
+      - `string? MountPath`
+
+        Mount path in the container. Defaults to `/workspace/<repo-name>`.
+
+    - `class BetaManagedAgentsFileResourceConfig:`
+
+      A file mounted into each session's container.
+
+      - `required string FileID`
+
+        ID of a previously uploaded file.
+
+      - `required Type Type`
+
+        - `"file"File`
+
+      - `string? MountPath`
+
+        Mount path in the container. Defaults to `/mnt/session/uploads/<file_id>`.
+
+    - `class BetaManagedAgentsMemoryStoreResourceConfig:`
+
+      A memory store attached to each session created from this deployment.
+
+      - `required string MemoryStoreID`
+
+        The memory store ID (memstore_...). Must belong to the caller's organization and workspace.
+
+      - `required Type Type`
+
+        - `"memory_store"MemoryStore`
+
+      - `Access? Access`
+
+        Access mode for an attached memory store.
+
+        - `"read_write"ReadWrite`
+
+        - `"read_only"ReadOnly`
+
+      - `string? Instructions`
+
+        Per-attachment guidance for the agent on how to use this store. Rendered into the memory section of the system prompt. Max 4096 chars.
+
+  - `required BetaManagedAgentsSchedule? Schedule`
+
+    5-field POSIX cron schedule with computed runtime timestamps.
+
+    - `required string Expression`
+
+      5-field POSIX cron expression: minute hour day-of-month month day-of-week (e.g., "0 9 * * 1-5" for weekdays at 9am). Day-of-week is 0-7 where 0 and 7 both mean Sunday. Extended cron syntax - seconds or year fields, and the special characters L, W, #, and ? - is not supported, nor are predefined shortcuts (@daily).
+
+    - `required string Timezone`
+
+      IANA timezone identifier (e.g., "America/Los_Angeles", "UTC").
+
+    - `required Type Type`
+
+      - `"cron"Cron`
+
+    - `DateTimeOffset? LastRunAt`
+
+      A timestamp in RFC 3339 format
+
+    - `IReadOnlyList<DateTimeOffset> UpcomingRunsAt`
+
+      Up to 5 timestamps of upcoming cron occurrences. Non-empty for active and paused deployments (reflects what the schedule would do if unpaused); empty once the deployment is archived (`archived_at` set). Each fire is offset by a small per-schedule jitter, so a run will actually start at or shortly after its listed time.
+
+  - `required BetaManagedAgentsDeploymentStatus Status`
+
+    Lifecycle status of a deployment.
+
+    - `"active"Active`
+
+    - `"paused"Paused`
+
+  - `required Type Type`
+
+    - `"deployment"Deployment`
+
+  - `required DateTimeOffset UpdatedAt`
+
+    A timestamp in RFC 3339 format
+
+  - `required IReadOnlyList<string> VaultIds`
+
+    Vault IDs supplying stored credentials for sessions created from this deployment.
+
+### Example
+
+```csharp
+DeploymentPauseParams parameters = new() { DeploymentID = "deployment_id" };
+
+var betaManagedAgentsDeployment = await client.Beta.Deployments.Pause(parameters);
+
+Console.WriteLine(betaManagedAgentsDeployment);
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "agent": {
+    "id": "agent_011CZkYqphY8vELVzwCUpqiQ",
+    "type": "agent",
+    "version": 1
+  },
+  "archived_at": "2019-12-27T18:11:19.117Z",
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "description": "description",
+  "environment_id": "environment_id",
+  "initial_events": [
+    {
+      "content": [
+        {
+          "text": "Where is my order #1234?",
+          "type": "text"
+        }
+      ],
+      "type": "user.message"
+    }
+  ],
+  "metadata": {
+    "foo": "string"
+  },
+  "name": "name",
+  "paused_reason": {
+    "type": "manual"
+  },
+  "resources": [
+    {
+      "type": "github_repository",
+      "url": "url",
+      "checkout": {
+        "name": "main",
+        "type": "branch"
+      },
+      "mount_path": "mount_path"
+    }
+  ],
+  "schedule": {
+    "expression": "x",
+    "timezone": "x",
+    "type": "cron",
+    "last_run_at": "2019-12-27T18:11:19.117Z",
+    "upcoming_runs_at": [
+      "2019-12-27T18:11:19.117Z"
+    ]
+  },
+  "status": "active",
+  "type": "deployment",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "vault_ids": [
+    "string"
+  ]
+}
+```
+
+## Unpause Deployment
+
+`BetaManagedAgentsDeployment Beta.Deployments.Unpause(DeploymentUnpauseParamsparameters, CancellationTokencancellationToken = default)`
+
+**post** `/v1/deployments/{deployment_id}/unpause`
+
+Unpause Deployment
+
+### Parameters
+
+- `DeploymentUnpauseParams parameters`
+
+  - `required string deploymentID`
+
+    Path parameter deployment_id
+
+  - `IReadOnlyList<AnthropicBeta> betas`
+
+    Optional header to specify the beta version(s) you want to use.
+
+    - `"message-batches-2024-09-24"MessageBatches2024_09_24`
+
+    - `"prompt-caching-2024-07-31"PromptCaching2024_07_31`
+
+    - `"computer-use-2024-10-22"ComputerUse2024_10_22`
+
+    - `"computer-use-2025-01-24"ComputerUse2025_01_24`
+
+    - `"pdfs-2024-09-25"Pdfs2024_09_25`
+
+    - `"token-counting-2024-11-01"TokenCounting2024_11_01`
+
+    - `"token-efficient-tools-2025-02-19"TokenEfficientTools2025_02_19`
+
+    - `"output-128k-2025-02-19"Output128k2025_02_19`
+
+    - `"files-api-2025-04-14"FilesApi2025_04_14`
+
+    - `"mcp-client-2025-04-04"McpClient2025_04_04`
+
+    - `"mcp-client-2025-11-20"McpClient2025_11_20`
+
+    - `"dev-full-thinking-2025-05-14"DevFullThinking2025_05_14`
+
+    - `"interleaved-thinking-2025-05-14"InterleavedThinking2025_05_14`
+
+    - `"code-execution-2025-05-22"CodeExecution2025_05_22`
+
+    - `"extended-cache-ttl-2025-04-11"ExtendedCacheTtl2025_04_11`
+
+    - `"context-1m-2025-08-07"Context1m2025_08_07`
+
+    - `"context-management-2025-06-27"ContextManagement2025_06_27`
+
+    - `"model-context-window-exceeded-2025-08-26"ModelContextWindowExceeded2025_08_26`
+
+    - `"skills-2025-10-02"Skills2025_10_02`
+
+    - `"fast-mode-2026-02-01"FastMode2026_02_01`
+
+    - `"output-300k-2026-03-24"Output300k2026_03_24`
+
+    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
+
+    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
+    - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
+    - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
+
+    - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+### Returns
+
+- `class BetaManagedAgentsDeployment:`
+
+  A deployment is a configured instance of an agent — it binds the agent to everything needed to run it autonomously: an environment, credentials, initial events, and an optional schedule.
+
+  - `required string ID`
+
+    Unique identifier for this deployment.
+
+  - `required BetaManagedAgentsAgentReference Agent`
+
+    A resolved agent reference with a concrete version.
+
+    - `required string ID`
+
+    - `required Type Type`
+
+      - `"agent"Agent`
+
+    - `required Int Version`
+
+  - `required DateTimeOffset? ArchivedAt`
+
+    A timestamp in RFC 3339 format
+
+  - `required DateTimeOffset CreatedAt`
+
+    A timestamp in RFC 3339 format
+
+  - `required string? Description`
+
+    Description of what the deployment does.
+
+  - `required string EnvironmentID`
+
+    ID of the `environment` where sessions run.
+
+  - `required IReadOnlyList<BetaManagedAgentsDeploymentInitialEvent> InitialEvents`
+
+    Events sent to each session immediately after creation.
+
+    - `class BetaManagedAgentsDeploymentUserMessageEvent:`
+
+      A user message sent to the session.
+
+      - `required IReadOnlyList<Content> Content`
+
+        Array of content blocks for the user message.
+
+        - `class BetaManagedAgentsTextBlock:`
+
+          Regular text content.
+
+          - `required string Text`
+
+            The text content.
+
+          - `required Type Type`
+
+            - `"text"Text`
+
+        - `class BetaManagedAgentsImageBlock:`
+
+          Image content specified directly as base64 data or as a reference via a URL.
+
+          - `required Source Source`
+
+            Union type for image source variants.
+
+            - `class BetaManagedAgentsBase64ImageSource:`
+
+              Base64-encoded image data.
+
+              - `required string Data`
+
+                Base64-encoded image data.
+
+              - `required string MediaType`
+
+                MIME type of the image (e.g., "image/png", "image/jpeg", "image/gif", "image/webp").
+
+              - `required Type Type`
+
+                - `"base64"Base64`
+
+            - `class BetaManagedAgentsUrlImageSource:`
+
+              Image referenced by URL.
+
+              - `required Type Type`
+
+                - `"url"Url`
+
+              - `required string Url`
+
+                URL of the image to fetch.
+
+            - `class BetaManagedAgentsFileImageSource:`
+
+              Image referenced by file ID.
+
+              - `required string FileID`
+
+                ID of a previously uploaded file.
+
+              - `required Type Type`
+
+                - `"file"File`
+
+          - `required Type Type`
+
+            - `"image"Image`
+
+        - `class BetaManagedAgentsDocumentBlock:`
+
+          Document content, either specified directly as base64 data, as text, or as a reference via a URL.
+
+          - `required Source Source`
+
+            Union type for document source variants.
+
+            - `class BetaManagedAgentsBase64DocumentSource:`
+
+              Base64-encoded document data.
+
+              - `required string Data`
+
+                Base64-encoded document data.
+
+              - `required string MediaType`
+
+                MIME type of the document (e.g., "application/pdf").
+
+              - `required Type Type`
+
+                - `"base64"Base64`
+
+            - `class BetaManagedAgentsPlainTextDocumentSource:`
+
+              Plain text document content.
+
+              - `required string Data`
+
+                The plain text content.
+
+              - `required MediaType MediaType`
+
+                MIME type of the text content. Must be "text/plain".
+
+                - `"text/plain"TextPlain`
+
+              - `required Type Type`
+
+                - `"text"Text`
+
+            - `class BetaManagedAgentsUrlDocumentSource:`
+
+              Document referenced by URL.
+
+              - `required Type Type`
+
+                - `"url"Url`
+
+              - `required string Url`
+
+                URL of the document to fetch.
+
+            - `class BetaManagedAgentsFileDocumentSource:`
+
+              Document referenced by file ID.
+
+              - `required string FileID`
+
+                ID of a previously uploaded file.
+
+              - `required Type Type`
+
+                - `"file"File`
+
+          - `required Type Type`
+
+            - `"document"Document`
+
+          - `string? Context`
+
+            Additional context about the document for the model.
+
+          - `string? Title`
+
+            The title of the document.
+
+      - `required Type Type`
+
+        - `"user.message"UserMessage`
+
+    - `class BetaManagedAgentsDeploymentUserDefineOutcomeEvent:`
+
+      An outcome the agent should work toward. The agent begins work on receipt.
+
+      - `required string Description`
+
+        What the agent should produce. This is the task specification.
+
+      - `required Rubric Rubric`
+
+        Rubric for grading the quality of an outcome.
+
+        - `class BetaManagedAgentsFileRubric:`
+
+          Rubric referenced by a file uploaded via the Files API.
+
+          - `required string FileID`
+
+            ID of the rubric file.
+
+          - `required Type Type`
+
+            - `"file"File`
+
+        - `class BetaManagedAgentsTextRubric:`
+
+          Rubric content provided inline as text.
+
+          - `required string Content`
+
+            Rubric content. Plain text or markdown — the grader treats it as freeform text.
+
+          - `required Type Type`
+
+            - `"text"Text`
+
+      - `required Type Type`
+
+        - `"user.define_outcome"UserDefineOutcome`
+
+      - `Int? MaxIterations`
+
+        Eval→revision cycles before giving up. Default 3, max 20.
+
+    - `class BetaManagedAgentsDeploymentSystemMessageEvent:`
+
+      Privileged context for the accompanying turn and all subsequent turns, appended to the session's system context as a `role: "system"` turn rather than replacing the top-level system prompt.
+
+      - `required IReadOnlyList<BetaManagedAgentsSystemContentBlock> Content`
+
+        System content blocks to append. Text-only.
+
+        - `required string Text`
+
+          The text content.
+
+        - `required Type Type`
+
+          - `"text"Text`
+
+      - `required Type Type`
+
+        - `"system.message"SystemMessage`
+
+  - `required IReadOnlyDictionary<string, string> Metadata`
+
+    Arbitrary key-value metadata. Maximum 16 pairs.
+
+  - `required string Name`
+
+    Human-readable name.
+
+  - `required BetaManagedAgentsDeploymentPausedReason? PausedReason`
+
+    Why a deployment is paused. Non-null exactly when `status` is `paused`.
+
+    - `class BetaManagedAgentsManualDeploymentPausedReason:`
+
+      The caller invoked the pause endpoint on the deployment.
+
+      - `required Type Type`
+
+        - `"manual"Manual`
+
+    - `class BetaManagedAgentsErrorDeploymentPausedReason:`
+
+      A scheduled fire recorded a failed run whose error auto-pauses the deployment.
+
+      - `required BetaManagedAgentsDeploymentPausedReasonError Error`
+
+        The error that triggered an auto-pause. Matches the failed run's `error.type`.
+
+        - `class BetaManagedAgentsEnvironmentArchivedDeploymentPausedReasonError:`
+
+          The deployment's environment was archived.
+
+          - `required Type Type`
+
+            - `"environment_archived_error"EnvironmentArchivedError`
+
+        - `class BetaManagedAgentsAgentArchivedDeploymentPausedReasonError:`
+
+          The deployment's agent was archived.
+
+          - `required Type Type`
+
+            - `"agent_archived_error"AgentArchivedError`
+
+        - `class BetaManagedAgentsEnvironmentNotFoundDeploymentPausedReasonError:`
+
+          The deployment's environment no longer exists.
+
+          - `required Type Type`
+
+            - `"environment_not_found_error"EnvironmentNotFoundError`
+
+        - `class BetaManagedAgentsVaultNotFoundDeploymentPausedReasonError:`
+
+          A vault referenced by the deployment no longer exists.
+
+          - `required Type Type`
+
+            - `"vault_not_found_error"VaultNotFoundError`
+
+        - `class BetaManagedAgentsFileNotFoundDeploymentPausedReasonError:`
+
+          A file resource referenced by the deployment no longer exists.
+
+          - `required Type Type`
+
+            - `"file_not_found_error"FileNotFoundError`
+
+        - `class BetaManagedAgentsSessionResourceNotFoundDeploymentPausedReasonError:`
+
+          A referenced resource no longer exists and its kind was not reported.
+
+          - `required Type Type`
+
+            - `"session_resource_not_found_error"SessionResourceNotFoundError`
+
+        - `class BetaManagedAgentsWorkspaceArchivedDeploymentPausedReasonError:`
+
+          The deployment's workspace was archived.
+
+          - `required Type Type`
+
+            - `"workspace_archived_error"WorkspaceArchivedError`
+
+        - `class BetaManagedAgentsOrganizationDisabledDeploymentPausedReasonError:`
+
+          The deployment's organization is disabled.
+
+          - `required Type Type`
+
+            - `"organization_disabled_error"OrganizationDisabledError`
+
+        - `class BetaManagedAgentsMemoryStoreArchivedDeploymentPausedReasonError:`
+
+          A memory store referenced by the deployment is archived.
+
+          - `required Type Type`
+
+            - `"memory_store_archived_error"MemoryStoreArchivedError`
+
+        - `class BetaManagedAgentsSkillNotFoundDeploymentPausedReasonError:`
+
+          A skill referenced by the deployment's agent no longer exists.
+
+          - `required Type Type`
+
+            - `"skill_not_found_error"SkillNotFoundError`
+
+        - `class BetaManagedAgentsVaultArchivedDeploymentPausedReasonError:`
+
+          A vault referenced by the deployment is archived.
+
+          - `required Type Type`
+
+            - `"vault_archived_error"VaultArchivedError`
+
+        - `class BetaManagedAgentsUnknownDeploymentPausedReasonError:`
+
+          An unrecognized error auto-paused the deployment. A fallback variant; matches a run whose `error.type` is `unknown_error`.
+
+          - `required Type Type`
+
+            - `"unknown_error"UnknownError`
+
+        - `class BetaManagedAgentsSelfHostedResourcesUnsupportedDeploymentPausedReasonError:`
+
+          The deployment configures resources, but its environment is self-hosted and cannot mount them.
+
+          - `required Type Type`
+
+            - `"self_hosted_resources_unsupported_error"SelfHostedResourcesUnsupportedError`
+
+        - `class BetaManagedAgentsMcpEgressBlockedDeploymentPausedReasonError:`
+
+          An MCP server host used by the deployment's agent is blocked by the environment's network policy.
+
+          - `required Type Type`
+
+            - `"mcp_egress_blocked_error"McpEgressBlockedError`
+
+      - `required Type Type`
+
+        - `"error"Error`
+
+  - `required IReadOnlyList<BetaManagedAgentsSessionResourceConfig> Resources`
+
+    Resources attached to sessions created from this deployment. Echoes the input minus write-only credentials.
+
+    - `class BetaManagedAgentsGitHubRepositoryResourceConfig:`
+
+      A GitHub repository mounted into each session's container. The authorization token is write-only and never returned.
+
+      - `required Type Type`
+
+        - `"github_repository"GitHubRepository`
+
+      - `required string Url`
+
+        Github URL of the repository
+
+      - `Checkout? Checkout`
+
+        Branch or commit to check out. Defaults to the repository's default branch.
+
+        - `class BetaManagedAgentsBranchCheckout:`
+
+          - `required string Name`
+
+            Branch name to check out.
+
+          - `required Type Type`
+
+            - `"branch"Branch`
+
+        - `class BetaManagedAgentsCommitCheckout:`
+
+          - `required string Sha`
+
+            Full commit SHA to check out.
+
+          - `required Type Type`
+
+            - `"commit"Commit`
+
+      - `string? MountPath`
+
+        Mount path in the container. Defaults to `/workspace/<repo-name>`.
+
+    - `class BetaManagedAgentsFileResourceConfig:`
+
+      A file mounted into each session's container.
+
+      - `required string FileID`
+
+        ID of a previously uploaded file.
+
+      - `required Type Type`
+
+        - `"file"File`
+
+      - `string? MountPath`
+
+        Mount path in the container. Defaults to `/mnt/session/uploads/<file_id>`.
+
+    - `class BetaManagedAgentsMemoryStoreResourceConfig:`
+
+      A memory store attached to each session created from this deployment.
+
+      - `required string MemoryStoreID`
+
+        The memory store ID (memstore_...). Must belong to the caller's organization and workspace.
+
+      - `required Type Type`
+
+        - `"memory_store"MemoryStore`
+
+      - `Access? Access`
+
+        Access mode for an attached memory store.
+
+        - `"read_write"ReadWrite`
+
+        - `"read_only"ReadOnly`
+
+      - `string? Instructions`
+
+        Per-attachment guidance for the agent on how to use this store. Rendered into the memory section of the system prompt. Max 4096 chars.
+
+  - `required BetaManagedAgentsSchedule? Schedule`
+
+    5-field POSIX cron schedule with computed runtime timestamps.
+
+    - `required string Expression`
+
+      5-field POSIX cron expression: minute hour day-of-month month day-of-week (e.g., "0 9 * * 1-5" for weekdays at 9am). Day-of-week is 0-7 where 0 and 7 both mean Sunday. Extended cron syntax - seconds or year fields, and the special characters L, W, #, and ? - is not supported, nor are predefined shortcuts (@daily).
+
+    - `required string Timezone`
+
+      IANA timezone identifier (e.g., "America/Los_Angeles", "UTC").
+
+    - `required Type Type`
+
+      - `"cron"Cron`
+
+    - `DateTimeOffset? LastRunAt`
+
+      A timestamp in RFC 3339 format
+
+    - `IReadOnlyList<DateTimeOffset> UpcomingRunsAt`
+
+      Up to 5 timestamps of upcoming cron occurrences. Non-empty for active and paused deployments (reflects what the schedule would do if unpaused); empty once the deployment is archived (`archived_at` set). Each fire is offset by a small per-schedule jitter, so a run will actually start at or shortly after its listed time.
+
+  - `required BetaManagedAgentsDeploymentStatus Status`
+
+    Lifecycle status of a deployment.
+
+    - `"active"Active`
+
+    - `"paused"Paused`
+
+  - `required Type Type`
+
+    - `"deployment"Deployment`
+
+  - `required DateTimeOffset UpdatedAt`
+
+    A timestamp in RFC 3339 format
+
+  - `required IReadOnlyList<string> VaultIds`
+
+    Vault IDs supplying stored credentials for sessions created from this deployment.
+
+### Example
+
+```csharp
+DeploymentUnpauseParams parameters = new() { DeploymentID = "deployment_id" };
+
+var betaManagedAgentsDeployment = await client.Beta.Deployments.Unpause(parameters);
+
+Console.WriteLine(betaManagedAgentsDeployment);
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "agent": {
+    "id": "agent_011CZkYqphY8vELVzwCUpqiQ",
+    "type": "agent",
+    "version": 1
+  },
+  "archived_at": "2019-12-27T18:11:19.117Z",
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "description": "description",
+  "environment_id": "environment_id",
+  "initial_events": [
+    {
+      "content": [
+        {
+          "text": "Where is my order #1234?",
+          "type": "text"
+        }
+      ],
+      "type": "user.message"
+    }
+  ],
+  "metadata": {
+    "foo": "string"
+  },
+  "name": "name",
+  "paused_reason": {
+    "type": "manual"
+  },
+  "resources": [
+    {
+      "type": "github_repository",
+      "url": "url",
+      "checkout": {
+        "name": "main",
+        "type": "branch"
+      },
+      "mount_path": "mount_path"
+    }
+  ],
+  "schedule": {
+    "expression": "x",
+    "timezone": "x",
+    "type": "cron",
+    "last_run_at": "2019-12-27T18:11:19.117Z",
+    "upcoming_runs_at": [
+      "2019-12-27T18:11:19.117Z"
+    ]
+  },
+  "status": "active",
+  "type": "deployment",
+  "updated_at": "2019-12-27T18:11:19.117Z",
+  "vault_ids": [
+    "string"
+  ]
+}
+```
+
+## Domain Types
+
+### Beta Managed Agents Agent Archived Deployment Paused Reason Error
+
+- `class BetaManagedAgentsAgentArchivedDeploymentPausedReasonError:`
+
+  The deployment's agent was archived.
+
+  - `required Type Type`
+
+    - `"agent_archived_error"AgentArchivedError`
+
+### Beta Managed Agents Cron Schedule
+
+- `class BetaManagedAgentsCronSchedule:`
+
+  5-field POSIX cron schedule with computed runtime timestamps.
+
+  - `required string Expression`
+
+    5-field POSIX cron expression: minute hour day-of-month month day-of-week (e.g., "0 9 * * 1-5" for weekdays at 9am). Day-of-week is 0-7 where 0 and 7 both mean Sunday. Extended cron syntax - seconds or year fields, and the special characters L, W, #, and ? - is not supported, nor are predefined shortcuts (@daily).
+
+  - `required string Timezone`
+
+    IANA timezone identifier (e.g., "America/Los_Angeles", "UTC").
+
+  - `required Type Type`
+
+    - `"cron"Cron`
+
+  - `DateTimeOffset? LastRunAt`
+
+    A timestamp in RFC 3339 format
+
+  - `IReadOnlyList<DateTimeOffset> UpcomingRunsAt`
+
+    Up to 5 timestamps of upcoming cron occurrences. Non-empty for active and paused deployments (reflects what the schedule would do if unpaused); empty once the deployment is archived (`archived_at` set). Each fire is offset by a small per-schedule jitter, so a run will actually start at or shortly after its listed time.
+
+### Beta Managed Agents Cron Schedule Params
+
+- `class BetaManagedAgentsCronScheduleParams:`
+
+  5-field POSIX cron schedule. Literal wall-clock matching in the configured timezone.
+
+  - `required string Expression`
+
+    5-field POSIX cron expression: minute hour day-of-month month day-of-week (e.g., "0 9 * * 1-5" for weekdays at 9am). Day-of-week is 0-7 where 0 and 7 both mean Sunday. Extended cron syntax - seconds or year fields, and the special characters L, W, #, and ? - is not supported, nor are predefined shortcuts (@daily).
+
+  - `required string Timezone`
+
+    Required. IANA timezone identifier (e.g., "America/Los_Angeles", "UTC"). Validated against the IANA timezone database.
+
+  - `required Type Type`
+
+    - `"cron"Cron`
+
+### Beta Managed Agents Deployment
+
+- `class BetaManagedAgentsDeployment:`
+
+  A deployment is a configured instance of an agent — it binds the agent to everything needed to run it autonomously: an environment, credentials, initial events, and an optional schedule.
+
+  - `required string ID`
+
+    Unique identifier for this deployment.
+
+  - `required BetaManagedAgentsAgentReference Agent`
+
+    A resolved agent reference with a concrete version.
+
+    - `required string ID`
+
+    - `required Type Type`
+
+      - `"agent"Agent`
+
+    - `required Int Version`
+
+  - `required DateTimeOffset? ArchivedAt`
+
+    A timestamp in RFC 3339 format
+
+  - `required DateTimeOffset CreatedAt`
+
+    A timestamp in RFC 3339 format
+
+  - `required string? Description`
+
+    Description of what the deployment does.
+
+  - `required string EnvironmentID`
+
+    ID of the `environment` where sessions run.
+
+  - `required IReadOnlyList<BetaManagedAgentsDeploymentInitialEvent> InitialEvents`
+
+    Events sent to each session immediately after creation.
+
+    - `class BetaManagedAgentsDeploymentUserMessageEvent:`
+
+      A user message sent to the session.
+
+      - `required IReadOnlyList<Content> Content`
+
+        Array of content blocks for the user message.
+
+        - `class BetaManagedAgentsTextBlock:`
+
+          Regular text content.
+
+          - `required string Text`
+
+            The text content.
+
+          - `required Type Type`
+
+            - `"text"Text`
+
+        - `class BetaManagedAgentsImageBlock:`
+
+          Image content specified directly as base64 data or as a reference via a URL.
+
+          - `required Source Source`
+
+            Union type for image source variants.
+
+            - `class BetaManagedAgentsBase64ImageSource:`
+
+              Base64-encoded image data.
+
+              - `required string Data`
+
+                Base64-encoded image data.
+
+              - `required string MediaType`
+
+                MIME type of the image (e.g., "image/png", "image/jpeg", "image/gif", "image/webp").
+
+              - `required Type Type`
+
+                - `"base64"Base64`
+
+            - `class BetaManagedAgentsUrlImageSource:`
+
+              Image referenced by URL.
+
+              - `required Type Type`
+
+                - `"url"Url`
+
+              - `required string Url`
+
+                URL of the image to fetch.
+
+            - `class BetaManagedAgentsFileImageSource:`
+
+              Image referenced by file ID.
+
+              - `required string FileID`
+
+                ID of a previously uploaded file.
+
+              - `required Type Type`
+
+                - `"file"File`
+
+          - `required Type Type`
+
+            - `"image"Image`
+
+        - `class BetaManagedAgentsDocumentBlock:`
+
+          Document content, either specified directly as base64 data, as text, or as a reference via a URL.
+
+          - `required Source Source`
+
+            Union type for document source variants.
+
+            - `class BetaManagedAgentsBase64DocumentSource:`
+
+              Base64-encoded document data.
+
+              - `required string Data`
+
+                Base64-encoded document data.
+
+              - `required string MediaType`
+
+                MIME type of the document (e.g., "application/pdf").
+
+              - `required Type Type`
+
+                - `"base64"Base64`
+
+            - `class BetaManagedAgentsPlainTextDocumentSource:`
+
+              Plain text document content.
+
+              - `required string Data`
+
+                The plain text content.
+
+              - `required MediaType MediaType`
+
+                MIME type of the text content. Must be "text/plain".
+
+                - `"text/plain"TextPlain`
+
+              - `required Type Type`
+
+                - `"text"Text`
+
+            - `class BetaManagedAgentsUrlDocumentSource:`
+
+              Document referenced by URL.
+
+              - `required Type Type`
+
+                - `"url"Url`
+
+              - `required string Url`
+
+                URL of the document to fetch.
+
+            - `class BetaManagedAgentsFileDocumentSource:`
+
+              Document referenced by file ID.
+
+              - `required string FileID`
+
+                ID of a previously uploaded file.
+
+              - `required Type Type`
+
+                - `"file"File`
+
+          - `required Type Type`
+
+            - `"document"Document`
+
+          - `string? Context`
+
+            Additional context about the document for the model.
+
+          - `string? Title`
+
+            The title of the document.
+
+      - `required Type Type`
+
+        - `"user.message"UserMessage`
+
+    - `class BetaManagedAgentsDeploymentUserDefineOutcomeEvent:`
+
+      An outcome the agent should work toward. The agent begins work on receipt.
+
+      - `required string Description`
+
+        What the agent should produce. This is the task specification.
+
+      - `required Rubric Rubric`
+
+        Rubric for grading the quality of an outcome.
+
+        - `class BetaManagedAgentsFileRubric:`
+
+          Rubric referenced by a file uploaded via the Files API.
+
+          - `required string FileID`
+
+            ID of the rubric file.
+
+          - `required Type Type`
+
+            - `"file"File`
+
+        - `class BetaManagedAgentsTextRubric:`
+
+          Rubric content provided inline as text.
+
+          - `required string Content`
+
+            Rubric content. Plain text or markdown — the grader treats it as freeform text.
+
+          - `required Type Type`
+
+            - `"text"Text`
+
+      - `required Type Type`
+
+        - `"user.define_outcome"UserDefineOutcome`
+
+      - `Int? MaxIterations`
+
+        Eval→revision cycles before giving up. Default 3, max 20.
+
+    - `class BetaManagedAgentsDeploymentSystemMessageEvent:`
+
+      Privileged context for the accompanying turn and all subsequent turns, appended to the session's system context as a `role: "system"` turn rather than replacing the top-level system prompt.
+
+      - `required IReadOnlyList<BetaManagedAgentsSystemContentBlock> Content`
+
+        System content blocks to append. Text-only.
+
+        - `required string Text`
+
+          The text content.
+
+        - `required Type Type`
+
+          - `"text"Text`
+
+      - `required Type Type`
+
+        - `"system.message"SystemMessage`
+
+  - `required IReadOnlyDictionary<string, string> Metadata`
+
+    Arbitrary key-value metadata. Maximum 16 pairs.
+
+  - `required string Name`
+
+    Human-readable name.
+
+  - `required BetaManagedAgentsDeploymentPausedReason? PausedReason`
+
+    Why a deployment is paused. Non-null exactly when `status` is `paused`.
+
+    - `class BetaManagedAgentsManualDeploymentPausedReason:`
+
+      The caller invoked the pause endpoint on the deployment.
+
+      - `required Type Type`
+
+        - `"manual"Manual`
+
+    - `class BetaManagedAgentsErrorDeploymentPausedReason:`
+
+      A scheduled fire recorded a failed run whose error auto-pauses the deployment.
+
+      - `required BetaManagedAgentsDeploymentPausedReasonError Error`
+
+        The error that triggered an auto-pause. Matches the failed run's `error.type`.
+
+        - `class BetaManagedAgentsEnvironmentArchivedDeploymentPausedReasonError:`
+
+          The deployment's environment was archived.
+
+          - `required Type Type`
+
+            - `"environment_archived_error"EnvironmentArchivedError`
+
+        - `class BetaManagedAgentsAgentArchivedDeploymentPausedReasonError:`
+
+          The deployment's agent was archived.
+
+          - `required Type Type`
+
+            - `"agent_archived_error"AgentArchivedError`
+
+        - `class BetaManagedAgentsEnvironmentNotFoundDeploymentPausedReasonError:`
+
+          The deployment's environment no longer exists.
+
+          - `required Type Type`
+
+            - `"environment_not_found_error"EnvironmentNotFoundError`
+
+        - `class BetaManagedAgentsVaultNotFoundDeploymentPausedReasonError:`
+
+          A vault referenced by the deployment no longer exists.
+
+          - `required Type Type`
+
+            - `"vault_not_found_error"VaultNotFoundError`
+
+        - `class BetaManagedAgentsFileNotFoundDeploymentPausedReasonError:`
+
+          A file resource referenced by the deployment no longer exists.
+
+          - `required Type Type`
+
+            - `"file_not_found_error"FileNotFoundError`
+
+        - `class BetaManagedAgentsSessionResourceNotFoundDeploymentPausedReasonError:`
+
+          A referenced resource no longer exists and its kind was not reported.
+
+          - `required Type Type`
+
+            - `"session_resource_not_found_error"SessionResourceNotFoundError`
+
+        - `class BetaManagedAgentsWorkspaceArchivedDeploymentPausedReasonError:`
+
+          The deployment's workspace was archived.
+
+          - `required Type Type`
+
+            - `"workspace_archived_error"WorkspaceArchivedError`
+
+        - `class BetaManagedAgentsOrganizationDisabledDeploymentPausedReasonError:`
+
+          The deployment's organization is disabled.
+
+          - `required Type Type`
+
+            - `"organization_disabled_error"OrganizationDisabledError`
+
+        - `class BetaManagedAgentsMemoryStoreArchivedDeploymentPausedReasonError:`
+
+          A memory store referenced by the deployment is archived.
+
+          - `required Type Type`
+
+            - `"memory_store_archived_error"MemoryStoreArchivedError`
+
+        - `class BetaManagedAgentsSkillNotFoundDeploymentPausedReasonError:`
+
+          A skill referenced by the deployment's agent no longer exists.
+
+          - `required Type Type`
+
+            - `"skill_not_found_error"SkillNotFoundError`
+
+        - `class BetaManagedAgentsVaultArchivedDeploymentPausedReasonError:`
+
+          A vault referenced by the deployment is archived.
+
+          - `required Type Type`
+
+            - `"vault_archived_error"VaultArchivedError`
+
+        - `class BetaManagedAgentsUnknownDeploymentPausedReasonError:`
+
+          An unrecognized error auto-paused the deployment. A fallback variant; matches a run whose `error.type` is `unknown_error`.
+
+          - `required Type Type`
+
+            - `"unknown_error"UnknownError`
+
+        - `class BetaManagedAgentsSelfHostedResourcesUnsupportedDeploymentPausedReasonError:`
+
+          The deployment configures resources, but its environment is self-hosted and cannot mount them.
+
+          - `required Type Type`
+
+            - `"self_hosted_resources_unsupported_error"SelfHostedResourcesUnsupportedError`
+
+        - `class BetaManagedAgentsMcpEgressBlockedDeploymentPausedReasonError:`
+
+          An MCP server host used by the deployment's agent is blocked by the environment's network policy.
+
+          - `required Type Type`
+
+            - `"mcp_egress_blocked_error"McpEgressBlockedError`
+
+      - `required Type Type`
+
+        - `"error"Error`
+
+  - `required IReadOnlyList<BetaManagedAgentsSessionResourceConfig> Resources`
+
+    Resources attached to sessions created from this deployment. Echoes the input minus write-only credentials.
+
+    - `class BetaManagedAgentsGitHubRepositoryResourceConfig:`
+
+      A GitHub repository mounted into each session's container. The authorization token is write-only and never returned.
+
+      - `required Type Type`
+
+        - `"github_repository"GitHubRepository`
+
+      - `required string Url`
+
+        Github URL of the repository
+
+      - `Checkout? Checkout`
+
+        Branch or commit to check out. Defaults to the repository's default branch.
+
+        - `class BetaManagedAgentsBranchCheckout:`
+
+          - `required string Name`
+
+            Branch name to check out.
+
+          - `required Type Type`
+
+            - `"branch"Branch`
+
+        - `class BetaManagedAgentsCommitCheckout:`
+
+          - `required string Sha`
+
+            Full commit SHA to check out.
+
+          - `required Type Type`
+
+            - `"commit"Commit`
+
+      - `string? MountPath`
+
+        Mount path in the container. Defaults to `/workspace/<repo-name>`.
+
+    - `class BetaManagedAgentsFileResourceConfig:`
+
+      A file mounted into each session's container.
+
+      - `required string FileID`
+
+        ID of a previously uploaded file.
+
+      - `required Type Type`
+
+        - `"file"File`
+
+      - `string? MountPath`
+
+        Mount path in the container. Defaults to `/mnt/session/uploads/<file_id>`.
+
+    - `class BetaManagedAgentsMemoryStoreResourceConfig:`
+
+      A memory store attached to each session created from this deployment.
+
+      - `required string MemoryStoreID`
+
+        The memory store ID (memstore_...). Must belong to the caller's organization and workspace.
+
+      - `required Type Type`
+
+        - `"memory_store"MemoryStore`
+
+      - `Access? Access`
+
+        Access mode for an attached memory store.
+
+        - `"read_write"ReadWrite`
+
+        - `"read_only"ReadOnly`
+
+      - `string? Instructions`
+
+        Per-attachment guidance for the agent on how to use this store. Rendered into the memory section of the system prompt. Max 4096 chars.
+
+  - `required BetaManagedAgentsSchedule? Schedule`
+
+    5-field POSIX cron schedule with computed runtime timestamps.
+
+    - `required string Expression`
+
+      5-field POSIX cron expression: minute hour day-of-month month day-of-week (e.g., "0 9 * * 1-5" for weekdays at 9am). Day-of-week is 0-7 where 0 and 7 both mean Sunday. Extended cron syntax - seconds or year fields, and the special characters L, W, #, and ? - is not supported, nor are predefined shortcuts (@daily).
+
+    - `required string Timezone`
+
+      IANA timezone identifier (e.g., "America/Los_Angeles", "UTC").
+
+    - `required Type Type`
+
+      - `"cron"Cron`
+
+    - `DateTimeOffset? LastRunAt`
+
+      A timestamp in RFC 3339 format
+
+    - `IReadOnlyList<DateTimeOffset> UpcomingRunsAt`
+
+      Up to 5 timestamps of upcoming cron occurrences. Non-empty for active and paused deployments (reflects what the schedule would do if unpaused); empty once the deployment is archived (`archived_at` set). Each fire is offset by a small per-schedule jitter, so a run will actually start at or shortly after its listed time.
+
+  - `required BetaManagedAgentsDeploymentStatus Status`
+
+    Lifecycle status of a deployment.
+
+    - `"active"Active`
+
+    - `"paused"Paused`
+
+  - `required Type Type`
+
+    - `"deployment"Deployment`
+
+  - `required DateTimeOffset UpdatedAt`
+
+    A timestamp in RFC 3339 format
+
+  - `required IReadOnlyList<string> VaultIds`
+
+    Vault IDs supplying stored credentials for sessions created from this deployment.
+
+### Beta Managed Agents Deployment Initial Event
+
+- `class BetaManagedAgentsDeploymentInitialEvent: A class that can be one of several variants.union`
+
+  An event sent to a session immediately after it is created. Supports `user.message`, `user.define_outcome`, and `system.message`.
+
+  - `class BetaManagedAgentsDeploymentUserMessageEvent:`
+
+    A user message sent to the session.
+
+    - `required IReadOnlyList<Content> Content`
+
+      Array of content blocks for the user message.
+
+      - `class BetaManagedAgentsTextBlock:`
+
+        Regular text content.
+
+        - `required string Text`
+
+          The text content.
+
+        - `required Type Type`
+
+          - `"text"Text`
+
+      - `class BetaManagedAgentsImageBlock:`
+
+        Image content specified directly as base64 data or as a reference via a URL.
+
+        - `required Source Source`
+
+          Union type for image source variants.
+
+          - `class BetaManagedAgentsBase64ImageSource:`
+
+            Base64-encoded image data.
+
+            - `required string Data`
+
+              Base64-encoded image data.
+
+            - `required string MediaType`
+
+              MIME type of the image (e.g., "image/png", "image/jpeg", "image/gif", "image/webp").
+
+            - `required Type Type`
+
+              - `"base64"Base64`
+
+          - `class BetaManagedAgentsUrlImageSource:`
+
+            Image referenced by URL.
+
+            - `required Type Type`
+
+              - `"url"Url`
+
+            - `required string Url`
+
+              URL of the image to fetch.
+
+          - `class BetaManagedAgentsFileImageSource:`
+
+            Image referenced by file ID.
+
+            - `required string FileID`
+
+              ID of a previously uploaded file.
+
+            - `required Type Type`
+
+              - `"file"File`
+
+        - `required Type Type`
+
+          - `"image"Image`
+
+      - `class BetaManagedAgentsDocumentBlock:`
+
+        Document content, either specified directly as base64 data, as text, or as a reference via a URL.
+
+        - `required Source Source`
+
+          Union type for document source variants.
+
+          - `class BetaManagedAgentsBase64DocumentSource:`
+
+            Base64-encoded document data.
+
+            - `required string Data`
+
+              Base64-encoded document data.
+
+            - `required string MediaType`
+
+              MIME type of the document (e.g., "application/pdf").
+
+            - `required Type Type`
+
+              - `"base64"Base64`
+
+          - `class BetaManagedAgentsPlainTextDocumentSource:`
+
+            Plain text document content.
+
+            - `required string Data`
+
+              The plain text content.
+
+            - `required MediaType MediaType`
+
+              MIME type of the text content. Must be "text/plain".
+
+              - `"text/plain"TextPlain`
+
+            - `required Type Type`
+
+              - `"text"Text`
+
+          - `class BetaManagedAgentsUrlDocumentSource:`
+
+            Document referenced by URL.
+
+            - `required Type Type`
+
+              - `"url"Url`
+
+            - `required string Url`
+
+              URL of the document to fetch.
+
+          - `class BetaManagedAgentsFileDocumentSource:`
+
+            Document referenced by file ID.
+
+            - `required string FileID`
+
+              ID of a previously uploaded file.
+
+            - `required Type Type`
+
+              - `"file"File`
+
+        - `required Type Type`
+
+          - `"document"Document`
+
+        - `string? Context`
+
+          Additional context about the document for the model.
+
+        - `string? Title`
+
+          The title of the document.
+
+    - `required Type Type`
+
+      - `"user.message"UserMessage`
+
+  - `class BetaManagedAgentsDeploymentUserDefineOutcomeEvent:`
+
+    An outcome the agent should work toward. The agent begins work on receipt.
+
+    - `required string Description`
+
+      What the agent should produce. This is the task specification.
+
+    - `required Rubric Rubric`
+
+      Rubric for grading the quality of an outcome.
+
+      - `class BetaManagedAgentsFileRubric:`
+
+        Rubric referenced by a file uploaded via the Files API.
+
+        - `required string FileID`
+
+          ID of the rubric file.
+
+        - `required Type Type`
+
+          - `"file"File`
+
+      - `class BetaManagedAgentsTextRubric:`
+
+        Rubric content provided inline as text.
+
+        - `required string Content`
+
+          Rubric content. Plain text or markdown — the grader treats it as freeform text.
+
+        - `required Type Type`
+
+          - `"text"Text`
+
+    - `required Type Type`
+
+      - `"user.define_outcome"UserDefineOutcome`
+
+    - `Int? MaxIterations`
+
+      Eval→revision cycles before giving up. Default 3, max 20.
+
+  - `class BetaManagedAgentsDeploymentSystemMessageEvent:`
+
+    Privileged context for the accompanying turn and all subsequent turns, appended to the session's system context as a `role: "system"` turn rather than replacing the top-level system prompt.
+
+    - `required IReadOnlyList<BetaManagedAgentsSystemContentBlock> Content`
+
+      System content blocks to append. Text-only.
+
+      - `required string Text`
+
+        The text content.
+
+      - `required Type Type`
+
+        - `"text"Text`
+
+    - `required Type Type`
+
+      - `"system.message"SystemMessage`
+
+### Beta Managed Agents Deployment Initial Event Params
+
+- `class BetaManagedAgentsDeploymentInitialEventParams: A class that can be one of several variants.union`
+
+  An event sent to a session immediately after it is created. Supports `user.message`, `user.define_outcome`, and `system.message`.
+
+  - `class BetaManagedAgentsUserMessageEventParams:`
+
+    Parameters for sending a user message to the session.
+
+    - `required IReadOnlyList<Content> Content`
+
+      Array of content blocks for the user message.
+
+      - `class BetaManagedAgentsTextBlock:`
+
+        Regular text content.
+
+        - `required string Text`
+
+          The text content.
+
+        - `required Type Type`
+
+          - `"text"Text`
+
+      - `class BetaManagedAgentsImageBlock:`
+
+        Image content specified directly as base64 data or as a reference via a URL.
+
+        - `required Source Source`
+
+          Union type for image source variants.
+
+          - `class BetaManagedAgentsBase64ImageSource:`
+
+            Base64-encoded image data.
+
+            - `required string Data`
+
+              Base64-encoded image data.
+
+            - `required string MediaType`
+
+              MIME type of the image (e.g., "image/png", "image/jpeg", "image/gif", "image/webp").
+
+            - `required Type Type`
+
+              - `"base64"Base64`
+
+          - `class BetaManagedAgentsUrlImageSource:`
+
+            Image referenced by URL.
+
+            - `required Type Type`
+
+              - `"url"Url`
+
+            - `required string Url`
+
+              URL of the image to fetch.
+
+          - `class BetaManagedAgentsFileImageSource:`
+
+            Image referenced by file ID.
+
+            - `required string FileID`
+
+              ID of a previously uploaded file.
+
+            - `required Type Type`
+
+              - `"file"File`
+
+        - `required Type Type`
+
+          - `"image"Image`
+
+      - `class BetaManagedAgentsDocumentBlock:`
+
+        Document content, either specified directly as base64 data, as text, or as a reference via a URL.
+
+        - `required Source Source`
+
+          Union type for document source variants.
+
+          - `class BetaManagedAgentsBase64DocumentSource:`
+
+            Base64-encoded document data.
+
+            - `required string Data`
+
+              Base64-encoded document data.
+
+            - `required string MediaType`
+
+              MIME type of the document (e.g., "application/pdf").
+
+            - `required Type Type`
+
+              - `"base64"Base64`
+
+          - `class BetaManagedAgentsPlainTextDocumentSource:`
+
+            Plain text document content.
+
+            - `required string Data`
+
+              The plain text content.
+
+            - `required MediaType MediaType`
+
+              MIME type of the text content. Must be "text/plain".
+
+              - `"text/plain"TextPlain`
+
+            - `required Type Type`
+
+              - `"text"Text`
+
+          - `class BetaManagedAgentsUrlDocumentSource:`
+
+            Document referenced by URL.
+
+            - `required Type Type`
+
+              - `"url"Url`
+
+            - `required string Url`
+
+              URL of the document to fetch.
+
+          - `class BetaManagedAgentsFileDocumentSource:`
+
+            Document referenced by file ID.
+
+            - `required string FileID`
+
+              ID of a previously uploaded file.
+
+            - `required Type Type`
+
+              - `"file"File`
+
+        - `required Type Type`
+
+          - `"document"Document`
+
+        - `string? Context`
+
+          Additional context about the document for the model.
+
+        - `string? Title`
+
+          The title of the document.
+
+    - `required Type Type`
+
+      - `"user.message"UserMessage`
+
+  - `class BetaManagedAgentsUserDefineOutcomeEventParams:`
+
+    Parameters for defining an outcome the agent should work toward. The agent begins work on receipt.
+
+    - `required string Description`
+
+      What the agent should produce. This is the task specification.
+
+    - `required Rubric Rubric`
+
+      Rubric for grading the quality of an outcome.
+
+      - `class BetaManagedAgentsFileRubricParams:`
+
+        Rubric referenced by a file uploaded via the Files API.
+
+        - `required string FileID`
+
+          ID of the rubric file.
+
+        - `required Type Type`
+
+          - `"file"File`
+
+      - `class BetaManagedAgentsTextRubricParams:`
+
+        Rubric content provided inline as text.
+
+        - `required string Content`
+
+          Rubric content. Plain text or markdown — the grader treats it as freeform text. Maximum 262144 characters.
+
+        - `required Type Type`
+
+          - `"text"Text`
+
+    - `required Type Type`
+
+      - `"user.define_outcome"UserDefineOutcome`
+
+    - `Int? MaxIterations`
+
+      Eval→revision cycles before giving up. Default 3, max 20.
+
+  - `class BetaManagedAgentsSystemMessageEventParams:`
+
+    Privileged context for the accompanying turn and all subsequent turns, appended to the session's system context as a `role: "system"` turn rather than replacing the top-level system prompt. At most one per request: it must be the final event and immediately follow the `user.message`, `user.tool_result`, or `user.custom_tool_result` it accompanies. Only supported on models that accept mid-conversation system messages.
+
+    - `required IReadOnlyList<BetaManagedAgentsSystemContentBlock> Content`
+
+      System content blocks to append. Text-only.
+
+      - `required string Text`
+
+        The text content.
+
+      - `required Type Type`
+
+        - `"text"Text`
+
+    - `required Type Type`
+
+      - `"system.message"SystemMessage`
+
+### Beta Managed Agents Deployment Paused Reason
+
+- `class BetaManagedAgentsDeploymentPausedReason: A class that can be one of several variants.union`
+
+  Why a deployment is paused. Non-null exactly when `status` is `paused`.
+
+  - `class BetaManagedAgentsManualDeploymentPausedReason:`
+
+    The caller invoked the pause endpoint on the deployment.
+
+    - `required Type Type`
+
+      - `"manual"Manual`
+
+  - `class BetaManagedAgentsErrorDeploymentPausedReason:`
+
+    A scheduled fire recorded a failed run whose error auto-pauses the deployment.
+
+    - `required BetaManagedAgentsDeploymentPausedReasonError Error`
+
+      The error that triggered an auto-pause. Matches the failed run's `error.type`.
+
+      - `class BetaManagedAgentsEnvironmentArchivedDeploymentPausedReasonError:`
+
+        The deployment's environment was archived.
+
+        - `required Type Type`
+
+          - `"environment_archived_error"EnvironmentArchivedError`
+
+      - `class BetaManagedAgentsAgentArchivedDeploymentPausedReasonError:`
+
+        The deployment's agent was archived.
+
+        - `required Type Type`
+
+          - `"agent_archived_error"AgentArchivedError`
+
+      - `class BetaManagedAgentsEnvironmentNotFoundDeploymentPausedReasonError:`
+
+        The deployment's environment no longer exists.
+
+        - `required Type Type`
+
+          - `"environment_not_found_error"EnvironmentNotFoundError`
+
+      - `class BetaManagedAgentsVaultNotFoundDeploymentPausedReasonError:`
+
+        A vault referenced by the deployment no longer exists.
+
+        - `required Type Type`
+
+          - `"vault_not_found_error"VaultNotFoundError`
+
+      - `class BetaManagedAgentsFileNotFoundDeploymentPausedReasonError:`
+
+        A file resource referenced by the deployment no longer exists.
+
+        - `required Type Type`
+
+          - `"file_not_found_error"FileNotFoundError`
+
+      - `class BetaManagedAgentsSessionResourceNotFoundDeploymentPausedReasonError:`
+
+        A referenced resource no longer exists and its kind was not reported.
+
+        - `required Type Type`
+
+          - `"session_resource_not_found_error"SessionResourceNotFoundError`
+
+      - `class BetaManagedAgentsWorkspaceArchivedDeploymentPausedReasonError:`
+
+        The deployment's workspace was archived.
+
+        - `required Type Type`
+
+          - `"workspace_archived_error"WorkspaceArchivedError`
+
+      - `class BetaManagedAgentsOrganizationDisabledDeploymentPausedReasonError:`
+
+        The deployment's organization is disabled.
+
+        - `required Type Type`
+
+          - `"organization_disabled_error"OrganizationDisabledError`
+
+      - `class BetaManagedAgentsMemoryStoreArchivedDeploymentPausedReasonError:`
+
+        A memory store referenced by the deployment is archived.
+
+        - `required Type Type`
+
+          - `"memory_store_archived_error"MemoryStoreArchivedError`
+
+      - `class BetaManagedAgentsSkillNotFoundDeploymentPausedReasonError:`
+
+        A skill referenced by the deployment's agent no longer exists.
+
+        - `required Type Type`
+
+          - `"skill_not_found_error"SkillNotFoundError`
+
+      - `class BetaManagedAgentsVaultArchivedDeploymentPausedReasonError:`
+
+        A vault referenced by the deployment is archived.
+
+        - `required Type Type`
+
+          - `"vault_archived_error"VaultArchivedError`
+
+      - `class BetaManagedAgentsUnknownDeploymentPausedReasonError:`
+
+        An unrecognized error auto-paused the deployment. A fallback variant; matches a run whose `error.type` is `unknown_error`.
+
+        - `required Type Type`
+
+          - `"unknown_error"UnknownError`
+
+      - `class BetaManagedAgentsSelfHostedResourcesUnsupportedDeploymentPausedReasonError:`
+
+        The deployment configures resources, but its environment is self-hosted and cannot mount them.
+
+        - `required Type Type`
+
+          - `"self_hosted_resources_unsupported_error"SelfHostedResourcesUnsupportedError`
+
+      - `class BetaManagedAgentsMcpEgressBlockedDeploymentPausedReasonError:`
+
+        An MCP server host used by the deployment's agent is blocked by the environment's network policy.
+
+        - `required Type Type`
+
+          - `"mcp_egress_blocked_error"McpEgressBlockedError`
+
+    - `required Type Type`
+
+      - `"error"Error`
+
+### Beta Managed Agents Deployment Paused Reason Error
+
+- `class BetaManagedAgentsDeploymentPausedReasonError: A class that can be one of several variants.union`
+
+  The error that triggered an auto-pause. Matches the failed run's `error.type`.
+
+  - `class BetaManagedAgentsEnvironmentArchivedDeploymentPausedReasonError:`
+
+    The deployment's environment was archived.
+
+    - `required Type Type`
+
+      - `"environment_archived_error"EnvironmentArchivedError`
+
+  - `class BetaManagedAgentsAgentArchivedDeploymentPausedReasonError:`
+
+    The deployment's agent was archived.
+
+    - `required Type Type`
+
+      - `"agent_archived_error"AgentArchivedError`
+
+  - `class BetaManagedAgentsEnvironmentNotFoundDeploymentPausedReasonError:`
+
+    The deployment's environment no longer exists.
+
+    - `required Type Type`
+
+      - `"environment_not_found_error"EnvironmentNotFoundError`
+
+  - `class BetaManagedAgentsVaultNotFoundDeploymentPausedReasonError:`
+
+    A vault referenced by the deployment no longer exists.
+
+    - `required Type Type`
+
+      - `"vault_not_found_error"VaultNotFoundError`
+
+  - `class BetaManagedAgentsFileNotFoundDeploymentPausedReasonError:`
+
+    A file resource referenced by the deployment no longer exists.
+
+    - `required Type Type`
+
+      - `"file_not_found_error"FileNotFoundError`
+
+  - `class BetaManagedAgentsSessionResourceNotFoundDeploymentPausedReasonError:`
+
+    A referenced resource no longer exists and its kind was not reported.
+
+    - `required Type Type`
+
+      - `"session_resource_not_found_error"SessionResourceNotFoundError`
+
+  - `class BetaManagedAgentsWorkspaceArchivedDeploymentPausedReasonError:`
+
+    The deployment's workspace was archived.
+
+    - `required Type Type`
+
+      - `"workspace_archived_error"WorkspaceArchivedError`
+
+  - `class BetaManagedAgentsOrganizationDisabledDeploymentPausedReasonError:`
+
+    The deployment's organization is disabled.
+
+    - `required Type Type`
+
+      - `"organization_disabled_error"OrganizationDisabledError`
+
+  - `class BetaManagedAgentsMemoryStoreArchivedDeploymentPausedReasonError:`
+
+    A memory store referenced by the deployment is archived.
+
+    - `required Type Type`
+
+      - `"memory_store_archived_error"MemoryStoreArchivedError`
+
+  - `class BetaManagedAgentsSkillNotFoundDeploymentPausedReasonError:`
+
+    A skill referenced by the deployment's agent no longer exists.
+
+    - `required Type Type`
+
+      - `"skill_not_found_error"SkillNotFoundError`
+
+  - `class BetaManagedAgentsVaultArchivedDeploymentPausedReasonError:`
+
+    A vault referenced by the deployment is archived.
+
+    - `required Type Type`
+
+      - `"vault_archived_error"VaultArchivedError`
+
+  - `class BetaManagedAgentsUnknownDeploymentPausedReasonError:`
+
+    An unrecognized error auto-paused the deployment. A fallback variant; matches a run whose `error.type` is `unknown_error`.
+
+    - `required Type Type`
+
+      - `"unknown_error"UnknownError`
+
+  - `class BetaManagedAgentsSelfHostedResourcesUnsupportedDeploymentPausedReasonError:`
+
+    The deployment configures resources, but its environment is self-hosted and cannot mount them.
+
+    - `required Type Type`
+
+      - `"self_hosted_resources_unsupported_error"SelfHostedResourcesUnsupportedError`
+
+  - `class BetaManagedAgentsMcpEgressBlockedDeploymentPausedReasonError:`
+
+    An MCP server host used by the deployment's agent is blocked by the environment's network policy.
+
+    - `required Type Type`
+
+      - `"mcp_egress_blocked_error"McpEgressBlockedError`
+
+### Beta Managed Agents Deployment Status
+
+- `enum BetaManagedAgentsDeploymentStatus:`
+
+  Lifecycle status of a deployment.
+
+  - `"active"Active`
+
+  - `"paused"Paused`
+
+### Beta Managed Agents Deployment System Message Event
+
+- `class BetaManagedAgentsDeploymentSystemMessageEvent:`
+
+  Privileged context for the accompanying turn and all subsequent turns, appended to the session's system context as a `role: "system"` turn rather than replacing the top-level system prompt.
+
+  - `required IReadOnlyList<BetaManagedAgentsSystemContentBlock> Content`
+
+    System content blocks to append. Text-only.
+
+    - `required string Text`
+
+      The text content.
+
+    - `required Type Type`
+
+      - `"text"Text`
+
+  - `required Type Type`
+
+    - `"system.message"SystemMessage`
+
+### Beta Managed Agents Deployment User Define Outcome Event
+
+- `class BetaManagedAgentsDeploymentUserDefineOutcomeEvent:`
+
+  An outcome the agent should work toward. The agent begins work on receipt.
+
+  - `required string Description`
+
+    What the agent should produce. This is the task specification.
+
+  - `required Rubric Rubric`
+
+    Rubric for grading the quality of an outcome.
+
+    - `class BetaManagedAgentsFileRubric:`
+
+      Rubric referenced by a file uploaded via the Files API.
+
+      - `required string FileID`
+
+        ID of the rubric file.
+
+      - `required Type Type`
+
+        - `"file"File`
+
+    - `class BetaManagedAgentsTextRubric:`
+
+      Rubric content provided inline as text.
+
+      - `required string Content`
+
+        Rubric content. Plain text or markdown — the grader treats it as freeform text.
+
+      - `required Type Type`
+
+        - `"text"Text`
+
+  - `required Type Type`
+
+    - `"user.define_outcome"UserDefineOutcome`
+
+  - `Int? MaxIterations`
+
+    Eval→revision cycles before giving up. Default 3, max 20.
+
+### Beta Managed Agents Deployment User Message Event
+
+- `class BetaManagedAgentsDeploymentUserMessageEvent:`
+
+  A user message sent to the session.
+
+  - `required IReadOnlyList<Content> Content`
+
+    Array of content blocks for the user message.
+
+    - `class BetaManagedAgentsTextBlock:`
+
+      Regular text content.
+
+      - `required string Text`
+
+        The text content.
+
+      - `required Type Type`
+
+        - `"text"Text`
+
+    - `class BetaManagedAgentsImageBlock:`
+
+      Image content specified directly as base64 data or as a reference via a URL.
+
+      - `required Source Source`
+
+        Union type for image source variants.
+
+        - `class BetaManagedAgentsBase64ImageSource:`
+
+          Base64-encoded image data.
+
+          - `required string Data`
+
+            Base64-encoded image data.
+
+          - `required string MediaType`
+
+            MIME type of the image (e.g., "image/png", "image/jpeg", "image/gif", "image/webp").
+
+          - `required Type Type`
+
+            - `"base64"Base64`
+
+        - `class BetaManagedAgentsUrlImageSource:`
+
+          Image referenced by URL.
+
+          - `required Type Type`
+
+            - `"url"Url`
+
+          - `required string Url`
+
+            URL of the image to fetch.
+
+        - `class BetaManagedAgentsFileImageSource:`
+
+          Image referenced by file ID.
+
+          - `required string FileID`
+
+            ID of a previously uploaded file.
+
+          - `required Type Type`
+
+            - `"file"File`
+
+      - `required Type Type`
+
+        - `"image"Image`
+
+    - `class BetaManagedAgentsDocumentBlock:`
+
+      Document content, either specified directly as base64 data, as text, or as a reference via a URL.
+
+      - `required Source Source`
+
+        Union type for document source variants.
+
+        - `class BetaManagedAgentsBase64DocumentSource:`
+
+          Base64-encoded document data.
+
+          - `required string Data`
+
+            Base64-encoded document data.
+
+          - `required string MediaType`
+
+            MIME type of the document (e.g., "application/pdf").
+
+          - `required Type Type`
+
+            - `"base64"Base64`
+
+        - `class BetaManagedAgentsPlainTextDocumentSource:`
+
+          Plain text document content.
+
+          - `required string Data`
+
+            The plain text content.
+
+          - `required MediaType MediaType`
+
+            MIME type of the text content. Must be "text/plain".
+
+            - `"text/plain"TextPlain`
+
+          - `required Type Type`
+
+            - `"text"Text`
+
+        - `class BetaManagedAgentsUrlDocumentSource:`
+
+          Document referenced by URL.
+
+          - `required Type Type`
+
+            - `"url"Url`
+
+          - `required string Url`
+
+            URL of the document to fetch.
+
+        - `class BetaManagedAgentsFileDocumentSource:`
+
+          Document referenced by file ID.
+
+          - `required string FileID`
+
+            ID of a previously uploaded file.
+
+          - `required Type Type`
+
+            - `"file"File`
+
+      - `required Type Type`
+
+        - `"document"Document`
+
+      - `string? Context`
+
+        Additional context about the document for the model.
+
+      - `string? Title`
+
+        The title of the document.
+
+  - `required Type Type`
+
+    - `"user.message"UserMessage`
+
+### Beta Managed Agents Environment Archived Deployment Paused Reason Error
+
+- `class BetaManagedAgentsEnvironmentArchivedDeploymentPausedReasonError:`
+
+  The deployment's environment was archived.
+
+  - `required Type Type`
+
+    - `"environment_archived_error"EnvironmentArchivedError`
+
+### Beta Managed Agents Environment Not Found Deployment Paused Reason Error
+
+- `class BetaManagedAgentsEnvironmentNotFoundDeploymentPausedReasonError:`
+
+  The deployment's environment no longer exists.
+
+  - `required Type Type`
+
+    - `"environment_not_found_error"EnvironmentNotFoundError`
+
+### Beta Managed Agents Error Deployment Paused Reason
+
+- `class BetaManagedAgentsErrorDeploymentPausedReason:`
+
+  A scheduled fire recorded a failed run whose error auto-pauses the deployment.
+
+  - `required BetaManagedAgentsDeploymentPausedReasonError Error`
+
+    The error that triggered an auto-pause. Matches the failed run's `error.type`.
+
+    - `class BetaManagedAgentsEnvironmentArchivedDeploymentPausedReasonError:`
+
+      The deployment's environment was archived.
+
+      - `required Type Type`
+
+        - `"environment_archived_error"EnvironmentArchivedError`
+
+    - `class BetaManagedAgentsAgentArchivedDeploymentPausedReasonError:`
+
+      The deployment's agent was archived.
+
+      - `required Type Type`
+
+        - `"agent_archived_error"AgentArchivedError`
+
+    - `class BetaManagedAgentsEnvironmentNotFoundDeploymentPausedReasonError:`
+
+      The deployment's environment no longer exists.
+
+      - `required Type Type`
+
+        - `"environment_not_found_error"EnvironmentNotFoundError`
+
+    - `class BetaManagedAgentsVaultNotFoundDeploymentPausedReasonError:`
+
+      A vault referenced by the deployment no longer exists.
+
+      - `required Type Type`
+
+        - `"vault_not_found_error"VaultNotFoundError`
+
+    - `class BetaManagedAgentsFileNotFoundDeploymentPausedReasonError:`
+
+      A file resource referenced by the deployment no longer exists.
+
+      - `required Type Type`
+
+        - `"file_not_found_error"FileNotFoundError`
+
+    - `class BetaManagedAgentsSessionResourceNotFoundDeploymentPausedReasonError:`
+
+      A referenced resource no longer exists and its kind was not reported.
+
+      - `required Type Type`
+
+        - `"session_resource_not_found_error"SessionResourceNotFoundError`
+
+    - `class BetaManagedAgentsWorkspaceArchivedDeploymentPausedReasonError:`
+
+      The deployment's workspace was archived.
+
+      - `required Type Type`
+
+        - `"workspace_archived_error"WorkspaceArchivedError`
+
+    - `class BetaManagedAgentsOrganizationDisabledDeploymentPausedReasonError:`
+
+      The deployment's organization is disabled.
+
+      - `required Type Type`
+
+        - `"organization_disabled_error"OrganizationDisabledError`
+
+    - `class BetaManagedAgentsMemoryStoreArchivedDeploymentPausedReasonError:`
+
+      A memory store referenced by the deployment is archived.
+
+      - `required Type Type`
+
+        - `"memory_store_archived_error"MemoryStoreArchivedError`
+
+    - `class BetaManagedAgentsSkillNotFoundDeploymentPausedReasonError:`
+
+      A skill referenced by the deployment's agent no longer exists.
+
+      - `required Type Type`
+
+        - `"skill_not_found_error"SkillNotFoundError`
+
+    - `class BetaManagedAgentsVaultArchivedDeploymentPausedReasonError:`
+
+      A vault referenced by the deployment is archived.
+
+      - `required Type Type`
+
+        - `"vault_archived_error"VaultArchivedError`
+
+    - `class BetaManagedAgentsUnknownDeploymentPausedReasonError:`
+
+      An unrecognized error auto-paused the deployment. A fallback variant; matches a run whose `error.type` is `unknown_error`.
+
+      - `required Type Type`
+
+        - `"unknown_error"UnknownError`
+
+    - `class BetaManagedAgentsSelfHostedResourcesUnsupportedDeploymentPausedReasonError:`
+
+      The deployment configures resources, but its environment is self-hosted and cannot mount them.
+
+      - `required Type Type`
+
+        - `"self_hosted_resources_unsupported_error"SelfHostedResourcesUnsupportedError`
+
+    - `class BetaManagedAgentsMcpEgressBlockedDeploymentPausedReasonError:`
+
+      An MCP server host used by the deployment's agent is blocked by the environment's network policy.
+
+      - `required Type Type`
+
+        - `"mcp_egress_blocked_error"McpEgressBlockedError`
+
+  - `required Type Type`
+
+    - `"error"Error`
+
+### Beta Managed Agents File Not Found Deployment Paused Reason Error
+
+- `class BetaManagedAgentsFileNotFoundDeploymentPausedReasonError:`
+
+  A file resource referenced by the deployment no longer exists.
+
+  - `required Type Type`
+
+    - `"file_not_found_error"FileNotFoundError`
+
+### Beta Managed Agents File Resource Config
+
+- `class BetaManagedAgentsFileResourceConfig:`
+
+  A file mounted into each session's container.
+
+  - `required string FileID`
+
+    ID of a previously uploaded file.
+
+  - `required Type Type`
+
+    - `"file"File`
+
+  - `string? MountPath`
+
+    Mount path in the container. Defaults to `/mnt/session/uploads/<file_id>`.
+
+### Beta Managed Agents GitHub Repository Resource Config
+
+- `class BetaManagedAgentsGitHubRepositoryResourceConfig:`
+
+  A GitHub repository mounted into each session's container. The authorization token is write-only and never returned.
+
+  - `required Type Type`
+
+    - `"github_repository"GitHubRepository`
+
+  - `required string Url`
+
+    Github URL of the repository
+
+  - `Checkout? Checkout`
+
+    Branch or commit to check out. Defaults to the repository's default branch.
+
+    - `class BetaManagedAgentsBranchCheckout:`
+
+      - `required string Name`
+
+        Branch name to check out.
+
+      - `required Type Type`
+
+        - `"branch"Branch`
+
+    - `class BetaManagedAgentsCommitCheckout:`
+
+      - `required string Sha`
+
+        Full commit SHA to check out.
+
+      - `required Type Type`
+
+        - `"commit"Commit`
+
+  - `string? MountPath`
+
+    Mount path in the container. Defaults to `/workspace/<repo-name>`.
+
+### Beta Managed Agents Manual Deployment Paused Reason
+
+- `class BetaManagedAgentsManualDeploymentPausedReason:`
+
+  The caller invoked the pause endpoint on the deployment.
+
+  - `required Type Type`
+
+    - `"manual"Manual`
+
+### Beta Managed Agents MCP Egress Blocked Deployment Paused Reason Error
+
+- `class BetaManagedAgentsMcpEgressBlockedDeploymentPausedReasonError:`
+
+  An MCP server host used by the deployment's agent is blocked by the environment's network policy.
+
+  - `required Type Type`
+
+    - `"mcp_egress_blocked_error"McpEgressBlockedError`
+
+### Beta Managed Agents Memory Store Archived Deployment Paused Reason Error
+
+- `class BetaManagedAgentsMemoryStoreArchivedDeploymentPausedReasonError:`
+
+  A memory store referenced by the deployment is archived.
+
+  - `required Type Type`
+
+    - `"memory_store_archived_error"MemoryStoreArchivedError`
+
+### Beta Managed Agents Memory Store Resource Config
+
+- `class BetaManagedAgentsMemoryStoreResourceConfig:`
+
+  A memory store attached to each session created from this deployment.
+
+  - `required string MemoryStoreID`
+
+    The memory store ID (memstore_...). Must belong to the caller's organization and workspace.
+
+  - `required Type Type`
+
+    - `"memory_store"MemoryStore`
+
+  - `Access? Access`
+
+    Access mode for an attached memory store.
+
+    - `"read_write"ReadWrite`
+
+    - `"read_only"ReadOnly`
+
+  - `string? Instructions`
+
+    Per-attachment guidance for the agent on how to use this store. Rendered into the memory section of the system prompt. Max 4096 chars.
+
+### Beta Managed Agents Organization Disabled Deployment Paused Reason Error
+
+- `class BetaManagedAgentsOrganizationDisabledDeploymentPausedReasonError:`
+
+  The deployment's organization is disabled.
+
+  - `required Type Type`
+
+    - `"organization_disabled_error"OrganizationDisabledError`
+
+### Beta Managed Agents Schedule
+
+- `class BetaManagedAgentsSchedule:`
+
+  5-field POSIX cron schedule with computed runtime timestamps.
+
+  - `required string Expression`
+
+    5-field POSIX cron expression: minute hour day-of-month month day-of-week (e.g., "0 9 * * 1-5" for weekdays at 9am). Day-of-week is 0-7 where 0 and 7 both mean Sunday. Extended cron syntax - seconds or year fields, and the special characters L, W, #, and ? - is not supported, nor are predefined shortcuts (@daily).
+
+  - `required string Timezone`
+
+    IANA timezone identifier (e.g., "America/Los_Angeles", "UTC").
+
+  - `required Type Type`
+
+    - `"cron"Cron`
+
+  - `DateTimeOffset? LastRunAt`
+
+    A timestamp in RFC 3339 format
+
+  - `IReadOnlyList<DateTimeOffset> UpcomingRunsAt`
+
+    Up to 5 timestamps of upcoming cron occurrences. Non-empty for active and paused deployments (reflects what the schedule would do if unpaused); empty once the deployment is archived (`archived_at` set). Each fire is offset by a small per-schedule jitter, so a run will actually start at or shortly after its listed time.
+
+### Beta Managed Agents Schedule Params
+
+- `class BetaManagedAgentsScheduleParams:`
+
+  5-field POSIX cron schedule. Literal wall-clock matching in the configured timezone.
+
+  - `required string Expression`
+
+    5-field POSIX cron expression: minute hour day-of-month month day-of-week (e.g., "0 9 * * 1-5" for weekdays at 9am). Day-of-week is 0-7 where 0 and 7 both mean Sunday. Extended cron syntax - seconds or year fields, and the special characters L, W, #, and ? - is not supported, nor are predefined shortcuts (@daily).
+
+  - `required string Timezone`
+
+    Required. IANA timezone identifier (e.g., "America/Los_Angeles", "UTC"). Validated against the IANA timezone database.
+
+  - `required Type Type`
+
+    - `"cron"Cron`
+
+### Beta Managed Agents Self Hosted Resources Unsupported Deployment Paused Reason Error
+
+- `class BetaManagedAgentsSelfHostedResourcesUnsupportedDeploymentPausedReasonError:`
+
+  The deployment configures resources, but its environment is self-hosted and cannot mount them.
+
+  - `required Type Type`
+
+    - `"self_hosted_resources_unsupported_error"SelfHostedResourcesUnsupportedError`
+
+### Beta Managed Agents Session Resource Config
+
+- `class BetaManagedAgentsSessionResourceConfig: A class that can be one of several variants.union`
+
+  A configured session resource. Echoes the input minus write-only credentials.
+
+  - `class BetaManagedAgentsGitHubRepositoryResourceConfig:`
+
+    A GitHub repository mounted into each session's container. The authorization token is write-only and never returned.
+
+    - `required Type Type`
+
+      - `"github_repository"GitHubRepository`
+
+    - `required string Url`
+
+      Github URL of the repository
+
+    - `Checkout? Checkout`
+
+      Branch or commit to check out. Defaults to the repository's default branch.
+
+      - `class BetaManagedAgentsBranchCheckout:`
+
+        - `required string Name`
+
+          Branch name to check out.
+
+        - `required Type Type`
+
+          - `"branch"Branch`
+
+      - `class BetaManagedAgentsCommitCheckout:`
+
+        - `required string Sha`
+
+          Full commit SHA to check out.
+
+        - `required Type Type`
+
+          - `"commit"Commit`
+
+    - `string? MountPath`
+
+      Mount path in the container. Defaults to `/workspace/<repo-name>`.
+
+  - `class BetaManagedAgentsFileResourceConfig:`
+
+    A file mounted into each session's container.
+
+    - `required string FileID`
+
+      ID of a previously uploaded file.
+
+    - `required Type Type`
+
+      - `"file"File`
+
+    - `string? MountPath`
+
+      Mount path in the container. Defaults to `/mnt/session/uploads/<file_id>`.
+
+  - `class BetaManagedAgentsMemoryStoreResourceConfig:`
+
+    A memory store attached to each session created from this deployment.
+
+    - `required string MemoryStoreID`
+
+      The memory store ID (memstore_...). Must belong to the caller's organization and workspace.
+
+    - `required Type Type`
+
+      - `"memory_store"MemoryStore`
+
+    - `Access? Access`
+
+      Access mode for an attached memory store.
+
+      - `"read_write"ReadWrite`
+
+      - `"read_only"ReadOnly`
+
+    - `string? Instructions`
+
+      Per-attachment guidance for the agent on how to use this store. Rendered into the memory section of the system prompt. Max 4096 chars.
+
+### Beta Managed Agents Session Resource Not Found Deployment Paused Reason Error
+
+- `class BetaManagedAgentsSessionResourceNotFoundDeploymentPausedReasonError:`
+
+  A referenced resource no longer exists and its kind was not reported.
+
+  - `required Type Type`
+
+    - `"session_resource_not_found_error"SessionResourceNotFoundError`
+
+### Beta Managed Agents Skill Not Found Deployment Paused Reason Error
+
+- `class BetaManagedAgentsSkillNotFoundDeploymentPausedReasonError:`
+
+  A skill referenced by the deployment's agent no longer exists.
+
+  - `required Type Type`
+
+    - `"skill_not_found_error"SkillNotFoundError`
+
+### Beta Managed Agents Unknown Deployment Paused Reason Error
+
+- `class BetaManagedAgentsUnknownDeploymentPausedReasonError:`
+
+  An unrecognized error auto-paused the deployment. A fallback variant; matches a run whose `error.type` is `unknown_error`.
+
+  - `required Type Type`
+
+    - `"unknown_error"UnknownError`
+
+### Beta Managed Agents Vault Archived Deployment Paused Reason Error
+
+- `class BetaManagedAgentsVaultArchivedDeploymentPausedReasonError:`
+
+  A vault referenced by the deployment is archived.
+
+  - `required Type Type`
+
+    - `"vault_archived_error"VaultArchivedError`
+
+### Beta Managed Agents Vault Not Found Deployment Paused Reason Error
+
+- `class BetaManagedAgentsVaultNotFoundDeploymentPausedReasonError:`
+
+  A vault referenced by the deployment no longer exists.
+
+  - `required Type Type`
+
+    - `"vault_not_found_error"VaultNotFoundError`
+
+### Beta Managed Agents Workspace Archived Deployment Paused Reason Error
+
+- `class BetaManagedAgentsWorkspaceArchivedDeploymentPausedReasonError:`
+
+  The deployment's workspace was archived.
+
+  - `required Type Type`
+
+    - `"workspace_archived_error"WorkspaceArchivedError`
+
+# Deployment Runs
+
+## List Deployment Runs
+
+`DeploymentRunListPageResponse Beta.DeploymentRuns.List(DeploymentRunListParams?parameters, CancellationTokencancellationToken = default)`
+
+**get** `/v1/deployment_runs`
+
+List Deployment Runs
+
+### Parameters
+
+- `DeploymentRunListParams parameters`
+
+  - `DateTimeOffset createdAtGt`
+
+    Query param: Return runs created strictly after this time (exclusive).
+
+  - `DateTimeOffset createdAtGte`
+
+    Query param: Return runs created at or after this time (inclusive).
+
+  - `DateTimeOffset createdAtLt`
+
+    Query param: Return runs created strictly before this time (exclusive).
+
+  - `DateTimeOffset createdAtLte`
+
+    Query param: Return runs created at or before this time (inclusive).
+
+  - `string deploymentID`
+
+    Query param: Filter to a specific deployment. Omit to list across all deployments in the workspace. Filtering by a non-existent deployment_id returns 200 with empty data.
+
+  - `Boolean hasError`
+
+    Query param: Filter: true for runs with non-null error, false for runs with non-null session_id. Omit for all.
+
+  - `Int limit`
+
+    Query param: Maximum results per page. Default 20, maximum 1000.
+
+  - `string page`
+
+    Query param: Opaque pagination cursor. Pass next_page from the previous response. Invalid or expired cursors return 400.
+
+  - `BetaManagedAgentsTriggerType triggerType`
+
+    Query param: Filter runs by what triggered them. Omit to return all runs.
+
+  - `IReadOnlyList<AnthropicBeta> betas`
+
+    Header param: Optional header to specify the beta version(s) you want to use.
+
+    - `"message-batches-2024-09-24"MessageBatches2024_09_24`
+
+    - `"prompt-caching-2024-07-31"PromptCaching2024_07_31`
+
+    - `"computer-use-2024-10-22"ComputerUse2024_10_22`
+
+    - `"computer-use-2025-01-24"ComputerUse2025_01_24`
+
+    - `"pdfs-2024-09-25"Pdfs2024_09_25`
+
+    - `"token-counting-2024-11-01"TokenCounting2024_11_01`
+
+    - `"token-efficient-tools-2025-02-19"TokenEfficientTools2025_02_19`
+
+    - `"output-128k-2025-02-19"Output128k2025_02_19`
+
+    - `"files-api-2025-04-14"FilesApi2025_04_14`
+
+    - `"mcp-client-2025-04-04"McpClient2025_04_04`
+
+    - `"mcp-client-2025-11-20"McpClient2025_11_20`
+
+    - `"dev-full-thinking-2025-05-14"DevFullThinking2025_05_14`
+
+    - `"interleaved-thinking-2025-05-14"InterleavedThinking2025_05_14`
+
+    - `"code-execution-2025-05-22"CodeExecution2025_05_22`
+
+    - `"extended-cache-ttl-2025-04-11"ExtendedCacheTtl2025_04_11`
+
+    - `"context-1m-2025-08-07"Context1m2025_08_07`
+
+    - `"context-management-2025-06-27"ContextManagement2025_06_27`
+
+    - `"model-context-window-exceeded-2025-08-26"ModelContextWindowExceeded2025_08_26`
+
+    - `"skills-2025-10-02"Skills2025_10_02`
+
+    - `"fast-mode-2026-02-01"FastMode2026_02_01`
+
+    - `"output-300k-2026-03-24"Output300k2026_03_24`
+
+    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
+
+    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
+    - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
+    - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
+
+    - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+### Returns
+
+- `class DeploymentRunListPageResponse:`
+
+  Paginated list of deployment runs. Sorted by created_at descending (most recent first).
+
+  - `required IReadOnlyList<BetaManagedAgentsDeploymentRun> Data`
+
+    List of deployment runs.
+
+    - `required string ID`
+
+      Unique identifier for this run (`drun_...`).
+
+    - `required BetaManagedAgentsAgentReference Agent`
+
+      A resolved agent reference with a concrete version.
+
+      - `required string ID`
+
+      - `required Type Type`
+
+        - `"agent"Agent`
+
+      - `required Int Version`
+
+    - `required DateTimeOffset CreatedAt`
+
+      A timestamp in RFC 3339 format
+
+    - `required string DeploymentID`
+
+      ID of the deployment that produced this run.
+
+    - `required Error? Error`
+
+      Why the run failed to create a session. The type identifies the failure; message is human-readable detail.
+
+      - `class BetaManagedAgentsEnvironmentArchivedRunError:`
+
+        The deployment's environment was archived.
+
+        - `required string Message`
+
+          Human-readable error description.
+
+        - `required Type Type`
+
+          - `"environment_archived_error"EnvironmentArchivedError`
+
+      - `class BetaManagedAgentsAgentArchivedRunError:`
+
+        The deployment's agent was archived.
+
+        - `required string Message`
+
+          Human-readable error description.
+
+        - `required Type Type`
+
+          - `"agent_archived_error"AgentArchivedError`
+
+      - `class BetaManagedAgentsEnvironmentNotFoundRunError:`
+
+        The deployment's environment no longer exists.
+
+        - `required string Message`
+
+          Human-readable error description.
+
+        - `required Type Type`
+
+          - `"environment_not_found_error"EnvironmentNotFoundError`
+
+      - `class BetaManagedAgentsVaultNotFoundRunError:`
+
+        A vault referenced by the deployment no longer exists.
+
+        - `required string Message`
+
+          Human-readable error description.
+
+        - `required Type Type`
+
+          - `"vault_not_found_error"VaultNotFoundError`
+
+      - `class BetaManagedAgentsVaultArchivedRunError:`
+
+        A vault referenced by the deployment is archived.
+
+        - `required string Message`
+
+          Human-readable error description.
+
+        - `required Type Type`
+
+          - `"vault_archived_error"VaultArchivedError`
+
+      - `class BetaManagedAgentsFileNotFoundRunError:`
+
+        A file resource referenced by the deployment no longer exists.
+
+        - `required string Message`
+
+          Human-readable error description.
+
+        - `required Type Type`
+
+          - `"file_not_found_error"FileNotFoundError`
+
+      - `class BetaManagedAgentsMemoryStoreArchivedRunError:`
+
+        A memory store referenced by the deployment is archived.
+
+        - `required string Message`
+
+          Human-readable error description.
+
+        - `required Type Type`
+
+          - `"memory_store_archived_error"MemoryStoreArchivedError`
+
+      - `class BetaManagedAgentsSkillNotFoundRunError:`
+
+        A skill referenced by the deployment's agent no longer exists.
+
+        - `required string Message`
+
+          Human-readable error description.
+
+        - `required Type Type`
+
+          - `"skill_not_found_error"SkillNotFoundError`
+
+      - `class BetaManagedAgentsSessionResourceNotFoundRunError:`
+
+        A referenced resource no longer exists and its kind was not reported.
+
+        - `required string Message`
+
+          Human-readable error description.
+
+        - `required Type Type`
+
+          - `"session_resource_not_found_error"SessionResourceNotFoundError`
+
+      - `class BetaManagedAgentsWorkspaceArchivedRunError:`
+
+        The deployment's workspace was archived.
+
+        - `required string Message`
+
+          Human-readable error description.
+
+        - `required Type Type`
+
+          - `"workspace_archived_error"WorkspaceArchivedError`
+
+      - `class BetaManagedAgentsOrganizationDisabledRunError:`
+
+        The deployment's organization is disabled.
+
+        - `required string Message`
+
+          Human-readable error description.
+
+        - `required Type Type`
+
+          - `"organization_disabled_error"OrganizationDisabledError`
+
+      - `class BetaManagedAgentsSessionRateLimitedRunError:`
+
+        Session creation was rejected due to rate limiting. The schedule keeps firing; subsequent runs may succeed.
+
+        - `required string Message`
+
+          Human-readable error description.
+
+        - `required Type Type`
+
+          - `"session_rate_limited_error"SessionRateLimitedError`
+
+      - `class BetaManagedAgentsSessionCreationRejectedRunError:`
+
+        The session create request was rejected with a non-retryable validation error.
+
+        - `required string Message`
+
+          Human-readable error description.
+
+        - `required Type Type`
+
+          - `"session_creation_rejected_error"SessionCreationRejectedError`
+
+      - `class BetaManagedAgentsUnknownRunError:`
+
+        An unknown or unexpected error caused the run to fail. A fallback variant; clients that do not recognize a new error type can match on message alone.
+
+        - `required string Message`
+
+          Human-readable error description.
+
+        - `required Type Type`
+
+          - `"unknown_error"UnknownError`
+
+      - `class BetaManagedAgentsSelfHostedResourcesUnsupportedRunError:`
+
+        The deployment configures resources, but its environment is self-hosted and cannot mount them.
+
+        - `required string Message`
+
+          Human-readable error description.
+
+        - `required Type Type`
+
+          - `"self_hosted_resources_unsupported_error"SelfHostedResourcesUnsupportedError`
+
+      - `class BetaManagedAgentsMcpEgressBlockedRunError:`
+
+        An MCP server host used by the deployment's agent is blocked by the environment's network policy.
+
+        - `required string Message`
+
+          Human-readable error description.
+
+        - `required Type Type`
+
+          - `"mcp_egress_blocked_error"McpEgressBlockedError`
+
+    - `required string? SessionID`
+
+      Populated on success. Null on creation failure. Exactly one of session_id or error is non-null.
+
+    - `required BetaManagedAgentsTriggerContext TriggerContext`
+
+      Describes what triggered a deployment run, with trigger-specific metadata.
+
+      - `class BetaManagedAgentsScheduleTriggerContext:`
+
+        The run was fired by the deployment's cron schedule.
+
+        - `required DateTimeOffset ScheduledAt`
+
+          A timestamp in RFC 3339 format
+
+        - `required Type Type`
+
+          - `"schedule"Schedule`
+
+      - `class BetaManagedAgentsManualTriggerContext:`
+
+        The run was started manually by creating a session directly against the deployment.
+
+        - `required Type Type`
+
+          - `"manual"Manual`
+
+    - `required Type Type`
+
+      - `"deployment_run"DeploymentRun`
+
+  - `string? NextPage`
+
+    Opaque cursor for the next page. Null when no more results.
+
+### Example
+
+```csharp
+DeploymentRunListParams parameters = new();
+
+var page = await client.Beta.DeploymentRuns.List(parameters);
+await foreach (var item in page.Paginate())
+{
+    Console.WriteLine(item);
+}
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "id",
+      "agent": {
+        "id": "agent_011CZkYqphY8vELVzwCUpqiQ",
+        "type": "agent",
+        "version": 1
+      },
+      "created_at": "2019-12-27T18:11:19.117Z",
+      "deployment_id": "deployment_id",
+      "error": {
+        "message": "message",
+        "type": "environment_archived_error"
+      },
+      "session_id": "session_id",
+      "trigger_context": {
+        "scheduled_at": "2019-12-27T18:11:19.117Z",
+        "type": "schedule"
+      },
+      "type": "deployment_run"
+    }
+  ],
+  "next_page": "next_page"
+}
+```
+
+## Get Deployment Run
+
+`BetaManagedAgentsDeploymentRun Beta.DeploymentRuns.Retrieve(DeploymentRunRetrieveParamsparameters, CancellationTokencancellationToken = default)`
+
+**get** `/v1/deployment_runs/{deployment_run_id}`
+
+Get Deployment Run
+
+### Parameters
+
+- `DeploymentRunRetrieveParams parameters`
+
+  - `required string deploymentRunID`
+
+    Path parameter deployment_run_id
+
+  - `IReadOnlyList<AnthropicBeta> betas`
+
+    Optional header to specify the beta version(s) you want to use.
+
+    - `"message-batches-2024-09-24"MessageBatches2024_09_24`
+
+    - `"prompt-caching-2024-07-31"PromptCaching2024_07_31`
+
+    - `"computer-use-2024-10-22"ComputerUse2024_10_22`
+
+    - `"computer-use-2025-01-24"ComputerUse2025_01_24`
+
+    - `"pdfs-2024-09-25"Pdfs2024_09_25`
+
+    - `"token-counting-2024-11-01"TokenCounting2024_11_01`
+
+    - `"token-efficient-tools-2025-02-19"TokenEfficientTools2025_02_19`
+
+    - `"output-128k-2025-02-19"Output128k2025_02_19`
+
+    - `"files-api-2025-04-14"FilesApi2025_04_14`
+
+    - `"mcp-client-2025-04-04"McpClient2025_04_04`
+
+    - `"mcp-client-2025-11-20"McpClient2025_11_20`
+
+    - `"dev-full-thinking-2025-05-14"DevFullThinking2025_05_14`
+
+    - `"interleaved-thinking-2025-05-14"InterleavedThinking2025_05_14`
+
+    - `"code-execution-2025-05-22"CodeExecution2025_05_22`
+
+    - `"extended-cache-ttl-2025-04-11"ExtendedCacheTtl2025_04_11`
+
+    - `"context-1m-2025-08-07"Context1m2025_08_07`
+
+    - `"context-management-2025-06-27"ContextManagement2025_06_27`
+
+    - `"model-context-window-exceeded-2025-08-26"ModelContextWindowExceeded2025_08_26`
+
+    - `"skills-2025-10-02"Skills2025_10_02`
+
+    - `"fast-mode-2026-02-01"FastMode2026_02_01`
+
+    - `"output-300k-2026-03-24"Output300k2026_03_24`
+
+    - `"user-profiles-2026-03-24"UserProfiles2026_03_24`
+
+    - `"advisor-tool-2026-03-01"AdvisorTool2026_03_01`
+
+    - `"managed-agents-2026-04-01"ManagedAgents2026_04_01`
+
+    - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
+
+    - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+### Returns
+
+- `class BetaManagedAgentsDeploymentRun:`
+
+  A persistent, append-only record of a single deployment execution. Records session creation success or failure — no session lifecycle tracking.
+
+  - `required string ID`
+
+    Unique identifier for this run (`drun_...`).
+
+  - `required BetaManagedAgentsAgentReference Agent`
+
+    A resolved agent reference with a concrete version.
+
+    - `required string ID`
+
+    - `required Type Type`
+
+      - `"agent"Agent`
+
+    - `required Int Version`
+
+  - `required DateTimeOffset CreatedAt`
+
+    A timestamp in RFC 3339 format
+
+  - `required string DeploymentID`
+
+    ID of the deployment that produced this run.
+
+  - `required Error? Error`
+
+    Why the run failed to create a session. The type identifies the failure; message is human-readable detail.
+
+    - `class BetaManagedAgentsEnvironmentArchivedRunError:`
+
+      The deployment's environment was archived.
+
+      - `required string Message`
+
+        Human-readable error description.
+
+      - `required Type Type`
+
+        - `"environment_archived_error"EnvironmentArchivedError`
+
+    - `class BetaManagedAgentsAgentArchivedRunError:`
+
+      The deployment's agent was archived.
+
+      - `required string Message`
+
+        Human-readable error description.
+
+      - `required Type Type`
+
+        - `"agent_archived_error"AgentArchivedError`
+
+    - `class BetaManagedAgentsEnvironmentNotFoundRunError:`
+
+      The deployment's environment no longer exists.
+
+      - `required string Message`
+
+        Human-readable error description.
+
+      - `required Type Type`
+
+        - `"environment_not_found_error"EnvironmentNotFoundError`
+
+    - `class BetaManagedAgentsVaultNotFoundRunError:`
+
+      A vault referenced by the deployment no longer exists.
+
+      - `required string Message`
+
+        Human-readable error description.
+
+      - `required Type Type`
+
+        - `"vault_not_found_error"VaultNotFoundError`
+
+    - `class BetaManagedAgentsVaultArchivedRunError:`
+
+      A vault referenced by the deployment is archived.
+
+      - `required string Message`
+
+        Human-readable error description.
+
+      - `required Type Type`
+
+        - `"vault_archived_error"VaultArchivedError`
+
+    - `class BetaManagedAgentsFileNotFoundRunError:`
+
+      A file resource referenced by the deployment no longer exists.
+
+      - `required string Message`
+
+        Human-readable error description.
+
+      - `required Type Type`
+
+        - `"file_not_found_error"FileNotFoundError`
+
+    - `class BetaManagedAgentsMemoryStoreArchivedRunError:`
+
+      A memory store referenced by the deployment is archived.
+
+      - `required string Message`
+
+        Human-readable error description.
+
+      - `required Type Type`
+
+        - `"memory_store_archived_error"MemoryStoreArchivedError`
+
+    - `class BetaManagedAgentsSkillNotFoundRunError:`
+
+      A skill referenced by the deployment's agent no longer exists.
+
+      - `required string Message`
+
+        Human-readable error description.
+
+      - `required Type Type`
+
+        - `"skill_not_found_error"SkillNotFoundError`
+
+    - `class BetaManagedAgentsSessionResourceNotFoundRunError:`
+
+      A referenced resource no longer exists and its kind was not reported.
+
+      - `required string Message`
+
+        Human-readable error description.
+
+      - `required Type Type`
+
+        - `"session_resource_not_found_error"SessionResourceNotFoundError`
+
+    - `class BetaManagedAgentsWorkspaceArchivedRunError:`
+
+      The deployment's workspace was archived.
+
+      - `required string Message`
+
+        Human-readable error description.
+
+      - `required Type Type`
+
+        - `"workspace_archived_error"WorkspaceArchivedError`
+
+    - `class BetaManagedAgentsOrganizationDisabledRunError:`
+
+      The deployment's organization is disabled.
+
+      - `required string Message`
+
+        Human-readable error description.
+
+      - `required Type Type`
+
+        - `"organization_disabled_error"OrganizationDisabledError`
+
+    - `class BetaManagedAgentsSessionRateLimitedRunError:`
+
+      Session creation was rejected due to rate limiting. The schedule keeps firing; subsequent runs may succeed.
+
+      - `required string Message`
+
+        Human-readable error description.
+
+      - `required Type Type`
+
+        - `"session_rate_limited_error"SessionRateLimitedError`
+
+    - `class BetaManagedAgentsSessionCreationRejectedRunError:`
+
+      The session create request was rejected with a non-retryable validation error.
+
+      - `required string Message`
+
+        Human-readable error description.
+
+      - `required Type Type`
+
+        - `"session_creation_rejected_error"SessionCreationRejectedError`
+
+    - `class BetaManagedAgentsUnknownRunError:`
+
+      An unknown or unexpected error caused the run to fail. A fallback variant; clients that do not recognize a new error type can match on message alone.
+
+      - `required string Message`
+
+        Human-readable error description.
+
+      - `required Type Type`
+
+        - `"unknown_error"UnknownError`
+
+    - `class BetaManagedAgentsSelfHostedResourcesUnsupportedRunError:`
+
+      The deployment configures resources, but its environment is self-hosted and cannot mount them.
+
+      - `required string Message`
+
+        Human-readable error description.
+
+      - `required Type Type`
+
+        - `"self_hosted_resources_unsupported_error"SelfHostedResourcesUnsupportedError`
+
+    - `class BetaManagedAgentsMcpEgressBlockedRunError:`
+
+      An MCP server host used by the deployment's agent is blocked by the environment's network policy.
+
+      - `required string Message`
+
+        Human-readable error description.
+
+      - `required Type Type`
+
+        - `"mcp_egress_blocked_error"McpEgressBlockedError`
+
+  - `required string? SessionID`
+
+    Populated on success. Null on creation failure. Exactly one of session_id or error is non-null.
+
+  - `required BetaManagedAgentsTriggerContext TriggerContext`
+
+    Describes what triggered a deployment run, with trigger-specific metadata.
+
+    - `class BetaManagedAgentsScheduleTriggerContext:`
+
+      The run was fired by the deployment's cron schedule.
+
+      - `required DateTimeOffset ScheduledAt`
+
+        A timestamp in RFC 3339 format
+
+      - `required Type Type`
+
+        - `"schedule"Schedule`
+
+    - `class BetaManagedAgentsManualTriggerContext:`
+
+      The run was started manually by creating a session directly against the deployment.
+
+      - `required Type Type`
+
+        - `"manual"Manual`
+
+  - `required Type Type`
+
+    - `"deployment_run"DeploymentRun`
+
+### Example
+
+```csharp
+DeploymentRunRetrieveParams parameters = new()
+{
+    DeploymentRunID = "deployment_run_id"
+};
+
+var betaManagedAgentsDeploymentRun = await client.Beta.DeploymentRuns.Retrieve(parameters);
+
+Console.WriteLine(betaManagedAgentsDeploymentRun);
+```
+
+#### Response
+
+```json
+{
+  "id": "id",
+  "agent": {
+    "id": "agent_011CZkYqphY8vELVzwCUpqiQ",
+    "type": "agent",
+    "version": 1
+  },
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "deployment_id": "deployment_id",
+  "error": {
+    "message": "message",
+    "type": "environment_archived_error"
+  },
+  "session_id": "session_id",
+  "trigger_context": {
+    "scheduled_at": "2019-12-27T18:11:19.117Z",
+    "type": "schedule"
+  },
+  "type": "deployment_run"
+}
+```
+
+## Domain Types
+
+### Beta Managed Agents Agent Archived Run Error
+
+- `class BetaManagedAgentsAgentArchivedRunError:`
+
+  The deployment's agent was archived.
+
+  - `required string Message`
+
+    Human-readable error description.
+
+  - `required Type Type`
+
+    - `"agent_archived_error"AgentArchivedError`
+
+### Beta Managed Agents Deployment Run
+
+- `class BetaManagedAgentsDeploymentRun:`
+
+  A persistent, append-only record of a single deployment execution. Records session creation success or failure — no session lifecycle tracking.
+
+  - `required string ID`
+
+    Unique identifier for this run (`drun_...`).
+
+  - `required BetaManagedAgentsAgentReference Agent`
+
+    A resolved agent reference with a concrete version.
+
+    - `required string ID`
+
+    - `required Type Type`
+
+      - `"agent"Agent`
+
+    - `required Int Version`
+
+  - `required DateTimeOffset CreatedAt`
+
+    A timestamp in RFC 3339 format
+
+  - `required string DeploymentID`
+
+    ID of the deployment that produced this run.
+
+  - `required Error? Error`
+
+    Why the run failed to create a session. The type identifies the failure; message is human-readable detail.
+
+    - `class BetaManagedAgentsEnvironmentArchivedRunError:`
+
+      The deployment's environment was archived.
+
+      - `required string Message`
+
+        Human-readable error description.
+
+      - `required Type Type`
+
+        - `"environment_archived_error"EnvironmentArchivedError`
+
+    - `class BetaManagedAgentsAgentArchivedRunError:`
+
+      The deployment's agent was archived.
+
+      - `required string Message`
+
+        Human-readable error description.
+
+      - `required Type Type`
+
+        - `"agent_archived_error"AgentArchivedError`
+
+    - `class BetaManagedAgentsEnvironmentNotFoundRunError:`
+
+      The deployment's environment no longer exists.
+
+      - `required string Message`
+
+        Human-readable error description.
+
+      - `required Type Type`
+
+        - `"environment_not_found_error"EnvironmentNotFoundError`
+
+    - `class BetaManagedAgentsVaultNotFoundRunError:`
+
+      A vault referenced by the deployment no longer exists.
+
+      - `required string Message`
+
+        Human-readable error description.
+
+      - `required Type Type`
+
+        - `"vault_not_found_error"VaultNotFoundError`
+
+    - `class BetaManagedAgentsVaultArchivedRunError:`
+
+      A vault referenced by the deployment is archived.
+
+      - `required string Message`
+
+        Human-readable error description.
+
+      - `required Type Type`
+
+        - `"vault_archived_error"VaultArchivedError`
+
+    - `class BetaManagedAgentsFileNotFoundRunError:`
+
+      A file resource referenced by the deployment no longer exists.
+
+      - `required string Message`
+
+        Human-readable error description.
+
+      - `required Type Type`
+
+        - `"file_not_found_error"FileNotFoundError`
+
+    - `class BetaManagedAgentsMemoryStoreArchivedRunError:`
+
+      A memory store referenced by the deployment is archived.
+
+      - `required string Message`
+
+        Human-readable error description.
+
+      - `required Type Type`
+
+        - `"memory_store_archived_error"MemoryStoreArchivedError`
+
+    - `class BetaManagedAgentsSkillNotFoundRunError:`
+
+      A skill referenced by the deployment's agent no longer exists.
+
+      - `required string Message`
+
+        Human-readable error description.
+
+      - `required Type Type`
+
+        - `"skill_not_found_error"SkillNotFoundError`
+
+    - `class BetaManagedAgentsSessionResourceNotFoundRunError:`
+
+      A referenced resource no longer exists and its kind was not reported.
+
+      - `required string Message`
+
+        Human-readable error description.
+
+      - `required Type Type`
+
+        - `"session_resource_not_found_error"SessionResourceNotFoundError`
+
+    - `class BetaManagedAgentsWorkspaceArchivedRunError:`
+
+      The deployment's workspace was archived.
+
+      - `required string Message`
+
+        Human-readable error description.
+
+      - `required Type Type`
+
+        - `"workspace_archived_error"WorkspaceArchivedError`
+
+    - `class BetaManagedAgentsOrganizationDisabledRunError:`
+
+      The deployment's organization is disabled.
+
+      - `required string Message`
+
+        Human-readable error description.
+
+      - `required Type Type`
+
+        - `"organization_disabled_error"OrganizationDisabledError`
+
+    - `class BetaManagedAgentsSessionRateLimitedRunError:`
+
+      Session creation was rejected due to rate limiting. The schedule keeps firing; subsequent runs may succeed.
+
+      - `required string Message`
+
+        Human-readable error description.
+
+      - `required Type Type`
+
+        - `"session_rate_limited_error"SessionRateLimitedError`
+
+    - `class BetaManagedAgentsSessionCreationRejectedRunError:`
+
+      The session create request was rejected with a non-retryable validation error.
+
+      - `required string Message`
+
+        Human-readable error description.
+
+      - `required Type Type`
+
+        - `"session_creation_rejected_error"SessionCreationRejectedError`
+
+    - `class BetaManagedAgentsUnknownRunError:`
+
+      An unknown or unexpected error caused the run to fail. A fallback variant; clients that do not recognize a new error type can match on message alone.
+
+      - `required string Message`
+
+        Human-readable error description.
+
+      - `required Type Type`
+
+        - `"unknown_error"UnknownError`
+
+    - `class BetaManagedAgentsSelfHostedResourcesUnsupportedRunError:`
+
+      The deployment configures resources, but its environment is self-hosted and cannot mount them.
+
+      - `required string Message`
+
+        Human-readable error description.
+
+      - `required Type Type`
+
+        - `"self_hosted_resources_unsupported_error"SelfHostedResourcesUnsupportedError`
+
+    - `class BetaManagedAgentsMcpEgressBlockedRunError:`
+
+      An MCP server host used by the deployment's agent is blocked by the environment's network policy.
+
+      - `required string Message`
+
+        Human-readable error description.
+
+      - `required Type Type`
+
+        - `"mcp_egress_blocked_error"McpEgressBlockedError`
+
+  - `required string? SessionID`
+
+    Populated on success. Null on creation failure. Exactly one of session_id or error is non-null.
+
+  - `required BetaManagedAgentsTriggerContext TriggerContext`
+
+    Describes what triggered a deployment run, with trigger-specific metadata.
+
+    - `class BetaManagedAgentsScheduleTriggerContext:`
+
+      The run was fired by the deployment's cron schedule.
+
+      - `required DateTimeOffset ScheduledAt`
+
+        A timestamp in RFC 3339 format
+
+      - `required Type Type`
+
+        - `"schedule"Schedule`
+
+    - `class BetaManagedAgentsManualTriggerContext:`
+
+      The run was started manually by creating a session directly against the deployment.
+
+      - `required Type Type`
+
+        - `"manual"Manual`
+
+  - `required Type Type`
+
+    - `"deployment_run"DeploymentRun`
+
+### Beta Managed Agents Environment Archived Run Error
+
+- `class BetaManagedAgentsEnvironmentArchivedRunError:`
+
+  The deployment's environment was archived.
+
+  - `required string Message`
+
+    Human-readable error description.
+
+  - `required Type Type`
+
+    - `"environment_archived_error"EnvironmentArchivedError`
+
+### Beta Managed Agents Environment Not Found Run Error
+
+- `class BetaManagedAgentsEnvironmentNotFoundRunError:`
+
+  The deployment's environment no longer exists.
+
+  - `required string Message`
+
+    Human-readable error description.
+
+  - `required Type Type`
+
+    - `"environment_not_found_error"EnvironmentNotFoundError`
+
+### Beta Managed Agents File Not Found Run Error
+
+- `class BetaManagedAgentsFileNotFoundRunError:`
+
+  A file resource referenced by the deployment no longer exists.
+
+  - `required string Message`
+
+    Human-readable error description.
+
+  - `required Type Type`
+
+    - `"file_not_found_error"FileNotFoundError`
+
+### Beta Managed Agents Manual Trigger Context
+
+- `class BetaManagedAgentsManualTriggerContext:`
+
+  The run was started manually by creating a session directly against the deployment.
+
+  - `required Type Type`
+
+    - `"manual"Manual`
+
+### Beta Managed Agents MCP Egress Blocked Run Error
+
+- `class BetaManagedAgentsMcpEgressBlockedRunError:`
+
+  An MCP server host used by the deployment's agent is blocked by the environment's network policy.
+
+  - `required string Message`
+
+    Human-readable error description.
+
+  - `required Type Type`
+
+    - `"mcp_egress_blocked_error"McpEgressBlockedError`
+
+### Beta Managed Agents Memory Store Archived Run Error
+
+- `class BetaManagedAgentsMemoryStoreArchivedRunError:`
+
+  A memory store referenced by the deployment is archived.
+
+  - `required string Message`
+
+    Human-readable error description.
+
+  - `required Type Type`
+
+    - `"memory_store_archived_error"MemoryStoreArchivedError`
+
+### Beta Managed Agents Organization Disabled Run Error
+
+- `class BetaManagedAgentsOrganizationDisabledRunError:`
+
+  The deployment's organization is disabled.
+
+  - `required string Message`
+
+    Human-readable error description.
+
+  - `required Type Type`
+
+    - `"organization_disabled_error"OrganizationDisabledError`
+
+### Beta Managed Agents Schedule Trigger Context
+
+- `class BetaManagedAgentsScheduleTriggerContext:`
+
+  The run was fired by the deployment's cron schedule.
+
+  - `required DateTimeOffset ScheduledAt`
+
+    A timestamp in RFC 3339 format
+
+  - `required Type Type`
+
+    - `"schedule"Schedule`
+
+### Beta Managed Agents Self Hosted Resources Unsupported Run Error
+
+- `class BetaManagedAgentsSelfHostedResourcesUnsupportedRunError:`
+
+  The deployment configures resources, but its environment is self-hosted and cannot mount them.
+
+  - `required string Message`
+
+    Human-readable error description.
+
+  - `required Type Type`
+
+    - `"self_hosted_resources_unsupported_error"SelfHostedResourcesUnsupportedError`
+
+### Beta Managed Agents Session Creation Rejected Run Error
+
+- `class BetaManagedAgentsSessionCreationRejectedRunError:`
+
+  The session create request was rejected with a non-retryable validation error.
+
+  - `required string Message`
+
+    Human-readable error description.
+
+  - `required Type Type`
+
+    - `"session_creation_rejected_error"SessionCreationRejectedError`
+
+### Beta Managed Agents Session Rate Limited Run Error
+
+- `class BetaManagedAgentsSessionRateLimitedRunError:`
+
+  Session creation was rejected due to rate limiting. The schedule keeps firing; subsequent runs may succeed.
+
+  - `required string Message`
+
+    Human-readable error description.
+
+  - `required Type Type`
+
+    - `"session_rate_limited_error"SessionRateLimitedError`
+
+### Beta Managed Agents Session Resource Not Found Run Error
+
+- `class BetaManagedAgentsSessionResourceNotFoundRunError:`
+
+  A referenced resource no longer exists and its kind was not reported.
+
+  - `required string Message`
+
+    Human-readable error description.
+
+  - `required Type Type`
+
+    - `"session_resource_not_found_error"SessionResourceNotFoundError`
+
+### Beta Managed Agents Skill Not Found Run Error
+
+- `class BetaManagedAgentsSkillNotFoundRunError:`
+
+  A skill referenced by the deployment's agent no longer exists.
+
+  - `required string Message`
+
+    Human-readable error description.
+
+  - `required Type Type`
+
+    - `"skill_not_found_error"SkillNotFoundError`
+
+### Beta Managed Agents Trigger Context
+
+- `class BetaManagedAgentsTriggerContext: A class that can be one of several variants.union`
+
+  Describes what triggered a deployment run, with trigger-specific metadata.
+
+  - `class BetaManagedAgentsScheduleTriggerContext:`
+
+    The run was fired by the deployment's cron schedule.
+
+    - `required DateTimeOffset ScheduledAt`
+
+      A timestamp in RFC 3339 format
+
+    - `required Type Type`
+
+      - `"schedule"Schedule`
+
+  - `class BetaManagedAgentsManualTriggerContext:`
+
+    The run was started manually by creating a session directly against the deployment.
+
+    - `required Type Type`
+
+      - `"manual"Manual`
+
+### Beta Managed Agents Trigger Type
+
+- `enum BetaManagedAgentsTriggerType:`
+
+  What triggered a deployment run.
+
+  - `"schedule"Schedule`
+
+  - `"manual"Manual`
+
+### Beta Managed Agents Unknown Run Error
+
+- `class BetaManagedAgentsUnknownRunError:`
+
+  An unknown or unexpected error caused the run to fail. A fallback variant; clients that do not recognize a new error type can match on message alone.
+
+  - `required string Message`
+
+    Human-readable error description.
+
+  - `required Type Type`
+
+    - `"unknown_error"UnknownError`
+
+### Beta Managed Agents Vault Archived Run Error
+
+- `class BetaManagedAgentsVaultArchivedRunError:`
+
+  A vault referenced by the deployment is archived.
+
+  - `required string Message`
+
+    Human-readable error description.
+
+  - `required Type Type`
+
+    - `"vault_archived_error"VaultArchivedError`
+
+### Beta Managed Agents Vault Not Found Run Error
+
+- `class BetaManagedAgentsVaultNotFoundRunError:`
+
+  A vault referenced by the deployment no longer exists.
+
+  - `required string Message`
+
+    Human-readable error description.
+
+  - `required Type Type`
+
+    - `"vault_not_found_error"VaultNotFoundError`
+
+### Beta Managed Agents Workspace Archived Run Error
+
+- `class BetaManagedAgentsWorkspaceArchivedRunError:`
+
+  The deployment's workspace was archived.
+
+  - `required string Message`
+
+    Human-readable error description.
+
+  - `required Type Type`
+
+    - `"workspace_archived_error"WorkspaceArchivedError`
 
 # Vaults
 
@@ -68880,6 +81956,10 @@ Create Vault
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 
@@ -69020,6 +82100,10 @@ List Vaults
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 
@@ -69168,6 +82252,10 @@ Get Vault
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Returns
 
 - `class BetaManagedAgentsVault:`
@@ -69311,6 +82399,10 @@ Update Vault
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Returns
 
 - `class BetaManagedAgentsVault:`
@@ -69446,6 +82538,10 @@ Delete Vault
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Returns
 
 - `class BetaManagedAgentsDeletedVault:`
@@ -69553,6 +82649,10 @@ Archive Vault
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 
@@ -69785,6 +82885,46 @@ Create Credential
 
         - `"static_bearer"StaticBearer`
 
+    - `class BetaManagedAgentsEnvironmentVariableCreateParams:`
+
+      Parameters for creating an environment variable credential.
+
+      - `required BetaManagedAgentsCredentialNetworkingParams Networking`
+
+        Outbound hosts the secret value is substituted on.
+
+        - `class BetaManagedAgentsUnrestrictedCredentialNetworkingParams:`
+
+          Substitute the secret on any host the session's Environment network policy permits egress to. The Environment's network policy is the only boundary on where the secret can reach.
+
+          - `required Type Type`
+
+            - `"unrestricted"Unrestricted`
+
+        - `class BetaManagedAgentsLimitedCredentialNetworkingParams:`
+
+          Substitute the secret only on requests to the listed hosts.
+
+          - `required IReadOnlyList<string> AllowedHosts`
+
+            Hostnames on which the secret will be substituted. Each entry is a bare hostname (`api.example.com`), an IPv4 address (`192.0.2.1`), or a `*.`-prefixed wildcard (`*.example.com`). URLs, ports, paths, and IPv6 addresses are not accepted. At most 16 entries.
+
+          - `required Type Type`
+
+            - `"limited"Limited`
+
+      - `required string SecretName`
+
+        Name of the environment variable. Immutable after create.
+
+      - `required string SecretValue`
+
+        Secret value. Write-only; never returned in responses.
+
+      - `required Type Type`
+
+        - `"environment_variable"EnvironmentVariable`
+
   - `string? displayName`
 
     Body param: Human-readable name for the credential. Up to 255 characters.
@@ -69848,6 +82988,10 @@ Create Credential
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 
@@ -69942,6 +83086,42 @@ Create Credential
       - `required Type Type`
 
         - `"static_bearer"StaticBearer`
+
+    - `class BetaManagedAgentsEnvironmentVariableAuthResponse:`
+
+      Environment variable credential details. The secret value is never returned.
+
+      - `required Networking Networking`
+
+        Outbound hosts the secret value is substituted on.
+
+        - `class BetaManagedAgentsUnrestrictedCredentialNetworkingResponse:`
+
+          The secret is substituted on any host the session's Environment network policy permits egress to.
+
+          - `required Type Type`
+
+            - `"unrestricted"Unrestricted`
+
+        - `class BetaManagedAgentsLimitedCredentialNetworkingResponse:`
+
+          The secret is substituted only on requests to the listed hosts.
+
+          - `required IReadOnlyList<string> AllowedHosts`
+
+            Hostnames on which the secret will be substituted. An entry matches the request host exactly; a `*.`-prefixed entry matches any subdomain of the named domain but not the domain itself.
+
+          - `required Type Type`
+
+            - `"limited"Limited`
+
+      - `required string SecretName`
+
+        Name of the environment variable.
+
+      - `required Type Type`
+
+        - `"environment_variable"EnvironmentVariable`
 
   - `required DateTimeOffset CreatedAt`
 
@@ -70091,6 +83271,10 @@ List Credentials
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Returns
 
 - `class CredentialListPageResponse:`
@@ -70188,6 +83372,42 @@ List Credentials
         - `required Type Type`
 
           - `"static_bearer"StaticBearer`
+
+      - `class BetaManagedAgentsEnvironmentVariableAuthResponse:`
+
+        Environment variable credential details. The secret value is never returned.
+
+        - `required Networking Networking`
+
+          Outbound hosts the secret value is substituted on.
+
+          - `class BetaManagedAgentsUnrestrictedCredentialNetworkingResponse:`
+
+            The secret is substituted on any host the session's Environment network policy permits egress to.
+
+            - `required Type Type`
+
+              - `"unrestricted"Unrestricted`
+
+          - `class BetaManagedAgentsLimitedCredentialNetworkingResponse:`
+
+            The secret is substituted only on requests to the listed hosts.
+
+            - `required IReadOnlyList<string> AllowedHosts`
+
+              Hostnames on which the secret will be substituted. An entry matches the request host exactly; a `*.`-prefixed entry matches any subdomain of the named domain but not the domain itself.
+
+            - `required Type Type`
+
+              - `"limited"Limited`
+
+        - `required string SecretName`
+
+          Name of the environment variable.
+
+        - `required Type Type`
+
+          - `"environment_variable"EnvironmentVariable`
 
     - `required DateTimeOffset CreatedAt`
 
@@ -70334,6 +83554,10 @@ Get Credential
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Returns
 
 - `class BetaManagedAgentsCredential:`
@@ -70427,6 +83651,42 @@ Get Credential
       - `required Type Type`
 
         - `"static_bearer"StaticBearer`
+
+    - `class BetaManagedAgentsEnvironmentVariableAuthResponse:`
+
+      Environment variable credential details. The secret value is never returned.
+
+      - `required Networking Networking`
+
+        Outbound hosts the secret value is substituted on.
+
+        - `class BetaManagedAgentsUnrestrictedCredentialNetworkingResponse:`
+
+          The secret is substituted on any host the session's Environment network policy permits egress to.
+
+          - `required Type Type`
+
+            - `"unrestricted"Unrestricted`
+
+        - `class BetaManagedAgentsLimitedCredentialNetworkingResponse:`
+
+          The secret is substituted only on requests to the listed hosts.
+
+          - `required IReadOnlyList<string> AllowedHosts`
+
+            Hostnames on which the secret will be substituted. An entry matches the request host exactly; a `*.`-prefixed entry matches any subdomain of the named domain but not the domain itself.
+
+          - `required Type Type`
+
+            - `"limited"Limited`
+
+      - `required string SecretName`
+
+        Name of the environment variable.
+
+      - `required Type Type`
+
+        - `"environment_variable"EnvironmentVariable`
 
   - `required DateTimeOffset CreatedAt`
 
@@ -70579,6 +83839,42 @@ Update Credential
 
         Updated static bearer token value.
 
+    - `class BetaManagedAgentsEnvironmentVariableUpdateParams:`
+
+      Parameters for updating an environment variable credential. `secret_name` is immutable.
+
+      - `required Type Type`
+
+        - `"environment_variable"EnvironmentVariable`
+
+      - `BetaManagedAgentsCredentialNetworkingParams? Networking`
+
+        Updated networking scope. Full replacement.
+
+        - `class BetaManagedAgentsUnrestrictedCredentialNetworkingParams:`
+
+          Substitute the secret on any host the session's Environment network policy permits egress to. The Environment's network policy is the only boundary on where the secret can reach.
+
+          - `required Type Type`
+
+            - `"unrestricted"Unrestricted`
+
+        - `class BetaManagedAgentsLimitedCredentialNetworkingParams:`
+
+          Substitute the secret only on requests to the listed hosts.
+
+          - `required IReadOnlyList<string> AllowedHosts`
+
+            Hostnames on which the secret will be substituted. Each entry is a bare hostname (`api.example.com`), an IPv4 address (`192.0.2.1`), or a `*.`-prefixed wildcard (`*.example.com`). URLs, ports, paths, and IPv6 addresses are not accepted. At most 16 entries.
+
+          - `required Type Type`
+
+            - `"limited"Limited`
+
+      - `string? SecretValue`
+
+        Updated secret value.
+
   - `string? displayName`
 
     Body param: Updated human-readable name for the credential. 1-255 characters.
@@ -70642,6 +83938,10 @@ Update Credential
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 
@@ -70736,6 +84036,42 @@ Update Credential
       - `required Type Type`
 
         - `"static_bearer"StaticBearer`
+
+    - `class BetaManagedAgentsEnvironmentVariableAuthResponse:`
+
+      Environment variable credential details. The secret value is never returned.
+
+      - `required Networking Networking`
+
+        Outbound hosts the secret value is substituted on.
+
+        - `class BetaManagedAgentsUnrestrictedCredentialNetworkingResponse:`
+
+          The secret is substituted on any host the session's Environment network policy permits egress to.
+
+          - `required Type Type`
+
+            - `"unrestricted"Unrestricted`
+
+        - `class BetaManagedAgentsLimitedCredentialNetworkingResponse:`
+
+          The secret is substituted only on requests to the listed hosts.
+
+          - `required IReadOnlyList<string> AllowedHosts`
+
+            Hostnames on which the secret will be substituted. An entry matches the request host exactly; a `*.`-prefixed entry matches any subdomain of the named domain but not the domain itself.
+
+          - `required Type Type`
+
+            - `"limited"Limited`
+
+      - `required string SecretName`
+
+        Name of the environment variable.
+
+      - `required Type Type`
+
+        - `"environment_variable"EnvironmentVariable`
 
   - `required DateTimeOffset CreatedAt`
 
@@ -70872,6 +84208,10 @@ Delete Credential
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Returns
 
 - `class BetaManagedAgentsDeletedCredential:`
@@ -70985,6 +84325,10 @@ Archive Credential
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Returns
 
 - `class BetaManagedAgentsCredential:`
@@ -71078,6 +84422,42 @@ Archive Credential
       - `required Type Type`
 
         - `"static_bearer"StaticBearer`
+
+    - `class BetaManagedAgentsEnvironmentVariableAuthResponse:`
+
+      Environment variable credential details. The secret value is never returned.
+
+      - `required Networking Networking`
+
+        Outbound hosts the secret value is substituted on.
+
+        - `class BetaManagedAgentsUnrestrictedCredentialNetworkingResponse:`
+
+          The secret is substituted on any host the session's Environment network policy permits egress to.
+
+          - `required Type Type`
+
+            - `"unrestricted"Unrestricted`
+
+        - `class BetaManagedAgentsLimitedCredentialNetworkingResponse:`
+
+          The secret is substituted only on requests to the listed hosts.
+
+          - `required IReadOnlyList<string> AllowedHosts`
+
+            Hostnames on which the secret will be substituted. An entry matches the request host exactly; a `*.`-prefixed entry matches any subdomain of the named domain but not the domain itself.
+
+          - `required Type Type`
+
+            - `"limited"Limited`
+
+      - `required string SecretName`
+
+        Name of the environment variable.
+
+      - `required Type Type`
+
+        - `"environment_variable"EnvironmentVariable`
 
   - `required DateTimeOffset CreatedAt`
 
@@ -71213,6 +84593,10 @@ Validate Credential
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 
@@ -71439,6 +84823,42 @@ Console.WriteLine(betaManagedAgentsCredentialValidation);
 
         - `"static_bearer"StaticBearer`
 
+    - `class BetaManagedAgentsEnvironmentVariableAuthResponse:`
+
+      Environment variable credential details. The secret value is never returned.
+
+      - `required Networking Networking`
+
+        Outbound hosts the secret value is substituted on.
+
+        - `class BetaManagedAgentsUnrestrictedCredentialNetworkingResponse:`
+
+          The secret is substituted on any host the session's Environment network policy permits egress to.
+
+          - `required Type Type`
+
+            - `"unrestricted"Unrestricted`
+
+        - `class BetaManagedAgentsLimitedCredentialNetworkingResponse:`
+
+          The secret is substituted only on requests to the listed hosts.
+
+          - `required IReadOnlyList<string> AllowedHosts`
+
+            Hostnames on which the secret will be substituted. An entry matches the request host exactly; a `*.`-prefixed entry matches any subdomain of the named domain but not the domain itself.
+
+          - `required Type Type`
+
+            - `"limited"Limited`
+
+      - `required string SecretName`
+
+        Name of the environment variable.
+
+      - `required Type Type`
+
+        - `"environment_variable"EnvironmentVariable`
+
   - `required DateTimeOffset CreatedAt`
 
     A timestamp in RFC 3339 format
@@ -71462,6 +84882,32 @@ Console.WriteLine(betaManagedAgentsCredentialValidation);
   - `string? DisplayName`
 
     Human-readable name for the credential.
+
+### Beta Managed Agents Credential Networking Params
+
+- `class BetaManagedAgentsCredentialNetworkingParams: A class that can be one of several variants.union`
+
+  Substitute the secret on any host the session's Environment network policy permits egress to. The Environment's network policy is the only boundary on where the secret can reach.
+
+  - `class BetaManagedAgentsUnrestrictedCredentialNetworkingParams:`
+
+    Substitute the secret on any host the session's Environment network policy permits egress to. The Environment's network policy is the only boundary on where the secret can reach.
+
+    - `required Type Type`
+
+      - `"unrestricted"Unrestricted`
+
+  - `class BetaManagedAgentsLimitedCredentialNetworkingParams:`
+
+    Substitute the secret only on requests to the listed hosts.
+
+    - `required IReadOnlyList<string> AllowedHosts`
+
+      Hostnames on which the secret will be substituted. Each entry is a bare hostname (`api.example.com`), an IPv4 address (`192.0.2.1`), or a `*.`-prefixed wildcard (`*.example.com`). URLs, ports, paths, and IPv6 addresses are not accepted. At most 16 entries.
+
+    - `required Type Type`
+
+      - `"limited"Limited`
 
 ### Beta Managed Agents Credential Validation
 
@@ -71572,6 +85018,152 @@ Console.WriteLine(betaManagedAgentsCredentialValidation);
   - `required Type Type`
 
     - `"vault_credential_deleted"VaultCredentialDeleted`
+
+### Beta Managed Agents Environment Variable Auth Response
+
+- `class BetaManagedAgentsEnvironmentVariableAuthResponse:`
+
+  Environment variable credential details. The secret value is never returned.
+
+  - `required Networking Networking`
+
+    Outbound hosts the secret value is substituted on.
+
+    - `class BetaManagedAgentsUnrestrictedCredentialNetworkingResponse:`
+
+      The secret is substituted on any host the session's Environment network policy permits egress to.
+
+      - `required Type Type`
+
+        - `"unrestricted"Unrestricted`
+
+    - `class BetaManagedAgentsLimitedCredentialNetworkingResponse:`
+
+      The secret is substituted only on requests to the listed hosts.
+
+      - `required IReadOnlyList<string> AllowedHosts`
+
+        Hostnames on which the secret will be substituted. An entry matches the request host exactly; a `*.`-prefixed entry matches any subdomain of the named domain but not the domain itself.
+
+      - `required Type Type`
+
+        - `"limited"Limited`
+
+  - `required string SecretName`
+
+    Name of the environment variable.
+
+  - `required Type Type`
+
+    - `"environment_variable"EnvironmentVariable`
+
+### Beta Managed Agents Environment Variable Create Params
+
+- `class BetaManagedAgentsEnvironmentVariableCreateParams:`
+
+  Parameters for creating an environment variable credential.
+
+  - `required BetaManagedAgentsCredentialNetworkingParams Networking`
+
+    Outbound hosts the secret value is substituted on.
+
+    - `class BetaManagedAgentsUnrestrictedCredentialNetworkingParams:`
+
+      Substitute the secret on any host the session's Environment network policy permits egress to. The Environment's network policy is the only boundary on where the secret can reach.
+
+      - `required Type Type`
+
+        - `"unrestricted"Unrestricted`
+
+    - `class BetaManagedAgentsLimitedCredentialNetworkingParams:`
+
+      Substitute the secret only on requests to the listed hosts.
+
+      - `required IReadOnlyList<string> AllowedHosts`
+
+        Hostnames on which the secret will be substituted. Each entry is a bare hostname (`api.example.com`), an IPv4 address (`192.0.2.1`), or a `*.`-prefixed wildcard (`*.example.com`). URLs, ports, paths, and IPv6 addresses are not accepted. At most 16 entries.
+
+      - `required Type Type`
+
+        - `"limited"Limited`
+
+  - `required string SecretName`
+
+    Name of the environment variable. Immutable after create.
+
+  - `required string SecretValue`
+
+    Secret value. Write-only; never returned in responses.
+
+  - `required Type Type`
+
+    - `"environment_variable"EnvironmentVariable`
+
+### Beta Managed Agents Environment Variable Update Params
+
+- `class BetaManagedAgentsEnvironmentVariableUpdateParams:`
+
+  Parameters for updating an environment variable credential. `secret_name` is immutable.
+
+  - `required Type Type`
+
+    - `"environment_variable"EnvironmentVariable`
+
+  - `BetaManagedAgentsCredentialNetworkingParams? Networking`
+
+    Updated networking scope. Full replacement.
+
+    - `class BetaManagedAgentsUnrestrictedCredentialNetworkingParams:`
+
+      Substitute the secret on any host the session's Environment network policy permits egress to. The Environment's network policy is the only boundary on where the secret can reach.
+
+      - `required Type Type`
+
+        - `"unrestricted"Unrestricted`
+
+    - `class BetaManagedAgentsLimitedCredentialNetworkingParams:`
+
+      Substitute the secret only on requests to the listed hosts.
+
+      - `required IReadOnlyList<string> AllowedHosts`
+
+        Hostnames on which the secret will be substituted. Each entry is a bare hostname (`api.example.com`), an IPv4 address (`192.0.2.1`), or a `*.`-prefixed wildcard (`*.example.com`). URLs, ports, paths, and IPv6 addresses are not accepted. At most 16 entries.
+
+      - `required Type Type`
+
+        - `"limited"Limited`
+
+  - `string? SecretValue`
+
+    Updated secret value.
+
+### Beta Managed Agents Limited Credential Networking Params
+
+- `class BetaManagedAgentsLimitedCredentialNetworkingParams:`
+
+  Substitute the secret only on requests to the listed hosts.
+
+  - `required IReadOnlyList<string> AllowedHosts`
+
+    Hostnames on which the secret will be substituted. Each entry is a bare hostname (`api.example.com`), an IPv4 address (`192.0.2.1`), or a `*.`-prefixed wildcard (`*.example.com`). URLs, ports, paths, and IPv6 addresses are not accepted. At most 16 entries.
+
+  - `required Type Type`
+
+    - `"limited"Limited`
+
+### Beta Managed Agents Limited Credential Networking Response
+
+- `class BetaManagedAgentsLimitedCredentialNetworkingResponse:`
+
+  The secret is substituted only on requests to the listed hosts.
+
+  - `required IReadOnlyList<string> AllowedHosts`
+
+    Hostnames on which the secret will be substituted. An entry matches the request host exactly; a `*.`-prefixed entry matches any subdomain of the named domain but not the domain itself.
+
+  - `required Type Type`
+
+    - `"limited"Limited`
 
 ### Beta Managed Agents MCP OAuth Auth Response
 
@@ -72165,6 +85757,26 @@ Console.WriteLine(betaManagedAgentsCredentialValidation);
 
     Updated OAuth client secret.
 
+### Beta Managed Agents Unrestricted Credential Networking Params
+
+- `class BetaManagedAgentsUnrestrictedCredentialNetworkingParams:`
+
+  Substitute the secret on any host the session's Environment network policy permits egress to. The Environment's network policy is the only boundary on where the secret can reach.
+
+  - `required Type Type`
+
+    - `"unrestricted"Unrestricted`
+
+### Beta Managed Agents Unrestricted Credential Networking Response
+
+- `class BetaManagedAgentsUnrestrictedCredentialNetworkingResponse:`
+
+  The secret is substituted on any host the session's Environment network policy permits egress to.
+
+  - `required Type Type`
+
+    - `"unrestricted"Unrestricted`
+
 # Memory Stores
 
 ## Create a memory store
@@ -72246,6 +85858,10 @@ Create a memory store
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 
@@ -72400,6 +86016,10 @@ List memory stores
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Returns
 
 - `class MemoryStoreListPageResponse:`
@@ -72551,6 +86171,10 @@ Retrieve a memory store
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 
@@ -72704,6 +86328,10 @@ Update a memory store
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Returns
 
 - `class BetaManagedAgentsMemoryStore:`
@@ -72844,6 +86472,10 @@ Delete a memory store
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Returns
 
 - `class BetaManagedAgentsDeletedMemoryStore:`
@@ -72951,6 +86583,10 @@ Archive a memory store
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 
@@ -73160,6 +86796,10 @@ Create a memory
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Returns
 
 - `class BetaManagedAgentsMemory:`
@@ -73341,6 +86981,10 @@ List memories
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 
@@ -73526,6 +87170,10 @@ Retrieve a memory
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Returns
 
 - `class BetaManagedAgentsMemory:`
@@ -73695,6 +87343,10 @@ Update a memory
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Returns
 
 - `class BetaManagedAgentsMemory:`
@@ -73851,6 +87503,10 @@ Delete a memory
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 
@@ -74295,6 +87951,10 @@ List memory versions
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Returns
 
 - `class MemoryVersionListPageResponse:`
@@ -74529,6 +88189,10 @@ Retrieve a memory version
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Returns
 
 - `class BetaManagedAgentsMemoryVersion:`
@@ -74744,6 +88408,10 @@ Redact a memory version
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 
@@ -75157,6 +88825,10 @@ Upload File
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Returns
 
 - `class FileMetadata:`
@@ -75321,6 +88993,10 @@ List Files
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 
@@ -75495,6 +89171,10 @@ Download File
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Example
 
 ```csharp
@@ -75576,6 +89256,10 @@ Get File Metadata
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 
@@ -75724,6 +89408,10 @@ Delete File
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 
@@ -75920,6 +89608,10 @@ Create Skill
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Returns
 
 - `class SkillCreateResponse:`
@@ -76077,6 +89769,10 @@ List Skills
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 
@@ -76245,6 +89941,10 @@ Get Skill
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Returns
 
 - `class SkillRetrieveResponse:`
@@ -76388,6 +90088,10 @@ Delete Skill
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Returns
 
 - `class SkillDeleteResponse:`
@@ -76504,6 +90208,10 @@ Create Skill Version
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 
@@ -76661,6 +90369,10 @@ List Skill Versions
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 
@@ -76835,6 +90547,10 @@ Download a skill version's content as a zip archive.
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Example
 
 ```csharp
@@ -76928,6 +90644,10 @@ Get Skill Version
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 
@@ -77086,6 +90806,10 @@ Delete Skill Version
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Returns
 
 - `class VersionDeleteResponse:`
@@ -77216,6 +90940,10 @@ Create User Profile
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 
@@ -77388,6 +91116,10 @@ List User Profiles
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 
@@ -77563,6 +91295,10 @@ Get User Profile
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 
@@ -77749,6 +91485,10 @@ Update User Profile
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Returns
 
 - `class BetaUserProfile:`
@@ -77912,6 +91652,10 @@ Create Enrollment URL
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Returns
 
 - `class BetaUserProfileEnrollmentUrl:`
@@ -78067,7 +91811,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
 
@@ -78079,7 +91823,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
 
@@ -78091,7 +91835,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
 
@@ -78103,7 +91847,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
 
@@ -78115,7 +91859,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
 
@@ -78127,7 +91871,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
 
@@ -78139,7 +91883,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
 
@@ -78151,7 +91895,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
 
@@ -78163,7 +91907,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
 
@@ -78175,7 +91919,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
 
@@ -78187,7 +91931,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
 
@@ -78199,9 +91943,13 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
+
+      - `required string SessionThreadID`
+
+        ID of the session thread this event refers to.
 
       - `JsonElement Type "session.thread_created"constant`
 
@@ -78211,9 +91959,13 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
+
+      - `required string SessionThreadID`
+
+        ID of the session thread this event refers to.
 
       - `JsonElement Type "session.thread_idled"constant`
 
@@ -78223,9 +91975,13 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
+
+      - `required string SessionThreadID`
+
+        ID of the session thread this event refers to.
 
       - `JsonElement Type "session.thread_terminated"constant`
 
@@ -78235,7 +91991,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
 
@@ -78247,7 +92003,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the vault that triggered the event.
 
       - `required string OrganizationID`
 
@@ -78259,7 +92015,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the vault that triggered the event.
 
       - `required string OrganizationID`
 
@@ -78271,7 +92027,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the vault that triggered the event.
 
       - `required string OrganizationID`
 
@@ -78283,7 +92039,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the vault credential that triggered the event.
 
       - `required string OrganizationID`
 
@@ -78299,7 +92055,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the vault credential that triggered the event.
 
       - `required string OrganizationID`
 
@@ -78315,7 +92071,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the vault credential that triggered the event.
 
       - `required string OrganizationID`
 
@@ -78331,7 +92087,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the vault credential that triggered the event.
 
       - `required string OrganizationID`
 
@@ -78355,7 +92111,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
     - `required string ID`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `required string OrganizationID`
 
@@ -78367,7 +92123,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
     - `required string ID`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `required string OrganizationID`
 
@@ -78379,7 +92135,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
     - `required string ID`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `required string OrganizationID`
 
@@ -78391,7 +92147,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
     - `required string ID`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `required string OrganizationID`
 
@@ -78403,7 +92159,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
     - `required string ID`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `required string OrganizationID`
 
@@ -78415,7 +92171,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
     - `required string ID`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `required string OrganizationID`
 
@@ -78427,7 +92183,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
     - `required string ID`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `required string OrganizationID`
 
@@ -78439,7 +92195,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
     - `required string ID`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `required string OrganizationID`
 
@@ -78451,7 +92207,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
     - `required string ID`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `required string OrganizationID`
 
@@ -78463,7 +92219,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
     - `required string ID`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `required string OrganizationID`
 
@@ -78475,7 +92231,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
     - `required string ID`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `required string OrganizationID`
 
@@ -78487,9 +92243,13 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
     - `required string ID`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `required string OrganizationID`
+
+    - `required string SessionThreadID`
+
+      ID of the session thread this event refers to.
 
     - `JsonElement Type "session.thread_created"constant`
 
@@ -78499,9 +92259,13 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
     - `required string ID`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `required string OrganizationID`
+
+    - `required string SessionThreadID`
+
+      ID of the session thread this event refers to.
 
     - `JsonElement Type "session.thread_idled"constant`
 
@@ -78511,9 +92275,13 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
     - `required string ID`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `required string OrganizationID`
+
+    - `required string SessionThreadID`
+
+      ID of the session thread this event refers to.
 
     - `JsonElement Type "session.thread_terminated"constant`
 
@@ -78523,7 +92291,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
     - `required string ID`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `required string OrganizationID`
 
@@ -78535,7 +92303,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
     - `required string ID`
 
-      ID of the resource that triggered the event.
+      ID of the vault that triggered the event.
 
     - `required string OrganizationID`
 
@@ -78547,7 +92315,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
     - `required string ID`
 
-      ID of the resource that triggered the event.
+      ID of the vault that triggered the event.
 
     - `required string OrganizationID`
 
@@ -78559,7 +92327,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
     - `required string ID`
 
-      ID of the resource that triggered the event.
+      ID of the vault that triggered the event.
 
     - `required string OrganizationID`
 
@@ -78571,7 +92339,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
     - `required string ID`
 
-      ID of the resource that triggered the event.
+      ID of the vault credential that triggered the event.
 
     - `required string OrganizationID`
 
@@ -78587,7 +92355,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
     - `required string ID`
 
-      ID of the resource that triggered the event.
+      ID of the vault credential that triggered the event.
 
     - `required string OrganizationID`
 
@@ -78603,7 +92371,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
     - `required string ID`
 
-      ID of the resource that triggered the event.
+      ID of the vault credential that triggered the event.
 
     - `required string OrganizationID`
 
@@ -78619,7 +92387,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
     - `required string ID`
 
-      ID of the resource that triggered the event.
+      ID of the vault credential that triggered the event.
 
     - `required string OrganizationID`
 
@@ -78637,7 +92405,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
   - `required string ID`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `required string OrganizationID`
 
@@ -78651,7 +92419,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
   - `required string ID`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `required string OrganizationID`
 
@@ -78665,7 +92433,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
   - `required string ID`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `required string OrganizationID`
 
@@ -78679,7 +92447,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
   - `required string ID`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `required string OrganizationID`
 
@@ -78693,7 +92461,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
   - `required string ID`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `required string OrganizationID`
 
@@ -78707,7 +92475,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
   - `required string ID`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `required string OrganizationID`
 
@@ -78721,7 +92489,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
   - `required string ID`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `required string OrganizationID`
 
@@ -78735,7 +92503,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
   - `required string ID`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `required string OrganizationID`
 
@@ -78749,7 +92517,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
   - `required string ID`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `required string OrganizationID`
 
@@ -78763,7 +92531,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
   - `required string ID`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `required string OrganizationID`
 
@@ -78777,7 +92545,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
   - `required string ID`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `required string OrganizationID`
 
@@ -78791,7 +92559,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
   - `required string ID`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `required string OrganizationID`
 
@@ -78805,9 +92573,13 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
   - `required string ID`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `required string OrganizationID`
+
+  - `required string SessionThreadID`
+
+    ID of the session thread this event refers to.
 
   - `JsonElement Type "session.thread_created"constant`
 
@@ -78819,9 +92591,13 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
   - `required string ID`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `required string OrganizationID`
+
+  - `required string SessionThreadID`
+
+    ID of the session thread this event refers to.
 
   - `JsonElement Type "session.thread_idled"constant`
 
@@ -78833,9 +92609,13 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
   - `required string ID`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `required string OrganizationID`
+
+  - `required string SessionThreadID`
+
+    ID of the session thread this event refers to.
 
   - `JsonElement Type "session.thread_terminated"constant`
 
@@ -78847,7 +92627,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
   - `required string ID`
 
-    ID of the resource that triggered the event.
+    ID of the vault that triggered the event.
 
   - `required string OrganizationID`
 
@@ -78861,7 +92641,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
   - `required string ID`
 
-    ID of the resource that triggered the event.
+    ID of the vault that triggered the event.
 
   - `required string OrganizationID`
 
@@ -78875,7 +92655,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
   - `required string ID`
 
-    ID of the resource that triggered the event.
+    ID of the vault credential that triggered the event.
 
   - `required string OrganizationID`
 
@@ -78893,7 +92673,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
   - `required string ID`
 
-    ID of the resource that triggered the event.
+    ID of the vault credential that triggered the event.
 
   - `required string OrganizationID`
 
@@ -78911,7 +92691,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
   - `required string ID`
 
-    ID of the resource that triggered the event.
+    ID of the vault credential that triggered the event.
 
   - `required string OrganizationID`
 
@@ -78929,7 +92709,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
   - `required string ID`
 
-    ID of the resource that triggered the event.
+    ID of the vault credential that triggered the event.
 
   - `required string OrganizationID`
 
@@ -78947,7 +92727,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
   - `required string ID`
 
-    ID of the resource that triggered the event.
+    ID of the vault that triggered the event.
 
   - `required string OrganizationID`
 
@@ -78973,7 +92753,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
 
@@ -78985,7 +92765,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
 
@@ -78997,7 +92777,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
 
@@ -79009,7 +92789,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
 
@@ -79021,7 +92801,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
 
@@ -79033,7 +92813,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
 
@@ -79045,7 +92825,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
 
@@ -79057,7 +92837,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
 
@@ -79069,7 +92849,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
 
@@ -79081,7 +92861,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
 
@@ -79093,7 +92873,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
 
@@ -79105,9 +92885,13 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
+
+      - `required string SessionThreadID`
+
+        ID of the session thread this event refers to.
 
       - `JsonElement Type "session.thread_created"constant`
 
@@ -79117,9 +92901,13 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
+
+      - `required string SessionThreadID`
+
+        ID of the session thread this event refers to.
 
       - `JsonElement Type "session.thread_idled"constant`
 
@@ -79129,9 +92917,13 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
+
+      - `required string SessionThreadID`
+
+        ID of the session thread this event refers to.
 
       - `JsonElement Type "session.thread_terminated"constant`
 
@@ -79141,7 +92933,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
 
@@ -79153,7 +92945,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the vault that triggered the event.
 
       - `required string OrganizationID`
 
@@ -79165,7 +92957,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the vault that triggered the event.
 
       - `required string OrganizationID`
 
@@ -79177,7 +92969,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the vault that triggered the event.
 
       - `required string OrganizationID`
 
@@ -79189,7 +92981,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the vault credential that triggered the event.
 
       - `required string OrganizationID`
 
@@ -79205,7 +92997,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the vault credential that triggered the event.
 
       - `required string OrganizationID`
 
@@ -79221,7 +93013,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the vault credential that triggered the event.
 
       - `required string OrganizationID`
 
@@ -79237,7 +93029,7 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the vault credential that triggered the event.
 
       - `required string OrganizationID`
 

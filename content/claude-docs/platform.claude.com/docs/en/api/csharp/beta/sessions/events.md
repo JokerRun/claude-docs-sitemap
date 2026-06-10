@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/sessions/events
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 4f6cf1c89e783b7d52d0dabf20f0397dda68590f12279edba3d9627b9b53065d
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: fa728a4be46d0e3403d5344c63d7500ea15a3e28be25c7c66f379e574226ccd1
 ---
 
 # Events
@@ -114,6 +114,10 @@ List Events
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 
@@ -985,6 +989,42 @@ List Events
 
             - `"billing_error"BillingError`
 
+        - `class BetaManagedAgentsCredentialHostUnreachableError:`
+
+          An `environment_variable` credential's `auth.networking.allowed_hosts` includes a host the environment's network policy does not permit.
+
+          - `required string CredentialID`
+
+            ID of the affected credential.
+
+          - `required string Message`
+
+            Human-readable error description.
+
+          - `required RetryStatus RetryStatus`
+
+            What the client should do next in response to this error.
+
+            - `class BetaManagedAgentsRetryStatusRetrying:`
+
+              The server is retrying automatically. Client should wait; the same error type may fire again as retrying, then once as exhausted when the retry budget runs out.
+
+            - `class BetaManagedAgentsRetryStatusExhausted:`
+
+              This turn is dead; queued inputs are flushed and the session returns to idle. Client may send a new prompt.
+
+            - `class BetaManagedAgentsRetryStatusTerminal:`
+
+              The session encountered a terminal error and will transition to `terminated` state.
+
+          - `required Type Type`
+
+            - `"credential_host_unreachable_error"CredentialHostUnreachableError`
+
+          - `required string VaultID`
+
+            ID of the vault containing the affected credential.
+
       - `required DateTimeOffset ProcessedAt`
 
         A timestamp in RFC 3339 format
@@ -1545,6 +1585,10 @@ List Events
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+            - `"claude-fable-5"ClaudeFable5`
+
+              Next generation of intelligence for the hardest knowledge work and coding problems
+
             - `"claude-opus-4-8"ClaudeOpus4_8`
 
               Frontier intelligence for long-running agents and coding
@@ -1771,19 +1815,11 @@ List Events
 
                   JSON Schema for custom tool input parameters.
 
+                  - `JsonElement Type "object"constant`
+
                   - `IReadOnlyDictionary<string, JsonElement>? Properties`
 
-                    JSON Schema properties defining the tool's input parameters.
-
-                  - `IReadOnlyList<string> Required`
-
-                    List of required property names.
-
-                  - `Type Type`
-
-                    Must be 'object' for tool input schemas.
-
-                    - `"object"Object`
+                  - `IReadOnlyList<string>? Required`
 
                 - `required string Name`
 
@@ -1838,6 +1874,34 @@ List Events
       - `string? Title`
 
         The session's new title. Present only when the update changed it.
+
+    - `class BetaManagedAgentsSystemMessageEvent:`
+
+      A mid-conversation system message event. Carries system-role content that is appended to the session as a `role: "system"` turn.
+
+      - `required string ID`
+
+        Unique identifier for this event.
+
+      - `required IReadOnlyList<BetaManagedAgentsSystemContentBlock> Content`
+
+        System content blocks. Text-only.
+
+        - `required string Text`
+
+          The text content.
+
+        - `required Type Type`
+
+          - `"text"Text`
+
+      - `required Type Type`
+
+        - `"system.message"SystemMessage`
+
+      - `DateTimeOffset? ProcessedAt`
+
+        A timestamp in RFC 3339 format
 
   - `string? NextPage`
 
@@ -2248,6 +2312,26 @@ Send Events
 
         Whether the tool execution resulted in an error.
 
+    - `class BetaManagedAgentsSystemMessageEventParams:`
+
+      Privileged context for the accompanying turn and all subsequent turns, appended to the session's system context as a `role: "system"` turn rather than replacing the top-level system prompt. At most one per request: it must be the final event and immediately follow the `user.message`, `user.tool_result`, or `user.custom_tool_result` it accompanies. Only supported on models that accept mid-conversation system messages.
+
+      - `required IReadOnlyList<BetaManagedAgentsSystemContentBlock> Content`
+
+        System content blocks to append. Text-only.
+
+        - `required string Text`
+
+          The text content.
+
+        - `required Type Type`
+
+          - `"text"Text`
+
+      - `required Type Type`
+
+        - `"system.message"SystemMessage`
+
   - `IReadOnlyList<AnthropicBeta> betas`
 
     Header param: Optional header to specify the beta version(s) you want to use.
@@ -2303,6 +2387,10 @@ Send Events
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 
@@ -2716,6 +2804,34 @@ Send Events
 
         Routes this result to a subagent thread. Copy from the `agent.tool_use` event's `session_thread_id`.
 
+    - `class BetaManagedAgentsSystemMessageEvent:`
+
+      A mid-conversation system message event. Carries system-role content that is appended to the session as a `role: "system"` turn.
+
+      - `required string ID`
+
+        Unique identifier for this event.
+
+      - `required IReadOnlyList<BetaManagedAgentsSystemContentBlock> Content`
+
+        System content blocks. Text-only.
+
+        - `required string Text`
+
+          The text content.
+
+        - `required Type Type`
+
+          - `"text"Text`
+
+      - `required Type Type`
+
+        - `"system.message"SystemMessage`
+
+      - `DateTimeOffset? ProcessedAt`
+
+        A timestamp in RFC 3339 format
+
 ### Example
 
 ```csharp
@@ -2835,6 +2951,10 @@ Stream Events
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 
@@ -3702,6 +3822,42 @@ Stream Events
 
           - `"billing_error"BillingError`
 
+      - `class BetaManagedAgentsCredentialHostUnreachableError:`
+
+        An `environment_variable` credential's `auth.networking.allowed_hosts` includes a host the environment's network policy does not permit.
+
+        - `required string CredentialID`
+
+          ID of the affected credential.
+
+        - `required string Message`
+
+          Human-readable error description.
+
+        - `required RetryStatus RetryStatus`
+
+          What the client should do next in response to this error.
+
+          - `class BetaManagedAgentsRetryStatusRetrying:`
+
+            The server is retrying automatically. Client should wait; the same error type may fire again as retrying, then once as exhausted when the retry budget runs out.
+
+          - `class BetaManagedAgentsRetryStatusExhausted:`
+
+            This turn is dead; queued inputs are flushed and the session returns to idle. Client may send a new prompt.
+
+          - `class BetaManagedAgentsRetryStatusTerminal:`
+
+            The session encountered a terminal error and will transition to `terminated` state.
+
+        - `required Type Type`
+
+          - `"credential_host_unreachable_error"CredentialHostUnreachableError`
+
+        - `required string VaultID`
+
+          ID of the vault containing the affected credential.
+
     - `required DateTimeOffset ProcessedAt`
 
       A timestamp in RFC 3339 format
@@ -4262,6 +4418,10 @@ Stream Events
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `"claude-fable-5"ClaudeFable5`
+
+            Next generation of intelligence for the hardest knowledge work and coding problems
+
           - `"claude-opus-4-8"ClaudeOpus4_8`
 
             Frontier intelligence for long-running agents and coding
@@ -4488,19 +4648,11 @@ Stream Events
 
                 JSON Schema for custom tool input parameters.
 
+                - `JsonElement Type "object"constant`
+
                 - `IReadOnlyDictionary<string, JsonElement>? Properties`
 
-                  JSON Schema properties defining the tool's input parameters.
-
-                - `IReadOnlyList<string> Required`
-
-                  List of required property names.
-
-                - `Type Type`
-
-                  Must be 'object' for tool input schemas.
-
-                  - `"object"Object`
+                - `IReadOnlyList<string>? Required`
 
               - `required string Name`
 
@@ -4555,6 +4707,34 @@ Stream Events
     - `string? Title`
 
       The session's new title. Present only when the update changed it.
+
+  - `class BetaManagedAgentsSystemMessageEvent:`
+
+    A mid-conversation system message event. Carries system-role content that is appended to the session as a `role: "system"` turn.
+
+    - `required string ID`
+
+      Unique identifier for this event.
+
+    - `required IReadOnlyList<BetaManagedAgentsSystemContentBlock> Content`
+
+      System content blocks. Text-only.
+
+      - `required string Text`
+
+        The text content.
+
+      - `required Type Type`
+
+        - `"text"Text`
+
+    - `required Type Type`
+
+      - `"system.message"SystemMessage`
+
+    - `DateTimeOffset? ProcessedAt`
+
+      A timestamp in RFC 3339 format
 
 ### Example
 
@@ -5606,6 +5786,56 @@ await foreach (var betaManagedAgentsStreamSessionEvents in client.Beta.Sessions.
 
     - `"billing_error"BillingError`
 
+### Beta Managed Agents Credential Host Unreachable Error
+
+- `class BetaManagedAgentsCredentialHostUnreachableError:`
+
+  An `environment_variable` credential's `auth.networking.allowed_hosts` includes a host the environment's network policy does not permit.
+
+  - `required string CredentialID`
+
+    ID of the affected credential.
+
+  - `required string Message`
+
+    Human-readable error description.
+
+  - `required RetryStatus RetryStatus`
+
+    What the client should do next in response to this error.
+
+    - `class BetaManagedAgentsRetryStatusRetrying:`
+
+      The server is retrying automatically. Client should wait; the same error type may fire again as retrying, then once as exhausted when the retry budget runs out.
+
+      - `required Type Type`
+
+        - `"retrying"Retrying`
+
+    - `class BetaManagedAgentsRetryStatusExhausted:`
+
+      This turn is dead; queued inputs are flushed and the session returns to idle. Client may send a new prompt.
+
+      - `required Type Type`
+
+        - `"exhausted"Exhausted`
+
+    - `class BetaManagedAgentsRetryStatusTerminal:`
+
+      The session encountered a terminal error and will transition to `terminated` state.
+
+      - `required Type Type`
+
+        - `"terminal"Terminal`
+
+  - `required Type Type`
+
+    - `"credential_host_unreachable_error"CredentialHostUnreachableError`
+
+  - `required string VaultID`
+
+    ID of the vault containing the affected credential.
+
 ### Beta Managed Agents Document Block
 
 - `class BetaManagedAgentsDocumentBlock:`
@@ -6029,6 +6259,26 @@ await foreach (var betaManagedAgentsStreamSessionEvents in client.Beta.Sessions.
     - `Boolean? IsError`
 
       Whether the tool execution resulted in an error.
+
+  - `class BetaManagedAgentsSystemMessageEventParams:`
+
+    Privileged context for the accompanying turn and all subsequent turns, appended to the session's system context as a `role: "system"` turn rather than replacing the top-level system prompt. At most one per request: it must be the final event and immediately follow the `user.message`, `user.tool_result`, or `user.custom_tool_result` it accompanies. Only supported on models that accept mid-conversation system messages.
+
+    - `required IReadOnlyList<BetaManagedAgentsSystemContentBlock> Content`
+
+      System content blocks to append. Text-only.
+
+      - `required string Text`
+
+        The text content.
+
+      - `required Type Type`
+
+        - `"text"Text`
+
+    - `required Type Type`
+
+      - `"system.message"SystemMessage`
 
 ### Beta Managed Agents File Document Source
 
@@ -6882,6 +7132,34 @@ await foreach (var betaManagedAgentsStreamSessionEvents in client.Beta.Sessions.
 
         Routes this result to a subagent thread. Copy from the `agent.tool_use` event's `session_thread_id`.
 
+    - `class BetaManagedAgentsSystemMessageEvent:`
+
+      A mid-conversation system message event. Carries system-role content that is appended to the session as a `role: "system"` turn.
+
+      - `required string ID`
+
+        Unique identifier for this event.
+
+      - `required IReadOnlyList<BetaManagedAgentsSystemContentBlock> Content`
+
+        System content blocks. Text-only.
+
+        - `required string Text`
+
+          The text content.
+
+        - `required Type Type`
+
+          - `"text"Text`
+
+      - `required Type Type`
+
+        - `"system.message"SystemMessage`
+
+      - `DateTimeOffset? ProcessedAt`
+
+        A timestamp in RFC 3339 format
+
 ### Beta Managed Agents Session Deleted Event
 
 - `class BetaManagedAgentsSessionDeletedEvent:`
@@ -7139,6 +7417,42 @@ await foreach (var betaManagedAgentsStreamSessionEvents in client.Beta.Sessions.
       - `required Type Type`
 
         - `"billing_error"BillingError`
+
+    - `class BetaManagedAgentsCredentialHostUnreachableError:`
+
+      An `environment_variable` credential's `auth.networking.allowed_hosts` includes a host the environment's network policy does not permit.
+
+      - `required string CredentialID`
+
+        ID of the affected credential.
+
+      - `required string Message`
+
+        Human-readable error description.
+
+      - `required RetryStatus RetryStatus`
+
+        What the client should do next in response to this error.
+
+        - `class BetaManagedAgentsRetryStatusRetrying:`
+
+          The server is retrying automatically. Client should wait; the same error type may fire again as retrying, then once as exhausted when the retry budget runs out.
+
+        - `class BetaManagedAgentsRetryStatusExhausted:`
+
+          This turn is dead; queued inputs are flushed and the session returns to idle. Client may send a new prompt.
+
+        - `class BetaManagedAgentsRetryStatusTerminal:`
+
+          The session encountered a terminal error and will transition to `terminated` state.
+
+      - `required Type Type`
+
+        - `"credential_host_unreachable_error"CredentialHostUnreachableError`
+
+      - `required string VaultID`
+
+        ID of the vault containing the affected credential.
 
   - `required DateTimeOffset ProcessedAt`
 
@@ -8014,6 +8328,42 @@ await foreach (var betaManagedAgentsStreamSessionEvents in client.Beta.Sessions.
 
           - `"billing_error"BillingError`
 
+      - `class BetaManagedAgentsCredentialHostUnreachableError:`
+
+        An `environment_variable` credential's `auth.networking.allowed_hosts` includes a host the environment's network policy does not permit.
+
+        - `required string CredentialID`
+
+          ID of the affected credential.
+
+        - `required string Message`
+
+          Human-readable error description.
+
+        - `required RetryStatus RetryStatus`
+
+          What the client should do next in response to this error.
+
+          - `class BetaManagedAgentsRetryStatusRetrying:`
+
+            The server is retrying automatically. Client should wait; the same error type may fire again as retrying, then once as exhausted when the retry budget runs out.
+
+          - `class BetaManagedAgentsRetryStatusExhausted:`
+
+            This turn is dead; queued inputs are flushed and the session returns to idle. Client may send a new prompt.
+
+          - `class BetaManagedAgentsRetryStatusTerminal:`
+
+            The session encountered a terminal error and will transition to `terminated` state.
+
+        - `required Type Type`
+
+          - `"credential_host_unreachable_error"CredentialHostUnreachableError`
+
+        - `required string VaultID`
+
+          ID of the vault containing the affected credential.
+
     - `required DateTimeOffset ProcessedAt`
 
       A timestamp in RFC 3339 format
@@ -8574,6 +8924,10 @@ await foreach (var betaManagedAgentsStreamSessionEvents in client.Beta.Sessions.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `"claude-fable-5"ClaudeFable5`
+
+            Next generation of intelligence for the hardest knowledge work and coding problems
+
           - `"claude-opus-4-8"ClaudeOpus4_8`
 
             Frontier intelligence for long-running agents and coding
@@ -8800,19 +9154,11 @@ await foreach (var betaManagedAgentsStreamSessionEvents in client.Beta.Sessions.
 
                 JSON Schema for custom tool input parameters.
 
+                - `JsonElement Type "object"constant`
+
                 - `IReadOnlyDictionary<string, JsonElement>? Properties`
 
-                  JSON Schema properties defining the tool's input parameters.
-
-                - `IReadOnlyList<string> Required`
-
-                  List of required property names.
-
-                - `Type Type`
-
-                  Must be 'object' for tool input schemas.
-
-                  - `"object"Object`
+                - `IReadOnlyList<string>? Required`
 
               - `required string Name`
 
@@ -8867,6 +9213,34 @@ await foreach (var betaManagedAgentsStreamSessionEvents in client.Beta.Sessions.
     - `string? Title`
 
       The session's new title. Present only when the update changed it.
+
+  - `class BetaManagedAgentsSystemMessageEvent:`
+
+    A mid-conversation system message event. Carries system-role content that is appended to the session as a `role: "system"` turn.
+
+    - `required string ID`
+
+      Unique identifier for this event.
+
+    - `required IReadOnlyList<BetaManagedAgentsSystemContentBlock> Content`
+
+      System content blocks. Text-only.
+
+      - `required string Text`
+
+        The text content.
+
+      - `required Type Type`
+
+        - `"text"Text`
+
+    - `required Type Type`
+
+      - `"system.message"SystemMessage`
+
+    - `DateTimeOffset? ProcessedAt`
+
+      A timestamp in RFC 3339 format
 
 ### Beta Managed Agents Session Requires Action
 
@@ -10244,6 +10618,42 @@ await foreach (var betaManagedAgentsStreamSessionEvents in client.Beta.Sessions.
 
           - `"billing_error"BillingError`
 
+      - `class BetaManagedAgentsCredentialHostUnreachableError:`
+
+        An `environment_variable` credential's `auth.networking.allowed_hosts` includes a host the environment's network policy does not permit.
+
+        - `required string CredentialID`
+
+          ID of the affected credential.
+
+        - `required string Message`
+
+          Human-readable error description.
+
+        - `required RetryStatus RetryStatus`
+
+          What the client should do next in response to this error.
+
+          - `class BetaManagedAgentsRetryStatusRetrying:`
+
+            The server is retrying automatically. Client should wait; the same error type may fire again as retrying, then once as exhausted when the retry budget runs out.
+
+          - `class BetaManagedAgentsRetryStatusExhausted:`
+
+            This turn is dead; queued inputs are flushed and the session returns to idle. Client may send a new prompt.
+
+          - `class BetaManagedAgentsRetryStatusTerminal:`
+
+            The session encountered a terminal error and will transition to `terminated` state.
+
+        - `required Type Type`
+
+          - `"credential_host_unreachable_error"CredentialHostUnreachableError`
+
+        - `required string VaultID`
+
+          ID of the vault containing the affected credential.
+
     - `required DateTimeOffset ProcessedAt`
 
       A timestamp in RFC 3339 format
@@ -10804,6 +11214,10 @@ await foreach (var betaManagedAgentsStreamSessionEvents in client.Beta.Sessions.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `"claude-fable-5"ClaudeFable5`
+
+            Next generation of intelligence for the hardest knowledge work and coding problems
+
           - `"claude-opus-4-8"ClaudeOpus4_8`
 
             Frontier intelligence for long-running agents and coding
@@ -11030,19 +11444,11 @@ await foreach (var betaManagedAgentsStreamSessionEvents in client.Beta.Sessions.
 
                 JSON Schema for custom tool input parameters.
 
+                - `JsonElement Type "object"constant`
+
                 - `IReadOnlyDictionary<string, JsonElement>? Properties`
 
-                  JSON Schema properties defining the tool's input parameters.
-
-                - `IReadOnlyList<string> Required`
-
-                  List of required property names.
-
-                - `Type Type`
-
-                  Must be 'object' for tool input schemas.
-
-                  - `"object"Object`
+                - `IReadOnlyList<string>? Required`
 
               - `required string Name`
 
@@ -11097,6 +11503,56 @@ await foreach (var betaManagedAgentsStreamSessionEvents in client.Beta.Sessions.
     - `string? Title`
 
       The session's new title. Present only when the update changed it.
+
+  - `class BetaManagedAgentsSystemMessageEvent:`
+
+    A mid-conversation system message event. Carries system-role content that is appended to the session as a `role: "system"` turn.
+
+    - `required string ID`
+
+      Unique identifier for this event.
+
+    - `required IReadOnlyList<BetaManagedAgentsSystemContentBlock> Content`
+
+      System content blocks. Text-only.
+
+      - `required string Text`
+
+        The text content.
+
+      - `required Type Type`
+
+        - `"text"Text`
+
+    - `required Type Type`
+
+      - `"system.message"SystemMessage`
+
+    - `DateTimeOffset? ProcessedAt`
+
+      A timestamp in RFC 3339 format
+
+### Beta Managed Agents System Message Event Params
+
+- `class BetaManagedAgentsSystemMessageEventParams:`
+
+  Privileged context for the accompanying turn and all subsequent turns, appended to the session's system context as a `role: "system"` turn rather than replacing the top-level system prompt. At most one per request: it must be the final event and immediately follow the `user.message`, `user.tool_result`, or `user.custom_tool_result` it accompanies. Only supported on models that accept mid-conversation system messages.
+
+  - `required IReadOnlyList<BetaManagedAgentsSystemContentBlock> Content`
+
+    System content blocks to append. Text-only.
+
+    - `required string Text`
+
+      The text content.
+
+    - `required Type Type`
+
+      - `"text"Text`
+
+  - `required Type Type`
+
+    - `"system.message"SystemMessage`
 
 ### Beta Managed Agents Text Block
 

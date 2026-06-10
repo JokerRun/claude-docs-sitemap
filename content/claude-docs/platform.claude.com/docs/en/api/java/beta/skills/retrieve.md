@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/skills/retrieve
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: f91ee015a5c36ebb31b7e34cbe20426f125a16f94dae97ecc640a94eb7e4cee4
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 66dcf9d63bb084edee6cb4b6d7004a1ba9b3dd89d171e0823622e4c19bf80032
 ---
 
 ## Get Skill
@@ -78,6 +78,10 @@ Get Skill
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
+
+    - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
+
+    - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
 
 ### Returns
 

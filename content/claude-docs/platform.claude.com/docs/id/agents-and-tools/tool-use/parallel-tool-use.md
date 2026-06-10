@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/parallel-tool-use
-fetched_at: 2026-04-25T03:09:48.142425Z
-sha256: 55cbd5988e9dfdb18ee59362963692081adbc83360679cd1ab9968530144cd6f
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: ff20f402fae5fe1a61ccf6d7ffb4d2daea4cf5d4162ed15f2572990b004ab03f
 ---
 
 # Penggunaan alat paralel
@@ -11,17 +11,32 @@ Aktifkan dan format panggilan alat paralel, dengan panduan riwayat pesan dan pem
 
 ---
 
-Halaman ini mencakup panggilan alat paralel: ketika Claude memanggil beberapa alat dalam satu giliran, cara memformat riwayat pesan sehingga paralelisme terus berfungsi, dan cara menonaktifkannya. Untuk alur panggilan tunggal, lihat [Handle tool calls](/docs/id/agents-and-tools/tool-use/handle-tool-calls).
+Halaman ini membahas panggilan alat paralel: ketika Claude memanggil beberapa alat dalam satu giliran, cara memformat riwayat pesan agar paralelisme tetap berfungsi, dan cara menonaktifkannya. Untuk alur panggilan tunggal, lihat [Menangani panggilan alat](/docs/id/agents-and-tools/tool-use/handle-tool-calls).
 
-Secara default, Claude dapat menggunakan beberapa alat untuk menjawab pertanyaan pengguna. Anda dapat menonaktifkan perilaku ini dengan:
+Secara default, Claude dapat menggunakan beberapa alat untuk menjawab kueri pengguna. Anda dapat menonaktifkan perilaku ini dengan:
 
-- Mengatur `disable_parallel_tool_use=true` ketika tipe tool_choice adalah `auto`, yang memastikan bahwa Claude menggunakan **paling banyak satu** alat
-- Mengatur `disable_parallel_tool_use=true` ketika tipe tool_choice adalah `any` atau `tool`, yang memastikan bahwa Claude menggunakan **tepat satu** alat
+- Mengatur `disable_parallel_tool_use=true` ketika tipe `tool_choice` adalah `auto`, yang memastikan bahwa Claude menggunakan **paling banyak satu** alat
+- Mengatur `disable_parallel_tool_use=true` ketika tipe `tool_choice` adalah `any` atau `tool`, yang memastikan bahwa Claude menggunakan **tepat satu** alat
 
-## Contoh yang dikerjakan
+## Semantik eksekusi \{#execution-semantics}
+
+Panggilan alat dalam satu giliran asisten tidak berurutan. Anda dapat menjalankannya secara bersamaan (`Promise.all`, `asyncio.gather`), secara berurutan, atau dalam urutan apa pun. Claude tidak mengasumsikan bahwa satu panggilan dalam batch telah selesai sebelum panggilan lainnya. Claude mengeluarkan panggilan yang saling bergantung di giliran yang terpisah.
+
+Claude terkadang mungkin mengelompokkan panggilan yang ternyata saling bergantung satu sama lain (misalnya, operasi create diikuti oleh update pada resource yang sama). Anda tidak perlu mendeteksi hal ini sebelumnya: kirimkan semua panggilan, dan jika salah satu gagal karena prasyarat yang belum terpenuhi, kembalikan pesan error yang wajar dalam `tool_result` dengan `is_error: true`. Claude akan mengenali dependensi tersebut dan mengeluarkan ulang panggilan setelah prasyaratnya selesai.
+
+```json
+{
+  "type": "tool_result",
+  "tool_use_id": "toolu_02",
+  "is_error": true,
+  "content": "cat: report.md: No such file or directory"
+}
+```
+
+## Contoh lengkap \{#worked-example}
 
 <Note>
-**Lebih Sederhana dengan Tool Runner**: Contoh di bawah menunjukkan penanganan alat paralel manual. Untuk sebagian besar kasus penggunaan, [Tool Runner](/docs/id/agents-and-tools/tool-use/tool-runner) secara otomatis menangani eksekusi alat paralel dengan kode yang jauh lebih sedikit.
+**Lebih sederhana dengan Tool Runner**: Contoh di bawah ini menunjukkan penanganan alat paralel secara manual. Untuk sebagian besar kasus penggunaan, [Tool Runner](/docs/id/agents-and-tools/tool-use/tool-runner) secara otomatis menangani eksekusi alat paralel dengan kode yang jauh lebih sedikit.
 </Note>
 
 Berikut adalah skrip lengkap yang dapat dijalankan untuk menguji dan memverifikasi bahwa panggilan alat paralel berfungsi dengan benar:
@@ -34,10 +49,10 @@ Berikut adalah skrip lengkap yang dapat dijalankan untuk menguji dan memverifika
 import os
 from anthropic import Anthropic
 
-# Initialize client
+# Inisialisasi klien
 client = Anthropic(api_key=os.environ.get("ANTHROPIC_API_KEY"))
 
-# Define tools
+# Definisikan alat
 tools = [
     {
         "name": "get_weather",
@@ -69,7 +84,7 @@ tools = [
     },
 ]
 
-# Test conversation with parallel tool calls
+# Uji percakapan dengan panggilan alat paralel
 messages = [
     {
         "role": "user",
@@ -77,13 +92,13 @@ messages = [
     }
 ]
 
-# Make initial request
+# Buat permintaan awal
 print("Requesting parallel tool calls...")
 response = client.messages.create(
-    model="claude-opus-4-7", max_tokens=1024, messages=messages, tools=tools
+    model="claude-opus-4-8", max_tokens=1024, messages=messages, tools=tools
 )
 
-# Check for parallel tool calls
+# Periksa panggilan alat paralel
 tool_uses = [block for block in response.content if block.type == "tool_use"]
 print(f"\n✓ Claude made {len(tool_uses)} tool calls")
 
@@ -94,7 +109,7 @@ if len(tool_uses) > 1:
 else:
     print("✗ No parallel tool calls detected")
 
-# Simulate tool execution and format results correctly
+# Simulasikan eksekusi alat dan format hasilnya dengan benar
 tool_results = []
 for tool_use in tool_uses:
     if tool_use.name == "get_weather":
@@ -112,7 +127,7 @@ for tool_use in tool_uses:
         {"type": "tool_result", "tool_use_id": tool_use.id, "content": result}
     )
 
-# Continue conversation with tool results
+# Lanjutkan percakapan dengan hasil alat
 messages.extend(
     [
         {"role": "assistant", "content": response.content},
@@ -120,15 +135,15 @@ messages.extend(
     ]
 )
 
-# Get final response
+# Dapatkan respons akhir
 print("\nGetting final response...")
 final_response = client.messages.create(
-    model="claude-opus-4-7", max_tokens=1024, messages=messages, tools=tools
+    model="claude-opus-4-8", max_tokens=1024, messages=messages, tools=tools
 )
 
 print(f"\nClaude's response:\n{final_response.content[0].text}")
 
-# Verify formatting
+# Verifikasi pemformatan
 print("\n--- Verification ---")
 print(f"✓ Tool results sent in single user message: {len(tool_results)} results")
 print("✓ No text before tool results in content array")
@@ -140,7 +155,7 @@ import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
 
-// Define tools
+// Definisikan alat
 const tools: Anthropic.Tool[] = [
   {
     name: "get_weather",
@@ -173,10 +188,10 @@ const tools: Anthropic.Tool[] = [
 ];
 
 async function testParallelTools() {
-  // Make initial request
+  // Buat permintaan awal
   console.log("Requesting parallel tool calls...");
   const response = await client.messages.create({
-    model: "claude-opus-4-7",
+    model: "claude-opus-4-8",
     max_tokens: 1024,
     messages: [
       {
@@ -187,20 +202,22 @@ async function testParallelTools() {
     tools: tools
   });
 
-  // Check for parallel tool calls
+  // Periksa panggilan alat paralel
   const toolUses = response.content.filter((block) => block.type === "tool_use");
-  console.log(`\nClaude made ${toolUses.length} tool calls`);
+  console.log(`\n✓ Claude made ${toolUses.length} tool calls`);
 
   if (toolUses.length > 1) {
-    console.log("Parallel tool calls detected!");
+    console.log("✓ Parallel tool calls detected!");
     toolUses.forEach((tool) => {
       if (tool.type === "tool_use") {
         console.log(`  - ${tool.name}: ${JSON.stringify(tool.input)}`);
       }
     });
+  } else {
+    console.log("✗ No parallel tool calls detected");
   }
 
-  // Simulate tool execution and format results correctly
+  // Simulasikan eksekusi alat dan format hasilnya dengan benar
   const toolResults: Anthropic.ToolResultBlockParam[] = toolUses
     .filter((block): block is Anthropic.ToolUseBlock => block.type === "tool_use")
     .map((toolUse) => {
@@ -221,10 +238,10 @@ async function testParallelTools() {
       };
     });
 
-  // Get final response with correct formatting
+  // Dapatkan respons akhir dengan format yang benar
   console.log("\nGetting final response...");
   const finalResponse = await client.messages.create({
-    model: "claude-opus-4-7",
+    model: "claude-opus-4-8",
     max_tokens: 1024,
     messages: [
       {
@@ -243,15 +260,17 @@ async function testParallelTools() {
     }
   }
 
-  // Verify formatting
+  // Verifikasi format
   console.log("\n--- Verification ---");
-  console.log(`Tool results sent in single user message: ${toolResults.length} results`);
+  console.log(`✓ Tool results sent in single user message: ${toolResults.length} results`);
+  console.log("✓ No text before tool results in content array");
+  console.log("✓ Conversation formatted correctly for future parallel tool use");
 }
 
 testParallelTools().catch(console.error);
 ```
 
-```csharp C#
+```csharp C# hidelines={1..12,-2..-1}
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -299,7 +318,7 @@ public class Program
         Console.WriteLine("Requesting parallel tool calls...");
         var parameters = new MessageCreateParams
         {
-            Model = Model.ClaudeOpus4_7,
+            Model = Model.ClaudeOpus4_8,
             MaxTokens = 1024,
             Messages = [new() { Role = Role.User, Content = "What's the weather in SF and NYC, and what time is it there?" }],
             Tools = tools
@@ -315,11 +334,11 @@ public class Program
                 toolUses.Add(toolUse);
             }
         }
-        Console.WriteLine($"\n✓ Claude made {toolUses.Count} tool calls");
+        Console.WriteLine($"\n\u2713 Claude made {toolUses.Count} tool calls");
 
         if (toolUses.Count > 1)
         {
-            Console.WriteLine("✓ Parallel tool calls detected!");
+            Console.WriteLine("\u2713 Parallel tool calls detected!");
             foreach (var tool in toolUses)
             {
                 Console.WriteLine($"  - {tool.Name}: {tool.Input}");
@@ -327,7 +346,7 @@ public class Program
         }
         else
         {
-            Console.WriteLine("✗ No parallel tool calls detected");
+            Console.WriteLine("\u2717 No parallel tool calls detected");
         }
 
         var toolResults = new List<ContentBlockParam>();
@@ -337,8 +356,8 @@ public class Program
             if (toolUse.Name == "get_weather")
             {
                 result = toolUse.Input.ToString()!.Contains("San Francisco")
-                    ? "San Francisco: 68°F, partly cloudy"
-                    : "New York: 45°F, clear skies";
+                    ? "San Francisco: 68\u00b0F, partly cloudy"
+                    : "New York: 45\u00b0F, clear skies";
             }
             else
             {
@@ -357,7 +376,7 @@ public class Program
         Console.WriteLine("\nGetting final response...");
         var finalParameters = new MessageCreateParams
         {
-            Model = Model.ClaudeOpus4_7,
+            Model = Model.ClaudeOpus4_8,
             MaxTokens = 1024,
             Messages = [
                 new() { Role = Role.User, Content = "What's the weather in SF and NYC, and what time is it there?" },
@@ -372,14 +391,14 @@ public class Program
         Console.WriteLine($"\nClaude's response:\n{text?.Text}");
 
         Console.WriteLine("\n--- Verification ---");
-        Console.WriteLine($"✓ Tool results sent in single user message: {toolResults.Count} results");
-        Console.WriteLine("✓ No text before tool results in content array");
-        Console.WriteLine("✓ Conversation formatted correctly for future parallel tool use");
+        Console.WriteLine($"\u2713 Tool results sent in single user message: {toolResults.Count} results");
+        Console.WriteLine("\u2713 No text before tool results in content array");
+        Console.WriteLine("\u2713 Conversation formatted correctly for future parallel tool use");
     }
 }
 ```
 
-```go Go hidelines={1..15,-11..-1}
+```go Go hidelines={1..15,-1}
 package main
 
 import (
@@ -426,7 +445,7 @@ func main() {
 
 	fmt.Println("Requesting parallel tool calls...")
 	response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-		Model:     anthropic.ModelClaudeOpus4_7,
+		Model:     anthropic.ModelClaudeOpus4_8,
 		MaxTokens: 1024,
 		Messages: []anthropic.MessageParam{
 			anthropic.NewUserMessage(anthropic.NewTextBlock("What's the weather in SF and NYC, and what time is it there?")),
@@ -437,7 +456,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	// Find tool use blocks using type switch
+	// Temukan blok penggunaan alat menggunakan type switch
 	type toolUseInfo struct {
 		ID    string
 		Name  string
@@ -466,7 +485,7 @@ func main() {
 		fmt.Println("✗ No parallel tool calls detected")
 	}
 
-	// Build tool results
+	// Bangun hasil alat
 	var toolResults []anthropic.ContentBlockParamUnion
 	for _, toolUse := range toolUses {
 		var result string
@@ -489,7 +508,7 @@ func main() {
 		toolResults = append(toolResults, anthropic.NewToolResultBlock(toolUse.ID, result, false))
 	}
 
-	// Convert response content to param types for the assistant message
+	// Konversi konten respons ke tipe param untuk pesan asisten
 	var contentParams []anthropic.ContentBlockParamUnion
 	for _, block := range response.Content {
 		contentParams = append(contentParams, block.ToParam())
@@ -497,7 +516,7 @@ func main() {
 
 	fmt.Println("\nGetting final response...")
 	finalResponse, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-		Model:     anthropic.ModelClaudeOpus4_7,
+		Model:     anthropic.ModelClaudeOpus4_8,
 		MaxTokens: 1024,
 		Messages: []anthropic.MessageParam{
 			anthropic.NewUserMessage(anthropic.NewTextBlock("What's the weather in SF and NYC, and what time is it there?")),
@@ -568,7 +587,7 @@ void main() {
         .build();
 
     MessageCreateParams params = MessageCreateParams.builder()
-        .model(Model.CLAUDE_OPUS_4_7)
+        .model(Model.CLAUDE_OPUS_4_8)
         .maxTokens(1024L)
         .addTool(weatherTool)
         .addTool(timeTool)
@@ -620,7 +639,7 @@ void main() {
 
     IO.println("\nGetting final response...");
     MessageCreateParams finalParams = MessageCreateParams.builder()
-        .model(Model.CLAUDE_OPUS_4_7)
+        .model(Model.CLAUDE_OPUS_4_8)
         .maxTokens(1024L)
         .addTool(weatherTool)
         .addTool(timeTool)
@@ -646,7 +665,7 @@ void main() {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 $tools = [
     [
@@ -685,7 +704,7 @@ $response = $client->messages->create(
     messages: [
         ['role' => 'user', 'content' => "What's the weather in SF and NYC, and what time is it there?"]
     ],
-    model: 'claude-opus-4-7',
+    model: 'claude-opus-4-8',
     tools: $tools,
 );
 
@@ -728,7 +747,7 @@ $finalResponse = $client->messages->create(
         ['role' => 'assistant', 'content' => $response->content],
         ['role' => 'user', 'content' => $toolResults]
     ],
-    model: 'claude-opus-4-7',
+    model: 'claude-opus-4-8',
     tools: $tools,
 );
 
@@ -778,7 +797,7 @@ tools = [
 
 puts "Requesting parallel tool calls..."
 response = client.messages.create(
-  model: "claude-opus-4-7",
+  model: "claude-opus-4-8",
   max_tokens: 1024,
   messages: [
     { role: "user", content: "What's the weather in SF and NYC, and what time is it there?" }
@@ -816,7 +835,7 @@ end
 
 puts "\nGetting final response..."
 final_response = client.messages.create(
-  model: "claude-opus-4-7",
+  model: "claude-opus-4-8",
   max_tokens: 1024,
   messages: [
     { role: "user", content: "What's the weather in SF and NYC, and what time is it there?" },
@@ -836,25 +855,25 @@ puts "✓ Conversation formatted correctly for future parallel tool use"
 </CodeGroup>
 
 Skrip ini mendemonstrasikan:
-- Cara memformat dengan benar panggilan alat paralel dan hasil
+- Cara memformat panggilan alat paralel dan hasilnya dengan benar
 - Cara memverifikasi bahwa panggilan paralel sedang dilakukan
-- Struktur pesan yang benar yang mendorong penggunaan alat paralel di masa depan
+- Struktur pesan yang benar yang mendorong penggunaan alat paralel di masa mendatang
 - Kesalahan umum yang harus dihindari (seperti teks sebelum hasil alat)
 
-Jalankan skrip ini untuk menguji implementasi Anda dan memastikan Claude membuat panggilan alat paralel secara efektif.
+Jalankan skrip ini untuk menguji implementasi Anda dan memastikan Claude melakukan panggilan alat paralel secara efektif.
 
-## Memaksimalkan penggunaan alat paralel
+## Memaksimalkan penggunaan alat paralel \{#maximizing-parallel-tool-use}
 
 Meskipun model Claude 4 memiliki kemampuan penggunaan alat paralel yang sangat baik secara default, Anda dapat meningkatkan kemungkinan eksekusi alat paralel di semua model dengan prompting yang ditargetkan:
 
 <section title="Prompt sistem untuk penggunaan alat paralel">
 
-Untuk model Claude 4 (Opus 4 (deprecated), dan Sonnet 4 (deprecated)), tambahkan ini ke prompt sistem Anda:
+Untuk model Claude 4, tambahkan ini ke prompt sistem Anda:
 ```text
 For maximum efficiency, whenever you need to perform multiple independent operations, invoke all relevant tools simultaneously rather than sequentially.
 ```
 
-Untuk penggunaan alat paralel yang bahkan lebih kuat (direkomendasikan jika default tidak cukup), gunakan:
+Untuk penggunaan alat paralel yang lebih kuat (direkomendasikan jika default tidak cukup), gunakan:
 ```text
 <use_parallel_tool_calls>
 For maximum efficiency, whenever you perform multiple independent operations, invoke all relevant tools simultaneously rather than sequentially. Prioritize calling tools in parallel whenever possible. For example, when reading 3 files, run 3 tool calls in parallel to read all 3 files into context at the same time. When running multiple read-only commands like `ls` or `list_dir`, always run all of the commands in parallel. Err on the side of maximizing parallel tool calls rather than running too many tools sequentially.
@@ -862,51 +881,51 @@ For maximum efficiency, whenever you perform multiple independent operations, in
 ```
 
 </section>
-<section title="Prompting pesan pengguna">
+<section title="Prompting melalui pesan pengguna">
 
 Anda juga dapat mendorong penggunaan alat paralel dalam pesan pengguna tertentu:
 
 ```text
-Sebagai gantinya:
+Instead of:
 "What's the weather in Paris? Also check London."
 
-Gunakan:
+Use:
 "Check the weather in Paris and London simultaneously."
 
-Atau jadilah eksplisit:
+Or be explicit:
 "Please use parallel tool calls to get the weather for Paris, London, and Tokyo at the same time."
 ```
 
 </section>
 
-## Pemecahan masalah
+## Pemecahan masalah \{#troubleshooting}
 
-Jika Claude tidak membuat panggilan alat paralel seperti yang diharapkan, periksa masalah umum ini:
+Jika Claude tidak melakukan panggilan alat paralel seperti yang diharapkan, periksa masalah umum berikut:
 
-**1. Format hasil alat yang tidak benar**
+**1. Format hasil alat yang salah**
 
-Masalah paling umum adalah memformat hasil alat dengan tidak benar dalam riwayat percakapan. Ini "mengajarkan" Claude untuk menghindari panggilan paralel.
+Masalah paling umum adalah memformat hasil alat secara tidak benar dalam riwayat percakapan. Hal ini "mengajarkan" Claude untuk menghindari panggilan paralel.
 
 Khusus untuk penggunaan alat paralel:
 - ❌ **Salah**: Mengirim pesan pengguna terpisah untuk setiap hasil alat
 - ✅ **Benar**: Semua hasil alat harus berada dalam satu pesan pengguna
 
 ```json
-// ❌ Ini mengurangi penggunaan alat paralel
+// ❌ This reduces parallel tool use
 [
   {"role": "assistant", "content": [tool_use_1, tool_use_2]},
   {"role": "user", "content": [tool_result_1]},
-  {"role": "user", "content": [tool_result_2]}  // Pesan terpisah
+  {"role": "user", "content": [tool_result_2]}  // Separate message
 ]
 
-// ✅ Ini mempertahankan penggunaan alat paralel
+// ✅ This maintains parallel tool use
 [
   {"role": "assistant", "content": [tool_use_1, tool_use_2]},
-  {"role": "user", "content": [tool_result_1, tool_result_2]}  // Pesan tunggal
+  {"role": "user", "content": [tool_result_1, tool_result_2]}  // Single message
 ]
 ```
 
-Lihat [Handle tool calls](/docs/id/agents-and-tools/tool-use/handle-tool-calls) untuk aturan pemformatan lainnya.
+Lihat [Menangani panggilan alat](/docs/id/agents-and-tools/tool-use/handle-tool-calls) untuk aturan pemformatan lainnya.
 
 **2. Prompting yang lemah**
 
@@ -914,11 +933,11 @@ Prompting default mungkin tidak cukup. Gunakan prompt sistem yang lebih kuat dar
 
 **3. Mengukur penggunaan alat paralel**
 
-Untuk memverifikasi panggilan alat paralel berfungsi:
+Untuk memverifikasi bahwa panggilan alat paralel berfungsi:
 
 ```python hidelines={1}
-messages = []  # Riwayat percakapan Anda dari objek Message asisten
-# Hitung rata-rata alat per pesan yang memanggil alat
+messages = []  # Your conversation history of assistant Message objects
+# Hitung rata-rata alat per pesan pemanggilan alat
 tool_call_messages = [
     msg for msg in messages if any(block.type == "tool_use" for block in msg.content)
 ]
@@ -929,11 +948,15 @@ avg_tools_per_message = (
     total_tool_calls / len(tool_call_messages) if tool_call_messages else 0.0
 )
 print(f"Average tools per message: {avg_tools_per_message}")
-# Harus > 1.0 jika panggilan paralel berfungsi
+# Seharusnya > 1.0 jika panggilan paralel berfungsi
 ```
 
-## Langkah berikutnya
+**4. Panggilan dalam satu batch tampak saling bergantung**
 
-- Untuk alur panggilan alat tunggal dan aturan pemformatan `tool_result`, lihat [Handle tool calls](/docs/id/agents-and-tools/tool-use/handle-tool-calls).
+Jika panggilan alat gagal karena bergantung pada panggilan lain dalam batch yang sama, kembalikan `is_error: true` dengan pesan error yang wajar (Anda tidak perlu menjelaskan dependensinya). Claude akan pulih dan mengeluarkan ulang panggilan tersebut. Jangan beralih ke eksekusi berurutan; hal itu menambah latensi dan menyembunyikan masalahnya. Untuk mengurangi kejadian ini, tambahkan ini ke prompt sistem Anda: "Only batch tool calls that are independent of each other."
+
+## Langkah selanjutnya \{#next-steps}
+
+- Untuk alur panggilan alat tunggal dan aturan pemformatan `tool_result`, lihat [Menangani panggilan alat](/docs/id/agents-and-tools/tool-use/handle-tool-calls).
 - Untuk abstraksi SDK yang menangani eksekusi paralel secara otomatis, lihat [Tool Runner](/docs/id/agents-and-tools/tool-use/tool-runner).
-- Untuk alur kerja penggunaan alat lengkap, lihat [Define tools](/docs/id/agents-and-tools/tool-use/define-tools).
+- Untuk alur kerja penggunaan alat lengkap, lihat [Mendefinisikan alat](/docs/id/agents-and-tools/tool-use/define-tools).

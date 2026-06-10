@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/php/beta/messages/batches/create
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 20429ba47f695a0073ff70a9ce026e58472188c90c432e1415f339539501d3a0
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 6cc4ee779e14ec5ce76bafbd622355daa5a5d67f9d4855240d6325d9468ebef2
 ---
 
 ## Create a Message Batch
@@ -118,6 +118,28 @@ $betaMessageBatch = $client->beta->messages->batches->create(
           ],
         ],
         'diagnostics' => ['previousMessageID' => 'previous_message_id'],
+        'fallbackCreditToken' => 'x',
+        'fallbacks' => [
+          [
+            'model' => 'claude-fable-5',
+            'maxTokens' => 0,
+            'outputConfig' => [
+              'effort' => 'low',
+              'format' => [
+                'schema' => ['foo' => 'bar'], 'type' => 'json_schema'
+              ],
+              'taskBudget' => [
+                'total' => 1024, 'type' => 'tokens', 'remaining' => 0
+              ],
+            ],
+            'speed' => 'standard',
+            'thinking' => [
+              'budgetTokens' => 1024,
+              'type' => 'enabled',
+              'display' => 'summarized',
+            ],
+          ],
+        ],
         'inferenceGeo' => 'inference_geo',
         'mcpServers' => [
           [

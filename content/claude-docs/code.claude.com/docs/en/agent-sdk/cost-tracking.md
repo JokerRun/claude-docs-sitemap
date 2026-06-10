@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/cost-tracking
-fetched_at: 2026-05-06T03:14:02.071100Z
-sha256: 38f9bf5c22dd314f31a6dbeae64bca03aa1d1ed82b0d4aab887b14ea20b431d9
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 92de7ad5f14e79871820d85bea69e3497023480b9e9341dec5830b551144331a
 ---
 
 > ## Documentation Index
@@ -242,15 +242,28 @@ The following example enables 1-hour TTL for an agent running on Bedrock:
 
 <CodeGroup>
   ```python Python theme={null}
-  options = ClaudeAgentOptions(
-      env={
-          "CLAUDE_CODE_USE_BEDROCK": "1",
-          "ENABLE_PROMPT_CACHING_1H": "1",
-      },
-  )
+  from claude_agent_sdk import ClaudeAgentOptions, query
+  import asyncio
+
+
+  async def main():
+      options = ClaudeAgentOptions(
+          env={
+              "CLAUDE_CODE_USE_BEDROCK": "1",
+              "ENABLE_PROMPT_CACHING_1H": "1",
+          },
+      )
+
+      async for message in query(prompt="Summarize this project", options=options):
+          print(message)
+
+
+  asyncio.run(main())
   ```
 
   ```typescript TypeScript theme={null}
+  import { query } from "@anthropic-ai/claude-agent-sdk";
+
   const options = {
     env: {
       ...process.env,
@@ -258,6 +271,10 @@ The following example enables 1-hour TTL for an agent running on Bedrock:
       ENABLE_PROMPT_CACHING_1H: "1",
     },
   };
+
+  for await (const message of query({ prompt: "Summarize this project", options })) {
+    console.log(message);
+  }
   ```
 </CodeGroup>
 

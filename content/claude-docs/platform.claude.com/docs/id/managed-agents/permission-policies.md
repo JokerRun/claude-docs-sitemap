@@ -1,32 +1,32 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/permission-policies
-fetched_at: 2026-04-18T03:10:04.936408Z
-sha256: fb68f22a1cdfb9d9fb86f17343217e6e7ce6c5980b15f05778f7ea331299d879
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: a1747bcaef0471f99d3357405c4b2839878cdbb1ae0335f64f1f0021766ef5e3
 ---
 
 # Kebijakan izin
 
-Kontrol kapan alat agen dan MCP dijalankan.
+Kontrol kapan alat agen dan MCP dieksekusi.
 
 ---
 
-Kebijakan izin mengontrol apakah alat yang dijalankan server (kumpulan alat agen pra-bangun dan kumpulan alat MCP) berjalan secara otomatis atau menunggu persetujuan Anda. Alat khusus dijalankan oleh aplikasi Anda dan dikendalikan oleh Anda, jadi tidak diatur oleh kebijakan izin.
+Kebijakan izin mengontrol apakah alat yang dieksekusi server (toolset agen bawaan dan toolset MCP) berjalan secara otomatis atau menunggu persetujuan Anda. Alat kustom dieksekusi oleh aplikasi Anda dan dikontrol oleh Anda, sehingga tidak diatur oleh kebijakan izin.
 
 <Note>
-Semua permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`. SDK menetapkan header beta secara otomatis.
+Semua permintaan Managed Agents API memerlukan beta header `managed-agents-2026-04-01`. SDK menetapkan beta header tersebut secara otomatis.
 </Note>
 
-## Jenis kebijakan izin
+## Jenis kebijakan izin \{#permission-policy-types}
 
 | Kebijakan | Perilaku |
 | --- | --- |
-| `always_allow` | Alat dijalankan secara otomatis tanpa konfirmasi. |
-| `always_ask` | Sesi mengeluarkan acara `session.status_idle` dan menunggu acara `user.tool_confirmation` sebelum dijalankan. |
+| `always_allow` | Alat dieksekusi secara otomatis tanpa konfirmasi. |
+| `always_ask` | Sesi dijeda dan menunggu persetujuan Anda sebelum mengeksekusi. Lihat [Merespons permintaan konfirmasi](#merespons-permintaan-konfirmasi) untuk alur event. |
 
-## Tetapkan kebijakan untuk kumpulan alat
+## Menetapkan kebijakan untuk toolset \{#set-a-policy-for-a-toolset}
 
-### Izin kumpulan alat agen
+### Izin toolset agen \{#agent-toolset-permissions}
 Saat membuat agen, Anda dapat secara opsional menerapkan kebijakan ke setiap alat dalam `agent_toolset_20260401` menggunakan `default_config.permission_policy`:
 
 <CodeGroup defaultLanguage="CLI">
@@ -38,7 +38,7 @@ agent=$(curl -fsSL https://api.anthropic.com/v1/agents \
   -H "content-type: application/json" \
   -d '{
     "name": "Coding Assistant",
-    "model": "claude-opus-4-7",
+    "model": "claude-opus-4-8",
     "tools": [
       {
         "type": "agent_toolset_20260401",
@@ -53,7 +53,7 @@ agent=$(curl -fsSL https://api.anthropic.com/v1/agents \
 ```bash CLI
 ant beta:agents create <<'YAML'
 name: Coding Assistant
-model: claude-opus-4-7
+model: claude-opus-4-8
 tools:
   - type: agent_toolset_20260401
     default_config:
@@ -65,7 +65,7 @@ YAML
 ```python Python
 agent = client.beta.agents.create(
     name="Coding Assistant",
-    model="claude-opus-4-7",
+    model="claude-opus-4-8",
     tools=[
         {
             "type": "agent_toolset_20260401",
@@ -80,7 +80,7 @@ agent = client.beta.agents.create(
 ```typescript TypeScript
 const agent = await client.beta.agents.create({
   name: "Coding Assistant",
-  model: "claude-opus-4-7",
+  model: "claude-opus-4-8",
   tools: [
     {
       type: "agent_toolset_20260401",
@@ -96,7 +96,7 @@ const agent = await client.beta.agents.create({
 var agent = await client.Beta.Agents.Create(new()
 {
     Name = "Coding Assistant",
-    Model = new("claude-opus-4-7"),
+    Model = new("claude-opus-4-8"),
     Tools =
     [
         new BetaManagedAgentsAgentToolset20260401Params
@@ -115,8 +115,7 @@ var agent = await client.Beta.Agents.Create(new()
 agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
 	Name: "Coding Assistant",
 	Model: anthropic.BetaManagedAgentsModelConfigParams{
-		ID:   "claude-opus-4-7",
-		Type: anthropic.BetaManagedAgentsModelConfigParamsTypeModelConfig,
+		ID: "claude-opus-4-8",
 	},
 	Tools: []anthropic.BetaAgentNewParamsToolUnion{{
 		OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{
@@ -134,13 +133,14 @@ agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
 if err != nil {
 	panic(err)
 }
+_ = agent
 ```
 
 ```java Java
 var agent = client.beta().agents().create(
     AgentCreateParams.builder()
         .name("Coding Assistant")
-        .model(BetaManagedAgentsModel.CLAUDE_OPUS_4_7)
+        .model(BetaManagedAgentsModel.CLAUDE_OPUS_4_8)
         .addTool(
             BetaManagedAgentsAgentToolset20260401Params.builder()
                 .type(BetaManagedAgentsAgentToolset20260401Params.Type.AGENT_TOOLSET_20260401)
@@ -160,10 +160,9 @@ var agent = client.beta().agents().create(
 ```
 
 ```php PHP
-
 $agent = $client->beta->agents->create(
     name: 'Coding Assistant',
-    model: 'claude-opus-4-7',
+    model: 'claude-opus-4-8',
     tools: [
         BetaManagedAgentsAgentToolset20260401Params::with(
             type: 'agent_toolset_20260401',
@@ -178,7 +177,7 @@ $agent = $client->beta->agents->create(
 ```ruby Ruby
 agent = client.beta.agents.create(
   name: "Coding Assistant",
-  model: "claude-opus-4-7",
+  model: "claude-opus-4-8",
   tools: [
     {
       type: "agent_toolset_20260401",
@@ -191,15 +190,15 @@ agent = client.beta.agents.create(
 ```
 </CodeGroup>
 
-`default_config` adalah pengaturan opsional. Jika Anda menghilangkannya, kumpulan alat agen akan diaktifkan dengan kebijakan izin default, `always_allow`.
+`default_config` adalah pengaturan opsional. Jika Anda menghilangkannya, toolset agen diaktifkan dengan kebijakan izin default, `always_allow`.
 
-### Izin kumpulan alat MCP
+### Izin toolset MCP \{#mcp-toolset-permissions}
 
-Kumpulan alat MCP secara default menggunakan `always_ask`. Ini memastikan bahwa alat baru yang ditambahkan ke server MCP tidak dijalankan dalam aplikasi Anda tanpa persetujuan. Untuk menyetujui otomatis alat dari server MCP yang terpercaya, atur `permission_policy` pada entri `mcp_toolset`.
+Toolset MCP secara default menggunakan `always_ask`. Ini memastikan bahwa alat baru yang ditambahkan ke server MCP tidak dieksekusi di aplikasi Anda tanpa persetujuan. Untuk menyetujui alat secara otomatis dari server MCP tepercaya, atur `default_config.permission_policy` pada entri `mcp_toolset`.
 
 `mcp_server_name` harus cocok dengan `name` yang direferensikan dalam array `mcp_servers`.
 
-Contoh ini menghubungkan server MCP GitHub dan memungkinkan alatnya berjalan tanpa konfirmasi:
+Contoh ini menghubungkan server MCP GitHub dan mengizinkan alatnya berjalan tanpa konfirmasi:
 
 <CodeGroup defaultLanguage="CLI">
 ```bash curl
@@ -210,7 +209,7 @@ agent=$(curl -fsSL https://api.anthropic.com/v1/agents \
   -H "content-type: application/json" \
   -d '{
     "name": "Dev Assistant",
-    "model": "claude-opus-4-7",
+    "model": "claude-opus-4-8",
     "mcp_servers": [
       {"type": "url", "name": "github", "url": "https://mcp.example.com/github"}
     ],
@@ -230,7 +229,7 @@ agent=$(curl -fsSL https://api.anthropic.com/v1/agents \
 ```bash CLI
 ant beta:agents create <<'YAML'
 name: Dev Assistant
-model: claude-opus-4-7
+model: claude-opus-4-8
 mcp_servers:
   - type: url
     name: github
@@ -248,7 +247,7 @@ YAML
 ```python Python
 agent = client.beta.agents.create(
     name="Dev Assistant",
-    model="claude-opus-4-7",
+    model="claude-opus-4-8",
     mcp_servers=[
         {"type": "url", "name": "github", "url": "https://mcp.example.com/github"},
     ],
@@ -268,7 +267,7 @@ agent = client.beta.agents.create(
 ```typescript TypeScript
 const agent = await client.beta.agents.create({
   name: "Dev Assistant",
-  model: "claude-opus-4-7",
+  model: "claude-opus-4-8",
   mcp_servers: [{ type: "url", name: "github", url: "https://mcp.example.com/github" }],
   tools: [
     { type: "agent_toolset_20260401" },
@@ -287,7 +286,7 @@ const agent = await client.beta.agents.create({
 var agent = await client.Beta.Agents.Create(new()
 {
     Name = "Dev Assistant",
-    Model = new("claude-opus-4-7"),
+    Model = new("claude-opus-4-8"),
     McpServers =
     [
         new() { Type = "url", Name = "github", Url = "https://mcp.example.com/github" },
@@ -315,11 +314,10 @@ var agent = await client.Beta.Agents.Create(new()
 agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
 	Name: "Dev Assistant",
 	Model: anthropic.BetaManagedAgentsModelConfigParams{
-		ID:   "claude-opus-4-7",
-		Type: anthropic.BetaManagedAgentsModelConfigParamsTypeModelConfig,
+		ID: "claude-opus-4-8",
 	},
-	MCPServers: []anthropic.BetaManagedAgentsUrlmcpServerParams{{
-		Type: anthropic.BetaManagedAgentsUrlmcpServerParamsTypeURL,
+	MCPServers: []anthropic.BetaManagedAgentsURLMCPServerParams{{
+		Type: anthropic.BetaManagedAgentsURLMCPServerParamsTypeURL,
 		Name: "github",
 		URL:  "https://mcp.example.com/github",
 	}},
@@ -347,16 +345,17 @@ agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
 if err != nil {
 	panic(err)
 }
+_ = agent
 ```
 
 ```java Java
 var agent = client.beta().agents().create(
     AgentCreateParams.builder()
         .name("Dev Assistant")
-        .model(BetaManagedAgentsModel.CLAUDE_OPUS_4_7)
+        .model(BetaManagedAgentsModel.CLAUDE_OPUS_4_8)
         .addMcpServer(
-            BetaManagedAgentsUrlmcpServerParams.builder()
-                .type(BetaManagedAgentsUrlmcpServerParams.Type.URL)
+            BetaManagedAgentsUrlMcpServerParams.builder()
+                .type(BetaManagedAgentsUrlMcpServerParams.Type.URL)
                 .name("github")
                 .url("https://mcp.example.com/github")
                 .build()
@@ -388,13 +387,13 @@ var agent = client.beta().agents().create(
 ```php PHP
 use Anthropic\Beta\Agents\BetaManagedAgentsMCPToolsetDefaultConfigParams;
 use Anthropic\Beta\Agents\BetaManagedAgentsMCPToolsetParams;
-use Anthropic\Beta\Agents\BetaManagedAgentsUrlmcpServerParams;
+use Anthropic\Beta\Agents\BetaManagedAgentsURLMCPServerParams;
 
 $agent = $client->beta->agents->create(
     name: 'Dev Assistant',
-    model: 'claude-opus-4-7',
+    model: 'claude-opus-4-8',
     mcpServers: [
-        BetaManagedAgentsUrlmcpServerParams::with(
+        BetaManagedAgentsURLMCPServerParams::with(
             type: 'url',
             name: 'github',
             url: 'https://mcp.example.com/github',
@@ -418,7 +417,7 @@ $agent = $client->beta->agents->create(
 ```ruby Ruby
 agent = client.beta.agents.create(
   name: "Dev Assistant",
-  model: "claude-opus-4-7",
+  model: "claude-opus-4-8",
   mcp_servers: [
     {type: "url", name: "github", url: "https://mcp.example.com/github"}
   ],
@@ -436,11 +435,11 @@ agent = client.beta.agents.create(
 ```
 </CodeGroup>
 
-## Ganti kebijakan alat individual
+## Mengganti kebijakan alat individual \{#override-an-individual-tool-policy}
 
-Gunakan array `configs` untuk mengganti default untuk alat individual. Contoh ini memungkinkan kumpulan alat agen lengkap secara default tetapi memerlukan konfirmasi sebelum perintah bash apa pun dijalankan:
+Gunakan array `configs` untuk mengganti default pada alat individual. Contoh ini mengizinkan seluruh toolset agen secara default tetapi memerlukan konfirmasi sebelum perintah bash apa pun dijalankan:
 
-<CodeGroup>
+<CodeGroup defaultLanguage="CLI">
 ```bash curl
 tools='[
   {
@@ -617,20 +616,20 @@ tools = [
 ```
 </CodeGroup>
 
-## Merespons permintaan konfirmasi
+## Merespons permintaan konfirmasi \{#respond-to-confirmation-requests}
 
 Ketika agen memanggil alat dengan kebijakan `always_ask`:
 
-1. Sesi mengeluarkan acara `agent.tool_use` atau `agent.mcp_tool_use`.
-2. Sesi dijeda dengan acara `session.status_idle` yang berisi `stop_reason: requires_action`. ID acara pemblokiran ada dalam array `stop_reason.requires_action.event_ids`.
-3. Kirim acara `user.tool_confirmation` untuk masing-masing, meneruskan ID acara dalam parameter `tool_use_id`. Atur `result` ke `"allow"` atau `"deny"`. Gunakan `deny_message` untuk menjelaskan penolakan.
-4. Setelah semua acara pemblokiran diselesaikan, sesi beralih kembali ke `running`.
+1. Sesi mengeluarkan event `agent.tool_use` atau `agent.mcp_tool_use`.
+2. Sesi dijeda dengan event `session.status_idle` yang berisi `stop_reason: requires_action`. ID event yang memblokir ada dalam array `stop_reason.event_ids`.
+3. Kirim event `user.tool_confirmation` untuk masing-masing, dengan meneruskan ID event dalam parameter `tool_use_id`. Atur `result` ke `"allow"` atau `"deny"`. Gunakan `deny_message` untuk menjelaskan penolakan.
+4. Setelah semua event yang memblokir diselesaikan, sesi beralih kembali ke `running`.
 
-Pelajari lebih lanjut tentang penanganan acara dalam panduan [aliran acara sesi](/docs/id/managed-agents/events-and-streaming).
+Pelajari lebih lanjut tentang penanganan event dalam panduan [Aliran event sesi](/docs/id/managed-agents/events-and-streaming).
 
-<CodeGroup>
+<CodeGroup defaultLanguage="CLI">
 ```bash curl
-# Izinkan alat untuk dijalankan
+# Izinkan alat untuk dieksekusi
 curl -fsSL "https://api.anthropic.com/v1/sessions/$SESSION_ID/events" \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
@@ -664,8 +663,8 @@ curl -fsSL "https://api.anthropic.com/v1/sessions/$SESSION_ID/events" \
   }'
 ```
 
-```bash CLI
-# Izinkan alat untuk dijalankan
+```bash CLI nocheck
+# Izinkan alat untuk dieksekusi
 ant beta:sessions:events send \
   --session-id "$SESSION_ID" \
   --event "{type: user.tool_confirmation, tool_use_id: $AGENT_TOOL_USE_EVENT_ID, result: allow}"
@@ -678,7 +677,7 @@ ant beta:sessions:events send \
 ```
 
 ```python Python
-# Izinkan alat untuk dijalankan
+# Izinkan alat untuk dieksekusi
 client.beta.sessions.events.send(
     session.id,
     events=[
@@ -705,7 +704,7 @@ client.beta.sessions.events.send(
 ```
 
 ```typescript TypeScript
-// Izinkan alat untuk dijalankan
+// Izinkan alat untuk dieksekusi
 await client.beta.sessions.events.send(session.id, {
   events: [
     {
@@ -730,7 +729,7 @@ await client.beta.sessions.events.send(session.id, {
 ```
 
 ```csharp C#
-// Izinkan alat untuk dijalankan
+// Izinkan alat untuk dieksekusi
 await client.Beta.Sessions.Events.Send(session.ID, new()
 {
     Events =
@@ -761,9 +760,9 @@ await client.Beta.Sessions.Events.Send(session.ID, new()
 ```
 
 ```go Go
-// Izinkan alat untuk dijalankan
+// Izinkan alat untuk dieksekusi
 _, err = client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
-	Events: []anthropic.SendEventsParamsUnion{{
+	Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
 		OfUserToolConfirmation: &anthropic.BetaManagedAgentsUserToolConfirmationEventParams{
 			Type:      anthropic.BetaManagedAgentsUserToolConfirmationEventParamsTypeUserToolConfirmation,
 			ToolUseID: agentToolUseEvent.ID,
@@ -777,7 +776,7 @@ if err != nil {
 
 // Atau tolak dengan penjelasan
 _, err = client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
-	Events: []anthropic.SendEventsParamsUnion{{
+	Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
 		OfUserToolConfirmation: &anthropic.BetaManagedAgentsUserToolConfirmationEventParams{
 			Type:        anthropic.BetaManagedAgentsUserToolConfirmationEventParamsTypeUserToolConfirmation,
 			ToolUseID:   mcpToolUseEvent.ID,
@@ -792,7 +791,7 @@ if err != nil {
 ```
 
 ```java Java
-// Izinkan alat untuk dijalankan
+// Izinkan alat untuk dieksekusi
 client.beta().sessions().events().send(
     session.id(),
     EventSendParams.builder()
@@ -825,7 +824,7 @@ client.beta().sessions().events().send(
 ```php PHP
 use Anthropic\Beta\Sessions\Events\ManagedAgentsUserToolConfirmationEventParams;
 
-// Izinkan alat untuk dijalankan
+// Izinkan alat untuk dieksekusi
 $client->beta->sessions->events->send(
     $session->id,
     events: [
@@ -852,7 +851,7 @@ $client->beta->sessions->events->send(
 ```
 
 ```ruby Ruby
-# Izinkan alat untuk dijalankan
+# Izinkan alat untuk dieksekusi
 client.beta.sessions.events.send_(
   session.id,
   events: [
@@ -879,6 +878,6 @@ client.beta.sessions.events.send_(
 ```
 </CodeGroup>
 
-## Alat khusus
+## Alat kustom \{#custom-tools}
 
-Kebijakan izin tidak berlaku untuk alat khusus. Ketika agen memanggil alat khusus, aplikasi Anda menerima acara `agent.custom_tool_use` dan bertanggung jawab untuk memutuskan apakah akan menjalankannya sebelum mengirim kembali `user.custom_tool_result`. Lihat [Aliran acara sesi](/docs/id/managed-agents/events-and-streaming#handling-custom-tool-calls) untuk alur lengkapnya.
+Kebijakan izin tidak berlaku untuk alat kustom. Ketika agen memanggil alat kustom, aplikasi Anda menerima event `agent.custom_tool_use` dan bertanggung jawab untuk memutuskan apakah akan mengeksekusinya sebelum mengirim kembali `user.custom_tool_result`. Lihat [Aliran event sesi](/docs/id/managed-agents/events-and-streaming#handling-custom-tool-calls) untuk alur lengkapnya.

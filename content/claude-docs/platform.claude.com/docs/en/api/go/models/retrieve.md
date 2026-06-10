@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/models/retrieve
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 31ff61dca00a4699e070293f25504625c8172c102b36f083e7684a6f9368452a
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 7a1ada1f33d2755017f019a6c951c4129f22a71219b2c5437cfa19f47f629db3
 ---
 
 ## Get a Model
@@ -82,6 +82,10 @@ The Models API response can be used to determine information about a specific mo
       - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
 
       - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
+
+      - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
+
+      - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
 
 ### Returns
 

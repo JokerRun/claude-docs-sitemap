@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/sessions/threads/list
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: c9ebd0eace1c9378dcd41f8170e38405f47d20d26f522368859169e0367427b2
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: bf801d278dbb841af7e4507777d82ee8521789ea2dae82b26ed6b8abe05f1d5a
 ---
 
 ## List Session Threads
@@ -67,11 +67,15 @@ List Session Threads
 
         Model identifier and configuration.
 
-        - `id: "claude-opus-4-8" or "claude-opus-4-7" or "claude-opus-4-6" or 7 more or string`
+        - `id: "claude-fable-5" or "claude-opus-4-8" or "claude-opus-4-7" or 8 more or string`
 
           The model that will power your agent.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `"claude-fable-5"`
+
+            Next generation of intelligence for the hardest knowledge work and coding problems
 
           - `"claude-opus-4-8"`
 
@@ -271,23 +275,15 @@ List Session Threads
 
           - `description: string`
 
-          - `input_schema: object { properties, required, type }`
+          - `input_schema: object { type, properties, required }`
 
             JSON Schema for custom tool input parameters.
 
+            - `type: "object"`
+
             - `properties: optional map[unknown]`
 
-              JSON Schema properties defining the tool's input parameters.
-
             - `required: optional array of string`
-
-              List of required property names.
-
-            - `type: optional "object"`
-
-              Must be 'object' for tool input schemas.
-
-              - `"object"`
 
           - `name: string`
 

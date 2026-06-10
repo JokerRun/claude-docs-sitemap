@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/php/messages
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 787f3136965b53b520c40f176b5d90778beed5e827cff2e26390d8ace4f82a34
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: e0dae60de18114d59baa5980f72323b626790663403e4a5d94dc7c01e45ba4e2
 ---
 
 # Messages
@@ -2554,6 +2554,14 @@ var_dump($messageTokensCount);
 
 - `Model`
 
+  - `"claude-fable-5"`
+
+    Next generation of intelligence for the hardest knowledge work and coding problems
+
+  - `"claude-mythos-5"`
+
+    Most capable model for cybersecurity and biology research
+
   - `"claude-opus-4-8"`
 
     Frontier intelligence for long-running agents and coding
@@ -3728,6 +3736,8 @@ var_dump($messageTokensCount);
   - `ToolSearchToolResultErrorCode errorCode`
 
   - `"tool_search_tool_result_error" type`
+
+  - `?string errorMessage`
 
 ### Tool Search Tool Search Result Block
 

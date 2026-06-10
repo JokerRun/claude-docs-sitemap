@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/retrieve
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 9a8222b222d7337177dba9542d3e7c7d9edfadb2fdd812fbba7840a456776e6b
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: e4328d552ab218ce12973bc3e05ec8b6dd5421936b1d69728ac9f1d55d8b36ca
 ---
 
 ## Retrieve a memory store
@@ -23,7 +23,7 @@ Retrieve a memory store
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 23 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 25 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -76,6 +76,10 @@ Retrieve a memory store
     - `"cache-diagnosis-2026-04-07"`
 
     - `"thinking-token-count-2026-05-13"`
+
+    - `"server-side-fallback-2026-06-01"`
+
+    - `"fallback-credit-2026-06-01"`
 
 ### Returns
 

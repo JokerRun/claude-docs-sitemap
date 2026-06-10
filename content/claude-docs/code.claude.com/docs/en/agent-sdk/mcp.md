@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/mcp
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: b66bed121cd6f44df59e8f32f889c59f4512bca4f77b42bf55cc619d6cb34989
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: fe3c317ed5d54af8bb94f69587b7fb18f611c7a17ba001c8263d516d5e58ed82
 ---
 
 > ## Documentation Index
@@ -23,7 +23,7 @@ MCP servers can run as local processes, connect over HTTP, or execute directly w
 
 ## Quickstart
 
-This example connects to the [Claude Code documentation](https://code.claude.com/docs) MCP server using [HTTP transport](#httpsse-servers) and uses [`allowedTools`](#allow-mcp-tools) with a wildcard to permit all tools from the server.
+This example connects to the [Claude Code documentation](https://code.claude.com/docs) MCP server using [HTTP transport](#http%2Fsse-servers) and uses [`allowedTools`](#allow-mcp-tools) with a wildcard to permit all tools from the server.
 
 <CodeGroup>
   ```typescript TypeScript theme={null}
@@ -181,7 +181,7 @@ const _ = {
 Wildcards (`*`) let you allow all tools from a server without listing each one individually.
 
 <Note>
-  **Prefer `allowedTools` over permission modes for MCP access.** `permissionMode: "acceptEdits"` does not auto-approve MCP tools (only file edits and filesystem Bash commands). `permissionMode: "bypassPermissions"` does auto-approve MCP tools but also disables all other safety prompts, which is broader than necessary. A wildcard in `allowedTools` grants exactly the MCP server you want and nothing more. See [Permission modes](/en/agent-sdk/permissions#permission-modes) for a full comparison.
+  **Prefer `allowedTools` over permission modes for MCP access.** `permissionMode: "acceptEdits"` does not auto-approve MCP tools (only file edits and filesystem Bash commands). `permissionMode: "bypassPermissions"` does auto-approve MCP tools but also disables other safety prompts unless an explicit [`ask` rule](/en/agent-sdk/permissions#how-permissions-are-evaluated) matches, which is broader than necessary. A wildcard in `allowedTools` grants exactly the MCP server you want and nothing more. See [Permission modes](/en/agent-sdk/permissions#permission-modes) for a full comparison.
 </Note>
 
 ### Discover available tools

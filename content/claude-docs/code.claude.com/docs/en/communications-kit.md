@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/communications-kit
-fetched_at: 2026-04-29T03:13:50.297940Z
-sha256: 14f4728a03fac9f77a12588acf76308f1e2fc8b271c7d7af19b05c07b69d2f9e
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 662827e43c14c6068d878d495f0113695e4b87ce9332ff26078d2e6899d1edd4
 ---
 
 > ## Documentation Index
@@ -220,7 +220,10 @@ Claude Code runs on the same models as the Claude app, and you can switch
 mid-session. *Sonnet* is the workhorse default for everyday feature work,
 bugs, tests, and reviews. Reach for *Opus* on large refactors, gnarly
 debugging, or anything high-stakes. Drop to *Haiku* for quick questions,
-formatting, and mechanical edits where speed wins.
+formatting, and mechanical edits where speed wins. *Fable 5* is the most
+capable model for your hardest, longest-running tasks; it is not the
+default, so select it with `/model fable`, and note that cybersecurity and
+biology content falls back to Opus automatically.
 
 *Try it now:* type `/model` and pick Sonnet if you haven't already. It is
 the right default for most tasks.
@@ -228,11 +231,12 @@ the right default for most tasks.
 📖 Model configuration → https://code.claude.com/docs/en/model-config
 ```
 
-| Model  | Best for                                                                                  |
-| ------ | ----------------------------------------------------------------------------------------- |
-| Opus   | Large-scale refactors, complex debugging, architecture decisions, high-stakes changes     |
-| Sonnet | Everyday feature work, bug fixes, tests, documentation, code review. Recommended default. |
-| Haiku  | Quick questions, formatting, mechanical edits, rapid iteration                            |
+| Model   | Best for                                                                                                                                                                         |
+| ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Fable 5 | The hardest, longest-running tasks. Opt-in only: select it with `/model fable`. Cybersecurity or biology content [falls back to Opus](/en/model-config#automatic-model-fallback) |
+| Opus    | Large-scale refactors, complex debugging, architecture decisions, high-stakes changes                                                                                            |
+| Sonnet  | Everyday feature work, bug fixes, tests, documentation, code review. Recommended default.                                                                                        |
+| Haiku   | Quick questions, formatting, mechanical edits, rapid iteration                                                                                                                   |
 
 **Quick wins to try first**
 

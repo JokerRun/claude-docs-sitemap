@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/environments/work/stats
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 7105d7842152a4d157bb2dc87f8635e89dbb387347a8c61c229c07f0a9efc44a
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: c76633e2c75e0ec5e9c4ffcccf01af3db5daace7f1d34bb9718a95f762bbe559
 ---
 
 ## Get Queue Statistics
@@ -23,7 +23,7 @@ Get statistics about the work queue for an environment.
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 23 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 25 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -76,6 +76,10 @@ Get statistics about the work queue for an environment.
     - `"cache-diagnosis-2026-04-07"`
 
     - `"thinking-token-count-2026-05-13"`
+
+    - `"server-side-fallback-2026-06-01"`
+
+    - `"fallback-credit-2026-06-01"`
 
 ### Returns
 

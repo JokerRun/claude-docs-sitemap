@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/php/beta/agents/create
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 271b5f1d16b9910d03c48af2ce470e6d7b50dc8fa5d61f28e189681b92e8afba
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 43069d2bd11ea105f74366cde003fce2ca142e1c6c189216630af64eac03b67d
 ---
 
 ## Create Agent
@@ -21,11 +21,11 @@ Create Agent
 
 - `name: string`
 
-  Human-readable name for the agent. 1-256 characters.
+  Human-readable name for the agent.
 
 - `description?:optional string`
 
-  Description of what the agent does. Up to 2048 characters.
+  Description of what the agent does.
 
 - `mcpServers?:optional list<BetaManagedAgentsURLMCPServerParams>`
 
@@ -41,11 +41,11 @@ Create Agent
 
 - `skills?:optional list<BetaManagedAgentsSkillParams>`
 
-  Skills available to the agent. Maximum 20.
+  Skills available to the agent.
 
 - `system?:optional string`
 
-  System prompt for the agent. Up to 100,000 characters.
+  System prompt for the agent.
 
 - `tools?:optional list<Tool>`
 

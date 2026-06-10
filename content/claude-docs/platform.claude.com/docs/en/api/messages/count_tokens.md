@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/count_tokens
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 47ef761bb622d78e3d354c743941dd9312fb36d41eb5d7bebcb1eecbd414d495
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: f11133fd60bca4155efc45d0f665e958e7d79607b4ec99ce68fa103fb498026d
 ---
 
 ## Count tokens in a Message
@@ -835,7 +835,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `content: ToolSearchToolResultErrorParam or ToolSearchToolSearchResultBlockParam`
 
-          - `ToolSearchToolResultErrorParam object { error_code, type }`
+          - `ToolSearchToolResultErrorParam object { error_code, type, error_message }`
 
             - `error_code: ToolSearchToolResultErrorCode`
 
@@ -850,6 +850,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
             - `type: "tool_search_tool_result_error"`
 
               - `"tool_search_tool_result_error"`
+
+            - `error_message: optional string`
 
           - `ToolSearchToolSearchResultBlockParam object { tool_references, type }`
 
@@ -935,11 +937,19 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-  - `"claude-opus-4-8" or "claude-opus-4-7" or "claude-mythos-preview" or 15 more`
+  - `"claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more`
 
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+    - `"claude-fable-5"`
+
+      Next generation of intelligence for the hardest knowledge work and coding problems
+
+    - `"claude-mythos-5"`
+
+      Most capable model for cybersecurity and biology research
 
     - `"claude-opus-4-8"`
 

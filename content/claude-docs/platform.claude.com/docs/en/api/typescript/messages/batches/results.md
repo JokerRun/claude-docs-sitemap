@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/messages/batches/results
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 9b6aaa606e03b1720d81831b8dd8e71eefb6a24d7baecad3a8904a8ab2da622a
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 330999aab0210de562f95f86d2d4daea75c9b7c60241ca30d9a2d1b69850dd6f
 ---
 
 ## Retrieve Message Batch results
@@ -730,7 +730,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-          - `"claude-opus-4-8" | "claude-opus-4-7" | "claude-mythos-preview" | 15 more`
+          - `"claude-fable-5" | "claude-mythos-5" | "claude-opus-4-8" | 17 more`
+
+            - `"claude-fable-5"`
+
+              Next generation of intelligence for the hardest knowledge work and coding problems
+
+            - `"claude-mythos-5"`
+
+              Most capable model for cybersecurity and biology research
 
             - `"claude-opus-4-8"`
 
@@ -818,7 +826,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           Structured information about a refusal.
 
-          - `category: "cyber" | "bio" | null`
+          - `category: "cyber" | "bio" | "reasoning_extraction" | null`
 
             The policy category that triggered the refusal.
 
@@ -827,6 +835,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `"cyber"`
 
             - `"bio"`
+
+            - `"reasoning_extraction"`
 
           - `explanation: string | null`
 

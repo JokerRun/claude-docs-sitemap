@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/user_profiles/retrieve
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 82a707e6008b010482a74f33464f7fada78c16b7703d9056dc7f89d8d0a47888
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 1780d1630622f7a7a5ce301c181a9a890283c701241b48dae93de8a10fe8efb9
 ---
 
 ## Get User Profile
@@ -25,7 +25,7 @@ Get User Profile
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 23 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -78,6 +78,10 @@ Get User Profile
       - `"cache-diagnosis-2026-04-07"`
 
       - `"thinking-token-count-2026-05-13"`
+
+      - `"server-side-fallback-2026-06-01"`
+
+      - `"fallback-credit-2026-06-01"`
 
 ### Returns
 

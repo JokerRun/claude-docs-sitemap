@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/events/send
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: b1f12c8a2cdcdc9e6a115da664671ed67bcfec60c0d2dc6752f1e9dcb8c88fcf
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 84d1663f578765c3c3ab79d4aaa3b2fd33e9aab5855b61361318ecc8940dfb94
 ---
 
 ## Send Events
@@ -23,7 +23,7 @@ Send Events
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 23 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 25 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -76,6 +76,10 @@ Send Events
     - `"cache-diagnosis-2026-04-07"`
 
     - `"thinking-token-count-2026-05-13"`
+
+    - `"server-side-fallback-2026-06-01"`
+
+    - `"fallback-credit-2026-06-01"`
 
 ### Body Parameters
 
@@ -421,13 +425,33 @@ Send Events
 
       Whether the tool execution resulted in an error.
 
+  - `BetaManagedAgentsSystemMessageEventParams object { content, type }`
+
+    Privileged context for the accompanying turn and all subsequent turns, appended to the session's system context as a `role: "system"` turn rather than replacing the top-level system prompt. At most one per request: it must be the final event and immediately follow the `user.message`, `user.tool_result`, or `user.custom_tool_result` it accompanies. Only supported on models that accept mid-conversation system messages.
+
+    - `content: array of BetaManagedAgentsSystemContentBlock`
+
+      System content blocks to append. Text-only.
+
+      - `text: string`
+
+        The text content.
+
+      - `type: "text"`
+
+        - `"text"`
+
+    - `type: "system.message"`
+
+      - `"system.message"`
+
 ### Returns
 
 - `BetaManagedAgentsSendSessionEvents object { data }`
 
   Events that were successfully sent to the session.
 
-  - `data: optional array of BetaManagedAgentsUserMessageEvent or BetaManagedAgentsUserInterruptEvent or BetaManagedAgentsUserToolConfirmationEvent or 3 more`
+  - `data: optional array of BetaManagedAgentsUserMessageEvent or BetaManagedAgentsUserInterruptEvent or BetaManagedAgentsUserToolConfirmationEvent or 4 more`
 
     Sent events
 
@@ -832,6 +856,34 @@ Send Events
       - `session_thread_id: optional string`
 
         Routes this result to a subagent thread. Copy from the `agent.tool_use` event's `session_thread_id`.
+
+    - `BetaManagedAgentsSystemMessageEvent object { id, content, type, processed_at }`
+
+      A mid-conversation system message event. Carries system-role content that is appended to the session as a `role: "system"` turn.
+
+      - `id: string`
+
+        Unique identifier for this event.
+
+      - `content: array of BetaManagedAgentsSystemContentBlock`
+
+        System content blocks. Text-only.
+
+        - `text: string`
+
+          The text content.
+
+        - `type: "text"`
+
+          - `"text"`
+
+      - `type: "system.message"`
+
+        - `"system.message"`
+
+      - `processed_at: optional string`
+
+        A timestamp in RFC 3339 format
 
 ### Example
 

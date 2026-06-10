@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/memory_stores/memories/create
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 00ac91b97bf155433af5de4aaeae0778d7c1dd77b9156bc06e70253ee398ab1e
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: a4f27457824bac588c68393e8b57aa2ad5478f468f13418db36ba17f1cd19d9d
 ---
 
 ## Create a memory
@@ -88,6 +88,10 @@ Create a memory
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 

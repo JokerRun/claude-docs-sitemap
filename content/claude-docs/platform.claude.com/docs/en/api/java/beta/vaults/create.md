@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/create
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: dbb5fc067a0faa2b746df5e34c4bd893a9a18d995b757f361e944c03a8b675c7
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: de0725d2228db9c349e1a7e027df9287690c7f5ceac29a10d84de45fe919bef8
 ---
 
 ## Create Vault
@@ -72,6 +72,10 @@ Create Vault
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
+
+    - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
+
+    - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
 
   - `String displayName`
 

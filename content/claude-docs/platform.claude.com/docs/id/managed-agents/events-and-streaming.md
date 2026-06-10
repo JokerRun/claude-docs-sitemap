@@ -1,99 +1,43 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/events-and-streaming
-fetched_at: 2026-05-21T03:16:34.837917Z
-sha256: 928d9ef6a504b87662368c33d3858f90ef5368ea61d5b55702c728d2c9de576c
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: b7c0d6a4b709587d4bf4df1a8a55d0dd86133fe35c1dfb90e3d460ab54aa85b9
 ---
 
-# Aliran peristiwa sesi
+# Aliran event sesi
 
-Kirim peristiwa, streaming respons, dan hentikan atau alihkan sesi Anda di tengah eksekusi.
+Kirim event, stream respons, dan interupsi atau alihkan sesi Anda di tengah eksekusi.
 
 ---
 
-Komunikasi dengan Claude Managed Agents berbasis peristiwa. Anda mengirim peristiwa pengguna ke agen, dan menerima peristiwa agen dan sesi kembali untuk melacak status.
+Komunikasi dengan Claude Managed Agents berbasis event. Anda mengirim event pengguna ke agen, dan menerima kembali event agen dan event sesi untuk melacak status.
 
 <Note>
-Semua permintaan API Managed Agents memerlukan header beta `managed-agents-2026-04-01`. SDK secara otomatis menetapkan header beta.
+Semua permintaan Managed Agents API memerlukan beta header `managed-agents-2026-04-01`. SDK menetapkan beta header tersebut secara otomatis.
 </Note>
 
-## Jenis peristiwa
+## Jenis event \{#event-types}
 
-Peristiwa mengalir dalam dua arah.
-- **Peristiwa pengguna** adalah apa yang Anda kirim ke agen untuk memulai sesi dan mengarahkannya saat berkembang.
-- **Peristiwa sesi**, **peristiwa span**, dan **peristiwa agen** dikirim kepada Anda untuk observabilitas ke dalam status sesi dan kemajuan agen Anda.
+Event mengalir dalam dua arah.
+- **Event pengguna** dan **event sistem** adalah yang Anda kirim ke agen: event `user.*` memulai sesi dan mengarahkannya saat berjalan; `system.message` memperbarui prompt sistem agen di antara giliran.
+- **Event sesi**, **event span**, dan **event agen** dikirim kepada Anda untuk observabilitas terhadap status sesi dan progres agen Anda.
 
-String jenis peristiwa mengikuti konvensi penamaan `{domain}.{action}`.
+String jenis event mengikuti konvensi penamaan `{domain}.{action}`. Lihat [Jenis event](/docs/id/managed-agents/reference#event-types) di referensi untuk katalog lengkapnya.
 
-<Tabs>
-  <Tab title="Peristiwa pengguna">
+Setiap event menyertakan timestamp `processed_at` yang menunjukkan kapan event tersebut dicatat di sisi server. Jika `processed_at` bernilai null, artinya event telah diantrekan oleh harness dan ditangani setelah event sebelumnya selesai diproses.
 
-| Jenis | Deskripsi |
-| --- | --- |
-| `user.message` | Pesan pengguna dengan konten teks. |
-| `user.interrupt` | Hentikan agen di tengah eksekusi. |
-| `user.custom_tool_result` | Respons terhadap panggilan alat kustom dari agen. |
-| `user.tool_confirmation` | Setujui atau tolak panggilan alat agen atau MCP ketika kebijakan izin memerlukan konfirmasi. |
-| `user.define_outcome` | Tentukan [hasil](/docs/id/managed-agents/define-outcomes) untuk agen bekerja menuju.  |
-
-  </Tab>
-  <Tab title="Peristiwa agen">
-
-| Jenis | Deskripsi |
-| --- | --- |
-| `agent.message` | Respons agen yang berisi blok konten teks. |
-| `agent.thinking` | Konten pemikiran agen, dipancarkan terpisah dari pesan. |
-| `agent.tool_use` | Agen menjalankan alat agen pra-bangun (bash, operasi file, dan sebagainya). |
-| `agent.tool_result` | Hasil eksekusi alat agen pra-bangun. |
-| `agent.mcp_tool_use` | Agen menjalankan alat server MCP. |
-| `agent.mcp_tool_result` | Hasil eksekusi alat MCP. |
-| `agent.custom_tool_use` | Agen menjalankan salah satu alat kustom Anda. Respons dengan peristiwa `user.custom_tool_result`. |
-| `agent.thread_context_compacted` | Riwayat percakapan dikompres agar sesuai dengan jendela konteks. |
-| `agent.thread_message_sent` | Agen mengirim pesan ke [multiagent](/docs/id/managed-agents/multi-agent) thread lain. |
-| `agent.thread_message_received` | Agen menerima pesan dari [multiagent](/docs/id/managed-agents/multi-agent) thread lain. |
-
-  </Tab>
-  <Tab title="Peristiwa sesi">
-
-| Jenis | Deskripsi |
-| --- | --- |
-| `session.status_running` | Agen sedang memproses secara aktif. |
-| `session.status_idle` | Agen menyelesaikan tugas saat ini dan menunggu masukan. Mencakup `stop_reason` yang menunjukkan mengapa agen berhenti. |
-| `session.status_rescheduled` | Kesalahan transien terjadi dan sesi sedang mencoba ulang secara otomatis. |
-| `session.status_terminated` | Sesi berakhir karena kesalahan yang tidak dapat dipulihkan. |
-| `session.error` | Kesalahan terjadi selama pemrosesan. Mencakup objek `error` yang diketik dengan `retry_status`. |
-| `session.outcome_evaluated` | Evaluasi [hasil](/docs/id/managed-agents/define-outcomes) telah mencapai status terminal.  |
-| `session.thread_created` | Koordinator menelurkan [multiagent](/docs/id/managed-agents/multi-agent) thread baru. |
-| `session.thread_idle` | [multiagent](/docs/id/managed-agents/multi-agent) thread menyelesaikan pekerjaan saat ini. |
-
-  </Tab>
-  <Tab title="Peristiwa span">
-
-Peristiwa span adalah penanda observabilitas yang membungkus aktivitas untuk waktu dan pelacakan penggunaan.
-
-| Jenis | Deskripsi |
-| --- | --- |
-| `span.model_request_start` | Panggilan inferensi model telah dimulai. |
-| `span.model_request_end` | Panggilan inferensi model telah selesai. Mencakup `model_usage` dengan jumlah token. |
-| `span.outcome_evaluation_start` | Evaluasi [hasil](/docs/id/managed-agents/define-outcomes) telah dimulai.  |
-| `span.outcome_evaluation_ongoing` | Detak jantung selama evaluasi [hasil](/docs/id/managed-agents/define-outcomes) yang sedang berlangsung.  |
-| `span.outcome_evaluation_end` | Evaluasi [hasil](/docs/id/managed-agents/define-outcomes) telah selesai.  |
-
-  </Tab>
-</Tabs>
-
-Setiap peristiwa mencakup stempel waktu `processed_at` yang menunjukkan kapan peristiwa dicatat di sisi server. Jika `processed_at` adalah null, itu berarti peristiwa telah antri oleh harness dan akan ditangani setelah peristiwa sebelumnya selesai diproses.
-
-## Mengintegrasikan peristiwa
+## Mengintegrasikan event \{#integrating-events}
 
 <Tabs>
-  <Tab title="Mengirim peristiwa">
+  <Tab title="Mengirim event">
 
-Kirim peristiwa `user.message` untuk memulai atau melanjutkan pekerjaan agen:
+Kirim event `user.message` untuk memulai atau melanjutkan pekerjaan agen:
 
 <CodeGroup>
-```bash curl
-curl -sS --fail-with-body "https://api.anthropic.com/v1/sessions/$SESSION_ID/events?beta=true" \
+  
+````bash
+curl --fail-with-body -sS "https://api.anthropic.com/v1/sessions/$SESSION_ID/events?beta=true" \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
   -H "anthropic-beta: managed-agents-2026-04-01" \
@@ -110,9 +54,21 @@ curl -sS --fail-with-body "https://api.anthropic.com/v1/sessions/$SESSION_ID/eve
   ]
 }
 EOF
-```
+````
 
-```python Python
+  
+````bash
+ant beta:sessions:events send --session-id "$SESSION_ID" <<'YAML'
+events:
+  - type: user.message
+    content:
+      - type: text
+        text: Analyze the performance of the sort function in utils.py
+YAML
+````
+
+  
+````python
 client.beta.sessions.events.send(
     session.id,
     events=[
@@ -127,9 +83,10 @@ client.beta.sessions.events.send(
         },
     ],
 )
-```
+````
 
-```typescript TypeScript
+  
+````typescript
 await client.beta.sessions.events.send(session.id, {
   events: [
     {
@@ -137,15 +94,16 @@ await client.beta.sessions.events.send(session.id, {
       content: [
         {
           type: "text",
-          text: "Analyze the performance of the sort function in utils.py"
-        }
-      ]
-    }
-  ]
+          text: "Analyze the performance of the sort function in utils.py",
+        },
+      ],
+    },
+  ],
 });
-```
+````
 
-```csharp C#
+  
+````csharp
 await client.Beta.Sessions.Events.Send(session.ID, new()
 {
     Events =
@@ -164,11 +122,12 @@ await client.Beta.Sessions.Events.Send(session.ID, new()
         },
     ],
 });
-```
+````
 
-```go Go
+  
+````go
 if _, err := client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
-	Events: []anthropic.SendEventsParamsUnion{{
+	Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
 		OfUserMessage: &anthropic.BetaManagedAgentsUserMessageEventParams{
 			Type: anthropic.BetaManagedAgentsUserMessageEventParamsTypeUserMessage,
 			Content: []anthropic.BetaManagedAgentsUserMessageEventParamsContentUnion{{
@@ -182,9 +141,10 @@ if _, err := client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSes
 }); err != nil {
 	panic(err)
 }
-```
+````
 
-```java Java
+  
+````java
 client.beta().sessions().events().send(
     session.id(),
     EventSendParams.builder()
@@ -193,9 +153,10 @@ client.beta().sessions().events().send(
             .addTextContent("Analyze the performance of the sort function in utils.py")
             .build())
         .build());
-```
+````
 
-```php PHP
+  
+````php
 $client->beta->sessions->events->send(
     $session->id,
     events: [
@@ -210,30 +171,36 @@ $client->beta->sessions->events->send(
         ],
     ],
 );
-```
+````
 
-```ruby Ruby
+  
+````ruby
 client.beta.sessions.events.send_(
   session.id,
   events: [
     {
       type: "user.message",
       content: [
-        {type: "text", text: "Analyze the performance of the sort function in utils.py"}
+        {
+          type: "text",
+          text: "Analyze the performance of the sort function in utils.py"
+        }
       ]
     }
   ]
 )
-```
+````
+
 </CodeGroup>
 
-Kirim peristiwa `user.interrupt` untuk menghentikan agen di tengah eksekusi, kemudian ikuti dengan peristiwa `user.message` untuk mengalihkannya:
+Kirim event `user.interrupt` untuk menghentikan agen di tengah eksekusi, lalu lanjutkan dengan event `user.message` untuk mengalihkannya:
 
 <CodeGroup>
-```bash curl
+  
+````bash
 # Agent is currently analyzing a file...
 # Interrupt with a new direction:
-curl -sS --fail-with-body "https://api.anthropic.com/v1/sessions/$SESSION_ID/events?beta=true" \
+curl --fail-with-body -sS "https://api.anthropic.com/v1/sessions/$SESSION_ID/events?beta=true" \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
   -H "anthropic-beta: managed-agents-2026-04-01" \
@@ -251,9 +218,24 @@ curl -sS --fail-with-body "https://api.anthropic.com/v1/sessions/$SESSION_ID/eve
   ]
 }
 EOF
-```
+````
 
-```python Python
+  
+````bash
+# Agent is currently analyzing a file...
+# Interrupt with a new direction:
+ant beta:sessions:events send --session-id "$SESSION_ID" <<'YAML'
+events:
+  - type: user.interrupt
+  - type: user.message
+    content:
+      - type: text
+        text: Instead, focus on fixing the bug in line 42.
+YAML
+````
+
+  
+````python
 # Agent is currently analyzing a file...
 # Interrupt with a new direction:
 client.beta.sessions.events.send(
@@ -271,9 +253,10 @@ client.beta.sessions.events.send(
         },
     ],
 )
-```
+````
 
-```typescript TypeScript
+  
+````typescript
 // Agent is currently analyzing a file...
 // Interrupt with a new direction:
 await client.beta.sessions.events.send(session.id, {
@@ -284,15 +267,16 @@ await client.beta.sessions.events.send(session.id, {
       content: [
         {
           type: "text",
-          text: "Instead, focus on fixing the bug in line 42."
-        }
-      ]
-    }
-  ]
+          text: "Instead, focus on fixing the bug in line 42.",
+        },
+      ],
+    },
+  ],
 });
-```
+````
 
-```csharp C#
+  
+````csharp
 // Agent is currently analyzing a file...
 // Interrupt with a new direction:
 await client.Beta.Sessions.Events.Send(session.ID, new()
@@ -317,13 +301,14 @@ await client.Beta.Sessions.Events.Send(session.ID, new()
         },
     ],
 });
-```
+````
 
-```go Go
+  
+````go
 // Agent is currently analyzing a file...
 // Interrupt with a new direction:
 if _, err := client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
-	Events: []anthropic.SendEventsParamsUnion{
+	Events: []anthropic.BetaManagedAgentsEventParamsUnion{
 		{
 			OfUserInterrupt: &anthropic.BetaManagedAgentsUserInterruptEventParams{
 				Type: anthropic.BetaManagedAgentsUserInterruptEventParamsTypeUserInterrupt,
@@ -344,9 +329,10 @@ if _, err := client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSes
 }); err != nil {
 	panic(err)
 }
-```
+````
 
-```java Java
+  
+````java
 // Agent is currently analyzing a file...
 // Interrupt with a new direction:
 client.beta().sessions().events().send(
@@ -360,9 +346,10 @@ client.beta().sessions().events().send(
             .addTextContent("Instead, focus on fixing the bug in line 42.")
             .build())
         .build());
-```
+````
 
-```php PHP
+  
+````php
 // Agent is currently analyzing a file...
 // Interrupt with a new direction:
 $client->beta->sessions->events->send(
@@ -380,9 +367,10 @@ $client->beta->sessions->events->send(
         ],
     ],
 );
-```
+````
 
-```ruby Ruby
+  
+````ruby
 # Agent is currently analyzing a file...
 # Interrupt with a new direction:
 client.beta.sessions.events.send_(
@@ -397,31 +385,32 @@ client.beta.sessions.events.send_(
     }
   ]
 )
-```
+````
+
 </CodeGroup>
 
-Agen akan mengakui gangguan dan beralih ke tugas baru.
+Agen mengakui interupsi tersebut dan beralih ke tugas baru.
 
   </Tab>
-  <Tab title="Streaming respons">
+  <Tab title="Streaming event">
 
-Streaming peristiwa dari sesi untuk menerima pembaruan real-time saat agen bekerja. Hanya peristiwa yang dipancarkan setelah aliran dibuka yang disampaikan, jadi buka aliran sebelum mengirim peristiwa untuk menghindari kondisi balapan.
+Lakukan streaming event dari sesi untuk menerima pembaruan real-time saat agen bekerja. Hanya event yang dipancarkan setelah stream dibuka yang akan dikirimkan, jadi buka stream sebelum mengirim event untuk menghindari "race condition" (kondisi balapan).
 
 <CodeGroup>
   
 ````bash
 # Open the stream first, then send the user message
 exec {stream}< <(
-  curl -sS -N --fail-with-body \
+  curl --fail-with-body -sS -N \
     "https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream?beta=true" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    -H "Accept: text/event-stream"
+    -H "accept: text/event-stream"
 )
 
-curl -sS --fail-with-body \
+curl --fail-with-body -sS \
   "https://api.anthropic.com/v1/sessions/$SESSION_ID/events?beta=true" \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
@@ -438,18 +427,18 @@ curl -sS --fail-with-body \
 }
 EOF
 
-while IFS= read -r -u "$stream" line; do
-  [[ $line == data:* ]] || continue
-  json=${line#data: }
-  case $(jq -r '.type' <<<"$json") in
+while IFS= read -r -u "$stream" event_line; do
+  [[ $event_line == data:* ]] || continue
+  event_json=${event_line#data: }
+  case $(jq -r '.type' <<<"$event_json") in
     agent.message)
-      jq -j '.content[] | select(.type == "text") | .text' <<<"$json"
+      jq -j '.content[] | select(.type == "text") | .text' <<<"$event_json"
       ;;
     session.status_idle)
       break
       ;;
     session.error)
-      printf '\n[Error: %s]\n' "$(jq -r '.error.message // "unknown"' <<<"$json")"
+      printf '\n[Error: %s]\n' "$(jq -r '.error.message // "unknown"' <<<"$event_json")"
       break
       ;;
   esac
@@ -459,40 +448,8 @@ exec {stream}<&-
 
   
 ````bash
-# Open the stream first, then send the user message
-exec {stream}< <(ant beta:sessions:events stream \
-  --session-id "$SESSION_ID" \
-  --transform '{type,text:content.#(type=="text").text,err:error.message}' \
-  --format yaml)
-
-ant beta:sessions:events send \
-  --session-id "$SESSION_ID" \
- > /dev/null <<'YAML'
-events:
-  - type: user.message
-    content:
-      - type: text
-        text: Summarize the repo README
-YAML
-
-type=
-while IFS= read -r -u "$stream" line; do
-  case "$line" in
-    type:\ session.status_idle) break ;;
-    type:\ session.error)
-      IFS= read -r -u "$stream" next || next=
-      case "$next" in err:\ *) msg=${next#err: } ;; *) msg=unknown ;; esac
-      printf '\n[Error: %s]\n' "$msg"; break ;;
-    type:\ *) type=${line#type: } ;;
-    text:*)
-      [[ $type == agent.message ]] || continue
-      val=${line#text: }
-      case "$val" in '|-'|'|') ;; *) printf '%s' "$val" ;; esac ;;
-    \ \ *)
-      if [[ $type == agent.message ]]; then printf '%s\n' "${line#  }"; fi ;;
-  esac
-done
-exec {stream}<&-
+# This workflow does not translate well to a one-off shell command.
+# Use one of the SDK examples in this code group instead.
 ````
 
   
@@ -518,8 +475,8 @@ with client.beta.sessions.events.stream(session.id) as stream:
             case "session.status_idle":
                 break
             case "session.error":
-                msg = event.error.message if event.error else "unknown"
-                print(f"\n[Error: {msg}]")
+                error_message = event.error.message if event.error else "unknown"
+                print(f"\n[Error: {error_message}]")
                 break
 ````
 
@@ -622,6 +579,7 @@ events:
 	for stream.Next() {
 		switch event := stream.Current().AsAny().(type) {
 		case anthropic.BetaManagedAgentsAgentMessageEvent:
+			// concrete-typed list: BetaManagedAgentsTextBlock
 			for _, block := range event.Content {
 				fmt.Print(block.Text)
 			}
@@ -651,20 +609,19 @@ try (var stream = client.beta().sessions().events().streamStreaming(session.id()
             .build()
     );
 
-    for (var event : (Iterable<BetaManagedAgentsStreamSessionEvents>) stream.stream()::iterator) {
+    Iterable<BetaManagedAgentsStreamSessionEvents> events = stream.stream()::iterator;
+    for (var event : events) {
         if (event.isAgentMessage()) {
             event.asAgentMessage().content().forEach(block -> IO.print(block.text()));
         } else if (event.isSessionStatusIdle()) {
             break;
         } else if (event.isSessionError()) {
-            var msg = event.asSessionError().error()
-                .flatMap(err -> err._json())
-                .map(json -> {
-                    Optional<Map<String, JsonValue>> obj = json.asObject();
-                    return obj.orElseThrow().get("message").asStringOrThrow();
-                })
-                .orElse("unknown");
-            IO.println("\n[Error: " + msg + "]");
+            // The `message` field spans all error variants; read it from the raw JSON.
+            var errorMessage =
+                event.asSessionError().error()._json().orElse(null) instanceof JsonObject json
+                    ? json.values().get("message").asStringOrThrow()
+                    : "unknown";
+            IO.println("\n[Error: " + errorMessage + "]");
             break;
         }
     }
@@ -689,7 +646,7 @@ foreach ($stream as $event) {
     match ($event->type) {
         'agent.message' => array_walk(
             $event->content,
-            static fn($block) => $block->type === 'text' ? print($block->text) : null,
+            static fn ($block) => $block->type === 'text' ? print($block->text) : null,
         ),
         'session.error' => printf("\n[Error: %s]", $event->error?->message ?? 'unknown'),
         default => null,
@@ -731,27 +688,31 @@ end
 
 </CodeGroup>
 
-Untuk terhubung kembali ke sesi yang ada tanpa melewatkan peristiwa, buka aliran baru dan kemudian daftar riwayat lengkap untuk menabur set ID peristiwa yang terlihat. Ikuti aliran langsung sambil melewati peristiwa apa pun yang sudah dikembalikan oleh daftar riwayat.
+Untuk menyambung kembali ke sesi yang sudah ada tanpa melewatkan event:
+
+1. Buka stream baru.
+2. Ambil daftar riwayat event lengkap untuk menginisialisasi kumpulan ID event yang sudah dilihat.
+3. Ikuti stream langsung, lewati event apa pun yang sudah dikembalikan oleh daftar riwayat.
 
 <CodeGroup>
   
 ````bash
 exec {stream}< <(
-  curl -sS -N --fail-with-body \
+  curl --fail-with-body -sS -N \
     "https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream?beta=true" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: managed-agents-2026-04-01" \
     -H "content-type: application/json" \
-    -H "Accept: text/event-stream"
+    -H "accept: text/event-stream"
 )
 
 # Stream is open and buffering. List history before tailing live.
 declare -A seen_event_ids
-while IFS= read -r id; do
-  seen_event_ids[$id]=1
+while IFS= read -r event_id; do
+  seen_event_ids[$event_id]=1
 done < <(
-  curl -sS --fail-with-body \
+  curl --fail-with-body -sS \
     "https://api.anthropic.com/v1/sessions/$SESSION_ID/events?beta=true" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -760,15 +721,15 @@ done < <(
 )
 
 # Tail live events, skipping anything already seen
-while IFS= read -r -u "$stream" line; do
-  [[ $line == data:* ]] || continue
-  json=${line#data: }
-  id=$(jq -r '.id' <<<"$json")
-  [[ -n ${seen_event_ids[$id]+seen} ]] && continue
-  seen_event_ids[$id]=1
-  case $(jq -r '.type' <<<"$json") in
+while IFS= read -r -u "$stream" event_line; do
+  [[ $event_line == data:* ]] || continue
+  event_json=${event_line#data: }
+  event_id=$(jq -r '.id' <<<"$event_json")
+  [[ -n ${seen_event_ids[$event_id]+seen} ]] && continue
+  seen_event_ids[$event_id]=1
+  case $(jq -r '.type' <<<"$event_json") in
     agent.message)
-      jq -j '.content[] | select(.type == "text") | .text' <<<"$json"
+      jq -j '.content[] | select(.type == "text") | .text' <<<"$event_json"
       ;;
     session.status_idle)
       break
@@ -780,48 +741,16 @@ exec {stream}<&-
 
   
 ````bash
-exec {stream}< <(ant beta:sessions:events stream \
-  --session-id "$SESSION_ID" \
-  --transform '{id,type,text:content.#(type=="text").text}' \
-  --format yaml)
-stream_pid=$!
-
-# Stream is open and buffering. List history before tailing live.
-declare -A seen_event_ids
-while IFS= read -r id; do
-  seen_event_ids[$id]=1
-done < <(ant beta:sessions:events list \
-  --session-id "$SESSION_ID" \
-  --transform id --raw-output)
-
-# Tail live events, skipping anything already seen
-id= type= skip=
-while IFS= read -r -u "$stream" line; do
-  case "$line" in
-    id:\ *)
-      id=${line#id: }
-      if [[ -n ${seen_event_ids[$id]+seen} ]]; then skip=1; continue; fi
-      skip=; seen_event_ids[$id]=1 ;;
-    type:\ *)
-      [[ -n $skip ]] && continue
-      type=${line#type: }
-      [[ $type == session.status_idle ]] && break ;;
-    text:*)
-      [[ -z $skip && $type == agent.message ]] || continue
-      val=${line#text: }
-      case "$val" in '|-'|'|') ;; *) printf '%s' "$val" ;; esac ;;
-    \ \ *)
-      [[ -z $skip && $type == agent.message ]] && printf '%s\n' "${line#  }" ;;
-  esac
-done
-exec {stream}<&-
+# This workflow does not translate well to a one-off shell command.
+# Use one of the SDK examples in this code group instead.
 ````
 
   
 ````python
 with client.beta.sessions.events.stream(session.id) as stream:
     # Stream is open and buffering. List history before tailing live.
-    seen_event_ids = {event.id for event in client.beta.sessions.events.list(session.id)}
+    history = client.beta.sessions.events.list(session.id)
+    seen_event_ids = {past_event.id for past_event in history}
 
     # Tail live events, skipping anything already seen
     for event in stream:
@@ -921,6 +850,7 @@ tail:
 		seenEventIDs[event.ID] = struct{}{}
 		switch event := event.AsAny().(type) {
 		case anthropic.BetaManagedAgentsAgentMessageEvent:
+			// concrete-typed list: BetaManagedAgentsTextBlock
 			for _, block := range event.Content {
 				fmt.Print(block.Text)
 			}
@@ -937,23 +867,21 @@ tail:
 ````java
 try (var stream = client.beta().sessions().events().streamStreaming(session.id())) {
     // Stream is open and buffering. List history before tailing live.
-    // _json() exposes the raw event so we can read the cross-variant `id` field.
+    // Every event variant carries `id`; read it from the raw JSON to dedup across variants.
     var seenEventIds = new HashSet<String>();
-    for (var past : client.beta().sessions().events().list(session.id()).autoPager()) {
-        Optional<Map<String, JsonValue>> obj = past._json().orElseThrow().asObject();
-        seenEventIds.add(obj.orElseThrow().get("id").asStringOrThrow());
-    }
-
-    // Tail live events, skipping anything already seen
-    for (var event : (Iterable<BetaManagedAgentsStreamSessionEvents>) stream.stream()::iterator) {
-        Optional<Map<String, JsonValue>> obj = event._json().orElseThrow().asObject();
-        if (!seenEventIds.add(obj.orElseThrow().get("id").asStringOrThrow())) continue;
-        if (event.isAgentMessage()) {
-            event.asAgentMessage().content().forEach(block -> IO.print(block.text()));
-        } else if (event.isSessionStatusIdle()) {
-            break;
+    for (var pastEvent : client.beta().sessions().events().list(session.id()).autoPager()) {
+        if (pastEvent._json().orElseThrow() instanceof JsonObject json) {
+            seenEventIds.add(json.values().get("id").asStringOrThrow());
         }
     }
+
+    // Tail live events; Set.add returns false for already-seen IDs, skipping the replay.
+    stream.stream()
+        .filter(event -> event._json().orElseThrow() instanceof JsonObject json
+            && seenEventIds.add(json.values().get("id").asStringOrThrow()))
+        .takeWhile(event -> !event.isSessionStatusIdle())
+        .filter(BetaManagedAgentsStreamSessionEvents::isAgentMessage)
+        .forEach(event -> event.asAgentMessage().content().forEach(block -> IO.print(block.text())));
 }
 ````
 
@@ -976,7 +904,7 @@ foreach ($stream as $event) {
     match ($event->type) {
         'agent.message' => array_walk(
             $event->content,
-            static fn($block) => $block->type === 'text' ? print($block->text) : null,
+            static fn ($block) => $block->type === 'text' ? print($block->text) : null,
         ),
         default => null,
     };
@@ -995,10 +923,9 @@ stream = client.beta.sessions.events.stream_events(session.id)
 seen_event_ids = Set.new
 client.beta.sessions.events.list(session.id).auto_paging_each { seen_event_ids << it.id }
 
-# Tail live events, skipping anything already seen
+# Tail live events, skipping anything already seen — Set#add? returns nil for duplicates
 stream.each do |event|
-  next if seen_event_ids.include?(event.id)
-  seen_event_ids << event.id
+  next unless seen_event_ids.add?(event.id)
   case event.type
   in :"agent.message"
     event.content.each { print it.text }
@@ -1013,42 +940,53 @@ end
 </CodeGroup>
 
   </Tab>
-  <Tab title="Mendaftar peristiwa masa lalu">
+  <Tab title="Mengambil daftar event sebelumnya">
 
-Ambil riwayat peristiwa lengkap untuk sesi:
+Ambil riwayat event lengkap untuk sebuah sesi:
 
 <CodeGroup>
-```bash curl
-curl -sS --fail-with-body "https://api.anthropic.com/v1/sessions/$SESSION_ID/events?beta=true" \
+  
+````bash
+curl --fail-with-body -sS "https://api.anthropic.com/v1/sessions/$SESSION_ID/events?beta=true" \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
   -H "anthropic-beta: managed-agents-2026-04-01" \
   -H "content-type: application/json" \
   | jq -r '.data[] | "[\(.type)] \(.processed_at)"'
-```
+````
 
-```python Python
+  
+````bash
+ant beta:sessions:events list --session-id "$SESSION_ID" \
+  --format jsonl --transform '{type,processed_at}'
+````
+
+  
+````python
 events = client.beta.sessions.events.list(session.id)
 for event in events.data:
     print(f"[{event.type}] {event.processed_at}")
-```
+````
 
-```typescript TypeScript
+  
+````typescript
 const events = await client.beta.sessions.events.list(session.id);
 for (const event of events.data) {
   console.log(`[${event.type}] ${event.processed_at}`);
 }
-```
+````
 
-```csharp C#
+  
+````csharp
 var events = await client.Beta.Sessions.Events.List(session.ID);
-foreach (var evt in events.Items)
+foreach (var sessionEvent in events.Items)
 {
-    Console.WriteLine($"[{evt.Json.GetProperty("type").GetString()}] {evt.ProcessedAt}");
+    Console.WriteLine($"[{sessionEvent.Json.GetProperty("type").GetString()}] {sessionEvent.ProcessedAt}");
 }
-```
+````
 
-```go Go
+  
+````go
 events, err := client.Beta.Sessions.Events.List(ctx, session.ID, anthropic.BetaSessionEventListParams{})
 if err != nil {
 	panic(err)
@@ -1056,94 +994,206 @@ if err != nil {
 for _, event := range events.Data {
 	fmt.Printf("[%s] %s\n", event.Type, event.ProcessedAt)
 }
-```
+````
 
-```java Java
+  
+````java
 var events = client.beta().sessions().events().list(session.id());
 for (var event : events.data()) {
-    var json = (Map<String, JsonValue>) event._json().orElseThrow().asObject().orElseThrow();
-    var type = json.get("type").asStringOrThrow();
-    var processedAt = json.containsKey("processed_at")
-        ? json.get("processed_at").asStringOrThrow()
-        : "pending";
-    IO.println("[" + type + "] " + processedAt);
+    var eventJson = event._json().orElseThrow().convert(JsonNode.class);
+    var processedAt = eventJson.path("processed_at");
+    IO.println("[" + eventJson.get("type").asText() + "] "
+        + (processedAt.isTextual() ? processedAt.asText() : "null"));
 }
-```
+````
 
-```php PHP
+  
+````php
 $events = $client->beta->sessions->events->list($session->id);
 foreach ($events->data as $event) {
-    $processedAt = ($event->processedAt ?? null)?->format(DATE_RFC3339) ?? 'pending';
+    $processedAt = ($event->processedAt ?? null)?->format(DATE_RFC3339) ?? 'null';
     echo "[{$event->type}] {$processedAt}\n";
 }
-```
+````
 
-```ruby Ruby
+  
+````ruby
 events = client.beta.sessions.events.list(session.id)
 events.data.each { puts "[#{it.type}] #{it.processed_at}" }
-```
+````
+
+</CodeGroup>
+
+Berikan filter `types` untuk hanya mengembalikan jenis event tertentu:
+
+<CodeGroup>
+  
+````bash
+curl --fail-with-body -sS "https://api.anthropic.com/v1/sessions/$SESSION_ID/events?beta=true&types[]=agent.tool_use&types[]=agent.tool_result" \
+  -H "x-api-key: $ANTHROPIC_API_KEY" \
+  -H "anthropic-version: 2023-06-01" \
+  -H "anthropic-beta: managed-agents-2026-04-01" \
+  | jq -r '.data[] | "[\(.type)] \(.processed_at)"'
+````
+
+  
+````bash
+ant beta:sessions:events list --session-id "$SESSION_ID" \
+  --type agent.tool_use --type agent.tool_result \
+  --format jsonl --transform '{type,processed_at}'
+````
+
+  
+````python
+events = client.beta.sessions.events.list(
+    session.id,
+    types=["agent.tool_use", "agent.tool_result"],
+)
+for event in events.data:
+    print(f"[{event.type}] {event.processed_at}")
+````
+
+  
+````typescript
+const events = await client.beta.sessions.events.list(session.id, {
+  types: ["agent.tool_use", "agent.tool_result"],
+});
+for (const event of events.data) {
+  console.log(`[${event.type}] ${event.processed_at}`);
+}
+````
+
+  
+````csharp
+var events = await client.Beta.Sessions.Events.List(session.ID, new()
+{
+    Types = ["agent.tool_use", "agent.tool_result"],
+});
+foreach (var sessionEvent in events.Items)
+{
+    Console.WriteLine($"[{sessionEvent.Json.GetProperty("type").GetString()}] {sessionEvent.ProcessedAt}");
+}
+````
+
+  
+````go
+events, err := client.Beta.Sessions.Events.List(ctx, session.ID, anthropic.BetaSessionEventListParams{
+	Types: []string{"agent.tool_use", "agent.tool_result"},
+})
+if err != nil {
+	panic(err)
+}
+for _, event := range events.Data {
+	fmt.Printf("[%s] %s\n", event.Type, event.ProcessedAt)
+}
+````
+
+  
+````java
+var events = client.beta().sessions().events().list(
+    session.id(),
+    EventListParams.builder()
+        .addType("agent.tool_use")
+        .addType("agent.tool_result")
+        .build());
+for (var event : events.data()) {
+    event.agentToolUse().ifPresent(toolUse ->
+        IO.println("[" + toolUse.type() + "] " + toolUse.processedAt()));
+    event.agentToolResult().ifPresent(toolResult ->
+        IO.println("[" + toolResult.type() + "] " + toolResult.processedAt()));
+}
+````
+
+  
+````php
+$events = $client->beta->sessions->events->list(
+    $session->id,
+    types: ['agent.tool_use', 'agent.tool_result'],
+);
+foreach ($events->data as $event) {
+    $processedAt = ($event->processedAt ?? null)?->format(DATE_RFC3339) ?? 'null';
+    echo "[{$event->type}] {$processedAt}\n";
+}
+````
+
+  
+````ruby
+events = client.beta.sessions.events.list(
+  session.id,
+  types: ["agent.tool_use", "agent.tool_result"]
+)
+events.data.each { puts "[#{it.type}] #{it.processed_at}" }
+````
+
 </CodeGroup>
 
   </Tab>
 </Tabs>
 
-## Skenario tambahan
+## Skenario tambahan \{#additional-scenarios}
 
-### Menangani panggilan alat kustom
+### Menangani panggilan alat kustom \{#handling-custom-tool-calls}
 
-Ketika agen menjalankan [alat kustom](/docs/id/managed-agents/tools#custom-tools):
+Ketika agen memanggil [alat kustom](/docs/id/managed-agents/tools#custom-tools):
 
-1. Sesi memancarkan peristiwa `agent.custom_tool_use` yang berisi nama alat dan masukan.
-2. Sesi dijeda dengan peristiwa `session.status_idle` yang berisi `stop_reason: requires_action`. ID peristiwa pemblokiran ada di array `stop_reason.requires_action.event_ids`.
-3. Jalankan alat di sistem Anda dan kirim peristiwa `user.custom_tool_result` untuk masing-masing, meneruskan ID peristiwa dalam parameter `custom_tool_use_id` bersama dengan konten hasil.
-4. Setelah semua peristiwa pemblokiran diselesaikan, sesi beralih kembali ke `running`.
+1. Sesi memancarkan event `agent.custom_tool_use` yang berisi nama alat dan inputnya.
+2. Sesi dijeda dengan event `session.status_idle` yang berisi `stop_reason: requires_action`. ID event yang memblokir ada di array `stop_reason.event_ids`.
+3. Jalankan alat tersebut di sistem Anda dan kirim event `user.custom_tool_result` untuk masing-masing, dengan meneruskan ID event di parameter `custom_tool_use_id` beserta konten hasilnya.
+4. Setelah semua event yang memblokir diselesaikan, sesi bertransisi kembali ke `running`.
 
 <CodeGroup>
-```bash curl
-exec {fd}< <(curl -sS -N --fail-with-body \
-  "https://api.anthropic.com/v1/sessions/$SESSION_ID/stream?beta=true" \
+  
+````bash
+exec {stream_fd}< <(curl --fail-with-body -sS -N \
+  "https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream?beta=true" \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
   -H "anthropic-beta: managed-agents-2026-04-01" \
   -H "content-type: application/json" \
-  -H "Accept: text/event-stream")
+  -H "accept: text/event-stream")
 
-while IFS= read -r -u "$fd" line; do
+while IFS= read -r -u "$stream_fd" line; do
   [[ $line == data:* ]] || continue
-  data="${line#data: }"
-  [[ $(jq -r '.type' <<<"$data") == "session.status_idle" ]] || continue
-  case $(jq -r '.stop_reason.type // empty' <<<"$data") in
+  event_json="${line#data: }"
+  stop_reason=$(jq -r 'select(.type == "session.status_idle") | .stop_reason.type // empty' <<<"$event_json")
+  case "$stop_reason" in
     requires_action)
       while IFS= read -r event_id; do
-        # Look up the custom tool use event and execute it
+        # Execute the tool and send the result back
         result=$(call_tool "$event_id")
-        # Send the result back
         jq -n --arg id "$event_id" --arg result "$result" \
           '{events: [{type: "user.custom_tool_result", custom_tool_use_id: $id, content: [{type: "text", text: $result}]}]}' |
-          curl -sS --fail-with-body \
+          curl --fail-with-body -sS \
             "https://api.anthropic.com/v1/sessions/$SESSION_ID/events?beta=true" \
             -H "x-api-key: $ANTHROPIC_API_KEY" \
             -H "anthropic-version: 2023-06-01" \
             -H "anthropic-beta: managed-agents-2026-04-01" \
             -H "content-type: application/json" \
             -d @-
-      done < <(jq -r '.stop_reason.event_ids[]' <<<"$data")
+      done < <(jq -r '.stop_reason.event_ids[]' <<<"$event_json")
       ;;
     end_turn)
       break
       ;;
   esac
 done
-exec {fd}<&-
-```
+exec {stream_fd}<&-
+````
 
-```python Python
+  
+````bash
+# This workflow does not translate well to a one-off shell command.
+# Use one of the SDK examples in this code group instead.
+````
+
+  
+````python
 with client.beta.sessions.events.stream(session.id) as stream:
     for event in stream:
-        if event.type == "session.status_idle" and (stop := event.stop_reason):
-            match stop.type:
+        if event.type == "session.status_idle" and (stop_reason := event.stop_reason):
+            match stop_reason.type:
                 case "requires_action":
-                    for event_id in stop.event_ids:
+                    for event_id in stop_reason.event_ids:
                         # Look up the custom tool use event and execute it
                         tool_event = events_by_id[event_id]
                         result = call_tool(tool_event.name, tool_event.input)
@@ -1161,155 +1211,155 @@ with client.beta.sessions.events.stream(session.id) as stream:
                         )
                 case "end_turn":
                     break
-```
+````
 
-```typescript TypeScript
+  
+````typescript
 const stream = await client.beta.sessions.events.stream(session.id);
 
 for await (const event of stream) {
-  if (event.type === "session.status_idle") {
-    if (event.stop_reason?.type === "requires_action") {
-      for (const eventId of event.stop_reason.event_ids) {
-        // Look up the custom tool use event and execute it
-        const toolEvent = eventsById[eventId];
-        const result = await callTool(toolEvent.name, toolEvent.input);
+  if (event.type !== "session.status_idle") continue;
+  if (event.stop_reason.type === "end_turn") break;
+  if (event.stop_reason.type !== "requires_action") continue;
 
-        // Send the result back
-        await client.beta.sessions.events.send(session.id, {
-          events: [
-            {
-              type: "user.custom_tool_result",
-              custom_tool_use_id: eventId,
-              content: [{ type: "text", text: result }]
-            }
-          ]
-        });
-      }
-    } else if (event.stop_reason?.type === "end_turn") {
-      break;
-    }
+  for (const eventId of event.stop_reason.event_ids) {
+    // Look up the custom tool use event and execute it
+    const toolEvent = eventsById.get(eventId);
+    if (!toolEvent) continue;
+    const result = await callTool(toolEvent.name, toolEvent.input);
+
+    // Send the result back
+    await client.beta.sessions.events.send(session.id, {
+      events: [
+        {
+          type: "user.custom_tool_result",
+          custom_tool_use_id: eventId,
+          content: [{ type: "text", text: result }],
+        },
+      ],
+    });
   }
 }
-```
+````
 
-```csharp C#
+  
+````csharp
 await foreach (var streamEvent in client.Beta.Sessions.Events.StreamStreaming(session.ID))
 {
-    if (streamEvent.Value is BetaManagedAgentsSessionStatusIdleEvent idle)
+    if (streamEvent.Value is not BetaManagedAgentsSessionStatusIdleEvent idle) continue;
+
+    if (idle.StopReason?.Value is BetaManagedAgentsSessionRequiresAction requiresAction)
     {
-        if (idle.StopReason?.Value is BetaManagedAgentsSessionRequiresAction requiresAction)
+        foreach (var eventId in requiresAction.EventIds)
         {
-            foreach (var eventId in requiresAction.EventIds)
+            // Look up the custom tool use event and execute it
+            var toolEvent = eventsById[eventId];
+            var result = await CallTool(toolEvent.Name, toolEvent.Input);
+
+            // Send the result back
+            await client.Beta.Sessions.Events.Send(session.ID, new()
             {
-                // Look up the custom tool use event and execute it
-                var toolEvent = eventsById[eventId];
-                var result = await CallTool(toolEvent.Name, toolEvent.Input);
-                // Send the result back
-                await client.Beta.Sessions.Events.Send(session.ID, new()
-                {
-                    Events =
-                    [
-                        new BetaManagedAgentsUserCustomToolResultEventParams
-                        {
-                            Type = BetaManagedAgentsUserCustomToolResultEventParamsType.UserCustomToolResult,
-                            CustomToolUseID = eventId,
-                            Content =
-                            [
-                                new BetaManagedAgentsTextBlock
-                                {
-                                    Type = BetaManagedAgentsTextBlockType.Text,
-                                    Text = result,
-                                },
-                            ],
-                        },
-                    ],
-                });
-            }
-        }
-        else if (idle.StopReason?.Value is BetaManagedAgentsSessionEndTurn)
-        {
-            break;
+                Events =
+                [
+                    new BetaManagedAgentsUserCustomToolResultEventParams
+                    {
+                        Type = BetaManagedAgentsUserCustomToolResultEventParamsType.UserCustomToolResult,
+                        CustomToolUseID = eventId,
+                        Content =
+                        [
+                            new BetaManagedAgentsTextBlock
+                            {
+                                Type = BetaManagedAgentsTextBlockType.Text,
+                                Text = result,
+                            },
+                        ],
+                    },
+                ],
+            });
         }
     }
+    else if (idle.StopReason?.Value is BetaManagedAgentsSessionEndTurn)
+    {
+        break;
+    }
 }
-```
+````
 
-```go Go
-stream := client.Beta.Sessions.Events.StreamEvents(ctx, session.ID, anthropic.BetaSessionEventStreamParams{})
-defer stream.Close()
+  
+````go
+	stream := client.Beta.Sessions.Events.StreamEvents(ctx, session.ID, anthropic.BetaSessionEventStreamParams{})
+	defer stream.Close()
 
 loop:
-for stream.Next() {
-	event, ok := stream.Current().AsAny().(anthropic.BetaManagedAgentsSessionStatusIdleEvent)
-	if !ok {
-		continue
-	}
-	switch stopReason := event.StopReason.AsAny().(type) {
-	case anthropic.BetaManagedAgentsSessionRequiresAction:
-		for _, eventID := range stopReason.EventIDs {
-			// Look up the custom tool use event and execute it
-			toolEvent := eventsByID[eventID]
-			result := callTool(toolEvent.Name, toolEvent.Input)
-			// Send the result back
-			if _, err := client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
-				Events: []anthropic.SendEventsParamsUnion{{
-					OfUserCustomToolResult: &anthropic.BetaManagedAgentsUserCustomToolResultEventParams{
-						Type:            anthropic.BetaManagedAgentsUserCustomToolResultEventParamsTypeUserCustomToolResult,
-						CustomToolUseID: eventID,
-						Content: []anthropic.BetaManagedAgentsUserCustomToolResultEventParamsContentUnion{{
-							OfText: &anthropic.BetaManagedAgentsTextBlockParam{
-								Type: anthropic.BetaManagedAgentsTextBlockTypeText,
-								Text: result,
-							},
-						}},
-					},
-				}},
-			}); err != nil {
-				panic(err)
-			}
+	for stream.Next() {
+		event, ok := stream.Current().AsAny().(anthropic.BetaManagedAgentsSessionStatusIdleEvent)
+		if !ok {
+			continue
 		}
-	case anthropic.BetaManagedAgentsSessionEndTurn:
-		break loop
+		switch stopReason := event.StopReason.AsAny().(type) {
+		case anthropic.BetaManagedAgentsSessionRequiresAction:
+			for _, eventID := range stopReason.EventIDs {
+				// Look up the custom tool use event and execute it
+				toolEvent := eventsByID[eventID]
+				result := callTool(toolEvent.Name, toolEvent.Input)
+				// Send the result back
+				if _, err := client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
+					Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
+						OfUserCustomToolResult: &anthropic.BetaManagedAgentsUserCustomToolResultEventParams{
+							Type:            anthropic.BetaManagedAgentsUserCustomToolResultEventParamsTypeUserCustomToolResult,
+							CustomToolUseID: eventID,
+							Content: []anthropic.BetaManagedAgentsUserCustomToolResultEventParamsContentUnion{{
+								OfText: &anthropic.BetaManagedAgentsTextBlockParam{
+									Type: anthropic.BetaManagedAgentsTextBlockTypeText,
+									Text: result,
+								},
+							}},
+						},
+					}},
+				}); err != nil {
+					panic(err)
+				}
+			}
+		case anthropic.BetaManagedAgentsSessionEndTurn:
+			break loop
+		}
 	}
-}
-if err := stream.Err(); err != nil {
-	panic(err)
-}
-```
+	if err := stream.Err(); err != nil {
+		panic(err)
+	}
+````
 
-```java Java
+  
+````java
 try (var stream = client.beta().sessions().events().streamStreaming(session.id())) {
-    for (var event : (Iterable<StreamEvents>) stream.stream()::iterator) {
-        if (!event.isSessionStatusIdle()) continue;
-        var stopReason = event.asSessionStatusIdle().stopReason().orElseThrow();
-        if (stopReason.isRequiresAction()) {
-            for (var eventId : stopReason.asRequiresAction().eventIds()) {
-                // Look up the custom tool use event and execute it
-                var toolEvent = eventsById.get(eventId);
-                var result = callTool(toolEvent.name(), toolEvent.input());
-                // Send the result back
-                client.beta().sessions().events().send(
-                    session.id(),
-                    EventSendParams.builder()
-                        .addEvent(BetaManagedAgentsUserCustomToolResultEventParams.builder()
-                            .type(BetaManagedAgentsUserCustomToolResultEventParams.Type.USER_CUSTOM_TOOL_RESULT)
-                            .customToolUseId(eventId)
-                            .addTextContent(result)
-                            .build())
-                        .build());
-            }
-        } else if (stopReason.isEndTurn()) {
-            break;
-        }
-    }
-}
-```
+    stream.stream()
+        .filter(BetaManagedAgentsStreamSessionEvents::isSessionStatusIdle)
+        .map(idleEvent -> idleEvent.asSessionStatusIdle().stopReason())
+        .takeWhile(stopReason -> !stopReason.isEndTurn())
+        .filter(stopReason -> stopReason.isRequiresAction())
+        .flatMap(stopReason -> stopReason.asRequiresAction().eventIds().stream())
+        .forEach(eventId -> {
+            // Look up the custom tool use event and execute it
+            var toolEvent = eventsById.get(eventId);
+            var result = callTool(toolEvent.name(), toolEvent.input());
 
-```php PHP
-$stream = $client->beta->sessions->events->streamStream(
-    $session->id,
-    requestOptions: ['transporter' => $streamingClient],
-);
+            // Send the result back
+            client.beta().sessions().events().send(
+                session.id(),
+                EventSendParams.builder()
+                    .addEvent(BetaManagedAgentsUserCustomToolResultEventParams.builder()
+                        .type(BetaManagedAgentsUserCustomToolResultEventParams.Type.USER_CUSTOM_TOOL_RESULT)
+                        .customToolUseId(eventId)
+                        .addTextContent(result)
+                        .build())
+                    .build());
+        });
+}
+````
+
+  
+````php
+$stream = $client->beta->sessions->events->streamStream($session->id);
 
 foreach ($stream as $event) {
     if ($event->type === 'session.status_idle' && $event->stopReason) {
@@ -1336,16 +1386,17 @@ foreach ($stream as $event) {
         }
     }
 }
-```
+````
 
-```ruby Ruby
+  
+````ruby
 client.beta.sessions.events.stream_events(session.id).each do |event|
   case event
   in {type: :"session.status_idle", stop_reason: {type: :requires_action, event_ids:}}
     event_ids.each do |event_id|
       # Look up the custom tool use event and execute it
       tool_event = events_by_id[event_id]
-      result = call_tool(tool_event.name, tool_event.input)
+      result = call_tool.call(tool_event.name, tool_event.input)
       # Send the result back
       client.beta.sessions.events.send_(
         session.id,
@@ -1363,62 +1414,71 @@ client.beta.sessions.events.stream_events(session.id).each do |event|
   else
   end
 end
-```
+````
+
 </CodeGroup>
 
-### Konfirmasi alat
+### Konfirmasi alat \{#tool-confirmation}
 
-Ketika [kebijakan izin](/docs/id/managed-agents/permission-policies) memerlukan konfirmasi sebelum alat dijalankan:
+Ketika [kebijakan izin](/docs/id/managed-agents/permission-policies) memerlukan konfirmasi sebelum alat dieksekusi:
 
-1. Sesi mengeluarkan acara `agent.tool_use` atau `agent.mcp_tool_use`.
-2. Sesi berhenti dengan acara `session.status_idle` yang berisi `stop_reason: requires_action`. ID acara pemblokir berada dalam array `stop_reason.requires_action.event_ids`.
-3. Kirim acara `user.tool_confirmation` untuk masing-masing, meneruskan ID acara dalam parameter `tool_use_id`. Atur `result` ke `"allow"` atau `"deny"`. Gunakan `deny_message` untuk menjelaskan penolakan.
-4. Setelah semua acara pemblokir diselesaikan, sesi kembali ke `running`.
+1. Sesi memancarkan event `agent.tool_use` atau `agent.mcp_tool_use`.
+2. Sesi dijeda dengan event `session.status_idle` yang berisi `stop_reason: requires_action`. ID event yang memblokir ada di array `stop_reason.event_ids`.
+3. Kirim event `user.tool_confirmation` untuk masing-masing, dengan meneruskan ID event di parameter `tool_use_id`. Atur `result` ke `"allow"` atau `"deny"`. Gunakan `deny_message` untuk menjelaskan penolakan.
+4. Setelah semua event yang memblokir diselesaikan, sesi bertransisi kembali ke `running`.
 
 <CodeGroup>
-```bash curl
-exec {fd}< <(curl -sS -N --fail-with-body \
-  "https://api.anthropic.com/v1/sessions/$SESSION_ID/stream?beta=true" \
+  
+````bash
+exec {stream_fd}< <(curl --fail-with-body -sS -N \
+  "https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream?beta=true" \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
   -H "anthropic-beta: managed-agents-2026-04-01" \
   -H "content-type: application/json" \
-  -H "Accept: text/event-stream")
+  -H "accept: text/event-stream")
 
-while IFS= read -r -u "$fd" line; do
+while IFS= read -r -u "$stream_fd" line; do
   [[ $line == data:* ]] || continue
-  data="${line#data: }"
-  [[ $(jq -r '.type' <<<"$data") == "session.status_idle" ]] || continue
-  case $(jq -r '.stop_reason.type // empty' <<<"$data") in
+  event_json="${line#data: }"
+  stop_reason=$(jq -r 'select(.type == "session.status_idle") | .stop_reason.type // empty' <<<"$event_json")
+  case "$stop_reason" in
     requires_action)
       while IFS= read -r event_id; do
         # Approve the pending tool call
         jq -n --arg id "$event_id" \
           '{events: [{type: "user.tool_confirmation", tool_use_id: $id, result: "allow"}]}' |
-          curl -sS --fail-with-body \
+          curl --fail-with-body -sS \
             "https://api.anthropic.com/v1/sessions/$SESSION_ID/events?beta=true" \
             -H "x-api-key: $ANTHROPIC_API_KEY" \
             -H "anthropic-version: 2023-06-01" \
             -H "anthropic-beta: managed-agents-2026-04-01" \
             -H "content-type: application/json" \
             -d @-
-      done < <(jq -r '.stop_reason.event_ids[]' <<<"$data")
+      done < <(jq -r '.stop_reason.event_ids[]' <<<"$event_json")
       ;;
     end_turn)
       break
       ;;
   esac
 done
-exec {fd}<&-
-```
+exec {stream_fd}<&-
+````
 
-```python Python
+  
+````bash
+# This workflow does not translate well to a one-off shell command.
+# Use one of the SDK examples in this code group instead.
+````
+
+  
+````python
 with client.beta.sessions.events.stream(session.id) as stream:
     for event in stream:
-        if event.type == "session.status_idle" and (stop := event.stop_reason):
-            match stop.type:
+        if event.type == "session.status_idle" and (stop_reason := event.stop_reason):
+            match stop_reason.type:
                 case "requires_action":
-                    for event_id in stop.event_ids:
+                    for event_id in stop_reason.event_ids:
                         # Approve the pending tool call
                         client.beta.sessions.events.send(
                             session.id,
@@ -1432,130 +1492,125 @@ with client.beta.sessions.events.stream(session.id) as stream:
                         )
                 case "end_turn":
                     break
-```
+````
 
-```typescript TypeScript
+  
+````typescript
 const stream = await client.beta.sessions.events.stream(session.id);
 
 for await (const event of stream) {
-  if (event.type === "session.status_idle") {
-    if (event.stop_reason?.type === "requires_action") {
-      for (const eventId of event.stop_reason.event_ids) {
-        // Approve the pending tool call
-        await client.beta.sessions.events.send(session.id, {
-          events: [
-            {
-              type: "user.tool_confirmation",
-              tool_use_id: eventId,
-              result: "allow"
-            }
-          ]
-        });
-      }
-    } else if (event.stop_reason?.type === "end_turn") {
-      break;
-    }
+  if (event.type !== "session.status_idle") continue;
+  if (event.stop_reason.type === "end_turn") break;
+  if (event.stop_reason.type !== "requires_action") continue;
+
+  for (const eventId of event.stop_reason.event_ids) {
+    // Approve the pending tool call
+    await client.beta.sessions.events.send(session.id, {
+      events: [
+        {
+          type: "user.tool_confirmation",
+          tool_use_id: eventId,
+          result: "allow",
+        },
+      ],
+    });
   }
 }
-```
+````
 
-```csharp C#
+  
+````csharp
 await foreach (var streamEvent in client.Beta.Sessions.Events.StreamStreaming(session.ID))
 {
-    if (streamEvent.Value is BetaManagedAgentsSessionStatusIdleEvent idle)
+    if (streamEvent.Value is not BetaManagedAgentsSessionStatusIdleEvent idle) continue;
+
+    if (idle.StopReason?.Value is BetaManagedAgentsSessionRequiresAction requiresAction)
     {
-        if (idle.StopReason?.Value is BetaManagedAgentsSessionRequiresAction requiresAction)
+        foreach (var eventId in requiresAction.EventIds)
         {
-            foreach (var eventId in requiresAction.EventIds)
+            // Approve the pending tool call
+            await client.Beta.Sessions.Events.Send(session.ID, new()
             {
-                // Approve the pending tool call
-                await client.Beta.Sessions.Events.Send(session.ID, new()
-                {
-                    Events =
-                    [
-                        new BetaManagedAgentsUserToolConfirmationEventParams
-                        {
-                            Type = BetaManagedAgentsUserToolConfirmationEventParamsType.UserToolConfirmation,
-                            ToolUseID = eventId,
-                            Result = BetaManagedAgentsUserToolConfirmationEventParamsResult.Allow,
-                        },
-                    ],
-                });
-            }
-        }
-        else if (idle.StopReason?.Value is BetaManagedAgentsSessionEndTurn)
-        {
-            break;
+                Events =
+                [
+                    new BetaManagedAgentsUserToolConfirmationEventParams
+                    {
+                        Type = BetaManagedAgentsUserToolConfirmationEventParamsType.UserToolConfirmation,
+                        ToolUseID = eventId,
+                        Result = BetaManagedAgentsUserToolConfirmationEventParamsResult.Allow,
+                    },
+                ],
+            });
         }
     }
+    else if (idle.StopReason?.Value is BetaManagedAgentsSessionEndTurn)
+    {
+        break;
+    }
 }
-```
+````
 
-```go Go
-stream := client.Beta.Sessions.Events.StreamEvents(ctx, session.ID, anthropic.BetaSessionEventStreamParams{})
-defer stream.Close()
+  
+````go
+	stream := client.Beta.Sessions.Events.StreamEvents(ctx, session.ID, anthropic.BetaSessionEventStreamParams{})
+	defer stream.Close()
 
 loop:
-for stream.Next() {
-	event, ok := stream.Current().AsAny().(anthropic.BetaManagedAgentsSessionStatusIdleEvent)
-	if !ok {
-		continue
-	}
-	switch stopReason := event.StopReason.AsAny().(type) {
-	case anthropic.BetaManagedAgentsSessionRequiresAction:
-		for _, eventID := range stopReason.EventIDs {
-			// Approve the pending tool call
-			if _, err := client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
-				Events: []anthropic.SendEventsParamsUnion{{
-					OfUserToolConfirmation: &anthropic.BetaManagedAgentsUserToolConfirmationEventParams{
-						Type:      anthropic.BetaManagedAgentsUserToolConfirmationEventParamsTypeUserToolConfirmation,
-						ToolUseID: eventID,
-						Result:    anthropic.BetaManagedAgentsUserToolConfirmationEventParamsResultAllow,
-					},
-				}},
-			}); err != nil {
-				panic(err)
-			}
+	for stream.Next() {
+		event, ok := stream.Current().AsAny().(anthropic.BetaManagedAgentsSessionStatusIdleEvent)
+		if !ok {
+			continue
 		}
-	case anthropic.BetaManagedAgentsSessionEndTurn:
-		break loop
+		switch stopReason := event.StopReason.AsAny().(type) {
+		case anthropic.BetaManagedAgentsSessionRequiresAction:
+			for _, eventID := range stopReason.EventIDs {
+				// Approve the pending tool call
+				if _, err := client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
+					Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
+						OfUserToolConfirmation: &anthropic.BetaManagedAgentsUserToolConfirmationEventParams{
+							Type:      anthropic.BetaManagedAgentsUserToolConfirmationEventParamsTypeUserToolConfirmation,
+							ToolUseID: eventID,
+							Result:    anthropic.BetaManagedAgentsUserToolConfirmationEventParamsResultAllow,
+						},
+					}},
+				}); err != nil {
+					panic(err)
+				}
+			}
+		case anthropic.BetaManagedAgentsSessionEndTurn:
+			break loop
+		}
 	}
-}
-if err := stream.Err(); err != nil {
-	panic(err)
-}
-```
+	if err := stream.Err(); err != nil {
+		panic(err)
+	}
+````
 
-```java Java
+  
+````java
 try (var stream = client.beta().sessions().events().streamStreaming(session.id())) {
-    for (var event : (Iterable<StreamEvents>) stream.stream()::iterator) {
-        if (!event.isSessionStatusIdle()) continue;
-        var stopReason = event.asSessionStatusIdle().stopReason().orElseThrow();
-        if (stopReason.isRequiresAction()) {
-            for (var eventId : stopReason.asRequiresAction().eventIds()) {
-                // Approve the pending tool call
-                client.beta().sessions().events().send(
-                    session.id(),
-                    EventSendParams.builder()
-                        .addEvent(BetaManagedAgentsUserToolConfirmationEventParams.builder()
-                            .type(BetaManagedAgentsUserToolConfirmationEventParams.Type.USER_TOOL_CONFIRMATION)
-                            .toolUseId(eventId)
-                            .result(BetaManagedAgentsUserToolConfirmationEventParams.Result.ALLOW)
-                            .build())
-                        .build());
-            }
-        } else if (stopReason.isEndTurn()) {
-            break;
-        }
-    }
+    stream.stream()
+        .filter(BetaManagedAgentsStreamSessionEvents::isSessionStatusIdle)
+        .map(idleEvent -> idleEvent.asSessionStatusIdle().stopReason())
+        .takeWhile(stopReason -> !stopReason.isEndTurn())
+        .filter(stopReason -> stopReason.isRequiresAction())
+        .flatMap(stopReason -> stopReason.asRequiresAction().eventIds().stream())
+        // Approve each pending tool call
+        .forEach(toolUseId -> client.beta().sessions().events().send(
+            session.id(),
+            EventSendParams.builder()
+                .addEvent(BetaManagedAgentsUserToolConfirmationEventParams.builder()
+                    .type(BetaManagedAgentsUserToolConfirmationEventParams.Type.USER_TOOL_CONFIRMATION)
+                    .toolUseId(toolUseId)
+                    .result(BetaManagedAgentsUserToolConfirmationEventParams.Result.ALLOW)
+                    .build())
+                .build()));
 }
-```
+````
 
-```php PHP
-$stream = $client->beta->sessions->events->streamStream(
-    $session->id,
-    requestOptions: ['transporter' => $streamingClient],
-);
+  
+````php
+$stream = $client->beta->sessions->events->streamStream($session->id);
 
 foreach ($stream as $event) {
     if ($event->type === 'session.status_idle' && $event->stopReason) {
@@ -1578,9 +1633,10 @@ foreach ($stream as $event) {
         }
     }
 }
-```
+````
 
-```ruby Ruby
+  
+````ruby
 client.beta.sessions.events.stream_events(session.id).each do |event|
   case event
   in {type: :"session.status_idle", stop_reason: {type: :requires_action, event_ids:}}
@@ -1598,12 +1654,359 @@ client.beta.sessions.events.stream_events(session.id).each do |event|
   else
   end
 end
-```
+````
+
 </CodeGroup>
 
-### Melacak penggunaan
+### Melanjutkan sesi yang idle \{#resuming-an-idle-session}
 
-Objek sesi mencakup bidang `usage` dengan statistik token kumulatif. Ambil sesi setelah menjadi idle untuk membaca total terbaru, dan gunakan untuk melacak biaya, memberlakukan anggaran, atau memantau konsumsi.
+Sesi tetap ada di antara interaksi. Riwayat percakapan dipertahankan kecuali sesi dihapus secara eksplisit. Ketika sesi menjadi idle, sandbox-nya di-checkpoint, mempertahankan seluruh status sandbox, termasuk filesystem, paket yang terinstal, dan file apa pun yang dibuat agen. Ini memungkinkan Anda melanjutkan dengan bersih setelah periode tidak aktif.
+
+<Note>
+Meskipun riwayat sesi dipertahankan hingga dihapus, checkpoint hanya dipertahankan selama 30 hari setelah aktivitas terakhir sesi. Jika alur kerja Anda memerlukan status sandbox lengkap (file, alat yang terinstal, dan sebagainya) untuk bertahan lebih dari 30 hari, kirim event `user.message` secara berkala untuk mengatur ulang timer inaktivitas sebelum checkpoint kedaluwarsa.
+</Note>
+
+Untuk melanjutkan sesi, kirim event `user.message` ke sesi tersebut seperti biasa:
+
+<CodeGroup defaultLanguage="CLI">
+  
+````bash
+# In production, pass the stored ID of the session you want to resume.
+curl --fail-with-body -sS "https://api.anthropic.com/v1/sessions/$SESSION_ID/events?beta=true" \
+  -H "x-api-key: $ANTHROPIC_API_KEY" \
+  -H "anthropic-version: 2023-06-01" \
+  -H "anthropic-beta: managed-agents-2026-04-01" \
+  -H "content-type: application/json" \
+  -d @- <<'EOF'
+{
+  "events": [
+    {
+      "type": "user.message",
+      "content": [
+        {"type": "text", "text": "Now run the tests against the changes you made earlier."}
+      ]
+    }
+  ]
+}
+EOF
+````
+
+  
+````bash
+# In production, pass the stored ID of the session you want to resume.
+ant beta:sessions:events send --session-id "$SESSION_ID" <<'YAML'
+events:
+  - type: user.message
+    content:
+      - type: text
+        text: Now run the tests against the changes you made earlier.
+YAML
+````
+
+  
+````python
+# Resume a previously created session by sending it a new user.message event.
+# In production, pass the stored ID of the session you want to resume.
+client.beta.sessions.events.send(
+    session.id,
+    events=[
+        {
+            "type": "user.message",
+            "content": [
+                {
+                    "type": "text",
+                    "text": "Now run the tests against the changes you made earlier.",
+                },
+            ],
+        },
+    ],
+)
+````
+
+  
+````typescript
+// Resume a previously created session by sending it a new user event.
+// In production, pass the stored ID of the session you want to resume.
+await client.beta.sessions.events.send(session.id, {
+  events: [
+    {
+      type: "user.message",
+      content: [
+        {
+          type: "text",
+          text: "Now run the tests against the changes you made earlier.",
+        },
+      ],
+    },
+  ],
+});
+````
+
+  
+````csharp
+// Resume a previously created session by ID. In production, pass the
+// session ID you stored when the session was created.
+await client.Beta.Sessions.Events.Send(session.ID, new()
+{
+    Events =
+    [
+        new BetaManagedAgentsUserMessageEventParams
+        {
+            Type = BetaManagedAgentsUserMessageEventParamsType.UserMessage,
+            Content =
+            [
+                new BetaManagedAgentsTextBlock
+                {
+                    Type = BetaManagedAgentsTextBlockType.Text,
+                    Text = "Now run the tests against the changes you made earlier.",
+                },
+            ],
+        },
+    ],
+});
+````
+
+  
+````go
+// Resume a previously created session by sending it a new user.message
+// event. In production, pass the stored ID of the session to resume.
+if _, err := client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
+	Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
+		OfUserMessage: &anthropic.BetaManagedAgentsUserMessageEventParams{
+			Type: anthropic.BetaManagedAgentsUserMessageEventParamsTypeUserMessage,
+			Content: []anthropic.BetaManagedAgentsUserMessageEventParamsContentUnion{{
+				OfText: &anthropic.BetaManagedAgentsTextBlockParam{
+					Type: anthropic.BetaManagedAgentsTextBlockTypeText,
+					Text: "Now run the tests against the changes you made earlier.",
+				},
+			}},
+		},
+	}},
+}); err != nil {
+	panic(err)
+}
+````
+
+  
+````java
+// Resume a previously created session by ID. In production, pass the
+// session ID you stored when the session was created.
+client.beta().sessions().events().send(
+    session.id(),
+    EventSendParams.builder()
+        .addEvent(BetaManagedAgentsUserMessageEventParams.builder()
+            .type(BetaManagedAgentsUserMessageEventParams.Type.USER_MESSAGE)
+            .addTextContent("Now run the tests against the changes you made earlier.")
+            .build())
+        .build());
+````
+
+  
+````php
+// Resume a previously created session by sending it a new user.message event.
+// In production, pass the session ID you stored when the session was created.
+$client->beta->sessions->events->send(
+    $session->id,
+    events: [
+        [
+            'type' => 'user.message',
+            'content' => [
+                [
+                    'type' => 'text',
+                    'text' => 'Now run the tests against the changes you made earlier.',
+                ],
+            ],
+        ],
+    ],
+);
+````
+
+  
+````ruby
+# Resuming a session is just sending the next event to it. In production,
+# pass the session ID you stored when the session was created.
+client.beta.sessions.events.send_(
+  session.id,
+  events: [
+    {
+      type: "user.message",
+      content: [
+        {type: "text", text: "Now run the tests against the changes you made earlier."}
+      ]
+    }
+  ]
+)
+````
+
+</CodeGroup>
+
+### Mengirim pesan sistem \{#sending-system-messages}
+
+<Note>
+`system.message` saat ini hanya didukung oleh Claude Opus 4.8. Jika ada model yang dikonfigurasi pada agen yang tidak mendukung injeksi sistem di tengah percakapan, event tersebut ditolak dengan error validasi `model_does_not_support_mid_conversation_system`.
+</Note>
+
+Kirim event `system.message` untuk memperbarui prompt sistem agen di antara giliran. Tidak seperti field `system` pada definisi agen (yang ditetapkan saat pembuatan sesi), `system.message` memungkinkan Anda mengubah prompt sistem saat sesi berjalan. Gunakan ini ketika agen memerlukan panduan tingkat sistem yang diperbarui di tengah sesi: persona yang berbeda, batasan yang direvisi, atau konteks yang diambil saat runtime yang seharusnya membentuk perilaku model ke depannya.
+
+<CodeGroup defaultLanguage="CLI">
+  
+````bash
+curl --fail-with-body -sS "https://api.anthropic.com/v1/sessions/$SESSION_ID/events?beta=true" \
+  -H "x-api-key: $ANTHROPIC_API_KEY" \
+  -H "anthropic-version: 2023-06-01" \
+  -H "anthropic-beta: managed-agents-2026-04-01" \
+  -H "content-type: application/json" \
+  -d @- <<'EOF'
+{
+  "events": [
+    {
+      "type": "system.message",
+      "content": [
+        {"type": "text", "text": "The user's current timezone is America/New_York."}
+      ]
+    }
+  ]
+}
+EOF
+````
+
+  
+````bash
+ant beta:sessions:events send --session-id "$SESSION_ID" <<'YAML'
+events:
+  - type: system.message
+    content:
+      - type: text
+        text: "The user's current timezone is America/New_York."
+YAML
+````
+
+  
+````python
+client.beta.sessions.events.send(
+    session.id,
+    events=[
+        {
+            "type": "system.message",
+            "content": [
+                {
+                    "type": "text",
+                    "text": "The user's current timezone is America/New_York.",
+                },
+            ],
+        },
+    ],
+)
+````
+
+  
+````typescript
+await client.beta.sessions.events.send(session.id, {
+  events: [
+    {
+      type: "system.message",
+      content: [
+        {
+          type: "text",
+          text: "The user's current timezone is America/New_York.",
+        },
+      ],
+    },
+  ],
+});
+````
+
+  
+````csharp
+await client.Beta.Sessions.Events.Send(session.ID, new()
+{
+    Events =
+    [
+        new BetaManagedAgentsSystemMessageEventParams
+        {
+            Type = BetaManagedAgentsSystemMessageEventParamsType.SystemMessage,
+            Content =
+            [
+                new BetaManagedAgentsSystemContentBlock
+                {
+                    Type = BetaManagedAgentsSystemContentBlockType.Text,
+                    Text = "The user's current timezone is America/New_York.",
+                },
+            ],
+        },
+    ],
+});
+````
+
+  
+````go
+if _, err := client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
+	Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
+		OfSystemMessage: &anthropic.BetaManagedAgentsSystemMessageEventParams{
+			Type: anthropic.BetaManagedAgentsSystemMessageEventParamsTypeSystemMessage,
+			Content: []anthropic.BetaManagedAgentsSystemContentBlockParam{{
+				Type: anthropic.BetaManagedAgentsSystemContentBlockTypeText,
+				Text: "The user's current timezone is America/New_York.",
+			}},
+		},
+	}},
+}); err != nil {
+	panic(err)
+}
+````
+
+  
+````java
+client.beta().sessions().events().send(
+    session.id(),
+    EventSendParams.builder()
+        .addEvent(BetaManagedAgentsSystemMessageEventParams.builder()
+            .type(BetaManagedAgentsSystemMessageEventParams.Type.SYSTEM_MESSAGE)
+            .addTextContent("The user's current timezone is America/New_York.")
+            .build())
+        .build());
+````
+
+  
+````php
+$client->beta->sessions->events->send(
+    $session->id,
+    events: [
+        [
+            'type' => 'system.message',
+            'content' => [
+                [
+                    'type' => 'text',
+                    'text' => "The user's current timezone is America/New_York.",
+                ],
+            ],
+        ],
+    ],
+);
+````
+
+  
+````ruby
+client.beta.sessions.events.send_(
+  session.id,
+  events: [
+    {
+      type: "system.message",
+      content: [
+        {type: "text", text: "The user's current timezone is America/New_York."}
+      ]
+    }
+  ]
+)
+````
+
+</CodeGroup>
+
+`system.message` tidak dapat dikirim saat sesi idle dengan `stop_reason: requires_action`. `content` menerima 1–1000 item teks.
+
+### Melacak penggunaan \{#tracking-usage}
+
+Objek sesi menyertakan field `usage` dengan statistik token kumulatif. Ambil sesi setelah menjadi idle untuk membaca total terbaru, dan gunakan untuk melacak biaya, menerapkan anggaran, atau memantau konsumsi.
 
 ```json
 {
@@ -1618,4 +2021,19 @@ Objek sesi mencakup bidang `usage` dengan statistik token kumulatif. Ambil sesi 
 }
 ```
 
-`input_tokens` melaporkan token input yang tidak di-cache dan `output_tokens` melaporkan total token output di semua panggilan model dalam sesi. Bidang `cache_creation_input_tokens` dan `cache_read_input_tokens` mencerminkan aktivitas prompt caching. Entri cache menggunakan TTL 5 menit, jadi giliran berturut-turut dalam jendela itu mendapat manfaat dari pembacaan cache, yang mengurangi biaya per-token.
+`input_tokens` melaporkan token input yang tidak di-cache dan `output_tokens` melaporkan total token output di seluruh panggilan model dalam sesi. Field `cache_creation_input_tokens` dan `cache_read_input_tokens` mencerminkan aktivitas caching prompt. Entri cache menggunakan TTL 5 menit, sehingga giliran berturut-turut dalam jendela waktu tersebut mendapat manfaat dari pembacaan cache, yang mengurangi biaya per token.
+
+## Observabilitas Console \{#console-observability}
+
+Console menyediakan tampilan timeline visual dari sesi agen Anda. Navigasikan ke bagian Claude Managed Agents di Console untuk melihat:
+
+- **Daftar sesi:** Semua sesi dengan status, waktu pembuatan, dan modelnya
+- **Tampilan tracing:** Tampilan kronologis event (konten, timestamp, penggunaan token) dalam sebuah sesi. Tampilan tracing hanya dapat diakses oleh Developer dan Admin.
+- **Eksekusi alat:** Detail setiap panggilan alat dan hasilnya
+
+## Tips debugging \{#debugging-tips}
+
+- **Periksa event sesi:** Error sesi disampaikan melalui event `session.error`
+- **Tinjau hasil alat:** Kegagalan eksekusi alat sering kali menjelaskan perilaku agen yang tidak terduga
+- **Lacak penggunaan token:** Pantau konsumsi token untuk mengoptimalkan prompt dan mengurangi biaya
+- **Gunakan prompt sistem:** Tambahkan instruksi logging ke prompt sistem agar agen menjelaskan penalarannya

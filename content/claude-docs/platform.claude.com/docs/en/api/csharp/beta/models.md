@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/models
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 87e5d204f90d0b7120a88c70c1c50a0f5ed1b882c4bcfb0732c4223c0d57a8ef
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 904bdcb3619faec132d0b8bb92d67715c1c043bbb8a6e1ccd1588394011821d6
 ---
 
 # Models
@@ -91,6 +91,10 @@ The Models API response can be used to determine which models are available for 
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Returns
 
 - `class ModelListPageResponse:`
@@ -100,6 +104,10 @@ The Models API response can be used to determine which models are available for 
     - `required string ID`
 
       Unique model identifier.
+
+    - `required IReadOnlyList<string>? AllowedFallbackModels`
+
+      Model IDs this model accepts as `fallbacks[i].model` on the Messages API. An empty list means the `fallbacks` parameter is not supported for this model as primary.
 
     - `required BetaModelCapabilities? Capabilities`
 
@@ -254,6 +262,9 @@ await foreach (var item in page.Paginate())
   "data": [
     {
       "id": "claude-opus-4-6",
+      "allowed_fallback_models": [
+        "string"
+      ],
       "capabilities": {
         "batch": {
           "supported": true
@@ -402,6 +413,10 @@ The Models API response can be used to determine information about a specific mo
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
 
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
 ### Returns
 
 - `class BetaModelInfo:`
@@ -409,6 +424,10 @@ The Models API response can be used to determine information about a specific mo
   - `required string ID`
 
     Unique model identifier.
+
+  - `required IReadOnlyList<string>? AllowedFallbackModels`
+
+    Model IDs this model accepts as `fallbacks[i].model` on the Messages API. An empty list means the `fallbacks` parameter is not supported for this model as primary.
 
   - `required BetaModelCapabilities? Capabilities`
 
@@ -547,6 +566,9 @@ Console.WriteLine(betaModelInfo);
 ```json
 {
   "id": "claude-opus-4-6",
+  "allowed_fallback_models": [
+    "string"
+  ],
   "capabilities": {
     "batch": {
       "supported": true
@@ -797,6 +819,10 @@ Console.WriteLine(betaModelInfo);
   - `required string ID`
 
     Unique model identifier.
+
+  - `required IReadOnlyList<string>? AllowedFallbackModels`
+
+    Model IDs this model accepts as `fallbacks[i].model` on the Messages API. An empty list means the `fallbacks` parameter is not supported for this model as primary.
 
   - `required BetaModelCapabilities? Capabilities`
 

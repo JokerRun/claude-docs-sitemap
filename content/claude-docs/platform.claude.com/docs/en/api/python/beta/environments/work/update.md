@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/environments/work/update
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 77449cf84a7c98d210c15a026acbbfdbf4b72db979ffc2e3f86bced638ca1b0a
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: cbd26c6b353020f2d5643cbdef86debedeae68aebe54e7a942717ce617798b9d
 ---
 
 ## Update Work Item
@@ -31,7 +31,7 @@ Update work item metadata with merge semantics.
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 23 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 25 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -84,6 +84,10 @@ Update work item metadata with merge semantics.
     - `"cache-diagnosis-2026-04-07"`
 
     - `"thinking-token-count-2026-05-13"`
+
+    - `"server-side-fallback-2026-06-01"`
+
+    - `"fallback-credit-2026-06-01"`
 
 ### Returns
 

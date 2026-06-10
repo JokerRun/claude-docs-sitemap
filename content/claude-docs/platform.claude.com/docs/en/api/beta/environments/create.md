@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/create
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: ab2bf6d0614c3fc2e1e67ef9248949a50e371bfa60da30b9d40be9f85fd86ad1
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: eaaebb45dfca01de85a52959e3322fe7cb757aa6ba4a1822c637f3cbd94f80b6
 ---
 
 ## Create Environment
@@ -19,7 +19,7 @@ Create a new environment with the specified configuration.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 23 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 25 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -72,6 +72,10 @@ Create a new environment with the specified configuration.
     - `"cache-diagnosis-2026-04-07"`
 
     - `"thinking-token-count-2026-05-13"`
+
+    - `"server-side-fallback-2026-06-01"`
+
+    - `"fallback-credit-2026-06-01"`
 
 ### Body Parameters
 

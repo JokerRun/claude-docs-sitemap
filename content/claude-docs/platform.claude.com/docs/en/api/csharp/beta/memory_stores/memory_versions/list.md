@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/memory_stores/memory_versions/list
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: e7cc3eebca9dc6a13436a35d7f81e7fd8907a19d75ae68b062b1e2560bd6f087
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: f37d0580973d6bb0b53b1e1775bf676f75e771873d6a80717bb8dd10c1f350dd
 ---
 
 ## List memory versions
@@ -112,6 +112,10 @@ List memory versions
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 

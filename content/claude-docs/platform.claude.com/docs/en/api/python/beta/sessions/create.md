@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/sessions/create
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 49ada4f54569db9047212edbb076a344b27c715a88aaccc1f30054615638d788
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 6a77958467c8f42910ec39d10e61bb8c6208a90956eaeb9bca01003a3662e1ec
 ---
 
 ## Create Session
@@ -147,7 +147,7 @@ Create Session
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 23 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 25 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -201,6 +201,10 @@ Create Session
 
     - `"thinking-token-count-2026-05-13"`
 
+    - `"server-side-fallback-2026-06-01"`
+
+    - `"fallback-credit-2026-06-01"`
+
 ### Returns
 
 - `class BetaManagedAgentsSession: …`
@@ -237,12 +241,13 @@ Create Session
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-        - `Literal["claude-opus-4-8", "claude-opus-4-7", "claude-opus-4-6", 7 more]`
+        - `Literal["claude-fable-5", "claude-opus-4-8", "claude-opus-4-7", 8 more]`
 
           The model that will power your agent.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `claude-fable-5` - Next generation of intelligence for the hardest knowledge work and coding problems
           - `claude-opus-4-8` - Frontier intelligence for long-running agents and coding
           - `claude-opus-4-7` - Frontier intelligence for long-running agents and coding
           - `claude-opus-4-6` - Most intelligent model for building agents and coding
@@ -253,6 +258,10 @@ Create Session
           - `claude-opus-4-5-20251101` - Premium model combining maximum intelligence with practical performance
           - `claude-sonnet-4-5` - High-performance model for agents and coding
           - `claude-sonnet-4-5-20250929` - High-performance model for agents and coding
+
+          - `"claude-fable-5"`
+
+            Next generation of intelligence for the hardest knowledge work and coding problems
 
           - `"claude-opus-4-8"`
 
@@ -482,19 +491,13 @@ Create Session
 
               JSON Schema for custom tool input parameters.
 
-              - `properties: Optional[Dict[str, object]]`
-
-                JSON Schema properties defining the tool's input parameters.
-
-              - `required: Optional[List[str]]`
-
-                List of required property names.
-
-              - `type: Optional[Literal["object"]]`
-
-                Must be 'object' for tool input schemas.
+              - `type: Literal["object"]`
 
                 - `"object"`
+
+              - `properties: Optional[Dict[str, object]]`
+
+              - `required: Optional[List[str]]`
 
             - `name: str`
 
@@ -752,6 +755,10 @@ Create Session
 
     Vault IDs attached to the session at creation. Empty when no vaults were supplied.
 
+  - `deployment_id: Optional[str]`
+
+    Deployment ID when the session was created from a deployment reference. Null otherwise.
+
 ### Example
 
 ```python
@@ -931,6 +938,7 @@ print(beta_managed_agents_session.id)
   },
   "vault_ids": [
     "vlt_011CZkZDLs7fYzm1hXNPeRjv"
-  ]
+  ],
+  "deployment_id": "deployment_id"
 }
 ```

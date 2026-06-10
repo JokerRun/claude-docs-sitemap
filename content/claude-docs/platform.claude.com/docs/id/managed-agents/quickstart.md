@@ -1,33 +1,37 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/quickstart
-fetched_at: 2026-05-30T03:14:18.300217Z
-sha256: c2afd761f8061376f075746c7545beef4bcb62976e7cb8dfd89bd5f9b8be38d8
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 00a81819c84ba4e899984e814d82e307a237101fbb2523cae3bbfc4fe3127de4
 ---
 
-# Mulai dengan Claude Managed Agents
+# Memulai dengan Claude Managed Agents
 
 Buat agen otonom pertama Anda.
 
 ---
 
-Panduan ini memandu Anda membuat agen, menyiapkan lingkungan, memulai sesi, dan melakukan streaming respons agen.
+Panduan ini memandu Anda dalam membuat agen, menyiapkan lingkungan, memulai sesi, dan melakukan streaming respons agen.
 
-## Konsep inti
+<Tip>
+**Lebih suka panduan interaktif?** Jalankan `/claude-api managed-agents-onboard` di versi terbaru [Claude Code](https://claude.com/product/claude-code) untuk penyiapan terpandu dan tanya jawab interaktif.
+</Tip>
 
-| Concept | Description |
+## Konsep inti \{#core-concepts}
+
+| Konsep | Deskripsi |
 |---------|-------------|
-| **Agent** | The model, system prompt, tools, MCP servers, and skills |
-| **Environment** | Configuration for where sessions run: an Anthropic-managed cloud sandbox, or a self-hosted sandbox on your own infrastructure |
-| **Session** | A running agent instance within an environment, performing a specific task and generating outputs |
-| **Events** | Messages exchanged between your application and the agent (user turns, tool results, status updates) |
+| **Agent** | Model, prompt sistem, alat, server MCP, dan skill |
+| **Environment** | Konfigurasi untuk tempat sesi dijalankan: sandbox cloud yang dikelola Anthropic, atau sandbox yang di-host sendiri pada infrastruktur Anda |
+| **Session** | Instance agent yang sedang berjalan dalam sebuah environment, menjalankan tugas tertentu dan menghasilkan output |
+| **Events** | Pesan yang dipertukarkan antara aplikasi Anda dan agent (giliran pengguna, hasil alat, pembaruan status) |
 
-## Prasyarat
+## Prasyarat \{#prerequisites}
 
-- Akun [Console](/) Anthropic
+- Akun [Console](https://platform.claude.com) Anthropic
 - [Kunci API](/settings/keys)
 
-## Instal CLI
+## Instal CLI \{#install-the-cli}
 
 <Tabs>
 <Tab title="Homebrew (macOS)">
@@ -36,19 +40,13 @@ Panduan ini memandu Anda membuat agen, menyiapkan lingkungan, memulai sesi, dan 
 brew install anthropics/tap/ant
 ```
 
-Di macOS, hapus karantina binary:
-
-```bash
-xattr -d com.apple.quarantine "$(brew --prefix)/bin/ant"
-```
-
 </Tab>
 <Tab title="curl (Linux/WSL)">
 
 Untuk lingkungan Linux, unduh binary rilis secara langsung.
 
-```bash
-VERSION=1.0.0
+```bash nocheck
+VERSION=1.11.0
 OS=$(uname -s | tr '[:upper:]' '[:lower:]')
 ARCH=$(uname -m | sed -e 's/x86_64/amd64/' -e 's/aarch64/arm64/')
 curl -fsSL "https://github.com/anthropics/anthropic-cli/releases/download/v${VERSION}/ant_${VERSION}_${OS}_${ARCH}.tar.gz" \
@@ -60,7 +58,7 @@ Anda dapat menemukan semua rilis di [halaman rilis GitHub](https://github.com/an
 </Tab>
 <Tab title="Go">
 
-Anda juga dapat menginstal CLI dari sumber menggunakan `go install`. Memerlukan Go 1.22 atau lebih baru.
+Anda juga dapat menginstal CLI dari sumber menggunakan `go install`. Memerlukan Go 1.25 atau yang lebih baru.
 
 ```bash
 go install github.com/anthropics/anthropic-cli/cmd/ant@latest
@@ -81,7 +79,7 @@ Periksa instalasi:
 ant --version
 ```
 
-## Instal SDK
+## Instal SDK \{#install-the-sdk}
 
 <Tabs>
   <Tab title="Python">
@@ -96,7 +94,7 @@ ant --version
   </Tab>
   <Tab title="Java">
     ```groovy Gradle
-    implementation("com.anthropic:anthropic-java:2.20.0")
+    implementation("com.anthropic:anthropic-java:2.39.0")
     ```
   </Tab>
   <Tab title="Go">
@@ -121,21 +119,21 @@ ant --version
   </Tab>
 </Tabs>
 
-Tetapkan kunci API Anda sebagai variabel lingkungan:
+Atur kunci API Anda sebagai variabel lingkungan:
 
 ```bash
 export ANTHROPIC_API_KEY="your-api-key-here"
 ```
 
-## Buat sesi pertama Anda
+## Buat sesi pertama Anda \{#create-your-first-session}
 
 <Note>
-Semua permintaan API Managed Agents memerlukan header beta `managed-agents-2026-04-01`. SDK menetapkan header beta secara otomatis.
+Semua permintaan Managed Agents API memerlukan beta header `managed-agents-2026-04-01`. SDK menetapkan beta header tersebut secara otomatis.
 </Note>
 
 <Steps>
   <Step title="Buat agen">
-    Buat agen yang mendefinisikan model, system prompt, dan alat yang tersedia.
+    Buat agen yang mendefinisikan model, prompt sistem, dan alat yang tersedia.
 
     
     <CodeGroup defaultLanguage="CLI">
@@ -338,14 +336,14 @@ puts "Agent ID: #{agent.id}, version: #{agent.version}"
 
     </CodeGroup>
 
-    Tipe alat `agent_toolset_20260401` mengaktifkan kumpulan lengkap alat agen bawaan (bash, operasi file, pencarian web, dan lainnya). Lihat [Alat](/docs/id/managed-agents/tools) untuk daftar lengkap dan opsi konfigurasi per alat.
+    Tipe alat `agent_toolset_20260401` mengaktifkan set lengkap alat agen bawaan (bash, operasi file, pencarian web, dan lainnya). Lihat [Alat](/docs/id/managed-agents/tools) untuk daftar lengkap dan opsi konfigurasi per alat.
 
-    Simpan `agent.id` yang dikembalikan. Anda akan merujuknya di setiap sesi yang Anda buat.
+    Simpan `agent.id` yang dikembalikan. Anda akan mereferensikannya di setiap sesi yang Anda buat.
 
   </Step>
 
   <Step title="Buat lingkungan">
-    Lingkungan mendefinisikan kontainer tempat agen Anda berjalan.
+    Lingkungan mendefinisikan sandbox tempat agen Anda berjalan.
 
     <CodeGroup defaultLanguage="CLI">
     
@@ -469,11 +467,13 @@ puts "Environment ID: #{environment.id}"
 
     </CodeGroup>
 
-    Simpan `environment.id` yang dikembalikan. Anda akan merujuknya di setiap sesi yang Anda buat.
+    Simpan `environment.id` yang dikembalikan. Anda akan mereferensikannya di setiap sesi yang Anda buat.
+
+    <Tip>Untuk menjalankan sandbox di infrastruktur Anda sendiri alih-alih sandbox cloud, lihat [Sandbox yang dihosting sendiri](/docs/id/managed-agents/self-hosted-sandboxes).</Tip>
   </Step>
 
   <Step title="Mulai sesi">
-    Buat sesi yang merujuk agen dan lingkungan Anda.
+    Buat sesi yang mereferensikan agen dan lingkungan Anda.
 
     <CodeGroup>
     
@@ -582,8 +582,8 @@ puts "Session ID: #{session.id}"
     </CodeGroup>
   </Step>
 
-  <Step title="Kirim pesan dan streaming respons">
-    Buka stream, kirim event pengguna, lalu proses event saat tiba:
+  <Step title="Kirim pesan dan lakukan streaming respons">
+    Buka stream, kirim event pengguna, lalu proses event saat diterima:
 
     <CodeGroup>
     
@@ -879,7 +879,7 @@ end
 
     </CodeGroup>
 
-    Agen akan menulis skrip Python, mengeksekusinya di dalam kontainer, dan memverifikasi bahwa file output telah dibuat. Output Anda akan terlihat seperti ini:
+    Agen menulis skrip Python, mengeksekusinya di sandbox, dan memverifikasi bahwa file output telah dibuat. Output Anda terlihat serupa dengan ini:
 
     ```text
     I'll create a Python script that generates the first 20 Fibonacci numbers and saves them to a file.
@@ -894,29 +894,29 @@ end
   </Step>
 </Steps>
 
-## Yang terjadi
+## Apa yang terjadi \{#whats-happening}
 
-Saat Anda mengirim event pengguna, Claude Managed Agents:
+Ketika Anda mengirim event pengguna, Claude Managed Agents:
 
-1. **Menyediakan kontainer:** Konfigurasi lingkungan Anda menentukan cara pembuatannya.
-2. **Menjalankan loop agen:** Claude memutuskan alat mana yang akan digunakan berdasarkan pesan Anda
-3. **Mengeksekusi alat:** Penulisan file, perintah bash, dan panggilan alat lainnya berjalan di dalam kontainer
-4. **Melakukan streaming event:** Anda menerima pembaruan real-time saat agen bekerja
-5. **Menjadi idle:** Agen memancarkan event `session.status_idle` ketika tidak ada lagi yang perlu dilakukan
+1. **Menyediakan sandbox:** Konfigurasi lingkungan Anda menentukan bagaimana sandbox dibangun.
+2. **Menjalankan loop agen:** Claude menentukan alat mana yang akan digunakan berdasarkan pesan Anda.
+3. **Mengeksekusi alat:** Penulisan file, perintah bash, dan pemanggilan alat lainnya berjalan di dalam sandbox.
+4. **Melakukan streaming event:** Anda menerima pembaruan real-time saat agen bekerja.
+5. **Menjadi idle:** Agen mengeluarkan event `session.status_idle` ketika tidak ada lagi yang perlu dilakukan.
 
-## Langkah selanjutnya
+## Langkah selanjutnya \{#next-steps}
 
 <CardGroup cols={2}>
   <Card title="Definisikan agen Anda" icon="brain" href="/docs/id/managed-agents/agent-setup">
-    Buat konfigurasi agen yang dapat digunakan kembali dan berversi
+    Buat konfigurasi agen yang dapat digunakan kembali dan memiliki versi
   </Card>
   <Card title="Konfigurasi lingkungan" icon="settings" href="/docs/id/managed-agents/environments">
-    Sesuaikan pengaturan jaringan dan kontainer
+    Sesuaikan pengaturan jaringan dan sandbox
   </Card>
   <Card title="Alat agen" icon="tool" href="/docs/id/managed-agents/tools">
     Aktifkan alat tertentu untuk agen Anda
   </Card>
-  <Card title="Event dan streaming" icon="lightning" href="/docs/id/managed-agents/events-and-streaming">
+  <Card title="Stream event sesi" icon="lightning" href="/docs/id/managed-agents/events-and-streaming">
     Tangani event dan arahkan agen di tengah eksekusi
   </Card>
 </CardGroup>

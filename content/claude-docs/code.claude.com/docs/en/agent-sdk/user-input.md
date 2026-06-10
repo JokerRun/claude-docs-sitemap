@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/user-input
-fetched_at: 2026-05-30T03:14:18.300217Z
-sha256: e3498a2643abd10b9bf69b20654059fbb2c16813608cab5ae7b4ac990f3955b0
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 2065d6bc88c5407c637aa98ab6c2932048aea698d3366cb80be174111b04bcb1
 ---
 
 > ## Documentation Index
@@ -562,12 +562,12 @@ The following steps show how to handle clarifying questions:
 
 The input contains Claude's generated questions in a `questions` array. Each question has these fields:
 
-| Field         | Description                                                                                                                             |
-| ------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| `question`    | The full question text to display                                                                                                       |
-| `header`      | Short label for the question (max 12 characters)                                                                                        |
-| `options`     | Array of 2-4 choices, each with `label` and `description`. TypeScript: optionally `preview` (see [below](#option-previews-type-script)) |
-| `multiSelect` | If `true`, users can select multiple options                                                                                            |
+| Field         | Description                                                                                                                            |
+| ------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| `question`    | The full question text to display                                                                                                      |
+| `header`      | Short label for the question (max 12 characters)                                                                                       |
+| `options`     | Array of 2-4 choices, each with `label` and `description`. TypeScript: optionally `preview` (see [below](#option-previews-typescript)) |
+| `multiSelect` | If `true`, users can select multiple options                                                                                           |
 
 The structure your callback receives:
 

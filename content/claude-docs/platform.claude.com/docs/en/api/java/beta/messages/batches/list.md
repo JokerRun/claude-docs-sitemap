@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/messages/batches/list
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 0013c082bf4ebe1dbe445ad57520798ee1ccfb364a708cbd63e08f9c4a1114ca
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: a15d756442e38a054dcfacd4d962a2a22097c398314a59b5b19a68960010e4a5
 ---
 
 ## List Message Batches
@@ -88,6 +88,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
+
+    - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
+
+    - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
 
 ### Returns
 

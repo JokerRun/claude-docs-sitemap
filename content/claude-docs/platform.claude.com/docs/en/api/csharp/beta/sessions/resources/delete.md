@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/sessions/resources/delete
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 3da21fb7f049cd86d30e29d2b9c2d357e26c4f9122287efd564cbe539f0cab3f
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 4794d3a166b2bb44d58d3eaf4957469c136b57a2c20eeb97488d3550eea00e95
 ---
 
 ## Delete Session Resource
@@ -80,6 +80,10 @@ Delete Session Resource
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 

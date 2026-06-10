@@ -1,111 +1,124 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/batch-processing
-fetched_at: 2026-06-06T03:14:11.045838Z
-sha256: 3ab43678a08b4d0960f045041e1537d5d6194b11dc3ecc82a7ae1128c47990a3
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 8efee0af1ca70838688db436dbcd0567d8e41ed2bddbc43573fcd8428d82d437
 ---
 
 # Pemrosesan batch
 
-Pelajari cara menggunakan Message Batches API untuk memproses volume besar permintaan secara asinkron dengan efisien biaya.
-
 ---
 
-Pemrosesan batch adalah pendekatan yang kuat untuk menangani volume besar permintaan secara efisien. Alih-alih memproses permintaan satu per satu dengan respons langsung, pemrosesan batch memungkinkan Anda mengirimkan beberapa permintaan sekaligus untuk pemrosesan asinkron. Pola ini sangat berguna ketika:
+Pemrosesan batch adalah pendekatan yang ampuh untuk menangani permintaan dalam volume besar secara efisien. Alih-alih memproses permintaan satu per satu dengan respons langsung, pemrosesan batch memungkinkan Anda mengirimkan beberapa permintaan sekaligus untuk diproses secara asinkron. Pola ini sangat berguna ketika:
 
-- Anda perlu memproses volume besar data
+- Anda perlu memproses data dalam volume besar
 - Respons langsung tidak diperlukan
 - Anda ingin mengoptimalkan efisiensi biaya
-- Anda menjalankan evaluasi atau analisis skala besar
+- Anda menjalankan evaluasi atau analisis berskala besar
 
-Message Batches API adalah implementasi pertama Anthropic dari pola ini.
+Message Batches API adalah implementasi pertama Anthropic untuk pola ini.
 
 <Note>
-This feature is **not** eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/api-and-data-retention). Data is retained according to the feature's standard retention policy.
+Fitur ini **tidak** memenuhi syarat untuk [Zero Data Retention (ZDR)](/docs/id/build-with-claude/api-and-data-retention). Data disimpan sesuai dengan kebijakan retensi standar fitur ini.
 </Note>
 
 ---
 
-# Message Batches API
+# Message Batches API \{#message-batches-api}
 
-Message Batches API adalah cara yang kuat dan hemat biaya untuk memproses secara asinkron volume besar permintaan [Messages](/docs/id/api/messages/create). Pendekatan ini sangat cocok untuk tugas yang tidak memerlukan respons langsung, dengan sebagian besar batch selesai dalam waktu kurang dari 1 jam sambil mengurangi biaya sebesar 50% dan meningkatkan throughput.
+Message Batches API adalah cara yang ampuh dan hemat biaya untuk memproses permintaan [Messages](/docs/id/api/messages/create) dalam volume besar secara asinkron. Pendekatan ini sangat cocok untuk tugas yang tidak memerlukan respons langsung, dengan sebagian besar batch selesai dalam waktu kurang dari 1 jam sambil mengurangi biaya sebesar 50% dan meningkatkan throughput.
 
 Anda dapat [menjelajahi referensi API secara langsung](/docs/id/api/creating-message-batches), selain panduan ini.
 
-## Cara kerja Message Batches API
+## Cara kerja Message Batches API \{#how-the-message-batches-api-works}
 
-Ketika Anda mengirimkan permintaan ke Message Batches API:
+Ketika Anda mengirim permintaan ke Message Batches API:
 
 1. Sistem membuat Message Batch baru dengan permintaan Messages yang disediakan.
 2. Batch kemudian diproses secara asinkron, dengan setiap permintaan ditangani secara independen.
 3. Anda dapat melakukan polling untuk status batch dan mengambil hasil ketika pemrosesan telah selesai untuk semua permintaan.
 
 Ini sangat berguna untuk operasi massal yang tidak memerlukan hasil langsung, seperti:
-- Evaluasi skala besar: Proses ribuan kasus uji secara efisien.
-- Moderasi konten: Analisis volume besar konten buatan pengguna secara asinkron.
-- Analisis data: Hasilkan wawasan atau ringkasan untuk dataset besar.
-- Pembuatan konten massal: Buat jumlah besar teks untuk berbagai tujuan (misalnya, deskripsi produk, ringkasan artikel).
+- Evaluasi berskala besar: Memproses ribuan kasus uji secara efisien.
+- Moderasi konten: Menganalisis konten buatan pengguna dalam volume besar secara asinkron.
+- Analisis data: Menghasilkan wawasan atau ringkasan untuk dataset besar.
+- Pembuatan konten massal: Membuat teks dalam jumlah besar untuk berbagai tujuan (misalnya, deskripsi produk, ringkasan artikel).
 
-### Batasan batch
-- Message Batch dibatasi hingga 100.000 permintaan Message atau 256 MB ukuran, mana pun yang tercapai terlebih dahulu.
-- Sistem memproses setiap batch secepat mungkin, dengan sebagian besar batch selesai dalam 1 jam. Anda dapat mengakses hasil batch ketika semua pesan telah selesai atau setelah 24 jam, mana pun yang lebih dulu. Batch kedaluwarsa jika pemrosesan tidak selesai dalam 24 jam.
-- Hasil batch tersedia selama 29 hari setelah pembuatan. Setelah itu, Anda masih dapat melihat Batch, tetapi hasilnya tidak akan lagi tersedia untuk diunduh.
-- Batch dicakup oleh [Workspace](/settings/workspaces). Anda dapat melihat semua batch (dan hasilnya) yang dibuat dalam Workspace yang menjadi milik kunci API Anda.
-- Batas laju berlaku untuk permintaan HTTP Batches API dan jumlah permintaan dalam batch yang menunggu untuk diproses. Lihat [batas laju Message Batches API](/docs/id/api/rate-limits#message-batches-api). Selain itu, pemrosesan dapat diperlambat berdasarkan permintaan saat ini dan volume permintaan Anda. Dalam hal itu, Anda mungkin melihat lebih banyak permintaan kedaluwarsa setelah 24 jam.
-- Karena throughput tinggi dan pemrosesan bersamaan, batch dapat sedikit melampaui [batas pengeluaran](/settings/limits) yang dikonfigurasi Workspace Anda.
+### Batasan batch \{#batch-limitations}
+- Sebuah Message Batch dibatasi hingga 100.000 permintaan Message atau ukuran 256 MB, mana saja yang tercapai lebih dulu.
+- Sistem memproses setiap batch secepat mungkin, dengan sebagian besar batch selesai dalam 1 jam. Anda dapat mengakses hasil batch ketika semua pesan telah selesai atau setelah 24 jam, mana saja yang lebih dulu. Batch akan kedaluwarsa jika pemrosesan tidak selesai dalam 24 jam.
+- Hasil batch tersedia selama 29 hari setelah pembuatan. Setelah itu, Anda masih dapat melihat Batch, tetapi hasilnya tidak lagi tersedia untuk diunduh.
+- Batch dicakup dalam sebuah [Workspace](/settings/workspaces). Anda dapat melihat semua batch (dan hasilnya) yang dibuat dalam Workspace tempat kunci API Anda berada.
+- Batas laju berlaku untuk permintaan HTTP Batches API dan jumlah permintaan dalam batch yang menunggu untuk diproses. Lihat [Batas laju Message Batches API](/docs/id/api/rate-limits#message-batches-api). Selain itu, pemrosesan dapat diperlambat berdasarkan permintaan saat ini dan volume permintaan Anda. Dalam kasus tersebut, Anda mungkin melihat lebih banyak permintaan yang kedaluwarsa setelah 24 jam.
+- Karena throughput tinggi dan pemrosesan konkuren, batch mungkin sedikit melebihi [batas pengeluaran](/settings/limits) yang dikonfigurasi untuk Workspace Anda.
+- Setiap permintaan dalam batch harus memiliki `max_tokens` minimal `1`. `max_tokens: 0` ([pemanasan awal cache](/docs/id/build-with-claude/prompt-caching#pre-warming-the-cache)) tidak didukung di dalam batch, karena entri cache sementara yang ditulis selama pemrosesan batch kemungkinan besar akan kedaluwarsa sebelum permintaan lanjutan dijalankan.
 
-### Model yang didukung
+### Model yang didukung \{#supported-models}
 
 Semua [model aktif](/docs/id/about-claude/models/overview) mendukung Message Batches API.
 
-### Apa yang dapat di-batch
-Permintaan apa pun yang dapat Anda buat ke Messages API dapat disertakan dalam batch. Ini termasuk:
+### Apa yang dapat di-batch \{#what-can-be-batched}
+Hampir semua permintaan yang dapat Anda buat ke Messages API dapat disertakan dalam batch. Ini termasuk:
 
-- Visi
-- Penggunaan alat
+- Vision
+- Penggunaan alat, termasuk semua [server tools](/docs/id/agents-and-tools/tool-use/server-tools) (web search, web fetch, code execution, MCP connectors, advisor, dan tool search)
 - Pesan sistem
-- Percakapan multi-putaran
-- Fitur beta apa pun
+- Percakapan multi-giliran
+- Pemikiran diperpanjang
+- Sebagian besar fitur beta
 
 Karena setiap permintaan dalam batch diproses secara independen, Anda dapat mencampur berbagai jenis permintaan dalam satu batch.
 
+Sejumlah kecil parameter Messages API **tidak** didukung dalam permintaan batch. Menyertakan salah satu dari ini akan mengembalikan kesalahan validasi:
+
+| Parameter | Alasan |
+|---|---|
+| `stream: true` | Hasil batch dikembalikan sebagai satu file, bukan stream. |
+| `speed` ([Fast mode](/docs/id/build-with-claude/fast-mode)) | Fast mode menyetel latensi sinkron, yang tidak berlaku untuk pemrosesan batch asinkron. |
+| `store` / `previous_thread_event_id` (Threads) | Threads bersifat stateful; permintaan batch tidak. |
+| `cache_hint` / `context_hint` | Petunjuk routing ini hanya berlaku untuk penjadwalan permintaan sinkron. |
+| `max_tokens: 0` | Lihat [Batasan batch](#batch-limitations). |
+| `research_preview_2026_02: "active"` | Mode research preview tidak tersedia pada jalur batch. |
+
 <Tip>
-Karena batch dapat memakan waktu lebih lama dari 5 menit untuk diproses, pertimbangkan menggunakan [durasi cache 1 jam](/docs/id/build-with-claude/prompt-caching#1-hour-cache-duration) dengan prompt caching untuk tingkat hit cache yang lebih baik saat memproses batch dengan konteks bersama.
+Karena batch dapat memakan waktu lebih dari 5 menit untuk diproses, pertimbangkan untuk menggunakan [durasi cache 1 jam](/docs/id/build-with-claude/prompt-caching#1-hour-cache-duration) dengan caching prompt untuk tingkat cache hit yang lebih baik saat memproses batch dengan konteks bersama.
 </Tip>
 
 ---
-## Harga
+## Harga \{#pricing}
 
-Batches API menawarkan penghematan biaya yang signifikan. Semua penggunaan dikenakan biaya pada 50% dari harga API standar.
+Batches API menawarkan penghematan biaya yang signifikan. Semua penggunaan dikenakan biaya 50% dari harga API standar.
 
-| Model             | Batch input      | Batch output    |
+| Model             | Input batch      | Output batch    |
 |-------------------|------------------|-----------------|
+| Claude Fable 5        | $5 / MTok        | $25 / MTok      |
+| Claude Mythos 5 ([ketersediaan terbatas](https://anthropic.com/glasswing)) | $5 / MTok        | $25 / MTok      |
 | Claude Opus 4.8       | $2.50 / MTok     | $12.50 / MTok   |
 | Claude Opus 4.7       | $2.50 / MTok     | $12.50 / MTok   |
 | Claude Opus 4.6       | $2.50 / MTok     | $12.50 / MTok   |
 | Claude Opus 4.5     | $2.50 / MTok     | $12.50 / MTok   |
-| Claude Opus 4.1 ([deprecated](/docs/en/about-claude/model-deprecations)) | $7.50 / MTok     | $37.50 / MTok   |
-| Claude Opus 4 ([deprecated](/docs/en/about-claude/model-deprecations)) | $7.50 / MTok     | $37.50 / MTok   |
+| Claude Opus 4.1 ([tidak digunakan lagi](/docs/id/about-claude/model-deprecations)) | $7.50 / MTok     | $37.50 / MTok   |
+| Claude Opus 4 ([tidak digunakan lagi](/docs/id/about-claude/model-deprecations)) | $7.50 / MTok     | $37.50 / MTok   |
 | Claude Sonnet 4.6   | $1.50 / MTok     | $7.50 / MTok    |
 | Claude Sonnet 4.5   | $1.50 / MTok     | $7.50 / MTok    |
-| Claude Sonnet 4 ([deprecated](/docs/en/about-claude/model-deprecations)) | $1.50 / MTok     | $7.50 / MTok    |
+| Claude Sonnet 4 ([tidak digunakan lagi](/docs/id/about-claude/model-deprecations)) | $1.50 / MTok     | $7.50 / MTok    |
 | Claude Haiku 4.5  | $0.50 / MTok     | $2.50 / MTok    |
-| Claude Haiku 3.5 ([retired, except on Bedrock and Vertex AI](/docs/en/about-claude/model-deprecations)) | $0.40 / MTok     | $2 / MTok       |
+| Claude Haiku 3.5 ([dihentikan, kecuali di Bedrock dan Vertex AI](/docs/id/about-claude/model-deprecations)) | $0.40 / MTok     | $2 / MTok       |
 
 ---
-## Cara menggunakan Message Batches API
+## Cara menggunakan Message Batches API \{#how-to-use-the-message-batches-api}
 
-### Siapkan dan buat batch Anda
+### Menyiapkan dan membuat batch Anda \{#prepare-and-create-your-batch}
 
-Message Batch terdiri dari daftar permintaan untuk membuat Message. Bentuk permintaan individual terdiri dari:
-- `custom_id` unik untuk mengidentifikasi permintaan Messages. Harus 1 hingga 64 karakter dan hanya berisi karakter alfanumerik, tanda hubung, dan garis bawah (cocok dengan `^[a-zA-Z0-9_-]{1,64}$`).
+Sebuah Message Batch terdiri dari daftar permintaan untuk membuat Message. Bentuk dari permintaan individual terdiri dari:
+- `custom_id` unik untuk mengidentifikasi permintaan Messages. Harus terdiri dari 1 hingga 64 karakter dan hanya berisi karakter alfanumerik, tanda hubung, dan garis bawah (sesuai dengan `^[a-zA-Z0-9_-]{1,64}$`).
 - Objek `params` dengan parameter [Messages API](/docs/id/api/messages/create) standar
 
-Anda dapat [membuat batch](/docs/id/api/creating-message-batches) dengan melewatkan daftar ini ke parameter `requests`:
+Anda dapat [membuat batch](/docs/id/api/creating-message-batches) dengan meneruskan daftar ini ke parameter `requests`:
 
 <CodeGroup>
 
-```bash Shell
+```bash cURL
 curl https://api.anthropic.com/v1/messages/batches \
      --header "x-api-key: $ANTHROPIC_API_KEY" \
      --header "anthropic-version: 2023-06-01" \
@@ -116,7 +129,7 @@ curl https://api.anthropic.com/v1/messages/batches \
         {
             "custom_id": "my-first-request",
             "params": {
-                "model": "claude-opus-4-7",
+                "model": "claude-opus-4-8",
                 "max_tokens": 1024,
                 "messages": [
                     {"role": "user", "content": "Hello, world"}
@@ -126,7 +139,7 @@ curl https://api.anthropic.com/v1/messages/batches \
         {
             "custom_id": "my-second-request",
             "params": {
-                "model": "claude-opus-4-7",
+                "model": "claude-opus-4-8",
                 "max_tokens": 1024,
                 "messages": [
                     {"role": "user", "content": "Hi again, friend"}
@@ -142,14 +155,14 @@ ant messages:batches create <<'YAML'
 requests:
   - custom_id: my-first-request
     params:
-      model: claude-opus-4-7
+      model: claude-opus-4-8
       max_tokens: 1024
       messages:
         - role: user
           content: Hello, world
   - custom_id: my-second-request
     params:
-      model: claude-opus-4-7
+      model: claude-opus-4-8
       max_tokens: 1024
       messages:
         - role: user
@@ -169,7 +182,7 @@ message_batch = client.messages.batches.create(
         Request(
             custom_id="my-first-request",
             params=MessageCreateParamsNonStreaming(
-                model="claude-opus-4-7",
+                model="claude-opus-4-8",
                 max_tokens=1024,
                 messages=[
                     {
@@ -182,7 +195,7 @@ message_batch = client.messages.batches.create(
         Request(
             custom_id="my-second-request",
             params=MessageCreateParamsNonStreaming(
-                model="claude-opus-4-7",
+                model="claude-opus-4-8",
                 max_tokens=1024,
                 messages=[
                     {
@@ -208,7 +221,7 @@ const messageBatch = await anthropic.messages.batches.create({
     {
       custom_id: "my-first-request",
       params: {
-        model: "claude-opus-4-7",
+        model: "claude-opus-4-8",
         max_tokens: 1024,
         messages: [{ role: "user", content: "Hello, world" }]
       }
@@ -216,7 +229,7 @@ const messageBatch = await anthropic.messages.batches.create({
     {
       custom_id: "my-second-request",
       params: {
-        model: "claude-opus-4-7",
+        model: "claude-opus-4-8",
         max_tokens: 1024,
         messages: [{ role: "user", content: "Hi again, friend" }]
       }
@@ -243,7 +256,7 @@ var batch = await client.Messages.Batches.Create(new BatchCreateParams
             CustomID = "my-first-request",
             Params = new()
             {
-                Model = Model.ClaudeOpus4_7,
+                Model = Model.ClaudeOpus4_8,
                 MaxTokens = 1024,
                 Messages =
                 [
@@ -256,7 +269,7 @@ var batch = await client.Messages.Batches.Create(new BatchCreateParams
             CustomID = "my-second-request",
             Params = new()
             {
-                Model = Model.ClaudeOpus4_7,
+                Model = Model.ClaudeOpus4_8,
                 MaxTokens = 1024,
                 Messages =
                 [
@@ -289,7 +302,7 @@ func main() {
 				{
 					CustomID: "my-first-request",
 					Params: anthropic.MessageBatchNewParamsRequestParams{
-						Model:     anthropic.ModelClaudeOpus4_7,
+						Model:     anthropic.ModelClaudeOpus4_8,
 						MaxTokens: 1024,
 						Messages: []anthropic.MessageParam{
 							anthropic.NewUserMessage(
@@ -301,7 +314,7 @@ func main() {
 				{
 					CustomID: "my-second-request",
 					Params: anthropic.MessageBatchNewParamsRequestParams{
-						Model:     anthropic.ModelClaudeOpus4_7,
+						Model:     anthropic.ModelClaudeOpus4_8,
 						MaxTokens: 1024,
 						Messages: []anthropic.MessageParam{
 							anthropic.NewUserMessage(
@@ -334,7 +347,7 @@ public class BatchExample {
           .customId("my-first-request")
           .params(
             BatchCreateParams.Request.Params.builder()
-              .model(Model.CLAUDE_OPUS_4_7)
+              .model(Model.CLAUDE_OPUS_4_8)
               .maxTokens(1024)
               .addUserMessage("Hello, world")
               .build()
@@ -346,7 +359,7 @@ public class BatchExample {
           .customId("my-second-request")
           .params(
             BatchCreateParams.Request.Params.builder()
-              .model(Model.CLAUDE_OPUS_4_7)
+              .model(Model.CLAUDE_OPUS_4_8)
               .maxTokens(1024)
               .addUserMessage("Hi again, friend")
               .build()
@@ -367,16 +380,14 @@ public class BatchExample {
 
 use Anthropic\Client;
 
-$client = new Client(
-    apiKey: getenv("ANTHROPIC_API_KEY")
-);
+$client = new Client();
 
 $batch = $client->messages->batches->create(
     requests: [
         [
             'custom_id' => 'my-first-request',
             'params' => [
-                'model' => 'claude-opus-4-7',
+                'model' => 'claude-opus-4-8',
                 'max_tokens' => 1024,
                 'messages' => [
                     ['role' => 'user', 'content' => 'Hello, world']
@@ -386,7 +397,7 @@ $batch = $client->messages->batches->create(
         [
             'custom_id' => 'my-second-request',
             'params' => [
-                'model' => 'claude-opus-4-7',
+                'model' => 'claude-opus-4-8',
                 'max_tokens' => 1024,
                 'messages' => [
                     ['role' => 'user', 'content' => 'Hi again, friend']
@@ -396,7 +407,7 @@ $batch = $client->messages->batches->create(
     ],
 );
 
-print_r($batch);
+echo $batch->id;
 ```
 
 ```ruby Ruby hidelines={1..2}
@@ -409,7 +420,7 @@ batch = client.messages.batches.create(
     {
       custom_id: "my-first-request",
       params: {
-        model: "claude-opus-4-7",
+        model: "claude-opus-4-8",
         max_tokens: 1024,
         messages: [
           { role: "user", content: "Hello, world" }
@@ -419,7 +430,7 @@ batch = client.messages.batches.create(
     {
       custom_id: "my-second-request",
       params: {
-        model: "claude-opus-4-7",
+        model: "claude-opus-4-8",
         max_tokens: 1024,
         messages: [
           { role: "user", content: "Hi again, friend" }
@@ -439,7 +450,7 @@ Dalam contoh ini, dua permintaan terpisah di-batch bersama untuk pemrosesan asin
 <Tip>
   **Uji permintaan batch Anda dengan Messages API**
 
-Validasi objek `params` untuk setiap permintaan pesan dilakukan secara asinkron, dan kesalahan validasi dikembalikan ketika pemrosesan seluruh batch telah selesai. Anda dapat memastikan bahwa Anda membangun input dengan benar dengan memverifikasi bentuk permintaan Anda dengan [Messages API](/docs/id/api/messages/create) terlebih dahulu.
+Validasi objek `params` untuk setiap permintaan pesan dilakukan secara asinkron, dan kesalahan validasi dikembalikan ketika pemrosesan seluruh batch telah selesai. Anda dapat memastikan bahwa Anda membangun input dengan benar dengan memverifikasi bentuk permintaan Anda menggunakan [Messages API](/docs/id/api/messages/create) terlebih dahulu.
 </Tip>
 
 Ketika batch pertama kali dibuat, respons akan memiliki status pemrosesan `in_progress`.
@@ -464,16 +475,16 @@ Ketika batch pertama kali dibuat, respons akan memiliki status pemrosesan `in_pr
 }
 ```
 
-### Melacak batch Anda
+### Melacak batch Anda \{#tracking-your-batch}
 
-Bidang `processing_status` Message Batch menunjukkan tahap pemrosesan batch. Dimulai sebagai `in_progress`, kemudian diperbarui ke `ended` setelah semua permintaan dalam batch selesai diproses, dan hasil siap. Anda dapat memantau status batch Anda dengan mengunjungi [Console](/settings/workspaces/default/batches), atau menggunakan [endpoint pengambilan](/docs/id/api/retrieving-message-batches).
+Field `processing_status` pada Message Batch menunjukkan tahap pemrosesan batch saat ini. Dimulai sebagai `in_progress`, kemudian diperbarui menjadi `ended` setelah semua permintaan dalam batch selesai diproses, dan hasilnya siap. Anda dapat memantau status batch Anda dengan mengunjungi [Console](/settings/workspaces/default/batches), atau menggunakan [endpoint pengambilan](/docs/id/api/retrieving-message-batches).
 
-#### Polling untuk penyelesaian Message Batch
+#### Polling untuk penyelesaian Message Batch \{#polling-for-message-batch-completion}
 
-Untuk melakukan polling Message Batch, Anda memerlukan `id`-nya, yang disediakan dalam respons saat membuat batch atau dengan membuat daftar batch. Anda dapat mengimplementasikan loop polling yang memeriksa status batch secara berkala hingga pemrosesan selesai:
+Untuk melakukan polling pada Message Batch, Anda memerlukan `id`-nya, yang disediakan dalam respons saat membuat batch atau dengan mendaftar batch. Anda dapat mengimplementasikan loop polling yang memeriksa status batch secara berkala hingga pemrosesan selesai:
 
 <CodeGroup>
-```bash Shell hidelines={2..16,23}
+```bash cURL hidelines={2..16,23}
 #!/bin/sh
 MESSAGE_BATCH_ID=$(curl -s https://api.anthropic.com/v1/messages/batches \
   --header "x-api-key: $ANTHROPIC_API_KEY" \
@@ -483,7 +494,7 @@ MESSAGE_BATCH_ID=$(curl -s https://api.anthropic.com/v1/messages/batches \
     "requests": [{
       "custom_id": "test-1",
       "params": {
-        "model": "claude-opus-4-7",
+        "model": "claude-opus-4-8",
         "max_tokens": 100,
         "messages": [{"role": "user", "content": "Hi"}]
       }
@@ -506,11 +517,11 @@ echo "Batch $MESSAGE_BATCH_ID has finished processing"
 ```bash CLI hidelines={2..14,19}
 #!/bin/bash
 MESSAGE_BATCH_ID=$(ant messages:batches create \
-  --transform id --format yaml <<'YAML'
+  --transform id --raw-output <<'YAML'
 requests:
   - custom_id: test-1
     params:
-      model: claude-opus-4-7
+      model: claude-opus-4-8
       max_tokens: 100
       messages:
         - role: user
@@ -520,7 +531,7 @@ YAML
 
 until [[ $(ant messages:batches retrieve \
           --message-batch-id "$MESSAGE_BATCH_ID" \
-          --transform processing_status --format yaml) == "ended" ]]; do
+          --transform processing_status --raw-output) == "ended" ]]; do
     echo "Batch $MESSAGE_BATCH_ID is still processing..."
     break
     sleep 60
@@ -568,34 +579,26 @@ while (true) {
 console.log(messageBatch);
 ```
 
-```csharp C# nocheck
-using System;
-using System.Threading.Tasks;
+```csharp C# nocheck hidelines={1..3}
 using Anthropic;
 using Anthropic.Models.Messages.Batches;
 
-class Program
+AnthropicClient client = new();
+string messageBatchId = Environment.GetEnvironmentVariable("MESSAGE_BATCH_ID");
+
+MessageBatch messageBatch = null;
+while (true)
 {
-    static async Task Main(string[] args)
+    messageBatch = await client.Messages.Batches.Retrieve(messageBatchId);
+    if (messageBatch.ProcessingStatus == "ended")
     {
-        AnthropicClient client = new();
-        string messageBatchId = Environment.GetEnvironmentVariable("MESSAGE_BATCH_ID");
-
-        MessageBatch messageBatch = null;
-        while (true)
-        {
-            messageBatch = await client.Messages.Batches.Retrieve(messageBatchId);
-            if (messageBatch.ProcessingStatus == "ended")
-            {
-                break;
-            }
-
-            Console.WriteLine($"Batch {messageBatchId} is still processing...");
-            await Task.Delay(60000);
-        }
-        Console.WriteLine(messageBatch);
+        break;
     }
+
+    Console.WriteLine($"Batch {messageBatchId} is still processing...");
+    await Task.Delay(60000);
 }
+Console.WriteLine(messageBatch);
 ```
 
 ```go Go nocheck hidelines={1..14,-1}
@@ -663,7 +666,7 @@ public class MessageBatchPolling {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 $messageBatchId = getenv("MESSAGE_BATCH_ID");
 
 $messageBatch = null;
@@ -700,12 +703,12 @@ puts message_batch
 
 </CodeGroup>
 
-### Membuat daftar semua Message Batches
+### Mendaftar semua Message Batch \{#listing-all-message-batches}
 
-Anda dapat membuat daftar semua Message Batches di Workspace Anda menggunakan [endpoint daftar](/docs/id/api/listing-message-batches). API mendukung paginasi, secara otomatis mengambil halaman tambahan sesuai kebutuhan:
+Anda dapat mendaftar semua Message Batch di Workspace Anda menggunakan [endpoint list](/docs/id/api/listing-message-batches). API mendukung paginasi, secara otomatis mengambil halaman tambahan sesuai kebutuhan:
 
 <CodeGroup>
-```bash Shell
+```bash cURL
 #!/bin/sh
 
 if ! command -v jq &> /dev/null; then
@@ -719,7 +722,7 @@ has_more=true
 after_id=""
 
 while [ "$has_more" = true ]; do
-    # Construct URL with after_id if it exists
+    # Susun URL dengan after_id jika ada
     if [ -n "$after_id" ]; then
         url="${BASE_URL}?limit=20&after_id=${after_id}"
     else
@@ -730,11 +733,11 @@ while [ "$has_more" = true ]; do
               --header "x-api-key: $ANTHROPIC_API_KEY" \
               --header "anthropic-version: 2023-06-01")
 
-    # Extract values using jq
+    # Ekstrak nilai menggunakan jq
     has_more=$(echo "$response" | jq -r '.has_more')
     after_id=$(echo "$response" | jq -r '.last_id')
 
-    # Process and print each entry in the data array
+    # Proses dan cetak setiap entri dalam array data
     echo "$response" | jq -c '.data[]' | while read -r entry; do
         echo "$entry" | jq '.'
     done
@@ -742,7 +745,7 @@ done
 ```
 
 ```bash CLI
-# Automatically fetches more pages as needed
+# Secara otomatis mengambil lebih banyak halaman sesuai kebutuhan
 ant messages:batches list --limit 20
 ```
 
@@ -751,7 +754,7 @@ import anthropic
 
 client = anthropic.Anthropic()
 
-# Automatically fetches more pages as needed.
+# Secara otomatis mengambil lebih banyak halaman sesuai kebutuhan.
 for message_batch in client.messages.batches.list(limit=20):
     print(message_batch)
 ```
@@ -761,7 +764,7 @@ import Anthropic from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic();
 
-// Automatically fetches more pages as needed.
+// Secara otomatis mengambil lebih banyak halaman sesuai kebutuhan.
 for await (const messageBatch of anthropic.messages.batches.list({
   limit: 20
 })) {
@@ -786,7 +789,7 @@ class Program
             Limit = 20
         };
 
-        // Automatically fetches more pages as needed
+        // Secara otomatis mengambil lebih banyak halaman sesuai kebutuhan
         var page = await client.Messages.Batches.List(parameters);
         await foreach (var messageBatch in page.Paginate())
         {
@@ -810,7 +813,7 @@ import (
 func main() {
 	client := anthropic.NewClient()
 
-	// Automatically fetches more pages as needed
+	// Secara otomatis mengambil lebih banyak halaman sesuai kebutuhan
 	iter := client.Messages.Batches.ListAutoPaging(context.TODO(), anthropic.MessageBatchListParams{
 		Limit: anthropic.Int(20),
 	})
@@ -836,7 +839,7 @@ public class BatchListExample {
   public static void main(String[] args) {
     AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-    // Automatically fetches more pages as needed
+    // Secara otomatis mengambil lebih banyak halaman sesuai kebutuhan
     for (MessageBatch messageBatch : client
       .messages()
       .batches()
@@ -853,9 +856,9 @@ public class BatchListExample {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
-// Automatically fetches more pages as needed
+// Secara otomatis mengambil lebih banyak halaman sesuai kebutuhan
 foreach ($client->messages->batches->list(limit: 20)->pagingEachItem() as $messageBatch) {
     echo $messageBatch->id . "\n";
 }
@@ -866,7 +869,7 @@ require "anthropic"
 
 client = Anthropic::Client.new
 
-# Automatically fetches more pages as needed
+# Secara otomatis mengambil lebih banyak halaman sesuai kebutuhan
 client.messages.batches.list(limit: 20).auto_paging_each do |message_batch|
   puts message_batch
 end
@@ -874,24 +877,24 @@ end
 
 </CodeGroup>
 
-### Mengambil hasil batch
+### Mengambil hasil batch \{#retrieving-batch-results}
 
 Setelah pemrosesan batch selesai, setiap permintaan Messages dalam batch memiliki hasil. Ada 4 jenis hasil:
 
 | Jenis Hasil | Deskripsi |
 |-------------|-------------|
-| `succeeded` | Permintaan berhasil. Mencakup hasil pesan. |
+| `succeeded` | Permintaan berhasil. Menyertakan hasil pesan. |
 | `errored`   | Permintaan mengalami kesalahan dan pesan tidak dibuat. Kemungkinan kesalahan termasuk permintaan yang tidak valid dan kesalahan server internal. Anda tidak akan ditagih untuk permintaan ini. |
 | `canceled`  | Pengguna membatalkan batch sebelum permintaan ini dapat dikirim ke model. Anda tidak akan ditagih untuk permintaan ini. |
-| `expired`   | Batch mencapai kedaluwarsa 24 jam sebelum permintaan ini dapat dikirim ke model. Anda tidak akan ditagih untuk permintaan ini. |
+| `expired`   | Batch mencapai batas kedaluwarsa 24 jam sebelum permintaan ini dapat dikirim ke model. Anda tidak akan ditagih untuk permintaan ini. |
 
-Anda akan melihat gambaran umum hasil Anda dengan `request_counts` batch, yang menunjukkan berapa banyak permintaan yang mencapai masing-masing dari empat status ini.
+Anda akan melihat ikhtisar hasil Anda dengan `request_counts` batch, yang menunjukkan berapa banyak permintaan yang mencapai masing-masing dari empat status ini.
 
-Hasil batch tersedia untuk diunduh di properti `results_url` pada Message Batch, dan jika izin organisasi memungkinkan, di Console. Karena ukuran hasil yang berpotensi besar, disarankan untuk [streaming hasil](/docs/id/api/retrieving-message-batch-results) kembali daripada mengunduhnya sekaligus.
+Hasil batch tersedia untuk diunduh di properti `results_url` pada Message Batch, dan jika izin organisasi mengizinkan, di Console. Karena ukuran hasil yang berpotensi besar, disarankan untuk [melakukan streaming hasil](/docs/id/api/retrieving-message-batch-results) daripada mengunduh semuanya sekaligus.
 
 <CodeGroup>
 
-```bash Shell
+```bash cURL
 #!/bin/sh
 curl "https://api.anthropic.com/v1/messages/batches/msgbatch_01HkcTjaV5uDC8jWR4ZsDV8d" \
   --header "anthropic-version: 2023-06-01" \
@@ -915,10 +918,10 @@ curl "https://api.anthropic.com/v1/messages/batches/msgbatch_01HkcTjaV5uDC8jWR4Z
           ;;
         "errored")
           if [ "$error_type" = "invalid_request_error" ]; then
-            # Request body must be fixed before re-sending request
+            # Body permintaan harus diperbaiki sebelum mengirim ulang permintaan
             echo "Validation error: $custom_id"
           else
-            # Request can be retried directly
+            # Permintaan dapat dicoba ulang secara langsung
             echo "Server error: $custom_id"
           fi
           ;;
@@ -931,7 +934,7 @@ curl "https://api.anthropic.com/v1/messages/batches/msgbatch_01HkcTjaV5uDC8jWR4Z
 
 ```
 
-```bash CLI
+```bash CLI nocheck
 ant messages:batches results \
   --message-batch-id msgbatch_01HkcTjaV5uDC8jWR4ZsDV8d \
   --transform '{custom_id,"type":result.type,"error":result.error.error.type}' \
@@ -959,7 +962,7 @@ import anthropic
 
 client = anthropic.Anthropic()
 
-# Stream results file in memory-efficient chunks, processing one at a time
+# Stream file hasil dalam potongan yang hemat memori, memproses satu per satu
 for result in client.messages.batches.results(
     "msgbatch_01HkcTjaV5uDC8jWR4ZsDV8d",
 ):
@@ -968,10 +971,10 @@ for result in client.messages.batches.results(
             print(f"Success! {result.custom_id}")
         case "errored":
             if result.result.error.error.type == "invalid_request_error":
-                # Request body must be fixed before re-sending request
+                # Body permintaan harus diperbaiki sebelum mengirim ulang permintaan
                 print(f"Validation error {result.custom_id}")
             else:
-                # Request can be retried directly
+                # Permintaan dapat dicoba ulang secara langsung
                 print(f"Server error {result.custom_id}")
         case "expired":
             print(f"Request expired {result.custom_id}")
@@ -982,7 +985,7 @@ import Anthropic from "@anthropic-ai/sdk";
 
 const anthropic = new Anthropic();
 
-// Stream results file in memory-efficient chunks, processing one at a time
+// Stream file hasil dalam potongan yang hemat memori, memproses satu per satu
 for await (const result of await anthropic.messages.batches.results(
   "msgbatch_01HkcTjaV5uDC8jWR4ZsDV8d"
 )) {
@@ -992,10 +995,10 @@ for await (const result of await anthropic.messages.batches.results(
       break;
     case "errored":
       if (result.result.error.type === "invalid_request_error") {
-        // Request body must be fixed before re-sending request
+        // Body permintaan harus diperbaiki sebelum mengirim ulang permintaan
         console.log(`Validation error: ${result.custom_id}`);
       } else {
-        // Request can be retried directly
+        // Permintaan dapat dicoba ulang secara langsung
         console.log(`Server error: ${result.custom_id}`);
       }
       break;
@@ -1006,40 +1009,32 @@ for await (const result of await anthropic.messages.batches.results(
 }
 ```
 
-```csharp C# nocheck
-using System;
-using System.Threading.Tasks;
+```csharp C# nocheck hidelines={1..3}
 using Anthropic;
 using Anthropic.Models.Messages.Batches;
 
-public class Program
-{
-    public static async Task Main(string[] args)
-    {
-        AnthropicClient client = new();
+AnthropicClient client = new();
 
-        await foreach (var result in client.Messages.Batches.ResultsStreaming("msgbatch_01HkcTjaV5uDC8jWR4ZsDV8d"))
-        {
-            switch (result.Result.Type)
+await foreach (var result in client.Messages.Batches.ResultsStreaming("msgbatch_01HkcTjaV5uDC8jWR4ZsDV8d"))
+{
+    switch (result.Result.Type)
+    {
+        case "succeeded":
+            Console.WriteLine($"Success! {result.CustomID}");
+            break;
+        case "errored":
+            if (result.Result.Error?.Type == "invalid_request")
             {
-                case "succeeded":
-                    Console.WriteLine($"Success! {result.CustomID}");
-                    break;
-                case "errored":
-                    if (result.Result.Error?.Type == "invalid_request")
-                    {
-                        Console.WriteLine($"Validation error: {result.CustomID}");
-                    }
-                    else
-                    {
-                        Console.WriteLine($"Server error: {result.CustomID}");
-                    }
-                    break;
-                case "expired":
-                    Console.WriteLine($"Request expired: {result.CustomID}");
-                    break;
+                Console.WriteLine($"Validation error: {result.CustomID}");
             }
-        }
+            else
+            {
+                Console.WriteLine($"Server error: {result.CustomID}");
+            }
+            break;
+        case "expired":
+            Console.WriteLine($"Request expired: {result.CustomID}");
+            break;
     }
 }
 ```
@@ -1091,7 +1086,7 @@ public class BatchResultsExample {
   public static void main(String[] args) {
     AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-    // Stream results file in memory-efficient chunks, processing one at a time
+    // Stream file hasil dalam potongan yang hemat memori, memproses satu per satu
     try (
       StreamResponse<MessageBatchIndividualResponse> streamResponse = client
         .messages()
@@ -1109,10 +1104,10 @@ public class BatchResultsExample {
             System.out.println("Success! " + result.customId());
           } else if (result.result().isErrored()) {
             if (result.result().asErrored().error().error().isInvalidRequestError()) {
-              // Request body must be fixed before re-sending request
+              // Body permintaan harus diperbaiki sebelum mengirim ulang permintaan
               System.out.println("Validation error: " + result.customId());
             } else {
-              // Request can be retried directly
+              // Permintaan dapat dicoba ulang secara langsung
               System.out.println("Server error: " + result.customId());
             }
           } else if (result.result().isExpired()) {
@@ -1129,7 +1124,7 @@ public class BatchResultsExample {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 foreach ($client->messages->batches->resultsStream(messageBatchID: 'msgbatch_01HkcTjaV5uDC8jWR4ZsDV8d') as $result) {
     switch ($result->result->type) {
@@ -1173,27 +1168,27 @@ end
 
 </CodeGroup>
 
-Hasil berada dalam format `.jsonl`, di mana setiap baris adalah objek JSON yang valid yang mewakili hasil dari satu permintaan dalam Message Batch. Untuk setiap hasil yang di-stream, Anda dapat melakukan sesuatu yang berbeda tergantung pada `custom_id` dan jenis hasilnya. Berikut adalah contoh set hasil:
+Hasilnya dalam format `.jsonl`, di mana setiap baris adalah objek JSON valid yang mewakili hasil dari satu permintaan dalam Message Batch. Untuk setiap hasil yang di-stream, Anda dapat melakukan sesuatu yang berbeda tergantung pada `custom_id` dan jenis hasilnya. Berikut adalah contoh kumpulan hasil:
 
 ```jsonl .jsonl file
-{"custom_id":"my-second-request","result":{"type":"succeeded","message":{"id":"msg_014VwiXbi91y3JMjcpyGBHX5","type":"message","role":"assistant","model":"claude-opus-4-7","content":[{"type":"text","text":"Hello again! It's nice to see you. How can I assist you today? Is there anything specific you'd like to chat about or any questions you have?"}],"stop_reason":"end_turn","stop_sequence":null,"usage":{"input_tokens":11,"output_tokens":36}}}}
-{"custom_id":"my-first-request","result":{"type":"succeeded","message":{"id":"msg_01FqfsLoHwgeFbguDgpz48m7","type":"message","role":"assistant","model":"claude-opus-4-7","content":[{"type":"text","text":"Hello! How can I assist you today? Feel free to ask me any questions or let me know if there's anything you'd like to chat about."}],"stop_reason":"end_turn","stop_sequence":null,"usage":{"input_tokens":10,"output_tokens":34}}}}
+{"custom_id":"my-second-request","result":{"type":"succeeded","message":{"id":"msg_014VwiXbi91y3JMjcpyGBHX5","type":"message","role":"assistant","model":"claude-opus-4-8","content":[{"type":"text","text":"Hello again! It's nice to see you. How can I assist you today? Is there anything specific you'd like to chat about or any questions you have?"}],"stop_reason":"end_turn","stop_sequence":null,"usage":{"input_tokens":11,"output_tokens":36}}}}
+{"custom_id":"my-first-request","result":{"type":"succeeded","message":{"id":"msg_01FqfsLoHwgeFbguDgpz48m7","type":"message","role":"assistant","model":"claude-opus-4-8","content":[{"type":"text","text":"Hello! How can I assist you today? Feel free to ask me any questions or let me know if there's anything you'd like to chat about."}],"stop_reason":"end_turn","stop_sequence":null,"usage":{"input_tokens":10,"output_tokens":34}}}}
 ```
 
-Jika hasil Anda memiliki kesalahan, `result.error` akan diatur ke [bentuk kesalahan](/docs/id/api/errors#error-shapes) standar.
+Jika hasil Anda memiliki kesalahan, `result.error`-nya akan diatur ke [bentuk kesalahan](/docs/id/api/errors#error-shapes) standar.
 
 <Tip>
   **Hasil batch mungkin tidak sesuai dengan urutan input**
 
-Hasil batch dapat dikembalikan dalam urutan apa pun, dan mungkin tidak sesuai dengan urutan permintaan saat batch dibuat. Dalam contoh di atas, hasil untuk permintaan batch kedua dikembalikan sebelum yang pertama. Untuk mencocokkan hasil dengan permintaan yang sesuai dengan benar, selalu gunakan bidang `custom_id`.
+Hasil batch dapat dikembalikan dalam urutan apa pun, dan mungkin tidak sesuai dengan urutan permintaan saat batch dibuat. Dalam contoh di atas, hasil untuk permintaan batch kedua dikembalikan sebelum yang pertama. Untuk mencocokkan hasil dengan permintaan yang sesuai secara benar, selalu gunakan field `custom_id`.
 </Tip>
 
-### Membatalkan Message Batch
+### Membatalkan Message Batch \{#canceling-a-message-batch}
 
-Anda dapat membatalkan Message Batch yang sedang diproses menggunakan [endpoint pembatalan](/docs/id/api/canceling-message-batches). Segera setelah pembatalan, `processing_status` batch akan menjadi `canceling`. Anda dapat menggunakan teknik polling yang sama seperti yang dijelaskan di atas untuk menunggu sampai pembatalan selesai. Batch yang dibatalkan berakhir dengan status `ended` dan mungkin berisi hasil parsial untuk permintaan yang diproses sebelum pembatalan.
+Anda dapat membatalkan Message Batch yang sedang diproses menggunakan [endpoint cancel](/docs/id/api/canceling-message-batches). Segera setelah pembatalan, `processing_status` batch akan menjadi `canceling`. Anda dapat menggunakan teknik polling yang sama seperti yang dijelaskan di atas untuk menunggu hingga pembatalan diselesaikan. Batch yang dibatalkan akan berakhir dengan status `ended` dan mungkin berisi hasil parsial untuk permintaan yang diproses sebelum pembatalan.
 
 <CodeGroup>
-```bash Shell hidelines={2..15}
+```bash cURL hidelines={2..15}
 #!/bin/sh
 MESSAGE_BATCH_ID=$(curl -s https://api.anthropic.com/v1/messages/batches \
   --header "x-api-key: $ANTHROPIC_API_KEY" \
@@ -1203,7 +1198,7 @@ MESSAGE_BATCH_ID=$(curl -s https://api.anthropic.com/v1/messages/batches \
     "requests": [{
       "custom_id": "test-1",
       "params": {
-        "model": "claude-opus-4-7",
+        "model": "claude-opus-4-8",
         "max_tokens": 100,
         "messages": [{"role": "user", "content": "Hi"}]
       }
@@ -1217,11 +1212,11 @@ curl --request POST https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH
 ```bash CLI hidelines={2..13}
 #!/bin/bash
 MESSAGE_BATCH_ID=$(ant messages:batches create \
-  --transform id --format yaml <<'YAML'
+  --transform id --raw-output <<'YAML'
 requests:
   - custom_id: test-1
     params:
-      model: claude-opus-4-7
+      model: claude-opus-4-8
       max_tokens: 100
       messages:
         - role: user
@@ -1253,22 +1248,15 @@ const messageBatch = await anthropic.messages.batches.cancel(MESSAGE_BATCH_ID);
 console.log(messageBatch);
 ```
 
-```csharp C# nocheck
-using System;
-using System.Threading.Tasks;
+```csharp C# nocheck hidelines={1..3}
 using Anthropic;
 using Anthropic.Models.Messages.Batches;
 
-class Program
-{
-    static async Task Main(string[] args)
-    {
-        AnthropicClient client = new();
+AnthropicClient client = new();
+string messageBatchId = Environment.GetEnvironmentVariable("MESSAGE_BATCH_ID");
 
-        var messageBatch = await client.Messages.Batches.Cancel(MESSAGE_BATCH_ID);
-        Console.WriteLine(messageBatch);
-    }
-}
+var messageBatch = await client.Messages.Batches.Cancel(messageBatchId);
+Console.WriteLine(messageBatch);
 ```
 
 ```go Go nocheck hidelines={1..12,-1}
@@ -1319,7 +1307,7 @@ public class BatchCancelExample {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 $messageBatch = $client->messages->batches->cancel(
     messageBatchID: 'msgbatch_example_id',
@@ -1361,21 +1349,21 @@ Respons akan menunjukkan batch dalam status `canceling`:
 }
 ```
 
-### Menggunakan prompt caching dengan Message Batches
+### Menggunakan caching prompt dengan Message Batches \{#using-prompt-caching-with-message-batches}
 
-Message Batches API mendukung prompt caching, memungkinkan Anda untuk berpotensi mengurangi biaya dan waktu pemrosesan untuk permintaan batch. Diskon harga dari prompt caching dan Message Batches dapat ditumpuk, memberikan penghematan biaya yang lebih besar ketika kedua fitur digunakan bersama. Namun, karena permintaan batch diproses secara asinkron dan bersamaan, cache hits disediakan dengan dasar best-effort. Pengguna biasanya mengalami tingkat cache hit berkisar dari 30% hingga 98%, tergantung pada pola lalu lintas mereka.
+Message Batches API mendukung caching prompt, memungkinkan Anda berpotensi mengurangi biaya dan waktu pemrosesan untuk permintaan batch. Diskon harga dari caching prompt dan Message Batches dapat digabungkan, memberikan penghematan biaya yang lebih besar ketika kedua fitur digunakan bersama. Namun, karena permintaan batch diproses secara asinkron dan konkuren, cache hit disediakan berdasarkan upaya terbaik. Pengguna biasanya mengalami tingkat cache hit berkisar antara 30% hingga 98%, tergantung pada pola lalu lintas mereka.
 
-Untuk memaksimalkan kemungkinan cache hits dalam permintaan batch Anda:
+Untuk memaksimalkan kemungkinan cache hit dalam permintaan batch Anda:
 
 1. Sertakan blok `cache_control` yang identik di setiap permintaan Message dalam batch Anda
-2. Pertahankan aliran permintaan yang stabil untuk mencegah entri cache kedaluwarsa setelah masa hidup 5 menit mereka
-3. Struktur permintaan Anda untuk berbagi sebanyak mungkin konten yang di-cache
+2. Pertahankan aliran permintaan yang stabil untuk mencegah entri cache kedaluwarsa setelah masa hidup 5 menitnya
+3. Susun permintaan Anda untuk berbagi konten yang di-cache sebanyak mungkin
 
-Contoh implementasi prompt caching dalam batch:
+Contoh implementasi caching prompt dalam batch:
 
 <CodeGroup>
 
-```bash Shell
+```bash cURL
 curl https://api.anthropic.com/v1/messages/batches \
      --header "x-api-key: $ANTHROPIC_API_KEY" \
      --header "anthropic-version: 2023-06-01" \
@@ -1386,7 +1374,7 @@ curl https://api.anthropic.com/v1/messages/batches \
         {
             "custom_id": "my-first-request",
             "params": {
-                "model": "claude-opus-4-7",
+                "model": "claude-opus-4-8",
                 "max_tokens": 1024,
                 "system": [
                     {
@@ -1407,7 +1395,7 @@ curl https://api.anthropic.com/v1/messages/batches \
         {
             "custom_id": "my-second-request",
             "params": {
-                "model": "claude-opus-4-7",
+                "model": "claude-opus-4-8",
                 "max_tokens": 1024,
                 "system": [
                     {
@@ -1434,7 +1422,7 @@ ant messages:batches create <<'YAML'
 requests:
   - custom_id: my-first-request
     params:
-      model: claude-opus-4-7
+      model: claude-opus-4-8
       max_tokens: 1024
       system:
         - type: text
@@ -1451,7 +1439,7 @@ requests:
           content: Analyze the major themes in Pride and Prejudice.
   - custom_id: my-second-request
     params:
-      model: claude-opus-4-7
+      model: claude-opus-4-8
       max_tokens: 1024
       system:
         - type: text
@@ -1481,7 +1469,7 @@ message_batch = client.messages.batches.create(
         Request(
             custom_id="my-first-request",
             params=MessageCreateParamsNonStreaming(
-                model="claude-opus-4-7",
+                model="claude-opus-4-8",
                 max_tokens=1024,
                 system=[
                     {
@@ -1505,7 +1493,7 @@ message_batch = client.messages.batches.create(
         Request(
             custom_id="my-second-request",
             params=MessageCreateParamsNonStreaming(
-                model="claude-opus-4-7",
+                model="claude-opus-4-8",
                 max_tokens=1024,
                 system=[
                     {
@@ -1540,7 +1528,7 @@ const messageBatch = await anthropic.messages.batches.create({
     {
       custom_id: "my-first-request",
       params: {
-        model: "claude-opus-4-7",
+        model: "claude-opus-4-8",
         max_tokens: 1024,
         system: [
           {
@@ -1561,7 +1549,7 @@ const messageBatch = await anthropic.messages.batches.create({
     {
       custom_id: "my-second-request",
       params: {
-        model: "claude-opus-4-7",
+        model: "claude-opus-4-8",
         max_tokens: 1024,
         system: [
           {
@@ -1574,9 +1562,7 @@ const messageBatch = await anthropic.messages.batches.create({
             cache_control: { type: "ephemeral" }
           }
         ],
-        messages: [
-          { role: "user", content: "Write a summary of Pride and Prejudice." }
-        ]
+        messages: [{ role: "user", content: "Write a summary of Pride and Prejudice." }]
       }
     }
   ]
@@ -1584,80 +1570,71 @@ const messageBatch = await anthropic.messages.batches.create({
 ```
 
 ```csharp C#
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Anthropic;
 using Anthropic.Models.Messages;
 using Anthropic.Models.Messages.Batches;
 
-public class Program
+AnthropicClient client = new()
 {
-    public static async Task Main(string[] args)
-    {
-        AnthropicClient client = new()
-        {
-            ApiKey = Environment.GetEnvironmentVariable("ANTHROPIC_API_KEY")
-        };
+    ApiKey = Environment.GetEnvironmentVariable("ANTHROPIC_API_KEY")
+};
 
-        var messageBatch = await client.Messages.Batches.Create(new BatchCreateParams
+var messageBatch = await client.Messages.Batches.Create(new BatchCreateParams
+{
+    Requests =
+    [
+        new()
         {
-            Requests =
-            [
-                new()
+            CustomID = "my-first-request",
+            Params = new()
+            {
+                Model = Model.ClaudeOpus4_8,
+                MaxTokens = 1024,
+                System = new List<TextBlockParam>
                 {
-                    CustomID = "my-first-request",
-                    Params = new()
+                    new()
                     {
-                        Model = Model.ClaudeOpus4_7,
-                        MaxTokens = 1024,
-                        System = new List<TextBlockParam>
-                        {
-                            new()
-                            {
-                                Text = "You are an AI assistant tasked with analyzing literary works. Your goal is to provide insightful commentary on themes, characters, and writing style.\n"
-                            },
-                            new()
-                            {
-                                Text = "<the entire contents of Pride and Prejudice>",
-                                CacheControl = new()
-                            }
-                        },
-                        Messages =
-                        [
-                            new() { Role = Role.User, Content = "Analyze the major themes in Pride and Prejudice." }
-                        ]
+                        Text = "You are an AI assistant tasked with analyzing literary works. Your goal is to provide insightful commentary on themes, characters, and writing style.\n"
+                    },
+                    new()
+                    {
+                        Text = "<the entire contents of Pride and Prejudice>",
+                        CacheControl = new()
                     }
                 },
-                new()
+                Messages =
+                [
+                    new() { Role = Role.User, Content = "Analyze the major themes in Pride and Prejudice." }
+                ]
+            }
+        },
+        new()
+        {
+            CustomID = "my-second-request",
+            Params = new()
+            {
+                Model = Model.ClaudeOpus4_8,
+                MaxTokens = 1024,
+                System = new List<TextBlockParam>
                 {
-                    CustomID = "my-second-request",
-                    Params = new()
+                    new()
                     {
-                        Model = Model.ClaudeOpus4_7,
-                        MaxTokens = 1024,
-                        System = new List<TextBlockParam>
-                        {
-                            new()
-                            {
-                                Text = "You are an AI assistant tasked with analyzing literary works. Your goal is to provide insightful commentary on themes, characters, and writing style.\n"
-                            },
-                            new()
-                            {
-                                Text = "<the entire contents of Pride and Prejudice>",
-                                CacheControl = new()
-                            }
-                        },
-                        Messages =
-                        [
-                            new() { Role = Role.User, Content = "Write a summary of Pride and Prejudice." }
-                        ]
+                        Text = "You are an AI assistant tasked with analyzing literary works. Your goal is to provide insightful commentary on themes, characters, and writing style.\n"
+                    },
+                    new()
+                    {
+                        Text = "<the entire contents of Pride and Prejudice>",
+                        CacheControl = new()
                     }
-                }
-            ]
-        });
-    }
-}
+                },
+                Messages =
+                [
+                    new() { Role = Role.User, Content = "Write a summary of Pride and Prejudice." }
+                ]
+            }
+        }
+    ]
+});
 ```
 
 ```go Go hidelines={1..10,-1}
@@ -1678,7 +1655,7 @@ func main() {
 			{
 				CustomID: "my-first-request",
 				Params: anthropic.MessageBatchNewParamsRequestParams{
-					Model:     anthropic.ModelClaudeOpus4_7,
+					Model:     anthropic.ModelClaudeOpus4_8,
 					MaxTokens: 1024,
 					System: []anthropic.TextBlockParam{
 						{
@@ -1697,7 +1674,7 @@ func main() {
 			{
 				CustomID: "my-second-request",
 				Params: anthropic.MessageBatchNewParamsRequestParams{
-					Model:     anthropic.ModelClaudeOpus4_7,
+					Model:     anthropic.ModelClaudeOpus4_8,
 					MaxTokens: 1024,
 					System: []anthropic.TextBlockParam{
 						{
@@ -1742,7 +1719,7 @@ public class BatchExample {
           .customId("my-first-request")
           .params(
             BatchCreateParams.Request.Params.builder()
-              .model(Model.CLAUDE_OPUS_4_7)
+              .model(Model.CLAUDE_OPUS_4_8)
               .maxTokens(1024)
               .systemOfTextBlockParams(
                 List.of(
@@ -1767,7 +1744,7 @@ public class BatchExample {
           .customId("my-second-request")
           .params(
             BatchCreateParams.Request.Params.builder()
-              .model(Model.CLAUDE_OPUS_4_7)
+              .model(Model.CLAUDE_OPUS_4_8)
               .maxTokens(1024)
               .systemOfTextBlockParams(
                 List.of(
@@ -1799,14 +1776,14 @@ public class BatchExample {
 
 use Anthropic\Client;
 
-$client = new Client(apiKey: getenv("ANTHROPIC_API_KEY"));
+$client = new Client();
 
 $messageBatch = $client->messages->batches->create(
     requests: [
         [
             'custom_id' => 'my-first-request',
             'params' => [
-                'model' => 'claude-opus-4-7',
+                'model' => 'claude-opus-4-8',
                 'max_tokens' => 1024,
                 'system' => [
                     [
@@ -1827,7 +1804,7 @@ $messageBatch = $client->messages->batches->create(
         [
             'custom_id' => 'my-second-request',
             'params' => [
-                'model' => 'claude-opus-4-7',
+                'model' => 'claude-opus-4-8',
                 'max_tokens' => 1024,
                 'system' => [
                     [
@@ -1859,7 +1836,7 @@ message_batch = client.messages.batches.create(
     {
       custom_id: "my-first-request",
       params: {
-        model: "claude-opus-4-7",
+        model: "claude-opus-4-8",
         max_tokens: 1024,
         system: [
           {
@@ -1880,7 +1857,7 @@ message_batch = client.messages.batches.create(
     {
       custom_id: "my-second-request",
       params: {
-        model: "claude-opus-4-7",
+        model: "claude-opus-4-8",
         max_tokens: 1024,
         system: [
           {
@@ -1904,23 +1881,31 @@ message_batch = client.messages.batches.create(
 
 </CodeGroup>
 
-Dalam contoh ini, kedua permintaan dalam batch mencakup pesan sistem yang identik dan teks lengkap Pride and Prejudice yang ditandai dengan `cache_control` untuk meningkatkan kemungkinan cache hits.
+Dalam contoh ini, kedua permintaan dalam batch menyertakan pesan sistem yang identik dan teks lengkap Pride and Prejudice yang ditandai dengan `cache_control` untuk meningkatkan kemungkinan cache hit.
 
-### Output yang diperluas (beta)
+### Server tools dan agentic loop \{#server-tools-and-the-agentic-loop}
 
-Header beta `output-300k-2026-03-24` menaikkan batas `max_tokens` menjadi 300.000 untuk permintaan batch menggunakan Claude Opus 4.7, Claude Opus 4.6, atau Claude Sonnet 4.6. Sertakan header untuk menghasilkan output jauh lebih panjang dari batas standar (64k hingga 128k tergantung model) dalam satu putaran.
+Semua [server tools](/docs/id/agents-and-tools/tool-use/server-tools) (web search, web fetch, code execution, MCP connectors, advisor, dan tool search) berfungsi dalam permintaan batch. Batch worker menjalankan agentic loop sisi server yang sama seperti Messages API sinkron.
+
+Karena tidak ada koneksi terbuka yang perlu dipertahankan, batch loop menjalankan **lebih banyak iterasi per giliran** dibandingkan permintaan sinkron sebelum mengembalikan `stop_reason: "pause_turn"`. Jika hasil batch kembali dengan `pause_turn`, giliran tersebut belum selesai; Anda dapat melanjutkannya dengan mengirimkan konten asisten yang dijeda dalam permintaan lanjutan (batch atau sinkron) persis seperti yang ditunjukkan dalam [pola kelanjutan pause_turn](/docs/id/agents-and-tools/tool-use/server-tools#the-server-side-loop-and-pause-turn).
+
+Batch worker juga membatasi `web_search` per organisasi sehingga pemrosesan batch yang sangat konkuren tidak menghabiskan batas laju web-search organisasi Anda. Batch mencoba ulang permintaan yang dibatasi secara otomatis; Anda tidak perlu menangani ini sendiri, tetapi batch web-search yang sangat besar mungkin memerlukan waktu lebih lama untuk selesai.
+
+### Output diperpanjang (beta) \{#extended-output-beta}
+
+Header beta `output-300k-2026-03-24` menaikkan batas `max_tokens` menjadi 300.000 untuk permintaan batch yang menggunakan Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, atau Claude Sonnet 4.6. Sertakan header ini untuk menghasilkan output yang jauh lebih panjang dari batas standar (64k hingga 128k tergantung model) dalam satu giliran.
 
 <Note>
-Output yang diperluas tersedia hanya di Message Batches API, bukan Messages API sinkron. Ini didukung di Claude API dan tidak tersedia di Amazon Bedrock, Vertex AI, atau Microsoft Foundry.
+Output diperpanjang hanya tersedia di Message Batches API, bukan di Messages API sinkron. Fitur ini didukung di Claude API dan Claude Platform di AWS, dan saat ini tidak tersedia di Amazon Bedrock, Vertex AI, atau Microsoft Foundry.
 </Note>
 
-Gunakan output yang diperluas untuk generasi bentuk panjang seperti draf panjang buku dan dokumentasi teknis, ekstraksi data terstruktur yang lengkap, scaffold generasi kode besar, dan rantai penalaran panjang.
+Gunakan output diperpanjang untuk pembuatan teks panjang seperti draf sepanjang buku dan dokumentasi teknis, ekstraksi data terstruktur yang menyeluruh, scaffold pembuatan kode yang besar, dan rantai penalaran yang panjang.
 
-Generasi 300k-token tunggal dapat memakan waktu lebih dari satu jam untuk diselesaikan, jadi rencanakan pengiriman batch Anda dengan jendela pemrosesan 24 jam dalam pikiran. Harga batch standar (50% dari harga API standar) berlaku.
+Satu pembuatan 300k token dapat memakan waktu lebih dari satu jam untuk selesai, jadi rencanakan pengiriman batch Anda dengan mempertimbangkan jendela pemrosesan 24 jam. Harga batch standar (50% dari harga API standar) berlaku.
 
 <CodeGroup>
 
-```bash Shell
+```bash cURL
 curl https://api.anthropic.com/v1/messages/batches \
      --header "x-api-key: $ANTHROPIC_API_KEY" \
      --header "anthropic-version: 2023-06-01" \
@@ -1932,7 +1917,7 @@ curl https://api.anthropic.com/v1/messages/batches \
         {
             "custom_id": "long-form-request",
             "params": {
-                "model": "claude-opus-4-7",
+                "model": "claude-opus-4-8",
                 "max_tokens": 300000,
                 "messages": [
                     {"role": "user", "content": "Write a comprehensive technical guide to building distributed systems, covering architecture patterns, consistency models, fault tolerance, and operational best practices."}
@@ -1948,7 +1933,7 @@ ant beta:messages:batches create --beta output-300k-2026-03-24 <<'YAML'
 requests:
   - custom_id: long-form-request
     params:
-      model: claude-opus-4-7
+      model: claude-opus-4-8
       max_tokens: 300000
       messages:
         - role: user
@@ -1972,7 +1957,7 @@ message_batch = client.beta.messages.batches.create(
         Request(
             custom_id="long-form-request",
             params=MessageCreateParamsNonStreaming(
-                model="claude-opus-4-7",
+                model="claude-opus-4-8",
                 max_tokens=300_000,
                 messages=[
                     {
@@ -1999,7 +1984,7 @@ const messageBatch = await anthropic.beta.messages.batches.create({
     {
       custom_id: "long-form-request",
       params: {
-        model: "claude-opus-4-7",
+        model: "claude-opus-4-8",
         max_tokens: 300000,
         messages: [
           {
@@ -2033,7 +2018,7 @@ var batch = await client.Beta.Messages.Batches.Create(new BatchCreateParams
             CustomID = "long-form-request",
             Params = new()
             {
-                Model = "claude-opus-4-7",
+                Model = "claude-opus-4-8",
                 MaxTokens = 300_000,
                 Messages =
                 [
@@ -2067,7 +2052,7 @@ func main() {
 				{
 					CustomID: "long-form-request",
 					Params: anthropic.BetaMessageBatchNewParamsRequestParams{
-						Model:     anthropic.ModelClaudeOpus4_7,
+						Model:     anthropic.ModelClaudeOpus4_8,
 						MaxTokens: 300_000,
 						Messages: []anthropic.BetaMessageParam{
 							anthropic.NewBetaUserMessage(
@@ -2102,7 +2087,7 @@ void main() {
         .customId("long-form-request")
         .params(
           BatchCreateParams.Request.Params.builder()
-            .model(Model.CLAUDE_OPUS_4_7)
+            .model(Model.CLAUDE_OPUS_4_8)
             .maxTokens(300_000L)
             .addUserMessage("Write a comprehensive technical guide to building distributed systems, covering architecture patterns, consistency models, fault tolerance, and operational best practices.")
             .build()
@@ -2130,7 +2115,7 @@ $batch = $client->beta->messages->batches->create(
         [
             'custom_id' => 'long-form-request',
             'params' => [
-                'model' => 'claude-opus-4-7',
+                'model' => 'claude-opus-4-8',
                 'max_tokens' => 300_000,
                 'messages' => [
                     ['role' => 'user', 'content' => 'Write a comprehensive technical guide to building distributed systems, covering architecture patterns, consistency models, fault tolerance, and operational best practices.']
@@ -2140,7 +2125,7 @@ $batch = $client->beta->messages->batches->create(
     ],
 );
 
-print_r($batch);
+echo $batch->id;
 ```
 
 ```ruby Ruby hidelines={1..2}
@@ -2154,7 +2139,7 @@ batch = client.beta.messages.batches.create(
     {
       custom_id: "long-form-request",
       params: {
-        model: "claude-opus-4-7",
+        model: "claude-opus-4-8",
         max_tokens: 300_000,
         messages: [
           { role: "user", content: "Write a comprehensive technical guide to building distributed systems, covering architecture patterns, consistency models, fault tolerance, and operational best practices." }
@@ -2169,46 +2154,46 @@ puts batch
 
 </CodeGroup>
 
-### Praktik terbaik untuk batching yang efektif
+### Praktik terbaik untuk batching yang efektif \{#best-practices-for-effective-batching}
 
-Untuk memanfaatkan Batches API sebaik-baiknya:
+Untuk mendapatkan hasil maksimal dari Batches API:
 
 - Pantau status pemrosesan batch secara teratur dan implementasikan logika retry yang sesuai untuk permintaan yang gagal.
 - Gunakan nilai `custom_id` yang bermakna untuk dengan mudah mencocokkan hasil dengan permintaan, karena urutan tidak dijamin.
-- Pertimbangkan untuk memecah dataset yang sangat besar menjadi beberapa batch untuk manajemen yang lebih baik.
-- Jalankan percobaan satu bentuk permintaan dengan Messages API untuk menghindari kesalahan validasi.
+- Pertimbangkan untuk memecah dataset yang sangat besar menjadi beberapa batch untuk pengelolaan yang lebih baik.
+- Lakukan uji coba bentuk permintaan tunggal dengan Messages API untuk menghindari kesalahan validasi.
 
-### Pemecahan masalah untuk masalah umum
+### Memecahkan masalah umum \{#troubleshooting-common-issues}
 
 Jika mengalami perilaku yang tidak terduga:
 
-- Verifikasi bahwa ukuran total permintaan batch tidak melebihi 256 MB. Jika ukuran permintaan terlalu besar, Anda mungkin mendapatkan kesalahan 413 `request_too_large`.
+- Verifikasi bahwa total ukuran permintaan batch tidak melebihi 256 MB. Jika ukuran permintaan terlalu besar, Anda mungkin mendapatkan kesalahan 413 `request_too_large`.
 - Periksa bahwa Anda menggunakan [model yang didukung](#supported-models) untuk semua permintaan dalam batch.
 - Pastikan setiap permintaan dalam batch memiliki `custom_id` yang unik.
-- Pastikan bahwa kurang dari 29 hari telah berlalu sejak waktu batch `created_at` (bukan `ended_at` pemrosesan). Jika lebih dari 29 hari telah berlalu, hasil tidak akan lagi dapat dilihat.
+- Pastikan bahwa belum lewat 29 hari sejak waktu `created_at` batch (bukan waktu `ended_at` pemrosesan). Jika sudah lewat 29 hari, hasil tidak lagi dapat dilihat.
 - Konfirmasi bahwa batch belum dibatalkan.
 
-Perhatikan bahwa kegagalan satu permintaan dalam batch tidak mempengaruhi pemrosesan permintaan lain.
+Perhatikan bahwa kegagalan satu permintaan dalam batch tidak memengaruhi pemrosesan permintaan lainnya.
 
 ---
-## Penyimpanan batch dan privasi
+## Penyimpanan batch dan privasi \{#batch-storage-and-privacy}
 
-- **Isolasi Workspace**: Batch terisolasi dalam Workspace tempat mereka dibuat. Mereka hanya dapat diakses oleh kunci API yang terkait dengan Workspace itu, atau pengguna dengan izin untuk melihat batch Workspace di Console.
+- **Isolasi Workspace**: Batch diisolasi dalam Workspace tempat batch tersebut dibuat. Batch hanya dapat diakses oleh kunci API yang terkait dengan Workspace tersebut, atau pengguna dengan izin untuk melihat batch Workspace di Console.
 
 - **Ketersediaan hasil**: Hasil batch tersedia selama 29 hari setelah batch dibuat, memberikan waktu yang cukup untuk pengambilan dan pemrosesan.
 
 ---
-## Retensi data
+## Retensi data \{#data-retention}
 
-Pemrosesan batch menyimpan data permintaan dan respons hingga 29 hari setelah pembuatan batch. Anda dapat menghapus batch pesan kapan saja setelah pemrosesan menggunakan endpoint `DELETE /v1/messages/batches/{batch_id}`. Untuk menghapus batch yang sedang berlangsung, batalkan terlebih dahulu. Pemrosesan asinkron memerlukan penyimpanan sisi server dari input dan output hingga penyelesaian batch dan pengambilan hasil.
+Pemrosesan batch menyimpan data permintaan dan respons hingga 29 hari setelah pembuatan batch. Anda dapat menghapus message batch kapan saja setelah pemrosesan menggunakan endpoint `DELETE /v1/messages/batches/{batch_id}`. Untuk menghapus batch yang sedang berjalan, batalkan terlebih dahulu. Pemrosesan asinkron memerlukan penyimpanan sisi server untuk input dan output hingga penyelesaian batch dan pengambilan hasil.
 
-Untuk kelayakan ZDR di semua fitur, lihat [API dan retensi data](/docs/id/build-with-claude/api-and-data-retention).
+Untuk kelayakan ZDR di semua fitur, lihat [API dan retensi data](/docs/id/manage-claude/api-and-data-retention).
 
-## FAQ
+## FAQ \{#faq}
 
-  <section title="Berapa lama waktu yang diperlukan untuk batch diproses?">
+  <section title="Berapa lama waktu yang dibutuhkan untuk memproses batch?">
 
-    Batch dapat memakan waktu hingga 24 jam untuk diproses, tetapi banyak yang selesai lebih cepat. Waktu pemrosesan aktual tergantung pada ukuran batch, permintaan saat ini, dan volume permintaan Anda. Dimungkinkan untuk batch kedaluwarsa dan tidak selesai dalam 24 jam.
+    Batch dapat memakan waktu hingga 24 jam untuk diproses, tetapi banyak yang selesai lebih cepat. Waktu pemrosesan aktual tergantung pada ukuran batch, permintaan saat ini, dan volume permintaan Anda. Ada kemungkinan batch kedaluwarsa dan tidak selesai dalam 24 jam.
   
 </section>
 
@@ -2218,33 +2203,33 @@ Untuk kelayakan ZDR di semua fitur, lihat [API dan retensi data](/docs/id/build-
   
 </section>
 
-  <section title="Bisakah saya menggunakan Message Batches API dengan fitur API lainnya?">
+  <section title="Dapatkah saya menggunakan Message Batches API dengan fitur API lainnya?">
 
-    Ya, Message Batches API mendukung semua fitur yang tersedia di Messages API, termasuk fitur beta. Namun, streaming tidak didukung untuk permintaan batch.
+    Ya, Message Batches API mendukung hampir semua fitur yang tersedia di Messages API, termasuk sebagian besar fitur beta. Sejumlah kecil parameter (`stream`, `speed`, `store`, `previous_thread_event_id`, `cache_hint`, `context_hint`, `max_tokens: 0`, dan `research_preview_2026_02`) tidak didukung. Lihat [Apa yang dapat di-batch](#what-can-be-batched) untuk daftar lengkapnya.
   
 </section>
 
-  <section title="Bagaimana Message Batches API mempengaruhi harga?">
+  <section title="Bagaimana Message Batches API memengaruhi harga?">
 
     Message Batches API menawarkan diskon 50% untuk semua penggunaan dibandingkan dengan harga API standar. Ini berlaku untuk token input, token output, dan token khusus apa pun. Untuk informasi lebih lanjut tentang harga, kunjungi [halaman harga](https://claude.com/pricing#anthropic-api).
   
 </section>
 
-  <section title="Bisakah saya memperbarui batch setelah dikirimkan?">
+  <section title="Dapatkah saya memperbarui batch setelah dikirimkan?">
 
-    Tidak, setelah batch dikirimkan, batch tidak dapat dimodifikasi. Jika Anda perlu membuat perubahan, Anda harus membatalkan batch saat ini dan mengirimkan batch baru. Perhatikan bahwa pembatalan mungkin tidak langsung berlaku.
+    Tidak, setelah batch dikirimkan, batch tidak dapat dimodifikasi. Jika Anda perlu membuat perubahan, Anda harus membatalkan batch saat ini dan mengirimkan yang baru. Perhatikan bahwa pembatalan mungkin tidak langsung berlaku.
   
 </section>
 
-  <section title="Apakah ada batas laju Message Batches API dan apakah mereka berinteraksi dengan batas laju Messages API?">
+  <section title="Apakah ada batas laju Message Batches API dan apakah berinteraksi dengan batas laju Messages API?">
 
-    Message Batches API memiliki batas laju berbasis permintaan HTTP selain batas pada jumlah permintaan yang memerlukan pemrosesan. Lihat [batas laju Message Batches API](/docs/id/api/rate-limits#message-batches-api). Penggunaan Batches API tidak mempengaruhi batas laju di Messages API.
+    Message Batches API memiliki batas laju berbasis permintaan HTTP selain batas jumlah permintaan yang perlu diproses. Lihat [Batas laju Message Batches API](/docs/id/api/rate-limits#message-batches-api). Penggunaan Batches API tidak memengaruhi batas laju di Messages API.
   
 </section>
 
   <section title="Bagaimana cara menangani kesalahan dalam permintaan batch saya?">
 
-    Ketika Anda mengambil hasil, setiap permintaan akan memiliki bidang `result` yang menunjukkan apakah itu `succeeded`, `errored`, `canceled`, atau `expired`. Untuk hasil `errored`, informasi kesalahan tambahan akan disediakan. Lihat objek respons kesalahan di [referensi API](/docs/id/api/creating-message-batches).
+    Ketika Anda mengambil hasil, setiap permintaan akan memiliki field `result` yang menunjukkan apakah permintaan tersebut `succeeded`, `errored`, `canceled`, atau `expired`. Untuk hasil `errored`, informasi kesalahan tambahan akan disediakan. Lihat objek respons kesalahan di [referensi API](/docs/id/api/creating-message-batches).
   
 </section>
 
@@ -2252,15 +2237,15 @@ Untuk kelayakan ZDR di semua fitur, lihat [API dan retensi data](/docs/id/build-
 
     Message Batches API dirancang dengan langkah-langkah privasi dan pemisahan data yang kuat:
 
-    1. Batch dan hasilnya terisolasi dalam Workspace tempat mereka dibuat. Ini berarti mereka hanya dapat diakses oleh kunci API dari Workspace yang sama.
+    1. Batch dan hasilnya diisolasi dalam Workspace tempat batch tersebut dibuat. Ini berarti batch hanya dapat diakses oleh kunci API dari Workspace yang sama.
     2. Setiap permintaan dalam batch diproses secara independen, tanpa kebocoran data antar permintaan.
     3. Hasil hanya tersedia untuk waktu terbatas (29 hari), dan mengikuti [kebijakan retensi data](https://support.claude.com/en/articles/7996866-how-long-do-you-store-personal-data) Anthropic.
-    4. Mengunduh hasil batch di Console dapat dinonaktifkan pada tingkat organisasi atau per basis Workspace.
+    4. Pengunduhan hasil batch di Console dapat dinonaktifkan di tingkat organisasi atau per workspace.
   
 </section>
 
-  <section title="Bisakah saya menggunakan prompt caching di Message Batches API?">
+  <section title="Dapatkah saya menggunakan caching prompt di Message Batches API?">
 
-    Ya, dimungkinkan untuk menggunakan prompt caching dengan Message Batches API. Namun, karena permintaan batch asinkron dapat diproses secara bersamaan dan dalam urutan apa pun, cache hits disediakan dengan dasar best-effort.
+    Ya, dimungkinkan untuk menggunakan caching prompt dengan Message Batches API. Namun, karena permintaan batch asinkron dapat diproses secara konkuren dan dalam urutan apa pun, cache hit disediakan berdasarkan upaya terbaik.
   
 </section>

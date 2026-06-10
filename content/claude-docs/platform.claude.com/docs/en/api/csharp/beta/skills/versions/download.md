@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/skills/versions/download
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 3a3ed6b59b34525a3d0dce2bc6a7e4c4c5d83d40c01c8c20a4ce077cf6821808
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: b7ee81b0e797c16dde0e35cc3cd7b6761a6fed6f98c477701be71af34cfa4dc1
 ---
 
 ## Download Skill Version Content
@@ -84,6 +84,10 @@ Download a skill version's content as a zip archive.
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Example
 

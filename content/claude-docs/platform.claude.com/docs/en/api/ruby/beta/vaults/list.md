@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/vaults/list
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: dab1091eb4756fe687c1b7c8c335a7414a360c85b97425bc74bbf0a30ad7e084
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 2112178e8501ca8c6bdce8e9a06a2c234dcbf5ddec906a94284e1ddf562176e3
 ---
 
 ## List Vaults
@@ -33,7 +33,7 @@ List Vaults
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 23 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 25 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -86,6 +86,10 @@ List Vaults
     - `:"cache-diagnosis-2026-04-07"`
 
     - `:"thinking-token-count-2026-05-13"`
+
+    - `:"server-side-fallback-2026-06-01"`
+
+    - `:"fallback-credit-2026-06-01"`
 
 ### Returns
 

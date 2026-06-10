@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/troubleshoot-install
-fetched_at: 2026-06-05T03:17:10.786387Z
-sha256: b084f58db5be18f689833fa57bd2827e64bbc19b21106361401ef251718cdf80
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 4c64470286c5c4cbd9a6c48a343b6fb9ff56e8b23d1b97c3ea81913a777b811f
 ---
 
 > ## Documentation Index
@@ -186,6 +186,8 @@ Multiple Claude Code installations can cause version mismatches or unexpected be
     ```bash theme={null}
     ls -la ~/.local/bin/claude
     ```
+
+    If either `ls` command prints `No such file or directory`, that's not an error. It means nothing is installed at that location, so move on to the next check.
 
     ```bash theme={null}
     ls -la ~/.claude/local/
@@ -562,6 +564,10 @@ Git for Windows is optional. Claude Code uses the [PowerShell tool](/en/tools-re
 ```
 
 If your Git is installed somewhere else, find the path by running `where.exe git` in PowerShell and use the `bin\bash.exe` path from that directory.
+
+**If the path is correct and the file exists** but Claude Code still reports it as not found, endpoint security software such as AppLocker, Group Policy software restriction policies, or EDR agents may be interfering. On versions before v2.1.116, Claude Code spawned a child process (`cmd.exe`) to verify the path, which these policies can block — a common signal is that `cmd.exe /c dir "C:\Program Files\Git\bin\bash.exe"` works when you run it directly in PowerShell but fails silently when launched by `claude.exe`.
+
+Claude Code v2.1.116 and later check the filesystem directly, so update first. If the error persists on a current version, ask your IT team to allowlist `claude.exe` and the processes it spawns, including `cmd.exe` and `bash.exe`, in your endpoint protection policy.
 
 ### Claude Code does not support 32-bit Windows
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/models/retrieve
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: c0c03fdc043470ca91bfd03ab0a169c041995a1ba334d0ec4c6bd1ca2eb52002
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 4786fe571e93634a088f3ae61ed5421e49fdb57af1d47fd6f86130718e130ead
 ---
 
 ## Get a Model
@@ -27,7 +27,7 @@ The Models API response can be used to determine information about a specific mo
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 23 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 25 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -81,6 +81,10 @@ The Models API response can be used to determine information about a specific mo
 
     - `"thinking-token-count-2026-05-13"`
 
+    - `"server-side-fallback-2026-06-01"`
+
+    - `"fallback-credit-2026-06-01"`
+
 ### Returns
 
 - `class BetaModelInfo: …`
@@ -88,6 +92,10 @@ The Models API response can be used to determine information about a specific mo
   - `id: str`
 
     Unique model identifier.
+
+  - `allowed_fallback_models: Optional[List[str]]`
+
+    Model IDs this model accepts as `fallbacks[i].model` on the Messages API. An empty list means the `fallbacks` parameter is not supported for this model as primary.
 
   - `capabilities: Optional[BetaModelCapabilities]`
 
@@ -233,6 +241,9 @@ print(beta_model_info.id)
 ```json
 {
   "id": "claude-opus-4-6",
+  "allowed_fallback_models": [
+    "string"
+  ],
   "capabilities": {
     "batch": {
       "supported": true

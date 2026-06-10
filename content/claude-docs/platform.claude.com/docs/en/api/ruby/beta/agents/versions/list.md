@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/agents/versions/list
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 8e1920f9bad7db07e6dd5e00fba9eb389aff8bcd5c03a99a62582ba4f7a5bd63
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 26736549828efbdad2af328b1514c54a7ec2388229e1d7a38d809f3e5f1887e9
 ---
 
 ## List Agent Versions
@@ -31,7 +31,7 @@ List Agent Versions
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 23 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 25 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -85,6 +85,10 @@ List Agent Versions
 
     - `:"thinking-token-count-2026-05-13"`
 
+    - `:"server-side-fallback-2026-06-01"`
+
+    - `:"fallback-credit-2026-06-01"`
+
 ### Returns
 
 - `class BetaManagedAgentsAgent`
@@ -125,11 +129,15 @@ List Agent Versions
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `BetaManagedAgentsModel = :"claude-opus-4-8" | :"claude-opus-4-7" | :"claude-opus-4-6" | 7 more`
+      - `BetaManagedAgentsModel = :"claude-fable-5" | :"claude-opus-4-8" | :"claude-opus-4-7" | 8 more`
 
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `:"claude-fable-5"`
+
+          Next generation of intelligence for the hardest knowledge work and coding problems
 
         - `:"claude-opus-4-8"`
 
@@ -355,19 +363,13 @@ List Agent Versions
 
         JSON Schema for custom tool input parameters.
 
-        - `properties: Hash[Symbol, untyped]`
-
-          JSON Schema properties defining the tool's input parameters.
-
-        - `required: Array[String]`
-
-          List of required property names.
-
         - `type: :object`
 
-          Must be 'object' for tool input schemas.
-
           - `:object`
+
+        - `properties: Hash[Symbol, untyped]`
+
+        - `required: Array[String]`
 
       - `name: String`
 

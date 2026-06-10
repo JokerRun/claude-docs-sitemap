@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/environments/list
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: c1ec74d1cc949db540d8185c08383cc500c7d4e4c6b7e4c634746cffe6ccaa51
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 8a68ee4e729a0083805f3f279a35d53dcaa08e1b58ed4b32bb65ced478905027
 ---
 
 ## List Environments
@@ -84,6 +84,10 @@ List environments with pagination support.
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/agents/create
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: be19d417c1dfe9df90d4204a9c72b2f9b01e1abe815bfbc2636fdeab432d266f
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 474711c5047f7d83dfdc6e17e5b28a56e28d2580dee54a6d4cc51a0fe2d7c033
 ---
 
 ## Create Agent
@@ -73,6 +73,10 @@ Create Agent
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
 
+    - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
+
+    - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
   - `Model model`
 
     Model identifier. Accepts the [model string](https://platform.claude.com/docs/en/about-claude/models/overview#latest-models-comparison), e.g. `claude-opus-4-6`, or a `model_config` object for additional configuration control
@@ -82,6 +86,10 @@ Create Agent
       The model that will power your agent.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `CLAUDE_FABLE_5("claude-fable-5")`
+
+        Next generation of intelligence for the hardest knowledge work and coding problems
 
       - `CLAUDE_OPUS_4_8("claude-opus-4-8")`
 
@@ -143,11 +151,11 @@ Create Agent
 
   - `String name`
 
-    Human-readable name for the agent. 1-256 characters.
+    Human-readable name for the agent.
 
   - `Optional<String> description`
 
-    Description of what the agent does. Up to 2048 characters.
+    Description of what the agent does.
 
   - `Optional<List<BetaManagedAgentsUrlMcpServerParams>> mcpServers`
 
@@ -175,7 +183,7 @@ Create Agent
 
   - `Optional<List<BetaManagedAgentsSkillParams>> skills`
 
-    Skills available to the agent. Maximum 20.
+    Skills available to the agent.
 
     - `class BetaManagedAgentsAnthropicSkillParams:`
 
@@ -211,7 +219,7 @@ Create Agent
 
   - `Optional<String> system`
 
-    System prompt for the agent. Up to 100,000 characters.
+    System prompt for the agent.
 
   - `Optional<List<Tool>> tools`
 
@@ -361,19 +369,13 @@ Create Agent
 
         JSON Schema for custom tool input parameters.
 
-        - `Optional<Properties> properties`
-
-          JSON Schema properties defining the tool's input parameters.
-
-        - `Optional<List<String>> required`
-
-          List of required property names.
-
-        - `Optional<Type> type`
-
-          Must be 'object' for tool input schemas.
+        - `JsonValue; type "object"constant`
 
           - `OBJECT("object")`
+
+        - `Optional<Properties> properties`
+
+        - `Optional<List<String>> required`
 
       - `String name`
 
@@ -422,6 +424,10 @@ Create Agent
       The model that will power your agent.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `CLAUDE_FABLE_5("claude-fable-5")`
+
+        Next generation of intelligence for the hardest knowledge work and coding problems
 
       - `CLAUDE_OPUS_4_8("claude-opus-4-8")`
 
@@ -645,19 +651,13 @@ Create Agent
 
         JSON Schema for custom tool input parameters.
 
-        - `Optional<Properties> properties`
-
-          JSON Schema properties defining the tool's input parameters.
-
-        - `Optional<List<String>> required`
-
-          List of required property names.
-
-        - `Optional<Type> type`
-
-          Must be 'object' for tool input schemas.
+        - `JsonValue; type "object"constant`
 
           - `OBJECT("object")`
+
+        - `Optional<Properties> properties`
+
+        - `Optional<List<String>> required`
 
       - `String name`
 

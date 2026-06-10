@@ -1,23 +1,23 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/files
-fetched_at: 2026-05-21T03:16:34.837917Z
-sha256: 38c57c48b2230f942e406417f364acf76a36bf8dedf43bd3e82eb0f7ff1a45b4
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: c5f31acc24bce55daef46d669ce2ffb342a6152b08912bf45fb76184813a60d2
 ---
 
 # Menambahkan file
 
-Unggah file dan pasang di kontainer sesi Anda untuk membaca dan memproses.
+Unggah file dan pasang di sandbox Anda untuk dibaca dan diproses.
 
 ---
 
-Anda dapat menyediakan file ke agen Anda dengan mengunggahnya melalui Files API dan memasangnya di kontainer sesi.
+Anda dapat menyediakan file untuk agen Anda dengan mengunggahnya melalui Files API dan memasangnya di sandbox sesi.
 
 <Note>
-Semua permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`. SDK menetapkan header beta secara otomatis.
+Semua permintaan Managed Agents API memerlukan beta header `managed-agents-2026-04-01`. SDK menetapkan beta header tersebut secara otomatis.
 </Note>
 
-## Mengunggah file
+## Mengunggah file \{#uploading-files}
 
 Pertama, unggah file menggunakan [Files API](/docs/id/build-with-claude/files):
 
@@ -100,12 +100,12 @@ puts "File ID: #{file.id}"
 
 </CodeGroup>
 
-## Memasang file dalam sesi
+## Memasang file dalam sesi \{#mounting-files-in-a-session}
 
-Pasang file yang telah diunggah ke dalam kontainer dengan menambahkannya ke array `resources` saat membuat sesi:
+Pasang file yang telah diunggah ke dalam sandbox dengan menambahkannya ke array `resources` saat membuat sesi:
 
 <Tip>
-`mount_path` bersifat opsional, tetapi pastikan file yang diunggah memiliki nama deskriptif sehingga agen tahu apa yang dicarinya.
+`mount_path` bersifat opsional, tetapi pastikan file yang diunggah memiliki nama yang deskriptif agar agen dapat mengidentifikasinya.
 </Tip>
 
 <CodeGroup>
@@ -262,9 +262,9 @@ session = client.beta.sessions.create(
 
 </CodeGroup>
 
-`file_id` baru akan dibuat yang mereferensikan instansi file dalam sesi. Salinan ini tidak dihitung terhadap [batas penyimpanan](/docs/id/build-with-claude/files) Anda.
+Sebuah `file_id` baru dibuat yang mereferensikan instance file dalam sesi tersebut. Salinan ini tidak dihitung terhadap [batas penyimpanan](/docs/id/build-with-claude/files) Anda.
 
-## Beberapa file
+## Beberapa file \{#multiple-files}
 
 Pasang beberapa file dengan menambahkan entri ke array `resources`:
 
@@ -325,6 +325,7 @@ resources := []anthropic.BetaSessionNewParamsResourceUnion{
 	{OfFile: &anthropic.BetaManagedAgentsFileResourceParams{Type: "file", FileID: "file_def456", MountPath: anthropic.String("/workspace/config.json")}},
 	{OfFile: &anthropic.BetaManagedAgentsFileResourceParams{Type: "file", FileID: "file_ghi789", MountPath: anthropic.String("/workspace/src/main.py")}},
 }
+_ = resources
 ```
 
 ```java Java
@@ -355,11 +356,11 @@ resources = [
 ```
 </CodeGroup>
 
-Maksimal 100 file didukung per sesi.
+Maksimum 100 file didukung per sesi.
 
-## Mengelola file dalam sesi yang sedang berjalan
+## Mengelola file pada sesi yang sedang berjalan \{#managing-files-on-a-running-session}
 
-Anda dapat menambah atau menghapus file dari sesi setelah pembuatan menggunakan API sumber daya sesi. Setiap sumber daya memiliki `id` yang dikembalikan saat ditambahkan (atau terdaftar), yang Anda gunakan untuk penghapusan.
+Anda dapat menambahkan atau menghapus file dari sesi setelah pembuatan menggunakan API resources sesi. Setiap resource memiliki `id` yang dikembalikan saat ditambahkan (atau didaftarkan), yang Anda gunakan untuk penghapusan.
 
 <CodeGroup>
   
@@ -463,7 +464,7 @@ puts resource.id # "sesrsc_01ABC..."
 
 </CodeGroup>
 
-Daftar semua sumber daya dalam sesi dengan `resources.list`. Untuk menghapus file, panggil `resources.delete` dengan ID sumber daya:
+Daftarkan semua resource pada sesi dengan `resources.list`. Untuk menghapus file, panggil `resources.delete` dengan ID resource:
 
 <CodeGroup>
   
@@ -574,19 +575,19 @@ client.beta.sessions.resources.delete(resource.id, session_id: session.id)
 
 </CodeGroup>
 
-## Mendaftar dan mengunduh file sesi
+## Mendaftarkan dan mengunduh file sesi \{#listing-and-downloading-session-files}
 
-Gunakan [Files API](/docs/id/build-with-claude/files) untuk mendaftar file yang dibatasi pada sesi dan mengunduhnya.
+Gunakan [Files API](/docs/id/build-with-claude/files) untuk mendaftarkan file yang tercakup dalam sesi dan mengunduhnya.
 
 <CodeGroup>
-```bash curl
-# List files associated with a session
+```bash curl nocheck
+# Daftar file yang terkait dengan sebuah sesi
 curl -fsSL "https://api.anthropic.com/v1/files?scope_id=sesn_abc123" \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
   -H "anthropic-beta: managed-agents-2026-04-01"
 
-# Download a file
+# Unduh sebuah file
 curl -fsSL "https://api.anthropic.com/v1/files/$FILE_ID/content" \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
@@ -594,18 +595,18 @@ curl -fsSL "https://api.anthropic.com/v1/files/$FILE_ID/content" \
   -o output.txt
 ```
 
-```bash CLI
-# List files associated with a session
+```bash CLI nocheck
+# Menampilkan daftar file yang terkait dengan sebuah sesi
 ant beta:files list --scope-id sesn_abc123 \
   --beta files-api-2025-04-14 \
   --beta managed-agents-2026-04-01
 
-# Download a file
+# Mengunduh file
 ant beta:files download --file-id "$FILE_ID" --output output.txt
 ```
 
-```python Python
-# List files associated with a session
+```python Python nocheck
+# Daftar file yang terkait dengan sebuah sesi
 files = client.beta.files.list(
     scope_id="sesn_abc123",
     betas=["managed-agents-2026-04-01"],
@@ -613,13 +614,13 @@ files = client.beta.files.list(
 for f in files:
     print(f.id, f.filename)
 
-# Download a file
+# Unduh sebuah file
 content = client.beta.files.download(files.data[0].id)
 content.write_to_file("output.txt")
 ```
 
-```typescript TypeScript
-// List files associated with a session
+```typescript TypeScript nocheck
+// Daftar file yang terkait dengan sebuah sesi
 const files = await client.beta.files.list({
   scope_id: "sesn_abc123",
   betas: ["managed-agents-2026-04-01"]
@@ -628,26 +629,26 @@ for (const f of files.data) {
   console.log(f.id, f.filename);
 }
 
-// Download a file
+// Unduh sebuah file
 const content = await client.beta.files.download(files.data[0].id);
 await content.writeToFile("output.txt");
 ```
 
-```csharp C#
-// List files associated with a session
+```csharp C# nocheck
+// Mencantumkan file yang terkait dengan sebuah sesi
 var files = await client.Beta.Files.List(new FileListParams
 {
     ScopeID = "sesn_abc123",
     Betas = ["managed-agents-2026-04-01"],
 });
 
-// Download a file
+// Mengunduh sebuah file
 byte[] content = await client.Beta.Files.Download(files.Data[0].ID);
 await File.WriteAllBytesAsync("output.txt", content);
 ```
 
-```go Go
-// List files associated with a session
+```go Go nocheck
+// Daftar file yang terkait dengan sebuah sesi
 files, err := client.Beta.Files.List(ctx, anthropic.BetaFileListParams{
 	ScopeID: anthropic.String("sesn_abc123"),
 	Betas:   []anthropic.AnthropicBeta{"managed-agents-2026-04-01"},
@@ -656,24 +657,29 @@ if err != nil {
 	panic(err)
 }
 
-// Download a file
+// Unduh sebuah file
 resp, err := client.Beta.Files.Download(ctx, files.Data[0].ID, anthropic.BetaFileDownloadParams{})
 if err != nil {
 	panic(err)
 }
 defer resp.Body.Close()
-fileContent, _ := io.ReadAll(resp.Body)
-os.WriteFile("output.txt", fileContent, 0644)
+fileContent, err := io.ReadAll(resp.Body)
+if err != nil {
+	panic(err)
+}
+if err := os.WriteFile("output.txt", fileContent, 0644); err != nil {
+	panic(err)
+}
 ```
 
-```java Java
-// List files associated with a session
+```java Java nocheck
+// Daftar file yang terkait dengan sebuah sesi
 var files = client.beta().files().list(FileListParams.builder()
     .scopeId("sesn_abc123")
     .addBeta(AnthropicBeta.of("managed-agents-2026-04-01"))
     .build());
 
-// Download a file
+// Unduh sebuah file
 try (HttpResponse response = client.beta().files().download(files.data().get(0).id())) {
     try (InputStream body = response.body()) {
         Files.copy(body, Path.of("output.txt"), StandardCopyOption.REPLACE_EXISTING);
@@ -681,47 +687,47 @@ try (HttpResponse response = client.beta().files().download(files.data().get(0).
 }
 ```
 
-```php PHP
-// List files associated with a session
+```php PHP nocheck
+// Menampilkan daftar file yang terkait dengan sebuah sesi
 $files = $client->beta->files->list(
     scopeID: 'sesn_abc123',
     betas: ['managed-agents-2026-04-01'],
 );
 
-// Download a file
+// Mengunduh file
 $content = $client->beta->files->download($files->data[0]->id);
 file_put_contents('output.txt', $content);
 ```
 
-```ruby Ruby
-# List files associated with a session
+```ruby Ruby nocheck
+# Daftar file yang terkait dengan sebuah sesi
 files = client.beta.files.list(
   scope_id: "sesn_abc123",
   betas: ["managed-agents-2026-04-01"]
 )
 
-# Download a file
+# Unduh sebuah file
 content = client.beta.files.download(files.data[0].id)
 File.binwrite("output.txt", content.read)
 ```
 </CodeGroup>
 
-## Jenis file yang didukung
+## Tipe file yang didukung \{#supported-file-types}
 
-Agen dapat bekerja dengan jenis file apa pun, termasuk:
+Agen dapat bekerja dengan tipe file apa pun, termasuk:
 
-- Kode sumber (`.py`, `.js`, `.ts`, `.go`, `.rs`, dll.)
+- Kode sumber (`.py`, `.js`, `.ts`, `.go`, `.rs`, dan lainnya)
 - File data (`.csv`, `.json`, `.xml`, `.yaml`)
 - Dokumen (`.txt`, `.md`)
-- Arsip (`.zip`, `.tar.gz`) - agen dapat mengekstrak ini menggunakan bash
-- File biner - agen dapat memproses ini dengan alat yang sesuai
+- Arsip (`.zip`, `.tar.gz`) - agen dapat mengekstraknya menggunakan bash
+- File biner - agen dapat memprosesnya dengan alat yang sesuai
 
-## Jalur file
+## Path file \{#file-paths}
 
 <Note>
-File yang dipasang dalam kontainer adalah salinan baca-saja. Agen dapat membacanya tetapi tidak dapat memodifikasi file asli yang diunggah. Untuk bekerja dengan versi yang dimodifikasi, agen menulis ke jalur baru dalam kontainer.
+File yang dipasang di sandbox adalah salinan read-only. Agen dapat membacanya tetapi tidak dapat memodifikasi file asli yang diunggah. Untuk bekerja dengan versi yang dimodifikasi, agen menulis ke path baru di dalam sandbox.
 </Note>
 
-- File dipasang di jalur yang tepat yang Anda tentukan
+- File dipasang pada path persis yang Anda tentukan
 - Direktori induk dibuat secara otomatis
-- Jalur harus absolut (dimulai dengan `/`)
+- Path harus absolut (dimulai dengan `/`)

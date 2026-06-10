@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/sessions/resources/list
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 1437ad99e421c7c65d825db49a7f190ace1582c143479508d2e5cce800a392ef
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: fcd040f40bf19e08635ef7eb657a14c30bbf4863aca3ef9abfc1b04b9789f216
 ---
 
 ## List Session Resources
@@ -84,6 +84,10 @@ List Session Resources
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 

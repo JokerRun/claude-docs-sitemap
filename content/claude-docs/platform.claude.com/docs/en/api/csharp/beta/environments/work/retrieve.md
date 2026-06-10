@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/environments/work/retrieve
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 41ec4198f2c1f0d39836ad63b69cd4b5caab9252face46ad9138c2c9d3554620
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 658806c34eaedef6c87c43ea8bef18b587d43ade8249121fdde1ccabf945ea77
 ---
 
 ## Get Work Item
@@ -82,6 +82,10 @@ Retrieve detailed information about a specific work item.
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 

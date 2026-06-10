@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/messages
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 965d8752741dafb85632fe4e38bbcdf570e1042c919ac7f43913f9221abadc48
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 748df34f74ab09803f197051b1f1f83b243f5ba9efc9b51b2ecdfad0945d2814
 ---
 
 # Messages
@@ -770,6 +770,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
                 - `"execution_time_exceeded"ExecutionTimeExceeded`
 
               - `JsonElement Type "tool_search_tool_result_error"constant`
+
+              - `string? ErrorMessage`
 
             - `class ToolSearchToolSearchResultBlockParam:`
 
@@ -2254,6 +2256,14 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+    - `"claude-fable-5"ClaudeFable5`
+
+      Next generation of intelligence for the hardest knowledge work and coding problems
+
+    - `"claude-mythos-5"ClaudeMythos5`
+
+      Most capable model for cybersecurity and biology research
+
     - `"claude-opus-4-8"ClaudeOpus4_8`
 
       Frontier intelligence for long-running agents and coding
@@ -2345,6 +2355,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       - `"cyber"Cyber`
 
       - `"bio"Bio`
+
+      - `"reasoning_extraction"ReasoningExtraction`
 
     - `required string? Explanation`
 
@@ -3312,6 +3324,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
                 - `"execution_time_exceeded"ExecutionTimeExceeded`
 
               - `JsonElement Type "tool_search_tool_result_error"constant`
+
+              - `string? ErrorMessage`
 
             - `class ToolSearchToolSearchResultBlockParam:`
 
@@ -6569,6 +6583,8 @@ Console.WriteLine(messageTokensCount);
 
         - `JsonElement Type "tool_search_tool_result_error"constant`
 
+        - `string? ErrorMessage`
+
       - `class ToolSearchToolSearchResultBlockParam:`
 
         - `required IReadOnlyList<ToolReferenceBlockParam> ToolReferences`
@@ -7969,6 +7985,14 @@ Console.WriteLine(messageTokensCount);
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+    - `"claude-fable-5"ClaudeFable5`
+
+      Next generation of intelligence for the hardest knowledge work and coding problems
+
+    - `"claude-mythos-5"ClaudeMythos5`
+
+      Most capable model for cybersecurity and biology research
+
     - `"claude-opus-4-8"ClaudeOpus4_8`
 
       Frontier intelligence for long-running agents and coding
@@ -8060,6 +8084,8 @@ Console.WriteLine(messageTokensCount);
       - `"cyber"Cyber`
 
       - `"bio"Bio`
+
+      - `"reasoning_extraction"ReasoningExtraction`
 
     - `required string? Explanation`
 
@@ -9608,6 +9634,8 @@ Console.WriteLine(messageTokensCount);
 
             - `JsonElement Type "tool_search_tool_result_error"constant`
 
+            - `string? ErrorMessage`
+
           - `class ToolSearchToolSearchResultBlockParam:`
 
             - `required IReadOnlyList<ToolReferenceBlockParam> ToolReferences`
@@ -10761,6 +10789,8 @@ Console.WriteLine(messageTokensCount);
 
         - `"bio"Bio`
 
+        - `"reasoning_extraction"ReasoningExtraction`
+
       - `required string? Explanation`
 
         Human-readable explanation of the refusal.
@@ -11452,6 +11482,14 @@ Console.WriteLine(messageTokensCount);
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+      - `"claude-fable-5"ClaudeFable5`
+
+        Next generation of intelligence for the hardest knowledge work and coding problems
+
+      - `"claude-mythos-5"ClaudeMythos5`
+
+        Most capable model for cybersecurity and biology research
+
       - `"claude-opus-4-8"ClaudeOpus4_8`
 
         Frontier intelligence for long-running agents and coding
@@ -11543,6 +11581,8 @@ Console.WriteLine(messageTokensCount);
         - `"cyber"Cyber`
 
         - `"bio"Bio`
+
+        - `"reasoning_extraction"ReasoningExtraction`
 
       - `required string? Explanation`
 
@@ -12292,6 +12332,14 @@ Console.WriteLine(messageTokensCount);
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+        - `"claude-fable-5"ClaudeFable5`
+
+          Next generation of intelligence for the hardest knowledge work and coding problems
+
+        - `"claude-mythos-5"ClaudeMythos5`
+
+          Most capable model for cybersecurity and biology research
+
         - `"claude-opus-4-8"ClaudeOpus4_8`
 
           Frontier intelligence for long-running agents and coding
@@ -12383,6 +12431,8 @@ Console.WriteLine(messageTokensCount);
           - `"cyber"Cyber`
 
           - `"bio"Bio`
+
+          - `"reasoning_extraction"ReasoningExtraction`
 
         - `required string? Explanation`
 
@@ -12703,6 +12753,8 @@ Console.WriteLine(messageTokensCount);
     - `"cyber"Cyber`
 
     - `"bio"Bio`
+
+    - `"reasoning_extraction"ReasoningExtraction`
 
   - `required string? Explanation`
 
@@ -14596,6 +14648,8 @@ Console.WriteLine(messageTokensCount);
 
       - `JsonElement Type "tool_search_tool_result_error"constant`
 
+      - `string? ErrorMessage`
+
     - `class ToolSearchToolSearchResultBlockParam:`
 
       - `required IReadOnlyList<ToolReferenceBlockParam> ToolReferences`
@@ -14680,6 +14734,8 @@ Console.WriteLine(messageTokensCount);
     - `"execution_time_exceeded"ExecutionTimeExceeded`
 
   - `JsonElement Type "tool_search_tool_result_error"constant`
+
+  - `string? ErrorMessage`
 
 ### Tool Search Tool Search Result Block
 
@@ -17951,6 +18007,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   - `JsonElement Type "tool_search_tool_result_error"constant`
 
+                  - `string? ErrorMessage`
+
                 - `class ToolSearchToolSearchResultBlockParam:`
 
                   - `required IReadOnlyList<ToolReferenceBlockParam> ToolReferences`
@@ -18026,6 +18084,14 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-fable-5"ClaudeFable5`
+
+          Next generation of intelligence for the hardest knowledge work and coding problems
+
+        - `"claude-mythos-5"ClaudeMythos5`
+
+          Most capable model for cybersecurity and biology research
 
         - `"claude-opus-4-8"ClaudeOpus4_8`
 
@@ -20402,6 +20468,14 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `"claude-fable-5"ClaudeFable5`
+
+            Next generation of intelligence for the hardest knowledge work and coding problems
+
+          - `"claude-mythos-5"ClaudeMythos5`
+
+            Most capable model for cybersecurity and biology research
+
           - `"claude-opus-4-8"ClaudeOpus4_8`
 
             Frontier intelligence for long-running agents and coding
@@ -20493,6 +20567,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `"cyber"Cyber`
 
             - `"bio"Bio`
+
+            - `"reasoning_extraction"ReasoningExtraction`
 
           - `required string? Explanation`
 
@@ -21519,6 +21595,14 @@ await foreach (var messageBatchIndividualResponse in client.Messages.Batches.Res
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `"claude-fable-5"ClaudeFable5`
+
+            Next generation of intelligence for the hardest knowledge work and coding problems
+
+          - `"claude-mythos-5"ClaudeMythos5`
+
+            Most capable model for cybersecurity and biology research
+
           - `"claude-opus-4-8"ClaudeOpus4_8`
 
             Frontier intelligence for long-running agents and coding
@@ -21610,6 +21694,8 @@ await foreach (var messageBatchIndividualResponse in client.Messages.Batches.Res
             - `"cyber"Cyber`
 
             - `"bio"Bio`
+
+            - `"reasoning_extraction"ReasoningExtraction`
 
           - `required string? Explanation`
 
@@ -22463,6 +22549,14 @@ await foreach (var messageBatchIndividualResponse in client.Messages.Batches.Res
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+        - `"claude-fable-5"ClaudeFable5`
+
+          Next generation of intelligence for the hardest knowledge work and coding problems
+
+        - `"claude-mythos-5"ClaudeMythos5`
+
+          Most capable model for cybersecurity and biology research
+
         - `"claude-opus-4-8"ClaudeOpus4_8`
 
           Frontier intelligence for long-running agents and coding
@@ -22554,6 +22648,8 @@ await foreach (var messageBatchIndividualResponse in client.Messages.Batches.Res
           - `"cyber"Cyber`
 
           - `"bio"Bio`
+
+          - `"reasoning_extraction"ReasoningExtraction`
 
         - `required string? Explanation`
 
@@ -23369,6 +23465,14 @@ await foreach (var messageBatchIndividualResponse in client.Messages.Batches.Res
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+      - `"claude-fable-5"ClaudeFable5`
+
+        Next generation of intelligence for the hardest knowledge work and coding problems
+
+      - `"claude-mythos-5"ClaudeMythos5`
+
+        Most capable model for cybersecurity and biology research
+
       - `"claude-opus-4-8"ClaudeOpus4_8`
 
         Frontier intelligence for long-running agents and coding
@@ -23460,6 +23564,8 @@ await foreach (var messageBatchIndividualResponse in client.Messages.Batches.Res
         - `"cyber"Cyber`
 
         - `"bio"Bio`
+
+        - `"reasoning_extraction"ReasoningExtraction`
 
       - `required string? Explanation`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/php/beta/agents/update
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: e1302d8e0eac6fd0a305d6b58b1af57da44fe48556ea19a6d45ba05bc292a8cd
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: af50a91167f96a701329e41a25b811c736b6597bebbc0091a581c4c498fe2e12
 ---
 
 ## Update Agent
@@ -23,7 +23,7 @@ Update Agent
 
 - `description?:optional string`
 
-  Description. Up to 2048 characters. Omit to preserve; send empty string or null to clear.
+  Description. Omit to preserve; send empty string or null to clear.
 
 - `mcpServers?:optional list<BetaManagedAgentsURLMCPServerParams>`
 
@@ -43,15 +43,15 @@ Update Agent
 
 - `name?:optional string`
 
-  Human-readable name. 1-256 characters. Omit to preserve. Cannot be cleared.
+  Human-readable name. Must be non-empty. Omit to preserve. Cannot be cleared.
 
 - `skills?:optional list<BetaManagedAgentsSkillParams>`
 
-  Skills. Full replacement. Omit to preserve; send empty array or null to clear. Maximum 20.
+  Skills. Full replacement. Omit to preserve; send empty array or null to clear.
 
 - `system?:optional string`
 
-  System prompt. Up to 100,000 characters. Omit to preserve; send empty string or null to clear.
+  System prompt. Omit to preserve; send empty string or null to clear.
 
 - `tools?:optional list<Tool>`
 

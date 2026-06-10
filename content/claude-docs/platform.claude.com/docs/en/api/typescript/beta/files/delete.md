@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/files/delete
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: aeb69aeaaea95f86d44652efd82018e6c3b89eb234a2f6e549f36077231f1c52
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: b5f84af711aff98e753424a4d44359f009d299eafdb4da1d286ca4eb0d7a8503
 ---
 
 ## Delete File
@@ -27,7 +27,7 @@ Delete File
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 23 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -80,6 +80,10 @@ Delete File
       - `"cache-diagnosis-2026-04-07"`
 
       - `"thinking-token-count-2026-05-13"`
+
+      - `"server-side-fallback-2026-06-01"`
+
+      - `"fallback-credit-2026-06-01"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/webhooks
-fetched_at: 2026-05-08T03:11:40.925611Z
-sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 436f1ee56bb3c5c695500af6cde5394d835c43c2b6b3a2c269b0e1db613904b9
 ---
 
 # Webhooks
@@ -27,7 +27,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
 
@@ -39,7 +39,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
 
@@ -51,7 +51,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
 
@@ -63,7 +63,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
 
@@ -75,7 +75,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
 
@@ -87,7 +87,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
 
@@ -99,7 +99,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
 
@@ -111,7 +111,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
 
@@ -123,7 +123,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
 
@@ -135,7 +135,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
 
@@ -147,7 +147,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
 
@@ -159,9 +159,13 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
+
+      - `required string SessionThreadID`
+
+        ID of the session thread this event refers to.
 
       - `JsonElement Type "session.thread_created"constant`
 
@@ -171,9 +175,13 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
+
+      - `required string SessionThreadID`
+
+        ID of the session thread this event refers to.
 
       - `JsonElement Type "session.thread_idled"constant`
 
@@ -183,9 +191,13 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
+
+      - `required string SessionThreadID`
+
+        ID of the session thread this event refers to.
 
       - `JsonElement Type "session.thread_terminated"constant`
 
@@ -195,7 +207,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
 
@@ -207,7 +219,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the vault that triggered the event.
 
       - `required string OrganizationID`
 
@@ -219,7 +231,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the vault that triggered the event.
 
       - `required string OrganizationID`
 
@@ -231,7 +243,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the vault that triggered the event.
 
       - `required string OrganizationID`
 
@@ -243,7 +255,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the vault credential that triggered the event.
 
       - `required string OrganizationID`
 
@@ -259,7 +271,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the vault credential that triggered the event.
 
       - `required string OrganizationID`
 
@@ -275,7 +287,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the vault credential that triggered the event.
 
       - `required string OrganizationID`
 
@@ -291,7 +303,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the vault credential that triggered the event.
 
       - `required string OrganizationID`
 
@@ -315,7 +327,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
     - `required string ID`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `required string OrganizationID`
 
@@ -327,7 +339,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
     - `required string ID`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `required string OrganizationID`
 
@@ -339,7 +351,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
     - `required string ID`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `required string OrganizationID`
 
@@ -351,7 +363,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
     - `required string ID`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `required string OrganizationID`
 
@@ -363,7 +375,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
     - `required string ID`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `required string OrganizationID`
 
@@ -375,7 +387,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
     - `required string ID`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `required string OrganizationID`
 
@@ -387,7 +399,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
     - `required string ID`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `required string OrganizationID`
 
@@ -399,7 +411,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
     - `required string ID`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `required string OrganizationID`
 
@@ -411,7 +423,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
     - `required string ID`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `required string OrganizationID`
 
@@ -423,7 +435,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
     - `required string ID`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `required string OrganizationID`
 
@@ -435,7 +447,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
     - `required string ID`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `required string OrganizationID`
 
@@ -447,9 +459,13 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
     - `required string ID`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `required string OrganizationID`
+
+    - `required string SessionThreadID`
+
+      ID of the session thread this event refers to.
 
     - `JsonElement Type "session.thread_created"constant`
 
@@ -459,9 +475,13 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
     - `required string ID`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `required string OrganizationID`
+
+    - `required string SessionThreadID`
+
+      ID of the session thread this event refers to.
 
     - `JsonElement Type "session.thread_idled"constant`
 
@@ -471,9 +491,13 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
     - `required string ID`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `required string OrganizationID`
+
+    - `required string SessionThreadID`
+
+      ID of the session thread this event refers to.
 
     - `JsonElement Type "session.thread_terminated"constant`
 
@@ -483,7 +507,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
     - `required string ID`
 
-      ID of the resource that triggered the event.
+      ID of the session that triggered the event.
 
     - `required string OrganizationID`
 
@@ -495,7 +519,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
     - `required string ID`
 
-      ID of the resource that triggered the event.
+      ID of the vault that triggered the event.
 
     - `required string OrganizationID`
 
@@ -507,7 +531,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
     - `required string ID`
 
-      ID of the resource that triggered the event.
+      ID of the vault that triggered the event.
 
     - `required string OrganizationID`
 
@@ -519,7 +543,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
     - `required string ID`
 
-      ID of the resource that triggered the event.
+      ID of the vault that triggered the event.
 
     - `required string OrganizationID`
 
@@ -531,7 +555,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
     - `required string ID`
 
-      ID of the resource that triggered the event.
+      ID of the vault credential that triggered the event.
 
     - `required string OrganizationID`
 
@@ -547,7 +571,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
     - `required string ID`
 
-      ID of the resource that triggered the event.
+      ID of the vault credential that triggered the event.
 
     - `required string OrganizationID`
 
@@ -563,7 +587,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
     - `required string ID`
 
-      ID of the resource that triggered the event.
+      ID of the vault credential that triggered the event.
 
     - `required string OrganizationID`
 
@@ -579,7 +603,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
     - `required string ID`
 
-      ID of the resource that triggered the event.
+      ID of the vault credential that triggered the event.
 
     - `required string OrganizationID`
 
@@ -597,7 +621,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
   - `required string ID`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `required string OrganizationID`
 
@@ -611,7 +635,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
   - `required string ID`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `required string OrganizationID`
 
@@ -625,7 +649,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
   - `required string ID`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `required string OrganizationID`
 
@@ -639,7 +663,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
   - `required string ID`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `required string OrganizationID`
 
@@ -653,7 +677,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
   - `required string ID`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `required string OrganizationID`
 
@@ -667,7 +691,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
   - `required string ID`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `required string OrganizationID`
 
@@ -681,7 +705,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
   - `required string ID`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `required string OrganizationID`
 
@@ -695,7 +719,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
   - `required string ID`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `required string OrganizationID`
 
@@ -709,7 +733,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
   - `required string ID`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `required string OrganizationID`
 
@@ -723,7 +747,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
   - `required string ID`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `required string OrganizationID`
 
@@ -737,7 +761,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
   - `required string ID`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `required string OrganizationID`
 
@@ -751,7 +775,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
   - `required string ID`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `required string OrganizationID`
 
@@ -765,9 +789,13 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
   - `required string ID`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `required string OrganizationID`
+
+  - `required string SessionThreadID`
+
+    ID of the session thread this event refers to.
 
   - `JsonElement Type "session.thread_created"constant`
 
@@ -779,9 +807,13 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
   - `required string ID`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `required string OrganizationID`
+
+  - `required string SessionThreadID`
+
+    ID of the session thread this event refers to.
 
   - `JsonElement Type "session.thread_idled"constant`
 
@@ -793,9 +825,13 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
   - `required string ID`
 
-    ID of the resource that triggered the event.
+    ID of the session that triggered the event.
 
   - `required string OrganizationID`
+
+  - `required string SessionThreadID`
+
+    ID of the session thread this event refers to.
 
   - `JsonElement Type "session.thread_terminated"constant`
 
@@ -807,7 +843,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
   - `required string ID`
 
-    ID of the resource that triggered the event.
+    ID of the vault that triggered the event.
 
   - `required string OrganizationID`
 
@@ -821,7 +857,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
   - `required string ID`
 
-    ID of the resource that triggered the event.
+    ID of the vault that triggered the event.
 
   - `required string OrganizationID`
 
@@ -835,7 +871,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
   - `required string ID`
 
-    ID of the resource that triggered the event.
+    ID of the vault credential that triggered the event.
 
   - `required string OrganizationID`
 
@@ -853,7 +889,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
   - `required string ID`
 
-    ID of the resource that triggered the event.
+    ID of the vault credential that triggered the event.
 
   - `required string OrganizationID`
 
@@ -871,7 +907,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
   - `required string ID`
 
-    ID of the resource that triggered the event.
+    ID of the vault credential that triggered the event.
 
   - `required string OrganizationID`
 
@@ -889,7 +925,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
   - `required string ID`
 
-    ID of the resource that triggered the event.
+    ID of the vault credential that triggered the event.
 
   - `required string OrganizationID`
 
@@ -907,7 +943,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
   - `required string ID`
 
-    ID of the resource that triggered the event.
+    ID of the vault that triggered the event.
 
   - `required string OrganizationID`
 
@@ -933,7 +969,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
 
@@ -945,7 +981,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
 
@@ -957,7 +993,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
 
@@ -969,7 +1005,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
 
@@ -981,7 +1017,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
 
@@ -993,7 +1029,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
 
@@ -1005,7 +1041,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
 
@@ -1017,7 +1053,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
 
@@ -1029,7 +1065,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
 
@@ -1041,7 +1077,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
 
@@ -1053,7 +1089,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
 
@@ -1065,9 +1101,13 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
+
+      - `required string SessionThreadID`
+
+        ID of the session thread this event refers to.
 
       - `JsonElement Type "session.thread_created"constant`
 
@@ -1077,9 +1117,13 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
+
+      - `required string SessionThreadID`
+
+        ID of the session thread this event refers to.
 
       - `JsonElement Type "session.thread_idled"constant`
 
@@ -1089,9 +1133,13 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
+
+      - `required string SessionThreadID`
+
+        ID of the session thread this event refers to.
 
       - `JsonElement Type "session.thread_terminated"constant`
 
@@ -1101,7 +1149,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the session that triggered the event.
 
       - `required string OrganizationID`
 
@@ -1113,7 +1161,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the vault that triggered the event.
 
       - `required string OrganizationID`
 
@@ -1125,7 +1173,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the vault that triggered the event.
 
       - `required string OrganizationID`
 
@@ -1137,7 +1185,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the vault that triggered the event.
 
       - `required string OrganizationID`
 
@@ -1149,7 +1197,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the vault credential that triggered the event.
 
       - `required string OrganizationID`
 
@@ -1165,7 +1213,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the vault credential that triggered the event.
 
       - `required string OrganizationID`
 
@@ -1181,7 +1229,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the vault credential that triggered the event.
 
       - `required string OrganizationID`
 
@@ -1197,7 +1245,7 @@ sha256: ae3277c497489d4e85d8f78b7352e07baa60529f903e8311d7f1586551ed972b
 
       - `required string ID`
 
-        ID of the resource that triggered the event.
+        ID of the vault credential that triggered the event.
 
       - `required string OrganizationID`
 

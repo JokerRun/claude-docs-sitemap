@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/skills/list
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 0a5e9d53d691bf09b451f8ca878bb6e75a8481a462451caf268ed1cf86790aa6
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 40c96a05933c189a60a8886f8d2ee0ad164afd7f69bc007eb795031e4b340d15
 ---
 
 ## List Skills
@@ -93,6 +93,10 @@ List Skills
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 

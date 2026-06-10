@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/messages/batches/results
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 5a2feff8b91666144ecb53ba75966a69e9cf8eb20dbd303f75cfa4c758f81a92
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: b18f279e1345cace66c6e63e0006974389a9adf71dd5052569bb97e281d4ccf4
 ---
 
 ## Retrieve Message Batch results
@@ -736,6 +736,14 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+            - `const ModelClaudeFable5 Model = "claude-fable-5"`
+
+              Next generation of intelligence for the hardest knowledge work and coding problems
+
+            - `const ModelClaudeMythos5 Model = "claude-mythos-5"`
+
+              Most capable model for cybersecurity and biology research
+
             - `const ModelClaudeOpus4_8 Model = "claude-opus-4-8"`
 
               Frontier intelligence for long-running agents and coding
@@ -831,6 +839,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `const RefusalStopDetailsCategoryCyber RefusalStopDetailsCategory = "cyber"`
 
             - `const RefusalStopDetailsCategoryBio RefusalStopDetailsCategory = "bio"`
+
+            - `const RefusalStopDetailsCategoryReasoningExtraction RefusalStopDetailsCategory = "reasoning_extraction"`
 
           - `Explanation string`
 

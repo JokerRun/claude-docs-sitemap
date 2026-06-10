@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/context-windows
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 05aa63f78b54098532a61aee821c0f432ded94f523ec9639646da23cbbe91e07
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: dff17d5868119496514cb8b7e8c5f230684cde8bb31ffafdd8e9d7b3ce61d935
 ---
 
 # Context windows
@@ -104,6 +104,8 @@ Claude's tool selection is designed to hold with large input documents — choos
 
 Claude Opus 4.8, [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.7, Claude Opus 4.6, and Claude Sonnet 4.6 have a 1M-token context window on the Claude API, Amazon Bedrock, and Vertex AI. On Microsoft Foundry, Claude Opus 4.8 has a 200k-token context window. Other Claude models, including Claude Sonnet 4.5 and Sonnet 4 (deprecated), have a 200k-token context window.
 
+Claude Fable 5 and Claude Mythos 5 (`claude-fable-5` and `claude-mythos-5`) have a 1M-token context window on the Claude API. The 1M maximum is also the default, and a single request can generate up to 128k output tokens (`max_tokens`).
+
 A single request can include up to 600 images or PDF pages (100 for models with a 200k-token context window). When sending many images or large documents, you may approach [request size limits](/docs/en/api/overview#request-size-limits) before the token limit.
 
 ## Context awareness in Claude Sonnet 4.6, Sonnet 4.5, and Haiku 4.5
@@ -143,7 +145,7 @@ For prompting guidance on leveraging context awareness, see the [prompting best 
 
 ## Managing context with compaction
 
-If your conversations regularly approach context window limits, [server-side compaction](/docs/en/build-with-claude/compaction) is the recommended approach. Compaction provides server-side summarization that automatically condenses earlier parts of a conversation, enabling long-running conversations beyond context limits with minimal integration work. It is available in beta for Claude Opus 4.8, Claude Mythos Preview, Claude Opus 4.7, Claude Opus 4.6, and Claude Sonnet 4.6.
+If your conversations regularly approach context window limits, [server-side compaction](/docs/en/build-with-claude/compaction) is the recommended approach. Compaction provides server-side summarization that automatically condenses earlier parts of a conversation, enabling long-running conversations beyond context limits with minimal integration work. It is available in beta for Claude Fable 5, Claude Mythos 5, Claude Opus 4.8, Claude Mythos Preview, Claude Opus 4.7, Claude Opus 4.6, and Claude Sonnet 4.6.
 
 For more specialized needs, [context editing](/docs/en/build-with-claude/context-editing) offers additional strategies:
 - **Tool result clearing** - Clear old tool results in agentic workflows

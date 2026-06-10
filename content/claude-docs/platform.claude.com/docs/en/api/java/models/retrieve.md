@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/models/retrieve
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 4821bd9fd66f16abd2e93933221fb9537c4dab3bf4ae0965776bac16f07394d1
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 53c30efead85da40ee53c153a1564900a6b8708d4a242451a4f056bb2e35b73d
 ---
 
 ## Get a Model
@@ -78,6 +78,10 @@ The Models API response can be used to determine information about a specific mo
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
+
+    - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
+
+    - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
 
 ### Returns
 

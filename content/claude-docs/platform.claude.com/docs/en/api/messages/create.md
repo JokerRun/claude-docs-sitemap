@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/create
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 0470fc99a6d52c9180f375acc6b8508e2760fcf0c382247dc5ea1adfb8e183d7
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: c9a72c0a5e977824e277d44e65077fb238f65763a63c34622528a7a09eee9f08
 ---
 
 ## Create a Message
@@ -845,7 +845,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `content: ToolSearchToolResultErrorParam or ToolSearchToolSearchResultBlockParam`
 
-          - `ToolSearchToolResultErrorParam object { error_code, type }`
+          - `ToolSearchToolResultErrorParam object { error_code, type, error_message }`
 
             - `error_code: ToolSearchToolResultErrorCode`
 
@@ -860,6 +860,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
             - `type: "tool_search_tool_result_error"`
 
               - `"tool_search_tool_result_error"`
+
+            - `error_message: optional string`
 
           - `ToolSearchToolSearchResultBlockParam object { tool_references, type }`
 
@@ -945,11 +947,19 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-  - `"claude-opus-4-8" or "claude-opus-4-7" or "claude-mythos-preview" or 15 more`
+  - `"claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more`
 
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+    - `"claude-fable-5"`
+
+      Next generation of intelligence for the hardest knowledge work and coding problems
+
+    - `"claude-mythos-5"`
+
+      Most capable model for cybersecurity and biology research
 
     - `"claude-opus-4-8"`
 
@@ -2712,11 +2722,19 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `"claude-opus-4-8" or "claude-opus-4-7" or "claude-mythos-preview" or 15 more`
+    - `"claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more`
 
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `"claude-fable-5"`
+
+        Next generation of intelligence for the hardest knowledge work and coding problems
+
+      - `"claude-mythos-5"`
+
+        Most capable model for cybersecurity and biology research
 
       - `"claude-opus-4-8"`
 
@@ -2804,7 +2822,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     Structured information about a refusal.
 
-    - `category: "cyber" or "bio"`
+    - `category: "cyber" or "bio" or "reasoning_extraction"`
 
       The policy category that triggered the refusal.
 
@@ -2813,6 +2831,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       - `"cyber"`
 
       - `"bio"`
+
+      - `"reasoning_extraction"`
 
     - `explanation: string`
 

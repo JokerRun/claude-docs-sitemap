@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/delete
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: ef693bbc735992309c47fc2c611ce7d643ecece7642adf4a821a6fbf9fab25ca
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 1599228303718d1b227642f8f88f8a3ef9c8ec4df29066199539e0d07e7b899d
 ---
 
 ## Delete Vault
@@ -23,7 +23,7 @@ Delete Vault
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 23 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 25 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -76,6 +76,10 @@ Delete Vault
     - `"cache-diagnosis-2026-04-07"`
 
     - `"thinking-token-count-2026-05-13"`
+
+    - `"server-side-fallback-2026-06-01"`
+
+    - `"fallback-credit-2026-06-01"`
 
 ### Returns
 

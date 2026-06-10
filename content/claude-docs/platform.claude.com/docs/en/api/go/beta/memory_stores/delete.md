@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/memory_stores/delete
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 8aacb170366e3f5fd2bc0f9ff07b1820298009fbc0f5dc71c561b184c854ba6c
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 0b95d5dbf9e7e0724334b4c5335eeec15e96803393281f2ce15d355d8bf3d7ac
 ---
 
 ## Delete a memory store
@@ -78,6 +78,10 @@ Delete a memory store
       - `const AnthropicBetaCacheDiagnosis2026_04_07 AnthropicBeta = "cache-diagnosis-2026-04-07"`
 
       - `const AnthropicBetaThinkingTokenCount2026_05_13 AnthropicBeta = "thinking-token-count-2026-05-13"`
+
+      - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
+
+      - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
 
 ### Returns
 

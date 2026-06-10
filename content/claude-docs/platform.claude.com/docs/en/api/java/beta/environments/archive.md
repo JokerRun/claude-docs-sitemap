@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/environments/archive
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: a4f0ae767808748e995aa9291bbf708999511aeb69bd299c6aee0f7025b76f5c
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 11f32591419359bc5edc493053ec2dc121fcc06172794f8a28cfb07fee53adf6
 ---
 
 ## Archive Environment
@@ -74,6 +74,10 @@ Archive an environment by ID. Archived environments cannot be used to create new
     - `CACHE_DIAGNOSIS_2026_04_07("cache-diagnosis-2026-04-07")`
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
+
+    - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
+
+    - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
 
 ### Returns
 

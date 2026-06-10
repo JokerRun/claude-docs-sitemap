@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/models/retrieve
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 74a6136c5d0e2df143b266fc3d22920e3f2c5f3032ba5331a675b6ec6dad3175
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 68d65067f660d058761e23dd0e0dea4b1619c91476b7cae080427b82e0513e6d
 ---
 
 ## Get a Model
@@ -27,7 +27,7 @@ The Models API response can be used to determine information about a specific mo
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 23 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 25 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -81,6 +81,10 @@ The Models API response can be used to determine information about a specific mo
 
     - `:"thinking-token-count-2026-05-13"`
 
+    - `:"server-side-fallback-2026-06-01"`
+
+    - `:"fallback-credit-2026-06-01"`
+
 ### Returns
 
 - `class BetaModelInfo`
@@ -88,6 +92,10 @@ The Models API response can be used to determine information about a specific mo
   - `id: String`
 
     Unique model identifier.
+
+  - `allowed_fallback_models: Array[String]`
+
+    Model IDs this model accepts as `fallbacks[i].model` on the Messages API. An empty list means the `fallbacks` parameter is not supported for this model as primary.
 
   - `capabilities: BetaModelCapabilities`
 
@@ -230,6 +238,9 @@ puts(beta_model_info)
 ```json
 {
   "id": "claude-opus-4-6",
+  "allowed_fallback_models": [
+    "string"
+  ],
   "capabilities": {
     "batch": {
       "supported": true

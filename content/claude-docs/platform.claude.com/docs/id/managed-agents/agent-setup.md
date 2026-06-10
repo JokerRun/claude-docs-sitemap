@@ -1,41 +1,41 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/agent-setup
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 21a89da7a71e4d65884530619292c4f98fb083458747ac83c0925d38e2c0ad86
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 240838c6a2726fcfcd11f6ba3d688d062ab9f84b3a2357b041cb3be934b9a71a
 ---
 
-# Tentukan agen Anda
+# Definisikan agen Anda
 
 Buat konfigurasi agen yang dapat digunakan kembali dan memiliki versi.
 
 ---
 
-Agen adalah konfigurasi yang dapat digunakan kembali dan memiliki versi yang mendefinisikan persona dan kemampuan. Agen menggabungkan model, system prompt, tools, server MCP, dan skills yang membentuk cara Claude berperilaku selama sesi.
+Agen adalah konfigurasi yang dapat digunakan kembali dan memiliki versi yang mendefinisikan persona dan kapabilitas. Agen menggabungkan model, prompt sistem, alat, server MCP, dan skill yang membentuk bagaimana Claude berperilaku selama sesi.
 
 Buat agen sekali sebagai sumber daya yang dapat digunakan kembali dan referensikan berdasarkan ID setiap kali Anda [memulai sesi](/docs/id/managed-agents/sessions). Agen memiliki versi dan lebih mudah dikelola di banyak sesi.
 
 <Note>
-Semua permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`. SDK mengatur header beta secara otomatis.
+Semua permintaan Managed Agents API memerlukan beta header `managed-agents-2026-04-01`. SDK menetapkan beta header tersebut secara otomatis.
 </Note>
 
-## Bidang konfigurasi agen
+## Field konfigurasi agen \{#agent-configuration-fields}
 
-| Bidang | Deskripsi |
+| Field | Deskripsi |
 | --- | --- |
-| `name` | Diperlukan. Nama yang dapat dibaca manusia untuk agen. |
-| `model` | Diperlukan. Claude [model](/docs/id/about-claude/models/overview) yang menggerakkan agen. Semua model Claude 4.5 dan yang lebih baru didukung. |
-| `system` | [System prompt](/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices#give-claude-a-role) yang mendefinisikan perilaku dan persona agen. System prompt berbeda dari [pesan pengguna](/docs/id/managed-agents/events-and-streaming#user-events), yang harus mendeskripsikan pekerjaan yang akan dilakukan. |
-| `tools` | Tools yang tersedia untuk agen. Menggabungkan [pre-built agent tools](/docs/id/managed-agents/tools), [MCP tools](/docs/id/managed-agents/mcp-connector), dan [custom tools](/docs/id/managed-agents/tools#custom-tools). |
-| `mcp_servers` | Server MCP yang menyediakan kemampuan pihak ketiga yang terstandar. |
-| `skills` | [Skills](/docs/id/managed-agents/skills) yang menyediakan konteks khusus domain dengan pengungkapan progresif. |
-| `callable_agents` | Agen lain yang dapat dipanggil agen ini untuk [orkestrasi multi-agen](/docs/id/managed-agents/multi-agent). Ini adalah fitur pratinjau penelitian; [minta akses](https://claude.com/form/claude-managed-agents) untuk mencobanya.|
+| `name` | Wajib. Nama yang dapat dibaca manusia untuk agen. |
+| `model` | Wajib. [Model](/docs/id/about-claude/models/overview) Claude yang menjalankan agen. Semua model keluarga Claude 4.5 dan yang lebih baru didukung. |
+| `system` | [Prompt sistem](/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices#give-claude-a-role) yang mendefinisikan perilaku dan persona agen. Prompt sistem berbeda dari [pesan pengguna](/docs/id/managed-agents/reference#event-types), yang seharusnya mendeskripsikan pekerjaan yang harus dilakukan. |
+| `tools` | Alat yang tersedia untuk agen. Menggabungkan [alat agen bawaan](/docs/id/managed-agents/tools), [alat MCP](/docs/id/managed-agents/mcp-connector), dan [alat kustom](/docs/id/managed-agents/tools#custom-tools). |
+| `mcp_servers` | Server MCP yang menyediakan kapabilitas pihak ketiga yang terstandarisasi. |
+| `skills` | [Skill](/docs/id/managed-agents/skills) yang menyediakan konteks spesifik domain dengan pengungkapan progresif. |
+| `multiagent` | Deklarasi koordinator yang mencantumkan agen-agen yang dapat didelegasikan oleh agen ini. Lihat [Sesi multiagen](/docs/id/managed-agents/multi-agent). |
 | `description` | Deskripsi tentang apa yang dilakukan agen. |
-| `metadata` | Pasangan kunci-nilai arbitrer untuk pelacakan Anda sendiri. |
+| `metadata` | Pasangan key-value arbitrer untuk pelacakan Anda sendiri. |
 
-## Buat agen
+## Membuat agen \{#create-an-agent}
 
-Contoh berikut mendefinisikan agen pengkodean yang menggunakan Claude Opus 4.7 dengan akses ke toolset agen pre-built. Toolset memungkinkan agen menulis kode, membaca file, mencari web, dan banyak lagi. Lihat [referensi agent tools](/docs/id/managed-agents/tools) untuk daftar lengkap tools yang didukung.
+Contoh berikut mendefinisikan agen coding yang menggunakan Claude Opus 4.8 dengan akses ke toolset agen bawaan. Toolset ini memungkinkan agen menulis kode, membaca file, mencari di web, dan lainnya. Lihat [referensi alat agen](/docs/id/managed-agents/tools) untuk daftar lengkap alat yang didukung.
 
 <CodeGroup defaultLanguage="CLI">
   
@@ -166,10 +166,10 @@ agent = client.beta.agents.create(
 </CodeGroup>
 
 <Tip>
-Untuk menggunakan Claude Opus 4.6 dengan [fast mode](/docs/id/build-with-claude/fast-mode), teruskan `model` sebagai objek: `{"id": "claude-opus-4-6", "speed": "fast"}`.
+Untuk menggunakan Claude Opus 4.8, Claude Opus 4.7, atau Claude Opus 4.6 dengan [fast mode](/docs/id/build-with-claude/fast-mode), berikan `model` sebagai objek, misalnya: `{"id": "claude-opus-4-8", "speed": "fast"}`. Fast mode untuk Claude Opus 4.6 sudah tidak digunakan lagi (deprecated) sejak peluncuran Claude Opus 4.8 dan akan dihapus sekitar 30 hari setelahnya.
 </Tip>
 
-Respons mengulangi konfigurasi Anda dan menambahkan bidang `id`, `version`, `created_at`, `updated_at`, dan `archived_at`. `version` dimulai dari 1 dan bertambah setiap kali Anda memperbarui agen.
+Respons akan mengembalikan konfigurasi Anda dan menambahkan field `id`, `type`, `version`, `created_at`, `updated_at`, dan `archived_at`. Nilai `version` dimulai dari 1 dan bertambah setiap kali pembaruan mengubah agen.
 
 ```json
 {
@@ -177,7 +177,7 @@ Respons mengulangi konfigurasi Anda dan menambahkan bidang `id`, `version`, `cre
   "type": "agent",
   "name": "Coding Assistant",
   "model": {
-    "id": "claude-opus-4-7",
+    "id": "claude-opus-4-8",
     "speed": "standard"
   },
   "system": "You are a helpful coding agent.",
@@ -200,9 +200,9 @@ Respons mengulangi konfigurasi Anda dan menambahkan bidang `id`, `version`, `cre
 }
 ```
 
-## Perbarui agen
+## Memperbarui agen \{#update-an-agent}
 
-Memperbarui agen menghasilkan versi baru. Teruskan `version` saat ini untuk memastikan Anda memperbarui dari status yang diketahui.
+Memperbarui agen akan menghasilkan versi baru ketika konfigurasi berubah. Berikan `version` saat ini untuk memastikan Anda memperbarui dari state yang diketahui.
 
 <CodeGroup defaultLanguage="CLI">
   
@@ -313,29 +313,33 @@ puts "New version: #{updated_agent.version}"
 
 </CodeGroup>
 
-### Semantik pembaruan
+### Semantik pembaruan \{#update-semantics}
 
-- **Bidang yang dihilangkan dipertahankan.** Anda hanya perlu menyertakan bidang yang ingin Anda ubah.
+- **Field yang dihilangkan akan dipertahankan.** Anda hanya perlu menyertakan field yang ingin Anda ubah.
 
-- **Bidang skalar** (`model`, `system`, `name`, dll.) diganti dengan nilai baru. `system` dan `description` dapat dihapus dengan melewatkan `null`. `model` dan `name` wajib dan tidak dapat dihapus.
+- **Field skalar** (`model`, `system`, `name`, `description`) diganti dengan nilai baru. `system` dan `description` dapat dikosongkan dengan memberikan `null`. `model` dan `name` bersifat wajib dan tidak dapat dikosongkan.
 
-- **Bidang array** (`tools`, `mcp_servers`, `skills`, `callable_agents`) sepenuhnya diganti oleh array baru. Untuk menghapus bidang array sepenuhnya, teruskan `null` atau array kosong.
+- **Field array** (`tools`, `mcp_servers`, `skills`) sepenuhnya diganti oleh array baru. Untuk mengosongkan field array sepenuhnya, berikan `null` atau array kosong.
 
-- **Metadata** digabungkan di tingkat kunci. Kunci yang Anda berikan ditambahkan atau diperbarui. Kunci yang Anda hilangkan dipertahankan. Untuk menghapus kunci tertentu, atur nilainya ke string kosong.
+- **`multiagent`** diganti secara keseluruhan, termasuk daftar `agents`-nya. Berikan `null` untuk mengosongkannya.
 
-- **Deteksi no-op.** Jika pembaruan tidak menghasilkan perubahan relatif terhadap versi saat ini, versi baru tidak dibuat dan versi yang ada dikembalikan.
+- **Metadata** digabungkan pada level key. Key yang Anda berikan akan ditambahkan atau diperbarui. Key yang Anda hilangkan akan dipertahankan. Untuk menghapus key tertentu, atur nilainya ke string kosong.
 
-## Siklus hidup agen
+- **Deteksi no-op.** Jika pembaruan tidak menghasilkan perubahan relatif terhadap versi saat ini, tidak ada versi baru yang dibuat dan versi yang ada akan dikembalikan.
+
+- **Daftar koordinator tidak diperbarui.** Koordinator yang mereferensikan agen ini dalam daftar `multiagent.agents` mereka tetap menggunakan versi yang disematkan saat koordinator dibuat atau terakhir diperbarui, bahkan jika referensi tersebut menghilangkan `version`. Untuk mendelegasikan ke versi baru, [perbarui koordinator](/docs/id/managed-agents/multi-agent#configure-the-coordinator) agar daftarnya mereferensikan versi tersebut.
+
+## Siklus hidup agen \{#agent-lifecycle}
 
 | Operasi | Perilaku |
 | --- | --- |
-| **Perbarui** | Menghasilkan versi agen baru. |
-| **Daftar versi** | Ambil riwayat versi lengkap untuk melacak perubahan seiring waktu. |
-| **Arsipkan** | Agen menjadi read-only. Sesi baru tidak dapat mereferensikannya, tetapi sesi yang ada terus berjalan. |
+| **Update** | Menghasilkan versi agen baru ketika konfigurasi berubah. |
+| **List versions** | Mengembalikan riwayat versi lengkap sehingga Anda dapat melacak perubahan dari waktu ke waktu. |
+| **Archive** | Membuat agen menjadi read-only. Sesi baru tidak dapat mereferensikannya, tetapi sesi yang sudah ada tetap berjalan. |
 
-### Daftar versi
+### Menampilkan daftar versi \{#list-versions}
 
-Ambil riwayat versi lengkap untuk melacak bagaimana agen telah berubah seiring waktu.
+Ambil riwayat versi lengkap untuk melacak bagaimana agen telah berubah dari waktu ke waktu.
 
 <CodeGroup defaultLanguage="CLI">
   
@@ -409,9 +413,9 @@ end
 
 </CodeGroup>
 
-### Arsipkan agen
+### Mengarsipkan agen \{#archive-an-agent}
 
-Pengarsipan membuat agen read-only. Sesi yang ada terus berjalan, tetapi sesi baru tidak dapat mereferensikan agen. Respons mengatur `archived_at` ke stempel waktu arsip.
+Pengarsipan membuat agen menjadi read-only. Sesi yang sudah ada tetap berjalan, tetapi sesi baru tidak dapat mereferensikan agen tersebut. Respons akan mengatur `archived_at` ke timestamp pengarsipan.
 
 <CodeGroup defaultLanguage="CLI">
   
@@ -478,8 +482,8 @@ puts "Archived at: #{archived.archived_at.iso8601}"
 
 </CodeGroup>
 
-## Langkah berikutnya
+## Langkah selanjutnya \{#next-steps}
 
-- [Konfigurasi tools](/docs/id/managed-agents/tools) untuk menyesuaikan kemampuan mana yang dapat digunakan agen.
-- [Lampirkan skills](/docs/id/managed-agents/skills) untuk keahlian khusus domain.
+- [Konfigurasikan alat](/docs/id/managed-agents/tools) untuk menyesuaikan kapabilitas mana yang dapat digunakan agen.
+- [Lampirkan skill](/docs/id/managed-agents/skills) untuk keahlian spesifik domain.
 - [Mulai sesi](/docs/id/managed-agents/sessions) yang mereferensikan agen Anda.

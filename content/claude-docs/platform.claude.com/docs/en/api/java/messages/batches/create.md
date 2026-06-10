@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/messages/batches/create
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: dc5d3c3f06774a4339a47bc1256403308766b8908af2d94037cc92fdec895582
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 7b55066d5b3fc0d748ed5d8b199dd0921ab35ebd9260aa27ffb203178c8f6928
 ---
 
 ## Create a Message Batch
@@ -881,6 +881,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                     - `TOOL_SEARCH_TOOL_RESULT_ERROR("tool_search_tool_result_error")`
 
+                  - `Optional<String> errorMessage`
+
                 - `class ToolSearchToolSearchResultBlockParam:`
 
                   - `List<ToolReferenceBlockParam> toolReferences`
@@ -964,6 +966,14 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `CLAUDE_FABLE_5("claude-fable-5")`
+
+          Next generation of intelligence for the hardest knowledge work and coding problems
+
+        - `CLAUDE_MYTHOS_5("claude-mythos-5")`
+
+          Most capable model for cybersecurity and biology research
 
         - `CLAUDE_OPUS_4_8("claude-opus-4-8")`
 

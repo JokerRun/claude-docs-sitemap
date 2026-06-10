@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/vaults/credentials/retrieve
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 341687c831365ae01fcc140914dc7dd0453d685c94e060debb1c8b4661bcf90b
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: fff6e43a974525a1f6b729018aaabc1c2f751ce0dd85ce119ff5d67da01d6c60
 ---
 
 ## Get Credential
@@ -80,6 +80,10 @@ Get Credential
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 
@@ -174,6 +178,42 @@ Get Credential
       - `required Type Type`
 
         - `"static_bearer"StaticBearer`
+
+    - `class BetaManagedAgentsEnvironmentVariableAuthResponse:`
+
+      Environment variable credential details. The secret value is never returned.
+
+      - `required Networking Networking`
+
+        Outbound hosts the secret value is substituted on.
+
+        - `class BetaManagedAgentsUnrestrictedCredentialNetworkingResponse:`
+
+          The secret is substituted on any host the session's Environment network policy permits egress to.
+
+          - `required Type Type`
+
+            - `"unrestricted"Unrestricted`
+
+        - `class BetaManagedAgentsLimitedCredentialNetworkingResponse:`
+
+          The secret is substituted only on requests to the listed hosts.
+
+          - `required IReadOnlyList<string> AllowedHosts`
+
+            Hostnames on which the secret will be substituted. An entry matches the request host exactly; a `*.`-prefixed entry matches any subdomain of the named domain but not the domain itself.
+
+          - `required Type Type`
+
+            - `"limited"Limited`
+
+      - `required string SecretName`
+
+        Name of the environment variable.
+
+      - `required Type Type`
+
+        - `"environment_variable"EnvironmentVariable`
 
   - `required DateTimeOffset CreatedAt`
 

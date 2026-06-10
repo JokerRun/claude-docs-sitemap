@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/memory_stores/create
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 520bb68068e9f44d533ca83432285d8e5cf7ad08609f4709f53be458906855d5
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 92e86b4ac12b69cef8035f9c4c7b6950b5aee60e378e35eb29be8e2de9d942d2
 ---
 
 ## Create a memory store
@@ -33,7 +33,7 @@ Create a memory store
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 23 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 25 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -86,6 +86,10 @@ Create a memory store
     - `"cache-diagnosis-2026-04-07"`
 
     - `"thinking-token-count-2026-05-13"`
+
+    - `"server-side-fallback-2026-06-01"`
+
+    - `"fallback-credit-2026-06-01"`
 
 ### Returns
 

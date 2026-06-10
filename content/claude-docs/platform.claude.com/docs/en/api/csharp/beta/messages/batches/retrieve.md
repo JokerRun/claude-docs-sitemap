@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/messages/batches/retrieve
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: e78db16cc9e54dbaa34d1be885932f33127e1b0fcd523cffc9a13e35178754e4
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: cfbdddb1ca202b979ad1db2bf907b875f94c19f09c4a8763b1e2f5c81570ff27
 ---
 
 ## Retrieve a Message Batch
@@ -78,6 +78,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `"cache-diagnosis-2026-04-07"CacheDiagnosis2026_04_07`
 
     - `"thinking-token-count-2026-05-13"ThinkingTokenCount2026_05_13`
+
+    - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
+
+    - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
 ### Returns
 

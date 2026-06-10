@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/mcp
-fetched_at: 2026-06-05T03:17:10.786387Z
-sha256: 227e1e98031a7189d6be6f1a6141d02cc7344485983a642d707043a202b63b86
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 6d06651c3d6de5547f594b68c88c16a6d1f7fd1648431bc2621731e167dc708b
 ---
 
 > ## Documentation Index
@@ -970,7 +970,7 @@ MCP servers can expose resources that you can reference using @ mentions, simila
 
 ## Scale with MCP Tool Search
 
-Tool search keeps MCP context usage low by deferring tool definitions until Claude needs them. Only tool names and server instructions load at session start, so adding more MCP servers has minimal impact on your context window.
+Tool search keeps MCP context usage low by deferring tool definitions until Claude needs them. Only tool names and server instructions load at session start, so adding more MCP servers has minimal impact on your context window. Claude Code does not impose a fixed per-server tool cap; the practical limit is your context window budget.
 
 ### How it works
 
@@ -994,7 +994,7 @@ Claude Code truncates tool descriptions and server instructions at 2KB each. Kee
 
 Tool search is enabled by default: MCP tools are deferred and discovered on demand. Claude Code disables it by default on Vertex AI. It is also disabled when `ANTHROPIC_BASE_URL` points to a non-first-party host, since most proxies do not forward `tool_reference` blocks. Set `ENABLE_TOOL_SEARCH` explicitly to override either fallback.
 
-Tool search requires a model that supports `tool_reference` blocks: Sonnet 4 and later, or Opus 4 and later. Haiku models do not support it. On Vertex AI, tool search is supported for Claude Sonnet 4.5 and later and Claude Opus 4.5 and later.
+Tool search requires a model that supports `tool_reference` blocks. Haiku models do not support it. On Vertex AI, tool search is supported for Claude Sonnet 4.5 and later and Claude Opus 4.5 and later.
 
 Control tool search behavior with the `ENABLE_TOOL_SEARCH` environment variable:
 

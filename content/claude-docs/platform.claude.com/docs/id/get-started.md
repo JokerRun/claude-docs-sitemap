@@ -1,46 +1,44 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/get-started
-fetched_at: 2026-04-18T03:10:04.936408Z
-sha256: 045d81a96496b38ab2b606079f8d869cebe90d395fb3d3b0751945545480a3f6
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 865dddfe4504e7944d7d0352914c14d3d7f9ae923d73de4b482f1d705f0348d0
 ---
 
-# Mulai dengan Claude
+# Memulai dengan Claude
 
-Buat panggilan API pertama Anda ke Claude dan bangun asisten pencarian web sederhana.
+Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web sederhana.
 
 ---
 
-## Prasyarat
+## Prasyarat \{#prerequisites}
 
-- Akun Anthropic [Console](/)
-- [API key](/settings/keys)
+- Sebuah [akun Console](/) Anthropic
+- Sebuah [kunci API](/settings/keys)
 
-## Panggil API
+## Memanggil API \{#call-the-api}
 
 <Tabs>
   <Tab title="cURL">
     <Steps>
-      <Step title="Atur API key Anda">
-        Dapatkan API key Anda dari [Claude Console](/settings/keys) dan atur sebagai variabel lingkungan:
+      <Step title="Atur kunci API Anda">
+        Ekspor kunci API Anda sebagai variabel lingkungan. Perintah cURL di bawah ini membacanya dari `$ANTHROPIC_API_KEY`.
 
         ```bash
-        export ANTHROPIC_API_KEY='your-api-key-here'
+        export ANTHROPIC_API_KEY="your-api-key-here"
         ```
-
-        Untuk mempertahankan kunci di seluruh sesi shell, tambahkan baris ke profil shell Anda (seperti `~/.zshrc` atau `~/.bashrc`).
       </Step>
 
-      <Step title="Buat panggilan API pertama Anda">
-        Jalankan perintah ini untuk membuat asisten pencarian web sederhana:
+      <Step title="Lakukan panggilan API pertama Anda">
+        Kirim permintaan `POST` ke Messages API:
 
-        ```bash
+        ```bash cURL
         curl https://api.anthropic.com/v1/messages \
-          -H "Content-Type: application/json" \
+          -H "content-type: application/json" \
           -H "x-api-key: $ANTHROPIC_API_KEY" \
           -H "anthropic-version: 2023-06-01" \
           -d '{
-            "model": "claude-opus-4-7",
+            "model": "claude-opus-4-8",
             "max_tokens": 1000,
             "messages": [
               {
@@ -51,19 +49,20 @@ Buat panggilan API pertama Anda ke Claude dan bangun asisten pencarian web seder
           }'
         ```
 
-        **Contoh output:**
+        Claude mengembalikan respons JSON yang berisi pesan asisten:
+
         ```json Output
         {
-          "id": "msg_01HCDu5LRGeP2o7s2xGmxyx8",
+          "id": "msg_013mHbppMPd2PrVJzGMZPt2D",
           "type": "message",
           "role": "assistant",
+          "model": "claude-opus-4-8",
           "content": [
             {
               "type": "text",
-              "text": "Here are some effective search strategies to find the latest renewable energy developments:\n\n## Search Terms to Use:\n- \"renewable energy news 2024\"\n- \"clean energy breakthrough\"\n- \"solar/wind/battery technology advances\"\n- \"green energy innovations\"\n- \"climate tech developments\"\n- \"energy storage solutions\"\n\n## Best Sources to Check:\n\n**News & Industry Sites:**\n- Renewable Energy World\n- GreenTech Media (now Wood Mackenzie)\n- Energy Storage News\n- CleanTechnica\n- PV Magazine (for solar)\n- WindPower Engineering & Development..."
+              "text": "Here are some effective search strategies to find the latest developments in renewable energy:\n\n## General Search Terms\n- \"Renewable energy news 2025\"\n- ..."
             }
           ],
-          "model": "claude-opus-4-7",
           "stop_reason": "end_turn",
           "usage": {
             "input_tokens": 21,
@@ -77,16 +76,6 @@ Buat panggilan API pertama Anda ke Claude dan bangun asisten pencarian web seder
 
   <Tab title="CLI">
     <Steps>
-      <Step title="Atur API key Anda">
-        Dapatkan API key Anda dari [Claude Console](/settings/keys) dan atur sebagai variabel lingkungan:
-
-        ```bash
-        export ANTHROPIC_API_KEY='your-api-key-here'
-        ```
-
-        Untuk mempertahankan kunci di seluruh sesi shell, tambahkan baris ke profil shell Anda (seperti `~/.zshrc` atau `~/.bashrc`).
-      </Step>
-
       <Step title="Instal CLI">
         Instal Anthropic CLI dengan Homebrew:
 
@@ -94,15 +83,31 @@ Buat panggilan API pertama Anda ke Claude dan bangun asisten pencarian web seder
         brew install anthropics/tap/ant
         ```
 
-        Untuk metode instalasi lainnya, lihat [Installation](/docs/id/api/sdks/cli#installation) dalam referensi CLI.
+        Untuk metode instalasi lainnya, lihat [Instalasi](/docs/id/cli-sdks-libraries/cli/quickstart#installation) di panduan cepat CLI.
       </Step>
 
-      <Step title="Buat panggilan API pertama Anda">
-        Jalankan perintah ini untuk membuat asisten pencarian web sederhana:
+      <Step title="Autentikasi">
+        Masuk dengan akun Anthropic Anda:
 
         ```bash
+        ant auth login
+        ```
+
+        Ini akan membuka alur OAuth berbasis browser. Setelah memberikan otorisasi, konfirmasikan kredensial Anda dengan:
+
+        ```bash
+        ant auth status
+        ```
+
+        Pada host jarak jauh tanpa browser, berikan `--no-browser` untuk mendapatkan URL yang dapat Anda buka di perangkat lain, lalu tempelkan kode yang dikembalikan ke terminal. Jika `ANTHROPIC_API_KEY` diatur di lingkungan Anda, variabel tersebut akan diutamakan daripada kredensial login. Untuk lingkungan non-interaktif seperti CI, lihat [opsi autentikasi CLI](/docs/id/cli-sdks-libraries/cli/authentication).
+      </Step>
+
+      <Step title="Lakukan panggilan API pertama Anda">
+        Jalankan `ant messages create` dari terminal Anda:
+
+        ```bash CLI
         ant messages create \
-          --model claude-opus-4-7 \
+          --model claude-opus-4-8 \
           --max-tokens 1000 \
           --message '{
             role: user,
@@ -110,24 +115,22 @@ Buat panggilan API pertama Anda ke Claude dan bangun asisten pencarian web seder
           }'
         ```
 
-        **Contoh output:**
+        CLI akan mencetak respons JSON:
+
         ```json Output
         {
-          "id": "msg_01HCDu5LRGeP2o7s2xGmxyx8",
+          "id": "msg_01N1ycuCkM5Mzd7WhTU4fwST",
           "type": "message",
           "role": "assistant",
+          "model": "claude-opus-4-8",
           "content": [
             {
               "type": "text",
-              "text": "Here are some effective search strategies to find the latest renewable energy developments:\n\n## Search Terms to Use:\n- \"renewable energy news 2024\"\n- \"clean energy breakthrough\"\n- \"solar/wind/battery technology advances\"\n- \"green energy innovations\"\n- \"climate tech developments\"\n- \"energy storage solutions\"\n\n## Best Sources to Check:\n\n**News & Industry Sites:**\n- Renewable Energy World\n- GreenTech Media (now Wood Mackenzie)\n- Energy Storage News\n- CleanTechnica\n- PV Magazine (for solar)\n- WindPower Engineering & Development..."
+              "text": "Here are some effective search strategies to find the latest developments in renewable energy:\n\n## General Search Terms\n- \"Renewable energy news 2025\"\n- ..."
             }
           ],
-          "model": "claude-opus-4-7",
           "stop_reason": "end_turn",
-          "usage": {
-            "input_tokens": 21,
-            "output_tokens": 305
-          }
+          "usage": { "input_tokens": 21, "output_tokens": 305 }
         }
         ```
       </Step>
@@ -136,34 +139,32 @@ Buat panggilan API pertama Anda ke Claude dan bangun asisten pencarian web seder
 
   <Tab title="Python">
     <Steps>
-      <Step title="Atur API key Anda">
-        Dapatkan API key Anda dari [Claude Console](/settings/keys) dan atur sebagai variabel lingkungan:
+      <Step title="Atur kunci API Anda">
+        Ekspor kunci API Anda sebagai variabel lingkungan. SDK membaca `ANTHROPIC_API_KEY` secara otomatis.
 
         ```bash
-        export ANTHROPIC_API_KEY='your-api-key-here'
+        export ANTHROPIC_API_KEY="your-api-key-here"
         ```
-
-        Untuk mempertahankan kunci di seluruh sesi shell, tambahkan baris ke profil shell Anda (seperti `~/.zshrc` atau `~/.bashrc`).
       </Step>
 
-      <Step title="Instal SDK">
-        Instal Anthropic Python SDK:
-
+      <Step title="Buat proyek dan instal SDK">
         ```bash
+        mkdir claude-quickstart && cd claude-quickstart
+        python3 -m venv .venv && source .venv/bin/activate
         pip install anthropic
         ```
       </Step>
 
       <Step title="Buat kode Anda">
-        Simpan ini sebagai `quickstart.py`:
+        Buat file bernama `quickstart.py`:
 
-        ```python
+        ```python Python
         import anthropic
 
         client = anthropic.Anthropic()
 
         message = client.messages.create(
-            model="claude-opus-4-7",
+            model="claude-opus-4-8",
             max_tokens=1000,
             messages=[
                 {
@@ -181,14 +182,8 @@ Buat panggilan API pertama Anda ke Claude dan bangun asisten pencarian web seder
         python quickstart.py
         ```
 
-        **Contoh output:**
         ```text Output
-        [
-            TextBlock(
-                text='Here are some effective search strategies for finding the latest renewable energy developments:\n\n**Search Terms to Use:**\n- "renewable energy news 2024"\n- "clean energy breakthroughs"\n- "solar/wind/battery technology advances"\n- "energy storage innovations"\n- "green hydrogen developments"\n- "renewable energy policy updates"\n\n**Reliable Sources to Check:**\n- **News & Analysis:** Reuters Energy, Bloomberg New Energy Finance, Greentech Media, Energy Storage News\n- **Industry Publications:** Renewable Energy World, PV Magazine, Wind Power Engineering\n- **Research Organizations:** International Energy Agency (IEA), National Renewable Energy Laboratory (NREL)\n- **Government Sources:** Department of Energy websites, EPA clean energy updates\n\n**Specific Topics to Explore:**\n- Perovskite and next-gen solar cells\n- Offshore wind expansion\n- Grid-scale battery storage\n- Green hydrogen production\n- Carbon capture technologies\n- Smart grid innovations\n- Energy policy changes and incentives...',
-                type="text",
-            )
-        ]
+        [TextBlock(citations=None, text='Here are some effective search strategies to find the latest developments in renewable energy:\n\n## General Search Terms\n- "Renewable energy news 2025"\n- ...', type='text')]
         ```
       </Step>
     </Steps>
@@ -196,48 +191,42 @@ Buat panggilan API pertama Anda ke Claude dan bangun asisten pencarian web seder
 
   <Tab title="TypeScript">
     <Steps>
-      <Step title="Atur API key Anda">
-        Dapatkan API key Anda dari [Claude Console](/settings/keys) dan atur sebagai variabel lingkungan:
+      <Step title="Atur kunci API Anda">
+        Ekspor kunci API Anda sebagai variabel lingkungan. SDK membaca `ANTHROPIC_API_KEY` secara otomatis.
 
         ```bash
-        export ANTHROPIC_API_KEY='your-api-key-here'
+        export ANTHROPIC_API_KEY="your-api-key-here"
         ```
-
-        Untuk mempertahankan kunci di seluruh sesi shell, tambahkan baris ke profil shell Anda (seperti `~/.zshrc` atau `~/.bashrc`).
       </Step>
 
-      <Step title="Instal SDK">
-        Instal Anthropic TypeScript SDK:
-
+      <Step title="Buat proyek dan instal SDK">
         ```bash
+        mkdir claude-quickstart && cd claude-quickstart
+        npm init -y
+        npm pkg set type=module
         npm install @anthropic-ai/sdk
         ```
       </Step>
 
       <Step title="Buat kode Anda">
-        Simpan ini sebagai `quickstart.ts`:
+        Buat file bernama `quickstart.ts`:
 
-```typescript
-import Anthropic from "@anthropic-ai/sdk";
+        ```typescript TypeScript
+        import Anthropic from "@anthropic-ai/sdk";
 
-async function main() {
-  const anthropic = new Anthropic();
+        const client = new Anthropic();
 
-  const msg = await anthropic.messages.create({
-    model: "claude-opus-4-7",
-    max_tokens: 1000,
-    messages: [
-      {
-        role: "user",
-        content:
-          "What should I search for to find the latest developments in renewable energy?"
-      }
-    ]
-  });
-  console.log(msg);
-}
-
-main().catch(console.error);
+        const message = await client.messages.create({
+          model: "claude-opus-4-8",
+          max_tokens: 1000,
+          messages: [
+            {
+              role: "user",
+              content: "What should I search for to find the latest developments in renewable energy?"
+            }
+          ]
+        });
+        console.log(message.content);
         ```
       </Step>
 
@@ -246,43 +235,147 @@ main().catch(console.error);
         npx tsx quickstart.ts
         ```
 
-        **Contoh output:**
-        ```javascript Output hidelines={1..2}
-        const _ =
-          // output
+        ```text Output
+        [
           {
-            id: "msg_01ThFHzad6Bh4TpQ6cHux9t8",
-            type: "message",
-            role: "assistant",
-            model: "claude-opus-4-7",
-            content: [
-              {
-                type: "text",
-                text:
-                  "Here are some effective search strategies to find the latest renewable energy developments:\n\n" +
-                  "## Search Terms to Use:\n" +
-                  '- "renewable energy news 2024"\n' +
-                  '- "clean energy breakthroughs"\n' +
-                  '- "solar wind technology advances"\n' +
-                  '- "energy storage innovations"\n' +
-                  '- "green hydrogen developments"\n' +
-                  '- "offshore wind projects"\n' +
-                  '- "battery technology renewable"\n\n' +
-                  "## Best Sources to Check:\n\n" +
-                  "**News & Industry Sites:**\n" +
-                  "- Renewable Energy World\n" +
-                  "- CleanTechnica\n" +
-                  "- GreenTech Media (now Wood Mackenzie)\n" +
-                  "- Energy Storage News\n" +
-                  "- PV Magazine (for solar)..."
-              }
-            ],
-            stop_reason: "end_turn",
-            usage: {
-              input_tokens: 21,
-              output_tokens: 302
-            }
+            type: 'text',
+            text: 'Here are some effective search strategies to find the latest developments in renewable energy:\n' +
+              '\n' +
+              '## General Search Terms\n' +
+              '- "Renewable energy news 2025"\n' +
+              '- ...'
           }
+        ]
+        ```
+      </Step>
+    </Steps>
+  </Tab>
+
+  <Tab title="C#">
+    <Steps>
+      <Step title="Atur kunci API Anda">
+        Ekspor kunci API Anda sebagai variabel lingkungan. SDK membaca `ANTHROPIC_API_KEY` secara otomatis.
+
+        ```bash
+        export ANTHROPIC_API_KEY="your-api-key-here"
+        ```
+      </Step>
+
+      <Step title="Buat proyek dan instal SDK">
+        Buat proyek konsol baru dan tambahkan paket Anthropic:
+
+        ```bash
+        dotnet new console -n ClaudeQuickstart
+        cd ClaudeQuickstart
+        dotnet add package Anthropic
+        ```
+      </Step>
+
+      <Step title="Buat kode Anda">
+        Ganti isi `Program.cs`:
+
+        ```csharp C#
+        using Anthropic;
+        using Anthropic.Models.Messages;
+
+        var client = new AnthropicClient();
+
+        var message = await client.Messages.Create(new MessageCreateParams
+        {
+            Model = Model.ClaudeOpus4_8,
+            MaxTokens = 1000,
+            Messages =
+            [
+                new()
+                {
+                    Role = Role.User,
+                    Content = "What should I search for to find the latest developments in renewable energy?",
+                },
+            ],
+        });
+
+        foreach (var block in message.Content)
+        {
+            Console.WriteLine(block);
+        }
+        ```
+      </Step>
+
+      <Step title="Jalankan kode Anda">
+        ```bash
+        dotnet run
+        ```
+
+        ```text Output
+        {
+          "type": "text",
+          "text": "Here are some effective search strategies to find the latest developments in renewable energy:\n\n## General Search Terms\n- \"Renewable energy news 2025\"\n- ..."
+        }
+        ```
+      </Step>
+    </Steps>
+  </Tab>
+
+  <Tab title="Go">
+    <Steps>
+      <Step title="Atur kunci API Anda">
+        Ekspor kunci API Anda sebagai variabel lingkungan. SDK membaca `ANTHROPIC_API_KEY` secara otomatis.
+
+        ```bash
+        export ANTHROPIC_API_KEY="your-api-key-here"
+        ```
+      </Step>
+
+      <Step title="Buat proyek dan instal SDK">
+        Buat modul baru dan tambahkan Anthropic SDK:
+
+        ```bash
+        mkdir claude-quickstart && cd claude-quickstart
+        go mod init claude-quickstart
+        go get github.com/anthropics/anthropic-sdk-go
+        ```
+      </Step>
+
+      <Step title="Buat kode Anda">
+        Buat file bernama `main.go`:
+
+        ```go Go
+        package main
+
+        import (
+        	"context"
+        	"fmt"
+        	"log"
+
+        	"github.com/anthropics/anthropic-sdk-go"
+        )
+
+        func main() {
+        	client := anthropic.NewClient()
+
+        	message, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
+        		Model:     anthropic.ModelClaudeOpus4_8,
+        		MaxTokens: 1000,
+        		Messages: []anthropic.MessageParam{
+        			anthropic.NewUserMessage(anthropic.NewTextBlock("What should I search for to find the latest developments in renewable energy?")),
+        		},
+        	})
+        	if err != nil {
+        		log.Fatal(err)
+        	}
+
+        	fmt.Println(message.JSON.Content.Raw())
+        }
+        ```
+      </Step>
+
+      <Step title="Jalankan kode Anda">
+        ```bash
+        go run .
+        ```
+
+        ```text Output
+        [{"type":"text","text":"Here are some effective search strategies to find the latest developments in renewable energy:\n\n## General Search Terms\n- \"Renewable energy news 2025\"\n- ..."}]
         ```
       </Step>
     </Steps>
@@ -290,107 +383,260 @@ main().catch(console.error);
 
   <Tab title="Java">
     <Steps>
-      <Step title="Atur API key Anda">
-        Dapatkan API key Anda dari [Claude Console](/settings/keys) dan atur sebagai variabel lingkungan:
+      <Step title="Atur kunci API Anda">
+        Ekspor kunci API Anda sebagai variabel lingkungan. SDK membaca `ANTHROPIC_API_KEY` secara otomatis.
 
         ```bash
-        export ANTHROPIC_API_KEY='your-api-key-here'
+        export ANTHROPIC_API_KEY="your-api-key-here"
         ```
-
-        Untuk mempertahankan kunci di seluruh sesi shell, tambahkan baris ke profil shell Anda (seperti `~/.zshrc` atau `~/.bashrc`).
       </Step>
 
-      <Step title="Instal SDK">
-        Tambahkan Anthropic Java SDK ke proyek Anda. Pertama temukan versi terbaru di [Maven Central](https://central.sonatype.com/artifact/com.anthropic/anthropic-java).
+      <Step title="Siapkan proyek Anda">
+        Anda memerlukan JDK (25 atau lebih baru) dan [Gradle](https://gradle.org/install/) atau [Maven](https://maven.apache.org/install.html) pada `PATH` Anda. Buat direktori untuk proyek Anda dengan direktori sumber Java di dalamnya:
 
-        **Gradle:**
-        ```groovy
-        implementation("com.anthropic:anthropic-java:2.20.0")
+        ```bash
+        mkdir -p claude-quickstart/src/main/java && cd claude-quickstart
         ```
 
-        **Maven:**
-        ```xml
-        <dependency>
-          <groupId>com.anthropic</groupId>
-          <artifactId>anthropic-java</artifactId>
-          <version>2.20.0</version>
-        </dependency>
-        ```
+        Kemudian tambahkan file build. Temukan versi SDK terkini di [Maven Central](https://central.sonatype.com/artifact/com.anthropic/anthropic-java).
+
+        <Tabs>
+          <Tab title="Gradle">
+            Simpan ini sebagai `build.gradle.kts`:
+
+            ```kotlin
+            plugins {
+                application
+            }
+
+            repositories {
+                mavenCentral()
+            }
+
+            java {
+                toolchain {
+                    languageVersion = JavaLanguageVersion.of(25)
+                }
+            }
+
+            dependencies {
+                implementation("com.anthropic:anthropic-java:2.39.0")
+            }
+
+            application {
+                mainClass = "QuickStart"
+            }
+            ```
+          </Tab>
+          <Tab title="Maven">
+            Simpan ini sebagai `pom.xml`:
+
+            ```xml
+            <project xmlns="http://maven.apache.org/POM/4.0.0">
+              <modelVersion>4.0.0</modelVersion>
+              <groupId>com.example</groupId>
+              <artifactId>quickstart</artifactId>
+              <version>1.0-SNAPSHOT</version>
+              <properties>
+                <maven.compiler.release>25</maven.compiler.release>
+                <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+              </properties>
+              <dependencies>
+                <dependency>
+                  <groupId>com.anthropic</groupId>
+                  <artifactId>anthropic-java</artifactId>
+                  <version>2.39.0</version>
+                </dependency>
+              </dependencies>
+            </project>
+            ```
+          </Tab>
+        </Tabs>
       </Step>
 
       <Step title="Buat kode Anda">
-        Simpan ini sebagai `QuickStart.java`:
+        Simpan ini sebagai `QuickStart.java` di direktori sumber Java proyek Anda (biasanya `src/main/java/`):
 
-        ```java
-        import com.anthropic.client.AnthropicClient;
+        ```java Java
         import com.anthropic.client.okhttp.AnthropicOkHttpClient;
         import com.anthropic.models.messages.Message;
         import com.anthropic.models.messages.MessageCreateParams;
+        import com.anthropic.models.messages.Model;
 
-        public class QuickStart {
+        static void main() {
+            var client = AnthropicOkHttpClient.fromEnv();
 
-          public static void main(String[] args) {
-            AnthropicClient client = AnthropicOkHttpClient.fromEnv();
-
-            MessageCreateParams params = MessageCreateParams.builder()
-              .model("claude-opus-4-7")
-              .maxTokens(1000)
-              .addUserMessage(
-                "What should I search for to find the latest developments in renewable energy?"
-              )
-              .build();
+            var params = MessageCreateParams.builder()
+                .model(Model.CLAUDE_OPUS_4_8)
+                .maxTokens(1000)
+                .addUserMessage(
+                    "What should I search for to find the latest developments in renewable energy?"
+                )
+                .build();
 
             Message message = client.messages().create(params);
-            System.out.println(message.content());
-          }
+            IO.println(message.content());
         }
         ```
       </Step>
 
       <Step title="Jalankan kode Anda">
+        <Tabs>
+          <Tab title="Gradle">
+            ```bash
+            gradle run
+            ```
+          </Tab>
+          <Tab title="Maven">
+            ```bash
+            mvn compile exec:java -Dexec.mainClass=QuickStart
+            ```
+          </Tab>
+        </Tabs>
+
+        ```text Output
+        [ContentBlock{text=TextBlock{citations=, text=Here are some effective search strategies to find the latest developments in renewable energy:
+
+        ## General Search Terms
+        - "Renewable energy news 2025"
+        - ..., type=text, additionalProperties={}}}]
+        ```
+      </Step>
+    </Steps>
+  </Tab>
+
+  <Tab title="PHP">
+    <Steps>
+      <Step title="Atur kunci API Anda">
+        Ekspor kunci API Anda sebagai variabel lingkungan. SDK membaca `ANTHROPIC_API_KEY` secara otomatis.
+
         ```bash
-        javac QuickStart.java
-        java QuickStart
+        export ANTHROPIC_API_KEY="your-api-key-here"
+        ```
+      </Step>
+
+      <Step title="Buat proyek dan instal SDK">
+        ```bash
+        mkdir claude-quickstart && cd claude-quickstart
+        composer require "anthropic-ai/sdk" "guzzlehttp/guzzle:^7"
+        ```
+      </Step>
+
+      <Step title="Buat kode Anda">
+        Buat file bernama `quickstart.php`:
+
+        ```php PHP
+        <?php
+        require 'vendor/autoload.php';
+
+        use Anthropic\Client;
+        use Anthropic\Messages\Model;
+
+        $client = new Client();
+
+        $message = $client->messages->create(
+            model: Model::CLAUDE_OPUS_4_8,
+            maxTokens: 1000,
+            messages: [
+                [
+                    'role' => 'user',
+                    'content' => 'What should I search for to find the latest developments in renewable energy?',
+                ],
+            ],
+        );
+
+        print_r($message->content);
+        ```
+      </Step>
+
+      <Step title="Jalankan kode Anda">
+        ```bash
+        php quickstart.php
         ```
 
-        **Contoh output:**
         ```text Output
-        [ContentBlock{text=TextBlock{text=Here are some effective search strategies to find the latest renewable energy developments:
+        Array
+        (
+            [0] => Anthropic\Messages\TextBlock Object
+                (
+                    [type] => text
+                    [citations] =>
+                    [text] => Here are some effective search strategies to find the latest developments in renewable energy:
 
-        ## Search Terms to Use:
-        - "renewable energy news 2024"
-        - "clean energy breakthroughs"
-        - "solar/wind/battery technology advances"
-        - "energy storage innovations"
-        - "green hydrogen developments"
-        - "renewable energy policy updates"
+        ## General Search Terms
+        - "Renewable energy news 2025"
+        - ...
+                )
 
-        ## Best Sources to Check:
-        - **News & Analysis:** Reuters Energy, Bloomberg New Energy Finance, Greentech Media
-        - **Industry Publications:** Renewable Energy World, PV Magazine, Wind Power Engineering
-        - **Research Organizations:** International Energy Agency (IEA), National Renewable Energy Laboratory (NREL)
-        - **Government Sources:** Department of Energy websites, EPA clean energy updates
+        )
+        ```
+      </Step>
+    </Steps>
+  </Tab>
 
-        ## Specific Topics to Explore:
-        - Perovskite and next-gen solar cells
-        - Offshore wind expansion
-        - Grid-scale battery storage
-        - Green hydrogen production..., type=text}}]
+  <Tab title="Ruby">
+    <Steps>
+      <Step title="Atur kunci API Anda">
+        Ekspor kunci API Anda sebagai variabel lingkungan. SDK membaca `ANTHROPIC_API_KEY` secara otomatis.
+
+        ```bash
+        export ANTHROPIC_API_KEY="your-api-key-here"
+        ```
+      </Step>
+
+      <Step title="Buat proyek dan instal SDK">
+        ```bash
+        mkdir claude-quickstart && cd claude-quickstart
+        bundle init
+        bundle add anthropic
+        ```
+      </Step>
+
+      <Step title="Buat kode Anda">
+        Buat file bernama `quickstart.rb`:
+
+        ```ruby Ruby
+        require "anthropic"
+
+        client = Anthropic::Client.new
+
+        message = client.messages.create(
+          model: Anthropic::Model::CLAUDE_OPUS_4_8,
+          max_tokens: 1000,
+          messages: [
+            {
+              role: "user",
+              content: "What should I search for to find the latest developments in renewable energy?"
+            }
+          ]
+        )
+
+        pp message.content
+        ```
+      </Step>
+
+      <Step title="Jalankan kode Anda">
+        ```bash
+        bundle exec ruby quickstart.rb
+        ```
+
+        ```text Output
+        [#<Anthropic::Models::TextBlock:0xc8 {text: "Here are some effective search strategies to find the latest developments in renewable energy:\n\n## General Search Terms\n- \"Renewable energy news 2025\"\n- ...", type: :text}>]
         ```
       </Step>
     </Steps>
   </Tab>
 </Tabs>
 
-## Langkah berikutnya
+## Langkah selanjutnya \{#next-steps}
 
-Anda telah membuat panggilan API pertama. Selanjutnya, pelajari pola Messages API yang akan Anda gunakan dalam setiap integrasi Claude.
+Anda telah melakukan panggilan API pertama Anda. Selanjutnya, pelajari pola Messages API yang akan Anda gunakan di setiap integrasi Claude.
 
 <Card title="Bekerja dengan Messages API" icon="messages" href="/docs/id/build-with-claude/working-with-messages">
-  Pelajari percakapan multi-putaran, prompt sistem, alasan berhenti, dan pola inti lainnya.
+  Pelajari percakapan multi-giliran, prompt sistem, alasan berhenti, dan pola inti lainnya.
 </Card>
 
-Setelah Anda nyaman dengan dasar-dasarnya, jelajahi lebih lanjut:
+Setelah Anda terbiasa dengan dasar-dasarnya, jelajahi lebih lanjut:
 
 <CardGroup cols={3}>
   <Card title="Ikhtisar model" icon="brain" href="/docs/id/about-claude/models/overview">
@@ -399,7 +645,7 @@ Setelah Anda nyaman dengan dasar-dasarnya, jelajahi lebih lanjut:
   <Card title="Ikhtisar fitur" icon="list" href="/docs/id/build-with-claude/overview">
     Jelajahi semua kemampuan Claude: alat, manajemen konteks, output terstruktur, dan lainnya.
   </Card>
-  <Card title="Client SDKs" icon="code-brackets" href="/docs/id/api/client-sdks">
-    Dokumentasi referensi untuk Python, TypeScript, Java, dan perpustakaan klien lainnya.
+  <Card title="SDK Klien" icon="code-brackets" href="/docs/id/cli-sdks-libraries/overview">
+    Dokumentasi referensi untuk Python, TypeScript, C#, dan pustaka klien lainnya.
   </Card>
 </CardGroup>

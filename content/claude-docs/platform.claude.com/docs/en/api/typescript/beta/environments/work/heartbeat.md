@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/environments/work/heartbeat
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: fd85ad9279707fa7ddcf4f0318f614d14661e9dbf6ce6f0ee9191710abfda6f6
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 2ff553f3b621c3bb90df5eb174be1be90d45f65a0f1316fcf6de4fdca1c074a9
 ---
 
 ## Record Heartbeat
@@ -39,7 +39,7 @@ Record a heartbeat for a work item to maintain the lease.
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 23 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -92,6 +92,10 @@ Record a heartbeat for a work item to maintain the lease.
       - `"cache-diagnosis-2026-04-07"`
 
       - `"thinking-token-count-2026-05-13"`
+
+      - `"server-side-fallback-2026-06-01"`
+
+      - `"fallback-credit-2026-06-01"`
 
 ### Returns
 

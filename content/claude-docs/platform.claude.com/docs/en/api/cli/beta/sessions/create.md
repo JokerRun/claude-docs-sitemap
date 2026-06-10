@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/sessions/create
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: c5a2d4a06f2def548e42584f7110e397b2db32bfd298020dd662ed5ee5f7bc2e
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 2a7861279403e0f5f27a10695e3d30e5fb35c1d9e5e67700c1a7595c2da3f948
 ---
 
 ## Create Session
@@ -45,7 +45,7 @@ Create Session
 
 ### Returns
 
-- `beta_managed_agents_session: object { id, agent, archived_at, 12 more }`
+- `beta_managed_agents_session: object { id, agent, archived_at, 13 more }`
 
   A Managed Agents `session`.
 
@@ -73,11 +73,15 @@ Create Session
 
       Model identifier and configuration.
 
-      - `id: "claude-opus-4-8" or "claude-opus-4-7" or "claude-opus-4-6" or 7 more or string`
+      - `id: "claude-fable-5" or "claude-opus-4-8" or "claude-opus-4-7" or 8 more or string`
 
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-fable-5"`
+
+          Next generation of intelligence for the hardest knowledge work and coding problems
 
         - `"claude-opus-4-8"`
 
@@ -151,7 +155,7 @@ Create Session
 
           Model identifier and configuration.
 
-          - `id: "claude-opus-4-8" or "claude-opus-4-7" or "claude-opus-4-6" or 7 more or string`
+          - `id: "claude-fable-5" or "claude-opus-4-8" or "claude-opus-4-7" or 8 more or string`
 
             The model that will power your agent.
 
@@ -311,23 +315,15 @@ Create Session
 
             - `description: string`
 
-            - `input_schema: object { properties, required, type }`
+            - `input_schema: object { type, properties, required }`
 
               JSON Schema for custom tool input parameters.
 
+              - `type: "object"`
+
               - `properties: optional map[unknown]`
 
-                JSON Schema properties defining the tool's input parameters.
-
               - `required: optional array of string`
-
-                List of required property names.
-
-              - `type: optional "object"`
-
-                Must be 'object' for tool input schemas.
-
-                - `"object"`
 
             - `name: string`
 
@@ -585,6 +581,10 @@ Create Session
 
     Vault IDs attached to the session at creation. Empty when no vaults were supplied.
 
+  - `deployment_id: optional string`
+
+    Deployment ID when the session was created from a deployment reference. Null otherwise.
+
 ### Example
 
 ```cli
@@ -757,6 +757,7 @@ ant beta:sessions create \
   },
   "vault_ids": [
     "vlt_011CZkZDLs7fYzm1hXNPeRjv"
-  ]
+  ],
+  "deployment_id": "deployment_id"
 }
 ```

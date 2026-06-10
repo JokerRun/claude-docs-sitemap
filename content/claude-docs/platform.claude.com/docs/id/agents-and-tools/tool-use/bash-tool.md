@@ -1,49 +1,47 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool
-fetched_at: 2026-04-18T03:10:04.936408Z
-sha256: 237b72caea6c7f253de254dd4948ed21f3cb59f2cb5b01c8a6b05840cc61138b
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: b46b6268ba2c5514d7fdc19a5cd0b10c05da3d2ef42eb2db50cea300ae0e8a6e
 ---
 
-# Alat bash
-
-Alat bash memungkinkan Claude menjalankan perintah shell dalam sesi bash yang persisten untuk otomasi baris perintah dan operasi sistem.
+# Alat Bash
 
 ---
 
 <Note>
-This feature is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/api-and-data-retention). When your organization has a ZDR arrangement, data sent through this feature is not stored after the API response is returned.
+Fitur ini memenuhi syarat untuk [Zero Data Retention (ZDR)](/docs/id/build-with-claude/api-and-data-retention). Ketika organisasi Anda memiliki pengaturan ZDR, data yang dikirim melalui fitur ini tidak disimpan setelah respons API dikembalikan.
 </Note>
 
-Alat bash memungkinkan Claude menjalankan perintah shell dalam sesi bash yang persisten, memungkinkan operasi sistem, eksekusi skrip, dan otomasi baris perintah. Akses shell adalah kemampuan agen fundamental. Pada [Terminal-Bench 2.0](https://github.com/terminal-bench/terminal-bench), tolok ukur yang mengevaluasi tugas terminal dunia nyata menggunakan validasi hanya shell, Claude menunjukkan peningkatan kinerja yang kuat dengan akses ke sesi bash yang persisten.
+Alat bash memungkinkan Claude untuk mengeksekusi perintah shell dalam sesi bash yang persisten, memungkinkan operasi sistem, eksekusi skrip, dan otomatisasi baris perintah. Akses shell adalah kemampuan agen yang mendasar. Pada [Terminal-Bench 2.0](https://github.com/terminal-bench/terminal-bench), sebuah benchmark yang mengevaluasi tugas terminal dunia nyata menggunakan validasi berbasis shell saja, Claude menunjukkan peningkatan performa yang kuat dengan akses ke sesi bash yang persisten.
 
-## Ikhtisar
+## Ikhtisar \{#overview}
 
 Alat bash menyediakan Claude dengan:
-- Sesi bash persisten yang mempertahankan status
-- Kemampuan menjalankan perintah shell apa pun
+- Sesi bash persisten yang mempertahankan state
+- Kemampuan untuk menjalankan perintah shell apa pun
 - Akses ke variabel lingkungan dan direktori kerja
-- Kemampuan perantaian perintah dan skrip
+- Kemampuan perangkaian perintah dan scripting
 
 Untuk dukungan model, lihat [Referensi alat](/docs/id/agents-and-tools/tool-use/tool-reference).
 
-## Kasus penggunaan
+## Kasus penggunaan \{#use-cases}
 
-- **Alur kerja pengembangan:** Jalankan perintah build, tes, dan alat pengembangan
-- **Otomasi sistem:** Jalankan skrip, kelola file, otomatisasi tugas
-- **Pemrosesan data:** Proses file, jalankan skrip analisis, kelola dataset
-- **Penyiapan lingkungan:** Instal paket, konfigurasi lingkungan
+- **Alur kerja pengembangan:** Menjalankan perintah build, pengujian, dan alat pengembangan
+- **Otomatisasi sistem:** Mengeksekusi skrip, mengelola file, mengotomatiskan tugas
+- **Pemrosesan data:** Memproses file, menjalankan skrip analisis, mengelola dataset
+- **Penyiapan lingkungan:** Menginstal paket, mengonfigurasi lingkungan
 
-## Mulai cepat
+## Mulai cepat \{#quick-start}
 
 <CodeGroup>
-```bash Shell
+```bash cURL
 curl https://api.anthropic.com/v1/messages \
   -H "content-type: application/json" \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
   -d '{
-    "model": "claude-opus-4-7",
+    "model": "claude-opus-4-8",
     "max_tokens": 1024,
     "tools": [
       {
@@ -62,7 +60,7 @@ curl https://api.anthropic.com/v1/messages \
 
 ```bash CLI
 ant messages create \
-  --model claude-opus-4-7 \
+  --model claude-opus-4-8 \
   --max-tokens 1024 \
   --tool '{type: bash_20250124, name: bash}' \
   --message '{role: user, content: List all Python files in the current directory.}'
@@ -74,7 +72,7 @@ import anthropic
 client = anthropic.Anthropic()
 
 response = client.messages.create(
-    model="claude-opus-4-7",
+    model="claude-opus-4-8",
     max_tokens=1024,
     tools=[{"type": "bash_20250124", "name": "bash"}],
     messages=[
@@ -84,29 +82,167 @@ response = client.messages.create(
 
 print(response)
 ```
+
+```typescript TypeScript
+import Anthropic from "@anthropic-ai/sdk";
+
+const client = new Anthropic();
+
+const response = await client.messages.create({
+  model: "claude-opus-4-8",
+  max_tokens: 1024,
+  tools: [{ type: "bash_20250124", name: "bash" }],
+  messages: [
+    {
+      role: "user",
+      content: "List all Python files in the current directory."
+    }
+  ]
+});
+
+console.log(response);
+```
+
+```csharp C#
+using Anthropic;
+using Anthropic.Models.Messages;
+
+var client = new AnthropicClient();
+
+var response = await client.Messages.Create(
+    new()
+    {
+        Model = Model.ClaudeOpus4_8,
+        MaxTokens = 1024,
+        Tools = [new ToolBash20250124()],
+        Messages =
+        [
+            new()
+            {
+                Role = Role.User,
+                Content = "List all Python files in the current directory.",
+            },
+        ],
+    }
+);
+
+Console.WriteLine(response);
+```
+
+```go Go hidelines={1..10,-1}
+package main
+
+import (
+	"context"
+	"fmt"
+	"log"
+
+	"github.com/anthropics/anthropic-sdk-go"
+)
+
+func main() {
+	client := anthropic.NewClient()
+
+	response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
+		Model:     anthropic.ModelClaudeOpus4_8,
+		MaxTokens: 1024,
+		Tools: []anthropic.ToolUnionParam{
+			{OfBashTool20250124: &anthropic.ToolBash20250124Param{}},
+		},
+		Messages: []anthropic.MessageParam{
+			anthropic.NewUserMessage(anthropic.NewTextBlock("List all Python files in the current directory.")),
+		},
+	})
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(response)
+}
+```
+
+```java Java
+import com.anthropic.client.AnthropicClient;
+import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+import com.anthropic.models.messages.Message;
+import com.anthropic.models.messages.MessageCreateParams;
+import com.anthropic.models.messages.Model;
+import com.anthropic.models.messages.ToolBash20250124;
+
+void main() {
+    AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+    Message response = client.messages().create(
+        MessageCreateParams.builder()
+            .model(Model.CLAUDE_OPUS_4_8)
+            .maxTokens(1024)
+            .addTool(ToolBash20250124.builder().build())
+            .addUserMessage("List all Python files in the current directory.")
+            .build()
+    );
+
+    IO.println(response);
+}
+```
+
+```php PHP hidelines={1}
+<?php
+
+use Anthropic\Client;
+use Anthropic\Messages\ToolBash20250124;
+
+$client = new Client();
+
+$response = $client->messages->create(
+    model: 'claude-opus-4-8',
+    maxTokens: 1024,
+    tools: [new ToolBash20250124()],
+    messages: [
+        ['role' => 'user', 'content' => 'List all Python files in the current directory.'],
+    ],
+);
+
+echo $response;
+```
+
+```ruby Ruby
+require "anthropic"
+
+client = Anthropic::Client.new
+
+response = client.messages.create(
+  model: "claude-opus-4-8",
+  max_tokens: 1024,
+  tools: [{type: "bash_20250124", name: "bash"}],
+  messages: [
+    {role: "user", content: "List all Python files in the current directory."}
+  ]
+)
+
+puts response
+```
 </CodeGroup>
 
-## Cara kerjanya
+## Cara kerjanya \{#how-it-works}
 
 Alat bash mempertahankan sesi yang persisten:
 
 1. Claude menentukan perintah apa yang akan dijalankan
-2. Anda menjalankan perintah dalam shell bash
+2. Anda mengeksekusi perintah tersebut dalam shell bash
 3. Kembalikan output (stdout dan stderr) ke Claude
-4. Status sesi persisten antara perintah (variabel lingkungan, direktori kerja)
+4. State sesi tetap bertahan di antara perintah (variabel lingkungan, direktori kerja)
 
-## Parameter
+## Parameter \{#parameters}
 
-| Parameter | Diperlukan | Deskripsi |
+| Parameter | Wajib | Deskripsi |
 |-----------|----------|-------------|
 | `command` | Ya* | Perintah bash yang akan dijalankan |
 | `restart` | Tidak | Atur ke `true` untuk memulai ulang sesi bash |
 
-*Diperlukan kecuali menggunakan `restart`
+*Wajib kecuali menggunakan `restart`
 
 <section title="Contoh penggunaan">
 
-Jalankan perintah:
+Menjalankan perintah:
 
 ```json
 {
@@ -114,7 +250,7 @@ Jalankan perintah:
 }
 ```
 
-Mulai ulang sesi:
+Memulai ulang sesi:
 
 ```json
 {
@@ -124,31 +260,31 @@ Mulai ulang sesi:
 
 </section>
 
-## Contoh: Otomasi multi-langkah
+## Contoh: Otomatisasi multi-langkah \{#example-multi-step-automation}
 
-Claude dapat merantai perintah untuk menyelesaikan tugas kompleks:
+Claude dapat merangkai perintah untuk menyelesaikan tugas yang kompleks:
 
 ```text
-Permintaan pengguna:
+User request:
 "Install the requests library and create a simple Python script that
 fetches a joke from an API, then run it."
 
-Alat Claude menggunakan:
-1. Instal paket
+Claude's tool uses:
+1. Install package
    {"command": "pip install requests"}
 
-2. Buat skrip
+2. Create script
    {"command": "cat > fetch_joke.py << 'EOF'\nimport requests\nresponse = requests.get('https://official-joke-api.appspot.com/random_joke')\njoke = response.json()\nprint(f\"Setup: {joke['setup']}\")\nprint(f\"Punchline: {joke['punchline']}\")\nEOF"}
 
-3. Jalankan skrip
+3. Run script
    {"command": "python fetch_joke.py"}
 ```
 
-Sesi mempertahankan status antara perintah, jadi file yang dibuat di langkah 2 tersedia di langkah 3.
+Sesi mempertahankan state di antara perintah, sehingga file yang dibuat pada langkah 2 tersedia pada langkah 3.
 
-## Implementasikan alat bash
+## Mengimplementasikan alat bash \{#implement-the-bash-tool}
 
-Alat bash diimplementasikan sebagai alat tanpa skema. Saat menggunakan alat ini, Anda tidak perlu menyediakan skema input seperti alat lainnya; skema dibangun ke dalam model Claude dan tidak dapat dimodifikasi.
+Alat bash diimplementasikan sebagai alat tanpa skema. Saat menggunakan alat ini, Anda tidak perlu menyediakan skema input seperti pada alat lainnya; skema sudah terintegrasi ke dalam model Claude dan tidak dapat dimodifikasi.
 
 <Steps>
   <Step title="Siapkan lingkungan bash">
@@ -177,24 +313,24 @@ Alat bash diimplementasikan sebagai alat tanpa skema. Saat menggunakan alat ini,
     ```
   </Step>
   <Step title="Tangani eksekusi perintah">
-    Buat fungsi untuk menjalankan perintah dan menangkap output:
+    Buat fungsi untuk mengeksekusi perintah dan menangkap output:
     ```python hidelines={1..2,-1}
     class BashSession:
         def _read_output(self, timeout): ...
         def execute_command(self, command):
-            # Send command to bash
+            # Kirim perintah ke bash
             self.process.stdin.write(command + "\n")
             self.process.stdin.flush()
 
-            # Capture output with timeout
+            # Tangkap output dengan timeout
             output = self._read_output(timeout=10)
             return output
 
         process = None
     ```
   </Step>
-  <Step title="Proses panggilan alat Claude">
-    Ekstrak dan jalankan perintah dari respons Claude:
+  <Step title="Proses panggilan alat dari Claude">
+    Ekstrak dan eksekusi perintah dari respons Claude:
     ```python hidelines={1..6}
     from types import SimpleNamespace as _SN
 
@@ -211,7 +347,7 @@ Alat bash diimplementasikan sebagai alat tanpa skema. Saat menggunakan alat ini,
                 command = content.input.get("command")
                 result = bash_session.execute_command(command)
 
-            # Return result to Claude
+            # Kembalikan hasil ke Claude
             tool_result = {
                 "type": "tool_result",
                 "tool_use_id": content.id,
@@ -220,7 +356,7 @@ Alat bash diimplementasikan sebagai alat tanpa skema. Saat menggunakan alat ini,
     ```
   </Step>
   <Step title="Implementasikan langkah-langkah keamanan">
-    Tambahkan validasi dan pembatasan. Gunakan daftar izin daripada daftar blokir, karena daftar blokir mudah dilewati. Tolak operator shell sehingga perintah berantai tidak dapat melewati daftar izin:
+    Tambahkan validasi dan pembatasan. Gunakan "allowlist" (daftar izin) daripada "blocklist" (daftar blokir), karena blocklist mudah dilewati. Tolak operator shell agar perintah yang dirangkai tidak dapat lolos dari allowlist:
     ```python
     import shlex
 
@@ -229,7 +365,7 @@ Alat bash diimplementasikan sebagai alat tanpa skema. Saat menggunakan alat ini,
 
 
     def validate_command(command):
-        # Allow only commands from an explicit allowlist
+        # Izinkan hanya perintah dari daftar izin eksplisit
         try:
             tokens = shlex.split(command)
         except ValueError:
@@ -242,24 +378,24 @@ Alat bash diimplementasikan sebagai alat tanpa skema. Saat menggunakan alat ini,
         if executable not in ALLOWED_COMMANDS:
             return False, f"Command '{executable}' is not in the allowlist"
 
-        # Reject shell operators that would chain additional commands
+        # Tolak operator shell yang akan merangkai perintah tambahan
         for token in tokens[1:]:
             if token in SHELL_OPERATORS or token.startswith(("$", "`")):
                 return False, f"Shell operator '{token}' is not allowed"
 
         return True, None
     ```
-    Pemeriksaan ini adalah garis pertahanan pertama. Untuk isolasi yang lebih kuat, jalankan perintah yang divalidasi dengan `shell=False` dan teruskan `shlex.split(command)` sebagai daftar argumen, sehingga shell tidak pernah menginterpretasi string.
+    Pemeriksaan ini adalah garis pertahanan pertama. Untuk isolasi yang lebih kuat, jalankan perintah yang telah divalidasi dengan `shell=False` dan berikan `shlex.split(command)` sebagai daftar argumen, sehingga shell tidak pernah menginterpretasikan string tersebut.
   </Step>
 </Steps>
 
-### Tangani kesalahan
+### Menangani kesalahan \{#handle-errors}
 
 Saat mengimplementasikan alat bash, tangani berbagai skenario kesalahan:
 
-<section title="Batas waktu eksekusi perintah">
+<section title="Timeout eksekusi perintah">
 
-Jika perintah memakan waktu terlalu lama untuk dijalankan:
+Jika sebuah perintah membutuhkan waktu terlalu lama untuk dieksekusi:
 
 ```json
 {
@@ -279,7 +415,7 @@ Jika perintah memakan waktu terlalu lama untuk dijalankan:
 
 <section title="Perintah tidak ditemukan">
 
-Jika perintah tidak ada:
+Jika sebuah perintah tidak ada:
 
 ```json
 {
@@ -317,11 +453,11 @@ Jika ada masalah izin:
 
 </section>
 
-### Ikuti praktik terbaik implementasi
+### Ikuti praktik terbaik implementasi \{#follow-implementation-best-practices}
 
-<section title="Gunakan batas waktu perintah">
+<section title="Gunakan timeout perintah">
 
-Implementasikan batas waktu untuk mencegah perintah yang menggantung:
+Implementasikan timeout untuk mencegah perintah yang menggantung:
 ```python hidelines={1..3}
 import subprocess
 
@@ -338,11 +474,11 @@ def execute_with_timeout(command, timeout=30):
 
 </section>
 
-<section title="Pertahankan status sesi">
+<section title="Pertahankan state sesi">
 
-Jaga sesi bash tetap persisten untuk mempertahankan variabel lingkungan dan direktori kerja:
+Jaga agar sesi bash tetap persisten untuk mempertahankan variabel lingkungan dan direktori kerja:
 ```python
-# Commands run in the same session maintain state
+# Perintah yang dijalankan dalam sesi yang sama mempertahankan state
 commands = [
     "cd /tmp",
     "echo 'Hello' > test.txt",
@@ -352,7 +488,7 @@ commands = [
 
 </section>
 
-<section title="Tangani output besar">
+<section title="Tangani output yang besar">
 
 Potong output yang sangat besar untuk mencegah masalah batas token:
 ```python
@@ -368,7 +504,7 @@ def truncate_output(output, max_lines=100):
 
 <section title="Catat semua perintah">
 
-Simpan jejak audit perintah yang dijalankan:
+Simpan jejak audit dari perintah yang dieksekusi:
 ```python
 import logging
 
@@ -385,10 +521,10 @@ def log_command(command, output, user_id):
 Hapus informasi sensitif dari output perintah:
 ```python
 def sanitize_output(output):
-    # Remove potential secrets or credentials
+    # Hapus potensi rahasia atau kredensial
     import re
 
-    # Example: Remove AWS credentials
+    # Contoh: Hapus kredensial AWS
     output = re.sub(r"aws_access_key_id\s*=\s*\S+", "aws_access_key_id=***", output)
     output = re.sub(
         r"aws_secret_access_key\s*=\s*\S+", "aws_secret_access_key=***", output
@@ -398,76 +534,76 @@ def sanitize_output(output):
 
 </section>
 
-## Keamanan
+## Keamanan \{#security}
 
 <Warning>
-Alat bash menyediakan akses sistem langsung. Implementasikan langkah-langkah keamanan penting ini:
-- Berjalan di lingkungan terisolasi (Docker/VM)
-- Mengimplementasikan penyaringan perintah dan daftar izin
+Alat bash menyediakan akses sistem langsung. Implementasikan langkah-langkah keamanan penting berikut:
+- Menjalankan dalam lingkungan terisolasi (Docker/VM)
+- Mengimplementasikan pemfilteran perintah dan allowlist
 - Menetapkan batas sumber daya (CPU, memori, disk)
-- Mencatat semua perintah yang dijalankan
+- Mencatat semua perintah yang dieksekusi
 </Warning>
 
-### Rekomendasi utama
+### Rekomendasi utama \{#key-recommendations}
 - Gunakan `ulimit` untuk menetapkan batasan sumber daya
-- Saring perintah berbahaya (`sudo`, `rm -rf`, dll.)
+- Filter perintah berbahaya (`sudo`, `rm -rf`, dll.)
 - Jalankan dengan izin pengguna minimal
 - Pantau dan catat semua eksekusi perintah
 
-## Harga
+## Harga \{#pricing}
 
-The bash tool adds **245 input tokens** to your API calls.
+Alat bash menambahkan **245 token input** ke panggilan API Anda.
 
-Additional tokens are consumed by:
-- Command outputs (stdout/stderr)
-- Error messages
-- Large file contents
+Token tambahan dikonsumsi oleh:
+- Output perintah (stdout/stderr)
+- Pesan kesalahan
+- Konten file berukuran besar
 
 Lihat [harga penggunaan alat](/docs/id/agents-and-tools/tool-use/overview#pricing) untuk detail harga lengkap.
 
-## Pola umum
+## Pola umum \{#common-patterns}
 
-### Alur kerja pengembangan
-- Menjalankan tes: `pytest && coverage report`
+### Alur kerja pengembangan \{#development-workflows}
+- Menjalankan pengujian: `pytest && coverage report`
 - Membangun proyek: `npm install && npm run build`
 - Operasi Git: `git status && git add . && git commit -m "message"`
 
-#### Checkpointing berbasis Git
+#### Checkpointing berbasis Git \{#git-based-checkpointing}
 
-Git berfungsi sebagai mekanisme pemulihan terstruktur dalam alur kerja agen jangka panjang, bukan hanya cara untuk menyimpan perubahan:
+Git berfungsi sebagai mekanisme pemulihan terstruktur dalam alur kerja agen yang berjalan lama, bukan hanya cara untuk menyimpan perubahan:
 
-- **Tangkap baseline:** Sebelum pekerjaan agen dimulai, komit status saat ini. Ini adalah titik awal yang diketahui baik.
-- **Komit per fitur:** Setiap fitur yang selesai mendapat komitnya sendiri. Ini berfungsi sebagai titik rollback jika ada yang salah nanti.
-- **Rekonstruksi status saat memulai sesi:** Baca `git log` bersama file kemajuan untuk memahami apa yang sudah dilakukan dan apa yang akan datang selanjutnya.
-- **Kembalikan saat gagal:** Jika pekerjaan menjadi kacau, `git checkout` kembali ke komit terakhir yang baik daripada mencoba men-debug status yang rusak.
+- **Tangkap baseline:** Sebelum pekerjaan agen dimulai, commit state saat ini. Ini adalah titik awal yang diketahui baik.
+- **Commit per fitur:** Setiap fitur yang selesai mendapatkan commit-nya sendiri. Ini berfungsi sebagai titik rollback jika terjadi kesalahan di kemudian hari.
+- **Rekonstruksi state di awal sesi:** Baca `git log` bersama dengan file progres untuk memahami apa yang sudah dilakukan dan apa yang akan dilakukan selanjutnya.
+- **Kembalikan saat gagal:** Jika pekerjaan menyimpang, `git checkout` mengembalikan ke commit baik terakhir alih-alih mencoba men-debug state yang rusak.
 
-### Operasi file
+### Operasi file \{#file-operations}
 - Memproses data: `wc -l *.csv && ls -lh *.csv`
 - Mencari file: `find . -name "*.py" | xargs grep "pattern"`
 - Membuat cadangan: `tar -czf backup.tar.gz ./data`
 
-### Tugas sistem
+### Tugas sistem \{#system-tasks}
 - Memeriksa sumber daya: `df -h && free -m`
 - Manajemen proses: `ps aux | grep python`
 - Penyiapan lingkungan: `export PATH=$PATH:/new/path && echo $PATH`
 
-## Keterbatasan
+## Keterbatasan \{#limitations}
 
 - **Tidak ada perintah interaktif:** Tidak dapat menangani `vim`, `less`, atau prompt kata sandi
 - **Tidak ada aplikasi GUI:** Hanya baris perintah
-- **Cakupan sesi:** Status sesi bash adalah sisi klien. API tidak memiliki status. Aplikasi Anda bertanggung jawab untuk mempertahankan sesi shell antara giliran.
-- **Batas output:** Output besar mungkin dipotong
-- **Tidak ada streaming:** Hasil dikembalikan setelah penyelesaian
+- **Cakupan sesi:** State sesi bash berada di sisi klien. API bersifat stateless. Aplikasi Anda bertanggung jawab untuk mempertahankan sesi shell di antara giliran.
+- **Batas output:** Output yang besar mungkin dipotong
+- **Tidak ada streaming:** Hasil dikembalikan setelah selesai
 
-## Menggabungkan dengan alat lain
+## Menggabungkan dengan alat lain \{#combining-with-other-tools}
 
-Alat bash paling kuat ketika digabungkan dengan [editor teks](/docs/id/agents-and-tools/tool-use/text-editor-tool) dan alat lainnya.
+Alat bash paling kuat ketika digabungkan dengan [text editor](/docs/id/agents-and-tools/tool-use/text-editor-tool) dan alat lainnya.
 
 <Note>
-Jika Anda juga menggunakan [alat eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool), Claude memiliki akses ke dua lingkungan eksekusi terpisah: sesi bash lokal Anda dan kontainer sandbox Anthropic. Status tidak dibagikan di antara mereka. Lihat [Menggunakan eksekusi kode dengan alat eksekusi lainnya](/docs/id/agents-and-tools/tool-use/code-execution-tool#using-code-execution-with-other-execution-tools) untuk panduan tentang meminta Claude membedakan antara lingkungan.
+Jika Anda juga menggunakan [alat code execution](/docs/id/agents-and-tools/tool-use/code-execution-tool), Claude memiliki akses ke dua lingkungan eksekusi terpisah: sesi bash lokal Anda dan kontainer sandbox milik Anthropic. State tidak dibagikan di antara keduanya. Lihat [Menggunakan code execution dengan alat eksekusi lainnya](/docs/id/agents-and-tools/tool-use/code-execution-tool#using-code-execution-with-other-execution-tools) untuk panduan dalam memberikan prompt kepada Claude agar dapat membedakan antara lingkungan tersebut.
 </Note>
 
-## Langkah berikutnya
+## Langkah selanjutnya \{#next-steps}
 
 <CardGroup cols={2}>
   <Card
@@ -479,7 +615,7 @@ Jika Anda juga menggunakan [alat eksekusi kode](/docs/id/agents-and-tools/tool-u
   </Card>
 
   <Card
-    title="Alat editor teks"
+    title="Alat text editor"
     icon="file"
     href="/docs/id/agents-and-tools/tool-use/text-editor-tool"
   >

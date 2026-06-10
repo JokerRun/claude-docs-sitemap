@@ -1,44 +1,44 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/best-practices
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: c25532758bd09c1f4793edefde15e9233ea9e87c39666124d2cdc6d5713314b9
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: fbf0e912ab5daaf2bc82f565aeafd699d9dacc22b279829717c10f9fb38c3dff
 ---
 
 # Praktik terbaik penulisan Skill
 
-Pelajari cara menulis Skill yang efektif yang dapat ditemukan dan digunakan Claude dengan sukses.
+Pelajari cara menulis Skill yang efektif agar Claude dapat menemukan dan menggunakannya dengan sukses.
 
 ---
 
-Skill yang baik adalah ringkas, terstruktur dengan baik, dan diuji dengan penggunaan nyata. Panduan ini memberikan keputusan penulisan praktis untuk membantu Anda menulis Skill yang dapat ditemukan dan digunakan Claude secara efektif.
+Skill yang baik bersifat ringkas, terstruktur dengan baik, dan diuji dengan penggunaan nyata. Panduan ini memberikan keputusan penulisan praktis untuk membantu Anda menulis Skill yang dapat ditemukan dan digunakan Claude secara efektif.
 
-Untuk latar belakang konseptual tentang cara kerja Skill, lihat [gambaran umum Skill](/docs/id/agents-and-tools/agent-skills/overview).
+Untuk latar belakang konseptual tentang cara kerja Skill, lihat [ikhtisar Skill](/docs/id/agents-and-tools/agent-skills/overview).
 
-## Prinsip inti
+## Prinsip inti \{#core-principles}
 
-### Ringkas adalah kunci
+### Ringkas adalah kunci \{#concise-is-key}
 
-[Jendela konteks](/docs/id/build-with-claude/context-windows) adalah barang publik. Skill Anda berbagi jendela konteks dengan semua hal lain yang perlu diketahui Claude, termasuk:
+[Context window](/docs/id/build-with-claude/context-windows) (jendela konteks) adalah sumber daya bersama. Skill Anda berbagi jendela konteks dengan semua hal lain yang perlu diketahui Claude, termasuk:
 - Prompt sistem
 - Riwayat percakapan
-- Metadata Skill lain
-- Permintaan aktual Anda
+- Metadata Skill lainnya
+- Permintaan Anda yang sebenarnya
 
-Tidak setiap token dalam Skill Anda memiliki biaya langsung. Saat startup, hanya metadata (nama dan deskripsi) dari semua Skill yang dimuat sebelumnya. Claude membaca SKILL.md hanya ketika Skill menjadi relevan, dan membaca file tambahan hanya sesuai kebutuhan. Namun, menjadi ringkas dalam SKILL.md tetap penting: setelah Claude memuatnya, setiap token bersaing dengan riwayat percakapan dan konteks lainnya.
+Tidak setiap token dalam Skill Anda memiliki biaya langsung. Saat startup, hanya metadata (nama dan deskripsi) dari semua Skill yang dimuat sebelumnya. Claude membaca SKILL.md hanya ketika Skill tersebut menjadi relevan, dan membaca file tambahan hanya sesuai kebutuhan. Namun, menjaga keringkasan dalam SKILL.md tetap penting: setelah Claude memuatnya, setiap token bersaing dengan riwayat percakapan dan konteks lainnya.
 
-**Asumsi default:** Claude sudah sangat pintar
+**Asumsi default:** Claude sudah sangat cerdas
 
-Hanya tambahkan konteks yang tidak dimiliki Claude. Tantang setiap informasi:
+Hanya tambahkan konteks yang belum dimiliki Claude. Pertanyakan setiap bagian informasi:
 - "Apakah Claude benar-benar membutuhkan penjelasan ini?"
-- "Bisakah saya menganggap Claude mengetahui ini?"
-- "Apakah paragraf ini membenarkan biaya tokennya?"
+- "Bisakah saya berasumsi Claude sudah mengetahui ini?"
+- "Apakah paragraf ini sepadan dengan biaya tokennya?"
 
 **Contoh baik: Ringkas** (sekitar 50 token):
 ````markdown
-## Ekstrak teks PDF
+## Extract PDF text
 
-Gunakan pdfplumber untuk ekstraksi teks:
+Use pdfplumber for text extraction:
 
 ```python
 import pdfplumber
@@ -48,22 +48,22 @@ with pdfplumber.open("file.pdf") as pdf:
 ```
 ````
 
-**Contoh buruk: Terlalu verbose** (sekitar 150 token):
+**Contoh buruk: Terlalu bertele-tele** (sekitar 150 token):
 ```markdown
-## Ekstrak teks PDF
+## Extract PDF text
 
-PDF (Portable Document Format) adalah format file umum yang berisi
-teks, gambar, dan konten lainnya. Untuk mengekstrak teks dari PDF, Anda perlu
-menggunakan perpustakaan. Ada banyak perpustakaan yang tersedia untuk pemrosesan PDF, tetapi
-pdfplumber direkomendasikan karena mudah digunakan dan menangani sebagian besar kasus dengan baik.
-Pertama, Anda perlu memasangnya menggunakan pip. Kemudian Anda dapat menggunakan kode di bawah ini...
+PDF (Portable Document Format) files are a common file format that contains
+text, images, and other content. To extract text from a PDF, you'll need to
+use a library. There are many libraries available for PDF processing, but
+pdfplumber is recommended because it's easy to use and handles most cases well.
+First, you'll need to install it using pip. Then you can use the code below...
 ```
 
-Versi ringkas menganggap Claude mengetahui apa itu PDF dan cara kerja perpustakaan.
+Versi ringkas mengasumsikan Claude mengetahui apa itu PDF dan cara kerja library.
 
-### Tetapkan derajat kebebasan yang sesuai
+### Tetapkan tingkat kebebasan yang sesuai \{#set-appropriate-degrees-of-freedom}
 
-Cocokkan tingkat spesifisitas dengan kerapuhan dan variabilitas tugas.
+Sesuaikan tingkat spesifisitas dengan kerapuhan dan variabilitas tugas.
 
 **Kebebasan tinggi** (instruksi berbasis teks):
 
@@ -74,97 +74,97 @@ Gunakan ketika:
 
 Contoh:
 ```markdown
-## Proses tinjauan kode
+## Code review process
 
-1. Analisis struktur dan organisasi kode
-2. Periksa potensi bug atau kasus tepi
-3. Sarankan perbaikan untuk keterbacaan dan pemeliharaan
-4. Verifikasi kepatuhan terhadap konvensi proyek
+1. Analyze the code structure and organization
+2. Check for potential bugs or edge cases
+3. Suggest improvements for readability and maintainability
+4. Verify adherence to project conventions
 ```
 
 **Kebebasan sedang** (pseudocode atau skrip dengan parameter):
 
 Gunakan ketika:
-- Pola yang disukai ada
+- Ada pola yang lebih disukai
 - Beberapa variasi dapat diterima
-- Konfigurasi mempengaruhi perilaku
+- Konfigurasi memengaruhi perilaku
 
 Contoh:
 ````markdown
-## Buat laporan
+## Generate report
 
-Gunakan template ini dan sesuaikan sesuai kebutuhan:
+Use this template and customize as needed:
 
 ```python
 def generate_report(data, format="markdown", include_charts=True):
-    # Proses data
-    # Hasilkan output dalam format yang ditentukan
-    # Secara opsional sertakan visualisasi
+    # Process data
+    # Generate output in specified format
+    # Optionally include visualizations
 ```
 ````
 
-**Kebebasan rendah** (skrip spesifik, beberapa atau tanpa parameter):
+**Kebebasan rendah** (skrip spesifik, sedikit atau tanpa parameter):
 
 Gunakan ketika:
 - Operasi rapuh dan rentan kesalahan
 - Konsistensi sangat penting
-- Urutan spesifik harus diikuti
+- Urutan tertentu harus diikuti
 
 Contoh:
 ````markdown
-## Migrasi basis data
+## Database migration
 
-Jalankan skrip ini dengan tepat:
+Run exactly this script:
 
 ```bash
 python scripts/migrate.py --verify --backup
 ```
 
-Jangan ubah perintah atau tambahkan flag tambahan.
+Do not modify the command or add additional flags.
 ````
 
-**Analogi:** Pikirkan Claude sebagai robot yang menjelajahi jalan:
-- **Jembatan sempit dengan tebing di kedua sisi:** Hanya ada satu cara maju yang aman. Berikan pagar pembatas spesifik dan instruksi tepat (kebebasan rendah). Contoh: migrasi basis data yang harus berjalan dalam urutan tepat.
-- **Lapangan terbuka tanpa bahaya:** Banyak jalan menuju kesuksesan. Berikan arah umum dan percayai Claude untuk menemukan rute terbaik (kebebasan tinggi). Contoh: tinjauan kode di mana konteks menentukan pendekatan terbaik.
+**Analogi:** Bayangkan Claude sebagai robot yang menjelajahi jalur:
+- **Jembatan sempit dengan tebing di kedua sisi:** Hanya ada satu jalan aman ke depan. Berikan pagar pengaman spesifik dan instruksi yang tepat (kebebasan rendah). Contoh: migrasi database yang harus dijalankan dalam urutan yang tepat.
+- **Lapangan terbuka tanpa bahaya:** Banyak jalur menuju keberhasilan. Berikan arahan umum dan percayakan Claude untuk menemukan rute terbaik (kebebasan tinggi). Contoh: tinjauan kode di mana konteks menentukan pendekatan terbaik.
 
-### Uji dengan semua model yang Anda rencanakan untuk digunakan
+### Uji dengan semua model yang Anda rencanakan untuk digunakan \{#test-with-all-models-you-plan-to-use}
 
-Skill bertindak sebagai penambahan pada model, jadi efektivitas bergantung pada model yang mendasarinya. Uji Skill Anda dengan semua model yang Anda rencanakan untuk menggunakannya.
+Skill bertindak sebagai tambahan untuk model, sehingga efektivitasnya bergantung pada model yang mendasarinya. Uji Skill Anda dengan semua model yang Anda rencanakan untuk menggunakannya.
 
-**Pertimbangan pengujian menurut model:**
-- **Claude Haiku** (cepat, ekonomis): Apakah Skill memberikan cukup panduan?
+**Pertimbangan pengujian berdasarkan model:**
+- **Claude Haiku** (cepat, ekonomis): Apakah Skill memberikan panduan yang cukup?
 - **Claude Sonnet** (seimbang): Apakah Skill jelas dan efisien?
 - **Claude Opus** (penalaran kuat): Apakah Skill menghindari penjelasan berlebihan?
 
-Apa yang bekerja sempurna untuk Opus mungkin memerlukan lebih banyak detail untuk Haiku. Jika Anda merencanakan menggunakan Skill Anda di berbagai model, targetkan instruksi yang bekerja baik dengan semuanya.
+Apa yang bekerja sempurna untuk Opus mungkin membutuhkan lebih banyak detail untuk Haiku. Jika Anda berencana menggunakan Skill Anda di beberapa model, usahakan instruksi yang bekerja dengan baik untuk semuanya.
 
-## Struktur Skill
+## Struktur Skill \{#skill-structure}
 
 <Note>
-**Frontmatter YAML:** Frontmatter SKILL.md memerlukan dua bidang:
+**YAML Frontmatter:** Frontmatter SKILL.md memerlukan dua field:
 
 `name`:
-- Maksimal 64 karakter
-- Harus berisi hanya huruf kecil, angka, dan tanda hubung
-- Tidak dapat berisi tag XML
-- Tidak dapat berisi kata-kata yang dicadangkan: "anthropic", "claude"
+- Maksimum 64 karakter
+- Hanya boleh berisi huruf kecil, angka, dan tanda hubung
+- Tidak boleh berisi tag XML
+- Tidak boleh berisi kata yang dicadangkan: "anthropic", "claude"
 
 `description`:
-- Harus tidak kosong
-- Maksimal 1024 karakter
-- Tidak dapat berisi tag XML
-- Harus menjelaskan apa yang dilakukan Skill dan kapan menggunakannya
+- Tidak boleh kosong
+- Maksimum 1024 karakter
+- Tidak boleh berisi tag XML
+- Harus mendeskripsikan apa yang dilakukan Skill dan kapan menggunakannya
 
-Untuk detail struktur Skill lengkap, lihat [gambaran umum Skill](/docs/id/agents-and-tools/agent-skills/overview#skill-structure).
+Untuk detail lengkap struktur Skill, lihat [ikhtisar Skill](/docs/id/agents-and-tools/agent-skills/overview#skill-structure).
 </Note>
 
-### Konvensi penamaan
+### Konvensi penamaan \{#naming-conventions}
 
-Gunakan pola penamaan yang konsisten untuk membuat Skill lebih mudah direferensikan dan didiskusikan. Pertimbangkan menggunakan **bentuk gerund** (kata kerja + -ing) untuk nama Skill, karena ini dengan jelas menggambarkan aktivitas atau kemampuan yang disediakan Skill.
+Gunakan pola penamaan yang konsisten agar Skill lebih mudah direferensikan dan didiskusikan. Pertimbangkan menggunakan **bentuk gerund** (kata kerja + -ing) untuk nama Skill, karena ini dengan jelas mendeskripsikan aktivitas atau kemampuan yang disediakan Skill.
 
-Ingat bahwa bidang `name` harus menggunakan hanya huruf kecil, angka, dan tanda hubung.
+Ingat bahwa field `name` hanya boleh menggunakan huruf kecil, angka, dan tanda hubung.
 
-**Contoh penamaan baik (bentuk gerund):**
+**Contoh penamaan yang baik (bentuk gerund):**
 - `processing-pdfs`
 - `analyzing-spreadsheets`
 - `managing-databases`
@@ -172,154 +172,154 @@ Ingat bahwa bidang `name` harus menggunakan hanya huruf kecil, angka, dan tanda 
 - `writing-documentation`
 
 **Alternatif yang dapat diterima:**
-- Frasa nomina: `pdf-processing`, `spreadsheet-analysis`
-- Berorientasi pada tindakan: `process-pdfs`, `analyze-spreadsheets`
+- Frasa kata benda: `pdf-processing`, `spreadsheet-analysis`
+- Berorientasi aksi: `process-pdfs`, `analyze-spreadsheets`
 
 **Hindari:**
 - Nama yang tidak jelas: `helper`, `utils`, `tools`
-- Terlalu umum: `documents`, `data`, `files`
-- Kata-kata yang dicadangkan: `anthropic-helper`, `claude-tools`
+- Terlalu generik: `documents`, `data`, `files`
+- Kata yang dicadangkan: `anthropic-helper`, `claude-tools`
 - Pola yang tidak konsisten dalam koleksi skill Anda
 
 Penamaan yang konsisten memudahkan untuk:
 - Mereferensikan Skill dalam dokumentasi dan percakapan
-- Memahami apa yang dilakukan Skill sekilas
-- Mengorganisir dan mencari melalui beberapa Skill
-- Mempertahankan perpustakaan skill yang profesional dan kohesif
+- Memahami apa yang dilakukan Skill secara sekilas
+- Mengorganisir dan mencari di antara banyak Skill
+- Memelihara pustaka skill yang profesional dan kohesif
 
-### Menulis deskripsi yang efektif
+### Menulis deskripsi yang efektif \{#writing-effective-descriptions}
 
-Bidang `description` memungkinkan penemuan Skill dan harus mencakup apa yang dilakukan Skill dan kapan menggunakannya.
+Field `description` memungkinkan penemuan Skill dan harus mencakup apa yang dilakukan Skill serta kapan menggunakannya.
 
 <Warning>
-**Selalu tulis dalam orang ketiga**. Deskripsi disuntikkan ke dalam prompt sistem, dan sudut pandang yang tidak konsisten dapat menyebabkan masalah penemuan.
+**Selalu tulis dalam sudut pandang orang ketiga**. Deskripsi disuntikkan ke dalam prompt sistem, dan sudut pandang yang tidak konsisten dapat menyebabkan masalah penemuan.
 
-- **Baik:** "Memproses file Excel dan menghasilkan laporan"
-- **Hindari:** "Saya dapat membantu Anda memproses file Excel"
-- **Hindari:** "Anda dapat menggunakan ini untuk memproses file Excel"
+- **Baik:** "Processes Excel files and generates reports"
+- **Hindari:** "I can help you process Excel files"
+- **Hindari:** "You can use this to process Excel files"
 </Warning>
 
-**Jadilah spesifik dan sertakan istilah kunci**. Sertakan apa yang dilakukan Skill dan pemicu/konteks spesifik untuk kapan menggunakannya.
+**Bersikaplah spesifik dan sertakan istilah kunci**. Sertakan apa yang dilakukan Skill dan pemicu/konteks spesifik untuk kapan menggunakannya.
 
-Setiap Skill memiliki tepat satu bidang deskripsi. Deskripsi sangat penting untuk pemilihan skill: Claude menggunakannya untuk memilih Skill yang tepat dari 100+ Skill yang tersedia. Deskripsi Anda harus memberikan cukup detail agar Claude tahu kapan memilih Skill ini, sementara sisa SKILL.md memberikan detail implementasi.
+Setiap Skill memiliki tepat satu field deskripsi. Deskripsi sangat penting untuk pemilihan skill: Claude menggunakannya untuk memilih Skill yang tepat dari potensi 100+ Skill yang tersedia. Deskripsi Anda harus memberikan detail yang cukup agar Claude tahu kapan harus memilih Skill ini, sementara sisa SKILL.md menyediakan detail implementasi.
 
 Contoh yang efektif:
 
-**Skill pemrosesan PDF:**
+**Skill PDF Processing:**
 ```yaml
-description: Ekstrak teks dan tabel dari file PDF, isi formulir, gabungkan dokumen. Gunakan saat bekerja dengan file PDF atau ketika pengguna menyebutkan PDF, formulir, atau ekstraksi dokumen.
+description: Extract text and tables from PDF files, fill forms, merge documents. Use when working with PDF files or when the user mentions PDFs, forms, or document extraction.
 ```
 
-**Skill analisis Excel:**
+**Skill Excel Analysis:**
 ```yaml
-description: Analisis spreadsheet Excel, buat tabel pivot, buat grafik. Gunakan saat menganalisis file Excel, spreadsheet, data tabular, atau file .xlsx.
+description: Analyze Excel spreadsheets, create pivot tables, generate charts. Use when analyzing Excel files, spreadsheets, tabular data, or .xlsx files.
 ```
 
-**Skill pembantu Git Commit:**
+**Skill Git Commit Helper:**
 ```yaml
-description: Hasilkan pesan commit deskriptif dengan menganalisis git diff. Gunakan ketika pengguna meminta bantuan menulis pesan commit atau meninjau perubahan yang dipentingkan.
+description: Generate descriptive commit messages by analyzing git diffs. Use when the user asks for help writing commit messages or reviewing staged changes.
 ```
 
 Hindari deskripsi yang tidak jelas seperti ini:
 
 ```yaml
-description: Membantu dengan dokumen
+description: Helps with documents
 ```
 ```yaml
-description: Memproses data
+description: Processes data
 ```
 ```yaml
-description: Melakukan hal-hal dengan file
+description: Does stuff with files
 ```
 
-### Pola pengungkapan progresif
+### Pola progressive disclosure \{#progressive-disclosure-patterns}
 
-SKILL.md berfungsi sebagai gambaran umum yang mengarahkan Claude ke materi terperinci sesuai kebutuhan, seperti daftar isi dalam panduan onboarding. Untuk penjelasan tentang cara kerja pengungkapan progresif, lihat [Cara kerja Skill](/docs/id/agents-and-tools/agent-skills/overview#how-skills-work) dalam gambaran umum.
+SKILL.md berfungsi sebagai ikhtisar yang mengarahkan Claude ke materi terperinci sesuai kebutuhan, seperti daftar isi dalam panduan orientasi. Untuk penjelasan tentang cara kerja "progressive disclosure" (pengungkapan bertahap), lihat [Cara kerja Skill](/docs/id/agents-and-tools/agent-skills/overview#how-skills-work) di ikhtisar.
 
 **Panduan praktis:**
-- Jaga badan SKILL.md di bawah 500 baris untuk kinerja optimal
+- Jaga isi SKILL.md di bawah 500 baris untuk performa optimal
 - Pisahkan konten ke file terpisah saat mendekati batas ini
-- Gunakan pola di bawah untuk mengorganisir instruksi, kode, dan sumber daya secara efektif
+- Gunakan pola di bawah ini untuk mengorganisir instruksi, kode, dan sumber daya secara efektif
 
-#### Gambaran visual: Dari sederhana hingga kompleks
+#### Ikhtisar visual: Dari sederhana ke kompleks \{#visual-overview-from-simple-to-complex}
 
-Skill dasar dimulai dengan hanya file SKILL.md yang berisi metadata dan instruksi:
+Skill dasar dimulai hanya dengan file SKILL.md yang berisi metadata dan instruksi:
 
-![File SKILL.md sederhana menunjukkan frontmatter YAML dan badan markdown](/docs/images/agent-skills-simple-file.png)
+![File SKILL.md sederhana yang menunjukkan YAML frontmatter dan isi markdown](/docs/images/agent-skills-simple-file.png)
 
-Saat Skill Anda berkembang, Anda dapat menggabungkan konten tambahan yang Claude muat hanya saat diperlukan:
+Seiring Skill Anda berkembang, Anda dapat membundel konten tambahan yang dimuat Claude hanya saat diperlukan:
 
-![Menggabungkan file referensi tambahan seperti reference.md dan forms.md.](/docs/images/agent-skills-bundling-content.png)
+![Membundel file referensi tambahan seperti reference.md dan forms.md.](/docs/images/agent-skills-bundling-content.png)
 
 Struktur direktori Skill lengkap mungkin terlihat seperti ini:
 
 ```text
 pdf/
-├── SKILL.md              # Instruksi utama (dimuat saat dipicu)
-├── FORMS.md              # Panduan pengisian formulir (dimuat sesuai kebutuhan)
-├── reference.md          # Referensi API (dimuat sesuai kebutuhan)
-├── examples.md           # Contoh penggunaan (dimuat sesuai kebutuhan)
+├── SKILL.md              # Main instructions (loaded when triggered)
+├── FORMS.md              # Form-filling guide (loaded as needed)
+├── reference.md          # API reference (loaded as needed)
+├── examples.md           # Usage examples (loaded as needed)
 └── scripts/
-    ├── analyze_form.py   # Skrip utilitas (dijalankan, tidak dimuat)
-    ├── fill_form.py      # Skrip pengisian formulir
-    └── validate.py       # Skrip validasi
+    ├── analyze_form.py   # Utility script (executed, not loaded)
+    ├── fill_form.py      # Form filling script
+    └── validate.py       # Validation script
 ```
 
-#### Pola 1: Panduan tingkat tinggi dengan referensi
+#### Pola 1: Panduan tingkat tinggi dengan referensi \{#pattern-1-high-level-guide-with-references}
 
 ````markdown
 ---
 name: pdf-processing
-description: Mengekstrak teks dan tabel dari file PDF, mengisi formulir, dan menggabungkan dokumen. Gunakan saat bekerja dengan file PDF atau ketika pengguna menyebutkan PDF, formulir, atau ekstraksi dokumen.
+description: Extracts text and tables from PDF files, fills forms, and merges documents. Use when working with PDF files or when the user mentions PDFs, forms, or document extraction.
 ---
 
-# Pemrosesan PDF
+# PDF Processing
 
-## Mulai cepat
+## Quick start
 
-Ekstrak teks dengan pdfplumber:
+Extract text with pdfplumber:
 ```python
 import pdfplumber
 with pdfplumber.open("file.pdf") as pdf:
     text = pdf.pages[0].extract_text()
 ```
 
-## Fitur lanjutan
+## Advanced features
 
-**Pengisian formulir**: Lihat [FORMS.md](FORMS.md) untuk panduan lengkap
-**Referensi API**: Lihat [REFERENCE.md](REFERENCE.md) untuk semua metode
-**Contoh**: Lihat [EXAMPLES.md](EXAMPLES.md) untuk pola umum
+**Form filling**: See [FORMS.md](FORMS.md) for complete guide
+**API reference**: See [REFERENCE.md](REFERENCE.md) for all methods
+**Examples**: See [EXAMPLES.md](EXAMPLES.md) for common patterns
 ````
 
 Claude memuat FORMS.md, REFERENCE.md, atau EXAMPLES.md hanya saat diperlukan.
 
-#### Pola 2: Organisasi khusus domain
+#### Pola 2: Organisasi spesifik domain \{#pattern-2-domain-specific-organization}
 
-Untuk Skill dengan beberapa domain, atur konten menurut domain untuk menghindari memuat konteks yang tidak relevan. Ketika pengguna menanyakan metrik penjualan, Claude hanya perlu membaca skema terkait penjualan, bukan data keuangan atau pemasaran. Ini membuat penggunaan token rendah dan konteks terfokus.
+Untuk Skill dengan beberapa domain, organisir konten berdasarkan domain untuk menghindari pemuatan konteks yang tidak relevan. Ketika pengguna bertanya tentang metrik penjualan, Claude hanya perlu membaca skema terkait penjualan, bukan data keuangan atau pemasaran. Ini menjaga penggunaan token tetap rendah dan konteks tetap terfokus.
 
 ```text
 bigquery-skill/
-├── SKILL.md (gambaran umum dan navigasi)
+├── SKILL.md (overview and navigation)
 └── reference/
-    ├── finance.md (pendapatan, metrik penagihan)
-    ├── sales.md (peluang, pipeline)
-    ├── product.md (penggunaan API, fitur)
-    └── marketing.md (kampanye, atribusi)
+    ├── finance.md (revenue, billing metrics)
+    ├── sales.md (opportunities, pipeline)
+    ├── product.md (API usage, features)
+    └── marketing.md (campaigns, attribution)
 ```
 
 ````markdown SKILL.md
-# Analisis Data BigQuery
+# BigQuery Data Analysis
 
-## Dataset yang tersedia
+## Available datasets
 
-**Keuangan**: Pendapatan, ARR, penagihan → Lihat [reference/finance.md](reference/finance.md)
-**Penjualan**: Peluang, pipeline, akun → Lihat [reference/sales.md](reference/sales.md)
-**Produk**: Penggunaan API, fitur, adopsi → Lihat [reference/product.md](reference/product.md)
-**Pemasaran**: Kampanye, atribusi, email → Lihat [reference/marketing.md](reference/marketing.md)
+**Finance**: Revenue, ARR, billing → See [reference/finance.md](reference/finance.md)
+**Sales**: Opportunities, pipeline, accounts → See [reference/sales.md](reference/sales.md)
+**Product**: API usage, features, adoption → See [reference/product.md](reference/product.md)
+**Marketing**: Campaigns, attribution, email → See [reference/marketing.md](reference/marketing.md)
 
-## Pencarian cepat
+## Quick search
 
-Temukan metrik spesifik menggunakan grep:
+Find specific metrics using grep:
 
 ```bash
 grep -i "revenue" reference/finance.md
@@ -328,175 +328,175 @@ grep -i "api usage" reference/product.md
 ```
 ````
 
-#### Pola 3: Detail bersyarat
+#### Pola 3: Detail kondisional \{#pattern-3-conditional-details}
 
 Tampilkan konten dasar, tautkan ke konten lanjutan:
 
 ```markdown
-# Pemrosesan DOCX
+# DOCX Processing
 
-## Membuat dokumen
+## Creating documents
 
-Gunakan docx-js untuk dokumen baru. Lihat [DOCX-JS.md](DOCX-JS.md).
+Use docx-js for new documents. See [DOCX-JS.md](DOCX-JS.md).
 
-## Mengedit dokumen
+## Editing documents
 
-Untuk pengeditan sederhana, ubah XML secara langsung.
+For simple edits, modify the XML directly.
 
-**Untuk perubahan terlacak**: Lihat [REDLINING.md](REDLINING.md)
-**Untuk detail OOXML**: Lihat [OOXML.md](OOXML.md)
+**For tracked changes**: See [REDLINING.md](REDLINING.md)
+**For OOXML details**: See [OOXML.md](OOXML.md)
 ```
 
-Claude membaca REDLINING.md atau OOXML.md hanya ketika pengguna memerlukan fitur tersebut.
+Claude membaca REDLINING.md atau OOXML.md hanya ketika pengguna membutuhkan fitur tersebut.
 
-### Hindari referensi yang bersarang dalam
+### Hindari referensi bersarang yang dalam \{#avoid-deeply-nested-references}
 
-Claude dapat membaca file sebagian ketika direferensikan dari file yang direferensikan lainnya. Ketika menghadapi referensi bersarang, Claude mungkin menggunakan perintah seperti `head -100` untuk melihat pratinjau konten daripada membaca seluruh file, menghasilkan informasi yang tidak lengkap.
+Claude mungkin membaca file secara parsial ketika file tersebut direferensikan dari file lain yang juga direferensikan. Saat menemukan referensi bersarang, Claude mungkin menggunakan perintah seperti `head -100` untuk melihat pratinjau konten alih-alih membaca seluruh file, yang menghasilkan informasi tidak lengkap.
 
-**Jaga referensi satu level dalam dari SKILL.md**. Semua file referensi harus tautkan langsung dari SKILL.md untuk memastikan Claude membaca file lengkap saat diperlukan.
+**Jaga referensi satu tingkat kedalaman dari SKILL.md**. Semua file referensi harus ditautkan langsung dari SKILL.md untuk memastikan Claude membaca file lengkap saat diperlukan.
 
 **Contoh buruk: Terlalu dalam**:
 ```markdown
 # SKILL.md
-Lihat [advanced.md](advanced.md)...
+See [advanced.md](advanced.md)...
 
 # advanced.md
-Lihat [details.md](details.md)...
+See [details.md](details.md)...
 
 # details.md
-Berikut adalah informasi aktualnya...
+Here's the actual information...
 ```
 
-**Contoh baik: Satu level dalam**:
+**Contoh baik: Satu tingkat kedalaman**:
 ```markdown
 # SKILL.md
 
-**Penggunaan dasar**: [instruksi dalam SKILL.md]
-**Fitur lanjutan**: Lihat [advanced.md](advanced.md)
-**Referensi API**: Lihat [reference.md](reference.md)
-**Contoh**: Lihat [examples.md](examples.md)
+**Basic usage**: [instructions in SKILL.md]
+**Advanced features**: See [advanced.md](advanced.md)
+**API reference**: See [reference.md](reference.md)
+**Examples**: See [examples.md](examples.md)
 ```
 
-### Struktur file referensi yang lebih panjang dengan daftar isi
+### Strukturkan file referensi yang lebih panjang dengan daftar isi \{#structure-longer-reference-files-with-table-of-contents}
 
-Untuk file referensi lebih panjang dari 100 baris, sertakan daftar isi di bagian atas. Ini memastikan Claude dapat melihat cakupan lengkap informasi yang tersedia bahkan saat melihat pratinjau dengan pembacaan sebagian.
+Untuk file referensi yang lebih panjang dari 100 baris, sertakan daftar isi di bagian atas. Ini memastikan Claude dapat melihat cakupan penuh informasi yang tersedia bahkan saat melihat pratinjau dengan pembacaan parsial.
 
 **Contoh:**
 ```markdown
-# Referensi API
+# API Reference
 
-## Isi
-- Autentikasi dan pengaturan
-- Metode inti (buat, baca, perbarui, hapus)
-- Fitur lanjutan (operasi batch, webhook)
-- Pola penanganan kesalahan
-- Contoh kode
+## Contents
+- Authentication and setup
+- Core methods (create, read, update, delete)
+- Advanced features (batch operations, webhooks)
+- Error handling patterns
+- Code examples
 
-## Autentikasi dan pengaturan
+## Authentication and setup
 ...
 
-## Metode inti
+## Core methods
 ...
 ```
 
-Claude kemudian dapat membaca file lengkap atau melompat ke bagian spesifik sesuai kebutuhan.
+Claude kemudian dapat membaca file lengkap atau melompat ke bagian tertentu sesuai kebutuhan.
 
-Untuk detail tentang bagaimana arsitektur berbasis sistem file ini memungkinkan pengungkapan progresif, lihat bagian [Lingkungan runtime](#runtime-environment) dalam bagian Lanjutan di bawah.
+Untuk detail tentang bagaimana arsitektur berbasis filesystem ini memungkinkan progressive disclosure, lihat bagian [Lingkungan runtime](#runtime-environment) di bagian Lanjutan di bawah.
 
-## Alur kerja dan loop umpan balik
+## Alur kerja dan feedback loop \{#workflows-and-feedback-loops}
 
-### Gunakan alur kerja untuk tugas kompleks
+### Gunakan alur kerja untuk tugas kompleks \{#use-workflows-for-complex-tasks}
 
-Pecahkan operasi kompleks menjadi langkah-langkah yang jelas dan berurutan. Untuk alur kerja yang sangat kompleks, berikan daftar periksa yang dapat disalin Claude ke dalam responsnya dan dicentang saat maju.
+Pecah operasi kompleks menjadi langkah-langkah yang jelas dan berurutan. Untuk alur kerja yang sangat kompleks, sediakan daftar periksa yang dapat disalin Claude ke dalam responsnya dan dicentang seiring kemajuannya.
 
-**Contoh 1: Alur kerja sintesis penelitian** (untuk Skill tanpa kode):
+**Contoh 1: Alur kerja sintesis riset** (untuk Skill tanpa kode):
 
 ````markdown
-## Alur kerja sintesis penelitian
+## Research synthesis workflow
 
-Salin daftar periksa ini dan lacak kemajuan Anda:
+Copy this checklist and track your progress:
 
 ```
-Kemajuan Penelitian:
-- [ ] Langkah 1: Baca semua dokumen sumber
-- [ ] Langkah 2: Identifikasi tema kunci
-- [ ] Langkah 3: Referensi silang klaim
-- [ ] Langkah 4: Buat ringkasan terstruktur
-- [ ] Langkah 5: Verifikasi kutipan
+Research Progress:
+- [ ] Step 1: Read all source documents
+- [ ] Step 2: Identify key themes
+- [ ] Step 3: Cross-reference claims
+- [ ] Step 4: Create structured summary
+- [ ] Step 5: Verify citations
 ```
 
-**Langkah 1: Baca semua dokumen sumber**
+**Step 1: Read all source documents**
 
-Tinjau setiap dokumen di direktori `sources/`. Catat argumen utama dan bukti pendukung.
+Review each document in the `sources/` directory. Note the main arguments and supporting evidence.
 
-**Langkah 2: Identifikasi tema kunci**
+**Step 2: Identify key themes**
 
-Cari pola di seluruh sumber. Tema apa yang muncul berulang kali? Di mana sumber setuju atau tidak setuju?
+Look for patterns across sources. What themes appear repeatedly? Where do sources agree or disagree?
 
-**Langkah 3: Referensi silang klaim**
+**Step 3: Cross-reference claims**
 
-Untuk setiap klaim utama, verifikasi muncul dalam materi sumber. Catat sumber mana yang mendukung setiap poin.
+For each major claim, verify it appears in the source material. Note which source supports each point.
 
-**Langkah 4: Buat ringkasan terstruktur**
+**Step 4: Create structured summary**
 
-Atur temuan menurut tema. Sertakan:
-- Klaim utama
-- Bukti pendukung dari sumber
-- Sudut pandang yang bertentangan (jika ada)
+Organize findings by theme. Include:
+- Main claim
+- Supporting evidence from sources
+- Conflicting viewpoints (if any)
 
-**Langkah 5: Verifikasi kutipan**
+**Step 5: Verify citations**
 
-Periksa bahwa setiap klaim mereferensikan dokumen sumber yang benar. Jika kutipan tidak lengkap, kembali ke Langkah 3.
+Check that every claim references the correct source document. If citations are incomplete, return to Step 3.
 ````
 
-Contoh ini menunjukkan bagaimana alur kerja berlaku untuk tugas analisis yang tidak memerlukan kode. Pola daftar periksa bekerja untuk proses multi-langkah yang kompleks.
+Contoh ini menunjukkan bagaimana alur kerja berlaku untuk tugas analisis yang tidak memerlukan kode. Pola daftar periksa berfungsi untuk proses multi-langkah yang kompleks apa pun.
 
 **Contoh 2: Alur kerja pengisian formulir PDF** (untuk Skill dengan kode):
 
 ````markdown
-## Alur kerja pengisian formulir PDF
+## PDF form filling workflow
 
-Salin daftar periksa ini dan centang item saat Anda menyelesaikannya:
+Copy this checklist and check off items as you complete them:
 
 ```
-Kemajuan Tugas:
-- [ ] Langkah 1: Analisis formulir (jalankan analyze_form.py)
-- [ ] Langkah 2: Buat pemetaan bidang (edit fields.json)
-- [ ] Langkah 3: Validasi pemetaan (jalankan validate_fields.py)
-- [ ] Langkah 4: Isi formulir (jalankan fill_form.py)
-- [ ] Langkah 5: Verifikasi output (jalankan verify_output.py)
+Task Progress:
+- [ ] Step 1: Analyze the form (run analyze_form.py)
+- [ ] Step 2: Create field mapping (edit fields.json)
+- [ ] Step 3: Validate mapping (run validate_fields.py)
+- [ ] Step 4: Fill the form (run fill_form.py)
+- [ ] Step 5: Verify output (run verify_output.py)
 ```
 
-**Langkah 1: Analisis formulir**
+**Step 1: Analyze the form**
 
-Jalankan: `python scripts/analyze_form.py input.pdf`
+Run: `python scripts/analyze_form.py input.pdf`
 
-Ini mengekstrak bidang formulir dan lokasinya, menyimpan ke `fields.json`.
+This extracts form fields and their locations, saving to `fields.json`.
 
-**Langkah 2: Buat pemetaan bidang**
+**Step 2: Create field mapping**
 
-Edit `fields.json` untuk menambahkan nilai untuk setiap bidang.
+Edit `fields.json` to add values for each field.
 
-**Langkah 3: Validasi pemetaan**
+**Step 3: Validate mapping**
 
-Jalankan: `python scripts/validate_fields.py fields.json`
+Run: `python scripts/validate_fields.py fields.json`
 
-Perbaiki kesalahan validasi apa pun sebelum melanjutkan.
+Fix any validation errors before continuing.
 
-**Langkah 4: Isi formulir**
+**Step 4: Fill the form**
 
-Jalankan: `python scripts/fill_form.py input.pdf fields.json output.pdf`
+Run: `python scripts/fill_form.py input.pdf fields.json output.pdf`
 
-**Langkah 5: Verifikasi output**
+**Step 5: Verify output**
 
-Jalankan: `python scripts/verify_output.py output.pdf`
+Run: `python scripts/verify_output.py output.pdf`
 
-Jika verifikasi gagal, kembali ke Langkah 2.
+If verification fails, return to Step 2.
 ````
 
-Langkah-langkah yang jelas mencegah Claude melewati validasi kritis. Daftar periksa membantu Claude dan Anda melacak kemajuan melalui alur kerja multi-langkah.
+Langkah-langkah yang jelas mencegah Claude melewatkan validasi penting. Daftar periksa membantu Claude dan Anda melacak kemajuan melalui alur kerja multi-langkah.
 
-### Implementasikan loop umpan balik
+### Implementasikan feedback loop \{#implement-feedback-loops}
 
 **Pola umum:** Jalankan validator → perbaiki kesalahan → ulangi
 
@@ -505,426 +505,426 @@ Pola ini sangat meningkatkan kualitas output.
 **Contoh 1: Kepatuhan panduan gaya** (untuk Skill tanpa kode):
 
 ```markdown
-## Proses tinjauan konten
+## Content review process
 
-1. Buat draf konten Anda mengikuti panduan dalam STYLE_GUIDE.md
-2. Tinjau terhadap daftar periksa:
-   - Periksa konsistensi terminologi
-   - Verifikasi contoh mengikuti format standar
-   - Konfirmasi semua bagian yang diperlukan ada
-3. Jika masalah ditemukan:
-   - Catat setiap masalah dengan referensi bagian spesifik
-   - Revisi konten
-   - Tinjau daftar periksa lagi
-4. Hanya lanjutkan ketika semua persyaratan terpenuhi
-5. Finalisasi dan simpan dokumen
+1. Draft your content following the guidelines in STYLE_GUIDE.md
+2. Review against the checklist:
+   - Check terminology consistency
+   - Verify examples follow the standard format
+   - Confirm all required sections are present
+3. If issues found:
+   - Note each issue with specific section reference
+   - Revise the content
+   - Review the checklist again
+4. Only proceed when all requirements are met
+5. Finalize and save the document
 ```
 
-Ini menunjukkan pola loop validasi menggunakan dokumen referensi daripada skrip. "Validator" adalah STYLE_GUIDE.md, dan Claude melakukan pemeriksaan dengan membaca dan membandingkan.
+Ini menunjukkan pola loop validasi menggunakan dokumen referensi alih-alih skrip. "Validator" adalah STYLE_GUIDE.md, dan Claude melakukan pemeriksaan dengan membaca dan membandingkan.
 
 **Contoh 2: Proses pengeditan dokumen** (untuk Skill dengan kode):
 
 ```markdown
-## Proses pengeditan dokumen
+## Document editing process
 
-1. Buat pengeditan Anda ke `word/document.xml`
-2. **Validasi segera**: `python ooxml/scripts/validate.py unpacked_dir/`
-3. Jika validasi gagal:
-   - Tinjau pesan kesalahan dengan hati-hati
-   - Perbaiki masalah dalam XML
-   - Jalankan validasi lagi
-4. **Hanya lanjutkan ketika validasi lulus**
-5. Bangun kembali: `python ooxml/scripts/pack.py unpacked_dir/ output.docx`
-6. Uji dokumen output
+1. Make your edits to `word/document.xml`
+2. **Validate immediately**: `python ooxml/scripts/validate.py unpacked_dir/`
+3. If validation fails:
+   - Review the error message carefully
+   - Fix the issues in the XML
+   - Run validation again
+4. **Only proceed when validation passes**
+5. Rebuild: `python ooxml/scripts/pack.py unpacked_dir/ output.docx`
+6. Test the output document
 ```
 
 Loop validasi menangkap kesalahan lebih awal.
 
-## Panduan konten
+## Pedoman konten \{#content-guidelines}
 
-### Hindari informasi sensitif waktu
+### Hindari informasi yang sensitif terhadap waktu \{#avoid-time-sensitive-information}
 
-Jangan sertakan informasi yang akan menjadi ketinggalan zaman:
+Jangan sertakan informasi yang akan menjadi usang:
 
-**Contoh buruk: Sensitif waktu** (akan menjadi salah):
+**Contoh buruk: Sensitif terhadap waktu** (akan menjadi salah):
 ```markdown
-Jika Anda melakukan ini sebelum Agustus 2025, gunakan API lama.
-Setelah Agustus 2025, gunakan API baru.
+If you're doing this before August 2025, use the old API.
+After August 2025, use the new API.
 ```
 
 **Contoh baik** (gunakan bagian "pola lama"):
 ```markdown
-## Metode saat ini
+## Current method
 
-Gunakan endpoint API v2: `api.example.com/v2/messages`
+Use the v2 API endpoint: `api.example.com/v2/messages`
 
-## Pola lama
+## Old patterns
 
 <details>
-<summary>API v1 warisan (tidak digunakan lagi 2025-08)</summary>
+<summary>Legacy v1 API (deprecated 2025-08)</summary>
 
-API v1 menggunakan: `api.example.com/v1/messages`
+The v1 API used: `api.example.com/v1/messages`
 
-Endpoint ini tidak lagi didukung.
+This endpoint is no longer supported.
 </details>
 ```
 
 Bagian pola lama memberikan konteks historis tanpa mengacaukan konten utama.
 
-### Gunakan terminologi yang konsisten
+### Gunakan terminologi yang konsisten \{#use-consistent-terminology}
 
-Pilih satu istilah dan gunakan di seluruh Skill:
+Pilih satu istilah dan gunakan secara konsisten di seluruh Skill:
 
 **Baik - Konsisten:**
-- Selalu "endpoint API"
-- Selalu "bidang"
-- Selalu "ekstrak"
+- Selalu "API endpoint"
+- Selalu "field"
+- Selalu "extract"
 
 **Buruk - Tidak konsisten:**
-- Campurkan "endpoint API", "URL", "rute API", "jalur"
-- Campurkan "bidang", "kotak", "elemen", "kontrol"
-- Campurkan "ekstrak", "tarik", "dapatkan", "ambil"
+- Mencampur "API endpoint", "URL", "API route", "path"
+- Mencampur "field", "box", "element", "control"
+- Mencampur "extract", "pull", "get", "retrieve"
 
 Konsistensi membantu Claude memahami dan mengikuti instruksi.
 
-## Pola umum
+## Pola umum \{#common-patterns}
 
-### Pola template
+### Pola template \{#template-pattern}
 
-Berikan template untuk format output. Cocokkan tingkat ketatnya dengan kebutuhan Anda.
+Sediakan template untuk format output. Sesuaikan tingkat ketatnya dengan kebutuhan Anda.
 
 **Untuk persyaratan ketat** (seperti respons API atau format data):
 
 ````markdown
-## Struktur laporan
+## Report structure
 
-SELALU gunakan struktur template yang tepat ini:
+ALWAYS use this exact template structure:
 
 ```markdown
-# [Judul Analisis]
+# [Analysis Title]
 
-## Ringkasan eksekutif
-[Gambaran umum satu paragraf tentang temuan kunci]
+## Executive summary
+[One-paragraph overview of key findings]
 
-## Temuan kunci
-- Temuan 1 dengan data pendukung
-- Temuan 2 dengan data pendukung
-- Temuan 3 dengan data pendukung
+## Key findings
+- Finding 1 with supporting data
+- Finding 2 with supporting data
+- Finding 3 with supporting data
 
-## Rekomendasi
-1. Rekomendasi yang dapat ditindaklanjuti secara spesifik
-2. Rekomendasi yang dapat ditindaklanjuti secara spesifik
+## Recommendations
+1. Specific actionable recommendation
+2. Specific actionable recommendation
 ```
 ````
 
 **Untuk panduan fleksibel** (ketika adaptasi berguna):
 
 ````markdown
-## Struktur laporan
+## Report structure
 
-Berikut adalah format default yang masuk akal, tetapi gunakan penilaian terbaik Anda berdasarkan analisis:
+Here is a sensible default format, but use your best judgment based on the analysis:
 
 ```markdown
-# [Judul Analisis]
+# [Analysis Title]
 
-## Ringkasan eksekutif
-[Gambaran umum]
+## Executive summary
+[Overview]
 
-## Temuan kunci
-[Sesuaikan bagian berdasarkan apa yang Anda temukan]
+## Key findings
+[Adapt sections based on what you discover]
 
-## Rekomendasi
-[Sesuaikan dengan konteks spesifik]
+## Recommendations
+[Tailor to the specific context]
 ```
 
-Sesuaikan bagian sesuai kebutuhan untuk jenis analisis tertentu.
+Adjust sections as needed for the specific analysis type.
 ````
 
-### Pola contoh
+### Pola contoh \{#examples-pattern}
 
-Untuk Skill di mana kualitas output bergantung pada melihat contoh, berikan pasangan input/output seperti dalam prompting reguler:
+Untuk Skill di mana kualitas output bergantung pada melihat contoh, sediakan pasangan input/output seperti dalam prompting biasa:
 
 ````markdown
-## Format pesan commit
+## Commit message format
 
-Hasilkan pesan commit mengikuti contoh ini:
+Generate commit messages following these examples:
 
-**Contoh 1:**
-Input: Menambahkan autentikasi pengguna dengan token JWT
+**Example 1:**
+Input: Added user authentication with JWT tokens
 Output:
 ```
-feat(auth): implementasikan autentikasi berbasis JWT
+feat(auth): implement JWT-based authentication
 
-Tambahkan endpoint login dan middleware validasi token
+Add login endpoint and token validation middleware
 ```
 
-**Contoh 2:**
-Input: Memperbaiki bug di mana tanggal ditampilkan secara tidak benar dalam laporan
+**Example 2:**
+Input: Fixed bug where dates displayed incorrectly in reports
 Output:
 ```
-fix(reports): perbaiki pemformatan tanggal dalam konversi zona waktu
+fix(reports): correct date formatting in timezone conversion
 
-Gunakan stempel waktu UTC secara konsisten di seluruh pembuatan laporan
+Use UTC timestamps consistently across report generation
 ```
 
-**Contoh 3:**
-Input: Memperbarui dependensi dan refaktor penanganan kesalahan
+**Example 3:**
+Input: Updated dependencies and refactored error handling
 Output:
 ```
-chore: perbarui dependensi dan refaktor penanganan kesalahan
+chore: update dependencies and refactor error handling
 
-- Tingkatkan lodash ke 4.17.21
-- Standardisasi format respons kesalahan di seluruh endpoint
+- Upgrade lodash to 4.17.21
+- Standardize error response format across endpoints
 ```
 
-Ikuti gaya ini: type(scope): deskripsi singkat, kemudian penjelasan terperinci.
+Follow this style: type(scope): brief description, then detailed explanation.
 ````
 
-Contoh membantu Claude memahami gaya yang diinginkan dan tingkat detail lebih jelas daripada deskripsi saja.
+Contoh membantu Claude memahami gaya dan tingkat detail yang diinginkan dengan lebih jelas daripada deskripsi saja.
 
-### Pola alur kerja bersyarat
+### Pola alur kerja kondisional \{#conditional-workflow-pattern}
 
-Panduan Claude melalui titik keputusan:
+Pandu Claude melalui titik-titik keputusan:
 
 ```markdown
-## Alur kerja modifikasi dokumen
+## Document modification workflow
 
-1. Tentukan jenis modifikasi:
+1. Determine the modification type:
 
-   **Membuat konten baru?** → Ikuti "Alur kerja pembuatan" di bawah
-   **Mengedit konten yang ada?** → Ikuti "Alur kerja pengeditan" di bawah
+   **Creating new content?** → Follow "Creation workflow" below
+   **Editing existing content?** → Follow "Editing workflow" below
 
-2. Alur kerja pembuatan:
-   - Gunakan perpustakaan docx-js
-   - Bangun dokumen dari awal
-   - Ekspor ke format .docx
+2. Creation workflow:
+   - Use docx-js library
+   - Build document from scratch
+   - Export to .docx format
 
-3. Alur kerja pengeditan:
-   - Buka kemasan dokumen yang ada
-   - Ubah XML secara langsung
-   - Validasi setelah setiap perubahan
-   - Kemasan ulang saat selesai
+3. Editing workflow:
+   - Unpack existing document
+   - Modify XML directly
+   - Validate after each change
+   - Repack when complete
 ```
 
 <Tip>
-Jika alur kerja menjadi besar atau rumit dengan banyak langkah, pertimbangkan mendorongnya ke file terpisah dan beri tahu Claude untuk membaca file yang sesuai berdasarkan tugas yang ada.
+Jika alur kerja menjadi besar atau rumit dengan banyak langkah, pertimbangkan untuk memindahkannya ke file terpisah dan beri tahu Claude untuk membaca file yang sesuai berdasarkan tugas yang sedang dikerjakan.
 </Tip>
 
-## Evaluasi dan iterasi
+## Evaluasi dan iterasi \{#evaluation-and-iteration}
 
-### Bangun evaluasi terlebih dahulu
+### Bangun evaluasi terlebih dahulu \{#build-evaluations-first}
 
-**Buat evaluasi SEBELUM menulis dokumentasi ekstensif.** Ini memastikan Skill Anda menyelesaikan masalah nyata daripada mendokumentasikan masalah yang dibayangkan.
+**Buat evaluasi SEBELUM menulis dokumentasi yang ekstensif.** Ini memastikan Skill Anda memecahkan masalah nyata alih-alih mendokumentasikan masalah yang dibayangkan.
 
-**Pengembangan yang didorong evaluasi:**
+**Pengembangan berbasis evaluasi:**
 1. **Identifikasi kesenjangan:** Jalankan Claude pada tugas representatif tanpa Skill. Dokumentasikan kegagalan spesifik atau konteks yang hilang
 2. **Buat evaluasi:** Bangun tiga skenario yang menguji kesenjangan ini
-3. **Tetapkan baseline:** Ukur kinerja Claude tanpa Skill
-4. **Tulis instruksi minimal:** Buat konten yang cukup untuk mengatasi kesenjangan dan lulus evaluasi
+3. **Tetapkan baseline:** Ukur performa Claude tanpa Skill
+4. **Tulis instruksi minimal:** Buat konten secukupnya untuk mengatasi kesenjangan dan lulus evaluasi
 5. **Iterasi:** Jalankan evaluasi, bandingkan dengan baseline, dan perbaiki
 
-Pendekatan ini memastikan Anda menyelesaikan masalah aktual daripada mengantisipasi persyaratan yang mungkin tidak pernah terwujud.
+Pendekatan ini memastikan Anda memecahkan masalah aktual alih-alih mengantisipasi persyaratan yang mungkin tidak pernah terwujud.
 
 **Struktur evaluasi:**
 ```json
 {
   "skills": ["pdf-processing"],
-  "query": "Ekstrak semua teks dari file PDF ini dan simpan ke output.txt",
+  "query": "Extract all text from this PDF file and save it to output.txt",
   "files": ["test-files/document.pdf"],
   "expected_behavior": [
-    "Berhasil membaca file PDF menggunakan perpustakaan pemrosesan PDF yang sesuai atau alat baris perintah",
-    "Mengekstrak konten teks dari semua halaman dalam dokumen tanpa melewatkan halaman apa pun",
-    "Menyimpan teks yang diekstrak ke file bernama output.txt dalam format yang jelas dan dapat dibaca"
+    "Successfully reads the PDF file using an appropriate PDF processing library or command-line tool",
+    "Extracts text content from all pages in the document without missing any pages",
+    "Saves the extracted text to a file named output.txt in a clear, readable format"
   ]
 }
 ```
 
 <Note>
-Contoh ini mendemonstrasikan evaluasi berbasis data dengan rubrik pengujian sederhana. Saat ini tidak ada cara bawaan untuk menjalankan evaluasi ini. Pengguna dapat membuat sistem evaluasi mereka sendiri. Evaluasi adalah sumber kebenaran Anda untuk mengukur efektivitas Skill.
+Contoh ini mendemonstrasikan evaluasi berbasis data dengan rubrik pengujian sederhana. Saat ini belum ada cara bawaan untuk menjalankan evaluasi ini. Pengguna dapat membuat sistem evaluasi mereka sendiri. Evaluasi adalah sumber kebenaran Anda untuk mengukur efektivitas Skill.
 </Note>
 
-### Kembangkan Skill secara iteratif dengan Claude
+### Kembangkan Skill secara iteratif dengan Claude \{#develop-skills-iteratively-with-claude}
 
-Proses pengembangan Skill yang paling efektif melibatkan Claude itu sendiri. Bekerja dengan satu instance Claude ("Claude A") untuk membuat Skill yang digunakan oleh instance lain ("Claude B"). Claude A membantu Anda merancang dan menyempurnakan instruksi, sementara Claude B mengujinya dalam tugas nyata. Ini bekerja karena model Claude memahami cara menulis instruksi agen yang efektif dan informasi apa yang dibutuhkan agen.
+Proses pengembangan Skill yang paling efektif melibatkan Claude itu sendiri. Bekerjalah dengan satu instance Claude ("Claude A") untuk membuat Skill yang digunakan oleh instance lain ("Claude B"). Claude A membantu Anda merancang dan menyempurnakan instruksi, sementara Claude B mengujinya dalam tugas nyata. Ini berhasil karena model Claude memahami cara menulis instruksi agen yang efektif sekaligus informasi apa yang dibutuhkan agen.
 
 **Membuat Skill baru:**
 
-1. **Selesaikan tugas tanpa Skill:** Bekerja melalui masalah dengan Claude A menggunakan prompting normal. Saat Anda bekerja, Anda secara alami akan memberikan konteks, menjelaskan preferensi, dan berbagi pengetahuan prosedural. Perhatikan informasi apa yang Anda berikan berulang kali.
+1. **Selesaikan tugas tanpa Skill:** Kerjakan masalah dengan Claude A menggunakan prompting normal. Saat Anda bekerja, Anda secara alami akan memberikan konteks, menjelaskan preferensi, dan berbagi pengetahuan prosedural. Perhatikan informasi apa yang berulang kali Anda berikan.
 
 2. **Identifikasi pola yang dapat digunakan kembali:** Setelah menyelesaikan tugas, identifikasi konteks apa yang Anda berikan yang akan berguna untuk tugas serupa di masa depan.
 
-   **Contoh:** Jika Anda bekerja melalui analisis BigQuery, Anda mungkin telah memberikan nama tabel, definisi bidang, aturan penyaringan (seperti "selalu kecualikan akun uji"), dan pola kueri umum.
+   **Contoh:** Jika Anda mengerjakan analisis BigQuery, Anda mungkin telah memberikan nama tabel, definisi field, aturan pemfilteran (seperti "selalu kecualikan akun uji"), dan pola kueri umum.
 
-3. **Minta Claude A untuk membuat Skill:** "Buat Skill yang menangkap pola analisis BigQuery yang baru saja kami gunakan. Sertakan skema tabel, konvensi penamaan, dan aturan tentang menyaring akun uji."
+3. **Minta Claude A untuk membuat Skill:** "Buat Skill yang menangkap pola analisis BigQuery yang baru saja kita gunakan. Sertakan skema tabel, konvensi penamaan, dan aturan tentang memfilter akun uji."
 
    <Tip>
-   Model Claude memahami format Skill dan struktur secara asli. Anda tidak memerlukan prompt sistem khusus atau "skill penulisan" untuk membuat Claude membantu membuat Skill. Cukup minta Claude untuk membuat Skill dan itu menghasilkan konten SKILL.md yang terstruktur dengan baik dengan frontmatter dan konten badan yang sesuai.
+   Model Claude memahami format dan struktur Skill secara native. Anda tidak memerlukan prompt sistem khusus atau skill "menulis skill" untuk membuat Claude membantu membuat Skill. Cukup minta Claude untuk membuat Skill dan ia akan menghasilkan konten SKILL.md yang terstruktur dengan baik dengan frontmatter dan isi yang sesuai.
    </Tip>
 
-4. **Tinjau untuk keringkasan:** Periksa bahwa Claude A tidak menambahkan penjelasan yang tidak perlu. Tanya: "Hapus penjelasan tentang apa arti win rate - Claude sudah tahu itu."
+4. **Tinjau untuk keringkasan:** Periksa bahwa Claude A tidak menambahkan penjelasan yang tidak perlu. Minta: "Hapus penjelasan tentang apa arti win rate - Claude sudah mengetahui itu."
 
-5. **Tingkatkan arsitektur informasi:** Minta Claude A untuk mengorganisir konten lebih efektif. Misalnya: "Atur ini sehingga skema tabel berada di file referensi terpisah. Kami mungkin menambahkan lebih banyak tabel nanti."
+5. **Tingkatkan arsitektur informasi:** Minta Claude A untuk mengorganisir konten dengan lebih efektif. Misalnya: "Organisir ini sehingga skema tabel berada di file referensi terpisah. Kita mungkin menambahkan lebih banyak tabel nanti."
 
-6. **Uji pada tugas serupa:** Gunakan Skill dengan Claude B (instance segar dengan Skill dimuat) pada kasus penggunaan terkait. Amati apakah Claude B menemukan informasi yang tepat, menerapkan aturan dengan benar, dan menangani tugas dengan sukses.
+6. **Uji pada tugas serupa:** Gunakan Skill dengan Claude B (instance baru dengan Skill yang dimuat) pada kasus penggunaan terkait. Amati apakah Claude B menemukan informasi yang tepat, menerapkan aturan dengan benar, dan menangani tugas dengan sukses.
 
-7. **Iterasi berdasarkan observasi:** Jika Claude B berjuang atau melewatkan sesuatu, kembali ke Claude A dengan spesifik: "Ketika Claude menggunakan Skill ini, itu lupa untuk menyaring menurut tanggal untuk Q4. Haruskah kami menambahkan bagian tentang pola penyaringan tanggal?"
+7. **Iterasi berdasarkan pengamatan:** Jika Claude B kesulitan atau melewatkan sesuatu, kembali ke Claude A dengan detail spesifik: "Ketika Claude menggunakan Skill ini, ia lupa memfilter berdasarkan tanggal untuk Q4. Haruskah kita menambahkan bagian tentang pola pemfilteran tanggal?"
 
-**Iterasi pada Skill yang ada:**
+**Iterasi pada Skill yang sudah ada:**
 
-Pola hierarki yang sama berlanjut saat meningkatkan Skill. Anda berganti-ganti antara:
+Pola hierarkis yang sama berlanjut saat meningkatkan Skill. Anda bergantian antara:
 - **Bekerja dengan Claude A** (ahli yang membantu menyempurnakan Skill)
-- **Pengujian dengan Claude B** (agen menggunakan Skill untuk melakukan pekerjaan nyata)
+- **Menguji dengan Claude B** (agen yang menggunakan Skill untuk melakukan pekerjaan nyata)
 - **Mengamati perilaku Claude B** dan membawa wawasan kembali ke Claude A
 
-1. **Gunakan Skill dalam alur kerja nyata:** Berikan Claude B (dengan Skill dimuat) tugas aktual, bukan skenario pengujian
+1. **Gunakan Skill dalam alur kerja nyata:** Berikan Claude B (dengan Skill yang dimuat) tugas aktual, bukan skenario uji
 
-2. **Amati perilaku Claude B:** Catat di mana itu berjuang, berhasil, atau membuat pilihan yang tidak terduga
+2. **Amati perilaku Claude B:** Catat di mana ia kesulitan, berhasil, atau membuat pilihan yang tidak terduga
 
-   **Contoh observasi:** "Ketika saya meminta Claude B untuk laporan penjualan regional, itu menulis kueri tetapi lupa untuk menyaring akun uji, meskipun Skill menyebutkan aturan ini."
+   **Contoh pengamatan:** "Ketika saya meminta Claude B untuk laporan penjualan regional, ia menulis kueri tetapi lupa memfilter akun uji, meskipun Skill menyebutkan aturan ini."
 
-3. **Kembali ke Claude A untuk perbaikan:** Bagikan SKILL.md saat ini dan jelaskan apa yang Anda amati. Tanya: "Saya perhatikan Claude B lupa untuk menyaring akun uji saat saya meminta laporan regional. Skill menyebutkan penyaringan, tetapi mungkin tidak cukup menonjol?"
+3. **Kembali ke Claude A untuk perbaikan:** Bagikan SKILL.md saat ini dan jelaskan apa yang Anda amati. Tanyakan: "Saya perhatikan Claude B lupa memfilter akun uji ketika saya meminta laporan regional. Skill menyebutkan pemfilteran, tetapi mungkin tidak cukup menonjol?"
 
-4. **Tinjau saran Claude A:** Claude A mungkin menyarankan reorganisasi untuk membuat aturan lebih menonjol, menggunakan bahasa yang lebih kuat seperti "HARUS menyaring" daripada "selalu menyaring", atau merestruktur bagian alur kerja.
+4. **Tinjau saran Claude A:** Claude A mungkin menyarankan reorganisasi untuk membuat aturan lebih menonjol, menggunakan bahasa yang lebih kuat seperti "HARUS memfilter" alih-alih "selalu filter", atau merestrukturisasi bagian alur kerja.
 
-5. **Terapkan dan uji perubahan:** Perbarui Skill dengan penyempurnaan Claude A, kemudian uji lagi dengan Claude B pada permintaan serupa
+5. **Terapkan dan uji perubahan:** Perbarui Skill dengan penyempurnaan Claude A, lalu uji lagi dengan Claude B pada permintaan serupa
 
-6. **Ulangi berdasarkan penggunaan:** Lanjutkan siklus observasi-penyempurnaan-pengujian saat Anda menghadapi skenario baru. Setiap iterasi meningkatkan Skill berdasarkan perilaku agen nyata, bukan asumsi.
+6. **Ulangi berdasarkan penggunaan:** Lanjutkan siklus amati-perbaiki-uji ini saat Anda menemukan skenario baru. Setiap iterasi meningkatkan Skill berdasarkan perilaku agen nyata, bukan asumsi.
 
 **Mengumpulkan umpan balik tim:**
 
-1. Bagikan Skill dengan rekan kerja dan amati penggunaan mereka
-2. Tanya: Apakah Skill diaktifkan saat diharapkan? Apakah instruksi jelas? Apa yang hilang?
+1. Bagikan Skill dengan rekan tim dan amati penggunaan mereka
+2. Tanyakan: Apakah Skill aktif saat diharapkan? Apakah instruksi jelas? Apa yang hilang?
 3. Gabungkan umpan balik untuk mengatasi titik buta dalam pola penggunaan Anda sendiri
 
-**Mengapa pendekatan ini bekerja:** Claude A memahami kebutuhan agen, Anda memberikan keahlian domain, Claude B mengungkap kesenjangan melalui penggunaan nyata, dan penyempurnaan iteratif meningkatkan Skill berdasarkan perilaku yang diamati daripada asumsi.
+**Mengapa pendekatan ini berhasil:** Claude A memahami kebutuhan agen, Anda memberikan keahlian domain, Claude B mengungkap kesenjangan melalui penggunaan nyata, dan penyempurnaan iteratif meningkatkan Skill berdasarkan perilaku yang diamati alih-alih asumsi.
 
-### Amati bagaimana Claude menavigasi Skill
+### Amati bagaimana Claude menavigasi Skill \{#observe-how-claude-navigates-skills}
 
-Saat Anda mengulangi Skill, perhatikan bagaimana Claude benar-benar menggunakannya dalam praktik. Perhatikan:
+Saat Anda melakukan iterasi pada Skill, perhatikan bagaimana Claude benar-benar menggunakannya dalam praktik. Perhatikan:
 
-- **Jalur eksplorasi yang tidak terduga:** Apakah Claude membaca file dalam urutan yang tidak Anda antisipasi? Ini mungkin menunjukkan struktur Anda tidak seintuitif yang Anda pikir
+- **Jalur eksplorasi yang tidak terduga:** Apakah Claude membaca file dalam urutan yang tidak Anda antisipasi? Ini mungkin menunjukkan struktur Anda tidak seintuitif yang Anda kira
 - **Koneksi yang terlewat:** Apakah Claude gagal mengikuti referensi ke file penting? Tautan Anda mungkin perlu lebih eksplisit atau menonjol
-- **Ketergantungan berlebihan pada bagian tertentu:** Jika Claude berulang kali membaca file yang sama, pertimbangkan apakah konten itu harus berada di SKILL.md utama
-- **Konten yang diabaikan:** Jika Claude tidak pernah mengakses file bundel, itu mungkin tidak perlu atau sinyal buruk dalam instruksi utama
+- **Ketergantungan berlebihan pada bagian tertentu:** Jika Claude berulang kali membaca file yang sama, pertimbangkan apakah konten tersebut seharusnya berada di SKILL.md utama
+- **Konten yang diabaikan:** Jika Claude tidak pernah mengakses file yang dibundel, file tersebut mungkin tidak diperlukan atau kurang disinyalkan dengan baik dalam instruksi utama
 
-Iterasi berdasarkan observasi ini daripada asumsi. 'name' dan 'description' dalam metadata Skill Anda sangat penting. Claude menggunakan ini saat memutuskan apakah akan memicu Skill sebagai respons terhadap tugas saat ini. Pastikan mereka dengan jelas menggambarkan apa yang dilakukan Skill dan kapan harus digunakan.
+Lakukan iterasi berdasarkan pengamatan ini alih-alih asumsi. 'name' dan 'description' dalam metadata Skill Anda sangat penting. Claude menggunakan ini saat memutuskan apakah akan memicu Skill sebagai respons terhadap tugas saat ini. Pastikan keduanya dengan jelas mendeskripsikan apa yang dilakukan Skill dan kapan harus digunakan.
 
-## Anti-pola untuk dihindari
+## Anti-pola yang harus dihindari \{#anti-patterns-to-avoid}
 
-### Hindari jalur gaya Windows
+### Hindari path bergaya Windows \{#avoid-windows-style-paths}
 
-Selalu gunakan garis miring ke depan dalam jalur file, bahkan di Windows:
+Selalu gunakan garis miring ke depan dalam path file, bahkan di Windows:
 
 - ✓ **Baik:** `scripts/helper.py`, `reference/guide.md`
 - ✗ **Hindari:** `scripts\helper.py`, `reference\guide.md`
 
-Jalur gaya Unix bekerja di semua platform, sementara jalur gaya Windows menyebabkan kesalahan pada sistem Unix.
+Path bergaya Unix berfungsi di semua platform, sementara path bergaya Windows menyebabkan kesalahan pada sistem Unix.
 
-### Hindari menawarkan terlalu banyak opsi
+### Hindari menawarkan terlalu banyak opsi \{#avoid-offering-too-many-options}
 
-Jangan sajikan beberapa pendekatan kecuali diperlukan:
+Jangan menyajikan beberapa pendekatan kecuali diperlukan:
 
 ````markdown
-**Contoh buruk: Terlalu banyak pilihan** (membingungkan):
-"Anda dapat menggunakan pypdf, atau pdfplumber, atau PyMuPDF, atau pdf2image, atau..."
+**Bad example: Too many choices** (confusing):
+"You can use pypdf, or pdfplumber, or PyMuPDF, or pdf2image, or..."
 
-**Contoh baik: Berikan default** (dengan jalan keluar):
-"Gunakan pdfplumber untuk ekstraksi teks:
+**Good example: Provide a default** (with escape hatch):
+"Use pdfplumber for text extraction:
 ```python
 import pdfplumber
 ```
 
-Untuk PDF yang dipindai memerlukan OCR, gunakan pdf2image dengan pytesseract sebagai gantinya."
+For scanned PDFs requiring OCR, use pdf2image with pytesseract instead."
 ````
 
-## Lanjutan: Skill dengan kode yang dapat dijalankan
+## Lanjutan: Skill dengan kode yang dapat dieksekusi \{#advanced-skills-with-executable-code}
 
-Bagian di bawah fokus pada Skill yang mencakup skrip yang dapat dijalankan. Jika Skill Anda hanya menggunakan instruksi markdown, lewati ke [Daftar periksa untuk Skill yang efektif](#checklist-for-effective-skills).
+Bagian di bawah ini berfokus pada Skill yang menyertakan skrip yang dapat dieksekusi. Jika Skill Anda hanya menggunakan instruksi markdown, lewati ke [Daftar periksa untuk Skill yang efektif](#checklist-for-effective-skills).
 
-### Selesaikan, jangan hindari
+### Selesaikan, jangan lempar \{#solve-dont-punt}
 
-Saat menulis skrip untuk Skill, tangani kondisi kesalahan daripada menghindarinya.
+Saat menulis skrip untuk Skill, tangani kondisi kesalahan alih-alih melemparkannya ke Claude.
 
 **Contoh baik: Tangani kesalahan secara eksplisit:**
 
 ```python nocheck
 def process_file(path):
-    """Proses file, membuatnya jika tidak ada."""
+    """Process a file, creating it if it doesn't exist."""
     try:
         with open(path) as f:
             return f.read()
     except FileNotFoundError:
-        # Buat file dengan konten default daripada gagal
-        print(f"File {path} tidak ditemukan, membuat default")
+        # Buat file dengan konten default alih-alih gagal
+        print(f"File {path} not found, creating default")
         with open(path, "w") as f:
             f.write("")
         return ""
     except PermissionError:
-        # Berikan alternatif daripada gagal
-        print(f"Tidak dapat mengakses {path}, menggunakan default")
+        # Sediakan alternatif alih-alih gagal
+        print(f"Cannot access {path}, using default")
         return ""
 ```
 
-**Contoh buruk: Hindari ke Claude:**
+**Contoh buruk: Lempar ke Claude:**
 
 ```python nocheck
 def process_file(path):
-    # Hanya gagal dan biarkan Claude mencari tahu
+    # Biarkan gagal saja dan biarkan Claude yang mencari solusinya
     return open(path).read()
 ```
 
-Parameter konfigurasi juga harus dibenarkan dan didokumentasikan untuk menghindari "konstanta voodoo" (hukum Ousterhout). Jika Anda tidak tahu nilai yang tepat, bagaimana Claude menentukannya?
+Parameter konfigurasi juga harus dijustifikasi dan didokumentasikan untuk menghindari "voodoo constants" (hukum Ousterhout). Jika Anda tidak tahu nilai yang tepat, bagaimana Claude akan menentukannya?
 
-**Contoh baik: Terdokumentasi sendiri:**
+**Contoh baik: Mendokumentasikan diri sendiri:**
 
 ```python nocheck
 # Permintaan HTTP biasanya selesai dalam 30 detik
-# Timeout yang lebih lama memperhitungkan koneksi lambat
+# Timeout yang lebih panjang mengakomodasi koneksi lambat
 REQUEST_TIMEOUT = 30
 
-# Tiga percobaan ulang menyeimbangkan keandalan vs kecepatan
-# Sebagian besar kegagalan intermiten diselesaikan pada percobaan kedua
+# Tiga kali percobaan ulang menyeimbangkan keandalan vs kecepatan
+# Sebagian besar kegagalan intermiten teratasi pada percobaan ulang kedua
 MAX_RETRIES = 3
 ```
 
 **Contoh buruk: Angka ajaib:**
 
 ```python nocheck
-TIMEOUT = 47  # Mengapa 47?
-RETRIES = 5  # Mengapa 5?
+TIMEOUT = 47  # Why 47?
+RETRIES = 5  # Why 5?
 ```
 
-### Berikan skrip utilitas
+### Sediakan skrip utilitas \{#provide-utility-scripts}
 
-Meskipun Claude dapat menulis skrip, skrip yang sudah dibuat menawarkan keuntungan:
+Meskipun Claude dapat menulis skrip, skrip yang sudah dibuat sebelumnya menawarkan keuntungan:
 
 **Manfaat skrip utilitas:**
 - Lebih andal daripada kode yang dihasilkan
-- Hemat token (tidak perlu menyertakan kode dalam konteks)
-- Hemat waktu (tidak ada pembuatan kode yang diperlukan)
-- Pastikan konsistensi di seluruh penggunaan
+- Menghemat token (tidak perlu menyertakan kode dalam konteks)
+- Menghemat waktu (tidak diperlukan pembuatan kode)
+- Memastikan konsistensi di seluruh penggunaan
 
-![Menggabungkan skrip yang dapat dijalankan bersama file instruksi](/docs/images/agent-skills-executable-scripts.png)
+![Membundel skrip yang dapat dieksekusi bersama file instruksi](/docs/images/agent-skills-executable-scripts.png)
 
-Diagram di atas menunjukkan bagaimana skrip yang dapat dijalankan bekerja bersama file instruksi. File instruksi (forms.md) mereferensikan skrip, dan Claude dapat menjalankannya tanpa memuat isinya ke dalam konteks.
+Diagram di atas menunjukkan bagaimana skrip yang dapat dieksekusi bekerja bersama file instruksi. File instruksi (forms.md) mereferensikan skrip, dan Claude dapat mengeksekusinya tanpa memuat isinya ke dalam konteks.
 
-**Perbedaan penting:** Buat jelas dalam instruksi Anda apakah Claude harus:
-- **Jalankan skrip** (paling umum): "Jalankan `analyze_form.py` untuk mengekstrak bidang"
-- **Baca sebagai referensi** (untuk logika kompleks): "Lihat `analyze_form.py` untuk algoritma ekstraksi bidang"
+**Perbedaan penting:** Perjelas dalam instruksi Anda apakah Claude harus:
+- **Mengeksekusi skrip** (paling umum): "Jalankan `analyze_form.py` untuk mengekstrak field"
+- **Membacanya sebagai referensi** (untuk logika kompleks): "Lihat `analyze_form.py` untuk algoritma ekstraksi field"
 
 Untuk sebagian besar skrip utilitas, eksekusi lebih disukai karena lebih andal dan efisien. Lihat bagian [Lingkungan runtime](#runtime-environment) di bawah untuk detail tentang cara kerja eksekusi skrip.
 
 **Contoh:**
 ````markdown
-## Skrip utilitas
+## Utility scripts
 
-**analyze_form.py**: Ekstrak semua bidang formulir dari PDF
+**analyze_form.py**: Extract all form fields from PDF
 
 ```bash
 python scripts/analyze_form.py input.pdf > fields.json
 ```
 
-Format output:
+Output format:
 ```json
 {
   "field_name": {"type": "text", "x": 100, "y": 200},
@@ -932,34 +932,34 @@ Format output:
 }
 ```
 
-**validate_boxes.py**: Periksa kotak pembatas yang tumpang tindih
+**validate_boxes.py**: Check for overlapping bounding boxes
 
 ```bash
 python scripts/validate_boxes.py fields.json
-# Mengembalikan: "OK" atau daftar konflik
+# Returns: "OK" or lists conflicts
 ```
 
-**fill_form.py**: Terapkan nilai bidang ke PDF
+**fill_form.py**: Apply field values to PDF
 
 ```bash
 python scripts/fill_form.py input.pdf fields.json output.pdf
 ```
 ````
 
-### Gunakan analisis visual
+### Gunakan analisis visual \{#use-visual-analysis}
 
-Ketika input dapat dirender sebagai gambar, biarkan Claude menganalisisnya:
+Ketika input dapat dirender sebagai gambar, minta Claude menganalisisnya:
 
 ````markdown
-## Analisis tata letak formulir
+## Form layout analysis
 
-1. Konversi PDF ke gambar:
+1. Convert PDF to images:
    ```bash
    python scripts/pdf_to_images.py form.pdf
    ```
 
-2. Analisis setiap gambar halaman untuk mengidentifikasi bidang formulir
-3. Claude dapat melihat lokasi dan jenis bidang secara visual
+2. Analyze each page image to identify form fields
+3. Claude can see field locations and types visually
 ````
 
 <Note>
@@ -968,57 +968,57 @@ Dalam contoh ini, Anda perlu menulis skrip `pdf_to_images.py`.
 
 Kemampuan visi Claude membantu memahami tata letak dan struktur.
 
-### Buat keluaran perantara yang dapat diverifikasi
+### Buat output perantara yang dapat diverifikasi \{#create-verifiable-intermediate-outputs}
 
-Ketika Claude melakukan tugas yang kompleks dan terbuka, dapat membuat kesalahan. Pola "rencana-validasi-eksekusi" menangkap kesalahan lebih awal dengan membuat Claude terlebih dahulu membuat rencana dalam format terstruktur, kemudian memvalidasi rencana tersebut dengan skrip sebelum menjalankannya.
+Ketika Claude melakukan tugas kompleks dan terbuka, ia dapat membuat kesalahan. Pola "rencanakan-validasi-eksekusi" menangkap kesalahan lebih awal dengan meminta Claude terlebih dahulu membuat rencana dalam format terstruktur, lalu memvalidasi rencana tersebut dengan skrip sebelum mengeksekusinya.
 
-**Contoh:** Bayangkan meminta Claude untuk memperbarui 50 bidang formulir dalam PDF berdasarkan spreadsheet. Tanpa validasi, Claude mungkin mereferensikan bidang yang tidak ada, membuat nilai yang bertentangan, melewatkan bidang yang diperlukan, atau menerapkan pembaruan secara tidak benar.
+**Contoh:** Bayangkan meminta Claude untuk memperbarui 50 field formulir dalam PDF berdasarkan spreadsheet. Tanpa validasi, Claude mungkin mereferensikan field yang tidak ada, membuat nilai yang bertentangan, melewatkan field yang diperlukan, atau menerapkan pembaruan secara tidak benar.
 
-**Solusi:** Gunakan pola alur kerja yang ditunjukkan di atas (pengisian formulir PDF), tetapi tambahkan file `changes.json` perantara yang divalidasi sebelum menerapkan perubahan. Alur kerja menjadi: analisis → **buat file rencana** → **validasi rencana** → eksekusi → verifikasi.
+**Solusi:** Gunakan pola alur kerja yang ditunjukkan di atas (pengisian formulir PDF), tetapi tambahkan file perantara `changes.json` yang divalidasi sebelum menerapkan perubahan. Alur kerja menjadi: analisis → **buat file rencana** → **validasi rencana** → eksekusi → verifikasi.
 
 **Mengapa pola ini berhasil:**
 - **Menangkap kesalahan lebih awal:** Validasi menemukan masalah sebelum perubahan diterapkan
 - **Dapat diverifikasi mesin:** Skrip memberikan verifikasi objektif
-- **Perencanaan yang dapat dibalik:** Claude dapat mengulangi rencana tanpa menyentuh asli
+- **Perencanaan yang dapat dibalik:** Claude dapat melakukan iterasi pada rencana tanpa menyentuh aslinya
 - **Debugging yang jelas:** Pesan kesalahan menunjuk ke masalah spesifik
 
-**Kapan menggunakan:** Operasi batch, perubahan destruktif, aturan validasi kompleks, operasi berisiko tinggi.
+**Kapan digunakan:** Operasi batch, perubahan destruktif, aturan validasi kompleks, operasi berisiko tinggi.
 
-**Tip implementasi:** Buat skrip validasi verbose dengan pesan kesalahan spesifik seperti "Field 'signature_date' tidak ditemukan. Field yang tersedia: customer_name, order_total, signature_date_signed" untuk membantu Claude memperbaiki masalah.
+**Tips implementasi:** Buat skrip validasi verbose dengan pesan kesalahan spesifik seperti "Field 'signature_date' not found. Available fields: customer_name, order_total, signature_date_signed" untuk membantu Claude memperbaiki masalah.
 
-### Dependensi paket
+### Dependensi paket \{#package-dependencies}
 
-Skill berjalan di lingkungan eksekusi kode dengan batasan khusus platform:
+Skill berjalan di lingkungan eksekusi kode dengan batasan spesifik platform:
 
 - **claude.ai:** Dapat menginstal paket dari npm dan PyPI serta menarik dari repositori GitHub
 - **Claude API:** Tidak memiliki akses jaringan dan tidak ada instalasi paket runtime
 
-Daftar paket yang diperlukan di SKILL.md Anda dan verifikasi bahwa paket tersebut tersedia di [dokumentasi alat eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool).
+Daftarkan paket yang diperlukan dalam SKILL.md Anda dan verifikasi ketersediaannya di [dokumentasi alat eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool).
 
-### Lingkungan runtime
+### Lingkungan runtime \{#runtime-environment}
 
-Skill berjalan di lingkungan eksekusi kode dengan akses filesystem, perintah bash, dan kemampuan eksekusi kode. Untuk penjelasan konseptual arsitektur ini, lihat [Arsitektur Skills](/docs/id/agents-and-tools/agent-skills/overview#the-skills-architecture) dalam ikhtisar.
+Skill berjalan di lingkungan eksekusi kode dengan akses filesystem, perintah bash, dan kemampuan eksekusi kode. Untuk penjelasan konseptual arsitektur ini, lihat [Arsitektur Skill](/docs/id/agents-and-tools/agent-skills/overview#the-skills-architecture) di ikhtisar.
 
-**Bagaimana ini mempengaruhi penulisan Anda:**
+**Bagaimana ini memengaruhi penulisan Anda:**
 
-**Bagaimana Claude mengakses Skills:**
+**Bagaimana Claude mengakses Skill:**
 
-1. **Metadata pra-dimuat:** Saat startup, nama dan deskripsi dari frontmatter YAML semua Skills dimuat ke dalam system prompt
-2. **File dibaca sesuai permintaan:** Claude menggunakan alat bash Read untuk mengakses SKILL.md dan file lainnya dari filesystem saat diperlukan
+1. **Metadata dimuat sebelumnya:** Saat startup, nama dan deskripsi dari YAML frontmatter semua Skill dimuat ke dalam prompt sistem
+2. **File dibaca sesuai permintaan:** Claude menggunakan alat Read bash untuk mengakses SKILL.md dan file lain dari filesystem saat diperlukan
 3. **Skrip dieksekusi secara efisien:** Skrip utilitas dapat dieksekusi melalui bash tanpa memuat konten lengkapnya ke dalam konteks. Hanya output skrip yang mengonsumsi token
 4. **Tidak ada penalti konteks untuk file besar:** File referensi, data, atau dokumentasi tidak mengonsumsi token konteks sampai benar-benar dibaca
 
-- **Jalur file penting:** Claude menavigasi direktori skill Anda seperti filesystem. Gunakan garis miring (`reference/guide.md`), bukan garis miring terbalik
+- **Path file penting:** Claude menavigasi direktori skill Anda seperti filesystem. Gunakan garis miring ke depan (`reference/guide.md`), bukan garis miring terbalik
 - **Beri nama file secara deskriptif:** Gunakan nama yang menunjukkan konten: `form_validation_rules.md`, bukan `doc2.md`
-- **Atur untuk penemuan:** Struktur direktori berdasarkan domain atau fitur
+- **Organisir untuk penemuan:** Strukturkan direktori berdasarkan domain atau fitur
   - Baik: `reference/finance.md`, `reference/sales.md`
   - Buruk: `docs/file1.md`, `docs/file2.md`
-- **Bundel sumber daya komprehensif:** Sertakan dokumentasi API lengkap, contoh ekstensif, dataset besar; tidak ada penalti konteks sampai diakses
-- **Lebih suka skrip untuk operasi deterministik:** Tulis `validate_form.py` daripada meminta Claude untuk menghasilkan kode validasi
-- **Buat niat eksekusi jelas:**
-  - "Jalankan `analyze_form.py` untuk mengekstrak bidang" (eksekusi)
+- **Bundel sumber daya yang komprehensif:** Sertakan dokumen API lengkap, contoh ekstensif, dataset besar; tidak ada penalti konteks sampai diakses
+- **Lebih suka skrip untuk operasi deterministik:** Tulis `validate_form.py` alih-alih meminta Claude menghasilkan kode validasi
+- **Perjelas maksud eksekusi:**
+  - "Jalankan `analyze_form.py` untuk mengekstrak field" (eksekusi)
   - "Lihat `analyze_form.py` untuk algoritma ekstraksi" (baca sebagai referensi)
-- **Uji pola akses file:** Verifikasi Claude dapat menavigasi struktur direktori Anda dengan menguji dengan permintaan nyata
+- **Uji pola akses file:** Verifikasi Claude dapat menavigasi struktur direktori Anda dengan menguji menggunakan permintaan nyata
 
 **Contoh:**
 
@@ -1031,11 +1031,11 @@ bigquery-skill/
     └── product.md (usage analytics)
 ```
 
-Ketika pengguna bertanya tentang pendapatan, Claude membaca SKILL.md, melihat referensi ke `reference/finance.md`, dan memanggil bash untuk membaca hanya file itu. File sales.md dan product.md tetap berada di filesystem, mengonsumsi nol token konteks sampai diperlukan. Model berbasis filesystem ini adalah yang memungkinkan pengungkapan progresif. Claude dapat menavigasi dan secara selektif memuat persis apa yang setiap tugas butuhkan.
+Ketika pengguna bertanya tentang pendapatan, Claude membaca SKILL.md, melihat referensi ke `reference/finance.md`, dan memanggil bash untuk membaca hanya file tersebut. File sales.md dan product.md tetap berada di filesystem, mengonsumsi nol token konteks sampai diperlukan. Model berbasis filesystem inilah yang memungkinkan progressive disclosure. Claude dapat menavigasi dan memuat secara selektif persis apa yang dibutuhkan setiap tugas.
 
-Untuk detail lengkap tentang arsitektur teknis, lihat [Bagaimana Skills bekerja](/docs/id/agents-and-tools/agent-skills/overview#how-skills-work) dalam ikhtisar Skills.
+Untuk detail lengkap tentang arsitektur teknis, lihat [Cara kerja Skill](/docs/id/agents-and-tools/agent-skills/overview#how-skills-work) di ikhtisar Skill.
 
-### Referensi alat MCP
+### Referensi alat MCP \{#mcp-tool-references}
 
 Jika Skill Anda menggunakan alat MCP (Model Context Protocol), selalu gunakan nama alat yang sepenuhnya memenuhi syarat untuk menghindari kesalahan "tool not found".
 
@@ -1043,81 +1043,81 @@ Jika Skill Anda menggunakan alat MCP (Model Context Protocol), selalu gunakan na
 
 **Contoh:**
 ```markdown
-Gunakan alat BigQuery:bigquery_schema untuk mengambil skema tabel.
-Gunakan alat GitHub:create_issue untuk membuat masalah.
+Use the BigQuery:bigquery_schema tool to retrieve table schemas.
+Use the GitHub:create_issue tool to create issues.
 ```
 
 Di mana:
 - `BigQuery` dan `GitHub` adalah nama server MCP
 - `bigquery_schema` dan `create_issue` adalah nama alat dalam server tersebut
 
-Tanpa awalan server, Claude mungkin gagal menemukan alat, terutama ketika beberapa server MCP tersedia.
+Tanpa prefiks server, Claude mungkin gagal menemukan alat, terutama ketika beberapa server MCP tersedia.
 
-### Hindari mengasumsikan alat terinstal
+### Hindari mengasumsikan alat sudah terinstal \{#avoid-assuming-tools-are-installed}
 
-Jangan asumsikan paket tersedia:
+Jangan berasumsi paket tersedia:
 
 ````markdown
-**Contoh buruk: Mengasumsikan instalasi**:
-"Gunakan perpustakaan pdf untuk memproses file."
+**Bad example: Assumes installation**:
+"Use the pdf library to process the file."
 
-**Contoh baik: Eksplisit tentang dependensi**:
-"Instal paket yang diperlukan: `pip install pypdf`
+**Good example: Explicit about dependencies**:
+"Install required package: `pip install pypdf`
 
-Kemudian gunakan:
+Then use it:
 ```python
 from pypdf import PdfReader
 reader = PdfReader("file.pdf")
 ```"
 ````
 
-## Catatan teknis
+## Catatan teknis \{#technical-notes}
 
-### Persyaratan frontmatter YAML
+### Persyaratan YAML frontmatter \{#yaml-frontmatter-requirements}
 
-Frontmatter SKILL.md memerlukan bidang `name` dan `description` dengan aturan validasi spesifik:
-- `name`: Maksimal 64 karakter, hanya huruf kecil/angka/tanda hubung, tanpa tag XML, tanpa kata yang dicadangkan
-- `description`: Maksimal 1024 karakter, tidak kosong, tanpa tag XML
+Frontmatter SKILL.md memerlukan field `name` dan `description` dengan aturan validasi spesifik:
+- `name`: Maksimum 64 karakter, hanya huruf kecil/angka/tanda hubung, tanpa tag XML, tanpa kata yang dicadangkan
+- `description`: Maksimum 1024 karakter, tidak kosong, tanpa tag XML
 
-Lihat [ikhtisar Skills](/docs/id/agents-and-tools/agent-skills/overview#skill-structure) untuk detail struktur lengkap.
+Lihat [ikhtisar Skill](/docs/id/agents-and-tools/agent-skills/overview#skill-structure) untuk detail struktur lengkap.
 
-### Anggaran token
+### Anggaran token \{#token-budgets}
 
-Jaga badan SKILL.md di bawah 500 baris untuk kinerja optimal. Jika konten Anda melebihi ini, pisahkan ke dalam file terpisah menggunakan pola pengungkapan progresif yang dijelaskan sebelumnya. Untuk detail arsitektur, lihat [ikhtisar Skills](/docs/id/agents-and-tools/agent-skills/overview#how-skills-work).
+Jaga isi SKILL.md di bawah 500 baris untuk performa optimal. Jika konten Anda melebihi ini, pisahkan ke file terpisah menggunakan pola progressive disclosure yang dijelaskan sebelumnya. Untuk detail arsitektur, lihat [ikhtisar Skill](/docs/id/agents-and-tools/agent-skills/overview#how-skills-work).
 
-## Daftar periksa untuk Skills yang efektif
+## Daftar periksa untuk Skill yang efektif \{#checklist-for-effective-skills}
 
-Sebelum berbagi Skill, verifikasi:
+Sebelum membagikan Skill, verifikasi:
 
-### Kualitas inti
-- [ ] Deskripsi spesifik dan mencakup istilah kunci
+### Kualitas inti \{#core-quality}
+- [ ] Deskripsi spesifik dan menyertakan istilah kunci
 - [ ] Deskripsi mencakup apa yang dilakukan Skill dan kapan menggunakannya
-- [ ] Badan SKILL.md di bawah 500 baris
-- [ ] Detail tambahan ada di file terpisah (jika diperlukan)
-- [ ] Tidak ada informasi sensitif waktu (atau di bagian "pola lama")
-- [ ] Terminologi konsisten di seluruh
+- [ ] Isi SKILL.md di bawah 500 baris
+- [ ] Detail tambahan berada di file terpisah (jika diperlukan)
+- [ ] Tidak ada informasi sensitif terhadap waktu (atau berada di bagian "pola lama")
+- [ ] Terminologi konsisten di seluruh bagian
 - [ ] Contoh konkret, bukan abstrak
-- [ ] Referensi file satu level dalam
-- [ ] Pengungkapan progresif digunakan dengan tepat
-- [ ] Alur kerja memiliki langkah yang jelas
+- [ ] Referensi file satu tingkat kedalaman
+- [ ] Progressive disclosure digunakan dengan tepat
+- [ ] Alur kerja memiliki langkah-langkah yang jelas
 
-### Kode dan skrip
-- [ ] Skrip menyelesaikan masalah daripada menyerahkan kepada Claude
+### Kode dan skrip \{#code-and-scripts}
+- [ ] Skrip menyelesaikan masalah alih-alih melemparkannya ke Claude
 - [ ] Penanganan kesalahan eksplisit dan membantu
-- [ ] Tidak ada "konstanta voodoo" (semua nilai dibenarkan)
+- [ ] Tidak ada "voodoo constants" (semua nilai dijustifikasi)
 - [ ] Paket yang diperlukan tercantum dalam instruksi dan diverifikasi tersedia
 - [ ] Skrip memiliki dokumentasi yang jelas
-- [ ] Tidak ada jalur gaya Windows (semua garis miring)
+- [ ] Tidak ada path bergaya Windows (semua garis miring ke depan)
 - [ ] Langkah validasi/verifikasi untuk operasi kritis
-- [ ] Loop umpan balik disertakan untuk tugas yang penting untuk kualitas
+- [ ] Feedback loop disertakan untuk tugas yang kritis terhadap kualitas
 
-### Pengujian
+### Pengujian \{#testing}
 - [ ] Setidaknya tiga evaluasi dibuat
 - [ ] Diuji dengan Haiku, Sonnet, dan Opus
 - [ ] Diuji dengan skenario penggunaan nyata
-- [ ] Umpan balik tim dimasukkan (jika berlaku)
+- [ ] Umpan balik tim digabungkan (jika berlaku)
 
-## Langkah berikutnya
+## Langkah selanjutnya \{#next-steps}
 
 <CardGroup cols={2}>
   <Card
@@ -1128,17 +1128,17 @@ Sebelum berbagi Skill, verifikasi:
     Buat Skill pertama Anda
   </Card>
   <Card
-    title="Gunakan Skills di Claude Code"
+    title="Gunakan Skill di Claude Code"
     icon="terminal"
     href="https://code.claude.com/docs/en/skills"
   >
-    Buat dan kelola Skills di Claude Code
+    Buat dan kelola Skill di Claude Code
   </Card>
   <Card
-    title="Gunakan Skills dengan API"
+    title="Gunakan Skill dengan API"
     icon="code"
     href="/docs/id/build-with-claude/skills-guide"
   >
-    Unggah dan gunakan Skills secara terprogram
+    Unggah dan gunakan Skill secara terprogram
   </Card>
 </CardGroup>

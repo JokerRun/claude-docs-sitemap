@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/environments/list
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 721e0f5407df1c9a6ae40155de04fe4b7e4f4b884a0cdae4cb3d2cf545201195
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 881e3769d670abfff01a20bb4d4e81b9b086a5e141a68af6f7119e2368b15db5
 ---
 
 ## List Environments
@@ -33,7 +33,7 @@ List environments with pagination support.
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 23 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 25 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -86,6 +86,10 @@ List environments with pagination support.
     - `:"cache-diagnosis-2026-04-07"`
 
     - `:"thinking-token-count-2026-05-13"`
+
+    - `:"server-side-fallback-2026-06-01"`
+
+    - `:"fallback-credit-2026-06-01"`
 
 ### Returns
 

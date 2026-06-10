@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/models/list
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: e13043a9a010d04f9aab3f6f63394b3867084c4637edba19a3ec1420a7fcf8e2
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: ae41dcdc7894c35f0647e651861a82bc34c94b1885dbce72c314a42e0a16a3c7
 ---
 
 ## List Models
@@ -89,6 +89,10 @@ The Models API response can be used to determine which models are available for 
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
 
+    - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
+
+    - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
 ### Returns
 
 - `class BetaModelInfo:`
@@ -96,6 +100,10 @@ The Models API response can be used to determine which models are available for 
   - `String id`
 
     Unique model identifier.
+
+  - `Optional<List<String>> allowedFallbackModels`
+
+    Model IDs this model accepts as `fallbacks[i].model` on the Messages API. An empty list means the `fallbacks` parameter is not supported for this model as primary.
 
   - `Optional<BetaModelCapabilities> capabilities`
 
@@ -249,6 +257,9 @@ public final class Main {
   "data": [
     {
       "id": "claude-opus-4-6",
+      "allowed_fallback_models": [
+        "string"
+      ],
       "capabilities": {
         "batch": {
           "supported": true

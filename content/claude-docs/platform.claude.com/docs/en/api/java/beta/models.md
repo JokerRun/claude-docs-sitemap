@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/models
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: d248509304e785bb2a69421ab76301dc25dd73cedf8b8d4333f9ba91e943699d
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 698dd05a96ee042c09b5904ffb752fe652cab39bcf78597c1f9cf8bef9ce7f26
 ---
 
 # Models
@@ -91,6 +91,10 @@ The Models API response can be used to determine which models are available for 
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
 
+    - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
+
+    - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
 ### Returns
 
 - `class BetaModelInfo:`
@@ -98,6 +102,10 @@ The Models API response can be used to determine which models are available for 
   - `String id`
 
     Unique model identifier.
+
+  - `Optional<List<String>> allowedFallbackModels`
+
+    Model IDs this model accepts as `fallbacks[i].model` on the Messages API. An empty list means the `fallbacks` parameter is not supported for this model as primary.
 
   - `Optional<BetaModelCapabilities> capabilities`
 
@@ -251,6 +259,9 @@ public final class Main {
   "data": [
     {
       "id": "claude-opus-4-6",
+      "allowed_fallback_models": [
+        "string"
+      ],
       "capabilities": {
         "batch": {
           "supported": true
@@ -399,6 +410,10 @@ The Models API response can be used to determine information about a specific mo
 
     - `THINKING_TOKEN_COUNT_2026_05_13("thinking-token-count-2026-05-13")`
 
+    - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
+
+    - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
 ### Returns
 
 - `class BetaModelInfo:`
@@ -406,6 +421,10 @@ The Models API response can be used to determine information about a specific mo
   - `String id`
 
     Unique model identifier.
+
+  - `Optional<List<String>> allowedFallbackModels`
+
+    Model IDs this model accepts as `fallbacks[i].model` on the Messages API. An empty list means the `fallbacks` parameter is not supported for this model as primary.
 
   - `Optional<BetaModelCapabilities> capabilities`
 
@@ -557,6 +576,9 @@ public final class Main {
 ```json
 {
   "id": "claude-opus-4-6",
+  "allowed_fallback_models": [
+    "string"
+  ],
   "capabilities": {
     "batch": {
       "supported": true
@@ -807,6 +829,10 @@ public final class Main {
   - `String id`
 
     Unique model identifier.
+
+  - `Optional<List<String>> allowedFallbackModels`
+
+    Model IDs this model accepts as `fallbacks[i].model` on the Messages API. An empty list means the `fallbacks` parameter is not supported for this model as primary.
 
   - `Optional<BetaModelCapabilities> capabilities`
 

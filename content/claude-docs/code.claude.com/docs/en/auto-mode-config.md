@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/auto-mode-config
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: df287a50cf692cb34de6dd30ea1580172048f7882556b87e7595ce1655b678a4
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: 99b3ff13d9301787418f230fd90a8285126fe983600d5e9749c625e614198c25
 ---
 
 > ## Documentation Index
@@ -13,7 +13,7 @@ sha256: df287a50cf692cb34de6dd30ea1580172048f7882556b87e7595ce1655b678a4
 
 > Tell the auto mode classifier which repos, buckets, and domains your organization trusts. Set environment context, override the default block and allow rules, and inspect your effective config with the auto-mode CLI subcommands.
 
-[Auto mode](/en/permission-modes#eliminate-prompts-with-auto-mode) lets Claude Code run without permission prompts by routing each tool call through a classifier that blocks anything irreversible, destructive, or aimed outside your environment. Use the `autoMode` settings block to tell that classifier which repos, buckets, and domains your organization trusts, so it stops blocking routine internal operations.
+[Auto mode](/en/permission-modes#eliminate-prompts-with-auto-mode) lets Claude Code run without routine permission prompts by routing tool calls through a classifier that blocks anything irreversible, destructive, or aimed outside your environment. Deny and explicit ask rules are evaluated before the classifier and still block or prompt. Use the `autoMode` settings block to tell that classifier which repos, buckets, and domains your organization trusts, so it stops blocking routine internal operations.
 
 <Note>
   Auto mode is available to all users on the Anthropic API. On Amazon Bedrock, Google Cloud Vertex AI, and Microsoft Foundry, you must first [set `CLAUDE_CODE_ENABLE_AUTO_MODE`](/en/permission-modes#enable-auto-mode-on-bedrock-vertex-ai-or-foundry). If Claude Code reports auto mode as unavailable for your account, check the [full requirements](/en/permission-modes#eliminate-prompts-with-auto-mode), which also cover the supported models and admin enablement on Team and Enterprise plans.
@@ -40,7 +40,7 @@ For rules that apply across projects, such as trusted infrastructure or organiza
 | Scope                          | File                                            | Use for                                              |
 | :----------------------------- | :---------------------------------------------- | :--------------------------------------------------- |
 | One developer                  | `~/.claude/settings.json`                       | Personal trusted infrastructure                      |
-| One project, one developer     | `.claude/settings.local.json`                   | Per-project trusted buckets or services, gitignored  |
+| One project, one developer     | `.claude/settings.local.json`                   | Per-project trusted buckets or services              |
 | Organization-wide              | [Managed settings](/en/server-managed-settings) | Trusted infrastructure distributed to all developers |
 | `--settings` flag or Agent SDK | Inline JSON                                     | Per-invocation overrides for automation              |
 

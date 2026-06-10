@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/messages/batches/results
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 02592d1004b759595b249a36f6c0d86154a5c40aacb6edf049300be483266f23
+fetched_at: 2026-06-10T03:15:54.339721Z
+sha256: f3abbab7a6bbe16faa93d56402ac751bd59f1f0518e91980f61276ce5e4bda71
 ---
 
 ## Retrieve Message Batch results
@@ -732,6 +732,14 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `CLAUDE_FABLE_5("claude-fable-5")`
+
+            Next generation of intelligence for the hardest knowledge work and coding problems
+
+          - `CLAUDE_MYTHOS_5("claude-mythos-5")`
+
+            Most capable model for cybersecurity and biology research
+
           - `CLAUDE_OPUS_4_8("claude-opus-4-8")`
 
             Frontier intelligence for long-running agents and coding
@@ -825,6 +833,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `CYBER("cyber")`
 
             - `BIO("bio")`
+
+            - `REASONING_EXTRACTION("reasoning_extraction")`
 
           - `Optional<String> explanation`
 
