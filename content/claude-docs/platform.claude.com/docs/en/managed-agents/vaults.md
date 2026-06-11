@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/vaults
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 5b5c1cfc90bb667efb532e50d6da8eb2e26bff953c694d40331f77334f3172be
+fetched_at: 2026-06-11T03:14:59.596724Z
+sha256: 3f4dd8dd78479e1cfc3e2e777541abe41f56a5a2513bcd6062efc6fc04d0b582
 ---
 
 # Authenticate with vaults
@@ -545,14 +545,14 @@ curl --fail-with-body -sS "https://api.anthropic.com/v1/vaults/$vault_id/credent
 {
   "auth": {
     "type": "environment_variable",
-    "secret_name": "TWILIO_API_KEY",
+    "secret_name": "NOTION_API_KEY",
     "secret_value": "sk-your-secret-here",
     "networking": {
       "type": "limited",
-      "allowed_hosts": ["api.twilio.com", "*.twilio.com"]
+      "allowed_hosts": ["api.notion.com"]
     }
   },
-  "display_name": "Twilio API key for sandbox"
+  "display_name": "Notion API key for sandbox"
 }
 EOF
 ````
@@ -560,14 +560,14 @@ EOF
   
 ````bash
 ant beta:vaults:credentials create --vault-id "$VAULT_ID" <<'YAML'
-display_name: Twilio API key for sandbox
+display_name: Notion API key for sandbox
 auth:
   type: environment_variable
-  secret_name: TWILIO_API_KEY
+  secret_name: NOTION_API_KEY
   secret_value: sk-your-secret-here
   networking:
     type: limited
-    allowed_hosts: [api.twilio.com, "*.twilio.com"]
+    allowed_hosts: [api.notion.com]
 YAML
 ````
 
@@ -577,14 +577,14 @@ env_credential = client.beta.vaults.credentials.create(
     vault_id=vault.id,
     auth={
         "type": "environment_variable",
-        "secret_name": "TWILIO_API_KEY",
+        "secret_name": "NOTION_API_KEY",
         "secret_value": "sk-your-secret-here",
         "networking": {
             "type": "limited",
-            "allowed_hosts": ["api.twilio.com", "*.twilio.com"],
+            "allowed_hosts": ["api.notion.com"],
         },
     },
-    display_name="Twilio API key for sandbox",
+    display_name="Notion API key for sandbox",
 )
 ````
 
@@ -593,14 +593,14 @@ env_credential = client.beta.vaults.credentials.create(
 const envVarCredential = await client.beta.vaults.credentials.create(vault.id, {
   auth: {
     type: "environment_variable",
-    secret_name: "TWILIO_API_KEY",
+    secret_name: "NOTION_API_KEY",
     secret_value: "sk-your-secret-here",
     networking: {
       type: "limited",
-      allowed_hosts: ["api.twilio.com", "*.twilio.com"],
+      allowed_hosts: ["api.notion.com"],
     },
   },
-  display_name: "Twilio API key for sandbox",
+  display_name: "Notion API key for sandbox",
 });
 ````
 
@@ -608,16 +608,16 @@ const envVarCredential = await client.beta.vaults.credentials.create(vault.id, {
 ````csharp
 var envVarCredential = await client.Beta.Vaults.Credentials.Create(vault.ID, new()
 {
-    DisplayName = "Twilio API key for sandbox",
+    DisplayName = "Notion API key for sandbox",
     Auth = new BetaManagedAgentsEnvironmentVariableCreateParams
     {
         Type = BetaManagedAgentsEnvironmentVariableCreateParamsType.EnvironmentVariable,
-        SecretName = "TWILIO_API_KEY",
+        SecretName = "NOTION_API_KEY",
         SecretValue = "sk-your-secret-here",
         Networking = new BetaManagedAgentsLimitedCredentialNetworkingParams
         {
             Type = BetaManagedAgentsLimitedCredentialNetworkingParamsType.Limited,
-            AllowedHosts = ["api.twilio.com", "*.twilio.com"],
+            AllowedHosts = ["api.notion.com"],
         },
     },
 });
@@ -626,16 +626,16 @@ var envVarCredential = await client.Beta.Vaults.Credentials.Create(vault.ID, new
   
 ````go
 envVarCredential, err := client.Beta.Vaults.Credentials.New(ctx, vault.ID, anthropic.BetaVaultCredentialNewParams{
-	DisplayName: anthropic.String("Twilio API key for sandbox"),
+	DisplayName: anthropic.String("Notion API key for sandbox"),
 	Auth: anthropic.BetaVaultCredentialNewParamsAuthUnion{
 		OfEnvironmentVariable: &anthropic.BetaManagedAgentsEnvironmentVariableCreateParams{
 			Type:        anthropic.BetaManagedAgentsEnvironmentVariableCreateParamsTypeEnvironmentVariable,
-			SecretName:  "TWILIO_API_KEY",
+			SecretName:  "NOTION_API_KEY",
 			SecretValue: "sk-your-secret-here",
 			Networking: anthropic.BetaManagedAgentsCredentialNetworkingParamsUnion{
 				OfLimited: &anthropic.BetaManagedAgentsLimitedCredentialNetworkingParams{
 					Type:         anthropic.BetaManagedAgentsLimitedCredentialNetworkingParamsTypeLimited,
-					AllowedHosts: []string{"api.twilio.com", "*.twilio.com"},
+					AllowedHosts: []string{"api.notion.com"},
 				},
 			},
 		},
@@ -651,12 +651,12 @@ _ = envVarCredential
 ````java
 var envVarCredential = client.beta().vaults().credentials().create(vault.id(),
     CredentialCreateParams.builder()
-        .displayName("Twilio API key for sandbox")
+        .displayName("Notion API key for sandbox")
         .auth(BetaManagedAgentsEnvironmentVariableCreateParams.builder()
             .type(BetaManagedAgentsEnvironmentVariableCreateParams.Type.ENVIRONMENT_VARIABLE)
-            .secretName("TWILIO_API_KEY")
+            .secretName("NOTION_API_KEY")
             .secretValue("sk-your-secret-here")
-            .limitedNetworking(List.of("api.twilio.com", "*.twilio.com"))
+            .limitedNetworking(List.of("api.notion.com"))
             .build())
         .build());
 ````
@@ -665,14 +665,14 @@ var envVarCredential = client.beta().vaults().credentials().create(vault.id(),
 ````php
 $envVarCredential = $client->beta->vaults->credentials->create(
     vaultID: $vault->id,
-    displayName: 'Twilio API key for sandbox',
+    displayName: 'Notion API key for sandbox',
     auth: ManagedAgentsEnvironmentVariableCreateParams::with(
         type: 'environment_variable',
-        secretName: 'TWILIO_API_KEY',
+        secretName: 'NOTION_API_KEY',
         secretValue: 'sk-your-secret-here',
         networking: ManagedAgentsLimitedCredentialNetworkingParams::with(
             type: 'limited',
-            allowedHosts: ['api.twilio.com', '*.twilio.com'],
+            allowedHosts: ['api.notion.com'],
         ),
     ),
 );
@@ -682,14 +682,14 @@ $envVarCredential = $client->beta->vaults->credentials->create(
 ````ruby
 env_credential = client.beta.vaults.credentials.create(
   vault.id,
-  display_name: "Twilio API key for sandbox",
+  display_name: "Notion API key for sandbox",
   auth: {
     type: "environment_variable",
-    secret_name: "TWILIO_API_KEY",
+    secret_name: "NOTION_API_KEY",
     secret_value: "sk-your-secret-here",
     networking: {
       type: "limited",
-      allowed_hosts: ["api.twilio.com", "*.twilio.com"]
+      allowed_hosts: ["api.notion.com"]
     }
   }
 )

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 6410797078e6550e27ee4e3d5dc683ecf68defb03035416653459f9a41c01094
+fetched_at: 2026-06-11T03:14:59.596724Z
+sha256: cd8123840ea17c40088fb01f83bbc11c558780614ee239743a745ece54c53f0d
 ---
 
 # Claude di Amazon Bedrock (legacy)
@@ -61,14 +61,14 @@ go get github.com/anthropics/anthropic-sdk-go/bedrock
 <Tab title="Java">
 <CodeGroup>
 ```groovy Gradle
-implementation("com.anthropic:anthropic-java-bedrock:2.39.0")
+implementation("com.anthropic:anthropic-java-bedrock:2.40.0")
 ```
 
 ```xml Maven
 <dependency>
     <groupId>com.anthropic</groupId>
     <artifactId>anthropic-java-bedrock</artifactId>
-    <version>2.39.0</version>
+    <version>2.40.0</version>
 </dependency>
 ```
 
@@ -372,8 +372,8 @@ Contoh berikut menunjukkan cara menghasilkan teks dari Claude di Bedrock:
     // Baca selengkapnya di https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp.html.
     awsSessionToken: "<session_token>",
 
-    // awsRegion mengubah region AWS tujuan pengiriman
-    // permintaan. Secara default, SDK membaca AWS_REGION, dan jika
+    // awsRegion mengubah region AWS tujuan permintaan
+    // dikirim. Secara default, SDK membaca AWS_REGION, dan jika
     // tidak ada, default-nya adalah us-east-1. Perhatikan bahwa
     // SDK tidak membaca ~/.aws/config untuk region.
     awsRegion: "us-west-2"
@@ -544,7 +544,7 @@ Lihat [client SDK](/docs/id/cli-sdks-libraries/overview) untuk detail lebih lanj
 Anda dapat melakukan autentikasi dengan Bedrock menggunakan bearer token alih-alih kredensial AWS. Ini berguna di lingkungan korporat di mana tim memerlukan akses ke Bedrock tanpa mengelola kredensial AWS, IAM role, atau izin tingkat akun.
 
 <Note>
-Autentikasi bearer token didukung di SDK C#, Go, dan Java. SDK PHP, Python, TypeScript, dan Ruby hanya menggunakan AWS SigV4 signing.
+Autentikasi bearer token didukung di SDK C#, Go, dan Java. SDK PHP, Python, TypeScript, dan Ruby hanya menggunakan penandatanganan AWS SigV4.
 </Note>
 
 Pendekatan paling sederhana adalah mengatur variabel lingkungan `AWS_BEARER_TOKEN_BEDROCK`, yang dideteksi secara otomatis oleh setiap SDK saat menyelesaikan kredensial dari lingkungan.
@@ -650,7 +650,7 @@ Mengaktifkan layanan ini tidak memberikan AWS atau Anthropic akses apa pun ke ko
 </Note>
 
 ## Dukungan fitur \{#feature-support}
-Untuk daftar fitur lengkap dengan ketersediaan Amazon Bedrock, lihat [Ikhtisar fitur](/docs/id/build-with-claude/overview).
+Untuk daftar fitur lengkap dengan ketersediaan Amazon Bedrock, lihat [Ringkasan fitur](/docs/id/build-with-claude/overview).
 
 ### Sorotan fitur yang didukung \{#supported-feature-highlights}
 
@@ -704,7 +704,7 @@ Ini berlaku untuk Claude Sonnet 4.5 dan model mendatang saja. Model yang lebih l
 - Menyediakan ketersediaan dan uptime maksimum
 - Secara dinamis merutekan permintaan ke region dengan kapasitas yang tersedia
 - Tidak ada premium harga
-- Terbaik untuk aplikasi di mana residensi data fleksibel
+- Terbaik untuk aplikasi di mana residensi data bersifat fleksibel
 
 **Endpoint regional (CRIS):**
 - Merutekan lalu lintas melalui region geografis tertentu
@@ -836,7 +836,7 @@ $message = $client->messages->create(
 ```ruby Ruby nocheck
 require "anthropic"
 
-# Kredensial default mengambil region dari variabel lingkungan AWS_REGION
+# Kredensial default menentukan region dari variabel lingkungan AWS_REGION
 client = Anthropic::BedrockClient.new
 
 message = client.messages.create(

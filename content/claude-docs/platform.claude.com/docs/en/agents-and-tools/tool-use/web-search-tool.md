@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 99b2fb12b007b134b9c2627a583cf69f2af5167c8dcffe1899b5ce9cb60043c2
+fetched_at: 2026-06-11T03:14:59.596724Z
+sha256: 6ac888ba1c3e7c36c0af86ad64b89f152bd95a123ebc62e1afbb9784c6225951
 ---
 
 # Web search tool
@@ -11,7 +11,7 @@ sha256: 99b2fb12b007b134b9c2627a583cf69f2af5167c8dcffe1899b5ce9cb60043c2
 
 The web search tool gives Claude direct access to real-time web content, allowing it to answer questions with up-to-date information beyond its knowledge cutoff. The response includes citations for sources drawn from search results.
 
-The latest web search tool version (`web_search_20260209`) supports **dynamic filtering** with Claude Opus 4.8, [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.7, Claude Opus 4.6, and Claude Sonnet 4.6. Claude can write and execute code to filter search results before they reach the context window, keeping only relevant information and discarding the rest. This leads to more accurate responses while reducing token consumption. The previous tool version (`web_search_20250305`) remains available without dynamic filtering.
+The latest web search tool version (`web_search_20260209`) supports **dynamic filtering** with Claude Fable 5, Claude Opus 4.8, Claude Mythos 5, [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.7, Claude Opus 4.6, and Claude Sonnet 4.6. Claude can write and execute code to filter search results before they reach the context window, keeping only relevant information and discarding the rest. This leads to more accurate responses while reducing token consumption. The previous tool version (`web_search_20250305`) remains available without dynamic filtering.
 
 <Note>
 For [Claude Mythos Preview](https://anthropic.com/glasswing), web search is supported on the Claude API, Microsoft Foundry, and Vertex AI. Web search is not available for Mythos Preview on Amazon Bedrock or [Claude Platform on AWS](/docs/en/build-with-claude/claude-platform-on-aws).

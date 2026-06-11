@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/troubleshooting-tool-use
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: f4429af8adbe7bc5acafac24a6a88ef2576aeaf64e0ec2a96b8e25c450cfcb8c
+fetched_at: 2026-06-11T03:14:59.596724Z
+sha256: be5ceecfa1962260942cf055118c57b316ecf8ecdb334222bb81c311d02c2bbd
 ---
 
 # Troubleshooting tool use
@@ -49,6 +49,12 @@ Symptom-to-fix tables for the most common tool-use errors. Each fix cross-refere
 | `tool_use ids were found without tool_result blocks immediately after` | Missing `tool_result` for some `tool_use` ids, or `tool_result` is not the first content block in the user message | Return one `tool_result` for every `tool_use` block in the assistant response. Put `tool_result` blocks before any text. See [Handle tool calls](/docs/en/agents-and-tools/tool-use/handle-tool-calls) and [Parallel tool use](/docs/en/agents-and-tools/tool-use/parallel-tool-use). |
 | `Input schema is not compatible with strict mode: string patterns are not supported` | Using `pattern` with `strict: true` | Remove the pattern or drop `strict: true`. The `pattern` keyword is not in the supported JSON Schema subset yet. |
 | `All tools have defer_loading: true` | No tools visible to the model | At least one tool must be immediately loaded. The tool search tool itself must never have `defer_loading: true`. |
+
+## Error: thinking blocks cannot be modified
+
+If a request fails with a 400 `invalid_request_error` whose message contains `` `thinking` or `redacted_thinking` blocks in the latest assistant message cannot be modified `` when continuing a conversation after a tool call, your application is altering the assistant's thinking blocks before sending them back. Send the entire assistant message back unchanged, then append your `tool_result`.
+
+See [Thinking blocks cannot be modified](/docs/en/api/errors#thinking-blocks-cannot-be-modified) for the full error and fix steps.
 
 ## Claude flags tool results as prompt injection
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 8e427a833e81829e8acb2850471f9b8a596c1cc2afc8b4491d4a540f53f683fe
+fetched_at: 2026-06-11T03:14:59.596724Z
+sha256: e4f645f99150707e470d366801c3e6e3e368ffad9a75299477c226e12e3caf70
 ---
 
 # Tool search tool
@@ -846,7 +846,7 @@ You can include the tool search tool in the [Messages Batches API](/docs/en/buil
 - **Maximum tools:** 10,000 tools in your catalog
 - **Search results:** Returns 3-5 most relevant tools per search
 - **Pattern length:** Maximum 200 characters for regex patterns
-- **Model support:** [Claude Mythos Preview](https://anthropic.com/glasswing), Sonnet 4.0+, Opus 4.0+, Haiku 4.5+
+- **Model support:** Claude Fable 5, Claude Mythos 5, [Claude Mythos Preview](https://anthropic.com/glasswing), Sonnet 4.0+, Opus 4.0+, Haiku 4.5+
 
 ### When to use tool search
 

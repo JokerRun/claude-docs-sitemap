@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: b31af5d3f9f1adefecafc41617b45f7abe13b218c0c054d9b7f8cb76e84d0220
+fetched_at: 2026-06-11T03:14:59.596724Z
+sha256: 94485e8a665acf4c8bef86af511d33cbacae454d54ebf3b51932c8ae96995311
 ---
 
 # Memory tool
@@ -373,7 +373,7 @@ Shows directory contents or file contents with optional line ranges:
 #### Return values
 
 **For directories:** Return a listing that shows files and directories with their sizes:
-```text
+```text nowrap
 Here're the files and directories up to 2 levels deep in {path}, excluding hidden items and node_modules:
 {size}    {path}
 {size}    {path}/{filename1}
@@ -398,7 +398,7 @@ Line number formatting:
 - **Line limit**: Files with more than 999,999 lines should return an error: `"File {path} exceeds maximum line limit of 999,999 lines."`
 
 **Example output:**
-```text
+```text nowrap
 Here's the content of /memories/notes.txt with line numbers:
      1	Hello World
      2	This is line two

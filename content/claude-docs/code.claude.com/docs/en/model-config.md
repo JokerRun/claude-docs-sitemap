@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/model-config
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: dd8db85484c6d68e768910341c4d828caa39d8c8d28ef24e8dc34d1113b0d9b3
+fetched_at: 2026-06-11T03:14:59.596724Z
+sha256: 3a2d29bed9caa17ae743b30d45e276c80f995304f2890baaaf1cb902f3500186
 ---
 
 > ## Documentation Index
@@ -55,7 +55,7 @@ Aliases point to the recommended version for your provider and update over time.
 
 ### Work with Fable 5
 
-[Claude Fable 5](https://platform.claude.com/docs/en/about-claude/models/introducing-claude-fable-5) is the most capable model in Claude Code, suited to tasks larger than a single sitting. It sustains long autonomous sessions, investigates before acting, and verifies its work more often than smaller models.
+[Claude Fable 5](https://platform.claude.com/docs/en/about-claude/models/introducing-claude-fable-5-and-claude-mythos-5) is the most capable model in Claude Code, suited to tasks larger than a single sitting. It sustains long autonomous sessions, investigates before acting, and verifies its work more often than smaller models.
 
 Fable 5 is not the default model. Select it with `/model fable`. Requests that its safety classifiers flag, most often in cybersecurity and biology domains, trigger [automatic model fallback](#automatic-model-fallback).
 

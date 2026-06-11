@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 8b0dcaa4f00f0f40751e4931e930e9bc092833cfb756bc485b5c121bb3b8157a
+fetched_at: 2026-06-11T03:14:59.596724Z
+sha256: e86144f05fbbdff9a15424d9810f1048252797b265348559e034ffd571882bbc
 ---
 
 # Agent Skills
@@ -92,7 +92,7 @@ Ketika Anda meminta sesuatu yang cocok dengan deskripsi Skill, Claude membaca SK
 
 **Jenis konten: Instruksi, kode, dan sumber daya**. Skills dapat menyertakan materi tambahan:
 
-```text
+```text nowrap
 pdf-skill/
 ├── SKILL.md (main instructions)
 ├── FORMS.md (form-filling guide)

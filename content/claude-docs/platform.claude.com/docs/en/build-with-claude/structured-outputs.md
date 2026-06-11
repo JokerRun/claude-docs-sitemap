@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/structured-outputs
-fetched_at: 2026-06-09T03:16:00.501901Z
-sha256: 8c225dd2f6ee9876f2397116d4ccd0a63a8c3fcd9e4bf97081d83e4e23b82c35
+fetched_at: 2026-06-11T03:14:59.596724Z
+sha256: 3d528ce7d726d124914a7204071aefb1b12545ca396d6c1a5f8885f0923aa6b2
 ---
 
 # Structured outputs
@@ -19,7 +19,7 @@ Structured outputs constrain Claude's responses to follow a specific schema, ens
 You can use these features independently or together in the same request.
 
 <Note>
-Structured outputs are generally available on the Claude API for Claude Opus 4.8, [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 4.6, Claude Sonnet 4.5, Claude Opus 4.5, and Claude Haiku 4.5. On Amazon Bedrock, structured outputs are generally available for Claude Opus 4.6, Claude Sonnet 4.6, Claude Sonnet 4.5, Claude Opus 4.5, and Claude Haiku 4.5; Claude Opus 4.7 and Claude Mythos Preview are available through [Claude in Amazon Bedrock](/docs/en/build-with-claude/claude-in-amazon-bedrock) (the Messages-API Bedrock endpoint). Structured outputs are available on [Claude Platform on AWS](/docs/en/build-with-claude/claude-platform-on-aws) and in beta on [Microsoft Foundry](/docs/en/build-with-claude/claude-in-microsoft-foundry). On [Vertex AI](/docs/en/build-with-claude/claude-on-vertex-ai), structured outputs are generally available for Claude Opus 4.8, Claude Mythos Preview, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 4.6, Claude Sonnet 4.5, Claude Opus 4.5, and Claude Haiku 4.5.
+Structured outputs are generally available on the Claude API for Claude Fable 5, Claude Mythos 5, Claude Opus 4.8, [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 4.6, Claude Sonnet 4.5, Claude Opus 4.5, and Claude Haiku 4.5. On Amazon Bedrock, structured outputs are generally available for Claude Opus 4.6, Claude Sonnet 4.6, Claude Sonnet 4.5, Claude Opus 4.5, and Claude Haiku 4.5; Claude Opus 4.7 and Claude Mythos Preview are available through [Claude in Amazon Bedrock](/docs/en/build-with-claude/claude-in-amazon-bedrock) (the Messages-API Bedrock endpoint). Structured outputs are available on [Claude Platform on AWS](/docs/en/build-with-claude/claude-platform-on-aws) and in beta on [Microsoft Foundry](/docs/en/build-with-claude/claude-in-microsoft-foundry). On [Vertex AI](/docs/en/build-with-claude/claude-on-vertex-ai), structured outputs are generally available for Claude Fable 5, Claude Mythos 5, Claude Opus 4.8, Claude Mythos Preview, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 4.6, Claude Sonnet 4.5, Claude Opus 4.5, and Claude Haiku 4.5.
 </Note>
 
 <Note>

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/extended-thinking
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 4db7e8c0387776552115d0736e5e2e1bb647b1e90c574f8eba9b69fbbd1634c9
+fetched_at: 2026-06-11T03:14:59.596724Z
+sha256: 8f8c05ec6f3019522965b8f77c2063cac6882fe138ba7412ef0cf0bf22f4b5d1
 ---
 
 # Membangun dengan pemikiran diperpanjang
@@ -2048,7 +2048,7 @@ Berikut adalah beberapa pertimbangan penting untuk pemikiran interleaved:
 
 Tanpa pemikiran interleaved, Claude berpikir sekali di awal giliran asisten. Respons berikutnya setelah hasil alat berlanjut tanpa blok pemikiran baru.
 
-```text
+```text nowrap
 User: "What's the total revenue if we sold 150 units at $50 each,
        and how does this compare to our average monthly revenue?"
 
@@ -2071,7 +2071,7 @@ Turn 3: [text] "The total revenue is $7,500, which is 44% above your
 
 Dengan pemikiran interleaved diaktifkan, Claude dapat berpikir setelah menerima setiap hasil alat, memungkinkannya untuk bernalar tentang hasil antara sebelum melanjutkan.
 
-```text
+```text nowrap
 User: "What's the total revenue if we sold 150 units at $50 each,
        and how does this compare to our average monthly revenue?"
 

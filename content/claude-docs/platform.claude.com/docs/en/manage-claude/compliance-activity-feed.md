@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/compliance-activity-feed
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: 4692f2d4dcb3b31bca0ea526415350f302207738507b3309c53c43d9d98e35ba
+fetched_at: 2026-06-11T03:14:59.596724Z
+sha256: 91eeaea3397a60df2030e8d091a014fa2cf624c533a5f16bf4a0a765025e8968
 ---
 
 # Query the Activity Feed
@@ -136,7 +136,7 @@ A production **backfill** loop pages through older activities by driving iterati
 2. Page through with `after_id=<last_id>` until `has_more` is `false`.
 3. Persist the final `last_id` only after you've stored every page it covers.
 
-```text
+```text nowrap
 cursor = stored_cursor
 loop:
   if cursor is not null:

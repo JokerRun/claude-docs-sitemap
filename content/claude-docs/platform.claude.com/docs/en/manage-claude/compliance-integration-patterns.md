@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/compliance-integration-patterns
-fetched_at: 2026-05-19T03:15:49.705713Z
-sha256: b99c9f6eae2560ac40b066bb16956307274d3f69405b86919fcdbb92108e1388
+fetched_at: 2026-06-11T03:14:59.596724Z
+sha256: 4cc084e4f76f7f847612c1a3a378966f6c549a7eec8d376a5aca1d58a664b300
 ---
 
 # Design your compliance integration
@@ -80,7 +80,7 @@ Page through until `has_more` is `false`, then persist `first_id` from the final
 
 A production **catch-up** loop fetches activities recorded since your last poll by driving iteration off `has_more` and `first_id`:
 
-```text
+```text nowrap
 cursor = stored_cursor
 loop:
   page = GET /v1/compliance/activities?before_id={cursor}&limit=5000

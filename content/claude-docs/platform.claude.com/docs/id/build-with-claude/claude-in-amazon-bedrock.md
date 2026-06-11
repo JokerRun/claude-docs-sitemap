@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 23af5eba9a250ffad1cdc467d0b7368762be695d54b93b21fe2ea4852051b609
+fetched_at: 2026-06-11T03:14:59.596724Z
+sha256: 6bdb1f8f279aebf74e0d6d68d520667a9c8cba0b6a227d5333f3574f8edc6d81
 ---
 
 # Claude di Amazon Bedrock
@@ -11,10 +11,10 @@ Akses model Claude melalui Amazon Bedrock dengan autentikasi, penagihan, dan bat
 
 ---
 
-Panduan ini memandu Anda dalam menyiapkan dan melakukan panggilan API ke Claude di Amazon Bedrock. Claude di Amazon Bedrock berjalan pada infrastruktur yang dikelola AWS dengan akses operator nol (personel Anthropic tidak memiliki akses ke infrastruktur inferensi), memungkinkan Anda membangun aplikasi sensitif sepenuhnya di dalam batasan keamanan AWS sambil menggunakan bentuk Messages API yang sama dengan yang Anda gunakan pada API pihak pertama Anthropic.
+Panduan ini memandu Anda dalam menyiapkan dan melakukan panggilan API ke Claude di Amazon Bedrock. Claude di Amazon Bedrock berjalan pada infrastruktur yang dikelola AWS dengan akses operator nol (personel Anthropic tidak memiliki akses ke infrastruktur inferensi), memungkinkan Anda membangun aplikasi sensitif sepenuhnya di dalam batasan keamanan AWS sambil menggunakan bentuk Messages API yang sama seperti yang Anda gunakan dengan API pihak pertama Anthropic.
 
 <Note>
-Halaman ini membahas Claude di Amazon Bedrock, yang menyajikan Claude melalui Messages API di `/anthropic/v1/messages` pada infrastruktur yang dikelola AWS. Integrasi Amazon Bedrock sebelumnya (API `InvokeModel` dan `Converse` dengan pengidentifikasi model berversi ARN) tetap tersedia dan didokumentasikan di [Claude di Amazon Bedrock (legacy)](/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy). Untuk alternatif yang dioperasikan Anthropic di AWS dengan penagihan AWS Marketplace dan biasanya akses fitur di hari yang sama, lihat [Claude Platform di AWS](/docs/id/build-with-claude/claude-platform-on-aws).
+Halaman ini membahas Claude di Amazon Bedrock, yang menyajikan Claude melalui Messages API di `/anthropic/v1/messages` pada infrastruktur yang dikelola AWS. Integrasi Amazon Bedrock sebelumnya (API `InvokeModel` dan `Converse` dengan pengidentifikasi model berversi ARN) tetap tersedia dan didokumentasikan di [Claude di Amazon Bedrock (legacy)](/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy). Untuk alternatif yang dioperasikan Anthropic di AWS dengan penagihan AWS Marketplace dan biasanya akses fitur pada hari yang sama, lihat [Claude Platform di AWS](/docs/id/build-with-claude/claude-platform-on-aws).
 </Note>
 
 ## Akses \{#access}
@@ -26,21 +26,21 @@ Claude Fable 5, Claude Opus 4.8, Claude Opus 4.7, dan Claude Haiku 4.5 terbuka u
 Sebelum memulai, pastikan Anda memiliki:
 
 - Akun AWS dengan [akses model Amazon Bedrock](https://console.aws.amazon.com/bedrock/home#/modelaccess) yang diaktifkan untuk model Claude yang ingin Anda gunakan.
-- [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) terinstal dan terkonfigurasi (opsional, untuk manajemen kredensial).
+- [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) terinstal dan dikonfigurasi (opsional, untuk manajemen kredensial).
 
 Claude Mythos Preview juga memerlukan akun AWS khusus yang telah dimasukkan ke daftar izin oleh tim Bedrock Marketplace. Account executive Anthropic Anda dapat mengirimkan ID akun Anda untuk dimasukkan ke daftar izin (biasanya diproses dalam 24 jam), dan AWS akan mengirimkan email selamat datang setelah selesai.
 
 ## Autentikasi \{#authentication}
 
-Claude di Amazon Bedrock mendukung tiga jalur autentikasi. Pilih yang paling sesuai dengan kebutuhan keamanan Anda.
+Claude di Amazon Bedrock mendukung tiga jalur autentikasi. Pilih yang paling sesuai dengan persyaratan keamanan Anda.
 
-### Bedrock service role (direkomendasikan) \{#bedrock-service-role-recommended}
+### Service role Bedrock (direkomendasikan) \{#bedrock-service-role-recommended}
 
-Gunakan Bedrock service role dengan kunci yang dikelola AWS untuk akses paling aman dan berjangka panjang:
+Gunakan service role Bedrock dengan kunci yang dikelola AWS untuk akses paling aman dan berjangka panjang:
 
 <Steps>
 <Step title="Admin: menyediakan service role">
-Administrator AWS menyediakan Bedrock service role dan memberikan izin `iam:PassRole` kepada developer pada ARN service role tersebut.
+Administrator AWS menyediakan service role Bedrock dan memberikan izin `iam:PassRole` kepada developer pada ARN service role tersebut.
 </Step>
 <Step title="Developer: meneruskan role">
 Saat memanggil API, Bedrock mengasumsikan service role atas nama Anda. Lihat [dokumentasi Amazon Bedrock](https://docs.aws.amazon.com/bedrock/latest/userguide/bedrock-mantle.html) untuk cara mengaitkan role dengan permintaan Anda.
@@ -53,7 +53,7 @@ Untuk akses terfederasi identitas dengan sesi maksimum 12 jam:
 
 <Steps>
 <Step title="Admin: mengonfigurasi IAM role">
-Buat IAM role yang dibatasi cakupannya ke model Claude Anda. Trust policy menyebutkan identity provider Anda (SAML, OIDC, atau AWS Identity Center). Permissions policy memberikan `bedrock-mantle:CreateInference` hanya pada ARN model yang diizinkan.
+Buat IAM role yang dicakupkan ke model Claude Anda. Trust policy menyebutkan identity provider Anda (SAML, OIDC, atau AWS Identity Center). Permissions policy memberikan `bedrock-mantle:CreateInference` hanya pada ARN model yang diizinkan.
 </Step>
 <Step title="Developer: mengautentikasi dan mengasumsikan">
 Autentikasi melalui identity provider perusahaan Anda, lalu asumsikan IAM role tersebut. AWS STS menerbitkan kredensial sementara yang digunakan SDK atau CLI untuk menandatangani permintaan.
@@ -62,10 +62,10 @@ Autentikasi melalui identity provider perusahaan Anda, lalu asumsikan IAM role t
 
 ### Bearer token \{#bearer-tokens}
 
-Untuk akses jangka pendek tanpa IAM role (maksimum 12 jam, paling tidak direkomendasikan):
+Untuk akses jangka pendek tanpa IAM role (maksimum 12 jam, paling tidak disarankan):
 
 <Steps>
-<Step title="Admin: membatasi tipe token">
+<Step title="Admin: membatasi jenis token">
 Blokir kunci jangka panjang dengan melampirkan policy yang menolak `bedrock:CallWithBearerToken` kecuali kondisi `bedrock:BearerTokenType` cocok dengan token jangka pendek.
 </Step>
 <Step title="Developer: membuat token">
@@ -106,7 +106,7 @@ go get github.com/anthropics/anthropic-sdk-go/bedrock
 <Tabs>
 <Tab title="Gradle">
 ```kotlin
-implementation("com.anthropic:anthropic-java-bedrock:2.39.0")
+implementation("com.anthropic:anthropic-java-bedrock:2.40.0")
 ```
 </Tab>
 <Tab title="Maven">
@@ -114,7 +114,7 @@ implementation("com.anthropic:anthropic-java-bedrock:2.39.0")
 <dependency>
     <groupId>com.anthropic</groupId>
     <artifactId>anthropic-java-bedrock</artifactId>
-    <version>2.39.0</version>
+    <version>2.40.0</version>
 </dependency>
 ```
 </Tab>
@@ -334,7 +334,7 @@ Anda juga dapat menggunakan klien `Anthropic` standar: atur `base_url` ke `https
 
 ## Model yang didukung \{#supported-models}
 
-ID model di Claude di Amazon Bedrock membawa prefiks penyedia `anthropic.`. Kemampuan dan perilaku model didokumentasikan di halaman [Ringkasan model](/docs/id/about-claude/models/overview).
+ID model di Claude di Amazon Bedrock memiliki prefiks penyedia `anthropic.`. Kemampuan dan perilaku model didokumentasikan di halaman [Ikhtisar model](/docs/id/about-claude/models/overview).
 
 | Model                 | ID Model                          | Akses                                                                     |
 | --------------------- | --------------------------------- | -------------------------------------------------------------------------- |
@@ -350,7 +350,7 @@ Melakukan upgrade ke model Claude yang lebih baru? Di Claude Code, jalankan `/cl
 
 ## Dukungan fitur \{#feature-support}
 
-Untuk daftar fitur lengkap dengan ketersediaan Amazon Bedrock, lihat [Ringkasan fitur](/docs/id/build-with-claude/overview).
+Untuk daftar fitur lengkap dengan ketersediaan Amazon Bedrock, lihat [Ikhtisar fitur](/docs/id/build-with-claude/overview).
 
 ### Sorotan fitur yang didukung \{#supported-feature-highlights}
 
@@ -372,14 +372,14 @@ Untuk daftar fitur lengkap dengan ketersediaan Amazon Bedrock, lihat [Ringkasan 
 
 ## Region \{#regions}
 
-Claude di Amazon Bedrock tersedia di region AWS berikut. Amazon Bedrock menawarkan dua tipe endpoint:
+Claude di Amazon Bedrock tersedia di region AWS berikut. Amazon Bedrock menawarkan dua jenis endpoint:
 
 - **Global:** routing dinamis di seluruh region yang tersedia untuk ketersediaan maksimum. Tanpa biaya tambahan.
-- **Regional:** endpoint diselesaikan ke satu region AWS yang Anda tentukan, untuk kebutuhan residensi data. Endpoint regional dikenakan biaya tambahan 10% dibandingkan endpoint global. Untuk melakukan routing di beberapa region dalam satu geografi, gunakan [inference profile](https://docs.aws.amazon.com/bedrock/latest/userguide/cross-region-inference.html) (US, EU, JP, atau AU). Region yang ditandai **In-region only** dalam tabel mendukung routing langsung ke satu region tanpa inference profile.
+- **Regional:** endpoint diselesaikan ke satu region AWS yang Anda tentukan, untuk persyaratan residensi data. Endpoint regional dikenakan biaya tambahan 10% dibandingkan endpoint global. Untuk melakukan routing di beberapa region dalam satu geografi, gunakan [inference profile](https://docs.aws.amazon.com/bedrock/latest/userguide/cross-region-inference.html) (US, EU, JP, atau AU). Region yang ditandai **In-region only** dalam tabel mendukung routing langsung satu region tanpa inference profile.
 
-Endpoint global tersedia untuk Claude Fable 5, Claude Opus 4.8, Claude Opus 4.7, dan Claude Haiku 4.5. Claude Mythos Preview hanya tersedia secara regional dan tersedia di `us-east-1`.
+Endpoint global tersedia untuk Claude Fable 5, Claude Opus 4.8, Claude Opus 4.7, dan Claude Haiku 4.5. Claude Mythos Preview hanya regional dan tersedia di `us-east-1`.
 
-| Region AWS       | Lokasi                    | Tipe endpoint        |
+| Region AWS       | Lokasi                    | Jenis endpoint       |
 | ---------------- | ------------------------- | -------------------- |
 | `af-south-1`     | Africa (Cape Town)        | Global               |
 | `ap-northeast-1` | Asia Pacific (Tokyo)      | Global, JP, In-region only |

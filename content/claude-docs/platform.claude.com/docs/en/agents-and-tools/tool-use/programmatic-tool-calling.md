@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/programmatic-tool-calling
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 05d166dd63e3b9355459fc3dd577ecbedea4184ae27b540580b9267fa601afb9
+fetched_at: 2026-06-11T03:14:59.596724Z
+sha256: 0ecce34af38408492bfb3516e5f9d256193ce50c8d083963cfaf5c96c17fe72b
 ---
 
 # Programmatic tool calling
@@ -31,6 +31,8 @@ Programmatic tool calling requires `code_execution_20260120`, which is supported
 
 | Model |
 |-------|
+| Claude Fable 5 (claude-fable-5) |
+| Claude Mythos 5 (claude-mythos-5) |
 | Claude Opus 4.8 (claude-opus-4-8) |
 | Claude Opus 4.7 (claude-opus-4-7) |
 | Claude Opus 4.6 (claude-opus-4-6) |

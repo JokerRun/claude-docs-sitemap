@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 3383e7ddf82590ed2f660ede364d760d943b2882cb51b114f1d03a78edc644de
+fetched_at: 2026-06-11T03:14:59.596724Z
+sha256: 8ab3d1ed9092abb7515db5cdc609d1cde35f6ef13bd1db442a1d97c2f6c1a360
 ---
 
 # Claude Platform on AWS
@@ -285,14 +285,14 @@ go get github.com/anthropics/anthropic-sdk-go
 
 <Tab title="Java">
 ```kotlin Gradle
-implementation("com.anthropic:anthropic-java-aws:2.39.0")
+implementation("com.anthropic:anthropic-java-aws:2.40.0")
 ```
 
 ```xml Maven
 <dependency>
   <groupId>com.anthropic</groupId>
   <artifactId>anthropic-java-aws</artifactId>
-  <version>2.39.0</version>
+  <version>2.40.0</version>
 </dependency>
 ```
 </Tab>

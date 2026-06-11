@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/bash-tool
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: dbd91bfd3fbe9dd61031b3b5728fc7638820a4d170d02366dcc3791e0a2fcc97
+fetched_at: 2026-06-11T03:14:59.596724Z
+sha256: 9f9b89067974d48ea5565e02f069fe355af043f9274574deb2e566ce2d8945a7
 ---
 
 # Bash tool
@@ -264,7 +264,7 @@ Restart the session:
 
 Claude can chain commands to complete complex tasks:
 
-```text
+```text nowrap
 User request:
 "Install the requests library and create a simple Python script that
 fetches a joke from an API, then run it."

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/quickstart
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 00a81819c84ba4e899984e814d82e307a237101fbb2523cae3bbfc4fe3127de4
+fetched_at: 2026-06-11T03:14:59.596724Z
+sha256: dcb16e4acf9c365cdc8d1b37dc60f580577a0405a461cc2b6e38510a088d0458
 ---
 
 # Memulai dengan Claude Managed Agents
@@ -11,7 +11,7 @@ Buat agen otonom pertama Anda.
 
 ---
 
-Panduan ini memandu Anda dalam membuat agen, menyiapkan lingkungan, memulai sesi, dan melakukan streaming respons agen.
+Panduan ini memandu Anda dalam membuat agen, menyiapkan environment (lingkungan), memulai sesi, dan melakukan streaming respons agen.
 
 <Tip>
 **Lebih suka panduan interaktif?** Jalankan `/claude-api managed-agents-onboard` di versi terbaru [Claude Code](https://claude.com/product/claude-code) untuk penyiapan terpandu dan tanya jawab interaktif.
@@ -46,7 +46,7 @@ brew install anthropics/tap/ant
 Untuk lingkungan Linux, unduh binary rilis secara langsung.
 
 ```bash nocheck
-VERSION=1.11.0
+VERSION=1.12.0
 OS=$(uname -s | tr '[:upper:]' '[:lower:]')
 ARCH=$(uname -m | sed -e 's/x86_64/amd64/' -e 's/aarch64/arm64/')
 curl -fsSL "https://github.com/anthropics/anthropic-cli/releases/download/v${VERSION}/ant_${VERSION}_${OS}_${ARCH}.tar.gz" \
@@ -94,7 +94,7 @@ ant --version
   </Tab>
   <Tab title="Java">
     ```groovy Gradle
-    implementation("com.anthropic:anthropic-java:2.39.0")
+    implementation("com.anthropic:anthropic-java:2.40.0")
     ```
   </Tab>
   <Tab title="Go">
@@ -342,8 +342,8 @@ puts "Agent ID: #{agent.id}, version: #{agent.version}"
 
   </Step>
 
-  <Step title="Buat lingkungan">
-    Lingkungan mendefinisikan sandbox tempat agen Anda berjalan.
+  <Step title="Buat environment">
+    Environment mendefinisikan sandbox tempat agen Anda berjalan.
 
     <CodeGroup defaultLanguage="CLI">
     
@@ -469,11 +469,11 @@ puts "Environment ID: #{environment.id}"
 
     Simpan `environment.id` yang dikembalikan. Anda akan mereferensikannya di setiap sesi yang Anda buat.
 
-    <Tip>Untuk menjalankan sandbox di infrastruktur Anda sendiri alih-alih sandbox cloud, lihat [Sandbox yang dihosting sendiri](/docs/id/managed-agents/self-hosted-sandboxes).</Tip>
+    <Tip>Untuk menjalankan sandbox di infrastruktur Anda sendiri alih-alih sandbox cloud, lihat [Sandbox yang di-host sendiri](/docs/id/managed-agents/self-hosted-sandboxes).</Tip>
   </Step>
 
   <Step title="Mulai sesi">
-    Buat sesi yang mereferensikan agen dan lingkungan Anda.
+    Buat sesi yang mereferensikan agen dan environment Anda.
 
     <CodeGroup>
     
@@ -879,7 +879,7 @@ end
 
     </CodeGroup>
 
-    Agen menulis skrip Python, mengeksekusinya di sandbox, dan memverifikasi bahwa file output telah dibuat. Output Anda terlihat serupa dengan ini:
+    Agen menulis skrip Python, mengeksekusinya di sandbox, dan memverifikasi bahwa file output telah dibuat. Output Anda akan terlihat seperti ini:
 
     ```text
     I'll create a Python script that generates the first 20 Fibonacci numbers and saves them to a file.
@@ -896,11 +896,11 @@ end
 
 ## Apa yang terjadi \{#whats-happening}
 
-Ketika Anda mengirim event pengguna, Claude Managed Agents:
+Saat Anda mengirim event pengguna, Claude Managed Agents:
 
-1. **Menyediakan sandbox:** Konfigurasi lingkungan Anda menentukan bagaimana sandbox dibangun.
+1. **Menyediakan sandbox:** Konfigurasi environment Anda menentukan bagaimana sandbox dibangun.
 2. **Menjalankan loop agen:** Claude menentukan alat mana yang akan digunakan berdasarkan pesan Anda.
-3. **Mengeksekusi alat:** Penulisan file, perintah bash, dan pemanggilan alat lainnya berjalan di dalam sandbox.
+3. **Mengeksekusi alat:** Penulisan file, perintah bash, dan pemanggilan alat lainnya dijalankan di dalam sandbox.
 4. **Melakukan streaming event:** Anda menerima pembaruan real-time saat agen bekerja.
 5. **Menjadi idle:** Agen mengeluarkan event `session.status_idle` ketika tidak ada lagi yang perlu dilakukan.
 
@@ -910,7 +910,7 @@ Ketika Anda mengirim event pengguna, Claude Managed Agents:
   <Card title="Definisikan agen Anda" icon="brain" href="/docs/id/managed-agents/agent-setup">
     Buat konfigurasi agen yang dapat digunakan kembali dan memiliki versi
   </Card>
-  <Card title="Konfigurasi lingkungan" icon="settings" href="/docs/id/managed-agents/environments">
+  <Card title="Konfigurasi environment" icon="settings" href="/docs/id/managed-agents/environments">
     Sesuaikan pengaturan jaringan dan sandbox
   </Card>
   <Card title="Alat agen" icon="tool" href="/docs/id/managed-agents/tools">

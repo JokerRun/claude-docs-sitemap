@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: b46b6268ba2c5514d7fdc19a5cd0b10c05da3d2ef42eb2db50cea300ae0e8a6e
+fetched_at: 2026-06-11T03:14:59.596724Z
+sha256: 36bb1a86f2589f9d567a009a8a4509291143be8bd641b75a174dacd45df6009e
 ---
 
 # Alat Bash
@@ -264,7 +264,7 @@ Memulai ulang sesi:
 
 Claude dapat merangkai perintah untuk menyelesaikan tugas yang kompleks:
 
-```text
+```text nowrap
 User request:
 "Install the requests library and create a simple Python script that
 fetches a joke from an API, then run it."

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/embeddings
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 31d110714a63155ee510ecd463d9c5cb05f9689696445a4b6e4716208d544b00
+fetched_at: 2026-06-11T03:14:59.596724Z
+sha256: 9acfad8d45cc084e4ea4461e2f5acf737d42f264321a34934796708e83fd0a89
 ---
 
 # Embeddings
@@ -100,7 +100,7 @@ print(result.embeddings[1])
 
 `result.embeddings` akan berupa daftar dua vektor embedding, masing-masing berisi 1024 angka floating-point. Setelah menjalankan kode di atas, kedua embeddings akan dicetak di layar:
 
-```text
+```text nowrap
 [-0.013131560757756233, 0.019828535616397858, ...]   # embedding for "Sample text 1"
 [-0.0069352793507277966, 0.020878976210951805, ...]  # embedding for "Sample text 2"
 ```

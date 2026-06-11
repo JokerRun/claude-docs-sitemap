@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 2a9019fcb81d5eef63b03818c5b6ea593a0c1db8de1b6cd0198c14d978c5821c
+fetched_at: 2026-06-11T03:14:59.596724Z
+sha256: e5e5e40627b6e3cc548c0660062fd5d08b79848381cfd17033ac6e3c41bcfa39
 ---
 
 # Claude in Microsoft Foundry
@@ -58,7 +58,7 @@ dotnet add package Anthropic.Foundry
 <Tabs>
 <Tab title="Gradle">
 ```kotlin
-implementation("com.anthropic:anthropic-java-foundry:2.39.0")
+implementation("com.anthropic:anthropic-java-foundry:2.40.0")
 ```
 </Tab>
 <Tab title="Maven">
@@ -66,7 +66,7 @@ implementation("com.anthropic:anthropic-java-foundry:2.39.0")
 <dependency>
     <groupId>com.anthropic</groupId>
     <artifactId>anthropic-java-foundry</artifactId>
-    <version>2.39.0</version>
+    <version>2.40.0</version>
 </dependency>
 ```
 </Tab>

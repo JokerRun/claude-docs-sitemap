@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: d8d0cb9d1e053788fb2617e90c256c12cde01b59629acf68025bebe8dd6204fb
+fetched_at: 2026-06-11T03:14:59.596724Z
+sha256: 60e1e81b482f2369469dec08ef5804e29a181c546ecfadbcb662c8eec0586f3c
 ---
 
 # Alat memori
@@ -373,7 +373,7 @@ Menampilkan isi direktori atau isi file dengan rentang baris opsional:
 #### Nilai kembalian \{#return-values}
 
 **Untuk direktori:** Kembalikan daftar yang menampilkan file dan direktori beserta ukurannya:
-```text
+```text nowrap
 Here're the files and directories up to 2 levels deep in {path}, excluding hidden items and node_modules:
 {size}    {path}
 {size}    {path}/{filename1}
@@ -398,7 +398,7 @@ Format nomor baris:
 - **Batas baris**: File dengan lebih dari 999.999 baris harus mengembalikan error: `"File {path} exceeds maximum line limit of 999,999 lines."`
 
 **Contoh output:**
-```text
+```text nowrap
 Here's the content of /memories/notes.txt with line numbers:
      1	Hello World
      2	This is line two

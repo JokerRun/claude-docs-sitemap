@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 94866fb06caa1b13d8edcb05c1e76fb56e1417f89dce8b688aee7c85fdf0dbd2
+fetched_at: 2026-06-11T03:14:59.596724Z
+sha256: 5ea07e88060f8c4ee0f3f86f677af61e0f4b0a3ccc327b20b340cb528beeb370
 ---
 
 # Claude di Vertex AI
@@ -16,13 +16,13 @@ API Vertex untuk mengakses Claude hampir identik dengan [Messages API](/docs/id/
 * Di Vertex, `model` tidak dikirimkan dalam body permintaan. Sebagai gantinya, model ditentukan dalam URL endpoint Google Cloud.
 * Di Vertex, `anthropic_version` dikirimkan dalam body permintaan (bukan sebagai header), dan harus diatur ke nilai `vertex-2023-10-16`.
 
-Vertex juga didukung oleh [SDK klien](/docs/id/cli-sdks-libraries/overview) resmi Anthropic. Panduan ini memandu Anda membuat permintaan ke Claude di Vertex AI menggunakan salah satu SDK klien Anthropic.
+Vertex juga didukung oleh [client SDK](/docs/id/cli-sdks-libraries/overview) resmi Anthropic. Panduan ini memandu Anda dalam membuat permintaan ke Claude di Vertex AI menggunakan salah satu client SDK Anthropic.
 
 Perhatikan bahwa panduan ini mengasumsikan Anda sudah memiliki proyek GCP yang dapat menggunakan Vertex AI. Lihat [Model Claude Anthropic di Vertex AI](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/claude) untuk informasi lebih lanjut tentang penyiapan yang diperlukan dan panduan lengkapnya.
 
 ## Menginstal SDK untuk mengakses Vertex AI \{#install-an-sdk-for-accessing-vertex-ai}
 
-Pertama, instal [SDK klien](/docs/id/cli-sdks-libraries/overview) Anthropic untuk bahasa pilihan Anda.
+Pertama, instal [client SDK](/docs/id/cli-sdks-libraries/overview) Anthropic untuk bahasa pemrograman pilihan Anda.
 
 <Tabs>
 <Tab title="Python">
@@ -52,14 +52,14 @@ go get github.com/anthropics/anthropic-sdk-go
 <Tab title="Java">
 <CodeGroup>
 ```groovy Gradle
-implementation("com.anthropic:anthropic-java-vertex:2.39.0")
+implementation("com.anthropic:anthropic-java-vertex:2.40.0")
 ```
 
 ```xml Maven
 <dependency>
     <groupId>com.anthropic</groupId>
     <artifactId>anthropic-java-vertex</artifactId>
-    <version>2.39.0</version>
+    <version>2.40.0</version>
 </dependency>
 ```
 
@@ -116,7 +116,7 @@ Perhatikan bahwa ketersediaan model Anthropic bervariasi berdasarkan region. Car
 
 #### ID model API \{#api-model-ids}
 
-Istilah siklus hidup (Deprecated, Retired) didefinisikan dalam [Penghentian model](/docs/id/about-claude/model-deprecations). Tanggal siklus hidup pada platform yang dioperasikan mitra ditetapkan oleh mitra dan dapat berbeda dari jadwal API Claude. Untuk tanggal penghentian terkini dari model apa pun di Vertex AI, lihat [dokumentasi Google Cloud untuk model Claude di Vertex AI](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/claude).
+Istilah siklus hidup (Deprecated, Retired) didefinisikan dalam [Deprekasi model](/docs/id/about-claude/model-deprecations). Tanggal siklus hidup pada platform yang dioperasikan mitra ditetapkan oleh mitra dan dapat berbeda dari jadwal API Claude. Untuk tanggal penghentian terkini dari model apa pun di Vertex AI, lihat [dokumentasi Google Cloud untuk model Claude di Vertex AI](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/claude).
 
 | Model                          | ID model API Vertex AI |
 | ------------------------------ | ------------------------ |
@@ -350,7 +350,7 @@ Contoh berikut menunjukkan cara menghasilkan teks dari Claude di Vertex AI:
   ```
 </CodeGroup>
 
-Lihat [SDK klien](/docs/id/cli-sdks-libraries/overview) dan [dokumentasi Vertex AI](https://cloud.google.com/vertex-ai/docs) resmi untuk detail lebih lanjut.
+Lihat [client SDK](/docs/id/cli-sdks-libraries/overview) dan [dokumentasi resmi Vertex AI](https://cloud.google.com/vertex-ai/docs) untuk detail lebih lanjut.
 
 Claude juga tersedia melalui [Amazon Bedrock](/docs/id/build-with-claude/claude-in-amazon-bedrock), [Claude Platform di AWS](/docs/id/build-with-claude/claude-platform-on-aws), dan [Microsoft Foundry](/docs/id/build-with-claude/claude-in-microsoft-foundry).
 
@@ -365,27 +365,27 @@ Vertex menyediakan [layanan pencatatan permintaan-respons](https://cloud.google.
 Anthropic merekomendasikan agar Anda mencatat aktivitas Anda setidaknya secara bergulir selama 30 hari untuk memahami aktivitas Anda dan menyelidiki potensi penyalahgunaan.
 
 <Note>
-Mengaktifkan layanan ini tidak memberikan Google atau Anthropic akses apa pun ke konten Anda.
+Mengaktifkan layanan ini tidak memberikan akses apa pun kepada Google atau Anthropic terhadap konten Anda.
 </Note>
 
 ## Dukungan fitur \{#feature-support}
-Untuk daftar fitur lengkap dengan ketersediaan Vertex AI, lihat [Ikhtisar fitur](/docs/id/build-with-claude/overview).
+Untuk daftar fitur lengkap beserta ketersediaannya di Vertex AI, lihat [Ikhtisar fitur](/docs/id/build-with-claude/overview).
 
 ### Sorotan fitur yang didukung \{#supported-feature-highlights}
 
 - [Messages API](/docs/id/api/messages/create)
 - [Caching prompt](/docs/id/build-with-claude/prompt-caching)
 - [Pemikiran diperpanjang](/docs/id/build-with-claude/extended-thinking)
-- [Penggunaan alat](/docs/id/agents-and-tools/tool-use/overview), termasuk [alat Bash](/docs/id/agents-and-tools/tool-use/bash-tool), [alat Computer use](/docs/id/agents-and-tools/tool-use/computer-use-tool), [alat Memory](/docs/id/agents-and-tools/tool-use/memory-tool), dan [alat Text editor](/docs/id/agents-and-tools/tool-use/text-editor-tool)
-- [Alat pencarian web](/docs/id/agents-and-tools/tool-use/web-search-tool)
-- [Sitasi](/docs/id/build-with-claude/citations)
-- [Output terstruktur](/docs/id/build-with-claude/structured-outputs)
+- [Penggunaan alat](/docs/id/agents-and-tools/tool-use/overview), termasuk [Bash tool](/docs/id/agents-and-tools/tool-use/bash-tool), [Computer use tool](/docs/id/agents-and-tools/tool-use/computer-use-tool), [Memory tool](/docs/id/agents-and-tools/tool-use/memory-tool), dan [Text editor tool](/docs/id/agents-and-tools/tool-use/text-editor-tool)
+- [Web search tool](/docs/id/agents-and-tools/tool-use/web-search-tool)
+- [Citations](/docs/id/build-with-claude/citations)
+- [Structured outputs](/docs/id/build-with-claude/structured-outputs)
 
 ### Fitur yang tidak didukung \{#features-not-supported}
 
 - Sumber input (sumber URL untuk gambar dan dokumen, Files API)
 - Alat sisi server (code execution, web fetch, advisor)
-- Infrastruktur agen (Agent Skills, konektor MCP, pemanggilan alat terprogram)
+- Infrastruktur agen (Agent Skills, MCP connector, programmatic tool calling)
 - Endpoint API (Message Batches, Models, Admin, Compliance, Usage and Cost)
 - Claude Managed Agents
 - Fallback sisi server ([parameter `fallbacks`](/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback); gunakan [pola fallback sisi klien](/docs/id/build-with-claude/refusals-and-fallback#client-side-fallback) sebagai gantinya)
@@ -404,7 +404,7 @@ Vertex AI menawarkan tiga jenis endpoint:
 - **Endpoint multi-region:** Perutean dinamis dalam area geografis (misalnya, Amerika Serikat atau Uni Eropa) untuk residensi data dengan ketersediaan tinggi
 - **Endpoint regional:** Perutean data yang dijamin melalui region geografis tertentu
 
-Endpoint regional dan multi-region mencakup premium harga 10% dibandingkan endpoint global.
+Endpoint regional dan multi-region dikenakan premium harga 10% dibandingkan endpoint global.
 
 <Note>
 Ini berlaku untuk Claude Sonnet 4.5 dan model yang lebih baru saja. Model yang lebih lama (Claude Sonnet 4 (deprecated), Opus 4 (deprecated), dan sebelumnya) mempertahankan struktur harga yang sudah ada.
@@ -421,7 +421,7 @@ Ini berlaku untuk Claude Sonnet 4.5 dan model yang lebih baru saja. Model yang l
 
 **Endpoint multi-region:**
 - Merutekan permintaan secara dinamis di seluruh region dalam area geografis (saat ini `us` dan `eu`)
-- Berguna ketika Anda memerlukan residensi data dalam geografi yang luas tetapi menginginkan ketersediaan yang lebih tinggi daripada satu region
+- Berguna ketika Anda membutuhkan residensi data dalam geografi yang luas tetapi menginginkan ketersediaan yang lebih tinggi daripada satu region
 - Premium harga 10% dibandingkan endpoint global
 - Hanya mendukung lalu lintas pay-as-you-go (provisioned throughput memerlukan endpoint regional)
 

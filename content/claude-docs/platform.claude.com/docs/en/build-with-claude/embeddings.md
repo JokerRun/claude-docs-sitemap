@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/embeddings
-fetched_at: 2026-05-12T03:14:46.254373Z
-sha256: 922bcf41f17c9c57ce7ad3288ecf9e1de83e637e1c8ff0bb18f2ff7ceba10c4a
+fetched_at: 2026-06-11T03:14:59.596724Z
+sha256: 96c644b5a060b432842339778d73ecc10e35929b564b83e92781e6359c6d94b2
 ---
 
 # Embeddings
@@ -100,7 +100,7 @@ print(result.embeddings[1])
 
 `result.embeddings` will be a list of two embedding vectors, each containing 1024 floating-point numbers. After running the above code, the two embeddings will be printed on the screen:
 
-```text
+```text nowrap
 [-0.013131560757756233, 0.019828535616397858, ...]   # embedding for "Sample text 1"
 [-0.0069352793507277966, 0.020878976210951805, ...]  # embedding for "Sample text 2"
 ```

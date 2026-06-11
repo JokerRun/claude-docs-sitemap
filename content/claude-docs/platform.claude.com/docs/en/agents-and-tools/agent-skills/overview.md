@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview
-fetched_at: 2026-05-12T03:14:46.254373Z
-sha256: 0bd9758afca5cc32441bb59a9b59b1a3fe3717b77fa7cc48abd6f24b0ff0e9cb
+fetched_at: 2026-06-11T03:14:59.596724Z
+sha256: ee5a1a8f6bcd3350c32a84292376a19555953e418750f04ba08649e9ef4b0c6f
 ---
 
 # Agent Skills
@@ -92,7 +92,7 @@ When you request something that matches a Skill's description, Claude reads SKIL
 
 **Content types: Instructions, code, and resources**. Skills can bundle additional materials:
 
-```text
+```text nowrap
 pdf-skill/
 ├── SKILL.md (main instructions)
 ├── FORMS.md (form-filling guide)

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/best-practices
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: fbf0e912ab5daaf2bc82f565aeafd699d9dacc22b279829717c10f9fb38c3dff
+fetched_at: 2026-06-11T03:14:59.596724Z
+sha256: ca52844b4188d751b55029211cb924130960d243fa5de0a1f6f0cfc210768528
 ---
 
 # Praktik terbaik penulisan Skill
@@ -253,7 +253,7 @@ Seiring Skill Anda berkembang, Anda dapat membundel konten tambahan yang dimuat 
 
 Struktur direktori Skill lengkap mungkin terlihat seperti ini:
 
-```text
+```text nowrap
 pdf/
 ├── SKILL.md              # Main instructions (loaded when triggered)
 ├── FORMS.md              # Form-filling guide (loaded as needed)
@@ -297,7 +297,7 @@ Claude memuat FORMS.md, REFERENCE.md, atau EXAMPLES.md hanya saat diperlukan.
 
 Untuk Skill dengan beberapa domain, organisir konten berdasarkan domain untuk menghindari pemuatan konteks yang tidak relevan. Ketika pengguna bertanya tentang metrik penjualan, Claude hanya perlu membaca skema terkait penjualan, bukan data keuangan atau pemasaran. Ini menjaga penggunaan token tetap rendah dan konteks tetap terfokus.
 
-```text
+```text nowrap
 bigquery-skill/
 ├── SKILL.md (overview and navigation)
 └── reference/
@@ -1022,7 +1022,7 @@ Skill berjalan di lingkungan eksekusi kode dengan akses filesystem, perintah bas
 
 **Contoh:**
 
-```text
+```text nowrap
 bigquery-skill/
 ├── SKILL.md (overview, points to reference files)
 └── reference/

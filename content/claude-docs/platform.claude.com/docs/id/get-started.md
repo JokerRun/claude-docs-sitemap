@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/get-started
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 865dddfe4504e7944d7d0352914c14d3d7f9ae923d73de4b482f1d705f0348d0
+fetched_at: 2026-06-11T03:14:59.596724Z
+sha256: b5e4ac605aca262deb714f3f22269f4336184961351b2b943d6cd1b7607bb8d4
 ---
 
 # Memulai dengan Claude
@@ -13,8 +13,8 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
 
 ## Prasyarat \{#prerequisites}
 
-- Sebuah [akun Console](/) Anthropic
-- Sebuah [kunci API](/settings/keys)
+- Akun [Console](/) Anthropic
+- [Kunci API](/settings/keys)
 
 ## Memanggil API \{#call-the-api}
 
@@ -93,7 +93,7 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
         ant auth login
         ```
 
-        Ini akan membuka alur OAuth berbasis browser. Setelah memberikan otorisasi, konfirmasikan kredensial Anda dengan:
+        Ini akan membuka alur OAuth berbasis browser. Setelah memberikan otorisasi, konfirmasi kredensial Anda dengan:
 
         ```bash
         ant auth status
@@ -420,7 +420,7 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
             }
 
             dependencies {
-                implementation("com.anthropic:anthropic-java:2.39.0")
+                implementation("com.anthropic:anthropic-java:2.40.0")
             }
 
             application {
@@ -445,7 +445,7 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
                 <dependency>
                   <groupId>com.anthropic</groupId>
                   <artifactId>anthropic-java</artifactId>
-                  <version>2.39.0</version>
+                  <version>2.40.0</version>
                 </dependency>
               </dependencies>
             </project>
