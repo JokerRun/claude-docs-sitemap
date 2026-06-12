@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/fine-grained-tool-streaming
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 13797b5e15cdc9dc08697a5fa626eb4334e2761d6cbd346a1714becec309172e
+fetched_at: 2026-06-12T03:17:40.104094Z
+sha256: 389fed81ef7ece1113fdb770e99ded90486f9c41c50f20d7bf76197909f683b3
 ---
 
 # Fine-grained tool streaming
@@ -590,8 +590,8 @@ The type mismatch between the initial `input: {}` (object) and `partial_json` (s
   };
 
   // Block index -> accumulated JSON fragments
-  // The C# SDK does not currently provide a stream accumulator for tool input;
-  // the manual pattern shown here is the supported approach.
+  // This example accumulates the deltas manually to show the raw stream;
+  // the SDK's MessageContentAggregator can also accumulate tool input automatically.
   var toolInputs = new Dictionary<long, StringBuilder>();
 
   await foreach (var streamEvent in client.Messages.CreateStreaming(parameters))

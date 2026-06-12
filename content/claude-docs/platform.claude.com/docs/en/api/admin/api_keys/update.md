@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/api_keys/update
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 5a9d0e52479595ad4d244f4fc7eb9e9cac9e69172451016645043c0da6fc8732
+fetched_at: 2026-06-12T03:17:40.104094Z
+sha256: 04c5f773720cbf84ef03cab1b666cdc0bf99de7167740e2dcde0771a55cb5b09
 ---
 
 ## Update API Key
@@ -99,7 +99,7 @@ Update API Key
 curl https://api.anthropic.com/v1/organizations/api_keys/$API_KEY_ID \
     -H 'Content-Type: application/json' \
     -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY" \
+    -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN" \
     -d '{}'
 ```
 

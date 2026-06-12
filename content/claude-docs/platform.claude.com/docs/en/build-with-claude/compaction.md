@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/compaction
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: c8761110a82442a13a580ff8f359dbf9c450f9016cb7a76611b8951070ea8093
+fetched_at: 2026-06-12T03:17:40.104094Z
+sha256: 44422edcd455092d08d1cc6394b1ddc18f32de05fef21d424c6f2b6ee685f400
 ---
 
 # Compaction
@@ -1080,12 +1080,11 @@ public class CompactionPauseExample {
 }
 ```
 
-```php PHP nocheck hidelines={1..4}
+```php PHP hidelines={1..4}
 <?php
 
 use Anthropic\Client;
 
-// The PHP SDK does not yet expose a typed constant for the `compaction` stop reason; compare the string value directly.
 $client = new Client();
 $messages = [['role' => 'user', 'content' => 'Hello, Claude']];
 
@@ -3161,12 +3160,11 @@ public class CompactionExample {
 }
 ```
 
-```php PHP nocheck hidelines={1..4}
+```php PHP hidelines={1..4}
 <?php
 
 use Anthropic\Client;
 
-// The PHP SDK does not yet expose a typed constant for the `compaction` stop reason; compare the string value directly.
 $client = new Client();
 $messages = [];
 

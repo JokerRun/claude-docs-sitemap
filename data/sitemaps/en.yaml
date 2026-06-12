@@ -124,7 +124,7 @@
   lastmod: '2026-04-28T15:54:10.733Z'
 - source: code
   loc: https://code.claude.com/docs/en/changelog
-  lastmod: '2026-06-11T00:39:53.168Z'
+  lastmod: '2026-06-11T07:39:51.080Z'
 - source: code
   loc: https://code.claude.com/docs/en/channels
   lastmod: '2026-06-09T14:23:36.283Z'
@@ -148,10 +148,10 @@
   lastmod: '2026-06-09T19:54:39.504Z'
 - source: code
   loc: https://code.claude.com/docs/en/cli-reference
-  lastmod: '2026-06-09T23:34:21.215Z'
+  lastmod: '2026-06-11T23:11:23.641Z'
 - source: code
   loc: https://code.claude.com/docs/en/code-review
-  lastmod: '2026-05-28T22:51:18.525Z'
+  lastmod: '2026-06-12T00:07:56.430Z'
 - source: code
   loc: https://code.claude.com/docs/en/commands
   lastmod: '2026-06-09T23:34:21.255Z'
@@ -229,7 +229,7 @@
   lastmod: '2026-06-05T21:14:21.914Z'
 - source: code
   loc: https://code.claude.com/docs/en/headless
-  lastmod: '2026-06-09T18:28:37.832Z'
+  lastmod: '2026-06-11T23:11:23.645Z'
 - source: code
   loc: https://code.claude.com/docs/en/hooks
   lastmod: '2026-06-10T00:06:25.645Z'
@@ -262,7 +262,7 @@
   lastmod: '2026-05-25T19:31:27.585Z'
 - source: code
   loc: https://code.claude.com/docs/en/mcp
-  lastmod: '2026-06-09T23:35:14.551Z'
+  lastmod: '2026-06-11T23:56:21.520Z'
 - source: code
   loc: https://code.claude.com/docs/en/mcp-quickstart
   lastmod: '2026-06-02T00:41:06.482Z'
@@ -277,7 +277,7 @@
   lastmod: '2026-06-10T23:04:22.624Z'
 - source: code
   loc: https://code.claude.com/docs/en/monitoring-usage
-  lastmod: '2026-06-09T19:41:31.663Z'
+  lastmod: '2026-06-11T22:49:42.547Z'
 - source: code
   loc: https://code.claude.com/docs/en/network-config
   lastmod: '2026-05-05T21:29:58.999Z'
@@ -319,7 +319,7 @@
   lastmod: '2026-05-13T21:56:06.122Z'
 - source: code
   loc: https://code.claude.com/docs/en/quickstart
-  lastmod: '2026-06-09T23:34:21.462Z'
+  lastmod: '2026-06-11T23:56:21.515Z'
 - source: code
   loc: https://code.claude.com/docs/en/remote-control
   lastmod: '2026-06-09T19:39:39.783Z'
@@ -346,7 +346,7 @@
   lastmod: '2026-06-09T14:23:50.605Z'
 - source: code
   loc: https://code.claude.com/docs/en/sessions
-  lastmod: '2026-06-09T14:23:50.602Z'
+  lastmod: '2026-06-11T23:11:23.639Z'
 - source: code
   loc: https://code.claude.com/docs/en/settings
   lastmod: '2026-06-09T23:34:21.506Z'
@@ -376,7 +376,7 @@
   lastmod: '2026-06-09T23:34:21.527Z'
 - source: code
   loc: https://code.claude.com/docs/en/troubleshoot-install
-  lastmod: '2026-06-09T18:57:08.762Z'
+  lastmod: '2026-06-11T23:08:50.619Z'
 - source: code
   loc: https://code.claude.com/docs/en/troubleshooting
   lastmod: '2026-06-09T14:23:52.964Z'
@@ -391,7 +391,7 @@
   lastmod: '2026-06-01T21:53:33.591Z'
 - source: code
   loc: https://code.claude.com/docs/en/vs-code
-  lastmod: '2026-06-09T14:23:52.967Z'
+  lastmod: '2026-06-11T23:08:50.623Z'
 - source: code
   loc: https://code.claude.com/docs/en/web-quickstart
   lastmod: '2026-06-10T00:13:38.249Z'
@@ -603,6 +603,15 @@
   loc: https://platform.claude.com/docs/en/api/admin/external_keys/validate
   priority: '0.9'
 - source: platform
+  loc: https://platform.claude.com/docs/en/api/admin/federation_issuers#admin.federation_issuers
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/admin/federation_rules#admin.federation_rules
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/admin/federation_rules/workspaces#admin.federation_rules.workspaces
+  priority: '0.9'
+- source: platform
   loc: https://platform.claude.com/docs/en/api/admin/invites
   priority: '0.9'
 - source: platform
@@ -661,6 +670,12 @@
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/admin/rate_limits/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/admin/service_accounts#admin.service_accounts
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/admin/service_accounts/workspaces#admin.service_accounts.workspaces
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/admin/usage_report
@@ -724,6 +739,9 @@
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/admin/workspaces/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/admin/workspaces/service_accounts#admin.workspaces.service_accounts
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/admin/workspaces/update
@@ -1626,6 +1644,12 @@
   loc: https://platform.claude.com/docs/en/api/compliance/apps/projects/attachments/list
   priority: '0.9'
 - source: platform
+  loc: https://platform.claude.com/docs/en/api/compliance/apps/projects/collaborators
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/compliance/apps/projects/collaborators/list
+  priority: '0.9'
+- source: platform
   loc: https://platform.claude.com/docs/en/api/compliance/apps/projects/delete
   priority: '0.9'
 - source: platform
@@ -1645,6 +1669,21 @@
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/compliance/apps/projects/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/compliance/code
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/compliance/code/artifacts
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/compliance/code/artifacts/delete
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/compliance/code/artifacts/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/compliance/code/artifacts/retrieve_version
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/compliance/groups
@@ -1681,6 +1720,12 @@
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/compliance/organizations/roles/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/compliance/organizations/settings
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/compliance/organizations/settings/retrieve
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/compliance/organizations/users
@@ -5316,6 +5361,9 @@
   loc: https://platform.claude.com/docs/en/intro
   priority: '1'
 - source: platform
+  loc: https://platform.claude.com/docs/en/manage-claude/access-transparency
+  priority: '0.8'
+- source: platform
   loc: https://platform.claude.com/docs/en/manage-claude/admin-api
   priority: '0.8'
 - source: platform
@@ -5371,6 +5419,9 @@
   priority: '0.8'
 - source: platform
   loc: https://platform.claude.com/docs/en/manage-claude/usage-cost-api
+  priority: '0.8'
+- source: platform
+  loc: https://platform.claude.com/docs/en/manage-claude/wif-admin-api
   priority: '0.8'
 - source: platform
   loc: https://platform.claude.com/docs/en/manage-claude/wif-providers/aws

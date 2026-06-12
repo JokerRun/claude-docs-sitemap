@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/organizations
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 5fe5473d85832a595ed2308a903cc0d169d84799f5af9983e19c5eace71aab74
+fetched_at: 2026-06-12T03:17:40.104094Z
+sha256: b3765a7326fcae47c5f779509b7ab62e84f970af019af069e1ebb5ebd4cd24b5
 ---
 
 # Organizations
@@ -38,7 +38,7 @@ Retrieve information about the organization associated with the authenticated AP
 ```http
 curl https://api.anthropic.com/v1/organizations/me \
     -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
 ```
 
 #### Response

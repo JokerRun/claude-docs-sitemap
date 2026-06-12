@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/api_keys/list
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: e9c35872a93c647a3726a759f440fcb3fdc516fb7a10870a47504e8cafb67569
+fetched_at: 2026-06-12T03:17:40.104094Z
+sha256: 218690873db34b4db517f46c599140fc13d29f56e662884f98a1ae928897ddd1
 ---
 
 ## List API Keys
@@ -124,7 +124,7 @@ List API Keys
 ```http
 curl https://api.anthropic.com/v1/organizations/api_keys \
     -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
 ```
 
 #### Response

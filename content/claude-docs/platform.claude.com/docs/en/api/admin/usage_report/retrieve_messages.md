@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/usage_report/retrieve_messages
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 68768257d566c4555d02cad090c4d81326a65dee6dd373d04426a82ed2b074cc
+fetched_at: 2026-06-12T03:17:40.104094Z
+sha256: 49637e4498f07aad50d04cce38fbc98862d86685372c2fb292f3ecd4e0f6831e
 ---
 
 ## Get Messages Usage Report
@@ -250,7 +250,7 @@ Get Messages Usage Report
 ```http
 curl https://api.anthropic.com/v1/organizations/usage_report/messages \
     -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
 ```
 
 #### Response

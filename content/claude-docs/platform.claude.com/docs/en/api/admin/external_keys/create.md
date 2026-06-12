@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/external_keys/create
-fetched_at: 2026-06-02T03:18:54.775717Z
-sha256: 34ff24feb4add842f6ae16189e5e01f229102515941af5271db8d9f24cc5d1f9
+fetched_at: 2026-06-12T03:17:40.104094Z
+sha256: 4b737d29a261eeeaefb54dac0cb0aa54d7e85a767a8130c304ede9f6242f7265
 ---
 
 ## Create External Key
@@ -159,7 +159,7 @@ Create an external key config owned by the caller's organization.
 curl https://api.anthropic.com/v1/organizations/external_keys \
     -H 'Content-Type: application/json' \
     -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY" \
+    -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN" \
     -d '{
           "display_name": "x",
           "provider_config": {

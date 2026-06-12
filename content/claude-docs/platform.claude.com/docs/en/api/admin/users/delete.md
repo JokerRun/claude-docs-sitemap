@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/users/delete
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 2911753b9ae4f8e4e515cf2e96067bf3676ceb7ee6e7b961195d044c7a0acade
+fetched_at: 2026-06-12T03:17:40.104094Z
+sha256: ba394ad970584ee82f99f8d95cfed512f03159186e49e30f3a6cd6fc1ec6862d
 ---
 
 ## Remove User
@@ -37,7 +37,7 @@ Remove User
 curl https://api.anthropic.com/v1/organizations/users/$USER_ID \
     -X DELETE \
     -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
 ```
 
 #### Response

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/build-a-tool-using-agent
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 6241e6417f3d3c1a480ce96b480bee25cecad30495fdf3b26f4044494ae0865a
+fetched_at: 2026-06-12T03:17:40.104094Z
+sha256: 3afebf8f94ebc5ca262e3c6ee45d07ba8bd987c0a709f1ba9fbe03d6800fb605
 ---
 
 # Tutorial: Build a tool-using agent
@@ -1667,7 +1667,7 @@ Rings 2 through 4 wrote the same loop by hand: call the API, check `stop_reason`
 The Python SDK uses the `@beta_tool` decorator to infer the schema from type hints and the docstring. The TypeScript SDK uses `betaZodTool` with a Zod schema.
 
 <Note>
-Tool Runner is available in the Python, TypeScript, and Ruby SDKs. The cURL and CLI tabs show a note instead of code; keep the Ring 4 loop for curl- or CLI-based scripts.
+Tool Runner is available in all seven SDKs: Python, TypeScript, C#, Go, Java, PHP, and Ruby. This tutorial shows Python and TypeScript; see [Tool Runner](/docs/en/agents-and-tools/tool-use/tool-runner) for the other languages. The cURL and CLI tabs show a note instead of code; keep the Ring 4 loop for curl- or CLI-based scripts.
 </Note>
 
 <CodeGroup>

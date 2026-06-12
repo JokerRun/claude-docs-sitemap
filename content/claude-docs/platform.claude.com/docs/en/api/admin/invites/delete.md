@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/invites/delete
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 065d62c067085dac984448e475ba12f480905f45b3fd94bf6a53d1733f4bb8b6
+fetched_at: 2026-06-12T03:17:40.104094Z
+sha256: 4a0c1bf069ce76986ac31871812d358bc6ac0705b232f1d9db0af878899275c0
 ---
 
 ## Delete Invite
@@ -37,7 +37,7 @@ Delete Invite
 curl https://api.anthropic.com/v1/organizations/invites/$INVITE_ID \
     -X DELETE \
     -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
 ```
 
 #### Response

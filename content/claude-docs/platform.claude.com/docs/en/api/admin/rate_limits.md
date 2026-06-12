@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/rate_limits
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 565f318b88361ae7f30b06662424fc7cccb652cdc63a098545435bf65ff5c6c4
+fetched_at: 2026-06-12T03:17:40.104094Z
+sha256: c8aeb9e1ddc47859ac327279c09b9f478892123b7936e597ded52c3ae866aab1
 ---
 
 # Rate Limits
@@ -96,7 +96,7 @@ and contains the set of limiter values that apply to it.
 ```http
 curl https://api.anthropic.com/v1/organizations/rate_limits \
     -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
 ```
 
 #### Response

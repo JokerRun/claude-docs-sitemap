@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/changelog
-fetched_at: 2026-06-11T03:14:59.596724Z
-sha256: edac7ddafded372916fc55d75eb1e23e897c21d6d3c31a9185bbe5021256fa50
+fetched_at: 2026-06-12T03:17:40.104094Z
+sha256: dfab53077977c86a09141f6491126c5d3930e7e7ad26399d9b0fbd84bdad5a1a
 ---
 
 > ## Documentation Index
@@ -16,6 +16,11 @@ sha256: edac7ddafded372916fc55d75eb1e23e897c21d6d3c31a9185bbe5021256fa50
 This page is generated from the [CHANGELOG.md on GitHub](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md).
 
 Run `claude --version` to check your installed version.
+
+<Update label="2.1.173" description="June 11, 2026">
+  * Fixed Fable 5 model names with a `[1m]` suffix not being normalized — Fable 5 includes 1M context by default, so the suffix is now stripped automatically
+  * Fixed a spurious "sandbox dependencies missing" startup warning on Windows when sandbox was enabled in settings
+</Update>
 
 <Update label="2.1.172" description="June 10, 2026">
   * Sub-agents can now spawn their own sub-agents (up to 5 levels deep)

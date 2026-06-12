@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/cost_report
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: e525387337fb2de1650409015fa3febc557a7981acbcef0e38983317a59acb6d
+fetched_at: 2026-06-12T03:17:40.104094Z
+sha256: b4a8a3ae936553d1fa2d3e1a47d36e497cf61589592d7ab89bd49675c2fd9db3
 ---
 
 # Cost Report
@@ -152,7 +152,7 @@ Get Cost Report
 ```http
 curl https://api.anthropic.com/v1/organizations/cost_report \
     -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
 ```
 
 #### Response

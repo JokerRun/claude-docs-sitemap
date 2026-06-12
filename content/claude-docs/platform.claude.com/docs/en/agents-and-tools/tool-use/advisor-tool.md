@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool
-fetched_at: 2026-06-11T03:14:59.596724Z
-sha256: b010cf3a38e0598cbe56ba2a7f08ee78009e8af91786f17f57c6408ba1796760
+fetched_at: 2026-06-12T03:17:40.104094Z
+sha256: 75934a4d2b26527cdcbd9488a4024274b0f24b0e14bf6b2d77a34b5e34a59eca
 ---
 
 # Advisor tool
@@ -17,8 +17,7 @@ This pattern fits long-horizon agentic workloads (coding agents, computer use, m
 
 <Note>
   The advisor tool is in beta. Include the beta header `advisor-tool-2026-03-01`
-  in your requests. To request access or share feedback, contact your Anthropic
-  account team.
+  in your requests.
 </Note>
 
 <Note>
@@ -154,7 +153,7 @@ async function main() {
 main().catch(console.error);
 ```
 
-```csharp C# nocheck hidelines={1}
+```csharp C# hidelines={1}
 using Anthropic;
 using Anthropic.Models.Beta.Messages;
 using Messages = Anthropic.Models.Messages;
@@ -187,7 +186,7 @@ var response = await client.Beta.Messages.Create(parameters);
 Console.WriteLine(response);
 ```
 
-```go Go nocheck hidelines={1..11,-1}
+```go Go hidelines={1..11,-1}
 package main
 
 import (

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/compliance-content-data
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: 3fc6bb92aa2249dc8b8739a20261ba3f5d6f32c3df6a5bd9340defde2327ef0a
+fetched_at: 2026-06-12T03:17:40.104094Z
+sha256: b1a8885d788208a77a616e84e91227fd3712500a2c7ce96501e04a9675901577
 ---
 
 # Retrieve and delete chats, files, and projects
@@ -12,13 +12,13 @@ Access chat content, file attachments, and projects for claude.ai organizations 
 ---
 
 <Note>
-  The Compliance API is enabled on request. Claude Enterprise organizations have access to the full API; Claude Console organizations have access to the [Activity Feed](/docs/en/manage-claude/compliance-activity-feed) only. See [Get access to the Compliance API](/docs/en/manage-claude/compliance-api-access).
+  To enable the Compliance API, see [Get access to the Compliance API](/docs/en/manage-claude/compliance-api-access).
 </Note>
 :
     the chat/file/project endpoints read claude.ai content, so unlike the rest of
     the Compliance API they really are Claude Enterprise-only. */}
 <Note>
-  The endpoints on this page retrieve and delete claude.ai content, which is available only to organizations on the Claude Enterprise plan. The Compliance API is enabled on request. See [Get access to the Compliance API](/docs/en/manage-claude/compliance-api-access).
+  The endpoints on this page retrieve and delete claude.ai content and are available only to Claude Enterprise organizations, which have self-service access to the Compliance API. See [Get access to the Compliance API](/docs/en/manage-claude/compliance-api-access).
 </Note>
 
 <Check>
@@ -197,7 +197,7 @@ curl --fail-with-body -sS -OJ \
 ```
 </CodeGroup>
 
-The `-OJ` flags tell curl to save the response under the filename from `Content-Disposition`, which is the original filename the user uploaded.
+The `-OJ` flags tell curl to save the response under the file name from `Content-Disposition`, which is the original file name the user uploaded.
 
 The artifact content endpoint returns the text body of one artifact version. Pass the `version_id` from one of the entries in an assistant message's `artifacts` array, not the artifact's stable `id`. Each new version of an artifact has its own `version_id`, and the Compliance API serves the exact bytes of that version.
 
@@ -316,7 +316,7 @@ To resolve, list the project's chats with `GET /v1/compliance/apps/chats?user_id
   <Card title="API reference" href="/docs/en/api/compliance/apps">
     The full request and response schema for every chat, file, project, and artifact endpoint.
   </Card>
-  <Card title="List organizations, users, roles, and groups" href="/docs/en/manage-claude/compliance-org-data">
+  <Card title="List organizations, users, roles, groups, and settings" href="/docs/en/manage-claude/compliance-org-data">
     Enumerate the people and teams associated with the chats and projects on this page.
   </Card>
 </CardGroup>

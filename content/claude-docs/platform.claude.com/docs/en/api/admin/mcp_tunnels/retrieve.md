@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/mcp_tunnels/retrieve
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 7829fe0de77c14c8499ad8740ca289f798c802d35421179f084be16d30e891a6
+fetched_at: 2026-06-12T03:17:40.104094Z
+sha256: 6881884534acc840ecc73fd0fa2c8eb6adfc350c420f49ef65b39b0fffcc7d04
 ---
 
 ## Get Tunnel
@@ -66,7 +66,7 @@ Retrieve a single tunnel in the caller's organization by ID.
 ```http
 curl https://api.anthropic.com/v1/organizations/tunnels/$TUNNEL_ID \
     -H 'anthropic-version: 2023-06-01' \
-    -H "Authorization: Bearer $ANTHROPIC_WIF_BEARER_TOKEN"
+    -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
 ```
 
 #### Response

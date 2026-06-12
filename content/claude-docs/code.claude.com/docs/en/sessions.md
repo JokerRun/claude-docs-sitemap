@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sessions
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: d37497d63c07977a5643b7c160b83c68f1c3bba379268c99cd8fdbece125a345
+fetched_at: 2026-06-12T03:17:40.104094Z
+sha256: 418501c74bae71e10822df58d02e55f236d1063159201f08c897d03804dbcd9c
 ---
 
 > ## Documentation Index
@@ -35,7 +35,7 @@ Sessions are saved continuously to [local transcript files](#export-and-locate-s
 | `claude --from-pr <number>` | Resumes the session linked to that pull request                    |
 | `/resume`                   | Switches to a different conversation from inside an active session |
 
-Sessions created with [`claude -p`](/en/headless) or the [Agent SDK](/en/agent-sdk/overview) do not appear in the session picker, but you can still resume one by passing its session ID to `claude --resume <session-id>`.
+Sessions created with [`claude -p`](/en/headless) or the [Agent SDK](/en/agent-sdk/overview) do not appear in the session picker, but you can still resume one by passing its session ID to `claude --resume <session-id>`. Run this from the directory the session was started in: session ID lookup is scoped to the current project directory and its git worktrees, so a session created elsewhere reports `No conversation found with session ID: <session-id>`.
 
 ### Where the session picker looks
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/mcp_tunnels/archive
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 342fafdba6361f65017c214514ea05f4362a90cd8f9c4f740ddcef7134402497
+fetched_at: 2026-06-12T03:17:40.104094Z
+sha256: 432cd2679dac0e74bf21b3794585b54aa9e0675c45c6a86b60fafb8ccd7158eb
 ---
 
 ## Archive Tunnel
@@ -72,7 +72,7 @@ tunnel returns the existing record unchanged.
 curl https://api.anthropic.com/v1/organizations/tunnels/$TUNNEL_ID/archive \
     -X POST \
     -H 'anthropic-version: 2023-06-01' \
-    -H "Authorization: Bearer $ANTHROPIC_WIF_BEARER_TOKEN"
+    -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
 ```
 
 #### Response

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/rate_limits
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 216570680138abf836a7a7f389eb391730ce5088ca74201ccae6360cfe5e6e9d
+fetched_at: 2026-06-12T03:17:40.104094Z
+sha256: 83677f763c046b49fbb6efd8ecbe275c60585b972840ba2ba773016be5fa3faa
 ---
 
 # Rate Limits
@@ -102,7 +102,7 @@ are not listed; use `GET /v1/organizations/rate_limits` to see those.
 ```http
 curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/rate_limits \
     -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
 ```
 
 #### Response

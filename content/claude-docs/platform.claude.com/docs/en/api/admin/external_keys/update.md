@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/external_keys/update
-fetched_at: 2026-06-02T03:18:54.775717Z
-sha256: d583b001e5e15aa2c72ec44bcc917365b0bbfd92a783f00909ee166f5b881a52
+fetched_at: 2026-06-12T03:17:40.104094Z
+sha256: 749f956dbba3d8f29b0aad009021134011a7448745b1b3176fde1926aeacdf3d
 ---
 
 ## Update External Key
@@ -169,7 +169,7 @@ encrypted data requires the original key identity to decrypt.
 curl https://api.anthropic.com/v1/organizations/external_keys/$EXTERNAL_KEY_ID \
     -H 'Content-Type: application/json' \
     -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY" \
+    -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN" \
     -d '{}'
 ```
 

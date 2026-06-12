@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/files
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 39848a59a62912dc11fefe833c4f5a5873fc17535b1bcd6378d03836d3c5fd48
+fetched_at: 2026-06-12T03:17:40.104094Z
+sha256: 06e5ffb013d5fe3130374f795bd4a313644634f113069cd1c98003df889d1210
 ---
 
 # Files API
@@ -745,7 +745,7 @@ const anthropic = new Anthropic();
 const files = await anthropic.beta.files.list();
 ```
 
-```csharp C# nocheck
+```csharp C#
 using System;
 using System.Threading.Tasks;
 using Anthropic;

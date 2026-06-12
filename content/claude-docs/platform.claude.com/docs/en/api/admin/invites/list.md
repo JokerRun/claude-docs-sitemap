@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/invites/list
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: c4eafa8031a1336c4f8cd7546054fa3c35597d3b4c70ca4dcb6f8a691ba4e025
+fetched_at: 2026-06-12T03:17:40.104094Z
+sha256: 9a6294462a4b5afb29ee03986aef717a681c036ac37161f79bc9825bca9389fb
 ---
 
 ## List Invites
@@ -98,7 +98,7 @@ List Invites
 ```http
 curl https://api.anthropic.com/v1/organizations/invites \
     -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
 ```
 
 #### Response

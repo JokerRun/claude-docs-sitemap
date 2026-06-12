@@ -40,7 +40,7 @@ code	https://code.claude.com/docs/en/authentication	2026-06-09T14:23:36.281Z
 code	https://code.claude.com/docs/en/auto-mode-config	2026-06-09T20:02:34.197Z	
 code	https://code.claude.com/docs/en/best-practices	2026-05-28T16:54:46.454Z	
 code	https://code.claude.com/docs/en/champion-kit	2026-04-28T15:54:10.733Z	
-code	https://code.claude.com/docs/en/changelog	2026-06-11T00:39:53.168Z	
+code	https://code.claude.com/docs/en/changelog	2026-06-11T07:39:51.080Z	
 code	https://code.claude.com/docs/en/channels	2026-06-09T14:23:36.283Z	
 code	https://code.claude.com/docs/en/channels-reference	2026-06-09T18:56:46.803Z	
 code	https://code.claude.com/docs/en/checkpointing	2026-05-20T14:49:49.368Z	
@@ -48,8 +48,8 @@ code	https://code.claude.com/docs/en/chrome	2026-06-03T19:45:17.312Z
 code	https://code.claude.com/docs/en/claude-code-on-the-web	2026-06-09T19:50:12.116Z	
 code	https://code.claude.com/docs/en/claude-directory	2026-06-09T20:02:34.216Z	
 code	https://code.claude.com/docs/en/claude-platform-on-aws	2026-06-09T19:54:39.504Z	
-code	https://code.claude.com/docs/en/cli-reference	2026-06-09T23:34:21.215Z	
-code	https://code.claude.com/docs/en/code-review	2026-05-28T22:51:18.525Z	
+code	https://code.claude.com/docs/en/cli-reference	2026-06-11T23:11:23.641Z	
+code	https://code.claude.com/docs/en/code-review	2026-06-12T00:07:56.430Z	
 code	https://code.claude.com/docs/en/commands	2026-06-09T23:34:21.255Z	
 code	https://code.claude.com/docs/en/common-workflows	2026-05-26T22:47:27.867Z	
 code	https://code.claude.com/docs/en/communications-kit	2026-06-09T16:56:28.227Z	
@@ -75,7 +75,7 @@ code	https://code.claude.com/docs/en/gitlab-ci-cd	2026-06-09T14:23:39.394Z
 code	https://code.claude.com/docs/en/glossary	2026-06-09T18:28:37.837Z	
 code	https://code.claude.com/docs/en/goal	2026-06-01T21:46:03.370Z	
 code	https://code.claude.com/docs/en/google-vertex-ai	2026-06-05T21:14:21.914Z	
-code	https://code.claude.com/docs/en/headless	2026-06-09T18:28:37.832Z	
+code	https://code.claude.com/docs/en/headless	2026-06-11T23:11:23.645Z	
 code	https://code.claude.com/docs/en/hooks	2026-06-10T00:06:25.645Z	
 code	https://code.claude.com/docs/en/hooks-guide	2026-06-09T20:02:34.225Z	
 code	https://code.claude.com/docs/en/how-claude-code-works	2026-06-10T00:06:25.638Z	
@@ -86,12 +86,12 @@ code	https://code.claude.com/docs/en/large-codebases	2026-06-09T20:02:34.201Z
 code	https://code.claude.com/docs/en/legal-and-compliance	2026-05-13T17:12:30.577Z	
 code	https://code.claude.com/docs/en/llm-gateway	2026-06-09T23:09:21.752Z	
 code	https://code.claude.com/docs/en/managed-mcp	2026-05-25T19:31:27.585Z	
-code	https://code.claude.com/docs/en/mcp	2026-06-09T23:35:14.551Z	
+code	https://code.claude.com/docs/en/mcp	2026-06-11T23:56:21.520Z	
 code	https://code.claude.com/docs/en/mcp-quickstart	2026-06-02T00:41:06.482Z	
 code	https://code.claude.com/docs/en/memory	2026-06-09T14:23:50.560Z	
 code	https://code.claude.com/docs/en/microsoft-foundry	2026-06-05T21:14:21.920Z	
 code	https://code.claude.com/docs/en/model-config	2026-06-10T23:04:22.624Z	
-code	https://code.claude.com/docs/en/monitoring-usage	2026-06-09T19:41:31.663Z	
+code	https://code.claude.com/docs/en/monitoring-usage	2026-06-11T22:49:42.547Z	
 code	https://code.claude.com/docs/en/network-config	2026-05-05T21:29:58.999Z	
 code	https://code.claude.com/docs/en/output-styles	2026-05-25T21:09:39.261Z	
 code	https://code.claude.com/docs/en/overview	2026-06-09T23:34:21.429Z	
@@ -105,7 +105,7 @@ code	https://code.claude.com/docs/en/plugins	2026-06-10T23:19:53.217Z
 code	https://code.claude.com/docs/en/plugins-reference	2026-06-09T14:23:50.558Z	
 code	https://code.claude.com/docs/en/prompt-caching	2026-06-09T23:34:21.475Z	
 code	https://code.claude.com/docs/en/prompt-library	2026-05-13T21:56:06.122Z	
-code	https://code.claude.com/docs/en/quickstart	2026-06-09T23:34:21.462Z	
+code	https://code.claude.com/docs/en/quickstart	2026-06-11T23:56:21.515Z	
 code	https://code.claude.com/docs/en/remote-control	2026-06-09T19:39:39.783Z	
 code	https://code.claude.com/docs/en/routines	2026-05-19T21:45:52.526Z	
 code	https://code.claude.com/docs/en/sandbox-environments	2026-06-09T14:23:50.594Z	
@@ -114,7 +114,7 @@ code	https://code.claude.com/docs/en/scheduled-tasks	2026-06-01T21:46:03.378Z
 code	https://code.claude.com/docs/en/security	2026-06-09T18:28:40.953Z	
 code	https://code.claude.com/docs/en/security-guidance	2026-06-01T21:46:03.373Z	
 code	https://code.claude.com/docs/en/server-managed-settings	2026-06-09T14:23:50.605Z	
-code	https://code.claude.com/docs/en/sessions	2026-06-09T14:23:50.602Z	
+code	https://code.claude.com/docs/en/sessions	2026-06-11T23:11:23.639Z	
 code	https://code.claude.com/docs/en/settings	2026-06-09T23:34:21.506Z	
 code	https://code.claude.com/docs/en/setup	2026-06-09T23:34:21.496Z	
 code	https://code.claude.com/docs/en/skills	2026-06-09T14:23:50.612Z	
@@ -124,12 +124,12 @@ code	https://code.claude.com/docs/en/sub-agents	2026-06-09T17:44:18.435Z
 code	https://code.claude.com/docs/en/terminal-config	2026-06-02T20:00:00.661Z	
 code	https://code.claude.com/docs/en/third-party-integrations	2026-06-09T19:54:39.423Z	
 code	https://code.claude.com/docs/en/tools-reference	2026-06-09T23:34:21.527Z	
-code	https://code.claude.com/docs/en/troubleshoot-install	2026-06-09T18:57:08.762Z	
+code	https://code.claude.com/docs/en/troubleshoot-install	2026-06-11T23:08:50.619Z	
 code	https://code.claude.com/docs/en/troubleshooting	2026-06-09T14:23:52.964Z	
 code	https://code.claude.com/docs/en/ultraplan	2026-06-09T14:23:52.961Z	
 code	https://code.claude.com/docs/en/ultrareview	2026-06-09T14:23:52.966Z	
 code	https://code.claude.com/docs/en/voice-dictation	2026-06-01T21:53:33.591Z	
-code	https://code.claude.com/docs/en/vs-code	2026-06-09T14:23:52.967Z	
+code	https://code.claude.com/docs/en/vs-code	2026-06-11T23:08:50.623Z	
 code	https://code.claude.com/docs/en/web-quickstart	2026-06-10T00:13:38.249Z	
 code	https://code.claude.com/docs/en/whats-new	2026-05-30T18:09:40.354Z	
 code	https://code.claude.com/docs/en/whats-new/2026-w13	2026-05-19T14:12:03.980Z	
@@ -200,6 +200,9 @@ platform	https://platform.claude.com/docs/en/api/admin/external_keys/list		0.9
 platform	https://platform.claude.com/docs/en/api/admin/external_keys/retrieve		0.9
 platform	https://platform.claude.com/docs/en/api/admin/external_keys/update		0.9
 platform	https://platform.claude.com/docs/en/api/admin/external_keys/validate		0.9
+platform	https://platform.claude.com/docs/en/api/admin/federation_issuers#admin.federation_issuers		0.9
+platform	https://platform.claude.com/docs/en/api/admin/federation_rules#admin.federation_rules		0.9
+platform	https://platform.claude.com/docs/en/api/admin/federation_rules/workspaces#admin.federation_rules.workspaces		0.9
 platform	https://platform.claude.com/docs/en/api/admin/invites		0.9
 platform	https://platform.claude.com/docs/en/api/admin/invites/create		0.9
 platform	https://platform.claude.com/docs/en/api/admin/invites/delete		0.9
@@ -220,6 +223,8 @@ platform	https://platform.claude.com/docs/en/api/admin/organizations		0.9
 platform	https://platform.claude.com/docs/en/api/admin/organizations/me		0.9
 platform	https://platform.claude.com/docs/en/api/admin/rate_limits		0.9
 platform	https://platform.claude.com/docs/en/api/admin/rate_limits/list		0.9
+platform	https://platform.claude.com/docs/en/api/admin/service_accounts#admin.service_accounts		0.9
+platform	https://platform.claude.com/docs/en/api/admin/service_accounts/workspaces#admin.service_accounts.workspaces		0.9
 platform	https://platform.claude.com/docs/en/api/admin/usage_report		0.9
 platform	https://platform.claude.com/docs/en/api/admin/usage_report/retrieve_claude_code		0.9
 platform	https://platform.claude.com/docs/en/api/admin/usage_report/retrieve_messages		0.9
@@ -241,6 +246,7 @@ platform	https://platform.claude.com/docs/en/api/admin/workspaces/members/update
 platform	https://platform.claude.com/docs/en/api/admin/workspaces/rate_limits		0.9
 platform	https://platform.claude.com/docs/en/api/admin/workspaces/rate_limits/list		0.9
 platform	https://platform.claude.com/docs/en/api/admin/workspaces/retrieve		0.9
+platform	https://platform.claude.com/docs/en/api/admin/workspaces/service_accounts#admin.workspaces.service_accounts		0.9
 platform	https://platform.claude.com/docs/en/api/admin/workspaces/update		0.9
 platform	https://platform.claude.com/docs/en/api/beta		0.9
 platform	https://platform.claude.com/docs/en/api/beta/agents		0.9
@@ -541,6 +547,8 @@ platform	https://platform.claude.com/docs/en/api/compliance/apps/chats/messages/
 platform	https://platform.claude.com/docs/en/api/compliance/apps/projects		0.9
 platform	https://platform.claude.com/docs/en/api/compliance/apps/projects/attachments		0.9
 platform	https://platform.claude.com/docs/en/api/compliance/apps/projects/attachments/list		0.9
+platform	https://platform.claude.com/docs/en/api/compliance/apps/projects/collaborators		0.9
+platform	https://platform.claude.com/docs/en/api/compliance/apps/projects/collaborators/list		0.9
 platform	https://platform.claude.com/docs/en/api/compliance/apps/projects/delete		0.9
 platform	https://platform.claude.com/docs/en/api/compliance/apps/projects/documents		0.9
 platform	https://platform.claude.com/docs/en/api/compliance/apps/projects/documents/delete		0.9
@@ -548,6 +556,11 @@ platform	https://platform.claude.com/docs/en/api/compliance/apps/projects/docume
 platform	https://platform.claude.com/docs/en/api/compliance/apps/projects/documents/retrieve		0.9
 platform	https://platform.claude.com/docs/en/api/compliance/apps/projects/list		0.9
 platform	https://platform.claude.com/docs/en/api/compliance/apps/projects/retrieve		0.9
+platform	https://platform.claude.com/docs/en/api/compliance/code		0.9
+platform	https://platform.claude.com/docs/en/api/compliance/code/artifacts		0.9
+platform	https://platform.claude.com/docs/en/api/compliance/code/artifacts/delete		0.9
+platform	https://platform.claude.com/docs/en/api/compliance/code/artifacts/list		0.9
+platform	https://platform.claude.com/docs/en/api/compliance/code/artifacts/retrieve_version		0.9
 platform	https://platform.claude.com/docs/en/api/compliance/groups		0.9
 platform	https://platform.claude.com/docs/en/api/compliance/groups/list		0.9
 platform	https://platform.claude.com/docs/en/api/compliance/groups/members		0.9
@@ -560,6 +573,8 @@ platform	https://platform.claude.com/docs/en/api/compliance/organizations/roles/
 platform	https://platform.claude.com/docs/en/api/compliance/organizations/roles/permissions		0.9
 platform	https://platform.claude.com/docs/en/api/compliance/organizations/roles/permissions/list		0.9
 platform	https://platform.claude.com/docs/en/api/compliance/organizations/roles/retrieve		0.9
+platform	https://platform.claude.com/docs/en/api/compliance/organizations/settings		0.9
+platform	https://platform.claude.com/docs/en/api/compliance/organizations/settings/retrieve		0.9
 platform	https://platform.claude.com/docs/en/api/compliance/organizations/users		0.9
 platform	https://platform.claude.com/docs/en/api/compliance/organizations/users/list		0.9
 platform	https://platform.claude.com/docs/en/api/csharp/beta		0.9
@@ -1771,6 +1786,7 @@ platform	https://platform.claude.com/docs/en/build-with-claude/vision		0.8
 platform	https://platform.claude.com/docs/en/build-with-claude/working-with-messages		0.8
 platform	https://platform.claude.com/docs/en/get-started		1
 platform	https://platform.claude.com/docs/en/intro		1
+platform	https://platform.claude.com/docs/en/manage-claude/access-transparency		0.8
 platform	https://platform.claude.com/docs/en/manage-claude/admin-api		0.8
 platform	https://platform.claude.com/docs/en/manage-claude/api-and-data-retention		0.8
 platform	https://platform.claude.com/docs/en/manage-claude/authentication		0.8
@@ -1790,6 +1806,7 @@ platform	https://platform.claude.com/docs/en/manage-claude/compliance-org-data		
 platform	https://platform.claude.com/docs/en/manage-claude/data-residency		0.8
 platform	https://platform.claude.com/docs/en/manage-claude/rate-limits-api		0.8
 platform	https://platform.claude.com/docs/en/manage-claude/usage-cost-api		0.8
+platform	https://platform.claude.com/docs/en/manage-claude/wif-admin-api		0.8
 platform	https://platform.claude.com/docs/en/manage-claude/wif-providers/aws		0.8
 platform	https://platform.claude.com/docs/en/manage-claude/wif-providers/azure		0.8
 platform	https://platform.claude.com/docs/en/manage-claude/wif-providers/gcp		0.8

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/compliance-api
-fetched_at: 2026-05-19T03:15:49.705713Z
-sha256: ea277cd9a0aac41b6939982d23a5e927a2e3c43f94aa4f731cf1b64c49f7588e
+fetched_at: 2026-06-12T03:17:40.104094Z
+sha256: 951604c6e5078c318a3adf6f08f00f61f2ecbf483477ceacd5396dd5602cc20f
 ---
 
 # Compliance API
@@ -11,11 +11,7 @@ Programmatic access to your organization's Claude activity, chats, files, projec
 
 ---
 
-<Note>
-  The Compliance API is enabled on request. Claude Enterprise organizations have access to the full API; Claude Console organizations have access to the [Activity Feed](/docs/en/manage-claude/compliance-activity-feed) only. See [Get access to the Compliance API](/docs/en/manage-claude/compliance-api-access).
-</Note>
-
-The Compliance API gives Claude Enterprise customers programmatic access to their organization's Activity Feed, the directory of users, roles, and groups across every linked organization, and, for claude.ai organizations, the underlying chats, files, and projects. Security, legal, and compliance teams use it to audit activity, retrieve or delete content, and feed events into downstream tooling.
+The Compliance API gives Claude Enterprise customers programmatic access to their organization's Activity Feed, the directory of users, roles, and groups across every linked organization, the effective settings in force for each organization, and, for claude.ai organizations, the underlying chats, files, and projects. Security, legal, and compliance teams use it to audit activity, retrieve or delete content, and feed events into downstream tooling.
 
 <Note>
   Two key types unlock the Compliance API. A **Compliance Access Key** (created in claude.ai) reaches every endpoint, and an **Admin API key** (created in Claude Console) reaches the Activity Feed only. See [Which key do you need?](/docs/en/manage-claude/compliance-api-access#which-key-do-you-need) for the full key-type comparison.
@@ -99,8 +95,8 @@ Anthropic provides two analytics APIs: the Claude Enterprise Analytics API and t
   <Card href="/docs/en/manage-claude/compliance-content-data" title="Retrieve and delete chats, files, and projects">
     Read chat content and attachments, then delete on demand. Compliance Access Key required.
   </Card>
-  <Card href="/docs/en/manage-claude/compliance-org-data" title="List organizations, users, roles, and groups">
-    Enumerate linked organizations, members, roles, and directory groups.
+  <Card href="/docs/en/manage-claude/compliance-org-data" title="List organizations, users, roles, groups, and settings">
+    Enumerate linked organizations, members, roles, and directory groups, and read each organization's effective settings.
   </Card>
   <Card href="/docs/en/manage-claude/compliance-integration-patterns" title="Design your compliance integration">
     Choose a feed-consumption pattern, plan SIEM correlation, and decide your retention approach.

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/structured-outputs
-fetched_at: 2026-06-11T03:14:59.596724Z
-sha256: 3d528ce7d726d124914a7204071aefb1b12545ca396d6c1a5f8885f0923aa6b2
+fetched_at: 2026-06-12T03:17:40.104094Z
+sha256: 832b24b73e2817cc23a3d2e7047d75cb371696b196d0ec901ea3734e12744dd3
 ---
 
 # Structured outputs
@@ -419,7 +419,9 @@ Instead of writing raw JSON schemas, you can use familiar schema definition tool
 - **Java:** Plain Java classes with automatic schema derivation through `outputConfig(Class<T>)`
 - **Ruby:** `Anthropic::BaseModel` classes with `output_config: {format: Model}`
 - **PHP:** Classes implementing `StructuredOutputModel` with `outputConfig: ['format' => MyClass::class]`
-- **CLI**, **C#**, **Go:** Raw JSON schemas passed through `output_config`
+- **C#:** Plain C# classes with the generic `Create<T>()` overload, which derives the schema automatically
+- **Go:** Go structs reflected into JSON schemas automatically on the beta API, or raw JSON schemas through `output_config`
+- **CLI:** Raw JSON schemas passed through `output_config`
 
 <CodeGroup>
 
@@ -894,9 +896,9 @@ console.log(response.parsed_output!.email);
 </Tab>
 <Tab title="C#">
 
-**Raw JSON schemas through `OutputConfig`**
+**JSON schemas through `OutputConfig`**
 
-The C# SDK uses raw JSON schemas built programmatically with `JsonSerializer.SerializeToElement`. Deserialize the response JSON with `JsonSerializer.Deserialize`.
+The C# SDK accepts raw JSON schemas built programmatically with `JsonSerializer.SerializeToElement`, as shown here, or derives the schema from a plain C# class with the generic `Create<T>()` overload. Deserialize the response JSON with `JsonSerializer.Deserialize`.
 
 ```csharp
 using System.Text.Json;
@@ -947,7 +949,7 @@ if (response.Content[0].TryPickText(out var textBlock))
 
 **Raw JSON schemas through `OutputConfigParam`**
 
-The Go SDK works with raw JSON schemas. Define a Go struct with json tags, generate the JSON schema (for example, using `invopop/jsonschema`), and unmarshal the response text into your struct.
+The Go SDK works with raw JSON schemas. Define a Go struct with json tags, generate the JSON schema (for example, using `invopop/jsonschema`), and unmarshal the response text into your struct. On the beta API, passing a struct as the output format schema reflects it into a JSON schema automatically.
 
 ```go hidelines={1..2,4..7,26..28,-1}
 package main
@@ -1549,7 +1551,7 @@ message.parsed_output
 
 #### How SDK transformation works
 
-The Python, TypeScript, Ruby, and PHP SDKs automatically transform schemas with unsupported features:
+The Python, TypeScript, Ruby, and PHP SDKs automatically transform schemas with unsupported features. The C# and Go SDKs apply the same transformations when the schema is derived from a native type (`Create<T>()` in C#; struct reflection or `BetaJSONSchemaOutputFormat()` on the Go beta API). The transformation steps:
 
 1. **Remove unsupported constraints** (for example, `minimum`, `maximum`, `minLength`, `maxLength`)
 2. **Update descriptions** with constraint info (for example, "Must be at least 100"), when the constraint is not directly supported with structured outputs
@@ -3022,7 +3024,7 @@ Simple regex patterns work well. Complex patterns may result in 400 errors.
 </section>
 
 <Tip>
-The Python, TypeScript, Ruby, and PHP SDKs can automatically transform schemas with unsupported features by removing them and adding constraints to field descriptions. See [SDK-specific methods](#sdk-specific-methods) for details.
+The Python, TypeScript, Ruby, and PHP SDKs can automatically transform schemas with unsupported features by removing them and adding constraints to field descriptions. The C# and Go SDKs do the same when the schema is derived from a native type. See [SDK-specific methods](#sdk-specific-methods) for details.
 </Tip>
 
 ### Property ordering

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/mcp_tunnels/rotate_token
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 34af7bc512143b4f86ca5d229e9daf3dc16e3632023a7a2d26213fd2996c8570
+fetched_at: 2026-06-12T03:17:40.104094Z
+sha256: fbc138ecb1f074017d161d394c10477ce406a0128cff09df0fef45482bde3185
 ---
 
 ## Rotate Tunnel Token
@@ -58,7 +58,7 @@ restarted after rotation must use the new value. An optional
 curl https://api.anthropic.com/v1/organizations/tunnels/$TUNNEL_ID/rotate_token \
     -X POST \
     -H 'anthropic-version: 2023-06-01' \
-    -H "Authorization: Bearer $ANTHROPIC_WIF_BEARER_TOKEN"
+    -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
 ```
 
 #### Response

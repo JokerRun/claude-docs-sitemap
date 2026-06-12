@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/mcp_tunnels/tunnel_certificates/create
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: c0c7418ba2c553497d332998b6b9dd0b824ba974c3369138d50bafb1260ffb99
+fetched_at: 2026-06-12T03:17:40.104094Z
+sha256: bfd8216550aeffba03729f212843305c86a69cb4af72c2c2c091473fd42a4bae
 ---
 
 ## Create Tunnel Certificate
@@ -77,7 +77,7 @@ holds at most two non-archived certificates.
 curl https://api.anthropic.com/v1/organizations/tunnels/$TUNNEL_ID/certificates \
     -H 'Content-Type: application/json' \
     -H 'anthropic-version: 2023-06-01' \
-    -H "Authorization: Bearer $ANTHROPIC_WIF_BEARER_TOKEN" \
+    -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN" \
     -d '{
           "ca_certificate_pem": "-----BEGIN CERTIFICATE-----\\nMIIBexampleEXAMPLEexampleEXAMPLEexampleEXAMPLEexampleEXAMPLEexa\\n...illustrative placeholder, not a real certificate...\\n-----END CERTIFICATE-----\\n"
         }'

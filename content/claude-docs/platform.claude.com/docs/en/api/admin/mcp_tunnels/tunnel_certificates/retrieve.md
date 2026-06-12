@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/mcp_tunnels/tunnel_certificates/retrieve
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: d75600fc2fb68a70e6a596dee3d9a003e73a358080a682a3bdacf5e76bee1d5a
+fetched_at: 2026-06-12T03:17:40.104094Z
+sha256: 85abd6b6c3524c3055e1cf188f08503cd760fae90be042d2cb205a5acdddb98e
 ---
 
 ## Get Tunnel Certificate
@@ -68,7 +68,7 @@ Retrieve a single certificate registered on a tunnel by ID.
 ```http
 curl https://api.anthropic.com/v1/organizations/tunnels/$TUNNEL_ID/certificates/$CERTIFICATE_ID \
     -H 'anthropic-version: 2023-06-01' \
-    -H "Authorization: Bearer $ANTHROPIC_WIF_BEARER_TOKEN"
+    -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
 ```
 
 #### Response

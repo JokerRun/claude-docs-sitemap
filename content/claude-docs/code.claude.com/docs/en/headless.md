@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/headless
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 504d1709030ae578a36e2bee17408cb9fb7db777c24084851b927cea2d6a3434
+fetched_at: 2026-06-12T03:17:40.104094Z
+sha256: e24989069a16d2e042f879a721b4cce4586e597e5ea3c2fb82a8cdf99b523bf4
 ---
 
 > ## Documentation Index
@@ -257,6 +257,8 @@ If you're running multiple conversations, capture the session ID to resume a spe
 session_id=$(claude -p "Start a review" --output-format json | jq -r '.session_id')
 claude -p "Continue that review" --resume "$session_id"
 ```
+
+Run both commands from the same directory: session ID lookup is scoped to the current project directory and its git worktrees. See [Resume a session](/en/sessions#resume-a-session) for the full scope rules.
 
 ## Next steps
 

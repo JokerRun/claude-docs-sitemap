@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/troubleshoot-install
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 4c64470286c5c4cbd9a6c48a343b6fb9ff56e8b23d1b97c3ea81913a777b811f
+fetched_at: 2026-06-12T03:17:40.104094Z
+sha256: d82846b0a16df40b2db685e0b37ef1994e3515416b2a62659aa2fb079d6bf419
 ---
 
 > ## Documentation Index
@@ -95,6 +95,10 @@ This example sets both proxy variables, then runs the installer through your pro
 ### Verify your PATH
 
 If installation succeeded but you get a `command not found` or `not recognized` error when running `claude`, the install directory isn't in your PATH. Your shell searches for programs in directories listed in PATH, and the installer places `claude` at `~/.local/bin/claude` on macOS/Linux or `%USERPROFILE%\.local\bin\claude.exe` on Windows.
+
+<Note>
+  The [VS Code extension](/en/vs-code) does not place `claude` at this location. It bundles a private copy of the CLI inside the extension directory for its own chat panel and does not add it to PATH. If you have only installed the extension, `~/.local/bin/claude` will not exist. Run the [standalone install](/en/setup) to use `claude` from a terminal, then continue below.
+</Note>
 
 Check if the install directory is in your PATH by listing your PATH entries and filtering for `local/bin`:
 

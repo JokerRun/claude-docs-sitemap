@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/external_keys/delete
-fetched_at: 2026-06-02T03:18:54.775717Z
-sha256: ee5c4f05083701a415539c5c5c45284123cdb820c927d8141d59272a90d88e9d
+fetched_at: 2026-06-12T03:17:40.104094Z
+sha256: 9dec8a167995060cca3ca93287105ccbef48699a7a963331f10c910f2331dc10
 ---
 
 ## Delete External Key
@@ -35,7 +35,7 @@ The request is rejected if any workspace still references this config.
 curl https://api.anthropic.com/v1/organizations/external_keys/$EXTERNAL_KEY_ID \
     -X DELETE \
     -H 'anthropic-version: 2023-06-01' \
-    -H "X-Api-Key: $ANTHROPIC_ADMIN_API_KEY"
+    -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
 ```
 
 #### Response
