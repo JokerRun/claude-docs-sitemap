@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/multi-agent
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 1d4ebddbd52d91a5cd96c386ba753fe1a500f44a7f0996ccd3d9772261de06b4
+fetched_at: 2026-06-13T03:15:40.418428Z
+sha256: cde5882abe93f2760af3764491770f3b7404a523ce874a15de6ce4957bf5b69f
 ---
 
 # Sesi multiagen
@@ -980,7 +980,7 @@ Pengarsipan hanya berhasil jika thread berstatus `idle`. Jika thread sedang berj
 <CodeGroup>
   
 ````bash
-# Interrupt the thread, then archive it
+# Interupsi thread tersebut, lalu arsipkan
 curl -fsS "https://api.anthropic.com/v1/sessions/$SESSION_ID/events?beta=true" \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
@@ -1431,8 +1431,8 @@ done < <(jq -r '.stop_reason.event_ids[]' <<<"$data")
 
   
 ````bash
-# This workflow does not translate well to a one-off shell command.
-# Use one of the SDK examples in this code group instead.
+# Alur kerja ini tidak cocok diterjemahkan menjadi perintah shell sekali jalan.
+# Gunakan salah satu contoh SDK dalam grup kode ini sebagai gantinya.
 ````
 
   

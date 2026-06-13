@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 85490d87d430e8bb562f669b1c1e655ab79a616c171cf1f3b4ab82713eacb951
+fetched_at: 2026-06-13T03:15:40.418428Z
+sha256: 5ab5f1d00f3a767f8f324e8494f8ab41aaf79ec6ad14649fcf1e28fb4b4fef02
 ---
 
 # Alat web fetch
@@ -13,14 +13,14 @@ Ambil dan baca konten dari URL tertentu untuk memperkaya konteks Claude dengan k
 
 Alat web fetch memungkinkan Claude mengambil konten lengkap dari halaman web dan dokumen PDF yang ditentukan.
 
-Versi alat web fetch terbaru (`web_fetch_20260209`) mendukung **dynamic filtering** (pemfilteran dinamis) dengan Claude Opus 4.8, [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.7, Claude Opus 4.6, dan Claude Sonnet 4.6. Claude dapat menulis dan mengeksekusi kode untuk memfilter konten yang diambil sebelum masuk ke jendela konteks, hanya menyimpan informasi yang relevan dan membuang sisanya. Hal ini mengurangi konsumsi token sambil mempertahankan kualitas respons. Versi alat sebelumnya (`web_fetch_20250910`) tetap tersedia tanpa pemfilteran dinamis.
+Versi alat web fetch terbaru (`web_fetch_20260209`) mendukung **dynamic filtering** (pemfilteran dinamis) dengan Claude Fable 5, Claude Opus 4.8, Claude Mythos 5, [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.7, Claude Opus 4.6, dan Claude Sonnet 4.6. Claude dapat menulis dan mengeksekusi kode untuk memfilter konten yang diambil sebelum mencapai jendela konteks, hanya menyimpan informasi yang relevan dan membuang sisanya. Ini mengurangi konsumsi token sambil mempertahankan kualitas respons. Versi alat sebelumnya (`web_fetch_20250910`) tetap tersedia tanpa pemfilteran dinamis.
 
 <Note>
-Untuk [Claude Mythos Preview](https://anthropic.com/glasswing), web fetch tersedia di Claude API dan Microsoft Foundry. Saat ini belum tersedia untuk Mythos Preview di Amazon Bedrock atau Vertex AI.
+Untuk [Claude Mythos Preview](https://anthropic.com/glasswing), web fetch tersedia di Claude API dan Microsoft Foundry. Saat ini tidak tersedia untuk Mythos Preview di Amazon Bedrock atau Vertex AI.
 </Note>
 
 <Note>
-Gunakan [formulir umpan balik](https://forms.gle/NhWcgmkcvPCMmPE86) untuk memberikan masukan tentang kualitas respons model, API itu sendiri, atau kualitas dokumentasi.
+Gunakan [formulir umpan balik](https://forms.gle/NhWcgmkcvPCMmPE86) untuk memberikan umpan balik tentang kualitas respons model, API itu sendiri, atau kualitas dokumentasi.
 </Note>
 
 Untuk kelayakan Zero Data Retention dan solusi `allowed_callers`, lihat [Alat server](/docs/id/agents-and-tools/tool-use/server-tools#zdr-and-allowed-callers).
@@ -30,7 +30,7 @@ Mengaktifkan alat web fetch di lingkungan tempat Claude memproses input yang tid
 
 Untuk meminimalkan risiko eksfiltrasi, Claude tidak diizinkan untuk membuat URL secara dinamis. Claude hanya dapat mengambil URL yang telah disediakan secara eksplisit oleh pengguna atau yang berasal dari hasil web search atau web fetch sebelumnya. Namun, masih ada risiko residual yang harus dipertimbangkan dengan cermat saat menggunakan alat ini.
 
-Jika eksfiltrasi data menjadi kekhawatiran, pertimbangkan untuk:
+Jika eksfiltrasi data menjadi perhatian, pertimbangkan untuk:
 - Menonaktifkan alat web fetch sepenuhnya
 - Menggunakan parameter `max_uses` untuk membatasi jumlah permintaan
 - Menggunakan parameter `allowed_domains` untuk membatasi ke domain yang diketahui aman
@@ -45,7 +45,7 @@ Saat Anda menambahkan alat web fetch ke permintaan API Anda:
 1. Claude memutuskan kapan harus mengambil konten berdasarkan prompt dan URL yang tersedia.
 2. API mengambil konten teks lengkap dari URL yang ditentukan.
 3. Untuk PDF, ekstraksi teks otomatis dilakukan.
-4. Claude menganalisis konten yang diambil dan memberikan respons dengan kutipan opsional.
+4. Claude menganalisis konten yang diambil dan memberikan respons dengan sitasi opsional.
 
 <Note>
 Alat web fetch saat ini tidak mendukung situs web yang dirender secara dinamis dengan JavaScript.
@@ -55,14 +55,14 @@ Alat web fetch saat ini tidak mendukung situs web yang dirender secara dinamis d
 
 Claude melakukan fetch ketika permintaan mengarah ke halaman atau dokumen tertentu:
 
-- Sebuah URL disediakan dalam percakapan (atau hasil alat sebelumnya)
+- URL disediakan dalam percakapan (atau hasil alat sebelumnya)
 - Pengguna menyebutkan sumber daya tertentu (artikel tertentu, README, halaman harga, atau bagian dokumentasi) tanpa URL, dan [alat web search](/docs/id/agents-and-tools/tool-use/web-search-tool) juga diaktifkan sehingga Claude dapat menemukannya terlebih dahulu (lihat [Gabungan search dan fetch](#combined-search-and-fetch))
 
 Claude **tidak** melakukan fetch untuk pertanyaan pengetahuan umum atau pertanyaan terbuka yang tidak merujuk ke halaman tertentu. "Ringkas artikel ini: `<url>`" memicu fetch; "apa praktik terbaik untuk desain REST API?" dijawab secara langsung.
 
 ### Pemfilteran dinamis \{#dynamic-filtering}
 
-Mengambil halaman web dan PDF secara penuh dapat dengan cepat menghabiskan token, terutama ketika hanya informasi tertentu yang dibutuhkan dari dokumen besar. Dengan versi alat `web_fetch_20260209`, Claude dapat menulis dan mengeksekusi kode untuk memfilter konten yang diambil sebelum memuatnya ke dalam konteks.
+Mengambil halaman web dan PDF lengkap dapat dengan cepat menghabiskan token, terutama ketika hanya informasi tertentu yang dibutuhkan dari dokumen besar. Dengan versi alat `web_fetch_20260209`, Claude dapat menulis dan mengeksekusi kode untuk memfilter konten yang diambil sebelum memuatnya ke dalam konteks.
 
 Pemfilteran dinamis ini sangat berguna untuk:
 - Mengekstrak bagian tertentu dari dokumen panjang
@@ -71,7 +71,7 @@ Pemfilteran dinamis ini sangat berguna untuk:
 - Mengurangi biaya token saat bekerja dengan dokumen besar
 
 <Note>
-Pemfilteran dinamis memerlukan [alat code execution](/docs/id/agents-and-tools/tool-use/code-execution-tool) untuk diaktifkan. Alat web fetch (dengan dan tanpa pemfilteran dinamis) tersedia di Claude API, [Claude Platform di AWS](/docs/id/build-with-claude/claude-platform-on-aws), dan [Microsoft Foundry](/docs/id/build-with-claude/claude-in-microsoft-foundry). Saat ini belum tersedia di Amazon Bedrock atau Vertex AI.
+Pemfilteran dinamis memerlukan [alat code execution](/docs/id/agents-and-tools/tool-use/code-execution-tool) untuk diaktifkan. Alat web fetch (dengan dan tanpa pemfilteran dinamis) tersedia di Claude API, [Claude Platform on AWS](/docs/id/build-with-claude/claude-platform-on-aws), dan [Microsoft Foundry](/docs/id/build-with-claude/claude-in-microsoft-foundry). Saat ini tidak tersedia di Amazon Bedrock atau Vertex AI.
 </Note>
 
 Untuk mengaktifkan pemfilteran dinamis, gunakan versi alat `web_fetch_20260209`:
@@ -503,7 +503,7 @@ Alat web fetch mendukung parameter berikut:
 
 #### Max uses \{#max-uses}
 
-Parameter `max_uses` membatasi jumlah web fetch yang dilakukan. Jika Claude mencoba melakukan fetch lebih banyak dari yang diizinkan, `web_fetch_tool_result` akan berupa error dengan kode error `max_uses_exceeded`. Saat ini tidak ada batas default.
+Parameter `max_uses` membatasi jumlah web fetch yang dilakukan. Jika Claude mencoba lebih banyak fetch dari yang diizinkan, `web_fetch_tool_result` akan berupa error dengan kode error `max_uses_exceeded`. Saat ini tidak ada batas default.
 
 #### Pemfilteran domain \{#domain-filtering}
 
@@ -517,12 +517,12 @@ Parameter `max_content_tokens` membatasi jumlah konten yang disertakan dalam kon
 Batas parameter `max_content_tokens` bersifat perkiraan. Jumlah token input aktual yang digunakan dapat bervariasi dalam jumlah kecil.
 </Note>
 
-#### Kutipan \{#citations}
+#### Sitasi \{#citations}
 
-Tidak seperti web search di mana kutipan selalu diaktifkan, kutipan bersifat opsional untuk web fetch. Atur `"citations": {"enabled": true}` untuk memungkinkan Claude mengutip bagian tertentu dari dokumen yang diambil.
+Tidak seperti web search di mana sitasi selalu diaktifkan, sitasi bersifat opsional untuk web fetch. Atur `"citations": {"enabled": true}` untuk memungkinkan Claude mengutip bagian tertentu dari dokumen yang diambil.
 
 <Note>
-Saat menampilkan output API secara langsung kepada pengguna akhir, kutipan harus disertakan ke sumber aslinya. Jika Anda melakukan modifikasi pada output API, termasuk dengan memproses ulang dan/atau menggabungkannya dengan materi Anda sendiri sebelum menampilkannya kepada pengguna akhir, tampilkan kutipan sebagaimana mestinya berdasarkan konsultasi dengan tim hukum Anda.
+Saat menampilkan output API secara langsung kepada pengguna akhir, sitasi harus disertakan ke sumber asli. Jika Anda melakukan modifikasi pada output API, termasuk dengan memproses ulang dan/atau menggabungkannya dengan materi Anda sendiri sebelum menampilkannya kepada pengguna akhir, tampilkan sitasi sebagaimana mestinya berdasarkan konsultasi dengan tim hukum Anda.
 </Note>
 
 ### Respons \{#response}
@@ -605,13 +605,13 @@ Hasil fetch mencakup:
 
 - `url`: URL yang diambil
 - `content`: Blok dokumen yang berisi konten yang diambil
-- `retrieved_at`: Stempel waktu saat konten diambil
+- `retrieved_at`: Timestamp saat konten diambil
 
 <Note>
-Alat web fetch menyimpan hasil dalam cache untuk meningkatkan performa dan mengurangi permintaan yang berlebihan. Konten yang dikembalikan mungkin tidak selalu mencerminkan versi terbaru yang tersedia di URL tersebut. Perilaku cache dikelola secara otomatis dan dapat berubah seiring waktu untuk mengoptimalkan berbagai jenis konten dan pola penggunaan.
+Alat web fetch menyimpan hasil dalam cache untuk meningkatkan kinerja dan mengurangi permintaan yang redundan. Konten yang dikembalikan mungkin tidak selalu mencerminkan versi terbaru yang tersedia di URL. Perilaku cache dikelola secara otomatis dan dapat berubah seiring waktu untuk mengoptimalkan berbagai jenis konten dan pola penggunaan.
 </Note>
 
-Untuk dokumen PDF, konten dikembalikan sebagai data yang dikodekan dalam base64:
+Untuk dokumen PDF, konten dikembalikan sebagai data yang dikodekan base64:
 
 ```json Output
 {
@@ -668,7 +668,7 @@ Untuk alasan keamanan, alat web fetch hanya dapat mengambil URL yang sebelumnya 
 - URL dalam hasil alat sisi klien
 - URL dari hasil web search atau web fetch sebelumnya
 
-Alat ini tidak dapat mengambil URL sembarang yang dihasilkan Claude atau URL dari alat server berbasis kontainer (Code Execution, Bash, dll.).
+Alat ini tidak dapat mengambil URL sembarang yang dihasilkan Claude atau URL dari alat server berbasis container (Code Execution, Bash, dll.).
 
 ## Gabungan search dan fetch \{#combined-search-and-fetch}
 
@@ -705,13 +705,13 @@ Dalam alur kerja ini, Claude akan:
 1. Menggunakan web search untuk menemukan artikel yang relevan
 2. Memilih hasil yang paling menjanjikan
 3. Menggunakan web fetch untuk mengambil konten lengkap
-4. Memberikan analisis terperinci dengan kutipan
+4. Memberikan analisis terperinci dengan sitasi
 
 Ketika alat web search dan web fetch keduanya diaktifkan, dan pengguna menyebutkan halaman atau dokumen tertentu tanpa memberikan URL (misalnya, "baca README dari repositori anthropics/anthropic-sdk-python"), Claude menggunakan web search untuk menemukannya, lalu melakukan fetch pada hasilnya.
 
 ## Caching prompt \{#prompt-caching}
 
-Untuk melakukan cache definisi alat di seluruh giliran, lihat [Penggunaan alat dengan caching prompt](/docs/id/agents-and-tools/tool-use/tool-use-with-prompt-caching).
+Untuk melakukan caching definisi alat di seluruh giliran, lihat [Penggunaan alat dengan caching prompt](/docs/id/agents-and-tools/tool-use/tool-use-with-prompt-caching).
 
 ## Streaming \{#streaming}
 

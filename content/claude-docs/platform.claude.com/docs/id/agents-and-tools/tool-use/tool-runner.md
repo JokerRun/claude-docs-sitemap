@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: f1d7fb96baf54c7a70277ed9e5bb04b185a52ccfaa0e287ff18096e7d90467cc
+fetched_at: 2026-06-13T03:15:40.418428Z
+sha256: 6e2fe1ad0c51fa86c13701c94a0ba99f13b42014bf08adde79e9b8dc9eefa6b3
 ---
 
 # Tool Runner (SDK)
@@ -1021,15 +1021,15 @@ runner = client.beta.messages.tool_runner(
 for message in runner:
     tool_response = runner.generate_tool_call_response()
     if tool_response is not None:
-        # append_messages() flags state as modified, so the runner skips its
-        # automatic append for this iteration. Append the assistant message and
-        # tool result yourself, plus any follow-up.
+        # append_messages() menandai state sebagai dimodifikasi, jadi runner melewati
+        # append otomatisnya untuk iterasi ini. Tambahkan sendiri pesan asisten dan
+        # tool result, beserta tindak lanjut apa pun.
         runner.append_messages(
             message,
             tool_response,
             {"role": "user", "content": "Please be concise."},
         )
-    # When there's no tool call, leave state untouched so the loop exits.
+    # Jika tidak ada pemanggilan alat, biarkan state tidak tersentuh agar loop keluar.
 ````
 
 Untuk mengubah parameter permintaan seperti `max_tokens` tanpa mengambil alih riwayat pesan, gunakan `set_messages_params()`. Runner tetap menambahkan pesan asisten dan hasil alat secara otomatis.
@@ -1071,12 +1071,12 @@ for await (const message of runner) {
     }
     const doubled = Math.min(current * 2, MAX_TOKEN_CEILING);
     console.log(`Response truncated at ${current} tokens; retrying with ${doubled}.`);
-    // Bump the budget. setMessagesParams() flags state as modified, so the
-    // runner does NOT append the truncated message. The next iteration retries
-    // the same turn with the larger budget.
+    // Naikkan anggaran. setMessagesParams() menandai state sebagai dimodifikasi, jadi
+    // runner TIDAK menambahkan pesan yang terpotong. Iterasi berikutnya mencoba ulang
+    // giliran yang sama dengan anggaran yang lebih besar.
     runner.setMessagesParams((params) => ({ ...params, max_tokens: doubled }));
   }
-  // Otherwise leave state untouched so the runner auto-appends and continues.
+  // Jika tidak, biarkan state tak tersentuh agar runner menambahkan otomatis dan lanjut.
 }
 ````
 
@@ -1105,18 +1105,18 @@ await foreach (var message in runner)
 
     if (toolUseBlock is null)
     {
-        // No tool call: leave state untouched so the loop exits normally.
+        // Tidak ada pemanggilan alat: biarkan state tidak tersentuh agar loop keluar secara normal.
         continue;
     }
 
-    // Run the tool yourself and build the result block.
+    // Jalankan alat sendiri dan bangun blok hasilnya.
     var toolResult = new BetaToolResultBlockParam(toolUseBlock.ID)
     {
         Content = await getWeatherTool.ExecuteAsync(toolUseBlock, default),
     };
 
-    // PushMessages() flags state as modified; the runner skips its auto-append.
-    // Supply the assistant turn and the tool result yourself, then add a follow-up.
+    // PushMessages() menandai state sebagai dimodifikasi; runner melewati auto-append-nya.
+    // Berikan sendiri giliran asisten dan hasil alat, lalu tambahkan tindak lanjut.
     runner.PushMessages(
         new()
         {
@@ -1168,8 +1168,8 @@ for {
 		break // conversation complete
 	}
 
-	// The Go runner always appends the assistant message and tool results.
-	// Param changes here apply to the next iteration.
+	// Runner Go selalu menambahkan pesan asisten dan hasil alat.
+	// Perubahan param di sini berlaku untuk iterasi berikutnya.
 	runner.Params.MaxTokens = 2048
 }
 ````
@@ -1207,12 +1207,12 @@ for (BetaMessage message : runner) {
         long doubled = Math.min(current * 2, ceiling);
         IO.println("Response truncated at " + current + " tokens, retrying with " + doubled + ".");
 
-        // Calling setNextParams() flags this turn as user-managed: the runner
-        // does NOT auto-append the truncated message, so the next iteration
-        // re-sends the same conversation prefix with the larger budget.
+        // Memanggil setNextParams() menandai giliran ini sebagai dikelola-pengguna: runner
+        // TIDAK otomatis menambahkan pesan yang terpotong, sehingga iterasi berikutnya
+        // mengirim ulang prefiks percakapan yang sama dengan anggaran yang lebih besar.
         runner.setNextParams(runner.params().toBuilder().maxTokens(doubled).build());
     }
-    // No mutation on a normal turn: the runner auto-appends and continues.
+    // Tidak ada mutasi pada giliran normal: runner otomatis menambahkan dan melanjutkan.
 }
 ````
 
@@ -1250,10 +1250,10 @@ foreach ($runner as $message) {
         $doubled = min($current * 2, $maxTokenCeiling);
         echo "Response truncated at {$current} tokens, retrying with {$doubled}.\n";
 
-        // Calling setMessagesParams() inside the loop tells the runner to skip
-        // its automatic append. The truncated message is discarded; the next
-        // iteration retries with the larger budget.
-        // Keys are camelCase, matching the toolRunner() named parameters.
+        // Memanggil setMessagesParams() di dalam loop memberi tahu runner untuk melewati
+        // penambahan otomatisnya. Pesan yang terpotong dibuang; iterasi
+        // berikutnya mencoba ulang dengan anggaran yang lebih besar.
+        // Kunci menggunakan camelCase, sesuai dengan parameter bernama toolRunner().
         $runner->setMessagesParams(['maxTokens' => $doubled]);
     }
 }
@@ -1275,16 +1275,16 @@ runner = client.beta.messages.tool_runner(
   messages: [{role: "user", content: "What's the weather in San Francisco?"}]
 )
 
-# Step the runner once. The assistant message and tool result are appended
-# to runner.params[:messages] before next_message returns.
+# Jalankan runner satu langkah. Pesan asisten dan hasil alat ditambahkan
+# ke runner.params[:messages] sebelum next_message kembali.
 message = runner.next_message
 puts message.content
 
-# Inject a follow-up before continuing. feed_messages takes a splat, not an array.
+# Sisipkan tindak lanjut sebelum melanjutkan. feed_messages menerima splat, bukan array.
 runner.feed_messages({role: "user", content: "Also check Boston."})
 
-# Change parameters in place. Reassigning runner.params[:messages] would tell
-# the runner to skip its automatic append on the next turn.
+# Ubah parameter di tempat. Menugaskan ulang runner.params[:messages] akan memberi tahu
+# runner untuk melewati penambahan otomatisnya pada giliran berikutnya.
 runner.params.update(max_tokens: 2048)
 
 runner.run_until_finished

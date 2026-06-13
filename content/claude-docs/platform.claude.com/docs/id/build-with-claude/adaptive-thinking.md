@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/adaptive-thinking
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: c37e5c7296313b0af16dd60439e431e8670a18a1102637a632a477a543fcea84
+fetched_at: 2026-06-13T03:15:40.418428Z
+sha256: a4d9717bc81cca6c97cf355660119ff0ebd12cd34cd265b4ac5908d7414eb028
 ---
 
 # Pemikiran adaptif
@@ -42,7 +42,7 @@ Model yang lebih lama (Sonnet 4.5, Opus 4.5, dll.) tidak mendukung pemikiran ada
 
 ## Cara kerja pemikiran adaptif \{#how-adaptive-thinking-works}
 
-Dalam mode adaptif, pemikiran bersifat opsional bagi model. Claude mengevaluasi kompleksitas setiap permintaan dan menentukan apakah dan seberapa banyak menggunakan pemikiran diperpanjang. Pada tingkat effort default (`high`), Claude hampir selalu berpikir. Pada tingkat effort yang lebih rendah, Claude mungkin melewatkan pemikiran untuk masalah yang lebih sederhana.
+Dalam mode adaptif, pemikiran bersifat opsional bagi model. Claude mengevaluasi kompleksitas setiap permintaan dan menentukan apakah dan seberapa banyak menggunakan pemikiran diperpanjang. Pada tingkat effort default (`high`), Claude hampir selalu berpikir. Pada tingkat effort yang lebih rendah, Claude mungkin melewati pemikiran untuk masalah yang lebih sederhana.
 
 Pemikiran adaptif juga secara otomatis mengaktifkan [interleaved thinking](/docs/id/build-with-claude/extended-thinking#interleaved-thinking) (pemikiran berselang). Ini berarti Claude dapat berpikir di antara pemanggilan alat, menjadikannya sangat efektif untuk alur kerja agentik.
 
@@ -318,8 +318,8 @@ Anda dapat menggabungkan pemikiran adaptif dengan [parameter effort](/docs/id/bu
 | `max` | Claude selalu berpikir tanpa batasan pada kedalaman pemikiran. Tersedia pada Claude Fable 5, Claude Mythos 5, Claude Mythos Preview, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, dan Claude Sonnet 4.6. |
 | `xhigh` | Claude selalu berpikir secara mendalam dengan eksplorasi yang diperluas. Tersedia pada Claude Fable 5, Claude Mythos 5, Claude Opus 4.8, dan Claude Opus 4.7. |
 | `high` (default) | Claude hampir selalu berpikir. Memberikan penalaran mendalam pada tugas-tugas kompleks. |
-| `medium` | Claude menggunakan pemikiran moderat. Mungkin melewatkan pemikiran untuk kueri yang sangat sederhana. |
-| `low` | Claude meminimalkan pemikiran. Melewatkan pemikiran untuk tugas sederhana di mana kecepatan paling penting. |
+| `medium` | Claude menggunakan pemikiran moderat. Mungkin melewati pemikiran untuk kueri yang sangat sederhana. |
+| `low` | Claude meminimalkan pemikiran. Melewati pemikiran untuk tugas sederhana di mana kecepatan paling penting. |
 
 <CodeGroup>
 ```bash cURL
@@ -796,11 +796,11 @@ Pemikiran adaptif tersedia pada Claude Fable 5, Claude Mythos 5, Claude Mythos P
 
 ### Perubahan validasi \{#validation-changes}
 
-Saat menggunakan pemikiran adaptif, giliran asisten sebelumnya tidak perlu dimulai dengan blok pemikiran. Ini lebih fleksibel daripada mode manual, di mana API mengharuskan giliran dengan pemikiran aktif dimulai dengan blok pemikiran.
+Saat menggunakan pemikiran adaptif, giliran asisten sebelumnya tidak perlu dimulai dengan blok pemikiran. Ini lebih fleksibel daripada mode manual, di mana API mewajibkan giliran dengan pemikiran aktif dimulai dengan blok pemikiran.
 
 ### Caching prompt \{#prompt-caching}
 
-Permintaan berturut-turut yang menggunakan pemikiran `adaptive` mempertahankan breakpoint [cache prompt](/docs/id/build-with-claude/prompt-caching). Namun, beralih antara mode pemikiran `adaptive` dan `enabled`/`disabled` akan merusak breakpoint cache untuk pesan. Prompt sistem dan definisi alat tetap di-cache terlepas dari perubahan mode.
+Permintaan berturut-turut yang menggunakan pemikiran `adaptive` mempertahankan breakpoint [cache prompt](/docs/id/build-with-claude/prompt-caching). Namun, beralih antara mode pemikiran `adaptive` dan `enabled`/`disabled` merusak breakpoint cache untuk pesan. Prompt sistem dan definisi alat tetap di-cache terlepas dari perubahan mode.
 
 ### Menyetel perilaku pemikiran \{#tuning-thinking-behavior}
 
@@ -818,7 +818,7 @@ Untuk mendorong pemikiran sebagai gantinya, gunakan frasa seperti:
 This task involves multi-step reasoning. Think carefully before responding.
 ```
 
-Efektivitas pengarahan dapat sensitif terhadap pilihan kata yang tepat — jika satu frasa tidak menghasilkan perilaku yang Anda inginkan, coba varian yang lebih langsung.
+Efektivitas pengarahan dapat sensitif terhadap pemilihan kata yang tepat — jika satu frasa tidak menghasilkan perilaku yang Anda inginkan, coba varian yang lebih langsung.
 
 Anda juga dapat mengarahkan pemikiran per pesan dari giliran pengguna. Menambahkan `"Please think hard before responding."` ke pesan pengguna mendorong Claude untuk berpikir pada giliran tersebut; `"Answer directly without deliberating."` menekannya. Ini bekerja secara independen dari prompt sistem dan berguna ketika hanya beberapa permintaan dalam percakapan yang memerlukan penalaran diperpanjang.
 
@@ -874,7 +874,14 @@ Field `signature` identik baik `display` bernilai `"summarized"` maupun `"omitte
 </Note>
 
 <Note>
-Pada Claude Fable 5, Claude Mythos 5, Claude Opus 4.8, dan Claude Opus 4.7, `thinking.display` secara default adalah `"omitted"`. Blok pemikiran tetap muncul dalam stream respons, tetapi field `thinking`-nya kosong kecuali Anda secara eksplisit memilih untuk mengaktifkannya. Ini adalah perubahan diam-diam dari Claude Opus 4.6, di mana default-nya adalah `"summarized"`. `display` hanya mengontrol visibilitas: pemikiran tetap terjadi dan ditagih sama di setiap pengaturan. Untuk menerima teks pemikiran yang diringkas pada model-model ini, setel `thinking.display` ke `"summarized"` secara eksplisit:
+Pengaturan `display` hanya mengontrol visibilitas. Di bawah setiap pengaturan, pemikiran tetap terjadi dan ditagih dengan cara yang sama.
+
+Default untuk `thinking.display` bergantung pada model:
+
+- **Claude Fable 5, Claude Mythos 5, Claude Opus 4.8, Claude Opus 4.7, dan [Claude Mythos Preview](https://anthropic.com/glasswing):** default-nya adalah `"omitted"`. Blok pemikiran masih muncul dalam stream respons, tetapi field `thinking`-nya kosong kecuali Anda secara eksplisit memilih untuk mengaktifkannya. Ini adalah perubahan diam-diam dari Claude Opus 4.6, di mana default-nya adalah `"summarized"`.
+- **Claude Opus 4.6:** default-nya adalah `"summarized"`. Ringkasan yang dapat dibaca muncul tanpa perlu memilih untuk mengaktifkannya.
+
+Untuk menerima teks pemikiran yang diringkas pada model di mana default-nya adalah `"omitted"`, setel `thinking.display` ke `"summarized"` secara eksplisit:
 
 ```python
 thinking = {
@@ -908,13 +915,23 @@ Berikut adalah beberapa pertimbangan penting tentang enkripsi pemikiran:
 
 ### Output pemikiran pada Claude Fable 5 dan Claude Mythos 5 \{#thinking-output-on-claude-fable-5-and-claude-mythos-5}
 
-Pada Claude Fable 5 dan Claude Mythos 5, rantai pemikiran mentah tidak pernah dikembalikan. Blok pemikiran yang Anda terima adalah blok `thinking` biasa, bukan `redacted_thinking`, dan `thinking.display` bekerja sama seperti pada model lain: `"summarized"` mengembalikan ringkasan penalaran yang dapat dibaca, dan dengan `"omitted"` (default pada model-model ini), respons tetap menyertakan blok `thinking`, tetapi field `thinking` adalah string kosong. Untuk bentuk respons blok pemikiran, lihat [referensi Messages API](/docs/id/api/messages/create).
+Pada Claude Fable 5 dan Claude Mythos 5, rantai pemikiran mentah tidak pernah dikembalikan. Blok pemikiran yang Anda terima adalah blok `thinking` biasa, bukan `redacted_thinking`. Pengaturan `thinking.display` bekerja sama seperti pada model lain:
+
+- `"summarized"` mengembalikan ringkasan penalaran yang dapat dibaca.
+- `"omitted"` (default pada model-model ini) masih menyertakan blok `thinking` dalam respons, tetapi field `thinking`-nya adalah string kosong.
+
+Untuk bentuk respons blok pemikiran, lihat [referensi Messages API](/docs/id/api/messages/create).
 
 Saat melanjutkan percakapan pada model yang sama, kirim kembali setiap blok pemikiran ke API persis seperti yang diterima, termasuk blok yang field `thinking`-nya kosong. Jangan mengedit atau merekonstruksinya. Membaca teks ringkasan untuk ditampilkan tidak masalah: API menolak blok yang kontennya telah dimodifikasi, bukan blok yang telah Anda baca.
 
-Blok pemikiran terikat pada model yang menghasilkannya. Model lain secara diam-diam mengabaikannya alih-alih menolak permintaan, tetapi blok yang diabaikan tetap menambah token input, jadi ketika Anda beralih model, misalnya setelah [fallback penolakan classifier](/docs/id/build-with-claude/refusals-and-fallback), hapus blok `thinking` dan `redacted_thinking` dari giliran asisten sebelumnya. Pengecualiannya, yang dibahas dalam [Kredit fallback](/docs/id/build-with-claude/fallback-credit), adalah percobaan ulang kredit fallback (yang harus mengirim ulang body permintaan yang ditolak tanpa perubahan) dan blok `fallback` dari fallback di tengah output (yang tetap di tempat kemunculannya).
+Saat Anda beralih model, misalnya setelah [fallback penolakan classifier](/docs/id/build-with-claude/refusals-and-fallback), hapus blok `thinking` dan `redacted_thinking` dari giliran asisten sebelumnya. Blok pemikiran terikat pada model yang menghasilkannya. Model lain mengabaikannya secara diam-diam alih-alih menolak permintaan, tetapi blok yang diabaikan tetap menambah token input.
 
-Pada Claude Fable 5, permintaan yang mencoba memancing penalaran internal model sebagai bagian dari teks respons dapat ditolak dengan `stop_details.category: "reasoning_extraction"`. Aplikasi yang memerlukan visibilitas penalaran sebaiknya membaca blok `thinking` yang dijelaskan di bagian ini alih-alih meminta penalaran dalam respons. Lihat [Kategori penolakan](/docs/id/build-with-claude/refusals-and-fallback#refusal-response) untuk referensi field dan panduan penanganan.
+Dua pengecualian, yang dibahas dalam [Kredit fallback](/docs/id/build-with-claude/fallback-credit):
+
+- Percobaan ulang kredit fallback harus mengirim ulang body permintaan yang ditolak tanpa perubahan.
+- Blok `fallback` dari fallback di tengah output tetap berada di tempat kemunculannya.
+
+Untuk mendapatkan visibilitas ke dalam penalaran model, baca blok `thinking` yang dijelaskan di bagian ini alih-alih meminta penalaran dalam teks respons. Pada Claude Fable 5, permintaan yang mencoba memancing penalaran internal model sebagai bagian dari teks respons dapat ditolak dengan `stop_details.category: "reasoning_extraction"`. Lihat [Kategori penolakan](/docs/id/build-with-claude/refusals-and-fallback#refusal-response) untuk referensi field dan panduan penanganan.
 
 ### Harga \{#pricing}
 
@@ -962,7 +979,7 @@ Untuk melihat berapa banyak token output yang ditagih yang digunakan untuk penal
 
 ### Topik tambahan \{#additional-topics}
 
-Halaman pemikiran diperpanjang membahas beberapa topik secara lebih detail dengan contoh kode spesifik per mode:
+Halaman pemikiran diperpanjang membahas beberapa topik secara lebih detail dengan contoh kode spesifik mode:
 
 - **[Penggunaan alat dengan pemikiran](/docs/id/build-with-claude/extended-thinking#extended-thinking-with-tool-use)**: Aturan yang sama berlaku untuk pemikiran adaptif: pertahankan blok pemikiran di antara pemanggilan alat dan perhatikan batasan `tool_choice` saat pemikiran aktif.
 - **[Caching prompt](/docs/id/build-with-claude/extended-thinking#extended-thinking-with-prompt-caching)**: Dengan pemikiran adaptif, permintaan berturut-turut yang menggunakan mode pemikiran yang sama mempertahankan breakpoint cache. Beralih antara mode `adaptive` dan `enabled`/`disabled` merusak breakpoint cache untuk pesan (prompt sistem dan definisi alat tetap di-cache).

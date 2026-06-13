@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/environments
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 588d25461f2ce51ed7f178b4ff122c8fa48459245b92fd10d9dccacaf90aea69
+fetched_at: 2026-06-13T03:15:40.418428Z
+sha256: 3b3dfe9376428ad7b14771e5f840efd8466c96f2e9f26d73171370829afb6452
 ---
 
 # Penyiapan lingkungan cloud
@@ -526,25 +526,25 @@ Saat menggunakan jaringan `limited`:
 <CodeGroup defaultLanguage="CLI">
   
 ````bash
-# List environments
+# Daftar environment
 environments=$(curl -fsS https://api.anthropic.com/v1/environments \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
   -H "anthropic-beta: managed-agents-2026-04-01")
 
-# Retrieve a specific environment
+# Ambil environment tertentu
 env=$(curl -fsS "https://api.anthropic.com/v1/environments/$environment_id" \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
   -H "anthropic-beta: managed-agents-2026-04-01")
 
-# Archive an environment (read-only, existing sessions continue)
+# Arsipkan environment (hanya-baca, sesi yang ada tetap berjalan)
 curl -fsS -X POST "https://api.anthropic.com/v1/environments/$environment_id/archive" \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
   -H "anthropic-beta: managed-agents-2026-04-01"
 
-# Delete an environment (only if no sessions reference it)
+# Hapus environment (hanya jika tidak ada sesi yang mereferensikannya)
 curl -fsS -X DELETE "https://api.anthropic.com/v1/environments/$environment_id" \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
@@ -553,85 +553,85 @@ curl -fsS -X DELETE "https://api.anthropic.com/v1/environments/$environment_id" 
 
   
 ````bash
-# List environments
+# Daftar environment
 ant beta:environments list
 
-# Retrieve a specific environment
+# Ambil environment tertentu
 ant beta:environments retrieve --environment-id "$ENVIRONMENT_ID"
 
-# Archive an environment (read-only, existing sessions continue)
+# Arsipkan environment (hanya-baca, sesi yang ada tetap berjalan)
 ant beta:environments archive --environment-id "$ENVIRONMENT_ID"
 
-# Delete an environment (only if no sessions reference it)
+# Hapus environment (hanya jika tidak ada sesi yang mereferensikannya)
 ant beta:environments delete --environment-id "$ENVIRONMENT_ID"
 ````
 
   
 ````python
-# List environments
+# Daftar environment
 environments = client.beta.environments.list()
 
-# Retrieve a specific environment
+# Ambil environment tertentu
 env = client.beta.environments.retrieve(environment.id)
 
-# Archive an environment (read-only, existing sessions continue)
+# Arsipkan environment (hanya-baca, sesi yang ada tetap berjalan)
 client.beta.environments.archive(environment.id)
 
-# Delete an environment (only if no sessions reference it)
+# Hapus environment (hanya jika tidak ada sesi yang mereferensikannya)
 client.beta.environments.delete(environment.id)
 ````
 
   
 ````typescript
-// List environments
+// Daftar environment
 const environments = await client.beta.environments.list();
 
-// Retrieve a specific environment
+// Ambil environment tertentu
 const env = await client.beta.environments.retrieve(environment.id);
 
-// Archive an environment (read-only, existing sessions continue)
+// Arsipkan environment (hanya-baca, sesi yang ada tetap berjalan)
 await client.beta.environments.archive(environment.id);
 
-// Delete an environment (only if no sessions reference it)
+// Hapus environment (hanya jika tidak ada sesi yang mereferensikannya)
 await client.beta.environments.delete(environment.id);
 ````
 
   
 ````csharp
-// List environments
+// Daftar environment
 var environments = await client.Beta.Environments.List();
 
-// Retrieve a specific environment
+// Ambil environment tertentu
 var env = await client.Beta.Environments.Retrieve(environment.ID);
 
-// Archive an environment (read-only, existing sessions continue)
+// Arsipkan environment (hanya-baca, sesi yang ada tetap berjalan)
 await client.Beta.Environments.Archive(environment.ID);
 
-// Delete an environment (only if no sessions reference it)
+// Hapus environment (hanya jika tidak ada sesi yang mereferensikannya)
 await client.Beta.Environments.Delete(environment.ID);
 ````
 
   
 ````go
-// List environments
+// Daftar environment
 environments, err := client.Beta.Environments.List(ctx, anthropic.BetaEnvironmentListParams{})
 if err != nil {
 	panic(err)
 }
 
-// Retrieve a specific environment
+// Ambil environment tertentu
 env, err := client.Beta.Environments.Get(ctx, environment.ID, anthropic.BetaEnvironmentGetParams{})
 if err != nil {
 	panic(err)
 }
 
-// Archive an environment (read-only, existing sessions continue)
+// Arsipkan environment (hanya-baca, sesi yang ada tetap berjalan)
 _, err = client.Beta.Environments.Archive(ctx, environment.ID, anthropic.BetaEnvironmentArchiveParams{})
 if err != nil {
 	panic(err)
 }
 
-// Delete an environment (only if no sessions reference it)
+// Hapus environment (hanya jika tidak ada sesi yang mereferensikannya)
 _, err = client.Beta.Environments.Delete(ctx, environment.ID, anthropic.BetaEnvironmentDeleteParams{})
 if err != nil {
 	panic(err)
@@ -640,40 +640,40 @@ if err != nil {
 
   
 ````java
-// List environments
+// Daftar environment
 var environments = client.beta().environments().list();
-// Retrieve a specific environment
+// Ambil environment tertentu
 var env = client.beta().environments().retrieve(environment.id());
-// Archive an environment (read-only, existing sessions continue)
+// Arsipkan environment (hanya-baca, sesi yang ada tetap berjalan)
 client.beta().environments().archive(environment.id());
-// Delete an environment (only if no sessions reference it)
+// Hapus environment (hanya jika tidak ada sesi yang mereferensikannya)
 client.beta().environments().delete(environment.id());
 ````
 
   
 ````php
-// List environments
+// Daftar environment
 $environments = $client->beta->environments->list();
-// Retrieve a specific environment
+// Ambil environment tertentu
 $env = $client->beta->environments->retrieve($environment->id);
-// Archive an environment (read-only, existing sessions continue)
+// Arsipkan environment (hanya-baca, sesi yang ada tetap berjalan)
 $client->beta->environments->archive($environment->id);
-// Delete an environment (only if no sessions reference it)
+// Hapus environment (hanya jika tidak ada sesi yang mereferensikannya)
 $client->beta->environments->delete($environment->id);
 ````
 
   
 ````ruby
-# List environments
+# Daftar environment
 environments = client.beta.environments.list
 
-# Retrieve a specific environment
+# Ambil environment tertentu
 env = client.beta.environments.retrieve(environment.id)
 
-# Archive an environment (read-only, existing sessions continue)
+# Arsipkan environment (hanya-baca, sesi yang ada tetap berjalan)
 client.beta.environments.archive(environment.id)
 
-# Delete an environment (only if no sessions reference it)
+# Hapus environment (hanya jika tidak ada sesi yang mereferensikannya)
 client.beta.environments.delete(environment.id)
 ````
 

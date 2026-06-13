@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 95740d39218135a5294cef6e6c841289d66c5ab71d3dbd3158e0d32aa3bcb0ab
+fetched_at: 2026-06-13T03:15:40.418428Z
+sha256: 03e4d6a3e145c5e680e1aa0a9d9dc664f607e691f8c477826b0b5fe85511526d
 ---
 
 # Alat computer use
@@ -476,15 +476,15 @@ def sampling_loop(model, messages, max_iterations=10):
             betas=["computer-use-2025-11-24"],
         )
 
-        # Add Claude's response to the conversation history
+        # Tambahkan respons Claude ke riwayat percakapan
         messages.append({"role": "assistant", "content": response.content})
 
-        # Run any tools Claude requested and collect results
+        # Jalankan alat apa pun yang diminta Claude dan kumpulkan hasilnya
         tool_results = process_tool_calls(response)
         if not tool_results:
             return messages  # No more tool use; task complete
 
-        # Send tool results back to Claude for the next iteration
+        # Kirim hasil alat kembali ke Claude untuk iterasi berikutnya
         messages.append({"role": "user", "content": tool_results})
 
     return messages
@@ -500,8 +500,8 @@ async function samplingLoop(
   messages: Anthropic.Beta.BetaMessageParam[],
   maxIterations = 10,
 ): Promise<Anthropic.Beta.BetaMessageParam[]> {
-  // Run the computer-use agent loop until Claude stops requesting tools
-  // or the iteration limit is reached.
+  // Jalankan loop agen computer-use hingga Claude berhenti meminta alat
+  // atau batas iterasi tercapai.
   for (let i = 0; i < maxIterations; i++) {
     const response = await client.beta.messages.create({
       model,
@@ -511,16 +511,16 @@ async function samplingLoop(
       betas: ["computer-use-2025-11-24"],
     });
 
-    // Add Claude's response to the conversation history
+    // Tambahkan respons Claude ke riwayat percakapan
     messages.push({ role: "assistant", content: response.content });
 
-    // Run any tools Claude requested and collect results
+    // Jalankan alat apa pun yang diminta Claude dan kumpulkan hasilnya
     const toolResults = processToolCalls(response);
     if (toolResults.length === 0) {
       return messages; // No more tool use; task complete
     }
 
-    // Send tool results back to Claude for the next iteration
+    // Kirim hasil alat kembali ke Claude untuk iterasi berikutnya
     messages.push({ role: "user", content: toolResults });
   }
 
@@ -539,8 +539,8 @@ async Task<List<BetaMessageParam>> SamplingLoop(
     int maxIterations = 10
 )
 {
-    // Run the computer-use agent loop until Claude stops requesting tools
-    // or the iteration limit is reached.
+    // Jalankan loop agen computer-use hingga Claude berhenti meminta alat
+    // atau batas iterasi tercapai.
     for (var i = 0; i < maxIterations; i++)
     {
         var response = await client.Beta.Messages.Create(
@@ -554,7 +554,7 @@ async Task<List<BetaMessageParam>> SamplingLoop(
             }
         );
 
-        // Add Claude's response to the conversation history
+        // Tambahkan respons Claude ke riwayat percakapan
         messages.Add(
             new()
             {
@@ -565,14 +565,14 @@ async Task<List<BetaMessageParam>> SamplingLoop(
             }
         );
 
-        // Run any tools Claude requested and collect results
+        // Jalankan alat apa pun yang diminta Claude dan kumpulkan hasilnya
         var toolResults = ProcessToolCalls(response);
         if (toolResults.Count == 0)
         {
             return messages; // No more tool use; task complete
         }
 
-        // Send tool results back to Claude for the next iteration
+        // Kirim hasil alat kembali ke Claude untuk iterasi berikutnya
         messages.Add(new() { Role = Role.User, Content = toolResults });
     }
 
@@ -585,8 +585,8 @@ async Task<List<BetaMessageParam>> SamplingLoop(
 <Tab title="Go">
 
 ````go
-// samplingLoop runs the computer-use agent loop until Claude stops
-// requesting tools or the iteration limit is reached.
+// samplingLoop menjalankan loop agen computer-use hingga Claude berhenti
+// meminta alat atau batas iterasi tercapai.
 func samplingLoop(ctx context.Context, model anthropic.Model, messages []anthropic.BetaMessageParam, maxIterations int) ([]anthropic.BetaMessageParam, error) {
 	for range maxIterations {
 		response, err := client.Beta.Messages.New(ctx, anthropic.BetaMessageNewParams{
@@ -600,16 +600,16 @@ func samplingLoop(ctx context.Context, model anthropic.Model, messages []anthrop
 			return nil, err
 		}
 
-		// Add Claude's response to the conversation history
+		// Tambahkan respons Claude ke riwayat percakapan
 		messages = append(messages, response.ToParam())
 
-		// Run any tools Claude requested and collect results
+		// Jalankan alat yang diminta Claude dan kumpulkan hasilnya
 		toolResults := processToolCalls(response)
 		if len(toolResults) == 0 {
 			return messages, nil // No more tool use; task complete
 		}
 
-		// Send tool results back to Claude for the next iteration
+		// Kirim hasil alat kembali ke Claude untuk iterasi berikutnya
 		messages = append(messages, anthropic.BetaMessageParam{
 			Role:    anthropic.BetaMessageParamRoleUser,
 			Content: toolResults,
@@ -639,20 +639,20 @@ List<BetaMessageParam> samplingLoop(Model model, List<BetaMessageParam> messages
                 .addBeta("computer-use-2025-11-24")
                 .build());
 
-        // Add Claude's response to the conversation history
+        // Tambahkan respons Claude ke riwayat percakapan
         messages.add(BetaMessageParam.builder()
                 .role(BetaMessageParam.Role.ASSISTANT)
                 .contentOfBetaContentBlockParams(
                         response.content().stream().map(BetaContentBlock::toParam).toList())
                 .build());
 
-        // Run any tools Claude requested and collect results
+        // Jalankan alat apa pun yang diminta Claude dan kumpulkan hasilnya
         List<BetaContentBlockParam> toolResults = processToolCalls(response);
         if (toolResults.isEmpty()) {
             return messages; // No more tool use; task complete
         }
 
-        // Send tool results back to Claude for the next iteration
+        // Kirim hasil alat kembali ke Claude untuk iterasi berikutnya
         messages.add(BetaMessageParam.builder()
                 .role(BetaMessageParam.Role.USER)
                 .contentOfBetaContentBlockParams(toolResults)
@@ -684,16 +684,16 @@ function samplingLoop(string $model, array $messages, int $maxIterations = 10): 
             betas: ['computer-use-2025-11-24'],
         );
 
-        // Add Claude's response to the conversation history
+        // Tambahkan respons Claude ke riwayat percakapan
         $messages[] = BetaMessageParam::with(role: Role::ASSISTANT, content: $response->content);
 
-        // Run any tools Claude requested and collect results
+        // Jalankan alat apa pun yang diminta Claude dan kumpulkan hasilnya
         $toolResults = processToolCalls($response);
         if ($toolResults === []) {
             return $messages; // No more tool use; task complete
         }
 
-        // Send tool results back to Claude for the next iteration
+        // Kirim hasil alat kembali ke Claude untuk iterasi berikutnya
         $messages[] = BetaMessageParam::with(role: Role::USER, content: $toolResults);
     }
 
@@ -706,8 +706,8 @@ function samplingLoop(string $model, array $messages, int $maxIterations = 10): 
 <Tab title="Ruby">
 
 ````ruby
-# Run the computer-use agent loop until Claude stops requesting tools
-# or the iteration limit is reached.
+# Jalankan loop agen computer-use hingga Claude berhenti meminta alat
+# atau batas iterasi tercapai.
 def sampling_loop(model, messages, max_iterations: 10)
   max_iterations.times do
     response = CLIENT.beta.messages.create(
@@ -718,14 +718,14 @@ def sampling_loop(model, messages, max_iterations: 10)
       betas: ["computer-use-2025-11-24"]
     )
 
-    # Add Claude's response to the conversation history
+    # Tambahkan respons Claude ke riwayat percakapan
     messages << {role: "assistant", content: response.content}
 
-    # Run any tools Claude requested and collect results
+    # Jalankan alat apa pun yang diminta Claude dan kumpulkan hasilnya
     tool_results = process_tool_calls(response)
     return messages if tool_results.empty? # No more tool use; task complete
 
-    # Send tool results back to Claude for the next iteration
+    # Kirim hasil alat kembali ke Claude untuk iterasi berikutnya
     messages << {role: "user", content: tool_results}
   end
 
@@ -985,7 +985,7 @@ def handle_computer_action(action_type, params):
         return click_at(x, y)
     elif action_type == "type":
         return type_text(params["text"])
-    # Handle other actions as needed
+    # Tangani tindakan lain sesuai kebutuhan
     return f"unhandled action: {action_type}"
 ````
 
@@ -1018,7 +1018,7 @@ function handleComputerAction(
   } else if (actionType === "type") {
     return typeText(params.text as string);
   }
-  // Handle other actions as needed
+  // Tangani aksi lainnya sesuai kebutuhan
   return `unhandled action: ${actionType}`;
 }
 ````
@@ -1043,7 +1043,7 @@ string HandleComputerAction(string actionType, IReadOnlyDictionary<string, JsonE
             input["coordinate"][1].GetInt32()
         ),
         "type" => TypeText(input["text"].GetString()!),
-        // Handle other actions as needed
+        // Tangani aksi lainnya sesuai kebutuhan
         _ => $"unhandled action: {actionType}",
     };
 ````
@@ -1074,7 +1074,7 @@ func handleComputerAction(actionType string, params map[string]any) string {
 		return clickAt(int(coord[0].(float64)), int(coord[1].(float64)))
 	case "type":
 		return typeText(params["text"].(string))
-	// Handle other actions as needed
+	// Tangani aksi lainnya sesuai kebutuhan
 	default:
 		return fmt.Sprintf("unhandled action: %s", actionType)
 	}
@@ -1109,7 +1109,7 @@ String handleComputerAction(String actionType, Map<String, JsonValue> params) {
             yield clickAt(x, y);
         }
         case "type" -> typeText(params.get("text").asStringOrThrow());
-        // Handle other actions as needed
+        // Tangani aksi lain sesuai kebutuhan
         default -> "unhandled action: " + actionType;
     };
 }
@@ -1141,7 +1141,7 @@ function handleComputerAction(string $actionType, array $params): string
         'screenshot' => captureScreenshot(),
         'left_click' => clickAt(...$params['coordinate']),
         'type' => typeText($params['text']),
-        // Handle other actions as needed
+        // Tangani tindakan lain sesuai kebutuhan
         default => "unhandled action: {$actionType}",
     };
 }
@@ -1173,7 +1173,7 @@ def handle_computer_action(action_type, params)
     click_at(x, y)
   when "type"
     type_text(params[:text])
-  # Handle other actions as needed
+  # Tangani aksi lainnya sesuai kebutuhan
   else
     "unhandled action: #{action_type}"
   end
@@ -1388,15 +1388,15 @@ def sampling_loop(model, messages, max_iterations=10):
             betas=["computer-use-2025-11-24"],
         )
 
-        # Add Claude's response to the conversation history
+        # Tambahkan respons Claude ke riwayat percakapan
         messages.append({"role": "assistant", "content": response.content})
 
-        # Run any tools Claude requested and collect results
+        # Jalankan alat apa pun yang diminta Claude dan kumpulkan hasilnya
         tool_results = process_tool_calls(response)
         if not tool_results:
             return messages  # No more tool use; task complete
 
-        # Send tool results back to Claude for the next iteration
+        # Kirim hasil alat kembali ke Claude untuk iterasi berikutnya
         messages.append({"role": "user", "content": tool_results})
 
     return messages
@@ -1412,8 +1412,8 @@ async function samplingLoop(
   messages: Anthropic.Beta.BetaMessageParam[],
   maxIterations = 10,
 ): Promise<Anthropic.Beta.BetaMessageParam[]> {
-  // Run the computer-use agent loop until Claude stops requesting tools
-  // or the iteration limit is reached.
+  // Jalankan loop agen computer-use hingga Claude berhenti meminta alat
+  // atau batas iterasi tercapai.
   for (let i = 0; i < maxIterations; i++) {
     const response = await client.beta.messages.create({
       model,
@@ -1423,16 +1423,16 @@ async function samplingLoop(
       betas: ["computer-use-2025-11-24"],
     });
 
-    // Add Claude's response to the conversation history
+    // Tambahkan respons Claude ke riwayat percakapan
     messages.push({ role: "assistant", content: response.content });
 
-    // Run any tools Claude requested and collect results
+    // Jalankan alat apa pun yang diminta Claude dan kumpulkan hasilnya
     const toolResults = processToolCalls(response);
     if (toolResults.length === 0) {
       return messages; // No more tool use; task complete
     }
 
-    // Send tool results back to Claude for the next iteration
+    // Kirim hasil alat kembali ke Claude untuk iterasi berikutnya
     messages.push({ role: "user", content: toolResults });
   }
 
@@ -1451,8 +1451,8 @@ async Task<List<BetaMessageParam>> SamplingLoop(
     int maxIterations = 10
 )
 {
-    // Run the computer-use agent loop until Claude stops requesting tools
-    // or the iteration limit is reached.
+    // Jalankan loop agen computer-use hingga Claude berhenti meminta alat
+    // atau batas iterasi tercapai.
     for (var i = 0; i < maxIterations; i++)
     {
         var response = await client.Beta.Messages.Create(
@@ -1466,7 +1466,7 @@ async Task<List<BetaMessageParam>> SamplingLoop(
             }
         );
 
-        // Add Claude's response to the conversation history
+        // Tambahkan respons Claude ke riwayat percakapan
         messages.Add(
             new()
             {
@@ -1477,14 +1477,14 @@ async Task<List<BetaMessageParam>> SamplingLoop(
             }
         );
 
-        // Run any tools Claude requested and collect results
+        // Jalankan alat apa pun yang diminta Claude dan kumpulkan hasilnya
         var toolResults = ProcessToolCalls(response);
         if (toolResults.Count == 0)
         {
             return messages; // No more tool use; task complete
         }
 
-        // Send tool results back to Claude for the next iteration
+        // Kirim hasil alat kembali ke Claude untuk iterasi berikutnya
         messages.Add(new() { Role = Role.User, Content = toolResults });
     }
 
@@ -1497,8 +1497,8 @@ async Task<List<BetaMessageParam>> SamplingLoop(
     <Tab title="Go">
     
 ````go
-// samplingLoop runs the computer-use agent loop until Claude stops
-// requesting tools or the iteration limit is reached.
+// samplingLoop menjalankan loop agen computer-use hingga Claude berhenti
+// meminta alat atau batas iterasi tercapai.
 func samplingLoop(ctx context.Context, model anthropic.Model, messages []anthropic.BetaMessageParam, maxIterations int) ([]anthropic.BetaMessageParam, error) {
 	for range maxIterations {
 		response, err := client.Beta.Messages.New(ctx, anthropic.BetaMessageNewParams{
@@ -1512,16 +1512,16 @@ func samplingLoop(ctx context.Context, model anthropic.Model, messages []anthrop
 			return nil, err
 		}
 
-		// Add Claude's response to the conversation history
+		// Tambahkan respons Claude ke riwayat percakapan
 		messages = append(messages, response.ToParam())
 
-		// Run any tools Claude requested and collect results
+		// Jalankan alat yang diminta Claude dan kumpulkan hasilnya
 		toolResults := processToolCalls(response)
 		if len(toolResults) == 0 {
 			return messages, nil // No more tool use; task complete
 		}
 
-		// Send tool results back to Claude for the next iteration
+		// Kirim hasil alat kembali ke Claude untuk iterasi berikutnya
 		messages = append(messages, anthropic.BetaMessageParam{
 			Role:    anthropic.BetaMessageParamRoleUser,
 			Content: toolResults,
@@ -1551,20 +1551,20 @@ List<BetaMessageParam> samplingLoop(Model model, List<BetaMessageParam> messages
                 .addBeta("computer-use-2025-11-24")
                 .build());
 
-        // Add Claude's response to the conversation history
+        // Tambahkan respons Claude ke riwayat percakapan
         messages.add(BetaMessageParam.builder()
                 .role(BetaMessageParam.Role.ASSISTANT)
                 .contentOfBetaContentBlockParams(
                         response.content().stream().map(BetaContentBlock::toParam).toList())
                 .build());
 
-        // Run any tools Claude requested and collect results
+        // Jalankan alat apa pun yang diminta Claude dan kumpulkan hasilnya
         List<BetaContentBlockParam> toolResults = processToolCalls(response);
         if (toolResults.isEmpty()) {
             return messages; // No more tool use; task complete
         }
 
-        // Send tool results back to Claude for the next iteration
+        // Kirim hasil alat kembali ke Claude untuk iterasi berikutnya
         messages.add(BetaMessageParam.builder()
                 .role(BetaMessageParam.Role.USER)
                 .contentOfBetaContentBlockParams(toolResults)
@@ -1596,16 +1596,16 @@ function samplingLoop(string $model, array $messages, int $maxIterations = 10): 
             betas: ['computer-use-2025-11-24'],
         );
 
-        // Add Claude's response to the conversation history
+        // Tambahkan respons Claude ke riwayat percakapan
         $messages[] = BetaMessageParam::with(role: Role::ASSISTANT, content: $response->content);
 
-        // Run any tools Claude requested and collect results
+        // Jalankan alat apa pun yang diminta Claude dan kumpulkan hasilnya
         $toolResults = processToolCalls($response);
         if ($toolResults === []) {
             return $messages; // No more tool use; task complete
         }
 
-        // Send tool results back to Claude for the next iteration
+        // Kirim hasil alat kembali ke Claude untuk iterasi berikutnya
         $messages[] = BetaMessageParam::with(role: Role::USER, content: $toolResults);
     }
 
@@ -1618,8 +1618,8 @@ function samplingLoop(string $model, array $messages, int $maxIterations = 10): 
     <Tab title="Ruby">
     
 ````ruby
-# Run the computer-use agent loop until Claude stops requesting tools
-# or the iteration limit is reached.
+# Jalankan loop agen computer-use hingga Claude berhenti meminta alat
+# atau batas iterasi tercapai.
 def sampling_loop(model, messages, max_iterations: 10)
   max_iterations.times do
     response = CLIENT.beta.messages.create(
@@ -1630,14 +1630,14 @@ def sampling_loop(model, messages, max_iterations: 10)
       betas: ["computer-use-2025-11-24"]
     )
 
-    # Add Claude's response to the conversation history
+    # Tambahkan respons Claude ke riwayat percakapan
     messages << {role: "assistant", content: response.content}
 
-    # Run any tools Claude requested and collect results
+    # Jalankan alat apa pun yang diminta Claude dan kumpulkan hasilnya
     tool_results = process_tool_calls(response)
     return messages if tool_results.empty? # No more tool use; task complete
 
-    # Send tool results back to Claude for the next iteration
+    # Kirim hasil alat kembali ke Claude untuk iterasi berikutnya
     messages << {role: "user", content: tool_results}
   end
 

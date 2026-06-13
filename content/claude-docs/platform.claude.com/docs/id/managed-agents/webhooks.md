@@ -1,19 +1,19 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/webhooks
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 81725d60af0415968aae3a7d2892f446b36c5482769a5268b29993c5467e164d
+fetched_at: 2026-06-13T03:15:40.418428Z
+sha256: 795b68d1981a97a440e0558ad1b894c856c1d05dd081269ebbbb1efc3e01accf
 ---
 
 # Berlangganan webhook
 
-Dapatkan notifikasi saat peristiwa penting terjadi tanpa perlu melakukan polling.
+Dapatkan notifikasi ketika peristiwa penting terjadi tanpa melakukan polling.
 
 ---
 
 Sesi adalah interaksi yang berjalan lama. Meskipun sebagian besar interaksi real-time terjadi melalui [aliran peristiwa SSE](/docs/id/managed-agents/events-and-streaming), webhook memberi tahu Anda tentang perubahan status utama.
 
-Peristiwa webhook mengembalikan `type` dan `id` peristiwa, bukan objek lengkapnya. Saat Anda menerima peristiwa webhook, Anda perlu mengambil objek tersebut secara langsung dengan panggilan `GET`. Hal ini menghindari pengiriman data usang pada percobaan ulang dan menjaga setiap pengiriman tetap kecil.
+Peristiwa webhook mengembalikan `type` dan `id` peristiwa, bukan objek lengkapnya. Ketika Anda menerima peristiwa webhook, Anda perlu mengambil objek tersebut secara langsung dengan panggilan `GET`. Hal ini menghindari pengiriman data usang pada percobaan ulang dan menjaga setiap pengiriman tetap kecil.
 
 ## Jenis peristiwa yang didukung \{#supported-event-types}
 
@@ -25,7 +25,7 @@ Peristiwa webhook mengembalikan `type` dan `id` peristiwa, bukan objek lengkapny
     | `session.status_idled` | Agen menunggu input, misalnya persetujuan izin alat atau pesan pengguna baru. |
     | `session.status_rescheduled` | Terjadi kesalahan sementara dan sesi mencoba ulang secara otomatis. |
     | `session.status_terminated` | Sesi mengalami kesalahan terminal. |
-    | `session.thread_created` | [Thread multiagen](/docs/id/managed-agents/multi-agent) baru dibuka, yang berarti agen tambahan yang dipanggil oleh koordinator mulai menjalankan pekerjaan. |
+    | `session.thread_created` | [Thread multiagen](/docs/id/managed-agents/multi-agent) baru dibuka, yang berarti agen tambahan yang dipanggil oleh koordinator mulai menjalankan tugas. |
     | `session.thread_idled` | Sebuah agen dalam [interaksi multiagen](/docs/id/managed-agents/multi-agent) sedang menunggu input. |
     | `session.thread_terminated` | Sebuah [thread multiagen](/docs/id/managed-agents/multi-agent) diarsipkan. |
     | `session.outcome_evaluation_ended` | [Evaluasi hasil](/docs/id/managed-agents/define-outcomes) untuk satu iterasi telah selesai. |
@@ -51,7 +51,7 @@ Sebuah endpoint webhook terdiri dari:
 
 - **URL:** Harus HTTPS pada port 443 dengan hostname yang dapat di-resolve secara publik.
 - **Jenis peristiwa:** Daftar nilai `data.type` yang diterima endpoint ini. Sebuah endpoint hanya menerima peristiwa yang dilanggannya, ditambah peristiwa uji (lihat [Perilaku pengiriman](#perilaku-pengiriman)).
-- **Signing secret:** Secret 32-byte dengan prefiks `whsec_` yang dihasilkan saat pembuatan. Secret ini hanya ditampilkan sekali, jadi simpan dengan aman untuk memverifikasi pengiriman webhook.
+- **Signing secret:** Sebuah secret 32-byte dengan prefiks `whsec_` yang dihasilkan saat pembuatan. Secret ini hanya ditampilkan sekali, jadi simpan dengan aman untuk memverifikasi pengiriman webhook.
 
 ## Memverifikasi signature \{#verify-the-signature}
 
@@ -71,7 +71,7 @@ app = Flask(__name__)
 @app.route("/webhook", methods=["POST"])
 def webhook():
     try:
-        # unwrap() memunculkan error jika tanda tangan tidak valid atau payload sudah kedaluwarsa
+        # unwrap() memunculkan error jika signature tidak valid atau payload sudah kedaluwarsa
         event = client.beta.webhooks.unwrap(
             request.get_data(as_text=True),
             headers=dict(request.headers),
@@ -93,11 +93,11 @@ import Anthropic from "@anthropic-ai/sdk";
 const client = new Anthropic(); // reads ANTHROPIC_WEBHOOK_SIGNING_KEY from env
 const app = express();
 
-// PENTING: gunakan express.raw(), bukan express.json(). Tanda tangan dihitung dari byte mentah.
+// PENTING: gunakan express.raw(), bukan express.json(). Signature dihitung dari byte mentah.
 app.post("/webhook", express.raw({ type: "application/json" }), (req, res) => {
   let event;
   try {
-    // unwrap() melempar error jika tanda tangan tidak valid atau payload sudah kedaluwarsa
+    // unwrap() melempar error jika signature tidak valid atau payload sudah kedaluwarsa
     event = client.beta.webhooks.unwrap(req.body.toString("utf8"), {
       headers: req.headers as Record<string, string>
     });
@@ -367,7 +367,7 @@ status 204
 
 ## Perilaku pengiriman \{#delivery-behavior}
 
-- **Urutan tidak dijamin.** `session.status_idled` mungkin tiba sebelum `session.outcome_evaluation_ended` meskipun hasil dihasilkan terlebih dahulu. Gunakan timestamp `created_at` untuk mengurutkan jika urutan penting.
+- **Urutan tidak dijamin.** `session.status_idled` mungkin tiba sebelum `session.outcome_evaluation_ended` meskipun hasil tersebut diproduksi lebih dulu. Gunakan timestamp `created_at` untuk mengurutkan jika urutan penting.
 - **Percobaan ulang:** Anthropic mencoba ulang setidaknya sekali. Percobaan ulang mengirimkan `event.id` yang sama.
 - **Redirect tidak diikuti.** `3xx` diperlakukan sebagai kegagalan. Jika endpoint Anda berpindah, perbarui URL di Console.
-- **Penonaktifan otomatis:** Sebuah endpoint secara otomatis diatur ke `disabled` dengan `disabled_reason` yang dapat dibaca mesin setelah sekitar 20 pengiriman gagal berturut-turut, atau segera jika hostname di-resolve ke IP privat atau endpoint mengembalikan redirect. Aktifkan kembali secara manual di Console setelah menyelesaikan masalah.
+- **Penonaktifan otomatis:** Sebuah endpoint secara otomatis diatur ke `disabled` dengan `disabled_reason` yang dapat dibaca mesin setelah sekitar 20 pengiriman gagal berturut-turut, atau segera jika hostname di-resolve ke IP privat atau endpoint mengembalikan redirect. Aktifkan kembali secara manual di Console setelah menyelesaikan masalah tersebut.

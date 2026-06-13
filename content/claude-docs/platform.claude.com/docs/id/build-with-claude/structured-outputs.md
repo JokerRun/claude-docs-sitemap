@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/structured-outputs
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 4b03b6e4e2183a48531a8272936041ba443af0ed6be679b5b120bb2595cc17bd
+fetched_at: 2026-06-13T03:15:40.418428Z
+sha256: bd1e80a9c972a691cf83cac7dea0c9255a7365ce3730f4aebfba5103bcd1b0ec
 ---
 
 # Output terstruktur
@@ -11,7 +11,7 @@ Dapatkan hasil JSON yang tervalidasi dari alur kerja agen
 
 ---
 
-Output terstruktur membatasi respons Claude agar mengikuti skema tertentu, memastikan output yang valid dan dapat diurai untuk pemrosesan lanjutan. Output terstruktur menyediakan dua fitur yang saling melengkapi:
+Output terstruktur membatasi respons Claude agar mengikuti skema tertentu, memastikan output yang valid dan dapat diurai untuk pemrosesan lebih lanjut. Output terstruktur menyediakan dua fitur yang saling melengkapi:
 
 - **Output JSON** (`output_config.format`): Dapatkan respons Claude dalam format JSON tertentu
 - **Penggunaan alat ketat** (`strict: true`): Menjamin validasi skema pada nama dan input alat
@@ -19,7 +19,7 @@ Output terstruktur membatasi respons Claude agar mengikuti skema tertentu, memas
 Anda dapat menggunakan fitur-fitur ini secara independen atau bersamaan dalam permintaan yang sama.
 
 <Note>
-Output terstruktur tersedia secara umum di Claude API untuk Claude Opus 4.8, [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 4.6, Claude Sonnet 4.5, Claude Opus 4.5, dan Claude Haiku 4.5. Di Amazon Bedrock, output terstruktur tersedia secara umum untuk Claude Opus 4.6, Claude Sonnet 4.6, Claude Sonnet 4.5, Claude Opus 4.5, dan Claude Haiku 4.5; Claude Opus 4.7 dan Claude Mythos Preview tersedia melalui [Claude di Amazon Bedrock](/docs/id/build-with-claude/claude-in-amazon-bedrock) (endpoint Bedrock Messages-API). Output terstruktur tersedia di [Claude Platform di AWS](/docs/id/build-with-claude/claude-platform-on-aws) dan dalam versi beta di [Microsoft Foundry](/docs/id/build-with-claude/claude-in-microsoft-foundry). Di [Vertex AI](/docs/id/build-with-claude/claude-on-vertex-ai), output terstruktur tersedia secara umum untuk Claude Opus 4.8, Claude Mythos Preview, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 4.6, Claude Sonnet 4.5, Claude Opus 4.5, dan Claude Haiku 4.5.
+Output terstruktur tersedia secara umum di Claude API untuk Claude Fable 5, Claude Mythos 5, Claude Opus 4.8, [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 4.6, Claude Sonnet 4.5, Claude Opus 4.5, dan Claude Haiku 4.5. Di Amazon Bedrock, output terstruktur tersedia secara umum untuk Claude Opus 4.6, Claude Sonnet 4.6, Claude Sonnet 4.5, Claude Opus 4.5, dan Claude Haiku 4.5; Claude Opus 4.7 dan Claude Mythos Preview tersedia melalui [Claude di Amazon Bedrock](/docs/id/build-with-claude/claude-in-amazon-bedrock) (endpoint Bedrock Messages-API). Output terstruktur tersedia di [Claude Platform on AWS](/docs/id/build-with-claude/claude-platform-on-aws) dan dalam versi beta di [Microsoft Foundry](/docs/id/build-with-claude/claude-in-microsoft-foundry). Di [Vertex AI](/docs/id/build-with-claude/claude-on-vertex-ai), output terstruktur tersedia secara umum untuk Claude Fable 5, Claude Mythos 5, Claude Opus 4.8, Claude Mythos Preview, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 4.6, Claude Sonnet 4.5, Claude Opus 4.5, dan Claude Haiku 4.5.
 </Note>
 
 <Note>
@@ -32,20 +32,20 @@ Fitur ini memenuhi syarat untuk [Zero Data Retention (ZDR)](/docs/id/build-with-
 
 ## Mengapa menggunakan output terstruktur \{#why-use-structured-outputs}
 
-Tanpa output terstruktur, Claude dapat menghasilkan respons JSON yang salah format atau input alat yang tidak valid yang merusak aplikasi Anda. Bahkan dengan prompting yang cermat, Anda mungkin menemui:
-- Kesalahan parsing dari sintaks JSON yang tidak valid
+Tanpa output terstruktur, Claude dapat menghasilkan respons JSON yang salah format atau input alat yang tidak valid yang merusak aplikasi Anda. Bahkan dengan prompting yang cermat, Anda mungkin mengalami:
+- Kesalahan penguraian dari sintaks JSON yang tidak valid
 - Field wajib yang hilang
 - Tipe data yang tidak konsisten
 - Pelanggaran skema yang memerlukan penanganan kesalahan dan percobaan ulang
 
-Output terstruktur menjamin respons yang sesuai skema melalui "constrained decoding" (dekode terbatas):
+Output terstruktur menjamin respons yang sesuai skema melalui "constrained decoding" (decoding terbatas):
 - **Selalu valid:** Tidak ada lagi kesalahan `JSON.parse()`
 - **Aman secara tipe:** Tipe field dan field wajib yang terjamin
 - **Andal:** Tidak perlu percobaan ulang untuk pelanggaran skema
 
 ## Output JSON \{#json-outputs}
 
-Output JSON mengontrol format respons Claude, memastikan Claude mengembalikan JSON valid yang cocok dengan skema Anda. Gunakan output JSON ketika Anda perlu:
+Output JSON mengontrol format respons Claude, memastikan Claude mengembalikan JSON valid yang sesuai dengan skema Anda. Gunakan output JSON ketika Anda perlu:
 
 - Mengontrol format respons Claude
 - Mengekstrak data dari gambar atau teks
@@ -377,7 +377,7 @@ puts response.content[0].text
 
 </CodeGroup>
 
-**Format respons:** JSON valid yang cocok dengan skema Anda di `response.content[0].text`
+**Format respons:** JSON valid yang sesuai dengan skema Anda di `response.content[0].text`
 
 ```json Output
 {
@@ -397,8 +397,8 @@ puts response.content[0].text
   <Step title="Tambahkan parameter output_config.format">
     Sertakan parameter `output_config.format` dalam permintaan API Anda dengan `type: "json_schema"` dan definisi skema Anda.
   </Step>
-  <Step title="Urai responsnya">
-    Respons Claude adalah JSON valid yang cocok dengan skema Anda, dikembalikan di `response.content[0].text`.
+  <Step title="Urai respons">
+    Respons Claude adalah JSON valid yang sesuai dengan skema Anda, dikembalikan di `response.content[0].text`.
   </Step>
 </Steps>
 
@@ -407,7 +407,7 @@ puts response.content[0].text
 SDK menyediakan helper yang memudahkan bekerja dengan output JSON, termasuk transformasi skema, validasi otomatis, dan integrasi dengan pustaka skema populer.
 
 <Note>
-`client.messages.parse()` di SDK Python masih menerima `output_format` sebagai parameter kemudahan dan menerjemahkannya ke `output_config.format` secara internal. SDK lain memerlukan `output_config` secara langsung. Contoh berikut menunjukkan sintaks helper SDK.
+`client.messages.parse()` pada SDK Python masih menerima `output_format` sebagai parameter kemudahan dan menerjemahkannya ke `output_config.format` secara internal. SDK lain memerlukan `output_config` secara langsung. Contoh berikut menunjukkan sintaks helper SDK.
 </Note>
 
 #### Menggunakan definisi skema native \{#using-native-schema-definitions}
@@ -419,7 +419,9 @@ Alih-alih menulis skema JSON mentah, Anda dapat menggunakan alat definisi skema 
 - **Java:** Kelas Java biasa dengan derivasi skema otomatis melalui `outputConfig(Class<T>)`
 - **Ruby:** Kelas `Anthropic::BaseModel` dengan `output_config: {format: Model}`
 - **PHP:** Kelas yang mengimplementasikan `StructuredOutputModel` dengan `outputConfig: ['format' => MyClass::class]`
-- **CLI**, **C#**, **Go:** Skema JSON mentah yang diteruskan melalui `output_config`
+- **C#:** Kelas C# biasa dengan overload generik `Create<T>()`, yang menurunkan skema secara otomatis
+- **Go:** Struct Go yang direfleksikan menjadi skema JSON secara otomatis pada API beta, atau skema JSON mentah melalui `output_config`
+- **CLI:** Skema JSON mentah yang diteruskan melalui `output_config`
 
 <CodeGroup>
 
@@ -790,7 +792,7 @@ print(contact.name, contact.email)
 
 **Helper `transform_schema()`**
 
-Untuk saat Anda perlu mentransformasi skema secara manual sebelum mengirim, atau saat Anda ingin memodifikasi skema yang dihasilkan Pydantic. Tidak seperti `client.messages.parse()`, yang mentransformasi skema yang disediakan secara otomatis, ini memberi Anda skema yang telah ditransformasi sehingga Anda dapat menyesuaikannya lebih lanjut.
+Untuk saat Anda perlu mentransformasi skema secara manual sebelum mengirim, atau ketika Anda ingin memodifikasi skema yang dihasilkan Pydantic. Tidak seperti `client.messages.parse()`, yang mentransformasi skema yang disediakan secara otomatis, ini memberi Anda skema yang telah ditransformasi sehingga Anda dapat menyesuaikannya lebih lanjut.
 
 ```python nocheck
 from anthropic import transform_schema
@@ -817,7 +819,7 @@ response = client.messages.create(
 
 **`client.messages.parse()` dengan `zodOutputFormat()`**
 
-Metode `parse()` menerima skema Zod, memvalidasi respons, dan mengembalikan atribut `parsed_output` dengan tipe TypeScript yang disimpulkan yang cocok dengan skema.
+Metode `parse()` menerima skema Zod, memvalidasi respons, dan mengembalikan atribut `parsed_output` dengan tipe TypeScript yang disimpulkan sesuai dengan skema.
 
 ```typescript hidelines={1}
 import Anthropic from "@anthropic-ai/sdk";
@@ -852,7 +854,7 @@ console.log(response.parsed_output!.email);
 
 Helper `jsonSchemaOutputFormat()` menerima objek JSON Schema dan mengintegrasikannya dengan `parse()` tanpa memerlukan Zod. Zod adalah peer dependency opsional yang Anda instal secara terpisah; `jsonSchemaOutputFormat()` berfungsi langsung karena SDK membundel `json-schema-to-ts` secara langsung.
 
-Untuk **literal skema inline** (dideklarasikan dengan `as const` di sumber Anda), Anda juga mendapatkan inferensi tipe saat kompilasi: `parsed_output` diketik agar cocok dengan struktur skema. Untuk **skema yang diimpor atau dihasilkan** (dari file JSON atau codegen OpenAPI), helper tetap mengirim skema dan mengurai respons, tetapi tipe yang disimpulkan adalah `unknown` karena `as const` hanya dapat diterapkan pada ekspresi literal.
+Untuk **literal skema inline** (dideklarasikan dengan `as const` dalam kode sumber Anda), Anda juga mendapatkan inferensi tipe saat kompilasi: `parsed_output` diberi tipe yang sesuai dengan struktur skema. Untuk **skema yang diimpor atau dihasilkan** (dari file JSON atau codegen OpenAPI), helper tetap mengirim skema dan mengurai respons, tetapi tipe yang disimpulkan adalah `unknown` karena `as const` hanya dapat diterapkan pada ekspresi literal.
 
 ```typescript hidelines={1}
 import Anthropic from "@anthropic-ai/sdk";
@@ -894,9 +896,9 @@ console.log(response.parsed_output!.email);
 </Tab>
 <Tab title="C#">
 
-**Skema JSON mentah melalui `OutputConfig`**
+**Skema JSON melalui `OutputConfig`**
 
-SDK C# menggunakan skema JSON mentah yang dibangun secara programatik dengan `JsonSerializer.SerializeToElement`. Deserialisasi JSON respons dengan `JsonSerializer.Deserialize`.
+SDK C# menerima skema JSON mentah yang dibangun secara programatis dengan `JsonSerializer.SerializeToElement`, seperti yang ditunjukkan di sini, atau menurunkan skema dari kelas C# biasa dengan overload generik `Create<T>()`. Deserialisasi JSON respons dengan `JsonSerializer.Deserialize`.
 
 ```csharp
 using System.Text.Json;
@@ -947,7 +949,7 @@ if (response.Content[0].TryPickText(out var textBlock))
 
 **Skema JSON mentah melalui `OutputConfigParam`**
 
-SDK Go bekerja dengan skema JSON mentah. Definisikan struct Go dengan tag json, hasilkan skema JSON (misalnya, menggunakan `invopop/jsonschema`), dan unmarshal teks respons ke dalam struct Anda.
+SDK Go bekerja dengan skema JSON mentah. Definisikan struct Go dengan tag json, hasilkan skema JSON (misalnya, menggunakan `invopop/jsonschema`), dan unmarshal teks respons ke dalam struct Anda. Pada API beta, meneruskan struct sebagai skema format output akan merefleksikannya menjadi skema JSON secara otomatis.
 
 ```go hidelines={1..2,4..7,26..28,-1}
 package main
@@ -1053,7 +1055,7 @@ void main() {
 
 <section title="Penghapusan tipe generik">
 
-Java mempertahankan informasi tipe generik untuk field dalam metadata kelas, tetapi penghapusan tipe generik berlaku di cakupan lain. Meskipun skema JSON dapat diturunkan dari field `BookList.books` dengan tipe `List<Book>`, skema JSON yang valid tidak dapat diturunkan dari variabel lokal dengan tipe yang sama.
+Java mempertahankan informasi tipe generik untuk field dalam metadata kelas, tetapi penghapusan tipe generik berlaku di scope lain. Meskipun skema JSON dapat diturunkan dari field `BookList.books` dengan tipe `List<Book>`, skema JSON yang valid tidak dapat diturunkan dari variabel lokal dengan tipe yang sama.
 
 Jika terjadi kesalahan saat mengonversi respons JSON ke instance kelas Java, pesan kesalahan menyertakan respons JSON untuk membantu diagnosis. Jika respons JSON Anda mungkin berisi informasi sensitif, hindari mencatatnya secara langsung, atau pastikan Anda menyensor detail sensitif apa pun dari pesan kesalahan.
 
@@ -1094,7 +1096,7 @@ void main() {
 
 <section title="Streaming">
 
-Output terstruktur juga berfungsi dengan streaming. Saat respons tiba dalam event stream, Anda perlu mengakumulasi respons lengkap sebelum mendeserialisasi JSON.
+Output terstruktur juga berfungsi dengan streaming. Karena respons tiba dalam event stream, Anda perlu mengakumulasi respons lengkap sebelum mendeserialisasi JSON.
 
 Gunakan `MessageAccumulator` untuk mengumpulkan string JSON dari stream. Setelah terakumulasi, panggil `MessageAccumulator.message(Class<T>)` untuk mengonversi `Message` yang terakumulasi menjadi `StructuredMessage`, yang secara otomatis mendeserialisasi JSON ke dalam kelas Java Anda.
 
@@ -1113,7 +1115,7 @@ Jika Anda mendefinisikan field `private` dengan metode getter `public`, SDK menu
 
 Setiap kelas harus mendefinisikan setidaknya satu properti untuk skema JSON. Kesalahan validasi terjadi jika tidak ada field atau metode getter yang dapat menghasilkan properti skema, seperti ketika:
 
-- Tidak ada field atau metode getter di kelas
+- Tidak ada field atau metode getter dalam kelas
 - Semua anggota `public` dianotasi dengan `@JsonIgnore`
 - Semua anggota non-`public` tidak memiliki anotasi `@JsonProperty`
 - Sebuah field menggunakan tipe `Map`, yang menghasilkan field `"properties"` kosong
@@ -1124,7 +1126,7 @@ Setiap kelas harus mendefinisikan setidaknya satu properti untuk skema JSON. Kes
 
 Kelas Java Anda dapat menggunakan komposisi dan pewarisan untuk berbagi struktur saat mendefinisikan skema JSON. Setiap pola memengaruhi struktur output secara berbeda.
 
-**Komposisi** menghasilkan output JSON bersarang. Menurunkan skema dari kelas `Composed` yang mengomposisi `A` dan `B`:
+**Komposisi** menghasilkan output JSON bersarang. Menurunkan skema dari kelas `Composed` yang mengomposisikan `A` dan `B`:
 
 ```java hidelines={1..7,20..35}
 import com.anthropic.client.AnthropicClient;
@@ -1173,7 +1175,7 @@ Output JSON memiliki struktur bersarang ini:
 }
 ```
 
-**Pewarisan** menghasilkan output JSON datar. Menurunkan skema dari kelas `Derived` yang memperluas `Base`:
+**Pewarisan** menghasilkan output JSON datar. Menurunkan skema dari kelas `Derived` yang meng-extend `Base`:
 
 ```java hidelines={1..7,15..30}
 import com.anthropic.client.AnthropicClient;
@@ -1298,7 +1300,7 @@ Jika Anda menggunakan anotasi Jackson dan Swagger untuk mengatur field skema yan
 
 <section title="Mendefinisikan skema tanpa kelas Java">
 
-Derivasi skema berbasis kelas adalah jalur yang paling nyaman, tetapi untuk kontrol langsung atas struktur skema Anda dapat membangun `JsonOutputFormat.Schema` secara manual dan membungkusnya dalam `OutputConfig`.
+Derivasi skema berbasis kelas adalah jalur yang paling nyaman, tetapi untuk kontrol langsung atas struktur skema, Anda dapat membangun `JsonOutputFormat.Schema` secara manual dan membungkusnya dalam `OutputConfig`.
 
 ```java hidelines={1..2,5..6}
 import com.anthropic.client.AnthropicClient;
@@ -1341,18 +1343,18 @@ void main() {
 }
 ```
 
-Untuk contoh yang lebih ekstensif yang membangun skema bersarang dengan array dan deskripsi, lihat [`StructuredOutputsRawExample.java`](https://github.com/anthropics/anthropic-sdk-java/blob/main/anthropic-java-example/src/main/java/com/anthropic/example/StructuredOutputsRawExample.java) di repositori SDK.
+Untuk contoh yang lebih lengkap yang membangun skema bersarang dengan array dan deskripsi, lihat [`StructuredOutputsRawExample.java`](https://github.com/anthropics/anthropic-sdk-java/blob/main/anthropic-java-example/src/main/java/com/anthropic/example/StructuredOutputsRawExample.java) di repositori SDK.
 
 </section>
 
 </Tab>
 <Tab title="PHP">
 
-**Kelas melalui antarmuka `StructuredOutputModel`**
+**Kelas melalui interface `StructuredOutputModel`**
 
 Definisikan kelas PHP yang mengimplementasikan `StructuredOutputModel` (menggunakan `StructuredOutputModelTrait`) dan teruskan nama kelas ke `outputConfig: ['format' => MyClass::class]`. SDK menurunkan skema JSON dari tipe properti PHP 8 native Anda dan mengembalikan instance bertipe melalui `$message->parsedOutput()`.
 
-`parsedOutput()` mengembalikan instance model Anda jika berhasil, atau `null` (atau array kesalahan) jika parsing gagal. Gunakan `instanceof` untuk mempersempit tipe sebelum mengakses field.
+`parsedOutput()` mengembalikan instance model Anda jika berhasil, atau `null` (atau array kesalahan) jika penguraian gagal. Gunakan `instanceof` untuk mempersempit tipe sebelum mengakses field.
 
 ```php hidelines={1..3}
 <?php
@@ -1401,7 +1403,7 @@ SDK memetakan tipe properti PHP 8 native ke JSON Schema:
 | `?type` (nullable) | Field opsional |
 | Kelas yang mengimplementasikan `StructuredOutputModel` | Objek bersarang |
 
-Untuk properti `array`, SDK menambahkan skema `items` hanya ketika tipe elemen adalah `StructuredOutputModel` bersarang, dideklarasikan dengan `#[Constrained(itemClass: MyModel::class)]` atau docblock `/** @var MyModel[] */`. Array skalar (`string[]`, `int[]`) menghasilkan `{"type":"array"}` tanpa constraint.
+Untuk properti `array`, SDK menambahkan skema `items` hanya ketika tipe elemen adalah `StructuredOutputModel` bersarang, yang dideklarasikan dengan `#[Constrained(itemClass: MyModel::class)]` atau docblock `/** @var MyModel[] */`. Array skalar (`string[]`, `int[]`) menghasilkan `{"type":"array"}` tanpa constraint.
 
 Semua properti non-nullable menjadi field wajib.
 
@@ -1443,7 +1445,7 @@ class Profile implements StructuredOutputModel
 
 <section title="Fallback skema JSON mentah">
 
-Untuk skema yang tidak dapat diekspresikan oleh type hint PHP, teruskan array asosiatif mentah melalui `OutputConfig::with()`. Jalur ini melewati helper `parsedOutput()`; dekode respons dengan `json_decode()`:
+Untuk skema yang tidak dapat diekspresikan oleh type hint PHP, teruskan array asosiatif mentah melalui `OutputConfig::with()`. Jalur ini melewati helper `parsedOutput()`; decode respons dengan `json_decode()`:
 
 ```php hidelines={1..3}
 <?php
@@ -1483,7 +1485,7 @@ echo "{$contact['name']} ({$contact['email']})\n";
 
 **`output_config: {format: Model}` dengan `parsed_output`**
 
-Definisikan kelas model yang memperluas `Anthropic::BaseModel` dan teruskan sebagai format ke `messages.create()`. Respons menyertakan atribut `parsed_output` dengan objek Ruby bertipe.
+Definisikan kelas model yang meng-extend `Anthropic::BaseModel` dan teruskan sebagai format ke `messages.create()`. Respons menyertakan atribut `parsed_output` dengan objek Ruby bertipe.
 
 ```ruby hidelines={1..2}
 require "anthropic"
@@ -1516,7 +1518,7 @@ puts "#{contact.name} (#{contact.email})"
 
 SDK Ruby mendukung fitur definisi model tambahan untuk skema yang lebih kaya:
 
-- **Kata kunci `doc:`:** Tambahkan deskripsi ke field untuk output skema yang lebih informatif
+- **Kata kunci `doc:`:** Menambahkan deskripsi ke field untuk output skema yang lebih informatif
 - **`Anthropic::ArrayOf[T]`:** Array bertipe. Teruskan constraint tingkat array (`min_items:`, `max_items:`) sebagai kata kunci pada `required`/`optional`, bukan pada `ArrayOf` itu sendiri
 - **`Anthropic::EnumOf[:a, :b]`:** Field enum dengan nilai yang dibatasi
 - **`Anthropic::UnionOf[T1, T2]`:** Tipe union yang dipetakan ke `anyOf`
@@ -1549,7 +1551,7 @@ message.parsed_output
 
 #### Cara kerja transformasi SDK \{#how-sdk-transformation-works}
 
-SDK Python, TypeScript, Ruby, dan PHP secara otomatis mentransformasi skema dengan fitur yang tidak didukung:
+SDK Python, TypeScript, Ruby, dan PHP secara otomatis mentransformasi skema dengan fitur yang tidak didukung. SDK C# dan Go menerapkan transformasi yang sama ketika skema diturunkan dari tipe native (`Create<T>()` di C#; refleksi struct atau `BetaJSONSchemaOutputFormat()` pada API beta Go). Langkah-langkah transformasi:
 
 1. **Menghapus constraint yang tidak didukung** (misalnya, `minimum`, `maximum`, `minLength`, `maxLength`)
 2. **Memperbarui deskripsi** dengan info constraint (misalnya, "Must be at least 100"), ketika constraint tidak didukung secara langsung dengan output terstruktur
@@ -2185,7 +2187,7 @@ puts message.parsed_output
 
 <section title="Pemformatan respons API">
 
-Hasilkan respons siap-API:
+Hasilkan respons yang siap untuk API:
 
 <CodeGroup>
 
@@ -2533,7 +2535,7 @@ Output JSON dan penggunaan alat ketat menyelesaikan masalah yang berbeda dan bek
 - **Output JSON** mengontrol format respons Claude (apa yang dikatakan Claude)
 - **Penggunaan alat ketat** memvalidasi parameter alat (bagaimana Claude memanggil fungsi Anda)
 
-Ketika digabungkan, Claude dapat memanggil alat dengan parameter yang dijamin valid DAN mengembalikan respons JSON terstruktur. Ini berguna untuk alur kerja agentic di mana Anda membutuhkan pemanggilan alat yang andal dan output akhir yang terstruktur.
+Ketika digabungkan, Claude dapat memanggil alat dengan parameter yang dijamin valid DAN mengembalikan respons JSON terstruktur. Ini berguna untuk alur kerja agentic di mana Anda memerlukan panggilan alat yang andal dan output akhir yang terstruktur.
 
 <CodeGroup>
 
@@ -2559,7 +2561,7 @@ output_config:
             type: string
       required: [summary, next_steps]
       additionalProperties: false
-# Penggunaan alat ketat: parameter alat terjamin
+# Penggunaan alat yang ketat: parameter alat terjamin
 tools:
   - name: search_flights
     strict: true
@@ -2875,7 +2877,7 @@ $message = $client->messages->create(
     model: 'claude-opus-4-8',
     // Output JSON: format respons terstruktur
     outputConfig: ['format' => TripPlan::class],
-    // Penggunaan alat yang ketat: parameter alat terjamin
+    // Penggunaan alat ketat: parameter alat terjamin
     tools: [
         [
             'name' => 'search_flights',
@@ -2997,7 +2999,7 @@ Output terstruktur mendukung JSON Schema standar dengan beberapa batasan. Baik o
 - Constraint numerik (`minimum`, `maximum`, `multipleOf`, dll.)
 - Constraint string (`minLength`, `maxLength`)
 - Constraint array selain `minItems` 0 atau 1
-- `additionalProperties` diatur ke apa pun selain `false`
+- `additionalProperties` diatur ke nilai selain `false`
 
 Jika Anda menggunakan fitur yang tidak didukung, Anda akan menerima kesalahan 400 dengan detail.
 
@@ -3022,7 +3024,7 @@ Pola regex sederhana berfungsi dengan baik. Pola kompleks dapat menghasilkan kes
 </section>
 
 <Tip>
-SDK Python, TypeScript, Ruby, dan PHP dapat secara otomatis mentransformasi skema dengan fitur yang tidak didukung dengan menghapusnya dan menambahkan constraint ke deskripsi field. Lihat [Metode khusus SDK](#sdk-specific-methods) untuk detail.
+SDK Python, TypeScript, Ruby, dan PHP dapat secara otomatis mentransformasi skema dengan fitur yang tidak didukung dengan menghapusnya dan menambahkan constraint ke deskripsi field. SDK C# dan Go melakukan hal yang sama ketika skema diturunkan dari tipe native. Lihat [Metode khusus SDK](#sdk-specific-methods) untuk detail.
 </Tip>
 
 ### Pengurutan properti \{#property-ordering}
@@ -3063,11 +3065,11 @@ Ini berarti output mungkin terlihat seperti:
 }
 ```
 
-Jika urutan properti dalam output penting untuk aplikasi Anda, tandai semua properti sebagai wajib, atau perhitungkan pengurutan ulang ini dalam logika parsing Anda.
+Jika urutan properti dalam output penting untuk aplikasi Anda, tandai semua properti sebagai wajib, atau perhitungkan pengurutan ulang ini dalam logika penguraian Anda.
 
 ### Output tidak valid \{#invalid-outputs}
 
-Meskipun output terstruktur menjamin kepatuhan skema dalam sebagian besar kasus, ada skenario di mana output mungkin tidak cocok dengan skema Anda:
+Meskipun output terstruktur menjamin kepatuhan skema dalam sebagian besar kasus, ada skenario di mana output mungkin tidak sesuai dengan skema Anda:
 
 **Penolakan** (`stop_reason: "refusal"`)
 
@@ -3076,14 +3078,14 @@ Claude mempertahankan properti keamanan dan kebermanfaatannya bahkan saat menggu
 - Respons memiliki `stop_reason: "refusal"`
 - Anda akan menerima kode status 200
 - Anda akan ditagih untuk token yang dihasilkan
-- Output mungkin tidak cocok dengan skema Anda karena pesan penolakan lebih diutamakan daripada constraint skema
+- Output mungkin tidak sesuai dengan skema Anda karena pesan penolakan lebih diutamakan daripada constraint skema
 
 **Batas token tercapai** (`stop_reason: "max_tokens"`)
 
 Jika respons terpotong karena mencapai batas `max_tokens`:
 
 - Respons memiliki `stop_reason: "max_tokens"`
-- Output mungkin tidak lengkap dan tidak cocok dengan skema Anda
+- Output mungkin tidak lengkap dan tidak sesuai dengan skema Anda
 - Coba lagi dengan nilai `max_tokens` yang lebih tinggi untuk mendapatkan output terstruktur yang lengkap
 
 ### Batas kompleksitas skema \{#schema-complexity-limits}
@@ -3108,21 +3110,21 @@ Batas ini berlaku untuk total gabungan di semua skema ketat dalam satu permintaa
 
 Di luar batas eksplisit dalam tabel sebelumnya, ada batas internal tambahan pada ukuran grammar yang dikompilasi. Batas ini ada karena kompleksitas skema tidak dapat direduksi menjadi satu dimensi: fitur seperti parameter opsional, tipe union, objek bersarang, dan jumlah alat berinteraksi satu sama lain dengan cara yang dapat membuat grammar yang dikompilasi menjadi sangat besar secara tidak proporsional.
 
-Ketika batas ini terlampaui, Anda akan menerima kesalahan 400 dengan pesan "Schema is too complex for compilation." Kesalahan ini berarti kompleksitas gabungan skema Anda melebihi apa yang dapat dikompilasi secara efisien, bahkan jika setiap batas individual dalam tabel sebelumnya terpenuhi. Sebagai pengaman terakhir, API juga memberlakukan **batas waktu kompilasi 180 detik**. Skema yang lolos semua pemeriksaan eksplisit tetapi menghasilkan grammar terkompilasi yang sangat besar mungkin mencapai batas waktu ini.
+Ketika batas ini terlampaui, Anda akan menerima kesalahan 400 dengan pesan "Schema is too complex for compilation." Kesalahan ini berarti kompleksitas gabungan skema Anda melebihi apa yang dapat dikompilasi secara efisien, bahkan jika setiap batas individual dalam tabel sebelumnya terpenuhi. Sebagai pengaman terakhir, API juga memberlakukan **timeout kompilasi 180 detik**. Skema yang lolos semua pemeriksaan eksplisit tetapi menghasilkan grammar terkompilasi yang sangat besar mungkin mencapai timeout ini.
 
 #### Tips untuk mengurangi kompleksitas skema \{#tips-for-reducing-schema-complexity}
 
 Jika Anda mencapai batas kompleksitas, coba strategi ini secara berurutan:
 
-1. **Tandai hanya alat kritis sebagai ketat.** Jika Anda memiliki banyak alat, simpan untuk alat di mana pelanggaran skema menyebabkan masalah nyata, dan andalkan kepatuhan alami Claude untuk alat yang lebih sederhana.
+1. **Tandai hanya alat kritis sebagai ketat.** Jika Anda memiliki banyak alat, cadangkan untuk alat di mana pelanggaran skema menyebabkan masalah nyata, dan andalkan kepatuhan alami Claude untuk alat yang lebih sederhana.
 
 2. **Kurangi parameter opsional.** Jadikan parameter `required` jika memungkinkan. Setiap parameter opsional kira-kira menggandakan sebagian dari ruang state grammar. Jika parameter selalu memiliki default yang masuk akal, pertimbangkan untuk menjadikannya wajib dan meminta Claude memberikan default tersebut secara eksplisit.
 
 3. **Sederhanakan struktur bersarang.** Objek yang bersarang dalam dengan field opsional memperparah kompleksitas. Ratakan struktur jika memungkinkan.
 
-4. **Pisahkan menjadi beberapa permintaan.** Jika Anda memiliki banyak alat ketat, pertimbangkan untuk memisahkannya ke permintaan atau sub-agen terpisah.
+4. **Pisahkan menjadi beberapa permintaan.** Jika Anda memiliki banyak alat ketat, pertimbangkan untuk memisahkannya ke dalam permintaan terpisah atau sub-agen.
 
-Untuk masalah yang terus-menerus dengan skema yang valid, [hubungi dukungan](https://support.claude.com/en/articles/9015913-how-to-get-support) dengan definisi skema Anda.
+Untuk masalah yang terus berlanjut dengan skema yang valid, [hubungi dukungan](https://support.claude.com/en/articles/9015913-how-to-get-support) dengan definisi skema Anda.
 
 ## Retensi data \{#data-retention}
 
@@ -3145,5 +3147,5 @@ Untuk kelayakan ZDR dan HIPAA di semua fitur, lihat [API dan retensi data](/docs
 - **Prefilling Pesan:** Tidak kompatibel dengan output JSON
 
 <Tip>
-**Cakupan grammar:** Grammar hanya berlaku untuk output langsung Claude, bukan untuk pemanggilan penggunaan alat, hasil alat, atau tag thinking (saat menggunakan [Pemikiran Diperpanjang](/docs/id/build-with-claude/extended-thinking)). State grammar direset di antara bagian, memungkinkan Claude berpikir secara bebas sambil tetap menghasilkan output terstruktur dalam respons akhir.
+**Cakupan grammar:** Grammar hanya berlaku untuk output langsung Claude, bukan untuk panggilan penggunaan alat, hasil alat, atau tag thinking (saat menggunakan [Pemikiran Diperpanjang](/docs/id/build-with-claude/extended-thinking)). State grammar direset di antara bagian, memungkinkan Claude berpikir secara bebas sambil tetap menghasilkan output terstruktur dalam respons akhir.
 </Tip>

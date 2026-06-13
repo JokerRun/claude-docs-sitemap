@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/wif-providers/github-actions
-fetched_at: 2026-06-12T03:17:40.104094Z
-sha256: 4e6b8a4f507ae0077c7f80003e8def0b15a6dbd3feb3b88315f0f21a838657ed
+fetched_at: 2026-06-13T03:15:40.418428Z
+sha256: d1a330f3b14ea602c7e13b11cfa6ce6d3203edd6cfab36af8f1450829f155024
 ---
 
 # Use WIF with GitHub Actions
@@ -112,7 +112,7 @@ The wizard creates these resources for you. Use the following values whether you
 }
 ```
 
-Be as specific as the workload allows. Loosen `subject_prefix` to `repo:your-org/your-repo:*` (paired with a `claims.ref` constraint) only if the rule must match multiple event types from the same repository, since the trailing segment of `sub` varies between `ref:...`, `environment:...`, and `pull_request` events.
+Be as specific as the workload allows. Loosen `subject_prefix` to `repo:your-org/your-repo:*` (paired with a `claims.ref` constraint) only if the rule must match multiple event types from the same repository, because the trailing segment of `sub` varies between `ref:...`, `environment:...`, and `pull_request` events.
 
 ## Acquire and use a token
 

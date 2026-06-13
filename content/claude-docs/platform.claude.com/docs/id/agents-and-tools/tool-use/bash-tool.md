@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool
-fetched_at: 2026-06-11T03:14:59.596724Z
-sha256: 36bb1a86f2589f9d567a009a8a4509291143be8bd641b75a174dacd45df6009e
+fetched_at: 2026-06-13T03:15:40.418428Z
+sha256: 10a6f4c19b2b1e8fbac5466c0ddaffe220cd5e88f4ba2c5eca3c0bf4954f9955
 ---
 
 # Alat Bash
@@ -13,7 +13,7 @@ sha256: 36bb1a86f2589f9d567a009a8a4509291143be8bd641b75a174dacd45df6009e
 Fitur ini memenuhi syarat untuk [Zero Data Retention (ZDR)](/docs/id/build-with-claude/api-and-data-retention). Ketika organisasi Anda memiliki pengaturan ZDR, data yang dikirim melalui fitur ini tidak disimpan setelah respons API dikembalikan.
 </Note>
 
-Alat bash memungkinkan Claude untuk mengeksekusi perintah shell dalam sesi bash yang persisten, memungkinkan operasi sistem, eksekusi skrip, dan otomatisasi baris perintah. Akses shell adalah kemampuan agen yang mendasar. Pada [Terminal-Bench 2.0](https://github.com/terminal-bench/terminal-bench), sebuah benchmark yang mengevaluasi tugas terminal dunia nyata menggunakan validasi berbasis shell saja, Claude menunjukkan peningkatan performa yang kuat dengan akses ke sesi bash yang persisten.
+Alat bash memungkinkan Claude untuk mengeksekusi perintah shell dalam sesi bash yang persisten, memungkinkan operasi sistem, eksekusi skrip, dan otomatisasi baris perintah. Akses shell adalah kemampuan agen yang fundamental. Pada [Terminal-Bench 2.0](https://github.com/terminal-bench/terminal-bench), sebuah benchmark yang mengevaluasi tugas terminal dunia nyata menggunakan validasi berbasis shell saja, Claude menunjukkan peningkatan performa yang kuat dengan akses ke sesi bash yang persisten.
 
 ## Ikhtisar \{#overview}
 
@@ -28,7 +28,7 @@ Untuk dukungan model, lihat [Referensi alat](/docs/id/agents-and-tools/tool-use/
 ## Kasus penggunaan \{#use-cases}
 
 - **Alur kerja pengembangan:** Menjalankan perintah build, pengujian, dan alat pengembangan
-- **Otomatisasi sistem:** Mengeksekusi skrip, mengelola file, mengotomatiskan tugas
+- **Otomatisasi sistem:** Mengeksekusi skrip, mengelola file, mengotomatisasi tugas
 - **Pemrosesan data:** Memproses file, menjalankan skrip analisis, mengelola dataset
 - **Penyiapan lingkungan:** Menginstal paket, mengonfigurasi lingkungan
 
@@ -356,7 +356,7 @@ Alat bash diimplementasikan sebagai alat tanpa skema. Saat menggunakan alat ini,
     ```
   </Step>
   <Step title="Implementasikan langkah-langkah keamanan">
-    Tambahkan validasi dan pembatasan. Gunakan "allowlist" (daftar izin) daripada "blocklist" (daftar blokir), karena blocklist mudah dilewati. Tolak operator shell agar perintah yang dirangkai tidak dapat lolos dari allowlist:
+    Tambahkan validasi dan pembatasan. Gunakan allowlist (daftar izin) daripada blocklist (daftar blokir), karena blocklist mudah dilewati. Tolak operator shell agar perintah berantai tidak dapat lolos dari allowlist:
     ```python
     import shlex
 
@@ -365,7 +365,7 @@ Alat bash diimplementasikan sebagai alat tanpa skema. Saat menggunakan alat ini,
 
 
     def validate_command(command):
-        # Izinkan hanya perintah dari daftar izin eksplisit
+        # Izinkan hanya perintah dari allowlist eksplisit
         try:
             tokens = shlex.split(command)
         except ValueError:
@@ -389,9 +389,9 @@ Alat bash diimplementasikan sebagai alat tanpa skema. Saat menggunakan alat ini,
   </Step>
 </Steps>
 
-### Menangani kesalahan \{#handle-errors}
+### Menangani error \{#handle-errors}
 
-Saat mengimplementasikan alat bash, tangani berbagai skenario kesalahan:
+Saat mengimplementasikan alat bash, tangani berbagai skenario error:
 
 <section title="Timeout eksekusi perintah">
 
@@ -488,7 +488,7 @@ commands = [
 
 </section>
 
-<section title="Tangani output yang besar">
+<section title="Tangani output besar">
 
 Potong output yang sangat besar untuk mencegah masalah batas token:
 ```python
@@ -575,12 +575,12 @@ Git berfungsi sebagai mekanisme pemulihan terstruktur dalam alur kerja agen yang
 - **Tangkap baseline:** Sebelum pekerjaan agen dimulai, commit state saat ini. Ini adalah titik awal yang diketahui baik.
 - **Commit per fitur:** Setiap fitur yang selesai mendapatkan commit-nya sendiri. Ini berfungsi sebagai titik rollback jika terjadi kesalahan di kemudian hari.
 - **Rekonstruksi state di awal sesi:** Baca `git log` bersama dengan file progres untuk memahami apa yang sudah dilakukan dan apa yang akan dilakukan selanjutnya.
-- **Kembalikan saat gagal:** Jika pekerjaan menyimpang, `git checkout` mengembalikan ke commit baik terakhir alih-alih mencoba men-debug state yang rusak.
+- **Revert saat gagal:** Jika pekerjaan menyimpang, `git checkout` mengembalikan ke commit baik terakhir alih-alih mencoba men-debug state yang rusak.
 
 ### Operasi file \{#file-operations}
 - Memproses data: `wc -l *.csv && ls -lh *.csv`
 - Mencari file: `find . -name "*.py" | xargs grep "pattern"`
-- Membuat cadangan: `tar -czf backup.tar.gz ./data`
+- Membuat backup: `tar -czf backup.tar.gz ./data`
 
 ### Tugas sistem \{#system-tasks}
 - Memeriksa sumber daya: `df -h && free -m`
@@ -592,7 +592,7 @@ Git berfungsi sebagai mekanisme pemulihan terstruktur dalam alur kerja agen yang
 - **Tidak ada perintah interaktif:** Tidak dapat menangani `vim`, `less`, atau prompt kata sandi
 - **Tidak ada aplikasi GUI:** Hanya baris perintah
 - **Cakupan sesi:** State sesi bash berada di sisi klien. API bersifat stateless. Aplikasi Anda bertanggung jawab untuk mempertahankan sesi shell di antara giliran.
-- **Batas output:** Output yang besar mungkin dipotong
+- **Batas output:** Output besar mungkin dipotong
 - **Tidak ada streaming:** Hasil dikembalikan setelah selesai
 
 ## Menggabungkan dengan alat lain \{#combining-with-other-tools}
@@ -600,7 +600,7 @@ Git berfungsi sebagai mekanisme pemulihan terstruktur dalam alur kerja agen yang
 Alat bash paling kuat ketika digabungkan dengan [text editor](/docs/id/agents-and-tools/tool-use/text-editor-tool) dan alat lainnya.
 
 <Note>
-Jika Anda juga menggunakan [alat code execution](/docs/id/agents-and-tools/tool-use/code-execution-tool), Claude memiliki akses ke dua lingkungan eksekusi terpisah: sesi bash lokal Anda dan kontainer sandbox milik Anthropic. State tidak dibagikan di antara keduanya. Lihat [Menggunakan code execution dengan alat eksekusi lainnya](/docs/id/agents-and-tools/tool-use/code-execution-tool#using-code-execution-with-other-execution-tools) untuk panduan dalam memberikan prompt kepada Claude agar dapat membedakan antara lingkungan tersebut.
+Jika Anda juga menggunakan [alat code execution](/docs/id/agents-and-tools/tool-use/code-execution-tool), Claude memiliki akses ke dua lingkungan eksekusi terpisah: sesi bash lokal Anda dan container sandbox milik Anthropic. State tidak dibagikan di antara keduanya. Lihat [Menggunakan code execution dengan alat eksekusi lainnya](/docs/id/agents-and-tools/tool-use/code-execution-tool#using-code-execution-with-other-execution-tools) untuk panduan dalam memberikan prompt kepada Claude agar dapat membedakan antara lingkungan tersebut.
 </Note>
 
 ## Langkah selanjutnya \{#next-steps}

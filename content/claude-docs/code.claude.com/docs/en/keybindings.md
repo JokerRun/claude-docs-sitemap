@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/keybindings
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 89bc01764dbad106f8eb13591f94e04809b915b9b920a5077b2b1ec77790b88e
+fetched_at: 2026-06-13T03:15:40.418428Z
+sha256: 76a9e551763a082f116e61dba2d9a4c087699304137c7e6e4b12a7ddf941366e
 ---
 
 > ## Documentation Index
@@ -111,7 +111,7 @@ Actions available in the `Chat` context:
 | `chat:cancel`         | Escape                            | Cancel current input                                                                                                                                           |
 | `chat:clearInput`     | Ctrl+L                            | Force a full screen redraw, preserving input. In [fullscreen rendering](/en/fullscreen#clear-the-conversation), press twice within two seconds to run `/clear` |
 | `chat:clearScreen`    | Cmd+K                             | In [fullscreen rendering](/en/fullscreen#clear-the-conversation), press twice within two seconds to run `/clear`                                               |
-| `chat:killAgents`     | Ctrl+X Ctrl+K                     | Kill all running [background subagents](/en/sub-agents#run-subagents-in-foreground-or-background) in this session                                              |
+| `chat:killAgents`     | Ctrl+X Ctrl+K                     | Stop all running [background subagents](/en/sub-agents#run-subagents-in-foreground-or-background) in this session                                              |
 | `chat:cycleMode`      | Shift+Tab\*                       | Cycle permission modes                                                                                                                                         |
 | `chat:modelPicker`    | Meta+P                            | Open model picker                                                                                                                                              |
 | `chat:fastMode`       | Meta+O                            | Toggle fast mode                                                                                                                                               |

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-content-data
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: a7275ef1183b363c1805e26157109959b6e9a29c8a05da0883e797d95c632607
+fetched_at: 2026-06-13T03:15:40.418428Z
+sha256: e3834cbfdb22ea435864a15efc471304bc8f5dbfeb099beb0e08cb0765513f03
 ---
 
 # Mengambil dan menghapus obrolan, file, dan proyek
@@ -12,32 +12,32 @@ Akses konten obrolan, lampiran file, dan proyek untuk organisasi claude.ai melal
 ---
 
 <Note>
-  Compliance API diaktifkan berdasarkan permintaan. Organisasi Claude Enterprise memiliki akses ke API lengkap; organisasi Claude Console hanya memiliki akses ke [Activity Feed](/docs/id/manage-claude/compliance-activity-feed). Lihat [Mendapatkan akses ke Compliance API](/docs/id/manage-claude/compliance-api-access).
+  Untuk mengaktifkan Compliance API, lihat [Mendapatkan akses ke Compliance API](/docs/id/manage-claude/compliance-api-access).
 </Note>
 :
     the chat/file/project endpoints read claude.ai content, so unlike the rest of
     the Compliance API they really are Claude Enterprise-only. */}
 <Note>
-  Endpoint pada halaman ini mengambil dan menghapus konten claude.ai, yang hanya tersedia untuk organisasi dengan paket Claude Enterprise. Compliance API diaktifkan berdasarkan permintaan. Lihat [Mendapatkan akses ke Compliance API](/docs/id/manage-claude/compliance-api-access).
+  Endpoint pada halaman ini mengambil dan menghapus konten claude.ai dan hanya tersedia untuk organisasi Claude Enterprise, yang memiliki akses swalayan ke Compliance API. Lihat [Mendapatkan akses ke Compliance API](/docs/id/manage-claude/compliance-api-access).
 </Note>
 
 <Check>
   **Scope yang diperlukan:** `read:compliance_user_data` pada Compliance Access Key. Endpoint penghapusan juga memerlukan `delete:compliance_user_data`.
 
-  **Prasyarat:** Untuk mencantumkan obrolan, setidaknya satu ID pengguna dari [Mencantumkan pengguna organisasi](/docs/id/manage-claude/compliance-org-data#list-organization-users). Endpoint lain pada halaman ini menerima ID sumber daya secara langsung.
+  **Prasyarat:** Untuk membuat daftar obrolan, setidaknya satu ID pengguna dari [Membuat daftar pengguna organisasi](/docs/id/manage-claude/compliance-org-data#list-organization-users). Endpoint lain pada halaman ini menerima ID sumber daya secara langsung.
 </Check>
 
 Endpoint pada halaman ini mengekspos konten obrolan claude.ai, unggahan file, proyek, dan lampiran proyek kepada peninjau kepatuhan. Endpoint ini mendukung ekspor "eDiscovery" (penemuan elektronik), penegakan "data loss prevention" (pencegahan kehilangan data), atau DLP, dan respons penghapusan akun. Konten disimpan selama kebijakan retensi organisasi Anda mengizinkan. Obrolan yang telah di-soft-delete oleh pengguna di claude.ai tetap terlihat melalui Compliance API dengan `deleted_at` terisi; obrolan yang telah di-hard-delete (melalui Compliance API itu sendiri, atau setelah jendela retensi organisasi berakhir) tidak dapat diambil.
 
-Kedua scope hanya diberikan pada Compliance Access Key (`sk-ant-api01-...`) yang dibuat di claude.ai; lihat [Mendapatkan akses ke Compliance API](/docs/id/manage-claude/compliance-api-access) untuk menyediakannya. Scope `read:compliance_user_data` mencakup pengambilan; `delete:compliance_user_data` hanya diperlukan untuk endpoint penghapusan. Endpoint obrolan, file, proyek, dan lampiran tidak tersedia untuk Admin API key (`sk-ant-admin01-...`); panggilan yang diautentikasi dengan Admin API key akan mengembalikan [403 Forbidden](/docs/id/manage-claude/compliance-errors#403-forbidden).
+Kedua scope hanya diberikan pada Compliance Access Key (`sk-ant-api01-...`) yang dibuat di claude.ai; lihat [Mendapatkan akses ke Compliance API](/docs/id/manage-claude/compliance-api-access) untuk menyediakannya. Scope `read:compliance_user_data` mencakup pengambilan; `delete:compliance_user_data` hanya diperlukan untuk endpoint penghapusan. Endpoint obrolan, file, proyek, dan lampiran tidak tersedia untuk Admin API key (`sk-ant-admin01-...`); panggilan yang diautentikasi dengan Admin API key mengembalikan [403 Forbidden](/docs/id/manage-claude/compliance-errors#403-forbidden).
 
-Endpoint pada halaman ini melakukan paginasi dengan dua cara; lihat [Melakukan paginasi hasil](/docs/id/manage-claude/compliance-activity-feed#paginate-results) untuk referensi lengkapnya. Setiap bagian mencatat skema mana yang berlaku.
+Endpoint pada halaman ini melakukan paginasi dengan dua cara; lihat [Melakukan paginasi hasil](/docs/id/manage-claude/compliance-activity-feed#paginate-results) untuk referensi lengkap. Setiap bagian mencatat skema mana yang berlaku.
 
 ## Mengambil obrolan dan pesan \{#retrieve-chats-and-messages}
 
 Gunakan [List chats](/docs/id/api/compliance/apps/chats/list) untuk menelusuri metadata obrolan per halaman, lalu [Get chat messages](/docs/id/api/compliance/apps/chats/messages/list) untuk mengambil konten pesan lengkap dari satu obrolan.
 
-Endpoint daftar obrolan memerlukan setidaknya satu nilai `user_ids[]` (dan menerima hingga 10 dalam satu permintaan), jadi enumerasikan ID pengguna terlebih dahulu dengan [Mencantumkan pengguna organisasi](/docs/id/manage-claude/compliance-org-data#list-organization-users), lalu cantumkan obrolan untuk setiap pengguna atau untuk setiap batch pengguna. Permintaan berikut mencantumkan obrolan yang dimiliki oleh pengguna tertentu sejak tanggal tertentu.
+Endpoint daftar obrolan memerlukan setidaknya satu nilai `user_ids[]` (dan menerima hingga 10 dalam satu permintaan), jadi enumerasikan ID pengguna terlebih dahulu dengan [Membuat daftar pengguna organisasi](/docs/id/manage-claude/compliance-org-data#list-organization-users), lalu buat daftar obrolan untuk setiap pengguna atau untuk setiap batch pengguna. Permintaan berikut membuat daftar obrolan yang dimiliki oleh pengguna tertentu sejak tanggal tertentu.
 
 <CodeGroup>
 ```bash cURL nocheck
@@ -76,9 +76,9 @@ curl --fail-with-body -sS -G \
 }
 ```
 
-Mencantumkan obrolan hanya mengembalikan metadata. Lihat [List chats](/docs/id/api/compliance/apps/chats/list) untuk daftar filter lengkap; selain `user_ids[]` yang wajib, batas `updated_at.*` berguna untuk peninjauan inkremental terhadap obrolan yang telah berubah sejak ekspor sebelumnya.
+Membuat daftar obrolan hanya mengembalikan metadata. Lihat [List chats](/docs/id/api/compliance/apps/chats/list) untuk daftar filter lengkap; selain `user_ids[]` yang diperlukan, batas `updated_at.*` berguna untuk peninjauan inkremental terhadap obrolan yang telah berubah sejak ekspor sebelumnya.
 
-Hasil obrolan diurutkan berdasarkan `created_at` secara menaik (terlama lebih dulu), dengan pengurutan tambahan berdasarkan `id` jika ada nilai yang sama. Paginasi menggunakan field kursor `first_id`/`last_id`/`has_more` yang sama seperti [Melakukan paginasi hasil](/docs/id/manage-claude/compliance-activity-feed#paginate-results); teruskan `last_id` sebagai `after_id` untuk bergerak maju menuju obrolan yang lebih baru, atau `first_id` sebagai `before_id` untuk bergerak mundur menuju obrolan yang lebih lama.
+Hasil obrolan diurutkan berdasarkan `created_at` secara menaik (terlama terlebih dahulu), dengan ikatan dipecahkan berdasarkan `id`. Paginasi menggunakan field kursor `first_id`/`last_id`/`has_more` yang sama seperti [Melakukan paginasi hasil](/docs/id/manage-claude/compliance-activity-feed#paginate-results); teruskan `last_id` sebagai `after_id` untuk berjalan maju menuju obrolan yang lebih baru, atau `first_id` sebagai `before_id` untuk berjalan mundur menuju obrolan yang lebih lama.
 
 Untuk menarik konten obrolan yang sebenarnya, file terlampir, dan artifact inline (dokumen terstruktur yang dihasilkan Claude di dalam obrolan), lanjutkan dengan endpoint pesan untuk setiap ID obrolan:
 
@@ -92,7 +92,7 @@ curl --fail-with-body -sS \
 ```
 </CodeGroup>
 
-Endpoint pesan mengembalikan metadata obrolan ditambah array `chat_messages` yang diurutkan berdasarkan `created_at`. Ketika `limit` dihilangkan, seluruh kumpulan pesan dikembalikan dalam satu respons; teruskan `limit`, `after_id`, atau `before_id` untuk menelusuri obrolan yang sangat panjang per halaman. Endpoint ini juga menerima batas rentang `created_at.*` dan `updated_at.*` (`gt`, `gte`, `lt`, `lte`) serta parameter `order` (`asc` atau `desc`). Lihat [Get chat messages](/docs/id/api/compliance/apps/chats/messages/list) untuk daftar parameter lengkap. Untuk pesan pengguna, `created_at` adalah waktu pesan dikirim; untuk pesan asisten, ini adalah waktu Claude selesai menghasilkan pesan. Setiap pesan membawa konten teksnya dan, jika ada, file apa pun yang diunggah (biasanya pada pesan pengguna), file apa pun yang dihasilkan alat, dan artifact apa pun yang dihasilkan atau diperbarui oleh asisten (biasanya pada pesan asisten):
+Endpoint pesan mengembalikan metadata obrolan ditambah array `chat_messages` yang diurutkan berdasarkan `created_at`. Ketika `limit` dihilangkan, seluruh set pesan dikembalikan dalam satu respons; teruskan `limit`, `after_id`, atau `before_id` untuk melakukan paginasi pada obrolan yang sangat panjang. Endpoint ini juga menerima batas rentang `created_at.*` dan `updated_at.*` (`gt`, `gte`, `lt`, `lte`) serta parameter `order` (`asc` atau `desc`). Lihat [Get chat messages](/docs/id/api/compliance/apps/chats/messages/list) untuk daftar parameter lengkap. Untuk pesan pengguna, `created_at` adalah waktu pesan dikirim; untuk pesan asisten, ini adalah waktu Claude selesai menghasilkan pesan. Setiap pesan membawa konten teksnya dan, jika ada, file apa pun yang diunggah (biasanya pada pesan pengguna), file apa pun yang dihasilkan oleh alat, dan artifact apa pun yang dihasilkan atau diperbarui oleh asisten (biasanya pada pesan asisten):
 
 ```json Response
 {
@@ -165,7 +165,7 @@ Endpoint pesan mengembalikan metadata obrolan ditambah array `chat_messages` yan
 
 ## Mengambil file dan artifact \{#retrieve-files-and-artifacts}
 
-File dan artifact diunduh berdasarkan ID, bukan dicantumkan secara independen. ID tersebut berasal dari endpoint pesan obrolan di [Mengambil obrolan dan pesan](#retrieve-chats-and-messages) (array `files`, `generated_files`, dan `artifacts` pada setiap pesan) atau, untuk unggahan tingkat proyek, dari [endpoint lampiran proyek](#retrieve-projects-and-attachments).
+File dan artifact diunduh berdasarkan ID, bukan didaftarkan secara independen. ID tersebut berasal dari endpoint pesan obrolan di [Mengambil obrolan dan pesan](#retrieve-chats-and-messages) (array `files`, `generated_files`, dan `artifacts` pada setiap pesan) atau, untuk unggahan tingkat proyek, dari [endpoint lampiran proyek](#retrieve-projects-and-attachments).
 
 Pilih endpoint yang sesuai dengan jenis ID Anda dan data yang Anda butuhkan. Endpoint konten file yang sama melayani file obrolan maupun file proyek.
 
@@ -182,7 +182,7 @@ Pilih endpoint yang sesuai dengan jenis ID Anda dan data yang Anda butuhkan. End
 
 Endpoint konten file mengalirkan unggahan asli sebagai respons biner chunked dengan header berikut:
 
-- `Content-Disposition: attachment; filename*=utf-8''` membawa nama file unggahan asli dalam bentuk extended RFC 5987. Bentuk extended digunakan untuk setiap nama file, bukan hanya yang non-ASCII.
+- `Content-Disposition: attachment; filename*=utf-8''` membawa nama file unggahan asli dalam bentuk extended RFC 5987. Bentuk extended digunakan untuk setiap nama file, tidak hanya yang non-ASCII.
 - `Content-Type` membawa tipe MIME unggahan.
 - `Content-MD5` membawa digest MD5 file, dikodekan base64 sebagaimana ditentukan dalam RFC 1864.
 - `Transfer-Encoding: chunked` selalu disetel.
@@ -203,22 +203,22 @@ Endpoint konten artifact mengembalikan isi teks dari satu versi artifact. Terusk
 
 ## Mengambil proyek dan lampiran \{#retrieve-projects-and-attachments}
 
-Proyek menggabungkan obrolan terkait bersama dengan instruksi kustom, konten basis pengetahuan, serta file atau dokumen teks yang dilampirkan. Compliance API mengekspos metadata proyek, detail proyek, dan daftar lampiran yang dimiliki sebuah proyek.
+Proyek mengelompokkan obrolan terkait bersama dengan instruksi kustom, konten basis pengetahuan, dan file atau dokumen teks terlampir. Compliance API mengekspos metadata proyek, detail proyek, dan daftar lampiran yang dimiliki oleh sebuah proyek.
 
 - [List projects](/docs/id/api/compliance/apps/projects/list)
 - [Get project details](/docs/id/api/compliance/apps/projects/retrieve)
 - [List project attachments](/docs/id/api/compliance/apps/projects/attachments/list)
 - [Get project document content](/docs/id/api/compliance/apps/projects/documents/retrieve)
 
-Hasil proyek diurutkan berdasarkan tanggal pembuatan secara menaik. Hasil lampiran diurutkan berdasarkan `created_at` secara menaik, dengan pengurutan tambahan berdasarkan `id` jika ada nilai yang sama. Respons daftar proyek dan daftar lampiran melakukan paginasi dengan token halaman `next_page` yang opaque, bukan kursor `first_id`/`last_id` yang digunakan oleh obrolan dan Activity Feed. Teruskan token tersebut kembali sebagai parameter kueri `page` pada permintaan berikutnya.
+Hasil proyek diurutkan berdasarkan tanggal pembuatan secara menaik. Hasil lampiran diurutkan berdasarkan `created_at` secara menaik, dengan ikatan dipecahkan berdasarkan `id`. Respons daftar proyek dan daftar lampiran melakukan paginasi dengan token halaman `next_page` yang opaque, bukan kursor `first_id`/`last_id` yang digunakan oleh obrolan dan Activity Feed. Teruskan token tersebut kembali sebagai parameter kueri `page` pada permintaan berikutnya.
 
 ### File proyek versus dokumen proyek \{#project-files-versus-project-documents}
 
-Lampiran proyek memiliki salah satu dari dua bentuk berbeda, yang diidentifikasi oleh diskriminator `type` pada setiap entri:
+Lampiran proyek adalah salah satu dari dua bentuk yang berbeda, diidentifikasi oleh diskriminator `type` pada setiap entri:
 
 Entri dengan `type` bernilai `project_file` adalah unggahan biner (PDF, gambar, spreadsheet) yang ID-nya dimulai dengan `claude_file_`; unduh dengan [Download file content](/docs/id/api/compliance/apps/chats/files/download). Entri dengan `type` bernilai `project_doc` adalah dokumen teks biasa (selalu `text/plain`) yang ID-nya dimulai dengan `claude_proj_doc_`; ambil dengan [Get project document content](/docs/id/api/compliance/apps/projects/documents/retrieve).
 
-Konsumen yang menelusuri daftar lampiran harus bercabang berdasarkan `type` dan memanggil endpoint konten yang sesuai untuk setiap entri. Permintaan berikut mencantumkan satu halaman lampiran; lakukan paginasi dengan meneruskan `next_page` kembali sebagai parameter `page` hingga `has_more` bernilai `false`.
+Konsumen yang menelusuri daftar lampiran harus bercabang berdasarkan `type` dan memanggil endpoint konten yang sesuai untuk setiap entri. Permintaan berikut membuat daftar satu halaman lampiran; lakukan paginasi dengan meneruskan `next_page` kembali sebagai parameter `page` hingga `has_more` bernilai `false`.
 
 <CodeGroup>
 ```bash cURL nocheck
@@ -259,22 +259,22 @@ curl --fail-with-body -sS -G \
   Setiap penghapusan yang berhasil bersifat permanen dan langsung. Tidak ada jendela pemulihan.
 </Warning>
 
-Compliance API mengekspos endpoint hard-delete untuk obrolan, file, dokumen proyek, dan seluruh proyek. Obrolan yang telah di-hard-delete tidak dapat dipulihkan, dan tidak lagi muncul dalam respons daftar setelahnya (sedangkan obrolan yang di-soft-delete dari claude.ai masih muncul dengan `deleted_at` terisi).
+Compliance API mengekspos endpoint hard-delete untuk obrolan, file, dokumen proyek, dan seluruh proyek. Obrolan yang di-hard-delete tidak dapat dipulihkan, dan berhenti muncul dalam respons daftar setelahnya (sedangkan obrolan yang di-soft-delete dari claude.ai masih muncul dengan `deleted_at` terisi).
 
 - [Delete chat](/docs/id/api/compliance/apps/chats/delete): juga menghapus pesan obrolan dan file apa pun yang dilampirkan ke pesan tersebut.
 - [Delete file](/docs/id/api/compliance/apps/chats/files/delete): menangani file obrolan maupun file proyek.
 - [Delete project document](/docs/id/api/compliance/apps/projects/documents/delete): menghapus satu dokumen proyek berdasarkan ID.
 - [Delete project](/docs/id/api/compliance/apps/projects/delete): lihat [Lepaskan obrolan sebelum menghapus proyek](#detach-chats-before-deleting-a-project).
 
-Keempat endpoint tersebut memerlukan scope `delete:compliance_user_data`, yang diberikan secara terpisah dari scope baca saat Compliance Access Key dibuat.
+Keempat endpoint memerlukan scope `delete:compliance_user_data`, yang diberikan secara terpisah dari scope baca saat Compliance Access Key dibuat.
 
 Permintaan berikut menghapus satu obrolan. Pola yang sama berlaku untuk endpoint penghapusan lainnya; hanya URL yang berubah.
 
 <CodeGroup>
 ```bash cURL nocheck
 # PERINGATAN: Operasi ini menghapus obrolan secara PERMANEN, beserta semua pesannya
-# dan file apa pun yang terlampir. Penghapusan terjadi seketika dan tidak dapat dibatalkan.
-# Operasi ini memerlukan scope `delete:compliance_user_data`, yang diberikan secara terpisah
+# dan file apa pun yang dilampirkan. Penghapusan terjadi seketika dan tidak dapat dibatalkan.
+# Ini memerlukan scope `delete:compliance_user_data`, yang diberikan secara terpisah
 # dari `read:compliance_user_data` saat Compliance Access Key dibuat.
 # Pastikan Anda memiliki otorisasi eksplisit sebelum menjalankan ini.
 
@@ -293,7 +293,7 @@ curl --fail-with-body -sS -X DELETE \
 }
 ```
 
-Setiap penghapusan yang berhasil mengembalikan envelope konfirmasi kecil dengan `id` dan diskriminator `type`. Endpoint obrolan mengembalikan `claude_chat_deleted`; periksa field `type` sebelum memperlakukan penghapusan sebagai terkonfirmasi. Lihat skema respons pada halaman [referensi API](/docs/id/api/compliance/apps) masing-masing endpoint penghapusan untuk nilai `type` persis yang dikembalikan oleh endpoint lainnya.
+Setiap penghapusan yang berhasil mengembalikan amplop konfirmasi kecil dengan `id` dan diskriminator `type`. Endpoint obrolan mengembalikan `claude_chat_deleted`; periksa field `type` sebelum memperlakukan penghapusan sebagai terkonfirmasi. Lihat skema respons pada halaman [referensi API](/docs/id/api/compliance/apps) masing-masing endpoint penghapusan untuk nilai `type` persis yang dikembalikan oleh endpoint lainnya.
 
 ### Lepaskan obrolan sebelum menghapus proyek \{#detach-chats-before-deleting-a-project}
 
@@ -308,7 +308,7 @@ Sebuah proyek tidak dapat dihapus selama masih ada obrolan yang terlampir padany
 }
 ```
 
-Untuk mengatasinya, cantumkan obrolan proyek dengan `GET /v1/compliance/apps/chats?user_ids[]={user_id}&project_ids[]={project_id}` (endpoint daftar obrolan memerlukan setidaknya satu nilai `user_ids[]`; enumerasikan ID melalui [Mencantumkan pengguna organisasi](/docs/id/manage-claude/compliance-org-data#list-organization-users)), hapus masing-masing dengan `DELETE /v1/compliance/apps/chats/{claude_chat_id}` (atau pindahkan keluar dari proyek melalui claude.ai), lalu coba lagi penghapusan proyek.
+Untuk mengatasinya, buat daftar obrolan proyek dengan `GET /v1/compliance/apps/chats?user_ids[]={user_id}&project_ids[]={project_id}` (endpoint daftar obrolan memerlukan setidaknya satu nilai `user_ids[]`; enumerasikan ID melalui [Membuat daftar pengguna organisasi](/docs/id/manage-claude/compliance-org-data#list-organization-users)), hapus masing-masing dengan `DELETE /v1/compliance/apps/chats/{claude_chat_id}` (atau pindahkan keluar dari proyek melalui claude.ai), lalu coba lagi penghapusan proyek.
 
 ## Langkah selanjutnya \{#next-steps}
 
@@ -316,7 +316,7 @@ Untuk mengatasinya, cantumkan obrolan proyek dengan `GET /v1/compliance/apps/cha
   <Card title="Referensi API" href="/docs/id/api/compliance/apps">
     Skema permintaan dan respons lengkap untuk setiap endpoint obrolan, file, proyek, dan artifact.
   </Card>
-  <Card title="Mencantumkan organisasi, pengguna, peran, dan grup" href="/docs/id/manage-claude/compliance-org-data">
+  <Card title="Membuat daftar organisasi, pengguna, peran, grup, dan pengaturan" href="/docs/id/manage-claude/compliance-org-data">
     Enumerasikan orang dan tim yang terkait dengan obrolan dan proyek pada halaman ini.
   </Card>
 </CardGroup>

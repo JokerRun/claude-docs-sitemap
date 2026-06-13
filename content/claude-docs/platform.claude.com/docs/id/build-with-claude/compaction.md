@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/compaction
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: e91a8c38babc55b58bec5b3f437b61843d99a2efd063a20fad3cb4465c62ec59
+fetched_at: 2026-06-13T03:15:40.418428Z
+sha256: 6e36823f3e8c2d4a6c9493827427f0b1119f58dc82de1cba2a9484fcf2735a10
 ---
 
 # Compaction
@@ -19,10 +19,10 @@ Fitur ini memenuhi syarat untuk [Zero Data Retention (ZDR)](/docs/id/build-with-
 "Compaction" (pemadatan) sisi server adalah strategi yang direkomendasikan untuk mengelola konteks dalam percakapan yang berjalan lama dan alur kerja agentik. Fitur ini menangani manajemen konteks secara otomatis dengan upaya integrasi yang minimal.
 </Tip>
 
-Compaction memperpanjang panjang konteks efektif untuk percakapan dan tugas yang berjalan lama dengan secara otomatis merangkum konteks yang lebih lama saat mendekati batas "context window" (jendela konteks). Ini bukan hanya tentang tetap berada di bawah batas token. Seiring percakapan menjadi lebih panjang, model kesulitan mempertahankan fokus di seluruh riwayat. Compaction menjaga konteks aktif tetap fokus dan berkinerja baik dengan mengganti konten yang sudah usang dengan ringkasan yang padat.
+Compaction memperpanjang panjang konteks efektif untuk percakapan dan tugas yang berjalan lama dengan secara otomatis merangkum konteks yang lebih lama ketika mendekati batas "context window" (jendela konteks). Ini bukan hanya tentang tetap berada di bawah batas token. Seiring percakapan menjadi lebih panjang, model kesulitan mempertahankan fokus di seluruh riwayat lengkap. Compaction menjaga konteks aktif tetap fokus dan berkinerja baik dengan mengganti konten yang sudah usang dengan ringkasan yang padat.
 
 <Tip>
-Untuk pemahaman lebih dalam tentang mengapa konteks panjang mengalami penurunan kualitas dan bagaimana compaction membantu, lihat
+Untuk pemahaman lebih mendalam tentang mengapa konteks panjang mengalami penurunan kualitas dan bagaimana compaction membantu, lihat
 [Effective context engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents).
 </Tip>
 
@@ -49,7 +49,7 @@ Compaction didukung pada model-model berikut:
 
 ## Cara kerja compaction \{#how-compaction-works}
 
-Ketika compaction diaktifkan, Claude secara otomatis merangkum percakapan Anda saat mendekati ambang batas token yang dikonfigurasi. API akan:
+Ketika compaction diaktifkan, Claude secara otomatis merangkum percakapan Anda ketika mendekati ambang batas token yang dikonfigurasi. API akan:
 
 1. Mendeteksi ketika token input melebihi ambang batas pemicu yang Anda tentukan.
 2. Menghasilkan ringkasan dari percakapan saat ini.
@@ -330,7 +330,7 @@ puts response
 | `type` | string | Wajib | Harus berupa `"compact_20260112"` |
 | `trigger` | object | 150.000 token | Kapan compaction dipicu. Harus minimal 50.000 token. |
 | `pause_after_compaction` | boolean | `false` | Apakah akan berhenti sejenak setelah menghasilkan ringkasan compaction |
-| `instructions` | string | `null` | Prompt peringkasan kustom. Sepenuhnya menggantikan prompt default jika disediakan. |
+| `instructions` | string | `null` | Prompt ringkasan kustom. Sepenuhnya menggantikan prompt default jika disediakan. |
 
 ### Konfigurasi trigger \{#trigger-configuration}
 
@@ -557,15 +557,15 @@ puts response
 ```
 </CodeGroup>
 
-### Instruksi peringkasan kustom \{#custom-summarization-instructions}
+### Instruksi ringkasan kustom \{#custom-summarization-instructions}
 
-Secara default, compaction menggunakan prompt peringkasan berikut:
+Secara default, compaction menggunakan prompt ringkasan berikut:
 
 ```text
 You have written a partial transcript for the initial task above. Please write a summary of the transcript. The purpose of this summary is to provide continuity so you can continue to make progress towards solving the task in a future context, where the raw history above may not be accessible and will be replaced with this summary. Write down anything that would be helpful, including the state, next steps, learnings etc. You must wrap your summary in a <summary></summary> block.
 ```
 
-Anda dapat memberikan instruksi kustom melalui parameter `instructions` untuk menggantikan prompt ini sepenuhnya. Instruksi kustom tidak melengkapi prompt default; instruksi tersebut sepenuhnya menggantikannya:
+Anda dapat menyediakan instruksi kustom melalui parameter `instructions` untuk menggantikan prompt ini sepenuhnya. Instruksi kustom tidak melengkapi prompt default; instruksi tersebut sepenuhnya menggantikannya:
 
 <CodeGroup>
 ```bash CLI
@@ -794,7 +794,7 @@ puts response
 
 ### Berhenti sejenak setelah compaction \{#pausing-after-compaction}
 
-Gunakan `pause_after_compaction` untuk menjeda API setelah menghasilkan ringkasan compaction. Ini memungkinkan Anda menambahkan blok konten tambahan (seperti mempertahankan pesan terbaru atau pesan berorientasi instruksi tertentu) sebelum API melanjutkan dengan respons.
+Gunakan `pause_after_compaction` untuk menghentikan sementara API setelah menghasilkan ringkasan compaction. Ini memungkinkan Anda menambahkan blok konten tambahan (seperti mempertahankan pesan terbaru atau pesan berorientasi instruksi tertentu) sebelum API melanjutkan dengan respons.
 
 Ketika diaktifkan, API mengembalikan pesan dengan stop reason `compaction` setelah menghasilkan blok compaction:
 
@@ -1080,12 +1080,11 @@ public class CompactionPauseExample {
 }
 ```
 
-```php PHP nocheck hidelines={1..4}
+```php PHP hidelines={1..4}
 <?php
 
 use Anthropic\Client;
 
-// SDK PHP belum menyediakan konstanta bertipe untuk stop reason `compaction`; bandingkan nilai string-nya secara langsung.
 $client = new Client();
 $messages = [['role' => 'user', 'content' => 'Hello, Claude']];
 
@@ -1167,7 +1166,7 @@ puts response
 
 #### Menerapkan anggaran token total \{#enforcing-a-total-token-budget}
 
-Ketika model mengerjakan tugas panjang dengan banyak iterasi penggunaan alat, total konsumsi token dapat meningkat secara signifikan. Anda dapat menggabungkan `pause_after_compaction` dengan penghitung compaction untuk memperkirakan penggunaan kumulatif dan menyelesaikan tugas dengan baik setelah anggaran tercapai:
+Ketika model mengerjakan tugas panjang dengan banyak iterasi penggunaan alat, konsumsi token total dapat meningkat secara signifikan. Anda dapat menggabungkan `pause_after_compaction` dengan penghitung compaction untuk memperkirakan penggunaan kumulatif dan menyelesaikan tugas dengan baik setelah anggaran tercapai:
 
 ```python Python hidelines={1..2}
 import anthropic
@@ -1212,7 +1211,7 @@ if response.stop_reason == "compaction":
 
 Ketika compaction dipicu, API mengembalikan blok `compaction` di awal respons asisten.
 
-Percakapan yang berjalan lama dapat menghasilkan beberapa compaction. Blok compaction terakhir mencerminkan keadaan akhir prompt, menggantikan konten sebelumnya dengan ringkasan yang dihasilkan.
+Percakapan yang berjalan lama dapat menghasilkan beberapa compaction. Blok compaction terakhir mencerminkan keadaan akhir dari prompt, menggantikan konten sebelumnya dengan ringkasan yang dihasilkan.
 
 ```json Output
 {
@@ -2143,7 +2142,7 @@ puts response
 ```
 </CodeGroup>
 
-Pendekatan ini sangat bermanfaat untuk prompt sistem yang panjang, karena tetap di-cache bahkan di sepanjang beberapa peristiwa compaction selama percakapan.
+Pendekatan ini sangat bermanfaat untuk prompt sistem yang panjang, karena prompt tersebut tetap di-cache bahkan di sepanjang beberapa peristiwa compaction dalam satu percakapan.
 
 ## Memahami penggunaan \{#understanding-usage}
 
@@ -2170,12 +2169,12 @@ Compaction memerlukan langkah sampling tambahan, yang berkontribusi pada batas l
 }
 ```
 
-Array `iterations` menunjukkan penggunaan untuk setiap iterasi sampling. Ketika compaction terjadi, Anda akan melihat iterasi `compaction` diikuti oleh iterasi `message` utama. `input_tokens` dan `output_tokens` tingkat atas sama persis dengan iterasi `message` dalam contoh ini karena hanya ada satu iterasi non-compaction. Jumlah token iterasi terakhir mencerminkan ukuran konteks efektif setelah compaction.
+Array `iterations` menunjukkan penggunaan untuk setiap iterasi sampling. Ketika compaction terjadi, Anda akan melihat iterasi `compaction` diikuti oleh iterasi `message` utama. Nilai `input_tokens` dan `output_tokens` tingkat atas sama persis dengan iterasi `message` dalam contoh ini karena hanya ada satu iterasi non-compaction. Jumlah token iterasi terakhir mencerminkan ukuran konteks efektif setelah compaction.
 
 <Note>
-`input_tokens` dan `output_tokens` tingkat atas tidak menyertakan penggunaan iterasi compaction. Keduanya mencerminkan jumlah dari semua iterasi non-compaction. Untuk menghitung total token yang dikonsumsi dan ditagih untuk sebuah permintaan, jumlahkan semua entri dalam array `usage.iterations`.
+Nilai `input_tokens` dan `output_tokens` tingkat atas tidak menyertakan penggunaan iterasi compaction. Nilai tersebut mencerminkan jumlah dari semua iterasi non-compaction. Untuk menghitung total token yang dikonsumsi dan ditagih untuk sebuah permintaan, jumlahkan semua entri dalam array `usage.iterations`.
 
-Jika sebelumnya Anda mengandalkan `usage.input_tokens` dan `usage.output_tokens` untuk pelacakan biaya atau audit, Anda perlu memperbarui logika pelacakan Anda untuk mengagregasi seluruh `usage.iterations` ketika compaction diaktifkan. Array `iterations` hanya diisi ketika compaction baru dipicu selama permintaan. Menerapkan kembali blok `compaction` sebelumnya tidak menimbulkan biaya compaction tambahan, dan field penggunaan tingkat atas tetap akurat dalam kasus tersebut.
+Jika sebelumnya Anda mengandalkan `usage.input_tokens` dan `usage.output_tokens` untuk pelacakan biaya atau audit, Anda perlu memperbarui logika pelacakan Anda untuk mengagregasi di seluruh `usage.iterations` ketika compaction diaktifkan. Array `iterations` hanya diisi ketika compaction baru dipicu selama permintaan. Menerapkan kembali blok `compaction` sebelumnya tidak menimbulkan biaya compaction tambahan, dan field penggunaan tingkat atas tetap akurat dalam kasus tersebut.
 </Note>
 
 ## Menggabungkan dengan fitur lain \{#combining-with-other-features}
@@ -2186,7 +2185,7 @@ Saat menggunakan server tools (seperti pencarian web), pemicu compaction diperik
 
 ### Penghitungan token \{#token-counting}
 
-Endpoint penghitungan token (`/v1/messages/count_tokens`) menerapkan blok `compaction` yang sudah ada dalam prompt Anda tetapi tidak memicu compaction baru. Gunakan ini untuk memeriksa jumlah token efektif Anda setelah compaction sebelumnya:
+Endpoint penghitungan token (`/v1/messages/count_tokens`) menerapkan blok `compaction` yang sudah ada dalam prompt Anda tetapi tidak memicu compaction baru. Gunakan endpoint ini untuk memeriksa jumlah token efektif Anda setelah compaction sebelumnya:
 
 <CodeGroup>
 ```bash CLI
@@ -2393,8 +2392,8 @@ Berikut adalah contoh lengkap percakapan yang berjalan lama dengan compaction:
 <CodeGroup>
 ```bash CLI
 # CLI menangani giliran individual; pertahankan array messages di
-# skrip pemanggil. Lihat tab SDK untuk loop chat() lengkap. Bentuk permintaan
-# satu giliran:
+# skrip pemanggil. Lihat tab SDK untuk loop chat() lengkap. Bentuk
+# permintaan satu giliran:
 ant beta:messages create --beta compact-2026-01-12 \
   --transform 'content.#(type=="text").text' --raw-output <<'YAML'
 model: claude-opus-4-8
@@ -2736,7 +2735,7 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
 ```bash CLI
 # CLI menangani giliran individual; pertahankan array messages di
 # skrip pemanggil. Lihat tab SDK untuk loop chat() lengkap dengan
-# penanganan pause-and-preserve. Bentuk permintaan satu giliran:
+# penanganan jeda-dan-pertahankan. Bentuk permintaan satu giliran:
 ant beta:messages create --beta compact-2026-01-12 \
   --transform 'content.#(type=="text").text' --raw-output <<'YAML'
 model: claude-opus-4-8
@@ -3161,12 +3160,11 @@ public class CompactionExample {
 }
 ```
 
-```php PHP nocheck hidelines={1..4}
+```php PHP hidelines={1..4}
 <?php
 
 use Anthropic\Client;
 
-// SDK PHP belum menyediakan konstanta bertipe untuk stop reason `compaction`; bandingkan nilai string-nya secara langsung.
 $client = new Client();
 $messages = [];
 
@@ -3288,10 +3286,10 @@ puts chat(client, messages, "Now add rate limiting and error handling")
 ```
 </CodeGroup>
 
-## Batasan saat ini \{#current-limitations}
+## Keterbatasan saat ini \{#current-limitations}
 
-- **Model yang sama untuk peringkasan:** Model yang ditentukan dalam permintaan Anda digunakan untuk peringkasan. Tidak ada opsi untuk menggunakan model yang berbeda (misalnya, yang lebih murah) untuk ringkasan.
-- **Compaction mungkin gagal ketika tools didefinisikan:** Ketika permintaan Anda menyertakan `tools`, model terkadang memanggil alat selama langkah peringkasan internal alih-alih menulis ringkasan. Ketika ini terjadi, respons berisi blok `compaction` dengan `content: null`. Untuk mencegah hal ini, atur [`instructions`](#custom-summarization-instructions) ke prompt yang secara eksplisit memberi tahu model untuk tidak memanggil alat, misalnya:
+- **Model yang sama untuk ringkasan:** Model yang ditentukan dalam permintaan Anda digunakan untuk ringkasan. Tidak ada opsi untuk menggunakan model yang berbeda (misalnya, yang lebih murah) untuk ringkasan.
+- **Compaction mungkin gagal ketika tools didefinisikan:** Ketika permintaan Anda menyertakan `tools`, model terkadang memanggil tool selama langkah ringkasan internal alih-alih menulis ringkasan. Ketika ini terjadi, respons berisi blok `compaction` dengan `content: null`. Untuk mencegah hal ini, atur [`instructions`](#custom-summarization-instructions) ke prompt yang secara eksplisit memberi tahu model untuk tidak memanggil tools, misalnya:
 
   ```text
   Summarize the transcript inside <summary></summary> tags. Include relevant information in the summary for continuing the task in the next context window. Do not call any tools while writing this summary; respond with text only.
@@ -3307,6 +3305,6 @@ puts chat(client, messages, "Now add rate limiting and error handling")
     Pelajari tentang ukuran jendela konteks dan strategi pengelolaannya.
   </Card>
   <Card title="Pengeditan konteks" icon="pen" href="/docs/id/build-with-claude/context-editing">
-    Jelajahi strategi lain untuk mengelola konteks percakapan seperti pembersihan hasil alat dan pembersihan blok thinking.
+    Jelajahi strategi lain untuk mengelola konteks percakapan seperti pembersihan hasil tool dan pembersihan blok thinking.
   </Card>
 </CardGroup>

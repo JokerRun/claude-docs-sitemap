@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/claude-code-analytics-api
-fetched_at: 2026-05-29T03:17:00.216417Z
-sha256: f97667a80d4357ed147642637390a401da101239582b046fb326f950dcd75160
+fetched_at: 2026-06-13T03:15:40.418428Z
+sha256: 02fbe59886e9ef56a1841f7746d468b84570a8b2a39c51532c8fcc29f7c4243f
 ---
 
 # Claude Code Analytics API
@@ -33,6 +33,10 @@ This API enables you to better monitor, analyze, and optimize your Claude Code a
 
 <Note>
 **Claude Platform on AWS:** The Claude Code Analytics API is not currently available. View Claude Code usage on the **Usage** page in the Claude Console instead.
+</Note>
+
+<Note>
+**Claude Enterprise organizations:** Claude Code activity for claude.ai users is reported by the Claude Enterprise Analytics API, which uses an Analytics API key instead of an Admin API key. See [Analytics APIs](/docs/en/manage-claude/analytics-api) to find which API and key type your organization needs.
 </Note>
 
 ## Quick start

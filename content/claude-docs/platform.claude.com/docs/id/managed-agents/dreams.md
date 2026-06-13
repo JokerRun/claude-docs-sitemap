@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/dreams
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 2ed99834e03dbb24175a2cd1fbc84b9e00090b5255e7a3256c67dec6f7da3659
+fetched_at: 2026-06-13T03:15:40.418428Z
+sha256: 64d9a141a242cd3363796ae043854009531b3d62ed1c6080f6259875251c78a0
 ---
 
 # Dreams
@@ -338,7 +338,7 @@ Ketika `status` mencapai `completed`, entri `memory_store` di `outputs[]` merefe
 <CodeGroup>
   
 ````bash
-# After the dream ends, the memory_store output holds the rebuilt store
+# Setelah dream berakhir, output memory_store menyimpan store yang dibangun ulang
 output_store_id=$(jq -r 'first(.outputs[] | select(.type == "memory_store")).memory_store_id' <<< "$dream")
 
 curl -s https://api.anthropic.com/v1/sessions \
@@ -373,7 +373,7 @@ YAML
 
   
 ````python
-# After the dream ends, the output holds the rebuilt memory store
+# Setelah dream berakhir, output menyimpan penyimpanan memori yang dibangun ulang
 output_store_id = next(
     output.memory_store_id for output in dream.outputs if output.type == "memory_store"
 )
@@ -389,7 +389,7 @@ session = client.beta.sessions.create(
 
   
 ````typescript
-// After the dream ends, the output holds the rebuilt memory store
+// Setelah dream berakhir, output menyimpan penyimpanan memori yang dibangun ulang
 const output = dream.outputs.find((entry) => entry.type === "memory_store");
 const outputStoreId = output!.memory_store_id;
 

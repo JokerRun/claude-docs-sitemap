@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/overview
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: a467eba2349baca9cd7dbf7329ea0d0be158e47fcb2c8d8e5773841cc2b62923
+fetched_at: 2026-06-13T03:15:40.418428Z
+sha256: dca7c884933cace16ae052f012700cb0407e06f5224a6e5eef7158f51e6c79ce
 ---
 
 # Ikhtisar fitur
 
-Jelajahi fitur dan kemampuan lanjutan Claude.
+Jelajahi fitur dan kemampuan canggih Claude.
 
 ---
 
@@ -29,10 +29,10 @@ Fitur pada Claude Platform diberi salah satu klasifikasi ketersediaan berikut pe
 
 | Klasifikasi | Deskripsi |
 |----------------|-------------|
-| **Beta**<sup>*</sup> | Fitur pratinjau yang digunakan untuk mengumpulkan umpan balik dan melakukan iterasi pada kasus penggunaan yang kurang matang. Ketersediaan mungkin terbatas, termasuk melalui persyaratan pendaftaran atau daftar tunggu, dan mungkin tidak diumumkan secara publik. <br/><br/> Fitur dapat berubah secara signifikan atau dihentikan berdasarkan umpan balik. Tidak dijamin untuk penggunaan produksi yang berkelanjutan. Perubahan yang merusak (breaking changes) dimungkinkan dengan pemberitahuan, dan beberapa batasan khusus platform mungkin berlaku. Fitur beta pada Claude API dan [Claude Platform on AWS](/docs/id/build-with-claude/claude-platform-on-aws) memiliki [beta header](/docs/id/api/beta-headers). |
-| **Tersedia secara umum (GA)** | Fitur stabil, didukung penuh, dan direkomendasikan untuk penggunaan produksi. Seharusnya tidak memiliki beta header atau indikator lain bahwa fitur tersebut dalam status pratinjau. Dicakup oleh jaminan [versioning](/docs/id/api/versioning) API standar. |
-| **Tidak digunakan lagi (Deprecated)** | Fitur masih berfungsi tetapi tidak lagi direkomendasikan. Jalur migrasi dan linimasa penghapusan disediakan. |
-| **Dihentikan (Retired)** | Fitur tidak lagi tersedia. |
+| **Beta**<sup>*</sup> | Fitur pratinjau yang digunakan untuk mengumpulkan umpan balik dan melakukan iterasi pada kasus penggunaan yang belum matang. Ketersediaan mungkin terbatas, termasuk melalui persyaratan pendaftaran atau daftar tunggu, dan mungkin tidak diumumkan secara publik. <br/><br/> Fitur dapat berubah secara signifikan atau dihentikan berdasarkan umpan balik. Tidak dijamin untuk penggunaan produksi yang berkelanjutan. Perubahan yang merusak (breaking changes) dimungkinkan dengan pemberitahuan, dan beberapa batasan khusus platform mungkin berlaku. Fitur beta pada Claude API dan [Claude Platform on AWS](/docs/id/build-with-claude/claude-platform-on-aws) memiliki [beta header](/docs/id/api/beta-headers). |
+| **Generally available (GA)** | Fitur stabil, didukung penuh, dan direkomendasikan untuk penggunaan produksi. Seharusnya tidak memiliki beta header atau indikator lain bahwa fitur tersebut dalam status pratinjau. Dicakup oleh jaminan [versioning](/docs/id/api/versioning) API standar. |
+| **Deprecated** | Fitur masih berfungsi tetapi tidak lagi direkomendasikan. Jalur migrasi dan jadwal penghapusan disediakan. |
+| **Retired** | Fitur tidak lagi tersedia. |
 
 _<sup>*</sup> Dapat disertai kualifikasi yang menunjukkan ketersediaan yang lebih sempit atau batasan tambahan (misalnya, "beta: research preview"). Lihat halaman fitur untuk detailnya._
 
@@ -46,17 +46,21 @@ Cara untuk mengarahkan Claude dan output langsung Claude, termasuk format respon
 Anda dapat menemukan kemampuan mana yang didukung oleh sebuah model secara terprogram. [Models API](/docs/id/api/models/list) mengembalikan `max_input_tokens`, `max_tokens`, dan objek `capabilities` untuk setiap model yang tersedia.
 </Tip>
 
+Kolom ZDR menunjukkan apakah sebuah fitur tersedia di bawah pengaturan "Zero Data Retention" (Tanpa Retensi Data). Untuk sebagian besar fitur, hal ini hanya bergantung pada apa yang disimpan oleh mekanisme fitur tersebut; untuk fitur yang terikat pada model tertentu, ketersediaan ZDR tingkat model juga berlaku. Lihat [Persyaratan retensi data khusus model](/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements).
+
 | Fitur | Deskripsi | Zero Data Retention (ZDR) | Ketersediaan |
 |---------|-----------|----|--------------|
 | [Jendela konteks](/docs/id/build-with-claude/context-windows) | Hingga 1 juta token untuk memproses dokumen besar, basis kode yang luas, dan percakapan panjang. | Memenuhi syarat ZDR | <PlatformAvailability claudeApi claudePlatformAws bedrock vertexAi azureAiBeta /> |
 | [Pemikiran adaptif](/docs/id/build-with-claude/adaptive-thinking) | Biarkan Claude secara dinamis memutuskan kapan dan seberapa banyak harus berpikir. Satu-satunya mode pemikiran pada Claude Opus 4.8 dan Claude Opus 4.7. Gunakan parameter effort untuk mengontrol kedalaman pemikiran. | Memenuhi syarat ZDR | <PlatformAvailability claudeApi claudePlatformAws bedrock vertexAi azureAiBeta /> |
-| [Pemrosesan batch](/docs/id/build-with-claude/batch-processing) | Memproses permintaan dalam volume besar secara asinkron untuk penghematan biaya. Kirim batch dengan jumlah kueri yang besar per batch. Panggilan Batch API berbiaya 50% lebih murah daripada panggilan API standar. | Tidak memenuhi syarat ZDR | <PlatformAvailability claudeApi claudePlatformAws /> |
-| [Sitasi](/docs/id/build-with-claude/citations) | Mendasarkan respons Claude pada dokumen sumber. Dengan Sitasi, Claude dapat memberikan referensi terperinci ke kalimat dan bagian persis yang digunakannya untuk menghasilkan respons, sehingga menghasilkan output yang lebih dapat diverifikasi dan tepercaya. | Memenuhi syarat ZDR | <PlatformAvailability claudeApi claudePlatformAws bedrock vertexAi azureAiBeta /> |
+| [Pemrosesan batch](/docs/id/build-with-claude/batch-processing) | Memproses volume permintaan yang besar secara asinkron untuk penghematan biaya. Kirim batch dengan jumlah kueri yang besar per batch. Panggilan Batch API berbiaya 50% lebih murah daripada panggilan API standar. | Tidak memenuhi syarat ZDR | <PlatformAvailability claudeApi claudePlatformAws /> |
+| [Sitasi](/docs/id/build-with-claude/citations) | Mendasarkan respons Claude pada dokumen sumber. Dengan Sitasi, Claude dapat memberikan referensi terperinci ke kalimat dan bagian persis yang digunakannya untuk menghasilkan respons, menghasilkan output yang lebih dapat diverifikasi dan tepercaya. | Memenuhi syarat ZDR | <PlatformAvailability claudeApi claudePlatformAws bedrock vertexAi azureAiBeta /> |
 | [Residensi data](/docs/id/manage-claude/data-residency) | Mengontrol di mana inferensi model dijalankan menggunakan kontrol geografis. Tentukan perutean `"global"` atau `"us"` per permintaan melalui parameter `inference_geo`. | Memenuhi syarat ZDR | <PlatformAvailability claudeApi claudePlatformAws /> |
-| [Effort](/docs/id/build-with-claude/effort) | Mengontrol berapa banyak token yang digunakan Claude saat merespons dengan parameter effort, menyeimbangkan antara kelengkapan respons dan efisiensi token. Didukung pada Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 4.6, dan Claude Opus 4.5. | Memenuhi syarat ZDR | <PlatformAvailability claudeApi claudePlatformAws bedrock vertexAi azureAiBeta /> |
+| [Effort](/docs/id/build-with-claude/effort) | Mengontrol berapa banyak token yang digunakan Claude saat merespons dengan parameter effort, menyeimbangkan antara kelengkapan respons dan efisiensi token. | Memenuhi syarat ZDR | <PlatformAvailability claudeApi claudePlatformAws bedrock vertexAi azureAiBeta /> |
 | [Pemikiran diperpanjang](/docs/id/build-with-claude/extended-thinking) | Kemampuan penalaran yang ditingkatkan untuk tugas-tugas kompleks, memberikan transparansi ke dalam proses pemikiran langkah demi langkah Claude sebelum memberikan jawaban akhirnya. | Memenuhi syarat ZDR | <PlatformAvailability claudeApi claudePlatformAws bedrock vertexAi azureAiBeta /> |
+| [Kredit fallback](/docs/id/build-with-claude/fallback-credit) | Hindari membayar biaya cache prompt dua kali ketika Anda mencoba ulang permintaan yang ditolak pada model lain. Penolakan tersebut membawa token kredit, dan mengulanginya kembali pada percobaan ulang akan menagih percobaan ulang tersebut seolah-olah percakapan telah berada di model baru sejak awal. Token kredit yang dikembalikan dalam hasil Message Batches tidak dapat ditukarkan. | Tidak memenuhi syarat ZDR* | <PlatformAvailability claudeApiBeta claudePlatformAwsBeta bedrockBeta vertexAiBeta azureAiBeta /> |
 | [Dukungan PDF](/docs/id/build-with-claude/pdf-support) | Memproses dan menganalisis konten teks dan visual dari dokumen PDF. | Memenuhi syarat ZDR | <PlatformAvailability claudeApi claudePlatformAws bedrock vertexAi azureAiBeta /> |
 | [Hasil pencarian](/docs/id/build-with-claude/search-results) | Mengaktifkan sitasi alami untuk aplikasi RAG dengan menyediakan hasil pencarian dengan atribusi sumber yang tepat. Mencapai sitasi berkualitas pencarian web untuk basis pengetahuan dan alat kustom. | Memenuhi syarat ZDR | <PlatformAvailability claudeApi claudePlatformAws bedrock vertexAi azureAiBeta /> |
+| [Fallback sisi server](/docs/id/build-with-claude/refusals-and-fallback) | Mencoba ulang permintaan yang ditolak di dalam satu panggilan API. Sebutkan hingga tiga model fallback, dan ketika model yang diminta menolak, API menjalankan model berikutnya dalam rantai pada permintaan yang sama. Parameter `fallbacks` tidak tersedia di Message Batches API. | Tidak memenuhi syarat ZDR* | <PlatformAvailability claudeApiBeta claudePlatformAwsBeta /> |
 | [Output terstruktur](/docs/id/build-with-claude/structured-outputs) | Menjamin kesesuaian skema dengan dua pendekatan: output JSON untuk respons data terstruktur, dan penggunaan alat ketat untuk input alat yang tervalidasi. | [Memenuhi syarat ZDR (dengan kualifikasi)](/docs/id/build-with-claude/structured-outputs#data-retention)* | <PlatformAvailability claudeApi claudePlatformAws bedrock vertexAi azureAiBeta /> |
 
 ## Alat \{#tools}
@@ -68,9 +72,9 @@ Alat bawaan yang dipanggil Claude melalui `tool_use`. Alat sisi server dijalanka
 | Fitur | Deskripsi | ZDR | Ketersediaan |
 |---------|-----------|----|--------------|
 | [Alat advisor](/docs/id/agents-and-tools/tool-use/advisor-tool) | Memasangkan model eksekutor yang lebih cepat dengan model advisor berkecerdasan lebih tinggi yang memberikan panduan strategis di tengah proses generasi untuk beban kerja agentik jangka panjang. | Memenuhi syarat ZDR | <PlatformAvailability claudeApiBeta claudePlatformAwsBeta /> |
-| [Eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool) | Menjalankan kode dalam lingkungan sandbox untuk analisis data lanjutan, perhitungan, dan pemrosesan file. Gratis jika digunakan dengan pencarian web atau pengambilan web. | Tidak memenuhi syarat ZDR | <PlatformAvailability claudeApi claudePlatformAws azureAiBeta /> |
+| [Eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool) | Menjalankan kode dalam lingkungan sandbox untuk analisis data tingkat lanjut, perhitungan, dan pemrosesan file. Gratis jika digunakan dengan pencarian web atau pengambilan web. | Tidak memenuhi syarat ZDR | <PlatformAvailability claudeApi claudePlatformAws azureAiBeta /> |
 | [Pengambilan web](/docs/id/agents-and-tools/tool-use/web-fetch-tool) | Mengambil konten lengkap dari halaman web dan dokumen PDF yang ditentukan untuk analisis mendalam. | Memenuhi syarat ZDR* | <PlatformAvailability claudeApi claudePlatformAws azureAiBeta /> |
-| [Pencarian web](/docs/id/agents-and-tools/tool-use/web-search-tool) | Melengkapi pengetahuan komprehensif Claude dengan data dunia nyata terkini dari seluruh web. | Memenuhi syarat ZDR* | <PlatformAvailability claudeApi claudePlatformAws vertexAi azureAiBeta /> |
+| [Pencarian web](/docs/id/agents-and-tools/tool-use/web-search-tool) | Melengkapi pengetahuan komprehensif Claude dengan data terkini dari dunia nyata di seluruh web. | Memenuhi syarat ZDR* | <PlatformAvailability claudeApi claudePlatformAws vertexAi azureAiBeta /> |
 
 ### Alat sisi klien \{#client-side-tools}
 
@@ -78,7 +82,7 @@ Alat bawaan yang dipanggil Claude melalui `tool_use`. Alat sisi server dijalanka
 |---------|-----------|----|--------------|
 | [Bash](/docs/id/agents-and-tools/tool-use/bash-tool) | Menjalankan perintah dan skrip bash untuk berinteraksi dengan shell sistem dan melakukan operasi baris perintah. | Memenuhi syarat ZDR | <PlatformAvailability claudeApi claudePlatformAws bedrock vertexAi azureAiBeta /> |
 | [Penggunaan komputer](/docs/id/agents-and-tools/tool-use/computer-use-tool) | Mengontrol antarmuka komputer dengan mengambil tangkapan layar dan mengeluarkan perintah mouse dan keyboard. | Memenuhi syarat ZDR | <PlatformAvailability claudeApiBeta claudePlatformAwsBeta bedrockBeta vertexAiBeta azureAiBeta /> |
-| [Memori](/docs/id/agents-and-tools/tool-use/memory-tool) | Memungkinkan Claude menyimpan dan mengambil informasi di seluruh percakapan. Membangun basis pengetahuan dari waktu ke waktu, mempertahankan konteks proyek, dan belajar dari interaksi sebelumnya. | Memenuhi syarat ZDR | <PlatformAvailability claudeApi claudePlatformAws bedrock vertexAi azureAiBeta /> |
+| [Memori](/docs/id/agents-and-tools/tool-use/memory-tool) | Memungkinkan Claude untuk menyimpan dan mengambil informasi di seluruh percakapan. Membangun basis pengetahuan dari waktu ke waktu, mempertahankan konteks proyek, dan belajar dari interaksi sebelumnya. | Memenuhi syarat ZDR | <PlatformAvailability claudeApi claudePlatformAws bedrock vertexAi azureAiBeta /> |
 | [Editor teks](/docs/id/agents-and-tools/tool-use/text-editor-tool) | Membuat dan mengedit file teks dengan antarmuka editor teks bawaan untuk tugas manipulasi file. | Memenuhi syarat ZDR | <PlatformAvailability claudeApi claudePlatformAws bedrock vertexAi azureAiBeta /> |
 
 ## Infrastruktur alat \{#tool-infrastructure}
@@ -87,7 +91,7 @@ Infrastruktur yang mendukung penemuan, orkestrasi, dan penskalaan penggunaan ala
 
 | Fitur | Deskripsi | ZDR | Ketersediaan |
 |---------|-----------|----|--------------|
-| [Agent Skills](/docs/id/agents-and-tools/agent-skills/overview) | Memperluas kemampuan Claude dengan Skills. Gunakan Skills bawaan (PowerPoint, Excel, Word, PDF) atau buat Skills kustom dengan instruksi dan skrip. Skills menggunakan pengungkapan progresif untuk mengelola konteks secara efisien. | Tidak memenuhi syarat ZDR | <PlatformAvailability claudeApiBeta claudePlatformAwsBeta azureAiBeta /> |
+| [Agent Skills](/docs/id/agents-and-tools/agent-skills/overview) | Memperluas kemampuan Claude dengan Skills. Gunakan Skills yang sudah dibuat sebelumnya (PowerPoint, Excel, Word, PDF) atau buat Skills kustom dengan instruksi dan skrip. Skills menggunakan pengungkapan progresif untuk mengelola konteks secara efisien. | Tidak memenuhi syarat ZDR | <PlatformAvailability claudeApiBeta claudePlatformAwsBeta azureAiBeta /> |
 | [Streaming alat terperinci](/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming) | Melakukan streaming parameter penggunaan alat tanpa buffering/validasi JSON, mengurangi latensi untuk menerima parameter besar. | Memenuhi syarat ZDR | <PlatformAvailability claudeApi claudePlatformAws bedrock vertexAi azureAi /> |
 | [Konektor MCP](/docs/id/agents-and-tools/mcp-connector) | Terhubung ke server [MCP](/docs/id/mcp) jarak jauh langsung dari Messages API tanpa klien MCP terpisah. | Tidak memenuhi syarat ZDR | <PlatformAvailability claudeApiBeta claudePlatformAwsBeta azureAiBeta /> |
 | [Pemanggilan alat terprogram](/docs/id/agents-and-tools/tool-use/programmatic-tool-calling) | Memungkinkan Claude memanggil alat Anda secara terprogram dari dalam kontainer eksekusi kode, mengurangi latensi dan konsumsi token untuk alur kerja multi-alat. | Tidak memenuhi syarat ZDR | <PlatformAvailability claudeApi claudePlatformAws azureAiBeta /> |
@@ -99,9 +103,9 @@ Infrastruktur untuk mengontrol dan mengoptimalkan jendela konteks Claude.
 
 | Fitur | Deskripsi | ZDR | Ketersediaan |
 |---------|-----------|----|--------------|
-| [Pemadatan](/docs/id/build-with-claude/compaction) | Peringkasan konteks sisi server untuk percakapan yang berjalan lama. Ketika konteks mendekati batas jendela, API secara otomatis meringkas bagian-bagian awal percakapan. Didukung pada Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, dan Claude Sonnet 4.6. | Memenuhi syarat ZDR | <PlatformAvailability claudeApiBeta claudePlatformAwsBeta bedrockBeta vertexAiBeta azureAiBeta /> |
-| [Pengeditan konteks](/docs/id/build-with-claude/context-editing) | Mengelola konteks percakapan secara otomatis dengan strategi yang dapat dikonfigurasi. Mendukung pembersihan hasil alat saat mendekati batas token dan pengelolaan blok pemikiran dalam percakapan pemikiran diperpanjang. | Memenuhi syarat ZDR | <PlatformAvailability claudeApiBeta claudePlatformAwsBeta bedrockBeta vertexAiBeta azureAiBeta /> |
-| [Caching prompt otomatis](/docs/id/build-with-claude/prompt-caching#automatic-caching) | Menyederhanakan caching prompt menjadi satu parameter API. Sistem secara otomatis melakukan cache pada blok terakhir yang dapat di-cache dalam permintaan Anda, memindahkan titik cache ke depan seiring bertambahnya percakapan. | Memenuhi syarat ZDR | <PlatformAvailability claudeApi claudePlatformAws azureAiBeta /> |
+| [Pemadatan](/docs/id/build-with-claude/compaction) | Peringkasan konteks sisi server untuk percakapan yang berjalan lama. Ketika konteks mendekati batas jendela, API secara otomatis meringkas bagian awal percakapan. | Memenuhi syarat ZDR | <PlatformAvailability claudeApiBeta claudePlatformAwsBeta bedrockBeta vertexAiBeta azureAiBeta /> |
+| [Pengeditan konteks](/docs/id/build-with-claude/context-editing) | Mengelola konteks percakapan secara otomatis dengan strategi yang dapat dikonfigurasi. Mendukung pembersihan hasil alat saat mendekati batas token dan mengelola blok pemikiran dalam percakapan pemikiran diperpanjang. | Memenuhi syarat ZDR | <PlatformAvailability claudeApiBeta claudePlatformAwsBeta bedrockBeta vertexAiBeta azureAiBeta /> |
+| [Caching prompt otomatis](/docs/id/build-with-claude/prompt-caching#automatic-caching) | Menyederhanakan caching prompt menjadi satu parameter API. Sistem secara otomatis melakukan cache pada blok terakhir yang dapat di-cache dalam permintaan Anda, memindahkan titik cache ke depan seiring pertumbuhan percakapan. | Memenuhi syarat ZDR | <PlatformAvailability claudeApi claudePlatformAws azureAiBeta /> |
 | [Caching prompt (5 menit)](/docs/id/build-with-claude/prompt-caching) | Memberikan Claude lebih banyak pengetahuan latar belakang dan contoh output untuk mengurangi biaya dan latensi. | Memenuhi syarat ZDR | <PlatformAvailability claudeApi claudePlatformAws bedrock vertexAi azureAiBeta /> |
 | [Caching prompt (1 jam)](/docs/id/build-with-claude/prompt-caching#1-hour-cache-duration) | Durasi cache diperpanjang 1 jam untuk konteks yang lebih jarang diakses tetapi penting, melengkapi cache standar 5 menit. | Memenuhi syarat ZDR | <PlatformAvailability claudeApi claudePlatformAws bedrock vertexAi azureAiBeta /> |
 | [Penghitungan token](/docs/id/build-with-claude/token-counting) | Penghitungan token memungkinkan Anda menentukan jumlah token dalam sebuah pesan sebelum mengirimkannya ke Claude, membantu Anda membuat keputusan yang tepat tentang prompt dan penggunaan Anda. | Memenuhi syarat ZDR | <PlatformAvailability claudeApi claudePlatformAws bedrock vertexAi azureAiBeta /> |
@@ -114,4 +118,4 @@ Mengelola file dan aset untuk digunakan dengan Claude.
 |---------|-----------|----|--------------|
 | [Files API](/docs/id/build-with-claude/files) | Mengunggah dan mengelola file untuk digunakan dengan Claude tanpa mengunggah ulang konten pada setiap permintaan. Mendukung PDF, gambar, dan file teks. | Tidak memenuhi syarat ZDR | <PlatformAvailability claudeApiBeta claudePlatformAwsBeta azureAiBeta /> |
 
-\* **Output terstruktur:** Prompt Anda dan output Claude tidak disimpan. Hanya skema JSON yang di-cache, hingga 24 jam sejak penggunaan terakhir. **Pencarian web dan pengambilan web:** Memenuhi syarat ZDR kecuali ketika [pemfilteran dinamis](/docs/id/agents-and-tools/tool-use/web-search-tool#dynamic-filtering) diaktifkan. Lihat [detail ZDR](/docs/id/manage-claude/api-and-data-retention#feature-eligibility).
+\* **Output terstruktur:** Prompt Anda dan output Claude tidak disimpan. Hanya skema JSON yang di-cache, hingga 24 jam sejak penggunaan terakhir. **Pencarian web dan pengambilan web:** Memenuhi syarat ZDR kecuali ketika [pemfilteran dinamis](/docs/id/agents-and-tools/tool-use/web-search-tool#dynamic-filtering) diaktifkan. **Kredit fallback dan fallback sisi server:** Fitur-fitur ini tidak menyimpan konten pesan, tetapi keduanya menangani penolakan dari Claude Fable 5, yang [tidak tersedia di bawah ZDR](/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements). Lihat [detail ZDR](/docs/id/manage-claude/api-and-data-retention#feature-eligibility).

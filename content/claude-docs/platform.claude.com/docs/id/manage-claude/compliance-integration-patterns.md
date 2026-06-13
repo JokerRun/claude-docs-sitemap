@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-integration-patterns
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 97eec750ebdb4abe95832f5d0bfb3a6596fee13288de3290aa92f84dfbe3186b
+fetched_at: 2026-06-13T03:15:40.418428Z
+sha256: 12b59545400ae1a02afe1c8e9606c5aa0b6fcc982a6ada3ef3b09d3a7ceb4b7e
 ---
 
 # Rancang integrasi kepatuhan Anda
@@ -12,14 +12,14 @@ Pilih antara polling dan konsumsi Activity Feed berbasis kursor, korelasikan per
 ---
 
 <Note>
-  Compliance API diaktifkan berdasarkan permintaan. Organisasi Claude Enterprise memiliki akses ke API lengkap; organisasi Claude Console hanya memiliki akses ke [Activity Feed](/docs/id/manage-claude/compliance-activity-feed). Lihat [Mendapatkan akses ke Compliance API](/docs/id/manage-claude/compliance-api-access).
+  Untuk mengaktifkan Compliance API, lihat [Mendapatkan akses ke Compliance API](/docs/id/manage-claude/compliance-api-access).
 </Note>
 
 <Check>
-  **Scope yang diperlukan:** `read:compliance_activities` pada Compliance Access Key atau kunci Admin API.
+  **Cakupan yang diperlukan:** `read:compliance_activities` pada Compliance Access Key atau kunci Admin API.
 </Check>
 
-Integrasi Compliance API untuk produksi membuat tiga pilihan desain: bagaimana integrasi tersebut mengonsumsi Activity Feed, bagaimana output-nya berkorelasi dengan sistem "security information and event management" (manajemen informasi dan peristiwa keamanan), atau SIEM, milik Anda, dan di mana salinan jangka panjang dari aktivitas dan konten disimpan. Pilihan-pilihan ini tidak bergantung pada endpoint itu sendiri; halaman ini membantu Anda mengevaluasi pertukarannya.
+Integrasi Compliance API untuk produksi membuat tiga pilihan desain: bagaimana integrasi tersebut mengonsumsi Activity Feed, bagaimana output-nya berkorelasi dengan sistem "security information and event management" (manajemen informasi dan peristiwa keamanan), atau SIEM, Anda, dan di mana salinan jangka panjang dari aktivitas dan konten disimpan. Pilihan-pilihan ini tidak bergantung pada endpoint itu sendiri; halaman ini membantu Anda mengevaluasi pertukarannya.
 
 Halaman ini mengasumsikan Anda telah membaca [Mengkueri Activity Feed](/docs/id/manage-claude/compliance-activity-feed), yang mendefinisikan parameter dan kontrak paginasi yang dirujuk di seluruh halaman ini, dan [Mengambil dan menghapus obrolan, file, dan proyek](/docs/id/manage-claude/compliance-content-data), yang mendefinisikan endpoint konten dan semantik `deleted_at` yang dirujuk di [Rencanakan retensi konten](#rencanakan-retensi-konten).
 
@@ -27,12 +27,12 @@ Halaman ini mengasumsikan Anda telah membaca [Mengkueri Activity Feed](/docs/id/
 
 Activity Feed mendukung dua pola konsumsi: polling jendela periodik yang dibatasi oleh `created_at.gte` dan `created_at.lt`, serta pembacaan inkremental berbasis kursor yang menyimpan kursor dari satu respons dan meneruskannya pada permintaan berikutnya. Keduanya mengembalikan objek `Activity` yang identik; perbedaannya adalah state yang disimpan klien Anda di antara panggilan.
 
-Kedua pola memiliki batasan yang sama berikut:
+Kedua pola berbagi batasan berikut:
 
 - Aktivitas dapat dikueri dalam 1 menit setelah terjadi dan disimpan selama 6 tahun.
 - `limit` maksimum untuk setiap halaman adalah 5.000.
 - Nilai kursor adalah string opaque yang tidak boleh Anda parse.
-- Permintaan dibatasi hingga 600 per menit per [organisasi induk](/docs/id/manage-claude/compliance-api#how-the-compliance-api-works), dibagi di seluruh kunci, setiap organisasi yang tertaut, dan setiap endpoint `/v1/compliance/*`; lihat [429 Too Many Requests](/docs/id/manage-claude/compliance-errors#429-too-many-requests) untuk header respons dan kontrak retry.
+- Permintaan dibatasi hingga 600 per menit per [organisasi induk](/docs/id/manage-claude/compliance-api#how-the-compliance-api-works), dibagi di seluruh kunci, setiap organisasi yang tertaut, dan setiap endpoint `/v1/compliance/*`; lihat [429 Too Many Requests](/docs/id/manage-claude/compliance-errors#429-too-many-requests) untuk header respons dan kontrak percobaan ulang.
 
 | Pola | Pilih ketika |
 | :---- | :---- |
@@ -41,7 +41,7 @@ Kedua pola memiliki batasan yang sama berikut:
 
 ### Polling jendela \{#window-polling}
 
-Atur `created_at.lt` setidaknya 1 menit di masa lalu sehingga setiap aktivitas dalam jendela tersebut sudah dapat dikueri. Gunakan `created_at.gte` untuk batas bawah dan `created_at.lt` untuk batas atas sehingga jendela-jendela yang berurutan tersusun tanpa celah atau tumpang tindih; gunakan kembali nilai `lt` dari jendela sebelumnya sebagai `gte` jendela berikutnya.
+Atur `created_at.lt` setidaknya 1 menit di masa lalu sehingga setiap aktivitas dalam jendela sudah dapat dikueri. Gunakan `created_at.gte` untuk batas bawah dan `created_at.lt` untuk batas atas sehingga jendela yang berurutan tersusun tanpa celah atau tumpang tindih; gunakan kembali nilai `lt` dari jendela sebelumnya sebagai `gte` jendela berikutnya.
 
 <CodeGroup>
 ```bash cURL nocheck
@@ -59,7 +59,7 @@ Ketika respons memiliki `has_more: true`, jendela tersebut berisi lebih dari sat
 Bahkan dengan penyusunan yang bersih, aktivitas yang terindeks setelah jendelanya ditutup tidak akan pernah muncul di jendela berikutnya. Lakukan deduplikasi pada `id` aktivitas dan perlebar setiap jendela baru sehingga tumpang tindih dengan jendela sebelumnya selama beberapa menit, atau jalankan proses rekonsiliasi periodik yang mengkueri ulang jendela yang lebih lama.
 
 <Warning>
-  Batas `created_at.lt` yang terlalu dekat dengan waktu sekarang akan secara diam-diam dan permanen menghilangkan aktivitas yang terindeks terlambat: setelah `created_at.gte` bergerak melewatinya, tidak ada jendela berikutnya yang dapat memulihkannya. Perlakukan angka keterkuerian 1 menit sebagai jeda pengindeksan yang terdokumentasi, bukan rekomendasi lunak.
+  Batas `created_at.lt` yang terlalu dekat dengan waktu sekarang akan secara diam-diam dan permanen menghilangkan aktivitas yang terindeks terlambat: setelah `created_at.gte` bergerak melewatinya, tidak ada jendela berikutnya yang dapat memulihkannya. Perlakukan angka 1 menit untuk dapat dikueri sebagai jeda pengindeksan yang terdokumentasi, bukan rekomendasi lunak.
 </Warning>
 
 ### Pembacaan inkremental berbasis kursor \{#cursor-driven-incremental-reads}
@@ -76,11 +76,11 @@ curl --fail-with-body -sS -G \
 ```
 </CodeGroup>
 
-Lakukan paginasi hingga `has_more` bernilai `false`, lalu simpan `first_id` dari respons terakhir dan teruskan tanpa perubahan sebagai `before_id` pada eksekusi berikutnya untuk mengambil aktivitas yang lebih baru dari kursor yang disimpan. Untuk berjalan ke arah sebaliknya untuk backfill, simpan `last_id` dan teruskan sebagai `after_id`. Untuk referensi lengkap kursor-vs-token-halaman dan semantik retry, lihat [Paginasi hasil](/docs/id/manage-claude/compliance-activity-feed#paginate-results).
+Lakukan paginasi hingga `has_more` bernilai `false`, lalu simpan `first_id` dari respons terakhir dan teruskan tanpa perubahan sebagai `before_id` pada eksekusi berikutnya untuk mengambil aktivitas yang lebih baru dari kursor yang disimpan. Untuk berjalan ke arah sebaliknya untuk backfill, simpan `last_id` dan teruskan sebagai `after_id`. Untuk referensi lengkap kursor-vs-token-halaman dan semantik percobaan ulang, lihat [Paginasi hasil](/docs/id/manage-claude/compliance-activity-feed#paginate-results).
 
 Loop **catch-up** produksi mengambil aktivitas yang tercatat sejak polling terakhir Anda dengan menggerakkan iterasi berdasarkan `has_more` dan `first_id`:
 
-```text
+```text nowrap
 cursor = stored_cursor
 loop:
   page = GET /v1/compliance/activities?before_id={cursor}&limit=5000
@@ -91,10 +91,10 @@ loop:
 persist(cursor)
 ```
 
-Kursor tetap bertahan setelah rotasi kunci; lihat [Mengelola dan merotasi kunci](/docs/id/manage-claude/compliance-api-access#manage-and-rotate-keys).
+Kursor tetap bertahan melewati rotasi kunci; lihat [Mengelola dan merotasi kunci](/docs/id/manage-claude/compliance-api-access#manage-and-rotate-keys).
 
 <Warning>
-  Setiap halaman berdekatan dengan kursor yang Anda teruskan: loop berjalan maju menuju waktu sekarang, satu halaman pada satu waktu. Jangan memperlakukan satu respons sebagai sudah mengejar ketertinggalan selama `has_more` bernilai `true`. Simpan kursor hanya setelah `has_more` bernilai `false`; halaman yang belum diambil adalah halaman yang lebih baru antara `first_id` respons ini dan waktu sekarang, dan halaman-halaman tersebut tetap belum terbaca sampai Anda menyelesaikan loop atau menjalankannya lagi.
+  Setiap halaman berdekatan dengan kursor yang Anda teruskan: loop berjalan maju menuju waktu sekarang, satu halaman pada satu waktu. Jangan memperlakukan satu respons sebagai sudah mengejar ketertinggalan selama `has_more` bernilai `true`. Simpan kursor hanya setelah `has_more` bernilai `false`; halaman yang belum diambil adalah halaman yang lebih baru antara `first_id` respons ini dan waktu sekarang, dan halaman tersebut tetap belum terbaca sampai Anda menyelesaikan loop atau menjalankannya lagi.
 </Warning>
 
 ## Korelasikan dengan SIEM Anda \{#correlate-with-your-siem}
@@ -108,9 +108,9 @@ Setiap `Activity` membawa field yang dapat Anda gabungkan (join) dengan peristiw
 | `actor.ip_address` | Log jaringan, VPN, dan endpoint |
 | `created_at` | Korelasi jendela waktu di seluruh sumber mana pun |
 
-`actor.user_id` dan `actor.email_address` tersedia ketika `actor.type` adalah `user_actor`; periksa diskriminator sebelum membacanya. `user_id` adalah pengidentifikasi opaque yang stabil untuk akun pengguna: nilainya konsisten di seluruh endpoint Compliance API dan payload aktivitas, dan tidak berubah ketika email atau nama tampilan pengguna berubah. Gunakan `user_id`, bukan `email_address`, sebagai kunci join utama.
+`actor.user_id` dan `actor.email_address` tersedia ketika `actor.type` adalah `user_actor`; periksa diskriminator sebelum membacanya. `user_id` adalah pengidentifikasi stabil dan opaque untuk akun pengguna: nilainya konsisten di seluruh endpoint Compliance API dan payload aktivitas, dan tidak berubah ketika email atau nama tampilan pengguna berubah. Gunakan `user_id`, bukan `email_address`, sebagai kunci join utama.
 
-Panggilan ke Compliance API itu sendiri menghasilkan aktivitas `compliance_api_accessed`. Serap aktivitas ini bersama dengan tipe aktivitas lainnya sehingga SIEM Anda mencatat siapa yang mengkueri data kepatuhan, dan kapan. Teruskan `activity_types[]=compliance_api_accessed` untuk membatasi cakupan kueri, lalu di klien Anda, baca `actor.api_key_id` dari setiap aktivitas yang `actor.type`-nya adalah `api_actor` untuk mengatribusikan akses tersebut ke Compliance Access Key atau kunci Admin API tertentu.
+Panggilan ke Compliance API itu sendiri menghasilkan aktivitas `compliance_api_accessed`. Serap aktivitas ini bersama dengan tipe aktivitas lainnya sehingga SIEM Anda mencatat siapa yang mengkueri data kepatuhan, dan kapan. Teruskan `activity_types[]=compliance_api_accessed` untuk membatasi cakupan kueri, lalu di klien Anda, baca `actor.api_key_id` dari setiap aktivitas yang `actor.type`-nya adalah `api_actor` untuk mengatribusikan akses ke Compliance Access Key atau kunci Admin API tertentu.
 
 ## Rencanakan retensi konten \{#plan-content-retention}
 
@@ -122,7 +122,7 @@ Tiga horizon retensi mengatur apa yang dapat Anda ambil nanti:
 | Konten obrolan, file, dan proyek | Kebijakan retensi claude.ai organisasi Anda | Organisasi Anda |
 | Konten yang di-hard-delete melalui Compliance API | Tidak disimpan; penghapusan bersifat langsung dan permanen | Pemanggil endpoint `DELETE` |
 
-Untuk bagaimana bagian lain dari Claude Platform menangani retensi, lihat [API dan retensi data](/docs/id/manage-claude/api-and-data-retention).
+Untuk bagaimana bagian lain dari Claude Platform menangani retensi, lihat [Retensi API dan data](/docs/id/manage-claude/api-and-data-retention).
 
 Putuskan antara ekspor-dan-arsip dan pengambilan API sesuai permintaan sebagai berikut:
 
@@ -134,7 +134,7 @@ Dalam setiap kasus lainnya, andalkan pengambilan API langsung dan hindari memeli
 
 ### Jaminan pengiriman dan kelengkapan \{#delivery-guarantees-and-completeness}
 
-Perlakukan Activity Feed sebagai **at-least-once**: traversal yang dipaginasi dengan benar mengembalikan setiap aktivitas setidaknya satu kali, tetapi retry setelah kegagalan parsial dapat mengirimkan ulang aktivitas yang sudah Anda simpan. Lakukan deduplikasi pada field `id` aktivitas.
+Perlakukan Activity Feed sebagai **at-least-once**: traversal yang dipaginasi dengan benar mengembalikan setiap aktivitas setidaknya satu kali, tetapi percobaan ulang setelah kegagalan parsial dapat mengirimkan kembali aktivitas yang sudah Anda simpan. Lakukan deduplikasi pada field `id` aktivitas.
 
 Endpoint list tidak mengembalikan field `total_count` atau checksum. Untuk membuktikan bahwa eksekusi ekspor telah lengkap, catat:
 
@@ -152,7 +152,7 @@ Lihat [FAQ Compliance API](/docs/id/manage-claude/compliance-faq#data-coverage-a
 
 Untuk chain of custody (rantai penjagaan), simpan record yang diekspor dengan metadata asal-usul: endpoint sumber, parameter kueri, timestamp eksekusi, dan hash konten dari setiap record.
 
-## Langkah selanjutnya \{#next-steps}
+## Langkah berikutnya \{#next-steps}
 
 <CardGroup cols={2}>
   <Card title="Mengkueri Activity Feed" href="/docs/id/manage-claude/compliance-activity-feed">

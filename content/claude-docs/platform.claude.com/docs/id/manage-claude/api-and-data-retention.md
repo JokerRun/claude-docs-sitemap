@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/api-and-data-retention
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: a5e8bde5914bd04925b8c4c17a5e591d1b0cf70848c533a2e55fa7a4be54736a
+fetched_at: 2026-06-13T03:15:40.418428Z
+sha256: 619e63139adb2c93c3fc5c827140989de279da4908b99a4216140ffaeee00fdb
 ---
 
 # API dan retensi data
@@ -15,39 +15,43 @@ Pelajari bagaimana API Anthropic dan fitur terkait menyimpan data, termasuk info
 Informasi tentang kebijakan retensi standar Anthropic tercantum dalam [kebijakan retensi data komersial Anthropic](https://privacy.claude.com/en/articles/7996866-how-long-do-you-store-my-organization-s-data) dan [kebijakan retensi data konsumen](https://privacy.claude.com/en/articles/10023548-how-long-do-you-store-my-data).
 
 Anthropic menawarkan dua pengaturan penanganan data untuk Claude API:
-- **Zero data retention (ZDR):** Data pelanggan tidak disimpan secara persisten setelah respons API dikembalikan, kecuali jika diperlukan untuk mematuhi hukum atau memerangi penyalahgunaan.
-- **Kesiapan HIPAA:** Untuk organisasi yang menangani "protected health information" (informasi kesehatan yang dilindungi), atau PHI, Anthropic menawarkan akses API yang siap HIPAA dengan "Business Associate Agreement" (Perjanjian Rekanan Bisnis), atau BAA, yang ditandatangani. Lihat [Kesiapan HIPAA](#hipaa-readiness).
+- **Zero data retention (ZDR):** Data pelanggan tidak disimpan dalam keadaan diam setelah respons API dikembalikan, kecuali jika diperlukan untuk mematuhi hukum atau memerangi penyalahgunaan.
+- **Kesiapan HIPAA:** Untuk organisasi yang menangani protected health information (PHI), Anthropic menawarkan akses API yang siap HIPAA dengan Business Associate Agreement (BAA) yang ditandatangani. Lihat [Kesiapan HIPAA](#hipaa-readiness).
 </Note>
 
 ## Pendekatan Anthropic terhadap retensi data \{#anthropics-approach-to-data-retention}
 
-API dan fitur yang berbeda memiliki kebutuhan penyimpanan dan retensi yang berbeda. Jika suatu API atau fitur tidak memerlukan penyimpanan prompt atau respons pelanggan, API atau fitur tersebut mungkin memenuhi syarat untuk ZDR. Jika suatu API atau fitur secara inheren memerlukan penyimpanan prompt atau respons pelanggan, Anthropic merancangnya dengan jejak retensi sekecil mungkin. Untuk fitur-fitur ini:
+API dan fitur yang berbeda memiliki kebutuhan penyimpanan dan retensi yang berbeda. Jika suatu API atau fitur tidak memerlukan penyimpanan prompt atau respons pelanggan, API atau fitur tersebut mungkin memenuhi syarat untuk ZDR. Jika suatu API atau fitur memang memerlukan penyimpanan prompt atau respons pelanggan, Anthropic merancangnya dengan jejak retensi sekecil mungkin. Untuk fitur-fitur ini:
 
-- Data yang disimpan tidak pernah digunakan untuk pelatihan model tanpa izin eksplisit dari Anda.
-- Hanya data yang secara teknis diperlukan agar API dan fitur dapat berfungsi yang disimpan. Konten percakapan (prompt Anda dan output Claude) tidak pernah disimpan kecuali dinyatakan secara eksplisit.
-- Data dihapus pada TTL terpendek yang praktis, dan Anthropic berupaya memberi pelanggan kendali atas berapa lama data disimpan. Apa yang disimpan, dan durasi retensi jika TTL tertentu berlaku, didokumentasikan pada halaman masing-masing fitur.
+- Data yang disimpan tidak pernah digunakan untuk pelatihan model tanpa izin eksplisit Anda.
+- Hanya data yang secara teknis diperlukan agar API dan fitur dapat berfungsi yang disimpan. Konten percakapan (prompt Anda dan output Claude) tidak disimpan secara default. Model tertentu memerlukan retensi data 30 hari; lihat [Persyaratan retensi data khusus model](#model-specific-data-retention-requirements).
+- Data dihapus dengan TTL sesingkat mungkin secara praktis, dan Anthropic berupaya memberikan kontrol kepada pelanggan atas berapa lama data disimpan. Apa yang disimpan, dan durasi retensi ketika TTL tertentu berlaku, didokumentasikan di halaman masing-masing fitur.
 
 Data yang dapat diakses melalui [Compliance API](/docs/id/manage-claude/compliance-api) mengikuti model retensinya sendiri. [Activity Feed](/docs/id/manage-claude/compliance-activity-feed) menyimpan data selama 6 tahun. Konten chat, file, dan proyek dari claude.ai mengikuti kebijakan retensi organisasi Anda, yang diatur di [claude.ai > Organization settings > Data and privacy](https://claude.ai/admin-settings/data-privacy-controls).
 
-Dalam [tabel kelayakan fitur](#feature-eligibility), beberapa fitur ditandai "Ya (dengan kualifikasi)" di kolom Memenuhi syarat ZDR. Jika organisasi Anda memiliki pengaturan ZDR, Anda dapat menggunakan fitur-fitur ini dengan keyakinan bahwa apa yang disimpan Anthropic bersifat terbatas dan diperlukan untuk performa optimal.
+Dalam [tabel kelayakan fitur](#feature-eligibility), beberapa fitur ditandai "Ya (dengan kualifikasi)" di kolom kelayakan ZDR. Jika organisasi Anda memiliki pengaturan ZDR, Anda dapat menggunakan fitur-fitur ini dengan keyakinan bahwa apa yang disimpan Anthropic bersifat terbatas dan diperlukan untuk kinerja optimal.
 
 ## Cakupan zero data retention (ZDR) \{#zero-data-retention-zdr-scope}
 
+<Warning>
+Claude Fable 5 dan Claude Mythos 5 tidak tersedia di bawah ZDR; lihat [Persyaratan retensi data khusus model](#model-specific-data-retention-requirements).
+</Warning>
+
 **Apa yang dicakup ZDR**
 
-- **Claude API tertentu:** ZDR berlaku untuk Claude Messages API dan Token Counting API. Claude Fable 5 dan Claude Mythos 5 tidak tersedia di bawah ZDR; lihat [Persyaratan retensi data khusus model](#model-specific-data-retention-requirements).
-- **Claude Code:** ZDR berlaku ketika digunakan dengan kunci API organisasi Commercial atau melalui Claude Enterprise (lihat [dokumentasi ZDR Claude Code](https://code.claude.com/docs/en/zero-data-retention))
+- **API Claude tertentu:** ZDR berlaku untuk Claude Messages API dan Token Counting API.
+- **Claude Code:** ZDR berlaku ketika digunakan dengan kunci API organisasi Komersial atau melalui Claude Enterprise (lihat [dokumentasi ZDR Claude Code](https://code.claude.com/docs/en/zero-data-retention))
 
 **Apa yang TIDAK dicakup ZDR**
 
 - **Console dan Workbench:** Penggunaan apa pun di Console atau Workbench
 - **Claude Managed Agents:** Claude Managed Agents adalah sumber daya yang bersifat stateful. Anda dapat menghapus transkrip sesi, tetapi tidak ada penghapusan otomatis.
 - **Produk konsumen Claude:** Paket Claude Free, Pro, atau Max, termasuk ketika pelanggan pada paket tersebut menggunakan aplikasi web, desktop, atau seluler Claude, atau Claude Code
-- **Claude Teams dan Claude Enterprise:** Antarmuka produk Claude Teams dan Claude Enterprise **tidak memenuhi syarat ZDR**, kecuali untuk Claude Code ketika digunakan melalui Claude Enterprise dengan ZDR yang diaktifkan untuk organisasi. Untuk antarmuka produk lainnya, hanya kunci API organisasi Commercial yang memenuhi syarat untuk ZDR.
+- **Claude Teams dan Claude Enterprise:** Antarmuka produk Claude Teams dan Claude Enterprise **tidak memenuhi syarat ZDR**, kecuali untuk Claude Code ketika digunakan melalui Claude Enterprise dengan ZDR yang diaktifkan untuk organisasi tersebut. Untuk antarmuka produk lainnya, hanya kunci API organisasi Komersial yang memenuhi syarat untuk ZDR.
 - **Integrasi pihak ketiga:** Data yang diproses oleh situs web, alat, atau integrasi pihak ketiga lainnya **tidak memenuhi syarat ZDR**, meskipun beberapa mungkin memiliki penawaran serupa. Saat menggunakan layanan eksternal bersama dengan Claude API, pastikan untuk meninjau praktik penanganan data layanan tersebut.
 
 <Note>
-Untuk informasi terkini tentang produk dan fitur apa saja yang memenuhi syarat ZDR, lihat ketentuan kontrak Anda atau hubungi perwakilan akun Anthropic Anda.
+Untuk informasi terbaru tentang produk dan fitur apa saja yang memenuhi syarat ZDR, lihat ketentuan kontrak Anda atau hubungi perwakilan akun Anthropic Anda.
 </Note>
 
 ## Persyaratan retensi data khusus model \{#model-specific-data-retention-requirements}
@@ -56,9 +60,11 @@ Claude Fable 5 dan Claude Mythos 5 ditetapkan sebagai [Covered Models](https://s
 
 Persyaratan ini berlaku pada Claude API. Untuk Claude Fable 5 di Amazon Bedrock, Vertex AI, dan Microsoft Foundry, persyaratan retensi data ditetapkan oleh masing-masing platform.
 
+Organisasi dengan pengaturan ZDR dapat mengonfigurasi retensi data di tingkat workspace di [Claude Console > Settings > Workspaces](https://platform.claude.com/settings/workspaces): buka tab **Privacy controls** pada suatu workspace dan aktifkan retensi data 30 hari untuk workspace tersebut. Ini membuat Claude Fable 5 dan Claude Mythos 5 tersedia di workspace yang ditentukan sementara workspace lain dalam organisasi tetap menggunakan zero data retention. Workspace tanpa pengaturan khusus akan mengikuti default organisasi.
+
 ## Kesiapan HIPAA \{#hipaa-readiness}
 
-Claude API mendukung integrasi yang siap HIPAA untuk organisasi yang menangani "protected health information" (informasi kesehatan yang dilindungi), atau PHI. Dengan BAA yang ditandatangani dan organisasi yang mengaktifkan HIPAA, Anda dapat menggunakan fitur API yang didukung untuk memproses PHI sambil mendukung kepatuhan HIPAA organisasi Anda.
+Claude API mendukung integrasi yang siap HIPAA untuk organisasi yang menangani protected health information (PHI). Dengan BAA yang ditandatangani dan organisasi yang mengaktifkan HIPAA, Anda dapat menggunakan fitur API yang didukung untuk memproses PHI sambil mendukung kepatuhan HIPAA organisasi Anda.
 
 Sebelumnya, organisasi yang memerlukan kesiapan HIPAA untuk Claude API perlu mengaktifkan ZDR. Akses API yang siap HIPAA menghilangkan persyaratan ini dan menyediakan fondasi bagi Anthropic untuk secara bertahap mengaktifkan fitur tambahan seiring fitur-fitur tersebut diaudit untuk kesiapan HIPAA.
 
@@ -78,12 +84,12 @@ Hubungi [tim penjualan Anthropic](https://claude.com/contact-sales) untuk menand
 Anthropic menyediakan organisasi khusus dengan kontrol kesiapan HIPAA yang diaktifkan. Organisasi ini secara otomatis menerapkan pembatasan fitur, memblokir permintaan API yang menggunakan fitur yang tidak memenuhi syarat.
 </Step>
 <Step title="Bangun dengan fitur yang memenuhi syarat">
-Gunakan [tabel kelayakan fitur](#feature-eligibility) untuk mengonfirmasi fitur mana yang didukung. Tinjau [panduan penanganan PHI](#phi-handling-guidelines) untuk fitur yang memerlukan pembatasan khusus tentang di mana PHI dapat muncul. Untuk persyaratan konfigurasi dan kepatuhan yang terperinci, lihat [Panduan Implementasi HIPAA](https://trust.anthropic.com/resources).
+Gunakan [tabel kelayakan fitur](#feature-eligibility) untuk mengonfirmasi fitur mana yang didukung. Tinjau [pedoman penanganan PHI](#phi-handling-guidelines) untuk fitur yang memerlukan pembatasan khusus tentang di mana PHI dapat muncul. Untuk persyaratan konfigurasi dan kepatuhan yang terperinci, lihat [Panduan Implementasi HIPAA](https://trust.anthropic.com/resources).
 </Step>
 </Steps>
 
 <Warning>
-Kesiapan HIPAA diterapkan pada tingkat organisasi. Jika Anda memerlukan akses API yang siap HIPAA dan akses API untuk keperluan umum, gunakan organisasi terpisah untuk masing-masing.
+Kesiapan HIPAA diterapkan di tingkat organisasi. Jika Anda memerlukan akses API yang siap HIPAA dan akses API untuk tujuan umum, gunakan organisasi terpisah untuk masing-masing.
 </Warning>
 
 ### Cakupan kesiapan HIPAA \{#hipaa-readiness-scope}
@@ -99,12 +105,12 @@ Kesiapan HIPAA diterapkan pada tingkat organisasi. Jika Anda memerlukan akses AP
 - **Platform yang dioperasikan mitra:** Amazon Bedrock atau Vertex AI (lihat dokumentasi kepatuhan platform tersebut)
 - **Claude Platform di AWS dan Microsoft Foundry:** Kesiapan HIPAA tidak tersedia
 - **Integrasi pihak ketiga:** Data yang diproses oleh alat atau layanan eksternal yang terhubung ke aplikasi Anda
-- **Claude Code:** Claude Code tidak tercakup dalam kesiapan HIPAA
-- **Fitur beta:** Fitur dalam tahap beta umumnya tidak tercakup dalam BAA kecuali secara eksplisit tercantum sebagai memenuhi syarat dalam [tabel kelayakan fitur](#feature-eligibility)
+- **Claude Code:** Claude Code tidak dicakup dalam kesiapan HIPAA
+- **Fitur beta:** Fitur dalam tahap beta umumnya tidak dicakup dalam BAA kecuali secara eksplisit tercantum sebagai memenuhi syarat dalam [tabel kelayakan fitur](#feature-eligibility)
 
-### Panduan penanganan PHI \{#phi-handling-guidelines}
+### Pedoman penanganan PHI \{#phi-handling-guidelines}
 
-"Protected health information" (informasi kesehatan yang dilindungi), atau PHI, mencakup informasi kesehatan apa pun yang dapat diidentifikasi secara individual. Dalam konteks Claude API, PHI biasanya muncul dalam:
+Protected health information (PHI) mencakup informasi kesehatan apa pun yang dapat diidentifikasi secara individual. Dalam konteks Claude API, PHI biasanya muncul dalam:
 
 - Konten pesan (prompt dan respons dari Claude)
 - File terlampir (gambar, PDF)
@@ -127,7 +133,7 @@ Informasi spesifik pasien hanya boleh muncul dalam konten pesan, di mana informa
 
 ### Penanganan error HIPAA \{#hipaa-error-handling}
 
-BAA yang Anda tanda tangani adalah sumber kebenaran resmi untuk fitur mana yang tercakup. API juga menerapkan pembatasan ini secara otomatis: ketika organisasi yang mengaktifkan HIPAA mengirim permintaan yang menyertakan fitur yang tidak memenuhi syarat, API mengembalikan error `400` untuk mencegah penggunaan fitur yang tidak tercakup oleh BAA Anda secara tidak sengaja:
+BAA yang Anda tanda tangani adalah sumber kebenaran resmi untuk fitur mana yang dicakup. API juga menerapkan pembatasan ini secara otomatis: ketika organisasi yang mengaktifkan HIPAA mengirim permintaan yang menyertakan fitur yang tidak memenuhi syarat, API mengembalikan error `400` untuk mencegah penggunaan fitur yang tidak dicakup oleh BAA Anda secara tidak sengaja:
 
 ```json
 {
@@ -143,17 +149,17 @@ Pesan error mencantumkan fitur yang tidak memenuhi syarat yang terdeteksi dalam 
 
 ## Kelayakan fitur \{#feature-eligibility}
 
-Tabel berikut mencantumkan fitur Claude API mana yang memenuhi syarat untuk pengaturan ZDR dan kesiapan HIPAA. Untuk organisasi yang mengaktifkan HIPAA, fitur yang ditandai "Tidak" di kolom HIPAA diblokir secara otomatis, dan permintaan yang menyertakannya mengembalikan error `400`.
+Tabel berikut mencantumkan fitur Claude API mana yang memenuhi syarat untuk pengaturan ZDR dan kesiapan HIPAA. Untuk organisasi yang mengaktifkan HIPAA, fitur yang ditandai "Tidak" di kolom HIPAA diblokir secara otomatis, dan permintaan yang menyertakannya akan mengembalikan error `400`.
 
 | Fitur | Endpoint | Memenuhi syarat ZDR | Memenuhi syarat HIPAA | Detail |
 | ------- | -------- | ------------ | -------------- | ------- |
 | [Messages API](/docs/id/build-with-claude/working-with-messages) | `/v1/messages` | <Eligible>Ya</Eligible> | <Eligible>Ya</Eligible> | Panggilan API standar untuk menghasilkan respons Claude. |
 | [Penghitungan token](/docs/id/build-with-claude/token-counting) | `/v1/messages/count_tokens` | <Eligible>Ya</Eligible> | <Eligible>Ya</Eligible> | Hitung token sebelum mengirim permintaan. |
 | [Pencarian web](/docs/id/agents-and-tools/tool-use/web-search-tool) | `/v1/messages` (dengan alat `web_search`) | <Eligible>Ya</Eligible><sup>1</sup> | <Eligible>Ya</Eligible><sup>1</sup> | Hasil pencarian web real-time dikembalikan dalam respons API. |
-| [Pengambilan web](/docs/id/agents-and-tools/tool-use/web-fetch-tool) | `/v1/messages` (dengan alat `web_fetch`) | <Eligible>Ya</Eligible><sup>1</sup> <sup>2</sup> | <Eligible status="no">Tidak</Eligible> | Konten web yang diambil dikembalikan dalam respons API. |
+| [Web fetch](/docs/id/agents-and-tools/tool-use/web-fetch-tool) | `/v1/messages` (dengan alat `web_fetch`) | <Eligible>Ya</Eligible><sup>1</sup> <sup>2</sup> | <Eligible status="no">Tidak</Eligible> | Konten web yang diambil dikembalikan dalam respons API. |
 | [Alat advisor](/docs/id/agents-and-tools/tool-use/advisor-tool) | `/v1/messages` (dengan alat `advisor`) | <Eligible>Ya</Eligible> | <Eligible status="no">Tidak</Eligible> | Output model advisor dikembalikan dalam respons API; tidak ada yang disimpan di sisi server setelah respons. |
 | [Alat memori](/docs/id/agents-and-tools/tool-use/memory-tool) | `/v1/messages` (dengan alat `memory`) | <Eligible>Ya</Eligible> | <Eligible>Ya</Eligible> | Penyimpanan memori sisi klien di mana Anda mengontrol retensi data. |
-| [Manajemen konteks (pemadatan)](/docs/id/build-with-claude/compaction) | `/v1/messages` (dengan `context_management`) | <Eligible>Ya</Eligible> | <Eligible status="no">Tidak</Eligible> | Hasil pemadatan sisi server dikembalikan/dikirim bolak-balik secara stateless melalui respons API. |
+| [Manajemen konteks (compaction)](/docs/id/build-with-claude/compaction) | `/v1/messages` (dengan `context_management`) | <Eligible>Ya</Eligible> | <Eligible status="no">Tidak</Eligible> | Hasil compaction sisi server dikembalikan/dikirim bolak-balik secara stateless melalui respons API. |
 | [Pengeditan konteks](/docs/id/build-with-claude/context-editing) | `/v1/messages` (dengan `context_management`) | <Eligible>Ya</Eligible> | <Eligible status="no">Tidak</Eligible> | Pengeditan konteks (pembersihan tool use + pembersihan thinking) diterapkan secara real time. |
 | [Mode cepat](/docs/id/build-with-claude/fast-mode) | `/v1/messages` (dengan `speed: "fast"`) | <Eligible>Ya</Eligible> | <Eligible>Ya</Eligible> | Endpoint Messages API yang sama dengan inferensi lebih cepat. ZDR berlaku terlepas dari pengaturan kecepatan. |
 | [Jendela konteks 1 juta token](/docs/id/build-with-claude/context-windows) | `/v1/messages` | <Eligible>Ya</Eligible> | <Eligible>Ya</Eligible> | Pemrosesan konteks yang diperluas menggunakan Messages API standar. |
@@ -166,26 +172,26 @@ Tabel berikut mencantumkan fitur Claude API mana yang memenuhi syarat untuk peng
 | [Hasil pencarian](/docs/id/build-with-claude/search-results) | `/v1/messages` (dengan sumber `search_results`) | <Eligible>Ya</Eligible> | <Eligible>Ya</Eligible> | Dukungan sitasi RAG menggunakan Messages API standar. |
 | [Alat bash](/docs/id/agents-and-tools/tool-use/bash-tool) | `/v1/messages` (dengan alat `bash`) | <Eligible>Ya</Eligible> | <Eligible>Ya</Eligible> | Alat sisi klien yang dieksekusi di lingkungan Anda. |
 | [Alat editor teks](/docs/id/agents-and-tools/tool-use/text-editor-tool) | `/v1/messages` (dengan alat `text_editor`) | <Eligible>Ya</Eligible> | <Eligible>Ya</Eligible> | Alat sisi klien yang dieksekusi di lingkungan Anda. |
-| [Penggunaan komputer](/docs/id/agents-and-tools/tool-use/computer-use-tool) | `/v1/messages` (dengan alat `computer`) | <Eligible>Ya</Eligible> | <Eligible status="no">Tidak</Eligible> | Alat sisi klien di mana tangkapan layar dan file ditangkap dan disimpan di lingkungan Anda, bukan oleh Anthropic. Lihat [Penggunaan komputer](/docs/id/agents-and-tools/tool-use/computer-use-tool#data-retention). |
+| [Computer use](/docs/id/agents-and-tools/tool-use/computer-use-tool) | `/v1/messages` (dengan alat `computer`) | <Eligible>Ya</Eligible> | <Eligible status="no">Tidak</Eligible> | Alat sisi klien di mana tangkapan layar dan file ditangkap dan disimpan di lingkungan Anda, bukan oleh Anthropic. Lihat [Computer use](/docs/id/agents-and-tools/tool-use/computer-use-tool#data-retention). |
 | [Streaming alat terperinci](/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming) | `/v1/messages` | <Eligible>Ya</Eligible> | <Eligible>Ya</Eligible> | Streaming parameter alat menggunakan Messages API standar. |
 | [Caching prompt](/docs/id/build-with-claude/prompt-caching) | `/v1/messages` | <Eligible>Ya</Eligible> | <Eligible>Ya</Eligible> | Prompt Anda dan output Claude tidak disimpan. Representasi KV cache dan hash kriptografis disimpan dalam memori selama TTL cache dan segera dihapus setelah kedaluwarsa. Lihat [Caching prompt](/docs/id/build-with-claude/prompt-caching#data-retention). |
-| [Structured outputs](/docs/id/build-with-claude/structured-outputs) | `/v1/messages` | <Eligible status="qualified">Ya (dengan kualifikasi)</Eligible> | <Eligible>Ya</Eligible><sup>3</sup> | Prompt Anda dan output Claude tidak disimpan. Hanya skema JSON yang di-cache, hingga 24 jam sejak penggunaan terakhir. Ini juga mencakup [penggunaan alat ketat](/docs/id/agents-and-tools/tool-use/strict-tool-use) (`strict: true` pada alat), yang menggunakan pipeline grammar yang sama. Lihat [Structured outputs](/docs/id/build-with-claude/structured-outputs#data-retention). |
+| [Structured outputs](/docs/id/build-with-claude/structured-outputs) | `/v1/messages` | <Eligible status="qualified">Ya (dengan kualifikasi)</Eligible> | <Eligible>Ya</Eligible><sup>3</sup> | Prompt Anda dan output Claude tidak disimpan. Hanya skema JSON yang di-cache, hingga 24 jam sejak penggunaan terakhir. Ini juga mencakup [strict tool use](/docs/id/agents-and-tools/tool-use/strict-tool-use) (`strict: true` pada alat), yang menggunakan pipeline grammar yang sama. Lihat [Structured outputs](/docs/id/build-with-claude/structured-outputs#data-retention). |
 | [Diagnostik cache](/docs/id/build-with-claude/cache-diagnostics) | `/v1/messages` (dengan `diagnostics`) | <Eligible status="qualified">Ya (dengan kualifikasi)</Eligible> | <Eligible status="no">Tidak</Eligible> | Prompt Anda dan output Claude tidak disimpan. Sidik jari berupa hash kriptografis dan estimasi jumlah token disimpan sebentar untuk memungkinkan perbandingan dengan permintaan berikutnya. Lihat [Diagnostik cache](/docs/id/build-with-claude/cache-diagnostics#data-retention). |
 | [Pencarian alat](/docs/id/agents-and-tools/tool-use/tool-search-tool) | `/v1/messages` (dengan alat `tool_search`) | <Eligible>Ya</Eligible> | <Eligible status="no">Tidak</Eligible> | Pencarian alat menggunakan Messages API standar. |
-| [Pemrosesan batch](/docs/id/build-with-claude/batch-processing) | `/v1/messages/batches` | <Eligible status="no">Tidak</Eligible> | <Eligible status="no">Tidak</Eligible> | Retensi 29 hari; penyimpanan asinkron diperlukan. Lihat [Pemrosesan batch](/docs/id/build-with-claude/batch-processing#data-retention). |
+| [Pemrosesan batch](/docs/id/build-with-claude/batch-processing) | `/v1/messages/batches` | <Eligible status="no">Tidak</Eligible> | <Eligible status="no">Tidak</Eligible> | Retensi 29 hari; penyimpanan async diperlukan. Lihat [Pemrosesan batch](/docs/id/build-with-claude/batch-processing#data-retention). |
 | [Eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool) | `/v1/messages` (dengan alat `code_execution`) | <Eligible status="no">Tidak</Eligible> | <Eligible status="no">Tidak</Eligible> | Data kontainer disimpan hingga 30 hari. Lihat [Eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool#data-retention). |
 | [Pemanggilan alat terprogram](/docs/id/agents-and-tools/tool-use/programmatic-tool-calling) | `/v1/messages` (dengan alat `code_execution`) | <Eligible status="no">Tidak</Eligible> | <Eligible status="no">Tidak</Eligible> | Dibangun di atas kontainer eksekusi kode; data disimpan hingga 30 hari. Lihat [Pemanggilan alat terprogram](/docs/id/agents-and-tools/tool-use/programmatic-tool-calling#data-retention). |
 | [Files API](/docs/id/build-with-claude/files) | `/v1/files` | <Eligible status="no">Tidak</Eligible> | <Eligible status="no">Tidak</Eligible> | File disimpan hingga dihapus secara eksplisit. Lihat [Files API](/docs/id/build-with-claude/files#data-retention). |
 | [Agent skills](/docs/id/agents-and-tools/agent-skills/overview) | `/v1/messages` (dengan `skills`) / `/v1/skills` | <Eligible status="no">Tidak</Eligible> | <Eligible status="no">Tidak</Eligible> | Data skill disimpan sesuai kebijakan standar. Lihat [Agent skills](/docs/id/agents-and-tools/agent-skills/overview#data-retention). |
 | [Konektor MCP](/docs/id/agents-and-tools/mcp-connector) | `/v1/messages` (dengan `mcp_servers`) | <Eligible status="no">Tidak</Eligible> | <Eligible status="no">Tidak</Eligible> | Data disimpan sesuai kebijakan standar. Lihat [Konektor MCP](/docs/id/agents-and-tools/mcp-connector#data-retention). |
-| [Claude Managed Agents](/docs/id/managed-agents/overview) | `/v1/agents`, `/v1/sessions`, `/v1/environments` | <Eligible status="no">Tidak</Eligible> | <Eligible status="no">Tidak</Eligible> | Sesi adalah sumber daya stateful; transkrip tetap ada hingga Anda menghapusnya. Berlaku untuk semua sub-fitur Managed Agents, termasuk [Sandbox yang di-host sendiri](/docs/id/managed-agents/self-hosted-sandboxes). |
+| [Claude Managed Agents](/docs/id/managed-agents/overview) | `/v1/agents`, `/v1/sessions`, `/v1/environments` | <Eligible status="no">Tidak</Eligible> | <Eligible status="no">Tidak</Eligible> | Sesi adalah sumber daya stateful; transkrip tetap ada hingga Anda menghapusnya. Berlaku untuk semua sub-fitur Managed Agents, termasuk [Self-hosted sandboxes](/docs/id/managed-agents/self-hosted-sandboxes). |
 | [MCP tunnels](/docs/id/agents-and-tools/mcp-tunnels/overview) | `/v1/organizations/tunnels` | <Eligible status="no">Tidak</Eligible> | <Eligible status="no">Tidak</Eligible> | Pratinjau riset. Lihat [Keamanan MCP tunnels](/docs/id/agents-and-tools/mcp-tunnels/security) untuk batasan aliran data dan detail subprosesor. |
 
 <sup>1</sup> [Pemfilteran dinamis](/docs/id/agents-and-tools/tool-use/web-search-tool#dynamic-filtering) tidak memenuhi syarat untuk ZDR atau HIPAA.
 
-<sup>2</sup> Meskipun pengambilan web memenuhi syarat ZDR, penerbit situs web dapat menyimpan data permintaan (seperti URL yang diambil dan metadata permintaan) sesuai dengan kebijakan mereka sendiri.
+<sup>2</sup> Meskipun web fetch memenuhi syarat ZDR, penerbit situs web dapat menyimpan data permintaan (seperti URL yang diambil dan metadata permintaan) sesuai dengan kebijakan mereka sendiri.
 
-<sup>3</sup> PHI tidak boleh disertakan dalam definisi skema JSON. Lihat [Panduan penanganan PHI](#phi-handling-guidelines).
+<sup>3</sup> PHI tidak boleh disertakan dalam definisi skema JSON. Lihat [Pedoman penanganan PHI](#phi-handling-guidelines).
 
 ## Batasan dan pengecualian \{#limitations-and-exclusions}
 
@@ -194,8 +200,8 @@ Tabel berikut mencantumkan fitur Claude API mana yang memenuhi syarat untuk peng
 **Cross-Origin Resource Sharing (CORS)** tidak didukung untuk organisasi dengan pengaturan ZDR. Jika Anda perlu melakukan panggilan API dari aplikasi berbasis browser, Anda harus:
 
 - Menggunakan server proxy backend untuk melakukan panggilan API atas nama front end Anda
-- Mengimplementasikan penanganan CORS Anda sendiri pada server proxy
-- Tidak pernah mengekspos kunci API secara langsung di JavaScript browser
+- Mengimplementasikan penanganan CORS Anda sendiri di server proxy
+- Jangan pernah mengekspos kunci API secara langsung di JavaScript browser
 
 ### Retensi data untuk pelanggaran kebijakan dan jika diwajibkan oleh hukum \{#data-retention-for-policy-violations-and-where-required-by-law}
 
@@ -203,7 +209,7 @@ Bahkan dengan pengaturan ZDR atau HIPAA yang berlaku, Anthropic dapat menyimpan 
 
 ## Pertanyaan yang sering diajukan \{#frequently-asked-questions}
 
-<section title="Bagaimana saya tahu jika organisasi saya memiliki pengaturan ZDR?">
+<section title="Bagaimana saya tahu apakah organisasi saya memiliki pengaturan ZDR?">
 
 Periksa ketentuan kontrak Anda atau hubungi perwakilan akun Anthropic Anda untuk mengonfirmasi apakah organisasi Anda memiliki pengaturan ZDR.
 
@@ -216,7 +222,7 @@ Ya. Fitur-fitur ini menyimpan sekumpulan data teknis yang minimal dan terdokumen
 </section>
 
 <Accordion title={'Apa yang terjadi jika saya menggunakan fitur yang ditandai "Tidak" di bawah ZDR?'}>
-Fitur yang ditandai "Tidak" untuk ZDR pada dasarnya bersifat stateful: Batch API menyimpan pekerjaan Anda, Files API menyimpan file Anda, dan eksekusi kode berjalan dalam kontainer persisten. Data untuk fitur-fitur ini disimpan sesuai kebijakan yang didokumentasikan pada fitur tersebut. Menggunakannya adalah pilihan untuk keluar dari pengaturan ZDR Anda untuk data spesifik tersebut.
+Fitur yang ditandai "Tidak" untuk ZDR pada dasarnya bersifat stateful: Batch API menyimpan pekerjaan Anda, Files API menyimpan file Anda, dan eksekusi kode berjalan dalam kontainer persisten. Data untuk fitur-fitur ini disimpan sesuai kebijakan yang didokumentasikan untuk fitur tersebut. Menggunakannya adalah pilihan untuk keluar dari pengaturan ZDR Anda untuk data spesifik tersebut.
 </Accordion>
 
 <section title="Dapatkah saya meminta penghapusan data dari fitur yang tidak memenuhi syarat ZDR?">
@@ -225,9 +231,9 @@ Hubungi perwakilan akun Anthropic Anda untuk mendiskusikan opsi penghapusan untu
 
 </section>
 
-<section title="Bagaimana kesiapan HIPAA berbeda dari ZDR?">
+<section title="Apa perbedaan kesiapan HIPAA dengan ZDR?">
 
-ZDR mencegah data pelanggan disimpan secara persisten setelah respons API dikembalikan. Kesiapan HIPAA melibatkan serangkaian pengamanan privasi dan keamanan yang lebih luas yang melindungi PHI sepanjang siklus hidupnya, termasuk enkripsi, kontrol akses, dan pencatatan audit. Akses API yang siap HIPAA menyediakan fondasi untuk secara bertahap mengaktifkan lebih banyak fitur karena data dapat disimpan dengan pengamanan yang tepat alih-alih memerlukan penghapusan segera.
+ZDR mencegah data pelanggan disimpan dalam keadaan diam setelah respons API dikembalikan. Kesiapan HIPAA melibatkan serangkaian pengamanan privasi dan keamanan yang lebih luas yang melindungi PHI sepanjang siklus hidupnya, termasuk enkripsi, kontrol akses, dan pencatatan audit. Akses API yang siap HIPAA menyediakan fondasi untuk secara bertahap mengaktifkan lebih banyak fitur karena data dapat disimpan dengan pengamanan yang tepat alih-alih memerlukan penghapusan segera.
 
 </section>
 
@@ -245,7 +251,7 @@ API mengembalikan error `400` dengan tipe `invalid_request_error`. Pesan error m
 
 <section title="Dapatkah saya menggunakan organisasi yang sama untuk beban kerja HIPAA dan non-HIPAA?">
 
-Tidak. Kesiapan HIPAA diterapkan pada tingkat organisasi dan secara otomatis memblokir semua fitur yang tidak memenuhi syarat. Gunakan organisasi terpisah untuk beban kerja yang tidak memerlukan kesiapan HIPAA.
+Tidak. Kesiapan HIPAA diterapkan di tingkat organisasi dan secara otomatis memblokir semua fitur yang tidak memenuhi syarat. Gunakan organisasi terpisah untuk beban kerja yang tidak memerlukan kesiapan HIPAA.
 
 </section>
 
@@ -271,8 +277,8 @@ Claude Platform di AWS mengikuti kebijakan retensi data yang sama dengan Claude 
 
 Claude Code memenuhi syarat untuk ZDR melalui dua jalur:
 
-- **Kunci API:** Claude Code yang digunakan dengan kunci API bayar sesuai pemakaian dari organisasi Commercial
-- **Claude Enterprise:** Claude Code yang digunakan melalui Claude Enterprise dengan ZDR yang diaktifkan untuk organisasi
+- **Kunci API:** Claude Code yang digunakan dengan kunci API bayar sesuai pemakaian dari organisasi Komersial
+- **Claude Enterprise:** Claude Code yang digunakan melalui Claude Enterprise dengan ZDR yang diaktifkan untuk organisasi tersebut
 
 ZDR diaktifkan per organisasi. Setiap organisasi baru memerlukan ZDR untuk diaktifkan secara terpisah oleh tim akun Anda. ZDR tidak secara otomatis berlaku untuk organisasi baru yang dibuat di bawah akun yang sama.
 

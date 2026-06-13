@@ -1,17 +1,17 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 8e949aa7945e7ff271363da03ce74f08293b9eb5af226535d337b7c40861e9d0
+fetched_at: 2026-06-13T03:15:40.418428Z
+sha256: 9aa093381a8ecba15a07c5493dd8f91eec670decc7f4b76c70c865a015d0f309
 ---
 
 # Alat pencarian web
 
 ---
 
-Alat pencarian web memberikan Claude akses langsung ke konten web secara real-time, memungkinkannya menjawab pertanyaan dengan informasi terkini yang melampaui batas pengetahuannya. Respons menyertakan sitasi untuk sumber yang diambil dari hasil pencarian.
+Alat pencarian web memberi Claude akses langsung ke konten web secara real-time, memungkinkannya menjawab pertanyaan dengan informasi terkini yang melampaui batas pengetahuannya. Respons mencakup sitasi untuk sumber yang diambil dari hasil pencarian.
 
-Versi alat pencarian web terbaru (`web_search_20260209`) mendukung **dynamic filtering** (pemfilteran dinamis) dengan Claude Opus 4.8, [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.7, Claude Opus 4.6, dan Claude Sonnet 4.6. Claude dapat menulis dan mengeksekusi kode untuk memfilter hasil pencarian sebelum masuk ke jendela konteks, hanya menyimpan informasi yang relevan dan membuang sisanya. Hal ini menghasilkan respons yang lebih akurat sekaligus mengurangi konsumsi token. Versi alat sebelumnya (`web_search_20250305`) tetap tersedia tanpa pemfilteran dinamis.
+Versi alat pencarian web terbaru (`web_search_20260209`) mendukung **dynamic filtering** (pemfilteran dinamis) dengan Claude Fable 5, Claude Opus 4.8, Claude Mythos 5, [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.7, Claude Opus 4.6, dan Claude Sonnet 4.6. Claude dapat menulis dan mengeksekusi kode untuk memfilter hasil pencarian sebelum masuk ke jendela konteks, hanya menyimpan informasi yang relevan dan membuang sisanya. Hal ini menghasilkan respons yang lebih akurat sekaligus mengurangi konsumsi token. Versi alat sebelumnya (`web_search_20250305`) tetap tersedia tanpa pemfilteran dinamis.
 
 <Note>
 Untuk [Claude Mythos Preview](https://anthropic.com/glasswing), pencarian web didukung pada Claude API, Microsoft Foundry, dan Vertex AI. Pencarian web tidak tersedia untuk Mythos Preview pada Amazon Bedrock atau [Claude Platform on AWS](/docs/id/build-with-claude/claude-platform-on-aws).
@@ -23,7 +23,7 @@ Untuk dukungan model, lihat [Referensi alat](/docs/id/agents-and-tools/tool-use/
 
 ## Cara kerja pencarian web \{#how-web-search-works}
 
-Ketika Anda menambahkan alat pencarian web ke permintaan API Anda:
+Saat Anda menambahkan alat pencarian web ke permintaan API Anda:
 
 1. Claude memutuskan kapan harus mencari berdasarkan prompt.
 2. API mengeksekusi pencarian dan memberikan hasilnya kepada Claude. Proses ini dapat berulang beberapa kali dalam satu permintaan.
@@ -45,7 +45,7 @@ Claude menjawab langsung tanpa mencari ketika permintaan mengandalkan pengetahua
 - Analisis konten yang sudah disediakan dalam percakapan
 - Giliran percakapan biasa dan sapaan
 
-Pemicuan dapat diarahkan melalui prompt sistem Anda: Anda dapat mendorong Claude untuk lebih sering mencari atau lebih memilih menjawab langsung. Untuk batasan keras, gunakan `max_uses` untuk membatasi jumlah pencarian pada setiap permintaan.
+Pemicuan dapat diarahkan melalui prompt sistem Anda: Anda dapat mendorong Claude untuk lebih sering mencari atau lebih memilih menjawab langsung. Untuk batasan yang ketat, gunakan `max_uses` untuk membatasi jumlah pencarian pada setiap permintaan.
 
 ### Pemfilteran dinamis \{#dynamic-filtering}
 
@@ -264,7 +264,7 @@ puts message
 Administrator organisasi Anda harus mengaktifkan pencarian web di [Claude Console](/settings/privacy).
 </Note>
 
-Sediakan alat pencarian web dalam permintaan API Anda:
+Sertakan alat pencarian web dalam permintaan API Anda:
 
 <CodeGroup>
 ```bash cURL
@@ -605,7 +605,7 @@ Field sitasi pencarian web `cited_text`, `title`, dan `url` tidak dihitung dalam
 
 #### Error \{#errors}
 
-Ketika alat pencarian web mengalami error (seperti mencapai batas laju), Claude API tetap mengembalikan respons 200 (sukses). Error direpresentasikan dalam body respons menggunakan struktur berikut:
+Ketika alat pencarian web mengalami error (seperti mencapai batas laju), Claude API tetap mengembalikan respons 200 (sukses). Error direpresentasikan di dalam body respons menggunakan struktur berikut:
 
 ```json Output
 {
@@ -622,7 +622,7 @@ Berikut adalah kode error yang mungkin muncul:
 
 - `too_many_requests`: Batas laju terlampaui
 - `invalid_input`: Parameter kueri pencarian tidak valid
-- `max_uses_exceeded`: Penggunaan maksimum alat pencarian web terlampaui
+- `max_uses_exceeded`: Jumlah maksimum penggunaan alat pencarian web terlampaui
 - `query_too_long`: Kueri melebihi panjang maksimum
 - `unavailable`: Terjadi error internal
 
@@ -665,7 +665,7 @@ data: {"type": "content_block_start", "index": 2, "content_block": {"type": "web
 
 ## Permintaan batch \{#batch-requests}
 
-Anda dapat menyertakan alat pencarian web dalam [Messages Batches API](/docs/id/build-with-claude/batch-processing). Panggilan alat pencarian web melalui Messages Batches API dikenakan harga yang sama dengan permintaan Messages API reguler.
+Anda dapat menyertakan alat pencarian web dalam [Messages Batches API](/docs/id/build-with-claude/batch-processing). Panggilan alat pencarian web melalui Messages Batches API dikenakan harga yang sama dengan panggilan dalam permintaan Messages API reguler.
 
 Untuk melindungi kapasitas bersama, Batches API membatasi permintaan pencarian web per organisasi, sehingga batch besar dengan banyak pencarian mungkin memerlukan waktu lebih lama untuk diselesaikan. Anda dapat melihat batas laju pencarian web organisasi Anda di halaman [Limits](/settings/limits) di Claude Console; hubungi tim penjualan dari halaman tersebut untuk meminta batas yang lebih tinggi. Beban kerja pencarian web batch yang umum mencakup memperkaya record dengan data web terkini, meneliti daftar entitas yang besar, serta mendasarkan atau memeriksa korpus konten terhadap sumber langsung.
 

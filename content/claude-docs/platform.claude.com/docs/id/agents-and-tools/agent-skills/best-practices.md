@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/best-practices
-fetched_at: 2026-06-11T03:14:59.596724Z
-sha256: ca52844b4188d751b55029211cb924130960d243fa5de0a1f6f0cfc210768528
+fetched_at: 2026-06-13T03:15:40.418428Z
+sha256: 01494217fa13eb73d7a20c971983a083f6e7f73ef229c284970a916bcd945a0e
 ---
 
 # Praktik terbaik penulisan Skill
@@ -25,11 +25,11 @@ Untuk latar belakang konseptual tentang cara kerja Skill, lihat [ikhtisar Skill]
 - Metadata Skill lainnya
 - Permintaan Anda yang sebenarnya
 
-Tidak setiap token dalam Skill Anda memiliki biaya langsung. Saat startup, hanya metadata (nama dan deskripsi) dari semua Skill yang dimuat sebelumnya. Claude membaca SKILL.md hanya ketika Skill tersebut menjadi relevan, dan membaca file tambahan hanya sesuai kebutuhan. Namun, menjaga keringkasan dalam SKILL.md tetap penting: setelah Claude memuatnya, setiap token bersaing dengan riwayat percakapan dan konteks lainnya.
+Tidak setiap token dalam Skill Anda memiliki biaya langsung. Saat startup, hanya metadata (nama dan deskripsi) dari semua Skill yang dimuat terlebih dahulu. Claude membaca SKILL.md hanya ketika Skill tersebut menjadi relevan, dan membaca file tambahan hanya sesuai kebutuhan. Namun, menjaga SKILL.md tetap ringkas tetap penting: setelah Claude memuatnya, setiap token bersaing dengan riwayat percakapan dan konteks lainnya.
 
 **Asumsi default:** Claude sudah sangat cerdas
 
-Hanya tambahkan konteks yang belum dimiliki Claude. Pertanyakan setiap bagian informasi:
+Hanya tambahkan konteks yang belum dimiliki Claude. Pertanyakan setiap informasi:
 - "Apakah Claude benar-benar membutuhkan penjelasan ini?"
 - "Bisakah saya berasumsi Claude sudah mengetahui ini?"
 - "Apakah paragraf ini sepadan dengan biaya tokennya?"
@@ -129,14 +129,14 @@ Do not modify the command or add additional flags.
 
 ### Uji dengan semua model yang Anda rencanakan untuk digunakan \{#test-with-all-models-you-plan-to-use}
 
-Skill bertindak sebagai tambahan untuk model, sehingga efektivitasnya bergantung pada model yang mendasarinya. Uji Skill Anda dengan semua model yang Anda rencanakan untuk menggunakannya.
+Skill bertindak sebagai tambahan pada model, sehingga efektivitasnya bergantung pada model yang mendasarinya. Uji Skill Anda dengan semua model yang Anda rencanakan untuk menggunakannya.
 
 **Pertimbangan pengujian berdasarkan model:**
 - **Claude Haiku** (cepat, ekonomis): Apakah Skill memberikan panduan yang cukup?
 - **Claude Sonnet** (seimbang): Apakah Skill jelas dan efisien?
 - **Claude Opus** (penalaran kuat): Apakah Skill menghindari penjelasan berlebihan?
 
-Apa yang bekerja sempurna untuk Opus mungkin membutuhkan lebih banyak detail untuk Haiku. Jika Anda berencana menggunakan Skill Anda di beberapa model, usahakan instruksi yang bekerja dengan baik untuk semuanya.
+Apa yang bekerja sempurna untuk Opus mungkin memerlukan lebih banyak detail untuk Haiku. Jika Anda berencana menggunakan Skill Anda di beberapa model, usahakan instruksi yang bekerja dengan baik untuk semuanya.
 
 ## Struktur Skill \{#skill-structure}
 
@@ -153,14 +153,14 @@ Apa yang bekerja sempurna untuk Opus mungkin membutuhkan lebih banyak detail unt
 - Tidak boleh kosong
 - Maksimum 1024 karakter
 - Tidak boleh berisi tag XML
-- Harus mendeskripsikan apa yang dilakukan Skill dan kapan menggunakannya
+- Harus menjelaskan apa yang dilakukan Skill dan kapan menggunakannya
 
 Untuk detail lengkap struktur Skill, lihat [ikhtisar Skill](/docs/id/agents-and-tools/agent-skills/overview#skill-structure).
 </Note>
 
 ### Konvensi penamaan \{#naming-conventions}
 
-Gunakan pola penamaan yang konsisten agar Skill lebih mudah direferensikan dan didiskusikan. Pertimbangkan menggunakan **bentuk gerund** (kata kerja + -ing) untuk nama Skill, karena ini dengan jelas mendeskripsikan aktivitas atau kemampuan yang disediakan Skill.
+Gunakan pola penamaan yang konsisten agar Skill lebih mudah dirujuk dan didiskusikan. Pertimbangkan menggunakan **bentuk gerund** (kata kerja + -ing) untuk nama Skill, karena ini dengan jelas menggambarkan aktivitas atau kemampuan yang disediakan Skill.
 
 Ingat bahwa field `name` hanya boleh menggunakan huruf kecil, angka, dan tanda hubung.
 
@@ -182,9 +182,9 @@ Ingat bahwa field `name` hanya boleh menggunakan huruf kecil, angka, dan tanda h
 - Pola yang tidak konsisten dalam koleksi skill Anda
 
 Penamaan yang konsisten memudahkan untuk:
-- Mereferensikan Skill dalam dokumentasi dan percakapan
+- Merujuk Skill dalam dokumentasi dan percakapan
 - Memahami apa yang dilakukan Skill secara sekilas
-- Mengorganisir dan mencari di antara banyak Skill
+- Mengatur dan mencari di antara banyak Skill
 - Memelihara pustaka skill yang profesional dan kohesif
 
 ### Menulis deskripsi yang efektif \{#writing-effective-descriptions}
@@ -239,9 +239,9 @@ SKILL.md berfungsi sebagai ikhtisar yang mengarahkan Claude ke materi terperinci
 **Panduan praktis:**
 - Jaga isi SKILL.md di bawah 500 baris untuk performa optimal
 - Pisahkan konten ke file terpisah saat mendekati batas ini
-- Gunakan pola di bawah ini untuk mengorganisir instruksi, kode, dan sumber daya secara efektif
+- Gunakan pola di bawah ini untuk mengatur instruksi, kode, dan sumber daya secara efektif
 
-#### Ikhtisar visual: Dari sederhana ke kompleks \{#visual-overview-from-simple-to-complex}
+#### Ikhtisar visual: Dari sederhana hingga kompleks \{#visual-overview-from-simple-to-complex}
 
 Skill dasar dimulai hanya dengan file SKILL.md yang berisi metadata dan instruksi:
 
@@ -295,7 +295,7 @@ Claude memuat FORMS.md, REFERENCE.md, atau EXAMPLES.md hanya saat diperlukan.
 
 #### Pola 2: Organisasi spesifik domain \{#pattern-2-domain-specific-organization}
 
-Untuk Skill dengan beberapa domain, organisir konten berdasarkan domain untuk menghindari pemuatan konteks yang tidak relevan. Ketika pengguna bertanya tentang metrik penjualan, Claude hanya perlu membaca skema terkait penjualan, bukan data keuangan atau pemasaran. Ini menjaga penggunaan token tetap rendah dan konteks tetap terfokus.
+Untuk Skill dengan beberapa domain, atur konten berdasarkan domain untuk menghindari pemuatan konteks yang tidak relevan. Ketika pengguna bertanya tentang metrik penjualan, Claude hanya perlu membaca skema terkait penjualan, bukan data keuangan atau pemasaran. Ini menjaga penggunaan token tetap rendah dan konteks tetap terfokus.
 
 ```text nowrap
 bigquery-skill/
@@ -328,7 +328,7 @@ grep -i "api usage" reference/product.md
 ```
 ````
 
-#### Pola 3: Detail kondisional \{#pattern-3-conditional-details}
+#### Pola 3: Detail bersyarat \{#pattern-3-conditional-details}
 
 Tampilkan konten dasar, tautkan ke konten lanjutan:
 
@@ -351,7 +351,7 @@ Claude membaca REDLINING.md atau OOXML.md hanya ketika pengguna membutuhkan fitu
 
 ### Hindari referensi bersarang yang dalam \{#avoid-deeply-nested-references}
 
-Claude mungkin membaca file secara parsial ketika file tersebut direferensikan dari file lain yang juga direferensikan. Saat menemukan referensi bersarang, Claude mungkin menggunakan perintah seperti `head -100` untuk melihat pratinjau konten alih-alih membaca seluruh file, yang menghasilkan informasi tidak lengkap.
+Claude mungkin membaca file secara parsial ketika file tersebut dirujuk dari file lain yang juga dirujuk. Saat menemukan referensi bersarang, Claude mungkin menggunakan perintah seperti `head -100` untuk melihat pratinjau konten alih-alih membaca seluruh file, yang menghasilkan informasi tidak lengkap.
 
 **Jaga referensi satu tingkat kedalaman dari SKILL.md**. Semua file referensi harus ditautkan langsung dari SKILL.md untuk memastikan Claude membaca file lengkap saat diperlukan.
 
@@ -496,7 +496,7 @@ If verification fails, return to Step 2.
 
 Langkah-langkah yang jelas mencegah Claude melewatkan validasi penting. Daftar periksa membantu Claude dan Anda melacak kemajuan melalui alur kerja multi-langkah.
 
-### Implementasikan feedback loop \{#implement-feedback-loops}
+### Terapkan feedback loop \{#implement-feedback-loops}
 
 **Pola umum:** Jalankan validator → perbaiki kesalahan → ulangi
 
@@ -591,7 +591,7 @@ Konsistensi membantu Claude memahami dan mengikuti instruksi.
 
 ### Pola template \{#template-pattern}
 
-Sediakan template untuk format output. Sesuaikan tingkat ketatnya dengan kebutuhan Anda.
+Sediakan template untuk format output. Sesuaikan tingkat ketegasan dengan kebutuhan Anda.
 
 **Untuk persyaratan ketat** (seperti respons API atau format data):
 
@@ -682,7 +682,7 @@ Follow this style: type(scope): brief description, then detailed explanation.
 
 Contoh membantu Claude memahami gaya dan tingkat detail yang diinginkan dengan lebih jelas daripada deskripsi saja.
 
-### Pola alur kerja kondisional \{#conditional-workflow-pattern}
+### Pola alur kerja bersyarat \{#conditional-workflow-pattern}
 
 Pandu Claude melalui titik-titik keputusan:
 
@@ -714,7 +714,7 @@ Jika alur kerja menjadi besar atau rumit dengan banyak langkah, pertimbangkan un
 
 ### Bangun evaluasi terlebih dahulu \{#build-evaluations-first}
 
-**Buat evaluasi SEBELUM menulis dokumentasi yang ekstensif.** Ini memastikan Skill Anda memecahkan masalah nyata alih-alih mendokumentasikan masalah yang dibayangkan.
+**Buat evaluasi SEBELUM menulis dokumentasi yang ekstensif.** Ini memastikan Skill Anda menyelesaikan masalah nyata, bukan mendokumentasikan masalah yang dibayangkan.
 
 **Pengembangan berbasis evaluasi:**
 1. **Identifikasi kesenjangan:** Jalankan Claude pada tugas representatif tanpa Skill. Dokumentasikan kegagalan spesifik atau konteks yang hilang
@@ -723,7 +723,7 @@ Jika alur kerja menjadi besar atau rumit dengan banyak langkah, pertimbangkan un
 4. **Tulis instruksi minimal:** Buat konten secukupnya untuk mengatasi kesenjangan dan lulus evaluasi
 5. **Iterasi:** Jalankan evaluasi, bandingkan dengan baseline, dan perbaiki
 
-Pendekatan ini memastikan Anda memecahkan masalah aktual alih-alih mengantisipasi persyaratan yang mungkin tidak pernah terwujud.
+Pendekatan ini memastikan Anda menyelesaikan masalah aktual, bukan mengantisipasi persyaratan yang mungkin tidak pernah terwujud.
 
 **Struktur evaluasi:**
 ```json
@@ -758,16 +758,16 @@ Proses pengembangan Skill yang paling efektif melibatkan Claude itu sendiri. Bek
 3. **Minta Claude A untuk membuat Skill:** "Buat Skill yang menangkap pola analisis BigQuery yang baru saja kita gunakan. Sertakan skema tabel, konvensi penamaan, dan aturan tentang memfilter akun uji."
 
    <Tip>
-   Model Claude memahami format dan struktur Skill secara native. Anda tidak memerlukan prompt sistem khusus atau skill "menulis skill" untuk membuat Claude membantu membuat Skill. Cukup minta Claude untuk membuat Skill dan ia akan menghasilkan konten SKILL.md yang terstruktur dengan baik dengan frontmatter dan isi yang sesuai.
+   Model Claude memahami format dan struktur Skill secara native. Anda tidak memerlukan prompt sistem khusus atau skill "menulis skill" untuk membuat Claude membantu membuat Skill. Cukup minta Claude untuk membuat Skill dan ia akan menghasilkan konten SKILL.md yang terstruktur dengan benar dengan frontmatter dan isi yang sesuai.
    </Tip>
 
-4. **Tinjau untuk keringkasan:** Periksa bahwa Claude A tidak menambahkan penjelasan yang tidak perlu. Minta: "Hapus penjelasan tentang apa arti win rate - Claude sudah mengetahui itu."
+4. **Tinjau untuk keringkasan:** Periksa bahwa Claude A tidak menambahkan penjelasan yang tidak perlu. Minta: "Hapus penjelasan tentang apa arti win rate - Claude sudah mengetahuinya."
 
-5. **Tingkatkan arsitektur informasi:** Minta Claude A untuk mengorganisir konten dengan lebih efektif. Misalnya: "Organisir ini sehingga skema tabel berada di file referensi terpisah. Kita mungkin menambahkan lebih banyak tabel nanti."
+5. **Tingkatkan arsitektur informasi:** Minta Claude A untuk mengatur konten dengan lebih efektif. Misalnya: "Atur ini sehingga skema tabel berada di file referensi terpisah. Kita mungkin menambahkan lebih banyak tabel nanti."
 
 6. **Uji pada tugas serupa:** Gunakan Skill dengan Claude B (instance baru dengan Skill yang dimuat) pada kasus penggunaan terkait. Amati apakah Claude B menemukan informasi yang tepat, menerapkan aturan dengan benar, dan menangani tugas dengan sukses.
 
-7. **Iterasi berdasarkan pengamatan:** Jika Claude B kesulitan atau melewatkan sesuatu, kembali ke Claude A dengan detail spesifik: "Ketika Claude menggunakan Skill ini, ia lupa memfilter berdasarkan tanggal untuk Q4. Haruskah kita menambahkan bagian tentang pola pemfilteran tanggal?"
+7. **Iterasi berdasarkan observasi:** Jika Claude B kesulitan atau melewatkan sesuatu, kembali ke Claude A dengan detail spesifik: "Ketika Claude menggunakan Skill ini, ia lupa memfilter berdasarkan tanggal untuk Q4. Haruskah kita menambahkan bagian tentang pola pemfilteran tanggal?"
 
 **Iterasi pada Skill yang sudah ada:**
 
@@ -780,7 +780,7 @@ Pola hierarkis yang sama berlanjut saat meningkatkan Skill. Anda bergantian anta
 
 2. **Amati perilaku Claude B:** Catat di mana ia kesulitan, berhasil, atau membuat pilihan yang tidak terduga
 
-   **Contoh pengamatan:** "Ketika saya meminta Claude B untuk laporan penjualan regional, ia menulis kueri tetapi lupa memfilter akun uji, meskipun Skill menyebutkan aturan ini."
+   **Contoh observasi:** "Ketika saya meminta Claude B untuk laporan penjualan regional, ia menulis kueri tetapi lupa memfilter akun uji, meskipun Skill menyebutkan aturan ini."
 
 3. **Kembali ke Claude A untuk perbaikan:** Bagikan SKILL.md saat ini dan jelaskan apa yang Anda amati. Tanyakan: "Saya perhatikan Claude B lupa memfilter akun uji ketika saya meminta laporan regional. Skill menyebutkan pemfilteran, tetapi mungkin tidak cukup menonjol?"
 
@@ -793,21 +793,21 @@ Pola hierarkis yang sama berlanjut saat meningkatkan Skill. Anda bergantian anta
 **Mengumpulkan umpan balik tim:**
 
 1. Bagikan Skill dengan rekan tim dan amati penggunaan mereka
-2. Tanyakan: Apakah Skill aktif saat diharapkan? Apakah instruksi jelas? Apa yang hilang?
-3. Gabungkan umpan balik untuk mengatasi titik buta dalam pola penggunaan Anda sendiri
+2. Tanyakan: Apakah Skill aktif saat diharapkan? Apakah instruksi jelas? Apa yang kurang?
+3. Masukkan umpan balik untuk mengatasi titik buta dalam pola penggunaan Anda sendiri
 
-**Mengapa pendekatan ini berhasil:** Claude A memahami kebutuhan agen, Anda memberikan keahlian domain, Claude B mengungkap kesenjangan melalui penggunaan nyata, dan penyempurnaan iteratif meningkatkan Skill berdasarkan perilaku yang diamati alih-alih asumsi.
+**Mengapa pendekatan ini berhasil:** Claude A memahami kebutuhan agen, Anda memberikan keahlian domain, Claude B mengungkapkan kesenjangan melalui penggunaan nyata, dan penyempurnaan iteratif meningkatkan Skill berdasarkan perilaku yang diamati, bukan asumsi.
 
 ### Amati bagaimana Claude menavigasi Skill \{#observe-how-claude-navigates-skills}
 
-Saat Anda melakukan iterasi pada Skill, perhatikan bagaimana Claude benar-benar menggunakannya dalam praktik. Perhatikan:
+Saat Anda melakukan iterasi pada Skill, perhatikan bagaimana Claude sebenarnya menggunakannya dalam praktik. Perhatikan:
 
 - **Jalur eksplorasi yang tidak terduga:** Apakah Claude membaca file dalam urutan yang tidak Anda antisipasi? Ini mungkin menunjukkan struktur Anda tidak seintuitif yang Anda kira
 - **Koneksi yang terlewat:** Apakah Claude gagal mengikuti referensi ke file penting? Tautan Anda mungkin perlu lebih eksplisit atau menonjol
 - **Ketergantungan berlebihan pada bagian tertentu:** Jika Claude berulang kali membaca file yang sama, pertimbangkan apakah konten tersebut seharusnya berada di SKILL.md utama
 - **Konten yang diabaikan:** Jika Claude tidak pernah mengakses file yang dibundel, file tersebut mungkin tidak diperlukan atau kurang disinyalkan dengan baik dalam instruksi utama
 
-Lakukan iterasi berdasarkan pengamatan ini alih-alih asumsi. 'name' dan 'description' dalam metadata Skill Anda sangat penting. Claude menggunakan ini saat memutuskan apakah akan memicu Skill sebagai respons terhadap tugas saat ini. Pastikan keduanya dengan jelas mendeskripsikan apa yang dilakukan Skill dan kapan harus digunakan.
+Lakukan iterasi berdasarkan observasi ini, bukan asumsi. 'name' dan 'description' dalam metadata Skill Anda sangat penting. Claude menggunakan ini saat memutuskan apakah akan memicu Skill sebagai respons terhadap tugas saat ini. Pastikan keduanya dengan jelas menggambarkan apa yang dilakukan Skill dan kapan harus digunakan.
 
 ## Anti-pola yang harus dihindari \{#anti-patterns-to-avoid}
 
@@ -843,7 +843,7 @@ Bagian di bawah ini berfokus pada Skill yang menyertakan skrip yang dapat diekse
 
 ### Selesaikan, jangan lempar \{#solve-dont-punt}
 
-Saat menulis skrip untuk Skill, tangani kondisi kesalahan alih-alih melemparkannya ke Claude.
+Saat menulis skrip untuk Skill, tangani kondisi kesalahan alih-alih melemparnya ke Claude.
 
 **Contoh baik: Tangani kesalahan secara eksplisit:**
 
@@ -882,7 +882,7 @@ Parameter konfigurasi juga harus dijustifikasi dan didokumentasikan untuk menghi
 # Timeout yang lebih panjang mengakomodasi koneksi lambat
 REQUEST_TIMEOUT = 30
 
-# Tiga kali percobaan ulang menyeimbangkan keandalan vs kecepatan
+# Tiga percobaan ulang menyeimbangkan keandalan vs kecepatan
 # Sebagian besar kegagalan intermiten teratasi pada percobaan ulang kedua
 MAX_RETRIES = 3
 ```
@@ -906,9 +906,9 @@ Meskipun Claude dapat menulis skrip, skrip yang sudah dibuat sebelumnya menawark
 
 ![Membundel skrip yang dapat dieksekusi bersama file instruksi](/docs/images/agent-skills-executable-scripts.png)
 
-Diagram di atas menunjukkan bagaimana skrip yang dapat dieksekusi bekerja bersama file instruksi. File instruksi (forms.md) mereferensikan skrip, dan Claude dapat mengeksekusinya tanpa memuat isinya ke dalam konteks.
+Diagram di atas menunjukkan bagaimana skrip yang dapat dieksekusi bekerja bersama file instruksi. File instruksi (forms.md) merujuk skrip, dan Claude dapat mengeksekusinya tanpa memuat isinya ke dalam konteks.
 
-**Perbedaan penting:** Perjelas dalam instruksi Anda apakah Claude harus:
+**Perbedaan penting:** Jelaskan dalam instruksi Anda apakah Claude harus:
 - **Mengeksekusi skrip** (paling umum): "Jalankan `analyze_form.py` untuk mengekstrak field"
 - **Membacanya sebagai referensi** (untuk logika kompleks): "Lihat `analyze_form.py` untuk algoritma ekstraksi field"
 
@@ -972,7 +972,7 @@ Kemampuan visi Claude membantu memahami tata letak dan struktur.
 
 Ketika Claude melakukan tugas kompleks dan terbuka, ia dapat membuat kesalahan. Pola "rencanakan-validasi-eksekusi" menangkap kesalahan lebih awal dengan meminta Claude terlebih dahulu membuat rencana dalam format terstruktur, lalu memvalidasi rencana tersebut dengan skrip sebelum mengeksekusinya.
 
-**Contoh:** Bayangkan meminta Claude untuk memperbarui 50 field formulir dalam PDF berdasarkan spreadsheet. Tanpa validasi, Claude mungkin mereferensikan field yang tidak ada, membuat nilai yang bertentangan, melewatkan field yang diperlukan, atau menerapkan pembaruan secara tidak benar.
+**Contoh:** Bayangkan meminta Claude untuk memperbarui 50 field formulir dalam PDF berdasarkan spreadsheet. Tanpa validasi, Claude mungkin merujuk field yang tidak ada, membuat nilai yang bertentangan, melewatkan field yang diperlukan, atau menerapkan pembaruan secara tidak benar.
 
 **Solusi:** Gunakan pola alur kerja yang ditunjukkan di atas (pengisian formulir PDF), tetapi tambahkan file perantara `changes.json` yang divalidasi sebelum menerapkan perubahan. Alur kerja menjadi: analisis → **buat file rencana** → **validasi rencana** → eksekusi → verifikasi.
 
@@ -984,7 +984,7 @@ Ketika Claude melakukan tugas kompleks dan terbuka, ia dapat membuat kesalahan. 
 
 **Kapan digunakan:** Operasi batch, perubahan destruktif, aturan validasi kompleks, operasi berisiko tinggi.
 
-**Tips implementasi:** Buat skrip validasi verbose dengan pesan kesalahan spesifik seperti "Field 'signature_date' not found. Available fields: customer_name, order_total, signature_date_signed" untuk membantu Claude memperbaiki masalah.
+**Tip implementasi:** Buat skrip validasi verbose dengan pesan kesalahan spesifik seperti "Field 'signature_date' not found. Available fields: customer_name, order_total, signature_date_signed" untuk membantu Claude memperbaiki masalah.
 
 ### Dependensi paket \{#package-dependencies}
 
@@ -1003,19 +1003,19 @@ Skill berjalan di lingkungan eksekusi kode dengan akses filesystem, perintah bas
 
 **Bagaimana Claude mengakses Skill:**
 
-1. **Metadata dimuat sebelumnya:** Saat startup, nama dan deskripsi dari YAML frontmatter semua Skill dimuat ke dalam prompt sistem
-2. **File dibaca sesuai permintaan:** Claude menggunakan alat Read bash untuk mengakses SKILL.md dan file lain dari filesystem saat diperlukan
+1. **Metadata dimuat terlebih dahulu:** Saat startup, nama dan deskripsi dari YAML frontmatter semua Skill dimuat ke dalam prompt sistem
+2. **File dibaca sesuai permintaan:** Claude menggunakan alat bash Read untuk mengakses SKILL.md dan file lain dari filesystem saat diperlukan
 3. **Skrip dieksekusi secara efisien:** Skrip utilitas dapat dieksekusi melalui bash tanpa memuat konten lengkapnya ke dalam konteks. Hanya output skrip yang mengonsumsi token
 4. **Tidak ada penalti konteks untuk file besar:** File referensi, data, atau dokumentasi tidak mengonsumsi token konteks sampai benar-benar dibaca
 
 - **Path file penting:** Claude menavigasi direktori skill Anda seperti filesystem. Gunakan garis miring ke depan (`reference/guide.md`), bukan garis miring terbalik
 - **Beri nama file secara deskriptif:** Gunakan nama yang menunjukkan konten: `form_validation_rules.md`, bukan `doc2.md`
-- **Organisir untuk penemuan:** Strukturkan direktori berdasarkan domain atau fitur
+- **Atur untuk penemuan:** Strukturkan direktori berdasarkan domain atau fitur
   - Baik: `reference/finance.md`, `reference/sales.md`
   - Buruk: `docs/file1.md`, `docs/file2.md`
 - **Bundel sumber daya yang komprehensif:** Sertakan dokumen API lengkap, contoh ekstensif, dataset besar; tidak ada penalti konteks sampai diakses
-- **Lebih suka skrip untuk operasi deterministik:** Tulis `validate_form.py` alih-alih meminta Claude menghasilkan kode validasi
-- **Perjelas maksud eksekusi:**
+- **Utamakan skrip untuk operasi deterministik:** Tulis `validate_form.py` alih-alih meminta Claude menghasilkan kode validasi
+- **Buat maksud eksekusi jelas:**
   - "Jalankan `analyze_form.py` untuk mengekstrak field" (eksekusi)
   - "Lihat `analyze_form.py` untuk algoritma ekstraksi" (baca sebagai referensi)
 - **Uji pola akses file:** Verifikasi Claude dapat menavigasi struktur direktori Anda dengan menguji menggunakan permintaan nyata
@@ -1102,7 +1102,7 @@ Sebelum membagikan Skill, verifikasi:
 - [ ] Alur kerja memiliki langkah-langkah yang jelas
 
 ### Kode dan skrip \{#code-and-scripts}
-- [ ] Skrip menyelesaikan masalah alih-alih melemparkannya ke Claude
+- [ ] Skrip menyelesaikan masalah, bukan melemparnya ke Claude
 - [ ] Penanganan kesalahan eksplisit dan membantu
 - [ ] Tidak ada "voodoo constants" (semua nilai dijustifikasi)
 - [ ] Paket yang diperlukan tercantum dalam instruksi dan diverifikasi tersedia
@@ -1115,7 +1115,7 @@ Sebelum membagikan Skill, verifikasi:
 - [ ] Setidaknya tiga evaluasi dibuat
 - [ ] Diuji dengan Haiku, Sonnet, dan Opus
 - [ ] Diuji dengan skenario penggunaan nyata
-- [ ] Umpan balik tim digabungkan (jika berlaku)
+- [ ] Umpan balik tim dimasukkan (jika berlaku)
 
 ## Langkah selanjutnya \{#next-steps}
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/build-a-tool-using-agent
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: c928edb55035210b808458add1e517310b9f393e5d31530ec4defab40234ef67
+fetched_at: 2026-06-13T03:15:40.418428Z
+sha256: 2585e3072d58aca2aa8ff871cf6b6d431506662e8564ef58dbb267e5d50650dc
 ---
 
 # Tutorial: Membangun agen yang menggunakan alat
@@ -11,7 +11,7 @@ Panduan langkah demi langkah dari satu pemanggilan alat hingga loop agentik yang
 
 ---
 
-Tutorial ini membangun agen manajemen kalender dalam lima lapisan konsentris. Setiap lapisan adalah program lengkap yang dapat dijalankan dan menambahkan tepat satu konsep ke lapisan sebelumnya. Pada akhirnya, Anda akan menulis "agentic loop" (loop agentik) secara manual dan kemudian menggantinya dengan abstraksi SDK Tool Runner.
+Tutorial ini membangun agen manajemen kalender dalam lima lapisan konsentris. Setiap lapisan adalah program lengkap yang dapat dijalankan dan menambahkan tepat satu konsep ke lapisan sebelumnya. Pada akhirnya, Anda akan menulis loop agentik secara manual dan kemudian menggantinya dengan abstraksi SDK Tool Runner.
 
 Alat contoh yang digunakan adalah `create_calendar_event`. Skemanya menggunakan objek bersarang, array, dan field opsional, sehingga Anda akan melihat bagaimana Claude menangani bentuk input yang realistis, bukan sekadar satu string datar.
 
@@ -29,13 +29,13 @@ Permintaan mengirimkan array `tools` bersama dengan pesan pengguna. Ketika Claud
   
 ````bash
 #!/bin/bash
-# Ring 1: Single tool, single turn.
+# Ring 1: Satu alat, satu giliran.
 
-# Define one tool as a JSON fragment. The input_schema is a JSON Schema
-# object describing the arguments Claude should pass when it calls this
-# tool. This schema includes nested objects (recurrence), arrays
-# (attendees), and optional fields, which is closer to real-world tools
-# than a flat string argument.
+# Definisikan satu alat sebagai fragmen JSON. input_schema adalah objek
+# JSON Schema yang mendeskripsikan argumen yang harus Claude berikan saat
+# memanggil alat ini. Skema ini mencakup objek bersarang (recurrence),
+# array (attendees), dan field opsional, yang lebih mendekati alat di
+# dunia nyata dibandingkan argumen string datar.
 TOOLS='[
   {
     "name": "create_calendar_event",
@@ -65,8 +65,8 @@ TOOLS='[
 
 USER_MSG="Schedule a 30-minute sync with alice@example.com and bob@example.com next Monday at 10am."
 
-# Send the user's request along with the tool definition. Claude decides
-# whether to call the tool based on the request and the tool description.
+# Kirim permintaan pengguna bersama definisi alat. Claude memutuskan
+# apakah akan memanggil alat berdasarkan permintaan dan deskripsi alat.
 RESPONSE=$(curl -s https://api.anthropic.com/v1/messages \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
@@ -82,24 +82,24 @@ RESPONSE=$(curl -s https://api.anthropic.com/v1/messages \
       messages: [{role: "user", content: $msg}]
     }')")
 
-# When Claude calls a tool, the response has stop_reason "tool_use"
-# and the content array contains a tool_use block alongside any text.
+# Ketika Claude memanggil alat, respons memiliki stop_reason "tool_use"
+# dan array content berisi blok tool_use di samping teks apa pun.
 echo "stop_reason: $(echo "$RESPONSE" | jq -r '.stop_reason')"
 
-# Find the tool_use block. A response may contain text blocks before the
-# tool_use block, so filter by type rather than assuming position.
+# Temukan blok tool_use. Respons mungkin berisi blok teks sebelum blok
+# tool_use, jadi filter berdasarkan tipe alih-alih mengasumsikan posisi.
 TOOL_USE=$(echo "$RESPONSE" | jq '.content[] | select(.type == "tool_use")')
 TOOL_USE_ID=$(echo "$TOOL_USE" | jq -r '.id')
 echo "Tool: $(echo "$TOOL_USE" | jq -r '.name')"
 echo "Input: $(echo "$TOOL_USE" | jq -c '.input')"
 
-# Execute the tool. In a real system this would call your calendar API.
-# Here the result is hardcoded to keep the example self-contained.
+# Eksekusi alat. Di sistem nyata, ini akan memanggil API kalender Anda.
+# Di sini hasilnya di-hardcode agar contoh ini tetap mandiri.
 RESULT='{"event_id": "evt_123", "status": "created"}'
 
-# Send the result back. The tool_result block goes in a user message and
-# its tool_use_id must match the id from the tool_use block above. The
-# assistant's previous response is included so Claude has the full history.
+# Kirim hasilnya kembali. Blok tool_result masuk ke pesan user dan
+# tool_use_id-nya harus cocok dengan id dari blok tool_use di atas.
+# Respons asisten sebelumnya disertakan agar Claude punya riwayat lengkap.
 ASSISTANT_CONTENT=$(echo "$RESPONSE" | jq '.content')
 FOLLOWUP=$(curl -s https://api.anthropic.com/v1/messages \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -125,8 +125,8 @@ FOLLOWUP=$(curl -s https://api.anthropic.com/v1/messages \
       ]
     }')")
 
-# With the tool result in hand, Claude produces a final natural-language
-# answer and stop_reason becomes "end_turn".
+# Dengan hasil alat di tangan, Claude menghasilkan jawaban akhir dalam
+# bahasa alami dan stop_reason menjadi "end_turn".
 echo "stop_reason: $(echo "$FOLLOWUP" | jq -r '.stop_reason')"
 echo "$FOLLOWUP" | jq -r '.content[] | select(.type == "text") | .text'
 ````
@@ -134,23 +134,23 @@ echo "$FOLLOWUP" | jq -r '.content[] | select(.type == "text") | .text'
   
 ````bash
 #!/usr/bin/env bash
-# Ring 1: Single tool, single turn.
-# Uses jq for cross-turn message-array state — building an agentic loop in shell
-# requires JSON manipulation beyond ant's single-call --transform scope.
+# Ring 1: Satu alat, satu giliran.
+# Menggunakan jq untuk state array pesan lintas giliran — membangun loop agentik di shell
+# memerlukan manipulasi JSON di luar cakupan --transform satu-panggilan milik ant.
 set -euo pipefail
 
 USER_MSG="Schedule a 30-minute sync with alice@example.com and bob@example.com next Monday at 10am."
 MESSAGES=$(jq -n --arg msg "$USER_MSG" '[{role: "user", content: $msg}]')
 
-# Define one tool. The input_schema is a JSON Schema object describing
-# the arguments Claude should pass when it calls this tool. This schema
-# includes nested objects (recurrence), arrays (attendees), and optional
-# fields, which is closer to real-world tools than a flat string argument.
+# Definisikan satu alat. input_schema adalah objek JSON Schema yang mendeskripsikan
+# argumen yang harus diteruskan Claude saat memanggil alat ini. Skema ini
+# mencakup objek bersarang (recurrence), array (attendees), dan field
+# opsional, yang lebih mendekati alat dunia nyata daripada argumen string datar.
 call_api() {
-  # ant reads the request body as YAML on stdin: no auth headers, no
-  # hand-built JSON envelope. The static keys (model, tools, tool_choice)
-  # live in a quoted heredoc; the growing messages array is appended as
-  # JSON, which YAML accepts as flow syntax.
+  # ant membaca body permintaan sebagai YAML di stdin: tanpa header auth, tanpa
+  # amplop JSON buatan tangan. Kunci statis (model, tools, tool_choice)
+  # berada di heredoc yang dikutip; array messages yang terus bertambah ditambahkan sebagai
+  # JSON, yang diterima YAML sebagai sintaks flow.
   {
     cat <<'YAML'
 model: claude-opus-4-8
@@ -179,28 +179,28 @@ YAML
   } | ant messages create --format json
 }
 
-# Send the user's request along with the tool definition. Claude decides
-# whether to call the tool based on the request and the tool description.
+# Kirim permintaan pengguna bersama definisi alat. Claude memutuskan
+# apakah akan memanggil alat berdasarkan permintaan dan deskripsi alat.
 RESPONSE=$(call_api)
 
-# When Claude calls a tool, the response has stop_reason "tool_use"
-# and the content array contains a tool_use block alongside any text.
+# Ketika Claude memanggil alat, respons memiliki stop_reason "tool_use"
+# dan array content berisi blok tool_use di samping teks apa pun.
 echo "stop_reason: $(jq -r '.stop_reason' <<<"$RESPONSE")"
 
-# Find the tool_use block. A response may contain text blocks before the
-# tool_use block, so filter by type rather than assuming position.
+# Temukan blok tool_use. Respons mungkin berisi blok teks sebelum
+# blok tool_use, jadi filter berdasarkan tipe alih-alih mengasumsikan posisi.
 TOOL_USE=$(jq '.content[] | select(.type == "tool_use")' <<<"$RESPONSE")
 TOOL_USE_ID=$(jq -r '.id' <<<"$TOOL_USE")
 echo "Tool: $(jq -r '.name' <<<"$TOOL_USE")"
 echo "Input: $(jq -c '.input' <<<"$TOOL_USE")"
 
-# Execute the tool. In a real system this would call your calendar API.
-# Here the result is hardcoded to keep the example self-contained.
+# Jalankan alat. Di sistem nyata ini akan memanggil API kalender Anda.
+# Di sini hasilnya di-hardcode agar contoh tetap mandiri.
 RESULT='{"event_id": "evt_123", "status": "created"}'
 
-# Send the result back. The tool_result block goes in a user message and
-# its tool_use_id must match the id from the tool_use block above. The
-# assistant's previous response is included so Claude has the full history.
+# Kirim hasilnya kembali. Blok tool_result masuk ke pesan user dan
+# tool_use_id-nya harus cocok dengan id dari blok tool_use di atas. Respons
+# asisten sebelumnya disertakan agar Claude memiliki riwayat lengkap.
 MESSAGES=$(jq \
   --argjson assistant "$(jq '.content' <<<"$RESPONSE")" \
   --arg tool_use_id "$TOOL_USE_ID" \
@@ -214,27 +214,27 @@ MESSAGES=$(jq \
 
 FOLLOWUP=$(call_api)
 
-# With the tool result in hand, Claude produces a final natural-language
-# answer and stop_reason becomes "end_turn".
+# Dengan hasil alat di tangan, Claude menghasilkan jawaban akhir dalam bahasa
+# alami dan stop_reason menjadi "end_turn".
 echo "stop_reason: $(jq -r '.stop_reason' <<<"$FOLLOWUP")"
 jq -r '.content[] | select(.type == "text") | .text' <<<"$FOLLOWUP"
 ````
 
   
 ````python
-# Ring 1: Single tool, single turn.
+# Ring 1: Satu alat, satu giliran.
 
 import json
 
 import anthropic
 
-# Create a client. It reads ANTHROPIC_API_KEY from the environment.
+# Buat klien. Klien membaca ANTHROPIC_API_KEY dari environment.
 client = anthropic.Anthropic()
 
-# Define one tool. The input_schema is a JSON Schema object describing
-# the arguments Claude should pass when it calls this tool. This schema
-# includes nested objects (recurrence), arrays (attendees), and optional
-# fields, which is closer to real-world tools than a flat string argument.
+# Definisikan satu alat. input_schema adalah objek JSON Schema yang mendeskripsikan
+# argumen yang harus diteruskan Claude saat memanggil alat ini. Skema ini
+# mencakup objek bersarang (recurrence), array (attendees), dan field
+# opsional, yang lebih mendekati alat dunia nyata daripada argumen string datar.
 tools = [
     {
         "name": "create_calendar_event",
@@ -262,8 +262,8 @@ tools = [
     }
 ]
 
-# Send the user's request along with the tool definition. Claude decides
-# whether to call the tool based on the request and the tool description.
+# Kirim permintaan pengguna bersama definisi alat. Claude memutuskan
+# apakah akan memanggil alat berdasarkan permintaan dan deskripsi alat.
 response = client.messages.create(
     model="claude-opus-4-8",
     max_tokens=1024,
@@ -277,23 +277,23 @@ response = client.messages.create(
     ],
 )
 
-# When Claude calls a tool, the response has stop_reason "tool_use"
-# and the content array contains a tool_use block alongside any text.
+# Ketika Claude memanggil alat, respons memiliki stop_reason "tool_use"
+# dan array content berisi blok tool_use di samping teks apa pun.
 print(f"stop_reason: {response.stop_reason}")
 
-# Find the tool_use block. A response may contain text blocks before the
-# tool_use block, so scan the content array rather than assuming position.
+# Temukan blok tool_use. Respons mungkin berisi blok teks sebelum blok
+# tool_use, jadi pindai array content alih-alih mengasumsikan posisinya.
 tool_use = next(block for block in response.content if block.type == "tool_use")
 print(f"Tool: {tool_use.name}")
 print(f"Input: {tool_use.input}")
 
-# Execute the tool. In a real system this would call your calendar API.
-# Here the result is hardcoded to keep the example self-contained.
+# Eksekusi alat. Di sistem nyata, ini akan memanggil API kalender Anda.
+# Di sini hasilnya di-hardcode agar contoh ini tetap mandiri.
 result = {"event_id": "evt_123", "status": "created"}
 
-# Send the result back. The tool_result block goes in a user message and
-# its tool_use_id must match the id from the tool_use block above. The
-# assistant's previous response is included so Claude has the full history.
+# Kirim hasilnya kembali. Blok tool_result masuk ke pesan user dan
+# tool_use_id-nya harus cocok dengan id dari blok tool_use di atas. Respons
+# asisten sebelumnya disertakan agar Claude memiliki riwayat lengkap.
 followup = client.messages.create(
     model="claude-opus-4-8",
     max_tokens=1024,
@@ -318,8 +318,8 @@ followup = client.messages.create(
     ],
 )
 
-# With the tool result in hand, Claude produces a final natural-language
-# answer and stop_reason becomes "end_turn".
+# Dengan hasil alat di tangan, Claude menghasilkan jawaban akhir dalam
+# bahasa alami dan stop_reason menjadi "end_turn".
 print(f"stop_reason: {followup.stop_reason}")
 final_text = next(block for block in followup.content if block.type == "text")
 print(final_text.text)
@@ -327,17 +327,17 @@ print(final_text.text)
 
   
 ````typescript
-// Ring 1: Single tool, single turn.
+// Ring 1: Satu alat, satu giliran.
 
 import Anthropic from "@anthropic-ai/sdk";
 
-// Create a client. It reads ANTHROPIC_API_KEY from the environment.
+// Buat klien. Klien membaca ANTHROPIC_API_KEY dari environment.
 const client = new Anthropic();
 
-// Define one tool. The input_schema is a JSON Schema object describing
-// the arguments Claude should pass when it calls this tool. This schema
-// includes nested objects (recurrence), arrays (attendees), and optional
-// fields, which is closer to real-world tools than a flat string argument.
+// Definisikan satu alat. input_schema adalah objek JSON Schema yang mendeskripsikan
+// argumen yang harus diteruskan Claude saat memanggil alat ini. Skema ini
+// mencakup objek bersarang (recurrence), array (attendees), dan field
+// opsional, yang lebih mendekati alat dunia nyata daripada argumen string datar.
 const tools: Anthropic.Tool[] = [
   {
     name: "create_calendar_event",
@@ -366,8 +366,8 @@ const tools: Anthropic.Tool[] = [
   },
 ];
 
-// Send the user's request along with the tool definition. Claude decides
-// whether to call the tool based on the request and the tool description.
+// Kirim permintaan pengguna bersama definisi alat. Claude memutuskan
+// apakah akan memanggil alat berdasarkan permintaan dan deskripsi alat.
 const response = await client.messages.create({
   model: "claude-opus-4-8",
   max_tokens: 1024,
@@ -382,25 +382,25 @@ const response = await client.messages.create({
   ],
 });
 
-// When Claude calls a tool, the response has stop_reason "tool_use"
-// and the content array contains a tool_use block alongside any text.
+// Ketika Claude memanggil alat, respons memiliki stop_reason "tool_use"
+// dan array content berisi blok tool_use di samping teks apa pun.
 console.log(`stop_reason: ${response.stop_reason}`);
 
-// Find the tool_use block. A response may contain text blocks before the
-// tool_use block, so scan the content array rather than assuming position.
+// Temukan blok tool_use. Respons mungkin berisi blok teks sebelum blok
+// tool_use, jadi pindai array content alih-alih mengasumsikan posisinya.
 const toolUse = response.content.find(
   (block): block is Anthropic.ToolUseBlock => block.type === "tool_use",
 )!;
 console.log(`Tool: ${toolUse.name}`);
 console.log(`Input: ${JSON.stringify(toolUse.input)}`);
 
-// Execute the tool. In a real system this would call your calendar API.
-// Here the result is hardcoded to keep the example self-contained.
+// Eksekusi alat. Di sistem nyata, ini akan memanggil API kalender Anda.
+// Di sini hasilnya di-hardcode agar contoh ini tetap mandiri.
 const result = { event_id: "evt_123", status: "created" };
 
-// Send the result back. The tool_result block goes in a user message and
-// its tool_use_id must match the id from the tool_use block above. The
-// assistant's previous response is included so Claude has the full history.
+// Kirim hasilnya kembali. Blok tool_result masuk ke pesan user dan
+// tool_use_id-nya harus cocok dengan id dari blok tool_use di atas. Respons
+// assistant sebelumnya disertakan agar Claude memiliki riwayat lengkap.
 const followup = await client.messages.create({
   model: "claude-opus-4-8",
   max_tokens: 1024,
@@ -426,8 +426,8 @@ const followup = await client.messages.create({
   ],
 });
 
-// With the tool result in hand, Claude produces a final natural-language
-// answer and stop_reason becomes "end_turn".
+// Dengan hasil alat di tangan, Claude menghasilkan jawaban akhir dalam
+// bahasa alami dan stop_reason menjadi "end_turn".
 console.log(`stop_reason: ${followup.stop_reason}`);
 for (const block of followup.content) {
   if (block.type === "text") {
@@ -460,7 +460,7 @@ Perubahan lainnya adalah riwayat percakapan. Alih-alih membangun ulang array `me
   
 ````bash
 #!/bin/bash
-# Ring 2: The agentic loop.
+# Ring 2: Loop agentik.
 
 TOOLS='[
   {
@@ -497,7 +497,7 @@ run_tool() {
   fi
 }
 
-# Keep the full conversation history in a JSON array so each turn sees prior context.
+# Simpan seluruh riwayat percakapan dalam array JSON agar setiap giliran melihat konteks sebelumnya.
 MESSAGES='[{"role": "user", "content": "Schedule a weekly team standup every Monday at 9am for the next 4 weeks. Invite the whole team: alice@example.com, bob@example.com, carol@example.com."}]'
 
 call_api() {
@@ -511,8 +511,8 @@ call_api() {
 
 RESPONSE=$(call_api)
 
-# Loop until Claude stops asking for tools. Each iteration runs the requested
-# tool, appends the result to history, and asks Claude to continue.
+# Ulangi hingga Claude berhenti meminta alat. Setiap iterasi menjalankan alat yang
+# diminta, menambahkan hasilnya ke riwayat, dan meminta Claude untuk melanjutkan.
 while [ "$(echo "$RESPONSE" | jq -r '.stop_reason')" = "tool_use" ]; do
   TOOL_USE=$(echo "$RESPONSE" | jq '.content[] | select(.type == "tool_use")')
   TOOL_NAME=$(echo "$TOOL_USE" | jq -r '.name')
@@ -539,9 +539,9 @@ echo "$RESPONSE" | jq -r '.content[] | select(.type == "text") | .text'
   
 ````bash
 #!/usr/bin/env bash
-# Ring 2: The agentic loop.
-# Uses jq for cross-turn message-array state — building an agentic loop in shell
-# requires JSON manipulation beyond ant's single-call --transform scope.
+# Ring 2: Loop agentik.
+# Menggunakan jq untuk state array pesan lintas giliran — membangun loop agentik di shell
+# memerlukan manipulasi JSON di luar cakupan --transform satu-panggilan milik ant.
 set -euo pipefail
 
 run_tool() {
@@ -554,15 +554,15 @@ run_tool() {
   fi
 }
 
-# Keep the full conversation history in a JSON array so each turn sees
-# prior context.
+# Simpan seluruh riwayat percakapan dalam array JSON agar setiap giliran melihat
+# konteks sebelumnya.
 MESSAGES='[{"role": "user", "content": "Schedule a weekly team standup every Monday at 9am for the next 4 weeks. Invite the whole team: alice@example.com, bob@example.com, carol@example.com."}]'
 
 call_api() {
-  # ant reads the request body as YAML on stdin: no auth headers, no
-  # hand-built JSON envelope. The static keys (model, tools, tool_choice)
-  # live in a quoted heredoc; the growing messages array is appended as
-  # JSON, which YAML accepts as flow syntax.
+  # ant membaca body permintaan sebagai YAML di stdin: tanpa header auth, tanpa
+  # amplop JSON buatan tangan. Kunci statis (model, tools, tool_choice)
+  # berada dalam heredoc yang di-quote; array messages yang terus bertambah ditambahkan sebagai
+  # JSON, yang diterima YAML sebagai sintaks flow.
   {
     cat <<'YAML'
 model: claude-opus-4-8
@@ -593,9 +593,9 @@ YAML
 
 RESPONSE=$(call_api)
 
-# Loop until Claude stops asking for tools. Each iteration runs the
-# requested tool, appends the result to history, and asks Claude to
-# continue.
+# Loop hingga Claude berhenti meminta alat. Setiap iterasi menjalankan
+# alat yang diminta, menambahkan hasilnya ke riwayat, dan meminta Claude untuk
+# melanjutkan.
 while [ "$(jq -r '.stop_reason' <<<"$RESPONSE")" = "tool_use" ]; do
   TOOL_USE=$(jq '.content[] | select(.type == "tool_use")' <<<"$RESPONSE")
   TOOL_NAME=$(jq -r '.name' <<<"$TOOL_USE")
@@ -622,7 +622,7 @@ jq -r '.content[] | select(.type == "text") | .text' <<<"$RESPONSE"
 
   
 ````python
-# Ring 2: The agentic loop.
+# Ring 2: Loop agentik.
 
 import json
 
@@ -664,7 +664,7 @@ def run_tool(name, tool_input):
     return {"error": f"Unknown tool: {name}"}
 
 
-# Keep the full conversation history in a list so each turn sees prior context.
+# Simpan seluruh riwayat percakapan dalam list agar setiap giliran melihat konteks sebelumnya.
 messages = [
     {
         "role": "user",
@@ -680,8 +680,8 @@ response = client.messages.create(
     messages=messages,
 )
 
-# Loop until Claude stops asking for tools. Each iteration runs the requested
-# tool, appends the result to history, and asks Claude to continue.
+# Ulangi hingga Claude berhenti meminta alat. Setiap iterasi menjalankan alat
+# yang diminta, menambahkan hasilnya ke riwayat, dan meminta Claude melanjutkan.
 while response.stop_reason == "tool_use":
     tool_use = next(block for block in response.content if block.type == "tool_use")
     result = run_tool(tool_use.name, tool_use.input)
@@ -714,7 +714,7 @@ print(final_text.text)
 
   
 ````typescript
-// Ring 2: The agentic loop.
+// Ring 2: Loop agentik.
 
 import Anthropic from "@anthropic-ai/sdk";
 
@@ -755,7 +755,7 @@ function runTool(name: string, input: Record<string, unknown>) {
   return { error: `Unknown tool: ${name}` };
 }
 
-// Keep the full conversation history so each turn sees prior context.
+// Simpan seluruh riwayat percakapan agar setiap giliran melihat konteks sebelumnya.
 const messages: Anthropic.MessageParam[] = [
   {
     role: "user",
@@ -772,8 +772,8 @@ let response = await client.messages.create({
   messages,
 });
 
-// Loop until Claude stops asking for tools. Each iteration runs the requested
-// tool, appends the result to history, and asks Claude to continue.
+// Ulangi hingga Claude berhenti meminta alat. Setiap iterasi menjalankan alat
+// yang diminta, menambahkan hasilnya ke riwayat, dan meminta Claude melanjutkan.
 while (response.stop_reason === "tool_use") {
   const toolUse = response.content.find(
     (block): block is Anthropic.ToolUseBlock => block.type === "tool_use",
@@ -816,7 +816,7 @@ for (const block of response.content) {
 I've set up your weekly team standup for the next 4 Mondays at 9am with Alice, Bob, and Carol invited.
 ```
 
-Loop ini mungkin berjalan sekali atau beberapa kali tergantung pada bagaimana Claude memecah tugas tersebut. Kode Anda tidak lagi perlu mengetahuinya di awal.
+Loop mungkin berjalan sekali atau beberapa kali tergantung pada bagaimana Claude memecah tugas tersebut. Kode Anda tidak lagi perlu mengetahuinya di awal.
 
 ## Lapisan 3: Beberapa alat, pemanggilan paralel \{#ring-3-multiple-tools-parallel-calls}
 
@@ -828,7 +828,7 @@ Ketika Claude memiliki beberapa pemanggilan alat independen yang perlu dilakukan
   
 ````bash
 #!/bin/bash
-# Ring 3: Multiple tools, parallel calls.
+# Ring 3: Beberapa alat, panggilan paralel.
 
 TOOLS='[
   {
@@ -888,8 +888,8 @@ call_api() {
 RESPONSE=$(call_api)
 
 while [ "$(echo "$RESPONSE" | jq -r '.stop_reason')" = "tool_use" ]; do
-  # A single response can contain multiple tool_use blocks. Process all of
-  # them and return all results together in one user message.
+  # Satu respons dapat berisi beberapa blok tool_use. Proses semuanya
+  # dan kembalikan semua hasilnya bersama dalam satu pesan user.
   TOOL_RESULTS='[]'
   while read -r block; do
     NAME=$(echo "$block" | jq -r '.name')
@@ -914,9 +914,9 @@ echo "$RESPONSE" | jq -r '.content[] | select(.type == "text") | .text'
   
 ````bash
 #!/usr/bin/env bash
-# Ring 3: Multiple tools, parallel calls.
-# Uses jq for cross-turn message-array state — building an agentic loop in shell
-# requires JSON manipulation beyond ant's single-call --transform scope.
+# Ring 3: Beberapa alat, panggilan paralel.
+# Menggunakan jq untuk state array pesan lintas giliran — membangun loop agentik di shell
+# memerlukan manipulasi JSON di luar cakupan --transform satu-panggilan milik ant.
 set -euo pipefail
 
 run_tool() {
@@ -934,10 +934,10 @@ run_tool() {
 MESSAGES='[{"role": "user", "content": "Check what I have next Monday, then schedule a planning session that avoids any conflicts."}]'
 
 call_api() {
-  # ant reads the request body as YAML on stdin: no auth headers, no
-  # hand-built JSON envelope. The static keys (model, tools) live in a
-  # quoted heredoc; the growing messages array is appended as JSON,
-  # which YAML accepts as flow syntax.
+  # ant membaca body permintaan sebagai YAML di stdin: tanpa header auth, tanpa
+  # amplop JSON buatan tangan. Kunci statis (model, tools) berada dalam
+  # heredoc yang di-quote; array messages yang terus bertambah ditambahkan sebagai JSON,
+  # yang diterima YAML sebagai sintaks flow.
   {
     cat <<'YAML'
 model: claude-opus-4-8
@@ -975,8 +975,8 @@ YAML
 RESPONSE=$(call_api)
 
 while [ "$(jq -r '.stop_reason' <<<"$RESPONSE")" = "tool_use" ]; do
-  # A single response can contain multiple tool_use blocks. Process all
-  # of them and return all results together in one user message.
+  # Satu respons dapat berisi beberapa blok tool_use. Proses semuanya
+  # dan kembalikan semua hasilnya bersama dalam satu pesan user.
   TOOL_RESULTS='[]'
   while read -r block; do
     NAME=$(jq -r '.name' <<<"$block")
@@ -1004,7 +1004,7 @@ jq -r '.content[] | select(.type == "text") | .text' <<<"$RESPONSE"
 
   
 ````python
-# Ring 3: Multiple tools, parallel calls.
+# Ring 3: Beberapa alat, panggilan paralel.
 
 import json
 
@@ -1074,8 +1074,8 @@ response = client.messages.create(
 )
 
 while response.stop_reason == "tool_use":
-    # A single response can contain multiple tool_use blocks. Process all of
-    # them and return all results together in one user message.
+    # Satu respons dapat berisi beberapa blok tool_use. Proses semuanya
+    # dan kembalikan semua hasilnya bersama dalam satu pesan user.
     tool_results = []
     for block in response.content:
         if block.type == "tool_use":
@@ -1104,7 +1104,7 @@ print(final_text.text)
 
   
 ````typescript
-// Ring 3: Multiple tools, parallel calls.
+// Ring 3: Beberapa alat, panggilan paralel.
 
 import Anthropic from "@anthropic-ai/sdk";
 
@@ -1177,8 +1177,8 @@ let response = await client.messages.create({
 });
 
 while (response.stop_reason === "tool_use") {
-  // A single response can contain multiple tool_use blocks. Process all of
-  // them and return all results together in one user message.
+  // Satu respons dapat berisi beberapa blok tool_use. Proses semuanya
+  // dan kembalikan semua hasilnya bersama dalam satu pesan pengguna.
   const toolResults: Anthropic.ToolResultBlockParam[] = [];
   for (const block of response.content) {
     if (block.type === "tool_use") {
@@ -1217,7 +1217,7 @@ for (const block of response.content) {
 I checked your calendar for next Monday and found an existing meeting from 2pm to 3pm. I've scheduled the planning session for 10am to 11am to avoid the conflict.
 ```
 
-Untuk informasi lebih lanjut tentang eksekusi bersamaan dan jaminan urutan, lihat [Penggunaan alat paralel](/docs/id/agents-and-tools/tool-use/parallel-tool-use).
+Untuk informasi lebih lanjut tentang eksekusi konkuren dan jaminan urutan, lihat [Penggunaan alat paralel](/docs/id/agents-and-tools/tool-use/parallel-tool-use).
 
 ## Lapisan 4: Penanganan error \{#ring-4-error-handling}
 
@@ -1227,7 +1227,7 @@ Alat bisa gagal. API kalender mungkin menolak acara dengan terlalu banyak pesert
   
 ````bash
 #!/bin/bash
-# Ring 4: Error handling.
+# Ring 4: Penanganan error.
 
 TOOLS='[
   {
@@ -1303,7 +1303,7 @@ while [ "$(echo "$RESPONSE" | jq -r '.stop_reason')" = "tool_use" ]; do
       TOOL_RESULTS=$(echo "$TOOL_RESULTS" | jq --arg id "$ID" --arg result "$OUTPUT" \
         '. + [{type: "tool_result", tool_use_id: $id, content: $result}]')
     else
-      # Signal failure so Claude can retry or ask for clarification.
+      # Sinyalkan kegagalan agar Claude dapat mencoba lagi atau meminta klarifikasi.
       TOOL_RESULTS=$(echo "$TOOL_RESULTS" | jq --arg id "$ID" --arg result "$OUTPUT" \
         '. + [{type: "tool_result", tool_use_id: $id, content: $result, is_error: true}]')
     fi
@@ -1323,9 +1323,9 @@ echo "$RESPONSE" | jq -r '.content[] | select(.type == "text") | .text'
   
 ````bash
 #!/usr/bin/env bash
-# Ring 4: Error handling.
-# Uses jq for cross-turn message-array state — building an agentic loop in shell
-# requires JSON manipulation beyond ant's single-call --transform scope.
+# Ring 4: Penanganan error.
+# Menggunakan jq untuk state array pesan lintas-giliran — membangun loop agentik di shell
+# memerlukan manipulasi JSON di luar cakupan --transform satu-panggilan milik ant.
 set -euo pipefail
 
 run_tool() {
@@ -1352,10 +1352,10 @@ MESSAGES=$(jq -n --arg msg "Schedule an all-hands with everyone: $EMAILS" \
   '[{role: "user", content: $msg}]')
 
 call_api() {
-  # ant reads the request body as YAML on stdin: no auth headers, no
-  # hand-built JSON envelope. The static keys (model, tools) live in a
-  # quoted heredoc; the growing messages array is appended as JSON,
-  # which YAML accepts as flow syntax.
+  # ant membaca body permintaan sebagai YAML di stdin: tanpa header auth, tanpa
+  # envelope JSON buatan tangan. Kunci statis (model, tools) berada dalam
+  # heredoc yang di-quote; array messages yang terus bertambah ditambahkan sebagai JSON,
+  # yang diterima YAML sebagai sintaks flow.
   {
     cat <<'YAML'
 model: claude-opus-4-8
@@ -1403,7 +1403,7 @@ while [ "$(jq -r '.stop_reason' <<<"$RESPONSE")" = "tool_use" ]; do
         '. + [{type: "tool_result", tool_use_id: $id, content: $result}]' \
         <<<"$TOOL_RESULTS")
     else
-      # Signal failure so Claude can retry or ask for clarification.
+      # Sinyalkan kegagalan agar Claude dapat mencoba lagi atau meminta klarifikasi.
       TOOL_RESULTS=$(jq --arg id "$ID" --arg result "$OUTPUT" \
         '. + [{type: "tool_result", tool_use_id: $id, content: $result, is_error: true}]' \
         <<<"$TOOL_RESULTS")
@@ -1426,7 +1426,7 @@ jq -r '.content[] | select(.type == "text") | .text' <<<"$RESPONSE"
 
   
 ````python
-# Ring 4: Error handling.
+# Ring 4: Penanganan error.
 
 import json
 
@@ -1507,7 +1507,7 @@ while response.stop_reason == "tool_use":
                     {"type": "tool_result", "tool_use_id": block.id, "content": json.dumps(result)}
                 )
             except Exception as exc:
-                # Signal failure so Claude can retry or ask for clarification.
+                # Sinyalkan kegagalan agar Claude dapat mencoba lagi atau meminta klarifikasi.
                 tool_results.append(
                     {
                         "type": "tool_result",
@@ -1533,7 +1533,7 @@ print(final_text.text)
 
   
 ````typescript
-// Ring 4: Error handling.
+// Ring 4: Penanganan error.
 
 import Anthropic from "@anthropic-ai/sdk";
 
@@ -1621,7 +1621,7 @@ while (response.stop_reason === "tool_use") {
           content: JSON.stringify(result),
         });
       } catch (err) {
-        // Signal failure so Claude can retry or ask for clarification.
+        // Sinyalkan kegagalan agar Claude dapat mencoba lagi atau meminta klarifikasi.
         toolResults.push({
           type: "tool_result",
           tool_use_id: block.id,
@@ -1662,41 +1662,41 @@ Flag `is_error` adalah satu-satunya perbedaan dari hasil yang berhasil. Claude m
 
 ## Lapisan 5: Abstraksi SDK Tool Runner \{#ring-5-the-tool-runner-sdk-abstraction}
 
-Lapisan 2 hingga 4 menulis loop yang sama secara manual: memanggil API, memeriksa `stop_reason`, menjalankan alat, menambahkan hasil, ulangi. Tool Runner melakukan ini untuk Anda. Definisikan setiap alat sebagai fungsi, berikan daftarnya ke `tool_runner`, dan ambil pesan akhir setelah loop selesai. Pembungkusan error, pemformatan hasil, dan manajemen percakapan ditangani secara internal.
+Lapisan 2 hingga 4 menulis loop yang sama secara manual: panggil API, periksa `stop_reason`, jalankan alat, tambahkan hasil, ulangi. Tool Runner melakukan ini untuk Anda. Definisikan setiap alat sebagai fungsi, berikan daftarnya ke `tool_runner`, dan ambil pesan akhir setelah loop selesai. Pembungkusan error, pemformatan hasil, dan manajemen percakapan ditangani secara internal.
 
-SDK Python menggunakan dekorator `@beta_tool` untuk menyimpulkan skema dari type hints dan docstring. SDK TypeScript menggunakan `betaZodTool` dengan skema Zod.
+SDK Python menggunakan dekorator `@beta_tool` untuk menyimpulkan skema dari type hint dan docstring. SDK TypeScript menggunakan `betaZodTool` dengan skema Zod.
 
 <Note>
-Tool Runner tersedia di SDK Python, TypeScript, dan Ruby. Tab cURL dan CLI menampilkan catatan alih-alih kode; tetap gunakan loop Lapisan 4 untuk skrip berbasis curl atau CLI.
+Tool Runner tersedia di ketujuh SDK: Python, TypeScript, C#, Go, Java, PHP, dan Ruby. Tutorial ini menunjukkan Python dan TypeScript; lihat [Tool Runner](/docs/id/agents-and-tools/tool-use/tool-runner) untuk bahasa lainnya. Tab cURL dan CLI menampilkan catatan alih-alih kode; tetap gunakan loop Lapisan 4 untuk skrip berbasis curl atau CLI.
 </Note>
 
 <CodeGroup>
   
 ````bash
 #!/bin/bash
-# Ring 5: The Tool Runner SDK abstraction.
+# Ring 5: Abstraksi Tool Runner SDK.
 
-# The Tool Runner SDK abstraction is available in the Python, TypeScript,
-# and Ruby SDKs. There is no equivalent for raw curl requests. Switch to
-# the Python or TypeScript tab to see Ring 5, or keep the Ring 4 loop as
-# your shell implementation.
+# Abstraksi Tool Runner SDK tersedia di SDK Python, TypeScript,
+# dan Ruby. Tidak ada padanan untuk permintaan curl mentah. Beralihlah ke
+# tab Python atau TypeScript untuk melihat Ring 5, atau pertahankan loop Ring 4
+# sebagai implementasi shell Anda.
 ````
 
   
 ````bash
 #!/usr/bin/env bash
-# Ring 5: The Tool Runner SDK abstraction.
+# Ring 5: Abstraksi Tool Runner SDK.
 set -euo pipefail
 
-# The Tool Runner SDK abstraction is available in the Python, TypeScript,
-# and Ruby SDKs. The ant CLI exposes the Messages API directly and has
-# no equivalent helper. Switch to the Python or TypeScript tab to see
-# Ring 5, or keep the Ring 4 loop as your CLI implementation.
+# Abstraksi Tool Runner SDK tersedia di SDK Python, TypeScript,
+# dan Ruby. CLI ant mengekspos Messages API secara langsung dan tidak
+# memiliki helper yang setara. Beralihlah ke tab Python atau TypeScript untuk melihat
+# Ring 5, atau pertahankan loop Ring 4 sebagai implementasi CLI Anda.
 ````
 
   
 ````python
-# Ring 5: The Tool Runner SDK abstraction.
+# Ring 5: Abstraksi Tool Runner SDK.
 
 import json
 
@@ -1757,7 +1757,7 @@ for block in final_message.content:
 
   
 ````typescript
-// Ring 5: The Tool Runner SDK abstraction.
+// Ring 5: Abstraksi Tool Runner SDK.
 
 import Anthropic from "@anthropic-ai/sdk";
 import { betaZodTool } from "@anthropic-ai/sdk/helpers/beta/zod";
@@ -1838,7 +1838,7 @@ Output-nya identik dengan Lapisan 3. Perbedaannya ada pada kode: kira-kira seten
 
 ## Apa yang telah Anda bangun \{#what-you-built}
 
-Anda memulai dengan satu pemanggilan alat yang di-hardcode dan berakhir dengan agen berbentuk produksi yang menangani beberapa alat, pemanggilan paralel, dan error, lalu meringkas semua itu ke dalam Tool Runner. Sepanjang proses, Anda telah melihat setiap bagian dari protokol penggunaan alat: blok `tool_use`, blok `tool_result`, pencocokan `tool_use_id`, pemeriksaan `stop_reason`, dan pensinyalan `is_error`.
+Anda memulai dengan satu pemanggilan alat yang di-hardcode dan berakhir dengan agen berbentuk produksi yang menangani beberapa alat, pemanggilan paralel, dan error, lalu meringkas semua itu ke dalam Tool Runner. Sepanjang proses, Anda melihat setiap bagian dari protokol penggunaan alat: blok `tool_use`, blok `tool_result`, pencocokan `tool_use_id`, pemeriksaan `stop_reason`, dan pensinyalan `is_error`.
 
 ## Langkah selanjutnya \{#next-steps}
 
@@ -1850,6 +1850,6 @@ Anda memulai dengan satu pemanggilan alat yang di-hardcode dan berakhir dengan a
     Referensi lengkap abstraksi SDK.
   </Card>
   <Card href="/docs/id/agents-and-tools/tool-use/troubleshooting-tool-use" title="Pemecahan masalah">
-    Perbaiki error umum dalam penggunaan alat.
+    Perbaiki error umum penggunaan alat.
   </Card>
 </CardGroup>

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/permissions
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: a138f2a11c6c5e56c5beb1c716963c4e12810f9280dd717fe9d1eb19e2aec163
+fetched_at: 2026-06-13T03:15:40.418428Z
+sha256: 51388649f872ff6bc6cca73fbac87b182fe79d89318f33db51921c79cd37984b
 ---
 
 > ## Documentation Index
@@ -249,7 +249,7 @@ A rule only matches files under its anchor, so the anchor determines how far a d
 | `Read(//**/.env)`               | any `.env` anywhere on the filesystem        | nothing; the rule is anchored at the filesystem root |
 
 <Note>
-  In gitignore patterns, `*` matches files in a single directory while `**` matches recursively across directories. To allow all file access, use just the tool name without parentheses: `Read`, `Edit`, or `Write`.
+  In gitignore patterns, `*` matches within a single path segment and can appear at any position in the pattern, while `**` matches across directories. To allow all file access, use just the tool name without parentheses: `Read`, `Edit`, or `Write`.
 </Note>
 
 When Claude accesses a symlink, permission rules check two paths: the symlink itself and the file it resolves to. Allow and deny rules treat that pair differently: allow rules fall back to prompting you, while deny rules block outright.
@@ -261,7 +261,13 @@ For example, with `Read(./project/**)` allowed and `Read(~/.ssh/**)` denied, a s
 
 ### WebFetch
 
-* `WebFetch(domain:example.com)` matches fetch requests to example.com
+WebFetch rules use a `domain:` prefix and match against the hostname of the requested URL. Matching is case-insensitive, supports `*` wildcards, and strips a trailing `.` from both the rule and the hostname so `example.com.` and `example.com` are treated the same.
+
+* `WebFetch(domain:example.com)` matches requests to `example.com`
+* `WebFetch(domain:*.example.com)` matches any subdomain at any depth, such as `api.example.com` or `a.b.example.com`, but not `example.com` itself
+* `WebFetch(domain:*)` matches every domain and is equivalent to a bare `WebFetch` rule
+
+A `*` matches across a `.` only as a leading `*.` or as the entire pattern. Elsewhere it stays within one label, so `WebFetch(domain:github.*)` matches `github.io` but not `github.evil.com`, a domain an attacker could register. When an exact rule and a wildcard rule in the same allow, ask, or deny list both match a hostname, the exact rule is the one matched. Evaluation order is unchanged: deny rules still run before ask and allow rules regardless of specificity.
 
 ### MCP
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/streaming
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: b1d577401dea10d41a900197358ec96baf2c9c19570d2437046335499876639e
+fetched_at: 2026-06-13T03:15:40.418428Z
+sha256: 35d85d38db29a2a122d1f53884b2f7ce81167d73c58955cf01ddbc464904ee5f
 ---
 
 # Streaming pesan
@@ -186,12 +186,12 @@ SDK [Python](https://github.com/anthropics/anthropic-sdk-python) dan [TypeScript
 
 ## Mendapatkan pesan akhir tanpa menangani event \{#get-the-final-message-without-handling-events}
 
-Jika Anda tidak perlu memproses teks saat teks tersebut tiba, SDK menyediakan cara untuk menggunakan streaming di balik layar sambil mengembalikan objek `Message` lengkap, identik dengan apa yang dikembalikan oleh `.create()`. Ini sangat berguna untuk permintaan dengan nilai `max_tokens` yang besar, di mana SDK memerlukan streaming untuk menghindari timeout HTTP.
+Jika Anda tidak perlu memproses teks saat teks tersebut tiba, SDK menyediakan cara untuk menggunakan streaming di balik layar sambil mengembalikan objek `Message` lengkap, identik dengan yang dikembalikan oleh `.create()`. Ini sangat berguna untuk permintaan dengan nilai `max_tokens` yang besar, di mana SDK mengharuskan streaming untuk menghindari timeout HTTP.
 
 <CodeGroup>
     ```bash CLI
     # Flag --stream pada CLI ant mengeluarkan satu event per baris dan tidak
-    # mengakumulasikannya menjadi Message akhir. Untuk generasi panjang, lakukan streaming
+    # mengakumulasikannya menjadi Message akhir. Untuk generasi panjang, stream
     # event mentahnya:
     ant messages create --stream --format jsonl <<'YAML'
     model: claude-opus-4-8
@@ -372,7 +372,7 @@ Jika Anda tidak perlu memproses teks saat teks tersebut tiba, SDK menyediakan ca
     ```
 </CodeGroup>
 
-Pemanggilan `.stream()` menjaga koneksi HTTP tetap aktif dengan server-sent events, kemudian `.get_final_message()` (Python) atau `.finalMessage()` (TypeScript) mengakumulasi semua event dan mengembalikan objek `Message` lengkap. Di Go, Anda memanggil `message.Accumulate(event)` di dalam loop stream untuk membangun `Message` lengkap yang sama. Di Java, gunakan `MessageAccumulator.create()` dan panggil `accumulator.accumulate(event)` pada setiap event. Di Ruby, panggil `.accumulated_message` pada stream. Di SDK PHP, Anda melakukan iterasi pada event stream secara manual untuk mengakumulasi respons.
+Pemanggilan `.stream()` menjaga koneksi HTTP tetap aktif dengan server-sent events, kemudian `.get_final_message()` (Python) atau `.finalMessage()` (TypeScript) mengakumulasi semua event dan mengembalikan objek `Message` lengkap. Di Go, Anda memanggil `message.Accumulate(event)` di dalam loop stream untuk membangun `Message` lengkap yang sama. Di Java, gunakan `MessageAccumulator.create()` dan panggil `accumulator.accumulate(event)` pada setiap event. Di C#, gunakan await pada extension method `.Aggregate()` milik stream untuk mendapatkan `Message` lengkap, atau berikan `MessageContentAggregator` ke `.CollectAsync()` untuk mengagregasi sambil menangani event. Di Ruby, panggil `.accumulated_message` pada stream. Di SDK PHP, Anda melakukan iterasi atas event stream secara manual untuk mengakumulasi respons.
 
 ## Tipe event \{#event-types}
 
@@ -386,7 +386,7 @@ Setiap stream menggunakan alur event berikut:
 4. Event `message_stop` terakhir.
 
   <Warning>
-  Jumlah token yang ditampilkan di field `usage` dari event `message_delta` bersifat *kumulatif*.
+  Jumlah token yang ditampilkan di field `usage` pada event `message_delta` bersifat *kumulatif*.
   </Warning>
 
 ### Event ping \{#ping-events}
@@ -395,7 +395,7 @@ Stream event juga dapat menyertakan sejumlah event `ping`.
 
 ### Event error \{#error-events}
 
-API terkadang dapat mengirimkan [error](/docs/id/api/errors) dalam stream event. Misalnya, selama periode penggunaan tinggi, Anda mungkin menerima `overloaded_error`, yang biasanya akan sesuai dengan HTTP 529 dalam konteks non-streaming:
+API terkadang dapat mengirim [error](/docs/id/api/errors) dalam stream event. Misalnya, selama periode penggunaan tinggi, Anda mungkin menerima `overloaded_error`, yang biasanya akan sesuai dengan HTTP 529 dalam konteks non-streaming:
 
 ```sse Example error
 event: error
@@ -418,18 +418,18 @@ event: content_block_delta
 data: {"type": "content_block_delta","index": 0,"delta": {"type": "text_delta", "text": "ello frien"}}
 ```
 
-### Delta JSON input \{#input-json-delta}
+### Delta input JSON \{#input-json-delta}
 
 Delta untuk blok konten `tool_use` sesuai dengan pembaruan untuk field `input` dari blok tersebut. Untuk mendukung granularitas maksimum, delta tersebut adalah _string JSON parsial_, sedangkan `tool_use.input` akhir selalu berupa _objek_.
 
-Anda dapat mengakumulasi delta string dan mem-parse JSON setelah Anda menerima event `content_block_stop`, dengan menggunakan library seperti [Pydantic](https://docs.pydantic.dev/latest/concepts/json/#partial-json-parsing) untuk melakukan parsing JSON parsial, atau dengan menggunakan [SDK](/docs/id/cli-sdks-libraries/overview), yang menyediakan helper untuk mengakses nilai inkremental yang telah di-parse.
+Anda dapat mengakumulasi delta string dan mem-parse JSON setelah Anda menerima event `content_block_stop`, dengan menggunakan library seperti [Pydantic](https://docs.pydantic.dev/latest/concepts/json/#partial-json-parsing) untuk melakukan parsing JSON parsial, atau dengan menggunakan [SDK](/docs/id/cli-sdks-libraries/overview), yang menyediakan helper untuk mengakses nilai inkremental yang sudah di-parse.
 
 Delta blok konten `tool_use` terlihat seperti:
 ```sse Input JSON delta
 event: content_block_delta
 data: {"type": "content_block_delta","index": 1,"delta": {"type": "input_json_delta","partial_json": "{\"location\": \"San Fra"}}}
 ```
-Catatan: Model saat ini hanya mendukung pengiriman satu properti key dan value lengkap dari `input` pada satu waktu. Oleh karena itu, saat menggunakan alat, mungkin ada jeda antara event streaming saat model sedang bekerja. Setelah key dan value `input` terakumulasi, keduanya dikirim sebagai beberapa event `content_block_delta` dengan json parsial yang dipecah sehingga format tersebut dapat secara otomatis mendukung granularitas yang lebih halus pada model mendatang.
+Catatan: Model saat ini hanya mendukung pengiriman satu properti key dan value lengkap dari `input` pada satu waktu. Oleh karena itu, saat menggunakan alat, mungkin ada jeda antara event streaming saat model sedang bekerja. Setelah key dan value `input` terakumulasi, keduanya dikirim sebagai beberapa event `content_block_delta` dengan JSON parsial yang dipecah-pecah sehingga format tersebut dapat secara otomatis mendukung granularitas yang lebih halus pada model di masa mendatang.
 
 ### Delta thinking \{#thinking-delta}
 
@@ -684,7 +684,7 @@ data: {"type": "message_stop"}
 Penggunaan alat mendukung [fine-grained streaming](/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming) untuk nilai parameter. Aktifkan per alat dengan `eager_input_streaming`.
 </Tip>
 
-Permintaan ini meminta Claude untuk menggunakan alat guna melaporkan cuaca.
+Permintaan ini meminta Claude untuk menggunakan alat untuk melaporkan cuaca.
 
 <CodeGroup>
 ```bash cURL
@@ -1711,20 +1711,20 @@ data: {"type":"message_stop"}
 
 ### Claude 4.5 dan sebelumnya \{#claude-4-5-and-earlier}
 
-Untuk model Claude 4.5 dan sebelumnya, Anda dapat memulihkan permintaan streaming yang terputus karena masalah jaringan, timeout, atau error lainnya dengan melanjutkan dari titik di mana stream terputus. Pendekatan ini menghemat Anda dari memproses ulang seluruh respons.
+Untuk model Claude 4.5 dan sebelumnya, Anda dapat memulihkan permintaan streaming yang terputus karena masalah jaringan, timeout, atau error lainnya dengan melanjutkan dari titik di mana stream terputus. Pendekatan ini menghindarkan Anda dari memproses ulang seluruh respons.
 
-Strategi pemulihan dasar melibatkan:
+Strategi pemulihan dasar meliputi:
 
 1. **Tangkap respons parsial:** Simpan semua konten yang berhasil diterima sebelum error terjadi
-2. **Buat permintaan lanjutan:** Buat permintaan API baru yang menyertakan respons asisten parsial sebagai awal dari pesan asisten baru
+2. **Buat permintaan lanjutan:** Buat permintaan API baru yang menyertakan respons assistant parsial sebagai awal dari pesan assistant baru
 3. **Lanjutkan streaming:** Lanjutkan menerima sisa respons dari titik di mana respons terputus
 
 ### Claude 4.6 dan setelahnya \{#claude-4-6-and-later}
 
-Untuk model Claude 4.6 dan setelahnya, strategi tangkap-dan-lanjutkan yang sama berlaku, tetapi langkah 2 berubah: alih-alih menempatkan respons parsial dalam pesan asisten, tambahkan pesan pengguna yang menginstruksikan model untuk melanjutkan dari titik terakhirnya.
+Untuk model Claude 4.6 dan setelahnya, strategi tangkap-dan-lanjutkan yang sama berlaku, tetapi langkah 2 berubah: alih-alih menempatkan respons parsial dalam pesan assistant, tambahkan pesan user yang menginstruksikan model untuk melanjutkan dari titik terakhir.
 
 1. **Tangkap respons parsial:** Simpan semua konten yang berhasil diterima sebelum error terjadi
-2. **Buat permintaan lanjutan:** Buat permintaan API baru dengan pesan pengguna yang berisi respons parsial dan instruksi untuk melanjutkan, misalnya:
+2. **Buat permintaan lanjutan:** Buat permintaan API baru dengan pesan user yang berisi respons parsial dan instruksi untuk melanjutkan, misalnya:
    ```text Sample prompt
    Your previous response was interrupted and ended with [previous_response]. Continue from where you left off.
    ```

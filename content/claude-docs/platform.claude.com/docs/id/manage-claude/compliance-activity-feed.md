@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: ea3df31036a659cdc268f64147d34a0a941fb3d5484d991e95f2140d5191d0c2
+fetched_at: 2026-06-13T03:15:40.418428Z
+sha256: 78cf1f1c3d527184ca4e09ba7bd916270493173aa9f5dc5101a115271fa973c6
 ---
 
 # Mengkueri Activity Feed
@@ -12,19 +12,13 @@ Mengambil, memfilter, dan melakukan paginasi pada Activity Feed Compliance API o
 ---
 
 <Note>
-  Compliance API diaktifkan berdasarkan permintaan. Organisasi Claude Enterprise memiliki akses ke API lengkap; organisasi Claude Console hanya memiliki akses ke [Activity Feed](/docs/id/manage-claude/compliance-activity-feed). Lihat [Mendapatkan akses ke Compliance API](/docs/id/manage-claude/compliance-api-access).
-</Note>
-:
-    same wording, but "Activity Feed (this page)" as plain text so this page
-    doesn't link to itself. Keep in sync with content/en/_snippets/compliance-api-availability.mdx. */}
-<Note>
-  Compliance API diaktifkan berdasarkan permintaan. Organisasi Claude Enterprise memiliki akses ke API lengkap; organisasi Claude Console hanya memiliki akses ke Activity Feed (halaman ini). Lihat [Mendapatkan akses ke Compliance API](/docs/id/manage-claude/compliance-api-access).
+  Untuk mengaktifkan Compliance API, lihat [Mendapatkan akses ke Compliance API](/docs/id/manage-claude/compliance-api-access).
 </Note>
 
 <Check>
-  **Scope yang diperlukan:** `read:compliance_activities` pada Compliance Access Key atau Admin API key.
+  **Scope yang diperlukan:** `read:compliance_activities` pada Compliance Access Key atau kunci Admin API.
 
-  Baik Compliance Access Key (`sk-ant-api01-...`) yang membawa scope ini maupun Admin API key (`sk-ant-admin01-...`) dapat memanggil Activity Feed. Lihat [Mendapatkan akses ke Compliance API](/docs/id/manage-claude/compliance-api-access) untuk kondisi di mana setiap jenis kunci membawa scope tersebut.
+  Baik Compliance Access Key (`sk-ant-api01-...`) yang membawa scope ini maupun kunci Admin API (`sk-ant-admin01-...`) dapat memanggil Activity Feed. Lihat [Mendapatkan akses ke Compliance API](/docs/id/manage-claude/compliance-api-access) untuk mengetahui kondisi di mana setiap jenis kunci membawa scope tersebut.
 </Check>
 
 Activity Feed mencatat setiap tindakan autentikasi, chat, file, proyek, administratif, dan platform yang terjadi di organisasi Anda, dalam urutan kronologis terbalik. Aktivitas dapat dikueri dalam waktu 1 menit setelah terjadi dan disimpan selama 6 tahun.
@@ -84,27 +78,27 @@ Activity Feed menghasilkan ratusan jenis aktivitas yang berbeda. Lihat [Query co
 
 ## Melakukan paginasi hasil \{#paginate-results}
 
-Aktivitas dikembalikan dengan yang terbaru terlebih dahulu, dengan nilai `created_at` yang sama diurutkan berdasarkan ID aktivitas, dan dibatasi hingga `limit` hasil dalam setiap respons (default 100, maksimum 5.000). Lihat [referensi API](/docs/id/api/compliance/activities/list) untuk skema respons lengkap.
+Aktivitas dikembalikan dengan urutan terbaru lebih dulu, dengan nilai `created_at` yang sama diurutkan berdasarkan ID aktivitas, dan dibatasi hingga `limit` hasil di setiap respons (default 100, maksimum 5.000). Lihat [referensi API](/docs/id/api/compliance/activities/list) untuk skema respons lengkap.
 
 Compliance API menggunakan dua skema paginasi tergantung pada kelompok endpoint:
 
 | Kelompok endpoint | Urutan pengurutan | Skema | Parameter |
 | :---- | :---- | :---- | :---- |
-| Activities | Terbaru terlebih dahulu | Cursor | `after_id`, `before_id` (dikembalikan sebagai `first_id`, `last_id`) |
-| Chats dan chat messages | Terlama terlebih dahulu | Cursor | `after_id`, `before_id` (dikembalikan sebagai `first_id`, `last_id`) |
+| Activities | Terbaru lebih dulu | Cursor | `after_id`, `before_id` (dikembalikan sebagai `first_id`, `last_id`) |
+| Chats dan chat messages | Terlama lebih dulu | Cursor | `after_id`, `before_id` (dikembalikan sebagai `first_id`, `last_id`) |
 | Projects, project attachments, users, roles, role permissions, groups, group members | Spesifik per endpoint | Page token | `page` (dikembalikan sebagai `next_page`) |
 
 Organizations dan files tidak menggunakan paginasi: [List organizations](/docs/id/manage-claude/compliance-org-data#list-organizations) mengembalikan semua hasil dalam satu respons, dan file diambil secara individual berdasarkan ID.
 
-Cursor paginasi dan page token adalah string opaque: kirimkan kembali tanpa perubahan. Format internalnya tidak stabil, dan mem-parsing-nya akan menyebabkan kerusakan tanpa pemberitahuan. Hanya satu dari `after_id` atau `before_id` yang boleh diatur dalam setiap permintaan, dan kedua skema mengembalikan `has_more` sehingga Anda tahu kapan harus berhenti.
+Cursor paginasi dan page token adalah string opaque: kirimkan kembali tanpa perubahan. Format internalnya tidak stabil, dan mem-parsing-nya akan menyebabkan kerusakan tanpa pemberitahuan. Hanya salah satu dari `after_id` atau `before_id` yang boleh diatur dalam setiap permintaan, dan kedua skema mengembalikan `has_more` sehingga Anda tahu kapan harus berhenti.
 
-Untuk melakukan paging melalui aktivitas:
+Untuk melakukan paginasi pada aktivitas:
 
-- Berikan `last_id` dari respons sebagai `after_id` untuk maju ke halaman berikutnya dalam urutan hasil. Dengan aktivitas yang diurutkan dari yang terbaru, halaman berikutnya berisi entri yang lebih lama.
+- Berikan `last_id` dari respons sebagai `after_id` untuk maju ke halaman berikutnya dalam urutan hasil. Dengan aktivitas yang diurutkan terbaru lebih dulu, halaman berikutnya berisi entri yang lebih lama.
 - Berikan `first_id` sebagai `before_id` untuk kembali ke halaman sebelumnya.
 - Berhenti ketika `has_more` bernilai `false`.
 
-Parameter cursor menentukan arah halaman; urutan pengurutan endpoint menentukan arah waktu. Parameter `after_id` yang sama menjangkau aktivitas yang lebih lama di sini. Chats diurutkan dari yang terlama; lihat [Mengambil dan menghapus chat, file, dan proyek](/docs/id/manage-claude/compliance-content-data) untuk semantik cursor di sana.
+Parameter cursor menentukan arah halaman; urutan pengurutan endpoint menentukan arah waktu. Parameter `after_id` yang sama di sini mencapai aktivitas yang lebih lama. Chats diurutkan terlama lebih dulu; lihat [Mengambil dan menghapus chat, file, dan proyek](/docs/id/manage-claude/compliance-content-data) untuk semantik cursor di sana.
 
 <Note>
   **Cursor aman untuk digunakan kembali saat retry.** Cursor atau page token dari
@@ -121,7 +115,7 @@ last_id=$(curl --fail-with-body -sS \
   "https://api.anthropic.com/v1/compliance/activities?limit=2" \
   --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" | jq -er '.last_id')
 
-# Kirim kembali kursor tersebut tanpa perubahan untuk mengambil halaman berikutnya (yang lebih lama).
+# Kirim kembali kursor tersebut tanpa perubahan untuk mengambil halaman berikutnya (lebih lama).
 curl --fail-with-body -sS -G \
   "https://api.anthropic.com/v1/compliance/activities" \
   --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY" \
@@ -130,13 +124,13 @@ curl --fail-with-body -sS -G \
 ```
 </CodeGroup>
 
-Loop **backfill** produksi melakukan paging melalui aktivitas yang lebih lama dengan menjalankan iterasi berdasarkan `has_more` dan `last_id`:
+Loop **backfill** produksi melakukan paginasi melalui aktivitas yang lebih lama dengan menjalankan iterasi berdasarkan `has_more` dan `last_id`:
 
 1. Mulai dari cursor yang Anda simpan (atau hilangkan `after_id` untuk memulai dari awal).
-2. Lakukan paging dengan `after_id=<last_id>` hingga `has_more` bernilai `false`.
+2. Lakukan paginasi dengan `after_id=<last_id>` hingga `has_more` bernilai `false`.
 3. Simpan `last_id` terakhir hanya setelah Anda menyimpan setiap halaman yang dicakupnya.
 
-```text
+```text nowrap
 cursor = stored_cursor
 loop:
   if cursor is not null:
@@ -169,16 +163,16 @@ Field `actor` adalah discriminated union. Diskriminator `type` memberi tahu Anda
 | `actor.type` | Kapan muncul | Field utama |
 | :---- | :---- | :---- |
 | `user_actor` | Pengguna claude.ai atau Claude Console yang sudah masuk melakukan tindakan tersebut. | `email_address`, `user_id`, `ip_address`, `user_agent` |
-| `api_actor` | Sebuah permintaan memanggil Claude API atau Compliance API dengan kunci API yang diterbitkan pelanggan. Panggilan Compliance API menghasilkan jenis aktor ini baik untuk Compliance Access Key maupun Admin API key. | `api_key_id`, `ip_address`, `user_agent` |
-| `admin_api_key_actor` | Admin organisasi menggunakan Admin API key untuk mengelola pengguna, undangan, workspace, atau kunci API. | `admin_api_key_id` |
-| `unauthenticated_user_actor` | Tindakan terjadi sebelum proses masuk selesai, misalnya `sso_login_initiated`. | `unauthenticated_email_address`, `ip_address`, `user_agent` |
-| `anthropic_actor` | Anthropic bertindak atas organisasi, misalnya melalui tooling internal. | `email_address` (selalu `null`; ada untuk konsistensi bentuk dengan `user_actor`, karena operator Anthropic tidak direpresentasikan oleh email individual) |
+| `api_actor` | Sebuah permintaan memanggil Claude API atau Compliance API dengan kunci API yang diterbitkan pelanggan. Panggilan Compliance API menghasilkan jenis aktor ini baik untuk Compliance Access Key maupun kunci Admin API. | `api_key_id`, `ip_address`, `user_agent` |
+| `admin_api_key_actor` | Admin organisasi menggunakan kunci Admin API untuk mengelola pengguna, undangan, workspace, atau kunci API. | `admin_api_key_id` |
+| `unauthenticated_user_actor` | Sebuah tindakan terjadi sebelum proses masuk selesai, misalnya `sso_login_initiated`. | `unauthenticated_email_address`, `ip_address`, `user_agent` |
+| `anthropic_actor` | Anthropic bertindak pada organisasi, misalnya melalui tooling internal. | `email_address` (selalu `null`; ada untuk konsistensi bentuk dengan `user_actor`, karena operator Anthropic tidak direpresentasikan oleh email individual) |
 | `scim_directory_sync_actor` | Penyedia identitas (seperti Okta, Microsoft Entra ID, atau JumpCloud) mendorong perubahan melalui sinkronisasi direktori SCIM. | `workos_event_id`, `directory_id`, `idp_connection_type` (nullable; misalnya `OktaSCIMV2`, `AzureSCIMV2`) |
 
 <Note>
   **Bangun handler yang kompatibel ke depan.** Teruskan nilai `type` dan
-  `actor.type` yang tidak dikenali, dan abaikan field yang tidak diharapkan oleh handler Anda, sehingga
-  integrasi Anda tetap berfungsi ketika jenis aktivitas baru dirilis.
+  `actor.type` yang tidak dikenali, dan abaikan field yang tidak diharapkan oleh handler Anda,
+  sehingga integrasi Anda tetap berfungsi ketika jenis aktivitas baru dirilis.
 </Note>
 
 ## Langkah selanjutnya \{#next-steps}
@@ -193,7 +187,7 @@ Field `actor` adalah discriminated union. Diskriminator `type` memberi tahu Anda
   <Card title="Merancang integrasi compliance Anda" href="/docs/id/manage-claude/compliance-integration-patterns">
     Pilih pola konsumsi polling atau batch dan rencanakan korelasi SIEM.
   </Card>
-  <Card title="Menangani kesalahan Compliance API" href="/docs/id/manage-claude/compliance-errors">
-    Katalog kesalahan lengkap.
+  <Card title="Menangani error Compliance API" href="/docs/id/manage-claude/compliance-errors">
+    Katalog error lengkap.
   </Card>
 </CardGroup>

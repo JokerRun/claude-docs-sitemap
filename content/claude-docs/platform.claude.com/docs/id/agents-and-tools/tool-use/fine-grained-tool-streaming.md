@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 5e5b033b909214dc127d25338d0ff9ebc8313abbfde987662ad1f4a42f1e3215
+fetched_at: 2026-06-13T03:15:40.418428Z
+sha256: 0a866d55b1b8ac344071ab6fd4e7b929104f70edffc7dbb7243a15b85ccd5e9a
 ---
 
 # Streaming alat terperinci
@@ -15,10 +15,10 @@ Lakukan streaming input alat tanpa buffering JSON di sisi server untuk aplikasi 
 Fitur ini memenuhi syarat untuk [Zero Data Retention (ZDR)](/docs/id/build-with-claude/api-and-data-retention). Ketika organisasi Anda memiliki pengaturan ZDR, data yang dikirim melalui fitur ini tidak disimpan setelah respons API dikembalikan.
 </Note>
 
-"Fine-grained tool streaming" (streaming alat terperinci) tersedia pada semua model dan semua platform. Fitur ini memungkinkan [streaming](/docs/id/build-with-claude/streaming) nilai parameter penggunaan alat tanpa buffering atau validasi JSON, sehingga mengurangi "latency" (latensi) untuk mulai menerima parameter berukuran besar.
+"Fine-grained tool streaming" (streaming alat terperinci) tersedia di semua model dan semua platform. Fitur ini memungkinkan [streaming](/docs/id/build-with-claude/streaming) nilai parameter penggunaan alat tanpa buffering atau validasi JSON, sehingga mengurangi latensi untuk mulai menerima parameter berukuran besar.
 
 <Warning>
-Saat menggunakan streaming alat terperinci, Anda mungkin menerima input JSON yang tidak valid atau parsial. Pastikan untuk menangani kasus-kasus khusus ini dalam kode Anda.
+Saat menggunakan streaming alat terperinci, Anda berpotensi menerima input JSON yang tidak valid atau parsial. Pastikan untuk memperhitungkan kasus-kasus khusus ini dalam kode Anda.
 </Warning>
 
 ## Cara menggunakan streaming alat terperinci \{#how-to-use-fine-grained-tool-streaming}
@@ -461,15 +461,15 @@ Dengan streaming alat terperinci, potongan input alat mulai tiba lebih cepat kar
 </Note>
 
 <Warning>
-Karena streaming terperinci mengirim parameter tanpa buffering atau validasi JSON, tidak ada jaminan bahwa stream yang dihasilkan akan selesai dalam bentuk string JSON yang valid.
+Karena streaming terperinci mengirimkan parameter tanpa buffering atau validasi JSON, tidak ada jaminan bahwa stream yang dihasilkan akan selesai dalam bentuk string JSON yang valid.
 Khususnya, jika [stop reason](/docs/id/build-with-claude/handling-stop-reasons) `max_tokens` tercapai, stream mungkin berakhir di tengah-tengah parameter dan mungkin tidak lengkap. Anda umumnya harus menulis penanganan khusus untuk menangani kasus ketika `max_tokens` tercapai.
 </Warning>
 
 ## Mengakumulasi delta input alat \{#accumulating-tool-input-deltas}
 
-Ketika blok konten `tool_use` di-streaming, event `content_block_start` awal berisi `input: {}` (objek kosong). Ini adalah placeholder. Input sebenarnya tiba sebagai serangkaian event `input_json_delta`, masing-masing membawa fragmen string `partial_json`. Untuk menyusun input lengkap, gabungkan fragmen-fragmen ini dan parse hasilnya ketika blok ditutup.
+Ketika blok konten `tool_use` di-stream, event `content_block_start` awal berisi `input: {}` (objek kosong). Ini adalah placeholder. Input yang sebenarnya tiba sebagai serangkaian event `input_json_delta`, masing-masing membawa fragmen string `partial_json`. Untuk menyusun input lengkap, gabungkan fragmen-fragmen ini dan parse hasilnya ketika blok ditutup.
 
-Jika SDK Anda menyediakan helper akumulator (seperti yang digunakan dalam contoh pertama di halaman ini), helper tersebut menangani hal ini untuk Anda. Pola manual ditujukan untuk SDK tanpa helper, atau ketika Anda perlu bereaksi terhadap input parsial sebelum blok ditutup.
+Jika SDK Anda menyediakan helper akumulator (seperti yang digunakan dalam contoh pertama di halaman ini), helper tersebut akan menangani ini untuk Anda. Pola manual ditujukan untuk SDK tanpa helper, atau ketika Anda perlu bereaksi terhadap input parsial sebelum blok ditutup.
 
 Kontrak akumulasi:
 
@@ -590,8 +590,8 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
   };
 
   // Indeks blok -> fragmen JSON yang terakumulasi
-  // SDK C# saat ini tidak menyediakan akumulator stream untuk input alat;
-  // pola manual yang ditunjukkan di sini adalah pendekatan yang didukung.
+  // Contoh ini mengakumulasi delta secara manual untuk menunjukkan stream mentah;
+  // MessageContentAggregator dari SDK juga dapat mengakumulasi input alat secara otomatis.
   var toolInputs = new Dictionary<long, StringBuilder>();
 
   await foreach (var streamEvent in client.Messages.CreateStreaming(parameters))
@@ -865,7 +865,7 @@ Saat menggunakan streaming alat terperinci, Anda mungkin menerima JSON yang tida
 Pendekatan ini membantu model memahami bahwa konten tersebut adalah JSON yang tidak valid sambil mempertahankan data asli yang rusak untuk keperluan debugging.
 
 <Note>
-Saat membungkus JSON yang tidak valid, pastikan untuk melakukan escape dengan benar pada tanda kutip atau karakter khusus apa pun dalam string JSON yang tidak valid untuk mempertahankan struktur JSON yang valid pada objek pembungkus.
+Saat membungkus JSON yang tidak valid, pastikan untuk melakukan escape dengan benar pada tanda kutip atau karakter khusus apa pun dalam string JSON yang tidak valid tersebut untuk menjaga struktur JSON yang valid pada objek pembungkus.
 </Note>
 
 ## Langkah selanjutnya \{#next-steps}

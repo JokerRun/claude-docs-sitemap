@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/define-outcomes
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: d501c2736f68a2caead5f9061b4f0aa2c90057832c188c6d9bff3d5bd28aeed8
+fetched_at: 2026-06-13T03:15:40.418428Z
+sha256: c926a04be3fc72a20a72e5c7336b53e8f2898859d5c2d4c94dfea7c7732a3c66
 ---
 
 # Mendefinisikan hasil
@@ -157,7 +157,7 @@ Setelah membuat sesi, kirim event `user.define_outcome`. Agen segera mulai beker
 <CodeGroup>
   
 ````bash
-# Create a session
+# Buat sebuah sesi
 session=$(curl -fsSL https://api.anthropic.com/v1/sessions \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
@@ -172,7 +172,7 @@ EOF
 )
 session_id=$(jq -r '.id' <<<"$session")
 
-# Define the outcome — agent starts working on receipt
+# Definisikan hasil — agen mulai bekerja saat menerimanya
 curl -fsSL "https://api.anthropic.com/v1/sessions/$session_id/events" \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
@@ -189,41 +189,41 @@ curl -fsSL "https://api.anthropic.com/v1/sessions/$session_id/events" \
   ]
 }
 EOF
-# or: "rubric": {"type": "file", "file_id": "$rubric_id"}
-# "max_iterations" is optional; default 3, max 20
+# atau: "rubric": {"type": "file", "file_id": "$rubric_id"}
+# "max_iterations" bersifat opsional; default 3, maks 20
 ````
 
   
 ````bash
-# Create a session
+# Buat sesi
 SESSION_ID=$(ant beta:sessions create \
   --agent "$AGENT_ID" \
   --environment-id "$ENVIRONMENT_ID" \
   --title "Financial analysis on Costco" \
   --transform id --raw-output)
 
-# Define the outcome — agent starts working on receipt
+# Tentukan hasil — agen mulai bekerja saat menerima
 ant beta:sessions:events send \
   --session-id "$SESSION_ID" <<YAML
 events:
   - type: user.define_outcome
     description: Build a DCF model for Costco in .xlsx
     rubric: {type: file, file_id: $RUBRIC_ID}
-    # or: rubric: {type: text, content: "..."}
+    # atau: rubric: {type: text, content: "..."}
     max_iterations: 5  # optional; default 3, max 20
 YAML
 ````
 
   
 ````python
-# Create a session
+# Buat sesi
 session = client.beta.sessions.create(
     agent=agent.id,
     environment_id=environment.id,
     title="Financial analysis on Costco",
 )
 
-# Define the outcome — agent starts working on receipt
+# Definisikan hasil — agen mulai bekerja saat menerimanya
 client.beta.sessions.events.send(
     session_id=session.id,
     events=[
@@ -231,7 +231,7 @@ client.beta.sessions.events.send(
             "type": "user.define_outcome",
             "description": "Build a DCF model for Costco in .xlsx",
             "rubric": {"type": "text", "content": RUBRIC},
-            # or: "rubric": {"type": "file", "file_id": rubric.id},
+            # atau: "rubric": {"type": "file", "file_id": rubric.id},
             "max_iterations": 5,  # optional; default 3, max 20
         }
     ],
@@ -240,21 +240,21 @@ client.beta.sessions.events.send(
 
   
 ````typescript
-// Create a session
+// Buat sesi
 const session = await client.beta.sessions.create({
   agent: agent.id,
   environment_id: environment.id,
   title: "Financial analysis on Costco",
 });
 
-// Define the outcome — agent starts working on receipt
+// Definisikan hasil — agen mulai bekerja saat menerima
 await client.beta.sessions.events.send(session.id, {
   events: [
     {
       type: "user.define_outcome",
       description: "Build a DCF model for Costco in .xlsx",
       rubric: { type: "text", content: RUBRIC },
-      // or: rubric: { type: "file", file_id: rubric.id },
+      // atau: rubric: { type: "file", file_id: rubric.id },
       max_iterations: 5, // optional; default 3, max 20
     },
   ],
@@ -263,7 +263,7 @@ await client.beta.sessions.events.send(session.id, {
 
   
 ````csharp
-// Create a session
+// Buat sesi
 var session = await client.Beta.Sessions.Create(new()
 {
     Agent = agent.ID,
@@ -271,7 +271,7 @@ var session = await client.Beta.Sessions.Create(new()
     Title = "Financial analysis on Costco",
 });
 
-// Define the outcome — agent starts working on receipt
+// Tentukan hasil — agen mulai bekerja saat diterima
 await client.Beta.Sessions.Events.Send(session.ID, new()
 {
     Events =
@@ -281,7 +281,7 @@ await client.Beta.Sessions.Events.Send(session.ID, new()
             Type = "user.define_outcome",
             Description = "Build a DCF model for Costco in .xlsx",
             Rubric = new BetaManagedAgentsTextRubricParams { Type = "text", Content = Rubric },
-            // or: Rubric = new BetaManagedAgentsFileRubricParams { Type = "file", FileID = rubric.ID },
+            // atau: Rubric = new BetaManagedAgentsFileRubricParams { Type = "file", FileID = rubric.ID },
             MaxIterations = 5, // optional; default 3, max 20
         },
     ],
@@ -290,7 +290,7 @@ await client.Beta.Sessions.Events.Send(session.ID, new()
 
   
 ````go
-// Create a session
+// Buat sesi
 session, err := client.Beta.Sessions.New(ctx, anthropic.BetaSessionNewParams{
 	Agent: anthropic.BetaSessionNewParamsAgentUnion{
 		OfString: anthropic.String(agent.ID),
@@ -302,7 +302,7 @@ if err != nil {
 	panic(err)
 }
 
-// Define the outcome — agent starts working on receipt
+// Definisikan hasil — agen mulai bekerja saat menerimanya
 _, err = client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
 	Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
 		OfUserDefineOutcome: &anthropic.BetaManagedAgentsUserDefineOutcomeEventParams{
@@ -310,7 +310,7 @@ _, err = client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSession
 			Rubric: anthropic.BetaManagedAgentsUserDefineOutcomeEventParamsRubricUnion{
 				OfText: &anthropic.BetaManagedAgentsTextRubricParams{Content: rubric},
 			},
-			// or: OfFile: &anthropic.BetaManagedAgentsFileRubricParams{FileID: uploaded.ID},
+			// atau: OfFile: &anthropic.BetaManagedAgentsFileRubricParams{FileID: uploaded.ID},
 			MaxIterations: anthropic.Int(5), // optional; default 3, max 20
 		},
 	}},
@@ -322,7 +322,7 @@ if err != nil {
 
   
 ````java
-// Create a session
+// Buat sesi
 var session = client.beta().sessions().create(
     SessionCreateParams.builder()
         .agent(agent.id())
@@ -330,14 +330,14 @@ var session = client.beta().sessions().create(
         .title("Financial analysis on Costco")
         .build());
 
-// Define the outcome — agent starts working on receipt
+// Definisikan hasil — agen mulai bekerja saat diterima
 client.beta().sessions().events().send(
     session.id(),
     EventSendParams.builder()
         .addEvent(BetaManagedAgentsUserDefineOutcomeEventParams.builder()
             .description("Build a DCF model for Costco in .xlsx")
             .rubric(BetaManagedAgentsTextRubricParams.builder().content(RUBRIC).build())
-            // or: .rubric(BetaManagedAgentsFileRubricParams.builder().fileId(rubric.id()).build())
+            // atau: .rubric(BetaManagedAgentsFileRubricParams.builder().fileId(rubric.id()).build())
             .maxIterations(5) // optional; default 3, max 20
             .build())
         .build());
@@ -345,14 +345,14 @@ client.beta().sessions().events().send(
 
   
 ````php
-// Create a session
+// Buat sesi
 $session = $client->beta->sessions->create(
     agent: $agent->id,
     environmentID: $environment->id,
     title: 'Financial analysis on Costco',
 );
 
-// Define the outcome — agent starts working on receipt
+// Definisikan hasil — agen mulai bekerja saat diterima
 $client->beta->sessions->events->send(
     $session->id,
     events: [
@@ -360,7 +360,7 @@ $client->beta->sessions->events->send(
             'type' => 'user.define_outcome',
             'description' => 'Build a DCF model for Costco in .xlsx',
             'rubric' => ['type' => 'text', 'content' => $rubricText],
-            // or: 'rubric' => ['type' => 'file', 'file_id' => $rubric->id],
+            // atau: 'rubric' => ['type' => 'file', 'file_id' => $rubric->id],
             'max_iterations' => 5, // optional; default 3, max 20
         ],
     ],
@@ -369,14 +369,14 @@ $client->beta->sessions->events->send(
 
   
 ````ruby
-# Create a session
+# Buat sebuah sesi
 session = client.beta.sessions.create(
   agent: agent.id,
   environment_id: environment.id,
   title: "Financial analysis on Costco"
 )
 
-# Define the outcome — agent starts working on receipt
+# Definisikan hasil — agen mulai bekerja saat menerimanya
 client.beta.sessions.events.send_(
   session.id,
   events: [
@@ -384,7 +384,7 @@ client.beta.sessions.events.send_(
       type: "user.define_outcome",
       description: "Build a DCF model for Costco in .xlsx",
       rubric: {type: "text", content: RUBRIC},
-      # or: rubric: {type: "file", file_id: rubric.id},
+      # atau: rubric: {type: "file", file_id: rubric.id},
       max_iterations: 5 # optional; default 3, max 20
     }
   ]
@@ -548,7 +548,7 @@ var retrieved = client.beta().sessions().retrieve(session.id());
 
 for (var outcome : retrieved.outcomeEvaluations()) {
     IO.println(outcome.outcomeId() + ": " + outcome.result());
-    // outc_01a...: satisfied
+    // outc_01a...: terpenuhi
 }
 ````
 
@@ -558,7 +558,7 @@ $session = $client->beta->sessions->retrieve($session->id);
 
 foreach ($session->outcomeEvaluations as $outcome) {
     echo "{$outcome->outcomeID}: {$outcome->result}\n";
-    // outc_01a...: satisfied
+    // outc_01a...: terpenuhi
 }
 ````
 
@@ -581,14 +581,14 @@ Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Setelah se
 <CodeGroup>
   
 ````bash
-# List files produced by this session
+# Daftar file yang dihasilkan oleh sesi ini
 files=$(curl -fsSL "https://api.anthropic.com/v1/files?scope_id=$session_id" \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
   -H "anthropic-beta: managed-agents-2026-04-01")
 jq -r '.data[] | "\(.id) \(.filename)"' <<<"$files"
 
-# Download a file
+# Unduh sebuah file
 file_id=$(jq -r '.data[0].id // empty' <<<"$files")
 if [[ -n $file_id ]]; then
   curl -fsSL "https://api.anthropic.com/v1/files/$file_id/content" \
@@ -601,10 +601,10 @@ fi
 
   
 ````bash
-# List files produced by this session
+# Daftar file yang dihasilkan oleh sesi ini
 ant beta:files list --scope-id "$SESSION_ID"
 
-# Download a file
+# Unduh file
 FILE_ID=$(ant beta:files list --scope-id "$SESSION_ID" \
   --transform 'data[0].id' --raw-output)
 if [[ -n $FILE_ID ]]; then
@@ -614,12 +614,12 @@ fi
 
   
 ````python
-# List files produced by this session
+# Daftar file yang dihasilkan oleh sesi ini
 files = client.beta.files.list(scope_id=session.id)
 for f in files:
     print(f.id, f.filename)
 
-# Download a file
+# Unduh sebuah file
 if files.data:
     content = client.beta.files.download(files.data[0].id)
     content.write_to_file("/tmp/output.txt")
@@ -627,13 +627,13 @@ if files.data:
 
   
 ````typescript
-// List files produced by this session
+// Daftar file yang dihasilkan oleh sesi ini
 const files = await client.beta.files.list({ scope_id: session.id });
 for (const f of files.data) {
   console.log(f.id, f.filename);
 }
 
-// Download a file
+// Unduh file
 if (files.data.length > 0) {
   const content = await client.beta.files.download(files.data[0].id);
   await writeFile("/tmp/output.txt", new Uint8Array(await content.arrayBuffer()));
@@ -642,14 +642,14 @@ if (files.data.length > 0) {
 
   
 ````csharp
-// List files produced by this session
+// Daftar file yang dihasilkan oleh sesi ini
 var files = await client.Beta.Files.List(new() { ScopeID = session.ID });
 foreach (var file in files.Data)
 {
     Console.WriteLine($"{file.ID} {file.Filename}");
 }
 
-// Download a file
+// Unduh file
 if (files.Data.Count > 0)
 {
     var content = await client.Beta.Files.Download(files.Data[0].ID);
@@ -659,9 +659,9 @@ if (files.Data.Count > 0)
 
   
 ````go
-// List files produced by this session
+// Daftar file yang dihasilkan oleh sesi ini
 files, err := client.Beta.Files.List(ctx, anthropic.BetaFileListParams{
-	// pass ScopeID: anthropic.String(session.ID) to filter
+	// berikan ScopeID: anthropic.String(session.ID) untuk memfilter
 })
 if err != nil {
 	panic(err)
@@ -670,7 +670,7 @@ for _, file := range files.Data {
 	fmt.Println(file.ID, file.Filename)
 }
 
-// Download a file
+// Unduh file
 if len(files.Data) > 0 {
 	resp, err := client.Beta.Files.Download(ctx, files.Data[0].ID, anthropic.BetaFileDownloadParams{})
 	if err != nil {
@@ -689,14 +689,14 @@ if len(files.Data) > 0 {
 
   
 ````java
-// List files produced by this session
+// Daftar file yang dihasilkan oleh sesi ini
 var files = client.beta().files().list(
     FileListParams.builder()/* pass .scopeId(session.id()) to filter */.build());
 for (var file : files.data()) {
     IO.println(file.id() + " " + file.filename());
 }
 
-// Download a file
+// Unduh file
 if (!files.data().isEmpty()) {
     try (HttpResponse response = client.beta().files().download(files.data().getFirst().id())) {
         try (InputStream body = response.body()) {
@@ -708,13 +708,13 @@ if (!files.data().isEmpty()) {
 
   
 ````php
-// List files produced by this session
+// Daftar file yang dihasilkan oleh sesi ini
 $files = $client->beta->files->list(/* pass scopeID: $session->id to filter */);
 foreach ($files->data as $file) {
     echo "{$file->id} {$file->filename}\n";
 }
 
-// Download a file
+// Unduh file
 if (count($files->data) > 0) {
     $content = $client->beta->files->download($files->data[0]->id);
     file_put_contents('/tmp/output.txt', $content);
@@ -723,11 +723,11 @@ if (count($files->data) > 0) {
 
   
 ````ruby
-# List files produced by this session
+# Daftar file yang dihasilkan oleh sesi ini
 files = client.beta.files.list(scope_id: session.id)
 files.data.each { puts "#{it.id} #{it.filename}" }
 
-# Download a file
+# Unduh sebuah file
 if (first = files.data.first)
   content = client.beta.files.download(first.id)
   File.binwrite("/tmp/output.txt", content.read)

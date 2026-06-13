@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/embeddings
-fetched_at: 2026-06-11T03:14:59.596724Z
-sha256: 9acfad8d45cc084e4ea4461e2f5acf737d42f264321a34934796708e83fd0a89
+fetched_at: 2026-06-13T03:15:40.418428Z
+sha256: c0b10435d8eb2a375d809bbc4e68c34919d8b25ce65888c08594657635cb3fa5
 ---
 
 # Embeddings
 
-Text embeddings adalah representasi numerik dari teks yang memungkinkan pengukuran kemiripan semantik. Panduan ini memperkenalkan embeddings, aplikasinya, dan cara menggunakan model embedding untuk tugas seperti pencarian, rekomendasi, dan deteksi anomali.
+Text embeddings adalah representasi numerik dari teks yang memungkinkan pengukuran kemiripan semantik. Panduan ini memperkenalkan embeddings, aplikasinya, dan cara menggunakan model embedding untuk tugas-tugas seperti pencarian, rekomendasi, dan deteksi anomali.
 
 ---
 
@@ -21,9 +21,9 @@ Saat memilih penyedia embeddings, ada beberapa faktor yang dapat Anda pertimbang
 
 ## Cara mendapatkan embeddings dengan Anthropic \{#how-to-get-embeddings-with-anthropic}
 
-Anthropic tidak menawarkan model embedding sendiri. Salah satu penyedia embeddings yang memiliki beragam opsi dan kemampuan yang mencakup semua pertimbangan di atas adalah Voyage AI.
+Anthropic tidak menawarkan model embedding sendiri. Salah satu penyedia embeddings yang memiliki berbagai macam opsi dan kemampuan yang mencakup semua pertimbangan di atas adalah Voyage AI.
 
-Voyage AI membuat model embedding mutakhir dan menawarkan model yang dikustomisasi untuk domain industri tertentu seperti keuangan dan kesehatan, atau model yang di-fine-tune secara khusus untuk pelanggan individu.
+Voyage AI membuat model embedding mutakhir dan menawarkan model yang disesuaikan untuk domain industri tertentu seperti keuangan dan kesehatan, atau model yang di-fine-tune secara khusus untuk pelanggan individual.
 
 Sisa panduan ini ditujukan untuk Voyage AI, tetapi Anda sebaiknya mengevaluasi berbagai vendor embeddings untuk menemukan yang paling sesuai dengan kasus penggunaan spesifik Anda.
 
@@ -89,7 +89,7 @@ import voyageai
 
 vo = voyageai.Client()
 # Ini akan secara otomatis menggunakan variabel lingkungan VOYAGE_API_KEY.
-# Alternatifnya, Anda dapat menggunakan vo = voyageai.Client(api_key="<your secret key>")
+# Alternatifnya, Anda dapat menggunakan vo = voyageai.Client(api_key="<kunci rahasia Anda>")
 
 texts = ["Sample text 1", "Sample text 2"]
 
@@ -109,9 +109,9 @@ Saat membuat embeddings, Anda dapat menentukan beberapa argumen lain ke fungsi `
 
 Untuk informasi lebih lanjut tentang package Python Voyage, lihat [dokumentasi Voyage](https://docs.voyageai.com/docs/embeddings#python-api).
 
-### HTTP API Voyage \{#voyage-http-api}
+### Voyage HTTP API \{#voyage-http-api}
 
-Anda juga dapat memperoleh embeddings dengan mengirim permintaan ke HTTP API Voyage. Misalnya, Anda dapat mengirim permintaan HTTP melalui perintah `curl` di terminal:
+Anda juga dapat memperoleh embeddings dengan mengirim permintaan ke Voyage HTTP API. Misalnya, Anda dapat mengirim permintaan HTTP melalui perintah `curl` di terminal:
 
 ```bash cURL
 curl https://api.voyageai.com/v1/embeddings \
@@ -145,7 +145,7 @@ Respons yang akan Anda dapatkan adalah objek JSON yang berisi embeddings dan pen
 }
 ```
 
-Untuk informasi lebih lanjut tentang HTTP API Voyage, lihat [dokumentasi Voyage](https://docs.voyageai.com/reference/embeddings-api).
+Untuk informasi lebih lanjut tentang Voyage HTTP API, lihat [dokumentasi Voyage](https://docs.voyageai.com/reference/embeddings-api).
 
 ### AWS Marketplace \{#aws-marketplace}
 
@@ -179,7 +179,7 @@ vo = voyageai.Client()
 doc_embds = vo.embed(documents, model="voyage-4", input_type="document").embeddings
 ```
 
-Embeddings memungkinkan Anda melakukan pencarian / retrieval semantik di ruang vektor. Diberikan contoh query,
+Embeddings memungkinkan Anda melakukan pencarian / retrieval semantik di ruang vektor. Diberikan contoh kueri,
 
 ```python
 query = "When is Apple's conference call scheduled?"
@@ -202,9 +202,9 @@ retrieved_id = np.argmax(similarities)
 print(documents[retrieved_id])
 ```
 
-Perhatikan bahwa `input_type="document"` dan `input_type="query"` digunakan untuk meng-embed dokumen dan query, secara berurutan. Spesifikasi lebih lanjut dapat ditemukan di [Library Python Voyage](/docs/id/build-with-claude/embeddings#voyage-python-library).
+Perhatikan bahwa `input_type="document"` dan `input_type="query"` digunakan untuk meng-embed dokumen dan kueri, secara berurutan. Spesifikasi lebih lanjut dapat ditemukan di [Library Python Voyage](/docs/id/build-with-claude/embeddings#voyage-python-library).
 
-Output-nya akan berupa dokumen ke-5, yang memang paling relevan dengan query:
+Output-nya akan berupa dokumen ke-5, yang memang paling relevan dengan kueri:
 
 ```text
 Apple's conference call to discuss fourth fiscal quarter results and business updates is scheduled for Thursday, November 2, 2023 at 2:00 p.m. PT / 5:00 p.m. ET.
@@ -233,7 +233,7 @@ Jika Anda mencari kumpulan cookbook terperinci tentang cara melakukan RAG dengan
     - `voyage-4-lite`: Latensi dan biaya terendah
     - `voyage-4`: Performa seimbang
 
-    Untuk retrieval, gunakan parameter `input_type` untuk menentukan apakah teks adalah tipe query atau dokumen.
+    Untuk retrieval, gunakan parameter `input_type` untuk menentukan apakah teks adalah tipe kueri atau dokumen.
 
     Model spesifik domain:
 
@@ -243,9 +243,9 @@ Jika Anda mencari kumpulan cookbook terperinci tentang cara melakukan RAG dengan
   
 </section>
 
-  <section title="Fungsi kemiripan mana yang harus saya gunakan?">
+  <section title="Fungsi similaritas mana yang harus saya gunakan?">
 
-    Anda dapat menggunakan embeddings Voyage dengan dot-product similarity, cosine similarity, atau Euclidean distance. Penjelasan tentang kemiripan embedding dapat ditemukan di [panduan kemiripan vektor](https://www.pinecone.io/learn/vector-similarity/) ini.
+    Anda dapat menggunakan embeddings Voyage dengan dot-product similarity, cosine similarity, atau Euclidean distance. Penjelasan tentang similaritas embedding dapat ditemukan di [panduan vector similarity](https://www.pinecone.io/learn/vector-similarity/) ini.
 
     Embeddings Voyage AI dinormalisasi ke panjang 1, yang berarti bahwa:
 
@@ -262,17 +262,17 @@ Jika Anda mencari kumpulan cookbook terperinci tentang cara melakukan RAG dengan
 
   <section title="Kapan dan bagaimana saya harus menggunakan parameter input_type?">
 
-    Untuk semua tugas dan kasus penggunaan retrieval (misalnya, RAG), gunakan parameter `input_type` untuk menentukan apakah teks input adalah query atau dokumen. Jangan menghilangkan `input_type` atau mengatur `input_type=None`. Menentukan apakah teks input adalah query atau dokumen dapat menciptakan representasi vektor padat yang lebih baik untuk retrieval, yang dapat menghasilkan kualitas retrieval yang lebih baik.
+    Untuk semua tugas dan kasus penggunaan retrieval (misalnya, RAG), gunakan parameter `input_type` untuk menentukan apakah teks input adalah kueri atau dokumen. Jangan menghilangkan `input_type` atau mengatur `input_type=None`. Menentukan apakah teks input adalah kueri atau dokumen dapat menciptakan representasi vektor padat yang lebih baik untuk retrieval, yang dapat menghasilkan kualitas retrieval yang lebih baik.
 
-    Saat menggunakan parameter `input_type`, prompt khusus ditambahkan di awal teks input sebelum di-embed. Secara spesifik:
+    Saat menggunakan parameter `input_type`, prompt khusus ditambahkan di awal teks input sebelum embedding. Secara spesifik:
 
     > 📘 **Prompt yang terkait dengan `input_type`**
     >
-    > - Untuk query, prompt-nya adalah “Represent the query for retrieving supporting documents: “.
-    > - Untuk dokumen, prompt-nya adalah “Represent the document for retrieval: “.
+    > - Untuk kueri, prompt-nya adalah "Represent the query for retrieving supporting documents: ".
+    > - Untuk dokumen, prompt-nya adalah "Represent the document for retrieval: ".
     > - Contoh
-    >     - Ketika `input_type="query"`, query seperti "When is Apple's conference call scheduled?" akan menjadi "**Represent the query for retrieving supporting documents:** When is Apple's conference call scheduled?"
-    >     - Ketika `input_type="document"`, query seperti "Apple's conference call to discuss fourth fiscal quarter results and business updates is scheduled for Thursday, November 2, 2023 at 2:00 p.m. PT / 5:00 p.m. ET." akan menjadi "**Represent the document for retrieval:** Apple's conference call to discuss fourth fiscal quarter results and business updates is scheduled for Thursday, November 2, 2023 at 2:00 p.m. PT / 5:00 p.m. ET."
+    >     - Ketika `input_type="query"`, kueri seperti "When is Apple's conference call scheduled?" akan menjadi "**Represent the query for retrieving supporting documents:** When is Apple's conference call scheduled?"
+    >     - Ketika `input_type="document"`, kueri seperti "Apple's conference call to discuss fourth fiscal quarter results and business updates is scheduled for Thursday, November 2, 2023 at 2:00 p.m. PT / 5:00 p.m. ET." akan menjadi "**Represent the document for retrieval:** Apple's conference call to discuss fourth fiscal quarter results and business updates is scheduled for Thursday, November 2, 2023 at 2:00 p.m. PT / 5:00 p.m. ET."
 
     `voyage-large-2-instruct`, seperti namanya, dilatih untuk responsif terhadap instruksi tambahan yang ditambahkan di awal teks input. Untuk klasifikasi, clustering, atau subtugas [MTEB](https://huggingface.co/mteb) lainnya, silakan gunakan [instruksi voyage-large-2-instruct](https://github.com/voyage-ai/voyage-large-2-instruct).
   
@@ -284,7 +284,7 @@ Jika Anda mencari kumpulan cookbook terperinci tentang cara melakukan RAG dengan
 
     - `float`: Setiap embedding yang dikembalikan adalah daftar angka floating-point presisi tunggal 32-bit (4-byte). Ini adalah default dan memberikan presisi / akurasi retrieval tertinggi.
     - `int8` dan `uint8`: Setiap embedding yang dikembalikan adalah daftar integer 8-bit (1-byte) dengan rentang masing-masing dari -128 hingga 127 dan 0 hingga 255.
-    - `binary` dan `ubinary`: Setiap embedding yang dikembalikan adalah daftar integer 8-bit yang merepresentasikan nilai embedding single-bit terkuantisasi yang di-bit-pack: `int8` untuk `binary` dan `uint8` untuk `ubinary`. Panjang daftar integer yang dikembalikan adalah 1/8 dari dimensi sebenarnya dari embedding. Tipe binary menggunakan metode offset binary, yang dapat Anda pelajari lebih lanjut di FAQ di bawah ini.
+    - `binary` dan `ubinary`: Setiap embedding yang dikembalikan adalah daftar integer 8-bit yang merepresentasikan nilai embedding single-bit yang dikuantisasi dan dikemas dalam bit: `int8` untuk `binary` dan `uint8` untuk `ubinary`. Panjang daftar integer yang dikembalikan adalah 1/8 dari dimensi sebenarnya dari embedding. Tipe binary menggunakan metode offset binary, yang dapat Anda pelajari lebih lanjut di FAQ di bawah ini.
 
     > **Contoh kuantisasi biner**
     >
@@ -296,7 +296,7 @@ Jika Anda mencari kumpulan cookbook terperinci tentang cara melakukan RAG dengan
 
   <section title="Bagaimana cara memotong embeddings Matryoshka?">
 
-    Matryoshka learning menciptakan embeddings dengan representasi kasar-ke-halus dalam satu vektor. Model Voyage, seperti `voyage-code-3`, yang mendukung beberapa dimensi output menghasilkan embeddings Matryoshka tersebut. Anda dapat memotong vektor-vektor ini dengan mempertahankan subset dimensi terdepan. Misalnya, kode Python berikut mendemonstrasikan cara memotong vektor 1024 dimensi menjadi 256 dimensi:
+    Matryoshka learning menciptakan embeddings dengan representasi kasar-ke-halus dalam satu vektor. Model Voyage, seperti `voyage-code-3`, yang mendukung beberapa dimensi output menghasilkan embeddings Matryoshka tersebut. Anda dapat memotong vektor-vektor ini dengan mempertahankan subset dimensi terdepan. Misalnya, kode Python berikut mendemonstrasikan cara memotong vektor 1024-dimensi menjadi 256 dimensi:
 
     
     ```python nocheck

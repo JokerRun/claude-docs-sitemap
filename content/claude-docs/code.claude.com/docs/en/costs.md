@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/costs
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 8f0ba05de97cf5da00849f127f371fc829f864cf982be5719c935a009c5e8c2c
+fetched_at: 2026-06-13T03:15:40.418428Z
+sha256: 2ce5e496b716e68f05b47d7ac6129adf335998e01950b497347c4b321b7957da
 ---
 
 > ## Documentation Index
@@ -37,6 +37,8 @@ Total code changes:    0 lines added, 0 lines removed
 ```
 
 On a Pro, Max, Team, or Enterprise plan, `/usage` also shows a breakdown of what counts against your plan limits. It attributes recent usage to skills, subagents, plugins, and individual MCP servers, with each shown as a percentage of the total. Press `d` or `w` to switch between the last 24 hours and the last 7 days. The figures are approximate and computed from local session history on this machine, so usage from other devices or claude.ai is not included.
+
+In the [VS Code extension](/en/vs-code#check-account-and-usage), the same breakdown appears in the Account & usage dialog with a Day and Week toggle. Requires Claude Code v2.1.174 or later.
 
 ## Managing costs for teams
 

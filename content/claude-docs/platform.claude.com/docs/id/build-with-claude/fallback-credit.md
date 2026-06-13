@@ -1,21 +1,21 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/fallback-credit
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 771d1631bbe6eb504c683ab44ac2f85cb0041bee35cc7e354966053ae826a65e
+fetched_at: 2026-06-13T03:15:40.418428Z
+sha256: 727cdbd64bb773cc992b789f6b335bb1c5d5cc563404fc9c3094f1bbd1aa3476
 ---
 
 # Kredit fallback
 
-Hindari membayar biaya cache prompt dua kali ketika Anda mencoba ulang permintaan Claude Fable 5 yang ditolak pada model lain.
+Hindari membayar biaya cache prompt dua kali saat Anda mencoba ulang permintaan Claude Fable 5 yang ditolak pada model lain.
 
 ---
 
-Cache prompt bersifat per-model. Ketika Claude Fable 5 menolak sebuah permintaan dan Anda mencoba ulang pada model lain, prefiks percakapan yang sudah di-cache untuk Claude Fable 5 harus ditulis ke dalam cache model baru dari awal, dan penulisan cache lebih mahal daripada pembacaan cache. Kredit fallback menghilangkan biaya tambahan tersebut: penolakan membawa token kredit, Anda menyertakan kembali token tersebut pada percobaan ulang, dan percobaan ulang ditagih seolah-olah percakapan telah berada di model baru sejak awal.
+Cache prompt bersifat per-model. Ketika Claude Fable 5 menolak sebuah permintaan dan Anda mencoba ulang pada model lain, prefiks percakapan yang sudah di-cache untuk Claude Fable 5 harus ditulis ke dalam cache model baru dari awal. Penulisan cache lebih mahal daripada pembacaan cache. Kredit fallback menghilangkan biaya tambahan tersebut. Penolakan membawa token kredit, Anda menyertakan kembali token tersebut pada percobaan ulang, dan percobaan ulang ditagih seolah-olah percakapan telah berada di model baru sejak awal.
 
 Anda memerlukan halaman ini hanya ketika Anda membangun percobaan ulang sendiri: pada SDK Ruby atau PHP, melalui HTTP mentah, atau dengan logika percobaan ulang kustom. [Fallback sisi server](/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback) dan [middleware SDK](/docs/id/build-with-claude/refusals-and-fallback#client-side-fallback) menerapkan kredit fallback secara otomatis. Jika Anda menggunakan salah satunya, lewati halaman ini.
 
-[Penolakan dan fallback](/docs/id/build-with-claude/refusals-and-fallback) membahas cara mendeteksi penolakan dan memilih pendekatan fallback. [Caching prompt](/docs/id/build-with-claude/prompt-caching) menjelaskan pembacaan cache dan penulisan cache jika istilah tersebut masih baru bagi Anda.
+[Penolakan dan fallback](/docs/id/build-with-claude/refusals-and-fallback) membahas cara mendeteksi penolakan dan memilih pendekatan fallback. [Caching prompt](/docs/id/build-with-claude/prompt-caching) menjelaskan pembacaan cache dan penulisan cache jika istilah-istilah tersebut baru bagi Anda.
 
 ## Alur dasar \{#the-basic-flow}
 
@@ -24,10 +24,15 @@ Anda memerlukan halaman ini hanya ketika Anda membangun percobaan ulang sendiri:
     Kirim permintaan yang mungkin ditolak dengan header `anthropic-beta: fallback-credit-2026-06-01`. Header `server-side-fallback-2026-06-01` juga memberikan field yang sama.
   </Step>
   <Step title="Baca dua field dari penolakan">
-    Pada penolakan, `stop_details` menyertakan `fallback_credit_token`, sebuah string opaque yang merepresentasikan kredit, dan `fallback_has_prefill_claim`, sebuah Boolean yang memberi tahu Anda bentuk body percobaan ulang mana yang harus digunakan. Keduanya bernilai `null` ketika tidak ada kredit yang tersedia untuk penolakan tersebut.
+    Pada penolakan, `stop_details` menyertakan dua field:
+
+    - **`fallback_credit_token`:** string opaque yang merepresentasikan kredit.
+    - **`fallback_has_prefill_claim`:** Boolean yang memberi tahu Anda bentuk body percobaan ulang mana yang harus digunakan.
+
+    Keduanya bernilai `null` ketika tidak ada kredit yang tersedia untuk penolakan tersebut.
   </Step>
   <Step title="Bangun percobaan ulang">
-    Mulai dari body permintaan yang ditolak. Atur `model` ke model fallback dan tambahkan token sebagai parameter `fallback_credit_token` tingkat atas. Pilih bentuk body dari tabel di bawah.
+    Mulai dari body permintaan yang ditolak. Atur `model` ke model fallback dan tambahkan token sebagai parameter `fallback_credit_token` tingkat atas. Pilih bentuk body dari tabel di bawah ini.
   </Step>
   <Step title="Kirim percobaan ulang dengan header yang sama">
     Kirim percobaan ulang dengan header beta `fallback-credit-2026-06-01` yang sama. Percobaan ulang memerlukan header tersebut untuk menukarkan token.
@@ -43,7 +48,7 @@ Field `fallback_has_prefill_claim` memberi tahu Anda apakah percobaan ulang dapa
 
 ## Contoh \{#example}
 
-Contoh di bawah ini membuat permintaan yang mungkin ditolak, menukarkan token kredit pada percobaan ulang terhadap Claude Opus 4.8, dan menurunkan tingkatannya melalui tangga penolakan yang dibahas dalam [Ketika percobaan ulang ditolak](#ketika-percobaan-ulang-ditolak).
+Contoh berikut membuat permintaan yang mungkin ditolak dan menukarkan token kredit pada percobaan ulang terhadap Claude Opus 4.8. Ketika upaya percobaan ulang ditolak, contoh ini menurun melalui tangga penolakan: urutan bentuk percobaan ulang yang semakin sederhana yang dibahas dalam [Ketika percobaan ulang ditolak](#ketika-percobaan-ulang-ditolak).
 
 <CodeGroup>
 ```bash cURL hidelines={1..2}
@@ -138,11 +143,11 @@ if (
     and (token := details.fallback_credit_token)
 ):
     exact_body = request | {"fallback_credit_token": token}
-    # Utamakan bentuk kelanjutan kecuali klaimnya False
+    # Utamakan bentuk kelanjutan kecuali klaimnya bernilai False
     if details.fallback_has_prefill_claim is not False:
         # Gemakan konten penolakan, hapus spasi kosong di akhir dari
         # blok teks terakhir (validator prefill menolaknya; pencocokan sisi server
-        # menoleransi editan ini). Permintaan yang memakai alat juga menghilangkan
+        # mentoleransi editan ini). Permintaan yang memakai alat juga menghilangkan
         # blok tool_use tak berpasangan, lalu hapus lagi spasi kosong setelah penghilangan.
         echoed = [block.model_dump() for block in response.content]
         match echoed:
@@ -163,7 +168,7 @@ if (
         if "redemption temporarily unavailable" in str(error):
             raise  # Transient: retry with the token within its five-minute window
         try:
-            # Kembali ke isi yang tidak diubah, tetap dengan token tersebut
+            # Kembali ke isi yang tidak diubah, tetap dengan tokennya
             response = send("claude-opus-4-8", exact_body)
         except BadRequestError as error:
             if "redemption temporarily unavailable" in str(error):
@@ -202,15 +207,15 @@ if (
     fallback_credit_token
   };
 
-  // Bentuk terkaya dulu, menurun pada setiap penolakan: bentuk kelanjutan
+  // Bentuk terkaya dulu, menurun pada tiap penolakan: bentuk kelanjutan
   // (kecuali klaimnya salah), body tak berubah yang masih membawa
-  // token, dan akhirnya melepaskan token.
+  // token, dan terakhir melepaskan token.
   let attempt = exactRetry;
   if (fallback_has_prefill_claim !== false) {
-    // Gemakan konten penolakan sebagai giliran asisten, hapus spasi kosong
+    // Gemakan konten penolakan sebagai giliran asisten, hapus spasi
     // di akhir blok teks terakhir (validator prefill menolaknya;
-    // pencocokan sisi server menoleransi editan). Permintaan dengan alat juga
-    // menghilangkan blok tool_use tak berpasangan, lalu hapus spasi lagi setelahnya.
+    // pencocokan sisi server menoleransi edit ini). Permintaan dengan alat juga
+    // menghapus blok tool_use tak berpasangan, lalu strip ulang setelahnya.
     const finalIndex = response.content.length - 1;
     const echoed: Anthropic.Beta.BetaContentBlockParam[] = response.content.map(
       (block, index) =>
@@ -228,7 +233,7 @@ if (
     response = await client.beta.messages.create(attempt);
   } catch (error) {
     // Turunkan hanya pada 400 terkait bentuk. "redemption temporarily
-    // unavailable" bersifat sementara: coba ulang dengan cara yang sama dalam
+    // unavailable" bersifat sementara: coba ulang dengan cara sama dalam
     // jendela lima menit token tersebut.
     if (
       !(error instanceof Anthropic.BadRequestError) ||
@@ -290,7 +295,7 @@ if (
         // Gemakan konten penolakan, hapus spasi kosong di akhir dari
         // blok teks terakhir (validator prefill menolaknya; pencocokan
         // menoleransi editan ini). Permintaan yang memakai alat juga menghilangkan
-        // blok tool_use tak berpasangan, lalu hapus lagi spasi kosong setelah penghilangan.
+        // blok tool_use yang tidak berpasangan, lalu hapus lagi spasi kosong setelah penghilangan.
         var echoed = JsonNode.Parse(response.RawData["content"].GetRawText())!.AsArray();
         if (
             echoed is [.., JsonObject lastBlock]
@@ -326,13 +331,13 @@ if (
     {
         try
         {
-            // Kembali ke body yang tidak diubah, tetap dengan token
+            // Kembali ke body yang tidak diubah, tetap dengan token tersebut
             response = await client.Beta.Messages.Create(exactBody);
         }
         catch (AnthropicBadRequestException retryError)
             when (!retryError.Message.Contains("redemption temporarily unavailable"))
         {
-            // Token itu sendiri ditolak: lepaskan dan coba lagi tanpanya.
+            // Token itu sendiri ditolak: relakan dan coba lagi tanpanya.
             response = await client.Beta.Messages.Create(Request("claude-opus-4-8"));
         }
     }
@@ -377,7 +382,7 @@ func main() {
 		body.Model = model
 		return client.Beta.Messages.New(ctx, body)
 	}
-	// Error 400 non-transien berarti bentuk percobaan atau token ini ditolak dan
+	// Error 400 non-transien berarti bentuk upaya atau token ini ditolak dan
 	// anak tangga berikutnya harus dijalankan. "redemption temporarily
 	// unavailable" bersifat transien: tampilkan dan coba lagi dengan token dalam
 	// jendela lima menitnya.
@@ -398,12 +403,12 @@ func main() {
 			exactBody := request
 			exactBody.FallbackCreditToken = anthropic.String(token)
 			attempt := exactBody
-			// Utamakan bentuk kelanjutan kecuali klaimnya salah
+			// Utamakan bentuk lanjutan kecuali klaimnya salah
 			if details.FallbackHasPrefillClaim || !details.JSON.FallbackHasPrefillClaim.Valid() {
-				// Salin konten penolakan, hapus spasi di akhir dari
+				// Gemakan konten penolakan, hapus spasi kosong di akhir dari
 				// blok teks terakhir (validator prefill menolaknya; pencocokan
 				// menoleransi editan). Permintaan yang memakai alat juga menghilangkan blok
-				// tool_use tak berpasangan, lalu hapus ulang spasi setelah penghilangan.
+				// tool_use tak berpasangan, lalu hapus lagi spasi kosong setelah penghilangan.
 				echoed := response.ToParam()
 				if len(echoed.Content) > 0 {
 					if text := echoed.Content[len(echoed.Content)-1].OfText; text != nil {
@@ -471,10 +476,10 @@ void main() {
         MessageCreateParams.Builder attempt = request().fallbackCreditToken(creditToken);
         // Utamakan bentuk kelanjutan kecuali klaimnya salah
         if (details.fallbackHasPrefillClaim().orElse(true)) {
-            // Gemakan konten penolakan, hapus spasi kosong di akhir dari
-            // blok teks terakhir (validator prefill menolaknya; pencocokan
-            // menoleransi editan ini). Permintaan yang memakai alat juga menghilangkan
-            // blok tool_use tak berpasangan, lalu hapus lagi spasi kosong setelah penghilangan.
+            // Gema konten penolakan, hapus spasi kosong di akhir dari blok
+            // teks terakhir (validator prefill menolaknya; pencocokan
+            // menoleransi editan). Permintaan yang memakai alat juga membuang
+            // blok tool_use tak berpasangan, lalu hapus lagi spasi setelahnya.
             List<BetaContentBlockParam> echoed = new ArrayList<>(
                 response.content().stream().map(BetaContentBlock::toParam).toList());
             if (!echoed.isEmpty() && echoed.getLast().isText()) {
@@ -492,7 +497,7 @@ void main() {
                 throw badRequest;
             }
             try {
-                // Kembali ke isi yang tidak diubah, tetap dengan token
+                // Kembali ke body yang tidak diubah, tetap dengan token
                 response = send("claude-opus-4-8", request().fallbackCreditToken(creditToken));
             } catch (BadRequestException retryBadRequest) {
                 if (retryBadRequest.getMessage().contains("redemption temporarily unavailable")) {
@@ -534,7 +539,7 @@ if ($response->stopReason === 'refusal' && $response->stopDetails !== null) {
     $token = $response->stopDetails->fallbackCreditToken;
     if ($token !== null) {
         $attemptMessages = $messages;
-        // Utamakan bentuk lanjutan kecuali klaimnya salah
+        // Utamakan bentuk kelanjutan kecuali klaimnya salah
         if ($response->stopDetails->fallbackHasPrefillClaim !== false) {
             // Gemakan konten penolakan, hapus spasi kosong di akhir dari
             // blok teks terakhir (validator prefill menolaknya; pencocokan
@@ -559,7 +564,7 @@ if ($response->stopReason === 'refusal' && $response->stopDetails !== null) {
                 throw $error;
             }
             try {
-                // Kembali ke isi yang tidak diubah, tetap dengan token
+                // Kembali ke body yang tidak diubah, tetap dengan token
                 $response = $send('claude-opus-4-8', $messages, $token);
             } catch (BadRequestException $retryError) {
                 if ($isTransientRedemption($retryError)) {
@@ -636,19 +641,19 @@ puts JSON.generate({stop_reason: response.stop_reason, model: response.model})
 
 ## Di mana ini berfungsi \{#where-it-works}
 
-Kredit fallback tersedia dalam versi beta pada Claude API, Claude Platform di AWS, Amazon Bedrock, Vertex AI, dan Microsoft Foundry. Token kredit yang dikembalikan dalam hasil [Message Batches](/docs/id/build-with-claude/batch-processing) tidak dapat ditukarkan; penukaran hanya berlaku untuk permintaan Messages API langsung.
+Kredit fallback sedang dalam tahap beta pada Claude API, Claude Platform on AWS, Amazon Bedrock, Vertex AI, dan Microsoft Foundry. Token kredit yang dikembalikan dalam hasil [Message Batches](/docs/id/build-with-claude/batch-processing) tidak dapat ditukarkan. Penukaran hanya berlaku untuk permintaan Messages API langsung.
 
-Model percobaan ulang harus merupakan salah satu target fallback yang diizinkan dari model yang ditolak. Pada saat peluncuran, target yang diizinkan untuk Claude Fable 5 adalah Claude Opus 4.8 (`claude-opus-4-8`).
+Model percobaan ulang harus merupakan salah satu target fallback yang diizinkan dari model yang ditolak. Saat peluncuran, target yang diizinkan untuk Claude Fable 5 adalah Claude Opus 4.8 (`claude-opus-4-8`).
 
 <section title="Mencari target fallback yang diizinkan secara terprogram">
 
-Pada Claude API dan Claude Platform di AWS, daftar target dipublikasikan sebagai `allowed_fallback_models` pada entri setiap model di [Models API](/docs/id/api/models/list) ketika header beta `server-side-fallback-2026-06-01` diatur. Daftar tersebut belum terlihat di bawah header `fallback-credit-*` saja, dan tidak diekspos pada Amazon Bedrock, Vertex AI, atau Microsoft Foundry.
+Pada Claude API dan Claude Platform on AWS, daftar target dipublikasikan sebagai `allowed_fallback_models` pada entri setiap model di [Models API](/docs/id/api/models/list) ketika header beta `server-side-fallback-2026-06-01` diatur. Daftar tersebut belum terlihat di bawah header `fallback-credit-*` saja. Daftar ini tidak diekspos pada Amazon Bedrock, Vertex AI, atau Microsoft Foundry.
 
 </section>
 
-## Memeriksa bahwa kredit telah diterapkan \{#checking-that-the-credit-applied}
+## Memeriksa bahwa kredit diterapkan \{#checking-that-the-credit-applied}
 
-Pengembalian dana terlihat dalam `usage` percobaan ulang: `cache_creation_input_tokens` lebih rendah, dan `cache_read_input_tokens` lebih tinggi dengan jumlah yang sama, dibandingkan dengan yang akan dilaporkan oleh permintaan yang sama tanpa token. Pergeseran sebesar nol berarti token dihormati tetapi tidak ada yang perlu dihargai ulang, misalnya karena cache model percobaan ulang sudah hangat.
+Pengembalian dana terlihat dalam `usage` percobaan ulang. Dibandingkan dengan apa yang akan dilaporkan oleh permintaan yang sama tanpa token, `cache_creation_input_tokens` lebih rendah, dan `cache_read_input_tokens` lebih tinggi dengan jumlah yang sama. Pergeseran nol berarti token dihormati tetapi tidak ada yang perlu dihargai ulang, misalnya karena cache model percobaan ulang sudah hangat.
 
 ## Ketika percobaan ulang ditolak \{#when-a-retry-is-rejected}
 
@@ -659,17 +664,17 @@ Sebagian besar percobaan ulang berhasil ditukarkan pada upaya pertama. Ketika ti
     Jika percobaan ulang yang menambahkan pesan assistant ditolak dengan error 400, kirim ulang body permintaan yang ditolak tanpa perubahan, tetap dengan token.
   </Step>
   <Step title="Token ditolak: hapus token">
-    Jika body tanpa perubahan juga ditolak dengan error 400 yang pesannya menyebutkan `fallback_credit_token`, coba ulang tanpa token. Kredit hangus, tetapi percobaan ulang itu sendiri tetap berjalan.
+    Jika body tanpa perubahan juga ditolak dengan error 400 yang pesannya menyebutkan `fallback_credit_token`, coba ulang tanpa token. Kredit hangus, tetapi percobaan ulang itu sendiri berhasil diproses.
   </Step>
 </Steps>
 
 <Note>
-Jika permintaan yang ditolak mengeksekusi alat server, percobaan ulang tanpa token akan menjalankan ulang dan menagih ulang alat-alat tersebut. Dalam kasus tersebut, tampilkan error 400 kepada pemanggil Anda alih-alih melanjutkan ke percobaan ulang tanpa token.
+Jika permintaan yang ditolak mengeksekusi alat server, percobaan ulang tanpa token akan menjalankan ulang dan menagih ulang alat-alat tersebut. Dalam kasus itu, tampilkan error 400 kepada pemanggil Anda alih-alih melanjutkan ke percobaan ulang tanpa token.
 </Note>
 
 <section title="Jika error menyatakan 'redemption temporarily unavailable'">
 
-Penolakan ini bersifat sementara, bukan keputusan final atas bentuk percobaan ulang Anda. Coba ulang permintaan yang sama, dengan token yang sama, dalam jendela lima menit token tersebut. Jangan beralih ke langkah berikutnya dalam tangga.
+Penolakan ini bersifat sementara, bukan keputusan final atas bentuk percobaan ulang Anda. Coba ulang permintaan yang sama, dengan token yang sama, dalam jendela lima menit token tersebut. Jangan berpindah ke langkah berikutnya dalam tangga.
 
 </section>
 
@@ -679,7 +684,7 @@ Bagian-bagian di bawah ini membahas kasus-kasus khusus dan aturan penukaran leng
 
 <section title="Field yang harus cocok dengan permintaan yang ditolak">
 
-Penukaran membandingkan percobaan ulang dengan permintaan yang ditolak. Setiap field yang membentuk prompt harus cocok persis; field yang tidak membentuk prompt boleh berubah pada percobaan ulang.
+Penukaran membandingkan percobaan ulang dengan permintaan yang ditolak. Setiap field yang membentuk prompt harus cocok persis. Field yang tidak membentuk prompt boleh berubah pada percobaan ulang.
 
 | Aturan | Field |
 | :--- | :--- |
@@ -696,7 +701,10 @@ Jangan menghapus blok `thinking` atau `redacted_thinking` dari giliran sebelumny
 
 Kirim header `anthropic-beta` yang sama pada percobaan ulang seperti pada permintaan yang ditolak. Header beta yang ada pada salah satu dari dua permintaan tetapi tidak pada yang lain dapat menggagalkan kecocokan bahkan ketika body-nya identik. Error 400 yang dihasilkan membawa pesan `request body ... does not match` yang sama seperti perbedaan body, sehingga perbedaan header mudah disalahartikan sebagai masalah body. Secara khusus, jangan menambahkan atau menghapus header beta berdasarkan model mana yang ditargetkan oleh permintaan.
 
-Dua keluarga header dikecualikan dari kecocokan, demi kepentingan percobaan ulang: `fallback-credit-*` dan `server-side-fallback-*`. Percobaan ulang harus menghapus parameter `fallbacks`, dan menghapus header `server-side-fallback-*` bersamanya tidak menyebabkan ketidakcocokan. Pertahankan header `fallback-credit-*` pada kedua permintaan; percobaan ulang memerlukannya untuk menukarkan token.
+Dua keluarga header dikecualikan dari kecocokan, demi kepentingan percobaan ulang:
+
+- **`server-side-fallback-*`:** percobaan ulang harus menghapus parameter `fallbacks`, dan menghapus header ini bersamanya tidak menyebabkan ketidakcocokan.
+- **`fallback-credit-*`:** pertahankan header ini pada kedua permintaan. Percobaan ulang memerlukannya untuk menukarkan token.
 
 <Note>
 Pada model yang menyertakan jendela konteks 1 juta token secara default, seperti Claude Fable 5 dan Claude Opus 4.8, header beta `context-1m-2025-08-07` tidak memiliki efek. Cara paling andal untuk menjaga kedua permintaan tetap identik adalah dengan menghilangkan header tersebut pada keduanya, daripada mengirimkannya pada satu permintaan dan tidak pada yang lain.
@@ -706,15 +714,20 @@ Pada model yang menyertakan jendela konteks 1 juta token secara default, seperti
 
 <section title="Ketika fallback_has_prefill_claim tidak ada">
 
-Field ini bernilai `null` hanya ketika token juga `null`, sehingga nilai yang Anda amati saat memegang token tidak pernah `null`. Field ini masih dapat muncul sebagai tidak ada (`None` dalam SDK bertipe) pada Amazon Bedrock, Vertex AI, dan Microsoft Foundry selama dukungan mereka untuk field ini masih diluncurkan. Dalam kasus tersebut, perlakukan bentuk percobaan ulang sebagai tidak diketahui alih-alih sebagai `false`: coba bentuk dengan pesan assistant yang ditambahkan terlebih dahulu, dan andalkan penanganan penolakan di atas, yang akan beralih ke body tanpa perubahan.
+Field ini bernilai `null` hanya ketika token juga `null`, sehingga nilai yang Anda amati saat memegang token tidak pernah `null`. Field ini masih dapat muncul sebagai tidak ada (`None` dalam SDK bertipe) pada Amazon Bedrock, Vertex AI, dan Microsoft Foundry selama dukungan mereka untuk field ini diluncurkan. Dalam kasus itu, perlakukan bentuk percobaan ulang sebagai tidak diketahui alih-alih sebagai `false`. Coba bentuk dengan pesan assistant yang ditambahkan terlebih dahulu, dan andalkan penanganan penolakan dalam [Ketika percobaan ulang ditolak](#ketika-percobaan-ulang-ditolak), yang akan jatuh kembali ke body tanpa perubahan.
 
 </section>
 
 <section title="Menyalin content dari respons yang ditolak">
 
-Ketika token penolakan mendukung bentuk kelanjutan, penjelasan penolakan disampaikan dalam `stop_details.explanation` dan `content` respons hanya membawa output model itu sendiri, sehingga Anda dapat menyalin `content` ke dalam pesan assistant yang ditambahkan apa adanya. Dua penyesuaian mungkin masih diperlukan sebelum mengirim: jika blok terakhir yang Anda kirim adalah blok `text`, hapus whitespace di akhirnya, dan hilangkan blok `tool_use` sisi klien mana pun yang tidak memiliki `tool_result` yang cocok.
+Ketika token penolakan mendukung bentuk kelanjutan, `content` respons hanya membawa output model itu sendiri, dan penjelasan penolakan disampaikan dalam `stop_details.explanation`. Oleh karena itu, Anda dapat menyalin `content` ke dalam pesan assistant yang ditambahkan apa adanya.
 
-Jika content yang disalin menyertakan blok `fallback` dari [fallback sisi server](/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback) sebelumnya, pertahankan blok tersebut tepat di tempat ia muncul. Blok ini diterima pada permintaan apa pun tanpa header beta, dan API menggunakan posisinya untuk memvalidasi blok thinking di sekitarnya: permintaan yang menyalin blok thinking dari kedua sisi batas tersebut akan ditolak jika blok tersebut dihilangkan atau dipindahkan.
+Dua penyesuaian mungkin masih diperlukan sebelum mengirim:
+
+- Jika blok terakhir yang Anda kirim adalah blok `text`, hapus whitespace di akhirnya.
+- Hilangkan blok `tool_use` sisi klien apa pun yang tidak memiliki `tool_result` yang cocok.
+
+Jika content yang disalin menyertakan blok `fallback` dari [fallback sisi server](/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback) sebelumnya, pertahankan blok tersebut tepat di tempat kemunculannya. Blok ini diterima pada permintaan apa pun tanpa header beta. API menggunakan posisinya untuk memvalidasi blok thinking di sekitarnya, sehingga permintaan yang menyalin blok thinking dari kedua sisi batas tersebut akan ditolak jika blok tersebut dihilangkan atau dipindahkan.
 
 </section>
 
@@ -722,7 +735,7 @@ Jika content yang disalin menyertakan blok `fallback` dari [fallback sisi server
 
 Token hanya dapat ditukarkan dari organisasi dan workspace yang menerima penolakan, termasuk pada Microsoft Foundry. Pada Amazon Bedrock dan Vertex AI, yang tidak memiliki workspace, token terikat pada identitas pemanggil platform sebagai gantinya.
 
-Token kedaluwarsa lima menit setelah penolakan. Setelah itu, kirim percobaan ulang tanpanya. Token juga bersifat stateless: server tidak menyimpan apa pun tentangnya, dan tidak ada endpoint untuk memeriksa atau mencabutnya.
+Token kedaluwarsa lima menit setelah penolakan. Setelah itu, kirim percobaan ulang tanpa token. Token juga bersifat stateless: server tidak menyimpan apa pun tentangnya, dan tidak ada endpoint untuk memeriksa atau mencabutnya.
 
 </section>
 
@@ -730,7 +743,12 @@ Token kedaluwarsa lima menit setelah penolakan. Setelah itu, kirim percobaan ula
 
 Ketika penolakan tiba setelah alat server sudah dieksekusi dalam permintaan, token hanya dapat ditukarkan dengan melanjutkan respons parsial. Pembatasan itulah yang mencegah panggilan alat yang sudah selesai dijalankan, dan ditagih, lagi.
 
-Oleh karena itu, satu kombinasi dapat membuat token tidak dapat ditukarkan dengan bentuk mana pun: permintaan yang menggunakan `output_config.format` atau `tool_choice` yang memaksa penggunaan alat (salah satunya mengesampingkan bentuk dengan pesan assistant yang ditambahkan), dan yang penolakannya tiba setelah alat server dieksekusi (yang mengesampingkan body tanpa perubahan). Jika percobaan ulang dengan body tanpa perubahan ditolak dengan error 400 yang menyatakan bahwa token harus ditukarkan dengan melanjutkan respons parsial, buang token tersebut. Percobaan ulang tanpanya akan berjalan, tetapi akan menjalankan ulang dan menagih ulang alat server yang sudah selesai, jadi tampilkan biaya atau error tersebut kepada pemanggil Anda alih-alih mencoba ulang secara diam-diam.
+Oleh karena itu, satu kombinasi dapat membuat token tidak dapat ditukarkan dengan bentuk mana pun, ketika kedua hal berikut benar:
+
+- Permintaan menggunakan `output_config.format` atau `tool_choice` yang memaksa penggunaan alat. Salah satunya mengesampingkan bentuk dengan pesan assistant yang ditambahkan.
+- Penolakan tiba setelah alat server dieksekusi. Itu mengesampingkan body tanpa perubahan.
+
+Jika percobaan ulang dengan body tanpa perubahan ditolak dengan error 400 yang menyatakan bahwa token harus ditukarkan dengan melanjutkan respons parsial, buang token tersebut. Percobaan ulang tanpa token akan berhasil diproses, tetapi akan menjalankan ulang dan menagih ulang alat server yang sudah selesai. Tampilkan biaya atau error tersebut kepada pemanggil Anda alih-alih mencoba ulang secara diam-diam.
 
 </section>
 

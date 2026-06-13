@@ -1,22 +1,22 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/azure
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 98391839b4f6d4fe73212a4b538444a5453544b5f7aa47efbcd0a54f688764a1
+fetched_at: 2026-06-13T03:15:40.418428Z
+sha256: 11b8b3ee59aaeac369ada616bdc1a3b59f47e7b9af8520ca6515795ca483cdeb
 ---
 
-# Menggunakan WIF dengan Microsoft Azure
+# Menggunakan WIF dengan Microsoft Entra ID
 
 Federasikan managed identity Azure dan Entra Workload Identity dengan Claude API sehingga workload Azure Anda dapat memanggil Claude tanpa kunci API statis.
 
 ---
 
-Workload Azure melakukan autentikasi ke Claude API dengan menyajikan JSON Web Token (JWT) yang diterbitkan oleh Microsoft Entra ID, lalu menukarnya dengan access token Anthropic berumur pendek. Ada dua cara umum untuk memperoleh token yang diterbitkan Entra:
+Workload Azure melakukan autentikasi ke Claude API dengan menyajikan "JSON Web Token" (Token Web JSON), atau JWT, yang diterbitkan oleh Microsoft Entra ID, lalu menukarnya dengan access token Anthropic berumur pendek. Ada dua cara umum untuk memperoleh token yang diterbitkan Entra:
 
 - **Managed identity (VM, App Service, Functions, Container Apps):** Workload memanggil Azure Instance Metadata Service (IMDS) di `http://169.254.169.254/metadata/identity/oauth2/token` dan menerima JWT untuk identitas yang ditetapkan padanya.
-- **Entra Workload Identity (pod AKS):** Kubernetes memproyeksikan token service account (ditandatangani oleh OIDC issuer klaster AKS) ke dalam pod pada path yang tercantum di `AZURE_FEDERATED_TOKEN_FILE`. Workload menukar token tersebut di Entra untuk mendapatkan access token yang diterbitkan Entra.
+- **Entra Workload Identity (pod AKS):** Kubernetes memproyeksikan token service account (ditandatangani oleh OIDC issuer klaster AKS) ke dalam pod pada path yang ada di `AZURE_FEDERATED_TOKEN_FILE`. Workload menukar token tersebut di Entra untuk mendapatkan access token yang diterbitkan Entra.
 
-Dalam kedua kasus tersebut, token yang diterbitkan Entra yang Anda sajikan ke Anthropic membawa issuer Entra spesifik tenant (langkah [Konfigurasi Anthropic](#konfigurasi-anthropic) di bawah menunjukkan URL persis yang harus didaftarkan) dan object ID dari managed identity pada klaim `sub` dan `oid`. Anda mendaftarkan issuer tersebut ke Anthropic satu kali, menulis federation rule yang mencocokkan klaim yang diharapkan, dan workload Anda menukar token Entra-nya dengan access token `sk-ant-oat01-...` saat runtime.
+Dalam kedua kasus tersebut, token yang diterbitkan Entra yang Anda sajikan ke Anthropic membawa issuer Entra spesifik tenant (langkah [Mengonfigurasi Anthropic](#configure-anthropic) menunjukkan URL persis yang harus didaftarkan) dan object ID dari managed identity dalam klaim `sub` dan `oid`. Anda mendaftarkan issuer tersebut ke Anthropic satu kali, menulis federation rule yang cocok dengan klaim yang diharapkan, dan workload Anda menukar token Entra-nya dengan access token `sk-ant-oat01-...` saat runtime.
 
 <Tip>
 Pod AKS dapat secara alternatif melewati pertukaran Entra dan menyajikan token service account yang diproyeksikan Kubernetes langsung ke Anthropic. Jalur tersebut mendaftarkan OIDC issuer klaster AKS Anda ke Anthropic alih-alih tenant Entra Anda. Lihat [Kubernetes](/docs/id/manage-claude/wif-providers/kubernetes) untuk alur tersebut.
@@ -25,20 +25,20 @@ Pod AKS dapat secara alternatif melewati pertukaran Entra dan menyajikan token s
 ## Prasyarat \{#prerequisites}
 
 - Pemahaman tentang [konsep WIF](/docs/id/manage-claude/workload-identity-federation#concepts): service account, federation issuer, dan federation rule.
-- Langganan Azure dengan izin untuk menetapkan managed identity (atau mengonfigurasi Entra Workload Identity pada AKS).
+- Langganan Azure dengan izin untuk menetapkan managed identity (atau mengonfigurasi Entra Workload Identity di AKS).
 - Tenant ID Microsoft Entra Anda. Temukan di portal Azure pada **Microsoft Entra ID → Overview → Tenant ID**.
 - Izin untuk membuat service account, federation issuer, dan federation rule di Claude Console untuk organisasi Anthropic Anda.
 
-## Konfigurasi Azure \{#configure-azure}
+## Mengonfigurasi Azure \{#configure-azure}
 
-Siapkan identitas yang akan diterbitkan tokennya oleh Azure. Pilih jalur yang sesuai dengan tempat workload Anda berjalan.
+Siapkan identitas yang akan diterbitkan tokennya oleh Microsoft Entra ID. Pilih jalur yang sesuai dengan tempat workload Anda berjalan.
 
 <Tabs>
 <Tab title="VM, App Service, Functions, Container Apps">
 
 Aktifkan managed identity system-assigned atau user-assigned pada resource Azure Anda. Di portal Azure, buka resource tersebut, masuk ke **Identity**, dan aktifkan **System assigned** (atau lampirkan identitas user-assigned).
 
-Setelah identitas dibuat, catat **Object (principal) ID**-nya. GUID ini muncul sebagai klaim `sub` dan `oid` dalam token yang diterbitkan, dan federation rule Anthropic Anda akan mencocokkan berdasarkan nilai ini. Anda dapat menemukannya di halaman **Identity** resource tersebut, atau di **Microsoft Entra ID → Enterprise applications** untuk identitas user-assigned.
+Setelah identitas dibuat, catat **Object (principal) ID**-nya. GUID ini muncul sebagai klaim `sub` dan `oid` dalam token yang diterbitkan, dan federation rule Anthropic Anda akan mencocokkan berdasarkan nilai ini. Anda dapat menemukannya di halaman **Identity** resource tersebut, atau di bawah **Microsoft Entra ID → Enterprise applications** untuk identitas user-assigned.
 
 Tidak diperlukan konfigurasi lebih lanjut di sisi Azure. Azure Instance Metadata Service dapat dijangkau di `169.254.169.254` dari dalam resource setelah identitas dilampirkan.
 
@@ -52,20 +52,20 @@ Entra Workload Identity memfederasikan service account Kubernetes dengan aplikas
 3. Buat managed identity user-assigned dan federated credential yang memercayai OIDC issuer klaster untuk service account Kubernetes Anda.
 4. Beri label pada spesifikasi pod Anda dengan `azure.workload.identity/use: "true"` dan atur `serviceAccountName` ke service account yang difederasikan.
 
-Webhook menyuntikkan `AZURE_FEDERATED_TOKEN_FILE`, `AZURE_CLIENT_ID`, dan `AZURE_TENANT_ID` ke dalam pod. File pada `AZURE_FEDERATED_TOKEN_FILE` berisi token service account yang diproyeksikan Kubernetes, ditandatangani oleh OIDC issuer klaster AKS.
+Webhook menyuntikkan `AZURE_FEDERATED_TOKEN_FILE`, `AZURE_CLIENT_ID`, dan `AZURE_TENANT_ID` ke dalam pod. File di `AZURE_FEDERATED_TOKEN_FILE` berisi token service account yang diproyeksikan Kubernetes, ditandatangani oleh OIDC issuer klaster AKS.
 
 </Tab>
 </Tabs>
 
 ### Klaim token \{#token-claims}
 
-Token yang diterbitkan Entra untuk managed identity membawa klaim-klaim berikut:
+Token yang diterbitkan Entra untuk managed identity membawa klaim-klaim berikut (token v2 ditampilkan; lihat Catatan di bawah [Mengonfigurasi Anthropic](#configure-anthropic) untuk mengetahui perbedaan `iss` dan `aud` pada token v1):
 
 ```json
 {
   "iss": "https://login.microsoftonline.com/<TENANT_ID>/v2.0",
   "sub": "9f8e7d6c-1a2b-3c4d-5e6f-...",
-  "aud": "https://api.anthropic.com",
+  "aud": "00000000-0000-0000-0000-000000000000",
   "oid": "9f8e7d6c-1a2b-3c4d-5e6f-...",
   "tid": "<TENANT_ID>",
   "azp": "<CLIENT_ID>",
@@ -73,34 +73,36 @@ Token yang diterbitkan Entra untuk managed identity membawa klaim-klaim berikut:
 }
 ```
 
-`sub` dan `oid` identik (object ID dari managed identity). `azp` adalah application atau client ID. Cocokkan pada `oid` untuk mengotorisasi satu identitas spesifik, atau pada `azp` untuk mengotorisasi identitas apa pun yang terkait dengan registrasi aplikasi. Klaim `tid` mengulangi tenant ID Anda; mencocokkan pada klaim ini merupakan lapisan pertahanan tambahan, karena URL issuer sudah mengunci tenant.
+`sub` dan `oid` identik (object ID dari managed identity). `azp` adalah application ID atau client ID. Klaim `aud` bergantung pada versi token: token v2 membawa client ID aplikasi Entra Anda (sebuah GUID); token v1 membawa resource identifier yang diminta, yaitu nilai apa pun yang Anda berikan sebagai `resource` saat mengambil token (misalnya, `https://api.anthropic.com`). Cocokkan pada `oid` untuk mengotorisasi satu identitas spesifik, atau pada `azp` untuk mengotorisasi identitas apa pun yang terkait dengan registrasi aplikasi. Klaim `tid` mengulangi tenant ID Anda; mencocokkan pada klaim ini merupakan lapisan pertahanan tambahan, karena URL issuer sudah mengunci tenant.
 
-## Konfigurasi Anthropic \{#configure-anthropic}
+## Mengonfigurasi Anthropic \{#configure-anthropic}
 
-Ikuti [panduan penyiapan](/docs/id/manage-claude/workload-identity-federation#set-up-federation) untuk mendaftarkan federation issuer, membuat service account Anthropic, dan membuat federation rule di Claude Console. Di Console, pilih opsi provider **OIDC** dan berikan nilai-nilai spesifik Entra berikut.
+Di Claude Console, buka **Settings → Workload identity**, klik **Connect workload**, dan pilih tile **Microsoft Entra ID**. Wizard akan memandu Anda mendaftarkan issuer, membuat service account, dan membuat federation rule.
 
-**Federation issuer:** Entra memublikasikan dokumen OIDC discovery pada URL issuer per-tenant, jadi gunakan mode discovery. Setiap tenant Azure yang Anda federasikan memerlukan record issuer tersendiri.
+Wizard ini membuat sumber daya tersebut untuk Anda. Gunakan nilai-nilai berikut baik saat Anda memasukkannya di wizard maupun saat mengirimkannya ke [Admin API](/docs/id/manage-claude/wif-admin-api):
+
+**Federation issuer:** Entra memublikasikan dokumen OIDC discovery di URL issuer per-tenant, jadi gunakan mode discovery. Setiap tenant Microsoft Entra yang Anda federasikan memerlukan record issuer-nya sendiri.
 
 ```json
 {
   "name": "azure-prod-tenant",
   "issuer_url": "https://login.microsoftonline.com/<TENANT_ID>/v2.0",
-  "jwks_source": "discovery"
+  "jwks": { "type": "discovery" }
 }
 ```
 
 <Note>
-Tergantung pada versi token, klaim `iss` mungkin berupa `https://sts.windows.net/<TENANT_ID>/`. Decode token managed identity Anda (bagian Verifikasi di bawah menunjukkan caranya) dan daftarkan nilai `iss` mana pun yang terkandung di dalamnya. Kedua URL tersebut berbagi JWKS yang sama, sehingga mode discovery berfungsi untuk keduanya.
+Nilai `iss` pada access token mungkin berupa `https://sts.windows.net/<TENANT_ID>/` (v1.0), dan klaim `aud` mungkin membawa URL resource yang diminta (`https://api.anthropic.com`) alih-alih GUID. Bentuk mana yang diterima workload ditentukan oleh `api.requestedAccessTokenVersion` pada registrasi aplikasi **resource**: nilai default (`null`) menghasilkan token v1.0, sehingga token managed identity untuk audience kustom adalah v1.0 kecuali registrasi tersebut mengatur `requestedAccessTokenVersion: 2`. Decode token managed identity Anda (bagian Verifikasi di bagian selanjutnya dalam panduan ini menunjukkan caranya), daftarkan nilai `iss` apa pun yang terkandung di dalamnya, dan atur `audience` pada federation rule ke nilai `aud` apa pun yang terkandung di dalamnya. Kedua URL issuer tersebut berbagi JWKS yang sama, sehingga mode discovery berfungsi untuk keduanya.
 </Note>
 
-**Federation rule:** Cocokkan pada object ID managed identity dan tenant ID Anda.
+**Federation rule:** Cocokkan pada object ID managed identity dan tenant ID Anda. Untuk token v2, nilai `audience` adalah client ID aplikasi Entra Anda (sebuah GUID); gunakan nilai `aud` persis dari token Anda yang telah di-decode.
 
 ```json
 {
   "name": "azure-inference-worker",
   "issuer_id": "fdis_...",
   "match": {
-    "audience": "https://api.anthropic.com",
+    "audience": "00000000-0000-0000-0000-000000000000",
     "claims": {
       "oid": "9f8e7d6c-1a2b-3c4d-5e6f-...",
       "tid": "<TENANT_ID>"
@@ -118,7 +120,7 @@ Tergantung pada versi token, klaim `iss` mungkin berupa `https://sts.windows.net
 
 ## Memperoleh dan menggunakan token \{#acquire-and-use-the-token}
 
-Saat runtime, workload Anda mengambil token Entra-nya, menukarnya di `POST /v1/oauth/token`, dan menggunakan bearer token yang dikembalikan untuk memanggil Claude. Setiap SDK Anthropic menangani pertukaran dan loop refresh ketika Anda menyediakan callable token-provider, seperti yang ditunjukkan dalam contoh-contoh berikut. Tab cURL menunjukkan alur mentahnya.
+Saat runtime, workload Anda mengambil token Entra-nya, menukarnya di `POST /v1/oauth/token`, dan menggunakan bearer token yang dikembalikan untuk memanggil Claude. Setiap SDK Anthropic menangani loop pertukaran dan refresh ketika Anda menyediakan callable token-provider, seperti yang ditunjukkan dalam contoh berikut. Tab cURL menunjukkan alur mentahnya.
 
 <CodeGroup>
 
@@ -255,7 +257,7 @@ import (
 const imdsURL = "http://169.254.169.254/metadata/identity/oauth2/token" +
 	"?api-version=2018-02-01&resource=https://api.anthropic.com"
 
-// azureIMDSToken mengambil token managed identity dari Azure IMDS.
+// azureIMDSToken mengambil token identitas terkelola dari Azure IMDS.
 func azureIMDSToken(ctx context.Context) (string, error) {
 	req, err := http.NewRequestWithContext(ctx, http.MethodGet, imdsURL, nil)
 	if err != nil {
@@ -459,15 +461,15 @@ puts message.content.first.text
 ```
 
 ```bash CLI nocheck
-# Tulis access token yang diterbitkan Entra ke file yang dapat dibaca oleh CLI
+# Tulis access token yang diterbitkan Entra ke file yang dapat dibaca CLI
 ANTHROPIC_IDENTITY_TOKEN_FILE=$(mktemp)
 curl -sS -H "Metadata: true" \
   "http://169.254.169.254/metadata/identity/oauth2/token?api-version=2018-02-01&resource=https://api.anthropic.com" \
   | jq -r .access_token > "$ANTHROPIC_IDENTITY_TOKEN_FILE"
 export ANTHROPIC_IDENTITY_TOKEN_FILE
 
-# ANTHROPIC_FEDERATION_RULE_ID, ANTHROPIC_ORGANIZATION_ID, dan
-# ANTHROPIC_SERVICE_ACCOUNT_ID, serta ANTHROPIC_WORKSPACE_ID dibaca dari environment.
+# ANTHROPIC_FEDERATION_RULE_ID, ANTHROPIC_ORGANIZATION_ID,
+# ANTHROPIC_SERVICE_ACCOUNT_ID, dan ANTHROPIC_WORKSPACE_ID dibaca dari environment.
 ant messages create \
   --model claude-sonnet-4-6 \
   --max-tokens 1024 \
@@ -476,9 +478,9 @@ ant messages create \
 
 </CodeGroup>
 
-### Pada AKS dengan Entra Workload Identity \{#on-aks-with-entra-workload-identity}
+### Di AKS dengan Entra Workload Identity \{#on-aks-with-entra-workload-identity}
 
-Pada AKS, file di `AZURE_FEDERATED_TOKEN_FILE` adalah token service account yang diproyeksikan Kubernetes dan ditandatangani oleh OIDC issuer klaster Anda, bukan token yang diterbitkan Entra. Untuk tetap pada jalur yang dimediasi Entra seperti yang dijelaskan di halaman ini, tukarkan token tersebut di `https://login.microsoftonline.com/<TENANT_ID>/oauth2/v2.0/token` (grant `client_credentials` federated) terlebih dahulu, lalu teruskan access token Entra yang dihasilkan ke SDK Anthropic sebagai identity token.
+Di AKS, file di `AZURE_FEDERATED_TOKEN_FILE` adalah token service account yang diproyeksikan Kubernetes dan ditandatangani oleh OIDC issuer klaster Anda, bukan token yang diterbitkan Entra. Untuk tetap pada jalur yang dimediasi Entra seperti yang dijelaskan di halaman ini, tukar token tersebut di `https://login.microsoftonline.com/<TENANT_ID>/oauth2/v2.0/token` (grant `client_credentials` federated) terlebih dahulu, lalu berikan access token Entra yang dihasilkan ke SDK Anthropic sebagai identity token.
 
 <CodeGroup>
 
@@ -891,7 +893,7 @@ curl -sS "https://login.microsoftonline.com/$AZURE_TENANT_ID/oauth2/v2.0/token" 
   | jq -r .access_token > "$ANTHROPIC_IDENTITY_TOKEN_FILE"
 export ANTHROPIC_IDENTITY_TOKEN_FILE
 
-# 2. Panggil Claude API. ANTHROPIC_FEDERATION_RULE_ID,
+# 2. Panggil API Claude. ANTHROPIC_FEDERATION_RULE_ID,
 # ANTHROPIC_ORGANIZATION_ID, ANTHROPIC_SERVICE_ACCOUNT_ID, dan ANTHROPIC_WORKSPACE_ID dibaca
 # dari environment.
 ant messages create \
@@ -904,28 +906,28 @@ ant messages create \
 
 Sebagai alternatif, daftarkan OIDC issuer klaster AKS Anda ke Anthropic secara langsung dan lewati langkah Entra. Lihat [Kubernetes](/docs/id/manage-claude/wif-providers/kubernetes) untuk pola tersebut.
 
-## Verifikasi penyiapan \{#verify-the-setup}
+## Memverifikasi pengaturan \{#verify-the-setup}
 
-Dari resource Azure Anda, jalankan pertukaran cURL yang ditunjukkan sebelumnya dan pastikan bahwa `POST /v1/oauth/token` mengembalikan `200` dengan `access_token` yang diawali `sk-ant-oat01-` dan nilai `expires_in` dalam detik. Pada `400 invalid_grant`, lihat [Memecahkan masalah pertukaran yang gagal](/docs/id/manage-claude/wif-reference#troubleshoot-a-failed-exchange); penyebab paling umum di sisi Azure adalah ketidakcocokan antara `issuer_url` yang Anda daftarkan dan klaim `iss` dalam token Anda yang telah di-decode. Keduanya harus cocok persis. Untuk token managed identity, nilai `iss` adalah `https://login.microsoftonline.com/<TENANT_ID>/v2.0` atau `https://sts.windows.net/<TENANT_ID>/`.
+Dari resource Azure Anda, jalankan pertukaran cURL yang ditunjukkan sebelumnya dan pastikan bahwa `POST /v1/oauth/token` mengembalikan `200` dengan `access_token` yang diawali `sk-ant-oat01-` dan nilai `expires_in` dalam detik. Jika mendapat `400 invalid_grant`, lihat [Memecahkan masalah pertukaran yang gagal](/docs/id/manage-claude/wif-reference#troubleshoot-a-failed-exchange); penyebab paling umum di sisi Azure adalah ketidakcocokan antara `issuer_url` yang Anda daftarkan dan klaim `iss` dalam token Anda yang telah di-decode. Keduanya harus cocok persis. Untuk token managed identity, nilai `iss` adalah `https://login.microsoftonline.com/<TENANT_ID>/v2.0` atau `https://sts.windows.net/<TENANT_ID>/`.
 
-## Batasi cakupan rule Anda \{#scope-your-rule}
+## Membatasi cakupan rule Anda \{#scope-your-rule}
 
 <Warning>
   Klaim `oid` adalah GUID dari managed identity dan tidak memiliki prefiks yang stabil.
-  `subject_prefix` dengan `*` mencocokkan identitas sembarang dalam tenant, sehingga
+  `subject_prefix` dengan `*` akan cocok dengan identitas sembarang dalam tenant, sehingga
   workload apa pun yang memegang managed identity dapat memperoleh token Anthropic
   yang difederasikan.
 </Warning>
 
 Kunci blok `match` pada rule ke cakupan tersempit yang sesuai dengan kasus penggunaan Anda:
 
-- **Cocokkan `oid` sebagai nilai persis:** Atur `claims.oid` ke object ID lengkap dari managed identity dan jangan pernah gunakan `subject_prefix` untuk token Azure.
+- **Cocokkan `oid` sebagai nilai persis:** Atur `claims.oid` ke object ID lengkap managed identity dan jangan pernah gunakan `subject_prefix` untuk token Entra.
 - **Kunci `tid` sebagai lapisan pertahanan tambahan:** URL issuer sudah mengunci tenant Anda, tetapi menambahkan `claims.tid` melindungi dari pergeseran konfigurasi jika record issuer diedit di kemudian hari.
-- **Kunci audience:** Atur `audience` ke `https://api.anthropic.com` sehingga token yang dibuat untuk resource lain ditolak.
-- **Gunakan rule terpisah per managed identity:** Buat satu rule per identitas alih-alih satu rule yang mengotorisasi beberapa identitas, sehingga Anda dapat mencabut akses satu workload tanpa memengaruhi yang lain.
+- **Kunci audience:** Atur `audience` ke nilai `aud` persis dari token Anda yang telah di-decode sehingga token yang dibuat untuk aplikasi lain akan ditolak.
+- **Gunakan rule terpisah untuk setiap managed identity:** Buat satu rule per identitas alih-alih satu rule yang mengotorisasi beberapa identitas, sehingga Anda dapat mencabut akses satu workload tanpa memengaruhi yang lain.
 
 ## Langkah selanjutnya \{#next-steps}
 
 - Tinjau model konfigurasi lengkap di [Workload Identity Federation](/docs/id/manage-claude/workload-identity-federation).
-- Lihat [panduan provider](/docs/id/manage-claude/workload-identity-federation#identity-providers) untuk AWS, Google Cloud, GitHub Actions, dan Kubernetes.
+- Lihat [panduan penyedia](/docs/id/manage-claude/workload-identity-federation#identity-providers) untuk AWS, Google Cloud, GitHub Actions, dan Kubernetes.
 - Untuk variabel lingkungan, file profil, dan urutan prioritas kredensial, lihat [referensi WIF](/docs/id/manage-claude/wif-reference).

@@ -1,18 +1,18 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/files
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: d01992ea35dae9609e42c48216cd44eceec7e5785d5a9a7b95b26476c8242d14
+fetched_at: 2026-06-13T03:15:40.418428Z
+sha256: bb09e40c512c224e77a99af55fd78ed63a4fb88ecc693fc4554772d6ddd1488c
 ---
 
 # Files API
 
 ---
 
-Files API memungkinkan Anda mengunggah dan mengelola file untuk digunakan dengan Claude API tanpa perlu mengunggah ulang konten pada setiap permintaan. Ini sangat berguna saat menggunakan [code execution tool](/docs/id/agents-and-tools/tool-use/code-execution-tool) untuk menyediakan input (misalnya dataset dan dokumen) lalu mengunduh output (misalnya grafik). Anda juga dapat menggunakan Files API untuk menghindari keharusan mengunggah ulang dokumen dan gambar yang sering digunakan secara terus-menerus di berbagai panggilan API. Anda dapat [menjelajahi referensi API secara langsung](/docs/id/api/files-create), selain panduan ini.
+Files API memungkinkan Anda mengunggah dan mengelola file untuk digunakan dengan Claude API tanpa harus mengunggah ulang konten pada setiap permintaan. Ini sangat berguna saat menggunakan [code execution tool](/docs/id/agents-and-tools/tool-use/code-execution-tool) untuk menyediakan input (misalnya dataset dan dokumen) lalu mengunduh output (misalnya grafik). Anda juga dapat menggunakan Files API untuk menghindari keharusan mengunggah ulang dokumen dan gambar yang sering digunakan secara terus-menerus di beberapa panggilan API. Anda dapat [menjelajahi referensi API secara langsung](/docs/id/api/files-create), selain panduan ini.
 
 <Note>
-Files API masih dalam versi beta. Hubungi kami melalui [formulir umpan balik](https://forms.gle/tisHyierGwgN4DUE9) untuk membagikan pengalaman Anda dengan Files API.
+Files API masih dalam tahap beta. Hubungi kami melalui [formulir umpan balik](https://forms.gle/tisHyierGwgN4DUE9) untuk berbagi pengalaman Anda dengan Files API.
 </Note>
 
 <Note>
@@ -30,7 +30,7 @@ Files API tersedia di Claude API, [Claude Platform on AWS](/docs/id/build-with-c
 Files API menyediakan pendekatan sederhana buat-sekali, gunakan-berkali-kali untuk bekerja dengan file:
 
 - **Unggah file** ke penyimpanan aman Anthropic dan terima `file_id` yang unik
-- **Unduh file** yang dibuat dari skill atau code execution tool
+- **Unduh file** yang dibuat dari skills atau code execution tool
 - **Referensikan file** dalam permintaan [Messages](/docs/id/api/messages/create) menggunakan `file_id` alih-alih mengunggah ulang konten
 - **Kelola file Anda** dengan operasi list, retrieve, dan delete
 
@@ -386,11 +386,11 @@ puts response
 
 </CodeGroup>
 
-### Tipe file dan blok konten \{#file-types-and-content-blocks}
+### Tipe file dan content block \{#file-types-and-content-blocks}
 
-Files API mendukung berbagai tipe file yang sesuai dengan tipe blok konten yang berbeda:
+Files API mendukung berbagai tipe file yang sesuai dengan tipe content block yang berbeda:
 
-| Tipe File | MIME Type | Tipe Blok Konten | Kasus Penggunaan |
+| Tipe File | MIME Type | Tipe Content Block | Kasus Penggunaan |
 | :--- | :--- | :--- | :--- |
 | PDF | `application/pdf` | `document` | Analisis teks, pemrosesan dokumen |
 | Teks biasa | `text/plain` | `document` | Analisis teks, pemrosesan |
@@ -399,7 +399,7 @@ Files API mendukung berbagai tipe file yang sesuai dengan tipe blok konten yang 
 
 ### Bekerja dengan format file lainnya \{#working-with-other-file-formats}
 
-Untuk tipe file yang tidak didukung sebagai blok `document` (.csv, .txt, .md, .docx, .xlsx), konversikan file tersebut ke teks biasa, dan sertakan kontennya langsung dalam pesan Anda:
+Untuk tipe file yang tidak didukung sebagai blok `document` (.csv, .txt, .md, .docx, .xlsx), konversikan file ke teks biasa, dan sertakan kontennya langsung dalam pesan Anda:
 
 <CodeGroup>
 ```bash cURL hidelines={3..4}
@@ -684,7 +684,7 @@ Untuk file .docx yang berisi gambar, konversikan terlebih dahulu ke format PDF, 
 
 #### Blok document \{#document-blocks}
 
-Untuk PDF dan file teks, gunakan blok konten `document`:
+Untuk PDF dan file teks, gunakan content block `document`:
 
 ```json
 {
@@ -701,7 +701,7 @@ Untuk PDF dan file teks, gunakan blok konten `document`:
 
 #### Blok image \{#image-blocks}
 
-Untuk gambar, gunakan blok konten `image`:
+Untuk gambar, gunakan content block `image`:
 
 ```json
 {
@@ -745,7 +745,7 @@ const anthropic = new Anthropic();
 const files = await anthropic.beta.files.list();
 ```
 
-```csharp C# nocheck
+```csharp C#
 using System;
 using System.Threading.Tasks;
 using Anthropic;
@@ -940,7 +940,7 @@ result = client.beta.files.delete(file_id)
 
 ### Mengunduh file \{#downloading-a-file}
 
-Unduh file yang telah dibuat oleh skill atau code execution tool:
+Unduh file yang telah dibuat oleh skills atau code execution tool:
 
 <CodeGroup>
 
@@ -961,7 +961,7 @@ ant beta:files download \
 ````python
 file_content = client.beta.files.download(file_id)
 
-# Save to file
+# Simpan ke file
 file_content.write_to_file("downloaded_file.txt")
 ````
 
@@ -1025,7 +1025,7 @@ File.binwrite("downloaded_file.txt", file_content.read)
 </CodeGroup>
 
 <Note>
-Anda hanya dapat mengunduh file yang dibuat oleh [skill](/docs/id/build-with-claude/skills-guide) atau [code execution tool](/docs/id/agents-and-tools/tool-use/code-execution-tool). File yang Anda unggah tidak dapat diunduh.
+Anda hanya dapat mengunduh file yang dibuat oleh [skills](/docs/id/build-with-claude/skills-guide) atau [code execution tool](/docs/id/agents-and-tools/tool-use/code-execution-tool). File yang Anda unggah tidak dapat diunduh.
 </Note>
 
 ---
@@ -1042,14 +1042,14 @@ Anda hanya dapat mengunduh file yang dibuat oleh [skill](/docs/id/build-with-cla
 - File dibatasi pada workspace dari kunci API. Kunci API lain dapat menggunakan file yang dibuat oleh kunci API lain mana pun yang terkait dengan workspace yang sama
 - File tetap ada hingga Anda menghapusnya
 - File yang dihapus tidak dapat dipulihkan
-- File tidak dapat diakses melalui API segera setelah penghapusan, tetapi mungkin masih ada dalam panggilan API `Messages` yang aktif dan penggunaan alat terkait
+- File tidak dapat diakses melalui API sesaat setelah penghapusan, tetapi mungkin masih ada dalam panggilan API `Messages` yang aktif dan penggunaan alat terkait
 - File yang dihapus pengguna akan dihapus sesuai dengan [kebijakan retensi data](https://privacy.claude.com/en/articles/7996866-how-long-do-you-store-my-organization-s-data) Anthropic.
 
 ---
 
 ## Retensi data \{#data-retention}
 
-File yang diunggah melalui Files API disimpan hingga dihapus secara eksplisit menggunakan endpoint `DELETE /v1/files/{file_id}`. File disimpan untuk digunakan kembali di berbagai permintaan API.
+File yang diunggah melalui Files API disimpan hingga dihapus secara eksplisit menggunakan endpoint `DELETE /v1/files/{file_id}`. File disimpan untuk digunakan kembali di beberapa permintaan API.
 
 Untuk kelayakan ZDR di semua fitur, lihat [API dan retensi data](/docs/id/manage-claude/api-and-data-retention).
 
@@ -1058,7 +1058,7 @@ Untuk kelayakan ZDR di semua fitur, lihat [API dan retensi data](/docs/id/manage
 Error umum saat menggunakan Files API meliputi:
 
 - **File not found (404):** `file_id` yang ditentukan tidak ada atau Anda tidak memiliki akses ke file tersebut
-- **Invalid file type (400):** Tipe file tidak cocok dengan tipe blok konten (misalnya, menggunakan file gambar dalam blok document)
+- **Invalid file type (400):** Tipe file tidak cocok dengan tipe content block (misalnya, menggunakan file gambar dalam blok document)
 - **Exceeds context window size (400):** File lebih besar dari ukuran jendela konteks (misalnya menggunakan file teks biasa 500 MB dalam permintaan `/v1/messages`)
 - **Invalid filename (400):** Nama file tidak memenuhi persyaratan panjang (1-255 karakter) atau berisi karakter terlarang (`<`, `>`, `:`, `"`, `|`, `?`, `*`, `\`, `/`, atau karakter unicode 0-31)
 - **File too large (413):** File melebihi batas 500 MB
@@ -1083,7 +1083,7 @@ Operasi File API bersifat **gratis**:
 - Mendapatkan metadata file
 - Menghapus file
 
-Konten file yang digunakan dalam permintaan `Messages` dihitung sebagai token input. Anda hanya dapat mengunduh file yang dibuat oleh [skill](/docs/id/build-with-claude/skills-guide) atau [code execution tool](/docs/id/agents-and-tools/tool-use/code-execution-tool).
+Konten file yang digunakan dalam permintaan `Messages` dikenakan biaya sebagai token input. Anda hanya dapat mengunduh file yang dibuat oleh [skills](/docs/id/build-with-claude/skills-guide) atau [code execution tool](/docs/id/agents-and-tools/tool-use/code-execution-tool).
 
 ### Batas laju \{#rate-limits}
 

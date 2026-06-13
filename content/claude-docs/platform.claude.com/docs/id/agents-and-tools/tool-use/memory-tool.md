@@ -1,17 +1,17 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool
-fetched_at: 2026-06-11T03:14:59.596724Z
-sha256: 60e1e81b482f2369469dec08ef5804e29a181c546ecfadbcb662c8eec0586f3c
+fetched_at: 2026-06-13T03:15:40.418428Z
+sha256: 7c3aa1d84f2ed46cc86fe38a5e1ada76cfe659a3a0161c7e541f0d52478f1abd
 ---
 
 # Alat memori
 
 ---
 
-Alat memori memungkinkan Claude untuk menyimpan dan mengambil informasi di seluruh percakapan melalui direktori file memori. Claude dapat membuat, membaca, memperbarui, dan menghapus file yang bertahan di antara sesi, memungkinkannya membangun pengetahuan dari waktu ke waktu tanpa menyimpan semuanya di dalam jendela konteks.
+Alat memori memungkinkan Claude untuk menyimpan dan mengambil informasi di seluruh percakapan melalui direktori file memori. Claude dapat membuat, membaca, memperbarui, dan menghapus file yang tetap ada di antara sesi, memungkinkannya membangun pengetahuan dari waktu ke waktu tanpa menyimpan semuanya di dalam "context window" (jendela konteks).
 
-Ini adalah primitif utama untuk pengambilan konteks "just-in-time" (tepat waktu): alih-alih memuat semua informasi yang relevan di awal, agen menyimpan apa yang mereka pelajari di memori dan menariknya kembali sesuai kebutuhan. Hal ini menjaga konteks aktif tetap terfokus pada apa yang saat ini relevan, yang sangat penting untuk alur kerja jangka panjang di mana memuat semuanya sekaligus akan membebani jendela konteks. Lihat [Effective context engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) untuk pola yang lebih luas.
+Ini adalah primitif utama untuk pengambilan konteks tepat waktu (just-in-time): alih-alih memuat semua informasi yang relevan di awal, agen menyimpan apa yang mereka pelajari di memori dan mengambilnya kembali sesuai kebutuhan. Hal ini menjaga konteks aktif tetap fokus pada apa yang saat ini relevan, yang sangat penting untuk alur kerja jangka panjang di mana memuat semuanya sekaligus akan membebani jendela konteks. Lihat [Effective context engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) untuk pola yang lebih luas.
 
 Alat memori beroperasi di sisi klien: Anda mengontrol di mana dan bagaimana data disimpan melalui infrastruktur Anda sendiri.
 
@@ -109,11 +109,13 @@ Untuk menggunakan alat memori:
 2. Implementasikan handler sisi klien untuk operasi memori
 
 <Note>
-Untuk menangani operasi alat memori di aplikasi Anda, Anda perlu mengimplementasikan handler untuk setiap perintah memori. SDK menyediakan helper alat memori yang menangani antarmuka alat. Anda dapat membuat subclass dari `BetaAbstractMemoryTool` (Python) atau menggunakan `betaMemoryTool` (TypeScript) untuk mengimplementasikan backend memori Anda sendiri (berbasis file, database, penyimpanan cloud, file terenkripsi, dll.).
+Untuk menangani operasi alat memori di aplikasi Anda, Anda perlu mengimplementasikan handler untuk setiap perintah memori. SDK menyediakan helper alat memori yang menangani antarmuka alat. Anda dapat membuat subclass dari `BetaAbstractMemoryTool` (Python dan C#), menggunakan `betaMemoryTool` (TypeScript), atau mengimplementasikan `BetaMemoryToolHandler` (Java) untuk mengimplementasikan backend memori Anda sendiri (berbasis file, database, penyimpanan cloud, file terenkripsi, dll.).
 
 Untuk contoh yang berfungsi, lihat:
 - Python: [examples/memory/basic.py](https://github.com/anthropics/anthropic-sdk-python/blob/main/examples/memory/basic.py)
 - TypeScript: [examples/tools-helpers-memory.ts](https://github.com/anthropics/anthropic-sdk-typescript/blob/main/examples/tools-helpers-memory.ts)
+- Java: [BetaMemoryToolExample.java](https://github.com/anthropics/anthropic-sdk-java/blob/main/anthropic-java-example/src/main/java/com/anthropic/example/BetaMemoryToolExample.java)
+- C#: [MemoryToolExample](https://github.com/anthropics/anthropic-sdk-csharp/tree/main/examples/MemoryToolExample)
 </Note>
 
 ## Penggunaan dasar \{#basic-usage}
@@ -370,7 +372,7 @@ Menampilkan isi direktori atau isi file dengan rentang baris opsional:
 }
 ```
 
-#### Nilai kembalian \{#return-values}
+#### Nilai yang dikembalikan \{#return-values}
 
 **Untuk direktori:** Kembalikan daftar yang menampilkan file dan direktori beserta ukurannya:
 ```text nowrap
@@ -421,7 +423,7 @@ Membuat file baru:
 }
 ```
 
-#### Nilai kembalian \{#return-values-2}
+#### Nilai yang dikembalikan \{#return-values-2}
 
 - **Berhasil**: `"File created successfully at: {path}"`
 
@@ -441,7 +443,7 @@ Mengganti teks dalam file:
 }
 ```
 
-#### Nilai kembalian \{#return-values-3}
+#### Nilai yang dikembalikan \{#return-values-3}
 
 - **Berhasil**: `"The memory file has been edited."` diikuti dengan cuplikan file yang telah diedit beserta nomor baris
 
@@ -467,7 +469,7 @@ Menyisipkan teks pada baris tertentu:
 }
 ```
 
-#### Nilai kembalian \{#return-values-4}
+#### Nilai yang dikembalikan \{#return-values-4}
 
 - **Berhasil**: `"The file {path} has been edited."`
 
@@ -490,7 +492,7 @@ Menghapus file atau direktori:
 }
 ```
 
-#### Nilai kembalian \{#return-values-5}
+#### Nilai yang dikembalikan \{#return-values-5}
 
 - **Berhasil**: `"Successfully deleted {path}"`
 
@@ -513,7 +515,7 @@ Mengganti nama atau memindahkan file/direktori:
 }
 ```
 
-#### Nilai kembalian \{#return-values-6}
+#### Nilai yang dikembalikan \{#return-values-6}
 
 - **Berhasil**: `"Successfully renamed {old_path} to {new_path}"`
 
@@ -561,13 +563,13 @@ Pertimbangkan untuk membersihkan file memori secara berkala yang belum diakses d
 ### Perlindungan path traversal \{#path-traversal-protection}
 
 <Warning>
-Input path yang berbahaya dapat mencoba mengakses file di luar direktori `/memories`. Implementasi Anda **HARUS** memvalidasi semua path untuk mencegah serangan "directory traversal" (penelusuran direktori).
+Input path berbahaya dapat mencoba mengakses file di luar direktori `/memories`. Implementasi Anda **HARUS** memvalidasi semua path untuk mencegah serangan directory traversal.
 </Warning>
 
 Pertimbangkan langkah-langkah pengamanan berikut:
 
 - Validasi bahwa semua path dimulai dengan `/memories`
-- Resolusikan path ke bentuk kanonisnya dan verifikasi bahwa path tersebut tetap berada dalam direktori memori
+- Resolusikan path ke bentuk kanoniknya dan verifikasi bahwa path tersebut tetap berada di dalam direktori memori
 - Tolak path yang berisi urutan seperti `../`, `..\\`, atau pola traversal lainnya
 - Waspadai urutan traversal yang di-encode URL (`%2e%2e%2f`)
 - Gunakan utilitas keamanan path bawaan bahasa pemrograman Anda (misalnya, `pathlib.Path.resolve()` dan `relative_to()` di Python)
@@ -578,17 +580,17 @@ Alat memori menggunakan pola penanganan error yang serupa dengan [alat text edit
 
 ## Integrasi pengeditan konteks \{#context-editing-integration}
 
-Alat memori berpasangan dengan pengeditan konteks untuk mengelola percakapan jangka panjang. Untuk detailnya, lihat [Pengeditan konteks](/docs/id/build-with-claude/context-editing).
+Alat memori berpasangan dengan pengeditan konteks untuk mengelola percakapan yang berjalan lama. Untuk detailnya, lihat [Pengeditan konteks](/docs/id/build-with-claude/context-editing).
 
 ## Menggunakan dengan Compaction \{#using-with-compaction}
 
 Alat memori juga dapat dipasangkan dengan [compaction](/docs/id/build-with-claude/compaction), yang menyediakan peringkasan sisi server dari konteks percakapan yang lebih lama. Sementara pengeditan konteks menghapus hasil alat tertentu di sisi klien, compaction secara otomatis meringkas seluruh percakapan di sisi server ketika mendekati batas jendela konteks.
 
-Untuk alur kerja agentik jangka panjang, pertimbangkan untuk menggunakan keduanya: compaction menjaga konteks aktif tetap terkelola tanpa pembukuan sisi klien, dan memori mempertahankan informasi penting melintasi batas compaction sehingga tidak ada hal kritis yang hilang dalam ringkasan.
+Untuk alur kerja agentik yang berjalan lama, pertimbangkan untuk menggunakan keduanya: compaction menjaga konteks aktif tetap terkelola tanpa pembukuan sisi klien, dan memori mempertahankan informasi penting melintasi batas compaction sehingga tidak ada hal kritis yang hilang dalam ringkasan.
 
 ## Pola pengembangan perangkat lunak multi-sesi \{#multi-session-software-development-pattern}
 
-Untuk proyek perangkat lunak jangka panjang yang mencakup beberapa sesi agen, file memori perlu di-bootstrap secara sengaja, bukan hanya ditulis secara ad hoc seiring berjalannya pekerjaan. Pola di bawah ini mengubah memori menjadi mekanisme pemulihan terstruktur, sehingga setiap sesi baru dapat melanjutkan tepat dari titik di mana sesi terakhir berhenti.
+Untuk proyek perangkat lunak jangka panjang yang mencakup beberapa sesi agen, file memori perlu di-bootstrap secara sengaja, bukan hanya ditulis secara ad hoc saat pekerjaan berlangsung. Pola di bawah ini mengubah memori menjadi mekanisme pemulihan terstruktur, sehingga setiap sesi baru dapat melanjutkan tepat dari titik terakhir sesi sebelumnya.
 
 ### Cara kerjanya \{#how-it-works-2}
 
@@ -600,7 +602,7 @@ Untuk proyek perangkat lunak jangka panjang yang mencakup beberapa sesi agen, fi
 
 ### Prinsip utama \{#key-principle}
 
-Kerjakan satu fitur pada satu waktu. Hanya tandai fitur sebagai selesai setelah verifikasi end-to-end mengonfirmasi bahwa fitur tersebut berfungsi, bukan hanya setelah kode ditulis. Ini menjaga log kemajuan tetap dapat dipercaya dan mencegah "scope creep" (perluasan cakupan) menumpuk di seluruh sesi.
+Kerjakan satu fitur pada satu waktu. Hanya tandai fitur sebagai selesai setelah verifikasi end-to-end mengonfirmasi bahwa fitur tersebut berfungsi, bukan hanya setelah kode ditulis. Ini menjaga log kemajuan tetap dapat dipercaya dan mencegah scope creep menumpuk di seluruh sesi.
 
 <Tip>
 Untuk studi kasus terperinci tentang pola ini dalam praktik, termasuk skrip inisialisasi, struktur file kemajuan, dan pemulihan berbasis git, lihat [Effective harnesses for long-running agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents).

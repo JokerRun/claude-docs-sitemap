@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: ac0bb08873b16a2c356af7c8c39b3e329e14bbbf31ae1e0873e3373314997954
+fetched_at: 2026-06-13T03:15:40.418428Z
+sha256: 47557b98c23a9d8765b2aea9a9d9872e0481ca69a083f2f37bdb55689ec5fc8a
 ---
 
 # Alat eksekusi kode
@@ -13,9 +13,9 @@ Jalankan kode Python dan bash dalam kontainer sandbox untuk menganalisis data, m
 
 Claude dapat menganalisis data, membuat visualisasi, melakukan perhitungan kompleks, menjalankan perintah sistem, membuat dan mengedit file, serta memproses file yang diunggah secara langsung dalam percakapan API. Alat eksekusi kode memungkinkan Claude menjalankan perintah Bash dan memanipulasi file, termasuk menulis kode, dalam lingkungan sandbox yang aman.
 
-**Eksekusi kode gratis ketika digunakan bersama web search atau web fetch.** Ketika `web_search_20260209` atau `web_fetch_20260209` disertakan dalam permintaan Anda, tidak ada biaya tambahan untuk panggilan alat eksekusi kode di luar biaya token input dan output standar. Biaya eksekusi kode standar berlaku ketika alat-alat tersebut tidak disertakan.
+**Eksekusi kode gratis ketika digunakan bersama web search atau web fetch.** Ketika `web_search_20260209` atau `web_fetch_20260209` disertakan dalam permintaan Anda, tidak ada biaya tambahan untuk pemanggilan alat eksekusi kode di luar biaya token input dan output standar. Biaya eksekusi kode standar berlaku ketika alat-alat tersebut tidak disertakan.
 
-Eksekusi kode adalah primitif inti untuk membangun agen berkinerja tinggi. Fitur ini memungkinkan pemfilteran dinamis pada alat web search dan web fetch, sehingga Claude dapat memproses hasil sebelum masuk ke jendela konteks, meningkatkan akurasi sekaligus mengurangi konsumsi token.
+Eksekusi kode adalah primitif inti untuk membangun agen berkinerja tinggi. Fitur ini memungkinkan pemfilteran dinamis pada alat web search dan web fetch, sehingga Claude dapat memproses hasil sebelum mencapai "context window" (jendela konteks), meningkatkan akurasi sekaligus mengurangi konsumsi token.
 
 <Note>
 Hubungi kami melalui [formulir umpan balik](https://forms.gle/LTAU6Xn2puCJMi1n6) untuk membagikan masukan Anda tentang fitur ini.
@@ -31,6 +31,8 @@ Alat eksekusi kode tersedia pada model-model berikut:
 
 | Model | Versi alat |
 |-------|--------------|
+| Claude Fable 5 (claude-fable-5) | `code_execution_20250825`, `code_execution_20260120` |
+| Claude Mythos 5 (claude-mythos-5) | `code_execution_20250825`, `code_execution_20260120` |
 | Claude Opus 4.8 (claude-opus-4-8) | `code_execution_20250825`, `code_execution_20260120` |
 | Claude Opus 4.7 (claude-opus-4-7) | `code_execution_20250825`, `code_execution_20260120` |
 | Claude Opus 4.6 (claude-opus-4-6) | `code_execution_20250825`, `code_execution_20260120` |
@@ -43,7 +45,7 @@ Alat eksekusi kode tersedia pada model-model berikut:
 | Claude Sonnet 4 (claude-sonnet-4-20250514) ([tidak digunakan lagi](/docs/id/about-claude/model-deprecations)) | `code_execution_20250825` |
 
 <Note>
-`code_execution_20250825` mendukung perintah Bash dan operasi file, serta tersedia pada setiap model yang tercantum di atas. `code_execution_20260120` menambahkan persistensi state REPL dan [pemanggilan alat secara programatik](/docs/id/agents-and-tools/tool-use/programmatic-tool-calling) dari dalam sandbox, dan hanya tersedia pada Opus 4.5+ dan Sonnet 4.5+. Jika Anda masih menggunakan `code_execution_20250522` lama (hanya Python), lihat [Tingkatkan ke versi alat terbaru](#upgrade-to-latest-tool-version) untuk bermigrasi darinya.
+`code_execution_20250825` mendukung perintah Bash dan operasi file, serta tersedia pada setiap model dalam tabel. `code_execution_20260120` menambahkan persistensi state REPL dan [pemanggilan alat secara programatik](/docs/id/agents-and-tools/tool-use/programmatic-tool-calling) dari dalam sandbox, dan hanya tersedia pada Claude Fable 5, Claude Mythos 5, Opus 4.5+, dan Sonnet 4.5+. Jika Anda masih menggunakan `code_execution_20250522` lama (hanya Python), lihat [Upgrade ke versi alat terbaru](#upgrade-ke-versi-alat-terbaru) untuk bermigrasi darinya.
 </Note>
 
 <Warning>
@@ -65,7 +67,7 @@ Untuk [Claude Mythos Preview](https://anthropic.com/glasswing), eksekusi kode ha
 
 ## Mulai cepat \{#quick-start}
 
-Berikut adalah contoh sederhana yang meminta Claude untuk melakukan perhitungan:
+Berikut adalah contoh sederhana yang meminta Claude melakukan perhitungan:
 
 <CodeGroup>
 ```bash cURL
@@ -314,11 +316,11 @@ Claude menjawab langsung tanpa menjalankan kode untuk:
 - Permintaan faktual, percakapan, atau kreatif
 - Konversi satuan atau terjemahan sederhana
 
-Jika Anda ingin Claude menjalankan kode untuk permintaan yang berada di batas, mintalah secara eksplisit (misalnya, "jalankan kode untuk memverifikasi ini").
+Jika Anda ingin Claude menjalankan kode untuk permintaan yang berada di batas antara keduanya, minta secara eksplisit (misalnya, "jalankan kode untuk memverifikasi ini").
 
 ## Menggunakan eksekusi kode dengan alat eksekusi lainnya \{#using-code-execution-with-other-execution-tools}
 
-Ketika Anda menyediakan eksekusi kode bersama dengan alat yang disediakan klien yang juga menjalankan kode (seperti [alat bash](/docs/id/agents-and-tools/tool-use/bash-tool) atau REPL kustom), Claude beroperasi dalam lingkungan multi-komputer. Alat eksekusi kode berjalan di kontainer sandbox milik Anthropic, sementara alat yang disediakan klien Anda berjalan di lingkungan terpisah yang Anda kendalikan. Claude terkadang dapat membingungkan lingkungan-lingkungan ini, mencoba menggunakan alat yang salah atau mengasumsikan bahwa state dibagikan di antara keduanya.
+Ketika Anda menyediakan eksekusi kode bersama dengan alat yang disediakan klien yang juga menjalankan kode (seperti [alat bash](/docs/id/agents-and-tools/tool-use/bash-tool) atau REPL kustom), Claude beroperasi dalam lingkungan multi-komputer. Alat eksekusi kode berjalan di kontainer sandbox milik Anthropic, sementara alat yang disediakan klien Anda berjalan di lingkungan terpisah yang Anda kendalikan. Claude terkadang dapat membingungkan lingkungan-lingkungan ini, mencoba menggunakan alat yang salah atau mengasumsikan state dibagikan di antara keduanya.
 
 Untuk menghindari hal ini, tambahkan instruksi ke prompt sistem Anda yang memperjelas perbedaannya:
 
@@ -770,7 +772,7 @@ def extract_file_ids(response):
     return file_ids
 
 
-# Unduh file yang telah dibuat
+# Unduh file yang dibuat
 for file_id in extract_file_ids(response):
     file_metadata = client.beta.files.retrieve_metadata(file_id)
     file_content = client.beta.files.download(file_id)
@@ -809,7 +811,7 @@ async function main() {
     if (item.type === "bash_code_execution_tool_result") {
       const contentItem = item.content;
       if (contentItem.type === "bash_code_execution_result" && contentItem.content) {
-        // daftar bertipe konkret: BashCodeExecutionOutputBlock
+        // list bertipe konkret: BashCodeExecutionOutputBlock
         for (const file of contentItem.content) {
           const fileMetadata = await client.beta.files.retrieveMetadata(file.file_id);
           const fileResponse = await client.beta.files.download(file.file_id);
@@ -1016,13 +1018,13 @@ void main() throws Exception {
 
 List<String> extractFileIds(BetaMessage response) {
     List<String> fileIds = new ArrayList<>();
-    // .ifPresent() adalah penjaga diskriminator (tidak bertipe konkret; pemindai tidak dapat melihat penjaga lambda)
+    // .ifPresent() adalah guard diskriminator (tidak bertipe konkret; scanner tidak bisa melihat guard lambda)
     for (BetaContentBlock item : response.content()) {
         item.bashCodeExecutionToolResult().ifPresent(toolResult -> {
             if (toolResult.content().isBetaBashCodeExecutionResultBlock()) {
                 BetaBashCodeExecutionResultBlock result =
                     toolResult.content().asBetaBashCodeExecutionResultBlock();
-                // daftar bertipe konkret: BetaBashCodeExecutionOutputBlock
+                // list bertipe konkret: BetaBashCodeExecutionOutputBlock
                 for (BetaBashCodeExecutionOutputBlock output : result.content()) {
                     fileIds.add(output.fileId());
                 }
@@ -1269,7 +1271,7 @@ Alat eksekusi kode dapat mengembalikan dua jenis hasil tergantung pada operasiny
 
 Semua hasil eksekusi mencakup:
 - `stdout`: Output dari eksekusi yang berhasil
-- `stderr`: Pesan kesalahan jika eksekusi gagal
+- `stderr`: Pesan error jika eksekusi gagal
 - `return_code`: 0 untuk berhasil, bukan nol untuk gagal
 
 Field tambahan untuk operasi file:
@@ -1277,11 +1279,11 @@ Field tambahan untuk operasi file:
 - **Create**: `is_file_update` (apakah file sudah ada sebelumnya)
 - **Edit**: `oldStart`, `oldLines`, `newStart`, `newLines`, `lines` (format diff)
 
-### Kesalahan \{#errors}
+### Error \{#errors}
 
-Setiap jenis alat dapat mengembalikan kesalahan tertentu:
+Setiap jenis alat dapat mengembalikan error tertentu:
 
-**Kesalahan umum (semua alat):**
+**Error umum (semua alat):**
 ```json Output
 {
   "type": "bash_code_execution_tool_result",
@@ -1293,11 +1295,11 @@ Setiap jenis alat dapat mengembalikan kesalahan tertentu:
 }
 ```
 
-**Kode kesalahan berdasarkan jenis alat:**
+**Kode error berdasarkan jenis alat:**
 
-| Alat | Kode Kesalahan | Deskripsi |
+| Alat | Kode Error | Deskripsi |
 |------|-----------|-------------|
-| Semua alat | `unavailable` | Alat tidak tersedia untuk sementara |
+| Semua alat | `unavailable` | Alat sementara tidak tersedia |
 | Semua alat | `execution_time_exceeded` | Eksekusi melebihi batas waktu maksimum |
 | Semua alat | `container_expired` | Kontainer kedaluwarsa dan tidak lagi tersedia |
 | Semua alat | `invalid_tool_input` | Parameter yang diberikan ke alat tidak valid |
@@ -1309,7 +1311,7 @@ Setiap jenis alat dapat mengembalikan kesalahan tertentu:
 #### Stop reason `pause_turn` \{#pause-turn-stop-reason}
 
 Respons dapat menyertakan stop reason `pause_turn`, yang menunjukkan bahwa API menjeda giliran yang berjalan lama. Anda dapat
-mengirimkan kembali respons tersebut apa adanya dalam permintaan berikutnya agar Claude melanjutkan gilirannya, atau memodifikasi konten jika Anda
+memberikan respons tersebut apa adanya dalam permintaan berikutnya agar Claude melanjutkan gilirannya, atau memodifikasi konten jika Anda
 ingin menginterupsi percakapan.
 
 ## Kontainer \{#containers}
@@ -1323,7 +1325,7 @@ Alat eksekusi kode berjalan dalam lingkungan terkontainerisasi yang aman, diranc
 
 ### Batas sumber daya \{#resource-limits}
 - **Memori**: 5GiB RAM
-- **Ruang disk**: Penyimpanan workspace 5GiB
+- **Ruang disk**: 5GiB penyimpanan workspace
 - **CPU**: 1 CPU
 
 ### Jaringan dan keamanan \{#networking-and-security}
@@ -1332,10 +1334,10 @@ Alat eksekusi kode berjalan dalam lingkungan terkontainerisasi yang aman, diranc
 - **Isolasi sandbox**: Isolasi penuh dari sistem host dan kontainer lainnya
 - **Akses file**: Terbatas hanya pada direktori workspace
 - **Cakupan workspace**: Seperti [Files](/docs/id/build-with-claude/files), kontainer dicakup ke workspace dari kunci API
-- **Kedaluwarsa**: Kontainer kedaluwarsa 30 hari setelah pembuatan
+- **Kedaluwarsa**: Kontainer kedaluwarsa 30 hari setelah dibuat
 
-### Pustaka yang sudah terpasang \{#pre-installed-libraries}
-Lingkungan Python sandbox mencakup pustaka yang umum digunakan berikut:
+### Library yang sudah terinstal \{#pre-installed-libraries}
+Lingkungan Python sandbox mencakup library yang umum digunakan berikut:
 - **Data Science**: pandas, numpy, scipy, scikit-learn, statsmodels
 - **Visualisasi**: matplotlib, seaborn
 - **Pemrosesan File**: pyarrow, openpyxl, xlsxwriter, xlrd, pillow, python-pptx, python-docx, pypdf, pdfplumber, pypdfium2, pdf2image, pdfkit, tabula-py, reportlab[pycairo], Img2pdf
@@ -1344,7 +1346,7 @@ Lingkungan Python sandbox mencakup pustaka yang umum digunakan berikut:
 
 ## Penggunaan ulang kontainer \{#container-reuse}
 
-Anda dapat menggunakan kembali kontainer yang sudah ada di beberapa permintaan API dengan menyediakan ID kontainer dari respons sebelumnya.
+Anda dapat menggunakan kembali kontainer yang sudah ada di beberapa permintaan API dengan memberikan ID kontainer dari respons sebelumnya.
 Ini memungkinkan Anda mempertahankan file yang dibuat di antara permintaan.
 
 ### Contoh \{#example}
@@ -1724,7 +1726,7 @@ data: {"type": "content_block_start", "index": 2, "content_block": {"type": "cod
 
 ## Permintaan batch \{#batch-requests}
 
-Anda dapat menyertakan alat eksekusi kode dalam [Messages Batches API](/docs/id/build-with-claude/batch-processing). Panggilan alat eksekusi kode melalui Messages Batches API dikenakan harga yang sama dengan permintaan Messages API reguler.
+Anda dapat menyertakan alat eksekusi kode dalam [Messages Batches API](/docs/id/build-with-claude/batch-processing). Pemanggilan alat eksekusi kode melalui Messages Batches API dikenakan harga yang sama dengan permintaan Messages API reguler.
 
 ## Penggunaan dan harga \{#usage-and-pricing}
 
@@ -1751,9 +1753,9 @@ Penggunaan code execution dilacak dalam respons:
 }
 ```
 
-## Tingkatkan ke versi alat terbaru \{#upgrade-to-latest-tool-version}
+## Upgrade ke versi alat terbaru \{#upgrade-to-latest-tool-version}
 
-Dengan meningkatkan ke `code-execution-2025-08-25`, Anda mendapatkan akses ke kemampuan manipulasi file dan Bash, termasuk kode dalam berbagai bahasa. Tidak ada perbedaan harga.
+Dengan melakukan upgrade ke `code-execution-2025-08-25`, Anda mendapatkan akses ke kemampuan manipulasi file dan Bash, termasuk kode dalam berbagai bahasa. Tidak ada perbedaan harga.
 
 ### Apa yang berubah \{#whats-changed}
 
@@ -1766,12 +1768,12 @@ Dengan meningkatkan ke `code-execution-2025-08-25`, Anda mendapatkan akses ke ke
 
 ### Kompatibilitas mundur \{#backward-compatibility}
 
-- Semua eksekusi kode Python yang sudah ada tetap berfungsi persis seperti sebelumnya
-- Tidak ada perubahan yang diperlukan pada alur kerja khusus Python yang sudah ada
+- Semua eksekusi kode Python yang ada terus berfungsi persis seperti sebelumnya
+- Tidak ada perubahan yang diperlukan pada alur kerja yang hanya menggunakan Python
 
-### Langkah-langkah peningkatan \{#upgrade-steps}
+### Langkah-langkah upgrade \{#upgrade-steps}
 
-Untuk meningkatkan, perbarui tipe alat dalam permintaan API Anda:
+Untuk melakukan upgrade, perbarui tipe alat dalam permintaan API Anda:
 
 ```diff
 - "type": "code_execution_20250522"

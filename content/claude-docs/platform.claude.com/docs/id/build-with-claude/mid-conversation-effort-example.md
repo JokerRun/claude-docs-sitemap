@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/mid-conversation-effort-example
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: d141725a365ff3e5b8913f5d865dbaacad1dd8debdbdbe05895b5d0fd1dfbce9
+fetched_at: 2026-06-13T03:15:40.418428Z
+sha256: cfd51e9bfb82e2b729941cd2559539dda1ca0bd1bf5217215beb2a30bac11967
 ---
 
 # Membangun mode orkestrasi
@@ -111,10 +111,10 @@ var effort = Effort.Xhigh;
 const string systemPrompt = "You are a helpful general-purpose agent. Answer the user's request directly.";
 
 const int requestTimeoutSeconds = 600;
-// The other ports stream with max_tokens 64000. This port uses non-streaming
-// Messages.Create, and the API rejects non-streaming requests at that size.
-// 8192 is the non-streaming ceiling for Opus 4.0 and 4.1 and a conservative
-// choice for newer Opus models.
+// Port lain melakukan streaming dengan max_tokens 64000. Port ini menggunakan
+// Messages.Create non-streaming, dan API menolak permintaan non-streaming sebesar itu.
+// 8192 adalah batas atas non-streaming untuk Opus 4.0 dan 4.1 serta pilihan
+// konservatif untuk model Opus yang lebih baru.
 const int requestMaxTokens = 8192;
 const int bashTimeoutSeconds = 60;
 const int toolResultMaxChars = 8000;
@@ -921,8 +921,8 @@ Handler bash menjalankan perintah yang diminta dengan batas waktu, menangkap gab
 <CodeGroup>
   
 ````python
-# Run bash where the example was launched. In DOC_TEST_MODE the docs harness
-# points it at a throwaway fixture directory instead, removed on exit.
+# Jalankan bash di tempat contoh diluncurkan. Dalam DOC_TEST_MODE, harness dokumentasi
+# mengarahkannya ke direktori fixture sementara, yang dihapus saat keluar.
 if DOC_TEST_MODE:
     WORK_DIR = tempfile.mkdtemp(prefix="orchestration-")
     atexit.register(shutil.rmtree, WORK_DIR, ignore_errors=True)
@@ -971,8 +971,8 @@ def handle_bash_block(block) -> tuple[str, bool]:
 ````typescript
 const execShell = promisify(exec);
 
-// Run bash where the example was launched. In DOC_TEST_MODE the docs harness
-// points it at a throwaway fixture directory instead, removed on exit.
+// Jalankan bash di tempat contoh diluncurkan. Dalam DOC_TEST_MODE, harness dokumentasi
+// mengarahkannya ke direktori fixture sementara, yang dihapus saat keluar.
 const WORK_DIR = DOC_TEST_MODE
   ? await mkdtemp(join(tmpdir(), "orchestration-"))
   : process.cwd();
@@ -986,7 +986,7 @@ if (DOC_TEST_MODE) {
   process.on("exit", () => rmSync(WORK_DIR, { recursive: true, force: true }));
 }
 
-// Run a shell command and return its output. No sandbox: example code only.
+// Jalankan perintah shell dan kembalikan outputnya. Tanpa sandbox: hanya kode contoh.
 async function runBash(command: string): Promise<{ output: string; isError: boolean }> {
   console.error(`[bash] ${command}`);
   let stdout = "";
@@ -1042,8 +1042,8 @@ async function handleBashBlock(
 
   
 ````csharp
-// Run bash where the example was launched. In DOC_TEST_MODE the docs harness
-// points it at a throwaway fixture directory instead, removed on exit.
+// Jalankan bash di tempat contoh ini diluncurkan. Dalam DOC_TEST_MODE, harness dokumentasi
+// mengarahkannya ke direktori fixture sementara, yang dihapus saat keluar.
 var workDir = Environment.CurrentDirectory;
 if (docTestMode)
 {
@@ -1060,7 +1060,7 @@ if (docTestMode)
     };
 }
 
-// Run a shell command and return its output plus an error flag. No sandbox: example code only.
+// Jalankan perintah shell dan kembalikan outputnya plus flag error. Tanpa sandbox: hanya kode contoh.
 async Task<(string Output, bool IsError)> RunBash(string command)
 {
     Console.Error.WriteLine($"[bash] {command}");
@@ -1085,14 +1085,14 @@ async Task<(string Output, bool IsError)> RunBash(string command)
     catch (OperationCanceledException)
     {
         process.Kill(entireProcessTree: true);
-        // Let the reader tasks finish before the process is disposed.
+        // Biarkan task pembaca selesai sebelum proses di-dispose.
         try
         {
             await Task.WhenAll(stdoutTask, stderrTask);
         }
         catch
         {
-            // The output is discarded on timeout, so reader failures are ignored too.
+            // Output dibuang saat timeout, jadi kegagalan pembaca juga diabaikan.
         }
         return ($"command timed out after {bashTimeoutSeconds}s", true);
     }
@@ -1112,7 +1112,7 @@ async Task<(string Output, bool IsError)> RunBash(string command)
     return (output, process.ExitCode != 0);
 }
 
-// Execute one bash tool call requested by the model.
+// Eksekusi satu panggilan alat bash yang diminta oleh model.
 async Task<(string Output, bool IsError)> HandleBashBlock(ToolUseBlock block)
 {
     if (block.Input.TryGetValue("restart", out var restart) && restart.ValueKind == JsonValueKind.True)
@@ -1132,8 +1132,8 @@ async Task<(string Output, bool IsError)> HandleBashBlock(ToolUseBlock block)
 
   
 ````go
-// Run bash where the example was launched. In DOC_TEST_MODE the docs harness
-// points it at a throwaway fixture directory instead, removed on exit.
+// Jalankan bash di tempat contoh ini diluncurkan. Dalam DOC_TEST_MODE, harness dokumentasi
+// mengarahkannya ke direktori fixture sekali pakai, yang dihapus saat keluar.
 var workDir = func() string {
 	if !docTestMode {
 		dir, err := os.Getwd()
@@ -1155,8 +1155,8 @@ var workDir = func() string {
 	return dir
 }()
 
-// runBash runs a shell command and returns its output plus an error flag.
-// No sandbox: example code only.
+// runBash menjalankan perintah shell dan mengembalikan output-nya beserta flag error.
+// Tanpa sandbox: hanya kode contoh.
 func runBash(ctx context.Context, command string) (string, bool) {
 	fmt.Fprintf(os.Stderr, "[bash] %s\n", command)
 	ctx, cancel := context.WithTimeout(ctx, bashTimeoutSeconds*time.Second)
@@ -1184,7 +1184,7 @@ func runBash(ctx context.Context, command string) (string, bool) {
 	return fmt.Sprintf("(%s)\n%s", err, output), true
 }
 
-// handleBashBlock executes one bash tool call requested by the model.
+// handleBashBlock mengeksekusi satu panggilan alat bash yang diminta oleh model.
 func handleBashBlock(ctx context.Context, block anthropic.ToolUseBlock) (string, bool) {
 	var input struct {
 		Command string `json:"command"`
@@ -1208,8 +1208,8 @@ func handleBashBlock(ctx context.Context, block anthropic.ToolUseBlock) (string,
 ````java
 record ToolOutput(String output, boolean isError) {}
 
-// Run bash where the example was launched. In DOC_TEST_MODE the docs harness
-// points it at a throwaway fixture directory instead, removed on exit.
+// Jalankan bash di tempat contoh diluncurkan. Dalam DOC_TEST_MODE, harness dokumentasi
+// mengarahkannya ke direktori fixture sementara, yang dihapus saat keluar.
 static final Path WORK_DIR = createWorkDir();
 
 static Path createWorkDir() {
@@ -1230,7 +1230,7 @@ static Path createWorkDir() {
                     try { Files.deleteIfExists(p); } catch (IOException ignored) {}
                 });
             } catch (IOException ignored) {
-                // Best-effort cleanup; the OS tmp sweeper handles leftovers.
+                // Pembersihan sebisa mungkin; penyapu tmp OS menangani sisanya.
             }
         }));
         return dir;
@@ -1239,7 +1239,7 @@ static Path createWorkDir() {
     }
 }
 
-// Run a shell command and return its output plus an error flag. No sandbox: example code only.
+// Jalankan perintah shell dan kembalikan outputnya plus flag error. Tanpa sandbox: hanya kode contoh.
 ToolOutput runBash(String command) throws InterruptedException {
     System.err.println("[bash] " + command);
     Process process;
@@ -1251,7 +1251,7 @@ ToolOutput runBash(String command) throws InterruptedException {
     } catch (IOException error) {
         return new ToolOutput("(" + error + ")", true);
     }
-    // Drain stdout on another thread so a filled pipe cannot stall the timeout wait below.
+    // Kuras stdout di thread lain agar pipe yang penuh tidak menghambat penantian timeout di bawah.
     CompletableFuture<String> outputReader = CompletableFuture.supplyAsync(() -> {
         try (var stdout = process.getInputStream()) {
             return new String(stdout.readAllBytes(), StandardCharsets.UTF_8);
@@ -1279,7 +1279,7 @@ ToolOutput runBash(String command) throws InterruptedException {
     return new ToolOutput(output, false);
 }
 
-// Execute one bash tool call requested by the model.
+// Eksekusi satu panggilan alat bash yang diminta oleh model.
 ToolOutput handleBashBlock(ToolUseBlock block) throws InterruptedException {
     Map<String, JsonValue> input = (Map<String, JsonValue>) block._input().asObject().orElse(Map.of());
     JsonValue restart = input.getOrDefault("restart", JsonValue.from(false));
@@ -1297,8 +1297,8 @@ ToolOutput handleBashBlock(ToolUseBlock block) throws InterruptedException {
 
   
 ````php
-// Run bash where the example was launched. In DOC_TEST_MODE the docs harness
-// points it at a throwaway fixture directory instead, removed on exit.
+// Jalankan bash di tempat contoh diluncurkan. Dalam DOC_TEST_MODE, harness dokumentasi
+// mengarahkannya ke direktori fixture sementara, yang dihapus saat keluar.
 if (DOC_TEST_MODE) {
     $workDir = sys_get_temp_dir() . '/orchestration-' . bin2hex(random_bytes(8));
     if (!mkdir($workDir, 0700)) {
@@ -1328,7 +1328,7 @@ define('WORK_DIR', $workDir);
 function runBash(string $command): array
 {
     fwrite(STDERR, "[bash] {$command}\n");
-    // Requires GNU coreutils 'timeout'. On macOS: brew install coreutils, or replace with gtimeout.
+    // Memerlukan 'timeout' dari GNU coreutils. Di macOS: brew install coreutils, atau ganti dengan gtimeout.
     exec(
         'cd ' . escapeshellarg(WORK_DIR) . ' && timeout ' . BASH_TIMEOUT_SECONDS
             . ' bash -c ' . escapeshellarg($command) . ' 2>&1',
@@ -1368,8 +1368,8 @@ function handleBashBlock(ToolUseBlock $block): array
 
   
 ````ruby
-# Run bash where the example was launched. In DOC_TEST_MODE the docs harness
-# points it at a throwaway fixture directory instead, removed on exit.
+# Jalankan bash di tempat contoh ini diluncurkan. Dalam DOC_TEST_MODE, harness dokumentasi
+# mengarahkannya ke direktori fixture sementara, yang dihapus saat keluar.
 WORK_DIR =
   if DOC_TEST_MODE
     Dir.mktmpdir("orchestration-").tap do |dir|
@@ -1385,23 +1385,23 @@ WORK_DIR =
     Dir.pwd
   end
 
-# Tool input arrives as a Hash or as a raw JSON string from the streaming
-# accumulator; normalize either shape to a string-keyed Hash.
+# Input alat diterima sebagai Hash atau sebagai string JSON mentah dari akumulator
+# streaming; normalkan kedua bentuk tersebut menjadi Hash dengan kunci string.
 def parse_tool_input(raw)
   return raw.transform_keys(&:to_s) if raw.is_a?(Hash)
   parsed = JSON.parse(raw.to_s) rescue nil
   parsed.is_a?(Hash) ? parsed : {}
 end
 
-# Run a shell command and return [output, is_error]. No sandbox: example code only.
+# Jalankan perintah shell dan kembalikan [output, is_error]. Tanpa sandbox: hanya kode contoh.
 def run_bash(command)
   warn "[bash] #{command}"
   begin
     stdin, stdout_and_stderr, wait_thr = Open3.popen2e("bash", "-c", command, pgroup: true, chdir: WORK_DIR)
     stdin.close
     reader = Thread.new { stdout_and_stderr.read.scrub }
-    # Enforce the time limit with a monotonic-clock deadline so a timed-out command is
-    # terminated rather than left running in the background.
+    # Terapkan batas waktu dengan tenggat jam monotonik agar perintah yang habis waktu
+    # dihentikan alih-alih dibiarkan berjalan di latar belakang.
     deadline = Process.clock_gettime(Process::CLOCK_MONOTONIC) + BASH_TIMEOUT_SECONDS
     until wait_thr.join(0.1)
       next if Process.clock_gettime(Process::CLOCK_MONOTONIC) < deadline
@@ -1435,7 +1435,7 @@ def run_bash(command)
   end
 end
 
-# Execute one bash tool call requested by the model.
+# Eksekusi satu panggilan alat bash yang diminta oleh model.
 def handle_bash_block(block)
   input = parse_tool_input(block.input)
   return ["Shell restarted.", false] if input["restart"] == true
@@ -1446,9 +1446,9 @@ def handle_bash_block(block)
   run_bash(command)
 end
 
-# Convert response content to request-shaped params. The streaming accumulator
-# returns tool_use input as a raw JSON string and includes response-only fields,
-# so reshape each block to the request schema before echoing it back.
+# Konversi konten respons ke params berbentuk permintaan. Akumulator streaming
+# mengembalikan input tool_use sebagai string JSON mentah dan menyertakan field khusus respons,
+# jadi bentuk ulang setiap blok ke skema permintaan sebelum mengirimkannya kembali.
 def assistant_content_param(content)
   content.map do |block|
     case block.type
@@ -1533,8 +1533,8 @@ def run_subagent(model: str, prompt: str) -> str:
 
   
 ````typescript
-// One subagent: a small nested agent loop with the bash tool plus report_findings.
-// Subagents inherit the main loop's effort level.
+// Satu subagen: loop agen bersarang kecil dengan alat bash plus report_findings.
+// Subagen mewarisi tingkat upaya dari loop utama.
 async function runSubagent(model: string, prompt: string): Promise<string> {
   const subagentSystem =
     "You are one agent in a larger parallel fan-out, assigned a single subtask. " +
@@ -1606,8 +1606,8 @@ async function runSubagent(model: string, prompt: string): Promise<string> {
 
   
 ````csharp
-// One subagent: a small nested agent loop with the bash tool plus report_findings.
-// Subagents inherit the main loop's effort level.
+// Satu subagen: loop agen bersarang kecil dengan alat bash plus report_findings.
+// Subagen mewarisi tingkat upaya dari loop utama.
 async Task<string> RunSubagent(string prompt)
 {
     const string subagentSystem =
@@ -1687,8 +1687,8 @@ async Task<string> RunSubagent(string prompt)
 
   
 ````go
-// runSubagent runs one subagent: a small nested agent loop with the bash tool plus
-// report_findings. Subagents inherit the main loop's effort level.
+// runSubagent menjalankan satu subagen: loop agen bersarang kecil dengan alat bash plus
+// report_findings. Subagen mewarisi tingkat upaya dari loop utama.
 func runSubagent(ctx context.Context, model string, prompt string) (string, error) {
 	subagentSystem := "You are one agent in a larger parallel fan-out, assigned a single subtask. " +
 		"Investigate it directly, using bash to check facts rather than guessing, and finish " +
@@ -1773,8 +1773,8 @@ func runSubagent(ctx context.Context, model string, prompt string) (string, erro
 
   
 ````java
-// One subagent: a small nested agent loop with the bash tool plus report_findings.
-// Subagents inherit the main loop's effort level.
+// Satu subagen: loop agen bersarang kecil dengan alat bash plus report_findings.
+// Subagen mewarisi tingkat upaya dari loop utama.
 String runSubagent(String model, String prompt) throws InterruptedException {
     String subagentSystem = "You are one agent in a larger parallel fan-out, assigned a single subtask. "
             + "Investigate it directly, using bash to check facts rather than guessing, and finish "
@@ -1963,8 +1963,8 @@ function runSubagent(Client $client, string $model, string $prompt): string
 
   
 ````ruby
-# One subagent: a small nested agent loop with the bash tool plus report_findings.
-# Subagents inherit the main loop's effort level.
+# Satu subagen: loop agen bersarang kecil dengan alat bash plus report_findings.
+# Subagen mewarisi tingkat upaya dari loop utama.
 def run_subagent(model, prompt)
   subagent_system =
     "You are one agent in a larger parallel fan-out, assigned a single subtask. " \
@@ -2080,9 +2080,9 @@ async function loadJournal(): Promise<Record<string, string>> {
   }
 }
 
-// Return a cached result for this exact prompt, or compute and persist it. This
-// makes the fan-out resumable: interrupt the run, rerun it, and only the subtasks
-// that never finished are recomputed. Delete the journal file to start fresh.
+// Kembalikan hasil yang di-cache untuk prompt persis ini, atau hitung dan simpan. Ini
+// membuat fan-out dapat dilanjutkan: interupsi proses, jalankan ulang, dan hanya subtugas
+// yang belum selesai yang dihitung ulang. Hapus file jurnal untuk memulai dari awal.
 async function journaled(prompt: string, compute: () => Promise<string>): Promise<string> {
   const key = createHash("sha256").update(prompt).digest("hex");
   const cached = (await loadJournal())[key];
@@ -2091,8 +2091,8 @@ async function journaled(prompt: string, compute: () => Promise<string>): Promis
     return cached;
   }
   const result = await compute();
-  // Chain writes so concurrent subagents do not clobber each other's entries.
-  // The chain is kept settled so one failed write does not poison later ones.
+  // Rantaikan penulisan agar subagen konkuren tidak saling menimpa entri satu sama lain.
+  // Rantai dijaga tetap settled agar satu penulisan gagal tidak meracuni yang berikutnya.
   await (journalWriteChain = journalWriteChain
     .then(async () => {
       const journal = await loadJournal();
@@ -2122,9 +2122,9 @@ async Task<Dictionary<string, string>> LoadJournal()
     }
 }
 
-// Return a cached result for this exact prompt, or compute and persist it. This
-// makes the fan-out resumable: interrupt the run, rerun it, and only the subtasks
-// that never finished are recomputed. Delete the journal file to start fresh.
+// Kembalikan hasil yang di-cache untuk prompt persis ini, atau hitung dan simpan. Ini
+// membuat fan-out dapat dilanjutkan: hentikan eksekusi, jalankan ulang, dan hanya subtugas
+// yang belum pernah selesai yang dihitung ulang. Hapus file jurnal untuk memulai dari awal.
 async Task<string> Journaled(string prompt, Func<Task<string>> compute)
 {
     var key = Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(prompt))).ToLowerInvariant();
@@ -2145,7 +2145,7 @@ async Task<string> Journaled(string prompt, Func<Task<string>> compute)
     }
     catch (Exception error) when (error is IOException or UnauthorizedAccessException or NotSupportedException)
     {
-        // The journal is best-effort; never discard a computed result.
+        // Jurnal bersifat best-effort; jangan pernah membuang hasil yang sudah dihitung.
         Console.Error.WriteLine($"[journal] write failed: {error.Message}");
     }
     finally
@@ -2172,9 +2172,9 @@ func loadJournal() map[string]string {
 	return journal
 }
 
-// journaled returns a cached result for this exact prompt, or computes and persists
-// it. This makes the fan-out resumable: interrupt the run, rerun it, and only the
-// subtasks that never finished are recomputed. Delete the journal file to start fresh.
+// journaled mengembalikan hasil yang di-cache untuk prompt persis ini, atau menghitung dan
+// menyimpannya. Ini membuat fan-out dapat dilanjutkan: hentikan proses, jalankan ulang, dan hanya
+// subtugas yang belum selesai yang dihitung ulang. Hapus file jurnal untuk memulai dari awal.
 func journaled(prompt string, compute func() (string, error)) (string, error) {
 	sum := sha256.Sum256([]byte(prompt))
 	key := hex.EncodeToString(sum[:])
@@ -2218,9 +2218,9 @@ Map<String, String> loadJournal() {
     }
 }
 
-// Return a cached result for this exact prompt, or compute and persist it. This
-// makes the fan-out resumable: interrupt the run, rerun it, and only the subtasks
-// that never finished are recomputed. Delete the journal file to start fresh.
+// Kembalikan hasil yang di-cache untuk prompt persis ini, atau hitung dan simpan. Ini
+// membuat fan-out dapat dilanjutkan: interupsi proses, jalankan ulang, dan hanya subtugas
+// yang belum selesai yang dihitung ulang. Hapus file jurnal untuk memulai dari awal.
 String journaled(String prompt, Callable<String> compute) throws Exception {
     var digest = MessageDigest.getInstance("SHA-256").digest(prompt.getBytes(StandardCharsets.UTF_8));
     String key = HexFormat.of().formatHex(digest);
@@ -2238,7 +2238,7 @@ String journaled(String prompt, Callable<String> compute) throws Exception {
         Files.writeString(temp, JOURNAL_MAPPER.writeValueAsString(journal));
         Files.move(temp, JOURNAL_PATH, StandardCopyOption.REPLACE_EXISTING, StandardCopyOption.ATOMIC_MOVE);
     } catch (IOException error) {
-        // The journal is best-effort; never discard a computed result.
+        // Jurnal bersifat sebisa mungkin; jangan pernah membuang hasil yang sudah dihitung.
         System.err.println("[journal] write failed: " + error);
     } finally {
         JOURNAL_LOCK.unlock();
@@ -2295,9 +2295,9 @@ rescue SystemCallError, JSON::ParserError
   {}
 end
 
-# Return a cached result for this exact prompt, or compute and persist it. This
-# makes the fan-out resumable: interrupt the run, rerun it, and only the subtasks
-# that never finished are recomputed. Delete the journal file to start fresh.
+# Kembalikan hasil yang di-cache untuk prompt persis ini, atau hitung dan simpan. Ini
+# membuat fan-out dapat dilanjutkan: interupsi proses, jalankan ulang, dan hanya subtugas
+# yang belum selesai yang dihitung ulang. Hapus file jurnal untuk memulai dari awal.
 def journaled(prompt)
   key = Digest::SHA256.hexdigest(prompt)
   cached = load_journal[key]
@@ -2391,8 +2391,8 @@ def run_workflow(model: str, raw_subtasks) -> tuple[str, bool]:
 
   
 ````typescript
-// Accept the subtasks input in whatever shape the model emits: an array, the array
-// JSON-encoded as a single string, or a newline-separated list.
+// Terima input subtasks dalam bentuk apa pun yang dihasilkan model: sebuah array, array
+// yang di-encode JSON sebagai satu string, atau daftar yang dipisahkan baris baru.
 function normalizeSubtasks(raw: unknown): string[] {
   let value = raw;
   if (typeof raw === "string") {
@@ -2422,7 +2422,7 @@ function verifyPromptFor(subtask: string, result: string): string {
   );
 }
 
-// Map with a concurrency limit: at most `limit` tasks are in flight at once.
+// Map dengan batas konkurensi: paling banyak `limit` tugas berjalan sekaligus.
 async function mapWithLimit<In, Out>(
   items: readonly In[],
   limit: number,
@@ -2440,9 +2440,9 @@ async function mapWithLimit<In, Out>(
   return results;
 }
 
-// Run subtasks as parallel subagents, then run a second verification wave over
-// the results, and return both. MAX_TOTAL_SUBTASKS bounds how many the model can
-// queue; MAX_CONCURRENT bounds how many run at once.
+// Jalankan subtugas sebagai subagen paralel, lalu jalankan gelombang verifikasi kedua atas
+// hasilnya, dan kembalikan keduanya. MAX_TOTAL_SUBTASKS membatasi jumlah yang dapat diantrekan
+// model; MAX_CONCURRENT membatasi jumlah yang berjalan sekaligus.
 async function runWorkflow(
   model: string,
   rawSubtasks: unknown,
@@ -2459,7 +2459,7 @@ async function runWorkflow(
     try {
       return await journaled(prompt, () => runSubagent(model, prompt));
     } catch (error) {
-      // Isolation boundary: one bad subagent should not end the run.
+      // Batas isolasi: satu subagen yang gagal tidak boleh menghentikan proses.
       const reason = error instanceof Error ? `${error.name}: ${error.message}` : String(error);
       return `(subagent failed: ${reason})`;
     }
@@ -2488,8 +2488,8 @@ async function runWorkflow(
 
   
 ````csharp
-// Accept the subtasks input in whatever shape the model emits: an array, the array
-// JSON-encoded as a single string, or a newline-separated list.
+// Terima input subtugas dalam bentuk apa pun yang dihasilkan model: sebuah array, array
+// yang di-encode JSON sebagai satu string, atau daftar yang dipisahkan baris baru.
 List<string> NormalizeSubtasks(JsonElement raw)
 {
     List<string> tasks = [];
@@ -2523,9 +2523,9 @@ string VerifyPromptFor(string subtask, string result) =>
     + "output that decided it.\n\n"
     + $"Subtask: {subtask}\n\nResult to verify:\n{result}";
 
-// Run subtasks as parallel subagents, then run a second verification wave over
-// the results, and return both. maxTotalSubtasks bounds how many the model can
-// queue; maxConcurrent bounds how many run at once.
+// Jalankan subtugas sebagai subagen paralel, lalu jalankan gelombang verifikasi kedua atas
+// hasilnya, dan kembalikan keduanya. maxTotalSubtasks membatasi jumlah yang dapat diantrekan
+// model; maxConcurrent membatasi jumlah yang berjalan bersamaan.
 async Task<(string Output, bool IsError)> RunWorkflow(JsonElement rawSubtasks)
 {
     var allSubtasks = NormalizeSubtasks(rawSubtasks);
@@ -2547,7 +2547,7 @@ async Task<(string Output, bool IsError)> RunWorkflow(JsonElement rawSubtasks)
         }
         catch (Exception error)
         {
-            // Isolation boundary: one bad subagent should not end the run.
+            // Batas isolasi: satu subagen yang gagal tidak boleh mengakhiri eksekusi.
             return $"(subagent failed: {error.GetType().Name}: {error.Message})";
         }
         finally
@@ -2576,8 +2576,8 @@ async Task<(string Output, bool IsError)> RunWorkflow(JsonElement rawSubtasks)
 
   
 ````go
-// normalizeSubtasks accepts the subtasks input in whatever shape the model emits: an
-// array, the array JSON-encoded as a single string, or a newline-separated list.
+// normalizeSubtasks menerima input subtasks dalam bentuk apa pun yang dihasilkan model: sebuah
+// array, array yang di-encode JSON sebagai satu string, atau daftar yang dipisahkan baris baru.
 func normalizeSubtasks(raw json.RawMessage) []string {
 	var tasks []string
 	if err := json.Unmarshal(raw, &tasks); err != nil {
@@ -2607,7 +2607,7 @@ func verifyPromptFor(subtask, result string) string {
 		"Subtask: " + subtask + "\n\nResult to verify:\n" + result
 }
 
-// mapWithLimit runs task over items with at most limit goroutines in flight.
+// mapWithLimit menjalankan task pada items dengan maksimal limit goroutine yang berjalan.
 func mapWithLimit(items []string, limit int, task func(string) string) []string {
 	results := make([]string, len(items))
 	semaphore := make(chan struct{}, limit)
@@ -2625,9 +2625,9 @@ func mapWithLimit(items []string, limit int, task func(string) string) []string 
 	return results
 }
 
-// runWorkflow runs subtasks as parallel subagents, then runs a second verification wave
-// over the results, and returns both. maxTotalSubtasks bounds how many the model can
-// queue; maxConcurrent bounds how many run at once.
+// runWorkflow menjalankan subtugas sebagai subagen paralel, lalu menjalankan gelombang verifikasi
+// kedua atas hasilnya, dan mengembalikan keduanya. maxTotalSubtasks membatasi jumlah yang dapat
+// diantrekan model; maxConcurrent membatasi jumlah yang berjalan bersamaan.
 func runWorkflow(ctx context.Context, model string, rawSubtasks json.RawMessage) (string, bool) {
 	allSubtasks := normalizeSubtasks(rawSubtasks)
 	subtasks := allSubtasks
@@ -2643,7 +2643,7 @@ func runWorkflow(ctx context.Context, model string, rawSubtasks json.RawMessage)
 	runOne := func(prompt string) string {
 		report, err := journaled(prompt, func() (string, error) { return runSubagent(ctx, model, prompt) })
 		if err != nil {
-			// Isolation boundary: one bad subagent should not end the run.
+			// Batas isolasi: satu subagen yang gagal tidak boleh mengakhiri proses.
 			return fmt.Sprintf("(subagent failed: %s)", err)
 		}
 		return report
@@ -2674,8 +2674,8 @@ func runWorkflow(ctx context.Context, model string, rawSubtasks json.RawMessage)
 
   
 ````java
-// Accept the subtasks input in whatever shape the model emits: an array, the array
-// JSON-encoded as a single string, or a newline-separated list.
+// Terima input subtugas dalam bentuk apa pun yang dihasilkan model: array, array
+// yang di-encode JSON sebagai satu string, atau daftar yang dipisahkan baris baru.
 List<String> normalizeSubtasks(JsonValue raw) {
     List<String> tasks = new ArrayList<>();
     if (raw.asArray().isPresent()) {
@@ -2722,7 +2722,7 @@ List<String> runAll(ExecutorService pool, List<String> prompts, String model) th
         try {
             results.add(future.get());
         } catch (ExecutionException | CancellationException error) {
-            // Isolation boundary: one bad subagent should not end the run.
+            // Batas isolasi: satu subagen yang gagal tidak boleh menghentikan proses.
             Throwable cause = error.getCause() != null ? error.getCause() : error;
             results.add("(subagent failed: " + cause + ")");
         }
@@ -2730,9 +2730,9 @@ List<String> runAll(ExecutorService pool, List<String> prompts, String model) th
     return results;
 }
 
-// Run subtasks as parallel subagents, then run a second verification wave over
-// the results, and return both. MAX_TOTAL_SUBTASKS bounds how many the model can
-// queue; MAX_CONCURRENT bounds how many run at once.
+// Jalankan subtugas sebagai subagen paralel, lalu jalankan gelombang verifikasi kedua atas
+// hasilnya, dan kembalikan keduanya. MAX_TOTAL_SUBTASKS membatasi jumlah yang dapat
+// diantrekan model; MAX_CONCURRENT membatasi jumlah yang berjalan bersamaan.
 ToolOutput runWorkflow(String model, JsonValue rawSubtasks) throws InterruptedException {
     List<String> allSubtasks = normalizeSubtasks(rawSubtasks);
     List<String> subtasks = allSubtasks.stream().limit(MAX_TOTAL_SUBTASKS).toList();
@@ -2816,7 +2816,7 @@ function runWorkflow(Client $client, string $model, mixed $rawSubtasks): array
         try {
             return journaled($prompt, fn () => runSubagent($client, $model, $prompt));
         } catch (Throwable $error) {
-            // Isolation boundary: one bad subagent should not end the run.
+            // Batas isolasi: satu subagen yang bermasalah tidak boleh menghentikan proses.
             return '(subagent failed: ' . $error::class . ': ' . $error->getMessage() . ')';
         }
     };
@@ -2842,8 +2842,8 @@ function runWorkflow(Client $client, string $model, mixed $rawSubtasks): array
 
   
 ````ruby
-# Accept the subtasks input in whatever shape the model emits: an array, the array
-# JSON-encoded as a single string, or a newline-separated list.
+# Terima input subtugas dalam bentuk apa pun yang dihasilkan model: sebuah array, array
+# yang di-encode JSON sebagai satu string, atau daftar yang dipisahkan baris baru.
 def normalize_subtasks(raw)
   if raw.is_a?(String)
     begin
@@ -2865,7 +2865,7 @@ def verify_prompt_for(subtask, result)
     "Subtask: #{subtask}\n\nResult to verify:\n#{result}"
 end
 
-# Map with a concurrency limit: at most `limit` threads are in flight at once.
+# Map dengan batas konkurensi: paling banyak `limit` thread berjalan sekaligus.
 def map_with_limit(items, limit)
   results = Array.new(items.length)
   queue = Queue.new
@@ -2882,9 +2882,9 @@ def map_with_limit(items, limit)
   results
 end
 
-# Run subtasks as parallel subagents, then run a second verification wave over
-# the results, and return both. MAX_TOTAL_SUBTASKS bounds how many the model can
-# queue; MAX_CONCURRENT bounds how many run at once.
+# Jalankan subtugas sebagai subagen paralel, lalu jalankan gelombang verifikasi kedua atas
+# hasilnya, dan kembalikan keduanya. MAX_TOTAL_SUBTASKS membatasi jumlah yang dapat diantrekan
+# model; MAX_CONCURRENT membatasi jumlah yang berjalan sekaligus.
 def run_workflow(model, raw_subtasks)
   all_subtasks = normalize_subtasks(raw_subtasks)
   subtasks = all_subtasks.first(MAX_TOTAL_SUBTASKS)
@@ -2924,11 +2924,11 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
 <CodeGroup>
   
 ````bash
-# One orchestration-mode turn: the mode reminder rides in the messages array as a
-# {"role": "system"} entry placed after the user turn it applies to. The response
-# stops at the first tool call. The agent loop that executes tool calls and fans
-# out subagents is shown in the SDK tabs; the Workflow description is condensed
-# here, the SDK examples carry the full standing-consent text.
+# Satu giliran mode orkestrasi: pengingat mode disertakan dalam array messages sebagai
+# entri {"role": "system"} yang ditempatkan setelah giliran user yang dituju. Respons
+# berhenti pada panggilan alat pertama. Loop agen yang mengeksekusi panggilan alat dan
+# menyebarkan subagen ditunjukkan di tab SDK; deskripsi Workflow diringkas
+# di sini, contoh SDK memuat teks standing-consent lengkapnya.
 curl --fail-with-body -sS https://api.anthropic.com/v1/messages \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
   -H "anthropic-version: 2023-06-01" \
@@ -2974,11 +2974,11 @@ EOF
 
   
 ````bash
-# One orchestration-mode turn: the mode reminder rides in the messages array as a
-# system-role entry placed after the user turn it applies to. The response stops
-# at the first tool call. The agent loop that executes tool calls and fans out
-# subagents is shown in the SDK tabs; the Workflow description is condensed here,
-# the SDK examples carry the full standing-consent text.
+# Satu giliran mode orkestrasi: pengingat mode disertakan dalam array messages sebagai
+# entri peran system yang ditempatkan setelah giliran user yang dituju. Respons berhenti
+# pada panggilan alat pertama. Loop agen yang mengeksekusi panggilan alat dan menyebarkan
+# subagen ditunjukkan di tab SDK; deskripsi Workflow diringkas di sini,
+# contoh SDK memuat teks standing-consent lengkapnya.
 ant messages create <<'YAML'
 model: claude-opus-4-8
 max_tokens: 64000
@@ -3066,8 +3066,8 @@ class ModeAgent:
         return due
 
     def turn(self, user_input: str) -> str:
-        # Mid-conversation system messages follow the user turn they apply to, which keeps
-        # the cached prefix ahead of them untouched.
+        # Pesan sistem di tengah percakapan mengikuti giliran pengguna yang terkait, sehingga
+        # prefiks yang di-cache sebelum pesan tersebut tetap tidak tersentuh.
         self.messages.append({"role": "user", "content": user_input})
         self.messages.extend(self._due_system_messages())
         self._turns_since_reminder += 1
@@ -3091,7 +3091,7 @@ class ModeAgent:
             if response.stop_reason != "tool_use":
                 text = "".join(block.text for block in response.content if block.type == "text")
                 if response.stop_reason == "max_tokens":
-                    # Drop the truncated assistant message so later turns don't build on it.
+                    # Buang pesan asisten yang terpotong agar giliran berikutnya tidak dibangun di atasnya.
                     self.messages.pop()
                     text += "\n\n(warning: response was truncated at max_tokens)"
                 return text
@@ -3120,7 +3120,7 @@ class ModeAgent:
 
   
 ````typescript
-// An agent loop whose orchestration mode is toggled with mid-conversation system messages.
+// Loop agen yang mode orkestrasinya diaktifkan/dinonaktifkan dengan pesan sistem di tengah percakapan.
 class ModeAgent {
   private readonly model: string;
   private modeOn: boolean;
@@ -3134,7 +3134,7 @@ class ModeAgent {
     this.modeOn = modeOn;
   }
 
-  // Turn the mode on or off. The notice is delivered with the next user turn.
+  // Aktifkan atau nonaktifkan mode. Pemberitahuan disampaikan pada giliran pengguna berikutnya.
   setMode(modeOn: boolean): void {
     if (modeOn === this.modeOn) {
       return;
@@ -3149,8 +3149,8 @@ class ModeAgent {
     this.modeOn = modeOn;
   }
 
-  // System messages owed on this turn: an exit notice, the full mode text on entry,
-  // or a one-line refresher every TURNS_BETWEEN_REFRESHERS user turns.
+  // Pesan sistem yang harus dikirim pada giliran ini: pemberitahuan keluar, teks mode lengkap saat masuk,
+  // atau pengingat satu baris setiap TURNS_BETWEEN_REFRESHERS giliran pengguna.
   private dueSystemMessages(): Anthropic.MessageParam[] {
     const due: Array<{ role: "system"; content: string }> = [];
     if (this.exitPending) {
@@ -3168,14 +3168,14 @@ class ModeAgent {
         due.push({ role: "system", content: MODE_REFRESH });
       }
     }
-    // The published SDK types message roles as "user" | "assistant"; typed support for
-    // mid-conversation system messages ships with the SDK release that includes them.
+    // SDK yang dipublikasikan mengetik peran pesan sebagai "user" | "assistant"; dukungan bertipe untuk
+    // pesan sistem di tengah percakapan hadir bersama rilis SDK yang menyertakannya.
     return due as unknown as Anthropic.MessageParam[];
   }
 
   async turn(userInput: string): Promise<string> {
-    // Mid-conversation system messages follow the user turn they apply to, which keeps
-    // the cached prefix ahead of them untouched.
+    // Pesan sistem di tengah percakapan mengikuti giliran pengguna yang terkait, sehingga
+    // prefiks yang di-cache sebelum pesan tersebut tetap tidak tersentuh.
     this.messages.push({ role: "user", content: userInput });
     this.messages.push(...this.dueSystemMessages());
     this.turnsSinceReminder += 1;
@@ -3206,7 +3206,7 @@ class ModeAgent {
           .map((block) => block.text)
           .join("");
         if (response.stop_reason === "max_tokens") {
-          // Drop the truncated assistant message so later turns do not build on it.
+          // Buang pesan asisten yang terpotong agar giliran berikutnya tidak dibangun di atasnya.
           this.messages.pop();
           text += "\n\n(warning: response was truncated at max_tokens)";
         }
@@ -3245,14 +3245,14 @@ class ModeAgent {
 
   
 ````csharp
-// An agent loop whose orchestration mode is toggled with mid-conversation system messages.
+// Loop agen yang mode orkestrasinya diaktifkan/dinonaktifkan dengan pesan sistem di tengah percakapan.
 List<MessageParam> messages = [];
 var modeOn = true;
 var modeAnnounced = false;
 var exitPending = false;
 var turnsSinceReminder = 0;
 
-// Turn the mode on or off. The notice is delivered with the next user turn.
+// Aktifkan atau nonaktifkan mode. Pemberitahuan disampaikan bersama giliran pengguna berikutnya.
 void SetMode(bool nextModeOn)
 {
     if (nextModeOn == modeOn)
@@ -3273,12 +3273,12 @@ void SetMode(bool nextModeOn)
     modeOn = nextModeOn;
 }
 
-// The Role property is an open enum, so the mid-conversation "system" role can be assigned
-// as a raw string; a dedicated constant ships with the SDK release.
+// Properti Role adalah enum terbuka, jadi peran "system" di tengah percakapan dapat ditetapkan
+// sebagai string mentah; konstanta khusus disertakan dalam rilis SDK.
 MessageParam SystemMessage(string content) => new() { Role = "system", Content = content };
 
-// System messages owed on this turn: an exit notice, the full mode text on entry,
-// or a one-line refresher every turnsBetweenRefreshers user turns.
+// Pesan sistem yang harus dikirim pada giliran ini: pemberitahuan keluar, teks mode lengkap saat masuk,
+// atau pengingat satu baris setiap turnsBetweenRefreshers giliran pengguna.
 List<MessageParam> DueSystemMessages()
 {
     List<MessageParam> due = [];
@@ -3305,11 +3305,11 @@ List<MessageParam> DueSystemMessages()
     return due;
 }
 
-// Send one user turn through the loop, executing tool calls until the model stops.
+// Kirim satu giliran pengguna melalui loop, mengeksekusi panggilan alat hingga model berhenti.
 async Task<string> Turn(string userInput)
 {
-    // Mid-conversation system messages follow the user turn they apply to, which keeps
-    // the cached prefix ahead of them untouched.
+    // Pesan sistem di tengah percakapan mengikuti giliran pengguna yang terkait, sehingga
+    // prefiks yang di-cache sebelum pesan tersebut tetap tidak tersentuh.
     messages.Add(new() { Role = Role.User, Content = userInput });
     messages.AddRange(DueSystemMessages());
     turnsSinceReminder++;
@@ -3343,7 +3343,7 @@ async Task<string> Turn(string userInput)
                 response.Content.Select(block => block.TryPickText(out var textBlock) ? textBlock.Text : ""));
             if (response.StopReason == StopReason.MaxTokens)
             {
-                // Drop the truncated assistant message so the next turn does not build on it.
+                // Buang pesan asisten yang terpotong agar giliran berikutnya tidak melanjutkan darinya.
                 messages.RemoveAt(messages.Count - 1);
                 text += "\n\n(warning: response was truncated at max_tokens)";
             }
@@ -3383,8 +3383,8 @@ async Task<string> Turn(string userInput)
 
   
 ````go
-// modeAgent is an agent loop whose orchestration mode is toggled with mid-conversation
-// system messages.
+// modeAgent adalah loop agen yang mode orkestrasinya dialihkan dengan pesan sistem di tengah
+// percakapan.
 type modeAgent struct {
 	model              string
 	modeOn             bool
@@ -3398,7 +3398,7 @@ func newModeAgent(model string) *modeAgent {
 	return &modeAgent{model: model, modeOn: true}
 }
 
-// setMode turns the mode on or off. The notice is delivered with the next user turn.
+// setMode mengaktifkan atau menonaktifkan mode. Pemberitahuan disampaikan pada giliran pengguna berikutnya.
 func (agent *modeAgent) setMode(modeOn bool) {
 	if modeOn == agent.modeOn {
 		return
@@ -3413,11 +3413,11 @@ func (agent *modeAgent) setMode(modeOn bool) {
 	agent.modeOn = modeOn
 }
 
-// dueSystemMessages returns the system messages owed on this turn: an exit notice, the
-// full mode text on entry, or a one-line refresher every turnsBetweenRefreshers user turns.
+// dueSystemMessages mengembalikan pesan sistem yang jatuh tempo pada giliran ini: pemberitahuan keluar,
+// teks mode lengkap saat masuk, atau pengingat satu baris setiap turnsBetweenRefreshers giliran pengguna.
 func (agent *modeAgent) dueSystemMessages() []anthropic.MessageParam {
-	// MessageParamRole is an open string type, so the mid-conversation "system" role can
-	// be expressed directly; a dedicated constant ships with the SDK release.
+	// MessageParamRole adalah tipe string terbuka, sehingga peran "system" di tengah percakapan dapat
+	// diekspresikan secara langsung; konstanta khusus disertakan dalam rilis SDK.
 	systemMessage := func(content string) anthropic.MessageParam {
 		return anthropic.MessageParam{
 			Role:    anthropic.MessageParamRole("system"),
@@ -3443,10 +3443,10 @@ func (agent *modeAgent) dueSystemMessages() []anthropic.MessageParam {
 	return due
 }
 
-// turn sends one user turn through the loop, executing tool calls until the model stops.
+// turn mengirim satu giliran pengguna melalui loop, mengeksekusi panggilan alat hingga model berhenti.
 func (agent *modeAgent) turn(ctx context.Context, userInput string) (string, error) {
-	// Mid-conversation system messages follow the user turn they apply to, which keeps
-	// the cached prefix ahead of them untouched.
+	// Pesan sistem di tengah percakapan mengikuti giliran pengguna yang terkait, sehingga menjaga
+	// prefiks yang di-cache di depannya tetap tidak tersentuh.
 	agent.messages = append(agent.messages, anthropic.NewUserMessage(anthropic.NewTextBlock(userInput)))
 	agent.messages = append(agent.messages, agent.dueSystemMessages()...)
 	agent.turnsSinceReminder++
@@ -3489,7 +3489,7 @@ func (agent *modeAgent) turn(ctx context.Context, userInput string) (string, err
 				}
 			}
 			if response.StopReason == anthropic.StopReasonMaxTokens {
-				// Drop the truncated assistant message rather than leave a clipped turn in history.
+				// Buang pesan asisten yang terpotong daripada menyisakan giliran terpotong di riwayat.
 				agent.messages = agent.messages[:len(agent.messages)-1]
 				text.WriteString("\n\n(warning: response was truncated at max_tokens)")
 			}
@@ -3530,7 +3530,7 @@ func (agent *modeAgent) turn(ctx context.Context, userInput string) (string, err
 
   
 ````java
-// An agent loop whose orchestration mode is toggled with mid-conversation system messages.
+// Loop agen yang mode orkestrasinya diaktifkan/dinonaktifkan dengan pesan sistem di tengah percakapan.
 class ModeAgent {
     private final String model;
     private boolean modeOn;
@@ -3548,7 +3548,7 @@ class ModeAgent {
         this.modeOn = modeOn;
     }
 
-    // Turn the mode on or off. The notice is delivered with the next user turn.
+    // Aktifkan atau nonaktifkan mode. Pemberitahuan disampaikan bersama giliran pengguna berikutnya.
     void setMode(boolean modeOn) {
         if (modeOn == this.modeOn) {
             return;
@@ -3563,8 +3563,8 @@ class ModeAgent {
         this.modeOn = modeOn;
     }
 
-    // System messages owed on this turn: an exit notice, the full mode text on entry,
-    // or a one-line refresher every TURNS_BETWEEN_REFRESHERS user turns.
+    // Pesan sistem yang harus dikirim pada giliran ini: pemberitahuan keluar, teks mode lengkap saat masuk,
+    // atau pengingat satu baris setiap TURNS_BETWEEN_REFRESHERS giliran pengguna.
     private List<MessageParam> dueSystemMessages() {
         List<MessageParam> due = new ArrayList<>();
         if (exitPending) {
@@ -3585,8 +3585,8 @@ class ModeAgent {
         return due;
     }
 
-    // MessageParam.Role is an open enum, so the mid-conversation "system" role can be
-    // expressed with Role.of; a dedicated constant ships with the SDK release.
+    // MessageParam.Role adalah enum terbuka, jadi peran "system" di tengah percakapan dapat
+    // diekspresikan dengan Role.of; konstanta khusus disertakan dalam rilis SDK.
     private MessageParam systemMessage(String content) {
         return MessageParam.builder()
                 .role(MessageParam.Role.of("system"))
@@ -3594,10 +3594,10 @@ class ModeAgent {
                 .build();
     }
 
-    // Send one user turn through the loop, executing tool calls until the model stops.
+    // Kirim satu giliran pengguna melalui loop, mengeksekusi panggilan alat hingga model berhenti.
     String turn(String userInput) throws InterruptedException {
-        // Mid-conversation system messages follow the user turn they apply to, which keeps
-        // the cached prefix ahead of them untouched.
+        // Pesan sistem di tengah percakapan mengikuti giliran pengguna yang terkait, sehingga
+        // prefiks yang di-cache sebelum pesan tersebut tetap tidak tersentuh.
         messages.add(MessageParam.builder().role(MessageParam.Role.USER).content(userInput).build());
         messages.addAll(dueSystemMessages());
         turnsSinceReminder++;
@@ -3630,7 +3630,7 @@ class ModeAgent {
                         .map(TextBlock::text)
                         .collect(Collectors.joining());
                 if (StopReason.MAX_TOKENS.equals(stopReason)) {
-                    // Drop the truncated assistant message so it does not poison later turns.
+                    // Buang pesan asisten yang terpotong agar tidak merusak giliran berikutnya.
                     messages.removeLast();
                     text += "\n\n(warning: response was truncated at max_tokens)";
                 }
@@ -3702,8 +3702,8 @@ class ModeAgent
 
     public function turn(string $userInput): string
     {
-        // Mid-conversation system messages follow the user turn they apply to, which keeps
-        // the cached prefix ahead of them untouched.
+        // Pesan sistem di tengah percakapan mengikuti giliran pengguna yang terkait, sehingga menjaga
+        // prefiks yang di-cache sebelumnya tetap tidak tersentuh.
         $this->messages[] = ['role' => 'user', 'content' => $userInput];
         array_push($this->messages, ...$this->dueSystemMessages());
         $this->turnsSinceReminder++;
@@ -3733,7 +3733,7 @@ class ModeAgent
                     }
                 }
                 if ($stopReason === 'max_tokens') {
-                    // Drop the truncated assistant message so the next turn does not build on it.
+                    // Buang pesan asisten yang terpotong agar giliran berikutnya tidak melanjutkan darinya.
                     array_pop($this->messages);
                     $text .= "\n\n(warning: response was truncated at max_tokens)";
                 }
@@ -3795,7 +3795,7 @@ class ModeAgent
 
   
 ````ruby
-# An agent loop whose orchestration mode is toggled with mid-conversation system messages.
+# Loop agen yang mode orkestrasinya diaktifkan/dinonaktifkan dengan pesan sistem di tengah percakapan.
 class ModeAgent
   def initialize(model, mode_on: true)
     @model = model
@@ -3806,7 +3806,7 @@ class ModeAgent
     @turns_since_reminder = 0
   end
 
-  # Turn the mode on or off. The notice is delivered with the next user turn.
+  # Aktifkan atau nonaktifkan mode. Pemberitahuan disampaikan bersama giliran pengguna berikutnya.
   def set_mode(mode_on)
     return if mode_on == @mode_on
 
@@ -3819,8 +3819,8 @@ class ModeAgent
   end
 
   def turn(user_input)
-    # Mid-conversation system messages follow the user turn they apply to, which keeps
-    # the cached prefix ahead of them untouched.
+    # Pesan sistem di tengah percakapan mengikuti giliran pengguna yang terkait, sehingga
+    # prefiks yang di-cache sebelum pesan tersebut tetap tidak tersentuh.
     @messages << {role: "user", content: user_input}
     @messages.concat(due_system_messages)
     @turns_since_reminder += 1
@@ -3877,8 +3877,8 @@ class ModeAgent
 
   private
 
-  # System messages owed on this turn: an exit notice, the full mode text on entry,
-  # or a one-line refresher every TURNS_BETWEEN_REFRESHERS user turns.
+  # Pesan sistem yang harus disampaikan pada giliran ini: pemberitahuan keluar, teks mode lengkap saat masuk,
+  # atau pengingat satu baris setiap TURNS_BETWEEN_REFRESHERS giliran pengguna.
   def due_system_messages
     due = []
     if @exit_pending

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes
-fetched_at: 2026-06-11T03:14:59.596724Z
-sha256: 55e54527a6861fd1b2f2009e700a678438d24edf5f44acd2c0fe125571e451b6
+fetched_at: 2026-06-13T03:15:40.418428Z
+sha256: 27d34a3f6c68f29ce92078973285e5a8fe1be9ea42a6d4f58158d93bf2bc873d
 ---
 
 # Sandbox yang di-host sendiri
@@ -11,24 +11,24 @@ Jalankan sesi agen di lingkungan sandbox yang Anda host sendiri.
 
 ---
 
-Secara default, Managed Agents mengeksekusi alat dan kode di dalam [sandbox cloud yang dikelola Anthropic](/docs/id/managed-agents/cloud-sandboxes-reference). Sandbox yang di-host sendiri tetap menjaga orkestrasi di sisi Anthropic tetapi memindahkan eksekusi alat ke infrastruktur yang Anda kendalikan, sehingga kode agen, filesystem, dan egress jaringan tidak pernah meninggalkan lingkungan Anda.
+Secara default, Managed Agents mengeksekusi alat dan kode di dalam [sandbox cloud yang dikelola Anthropic](/docs/id/managed-agents/cloud-sandboxes-reference). Sandbox yang di-host sendiri tetap menempatkan orkestrasi di sisi Anthropic, tetapi memindahkan eksekusi alat ke infrastruktur yang Anda kendalikan, sehingga kode agen, filesystem, dan egress jaringan tidak pernah keluar dari lingkungan Anda.
 
-Eksekusi alat tetap berada di host Anda: filesystem yang dibaca dan ditulis agen, proses yang dijalankannya, dan jaringan yang dapat dijangkaunya semuanya berada di bawah kendali Anda. Input dan output alat tetap mengalir ke control plane Anthropic (tempat Claude berjalan) sehingga model dapat melihat hasil dan menentukan apa yang harus dilakukan selanjutnya. Lihat [model keamanan](/docs/id/managed-agents/self-hosted-sandboxes-security) untuk batasan aliran data selengkapnya.
+Eksekusi alat tetap berada di host Anda: filesystem yang dibaca dan ditulis agen, proses yang dijalankannya, dan jaringan yang dapat dijangkaunya semuanya berada di bawah kendali Anda. Input dan output alat tetap mengalir ke control plane Anthropic (tempat Claude berjalan) sehingga model dapat melihat hasil dan menentukan langkah selanjutnya. Lihat [model keamanan](/docs/id/managed-agents/self-hosted-sandboxes-security) untuk batasan aliran data secara lengkap.
 
 <Note>
 Sandbox yang di-host sendiri mendukung semua model Claude yang tersedia di Managed Agents, termasuk Claude Opus 4.8. Model dikonfigurasi pada [agen](/docs/id/managed-agents/agent-setup), bukan pada lingkungan.
 </Note>
 
-## Perbedaannya dengan lingkungan cloud \{#how-it-differs-from-cloud-environments}
+## Perbedaan dengan lingkungan cloud \{#how-it-differs-from-cloud-environments}
 
 | | Lingkungan cloud | Sandbox yang di-host sendiri |
 |---|---|---|
 | Tempat alat dijalankan | Sandbox yang dikelola Anthropic | Infrastruktur Anda |
 | Jangkauan jaringan | Kontrol egress Anthropic | Kebijakan jaringan Anda |
-| Pemasangan file dan repo GitHub | Dikelola oleh Anthropic | Dikelola oleh Anda |
+| Mounting file dan repo GitHub | Dikelola oleh Anthropic | Dikelola oleh Anda |
 | Siklus hidup | Dikelola oleh Anthropic | Dikelola oleh Anda |
 
-Self-hosting cocok digunakan ketika agen perlu beroperasi pada data yang tidak boleh meninggalkan batas jaringan Anda, menjangkau layanan internal yang tidak dapat dirutekan secara publik, atau berjalan di bawah kontrol kepatuhan dan audit organisasi Anda sendiri.
+Self-hosting cocok digunakan ketika agen perlu beroperasi pada data yang tidak boleh keluar dari batas jaringan Anda, menjangkau layanan internal yang tidak dapat dirutekan secara publik, atau berjalan di bawah kontrol kepatuhan dan audit organisasi Anda sendiri.
 
 Untuk kelayakan Zero Data Retention dan HIPAA BAA, lihat [API dan retensi data](/docs/id/manage-claude/api-and-data-retention#feature-eligibility).
 
@@ -39,14 +39,14 @@ Self-hosting mengontrol *di mana kode agen dieksekusi*. [MCP tunnel](/docs/id/ag
 ## Environment worker \{#environment-worker}
 
 <Tip>
-Panduan ini menjelaskan cara membangun worker dengan platform sandboxing generik apa pun. Panduan tambahan khusus platform tersedia untuk [Cloudflare](https://developers.cloudflare.com/sandbox/claude-managed-agents/), [Daytona](https://www.daytona.io/docs/en/guides/claude/claude-managed-agents), [Modal](https://github.com/modal-labs/claude-managed-agents-modal-sandbox), dan [Vercel](https://vercel.com/kb/guide/run-claude-managed-agent-tools-with-vercel-sandbox).
+Panduan ini menjelaskan cara membangun worker dengan platform sandboxing generik apa pun. Panduan tambahan yang spesifik per platform tersedia untuk [Blaxel](https://docs.blaxel.ai/Tutorials/Claude-Managed-Agents), [Cloudflare](https://developers.cloudflare.com/sandbox/claude-managed-agents/), [Daytona](https://www.daytona.io/docs/en/guides/claude/claude-managed-agents), [E2B](https://e2b.dev/docs/agents/claude-managed-agents), [GKE Agent Sandbox](https://github.com/GoogleCloudPlatform/kubernetes-engine-samples/tree/main/ai-ml/anthropic-agent-sandbox), [Modal](https://github.com/modal-labs/claude-managed-agents-modal-sandbox), [Namespace](https://namespace.so/docs/integrations/claude), [Superserve](https://docs.superserve.ai/integrations/managed-agents/claude-managed-agents), dan [Vercel](https://vercel.com/kb/guide/run-claude-managed-agent-tools-with-vercel-sandbox).
 </Tip>
 
-"Environment worker" (pekerja lingkungan) adalah proses yang Anda jalankan di infrastruktur Anda sendiri. Proses ini menerima permintaan eksekusi alat dari Anthropic dan menjalankannya secara lokal. Lingkungan `self_hosted` bertindak sebagai antrean kerja: ketika sebuah [sesi](/docs/id/managed-agents/sessions) ditetapkan ke lingkungan tersebut, Anthropic memasukkan sesi itu ke antrean sebagai item kerja. Worker Anda mengklaim item kerja dari antrean tersebut, membuat konteks eksekusi untuk masing-masing item, mengunduh [skill](/docs/id/managed-agents/skills) agen (sumber daya berbasis filesystem yang dapat digunakan kembali dan memberikan keahlian spesifik domain kepada agen), menjalankan panggilan alat, dan mengirimkan hasilnya kembali.
+"Environment worker" (worker lingkungan) adalah proses yang Anda jalankan di infrastruktur Anda sendiri. Proses ini menerima permintaan eksekusi alat dari Anthropic dan menjalankannya secara lokal. Lingkungan `self_hosted` bertindak sebagai antrean kerja: ketika sebuah [sesi](/docs/id/managed-agents/sessions) ditugaskan ke lingkungan tersebut, Anthropic memasukkan sesi itu ke antrean sebagai work item. Worker Anda mengklaim work item dari antrean tersebut, membuat konteks eksekusi untuk masing-masing, mengunduh [skill](/docs/id/managed-agents/skills) agen (sumber daya berbasis filesystem yang dapat digunakan kembali dan memberikan keahlian spesifik domain kepada agen), menjalankan panggilan alat, dan mengirimkan hasilnya kembali.
 
-Item kerja diklaim dengan melakukan polling pada antrean lingkungan: baik oleh **worker yang selalu aktif** yang melakukan polling terus-menerus, atau **handler yang dipicu webhook** yang aktif saat `session.status_run_started` dan mulai melakukan polling.
+Work item diklaim dengan melakukan polling pada antrean lingkungan: baik oleh **worker always-on** yang melakukan polling secara terus-menerus, atau **handler yang dipicu webhook** yang aktif saat `session.status_run_started` dan mulai melakukan polling.
 
-CLI dan SDK keduanya menyertakan worker yang sudah dibangun sebelumnya. CLI `ant` hanya mendukung pola selalu aktif; SDK mendukung pola selalu aktif dan yang dipicu webhook. Keduanya dapat dikonfigurasi: lihat [Self-hosted worker](/docs/id/managed-agents/reference#self-hosted-worker) di referensi untuk flag CLI, dan [Helper SDK](#sdk-helpers) di halaman ini untuk opsi SDK. Untuk kontrol lebih lanjut, panggil [endpoint Environments Work](/docs/id/api/beta/environments/work) secara langsung dan implementasikan worker Anda sendiri. Pada [Claude Platform on AWS](/docs/id/build-with-claude/claude-platform-on-aws), endpoint list `GET /v1/environments/{id}/work` dan padanan SDK-nya saat ini tidak tersedia; endpoint kerja lainnya (poll, ack, heartbeat, stop, post results, per-item get, dan stats) berfungsi normal.
+CLI dan SDK keduanya menyertakan worker yang sudah dibangun sebelumnya. CLI `ant` hanya mendukung pola always-on; SDK mendukung always-on dan yang dipicu webhook. Keduanya dapat dikonfigurasi: lihat [Self-hosted worker](/docs/id/managed-agents/reference#self-hosted-worker) di referensi untuk flag CLI, dan [Helper SDK](#sdk-helpers) di halaman ini untuk opsi SDK. Untuk kontrol lebih lanjut, panggil [endpoint Environments Work](/docs/id/api/beta/environments/work) secara langsung dan implementasikan worker Anda sendiri.
 
 ### Filesystem sandbox \{#sandbox-filesystem}
 
@@ -58,12 +58,12 @@ CLI dan SDK keduanya menyertakan worker yang sudah dibangun sebelumnya. CLI `ant
 Anda memerlukan:
 
 - **Agen yang sudah ada.** Jika Anda belum memilikinya, selesaikan [Quickstart](/docs/id/managed-agents/quickstart) terlebih dahulu dan catat ID agennya.
-- **Host Linux** dengan `/bin/bash` di path yang persis sama. SDK TypeScript juga memerlukan `unzip`, `tar`, dan Node.js 22 atau yang lebih baru; SDK Python menggunakan pustaka standar untuk ekstraksi arsip dan tidak memiliki persyaratan biner tambahan. Dependensi ini di-resolve pada path tetap dan tidak mengikuti override `PATH`.
-- **CLI `ant` atau SDK Anthropic** (Python, TypeScript, atau Go) pada host worker.
+- **Host Linux** dengan `/bin/bash` di path yang persis sama. SDK TypeScript juga memerlukan `unzip`, `tar`, dan Node.js 22 atau lebih baru; SDK Python menggunakan pustaka standar untuk ekstraksi arsip dan tidak memiliki persyaratan biner tambahan. Dependensi ini di-resolve pada path tetap dan tidak mengikuti override `PATH`.
+- **CLI `ant` atau SDK Anthropic** (Python, TypeScript, atau Go) di host worker.
 - **Dua kredensial:** environment key (dihasilkan pada langkah-langkah berikut) mengautentikasi worker ke antreannya; kunci API Claude Anda membuat sesi dan membaca statistik antrean dari luar host worker.
 
 <Note>
-Pada [Claude Platform on AWS](/docs/id/build-with-claude/claude-platform-on-aws), worker mengautentikasi dengan AWS IAM (SigV4) atau [kunci API yang dihasilkan di AWS Console](/docs/id/build-with-claude/claude-platform-on-aws#api-key-authentication), bukan environment key. Lampirkan managed policy [`AnthropicSelfHostedEnvironmentAccess`](/docs/id/api/claude-platform-on-aws-iam-actions#managed-policies) ke IAM principal yang digunakan worker Anda. Environment key yang dihasilkan di Claude Console tidak berfungsi dengan endpoint Claude Platform on AWS.
+Pada [Claude Platform on AWS](/docs/id/build-with-claude/claude-platform-on-aws), worker mengautentikasi dengan AWS IAM (SigV4) atau [kunci API yang dihasilkan di AWS Console](/docs/id/build-with-claude/claude-platform-on-aws#api-key-authentication), bukan environment key. Lampirkan managed policy [`AnthropicSelfHostedEnvironmentAccess`](/docs/id/api/claude-platform-on-aws-iam-actions#managed-policies) ke IAM principal tempat worker Anda berjalan. Environment key yang dihasilkan di Claude Console tidak berfungsi dengan endpoint Claude Platform on AWS.
 </Note>
 
 <Steps>
@@ -205,7 +205,7 @@ Pada [Claude Platform on AWS](/docs/id/build-with-claude/claude-platform-on-aws)
   </Step>
 
   <Step title="Hasilkan environment key">
-    Di Console, buka lingkungan tersebut dan klik **Generate environment key**. Pembuatan key hanya dapat dilakukan melalui Console, terlepas dari apakah Anda membuat lingkungan melalui Console atau API. Kemudian ekspor ID lingkungan dan key pada host worker:
+    Di Console, buka lingkungan tersebut dan klik **Generate environment key**. Pembuatan key hanya dapat dilakukan melalui Console, terlepas dari apakah Anda membuat lingkungan melalui Console atau API. Kemudian ekspor ID lingkungan dan key di host worker:
 
     ```bash
     export ANTHROPIC_ENVIRONMENT_KEY="sk-ant-oat01-..."
@@ -215,18 +215,18 @@ Pada [Claude Platform on AWS](/docs/id/build-with-claude/claude-platform-on-aws)
 </Steps>
 
 <Note>
-Skill dapat menyertakan executable yang mungkin dijalankan langsung oleh agen. Worker CLI dan SDK secara otomatis menandai file skill yang diunduh sebagai executable di dalam sandbox. Jika Anda mengimplementasikan pengunduhan skill secara manual, Anda bertanggung jawab untuk mengatur izin executable.
+Skill dapat menyertakan executable yang mungkin dijalankan langsung oleh agen. Worker CLI dan SDK secara otomatis menandai file skill yang diunduh sebagai executable di sandbox. Jika Anda mengimplementasikan pengunduhan skill secara manual, Anda bertanggung jawab untuk mengatur izin executable.
 </Note>
 
 ## Menjalankan worker \{#run-a-worker}
 
-Pilih **selalu aktif** untuk penyiapan paling sederhana: proses yang berjalan lama melakukan polling pada antrean secara terus-menerus dan hanya memerlukan HTTPS keluar. Pilih **dipicu webhook** untuk menghindari menjalankan poller yang idle; ini memerlukan endpoint webhook yang dapat dijangkau Anthropic (lihat [Webhook](/docs/id/managed-agents/webhooks) untuk penyiapan endpoint dan verifikasi signature).
+Pilih **always-on** untuk pengaturan paling sederhana: proses yang berjalan lama melakukan polling antrean secara terus-menerus dan hanya memerlukan HTTPS keluar. Pilih **dipicu webhook** untuk menghindari menjalankan poller yang idle; ini memerlukan endpoint webhook yang dapat dijangkau Anthropic (lihat [Webhook](/docs/id/managed-agents/webhooks) untuk pengaturan endpoint dan verifikasi signature).
 
 <Tabs>
-  <Tab title="Selalu aktif (ant CLI)">
+  <Tab title="Always-on (CLI ant)">
     <Steps>
-      <Step title="Instal ant CLI">
-        Jalankan ini pada host worker.
+      <Step title="Instal CLI ant">
+        Jalankan ini di host worker.
 
         
         ```bash nocheck
@@ -241,7 +241,7 @@ Pilih **selalu aktif** untuk penyiapan paling sederhana: proses yang berjalan la
       <Step title="Jalankan worker">
         **In-process**
 
-        `ant beta:worker poll` mengklaim item kerja yang ditetapkan ke lingkungan, mengunduh skill, mengeksekusi panggilan alat di direktori kerja, dan mengirimkan hasilnya kembali.
+        `ant beta:worker poll` mengklaim work item yang ditugaskan ke lingkungan, mengunduh skill, mengeksekusi panggilan alat di direktori kerja, dan mengirimkan hasilnya kembali.
 
         
         ```bash nocheck
@@ -255,7 +255,7 @@ Pilih **selalu aktif** untuk penyiapan paling sederhana: proses yang berjalan la
 
         Jika Anda memerlukan isolasi yang lebih kuat (filesystem baru, batas sumber daya, atau kontrol jaringan per sesi), jalankan setiap sesi di sandbox-nya sendiri. Bangun image dengan `ant` terinstal dan `ant beta:worker run` sebagai entrypoint. Base image harus menyediakan `/bin/bash`; `curl` hanya digunakan saat build. Ketika sandbox dimulai, sandbox membaca detail sesi dari variabel lingkungan, menangani sesi tersebut, dan keluar:
 
-        ```text
+        ```text nowrap
         FROM your-base-image
         ARG ANT_VERSION=1.12.0
         ARG TARGETARCH
@@ -267,7 +267,7 @@ Pilih **selalu aktif** untuk penyiapan paling sederhana: proses yang berjalan la
         ENTRYPOINT ["ant", "beta:worker", "run"]
         ```
 
-        Kemudian tulis skrip spawn yang meneruskan detail sesi ke sandbox baru. Poller menyuntikkan `ANTHROPIC_SESSION_ID`, `ANTHROPIC_WORK_ID`, `ANTHROPIC_ENVIRONMENT_ID`, dan `ANTHROPIC_ENVIRONMENT_KEY` ke dalam lingkungan skrip. `ANTHROPIC_BASE_URL` bersifat opsional dan hanya diteruskan jika telah diatur pada host poller; variabel ini menggantikan endpoint API default. Dalam contoh ini, `/host/outputs` adalah direktori host yang Anda pilih; direktori ini di-bind-mount ke `/mnt/session/outputs` sandbox sehingga Anda dapat mengambil hasil sesi setelah sandbox keluar.
+        Kemudian tulis skrip spawn yang meneruskan detail sesi ke sandbox baru. Poller menyuntikkan `ANTHROPIC_SESSION_ID`, `ANTHROPIC_WORK_ID`, `ANTHROPIC_ENVIRONMENT_ID`, dan `ANTHROPIC_ENVIRONMENT_KEY` ke dalam lingkungan skrip. `ANTHROPIC_BASE_URL` bersifat opsional dan hanya diteruskan jika sudah diatur di host poller; variabel ini menggantikan endpoint API default. Dalam contoh ini, `/host/outputs` adalah direktori host yang Anda pilih; direktori ini di-bind-mount ke `/mnt/session/outputs` milik sandbox sehingga Anda dapat mengambil hasil sesi setelah sandbox keluar.
 
         ```bash
         #!/bin/bash
@@ -280,7 +280,7 @@ Pilih **selalu aktif** untuk penyiapan paling sederhana: proses yang berjalan la
           your-image
         ```
 
-        Mulai poller dengan mengarahkannya ke skrip tersebut:
+        Mulai poller dengan mengarahkannya ke skrip:
 
         ```bash
         ant beta:worker poll \
@@ -290,10 +290,10 @@ Pilih **selalu aktif** untuk penyiapan paling sederhana: proses yang berjalan la
     </Steps>
   </Tab>
 
-  <Tab title="Selalu aktif (SDK)">
+  <Tab title="Always-on (SDK)">
     <Steps>
       <Step title="Jalankan worker">
-        `EnvironmentWorker` mengklaim item kerja yang ditetapkan ke lingkungan, mengunduh skill, mengeksekusi panggilan alat di direktori kerja, dan mengirimkan hasilnya kembali. Autentikasi dengan environment key yang Anda hasilkan di [Sebelum Anda mulai](#before-you-begin).
+        `EnvironmentWorker` mengklaim work item yang ditugaskan ke lingkungan, mengunduh skill, mengeksekusi panggilan alat di direktori kerja, dan mengirimkan hasilnya kembali. Autentikasi dengan environment key yang Anda hasilkan di [Sebelum Anda mulai](#before-you-begin).
 
         
         
@@ -402,19 +402,19 @@ func main() {
   <Tab title="Dipicu webhook (SDK)">
     <Steps>
       <Step title="Berlangganan webhook sesi">
-        Di [Console](https://platform.claude.com/settings/workspaces/default/webhooks), tentukan endpoint webhook yang mendengarkan event `session.status_run_started`. Lihat [Webhook](/docs/id/managed-agents/webhooks) untuk detailnya.
+        Di [Console](https://platform.claude.com/settings/workspaces/default/webhooks), definisikan endpoint webhook yang mendengarkan event `session.status_run_started`. Lihat [Webhook](/docs/id/managed-agents/webhooks) untuk detailnya.
       </Step>
 
       <Step title="Ekspor webhook signing key">
-        Selain ID lingkungan dan key dari [Sebelum Anda mulai](#before-you-begin), ekspor webhook signing key pada host handler Anda agar handler dapat memverifikasi payload yang masuk:
+        Selain ID lingkungan dan key dari [Sebelum Anda mulai](#before-you-begin), ekspor webhook signing key di host handler Anda agar handler dapat memverifikasi payload yang masuk:
 
         ```bash
         export ANTHROPIC_WEBHOOK_SIGNING_KEY="whsec_..."
         ```
       </Step>
 
-      <Step title="Implementasikan webhook handler">
-        `EnvironmentWorker` mengklaim item kerja, mengunduh skill, mengeksekusi panggilan alat di direktori kerja, mengirimkan hasilnya kembali, dan keluar. Panggil ini ketika `session.status_run_started` terpicu.
+      <Step title="Implementasikan handler webhook">
+        `EnvironmentWorker` mengklaim work item, mengunduh skill, mengeksekusi panggilan alat di direktori kerja, mengirimkan hasilnya kembali, dan keluar. Panggil ini ketika `session.status_run_started` terpicu.
 
         
         
@@ -495,7 +495,7 @@ export async function handle(req: Request): Promise<Response> {
 
           ```csharp C#
           // EnvironmentWorker saat ini tidak tersedia di SDK C#.
-          // Untuk menangani item pekerjaan secara langsung, lihat endpoint Environments Work.
+          // Untuk menangani item kerja secara langsung, lihat endpoint Environments Work.
           ```
 
           
@@ -544,9 +544,9 @@ func handle(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// The Go SDK does not provide a RunOne convenience: drain pending items
-	// with WorkPoller and run each one with HandleItem.
-	// Detach from r.Context(): the session can outlive the webhook delivery timeout.
+	// SDK Go tidak menyediakan fungsi praktis RunOne: kuras item yang tertunda
+	// dengan WorkPoller dan jalankan masing-masing dengan HandleItem.
+	// Lepaskan dari r.Context(): sesi dapat bertahan melebihi batas waktu pengiriman webhook.
 	ctx := context.Background()
 	poller := environments.NewWorkPoller(ctx, client, environments.WorkPollerOptions{
 		EnvironmentID:      environmentID,
@@ -599,7 +599,7 @@ func main() {
 
           ```ruby Ruby
           # EnvironmentWorker saat ini tidak tersedia di Ruby SDK.
-          # Untuk menangani item kerja secara langsung, lihat endpoint Environments Work.
+          # Untuk menangani item pekerjaan secara langsung, lihat endpoint Environments Work.
           ```
         </CodeGroup>
       </Step>
@@ -612,13 +612,13 @@ func main() {
 SDK menyediakan tiga helper pada tingkat kontrol yang berbeda. `EnvironmentWorker` mencakup sebagian besar kasus penggunaan; turun ke helper tingkat lebih rendah ketika Anda perlu meluncurkan proses per sesi Anda sendiri atau menjalankan alat terhadap sesi yang sudah diklaim.
 
 - **`EnvironmentWorker`:** worker siap pakai. Menangani polling, penyiapan, dan eksekusi dari awal hingga akhir.
-  - `.run()`: berjalan tanpa batas, mengambil sesi saat sesi tiba. Keluar dengan bersih saat menerima SIGTERM.
+  - `.run()`: berjalan tanpa batas waktu, mengambil sesi saat tiba. Keluar dengan bersih saat menerima SIGTERM.
   - `.handle_item()`: mengambil satu sesi yang tertunda, menanganinya, dan keluar.
-- **`work.poller()`:** melakukan polling pada antrean kerja atas nama Anda dan memberikan setiap sesi yang diklaim kepada Anda. Gunakan ini ketika Anda ingin memutuskan apa yang terjadi untuk setiap sesi, misalnya meluncurkan sandbox alih-alih menjalankan alat secara in-process.
+- **`work.poller()`:** melakukan polling antrean kerja atas nama Anda dan memberikan setiap sesi yang diklaim kepada Anda. Gunakan ini ketika Anda ingin memutuskan apa yang terjadi untuk setiap sesi, misalnya meluncurkan sandbox alih-alih menjalankan alat secara in-process.
   - `drain`: apakah akan berhenti melakukan polling setelah antrean kosong alih-alih menunggu pekerjaan baru.
-  - `block_ms`: berapa lama menunggu pekerjaan tiba sebelum kembali, dalam milidetik. Harus antara 1 dan 999 (waktu tunggu per poll; helper melakukan polling ulang secara otomatis). Berikan `null` (`None` di Python, `param.Null[int64]()` di Go) untuk pemeriksaan non-blocking; menghilangkan parameter ini akan menggunakan long-poll default 999 ms.
-  - `reclaim_older_than_ms`: klaim ulang item kerja yang di-lease ke worker yang telah berhenti merespons.
-  - `auto_stop`: apakah akan mengirim sinyal stop pada item kerja setelah iterator keluar. Poller Go tidak memiliki opsi opt-out dan selalu mengirim sinyal stop, jadi lakukan blocking di dalam body loop hingga sesi selesai alih-alih melepaskannya.
+  - `block_ms`: berapa lama menunggu pekerjaan tiba sebelum kembali, dalam milidetik. Harus antara 1 dan 999 (waktu tunggu per poll; helper melakukan polling ulang secara otomatis). Berikan `null` (`None` di Python, `param.Null[int64]()` di Go) untuk pemeriksaan non-blocking; menghilangkan parameter akan menggunakan long-poll default 999 ms.
+  - `reclaim_older_than_ms`: klaim ulang work item yang di-lease ke worker yang telah berhenti merespons.
+  - `auto_stop`: apakah akan mengirim sinyal stop pada work item setelah iterator keluar. Poller Go tidak memiliki opsi untuk menonaktifkan ini dan selalu mengirim sinyal stop, jadi lakukan blocking di dalam body loop hingga sesi selesai alih-alih melepaskannya.
 - **`client.beta.sessions.events.tool_runner()`:** menjalankan panggilan alat untuk satu sesi, dengan diberikan ID sesi dan daftar alat. Gunakan ketika Anda sudah mengklaim pekerjaan dan hanya memerlukan lapisan eksekusi.
 
 Gunakan work poller secara langsung ketika Anda ingin meluncurkan proses per sesi Anda sendiri, misalnya menjalankan sandbox untuk setiap sesi yang diklaim:
@@ -717,7 +717,7 @@ Gunakan work poller secara langsung ketika Anda ingin meluncurkan proses per ses
   	// Ganti dengan peluncur sandbox per-sesi Anda sendiri. Poller Go
   	// memanggil work.Stop saat fungsi ini kembali (tidak ada opsi untuk
   	// menonaktifkan auto-stop), jadi blokir di sini hingga sesi selesai
-  	// alih-alih melepaskan seperti yang dilakukan tab Python dan TypeScript.
+  	// alih-alih melepaskan seperti pada tab Python dan TypeScript.
   	fmt.Printf("claimed session %s\n", work.Data.ID)
   }
 
@@ -781,7 +781,7 @@ from anthropic.lib.tools.agent_toolset import (
 async with AgentToolContext(
     workdir="/workspace", client=client, session_id=work.data.id
 ) as env:
-    # skills downloaded to /workspace/skills/<name>/
+    # skills diunduh ke /workspace/skills/<name>/
     tools = beta_agent_toolset_20260401(env)
 ````
 
@@ -807,7 +807,7 @@ env := &agenttoolset.AgentToolContext{Workdir: "/workspace"}
 if err := env.SetupSkills(ctx, client, work.Data.ID); err != nil {
 	panic(err)
 }
-// skills downloaded to /workspace/skills/<name>/
+// skills diunduh ke /workspace/skills/<name>/
 tools := agenttoolset.BetaAgentToolset20260401(env)
 ````
 
@@ -820,7 +820,7 @@ tools := agenttoolset.BetaAgentToolset20260401(env)
   ```
 
   ```ruby Ruby
-  # AgentToolContext saat ini belum tersedia di Ruby SDK.
+  # AgentToolContext saat ini tidak tersedia di Ruby SDK.
   ```
 </CodeGroup>
 
@@ -832,13 +832,13 @@ Dari shell terpisah, menggunakan kunci API Claude Anda (bukan environment key), 
 ant beta:environments:work stats --environment-id "$ANTHROPIC_ENVIRONMENT_ID"
 ```
 
-Jika `workers_polling` tetap 0, worker tidak menjangkau antrean: konfirmasi bahwa `ANTHROPIC_ENVIRONMENT_KEY` dan `ANTHROPIC_ENVIRONMENT_ID` telah diatur pada host worker. Lihat [Membaca kedalaman antrean](#read-queue-depth) untuk respons statistik lengkap dan contoh bahasa lainnya.
+Jika `workers_polling` tetap 0, worker tidak menjangkau antrean: konfirmasi bahwa `ANTHROPIC_ENVIRONMENT_KEY` dan `ANTHROPIC_ENVIRONMENT_ID` sudah diatur di host worker. Lihat [Membaca kedalaman antrean](#read-queue-depth) untuk respons statistik lengkap dan contoh bahasa lainnya.
 
 ## Memulai sesi \{#start-a-session}
 
 Setelah worker Anda berjalan, buat sesi yang menargetkan lingkungan tersebut. Sesi masuk ke antrean kerja lingkungan dan menunggu di sana hingga worker mengklaimnya; jika tidak ada worker yang terhubung, sesi tetap berada di antrean alih-alih gagal.
 
-Anthropic tidak memasang file atau repositori GitHub ke dalam sandbox yang di-host sendiri. Untuk menyediakan file spesifik sesi, berikan referensi file (seperti path S3 atau commit SHA) di field `metadata` sesi. Skrip spawn atau handler `--on-work` Anda membaca metadata tersebut dari item kerja yang diklaim (melalui [endpoint Environments Work](/docs/id/api/beta/environments/work)) dan menyiapkan file ke dalam direktori kerja sebelum eksekusi alat dimulai.
+Anthropic tidak me-mount file atau repositori GitHub ke dalam sandbox yang di-host sendiri. Untuk menyediakan file spesifik sesi, berikan referensi file (seperti path S3 atau commit SHA) di field `metadata` sesi. Skrip spawn atau handler `--on-work` Anda membaca metadata tersebut dari work item yang diklaim (melalui [endpoint Environments Work](/docs/id/api/beta/environments/work)) dan menyiapkan file ke dalam direktori kerja sebelum eksekusi alat dimulai.
 
 <CodeGroup>
   ```bash cURL nocheck
@@ -947,17 +947,17 @@ Lihat [Self-hosted worker](/docs/id/managed-agents/reference#self-hosted-worker)
 Panggilan ini dijalankan dari tooling pemantauan atau operasi Anda, diautentikasi dengan kunci API Claude Anda, untuk mengamati dan mengelola armada worker. Loop klaim dan keep-alive ditangani di dalam helper worker, sehingga Anda tidak memanggil endpoint tersebut secara langsung.
 
 <Warning>
-  Endpoint ini mengautentikasi dengan kunci API organisasi Anda, bukan environment key. Panggil endpoint ini dari luar host worker. Mengatur `ANTHROPIC_API_KEY` pada host worker akan mengekspos kredensial dengan cakupan organisasi ke panggilan alat agen.
+  Endpoint ini mengautentikasi dengan kunci API organisasi Anda, bukan environment key. Panggil dari luar host worker. Mengatur `ANTHROPIC_API_KEY` di host worker akan mengekspos kredensial dengan cakupan organisasi ke panggilan alat agen.
 </Warning>
 
 ### Membaca kedalaman antrean \{#read-queue-depth}
 
 `work.stats` mengembalikan status antrean untuk sebuah lingkungan:
 
-- `depth` adalah jumlah item yang menunggu untuk diklaim. Skalakan armada worker Anda atau buat peringatan backlog berdasarkan nilai ini.
+- `depth` adalah jumlah item yang menunggu untuk diklaim. Skalakan armada worker Anda atau buat alert untuk backlog berdasarkan nilai ini.
 - `pending` adalah jumlah item yang telah diklaim worker dan sedang diproses.
-- `oldest_queued_at` adalah timestamp item tertua dalam antrean, atau `null` jika antrean kosong.
-- `workers_polling` adalah jumlah worker yang telah melakukan polling dalam 30 detik terakhir. Gunakan ini untuk peringatan liveness.
+- `oldest_queued_at` adalah timestamp item tertua di antrean, atau `null` jika antrean kosong.
+- `workers_polling` adalah jumlah worker yang telah melakukan polling dalam 30 detik terakhir. Gunakan ini untuk alert liveness.
 
 <CodeGroup>
   ```bash cURL nocheck
@@ -1082,11 +1082,11 @@ Panggilan ini dijalankan dari tooling pemantauan atau operasi Anda, diautentikas
 }
 ```
 
-### Menghentikan sesi dengan baik \{#stop-a-session-gracefully}
+### Menghentikan sesi dengan graceful \{#stop-a-session-gracefully}
 
-Gunakan `work.stop` untuk meminta worker yang menangani sesi tertentu agar menutupnya dengan bersih. Worker menyelesaikan panggilan alat yang sedang berjalan, mengirimkan status akhir, dan melepaskan sesi. Berikan `force: true` di body permintaan untuk menginterupsi segera alih-alih menunggu panggilan alat saat ini selesai.
+Gunakan `work.stop` untuk meminta worker yang menangani sesi tertentu agar mematikannya dengan bersih. Worker menyelesaikan panggilan alat yang sedang berjalan, mengirim status akhir, dan melepaskan sesi. Berikan `force: true` di body permintaan untuk menginterupsi segera alih-alih menunggu panggilan alat saat ini selesai.
 
-Karena panggilan ini dijalankan dari tooling operasi Anda dan bukan dari host worker, `ANTHROPIC_WORK_ID` tidak diatur secara otomatis. Atur ke ID item kerja target sebelum menjalankan contoh berikut.
+Karena panggilan ini dijalankan dari tooling operasi Anda dan bukan dari host worker, `ANTHROPIC_WORK_ID` tidak diatur secara otomatis. Atur ke ID work item target sebelum menjalankan contoh berikut.
 
 <CodeGroup>
   ```bash cURL nocheck

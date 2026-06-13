@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/quickstart
-fetched_at: 2026-06-11T03:14:59.596724Z
-sha256: dcb16e4acf9c365cdc8d1b37dc60f580577a0405a461cc2b6e38510a088d0458
+fetched_at: 2026-06-13T03:15:40.418428Z
+sha256: 4a332471c7a1a7d64fe4ecf0e5310c85fab0de85fd7c2a08127daf6ebd1e2272
 ---
 
 # Memulai dengan Claude Managed Agents
@@ -588,7 +588,7 @@ puts "Session ID: #{session.id}"
     <CodeGroup>
     
 ````bash
-# Send the user message first; the API buffers events until the stream attaches
+# Kirim pesan pengguna terlebih dahulu; API menyangga event hingga stream terhubung
 curl -sS --fail-with-body \
   "https://api.anthropic.com/v1/sessions/$SESSION_ID/events" \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -611,7 +611,7 @@ curl -sS --fail-with-body \
 }
 EOF
 
-# Open the SSE stream and process events as they arrive
+# Buka stream SSE dan proses event saat diterima
 while IFS= read -r line; do
   [[ $line == data:* ]] || continue
   json=${line#data: }
@@ -640,7 +640,7 @@ done < <(
     
 ````python
 with client.beta.sessions.events.stream(session.id) as stream:
-    # Send the user message after the stream opens
+    # Kirim pesan pengguna setelah stream terbuka
     client.beta.sessions.events.send(
         session.id,
         events=[
@@ -656,7 +656,7 @@ with client.beta.sessions.events.stream(session.id) as stream:
         ],
     )
 
-    # Process streaming events
+    # Proses event streaming
     for event in stream:
         match event.type:
             case "agent.message":
@@ -673,7 +673,7 @@ with client.beta.sessions.events.stream(session.id) as stream:
 ````typescript
 const stream = await client.beta.sessions.events.stream(session.id);
 
-// Send the user message after the stream opens
+// Kirim pesan pengguna setelah stream terbuka
 await client.beta.sessions.events.send(session.id, {
   events: [
     {
@@ -688,7 +688,7 @@ await client.beta.sessions.events.send(session.id, {
   ],
 });
 
-// Process streaming events
+// Proses event streaming
 for await (const event of stream) {
   if (event.type === "agent.message") {
     for (const block of event.content) {
@@ -707,7 +707,7 @@ for await (const event of stream) {
 ````csharp
 var stream = client.Beta.Sessions.Events.StreamStreaming(session.ID);
 
-// Send the user message after the stream opens
+// Kirim pesan pengguna setelah stream terbuka
 await client.Beta.Sessions.Events.Send(session.ID, new()
 {
     Events =
@@ -727,7 +727,7 @@ await client.Beta.Sessions.Events.Send(session.ID, new()
     ],
 });
 
-// Process streaming events
+// Proses event streaming
 await foreach (var ev in stream)
 {
     if (ev.Value is BetaManagedAgentsAgentMessageEvent message)
@@ -754,7 +754,7 @@ await foreach (var ev in stream)
 	stream := client.Beta.Sessions.Events.StreamEvents(ctx, session.ID, anthropic.BetaSessionEventStreamParams{})
 	defer stream.Close()
 
-	// Send the user message after the stream opens
+	// Kirim pesan pengguna setelah stream terbuka
 	_, err = client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
 		Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
 			OfUserMessage: &anthropic.BetaManagedAgentsUserMessageEventParams{
@@ -772,7 +772,7 @@ await foreach (var ev in stream)
 		panic(err)
 	}
 
-	// Process streaming events
+	// Proses event streaming
 loop:
 	for stream.Next() {
 		switch event := stream.Current().AsAny().(type) {
@@ -795,7 +795,7 @@ loop:
     
 ````java
 try (var stream = client.beta().sessions().events().streamStreaming(session.id())) {
-    // Send the user message after the stream opens
+    // Kirim pesan pengguna setelah stream terbuka
     client.beta().sessions().events().send(session.id(), EventSendParams.builder()
         .addEvent(BetaManagedAgentsUserMessageEventParams.builder()
             .type(BetaManagedAgentsUserMessageEventParams.Type.USER_MESSAGE)
@@ -803,7 +803,7 @@ try (var stream = client.beta().sessions().events().streamStreaming(session.id()
             .build())
         .build());
 
-    // Process streaming events
+    // Proses event streaming
     for (var event : (Iterable<BetaManagedAgentsStreamSessionEvents>) stream.stream()::iterator) {
         if (event.isAgentMessage()) {
             event.asAgentMessage().content().forEach(block -> IO.print(block.text()));
@@ -821,7 +821,7 @@ try (var stream = client.beta().sessions().events().streamStreaming(session.id()
 ````php
 $stream = $client->beta->sessions->events->streamStream($session->id);
 
-// Send the user message after the stream opens
+// Kirim pesan pengguna setelah stream terbuka
 $client->beta->sessions->events->send(
     $session->id,
     events: [
@@ -834,7 +834,7 @@ $client->beta->sessions->events->send(
     ],
 );
 
-// Process streaming events
+// Proses event streaming
 foreach ($stream as $event) {
     match ($event->type) {
         'agent.message' => print(implode('', array_map(fn($block) => $block->text, $event->content))),
@@ -852,7 +852,7 @@ foreach ($stream as $event) {
 ````ruby
 stream = client.beta.sessions.events.stream_events(session.id)
 
-# Send the user message after the stream opens
+# Kirim pesan pengguna setelah stream terbuka
 client.beta.sessions.events.send_(
   session.id,
   events: [{
@@ -861,7 +861,7 @@ client.beta.sessions.events.send_(
   }]
 )
 
-# Process streaming events
+# Proses event streaming
 stream.each do |event|
   case event.type
   in :"agent.message"
@@ -872,7 +872,7 @@ stream.each do |event|
     puts "\n\nAgent finished."
     break
   else
-    # ignore other event types
+    # abaikan tipe event lainnya
   end
 end
 ````
