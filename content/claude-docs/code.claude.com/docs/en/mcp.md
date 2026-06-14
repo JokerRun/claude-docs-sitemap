@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/mcp
-fetched_at: 2026-06-12T03:17:40.104094Z
-sha256: 9006b0bb74722d71c096aa2d196dbee0f3759d517d0f079d69d90159dcc13355
+fetched_at: 2026-06-14T03:18:00.285818Z
+sha256: 4cfba47a5a895280039dc7a1d0d5bf14dfe2edca54f833a7d933f6390b0e217a
 ---
 
 > ## Documentation Index
@@ -406,24 +406,6 @@ Environment variables can be expanded in:
 If a required environment variable is not set and has no default value, Claude Code will fail to parse the config.
 
 ## Practical examples
-
-{/* ### Example: Automate browser testing with Playwright
-
-```bash
-claude mcp add --transport stdio playwright -- npx -y @playwright/mcp@latest
-```
-
-Then write and run browser tests:
-
-```text
-Test if the login flow works with test@example.com
-```
-```text
-Take a screenshot of the checkout page on mobile
-```
-```text
-Verify that the search feature returns results
-``` */}
 
 ### Example: Monitor errors with Sentry
 

@@ -1,7 +1,7 @@
 ---
 - source: code
   loc: https://code.claude.com/docs/en/admin-setup
-  lastmod: '2026-06-09T18:28:37.830Z'
+  lastmod: '2026-06-13T16:25:39.229Z'
 - source: code
   loc: https://code.claude.com/docs/en/advisor
   lastmod: '2026-06-09T23:34:21.085Z'
@@ -262,7 +262,7 @@
   lastmod: '2026-05-25T19:31:27.585Z'
 - source: code
   loc: https://code.claude.com/docs/en/mcp
-  lastmod: '2026-06-11T23:56:21.520Z'
+  lastmod: '2026-06-13T04:26:03.036Z'
 - source: code
   loc: https://code.claude.com/docs/en/mcp-quickstart
   lastmod: '2026-06-02T00:41:06.482Z'
@@ -274,7 +274,7 @@
   lastmod: '2026-06-05T21:14:21.920Z'
 - source: code
   loc: https://code.claude.com/docs/en/model-config
-  lastmod: '2026-06-12T21:36:29.969Z'
+  lastmod: '2026-06-13T21:25:49.092Z'
 - source: code
   loc: https://code.claude.com/docs/en/monitoring-usage
   lastmod: '2026-06-12T21:36:29.979Z'
@@ -349,7 +349,7 @@
   lastmod: '2026-06-11T23:11:23.639Z'
 - source: code
   loc: https://code.claude.com/docs/en/settings
-  lastmod: '2026-06-12T21:36:29.974Z'
+  lastmod: '2026-06-13T21:25:49.104Z'
 - source: code
   loc: https://code.claude.com/docs/en/setup
   lastmod: '2026-06-09T23:34:21.496Z'

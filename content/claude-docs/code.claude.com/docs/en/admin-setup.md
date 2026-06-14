@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/admin-setup
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 79f6bc3f913e582dbe224968871ed0faf178f965c6a43881a47a8d748b7a0adc
+fetched_at: 2026-06-14T03:18:00.285818Z
+sha256: 938f3fa4aa847a7f07dd931904c70f5dfb1e8f34708f0ed12102c3f04c0fc74a
 ---
 
 > ## Documentation Index
@@ -118,7 +118,7 @@ If you need request-level audit logging or to route traffic by data sensitivity,
 
 ## Verify and onboard
 
-After configuring managed settings, have a developer run `/status` inside Claude Code. The output includes a line beginning with `Enterprise managed settings` followed by the source in parentheses, one of `(remote)`, `(plist)`, `(HKLM)`, `(HKCU)`, or `(file)`. See [Verify active settings](/en/settings#verify-active-settings).
+After configuring managed settings, have a developer run `/status` inside Claude Code. On the **Status** tab, the `Setting sources` line shows `Enterprise managed settings` followed by the source in parentheses, one of `(remote)`, `(plist)`, `(HKLM)`, `(HKCU)`, or `(file)`. See [Verify active settings](/en/settings#verify-active-settings).
 
 Share these resources to help developers get started:
 
