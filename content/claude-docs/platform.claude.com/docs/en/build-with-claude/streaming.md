@@ -1,11 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/streaming
-fetched_at: 2026-06-12T03:17:40.104094Z
-sha256: 34ef8aa9d08bce5fdfea9b1c9288fe4d34698626d4d506cccbcf6f4cb484d1bd
+fetched_at: 2026-06-16T03:17:15.143812Z
+sha256: 66c144d65f181a96c2739e10a8f92d78272f14e33b4abb6497fe539d8d24267d
 ---
 
 # Streaming messages
+
+Stream Messages API responses incrementally with server-sent events, including text, tool use, and extended thinking deltas.
 
 ---
 
@@ -1734,3 +1736,20 @@ For Claude 4.6 and later models, the same capture-and-resume strategy applies, b
 
 1. **Use SDK features:** Leverage the SDK's built-in message accumulation and error handling capabilities
 2. **Handle content types:** Be aware that messages can contain multiple content blocks (`text`, `tool_use`, `thinking`). Tool use and extended thinking blocks cannot be partially recovered. You can resume streaming from the most recent text block.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Stop reasons and fallback" icon="list" href="/docs/en/build-with-claude/handling-stop-reasons">
+    Handle each `stop_reason` value once a stream completes.
+  </Card>
+  <Card title="Fine-grained tool streaming" icon="wrench" href="/docs/en/agents-and-tools/tool-use/fine-grained-tool-streaming">
+    Stream tool input JSON without server-side buffering for lower latency.
+  </Card>
+  <Card title="Building with extended thinking" icon="brain" href="/docs/en/build-with-claude/extended-thinking">
+    Stream extended thinking output with `thinking_delta` and `signature_delta` events.
+  </Card>
+  <Card title="Client SDKs" icon="code" href="/docs/en/cli-sdks-libraries/overview">
+    Use the official SDKs, which handle streaming, accumulation, and reconnection for you.
+  </Card>
+</CardGroup>

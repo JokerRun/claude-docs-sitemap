@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/headless
-fetched_at: 2026-06-12T03:17:40.104094Z
-sha256: e24989069a16d2e042f879a721b4cce4586e597e5ea3c2fb82a8cdf99b523bf4
+fetched_at: 2026-06-16T03:17:15.143812Z
+sha256: 223eb9bcd2bbf5bb8101511a98b66d927b1e5add50463465d8cd757154c291f8
 ---
 
 > ## Documentation Index
@@ -12,10 +12,6 @@ sha256: e24989069a16d2e042f879a721b4cce4586e597e5ea3c2fb82a8cdf99b523bf4
 # Run Claude Code programmatically
 
 > Use the Agent SDK to run Claude Code programmatically from the CLI, Python, or TypeScript.
-
-<Note>
-  Starting June 15, 2026, Agent SDK and `claude -p` usage on subscription plans will draw from a new monthly Agent SDK credit, separate from your interactive usage limits. See [Use the Claude Agent SDK with your Claude plan](https://support.claude.com/en/articles/15036540-use-the-claude-agent-sdk-with-your-claude-plan) for details.
-</Note>
 
 The [Agent SDK](/en/agent-sdk/overview) gives you the same tools, agent loop, and context management that power Claude Code. It's available as a CLI for scripts and CI/CD, or as [Python](/en/agent-sdk/python) and [TypeScript](/en/agent-sdk/typescript) packages for full programmatic control.
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/whats-new
-fetched_at: 2026-05-31T03:17:15.839962Z
-sha256: c3cc507590e5c2b992b3378dcf8cb19266b9de746db81ba092555acf1ca6403f
+fetched_at: 2026-06-16T03:17:15.143812Z
+sha256: 647cc64251d7047ba6b4c5b06824b57a78ec9a140cd96e3f5f874514ecf7649d
 ---
 
 > ## Documentation Index
@@ -14,6 +14,22 @@ sha256: c3cc507590e5c2b992b3378dcf8cb19266b9de746db81ba092555acf1ca6403f
 > A weekly digest of notable Claude Code features, with code snippets, demos, and context on why they matter.
 
 The weekly dev digest highlights the features most likely to change how you work. Each entry includes runnable code, a short demo, and a link to the full docs. For every bug fix and minor improvement, see the [changelog](/en/changelog).
+
+<Update label="Week 24" description="June 8–12, 2026" tags={["v2.1.166–v2.1.176"]}>
+  **`/cd`**: move the current session to a new working directory mid-conversation without rebuilding the prompt cache.
+
+  Also this week: **sub-agents can spawn their own sub-agents** (background chains are capped at five levels deep); **`--safe-mode`** starts Claude Code with all customizations disabled for troubleshooting; and **`fallbackModel`** configures up to three fallback models tried in order.
+
+  [Read the Week 24 digest →](/en/whats-new/2026-w24)
+</Update>
+
+<Update label="Week 23" description="June 1–5, 2026" tags={["v2.1.158–v2.1.165"]}>
+  **Auto mode on Bedrock, Vertex, and Foundry**: auto mode is now available on third-party providers for Opus 4.7 and Opus 4.8, replacing permission prompts with background safety checks.
+
+  Also this week: **safer automatic edits** prompt before writing files that can run code in `acceptEdits` mode; **`/plugin list`** prints your installed plugins inline; and **version requirements** let managed deployments require an approved Claude Code version range.
+
+  [Read the Week 23 digest →](/en/whats-new/2026-w23)
+</Update>
 
 <Update label="Week 22" description="May 25–29, 2026" tags={["v2.1.150–v2.1.157"]}>
   **Claude Opus 4.8**: the new default model for Max, Team Premium, Enterprise pay-as-you-go, and Anthropic API accounts, with high effort by default and `/effort xhigh` for the hardest tasks.

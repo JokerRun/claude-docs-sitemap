@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy
-fetched_at: 2026-06-12T03:17:40.104094Z
-sha256: 419409c41550c8312bc52d06927d97d2a2ea13ecbe5970f551dfa69346a4cc1d
+fetched_at: 2026-06-16T03:17:15.143812Z
+sha256: d0087ae8cc11249c1c9a89641e042ac4c047db02f4d766e1861cd4811e6fcd5c
 ---
 
 # Claude on Amazon Bedrock (legacy)
@@ -756,7 +756,7 @@ Starting with **Claude Sonnet 4.5 and all future models**, Bedrock offers two en
 Regional endpoints include a 10% pricing premium over global endpoints.
 
 <Note>
-This applies to Claude Sonnet 4.5 and future models only. Older models (Claude Sonnet 4 (deprecated), Opus 4 (deprecated), and earlier) maintain their existing pricing structures.
+This applies to Claude Sonnet 4.5 and future models only. Older models (Claude Sonnet 4 (deprecated) and earlier) maintain their existing pricing structures.
 </Note>
 
 ### When to use each option

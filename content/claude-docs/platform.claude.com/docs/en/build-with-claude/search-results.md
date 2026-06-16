@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/search-results
-fetched_at: 2026-06-06T03:14:11.045838Z
-sha256: 5df4fd3c1268f21ecae8c37ee96e8c9b11adfef66d2002599121bf3b4fc08035
+fetched_at: 2026-06-16T03:17:15.143812Z
+sha256: 38274b596ada4d94e272ccc8e4eb3bc479b62fc30fd26e99f6574c2ae21034b1
 ---
 
 # Search results
@@ -26,8 +26,8 @@ The search results feature is available on the following models:
 - Claude Sonnet 4.5 (`claude-sonnet-4-5-20250929`)
 - Claude Opus 4.5 (`claude-opus-4-5-20251101`)
 - Claude Opus 4.1 ([deprecated](/docs/en/about-claude/model-deprecations)) (`claude-opus-4-1-20250805`)
-- Claude Opus 4 ([deprecated](/docs/en/about-claude/model-deprecations)) (`claude-opus-4-20250514`)
-- Claude Sonnet 4 ([deprecated](/docs/en/about-claude/model-deprecations)) (`claude-sonnet-4-20250514`)
+- Claude Opus 4 ([retired, except on Vertex AI](/docs/en/about-claude/model-deprecations)) (`claude-opus-4-20250514`)
+- Claude Sonnet 4 ([retired, except on Bedrock and Vertex AI](/docs/en/about-claude/model-deprecations)) (`claude-sonnet-4-20250514`)
 - Claude Haiku 4.5 (`claude-haiku-4-5-20251001`)
 - Claude Haiku 3.5 ([retired, except on Bedrock and Vertex AI](/docs/en/about-claude/model-deprecations)) (`claude-3-5-haiku-20241022`)
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/permissions
-fetched_at: 2026-06-13T03:15:40.418428Z
-sha256: 51388649f872ff6bc6cca73fbac87b182fe79d89318f33db51921c79cd37984b
+fetched_at: 2026-06-16T03:17:15.143812Z
+sha256: 828701f97a6a2d4e7e16707b67860d51bd2554392a3e9c5d7b59359362802b0e
 ---
 
 > ## Documentation Index
@@ -128,6 +128,8 @@ Deny and ask rules also accept glob patterns in the tool-name position. The patt
 Allow rules accept tool-name globs only after a literal `mcp__<server>__` prefix. The server segment must be glob-free so the rule names a specific server you configured. `mcp__puppeteer__*` matches every tool from the `puppeteer` server, and `mcp__github__get_*` matches its `get_` tools. An unanchored allow glob such as `"*"`, `"B*"`, or `"mcp__*"` is skipped with a warning and does not auto-approve anything.
 
 A deny or ask rule whose tool name matches no known tool produces a startup warning to catch typos. Tool names containing `_` or `*` are exempt from the check.
+
+The label shown for a tool in the transcript and permission dialog can differ from its canonical name. For example, the tool labeled `Stop Task` in the transcript has the canonical name `TaskStop`. Permission rules and [hook matchers](/en/hooks) match the canonical name only, so a rule written as `Stop Task` does not match. For deny and ask rules, the startup warning above catches the mismatch. Use the canonical names listed in the [tools reference](/en/tools-reference).
 
 ## Tool-specific permission rules
 

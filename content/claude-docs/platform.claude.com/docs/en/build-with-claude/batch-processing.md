@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/batch-processing
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 09b6ebaba7b85166272e5d8b2f8518ec5a401a470a2fcb0a41035b9eb4d85ae0
+fetched_at: 2026-06-16T03:17:15.143812Z
+sha256: 8084b1f628b2090e40679f08acc1e16edcb5e44781020e0b4fc7770e5073cc9e
 ---
 
 # Batch processing
@@ -98,10 +98,10 @@ The Batches API offers significant cost savings. All usage is charged at 50% of 
 | Claude Opus 4.6       | $2.50 / MTok     | $12.50 / MTok   |
 | Claude Opus 4.5     | $2.50 / MTok     | $12.50 / MTok   |
 | Claude Opus 4.1 ([deprecated](/docs/en/about-claude/model-deprecations)) | $7.50 / MTok     | $37.50 / MTok   |
-| Claude Opus 4 ([deprecated](/docs/en/about-claude/model-deprecations)) | $7.50 / MTok     | $37.50 / MTok   |
+| Claude Opus 4 ([retired, except on Vertex AI](/docs/en/about-claude/model-deprecations)) | $7.50 / MTok     | $37.50 / MTok   |
 | Claude Sonnet 4.6   | $1.50 / MTok     | $7.50 / MTok    |
 | Claude Sonnet 4.5   | $1.50 / MTok     | $7.50 / MTok    |
-| Claude Sonnet 4 ([deprecated](/docs/en/about-claude/model-deprecations)) | $1.50 / MTok     | $7.50 / MTok    |
+| Claude Sonnet 4 ([retired, except on Bedrock and Vertex AI](/docs/en/about-claude/model-deprecations)) | $1.50 / MTok     | $7.50 / MTok    |
 | Claude Haiku 4.5  | $0.50 / MTok     | $2.50 / MTok    |
 | Claude Haiku 3.5 ([retired, except on Bedrock and Vertex AI](/docs/en/about-claude/model-deprecations)) | $0.40 / MTok     | $2 / MTok       |
 

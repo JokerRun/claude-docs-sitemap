@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/analytics-api
-fetched_at: 2026-06-13T03:15:40.418428Z
-sha256: 46273512d4c0a0564f282a5870c9025c6c90092a67257e5c7115bfd2fb6cfc53
+fetched_at: 2026-06-16T03:17:15.143812Z
+sha256: 2f21fed5460e83a24ac8164824bf2290a0a3e81c2e8a1afbd0d2f5f79e78501d
 ---
 
 # Analytics APIs
@@ -23,7 +23,7 @@ The two APIs use different key types, created in different places by different r
 | API                                  | Key type                                | Created in                                                                              | Who can create it   | What it covers                                                                                                  |
 | ------------------------------------ | --------------------------------------- | ---------------------------------------------------------------------------------------- | ------------------- | ---------------------------------------------------------------------------------------------------------------- |
 | **Claude Code Analytics API**        | Admin API key (`sk-ant-admin01-...`)    | [Claude Console > Settings > Admin keys](https://platform.claude.com/settings/admin-keys) | Organization admin  | Daily Claude Code metrics per user: sessions, lines of code, commits, pull requests, tool acceptance, and estimated cost by model |
-| **Claude Enterprise Analytics API**  | Analytics API key                       | [claude.ai > Analytics > API keys](https://claude.ai/analytics/api-keys)                   | Primary owner       | Organization-wide engagement and adoption (user activity, active-user summaries, project, skill, and connector usage), plus cost and usage reports |
+| **Claude Enterprise Analytics API**  | Analytics API key                       | [claude.ai > Organization settings > API](https://claude.ai/admin-settings/api-access)                   | Primary owner       | Organization-wide engagement and adoption (user activity, active-user summaries, project, skill, and connector usage), plus cost and usage reports |
 
 The key types are not interchangeable: an Admin API key cannot call the Claude Enterprise Analytics API, and an Analytics API key cannot call the Admin API. If your organization uses both the Claude Platform and Claude Enterprise, you can provision both keys and use each API for its own data.
 
@@ -67,7 +67,7 @@ The Claude Enterprise Analytics API is available to Claude Enterprise organizati
   </Step>
 
   <Step title="Enable API access and create a key">
-    Go to [claude.ai > Analytics > API keys](https://claude.ai/analytics/api-keys) and enable public API access, then create an Analytics API key. Keys carry the `read:analytics` scope. Copy the displayed secret and store it in your secrets manager.
+    Go to [claude.ai > Organization settings > API](https://claude.ai/admin-settings/api-access) and enable public API access, then create an Analytics API key. Keys carry the `read:analytics` scope. Copy the displayed secret and store it in your secrets manager.
   </Step>
 
   <Step title="Call the API">

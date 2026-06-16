@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/desktop
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: dae67f4b92070e5f811f418bc90b3eb4f65e8179ececdedd2213e1750925a407
+fetched_at: 2026-06-16T03:17:15.143812Z
+sha256: ca2c422524aceea77a7183b82bf5055988a081143ac6df8ff16df71710324ac4
 ---
 
 > ## Documentation Index
@@ -789,7 +789,7 @@ git checkout <branch-name>
 
 ### Still stuck?
 
-* Search or file a bug on [GitHub Issues](https://github.com/anthropics/claude-code/issues)
-* Visit the [Claude support center](https://support.claude.com/)
+* Open Help → Get Support in the desktop app, or visit the [Claude support center](https://support.claude.com/) directly
+* For problems that also reproduce in the standalone `claude` CLI, search or file a bug on [GitHub Issues](https://github.com/anthropics/claude-code/issues)
 
-When filing a bug, include your desktop app version, your operating system, the exact error message, and relevant logs. On macOS, check Console.app. On Windows, check Event Viewer → Windows Logs → Application.
+When reporting a problem, include your desktop app version, your operating system, the exact error message, and relevant logs. On macOS, check Console.app. On Windows, check Event Viewer → Windows Logs → Application.

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-caching
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 5f6fe3799c373c8bcbc017902c04a5d4620d45111a16fc46fb6627a34effbea2
+fetched_at: 2026-06-16T03:17:15.143812Z
+sha256: 1357df4a09363199bdea43159ec6e7d637369c7c365f3269184c48e305edf955
 ---
 
 # Prompt caching
@@ -273,10 +273,10 @@ Prompt caching introduces a new pricing structure. The table below shows the pri
 | Claude Opus 4.6     | $5 / MTok         | $6.25 / MTok    | $10 / MTok      | $0.50 / MTok | $25 / MTok    |
 | Claude Opus 4.5   | $5 / MTok         | $6.25 / MTok    | $10 / MTok      | $0.50 / MTok | $25 / MTok    |
 | Claude Opus 4.1 ([deprecated](/docs/en/about-claude/model-deprecations)) | $15 / MTok        | $18.75 / MTok   | $30 / MTok      | $1.50 / MTok | $75 / MTok    |
-| Claude Opus 4 ([deprecated](/docs/en/about-claude/model-deprecations)) | $15 / MTok        | $18.75 / MTok   | $30 / MTok      | $1.50 / MTok | $75 / MTok    |
+| Claude Opus 4 ([retired, except on Vertex AI](/docs/en/about-claude/model-deprecations)) | $15 / MTok        | $18.75 / MTok   | $30 / MTok      | $1.50 / MTok | $75 / MTok    |
 | Claude Sonnet 4.6   | $3 / MTok         | $3.75 / MTok    | $6 / MTok       | $0.30 / MTok | $15 / MTok    |
 | Claude Sonnet 4.5   | $3 / MTok         | $3.75 / MTok    | $6 / MTok       | $0.30 / MTok | $15 / MTok    |
-| Claude Sonnet 4 ([deprecated](/docs/en/about-claude/model-deprecations)) | $3 / MTok         | $3.75 / MTok    | $6 / MTok       | $0.30 / MTok | $15 / MTok    |
+| Claude Sonnet 4 ([retired, except on Bedrock and Vertex AI](/docs/en/about-claude/model-deprecations)) | $3 / MTok         | $3.75 / MTok    | $6 / MTok       | $0.30 / MTok | $15 / MTok    |
 | Claude Haiku 4.5  | $1 / MTok         | $1.25 / MTok    | $2 / MTok       | $0.10 / MTok | $5 / MTok     |
 | Claude Haiku 3.5 ([retired, except on Bedrock and Vertex AI](/docs/en/about-claude/model-deprecations)) | $0.80 / MTok      | $1 / MTok       | $1.60 / MTok     | $0.08 / MTok | $4 / MTok     |
 
@@ -654,7 +654,7 @@ On the Claude API, [Claude Platform on AWS](/docs/en/build-with-claude/claude-pl
 - 512 tokens for Claude Fable 5 and [Claude Mythos 5](https://anthropic.com/glasswing)
 - 2,048 tokens for [Claude Mythos Preview](https://anthropic.com/glasswing) and Claude Opus 4.7
 - 4,096 tokens for Claude Opus 4.6 and Claude Opus 4.5
-- 1,024 tokens for Claude Opus 4.8, Claude Sonnet 4.6, Claude Sonnet 4.5, Claude Opus 4.1 ([deprecated](/docs/en/about-claude/model-deprecations)), Claude Opus 4 ([deprecated](/docs/en/about-claude/model-deprecations)), and Claude Sonnet 4 ([deprecated](/docs/en/about-claude/model-deprecations))
+- 1,024 tokens for Claude Opus 4.8, Claude Sonnet 4.6, Claude Sonnet 4.5, Claude Opus 4.1 ([deprecated](/docs/en/about-claude/model-deprecations)), Claude Opus 4 ([retired, except on Vertex AI](/docs/en/about-claude/model-deprecations)), and Claude Sonnet 4 ([retired, except on Bedrock and Vertex AI](/docs/en/about-claude/model-deprecations))
 - 4,096 tokens for Claude Haiku 4.5
 - 2,048 tokens for Claude Haiku 3.5 ([retired, except on Vertex AI](/docs/en/about-claude/model-deprecations))
 

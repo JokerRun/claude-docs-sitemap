@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/context-windows
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: dff17d5868119496514cb8b7e8c5f230684cde8bb31ffafdd8e9d7b3ce61d935
+fetched_at: 2026-06-16T03:17:15.143812Z
+sha256: 0aa32f51b0435d23a1977492f883afab483f43d2cae8ae710005ccb7f8dad9dc
 ---
 
 # Context windows
@@ -100,9 +100,9 @@ Claude 4 models support [interleaved thinking](/docs/en/build-with-claude/extend
 For more information about using tools with extended thinking, see the [extended thinking guide](/docs/en/build-with-claude/extended-thinking#extended-thinking-with-tool-use).
 </Note>
 
-Claude's tool selection is designed to hold with large input documents — choosing the right tool (or correctly abstaining) when the conversation includes 100K+ tokens of non-tool context. For reducing context consumed by the tools themselves, see [Manage tool context](/docs/en/agents-and-tools/tool-use/manage-tool-context), or defer tool definitions with the [tool search tool](/docs/en/agents-and-tools/tool-use/tool-search-tool).
+Claude's tool selection is designed to hold with large input documents, choosing the right tool (or correctly abstaining) when the conversation includes 100K+ tokens of non-tool context. For reducing context consumed by the tools themselves, see [Manage tool context](/docs/en/agents-and-tools/tool-use/manage-tool-context), or defer tool definitions with the [tool search tool](/docs/en/agents-and-tools/tool-use/tool-search-tool).
 
-Claude Opus 4.8, [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.7, Claude Opus 4.6, and Claude Sonnet 4.6 have a 1M-token context window on the Claude API, Amazon Bedrock, and Vertex AI. On Microsoft Foundry, Claude Opus 4.8 has a 200k-token context window. Other Claude models, including Claude Sonnet 4.5 and Sonnet 4 (deprecated), have a 200k-token context window.
+Claude Opus 4.8, [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.7, Claude Opus 4.6, and Claude Sonnet 4.6 have a 1M-token context window on the Claude API, Amazon Bedrock, and Vertex AI. On Microsoft Foundry, Claude Opus 4.8 has a 200k-token context window. Other Claude models, including Claude Sonnet 4.5, have a 200k-token context window.
 
 Claude Fable 5 and Claude Mythos 5 (`claude-fable-5` and `claude-mythos-5`) have a 1M-token context window on the Claude API. The 1M maximum is also the default, and a single request can generate up to 128k output tokens (`max_tokens`).
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/intro
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 0a058edc42a1243d89ebbacae253aea992b5956a52c8a495eac22b2490656995
+fetched_at: 2026-06-16T03:17:15.143812Z
+sha256: 871cd89c7030499f8b7cb375c911fd49246c76ead7875c171dfd51990131f120
 ---
 
 # Pengenalan Claude
@@ -15,7 +15,7 @@ Claude adalah platform AI yang sangat berkinerja tinggi, tepercaya, dan cerdas y
 
 Generasi terbaru model Claude:
 
-**Claude Fable 5** - Model Anthropic paling mumpuni yang dirilis secara luas untuk penalaran paling menuntut dan pekerjaan agentik jangka panjang. Baca [pengumuman Claude Fable 5](https://www.anthropic.com/news/claude-fable-5).
+**Claude Fable 5** - Model Anthropic paling mumpuni yang dirilis secara luas untuk penalaran paling menuntut dan pekerjaan agentik jangka panjang. Baca [pengumuman Claude Fable 5](https://www.anthropic.com/news/claude-fable-5-mythos-5).
 
 **Claude Mythos 5** - Memiliki kemampuan yang sama dengan Claude Fable 5 tanpa pengklasifikasi keamanan. Tersedia dalam rilis terbatas melalui [Project Glasswing](https://anthropic.com/glasswing).
 

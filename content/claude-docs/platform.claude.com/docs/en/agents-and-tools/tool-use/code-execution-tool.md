@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool
-fetched_at: 2026-06-11T03:14:59.596724Z
-sha256: 7cf10469931c7611494fe4e012f61c8707c5b934df60c2e7a8d7564d59c5a4fc
+fetched_at: 2026-06-16T03:17:15.143812Z
+sha256: 0be1a8b44bc271e56a51853ba76c99112238c581e17e74c3c662dd40ffaaf9ca
 ---
 
 # Code execution tool
@@ -41,8 +41,6 @@ The code execution tool is available on the following models:
 | Claude Sonnet 4.5 (claude-sonnet-4-5-20250929) | `code_execution_20250825`, `code_execution_20260120` |
 | Claude Haiku 4.5 (claude-haiku-4-5-20251001) | `code_execution_20250825` |
 | Claude Opus 4.1 (claude-opus-4-1-20250805) ([deprecated](/docs/en/about-claude/model-deprecations)) | `code_execution_20250825` |
-| Claude Opus 4 (claude-opus-4-20250514) ([deprecated](/docs/en/about-claude/model-deprecations)) | `code_execution_20250825` |
-| Claude Sonnet 4 (claude-sonnet-4-20250514) ([deprecated](/docs/en/about-claude/model-deprecations)) | `code_execution_20250825` |
 
 <Note>
 `code_execution_20250825` supports Bash commands and file operations and is available on every model in the table. `code_execution_20260120` adds REPL state persistence and [programmatic tool calling](/docs/en/agents-and-tools/tool-use/programmatic-tool-calling) from within the sandbox, and is available on Claude Fable 5, Claude Mythos 5, Opus 4.5+, and Sonnet 4.5+ only. If you're still using the legacy `code_execution_20250522` (Python only), see [Upgrade to latest tool version](#upgrade-to-latest-tool-version) to migrate from it.
