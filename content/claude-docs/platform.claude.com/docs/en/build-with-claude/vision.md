@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/vision
-fetched_at: 2026-06-11T03:14:59.596724Z
-sha256: ce3af7418a70e1e8605d82475caf877802c570d4a6cb5cfaddc4d1c630d61f9e
+fetched_at: 2026-06-17T03:17:04.158711Z
+sha256: 313b781de33d102ea6bcc93c8fb5bbb33b8b1baa9d68e047d993bd6805a9f526
 ---
 
 # Vision
@@ -36,7 +36,9 @@ The maximal number of images per message or request is:
   - 100 per request on the API, for models with a 200k-token context window.
   - 600 per request on the API, for all other models.
 
-The maximal dimensions per image are 8000x8000 px. If you submit more than 20 images in one API request, this limit is reduced to 2000x2000 px.
+The maximal dimensions per image are 8000x8000 px.
+
+If a single API request contains more than 20 images, a stricter per-image dimension limit applies. On Amazon Bedrock and Vertex AI, document blocks such as PDFs also count toward this threshold. Images exceeding the stricter limit are rejected with an `invalid_request_error` whose message references "many-image requests" and states the current limit in pixels. To stay under the limit on all platforms, either resize each image so that neither dimension exceeds 2000 px, or keep the request to 20 or fewer image and document blocks.
 
 The maximal size per image is:
   - 10&nbsp;MB (base64-encoded) when using the Claude API directly.

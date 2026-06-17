@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/amazon-bedrock
-fetched_at: 2026-06-13T03:15:40.418428Z
-sha256: 0d9f43318fee0086c8e8c4a14e7212980b76763f99137a564f026453d3008fe1
+fetched_at: 2026-06-17T03:17:04.158711Z
+sha256: 8bffa6b0a2d616364dbeb15a67cda5ee6aa4752315ac9d325be961fca4e3f384
 ---
 
 > ## Documentation Index
@@ -204,10 +204,13 @@ These two settings have different trigger conditions:
   "Credentials": {
     "AccessKeyId": "value",
     "SecretAccessKey": "value",
-    "SessionToken": "value"
+    "SessionToken": "value",
+    "Expiration": "2026-01-01T00:00:00Z"
   }
 }
 ```
+
+`Expiration` is optional. {/* min-version: 2.1.176 */}As of Claude Code v2.1.176, when the command returns a valid ISO 8601 `Expiration`, Claude Code caches the credentials until five minutes before that time. Without it, or on earlier versions, credentials are cached for one hour.
 
 ### 3. Configure Claude Code
 

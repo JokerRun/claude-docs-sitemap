@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/webhooks
-fetched_at: 2026-05-07T03:15:02.178755Z
-sha256: 4d4cc7512ba15fc141c7b6b780f70a8c780f7bd7508654399d05b7a0e48445f4
+fetched_at: 2026-06-17T03:17:04.158711Z
+sha256: 35311a0ae14e0c790a27115ded13956f9668d451d092125a0a512e3402a2de41
 ---
 
 # Subscribe to webhooks
@@ -29,6 +29,8 @@ Webhook events return the event `type` and `id`, not the full object. When you r
     | `session.thread_idled` | An agent in a [multiagent interaction](/docs/en/managed-agents/multi-agent) is waiting for input. |
     | `session.thread_terminated` | A [multiagent thread](/docs/en/managed-agents/multi-agent) was archived. |
     | `session.outcome_evaluation_ended` | [Outcome evaluation](/docs/en/managed-agents/define-outcomes) for a single iteration completed. |
+    | `session.updated` | Session properties changed, for example its name or configuration was updated. |
+    | `session.deleted` | Session permanently deleted. Unlike other events, there is no object left to fetch. Treat the event itself as final. |
   </Tab>
   <Tab title="Vault events">
     | Event | Trigger |

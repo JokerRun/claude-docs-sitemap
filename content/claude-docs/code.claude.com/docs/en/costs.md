@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/costs
-fetched_at: 2026-06-13T03:15:40.418428Z
-sha256: 2ce5e496b716e68f05b47d7ac6129adf335998e01950b497347c4b321b7957da
+fetched_at: 2026-06-17T03:17:04.158711Z
+sha256: a0b3b48bed546b997fb12d2ff6c22048cab202178695f2dff9ec39f986ffa247
 ---
 
 > ## Documentation Index
@@ -84,7 +84,7 @@ To keep agent team costs manageable:
 * Use Sonnet for teammates. It balances capability and cost for coordination tasks.
 * Keep teams small. Each teammate runs its own context window, so token usage is roughly proportional to team size.
 * Keep spawn prompts focused. Teammates load CLAUDE.md, MCP servers, and skills automatically, but everything in the spawn prompt adds to their context from the start.
-* Clean up teams when work is done. Active teammates continue consuming tokens even if idle.
+* Shut down teammates when their work is done. Each active teammate continues consuming tokens until it exits or the session ends.
 * Agent teams are disabled by default. Set `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` in your [settings.json](/en/settings) or environment to enable them. See [enable agent teams](/en/agent-teams#enable-agent-teams).
 
 ## Reduce token usage

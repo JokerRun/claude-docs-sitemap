@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/changelog
-fetched_at: 2026-06-16T03:17:15.143812Z
-sha256: 3fd0cf76f83c20c6b85505a0bc87ae966b3ed0ddd01391e7b895337678b9eaca
+fetched_at: 2026-06-17T03:17:04.158711Z
+sha256: 7e351b2f393c26c6f6a315c9e99e13006606aa277a7339d0f87071deffae72d9
 ---
 
 > ## Documentation Index
@@ -16,6 +16,18 @@ sha256: 3fd0cf76f83c20c6b85505a0bc87ae966b3ed0ddd01391e7b895337678b9eaca
 This page is generated from the [CHANGELOG.md on GitHub](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md).
 
 Run `claude --version` to check your installed version.
+
+<Update label="2.1.179" description="June 16, 2026">
+  * Fixed mid-stream connection drops: partial responses are now preserved instead of showing a raw error, and the spinner no longer gets stuck at "running tool"
+  * Fixed mouse-wheel scrolling in WSL2 under Windows Terminal and VS Code (regression in 2.1.172)
+  * Fixed a sandbox `denyRead`/`allowRead` glob over a large directory tree making the Bash tool description enormous and the session unusable on Linux
+  * Fixed the feedback survey capturing a single-digit reply as a session rating immediately after a turn completes
+  * Fixed the welcome screen stacking multiple promotional banners — at most one promo now shows per session
+  * Fixed Ctrl+O not showing the subagent's transcript when viewing a subagent
+  * Fixed clicking the prompt input not returning focus from the subagent/footer panel
+  * Fixed remote session background tasks appearing stuck as "still running" between turns
+  * Improved plugin loading performance in remote sessions
+</Update>
 
 <Update label="2.1.178" description="June 15, 2026">
   * Added `Tool(param:value)` syntax for permission rules to match a tool's input parameters (with `*` wildcard), e.g. `Agent(model:opus)` to block Opus subagents

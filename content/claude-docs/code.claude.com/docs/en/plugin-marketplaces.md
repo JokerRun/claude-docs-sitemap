@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugin-marketplaces
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 1f37e87ff3442fb7bcf35dd07bcff6509a49c4e0140119849b472ee8794317cd
+fetched_at: 2026-06-17T03:17:04.158711Z
+sha256: 284e181f04985afd425b0a6aacb747a7cdfc1638924301cdba95e5102e2a78f8
 ---
 
 > ## Documentation Index
@@ -479,6 +479,8 @@ Key things to notice:
 * **`commands` and `agents`**: You can specify multiple directories or individual files. Paths are relative to the plugin root.
 * **`${CLAUDE_PLUGIN_ROOT}`**: use this variable in hooks and MCP server configs to reference files within the plugin's installation directory. This is necessary because plugins are copied to a cache location when installed. For dependencies or state that should survive plugin updates, use [`${CLAUDE_PLUGIN_DATA}`](/en/plugins-reference#persistent-data-directory) instead.
 * **`strict: false`**: Since this is set to false, the plugin doesn't need its own `plugin.json`. The marketplace entry defines everything. See [Strict mode](#strict-mode) below.
+
+By default, a plugin's skills load from the `skills/` directory under its `source`, and any paths listed under `skills` add to that scan. The exception is a marketplace-root source such as `source: "./"`, where several plugin entries share one `skills/` folder. In that case, listing specific subdirectories under `skills` makes that list the complete set for the entry, and other directories under `skills/` do not load. Listing the `skills/` directory itself or the plugin root keeps the full scan. If none of the listed paths exist, the default scan runs instead.
 
 ### Strict mode
 

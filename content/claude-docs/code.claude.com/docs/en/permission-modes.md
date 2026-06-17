@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/permission-modes
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 739717cc13f4a335544793ccd65106819fc4f8e477e0480a27dbaea074faeeec
+fetched_at: 2026-06-17T03:17:04.158711Z
+sha256: c4685f4458cb39496c9a592ec487812651f553790924d16dc1645923737ebf2c
 ---
 
 > ## Documentation Index
@@ -278,6 +278,8 @@ Repeated blocks usually mean the classifier is missing context about your infras
     1. Before a subagent starts, the delegated task description is evaluated, so a dangerous-looking task is blocked at spawn time.
     2. While the subagent runs, each of its actions goes through the classifier with the same rules as the parent session, and any `permissionMode` in the subagent's frontmatter is ignored.
     3. When the subagent finishes, the classifier reviews its full action history; if that return check flags a concern, a security warning is prepended to the subagent's results.
+
+    Step 1 requires Claude Code v2.1.178 or later. Earlier versions applied the classifier at steps 2 and 3, but did not evaluate the task description before the subagent started.
   </Accordion>
 
   <Accordion title="Cost and latency">

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/fullscreen
-fetched_at: 2026-06-13T03:15:40.418428Z
-sha256: 6253c705dba264af4b760249784e7f302060508299b89f879bd3d84a38d1a035
+fetched_at: 2026-06-17T03:17:04.158711Z
+sha256: 80788cf5ce5b1ede4f8bd058fd69886057ac345bf808e2e9d74d86b8b3828d6d
 ---
 
 > ## Documentation Index
@@ -99,7 +99,7 @@ Set `CLAUDE_CODE_SCROLL_SPEED` to multiply the base scroll distance:
 export CLAUDE_CODE_SCROLL_SPEED=3
 ```
 
-A value of `3` matches the default in `vim` and similar applications. The setting accepts values from 1 to 20, and fractional values below 1 such as `0.5` to slow accelerated trackpad and wheel scrolling in terminals on the native scroll path.
+A value of `3` matches the default in `vim` and similar applications. The setting accepts values from 1 to 20, and fractional values below 1 such as `0.5` to slow accelerated trackpad and wheel scrolling in terminals that already amplify wheel events.
 
 To adjust scroll speed interactively, run `/scroll-speed`. The dialog shows a ruler you can scroll while it is open so you can feel the change immediately. Press `←` and `→` to adjust, `r` to reset to the auto-detected default, and `Enter` to save. The command writes the same value the `CLAUDE_CODE_SCROLL_SPEED` environment variable sets, persisted to `~/.claude/settings.json`. The command is not available in the JetBrains IDE terminal.
 

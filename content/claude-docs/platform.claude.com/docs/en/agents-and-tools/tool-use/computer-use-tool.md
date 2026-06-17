@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool
-fetched_at: 2026-06-16T03:17:15.143812Z
-sha256: 507688db0f54280d2d03957ac6bccbed915269f063214fd656d327df965ed744
+fetched_at: 2026-06-17T03:17:04.158711Z
+sha256: 13ed605fa704fc9bcdac476e8a53fd544f3afa34bd6867f9084f483aa9dcabf2
 ---
 
 # Computer use tool
@@ -2545,6 +2545,13 @@ If you're also using bash or text editor tools alongside computer use, those too
 ## Next steps
 
 <CardGroup cols={2}>
+  <Card
+    title="Text editor tool"
+    icon="file"
+    href="/docs/en/agents-and-tools/tool-use/text-editor-tool"
+  >
+    Continue to the next tool: view, create, and edit files with Claude
+  </Card>
   <Card
     title="Reference implementation"
     icon="github-logo"

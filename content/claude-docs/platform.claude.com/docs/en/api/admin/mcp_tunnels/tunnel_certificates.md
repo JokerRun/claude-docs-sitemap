@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/mcp_tunnels/tunnel_certificates
-fetched_at: 2026-06-12T03:17:40.104094Z
-sha256: bf1c7f2184ca8dbac90d14bbb223c89a10a44a633996ba409515f36beb39fb80
+fetched_at: 2026-06-17T03:17:04.158711Z
+sha256: 8bd1714e7285dd458b4f64da4de509e01732dcd93c57ffe78d29f4c1ae1c9d81
 ---
 
 # Tunnel Certificates
@@ -445,45 +445,39 @@ curl https://api.anthropic.com/v1/organizations/tunnels/$TUNNEL_ID/certificates/
 
 ### Tunnel Certificate List Response
 
-- `TunnelCertificateListResponse object { data, next_page }`
+- `TunnelCertificateListResponse object { id, archived_at, created_at, 4 more }`
 
-  - `data: array of object { id, archived_at, created_at, 4 more }`
+  - `id: string`
 
-    - `id: string`
+    ID of the Tunnel Certificate.
 
-      ID of the Tunnel Certificate.
+  - `archived_at: string`
 
-    - `archived_at: string`
+    RFC 3339 datetime string indicating when the certificate was archived, or
+    `null` if it is not archived.
 
-      RFC 3339 datetime string indicating when the certificate was archived, or
-      `null` if it is not archived.
+  - `created_at: string`
 
-    - `created_at: string`
+    RFC 3339 datetime string indicating when the certificate was registered.
 
-      RFC 3339 datetime string indicating when the certificate was registered.
+  - `expires_at: string`
 
-    - `expires_at: string`
+    RFC 3339 datetime string indicating when the certificate expires, or
+    `null` if it does not expire.
 
-      RFC 3339 datetime string indicating when the certificate expires, or
-      `null` if it does not expire.
+  - `fingerprint: string`
 
-    - `fingerprint: string`
+    The certificate's SHA-256 fingerprint, as a lowercase hex string.
 
-      The certificate's SHA-256 fingerprint, as a lowercase hex string.
+  - `tunnel_id: string`
 
-    - `tunnel_id: string`
+    ID of the Tunnel this certificate is registered against.
 
-      ID of the Tunnel this certificate is registered against.
+  - `type: "tunnel_certificate"`
 
-    - `type: "tunnel_certificate"`
+    Object type. Always `tunnel_certificate` for Tunnel Certificates.
 
-      Object type. Always `tunnel_certificate` for Tunnel Certificates.
-
-      - `"tunnel_certificate"`
-
-  - `next_page: string`
-
-    Opaque cursor for the next page, or `null` if there are no more results.
+    - `"tunnel_certificate"`
 
 ### Tunnel Certificate Archive Response
 

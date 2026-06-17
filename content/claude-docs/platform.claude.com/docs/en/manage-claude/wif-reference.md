@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/wif-reference
-fetched_at: 2026-06-12T03:17:40.104094Z
-sha256: 680374b0f1b4eb8f5ca8aaf574558395b4c9c80eb204d4cfbe13fee65121d804
+fetched_at: 2026-06-17T03:17:04.158711Z
+sha256: 99b70dadc2f6775d802bf8dd597989a64be30b19fc66a58554052fed62ac025b
 ---
 
 # WIF reference
@@ -149,6 +149,8 @@ A federation rule's `oauth_scope` is a ceiling: the minted token can never excee
 ## Validation rules
 
 Anthropic enforces these constraints when you create or update issuers and rules, and when verifying an incoming JWT at exchange time.
+
+For complete parameter details and response schemas, see the [Service accounts API reference](/docs/en/api/admin/service_accounts), [Federation issuers API reference](/docs/en/api/admin/federation_issuers), and [Federation rules API reference](/docs/en/api/admin/federation_rules).
 
 ### Resource fields
 
