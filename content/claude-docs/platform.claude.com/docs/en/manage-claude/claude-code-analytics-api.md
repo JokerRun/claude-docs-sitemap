@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/claude-code-analytics-api
-fetched_at: 2026-06-13T03:15:40.418428Z
-sha256: 02fbe59886e9ef56a1841f7746d468b84570a8b2a39c51532c8fcc29f7c4243f
+fetched_at: 2026-06-18T03:16:24.806554Z
+sha256: ecb1a80e1d26e3304292b9fb36f05a008484ddd515cdf2b91235635d4868e6cb
 ---
 
 # Claude Code Analytics API
@@ -73,7 +73,7 @@ Track Claude Code usage, productivity metrics, and developer activity across you
 - **Cursor-based pagination**: Handle large datasets with stable pagination using opaque cursors
 - **Data freshness**: Metrics are available with up to 1-hour delay for consistency
 
-For complete parameter details and response schemas, see the [Claude Code Analytics API reference](/docs/en/api/admin-api/claude-code/get-claude-code-usage-report).
+For complete parameter details and response schemas, see the [Claude Code Analytics API reference](/docs/en/api/admin/usage_report/retrieve_claude_code).
 
 ### Basic examples
 
