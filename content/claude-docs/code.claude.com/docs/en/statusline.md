@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/statusline
-fetched_at: 2026-06-17T03:17:04.158711Z
-sha256: c372b671280ac27938b543b376eae34d683c719bcbd48c235faf30fac6ee0cb1
+fetched_at: 2026-06-19T03:18:02.201222Z
+sha256: 25faff6707fecb9bfcd16e9f9885e6170517b7afafdc335e3e890b48cea8c523
 ---
 
 > ## Documentation Index
@@ -22,7 +22,7 @@ Status lines are useful when you:
 * Work across multiple sessions and need to distinguish them
 * Want git branch and status always visible
 
-Claude Code can also render [footer link badges](/en/settings#footer-link-badges): clickable chips that appear in the footer when a configured regex matches text in the conversation. These are independent of the status line and do not interact with your script; configure them with the [`footerLinksRegexes`](/en/settings#footer-link-badges) setting instead.
+The status line renders in its own row above the built-in footer badges and does not replace them. To add clickable link badges to the footer when an ID appears in the conversation, without writing a script, configure [`footerLinksRegexes`](/en/settings#footer-link-badges) instead.
 
 Here's an example of a [multi-line status line](#display-multiple-lines) that displays git info on the first line and a color-coded context bar on the second.
 

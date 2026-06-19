@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/amazon-bedrock
-fetched_at: 2026-06-17T03:17:04.158711Z
-sha256: 8bffa6b0a2d616364dbeb15a67cda5ee6aa4752315ac9d325be961fca4e3f384
+fetched_at: 2026-06-19T03:18:02.201222Z
+sha256: cde48cd809e194f638ae9486b262e4d80bfce546fecc0aee60089c4dfb44fb6e
 ---
 
 > ## Documentation Index
@@ -209,6 +209,8 @@ These two settings have different trigger conditions:
   }
 }
 ```
+
+{/* min-version: 2.1.181 */}As of Claude Code v2.1.181, the flat output from `aws configure export-credentials --format process` is also accepted, with the same keys at the top level instead of nested under `Credentials`.
 
 `Expiration` is optional. {/* min-version: 2.1.176 */}As of Claude Code v2.1.176, when the command returns a valid ISO 8601 `Expiration`, Claude Code caches the credentials until five minutes before that time. Without it, or on earlier versions, credentials are cached for one hour.
 

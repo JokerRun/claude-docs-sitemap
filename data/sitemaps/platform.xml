@@ -429,6 +429,10 @@
 <priority>0.8</priority>
 </url>
 <url>
+<loc>https://platform.claude.com/docs/en/manage-claude/admin-api-keys</loc>
+<priority>0.8</priority>
+</url>
+<url>
 <loc>https://platform.claude.com/docs/en/manage-claude/workload-identity-federation</loc>
 <priority>0.8</priority>
 </url>

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats/messages
-fetched_at: 2026-06-12T03:17:40.104094Z
-sha256: e367eef436d772954cfeb72a549e3b165325bc74e5195222ecf19fb518ef602c
+fetched_at: 2026-06-19T03:18:02.201222Z
+sha256: 35b9a2aa23218f6037f644af9880fe5b9f0e411ccb4f4ed049d30960d834b809
 ---
 
 # Messages
@@ -219,7 +219,7 @@ Retrieves message history and file metadata for a specific chat.
 
     Message creation timestamp - For human: when they sent the message, For assistant: when it completed the last content block
 
-  - `files: array of object { id, filename, mime_type }`
+  - `files: array of object { id, created_at, filename, 3 more }`
 
     Binary file attachments uploaded by the user. Download via `GET /v1/compliance/apps/chats/files/{claude_file_id}/content`.
 
@@ -227,15 +227,27 @@ Retrieves message history and file metadata for a specific chat.
 
       File ID
 
+    - `created_at: string`
+
+      File creation timestamp
+
     - `filename: string`
 
       Display name of the file
 
+    - `md5: string`
+
+      Lowercase hex MD5 of the file's preferred downloadable variant, as recorded at upload time. Null when no stored hash is available.
+
     - `mime_type: string`
 
-      MIME type of the file when it was uploaded (e.g. 'application/pdf')
+      MIME type of the file's preferred downloadable variant (e.g. 'application/pdf')
 
-  - `generated_files: array of object { id, filename, mime_type }`
+    - `size_bytes: number`
+
+      Size in bytes of the file's preferred downloadable variant, if known. Null for older files uploaded before size was recorded.
+
+  - `generated_files: array of object { id, filename, md5, 2 more }`
 
     Downloadable files the assistant created via tool use (e.g. PDF, spreadsheet, slide deck). Distinct from `files`, which are uploads attached to the message. Download via `GET /v1/compliance/apps/chats/generated-files/{claude_gen_file_id}/content`.
 
@@ -247,9 +259,17 @@ Retrieves message history and file metadata for a specific chat.
 
       Display name of the generated file
 
+    - `md5: string`
+
+      Lowercase hex MD5 of the generated file, when available. Null when no stored hash is available.
+
     - `mime_type: string`
 
       MIME type reported by the tool that produced the file
+
+    - `size_bytes: number`
+
+      Size in bytes of the generated file, when available. Null when the file has expired or size is not recorded.
 
   - `role: "assistant" or "user"`
 
@@ -358,7 +378,10 @@ curl https://api.anthropic.com/v1/compliance/apps/chats/$CLAUDE_CHAT_ID/messages
         {
           "id": "claude_file_xyz789",
           "filename": "dashboard_mockup_v1.pdf",
-          "mime_type": "application/pdf"
+          "mime_type": "application/pdf",
+          "size_bytes": 12345,
+          "md5": "5d41402abc4b2a76b9719d911017c592",
+          "created_at": "2025-06-07T08:09:10Z"
         }
       ]
     },
@@ -516,7 +539,7 @@ curl https://api.anthropic.com/v1/compliance/apps/chats/$CLAUDE_CHAT_ID/messages
 
     Message creation timestamp - For human: when they sent the message, For assistant: when it completed the last content block
 
-  - `files: array of object { id, filename, mime_type }`
+  - `files: array of object { id, created_at, filename, 3 more }`
 
     Binary file attachments uploaded by the user. Download via `GET /v1/compliance/apps/chats/files/{claude_file_id}/content`.
 
@@ -524,15 +547,27 @@ curl https://api.anthropic.com/v1/compliance/apps/chats/$CLAUDE_CHAT_ID/messages
 
       File ID
 
+    - `created_at: string`
+
+      File creation timestamp
+
     - `filename: string`
 
       Display name of the file
 
+    - `md5: string`
+
+      Lowercase hex MD5 of the file's preferred downloadable variant, as recorded at upload time. Null when no stored hash is available.
+
     - `mime_type: string`
 
-      MIME type of the file when it was uploaded (e.g. 'application/pdf')
+      MIME type of the file's preferred downloadable variant (e.g. 'application/pdf')
 
-  - `generated_files: array of object { id, filename, mime_type }`
+    - `size_bytes: number`
+
+      Size in bytes of the file's preferred downloadable variant, if known. Null for older files uploaded before size was recorded.
+
+  - `generated_files: array of object { id, filename, md5, 2 more }`
 
     Downloadable files the assistant created via tool use (e.g. PDF, spreadsheet, slide deck). Distinct from `files`, which are uploads attached to the message. Download via `GET /v1/compliance/apps/chats/generated-files/{claude_gen_file_id}/content`.
 
@@ -544,9 +579,17 @@ curl https://api.anthropic.com/v1/compliance/apps/chats/$CLAUDE_CHAT_ID/messages
 
       Display name of the generated file
 
+    - `md5: string`
+
+      Lowercase hex MD5 of the generated file, when available. Null when no stored hash is available.
+
     - `mime_type: string`
 
       MIME type reported by the tool that produced the file
+
+    - `size_bytes: number`
+
+      Size in bytes of the generated file, when available. Null when the file has expired or size is not recorded.
 
   - `role: "assistant" or "user"`
 

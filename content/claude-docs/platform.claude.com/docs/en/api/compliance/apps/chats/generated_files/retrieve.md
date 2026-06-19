@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats/generated_files/retrieve
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: c8db7f3fa12ac9f9711e2b70133d5ccac5e391b9d02482583c15973d28a98f0f
+fetched_at: 2026-06-19T03:18:02.201222Z
+sha256: f7619aa410ae89a48c02a49ab3fd99135f7bb7d48b3c9ec2a421bc71537b3d66
 ---
 
 ## Get Claude-generated file metadata
@@ -11,9 +11,7 @@ sha256: c8db7f3fa12ac9f9711e2b70133d5ccac5e391b9d02482583c15973d28a98f0f
 
 Returns metadata for a file the assistant created via tool use.
 
-Metadata is read from Filestore (the durable backing store for
-per-conversation tool outputs). Use the sibling `/content` endpoint to
-download the bytes.
+Use the sibling `/content` endpoint to download the bytes.
 
 ### Path Parameters
 
@@ -37,7 +35,7 @@ download the bytes.
 
 - `created_at: string`
 
-  File creation timestamp from Filestore
+  File creation timestamp, when available
 
 - `filename: string`
 
@@ -45,11 +43,11 @@ download the bytes.
 
 - `md5: string`
 
-  Lowercase hex MD5 of the stored file, as recorded by Filestore. Null when no stored hash is available. The sibling `/content` endpoint also sets a `Content-MD5` header (base64 per RFC 1864) computed over the exact served bytes.
+  Lowercase hex MD5 of the stored file. Null when no stored hash is available. The sibling `/content` endpoint also sets a `Content-MD5` header (base64 per RFC 1864) computed over the exact served bytes.
 
 - `mime_type: string`
 
-  MIME type as recorded by Filestore, when available
+  MIME type of the stored file, when available
 
 - `size_bytes: number`
 

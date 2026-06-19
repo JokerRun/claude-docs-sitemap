@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/typescript
-fetched_at: 2026-06-17T03:17:04.158711Z
-sha256: 7632f627b919706398cc4e4377c995661fb3e7addb4714554fbe12be662b54c8
+fetched_at: 2026-06-19T03:18:02.201222Z
+sha256: ae2feef7dc10039f6214ea91383888eef9dd294787f86cb54939bff27fad28f0
 ---
 
 > ## Documentation Index
@@ -1192,7 +1192,7 @@ type SDKInformationalMessage = {
 
 ### `SDKWorkerShuttingDownMessage`
 
-Emitted on graceful worker teardown so remote clients can show why the worker went away instead of waiting for heartbeat timeout. The `reason` is a short snake\_case string set by the host CLI, such as `"host_exit"` or `"remote_control_disabled"`. Act on this only when streaming live. A resumed session replays past instances of this message, so ignore them in that case.
+Emitted on graceful worker teardown so remote clients can show why the worker exited instead of waiting for heartbeat timeout. The `reason` is a short snake\_case string set by the host CLI, such as `"host_exit"` or `"remote_control_disabled"`. Act on this only when streaming live. A resumed session replays past instances of this message, so ignore them in that case.
 
 ```typescript theme={null}
 type SDKWorkerShuttingDownMessage = {
@@ -1276,14 +1276,14 @@ type SDKMessageOrigin =
   | { kind: "auto-continuation" };
 ```
 
-| `kind`              | Meaning                                                                                                                                                                                                                                                                                                                                |
-| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `human`             | Direct input from the end user. On user messages, an absent `origin` also means human input.                                                                                                                                                                                                                                           |
-| `channel`           | Message arriving on a [channel](/en/channels). `server` is the source MCP server name.                                                                                                                                                                                                                                                 |
-| `peer`              | Reserved for messages from another agent session. `from` is the sender address and `name` is the sender's display name when available. `senderTaskId` is the task ID of the in-process background subagent that sent the message; absent for cross-session peers. The Agent SDK does not emit this origin; treat as an unknown origin. |
-| `task-notification` | Synthetic turn injected after a background task finished. See [`SDKTaskNotificationMessage`](#sdktasknotificationmessage).                                                                                                                                                                                                             |
-| `coordinator`       | Message from a team coordinator in an [agent team](/en/agent-teams).                                                                                                                                                                                                                                                                   |
-| `auto-continuation` | Synthetic turn injected when the session continues without fresh user input, such as a command result that triggers a follow-up prompt.                                                                                                                                                                                                |
+| `kind`              | Meaning                                                                                                                                                                                                                                                                                                                                      |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `human`             | Direct input from the end user. On user messages, an absent `origin` also means human input.                                                                                                                                                                                                                                                 |
+| `channel`           | Message arriving on a [channel](/en/channels). `server` is the source MCP server name.                                                                                                                                                                                                                                                       |
+| `peer`              | Message from another agent. For an in-process [teammate](/en/agent-teams) sending to `main` via `SendMessage`, `from` is the teammate's name and `senderTaskId` is its task ID. For a cross-session peer such as another local Claude Code process, `from` is the sender address and `senderTaskId` is absent. The `name` field is reserved. |
+| `task-notification` | Synthetic turn injected after a background task finished. See [`SDKTaskNotificationMessage`](#sdktasknotificationmessage).                                                                                                                                                                                                                   |
+| `coordinator`       | Message from a team coordinator in an [agent team](/en/agent-teams).                                                                                                                                                                                                                                                                         |
+| `auto-continuation` | Synthetic turn injected when the session continues without fresh user input, such as a command result that triggers a follow-up prompt.                                                                                                                                                                                                      |
 
 ## Hook Types
 

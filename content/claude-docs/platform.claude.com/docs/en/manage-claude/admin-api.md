@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/admin-api
-fetched_at: 2026-06-12T03:17:40.104094Z
-sha256: d718875b5aedd0dfecf0b6d340cb2d3621450e8243a652f23717d69b12c8f712
+fetched_at: 2026-06-19T03:18:02.201222Z
+sha256: ab8e39c13bbd72b77ba8de350c9b9e51b1d6db3a7734322c9dc97b3b394c435e
 ---
 
 # Admin API
@@ -18,7 +18,7 @@ The [Admin API](/docs/en/api/admin) allows you to programmatically manage your o
 <Check>
   **The Admin API requires special access**
 
-  The Admin API accepts two credentials: an Admin API key (starting with `sk-ant-admin...`) sent in the `x-api-key` header or an OAuth bearer token with the `org:admin` scope sent in the `authorization: Bearer` header. Only organization members with the admin role can provision Admin API keys through the Claude Console, and only members with the admin, owner, or primary owner role can obtain `org:admin` tokens.
+  The Admin API accepts two credentials: an Admin API key (starting with `sk-ant-admin...`) sent in the `x-api-key` header or an OAuth bearer token with the `org:admin` scope sent in the `authorization: Bearer` header. Only organization members with the admin role can provision Admin API keys, and only members with the admin, owner, or primary owner role can obtain `org:admin` tokens. See [Create an Admin API key](/docs/en/manage-claude/admin-api-keys).
 </Check>
 
 <Note>
@@ -27,7 +27,7 @@ The [Admin API](/docs/en/api/admin) allows you to programmatically manage your o
 
 ## Authentication
 
-Authenticate with either credential. The following examples call the [organization info endpoint](#accessing-organization-info) both ways:
+Authenticate with either credential. To create an Admin API key for your organization type, see [Create an Admin API key](/docs/en/manage-claude/admin-api-keys). The following examples call the [organization info endpoint](#accessing-organization-info) both ways:
 
 **OAuth bearer:**
 

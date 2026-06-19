@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-use-with-prompt-caching
-fetched_at: 2026-03-27T03:10:39.282195Z
-sha256: a19f41d804915b99e89864c6b7f142a963009a0cb71558f621d1628e47f530bc
+fetched_at: 2026-06-19T03:18:02.201222Z
+sha256: e279fb993029ca8301b91ad7a4593caae5c7be135ea9722eeb233cc4a06180c2
 ---
 
 # Tool use with prompt caching
@@ -73,6 +73,14 @@ The cache follows a prefix hierarchy (`tools` → `system` → `messages`), so a
 <Note>
 If you need to vary `tool_choice` mid-conversation, consider placing cache breakpoints before the variation point.
 </Note>
+
+## Server tool results are cached automatically
+
+When your request has prompt caching enabled and Claude uses a [server tool](/docs/en/agents-and-tools/tool-use/server-tools) such as web search, web fetch, or code execution, the API automatically places a cache breakpoint on the server tool result before running the next iteration of the agentic loop. This lets later iterations within the same request read the growing prefix from cache instead of reprocessing it.
+
+This automatic breakpoint always uses the default 5-minute TTL, independent of any TTL you set on your own `cache_control` markers. In the response `usage`, these writes appear under `cache_creation.ephemeral_5m_input_tokens`, so you may see 5-minute cache writes even when every `cache_control` you set uses a 1-hour TTL.
+
+This behavior only applies when your request already has at least one `cache_control` marker. Requests without prompt caching do not receive the automatic breakpoint.
 
 ## Per-tool interaction table
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-caching
-fetched_at: 2026-06-16T03:17:15.143812Z
-sha256: 1357df4a09363199bdea43159ec6e7d637369c7c365f3269184c48e305edf955
+fetched_at: 2026-06-19T03:18:02.201222Z
+sha256: 164f464ad936fb8e8a1219ca66819a3acdc67116d59bb69cfa43d2c3f32880ba
 ---
 
 # Prompt caching
@@ -881,6 +881,8 @@ The response will include detailed cache information like the following:
 ```
 
 Note that the current `cache_creation_input_tokens` field equals the sum of the values in the `cache_creation` object.
+
+If you see `ephemeral_5m_input_tokens` writes you didn't request while using server tools such as web search, see [this guide on prompt caching and tool use](/docs/en/agents-and-tools/tool-use/tool-use-with-prompt-caching#server-tool-results-are-cached-automatically).
 
 ### When to use the 1-hour cache
 

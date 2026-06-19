@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/features-overview
-fetched_at: 2026-06-16T03:17:15.143812Z
-sha256: 2eb9262548e71c7b405ee74c91075eb221371cc071bf5031a4323dd5bfe14693
+fetched_at: 2026-06-19T03:18:02.201222Z
+sha256: 6eedc3737aa641c4e0f477ff135dfcdd59d349b5d30fd5072901a6277020eb19
 ---
 
 > ## Documentation Index
@@ -49,6 +49,7 @@ Features range from always-on context that Claude sees every session, to on-dema
 | **[Code intelligence](/en/tools-reference#lsp-tool-behavior)** | Language-server navigation and diagnostics                    | Typed languages, large codebases where grep is slow or imprecise                | Jump to a symbol's definition instead of reading the whole file                 |
 | **MCP**                                                        | Connect to external services                                  | External data or actions                                                        | Query your database, post to Slack, control a browser                           |
 | **Hook**                                                       | Script, HTTP request, prompt, or subagent triggered by events | Automation that must run on every matching event                                | Run ESLint after every file edit                                                |
+| **[Artifact](/en/artifacts)**                                  | Publish session output as a private, interactive web page     | Output you want to see or share visually rather than as terminal text           | An incident timeline that updates as Claude investigates                        |
 
 **[Plugins](/en/plugins)** are the packaging layer. A plugin bundles skills, hooks, subagents, and MCP servers into a single installable unit. Plugin skills are namespaced (like `/my-plugin:review`) so multiple plugins can coexist. Use plugins when you want to reuse the same setup across multiple repositories or distribute to others via a **[marketplace](/en/plugin-marketplaces)**.
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugin-marketplaces
-fetched_at: 2026-06-17T03:17:04.158711Z
-sha256: 284e181f04985afd425b0a6aacb747a7cdfc1638924301cdba95e5102e2a78f8
+fetched_at: 2026-06-19T03:18:02.201222Z
+sha256: 5a98f99d1f25b6acbf0922959acc2c4a2fa74f1caad5b514b4bc4b304ef6b3e2
 ---
 
 > ## Documentation Index
@@ -480,7 +480,20 @@ Key things to notice:
 * **`${CLAUDE_PLUGIN_ROOT}`**: use this variable in hooks and MCP server configs to reference files within the plugin's installation directory. This is necessary because plugins are copied to a cache location when installed. For dependencies or state that should survive plugin updates, use [`${CLAUDE_PLUGIN_DATA}`](/en/plugins-reference#persistent-data-directory) instead.
 * **`strict: false`**: Since this is set to false, the plugin doesn't need its own `plugin.json`. The marketplace entry defines everything. See [Strict mode](#strict-mode) below.
 
-By default, a plugin's skills load from the `skills/` directory under its `source`, and any paths listed under `skills` add to that scan. The exception is a marketplace-root source such as `source: "./"`, where several plugin entries share one `skills/` folder. In that case, listing specific subdirectories under `skills` makes that list the complete set for the entry, and other directories under `skills/` do not load. Listing the `skills/` directory itself or the plugin root keeps the full scan. If none of the listed paths exist, the default scan runs instead.
+By default, a plugin's skills load from the `skills/` directory under its `source`. Paths listed in the `skills` field add to that scan:
+
+```json theme={null}
+"skills": ["./skills/", "./extra-skills/"]
+```
+
+When several plugin entries share one `skills/` folder at the marketplace root (`source: "./"`), list specific subdirectories instead so each entry loads only its own skills:
+
+```json theme={null}
+"source": "./",
+"skills": ["./skills/code-review", "./skills/docs"]
+```
+
+With a marketplace-root `source`, the listed paths are the complete set for that entry, and other directories in the shared `skills/` folder do not load. Listing `./skills/` itself, or the plugin root, keeps the full scan. If none of the listed paths exist, the default scan runs instead.
 
 ### Strict mode
 

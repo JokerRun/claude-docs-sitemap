@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/programmatic-tool-calling
-fetched_at: 2026-06-11T03:14:59.596724Z
-sha256: 0ecce34af38408492bfb3516e5f9d256193ce50c8d083963cfaf5c96c17fe72b
+fetched_at: 2026-06-19T03:18:02.201222Z
+sha256: 9b33ac9ebd903c46425bd72938c3405bf89072b458c2fc2fc86da9c4911193d9
 ---
 
 # Programmatic tool calling
@@ -27,7 +27,7 @@ This feature is **not** eligible for [Zero Data Retention (ZDR)](/docs/en/build-
 
 ## Model compatibility
 
-Programmatic tool calling requires `code_execution_20260120`, which is supported on the following models:
+Programmatic tool calling requires `code_execution_20260120` or later, which is supported on the following models:
 
 | Model |
 |-------|

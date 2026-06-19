@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool
-fetched_at: 2026-06-17T03:17:04.158711Z
-sha256: 13ed605fa704fc9bcdac476e8a53fd544f3afa34bd6867f9084f483aa9dcabf2
+fetched_at: 2026-06-19T03:18:02.201222Z
+sha256: ac548cf82df512bb7a128532e9f2b8135cf629fcc243ccf8910b8ef36c10891d
 ---
 
 # Computer use tool
@@ -1714,17 +1714,15 @@ If an action fails to run:
 
 </section>
 
-#### Handle coordinate scaling for higher resolutions
+#### Size screenshots to fit image limits \{#handle-coordinate-scaling-for-higher-resolutions}
+
+Screenshots sent to the computer tool must already fit within Claude's image size limits (see [image size limits](/docs/en/build-with-claude/vision#evaluate-image-size)). The API does not resize oversized images; a screenshot that exceeds the limit is rejected with an HTTP 400 validation error.
 
 <Note>
-Claude Opus 4.8 and Claude Opus 4.7 support up to 2576 pixels on the long edge, and their coordinates are 1\:1 with image pixels (no scale-factor conversion required). The 1568-pixel guidance that follows applies to earlier models.
+Limits vary by model. Claude Opus 4.8 and Claude Opus 4.7 accept up to 2576 pixels on the long edge; earlier models accept up to 1568 pixels on the long edge and approximately 1.15 megapixels total. The following example uses the earlier-model 1568 px / 1.15 MP limits; substitute your model's limit.
 </Note>
 
-The API constrains images to a maximum of 1568 pixels on the longest edge and approximately 1.15 megapixels total (see [image resizing](/docs/en/build-with-claude/vision#evaluate-image-size) for details). For example, a 1512x982 screen gets downsampled to approximately 1330x864. Claude analyzes this smaller image and returns coordinates in that space, but your tool performs clicks in the original screen space.
-
-This can cause Claude's click coordinates to miss their targets unless you handle the coordinate transformation.
-
-To fix this, resize screenshots yourself and scale Claude's coordinates back up:
+If your screen is larger than the limit, resize the screenshot before sending it, set `display_width_px`/`display_height_px` to the resized dimensions, and scale Claude's returned coordinates back to the original screen space:
 
 <Tabs>
 <Tab title="cURL">
@@ -2009,10 +2007,10 @@ If clicks miss their targets, the cause is usually one of the following:
 
 | Symptom | Likely cause | Try |
 |---------|--------------|-----|
-| Clicks consistently offset in one direction | `display_width_px`/`display_height_px` don't match the image dimensions actually sent, or the image exceeds API limits and is silently downscaled | Ensure display dimensions exactly match the resized screenshot; pre-downscale to fit within API limits |
+| Clicks consistently offset in one direction | `display_width_px`/`display_height_px` don't match the image dimensions actually sent | Ensure display dimensions exactly match the screenshot you send |
 | Clicks land in the right area but miss the target | Target is very small, detail was lost downscaling a 4K+ source, or aspect ratio was distorted | Set `enable_zoom: true`; capture at lower DPI or crop to the relevant region; preserve aspect ratio when resizing |
 | Claude clicks the wrong element entirely | Ambiguous instruction, or visually similar elements nearby | Use positional prompts ("the blue Submit button in the bottom-right"); break the interaction into smaller steps |
-| Accuracy is consistently poor | Screenshots sent above API limits, or resolution too low | Pre-downscale to fit within limits; try 1280x720 as a baseline |
+| Accuracy is consistently poor | Resolution too low | Try 1280x720 as a baseline |
 
 <Tip>
 **Model choice affects click precision.** Claude Sonnet 4.6 is more mechanically precise at clicking than Claude Opus 4.6 and is more robust when screenshots require heavy downscaling. Claude Opus 4.7 narrows that gap: its click precision is roughly comparable to Sonnet 4.6, and its higher resolution limit means less downscaling is needed.

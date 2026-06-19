@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/claude-code-analytics-api
-fetched_at: 2026-06-18T03:16:24.806554Z
-sha256: ecb1a80e1d26e3304292b9fb36f05a008484ddd515cdf2b91235635d4868e6cb
+fetched_at: 2026-06-19T03:18:02.201222Z
+sha256: 9a03e4c7ccc9d1205c86671d2b5978a1ff152476e2520382e0cb6204793e21bc
 ---
 
 # Claude Code Analytics API
@@ -26,9 +26,7 @@ This API enables you to better monitor, analyze, and optimize your Claude Code a
 * **Usage justification:** Provide metrics to justify and expand Claude Code adoption internally
 
 <Check>
-  **Admin API key required**
-
-  This API is part of the [Admin API](/docs/en/manage-claude/admin-api). These endpoints require an Admin API key (starting with `sk-ant-admin...`) that differs from standard API keys. Only organization members with the admin role can provision Admin API keys through the [Claude Console](/settings/admin-keys).
+  **Admin API key required.** These endpoints require an Admin API key, which is different from a standard Claude API key. See [Create an Admin API key](/docs/en/manage-claude/admin-api-keys) to find where to create one for your organization type and which scopes to select.
 </Check>
 
 <Note>
