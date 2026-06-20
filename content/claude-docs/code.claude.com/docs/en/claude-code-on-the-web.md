@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-code-on-the-web
-fetched_at: 2026-06-19T03:18:02.201222Z
-sha256: b9c841f3da1d9354d0f5c2c94c899249c1628e61c7ceee3362f22c6c29fb8e42
+fetched_at: 2026-06-20T03:15:34.737281Z
+sha256: d3d900b05403ed47232574b8e2f345751c7d25f451b4ed1b3aa571098727cb06
 ---
 
 > ## Documentation Index
@@ -125,7 +125,7 @@ The `gh` CLI is not pre-installed. If you need a `gh` command the built-in tools
 
 Each cloud session has a transcript URL on claude.ai, and the session can read its own ID from the `CLAUDE_CODE_REMOTE_SESSION_ID` environment variable. Use this to put a traceable link in PR bodies, commit messages, Slack posts, or generated reports so a reviewer can open the run that produced them.
 
-As of v2.1.179, commits that Claude creates in a web session include a `Claude-Session: <url>` git trailer, and PR bodies include the session URL on its own line.
+As of v2.1.179, commits that Claude creates in a web session include a `Claude-Session: <url>` git trailer, and PR bodies include the session URL on its own line. {/* min-version: 2.1.182 */}From v2.1.182, set [`attribution.sessionUrl`](/en/settings#attribution-settings) to `false` to omit the trailer and the PR-body link.
 
 To include the session link in something other than a commit or PR, such as a Slack message Claude posts or a report file it writes, have Claude run the following command and use its output. The command converts the `cse_` prefix in the environment variable's value to the `session_` prefix that the transcript URL expects:
 

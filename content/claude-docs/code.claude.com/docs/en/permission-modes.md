@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/permission-modes
-fetched_at: 2026-06-17T03:17:04.158711Z
-sha256: c4685f4458cb39496c9a592ec487812651f553790924d16dc1645923737ebf2c
+fetched_at: 2026-06-20T03:15:34.737281Z
+sha256: ba369ab4ada09874d3e212c7690a25315ffb0ababb5160b75de2d4617ed91e7b
 ---
 
 > ## Documentation Index
@@ -224,6 +224,9 @@ The classifier trusts your working directory and your repo's configured remotes.
 * Modifying shared infrastructure
 * Irreversibly destroying files that existed before the session
 * Force push, or pushing directly to `main`
+* {/* min-version: 2.1.182 */}`git reset --hard`, `git checkout -- .`, `git restore .`, `git clean -fd`, `git stash drop`, or `git stash clear`, which the classifier presumes would discard uncommitted changes
+* `git commit --amend` when the commit at HEAD was not created in this session
+* `terraform destroy`, `pulumi destroy`, `cdk destroy`, or `terragrunt destroy`, and applying a plan that destroys resources
 
 **Allowed by default**:
 

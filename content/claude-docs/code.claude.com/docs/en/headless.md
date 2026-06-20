@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/headless
-fetched_at: 2026-06-19T03:18:02.201222Z
-sha256: 0b8c5abbca50f3f7e54cf79479f3f23a5f6832139e67576f473bf460db0bc50e
+fetched_at: 2026-06-20T03:15:34.737281Z
+sha256: eb51fa25ea56b8c473f506b394c7bdae5d3ac50352d3b77244d73b42275fdaf2
 ---
 
 > ## Documentation Index
@@ -67,7 +67,9 @@ Bare mode skips OAuth and keychain reads. Anthropic authentication must come fro
 
 ### Background tasks at exit
 
-If Claude starts a [background Bash task](/en/tools-reference#bash-tool-behavior) during a `claude -p` run, for example a dev server or a watch build, that task is terminated about five seconds after Claude has returned its final result and stdin has closed. The grace period lets a task that finishes right after the result still deliver its output. Before v2.1.163, a never-exiting background process would hold the `claude -p` invocation open indefinitely.
+If Claude starts a [background Bash task](/en/tools-reference#bash-tool-behavior) during a `claude -p` run, for example a dev server or a watch build, that shell is terminated about five seconds after Claude has returned its final result and stdin has closed. The grace period lets a task that finishes right after the result still deliver its output. Before v2.1.163, a never-exiting background process would hold the `claude -p` invocation open indefinitely.
+
+Background [subagents](/en/sub-agents) and workflows are exempt from the five-second grace because their result is part of the final output, so `claude -p` waits for them to complete. From v2.1.182, that wait is capped at ten minutes by default so a stuck background agent cannot hold the process open indefinitely. Adjust the cap with [`CLAUDE_CODE_PRINT_BG_WAIT_CEILING_MS`](/en/env-vars), or set it to `0` to wait without a limit.
 
 ## Examples
 

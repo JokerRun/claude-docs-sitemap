@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/typescript
-fetched_at: 2026-06-19T03:18:02.201222Z
-sha256: ae2feef7dc10039f6214ea91383888eef9dd294787f86cb54939bff27fad28f0
+fetched_at: 2026-06-20T03:15:34.737281Z
+sha256: a24f0ce57d9054625628b49fa01ec81e19231d8e9f65ba3c3d030ee518b55135
 ---
 
 > ## Documentation Index
@@ -3279,11 +3279,16 @@ type SDKRateLimitEvent = {
     status: "allowed" | "allowed_warning" | "rejected";
     resetsAt?: number;
     utilization?: number;
+    errorCode?: "credits_required";
+    canUserPurchaseCredits?: boolean;
+    hasChargeableSavedPaymentMethod?: boolean;
   };
   uuid: UUID;
   session_id: string;
 };
 ```
+
+{/* min-version: 2.1.181 */}When `errorCode` is `"credits_required"`, the rejection is from a claude.ai subscription whose included usage is exhausted, and the session cannot continue until the user buys usage credits. `canUserPurchaseCredits` indicates whether the authenticated user can buy credits for the account, and `hasChargeableSavedPaymentMethod` indicates whether a saved payment method is on file. All three fields are absent on rate-limit events that are not credits-required rejections. Requires Claude Code v2.1.181 or later.
 
 ### `SDKLocalCommandOutputMessage`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/structured-outputs
-fetched_at: 2026-06-12T03:17:40.104094Z
-sha256: 832b24b73e2817cc23a3d2e7047d75cb371696b196d0ec901ea3734e12744dd3
+fetched_at: 2026-06-20T03:15:34.737281Z
+sha256: 07e57c4e94c471281cb1f8d540b6eda89506435ab227c09f00ec58bf35ac188e
 ---
 
 # Structured outputs
@@ -428,7 +428,8 @@ Instead of writing raw JSON schemas, you can use familiar schema definition tool
 ```bash CLI
 { read -r _ NAME; read -r _ EMAIL; } < <(
   ant messages create \
-    --transform 'content.0.text|@fromstr|{name,email}' --format yaml <<'YAML'
+    --transform 'content.0.text|@fromstr|{name,email}' \
+    --format yaml <<'YAML'
 model: claude-opus-4-8
 max_tokens: 1024
 messages:
@@ -794,9 +795,20 @@ print(contact.name, contact.email)
 
 For when you need to manually transform schemas before sending, or when you want to modify a Pydantic-generated schema. Unlike `client.messages.parse()`, which transforms provided schemas automatically, this gives you the transformed schema so you can further customize it.
 
-```python nocheck
+```python hidelines={1..2,5..13}
+import anthropic
+from pydantic import BaseModel
 from anthropic import transform_schema
 from pydantic import TypeAdapter
+
+
+class ContactInfo(BaseModel):
+    name: str
+    email: str
+    plan_interest: str
+
+
+client = anthropic.Anthropic()
 
 # First convert Pydantic model to JSON schema, then transform
 schema = TypeAdapter(ContactInfo).json_schema()
@@ -1573,7 +1585,8 @@ Extract structured data from unstructured text:
 
 ```bash CLI
 ant messages create \
-  --transform 'content.0.text|@fromstr' --format jsonl <<'YAML'
+  --transform 'content.0.text|@fromstr' \
+  --format jsonl <<'YAML'
 model: claude-opus-4-8
 max_tokens: 4096
 messages:
@@ -1902,7 +1915,8 @@ Classify content with structured categories:
 
 ```bash CLI
 ant messages create \
-  --transform 'content.0.text|@fromstr' --format jsonl <<'YAML'
+  --transform 'content.0.text|@fromstr' \
+  --format jsonl <<'YAML'
 model: claude-opus-4-8
 max_tokens: 1024
 messages:
@@ -2193,7 +2207,8 @@ Generate API-ready responses:
 
 ```bash CLI
 ant messages create \
-  --transform 'content.0.text' --raw-output <<'YAML'
+  --transform 'content.0.text' \
+  --raw-output <<'YAML'
 model: claude-opus-4-8
 max_tokens: 1024
 output_config:
@@ -2996,7 +3011,7 @@ Structured outputs support standard JSON Schema with some limitations. Both JSON
 - Recursive schemas
 - Complex types within enums
 - External `$ref` (for example, `'$ref': 'http://...'`)
-- Numerical constraints (`minimum`, `maximum`, `multipleOf`, etc.)
+- Numerical constraints (such as `minimum`, `maximum`, `multipleOf`)
 - String constraints (`minLength`, `maxLength`)
 - Array constraints beyond `minItems` of 0 or 1
 - `additionalProperties` set to anything other than `false`
@@ -3149,3 +3164,20 @@ For ZDR and HIPAA eligibility across all features, see [API and data retention](
 <Tip>
 **Grammar scope:** Grammars apply only to Claude's direct output, not to tool use calls, tool results, or thinking tags (when using [Extended Thinking](/docs/en/build-with-claude/extended-thinking)). Grammar state resets between sections, allowing Claude to think freely while still producing structured output in the final response.
 </Tip>
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Citations" icon="book-bookmark" href="/docs/en/build-with-claude/citations">
+    Have Claude cite its sources when answering questions about provided documents.
+  </Card>
+  <Card title="Strict tool use" icon="check" href="/docs/en/agents-and-tools/tool-use/strict-tool-use">
+    Enforce JSON Schema compliance on Claude's tool inputs with grammar-constrained sampling.
+  </Card>
+  <Card title="Tool use with Claude" icon="wrench" href="/docs/en/agents-and-tools/tool-use/overview">
+    Connect Claude to external tools and APIs. Learn where tools execute and how the agentic loop works.
+  </Card>
+  <Card title="Pricing" icon="calculator" href="/docs/en/about-claude/pricing">
+    Learn about Anthropic's pricing structure for models and features.
+  </Card>
+</CardGroup>

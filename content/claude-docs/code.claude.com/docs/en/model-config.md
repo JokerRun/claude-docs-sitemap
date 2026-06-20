@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/model-config
-fetched_at: 2026-06-17T03:17:04.158711Z
-sha256: d93d013cdc75671251da1cbe535bcab053f2bc29ec61642c46493f7bda47ce1c
+fetched_at: 2026-06-20T03:15:34.737281Z
+sha256: a88ae96a84df2b66585be31b95597909bad1823f0499bc2e787c767332aca2aa
 ---
 
 > ## Documentation Index
@@ -94,6 +94,8 @@ The `--model` flag and `ANTHROPIC_MODEL` environment variable apply only to the 
 Resumed sessions started with `claude --resume`, `--continue`, or the `/resume` picker keep the model they were using when the transcript was saved, regardless of the current `model` setting. If that model has been retired, the session falls through to the normal precedence order. This prevents another session's `/model` choice from changing the model on resume.
 
 When the active model at startup comes from project or managed settings rather than your own selection, the startup header shows which settings file set it. Run `/model` to override; the project or managed setting reapplies on the next launch.
+
+When the requested model has a scheduled retirement date or is automatically remapped to a newer version, Claude Code shows a warning that names the requested model. Interactive sessions show it as a startup notice. From v2.1.182, the same warning is written to stderr in [non-interactive mode](/en/headless) when using the default text output format. The check also covers a `model` set in [subagent frontmatter](/en/sub-agents). The stderr warning is suppressed for `--output-format json` and `stream-json`; read the actual model from the `modelUsage` field of the [result message](/en/headless#get-structured-output) instead.
 
 Example usage:
 
