@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/monitoring-usage
-fetched_at: 2026-06-19T03:18:02.201222Z
-sha256: 39dc5dc382716bc70a4fb2277392cdf231226d7bbf43b899b5c29f889f346823
+fetched_at: 2026-06-23T03:14:59.520621Z
+sha256: b94b88a1b5c165f3b79d5e415fa41cc52b4e449ba648eff1ceae2905d792f4ca
 ---
 
 > ## Documentation Index
@@ -1057,7 +1057,7 @@ All metrics can be segmented by the [standard attributes](#standard-attributes).
 
 Claude Code retries failed API requests internally and emits a single `claude_code.api_error` event only after it gives up, so the event itself is the terminal signal for that request. Intermediate retry attempts are not logged as separate events.
 
-The `attempt` attribute on the event records how many attempts were made in total. A value greater than `CLAUDE_CODE_MAX_RETRIES` (default `10`) indicates the request exhausted all retries on a transient error. A lower value indicates a non-retryable error such as a `400` response.
+The `attempt` attribute on the event records how many attempts were made in total. A value greater than `CLAUDE_CODE_MAX_RETRIES` (default `10`, capped at `15`) indicates the request exhausted all retries on a transient error. A lower value indicates a non-retryable error such as a `400` response.
 
 To distinguish a session that recovered from one that stalled, group events by `session.id` and check whether a later `api_request` event exists after the error.
 

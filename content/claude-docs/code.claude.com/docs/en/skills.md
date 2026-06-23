@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/skills
-fetched_at: 2026-06-19T03:18:02.201222Z
-sha256: b12d6464ca8ab6267f27008b8699b24151963147191c74810be0448f24db3a50
+fetched_at: 2026-06-23T03:14:59.520621Z
+sha256: 35a6695864964f09fdf227dcdab50f087b2f7f8d38f502e80a95bd8358470607
 ---
 
 > ## Documentation Index
@@ -828,6 +828,8 @@ If Claude doesn't use your skill when expected:
 2. Verify the skill appears in `What skills are available?`
 3. Try rephrasing your request to match the description more closely
 4. Invoke it directly with `/skill-name` if the skill is user-invocable
+
+If the frontmatter YAML is malformed, Claude Code loads the skill body with empty metadata, so `/skill-name` still works but Claude has no `description` to match against. Run with `--debug` to see the parse error.
 
 ### Skill triggers too often
 

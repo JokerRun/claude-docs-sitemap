@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/interactive-mode
-fetched_at: 2026-06-13T03:15:40.418428Z
-sha256: 3f072e0f14d20a866e4f6fdc54ad56a31442a7697504dc5c5b507518583cc6fe
+fetched_at: 2026-06-23T03:14:59.520621Z
+sha256: 9021c45f5239f92ff82c45fa85014c512cf9aa402219fbe9c3ddbb8269c9d783
 ---
 
 > ## Documentation Index
@@ -86,11 +86,11 @@ sha256: 3f072e0f14d20a866e4f6fdc54ad56a31442a7697504dc5c5b507518583cc6fe
 
 ### Quick commands
 
-| Shortcut     | Description       | Notes                                                         |
-| :----------- | :---------------- | :------------------------------------------------------------ |
-| `/` at start | Command or skill  | See [commands](#commands) and [skills](/en/skills)            |
-| `!` at start | Shell mode        | Run commands directly and add execution output to the session |
-| `@`          | File path mention | Trigger file path autocomplete                                |
+| Shortcut     | Description       | Notes                                                                                |
+| :----------- | :---------------- | :----------------------------------------------------------------------------------- |
+| `/` at start | Command or skill  | See [commands](#commands) and [skills](/en/skills)                                   |
+| `!` at start | Shell mode        | Run a command directly, add its output to the session, and have Claude respond to it |
+| `@`          | File path mention | Trigger file path autocomplete                                                       |
 
 ### Transcript viewer
 
@@ -292,6 +292,8 @@ Shell mode:
 * Supports history-based autocomplete: type a partial command and press **Tab** to complete from previous `!` commands in the current project
 * Exit with `Escape`, `Backspace`, or `Ctrl+U` on an empty prompt
 * Pasting text that starts with `!` into an empty prompt enters shell mode automatically, matching typed `!` behavior
+
+As of v2.1.186, Claude responds to the command output automatically once it lands in the transcript, so you can run `! npm test` and get an explanation of the failures without a second prompt. The response costs the same as sending a normal prompt. To restore the earlier behavior where the output is added to context without a response, set [`respondToBashCommands`](/en/settings#available-settings) to `false` in `settings.json`. Before v2.1.186, shell mode always added output to context without a response.
 
 This is useful for quick shell operations while maintaining conversation context.
 

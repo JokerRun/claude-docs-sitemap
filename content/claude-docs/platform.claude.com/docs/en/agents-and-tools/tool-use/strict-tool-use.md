@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/strict-tool-use
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 68966a352b281d80f700435588d0ff36288e4ceff545eb0e02c09cc0c47f54f7
+fetched_at: 2026-06-23T03:14:59.520621Z
+sha256: e4866b381bff41a22eaf4f704a3c1f7ef0baf6c50874acffd00c38bf0673e666
 ---
 
 # Strict tool use
@@ -22,7 +22,7 @@ Strict tool use validates tool parameters, ensuring Claude calls your functions 
 
 ## Why strict tool use matters for agents
 
-Building reliable agentic systems requires guaranteed schema conformance. Without strict mode, Claude might return incompatible types (`"2"` instead of `2`) or missing required fields, breaking your functions and causing runtime errors.
+Building reliable agentic systems requires guaranteed schema conformance. Without strict mode, Claude might return incompatible types (`"2"` instead of `2`) or omit required fields, breaking your functions and causing runtime errors.
 
 Strict tool use guarantees type-safe parameters:
 - Functions receive correctly-typed arguments every time
@@ -35,7 +35,7 @@ For example, suppose a booking system needs `passengers: int`. Without strict mo
 
 <CodeGroup>
 
-```bash cURL
+```bash cURL highlight={14}
 curl https://api.anthropic.com/v1/messages \
   -H "content-type: application/json" \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -69,7 +69,7 @@ curl https://api.anthropic.com/v1/messages \
   }'
 ```
 
-```bash CLI
+```bash CLI highlight={10}
 ant messages create --transform content <<'YAML'
 model: claude-opus-4-8
 max_tokens: 1024
@@ -94,7 +94,7 @@ tools:
 YAML
 ```
 
-```python Python hidelines={1..2}
+```python Python hidelines={1..2} highlight={13}
 import anthropic
 
 client = anthropic.Anthropic()
@@ -130,7 +130,7 @@ response = client.messages.create(
 print(response.content)
 ```
 
-```typescript TypeScript hidelines={1..2}
+```typescript TypeScript hidelines={1..2} highlight={20}
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic({
@@ -172,7 +172,7 @@ const response = await client.messages.create({
 console.log(response.content);
 ```
 
-```csharp C#
+```csharp C# highlight={17}
 using System.Text.Json;
 using Anthropic;
 using Anthropic.Models.Messages;
@@ -208,7 +208,7 @@ var message = await client.Messages.Create(parameters);
 Console.WriteLine(message);
 ```
 
-```go Go hidelines={1..11,-1}
+```go Go hidelines={1..11,-1} highlight={24}
 package main
 
 import (
@@ -258,7 +258,7 @@ func main() {
 }
 ```
 
-```java Java hidelines={1..12,-1..}
+```java Java hidelines={1..12,-1..} highlight={42}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.core.JsonValue;
@@ -311,7 +311,7 @@ void main() {
 }
 ```
 
-```php PHP hidelines={1..4}
+```php PHP hidelines={1..4} highlight={17}
 <?php
 
 use Anthropic\Client;
@@ -351,7 +351,7 @@ $message = $client->messages->create(
 echo $message;
 ```
 
-```ruby Ruby hidelines={1..2}
+```ruby Ruby hidelines={1..2} highlight={15}
 require "anthropic"
 
 client = Anthropic::Client.new
@@ -428,7 +428,7 @@ Ensure tool parameters exactly match your schema:
 
 <CodeGroup>
 
-```bash CLI
+```bash CLI highlight={9}
 ant messages create <<'YAML'
 model: claude-opus-4-8
 max_tokens: 1024
@@ -454,7 +454,7 @@ tools:
 YAML
 ```
 
-```python Python hidelines={1..2}
+```python Python hidelines={1..2} highlight={16}
 from anthropic import Anthropic
 
 client = Anthropic()
@@ -491,7 +491,7 @@ response = client.messages.create(
 print(response)
 ```
 
-```typescript TypeScript hidelines={1..2}
+```typescript TypeScript hidelines={1..2} highlight={7}
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
@@ -521,7 +521,7 @@ const response = await client.messages.create({
 console.log(response);
 ```
 
-```csharp C#
+```csharp C# highlight={16}
 using System.Text.Json;
 using Anthropic;
 using Anthropic.Models.Messages;
@@ -557,7 +557,7 @@ var message = await client.Messages.Create(parameters);
 Console.WriteLine(message);
 ```
 
-```go Go hidelines={1..11,-1}
+```go Go hidelines={1..11,-1} highlight={23}
 package main
 
 import (
@@ -609,7 +609,7 @@ func main() {
 }
 ```
 
-```java Java hidelines={1..12,-1..}
+```java Java hidelines={1..12,-1..} highlight={39}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.core.JsonValue;
@@ -659,7 +659,7 @@ void main() {
 }
 ```
 
-```php PHP hidelines={1..4}
+```php PHP hidelines={1..4} highlight={16}
 <?php
 
 use Anthropic\Client;
@@ -696,7 +696,7 @@ $message = $client->messages->create(
 echo $message;
 ```
 
-```ruby Ruby hidelines={1..2}
+```ruby Ruby hidelines={1..2} highlight={14}
 require "anthropic"
 
 client = Anthropic::Client.new
@@ -740,7 +740,7 @@ Build reliable multi-step agents with guaranteed tool parameters:
 
 <CodeGroup>
 
-```bash CLI
+```bash CLI highlight={11,22}
 ant messages create <<'YAML'
 model: claude-opus-4-8
 max_tokens: 1024
@@ -774,7 +774,7 @@ tools:
 YAML
 ```
 
-```python Python hidelines={1..2}
+```python Python hidelines={1..2} highlight={16,31}
 from anthropic import Anthropic
 
 client = Anthropic()
@@ -823,7 +823,7 @@ response = client.messages.create(
 print(response)
 ```
 
-```typescript TypeScript hidelines={1..2}
+```typescript TypeScript hidelines={1..2} highlight={8,23}
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
@@ -876,7 +876,7 @@ const response = await client.messages.create({
 console.log(response);
 ```
 
-```csharp C#
+```csharp C# highlight={16,33}
 using System.Text.Json;
 using Anthropic;
 using Anthropic.Models.Messages;
@@ -929,7 +929,7 @@ var message = await client.Messages.Create(parameters);
 Console.WriteLine(message);
 ```
 
-```go Go hidelines={1..11,-1}
+```go Go hidelines={1..11,-1} highlight={23,38}
 package main
 
 import (
@@ -988,7 +988,7 @@ func main() {
 }
 ```
 
-```java Java hidelines={1..12,-1..}
+```java Java hidelines={1..12,-1..} highlight={51,58}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.core.JsonValue;
@@ -1057,7 +1057,7 @@ void main() {
 }
 ```
 
-```php PHP hidelines={1..4}
+```php PHP hidelines={1..4} highlight={16,31}
 <?php
 
 use Anthropic\Client;
@@ -1106,7 +1106,7 @@ $message = $client->messages->create(
 echo $message;
 ```
 
-```ruby Ruby hidelines={1..2}
+```ruby Ruby hidelines={1..2} highlight={14,29}
 require "anthropic"
 
 client = Anthropic::Client.new
@@ -1163,3 +1163,20 @@ Strict tool use compiles tool `input_schema` definitions into grammars using the
 Strict tool use is HIPAA eligible, but **PHI must not be included in tool schema definitions**. The API caches compiled schemas separately from message content, and these cached schemas do not receive the same PHI protections as prompts and responses. Do not include PHI in `input_schema` property names, `enum` values, `const` values, or `pattern` regular expressions. PHI should only appear in message content (prompts and responses), where it is protected under HIPAA safeguards.
 
 For ZDR and HIPAA eligibility across all features, see [API and data retention](/docs/en/manage-claude/api-and-data-retention).
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Web fetch tool" icon="link" href="/docs/en/agents-and-tools/tool-use/web-fetch-tool">
+    Fetch and read content from specific URLs to bring live web content into Claude's context.
+  </Card>
+  <Card title="Tool use with prompt caching" icon="database" href="/docs/en/agents-and-tools/tool-use/tool-use-with-prompt-caching">
+    Cache tool definitions across turns to reduce cost and latency.
+  </Card>
+  <Card title="Structured outputs" icon="code-brackets" href="/docs/en/build-with-claude/structured-outputs">
+    Get validated JSON responses using the same grammar-constrained sampling.
+  </Card>
+  <Card title="Define tools" icon="hammer" href="/docs/en/agents-and-tools/tool-use/define-tools">
+    Specify tool schemas, write effective descriptions, and control when Claude calls your tools.
+  </Card>
+</CardGroup>

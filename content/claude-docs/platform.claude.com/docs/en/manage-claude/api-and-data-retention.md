@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/api-and-data-retention
-fetched_at: 2026-06-19T03:18:02.201222Z
-sha256: 17b664fc15494ceba48e57f66a8fe0406f930b52389040dd0f7e0e290798f6c5
+fetched_at: 2026-06-23T03:14:59.520621Z
+sha256: 057b4a25ee9ddda0b197893087a1e2c86431f8855e58778d0da219e3dd16009a
 ---
 
 # API and data retention
@@ -172,7 +172,7 @@ The following table lists which Claude API features are eligible for ZDR and HIP
 | [Search results](/docs/en/build-with-claude/search-results) | `/v1/messages` (with `search_results` source) | <Eligible>Yes</Eligible> | <Eligible>Yes</Eligible> | RAG citation support uses the standard Messages API. |
 | [Bash tool](/docs/en/agents-and-tools/tool-use/bash-tool) | `/v1/messages` (with `bash` tool) | <Eligible>Yes</Eligible> | <Eligible>Yes</Eligible> | Client-side tool executed in your environment. |
 | [Text editor tool](/docs/en/agents-and-tools/tool-use/text-editor-tool) | `/v1/messages` (with `text_editor` tool) | <Eligible>Yes</Eligible> | <Eligible>Yes</Eligible> | Client-side tool executed in your environment. |
-| [Computer use](/docs/en/agents-and-tools/tool-use/computer-use-tool) | `/v1/messages` (with `computer` tool) | <Eligible>Yes</Eligible> | <Eligible>Yes</Eligible> | Client-side tool where screenshots and files are captured and stored in your environment, not by Anthropic. See [Computer use](/docs/en/agents-and-tools/tool-use/computer-use-tool#data-retention). |
+| [Computer use](/docs/en/agents-and-tools/tool-use/computer-use-tool) | `/v1/messages` (with `computer` tool) | <Eligible>Yes</Eligible> | <Eligible status="no">No</Eligible> | Client-side tool where screenshots and files are captured and stored in your environment, not by Anthropic. See [Computer use](/docs/en/agents-and-tools/tool-use/computer-use-tool#data-retention). |
 | [Fine-grained tool streaming](/docs/en/agents-and-tools/tool-use/fine-grained-tool-streaming) | `/v1/messages` | <Eligible>Yes</Eligible> | <Eligible>Yes</Eligible> | Streaming tool parameters uses the standard Messages API. |
 | [Prompt caching](/docs/en/build-with-claude/prompt-caching) | `/v1/messages` | <Eligible>Yes</Eligible> | <Eligible>Yes</Eligible> | Your prompts and Claude's outputs are not stored. KV cache representations and cryptographic hashes are held in memory for the cache TTL and promptly deleted after expiry. See [Prompt caching](/docs/en/build-with-claude/prompt-caching#data-retention). |
 | [Structured outputs](/docs/en/build-with-claude/structured-outputs) | `/v1/messages` | <Eligible status="qualified">Yes (qualified)</Eligible> | <Eligible>Yes</Eligible><sup>3</sup> | Your prompts and Claude's outputs are not stored. Only the JSON schema is cached, for up to 24 hours since last use. This also covers [strict tool use](/docs/en/agents-and-tools/tool-use/strict-tool-use) (`strict: true` on tools), which uses the same grammar pipeline. See [Structured outputs](/docs/en/build-with-claude/structured-outputs#data-retention). |

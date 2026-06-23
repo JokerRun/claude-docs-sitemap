@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/permissions
-fetched_at: 2026-06-17T03:17:04.158711Z
-sha256: 175ff0951e9fdf81431e82cb8d53289c688ec15985d161089c9e21727e726dae
+fetched_at: 2026-06-23T03:14:59.520621Z
+sha256: 3b1d1036020a442689649b2c852a82f69774bb64bc9896696f723fb58e081837
 ---
 
 > ## Documentation Index
@@ -360,12 +360,12 @@ These exceptions apply only to directories added with the `--add-dir` flag or th
 
 The following configuration types are loaded from `--add-dir` directories:
 
-| Configuration                                                          | Loaded from `--add-dir`                                                                                                                                            |
-| :--------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Skills](/en/skills) in `.claude/skills/`                              | Yes, with live reload                                                                                                                                              |
-| [Subagents](/en/sub-agents) in `.claude/agents/`                       | Yes                                                                                                                                                                |
-| Plugin settings in `.claude/settings.json`                             | `enabledPlugins` and `extraKnownMarketplaces` only                                                                                                                 |
-| [CLAUDE.md](/en/memory) files, `.claude/rules/`, and `CLAUDE.local.md` | Only when `CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD=1` is set. `CLAUDE.local.md` additionally requires the `local` setting source, which is enabled by default |
+| Configuration                                                                         | Loaded from `--add-dir`                                                                                                                                            |
+| :------------------------------------------------------------------------------------ | :----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Skills](/en/skills) in `.claude/skills/`                                             | Yes, with live reload                                                                                                                                              |
+| [Subagents](/en/sub-agents) in `.claude/agents/`                                      | Yes                                                                                                                                                                |
+| [Settings](/en/settings) in `.claude/settings.json` and `.claude/settings.local.json` | `enabledPlugins` and `extraKnownMarketplaces` keys only                                                                                                            |
+| [CLAUDE.md](/en/memory) files, `.claude/rules/`, and `CLAUDE.local.md`                | Only when `CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD=1` is set. `CLAUDE.local.md` additionally requires the `local` setting source, which is enabled by default |
 
 Commands and output styles are discovered from the current working directory and its parents, your user directory at `~/.claude/`, and managed settings. Hooks and other `settings.json` keys load from the current working directory's `.claude/` folder with no parent-directory fallback, alongside your user `~/.claude/settings.json` and managed settings. To share that configuration across projects, use one of these approaches:
 

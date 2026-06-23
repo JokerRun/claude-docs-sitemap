@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/search-results
-fetched_at: 2026-06-16T03:17:15.143812Z
-sha256: 38274b596ada4d94e272ccc8e4eb3bc479b62fc30fd26e99f6574c2ae21034b1
+fetched_at: 2026-06-23T03:14:59.520621Z
+sha256: 0022dac2f1e3cd6313514e72fa093c69e5ab1c6c21eb1df4f15477cd208c862c
 ---
 
 # Search results
@@ -1514,3 +1514,20 @@ Citations are all-or-nothing: either all search results in a request must have c
 - Search result content blocks are available on Claude API, Amazon Bedrock, and Google Cloud's Vertex AI
 - Only text content is supported within search results (no images or other media)
 - The `content` array must contain at least one text block
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Citations" icon="book" href="/docs/en/build-with-claude/citations">
+    Learn how citations work across documents, custom content, and search results.
+  </Card>
+  <Card title="Web search tool" icon="magnifying-glass" href="/docs/en/agents-and-tools/tool-use/web-search-tool">
+    Let Claude search the web and cite sources automatically using a server tool.
+  </Card>
+  <Card title="Messages API reference" icon="code" href="/docs/en/api/messages/create">
+    See the complete Messages API documentation, including content block types.
+  </Card>
+  <Card title="Prompt caching" icon="database" href="/docs/en/build-with-claude/prompt-caching">
+    Cache search results with `cache_control` to reduce cost and latency on repeated requests.
+  </Card>
+</CardGroup>

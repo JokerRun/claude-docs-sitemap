@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/streaming
-fetched_at: 2026-06-16T03:17:15.143812Z
-sha256: 66c144d65f181a96c2739e10a8f92d78272f14e33b4abb6497fe539d8d24267d
+fetched_at: 2026-06-23T03:14:59.520621Z
+sha256: 43fee1ea177124c16a89a1af572c6e7c74e9caa2423412b6634c1dc5a235d3d0
 ---
 
 # Streaming messages
@@ -1746,10 +1746,13 @@ For Claude 4.6 and later models, the same capture-and-resume strategy applies, b
   <Card title="Fine-grained tool streaming" icon="wrench" href="/docs/en/agents-and-tools/tool-use/fine-grained-tool-streaming">
     Stream tool input JSON without server-side buffering for lower latency.
   </Card>
-  <Card title="Building with extended thinking" icon="brain" href="/docs/en/build-with-claude/extended-thinking">
+  <Card title="Extended thinking" icon="brain" href="/docs/en/build-with-claude/extended-thinking">
     Stream extended thinking output with `thinking_delta` and `signature_delta` events.
   </Card>
   <Card title="Client SDKs" icon="code" href="/docs/en/cli-sdks-libraries/overview">
     Use the official SDKs, which handle streaming, accumulation, and reconnection for you.
+  </Card>
+  <Card title="Batch processing" icon="stack" href="/docs/en/build-with-claude/batch-processing">
+    Process large volumes of requests asynchronously when you don't need real-time responses.
   </Card>
 </CardGroup>
