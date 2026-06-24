@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/skills
-fetched_at: 2026-06-23T03:14:59.520621Z
-sha256: 35a6695864964f09fdf227dcdab50f087b2f7f8d38f502e80a95bd8358470607
+fetched_at: 2026-06-24T03:15:18.859705Z
+sha256: 97b64b3308d23fd7c5b59f546bfb1d802f4e403ee15929d6b7ca7b5e7c3524b7
 ---
 
 > ## Documentation Index
@@ -855,3 +855,4 @@ To raise the budget, set the [`skillListingBudgetFraction`](/en/settings#availab
 * **[Memory](/en/memory)**: manage CLAUDE.md files for persistent context
 * **[Commands](/en/commands)**: reference for built-in commands and bundled skills
 * **[Permissions](/en/permissions)**: control tool and skill access
+* **[Claude Tag skills](https://claude.com/docs/claude-tag/admins/skills-repo)**: project skills committed to a repo also load when that repo is used in a Claude Tag channel

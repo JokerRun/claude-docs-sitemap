@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/changelog
-fetched_at: 2026-06-23T03:14:59.520621Z
-sha256: d88fa11d72a6f233f4c05f272792208b820b7e243528c4bc9d602810ee95a5b8
+fetched_at: 2026-06-24T03:15:18.859705Z
+sha256: 0d5b842a306bba27126fdb633e17972e71418baf2909b198f2e6c4508415097f
 ---
 
 > ## Documentation Index
@@ -16,6 +16,30 @@ sha256: d88fa11d72a6f233f4c05f272792208b820b7e243528c4bc9d602810ee95a5b8
 This page is generated from the [CHANGELOG.md on GitHub](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md).
 
 Run `claude --version` to check your installed version.
+
+<Update label="2.1.187" description="June 23, 2026">
+  * Added `sandbox.credentials` setting to block sandboxed commands from reading credential files and secret environment variables
+  * Added org-configured model restrictions to the model picker, `--model`, `/model`, and `ANTHROPIC_MODEL`, with a "restricted by your organization's settings" message when a restricted model is selected
+  * Added mouse click support to select menus (permission prompts, `/model`, `/config`, etc.) in fullscreen mode
+  * Fixed `--resume` failing with "No conversation found" when the original `-p` run produced no model turns
+  * Fixed `--json-schema` and workflow `agent({schema})` structured output: the model can no longer re-call `StructuredOutput` indefinitely after a successful call, and follow-up turns now reliably return structured output
+  * Fixed remote MCP tool calls that hang with no response for 5 minutes — they now abort with an error instead of blocking indefinitely (override with `CLAUDE_CODE_MCP_TOOL_IDLE_TIMEOUT`)
+  * Fixed Claude Code Remote sessions taking \~2.7s longer to start after the agent proxy CA system-trust install was added
+  * Fixed pasted Korean/CJK text turning into mojibake in terminals that deliver paste as per-byte extended-key events
+  * Fixed `/update` over Remote Control hanging when a startup trust dialog would have shown
+  * Fixed background jobs in the agents view getting stuck in "working" indefinitely when the agent ended a turn without producing structured output
+  * Fixed channel connections dropping after navigating to the agents view and back, and after `/bg`, `/tui`, or `/update`
+  * Fixed agent stop notifications not correctly attributing who stopped the agent, and improved wording ("finished"/"stopped" instead of "came to rest")
+  * Fixed subagent depth tracking: resumed subagents now restore their original spawn depth, and forked subagents now count toward the depth cap
+  * Fixed leaked agent worktree registrations: locked `.git/worktrees/` entries from killed agents are now cleaned up automatically
+  * Fixed Cmd+click not opening URLs in fullscreen mode in Ghostty on macOS
+  * Fixed `claude --help` not listing the `--bg`/`--background` flag
+  * Fixed Esc, Ctrl-C, and Ctrl-D not working while `/share` is uploading
+  * Improved `/install-github-app`: GitHub Actions workflow setup is now optional — you can install just the GitHub App and skip the workflow/secret steps
+  * Improved `/btw` with ←/→ arrow navigation to step through earlier answers
+  * Improved `/plugin` to surface plugins you haven't used recently so you can clean them up
+  * \[VSCode] Fixed extension becoming unresponsive when resuming a large session
+</Update>
 
 <Update label="2.1.186" description="June 22, 2026">
   * Added `claude mcp login <name>` and `claude mcp logout <name>` to authenticate MCP servers from the CLI without opening the interactive `/mcp` menu, with `--no-browser` stdin redirect support for completing over SSH

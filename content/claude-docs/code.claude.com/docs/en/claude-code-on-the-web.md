@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-code-on-the-web
-fetched_at: 2026-06-20T03:15:34.737281Z
-sha256: d3d900b05403ed47232574b8e2f345751c7d25f451b4ed1b3aa571098727cb06
+fetched_at: 2026-06-24T03:15:18.859705Z
+sha256: 57c47f63d8fda40f2536e69ba40556e33e76a483f67da103eb91fcd84470b60a
 ---
 
 > ## Documentation Index
@@ -825,3 +825,4 @@ Before relying on cloud sessions for a workflow, account for these constraints:
 * [Settings reference](/en/settings): all configuration options
 * [Security](/en/security): isolation guarantees and data handling
 * [Data usage](/en/data-usage): what Anthropic retains from cloud sessions
+* [Claude Tag](https://claude.com/docs/claude-tag/overview): an organization-managed @Claude in Slack that runs on the same cloud environment
