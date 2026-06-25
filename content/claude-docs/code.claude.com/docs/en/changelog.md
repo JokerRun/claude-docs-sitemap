@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/changelog
-fetched_at: 2026-06-24T03:15:18.859705Z
-sha256: 0d5b842a306bba27126fdb633e17972e71418baf2909b198f2e6c4508415097f
+fetched_at: 2026-06-25T03:15:21.128912Z
+sha256: 276a347da44fa93d6e3d1de42d2c4cfeb5e5e18d83a8f3d37747dbdafd835279
 ---
 
 > ## Documentation Index
@@ -16,6 +16,10 @@ sha256: 0d5b842a306bba27126fdb633e17972e71418baf2909b198f2e6c4508415097f
 This page is generated from the [CHANGELOG.md on GitHub](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md).
 
 Run `claude --version` to check your installed version.
+
+<Update label="2.1.190" description="June 24, 2026">
+  * Bug fixes and reliability improvements
+</Update>
 
 <Update label="2.1.187" description="June 23, 2026">
   * Added `sandbox.credentials` setting to block sandboxed commands from reading credential files and secret environment variables

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sub-agents
-fetched_at: 2026-06-23T03:14:59.520621Z
-sha256: e67f11e0562e43b52402fe4f7261595c71c4100203e1a278803bddea8d4aa886
+fetched_at: 2026-06-25T03:15:21.128912Z
+sha256: 740187eb5387903f083bfe670b62d8b6e1fa864ea744e05615c06c466dd06731
 ---
 
 > ## Documentation Index
@@ -307,6 +307,8 @@ When Claude invokes a subagent, it can also pass a `model` parameter for that sp
 2. The per-invocation `model` parameter
 3. The subagent definition's `model` frontmatter
 4. The main conversation's model
+
+The environment variable, per-invocation parameter, and frontmatter values are checked against your organization's [`availableModels`](/en/model-config#restrict-model-selection) allowlist. A value that resolves to an excluded model is not used and the subagent runs on the inherited model instead.
 
 ### Control subagent capabilities
 
@@ -793,6 +795,8 @@ For a quick question about something already in your conversation, use [`/btw`](
 A nested subagent is configured the same way as a top-level one and resolves from the same [scopes](#choose-the-subagent-scope). The subagent panel below the prompt input shows the full tree: each row displays a `(+N)` count of descendants, and opening a row shows that subagent's direct children with a path back to `main`. The Running tab in [`/agents`](#use-the-%2Fagents-command) lists running subagents as a flat list.
 
 Depth is counted as the number of subagent levels below the main conversation, regardless of whether each level runs in the [foreground or background](#run-subagents-in-foreground-or-background). A subagent at depth five does not receive the Agent tool and cannot spawn further. The limit is fixed and not configurable.
+
+As of Claude Code v2.1.187, a background subagent's depth is fixed when it is first spawned, and [resuming](#resume-subagents) it later does not change that depth. For example, if your main conversation spawns subagent A, and A spawns a background subagent B at depth two, B is still at depth two when you resume it directly from the main conversation. Resuming a subagent from a shallower context does not let it spawn additional levels that the depth limit already prevented.
 
 To prevent a specific subagent from spawning others, omit `Agent` from its [`tools`](#available-tools) list or add it to `disallowedTools`.
 

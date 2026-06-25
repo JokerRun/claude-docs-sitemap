@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/interactive-mode
-fetched_at: 2026-06-23T03:14:59.520621Z
-sha256: 9021c45f5239f92ff82c45fa85014c512cf9aa402219fbe9c3ddbb8269c9d783
+fetched_at: 2026-06-25T03:15:21.128912Z
+sha256: 8b50c5f185a0bd03f78e0254e002bf2f8fc59028f38c32f85646eafc28d07f0f
 ---
 
 > ## Documentation Index
@@ -241,7 +241,7 @@ Press `Ctrl+R` to interactively search through your command history:
    * Press `Ctrl+C` to cancel and restore your original input
    * Press `Backspace` on empty search to cancel
 
-The search displays matching commands with the search term highlighted, so you can find and reuse previous inputs.
+The search loads the 100 most recent unique prompts in the selected scope, with duplicates collapsed to the newest occurrence. Matching prompts display with the search term highlighted, so you can find and reuse previous inputs.
 
 ## Background bash commands
 
@@ -337,6 +337,7 @@ Once the answer appears, the overlay accepts these keys. Earlier side questions 
 | :------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `Space`, `Enter`, `Escape` | Dismiss the answer and return to the prompt                                                                                                                                                                                                                               |
 | `Up` / `Down`              | Scroll the answer                                                                                                                                                                                                                                                         |
+| `Left` / `Right`           | {/* min-version: 2.1.187 */}Step between this answer and your earlier `/btw` answers from the session. `Left` moves to older answers and `Right` returns toward the current one. Requires Claude Code v2.1.187 or later                                                   |
 | `c`                        | Copy the answer to your clipboard as raw Markdown. Use this instead of mouse selection, which captures the hard-wrapped terminal rendering rather than the source text                                                                                                    |
 | `f`                        | Fork into a new session. The fork inherits the parent conversation plus this question and answer as real transcript turns, so you can continue with full tool access. The original session is preserved under [`/resume`](/en/commands). Available in local sessions only |
 | `x`                        | Clear the list of earlier `/btw` exchanges shown above the current answer                                                                                                                                                                                                 |

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/permission-modes
-fetched_at: 2026-06-20T03:15:34.737281Z
-sha256: ba369ab4ada09874d3e212c7690a25315ffb0ababb5160b75de2d4617ed91e7b
+fetched_at: 2026-06-25T03:15:21.128912Z
+sha256: 4e6ce0a656cfd0cceab9bd458d3e28fb948bb48cea299551db20e92f8b53b67b
 ---
 
 > ## Documentation Index
@@ -163,7 +163,9 @@ To make plan mode the default for a project, set `defaultMode` in `.claude/setti
 }
 ```
 
-## Eliminate prompts with auto mode
+<h2 id="eliminate-prompts-with-auto-mode">
+  Eliminate permission prompts with auto mode
+</h2>
 
 <Note>
   Auto mode requires Claude Code v2.1.83 or later.
@@ -174,7 +176,7 @@ Auto mode lets Claude execute without routine permission prompts. A separate cla
 Auto mode also nudges Claude to keep working without stopping for clarifying questions, though Claude still asks when your prompt or a skill explicitly relies on it. For stronger autonomous behavior while keeping permission prompts, set the [Proactive output style](/en/output-styles) instead.
 
 <Warning>
-  Auto mode is a research preview. It reduces prompts but does not guarantee safety. Use it for tasks where you trust the general direction, not as a replacement for review on sensitive operations.
+  Auto mode is a research preview. It reduces permission prompts but does not guarantee safety. Use it for tasks where you trust the general direction, not as a replacement for review on sensitive operations.
 </Warning>
 
 Auto mode is available only when your account meets all of these requirements:
@@ -323,7 +325,7 @@ The check is skipped automatically inside a recognized sandbox. To run autonomou
 [Claude Code on the web](/en/claude-code-on-the-web) does not honor `defaultMode: "bypassPermissions"` or `"dontAsk"` from your settings files, so a repository's checked-in settings cannot start a cloud session in bypass-permissions mode. The setting is ignored silently and the session starts in the mode shown in the mode dropdown instead. See [Switch permission modes](#switch-permission-modes) for which modes cloud sessions offer.
 
 <Warning>
-  `bypassPermissions` offers no protection against prompt injection or unintended actions. For background safety checks with far fewer prompts, use [auto mode](#eliminate-prompts-with-auto-mode) instead. Administrators can block this mode by setting `permissions.disableBypassPermissionsMode` to `"disable"` in [managed settings](/en/permissions#managed-settings).
+  `bypassPermissions` offers no protection against prompt injection or unintended actions. For background safety checks with far fewer permission prompts, use [auto mode](#eliminate-prompts-with-auto-mode) instead. Administrators can block this mode by setting `permissions.disableBypassPermissionsMode` to `"disable"` in [managed settings](/en/permissions#managed-settings).
 </Warning>
 
 ## Protected paths

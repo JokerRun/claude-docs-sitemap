@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/glossary
-fetched_at: 2026-06-19T03:18:02.201222Z
-sha256: 86c3623575556999dd25e37351bae58067083d9a72a4f51a691a93b7d970e55f
+fetched_at: 2026-06-25T03:15:21.128912Z
+sha256: 0a59a9f236ce7654eb1d8a8d8b67236f2e7462347e0ad68a68c3b5203788b7aa
 ---
 
 > ## Documentation Index
@@ -159,9 +159,9 @@ Learn more: [Get started with hooks](/en/hooks-guide) · [Hooks reference](/en/h
 
 ### Managed settings
 
-A settings file enforced org-wide by IT or DevOps, placed at an OS-level path outside `~/.claude`. Users cannot override or exclude managed settings. Use this for security policies, compliance requirements, or standardized tooling across a fleet.
+Settings enforced org-wide by IT or DevOps, delivered from Anthropic's servers through the admin console or deployed to devices at an OS-level path outside `~/.claude`. Users cannot override managed settings from lower-precedence scopes. Server-managed delivery applies on [eligible configurations](/en/server-managed-settings#platform-availability); see [Security considerations](/en/server-managed-settings#security-considerations). Use this for security policies, compliance requirements, or standardized tooling across a fleet.
 
-Learn more: [Server-managed settings](/en/server-managed-settings)
+Learn more: [Server-managed settings](/en/server-managed-settings) · [Settings files](/en/settings#settings-files)
 
 ### MCP (Model Context Protocol)
 

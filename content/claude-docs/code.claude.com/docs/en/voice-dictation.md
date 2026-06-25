@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/voice-dictation
-fetched_at: 2026-06-02T03:18:54.775717Z
-sha256: a5f1efe9c1e4d8184012e2a3280cac2695442995d778fbce4200694a7a49ddfb
+fetched_at: 2026-06-25T03:15:21.128912Z
+sha256: b90186956f86110ed8acce0f4bdd2b8c19f92129ff6f4478db385ff20ca18d41
 ---
 
 > ## Documentation Index
@@ -37,7 +37,7 @@ Run `/voice` to enable dictation. The first time you enable it, Claude Code runs
 
 ```
 /voice
-Voice mode enabled (hold). Hold Space to record. Dictation language: en (/config to change).
+Voice mode enabled (hold). Hold space to record. Dictation language: en (/config to change).
 ```
 
 `/voice` accepts an optional mode argument:
@@ -60,7 +60,7 @@ Voice dictation persists across sessions. Set it directly in your [user settings
 }
 ```
 
-While voice dictation is enabled, the input footer shows a `hold Space to speak` hint when the prompt is empty. The hint reflects your current `voice:pushToTalk` binding and updates if you [rebind the dictation key](#rebind-the-dictation-key). The hint text is the same in both modes, and it does not appear if you have a [custom status line](/en/statusline) configured.
+While voice dictation is enabled, the input footer shows a `hold space to speak` hint when the prompt is empty. The hint reflects your current `voice:pushToTalk` binding and updates if you [rebind the dictation key](#rebind-the-dictation-key). The hint text is the same in both modes, and it does not appear if you have a [custom status line](/en/statusline) configured.
 
 Transcription is tuned for coding vocabulary in both modes. Common development terms like `regex`, `OAuth`, `JSON`, and `localhost` are recognized correctly, and your current project name and git branch name are added as recognition hints automatically.
 
@@ -80,7 +80,7 @@ Your speech appears in the prompt as you speak, dimmed until the transcript is f
 
 ```
 > refactor the auth middleware to ▮
-  # hold Space, speak "use the new token validation helper"
+  # hold space, speak "use the new token validation helper"
 > refactor the auth middleware to use the new token validation helper▮
 ```
 
