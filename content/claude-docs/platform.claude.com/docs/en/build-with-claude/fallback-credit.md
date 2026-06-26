@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/fallback-credit
-fetched_at: 2026-06-11T03:14:59.596724Z
-sha256: 1471622ead7c6bee105462fc5189545222d3fd6329428d7d43e0df5a30579aa9
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: 2d617e2a178a7f249d1f04d8f258baebd6a0660c3486c4967a30444e19d44499
 ---
 
 # Fallback credit
@@ -641,13 +641,13 @@ puts JSON.generate({stop_reason: response.stop_reason, model: response.model})
 
 ## Where it works
 
-Fallback credit is in beta on the Claude API, Claude Platform on AWS, Amazon Bedrock, Vertex AI, and Microsoft Foundry. Credit tokens returned in [Message Batches](/docs/en/build-with-claude/batch-processing) results cannot be redeemed. Redemption applies only to direct Messages API requests.
+Fallback credit is in beta on the Claude API, Claude Platform on AWS, Amazon Bedrock, Google Cloud, and Microsoft Foundry. Credit tokens returned in [Message Batches](/docs/en/build-with-claude/batch-processing) results cannot be redeemed. Redemption applies only to direct Messages API requests.
 
 The retry model must be one of the refused model's permitted fallback targets. At launch, Claude Fable 5's permitted target is Claude Opus 4.8 (`claude-opus-4-8`).
 
 <section title="Looking up permitted fallback targets programmatically">
 
-On the Claude API and Claude Platform on AWS, the target list is published as `allowed_fallback_models` on each model's entry in the [Models API](/docs/en/api/models/list) when the `server-side-fallback-2026-06-01` beta header is set. The list is not yet visible under the `fallback-credit-*` header alone. It is not exposed on Amazon Bedrock, Vertex AI, or Microsoft Foundry.
+On the Claude API and Claude Platform on AWS, the target list is published as `allowed_fallback_models` on each model's entry in the [Models API](/docs/en/api/models/list) when the `server-side-fallback-2026-06-01` beta header is set. The list is not yet visible under the `fallback-credit-*` header alone. It is not exposed on Amazon Bedrock, Google Cloud, or Microsoft Foundry.
 
 </section>
 
@@ -714,7 +714,7 @@ On models that include the 1M token context window by default, such as Claude Fa
 
 <section title="When fallback_has_prefill_claim is absent">
 
-The field is `null` only when the token is also `null`, so a value you observe while holding a token is never `null`. It can still surface as absent (`None` in the typed SDKs) on Amazon Bedrock, Vertex AI, and Microsoft Foundry while their support for the field rolls out. In that case, treat the retry shape as unknown rather than as `false`. Try the appended-assistant-message shape first, and rely on the rejection handling in [When a retry is rejected](#when-a-retry-is-rejected), which falls back to the unchanged body.
+The field is `null` only when the token is also `null`, so a value you observe while holding a token is never `null`. It can still surface as absent (`None` in the typed SDKs) on Amazon Bedrock, Google Cloud, and Microsoft Foundry while their support for the field rolls out. In that case, treat the retry shape as unknown rather than as `false`. Try the appended-assistant-message shape first, and rely on the rejection handling in [When a retry is rejected](#when-a-retry-is-rejected), which falls back to the unchanged body.
 
 </section>
 
@@ -733,7 +733,7 @@ If the echoed content includes a `fallback` block from an earlier [server-side f
 
 <section title="Token scope and lifetime">
 
-The token redeems only from the organization and workspace that received the refusal, including on Microsoft Foundry. On Amazon Bedrock and Vertex AI, which do not have workspaces, the token is bound to the platform's caller identity instead.
+The token redeems only from the organization and workspace that received the refusal, including on Microsoft Foundry. On Amazon Bedrock and Google Cloud, which do not have workspaces, the token is bound to the platform's caller identity instead.
 
 The token expires five minutes after the refusal. After that, send the retry without it. The token is also stateless: the server stores nothing about it, and there is no endpoint to inspect or revoke it.
 

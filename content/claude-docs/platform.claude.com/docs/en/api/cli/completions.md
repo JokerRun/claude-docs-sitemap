@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/completions
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: a6ee2925c235e6754e109e7078bbd8503eef9a4add4732034f4286aea74cf4b5
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: 3ad10a41b9a956ef46c35759026d79bd7af92d4639a9da79b1c1ea3bd15f881b
 ---
 
 # Completions
@@ -27,7 +27,7 @@ Future models and features will not be compatible with Text Completions. See our
 
   Note that our models may stop _before_ reaching this maximum. This parameter only specifies the absolute maximum number of tokens to generate.
 
-- `--model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+- `--model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
   Body param: The model that will complete your prompt.
 
@@ -107,7 +107,7 @@ Future models and features will not be compatible with Text Completions. See our
 
     The resulting completion up to and excluding the stop sequences.
 
-  - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+  - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
     The model that will complete your prompt.
 
@@ -172,26 +172,6 @@ Future models and features will not be compatible with Text Completions. See our
     - `"claude-opus-4-1-20250805"`
 
       Exceptional model for specialized complex tasks
-
-    - `"claude-opus-4-0"`
-
-      Powerful model for complex tasks
-
-    - `"claude-opus-4-20250514"`
-
-      Powerful model for complex tasks
-
-    - `"claude-sonnet-4-0"`
-
-      High-performance model with extended thinking
-
-    - `"claude-sonnet-4-20250514"`
-
-      High-performance model with extended thinking
-
-    - `"claude-3-haiku-20240307"`
-
-      Fast and cost-effective model
 
   - `stop_reason: string`
 
@@ -250,7 +230,7 @@ Assistant:'
 
     The resulting completion up to and excluding the stop sequences.
 
-  - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+  - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
     The model that will complete your prompt.
 
@@ -315,26 +295,6 @@ Assistant:'
     - `"claude-opus-4-1-20250805"`
 
       Exceptional model for specialized complex tasks
-
-    - `"claude-opus-4-0"`
-
-      Powerful model for complex tasks
-
-    - `"claude-opus-4-20250514"`
-
-      Powerful model for complex tasks
-
-    - `"claude-sonnet-4-0"`
-
-      High-performance model with extended thinking
-
-    - `"claude-sonnet-4-20250514"`
-
-      High-performance model with extended thinking
-
-    - `"claude-3-haiku-20240307"`
-
-      Fast and cost-effective model
 
   - `stop_reason: string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/php/beta
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: fbedb175455e7c8f68d768e7ea542b97a804ef7447844cee03872077ff5ab023
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: a017d9728d8c2776f505c4e9494ac524db505c8d212a6909c7c51dcc476587f4
 ---
 
 # Beta
@@ -2380,6 +2380,32 @@ var_dump($betaMessageTokensCount);
 
     When true, guarantees schema validation on tool names and inputs
 
+### Beta Code Execution Tool 20260521
+
+- `BetaCodeExecutionTool20260521`
+
+  - `"code_execution" name`
+
+    Name of the tool.
+
+    This is how the tool will be called by the model and in `tool_use` blocks.
+
+  - `"code_execution_20260521" type`
+
+  - `?list<AllowedCaller> allowedCallers`
+
+  - `?BetaCacheControlEphemeral cacheControl`
+
+    Create a cache control breakpoint at this content block.
+
+  - `?bool deferLoading`
+
+    If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+  - `?bool strict`
+
+    When true, guarantees schema validation on tool names and inputs
+
 ### Beta Code Execution Tool Result Block
 
 - `BetaCodeExecutionToolResultBlock`
@@ -2820,6 +2846,10 @@ var_dump($betaMessageTokensCount);
 
       The fallback model producing the content that follows this block. Its `model` is always the canonical id.
 
+    - `BetaFallbackRefusalTrigger trigger`
+
+      What caused the `from` model to hand over at this hop.
+
     - `"fallback" type`
 
 ### Beta Content Block Param
@@ -3120,6 +3150,10 @@ var_dump($betaMessageTokensCount);
 
     - `"fallback" type`
 
+    - `?mixed trigger`
+
+      The response block's `trigger`, echoed verbatim. Accepted and ignored by the server; any object or `null` is allowed.
+
 ### Beta Content Block Source
 
 - `BetaContentBlockSource`
@@ -3256,6 +3290,10 @@ var_dump($betaMessageTokensCount);
 
     The fallback model producing the content that follows this block. Its `model` is always the canonical id.
 
+  - `BetaFallbackRefusalTrigger trigger`
+
+    What caused the `from` model to hand over at this hop.
+
   - `"fallback" type`
 
 ### Beta Fallback Block Param
@@ -3271,6 +3309,10 @@ var_dump($betaMessageTokensCount);
     Identifies one hop of a fallback transition.
 
   - `"fallback" type`
+
+  - `?mixed trigger`
+
+    The response block's `trigger`, echoed verbatim. Accepted and ignored by the server; any object or `null` is allowed.
 
 ### Beta Fallback Info
 
@@ -3343,6 +3385,16 @@ var_dump($betaMessageTokensCount);
   - `?Speed speed`
 
   - `?Thinking thinking`
+
+### Beta Fallback Refusal Trigger
+
+- `BetaFallbackRefusalTrigger`
+
+  - `?Category category`
+
+    The policy category that triggered a refusal.
+
+  - `"refusal" type`
 
 ### Beta File Document Source
 
@@ -4309,9 +4361,7 @@ var_dump($betaMessageTokensCount);
 
   - `?Category category`
 
-    The policy category that triggered the refusal.
-
-    `null` when the refusal doesn't map to a named category.
+    The policy category that triggered a refusal.
 
   - `?string explanation`
 
@@ -5783,6 +5833,30 @@ var_dump($betaMessageTokensCount);
       This is how the tool will be called by the model and in `tool_use` blocks.
 
     - `"code_execution_20260120" type`
+
+    - `?list<AllowedCaller> allowedCallers`
+
+    - `?BetaCacheControlEphemeral cacheControl`
+
+      Create a cache control breakpoint at this content block.
+
+    - `?bool deferLoading`
+
+      If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+    - `?bool strict`
+
+      When true, guarantees schema validation on tool names and inputs
+
+  - `BetaCodeExecutionTool20260521`
+
+    - `"code_execution" name`
+
+      Name of the tool.
+
+      This is how the tool will be called by the model and in `tool_use` blocks.
+
+    - `"code_execution_20260521" type`
 
     - `?list<AllowedCaller> allowedCallers`
 
@@ -7900,7 +7974,7 @@ Create Agent
 
 - `mcpServers?:optional list<BetaManagedAgentsURLMCPServerParams>`
 
-  MCP servers this agent connects to. Maximum 20. Names must be unique within the array.
+  MCP servers this agent connects to. Maximum 20. Names must be unique within the array. Every server must be referenced by an `mcp_toolset` in `tools`; unreferenced servers are rejected. See the [MCP connector guide](https://platform.claude.com/docs/en/managed-agents/mcp-connector).
 
 - `metadata?:optional array<string,string>`
 
@@ -8448,7 +8522,7 @@ Update Agent
 
 - `mcpServers?:optional list<BetaManagedAgentsURLMCPServerParams>`
 
-  MCP servers. Full replacement. Omit to preserve; send empty array or null to clear. Names must be unique. Maximum 20.
+  MCP servers. Full replacement. Omit to preserve; send empty array or `null` to clear. Names must be unique. Maximum 20. Every server must be referenced by an `mcp_toolset` in the agent's resulting `tools`; unreferenced servers are rejected. See the [MCP connector guide](https://platform.claude.com/docs/en/managed-agents/mcp-connector).
 
 - `metadata?:optional array<string,string>`
 
@@ -29383,6 +29457,18 @@ var_dump($betaUserProfileEnrollmentURL);
 
     - `string workspaceID`
 
+  - `BetaWebhookSessionUpdatedEventData`
+
+    - `string id`
+
+      ID of the session that triggered the event.
+
+    - `string organizationID`
+
+    - `"session.updated" type`
+
+    - `string workspaceID`
+
 ### Beta Webhook Session Archived Event Data
 
 - `BetaWebhookSessionArchivedEventData`
@@ -29602,6 +29688,20 @@ var_dump($betaUserProfileEnrollmentURL);
     ID of the session thread this event refers to.
 
   - `"session.thread_terminated" type`
+
+  - `string workspaceID`
+
+### Beta Webhook Session Updated Event Data
+
+- `BetaWebhookSessionUpdatedEventData`
+
+  - `string id`
+
+    ID of the session that triggered the event.
+
+  - `string organizationID`
+
+  - `"session.updated" type`
 
   - `string workspaceID`
 

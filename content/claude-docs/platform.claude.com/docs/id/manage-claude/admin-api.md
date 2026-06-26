@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/admin-api
-fetched_at: 2026-06-13T03:15:40.418428Z
-sha256: 8608b9ff5955b85b6215da534887136ed6f9851139c0b8f75845b7e64a2f00f3
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: 562c230bc43a11d15ab0b694a7b4416d5610a8be9f8fcd38e3eecaa9f7f6507f
 ---
 
 # Admin API
@@ -18,16 +18,16 @@ sha256: 8608b9ff5955b85b6215da534887136ed6f9851139c0b8f75845b7e64a2f00f3
 <Check>
   **Admin API memerlukan akses khusus**
 
-  Admin API menerima dua kredensial: kunci Admin API (dimulai dengan `sk-ant-admin...`) yang dikirim dalam header `x-api-key` atau token OAuth bearer dengan scope `org:admin` yang dikirim dalam header `authorization: Bearer`. Hanya anggota organisasi dengan peran admin yang dapat menyediakan kunci Admin API melalui Claude Console, dan hanya anggota dengan peran admin, owner, atau primary owner yang dapat memperoleh token `org:admin`.
+  Admin API menerima dua kredensial: kunci Admin API (dimulai dengan `sk-ant-admin...`) yang dikirim dalam header `x-api-key` atau token bearer OAuth dengan scope `org:admin` yang dikirim dalam header `authorization: Bearer`. Hanya anggota organisasi dengan peran admin yang dapat menyediakan kunci Admin API, dan hanya anggota dengan peran admin, owner, atau primary owner yang dapat memperoleh token `org:admin`. Lihat [Membuat kunci Admin API](/docs/id/manage-claude/admin-api-keys).
 </Check>
 
 <Note>
-**Claude Platform di AWS:** Sebagian besar Admin API tidak tersedia di Claude Platform di AWS. Endpoint workspace (create, get, list, update, dan archive pada `/v1/organizations/workspaces`) tersedia. Endpoint lainnya termasuk anggota organisasi, anggota workspace, undangan, kunci API, laporan penggunaan, laporan biaya, dan laporan batas laju tidak tersedia. Lihat [Claude Platform di AWS](/docs/id/build-with-claude/claude-platform-on-aws) untuk detailnya.
+**Claude Platform di AWS:** Sebagian besar Admin API tidak tersedia di Claude Platform di AWS. Endpoint workspace (create, get, list, update, dan archive pada `/v1/organizations/workspaces`) tersedia. Endpoint lain termasuk anggota organisasi, anggota workspace, undangan, kunci API, laporan penggunaan, laporan biaya, dan laporan batas laju tidak tersedia. Lihat [Claude Platform di AWS](/docs/id/build-with-claude/claude-platform-on-aws) untuk detailnya.
 </Note>
 
 ## Autentikasi \{#authentication}
 
-Lakukan autentikasi dengan salah satu kredensial. Contoh berikut memanggil [endpoint info organisasi](#accessing-organization-info) dengan kedua cara:
+Autentikasi dengan salah satu kredensial. Untuk membuat kunci Admin API untuk jenis organisasi Anda, lihat [Membuat kunci Admin API](/docs/id/manage-claude/admin-api-keys). Contoh berikut memanggil [endpoint info organisasi](#accessing-organization-info) dengan kedua cara:
 
 **OAuth bearer:**
 
@@ -57,7 +57,7 @@ Saat Anda menggunakan Admin API:
    - Undangan anggota organisasi
    - Workspace dan anggotanya
    - Kunci API
-   - Akun layanan, penerbit federasi, dan aturan federasi (endpoint ini memerlukan token OAuth `org:admin`; kunci Admin API tidak diterima)
+   - Service account, federation issuer, dan federation rule (endpoint ini memerlukan token OAuth `org:admin`; kunci Admin API tidak diterima)
 
 Ini berguna untuk:
 - Mengotomatiskan onboarding/offboarding pengguna
@@ -86,19 +86,19 @@ Anda dapat membuat daftar [anggota organisasi](/docs/id/api/admin-api/users/get-
 
 <CodeGroup>
 ```bash cURL
-# Daftar anggota organisasi
+# Menampilkan daftar anggota organisasi
 curl "https://api.anthropic.com/v1/organizations/users?limit=10" \
   --header "anthropic-version: 2023-06-01" \
   --header "x-api-key: $ANTHROPIC_ADMIN_KEY"
 
-# Perbarui peran anggota
+# Memperbarui peran anggota
 curl "https://api.anthropic.com/v1/organizations/users/{user_id}" \
   --header "anthropic-version: 2023-06-01" \
   --header "content-type: application/json" \
   --header "x-api-key: $ANTHROPIC_ADMIN_KEY" \
   --data '{"role": "developer"}'
 
-# Hapus anggota
+# Menghapus anggota
 curl --request DELETE "https://api.anthropic.com/v1/organizations/users/{user_id}" \
   --header "anthropic-version: 2023-06-01" \
   --header "x-api-key: $ANTHROPIC_ADMIN_KEY"
@@ -204,17 +204,17 @@ curl --request POST "https://api.anthropic.com/v1/organizations/api_keys/{api_ke
 
 </CodeGroup>
 
-### Akun layanan \{#service-accounts}
+### Service account \{#service-accounts}
 
-Buat dan kelola akun layanan (`svac_...`), identitas non-manusia yang diwakili oleh token [Workload Identity Federation](/docs/id/manage-claude/workload-identity-federation). Kunci Admin API tidak diterima pada endpoint akun layanan, penerbit federasi, atau aturan federasi; gunakan token OAuth `org:admin`. Lihat [Mengelola WIF dengan Admin API](/docs/id/manage-claude/wif-admin-api#service-accounts).
+Buat dan kelola service account (`svac_...`), identitas non-manusia yang diwakili oleh token [Workload Identity Federation](/docs/id/manage-claude/workload-identity-federation). Kunci Admin API tidak diterima pada endpoint service-account, federation-issuer, atau federation-rule; gunakan token OAuth `org:admin`. Lihat [Mengelola WIF dengan Admin API](/docs/id/manage-claude/wif-admin-api#service-accounts).
 
-### Penerbit federasi \{#federation-issuers}
+### Federation issuer \{#federation-issuers}
 
 Daftarkan penyedia identitas OIDC (`fdis_...`) yang tokennya dapat menyatakan identitas workload untuk organisasi Anda. Lihat [Mengelola WIF dengan Admin API](/docs/id/manage-claude/wif-admin-api#federation-issuers).
 
-### Aturan federasi \{#federation-rules}
+### Federation rule \{#federation-rules}
 
-Kelola aturan (`fdrl_...`) yang memetakan token penerbit ke akun layanan dan scope. Lihat [Mengelola WIF dengan Admin API](/docs/id/manage-claude/wif-admin-api#federation-rules).
+Kelola aturan (`fdrl_...`) yang memetakan token issuer ke service account dan scope. Lihat [Mengelola WIF dengan Admin API](/docs/id/manage-claude/wif-admin-api#federation-rules).
 
 ## Mengakses info organisasi \{#accessing-organization-info}
 
@@ -238,7 +238,7 @@ curl "https://api.anthropic.com/v1/organizations/me" \
 
 Endpoint ini berguna untuk menentukan secara terprogram organisasi mana yang terkait dengan kunci Admin API.
 
-Untuk detail parameter lengkap dan skema respons, lihat [referensi Organization Info API](/docs/id/api/admin-api/organization/get-me).
+Untuk detail parameter lengkap dan skema respons, lihat [referensi API Info Organisasi](/docs/id/api/admin-api/organization/get-me).
 
 ## Laporan penggunaan dan biaya \{#usage-and-cost-reports}
 
@@ -270,11 +270,11 @@ Untuk menggunakan Admin API secara efektif:
 
 <section title="Izin apa yang diperlukan untuk menggunakan Admin API?">
 
-Admin API menerima kunci Admin API (dimulai dengan `sk-ant-admin`) atau token OAuth bearer dengan scope `org:admin`. Hanya anggota organisasi dengan peran admin yang dapat menyediakan kunci Admin API, dan hanya anggota dengan peran admin, owner, atau primary owner yang dapat memperoleh token `org:admin`. Lihat [Autentikasi](#authentication).
+Admin API menerima kunci Admin API (dimulai dengan `sk-ant-admin`) atau token bearer OAuth dengan scope `org:admin`. Hanya anggota organisasi dengan peran admin yang dapat menyediakan kunci Admin API, dan hanya anggota dengan peran admin, owner, atau primary owner yang dapat memperoleh token `org:admin`. Lihat [Autentikasi](#authentication).
 
 </section>
 
-<section title="Bisakah saya membuat kunci API baru melalui Admin API?">
+<section title="Dapatkah saya membuat kunci API baru melalui Admin API?">
 
 Tidak, kunci API baru hanya dapat dibuat melalui Claude Console untuk alasan keamanan. Admin API hanya dapat mengelola kunci API yang sudah ada.
 
@@ -282,11 +282,11 @@ Tidak, kunci API baru hanya dapat dibuat melalui Claude Console untuk alasan kea
 
 <section title="Apa yang terjadi pada kunci API saat menghapus pengguna?">
 
-Kunci API tetap dalam keadaan saat ini karena cakupannya adalah Organisasi, bukan pengguna individu.
+Kunci API tetap dalam keadaan saat ini karena kunci tersebut terikat pada Organisasi, bukan pada pengguna individu.
 
 </section>
 
-<section title="Bisakah admin organisasi dihapus melalui API?">
+<section title="Dapatkah admin organisasi dihapus melalui API?">
 
 Tidak, anggota organisasi dengan peran admin tidak dapat dihapus melalui API untuk alasan keamanan.
 

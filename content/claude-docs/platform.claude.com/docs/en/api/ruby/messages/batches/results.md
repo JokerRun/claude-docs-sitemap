@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/messages/batches/results
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 724a2e6ba1ca77fbee1c3db8aa5da29f3e6dea98685d82e6c176437ad5d3ff1b
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: eb131b47f64220cb56613ac70f9cc498c44413e3e6b9c094faf60dfaa3a37dee
 ---
 
 ## Retrieve Message Batch results
@@ -730,7 +730,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-          - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 17 more`
+          - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 12 more`
 
             The model that will complete your prompt.
 
@@ -796,26 +796,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
               Exceptional model for specialized complex tasks
 
-            - `:"claude-opus-4-0"`
-
-              Powerful model for complex tasks
-
-            - `:"claude-opus-4-20250514"`
-
-              Powerful model for complex tasks
-
-            - `:"claude-sonnet-4-0"`
-
-              High-performance model with extended thinking
-
-            - `:"claude-sonnet-4-20250514"`
-
-              High-performance model with extended thinking
-
-            - `:"claude-3-haiku-20240307"`
-
-              Fast and cost-effective model
-
           - `String = String`
 
         - `role: :assistant`
@@ -830,15 +810,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           Structured information about a refusal.
 
-          - `category: :cyber | :bio | :reasoning_extraction`
+          - `category: :cyber | :bio | :frontier_llm | :reasoning_extraction`
 
-            The policy category that triggered the refusal.
-
-            `null` when the refusal doesn't map to a named category.
+            The policy category that triggered a refusal.
 
             - `:cyber`
 
             - `:bio`
+
+            - `:frontier_llm`
 
             - `:reasoning_extraction`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/context-windows
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: e14f9034adc15d8f2a716ba45db52ab746958da94414bab86811ef8ad9aef283
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: 0be557cba73c5bb0a34228e11cf5eff6a331226edc05effea62a8de13c8f2e77
 ---
 
 # Jendela konteks
@@ -19,7 +19,7 @@ Untuk percakapan yang berjalan lama dan alur kerja agentik, [server-side compact
 
 ## Memahami jendela konteks \{#understanding-the-context-window}
 
-"Context window" (jendela konteks) mengacu pada semua teks yang dapat direferensikan oleh model bahasa saat menghasilkan respons, termasuk respons itu sendiri. Ini berbeda dari korpus data besar tempat model bahasa dilatih, dan sebaliknya mewakili "memori kerja" untuk model. Jendela konteks yang lebih besar memungkinkan model menangani prompt yang lebih kompleks dan panjang, tetapi lebih banyak konteks tidak secara otomatis lebih baik. Seiring jumlah token bertambah, akurasi dan kemampuan mengingat menurun, fenomena yang dikenal sebagai *context rot*. Hal ini membuat kurasi apa yang ada dalam konteks sama pentingnya dengan seberapa banyak ruang yang tersedia.
+"Context window" (jendela konteks) mengacu pada semua teks yang dapat direferensikan oleh model bahasa saat menghasilkan respons, termasuk respons itu sendiri. Ini berbeda dari corpus data besar tempat model bahasa dilatih, dan sebaliknya mewakili "memori kerja" untuk model. Jendela konteks yang lebih besar memungkinkan model untuk menangani prompt yang lebih kompleks dan panjang, tetapi lebih banyak konteks tidak secara otomatis lebih baik. Seiring jumlah token bertambah, akurasi dan kemampuan mengingat menurun, sebuah fenomena yang dikenal sebagai *context rot*. Hal ini membuat kurasi apa yang ada dalam konteks sama pentingnya dengan seberapa banyak ruang yang tersedia.
 
 Claude mencapai hasil terbaik di kelasnya pada benchmark pengambilan konteks panjang seperti [MRCR](https://arxiv.org/abs/2501.03276) dan [GraphWalks](https://arxiv.org/abs/2412.04360), tetapi peningkatan ini bergantung pada apa yang ada dalam konteks, bukan hanya seberapa banyak yang muat.
 
@@ -31,7 +31,7 @@ Diagram di bawah ini mengilustrasikan perilaku jendela konteks standar untuk per
 
 ![Diagram jendela konteks](/docs/images/context-window.svg)
 
-_<sup>1</sup>Untuk antarmuka chat, seperti [claude.ai](https://claude.ai/), jendela konteks juga dapat diatur dengan sistem bergulir "first in, first out" (masuk pertama, keluar pertama)._
+_<sup>1</sup>Untuk antarmuka chat, seperti [claude.ai](https://claude.ai/), jendela konteks juga dapat diatur dengan sistem bergulir "first in, first out"._
 
 * **Akumulasi token progresif:** Seiring percakapan berlanjut melalui giliran, setiap pesan pengguna dan respons asisten terakumulasi dalam jendela konteks. Giliran sebelumnya dipertahankan sepenuhnya.
 * **Pola pertumbuhan linear:** Penggunaan konteks tumbuh secara linear dengan setiap giliran, dengan giliran sebelumnya dipertahankan sepenuhnya.
@@ -44,7 +44,7 @@ _<sup>1</sup>Untuk antarmuka chat, seperti [claude.ai](https://claude.ai/), jend
 
 Saat menggunakan [pemikiran diperpanjang](/docs/id/build-with-claude/extended-thinking), semua token input dan output, termasuk token yang digunakan untuk berpikir, dihitung terhadap batas jendela konteks, dengan beberapa nuansa dalam situasi multi-giliran.
 
-Token anggaran pemikiran adalah subset dari parameter `max_tokens` Anda, ditagih sebagai token output, dan dihitung terhadap batas laju. Dengan [adaptive thinking](/docs/id/build-with-claude/adaptive-thinking), Claude secara dinamis menentukan alokasi pemikirannya, sehingga penggunaan token pemikiran aktual dapat bervariasi per permintaan.
+Token anggaran pemikiran adalah bagian dari parameter `max_tokens` Anda, ditagih sebagai token output, dan dihitung terhadap batas laju. Dengan [adaptive thinking](/docs/id/build-with-claude/adaptive-thinking), Claude secara dinamis menentukan alokasi pemikirannya, sehingga penggunaan token pemikiran aktual dapat bervariasi per permintaan.
 
 Namun, blok pemikiran sebelumnya secara otomatis dihapus dari perhitungan jendela konteks oleh API Claude dan bukan bagian dari riwayat percakapan yang "dilihat" model untuk giliran berikutnya, sehingga mempertahankan kapasitas token untuk konten percakapan yang sebenarnya.
 
@@ -52,7 +52,7 @@ Diagram di bawah ini menunjukkan manajemen token khusus saat pemikiran diperpanj
 
 ![Diagram jendela konteks dengan pemikiran diperpanjang](/docs/images/context-window-thinking.svg)
 
-* **Penghapusan pemikiran diperpanjang:** Blok pemikiran diperpanjang (ditampilkan dalam warna abu-abu gelap) dihasilkan selama fase output setiap giliran, **tetapi tidak dibawa ke depan sebagai token input untuk giliran berikutnya**. Anda tidak perlu menghapus blok pemikiran sendiri. API Claude secara otomatis melakukan ini untuk Anda jika Anda mengirimkannya kembali.
+* **Penghapusan pemikiran diperpanjang:** Blok pemikiran diperpanjang (ditampilkan dalam warna abu-abu gelap) dihasilkan selama fase output setiap giliran, **tetapi tidak dibawa sebagai token input untuk giliran berikutnya**. Anda tidak perlu menghapus blok pemikiran sendiri. API Claude secara otomatis melakukan ini untuk Anda jika Anda mengirimkannya kembali.
 * **Detail implementasi teknis:**
   - API secara otomatis mengecualikan blok pemikiran dari giliran sebelumnya saat Anda mengirimkannya kembali sebagai bagian dari riwayat percakapan.
   - Token pemikiran diperpanjang ditagih sebagai token output hanya sekali, selama pembuatannya.
@@ -95,22 +95,22 @@ Diagram di bawah ini mengilustrasikan manajemen token jendela konteks saat mengg
   - Sistem menggunakan tanda tangan kriptografis untuk memverifikasi keaslian blok pemikiran. Kegagalan mempertahankan blok pemikiran selama penggunaan alat dapat merusak kontinuitas penalaran Claude. Oleh karena itu, jika Anda memodifikasi blok pemikiran, API akan mengembalikan error.
 
 <Note>
-Model Claude 4 mendukung [interleaved thinking](/docs/id/build-with-claude/extended-thinking#interleaved-thinking), yang memungkinkan Claude berpikir di antara panggilan alat dan membuat penalaran yang lebih canggih setelah menerima hasil alat.
+Model Claude 4 mendukung [interleaved thinking](/docs/id/build-with-claude/extended-thinking#interleaved-thinking), yang memungkinkan Claude untuk berpikir di antara panggilan alat dan melakukan penalaran yang lebih canggih setelah menerima hasil alat.
 
 Untuk informasi lebih lanjut tentang menggunakan alat dengan pemikiran diperpanjang, lihat [panduan pemikiran diperpanjang](/docs/id/build-with-claude/extended-thinking#extended-thinking-with-tool-use).
 </Note>
 
-Pemilihan alat Claude dirancang untuk tetap andal dengan dokumen input yang besar — memilih alat yang tepat (atau dengan benar menahan diri) ketika percakapan mencakup 100K+ token konteks non-alat. Untuk mengurangi konteks yang dikonsumsi oleh alat itu sendiri, lihat [Mengelola konteks alat](/docs/id/agents-and-tools/tool-use/manage-tool-context), atau tunda definisi alat dengan [tool search tool](/docs/id/agents-and-tools/tool-use/tool-search-tool).
+Pemilihan alat Claude dirancang untuk tetap andal dengan dokumen input yang besar, memilih alat yang tepat (atau dengan benar menahan diri) ketika percakapan mencakup 100K+ token konteks non-alat. Untuk mengurangi konteks yang dikonsumsi oleh alat itu sendiri, lihat [Mengelola konteks alat](/docs/id/agents-and-tools/tool-use/manage-tool-context), atau tunda definisi alat dengan [tool search tool](/docs/id/agents-and-tools/tool-use/tool-search-tool).
 
-Claude Opus 4.8, [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.7, Claude Opus 4.6, dan Claude Sonnet 4.6 memiliki jendela konteks 1 juta token di API Claude, Amazon Bedrock, dan Vertex AI. Di Microsoft Foundry, Claude Opus 4.8 memiliki jendela konteks 200k token. Model Claude lainnya, termasuk Claude Sonnet 4.5 dan Sonnet 4 (tidak digunakan lagi), memiliki jendela konteks 200k token.
+Claude Opus 4.8, [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.7, Claude Opus 4.6, dan Claude Sonnet 4.6 memiliki jendela konteks 1 juta token pada API Claude, Amazon Bedrock, dan Vertex AI. Pada Microsoft Foundry, Claude Opus 4.8 memiliki jendela konteks 200k token. Model Claude lainnya, termasuk Claude Sonnet 4.5, memiliki jendela konteks 200k token.
 
-Claude Fable 5 dan Claude Mythos 5 (`claude-fable-5` dan `claude-mythos-5`) memiliki jendela konteks 1 juta token di API Claude. Maksimum 1 juta juga merupakan default, dan satu permintaan dapat menghasilkan hingga 128k token output (`max_tokens`).
+Claude Fable 5 dan Claude Mythos 5 (`claude-fable-5` dan `claude-mythos-5`) memiliki jendela konteks 1 juta token pada API Claude. Maksimum 1 juta juga merupakan default, dan satu permintaan dapat menghasilkan hingga 128k token output (`max_tokens`).
 
-Satu permintaan dapat menyertakan hingga 600 gambar atau halaman PDF (100 untuk model dengan jendela konteks 200k token). Saat mengirim banyak gambar atau dokumen besar, Anda mungkin mendekati [batas ukuran permintaan](/docs/id/api/overview#request-size-limits) sebelum batas token.
+Satu permintaan dapat menyertakan hingga 600 gambar atau halaman PDF (100 untuk model dengan jendela konteks 200k token). Saat mengirim banyak gambar atau dokumen besar, Anda mungkin mendekati [batas ukuran permintaan](/docs/id/api/overview#request-size-limits) sebelum mencapai batas token.
 
-## Kesadaran konteks di Claude Sonnet 4.6, Sonnet 4.5, dan Haiku 4.5 \{#context-awareness-in-claude-sonnet-4-6-sonnet-4-5-and-haiku-4-5}
+## Kesadaran konteks pada Claude Sonnet 4.6, Sonnet 4.5, dan Haiku 4.5 \{#context-awareness-in-claude-sonnet-4-6-sonnet-4-5-and-haiku-4-5}
 
-Claude Sonnet 4.6, Claude Sonnet 4.5, dan Claude Haiku 4.5 memiliki fitur **context awareness** (kesadaran konteks). Kemampuan ini memungkinkan model-model ini melacak sisa jendela konteks mereka (yaitu, "anggaran token") sepanjang percakapan. Ini memungkinkan Claude menjalankan tugas dan mengelola konteks dengan lebih efektif dengan memahami berapa banyak ruang yang tersedia untuk bekerja. Claude dilatih untuk menggunakan konteks ini secara presisi, bertahan dalam tugas hingga akhir alih-alih menebak berapa banyak token yang tersisa. Bagi sebuah model, tidak memiliki kesadaran konteks seperti berkompetisi dalam acara memasak tanpa jam. Model yang sadar konteks mengubah hal ini dengan secara eksplisit menerima informasi tentang sisa konteks, sehingga mereka dapat memanfaatkan token yang tersedia secara maksimal.
+Claude Sonnet 4.6, Claude Sonnet 4.5, dan Claude Haiku 4.5 memiliki fitur **kesadaran konteks**. Kemampuan ini memungkinkan model-model tersebut melacak sisa jendela konteks mereka (yaitu, "anggaran token") sepanjang percakapan. Hal ini memungkinkan Claude untuk menjalankan tugas dan mengelola konteks secara lebih efektif dengan memahami seberapa banyak ruang yang tersedia untuk bekerja. Claude dilatih untuk menggunakan konteks ini secara presisi, bertahan dalam tugas hingga akhir alih-alih menebak berapa banyak token yang tersisa. Bagi sebuah model, tidak memiliki kesadaran konteks seperti berkompetisi dalam acara memasak tanpa jam. Model yang sadar konteks mengubah hal ini dengan secara eksplisit menerima informasi tentang sisa konteks, sehingga mereka dapat memanfaatkan token yang tersedia secara maksimal.
 
 **Cara kerjanya:**
 
@@ -134,26 +134,26 @@ Kesadaran ini membantu Claude menentukan berapa banyak kapasitas yang tersisa un
 
 Kesadaran konteks sangat berharga untuk:
 - Sesi agen yang berjalan lama yang memerlukan fokus berkelanjutan
-- Alur kerja multi-jendela-konteks di mana transisi status penting
+- Alur kerja multi-jendela-konteks di mana transisi state penting
 - Tugas kompleks yang memerlukan manajemen token yang cermat
 
 <Tip>
-Untuk agen yang mencakup beberapa sesi, rancang artefak status Anda sehingga pemulihan konteks cepat saat sesi baru dimulai. [Pola multi-sesi memory tool](/docs/id/agents-and-tools/tool-use/memory-tool#multi-session-software-development-pattern) menjelaskan pendekatan konkret. Lihat juga [Effective harnesses for long-running agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents).
+Untuk agen yang mencakup beberapa sesi, rancang artefak state Anda sehingga pemulihan konteks cepat saat sesi baru dimulai. [Pola multi-sesi memory tool](/docs/id/agents-and-tools/tool-use/memory-tool#multi-session-software-development-pattern) menjelaskan pendekatan konkret. Lihat juga [Effective harnesses for long-running agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents).
 </Tip>
 
-Untuk panduan prompting tentang memanfaatkan kesadaran konteks, lihat [panduan praktik terbaik prompting](/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices#context-awareness-and-multi-window-workflows).
+Untuk panduan prompting dalam memanfaatkan kesadaran konteks, lihat [panduan praktik terbaik prompting](/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices#context-awareness-and-multi-window-workflows).
 
 ## Mengelola konteks dengan compaction \{#managing-context-with-compaction}
 
 Jika percakapan Anda secara rutin mendekati batas jendela konteks, [server-side compaction](/docs/id/build-with-claude/compaction) adalah pendekatan yang direkomendasikan. Compaction menyediakan peringkasan sisi server yang secara otomatis memadatkan bagian awal percakapan, memungkinkan percakapan yang berjalan lama melampaui batas konteks dengan upaya integrasi minimal. Fitur ini tersedia dalam versi beta untuk Claude Fable 5, Claude Mythos 5, Claude Opus 4.8, Claude Mythos Preview, Claude Opus 4.7, Claude Opus 4.6, dan Claude Sonnet 4.6.
 
 Untuk kebutuhan yang lebih khusus, [context editing](/docs/id/build-with-claude/context-editing) menawarkan strategi tambahan:
-- **Pembersihan hasil alat** - Bersihkan hasil alat lama dalam alur kerja agentik
-- **Pembersihan blok pemikiran** - Kelola blok pemikiran dengan pemikiran diperpanjang
+- **Pembersihan hasil alat** - Membersihkan hasil alat lama dalam alur kerja agentik
+- **Pembersihan blok pemikiran** - Mengelola blok pemikiran dengan pemikiran diperpanjang
 
 ## Perilaku overflow jendela konteks \{#context-window-overflow-behavior}
 
-Pada model Claude 4.5 dan yang lebih baru, jika token input ditambah `max_tokens` melebihi ukuran jendela konteks, API menerima permintaan tersebut. Jika pembuatan kemudian mencapai batas jendela konteks, pembuatan berhenti dengan `stop_reason: "model_context_window_exceeded"`. Pada model sebelumnya, API mengembalikan error validasi sebagai gantinya; aktifkan perilaku `model_context_window_exceeded` dengan header beta `model-context-window-exceeded-2025-08-26`. Lihat [Menangani stop reason](/docs/id/build-with-claude/handling-stop-reasons) untuk detailnya.
+Pada model Claude 4.5 dan yang lebih baru, jika token input ditambah `max_tokens` melebihi ukuran jendela konteks, API menerima permintaan tersebut. Jika pembuatan kemudian mencapai batas jendela konteks, proses berhenti dengan `stop_reason: "model_context_window_exceeded"`. Pada model sebelumnya, API mengembalikan error validasi sebagai gantinya; aktifkan perilaku `model_context_window_exceeded` dengan header beta `model-context-window-exceeded-2025-08-26`. Lihat [Menangani stop reason](/docs/id/build-with-claude/handling-stop-reasons) untuk detailnya.
 
 Untuk tetap berada dalam batas jendela konteks, gunakan [API penghitungan token](/docs/id/build-with-claude/token-counting) untuk memperkirakan penggunaan token sebelum mengirim pesan ke Claude.
 

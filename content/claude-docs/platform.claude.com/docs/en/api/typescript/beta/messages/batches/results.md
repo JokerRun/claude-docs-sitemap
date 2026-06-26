@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/messages/batches/results
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: d2e7446ef9fea175c1b826b27811cb1d62d0d4df69211c29dd018403a31b23b9
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: a6fe60e4f140ec89a6066137c1336a4faae144ef647bb55475fab5a995873cb1
 ---
 
 ## Retrieve Message Batch results
@@ -939,9 +939,9 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             Marks the point in `content` where one model's output gives way to the next.
 
             One block appears per hop where a preceding model actually ran this turn and
-            declined. A turn routed directly by the sticky decision has no such boundary
-            and carries no block — the signal for whether a fallback model served the
-            response is the presence of a `fallback_message` entry in
+            declined. A turn where no preceding model ran and declined has no such
+            boundary and carries no block — the signal for whether a fallback model
+            served the response is the presence of a `fallback_message` entry in
             `usage.iterations`, not this block.
 
             The block is treated like a server-tool content block for streaming: it
@@ -958,7 +958,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                 See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-                - `"claude-fable-5" | "claude-mythos-5" | "claude-opus-4-8" | 17 more`
+                - `"claude-fable-5" | "claude-mythos-5" | "claude-opus-4-8" | 12 more`
 
                   - `"claude-fable-5"`
 
@@ -1020,31 +1020,31 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                     Exceptional model for specialized complex tasks
 
-                  - `"claude-opus-4-0"`
-
-                    Powerful model for complex tasks
-
-                  - `"claude-opus-4-20250514"`
-
-                    Powerful model for complex tasks
-
-                  - `"claude-sonnet-4-0"`
-
-                    High-performance model with extended thinking
-
-                  - `"claude-sonnet-4-20250514"`
-
-                    High-performance model with extended thinking
-
-                  - `"claude-3-haiku-20240307"`
-
-                    Fast and cost-effective model
-
                 - `(string & {})`
 
             - `to: BetaFallbackInfo`
 
               The fallback model producing the content that follows this block. Its `model` is always the canonical id.
+
+            - `trigger: BetaFallbackRefusalTrigger`
+
+              What caused the `from` model to hand over at this hop.
+
+              - `category: "cyber" | "bio" | "frontier_llm" | "reasoning_extraction" | null`
+
+                The policy category that triggered a refusal.
+
+                - `"cyber"`
+
+                - `"bio"`
+
+                - `"frontier_llm"`
+
+                - `"reasoning_extraction"`
+
+              - `type: "refusal"`
+
+                - `"refusal"`
 
             - `type: "fallback"`
 
@@ -1171,15 +1171,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           Structured information about a refusal.
 
-          - `category: "cyber" | "bio" | "reasoning_extraction" | null`
+          - `category: "cyber" | "bio" | "frontier_llm" | "reasoning_extraction" | null`
 
-            The policy category that triggered the refusal.
-
-            `null` when the refusal doesn't map to a named category.
+            The policy category that triggered a refusal.
 
             - `"cyber"`
 
             - `"bio"`
+
+            - `"frontier_llm"`
 
             - `"reasoning_extraction"`
 

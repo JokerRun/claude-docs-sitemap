@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview
-fetched_at: 2026-06-19T03:18:02.201222Z
-sha256: dce40003c46910a166de31838be8985ef4b8c6a0efd6a01e2bf65432d7b0fd28
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: 0f799fa3b611af401e7daba90bf061c0e7076cadc5e8345222371e54f4ae433f
 ---
 
 # Tool use with Claude
@@ -252,12 +252,12 @@ When you use `tools`, the API also automatically includes a special system promp
 | Claude Opus 4.6              | `auto`, `none`<hr />`any`, `tool`   | 497 tokens<hr />589 tokens |
 | Claude Opus 4.5            | `auto`, `none`<hr />`any`, `tool`   | 496 tokens<hr />588 tokens |
 | Claude Opus 4.1 ([deprecated](/docs/en/about-claude/model-deprecations)) | `auto`, `none`<hr />`any`, `tool`   | 313 tokens<hr />315 tokens |
-| Claude Opus 4 ([retired, except on Vertex AI](/docs/en/about-claude/model-deprecations)) | `auto`, `none`<hr />`any`, `tool`   | 313 tokens<hr />315 tokens |
+| Claude Opus 4 ([retired, except on Google Cloud](/docs/en/about-claude/model-deprecations)) | `auto`, `none`<hr />`any`, `tool`   | 313 tokens<hr />315 tokens |
 | Claude Sonnet 4.6          | `auto`, `none`<hr />`any`, `tool`   | 497 tokens<hr />589 tokens |
 | Claude Sonnet 4.5          | `auto`, `none`<hr />`any`, `tool`   | 496 tokens<hr />588 tokens |
-| Claude Sonnet 4 ([retired, except on Bedrock and Vertex AI](/docs/en/about-claude/model-deprecations)) | `auto`, `none`<hr />`any`, `tool`   | 313 tokens<hr />315 tokens |
+| Claude Sonnet 4 ([retired, except on Bedrock and Google Cloud](/docs/en/about-claude/model-deprecations)) | `auto`, `none`<hr />`any`, `tool`   | 313 tokens<hr />315 tokens |
 | Claude Haiku 4.5         | `auto`, `none`<hr />`any`, `tool`   | 496 tokens<hr />588 tokens |
-| Claude Haiku 3.5 ([retired, except on Bedrock and Vertex AI](/docs/en/about-claude/model-deprecations)) | `auto`, `none`<hr />`any`, `tool`   | 264 tokens<hr />355 tokens |
+| Claude Haiku 3.5 ([retired, except on Bedrock and Google Cloud](/docs/en/about-claude/model-deprecations)) | `auto`, `none`<hr />`any`, `tool`   | 264 tokens<hr />355 tokens |
 
 These token counts are added to your normal input and output tokens to calculate the total cost of a request.
 

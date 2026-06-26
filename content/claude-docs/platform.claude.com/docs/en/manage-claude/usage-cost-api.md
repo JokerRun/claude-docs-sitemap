@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/usage-cost-api
-fetched_at: 2026-06-19T03:18:02.201222Z
-sha256: 218a41bd2e9a50c82c6e7aa1187e70aa5ad3c5a6325699be3c6a9cb3e93cc91f
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: ae9032de90d8c811de7a963e18c3fa8ca0ab0315ba37c6f9ed2b8d3e683b0701
 ---
 
 # Usage and Cost API
@@ -22,7 +22,7 @@ This API enables you to better monitor, analyze, and optimize your Claude implem
 * **Accurate Usage Tracking:** Get precise token counts and usage patterns instead of relying solely on response token counting
 * **Cost Reconciliation:** Match internal records with Anthropic billing for finance and accounting teams
 * **Product performance and improvement:** Monitor product performance while measuring if changes to the system have improved it, or setup alerting
-* **[Rate limit](/docs/en/api/rate-limits) and [Priority Tier](/docs/en/api/service-tiers#get-started-with-priority-tier) optimization:** Optimize features like [prompt caching](/docs/en/build-with-claude/prompt-caching) or specific prompts to make the most of one’s allocated capacity, or purchase dedicated capacity.
+* **[Rate limit](/docs/en/api/rate-limits) and [Priority Tier](/docs/en/api/service-tiers#existing-priority-tier-commitments) optimization:** Optimize features like [prompt caching](/docs/en/build-with-claude/prompt-caching) or specific prompts to make the most of your allocated capacity.
 * **Advanced Analysis:** Perform deeper data analysis than what's available in Console
 
 <Check>

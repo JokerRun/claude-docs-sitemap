@@ -1,19 +1,19 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/webhooks
-fetched_at: 2026-06-13T03:15:40.418428Z
-sha256: 795b68d1981a97a440e0558ad1b894c856c1d05dd081269ebbbb1efc3e01accf
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: ebaed0efd34f3c15723940753c95a7941e35ef57132b6e544137159584861e8c
 ---
 
 # Berlangganan webhook
 
-Dapatkan notifikasi ketika peristiwa penting terjadi tanpa melakukan polling.
+Dapatkan notifikasi saat peristiwa penting terjadi tanpa melakukan polling.
 
 ---
 
 Sesi adalah interaksi yang berjalan lama. Meskipun sebagian besar interaksi real-time terjadi melalui [aliran peristiwa SSE](/docs/id/managed-agents/events-and-streaming), webhook memberi tahu Anda tentang perubahan status utama.
 
-Peristiwa webhook mengembalikan `type` dan `id` peristiwa, bukan objek lengkapnya. Ketika Anda menerima peristiwa webhook, Anda perlu mengambil objek tersebut secara langsung dengan panggilan `GET`. Hal ini menghindari pengiriman data usang pada percobaan ulang dan menjaga setiap pengiriman tetap kecil.
+Peristiwa webhook mengembalikan `type` dan `id` peristiwa, bukan objek lengkapnya. Saat Anda menerima peristiwa webhook, Anda perlu mengambil objek tersebut secara langsung dengan panggilan `GET`. Hal ini menghindari pengiriman data usang pada percobaan ulang dan menjaga setiap pengiriman tetap kecil.
 
 ## Jenis peristiwa yang didukung \{#supported-event-types}
 
@@ -25,10 +25,12 @@ Peristiwa webhook mengembalikan `type` dan `id` peristiwa, bukan objek lengkapny
     | `session.status_idled` | Agen menunggu input, misalnya persetujuan izin alat atau pesan pengguna baru. |
     | `session.status_rescheduled` | Terjadi kesalahan sementara dan sesi mencoba ulang secara otomatis. |
     | `session.status_terminated` | Sesi mengalami kesalahan terminal. |
-    | `session.thread_created` | [Thread multiagen](/docs/id/managed-agents/multi-agent) baru dibuka, yang berarti agen tambahan yang dipanggil oleh koordinator mulai menjalankan tugas. |
+    | `session.thread_created` | [Thread multiagen](/docs/id/managed-agents/multi-agent) baru dibuka, yang berarti agen tambahan yang dipanggil oleh koordinator mulai menjalankan pekerjaan. |
     | `session.thread_idled` | Sebuah agen dalam [interaksi multiagen](/docs/id/managed-agents/multi-agent) sedang menunggu input. |
     | `session.thread_terminated` | Sebuah [thread multiagen](/docs/id/managed-agents/multi-agent) diarsipkan. |
     | `session.outcome_evaluation_ended` | [Evaluasi hasil](/docs/id/managed-agents/define-outcomes) untuk satu iterasi telah selesai. |
+    | `session.updated` | Properti sesi berubah, misalnya nama atau konfigurasinya diperbarui. |
+    | `session.deleted` | Sesi dihapus secara permanen. Tidak seperti peristiwa lainnya, tidak ada objek yang tersisa untuk diambil. Perlakukan peristiwa itu sendiri sebagai final. |
   </Tab>
   <Tab title="Peristiwa vault">
     | Peristiwa | Pemicu |
@@ -47,17 +49,17 @@ Peristiwa webhook mengembalikan `type` dan `id` peristiwa, bukan objek lengkapny
 
 Kunjungi **Manage > Webhooks** di [Console](https://platform.claude.com/settings/workspaces/default/webhooks).
 
-Sebuah endpoint webhook terdiri dari:
+Endpoint webhook terdiri dari:
 
 - **URL:** Harus HTTPS pada port 443 dengan hostname yang dapat di-resolve secara publik.
-- **Jenis peristiwa:** Daftar nilai `data.type` yang diterima endpoint ini. Sebuah endpoint hanya menerima peristiwa yang dilanggannya, ditambah peristiwa uji (lihat [Perilaku pengiriman](#perilaku-pengiriman)).
-- **Signing secret:** Sebuah secret 32-byte dengan prefiks `whsec_` yang dihasilkan saat pembuatan. Secret ini hanya ditampilkan sekali, jadi simpan dengan aman untuk memverifikasi pengiriman webhook.
+- **Jenis peristiwa:** Daftar nilai `data.type` yang diterima endpoint ini. Sebuah endpoint hanya menerima peristiwa yang dilanggannya, ditambah peristiwa uji (lihat [Perilaku pengiriman](#delivery-behavior)).
+- **Signing secret:** Secret 32-byte dengan prefiks `whsec_` yang dihasilkan saat pembuatan. Secret ini hanya ditampilkan sekali, jadi simpan dengan aman untuk memverifikasi pengiriman webhook.
 
-## Memverifikasi signature \{#verify-the-signature}
+## Memverifikasi tanda tangan \{#verify-the-signature}
 
-Setiap pengiriman membawa header `X-Webhook-Signature`. Gunakan helper `unwrap()` dari SDK untuk memverifikasi signature dan mem-parse peristiwa dalam satu langkah. Helper ini akan melempar error jika signature tidak valid atau payload berusia lebih dari lima menit.
+Setiap pengiriman membawa header `X-Webhook-Signature`. Gunakan helper `unwrap()` dari SDK untuk memverifikasi tanda tangan dan mem-parse peristiwa dalam satu langkah. Helper ini akan melempar error jika tanda tangan tidak valid atau payload berusia lebih dari lima menit.
 
-Atur `ANTHROPIC_WEBHOOK_SIGNING_KEY` ke secret dengan prefiks `whsec_` yang ditampilkan saat pembuatan endpoint.
+Atur `ANTHROPIC_WEBHOOK_SIGNING_KEY` ke secret berprefiks `whsec_` yang ditampilkan saat pembuatan endpoint.
 
 <CodeGroup>
 ```python Python nocheck
@@ -71,7 +73,7 @@ app = Flask(__name__)
 @app.route("/webhook", methods=["POST"])
 def webhook():
     try:
-        # unwrap() memunculkan error jika signature tidak valid atau payload sudah kedaluwarsa
+        # unwrap() memunculkan error jika tanda tangan tidak valid atau payload sudah kedaluwarsa
         event = client.beta.webhooks.unwrap(
             request.get_data(as_text=True),
             headers=dict(request.headers),
@@ -286,7 +288,7 @@ end
 
 Parse body, lakukan switch pada `data.type`, dan ambil resource berdasarkan ID. Kembalikan `2xx` apa pun untuk mengonfirmasi. Apa pun selain itu (termasuk `3xx`) dihitung sebagai kegagalan dan memicu percobaan ulang.
 
-Setiap payload peristiwa memiliki struktur yang sama, termasuk jenis peristiwa, identifier, dan timestamp kapan objek dibuat.
+Setiap payload peristiwa memiliki struktur yang sama, termasuk jenis peristiwa, pengidentifikasi, dan timestamp kapan objek dibuat.
 
 ```json
 {
@@ -367,7 +369,7 @@ status 204
 
 ## Perilaku pengiriman \{#delivery-behavior}
 
-- **Urutan tidak dijamin.** `session.status_idled` mungkin tiba sebelum `session.outcome_evaluation_ended` meskipun hasil tersebut diproduksi lebih dulu. Gunakan timestamp `created_at` untuk mengurutkan jika urutan penting.
+- **Urutan tidak dijamin.** `session.status_idled` mungkin tiba sebelum `session.outcome_evaluation_ended` meskipun hasil diproduksi lebih dulu. Gunakan timestamp `created_at` untuk mengurutkan jika urutan penting.
 - **Percobaan ulang:** Anthropic mencoba ulang setidaknya sekali. Percobaan ulang mengirimkan `event.id` yang sama.
 - **Redirect tidak diikuti.** `3xx` diperlakukan sebagai kegagalan. Jika endpoint Anda berpindah, perbarui URL di Console.
-- **Penonaktifan otomatis:** Sebuah endpoint secara otomatis diatur ke `disabled` dengan `disabled_reason` yang dapat dibaca mesin setelah sekitar 20 pengiriman gagal berturut-turut, atau segera jika hostname di-resolve ke IP privat atau endpoint mengembalikan redirect. Aktifkan kembali secara manual di Console setelah menyelesaikan masalah tersebut.
+- **Penonaktifan otomatis:** Sebuah endpoint secara otomatis diatur ke `disabled` dengan `disabled_reason` yang dapat dibaca mesin setelah sekitar 20 pengiriman gagal berturut-turut, atau segera jika hostname di-resolve ke IP privat atau endpoint mengembalikan redirect. Aktifkan kembali secara manual di Console setelah menyelesaikan masalah.

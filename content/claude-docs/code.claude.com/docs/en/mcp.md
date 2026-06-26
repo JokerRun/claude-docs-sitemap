@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/mcp
-fetched_at: 2026-06-25T03:15:21.128912Z
-sha256: ae29f7f692dd53ca8efd8a64c28febde9d8b8f1e49ef447bffec8361e108ef2f
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: 7539045358ebf5dc9ba667357081bc84c92c69d2bba36a534b4adefa87f036eb
 ---
 
 > ## Documentation Index
@@ -182,6 +182,8 @@ Claude Code supports MCP `list_changed` notifications, allowing MCP servers to d
 If an HTTP or SSE server disconnects mid-session, Claude Code automatically reconnects with exponential backoff: up to five attempts, starting at a one-second delay and doubling each time. The server appears as pending in `/mcp` while reconnection is in progress. After five failed attempts the server is marked as failed and you can retry manually from `/mcp`. Stdio servers are local processes and are not reconnected automatically.
 
 The same backoff applies when an HTTP or SSE server fails its initial connection at startup. As of v2.1.121, Claude Code retries the initial connection up to three times on transient errors such as a 5xx response, a connection refused, or a timeout, then marks the server as failed if it still cannot connect. Authentication and not-found errors are not retried because they require a configuration change to resolve.
+
+As of v2.1.191, the capability discovery requests that run after a successful connection, such as `tools/list`, `prompts/list`, and `resources/list`, also retry transient network and server errors up to three times with short backoff. Authentication errors, 4xx responses, and request timeouts are not retried.
 
 ### Push messages with channels
 
@@ -527,7 +529,7 @@ claude mcp login sentry
 
 To clear stored credentials later, run `claude mcp logout <name>`.
 
-When you're connected over SSH, add `--no-browser` so the command prints the authorization URL instead of opening a browser. Open the URL on your local machine, then paste the full redirect URL from your browser's address bar back at the prompt. The command needs an interactive terminal for the paste step, so connect with `ssh -t`.
+As of v2.1.191, the command detects when no local browser is available, such as during an SSH session or on Linux without a display server, and prints the authorization URL instead of trying to open a browser. Open the URL on your local machine, then paste the full redirect URL from your browser's address bar back at the prompt. The command needs an interactive terminal for the paste step, so connect with `ssh -t`. Pass `--no-browser` to force the URL prompt even when a local browser is detected.
 
 ```bash theme={null}
 claude mcp login sentry --no-browser

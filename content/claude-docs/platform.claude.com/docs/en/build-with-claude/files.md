@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/files
-fetched_at: 2026-06-12T03:17:40.104094Z
-sha256: 06e5ffb013d5fe3130374f795bd4a313644634f113069cd1c98003df889d1210
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: f6ac74a28d0febbd1b0ddd813db2b235013854361134a2c014a30b350993448b
 ---
 
 # Files API
@@ -23,7 +23,7 @@ This feature is **not** eligible for [Zero Data Retention (ZDR)](/docs/en/build-
 
 Referencing a `file_id` in a Messages request is supported on all models that support the given file type. [Images](/docs/en/build-with-claude/vision) are supported on all current Claude models. For [PDFs](/docs/en/build-with-claude/pdf-support) and [other file types with the code execution tool](/docs/en/agents-and-tools/tool-use/code-execution-tool#model-compatibility), see the linked pages for model support.
 
-The Files API is available on the Claude API, [Claude Platform on AWS](/docs/en/build-with-claude/claude-platform-on-aws), and [Microsoft Foundry](/docs/en/build-with-claude/claude-in-microsoft-foundry). It is not currently available on Amazon Bedrock or Vertex AI.
+The Files API is available on the Claude API, [Claude Platform on AWS](/docs/en/build-with-claude/claude-platform-on-aws), and [Microsoft Foundry](/docs/en/build-with-claude/claude-in-microsoft-foundry). It is not currently available on Amazon Bedrock or Google Cloud.
 
 ## How the Files API works
 

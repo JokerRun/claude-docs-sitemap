@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/webhooks
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 0a59b4100dce91605bd841f5b2f4ff6ac0aee5e7b467af4d2f5442c07805ebf4
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: 051b817cfca65f06b7b102114e78199f137cf64913f4ee0652d49766750e865a
 ---
 
 # Webhooks
@@ -359,6 +359,20 @@ sha256: 0a59b4100dce91605bd841f5b2f4ff6ac0aee5e7b467af4d2f5442c07805ebf4
 
       - `workspace_id: string`
 
+    - `BetaWebhookSessionUpdatedEventData`
+
+      - `id: string`
+
+        ID of the session that triggered the event.
+
+      - `organization_id: string`
+
+      - `type: "session.updated"`
+
+        - `"session.updated"`
+
+      - `workspace_id: string`
+
   - `type: "event"`
 
     Object type. Always `event` for webhook payloads.
@@ -367,7 +381,7 @@ sha256: 0a59b4100dce91605bd841f5b2f4ff6ac0aee5e7b467af4d2f5442c07805ebf4
 
 ### Beta Webhook Event Data
 
-- `BetaWebhookEventData = BetaWebhookSessionCreatedEventData | BetaWebhookSessionPendingEventData | BetaWebhookSessionRunningEventData | 19 more`
+- `BetaWebhookEventData = BetaWebhookSessionCreatedEventData | BetaWebhookSessionPendingEventData | BetaWebhookSessionRunningEventData | 20 more`
 
   - `BetaWebhookSessionCreatedEventData`
 
@@ -705,6 +719,20 @@ sha256: 0a59b4100dce91605bd841f5b2f4ff6ac0aee5e7b467af4d2f5442c07805ebf4
 
     - `workspace_id: string`
 
+  - `BetaWebhookSessionUpdatedEventData`
+
+    - `id: string`
+
+      ID of the session that triggered the event.
+
+    - `organization_id: string`
+
+    - `type: "session.updated"`
+
+      - `"session.updated"`
+
+    - `workspace_id: string`
+
 ### Beta Webhook Session Archived Event Data
 
 - `BetaWebhookSessionArchivedEventData`
@@ -954,6 +982,22 @@ sha256: 0a59b4100dce91605bd841f5b2f4ff6ac0aee5e7b467af4d2f5442c07805ebf4
   - `type: "session.thread_terminated"`
 
     - `"session.thread_terminated"`
+
+  - `workspace_id: string`
+
+### Beta Webhook Session Updated Event Data
+
+- `BetaWebhookSessionUpdatedEventData`
+
+  - `id: string`
+
+    ID of the session that triggered the event.
+
+  - `organization_id: string`
+
+  - `type: "session.updated"`
+
+    - `"session.updated"`
 
   - `workspace_id: string`
 
@@ -1432,6 +1476,20 @@ sha256: 0a59b4100dce91605bd841f5b2f4ff6ac0aee5e7b467af4d2f5442c07805ebf4
       - `vault_id: string`
 
         ID of the vault that owns this credential.
+
+      - `workspace_id: string`
+
+    - `BetaWebhookSessionUpdatedEventData`
+
+      - `id: string`
+
+        ID of the session that triggered the event.
+
+      - `organization_id: string`
+
+      - `type: "session.updated"`
+
+        - `"session.updated"`
 
       - `workspace_id: string`
 

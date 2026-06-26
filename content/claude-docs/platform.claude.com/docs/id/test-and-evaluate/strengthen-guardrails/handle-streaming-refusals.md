@@ -1,18 +1,20 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/handle-streaming-refusals
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: fceccc46ec086481bd0145bb2602b18e46d4c9a50192037d3f596e06ecbbffc1
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: 1a311a7ec471c397591395102481830236b34701c0bd3fe0d6e1f8fd8b7d4b52
 ---
 
 # Penolakan streaming
 
+Deteksi dan tangani stop reason penolakan dalam respons streaming, dan coba ulang permintaan yang ditolak pada model cadangan.
+
 ---
 
-Mulai dari model Claude 4, respons streaming dari API Claude mengembalikan **`stop_reason`: `"refusal"`** ketika pengklasifikasi streaming melakukan intervensi untuk menangani potensi pelanggaran kebijakan. Fitur keamanan baru ini membantu menjaga kepatuhan konten selama streaming real-time.
+Mulai dari model Claude 4, respons streaming dari API Claude mengembalikan **`stop_reason`: `"refusal"`** ketika pengklasifikasi streaming melakukan intervensi untuk menangani potensi pelanggaran kebijakan. Fitur keamanan ini membantu menjaga kepatuhan konten selama streaming real-time.
 
 <Tip>
-Untuk mempelajari lebih lanjut tentang penolakan yang dipicu oleh filter keamanan API untuk Claude Sonnet 4.5, lihat [Memahami Filter Keamanan API Sonnet 4.5](https://support.claude.com/en/articles/12449294-understanding-sonnet-4-5-s-api-safety-filters).
+Halaman ini membahas bagaimana penolakan muncul dalam respons streaming. Untuk setiap nilai `stop_reason` dan cara menanganinya, lihat [Stop reason dan fallback](/docs/id/build-with-claude/handling-stop-reasons). Untuk mencoba ulang permintaan yang ditolak pada model Claude lain, lihat [Penolakan dan fallback](/docs/id/build-with-claude/refusals-and-fallback).
 </Tip>
 
 ## Format respons API \{#api-response-format}
@@ -47,7 +49,7 @@ Ketika penolakan tiba sebelum Claude menghasilkan output apa pun, Anda tidak dit
 </Note>
 
 <Tip>
-Jika Anda sering menemui stop reason `refusal` saat menggunakan Claude Sonnet 4.5 atau Opus 4.1 ([tidak digunakan lagi](/docs/id/about-claude/model-deprecations)), Anda dapat mencoba memperbarui panggilan API Anda untuk menggunakan Haiku 4.5 (`claude-haiku-4-5-20251001`), yang memiliki batasan penggunaan yang berbeda. Pelajari lebih lanjut tentang [memahami filter keamanan API Sonnet 4.5](https://support.claude.com/en/articles/12449294-understanding-sonnet-4-5-s-api-safety-filters).
+Mereset konteks bukan satu-satunya cara untuk memulihkan. Anda juga dapat mencoba ulang permintaan yang ditolak pada model Claude yang berbeda, dan halaman [Penolakan dan fallback](/docs/id/build-with-claude/refusals-and-fallback) menunjukkan cara menyiapkannya dengan fallback sisi server, middleware SDK, atau percobaan ulang manual.
 </Tip>
 
 ## Panduan implementasi \{#implementation-guide}
@@ -125,7 +127,7 @@ try {
   });
 
   for await (const event of stream) {
-    // Periksa penolakan dalam delta pesan
+    // Periksa penolakan di delta pesan
     if (event.type === "message_delta" && event.delta.stop_reason === "refusal") {
       resetConversation();
       break;
@@ -355,12 +357,36 @@ Versi API mendatang akan memperluas pola **`stop_reason`: `refusal`** untuk meny
 
 ## Praktik terbaik \{#best-practices}
 
-- **Pantau penolakan**: Sertakan pemeriksaan **`stop_reason`: `refusal`** dalam penanganan error Anda
-- **Reset secara otomatis**: Implementasikan reset konteks otomatis ketika penolakan terdeteksi
-- **Sediakan pesan kustom**: Buat pesan yang ramah pengguna untuk UX yang lebih baik ketika penolakan terjadi
-- **Lacak pola penolakan**: Pantau frekuensi penolakan untuk mengidentifikasi potensi masalah dengan prompt Anda
+- **Pantau penolakan:** Sertakan pemeriksaan **`stop_reason`: `refusal`** dalam penanganan error Anda
+- **Reset secara otomatis:** Implementasikan reset konteks otomatis ketika penolakan terdeteksi
+- **Beralih ke model lain:** Konfigurasikan [fallback sisi server atau middleware SDK](/docs/id/build-with-claude/refusals-and-fallback) sehingga permintaan yang ditolak dicoba ulang pada model Claude lain alih-alih menampilkan penolakan kepada pengguna
+- **Tukarkan kredit fallback pada percobaan ulang manual:** Jika Anda membangun percobaan ulang sendiri, teruskan token [kredit fallback](/docs/id/build-with-claude/fallback-credit) dari penolakan tersebut sehingga percobaan ulang tidak membayar biaya cache prompt dua kali
+- **Sediakan pesan kustom:** Buat pesan yang ramah pengguna untuk UX yang lebih baik ketika penolakan terjadi
+- **Lacak pola penolakan:** Pantau frekuensi penolakan untuk mengidentifikasi potensi masalah dengan prompt Anda
 
 ## Catatan migrasi \{#migration-notes}
 
-- Model mendatang akan memperluas pola ini ke jenis penolakan lainnya
-- Rencanakan penanganan error Anda untuk mengakomodasi penyatuan respons penolakan di masa mendatang
+Jika Anda membangun penanganan penolakan ketika fitur ini pertama kali dirilis, atau Anda menambahkannya ke integrasi yang sudah ada, periksa hal-hal berikut:
+
+- **Penolakan adalah respons, bukan error.** Penolakan tiba sebagai respons HTTP 200 yang berhasil dengan `stop_reason`: `"refusal"`, sehingga pemantauan yang hanya dibangun berdasarkan tingkat error tidak akan menampilkannya. Lacak penolakan sebagai sinyal tersendiri.
+- **Model yang lebih baru mengembalikan lebih banyak detail.** Pada Claude Fable 5, penolakan juga menyertakan objek `stop_details` yang mengidentifikasi kategori kebijakan di balik penolakan tersebut. Lihat [Penolakan dan fallback](/docs/id/build-with-claude/refusals-and-fallback#refusal-response) untuk bentuk respons lengkapnya.
+- **Coba ulang pada model yang berbeda.** Mengirim ulang permintaan yang ditolak ke model yang sama biasanya menghasilkan penolakan lagi. Alih-alih hanya mereset konteks, coba ulang pada model cadangan dengan [fallback sisi server, middleware SDK, atau percobaan ulang manual](/docs/id/build-with-claude/refusals-and-fallback), dan tukarkan [kredit fallback](/docs/id/build-with-claude/fallback-credit) ketika Anda membangun percobaan ulang sendiri.
+- **Periksa hasil batch untuk penolakan.** Permintaan yang ditolak dalam [Message Batch](/docs/id/build-with-claude/batch-processing) dikembalikan sebagai hasil yang berhasil dengan `stop_reason`: `"refusal"`, bukan sebagai hasil yang error.
+- **Pusatkan penanganan pada `stop_reason`.** API terus mengonsolidasikan penanganan penolakan di sekitar `stop_reason`: `"refusal"`, jadi lakukan percabangan berdasarkan stop reason daripada berdasarkan perilaku spesifik model.
+
+## Langkah selanjutnya \{#next-steps}
+
+<CardGroup cols={2}>
+  <Card title="Penolakan dan fallback" icon="arrows-clockwise" href="/docs/id/build-with-claude/refusals-and-fallback">
+    Coba ulang permintaan yang ditolak pada model Claude lain, di sisi server atau di klien Anda.
+  </Card>
+  <Card title="Stop reason dan fallback" icon="code" href="/docs/id/build-with-claude/handling-stop-reasons">
+    Setiap nilai `stop_reason` dan cara menanganinya.
+  </Card>
+  <Card title="Pesan streaming" icon="lightning" href="/docs/id/build-with-claude/streaming">
+    Stream respons dan baca `stop_reason` dari event `message_delta` saat tiba.
+  </Card>
+  <Card title="Dukungan multibahasa" icon="text-aa" href="/docs/id/build-with-claude/multilingual-support">
+    Layani pengguna di berbagai bahasa dengan kemampuan lintas bahasa Claude.
+  </Card>
+</CardGroup>

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/auto-mode-config
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 99b3ff13d9301787418f230fd90a8285126fe983600d5e9749c625e614198c25
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: 0b3223e73b3ad1988dfd79c9688309618e144f9ce45b55a61364cf5753d0d836
 ---
 
 > ## Documentation Index
@@ -16,7 +16,7 @@ sha256: 99b3ff13d9301787418f230fd90a8285126fe983600d5e9749c625e614198c25
 [Auto mode](/en/permission-modes#eliminate-prompts-with-auto-mode) lets Claude Code run without routine permission prompts by routing tool calls through a classifier that blocks anything irreversible, destructive, or aimed outside your environment. Deny and explicit ask rules are evaluated before the classifier and still block or prompt. Use the `autoMode` settings block to tell that classifier which repos, buckets, and domains your organization trusts, so it stops blocking routine internal operations.
 
 <Note>
-  Auto mode is available to all users on the Anthropic API. On Amazon Bedrock, Google Cloud Vertex AI, and Microsoft Foundry, you must first [set `CLAUDE_CODE_ENABLE_AUTO_MODE`](/en/permission-modes#enable-auto-mode-on-bedrock-vertex-ai-or-foundry). If Claude Code reports auto mode as unavailable for your account, check the [full requirements](/en/permission-modes#eliminate-prompts-with-auto-mode), which also cover the supported models and admin enablement on Team and Enterprise plans.
+  Auto mode is available to all users on the Anthropic API. On Amazon Bedrock, Google Cloud Vertex AI, and Microsoft Foundry, you must first [set `CLAUDE_CODE_ENABLE_AUTO_MODE`](/en/permission-modes#enable-auto-mode-on-bedrock-vertex-ai-or-foundry). If Claude Code reports auto mode as unavailable for your account, check the [full requirements](/en/permission-modes#eliminate-prompts-with-auto-mode), which also cover the supported models and Owner enablement on Team and Enterprise plans.
 </Note>
 
 Out of the box, the classifier trusts only the working directory and the current repo's configured remotes. Actions like pushing to your company's source-control org or writing to a team cloud bucket are blocked until you add them to `autoMode.environment`.

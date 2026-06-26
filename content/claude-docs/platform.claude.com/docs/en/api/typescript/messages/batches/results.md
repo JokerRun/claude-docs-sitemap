@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/messages/batches/results
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 330999aab0210de562f95f86d2d4daea75c9b7c60241ca30d9a2d1b69850dd6f
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: f2f63c39e8699a2fb232817463ad9d446bcdc9b31e49129803e8c0d547a5a4f4
 ---
 
 ## Retrieve Message Batch results
@@ -730,7 +730,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-          - `"claude-fable-5" | "claude-mythos-5" | "claude-opus-4-8" | 17 more`
+          - `"claude-fable-5" | "claude-mythos-5" | "claude-opus-4-8" | 12 more`
 
             - `"claude-fable-5"`
 
@@ -792,26 +792,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
               Exceptional model for specialized complex tasks
 
-            - `"claude-opus-4-0"`
-
-              Powerful model for complex tasks
-
-            - `"claude-opus-4-20250514"`
-
-              Powerful model for complex tasks
-
-            - `"claude-sonnet-4-0"`
-
-              High-performance model with extended thinking
-
-            - `"claude-sonnet-4-20250514"`
-
-              High-performance model with extended thinking
-
-            - `"claude-3-haiku-20240307"`
-
-              Fast and cost-effective model
-
           - `(string & {})`
 
         - `role: "assistant"`
@@ -826,15 +806,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           Structured information about a refusal.
 
-          - `category: "cyber" | "bio" | "reasoning_extraction" | null`
+          - `category: "cyber" | "bio" | "frontier_llm" | "reasoning_extraction" | null`
 
-            The policy category that triggered the refusal.
-
-            `null` when the refusal doesn't map to a named category.
+            The policy category that triggered a refusal.
 
             - `"cyber"`
 
             - `"bio"`
+
+            - `"frontier_llm"`
 
             - `"reasoning_extraction"`
 

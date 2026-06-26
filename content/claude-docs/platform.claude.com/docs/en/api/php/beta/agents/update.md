@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/php/beta/agents/update
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: af50a91167f96a701329e41a25b811c736b6597bebbc0091a581c4c498fe2e12
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: 223ffff8cb01a309b1693331b4cefff4a3cbd02e5cd49bcb5e4fd4bcbbd8f23d
 ---
 
 ## Update Agent
@@ -27,7 +27,7 @@ Update Agent
 
 - `mcpServers?:optional list<BetaManagedAgentsURLMCPServerParams>`
 
-  MCP servers. Full replacement. Omit to preserve; send empty array or null to clear. Names must be unique. Maximum 20.
+  MCP servers. Full replacement. Omit to preserve; send empty array or `null` to clear. Names must be unique. Maximum 20. Every server must be referenced by an `mcp_toolset` in the agent's resulting `tools`; unreferenced servers are rejected. See the [MCP connector guide](https://platform.claude.com/docs/en/managed-agents/mcp-connector).
 
 - `metadata?:optional array<string,string>`
 

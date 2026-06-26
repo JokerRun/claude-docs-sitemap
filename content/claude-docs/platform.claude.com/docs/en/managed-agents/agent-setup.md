@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/agent-setup
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 6d0c53d3b805f4cc2537abbf155a03f46ec10302ae5432686d5d7d80833620c7
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: c857926ef1be0821abcc0ac0a6a06af1173a8251206c1480710bfceaa1cfef59
 ---
 
 # Define your agent
@@ -24,10 +24,10 @@ All Managed Agents API requests require the `managed-agents-2026-04-01` beta hea
 | Field | Description |
 | --- | --- |
 | `name` | Required. A human-readable name for the agent. |
-| `model` | Required. The Claude [model](/docs/en/about-claude/models/overview) that powers the agent. All Claude 4.5-family and later models are supported. |
+| `model` | Required. The Claude [model](/docs/en/about-claude/models/overview) that powers the agent. Accepts a model ID string or an object, for example `{"id": "claude-opus-4-8"}`. All Claude 4.5-family and later models are supported. |
 | `system` | A [system prompt](/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#give-claude-a-role) that defines the agent's behavior and persona. The system prompt is distinct from [user messages](/docs/en/managed-agents/reference#event-types), which should describe the work to be done. |
 | `tools` | The tools available to the agent. Combines [pre-built agent tools](/docs/en/managed-agents/tools), [MCP tools](/docs/en/managed-agents/mcp-connector), and [custom tools](/docs/en/managed-agents/tools#custom-tools). |
-| `mcp_servers` | MCP servers that provide standardized third-party capabilities. |
+| `mcp_servers` | [MCP servers](/docs/en/managed-agents/mcp-connector) that provide standardized third-party capabilities. |
 | `skills` | [Skills](/docs/en/managed-agents/skills) that supply domain-specific context with progressive disclosure. |
 | `multiagent` | A coordinator declaration listing the agents this agent can delegate to. See [Multiagent sessions](/docs/en/managed-agents/multi-agent). |
 | `description` | A description of what the agent does. |
@@ -36,6 +36,8 @@ All Managed Agents API requests require the `managed-agents-2026-04-01` beta hea
 ## Create an agent
 
 The following example defines a coding agent that uses Claude Opus 4.8 with access to the pre-built agent toolset. The toolset lets the agent write code, read files, search the web, and more. See the [agent tools reference](/docs/en/managed-agents/tools) for the full list of supported tools.
+
+The examples use curl, the `ant` CLI, or one of the SDKs. If you haven't set one up, the [quickstart](/docs/en/managed-agents/quickstart#install-the-cli) covers installation and client setup.
 
 <CodeGroup defaultLanguage="CLI">
   
@@ -58,11 +60,15 @@ AGENT_VERSION=$(jq -r '.version' <<< "$agent")
 
   
 ````bash
-ant beta:agents create \
+agent=$(ant beta:agents create \
   --name "Coding Assistant" \
   --model '{id: claude-opus-4-8}' \
   --system "You are a helpful coding agent." \
-  --tool '{type: agent_toolset_20260401}'
+  --tool '{type: agent_toolset_20260401}' \
+  --format json)
+
+AGENT_ID=$(jq -r '.id' <<< "$agent")
+AGENT_VERSION=$(jq -r '.version' <<< "$agent")
 ````
 
   
@@ -166,7 +172,7 @@ agent = client.beta.agents.create(
 </CodeGroup>
 
 <Tip>
-To use Claude Opus 4.8, Claude Opus 4.7, or Claude Opus 4.6 with [fast mode](/docs/en/build-with-claude/fast-mode), pass `model` as an object, for example: `{"id": "claude-opus-4-8", "speed": "fast"}`. Fast mode for Claude Opus 4.6 is deprecated as of the Claude Opus 4.8 launch and will be removed approximately 30 days later.
+To use Claude Opus 4.8, Claude Opus 4.7, or Claude Opus 4.6 with [fast mode](/docs/en/build-with-claude/fast-mode), pass `model` as an object, for example: `{"id": "claude-opus-4-8", "speed": "fast"}`.
 </Tip>
 
 The response echoes your configuration and adds `id`, `type`, `version`, `created_at`, `updated_at`, and `archived_at` fields. The `version` starts at 1 and increments each time an update changes the agent.
@@ -200,9 +206,11 @@ The response echoes your configuration and adds `id`, `type`, `version`, `create
 }
 ```
 
+The `default_config` on the toolset shows its default [permission policy](/docs/en/managed-agents/permission-policies), `always_allow`, which applies unless you configure one.
+
 ## Update an agent
 
-Updating an agent generates a new version when the configuration changes. Pass the current `version` to ensure you're updating from a known state.
+Updating an agent generates a new version when the configuration changes. The `version` field is required and must match the agent's current version, so you always update from a known state. A version mismatch returns a 409, and updates to archived agents are rejected.
 
 <CodeGroup defaultLanguage="CLI">
   
@@ -323,7 +331,7 @@ puts "New version: #{updated_agent.version}"
 
 - **`multiagent`** is replaced as a whole, including its `agents` roster. Pass `null` to clear it.
 
-- **Metadata** is merged at the key level. Keys you provide are added or updated. Keys you omit are preserved. To delete a specific key, set its value to an empty string.
+- **Metadata** is merged at the key level. Keys you provide are added or updated. Keys you omit are preserved. To delete a specific key, set its value to `null`.
 
 - **No-op detection.** If the update produces no change relative to the current version, no new version is created and the existing version is returned.
 
@@ -339,7 +347,7 @@ puts "New version: #{updated_agent.version}"
 
 ### List versions
 
-Fetch the full version history to track how an agent has changed over time.
+Fetch the full version history to track how an agent has changed over time. Results are paginated, and the SDK examples fetch every page automatically.
 
 <CodeGroup defaultLanguage="CLI">
   
@@ -406,8 +414,8 @@ foreach ($client->beta->agents->versions->list($agent->id)->pagingEachItem() as 
 
   
 ````ruby
-client.beta.agents.versions.list(agent.id).auto_paging_each do
-  puts "Version #{it.version}: #{it.updated_at.iso8601}"
+client.beta.agents.versions.list(agent.id).auto_paging_each do |agent_version|
+  puts "Version #{agent_version.version}: #{agent_version.updated_at.iso8601}"
 end
 ````
 
@@ -415,7 +423,7 @@ end
 
 ### Archive an agent
 
-Archiving makes the agent read-only. Existing sessions continue to run, but new sessions cannot reference the agent. The response sets `archived_at` to the archive timestamp.
+Archiving makes the agent read-only and cannot be undone. Existing sessions continue to run, but new sessions cannot reference the agent. The response sets `archived_at` to the archive timestamp.
 
 <CodeGroup defaultLanguage="CLI">
   
@@ -484,6 +492,17 @@ puts "Archived at: #{archived.archived_at.iso8601}"
 
 ## Next steps
 
-- [Configure tools](/docs/en/managed-agents/tools) to customize which capabilities the agent can use.
-- [Attach skills](/docs/en/managed-agents/skills) for domain-specific expertise.
-- [Start a session](/docs/en/managed-agents/sessions) that references your agent.
+<CardGroup cols={2}>
+  <Card title="Tools" icon="tool" href="/docs/en/managed-agents/tools">
+    Configure tools available to your agent.
+  </Card>
+  <Card title="Skills" icon="graduation-cap" href="/docs/en/managed-agents/skills">
+    Attach reusable, filesystem-based expertise to your agent for domain-specific workflows.
+  </Card>
+  <Card title="Start a session" icon="play" href="/docs/en/managed-agents/sessions">
+    Create a session to run your agent and begin executing tasks.
+  </Card>
+  <Card title="Reference" icon="book" href="/docs/en/managed-agents/reference">
+    Event types, self-hosted worker CLI flags, supported MCP server types, rate limits, and branding guidelines for Claude Managed Agents.
+  </Card>
+</CardGroup>

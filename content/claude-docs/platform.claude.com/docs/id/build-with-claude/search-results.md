@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/search-results
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 5fd82d688647236d0be767d2be2cb658d8143fb8b22444d7091fedbd69a17b7e
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: d5330324f8e01e850e5b55fcadc06e49d551d8e666d6db5ebade1d94e65853da
 ---
 
 # Hasil pencarian
@@ -26,8 +26,8 @@ Fitur hasil pencarian tersedia pada model-model berikut:
 - Claude Sonnet 4.5 (`claude-sonnet-4-5-20250929`)
 - Claude Opus 4.5 (`claude-opus-4-5-20251101`)
 - Claude Opus 4.1 ([tidak digunakan lagi](/docs/id/about-claude/model-deprecations)) (`claude-opus-4-1-20250805`)
-- Claude Opus 4 ([tidak digunakan lagi](/docs/id/about-claude/model-deprecations)) (`claude-opus-4-20250514`)
-- Claude Sonnet 4 ([tidak digunakan lagi](/docs/id/about-claude/model-deprecations)) (`claude-sonnet-4-20250514`)
+- Claude Opus 4 ([dihentikan, kecuali di Vertex AI](/docs/id/about-claude/model-deprecations)) (`claude-opus-4-20250514`)
+- Claude Sonnet 4 ([dihentikan, kecuali di Bedrock dan Vertex AI](/docs/id/about-claude/model-deprecations)) (`claude-sonnet-4-20250514`)
 - Claude Haiku 4.5 (`claude-haiku-4-5-20251001`)
 - Claude Haiku 3.5 ([dihentikan, kecuali di Bedrock dan Vertex AI](/docs/id/about-claude/model-deprecations)) (`claude-3-5-haiku-20241022`)
 
@@ -43,7 +43,7 @@ Fitur hasil pencarian tersedia pada model-model berikut:
 
 Hasil pencarian dapat disediakan dengan dua cara:
 
-1. **Dari pemanggilan alat:** Alat kustom Anda mengembalikan hasil pencarian, memungkinkan aplikasi RAG dinamis
+1. **Dari panggilan alat:** Alat kustom Anda mengembalikan hasil pencarian, memungkinkan aplikasi RAG dinamis
 2. **Sebagai konten tingkat atas:** Anda menyediakan hasil pencarian secara langsung dalam pesan pengguna untuk konten yang telah diambil sebelumnya atau di-cache
 
 Dalam kedua kasus tersebut, Claude dapat secara otomatis mengutip informasi dari hasil pencarian dengan atribusi sumber yang tepat.
@@ -91,7 +91,7 @@ Setiap item dalam array `content` harus berupa blok teks dengan:
 - `type`: Harus berupa `"text"`
 - `text`: Konten teks sebenarnya (string yang tidak kosong)
 
-## Metode 1: Hasil pencarian dari pemanggilan alat \{#method-1-search-results-from-tool-calls}
+## Metode 1: Hasil pencarian dari panggilan alat \{#method-1-search-results-from-tool-calls}
 
 Kasus penggunaan yang paling kuat adalah mengembalikan hasil pencarian dari alat kustom Anda. Ini memungkinkan aplikasi RAG dinamis di mana alat mengambil dan mengembalikan konten yang relevan dengan sitasi otomatis.
 
@@ -164,11 +164,11 @@ response = client.messages.create(
     ],
 )
 
-# Ketika Claude memanggil alat, berikan hasil pencarian
+# Saat Claude memanggil alat, berikan hasil pencariannya
 if response.content[0].type == "tool_use":
     tool_result = search_knowledge_base(response.content[0].input["query"])
 
-    # Kirim kembali hasil alat
+    # Kirim kembali hasil alat tersebut
     final_response = client.messages.create(
         model="claude-opus-4-8",  # Works with all supported models
         max_tokens=1024,
@@ -1308,7 +1308,7 @@ Setiap sitasi mencakup:
 | `start_block_index` | integer | Indeks berbasis 0 dari blok pertama yang dikutip dalam array `content` hasil pencarian. |
 | `end_block_index` | integer | Indeks akhir eksklusif dari rentang blok yang dikutip dalam array `content` hasil pencarian. Selalu lebih besar dari `start_block_index`. |
 
-Indeks blok mengidentifikasi potongan dari array `content` hasil pencarian, dan `cited_text` adalah teks lengkap dari potongan tersebut. Blok teks adalah unit terkecil yang dapat dikutip: Claude mengutip seluruh blok, bukan substring di dalam sebuah blok. Untuk mendapatkan sitasi yang lebih terperinci, pisahkan konten hasil pencarian Anda menjadi blok-blok yang lebih kecil (lihat [Beberapa blok konten](#multiple-content-blocks)).
+Indeks blok mengidentifikasi potongan dari array `content` hasil pencarian, dan `cited_text` adalah teks lengkap dari potongan tersebut. Blok teks adalah unit terkecil yang dapat dikutip: Claude mengutip seluruh blok, bukan substring di dalam blok. Untuk mendapatkan sitasi yang lebih terperinci, pisahkan konten hasil pencarian Anda menjadi blok-blok yang lebih kecil (lihat [Beberapa blok konten](#multiple-content-blocks)).
 
 ## Beberapa blok konten \{#multiple-content-blocks}
 
@@ -1350,7 +1350,7 @@ Sitasi yang mereferensikan blok batas laju terlihat seperti ini:
 }
 ```
 
-Ketika hasil pencarian ini dikutip, `start_block_index` dan `end_block_index` mengidentifikasi blok mana dari blok-blok ini yang dicakup oleh sitasi, dan `cited_text` berisi persis teks dari blok-blok tersebut. Memisahkan konten menjadi blok-blok yang lebih kecil dan terfokus memberi Claude batas sitasi yang lebih terperinci; menggabungkan konten menjadi satu blok berarti setiap sitasi mengembalikan teks lengkap. Ini adalah model yang sama yang digunakan oleh [dokumen konten kustom](/docs/id/build-with-claude/citations#custom-content-documents) dalam fitur Citations.
+Ketika hasil pencarian ini dikutip, `start_block_index` dan `end_block_index` mengidentifikasi blok mana yang dicakup oleh sitasi, dan `cited_text` berisi persis teks dari blok-blok tersebut. Memisahkan konten menjadi blok-blok yang lebih kecil dan terfokus memberi Claude batas sitasi yang lebih halus; menggabungkan konten menjadi satu blok berarti setiap sitasi mengembalikan teks lengkap. Ini adalah model yang sama yang digunakan oleh [dokumen konten kustom](/docs/id/build-with-claude/citations#custom-content-documents) dalam fitur Citations.
 
 ## Penggunaan lanjutan \{#advanced-usage}
 
@@ -1476,7 +1476,7 @@ Sitasi bersifat semua-atau-tidak-sama-sekali: semua hasil pencarian dalam sebuah
 
 - **Konten dinamis:** Gunakan untuk pencarian real-time dan aplikasi RAG dinamis
 - **Penanganan error:** Kembalikan pesan yang sesuai ketika pencarian gagal
-- **Batas hasil:** Kembalikan hanya hasil yang paling relevan untuk menghindari konteks yang meluap
+- **Batas hasil:** Kembalikan hanya hasil yang paling relevan untuk menghindari kelebihan konteks
 
 ### Untuk pencarian tingkat atas (Metode 2) \{#for-top-level-search-method-2}
 
@@ -1488,12 +1488,12 @@ Sitasi bersifat semua-atau-tidak-sama-sekali: semua hasil pencarian dalam sebuah
 
 1. **Strukturkan hasil secara efektif:**
    - Gunakan URL sumber yang jelas dan permanen
-   - Berikan judul yang deskriptif
-   - Pecah konten panjang menjadi blok teks yang logis untuk memberi Claude batas sitasi yang lebih terperinci
+   - Sediakan judul yang deskriptif
+   - Pecah konten panjang menjadi blok teks yang logis untuk memberi Claude batas sitasi yang lebih halus
 
 2. **Jaga konsistensi:**
    - Gunakan format sumber yang konsisten di seluruh aplikasi Anda
-   - Pastikan judul secara akurat mencerminkan konten
+   - Pastikan judul mencerminkan konten secara akurat
    - Jaga format tetap konsisten
 
 3. **Tangani error dengan baik:**
@@ -1514,3 +1514,20 @@ Sitasi bersifat semua-atau-tidak-sama-sekali: semua hasil pencarian dalam sebuah
 - Blok konten hasil pencarian tersedia di Claude API, Amazon Bedrock, dan Vertex AI dari Google Cloud
 - Hanya konten teks yang didukung dalam hasil pencarian (tidak ada gambar atau media lainnya)
 - Array `content` harus berisi setidaknya satu blok teks
+
+## Langkah selanjutnya \{#next-steps}
+
+<CardGroup cols={2}>
+  <Card title="Sitasi" icon="book" href="/docs/id/build-with-claude/citations">
+    Pelajari cara kerja sitasi di seluruh dokumen, konten kustom, dan hasil pencarian.
+  </Card>
+  <Card title="Alat pencarian web" icon="magnifying-glass" href="/docs/id/agents-and-tools/tool-use/web-search-tool">
+    Biarkan Claude mencari di web dan mengutip sumber secara otomatis menggunakan alat server.
+  </Card>
+  <Card title="Referensi Messages API" icon="code" href="/docs/id/api/messages/create">
+    Lihat dokumentasi Messages API lengkap, termasuk tipe blok konten.
+  </Card>
+  <Card title="Caching prompt" icon="database" href="/docs/id/build-with-claude/prompt-caching">
+    Cache hasil pencarian dengan `cache_control` untuk mengurangi biaya dan latensi pada permintaan berulang.
+  </Card>
+</CardGroup>

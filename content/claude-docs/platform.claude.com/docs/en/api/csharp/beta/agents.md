@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/agents
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 448ada7cbe035d02f02b77c89c8a3d0307c4dfce1266a8d22654634585819391
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: 5b65bb2b01a45fa5421e2f6171e6e1a979db74b8e4f0ec01a334a901af92ca8a
 ---
 
 # Agents
@@ -145,7 +145,7 @@ Create Agent
 
   - `IReadOnlyList<BetaManagedAgentsUrlMcpServerParams> mcpServers`
 
-    Body param: MCP servers this agent connects to. Maximum 20. Names must be unique within the array.
+    Body param: MCP servers this agent connects to. Maximum 20. Names must be unique within the array. Every server must be referenced by an `mcp_toolset` in `tools`; unreferenced servers are rejected. See the [MCP connector guide](https://platform.claude.com/docs/en/managed-agents/mcp-connector).
 
     - `required string Name`
 
@@ -1765,7 +1765,7 @@ Update Agent
 
   - `IReadOnlyList<BetaManagedAgentsUrlMcpServerParams>? mcpServers`
 
-    Body param: MCP servers. Full replacement. Omit to preserve; send empty array or null to clear. Names must be unique. Maximum 20.
+    Body param: MCP servers. Full replacement. Omit to preserve; send empty array or `null` to clear. Names must be unique. Maximum 20. Every server must be referenced by an `mcp_toolset` in the agent's resulting `tools`; unreferenced servers are rejected. See the [MCP connector guide](https://platform.claude.com/docs/en/managed-agents/mcp-connector).
 
     - `required string Name`
 

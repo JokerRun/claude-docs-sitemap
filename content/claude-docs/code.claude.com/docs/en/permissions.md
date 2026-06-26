@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/permissions
-fetched_at: 2026-06-23T03:14:59.520621Z
-sha256: 3b1d1036020a442689649b2c852a82f69774bb64bc9896696f723fb58e081837
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: fa51eebfb650805a1c4f8d9f32310a15f6636afd30fbc15c4d39100a34ad9bba
 ---
 
 > ## Documentation Index
@@ -417,7 +417,7 @@ The following settings are only read from managed settings. Placing them in user
 `disableBypassPermissionsMode` is typically placed in managed settings to enforce organizational policy, but it works from any scope. A user can set it in their own settings to lock themselves out of bypass mode.
 
 <Note>
-  On Team and Enterprise plans, an admin enables or disables [Remote Control](/en/remote-control) and [web sessions](/en/claude-code-on-the-web) organization-wide in [Claude Code admin settings](https://claude.ai/admin-settings/claude-code). Remote Control can additionally be disabled per device with the [`disableRemoteControl`](/en/settings#available-settings) managed setting. Web sessions have no per-device managed settings key.
+  On Team and Enterprise plans, an Owner enables or disables [Remote Control](/en/remote-control) and [web sessions](/en/claude-code-on-the-web) organization-wide in [Claude Code admin settings](https://claude.ai/admin-settings/claude-code). Remote Control can additionally be disabled per device with the [`disableRemoteControl`](/en/settings#available-settings) managed setting. Web sessions have no per-device managed settings key.
 </Note>
 
 ## Settings precedence

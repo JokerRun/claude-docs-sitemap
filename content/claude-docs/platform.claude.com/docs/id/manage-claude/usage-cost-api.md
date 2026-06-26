@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/usage-cost-api
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 0c858b409551d12714a2bd367d3de2145fd77e870889e35215229003f7aee932
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: ad716460150e577eee5f39e6a3eb5121da9ef87214b0e4a74e449a7f66444f8c
 ---
 
 # API Penggunaan dan Biaya
@@ -15,7 +15,7 @@ Akses data penggunaan dan biaya API organisasi Anda secara terprogram dengan Usa
 **Admin API tidak tersedia untuk akun individu.** Untuk berkolaborasi dengan rekan tim dan menambahkan anggota, atur organisasi Anda di **Console → Settings → Organization**.
 </Tip>
 
-Usage & Cost Admin API menyediakan akses terprogram dan terperinci ke data historis penggunaan dan biaya API untuk organisasi Anda. Data ini serupa dengan informasi yang tersedia di halaman [Usage](/usage) dan [Cost](/cost) pada Claude Console.
+Usage & Cost Admin API menyediakan akses terprogram dan granular ke data historis penggunaan dan biaya API untuk organisasi Anda. Data ini serupa dengan informasi yang tersedia di halaman [Usage](/usage) dan [Cost](/cost) pada Claude Console.
 
 API ini memungkinkan Anda untuk memantau, menganalisis, dan mengoptimalkan implementasi Claude Anda dengan lebih baik:
 
@@ -26,18 +26,29 @@ API ini memungkinkan Anda untuk memantau, menganalisis, dan mengoptimalkan imple
 * **Analisis Lanjutan:** Lakukan analisis data yang lebih mendalam daripada yang tersedia di Console
 
 <Check>
-  **Kunci Admin API diperlukan**
-
-  API ini merupakan bagian dari [Admin API](/docs/id/manage-claude/admin-api). Endpoint ini memerlukan kunci Admin API (dimulai dengan `sk-ant-admin...`) yang berbeda dari kunci API standar. Hanya anggota organisasi dengan peran admin yang dapat membuat kunci Admin API melalui [Claude Console](/settings/admin-keys).
+  **Kunci Admin API diperlukan.** Endpoint ini memerlukan kunci Admin API, yang berbeda dari kunci API Claude standar. Lihat [Membuat kunci Admin API](/docs/id/manage-claude/admin-api-keys) untuk mengetahui tempat membuatnya sesuai jenis organisasi Anda dan cakupan mana yang harus dipilih.
 </Check>
 
+Organisasi Claude Enterprise menggunakan kunci Analytics API dengan API yang berbeda; lihat [API mana yang Anda butuhkan?](#which-api-do-you-need).
+
 <Note>
-**Claude Platform di AWS:** Endpoint API Penggunaan dan Biaya terprogram saat ini tidak tersedia. Lihat data penggunaan dan biaya di halaman **Usage** dan **Cost** pada Claude Console sebagai gantinya.
+**Claude Platform di AWS:** Endpoint terprogram Usage and Cost API saat ini tidak tersedia. Lihat data penggunaan dan biaya di halaman **Usage** dan **Cost** di Claude Console sebagai gantinya.
 </Note>
+
+## API mana yang Anda butuhkan? \{#which-api-do-you-need}
+
+Anthropic menyediakan pelaporan biaya dan penggunaan melalui dua API, tergantung pada produk Claude mana yang dikelola organisasi Anda:
+
+| Organisasi Anda                        | API                                                                 | Jenis kunci                             |
+| ---------------------------------------- | ------------------------------------------------------------------- | ------------------------------------ |
+| Claude Console (Claude Platform) | Usage and Cost Admin API yang dijelaskan di halaman ini                 | Kunci Admin API (`sk-ant-admin01-...`) |
+| Claude Enterprise (claude.ai)            | Endpoint biaya dan penggunaan [Claude Enterprise Analytics API](/docs/id/api/admin/analytics) | Kunci Analytics API                    |
+
+Organisasi induk Claude Enterprise tidak muncul di Claude Console dan tidak memiliki kunci Admin API, sehingga bagi mereka kunci Analytics API adalah satu-satunya jalur untuk mengakses data ini. Lihat [Analytics API](/docs/id/manage-claude/analytics-api) untuk cara membuat setiap jenis kunci dan paket mana yang berlaku untuk data biaya Claude Enterprise.
 
 ## Solusi mitra \{#partner-solutions}
 
-Platform observabilitas terkemuka menawarkan integrasi siap pakai untuk memantau penggunaan dan biaya API Claude Anda, tanpa perlu menulis kode kustom. Integrasi ini menyediakan dasbor, pemberitahuan, dan analitik untuk membantu Anda mengelola penggunaan API secara efektif.
+Platform observabilitas terkemuka menawarkan integrasi siap pakai untuk memantau penggunaan dan biaya Claude API Anda, tanpa menulis kode kustom. Integrasi ini menyediakan dasbor, pemberitahuan, dan analitik untuk membantu Anda mengelola penggunaan API secara efektif.
 
 <CardGroup cols={3}>
   <Card title="CloudZero" icon="chart" href="https://docs.cloudzero.com/docs/connections-anthropic">
@@ -47,7 +58,7 @@ Platform observabilitas terkemuka menawarkan integrasi siap pakai untuk memantau
     Observabilitas LLM dengan pelacakan dan pemantauan otomatis
   </Card>
   <Card title="Grafana Cloud" icon="chart" href="https://grafana.com/docs/grafana-cloud/monitor-infrastructure/integrations/integration-reference/integration-anthropic/">
-    Integrasi tanpa agen untuk observabilitas LLM yang mudah dengan dasbor dan pemberitahuan siap pakai
+    Integrasi tanpa agen untuk observabilitas LLM yang mudah dengan dasbor dan peringatan siap pakai
   </Card>
   <Card title="Honeycomb" icon="polygon" href="https://docs.honeycomb.io/integrations/anthropic-usage-monitoring/">
     Kueri dan visualisasi tingkat lanjut melalui OpenTelemetry
@@ -81,12 +92,12 @@ bucket_width=1d" \
 
 ## Usage API \{#usage-api}
 
-Lacak konsumsi token di seluruh organisasi Anda dengan rincian terperinci berdasarkan model, workspace, dan tingkat layanan menggunakan endpoint `/v1/organizations/usage_report/messages`.
+Lacak konsumsi token di seluruh organisasi Anda dengan rincian detail berdasarkan model, workspace, dan tingkat layanan menggunakan endpoint `/v1/organizations/usage_report/messages`.
 
 ### Konsep utama \{#key-concepts}
 
-- **Time buckets** (wadah waktu): Agregasikan data penggunaan dalam interval tetap (`1m`, `1h`, atau `1d`)
-- **Pelacakan token**: Ukur token input yang tidak di-cache, input yang di-cache, pembuatan cache, dan token output
+- **Time buckets** (keranjang waktu): Agregasi data penggunaan dalam interval tetap (`1m`, `1h`, atau `1d`)
+- **Pelacakan token**: Mengukur token input yang tidak di-cache, input yang di-cache, pembuatan cache, dan token output
 - **Pemfilteran & pengelompokan**: Filter berdasarkan kunci API, workspace, model, tingkat layanan, jendela konteks, [residensi data](/docs/id/manage-claude/data-residency), atau kecepatan (beta), dan kelompokkan hasil berdasarkan dimensi-dimensi ini
 - **Penggunaan alat server**: Lacak penggunaan alat sisi server seperti pencarian web
 
@@ -223,7 +234,7 @@ Ambil rincian biaya tingkat layanan dalam USD dengan endpoint `/v1/organizations
 
 - **Mata uang**: Semua biaya dalam USD, dilaporkan sebagai string desimal dalam unit terkecil (sen)
 - **Jenis biaya**: Lacak biaya penggunaan token, pencarian web, dan eksekusi kode
-- **Pengelompokan**: Kelompokkan biaya berdasarkan workspace atau deskripsi untuk rincian terperinci. Saat mengelompokkan berdasarkan `description`, respons menyertakan field yang telah diurai seperti `model` dan `inference_geo`
+- **Pengelompokan**: Kelompokkan biaya berdasarkan workspace atau deskripsi untuk rincian detail. Saat mengelompokkan berdasarkan `description`, respons menyertakan field yang telah diurai seperti `model` dan `inference_geo`
 - **Time buckets**: Hanya granularitas harian (`1d`)
 
 Untuk detail parameter lengkap dan skema respons, lihat [referensi Cost API](/docs/id/api/admin-api/usage-cost/get-cost-report).
@@ -275,46 +286,47 @@ page=page_xyz..." \
 
 ## Kasus penggunaan umum \{#common-use-cases}
 
-Jelajahi implementasi terperinci di [Claude Cookbook](https://platform.claude.com/cookbooks):
+Jelajahi implementasi detail di [Claude Cookbook](https://platform.claude.com/cookbooks):
 
 - **Laporan penggunaan harian**: Lacak tren konsumsi token
 - **Atribusi biaya**: Alokasikan pengeluaran berdasarkan workspace untuk chargeback
 - **Efisiensi cache**: Ukur dan optimalkan caching prompt
-- **Pemantauan anggaran**: Siapkan pemberitahuan untuk ambang batas pengeluaran
+- **Pemantauan anggaran**: Siapkan peringatan untuk ambang batas pengeluaran
 - **Ekspor CSV**: Hasilkan laporan untuk tim keuangan
 
 ## Pertanyaan yang sering diajukan \{#frequently-asked-questions}
 
 ### Seberapa baru datanya? \{#how-fresh-is-the-data}
-Data penggunaan dan biaya biasanya muncul dalam waktu 5 menit setelah permintaan API selesai, meskipun penundaan terkadang bisa lebih lama.
+Data penggunaan dan biaya biasanya muncul dalam 5 menit setelah permintaan API selesai, meskipun penundaan terkadang bisa lebih lama.
 
 ### Berapa frekuensi polling yang direkomendasikan? \{#whats-the-recommended-polling-frequency}
-API mendukung polling satu kali per menit untuk penggunaan berkelanjutan. Untuk lonjakan singkat (misalnya, mengunduh data yang dipaginasi), polling yang lebih sering dapat diterima. Cache hasil untuk dasbor yang memerlukan pembaruan sering.
+API mendukung polling sekali per menit untuk penggunaan berkelanjutan. Untuk lonjakan singkat (misalnya, mengunduh data yang dipaginasi), polling yang lebih sering dapat diterima. Cache hasil untuk dasbor yang memerlukan pembaruan sering.
 
 ### Bagaimana cara melacak penggunaan eksekusi kode? \{#how-do-i-track-code-execution-usage}
-Biaya eksekusi kode muncul di endpoint biaya yang dikelompokkan di bawah `Code Execution Usage` pada field deskripsi. Eksekusi kode tidak disertakan dalam endpoint penggunaan.
+Biaya eksekusi kode muncul di endpoint biaya yang dikelompokkan di bawah `Code Execution Usage` dalam field deskripsi. Eksekusi kode tidak disertakan dalam endpoint penggunaan.
 
 ### Bagaimana cara melacak penggunaan Priority Tier? \{#how-do-i-track-priority-tier-usage}
 Filter atau kelompokkan berdasarkan `service_tier` di endpoint penggunaan dan cari nilai `priority`. Biaya Priority Tier tidak tersedia di endpoint biaya.
 
 ### Apa yang terjadi dengan penggunaan Workbench? \{#what-happens-with-workbench-usage}
-Penggunaan API dari Workbench tidak dikaitkan dengan kunci API, sehingga `api_key_id` akan bernilai `null` bahkan saat mengelompokkan berdasarkan dimensi tersebut.
+Penggunaan API dari Workbench tidak terkait dengan kunci API, sehingga `api_key_id` akan bernilai `null` bahkan saat mengelompokkan berdasarkan dimensi tersebut.
 
 ### Bagaimana workspace default direpresentasikan? \{#how-is-the-default-workspace-represented}
 Penggunaan dan biaya yang diatribusikan ke workspace default memiliki nilai `null` untuk `workspace_id`.
 
 ### Bagaimana cara mendapatkan rincian biaya per pengguna untuk Claude Code? \{#how-do-i-get-per-user-cost-breakdowns-for-claude-code}
 
-Gunakan [Claude Code Analytics API](/docs/id/manage-claude/claude-code-analytics-api), yang menyediakan estimasi biaya per pengguna dan metrik produktivitas tanpa keterbatasan performa dalam merinci biaya berdasarkan banyak kunci API. Untuk penggunaan API umum dengan banyak kunci, gunakan [Usage API](#usage-api) untuk melacak konsumsi token sebagai proksi biaya.
+Gunakan [Claude Code Analytics API](/docs/id/manage-claude/claude-code-analytics-api), yang menyediakan estimasi biaya per pengguna dan metrik produktivitas tanpa keterbatasan performa dari merinci biaya berdasarkan banyak kunci API. Untuk penggunaan API umum dengan banyak kunci, gunakan [Usage API](#usage-api) untuk melacak konsumsi token sebagai proksi biaya.
 
 ## Lihat juga \{#see-also}
-API Penggunaan dan Biaya dapat digunakan untuk membantu Anda memberikan pengalaman yang lebih baik bagi pengguna Anda, membantu Anda mengelola biaya, dan menjaga batas laju Anda. Pelajari lebih lanjut tentang beberapa fitur lainnya ini:
+Usage and Cost API dapat digunakan untuk membantu Anda memberikan pengalaman yang lebih baik bagi pengguna Anda, membantu Anda mengelola biaya, dan menjaga batas laju Anda. Pelajari lebih lanjut tentang beberapa fitur lainnya ini:
 
 - [Admin API](/docs/id/manage-claude/admin-api)
 - [Referensi Admin API](/docs/id/api/admin)
+- [Analytics API](/docs/id/manage-claude/analytics-api) - API analitik dan jenis kunci mana yang dibutuhkan organisasi Anda
 - [Harga](/docs/id/about-claude/pricing)
 - [Caching prompt](/docs/id/build-with-claude/prompt-caching) - Optimalkan biaya dengan caching
 - [Pemrosesan batch](/docs/id/build-with-claude/batch-processing) - Diskon 50% untuk permintaan batch
 - [Batas laju](/docs/id/api/rate-limits) - Pahami tingkatan penggunaan
-- [Rate Limits API](/docs/id/manage-claude/rate-limits-api) - Baca batas laju yang telah dikonfigurasi
+- [Rate Limits API](/docs/id/manage-claude/rate-limits-api) - Baca batas laju yang dikonfigurasi untuk Anda
 - [Residensi data](/docs/id/manage-claude/data-residency) - Kontrol geografi inferensi

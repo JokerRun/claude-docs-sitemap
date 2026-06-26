@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/completions
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: affc503065da066ebe36b299ff02c77d8924f7696bfb48910a3298525a389615
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: 48d95c72c0a3786983b926644cf013a77730618424b9efa506c1dabdf7074b6f
 ---
 
 # Completions
@@ -231,26 +231,6 @@ Future models and features will not be compatible with Text Completions. See our
 
       Exceptional model for specialized complex tasks
 
-    - `CLAUDE_OPUS_4_0("claude-opus-4-0")`
-
-      Powerful model for complex tasks
-
-    - `CLAUDE_OPUS_4_20250514("claude-opus-4-20250514")`
-
-      Powerful model for complex tasks
-
-    - `CLAUDE_SONNET_4_0("claude-sonnet-4-0")`
-
-      High-performance model with extended thinking
-
-    - `CLAUDE_SONNET_4_20250514("claude-sonnet-4-20250514")`
-
-      High-performance model with extended thinking
-
-    - `CLAUDE_3_HAIKU_20240307("claude-3-haiku-20240307")`
-
-      Fast and cost-effective model
-
   - `Optional<String> stopReason`
 
     The reason that we stopped.
@@ -388,26 +368,6 @@ public final class Main {
     - `CLAUDE_OPUS_4_1_20250805("claude-opus-4-1-20250805")`
 
       Exceptional model for specialized complex tasks
-
-    - `CLAUDE_OPUS_4_0("claude-opus-4-0")`
-
-      Powerful model for complex tasks
-
-    - `CLAUDE_OPUS_4_20250514("claude-opus-4-20250514")`
-
-      Powerful model for complex tasks
-
-    - `CLAUDE_SONNET_4_0("claude-sonnet-4-0")`
-
-      High-performance model with extended thinking
-
-    - `CLAUDE_SONNET_4_20250514("claude-sonnet-4-20250514")`
-
-      High-performance model with extended thinking
-
-    - `CLAUDE_3_HAIKU_20240307("claude-3-haiku-20240307")`
-
-      Fast and cost-effective model
 
   - `Optional<String> stopReason`
 

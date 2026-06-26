@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/working-with-messages
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: d2950ff26a116a1d7793c5925fc2a3b92835763ff083c4728c955431aac5b628
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: c73f8a8aaffc1740d67a2365c5f67b71400de778d366035eb9682bb6dd6e0c5e
 ---
 
 # Menggunakan Messages API
@@ -403,15 +403,15 @@ puts message
 
 ### Peran system dalam pesan \{#system-role-in-messages}
 
-Pada Claude Opus 4.8, Anda dapat menyertakan pesan dengan `"role": "system"` setelah giliran user (tunduk pada [aturan penempatan](/docs/id/build-with-claude/mid-conversation-system-messages#limitations)) untuk menambahkan instruksi sistem baru di tengah percakapan. Pesan `system` tidak boleh menjadi entri pertama dalam `messages`; gunakan field `system` tingkat atas untuk instruksi yang berlaku sejak awal.
+Pada Claude Opus 4.8, Anda dapat menyertakan pesan dengan `"role": "system"` setelah giliran user (dengan tunduk pada [aturan penempatan](/docs/id/build-with-claude/mid-conversation-system-messages#limitations)) untuk menambahkan instruksi sistem baru di tengah percakapan. Pesan `system` tidak boleh menjadi entri pertama dalam `messages`; gunakan field `system` tingkat atas untuk instruksi yang berlaku sejak awal.
 
-Pesan sistem di tengah percakapan memiliki otoritas yang sama dengan field `system` tingkat atas, tetapi karena ditambahkan di akhir riwayat pesan, pesan ini tidak membatalkan prefix yang telah di-cache sebelumnya. Gunakan field `system` tingkat atas untuk instruksi yang harus berlaku sejak giliran pertama, dan pesan sistem di tengah percakapan untuk instruksi yang baru menjadi relevan di kemudian waktu.
+Pesan sistem di tengah percakapan memiliki otoritas yang sama dengan field `system` tingkat atas, tetapi karena ditambahkan di akhir riwayat pesan, pesan ini tidak membatalkan prefiks yang telah di-cache sebelumnya. Gunakan field `system` tingkat atas untuk instruksi yang harus berlaku sejak giliran pertama, dan pesan sistem di tengah percakapan untuk instruksi yang baru menjadi relevan di kemudian waktu.
 
 Lihat [Pesan sistem di tengah percakapan](/docs/id/build-with-claude/mid-conversation-system-messages) untuk panduan lengkap, termasuk cara menggabungkannya dengan [caching prompt](/docs/id/build-with-claude/prompt-caching).
 
 ## Menempatkan kata-kata di mulut Claude \{#putting-words-in-claudes-mouth}
 
-Anda dapat mengisi sebagian respons Claude terlebih dahulu di posisi terakhir dari daftar pesan input. Ini dapat digunakan untuk membentuk respons Claude. Contoh di bawah ini menggunakan `"max_tokens": 1` untuk mendapatkan satu jawaban pilihan ganda dari Claude.
+Anda dapat mengisi sebagian respons Claude terlebih dahulu di posisi terakhir daftar pesan input. Ini dapat digunakan untuk membentuk respons Claude. Contoh di bawah ini menggunakan `"max_tokens": 1` untuk mendapatkan satu jawaban pilihan ganda dari Claude.
 
 <Warning>
 Prefilling tidak didukung pada Claude Fable 5, [Claude Mythos 5](https://anthropic.com/glasswing), [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, dan Claude Sonnet 4.6. Permintaan yang menggunakan prefill dengan model-model ini akan mengembalikan error 400. Gunakan [structured outputs](/docs/id/build-with-claude/structured-outputs) pada model yang mendukungnya, atau instruksi prompt sistem, sebagai gantinya. Lihat [panduan migrasi](/docs/id/about-claude/models/migration-guide) untuk pola migrasi.
@@ -673,7 +673,7 @@ Claude dapat membaca teks dan gambar dalam permintaan. Gambar dapat disediakan m
   ```bash CLI nocheck
   IMAGE_URL="https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg"
 
-  # Opsi 1: Gambar yang dienkode Base64 (CLI otomatis mengenkode referensi @file biner)
+  # Opsi 1: Gambar yang di-encode Base64 (CLI otomatis meng-encode referensi @file biner)
   curl -s "$IMAGE_URL" -o ./ant.jpg
 
   ant messages create <<'YAML'
@@ -916,7 +916,7 @@ Claude dapat membaca teks dan gambar dalam permintaan. Gambar dapat disediakan m
   func main() {
   	client := anthropic.NewClient()
 
-  	// Opsi 1: Gambar yang dienkode Base64
+  	// Opsi 1: Gambar yang di-encode Base64
   	imageURL := "https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg"
 
   	req, err := http.NewRequest("GET", imageURL, nil)
@@ -1193,9 +1193,22 @@ Claude dapat membaca teks dan gambar dalam permintaan. Gambar dapat disediakan m
 }
 ```
 
-## Penggunaan alat dan penggunaan komputer \{#tool-use-and-computer-use}
+## Langkah selanjutnya \{#next-steps}
 
-Lihat [panduan penggunaan alat](/docs/id/agents-and-tools/tool-use/overview) untuk contoh cara menggunakan alat dengan Messages API.
-Lihat [panduan penggunaan komputer](/docs/id/agents-and-tools/tool-use/computer-use-tool) untuk contoh cara mengontrol lingkungan komputer desktop dengan Messages API.
-Untuk output JSON yang terjamin, lihat [Structured Outputs](/docs/id/build-with-claude/structured-outputs).
-Untuk anggaran token yang bersifat advisory di seluruh loop agentik penuh, atur `output_config.task_budget`; lihat [Task budgets](/docs/id/build-with-claude/task-budgets).
+<CardGroup cols={2}>
+  <Card title="Stop reason dan fallback" icon="list" href="/docs/id/build-with-claude/handling-stop-reasons">
+    Tangani setiap nilai `stop_reason` dan tentukan apa yang harus dilakukan ketika respons berakhir.
+  </Card>
+  <Card title="Penggunaan alat dengan Claude" icon="wrench" href="/docs/id/agents-and-tools/tool-use/overview">
+    Berikan Claude alat untuk memanggil layanan dan API eksternal dari dalam Messages API.
+  </Card>
+  <Card title="Alat computer use" icon="computer" href="/docs/id/agents-and-tools/tool-use/computer-use-tool">
+    Kendalikan lingkungan komputer desktop dengan Messages API.
+  </Card>
+  <Card title="Structured outputs" icon="code-brackets" href="/docs/id/build-with-claude/structured-outputs">
+    Dapatkan output JSON yang terjamin dan tervalidasi skema dari Claude.
+  </Card>
+  <Card title="Task budget" icon="gauge" href="/docs/id/build-with-claude/task-budgets">
+    Tetapkan anggaran token advisory di seluruh loop agentic penuh dengan `output_config.task_budget`.
+  </Card>
+</CardGroup>

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: a199e2f2310fb4d2264e52b481b159d746a73f7b5780de045dbef0c220ec969e
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: d87478e21db450ea86c50fa4f2a9814acfc57475ec58177e90d8bb06fad583b9
 ---
 
 # Penggunaan alat strict
@@ -11,7 +11,7 @@ Terapkan kepatuhan JSON Schema pada input alat Claude dengan grammar-constrained
 
 ---
 
-Menetapkan `strict: true` pada definisi alat menjamin bahwa input alat Claude sesuai dengan JSON Schema Anda dengan membatasi pengambilan sampel token model hanya pada output yang valid menurut skema (teknik yang disebut "grammar-constrained sampling" (pengambilan sampel yang dibatasi tata bahasa)). Halaman ini membahas mengapa mode strict penting untuk agen, cara mengaktifkannya, dan kasus penggunaan umum. Untuk subset JSON Schema yang didukung, lihat [Batasan JSON Schema](/docs/id/build-with-claude/structured-outputs#json-schema-limitations). Untuk panduan skema non-strict, lihat [Mendefinisikan alat](/docs/id/agents-and-tools/tool-use/define-tools).
+Menetapkan `strict: true` pada definisi alat menjamin input alat Claude sesuai dengan JSON Schema Anda dengan membatasi pengambilan sampel token model hanya pada output yang valid menurut skema (teknik yang disebut "grammar-constrained sampling" (pengambilan sampel yang dibatasi tata bahasa)). Halaman ini membahas mengapa mode strict penting untuk agen, cara mengaktifkannya, dan kasus penggunaan umum. Untuk subset JSON Schema yang didukung, lihat [Batasan JSON Schema](/docs/id/build-with-claude/structured-outputs#json-schema-limitations). Untuk panduan skema non-strict, lihat [Mendefinisikan alat](/docs/id/agents-and-tools/tool-use/define-tools).
 
 Penggunaan alat strict memvalidasi parameter alat, memastikan Claude memanggil fungsi Anda dengan argumen yang bertipe benar. Gunakan penggunaan alat strict ketika Anda perlu:
 
@@ -22,20 +22,20 @@ Penggunaan alat strict memvalidasi parameter alat, memastikan Claude memanggil f
 
 ## Mengapa penggunaan alat strict penting untuk agen \{#why-strict-tool-use-matters-for-agents}
 
-Membangun sistem agentik yang andal memerlukan jaminan kesesuaian skema. Tanpa mode strict, Claude mungkin mengembalikan tipe yang tidak kompatibel (`"2"` alih-alih `2`) atau field wajib yang hilang, sehingga merusak fungsi Anda dan menyebabkan error runtime.
+Membangun sistem agentik yang andal memerlukan jaminan kesesuaian skema. Tanpa mode strict, Claude mungkin mengembalikan tipe yang tidak kompatibel (`"2"` alih-alih `2`) atau menghilangkan field yang wajib, sehingga merusak fungsi Anda dan menyebabkan error runtime.
 
 Penggunaan alat strict menjamin parameter yang type-safe:
 - Fungsi menerima argumen dengan tipe yang benar setiap saat
 - Tidak perlu memvalidasi dan mencoba ulang pemanggilan alat
 - Agen siap produksi yang bekerja secara konsisten dalam skala besar
 
-Sebagai contoh, misalkan sistem pemesanan memerlukan `passengers: int`. Tanpa mode strict, Claude mungkin memberikan `passengers: "two"` atau `passengers: "2"`. Dengan `strict: true`, respons selalu berisi `passengers: 2`.
+Misalnya, anggaplah sistem pemesanan membutuhkan `passengers: int`. Tanpa mode strict, Claude mungkin memberikan `passengers: "two"` atau `passengers: "2"`. Dengan `strict: true`, respons selalu berisi `passengers: 2`.
 
 ## Mulai cepat \{#quick-start}
 
 <CodeGroup>
 
-```bash cURL
+```bash cURL highlight={14}
 curl https://api.anthropic.com/v1/messages \
   -H "content-type: application/json" \
   -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -69,7 +69,7 @@ curl https://api.anthropic.com/v1/messages \
   }'
 ```
 
-```bash CLI
+```bash CLI highlight={10}
 ant messages create --transform content <<'YAML'
 model: claude-opus-4-8
 max_tokens: 1024
@@ -94,7 +94,7 @@ tools:
 YAML
 ```
 
-```python Python hidelines={1..2}
+```python Python hidelines={1..2} highlight={13}
 import anthropic
 
 client = anthropic.Anthropic()
@@ -130,7 +130,7 @@ response = client.messages.create(
 print(response.content)
 ```
 
-```typescript TypeScript hidelines={1..2}
+```typescript TypeScript hidelines={1..2} highlight={20}
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic({
@@ -172,7 +172,7 @@ const response = await client.messages.create({
 console.log(response.content);
 ```
 
-```csharp C#
+```csharp C# highlight={17}
 using System.Text.Json;
 using Anthropic;
 using Anthropic.Models.Messages;
@@ -208,7 +208,7 @@ var message = await client.Messages.Create(parameters);
 Console.WriteLine(message);
 ```
 
-```go Go hidelines={1..11,-1}
+```go Go hidelines={1..11,-1} highlight={24}
 package main
 
 import (
@@ -258,7 +258,7 @@ func main() {
 }
 ```
 
-```java Java hidelines={1..12,-1..}
+```java Java hidelines={1..12,-1..} highlight={42}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.core.JsonValue;
@@ -311,7 +311,7 @@ void main() {
 }
 ```
 
-```php PHP hidelines={1..4}
+```php PHP hidelines={1..4} highlight={17}
 <?php
 
 use Anthropic\Client;
@@ -351,7 +351,7 @@ $message = $client->messages->create(
 echo $message;
 ```
 
-```ruby Ruby hidelines={1..2}
+```ruby Ruby hidelines={1..2} highlight={15}
 require "anthropic"
 
 client = Anthropic::Client.new
@@ -410,7 +410,7 @@ puts message.content
 
 <Steps>
   <Step title="Definisikan skema alat Anda">
-    Buat JSON schema untuk `input_schema` alat Anda. Skema ini menggunakan format JSON Schema standar dengan beberapa batasan (lihat [Batasan JSON Schema](/docs/id/build-with-claude/structured-outputs#json-schema-limitations)).
+    Buat skema JSON untuk `input_schema` alat Anda. Skema ini menggunakan format JSON Schema standar dengan beberapa batasan (lihat [Batasan JSON Schema](/docs/id/build-with-claude/structured-outputs#json-schema-limitations)).
   </Step>
   <Step title="Tambahkan strict: true">
     Tetapkan `"strict": true` sebagai properti tingkat atas dalam definisi alat Anda, bersama dengan `name`, `description`, dan `input_schema`.
@@ -428,7 +428,7 @@ Pastikan parameter alat sesuai persis dengan skema Anda:
 
 <CodeGroup>
 
-```bash CLI
+```bash CLI highlight={9}
 ant messages create <<'YAML'
 model: claude-opus-4-8
 max_tokens: 1024
@@ -454,7 +454,7 @@ tools:
 YAML
 ```
 
-```python Python hidelines={1..2}
+```python Python hidelines={1..2} highlight={16}
 from anthropic import Anthropic
 
 client = Anthropic()
@@ -491,7 +491,7 @@ response = client.messages.create(
 print(response)
 ```
 
-```typescript TypeScript hidelines={1..2}
+```typescript TypeScript hidelines={1..2} highlight={7}
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
@@ -521,7 +521,7 @@ const response = await client.messages.create({
 console.log(response);
 ```
 
-```csharp C#
+```csharp C# highlight={16}
 using System.Text.Json;
 using Anthropic;
 using Anthropic.Models.Messages;
@@ -557,7 +557,7 @@ var message = await client.Messages.Create(parameters);
 Console.WriteLine(message);
 ```
 
-```go Go hidelines={1..11,-1}
+```go Go hidelines={1..11,-1} highlight={23}
 package main
 
 import (
@@ -609,7 +609,7 @@ func main() {
 }
 ```
 
-```java Java hidelines={1..12,-1..}
+```java Java hidelines={1..12,-1..} highlight={39}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.core.JsonValue;
@@ -659,7 +659,7 @@ void main() {
 }
 ```
 
-```php PHP hidelines={1..4}
+```php PHP hidelines={1..4} highlight={16}
 <?php
 
 use Anthropic\Client;
@@ -696,7 +696,7 @@ $message = $client->messages->create(
 echo $message;
 ```
 
-```ruby Ruby hidelines={1..2}
+```ruby Ruby hidelines={1..2} highlight={14}
 require "anthropic"
 
 client = Anthropic::Client.new
@@ -740,7 +740,7 @@ Bangun agen multi-langkah yang andal dengan parameter alat yang terjamin:
 
 <CodeGroup>
 
-```bash CLI
+```bash CLI highlight={11,22}
 ant messages create <<'YAML'
 model: claude-opus-4-8
 max_tokens: 1024
@@ -774,7 +774,7 @@ tools:
 YAML
 ```
 
-```python Python hidelines={1..2}
+```python Python hidelines={1..2} highlight={16,31}
 from anthropic import Anthropic
 
 client = Anthropic()
@@ -823,7 +823,7 @@ response = client.messages.create(
 print(response)
 ```
 
-```typescript TypeScript hidelines={1..2}
+```typescript TypeScript hidelines={1..2} highlight={8,23}
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
@@ -876,7 +876,7 @@ const response = await client.messages.create({
 console.log(response);
 ```
 
-```csharp C#
+```csharp C# highlight={16,33}
 using System.Text.Json;
 using Anthropic;
 using Anthropic.Models.Messages;
@@ -929,7 +929,7 @@ var message = await client.Messages.Create(parameters);
 Console.WriteLine(message);
 ```
 
-```go Go hidelines={1..11,-1}
+```go Go hidelines={1..11,-1} highlight={23,38}
 package main
 
 import (
@@ -988,7 +988,7 @@ func main() {
 }
 ```
 
-```java Java hidelines={1..12,-1..}
+```java Java hidelines={1..12,-1..} highlight={51,58}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.core.JsonValue;
@@ -1057,7 +1057,7 @@ void main() {
 }
 ```
 
-```php PHP hidelines={1..4}
+```php PHP hidelines={1..4} highlight={16,31}
 <?php
 
 use Anthropic\Client;
@@ -1106,7 +1106,7 @@ $message = $client->messages->create(
 echo $message;
 ```
 
-```ruby Ruby hidelines={1..2}
+```ruby Ruby hidelines={1..2} highlight={14,29}
 require "anthropic"
 
 client = Anthropic::Client.new
@@ -1158,8 +1158,25 @@ puts message
 
 ## Retensi data \{#data-retention}
 
-Penggunaan alat strict mengompilasi definisi `input_schema` alat menjadi grammar menggunakan pipeline yang sama dengan [structured outputs](/docs/id/build-with-claude/structured-outputs). Skema alat disimpan sementara dalam cache hingga 24 jam sejak penggunaan terakhir. Prompt dan respons tidak disimpan setelah respons API dikembalikan.
+Penggunaan alat strict mengompilasi definisi `input_schema` alat menjadi tata bahasa menggunakan pipeline yang sama dengan [structured outputs](/docs/id/build-with-claude/structured-outputs). Skema alat disimpan sementara dalam cache hingga 24 jam sejak penggunaan terakhir. Prompt dan respons tidak disimpan setelah respons API dikembalikan.
 
 Penggunaan alat strict memenuhi syarat HIPAA, tetapi **PHI tidak boleh disertakan dalam definisi skema alat**. API menyimpan skema yang telah dikompilasi dalam cache secara terpisah dari konten pesan, dan skema yang di-cache ini tidak menerima perlindungan PHI yang sama seperti prompt dan respons. Jangan sertakan PHI dalam nama properti `input_schema`, nilai `enum`, nilai `const`, atau ekspresi reguler `pattern`. PHI hanya boleh muncul dalam konten pesan (prompt dan respons), di mana PHI dilindungi di bawah pengamanan HIPAA.
 
 Untuk kelayakan ZDR dan HIPAA di seluruh fitur, lihat [API dan retensi data](/docs/id/manage-claude/api-and-data-retention).
+
+## Langkah selanjutnya \{#next-steps}
+
+<CardGroup cols={2}>
+  <Card title="Alat web fetch" icon="link" href="/docs/id/agents-and-tools/tool-use/web-fetch-tool">
+    Ambil dan baca konten dari URL tertentu untuk membawa konten web langsung ke dalam konteks Claude.
+  </Card>
+  <Card title="Penggunaan alat dengan caching prompt" icon="database" href="/docs/id/agents-and-tools/tool-use/tool-use-with-prompt-caching">
+    Cache definisi alat di seluruh giliran untuk mengurangi biaya dan latensi.
+  </Card>
+  <Card title="Structured outputs" icon="code-brackets" href="/docs/id/build-with-claude/structured-outputs">
+    Dapatkan respons JSON yang tervalidasi menggunakan grammar-constrained sampling yang sama.
+  </Card>
+  <Card title="Mendefinisikan alat" icon="hammer" href="/docs/id/agents-and-tools/tool-use/define-tools">
+    Tentukan skema alat, tulis deskripsi yang efektif, dan kendalikan kapan Claude memanggil alat Anda.
+  </Card>
+</CardGroup>

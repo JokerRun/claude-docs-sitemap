@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/agents/create
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 74156d065e95f0a9e9bbb8b087d11e28ffadf9b0b87cb3d5c7f288162aad4c82
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: 9bbd6ff4d3acf261c95552ba005dfa4c9c50f3ca5e9df4e94f83a245f901725f
 ---
 
 ## Create Agent
@@ -105,7 +105,7 @@ Create Agent
 
 - `mcp_servers: Array[BetaManagedAgentsURLMCPServerParams]`
 
-  MCP servers this agent connects to. Maximum 20. Names must be unique within the array.
+  MCP servers this agent connects to. Maximum 20. Names must be unique within the array. Every server must be referenced by an `mcp_toolset` in `tools`; unreferenced servers are rejected. See the [MCP connector guide](https://platform.claude.com/docs/en/managed-agents/mcp-connector).
 
   - `name: String`
 

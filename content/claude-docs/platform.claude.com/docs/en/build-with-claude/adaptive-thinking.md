@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/adaptive-thinking
-fetched_at: 2026-06-11T03:14:59.596724Z
-sha256: 157f16f1d581e2212509d9b563001964db6addf4a00d7b31f65113f0b818ed69
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: 1f3ffe60384b5670f9b772bd968d5faca354b7866220e76d9adc46be2e24065b
 ---
 
 # Adaptive thinking
@@ -911,7 +911,7 @@ Here are some important considerations on thinking encryption:
 - When [streaming responses](/docs/en/build-with-claude/extended-thinking#streaming-thinking), the signature is added via a `signature_delta` inside a `content_block_delta` event just before the `content_block_stop` event.
 - `signature` values are significantly longer in Claude 4 models than in previous models.
 - The `signature` field is an opaque field and should not be interpreted or parsed.
-- `signature` values are compatible across platforms (Claude APIs, [Amazon Bedrock](/docs/en/build-with-claude/claude-in-amazon-bedrock), and [Vertex AI](/docs/en/build-with-claude/claude-on-vertex-ai)). Values generated on one platform will be compatible with another.
+- `signature` values are compatible across platforms (Claude APIs, [Amazon Bedrock](/docs/en/build-with-claude/claude-in-amazon-bedrock), and [Google Cloud](/docs/en/build-with-claude/claude-on-vertex-ai)). Values generated on one platform will be compatible with another.
 
 ### Thinking output on Claude Fable 5 and Claude Mythos 5 \{#thinking-output-on-claude-fable-5-and-claude-mythos-5}
 

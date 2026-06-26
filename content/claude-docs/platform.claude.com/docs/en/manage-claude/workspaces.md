@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/workspaces
-fetched_at: 2026-06-19T03:18:02.201222Z
-sha256: 994e382990fcb86ee1686abbd032e38edb026e85e46efa48e13178bda201dc6c
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: f578e11217b1aef83881ae57c35aa729acce0cf3ee81899597c5a23ae15e1066
 ---
 
 # Workspaces
@@ -205,7 +205,7 @@ Some resources are managed at the organization level and cannot be managed with 
 - **Workspaces** themselves and **organization members** are managed through the [Admin API](/docs/en/manage-claude/admin-api), which requires an Admin API key.
 
 <Note>
-[Prompt caches](/docs/en/build-with-claude/prompt-caching) are also isolated per workspace on the Claude API, [Claude Platform on AWS](/docs/en/build-with-claude/claude-platform-on-aws), and [Microsoft Foundry](/docs/en/build-with-claude/claude-in-microsoft-foundry) (where Claude is currently in beta). On Amazon Bedrock and Vertex AI, prompt caches are isolated per organization.
+[Prompt caches](/docs/en/build-with-claude/prompt-caching) are also isolated per workspace on the Claude API, [Claude Platform on AWS](/docs/en/build-with-claude/claude-platform-on-aws), and [Microsoft Foundry](/docs/en/build-with-claude/claude-in-microsoft-foundry) (where Claude is in beta). On Amazon Bedrock and Google Cloud, prompt caches are isolated per organization.
 </Note>
 
 <Tip>

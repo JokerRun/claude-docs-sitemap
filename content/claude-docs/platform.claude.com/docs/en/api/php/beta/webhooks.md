@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/php/beta/webhooks
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: af4ca5f956717271a7fc21ee97a6934b5bbcd67644606622c7979023a8797699
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: 32c49450da6bf6b64b4d81227d8b410996862d156e236f2451336768a7d6e7fc
 ---
 
 # Webhooks
@@ -323,6 +323,18 @@ sha256: af4ca5f956717271a7fc21ee97a6934b5bbcd67644606622c7979023a8797699
 
     - `string workspaceID`
 
+  - `BetaWebhookSessionUpdatedEventData`
+
+    - `string id`
+
+      ID of the session that triggered the event.
+
+    - `string organizationID`
+
+    - `"session.updated" type`
+
+    - `string workspaceID`
+
 ### Beta Webhook Session Archived Event Data
 
 - `BetaWebhookSessionArchivedEventData`
@@ -542,6 +554,20 @@ sha256: af4ca5f956717271a7fc21ee97a6934b5bbcd67644606622c7979023a8797699
     ID of the session thread this event refers to.
 
   - `"session.thread_terminated" type`
+
+  - `string workspaceID`
+
+### Beta Webhook Session Updated Event Data
+
+- `BetaWebhookSessionUpdatedEventData`
+
+  - `string id`
+
+    ID of the session that triggered the event.
+
+  - `string organizationID`
+
+  - `"session.updated" type`
 
   - `string workspaceID`
 

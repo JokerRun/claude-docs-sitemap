@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/errors
-fetched_at: 2026-06-25T03:15:21.128912Z
-sha256: 11627d4a4c187bdd0591c77878b588d6692c95b10276b527730313f54cb22be1
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: 253addb4d78c3ddd7b092650fe21fe99b29c47e545779ff9030de45e78ad9442
 ---
 
 > ## Documentation Index
@@ -164,6 +164,18 @@ Auto mode could not evaluate this action and is blocking it for safety — run w
 
 * Retry the action; this usually succeeds on the next attempt
 * Run `claude --debug` and repeat the action to see the underlying classifier response in the debug log
+
+When a separate API safety check blocked the classifier request because of earlier conversation content:
+
+```text theme={null}
+Auto mode could not evaluate this action and is blocking it for safety — a safety check separate from auto mode blocked this request because of earlier conversation content — it isn't about the action itself — run with --debug for details
+```
+
+**What to do:**
+
+* This is not a decision about your action. A safety filter on the API was triggered by existing content in your conversation when auto mode sent the conversation to the classifier
+* Retrying will not help; the same conversation content will trigger the filter again
+* Switch to a different [permission mode](/en/permission-modes) so you can approve the action when prompted, or start a fresh conversation without the triggering content
 
 When the conversation has grown larger than the classifier's context window:
 
@@ -378,7 +390,7 @@ This is a server-side organization setting, so it cannot be overridden from loca
 
 ### Routines are disabled by your organization's policy
 
-Your Team or Enterprise admin has turned off routines at the organization level. The error appears when you try to create or run a routine, including from `/schedule` and the [Routines](/en/routines) UI on claude.ai/code.
+An Owner in your Team or Enterprise organization has turned off routines at the organization level. The error appears when you try to create or run a routine, including from `/schedule` and the [Routines](/en/routines) UI on claude.ai/code.
 
 ```text theme={null}
 Routines are disabled by your organization's policy.
@@ -388,7 +400,7 @@ This is a server-side setting, so it cannot be overridden from local settings, e
 
 **What to do:**
 
-* Ask your admin to enable the **Routines** toggle at [claude.ai/admin-settings/claude-code](https://claude.ai/admin-settings/claude-code)
+* Ask an Owner in your organization to enable the **Routines** toggle at [claude.ai/admin-settings/claude-code](https://claude.ai/admin-settings/claude-code)
 * For one-off scheduled work that does not require organization-level routines, see [scheduled tasks](/en/scheduled-tasks)
 
 ### OAuth token revoked or expired
@@ -443,7 +455,7 @@ Common causes include no internet access, a VPN that blocks `api.anthropic.com`,
 
 * Confirm you can reach the API host from the same shell by running `curl -I https://api.anthropic.com`. On Windows PowerShell use `curl.exe -I https://api.anthropic.com` so the built-in `Invoke-WebRequest` alias is not used.
 * If you are behind a corporate proxy, set `HTTPS_PROXY` before launching Claude Code and see [Network configuration](/en/network-config)
-* If you route through an LLM gateway or relay, set [`ANTHROPIC_BASE_URL`](/en/env-vars) to its address. See [LLM gateway configuration](/en/llm-gateway) for setup.
+* If you route through an LLM gateway or relay, set [`ANTHROPIC_BASE_URL`](/en/env-vars) to its address. See [Connect Claude Code to an LLM gateway](/en/llm-gateway-connect) for setup.
 * Ensure your firewall allows the hosts listed in [Network access requirements](/en/network-config#network-access-requirements)
 * Intermittent failures are [retried automatically](#automatic-retries); persistent failures point to a local network issue
 
@@ -606,7 +618,7 @@ Claude Code sends beta-only fields such as `context_management`, `effort`, and t
 
 **What to do:**
 
-* Configure your gateway to forward the `anthropic-beta` header. See [LLM gateway configuration](/en/llm-gateway).
+* Configure your gateway to forward the `anthropic-beta` header. See [feature pass-through](/en/llm-gateway-protocol#feature-pass-through) for what gateways must forward.
 * As a fallback, set [`CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS=1`](/en/env-vars) before launching. This disables features that require the beta header so requests succeed through a gateway that cannot forward it.
 
 ### There's an issue with the selected model

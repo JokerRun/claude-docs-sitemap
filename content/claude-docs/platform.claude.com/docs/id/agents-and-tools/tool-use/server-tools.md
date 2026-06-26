@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 76d2834b0c6e031f0e67de8fa2091f07b3036068ba47da117e78fbbbf2fcde55
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: 2f4d72522660c511748a37df33885f36ada2acc1257310236106dce321c47500
 ---
 
 # Alat server
@@ -417,9 +417,9 @@ Saat menangani `pause_turn`:
 
 Versi dasar dari pencarian web (`web_search_20250305`) dan pengambilan web (`web_fetch_20250910`) memenuhi syarat untuk [Zero Data Retention (ZDR)](/docs/id/manage-claude/api-and-data-retention).
 
-Versi `_20260209` dengan pemfilteran dinamis **tidak** memenuhi syarat ZDR secara default karena pemfilteran dinamis bergantung pada eksekusi kode secara internal.
+Versi `_20260209` dan yang lebih baru dengan pemfilteran dinamis **tidak** memenuhi syarat ZDR secara default karena pemfilteran dinamis bergantung pada eksekusi kode secara internal.
 
-Untuk menggunakan alat server `_20260209` dengan ZDR, nonaktifkan pemfilteran dinamis dengan mengatur `"allowed_callers": ["direct"]` pada alat tersebut:
+Untuk menggunakan alat server versi `_20260209` atau yang lebih baru dengan ZDR, nonaktifkan pemfilteran dinamis dengan mengatur `"allowed_callers": ["direct"]` pada alat tersebut:
 
 ```json
 {
@@ -442,7 +442,7 @@ Alat server yang mengakses web menerima parameter `allowed_domains` dan `blocked
 Saat menggunakan filter domain:
 
 - Domain tidak boleh menyertakan skema HTTP/HTTPS (gunakan `example.com` alih-alih `https://example.com`)
-- Subdomain disertakan secara otomatis (`example.com` mencakup `docs.example.com`)
+- Subdomain secara otomatis disertakan (`example.com` mencakup `docs.example.com`)
 - Subdomain spesifik membatasi hasil hanya ke subdomain tersebut (`docs.example.com` hanya mengembalikan hasil dari subdomain tersebut, bukan dari `example.com` atau `api.example.com`)
 - Subpath didukung dan mencocokkan apa pun setelah path tersebut (`example.com/blog` cocok dengan `example.com/blog/post-1`)
 - Anda dapat menggunakan `allowed_domains` atau `blocked_domains`, tetapi tidak keduanya dalam permintaan yang sama
@@ -463,7 +463,7 @@ Pembatasan domain tingkat permintaan harus kompatibel dengan pembatasan domain t
 Perlu diketahui bahwa karakter Unicode dalam nama domain dapat menciptakan kerentanan keamanan melalui serangan homograf, di mana karakter yang secara visual mirip dari skrip yang berbeda dapat melewati filter domain. Misalnya, `аmazon.com` (menggunakan 'а' Sirilik) mungkin tampak identik dengan `amazon.com` tetapi mewakili domain yang berbeda.
 
 Saat mengonfigurasi daftar izin/blokir domain:
-- Gunakan nama domain ASCII saja jika memungkinkan
+- Gunakan nama domain yang hanya berisi ASCII jika memungkinkan
 - Pertimbangkan bahwa parser URL mungkin menangani normalisasi Unicode secara berbeda
 - Uji filter domain Anda dengan variasi homograf potensial
 - Audit konfigurasi domain Anda secara berkala untuk karakter Unicode yang mencurigakan
@@ -471,10 +471,10 @@ Saat mengonfigurasi daftar izin/blokir domain:
 
 ## Pemfilteran dinamis dengan eksekusi kode \{#dynamic-filtering-with-code-execution}
 
-Versi `_20260209` dari pencarian web dan pengambilan web menggunakan eksekusi kode secara internal untuk menerapkan filter dinamis terhadap hasil pencarian.
+Versi `_20260209` dan yang lebih baru dari pencarian web dan pengambilan web menggunakan eksekusi kode secara internal untuk menerapkan filter dinamis terhadap hasil pencarian.
 
 <Warning>
-Menyertakan alat `code_execution` mandiri bersama dengan versi `_20260209` dari alat web akan menciptakan dua lingkungan eksekusi, yang dapat membingungkan model. Gunakan salah satu saja, atau sematkan keduanya ke versi yang sama.
+Menyertakan alat `code_execution` mandiri bersama dengan versi `_20260209` atau yang lebih baru dari alat web akan menciptakan dua lingkungan eksekusi, yang dapat membingungkan model. Gunakan salah satu saja, atau sematkan keduanya ke versi yang sama.
 </Warning>
 
 ## Streaming event alat server \{#streaming-server-tool-events}
@@ -485,7 +485,7 @@ Lihat [Streaming](/docs/id/build-with-claude/streaming) untuk referensi event le
 
 ## Permintaan batch \{#batch-requests}
 
-Semua alat server mendukung pemrosesan batch. Dalam sebuah batch, loop agentik berjalan sama seperti pada permintaan sinkron, dengan batas iterasi per giliran yang lebih tinggi. Jika loop mencapai batas tersebut, respons berakhir dengan `stop_reason: "pause_turn"`; Anda dapat melanjutkannya dengan mengirimkan permintaan lanjutan berisi konten yang dikembalikan. Lihat [Alat server dan loop agentik](/docs/id/build-with-claude/batch-processing#server-tools-and-the-agentic-loop) untuk detailnya.
+Semua alat server mendukung pemrosesan batch. Dalam sebuah batch, loop agentik berjalan sama seperti pada permintaan sinkron, dengan batas iterasi per giliran yang lebih tinggi. Jika loop mencapai batas tersebut, respons berakhir dengan `stop_reason: "pause_turn"`; Anda dapat melanjutkannya dengan mengirimkan permintaan lanjutan dengan konten yang dikembalikan. Lihat [Alat server dan loop agentik](/docs/id/build-with-claude/batch-processing#server-tools-and-the-agentic-loop) untuk detailnya.
 
 Beban kerja batch yang umum untuk alat server meliputi memperkaya dataset atau katalog dengan informasi yang diambil dari web, memeriksa sekumpulan besar dokumen terhadap sumber terkini, memantau daftar halaman atau topik dari waktu ke waktu, dan menjalankan kode analisis pada banyak file.
 

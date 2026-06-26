@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/glossary
-fetched_at: 2026-06-25T03:15:21.128912Z
-sha256: 0a59a9f236ce7654eb1d8a8d8b67236f2e7462347e0ad68a68c3b5203788b7aa
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: 9a9ff92804c059148745d6677f9b0f14a403abedd1bb26dea7e33b1a289ec150
 ---
 
 > ## Documentation Index
@@ -159,7 +159,7 @@ Learn more: [Get started with hooks](/en/hooks-guide) · [Hooks reference](/en/h
 
 ### Managed settings
 
-Settings enforced org-wide by IT or DevOps, delivered from Anthropic's servers through the admin console or deployed to devices at an OS-level path outside `~/.claude`. Users cannot override managed settings from lower-precedence scopes. Server-managed delivery applies on [eligible configurations](/en/server-managed-settings#platform-availability); see [Security considerations](/en/server-managed-settings#security-considerations). Use this for security policies, compliance requirements, or standardized tooling across a fleet.
+Settings enforced org-wide by IT or DevOps, delivered from Anthropic's servers through the admin console or deployed to devices at an OS-level path outside `~/.claude`. User and project settings cannot override managed settings. Server-managed delivery applies on [eligible configurations](/en/server-managed-settings#platform-availability); see [Security considerations](/en/server-managed-settings#security-considerations). Use this for security policies, compliance requirements, or standardized tooling across a fleet.
 
 Learn more: [Server-managed settings](/en/server-managed-settings) · [Settings files](/en/settings#settings-files)
 

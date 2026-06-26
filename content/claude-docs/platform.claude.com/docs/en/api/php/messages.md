@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/php/messages
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: e0dae60de18114d59baa5980f72323b626790663403e4a5d94dc7c01e45ba4e2
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: 6673c04230aca6ca65eb3529f6cc8bf66cbd792bff9b0a59d3d8e70eada793ea
 ---
 
 # Messages
@@ -1199,6 +1199,32 @@ var_dump($messageTokensCount);
 
     When true, guarantees schema validation on tool names and inputs
 
+### Code Execution Tool 20260521
+
+- `CodeExecutionTool20260521`
+
+  - `"code_execution" name`
+
+    Name of the tool.
+
+    This is how the tool will be called by the model and in `tool_use` blocks.
+
+  - `"code_execution_20260521" type`
+
+  - `?list<AllowedCaller> allowedCallers`
+
+  - `?CacheControlEphemeral cacheControl`
+
+    Create a cache control breakpoint at this content block.
+
+  - `?bool deferLoading`
+
+    If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+  - `?bool strict`
+
+    When true, guarantees schema validation on tool names and inputs
+
 ### Code Execution Tool Result Block
 
 - `CodeExecutionToolResultBlock`
@@ -2105,6 +2131,30 @@ var_dump($messageTokensCount);
 
       When true, guarantees schema validation on tool names and inputs
 
+  - `CodeExecutionTool20260521`
+
+    - `"code_execution" name`
+
+      Name of the tool.
+
+      This is how the tool will be called by the model and in `tool_use` blocks.
+
+    - `"code_execution_20260521" type`
+
+    - `?list<AllowedCaller> allowedCallers`
+
+    - `?CacheControlEphemeral cacheControl`
+
+      Create a cache control breakpoint at this content block.
+
+    - `?bool deferLoading`
+
+      If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+    - `?bool strict`
+
+      When true, guarantees schema validation on tool names and inputs
+
   - `MemoryTool20250818`
 
     - `"memory" name`
@@ -2614,26 +2664,6 @@ var_dump($messageTokensCount);
 
     Exceptional model for specialized complex tasks
 
-  - `"claude-opus-4-0"`
-
-    Powerful model for complex tasks
-
-  - `"claude-opus-4-20250514"`
-
-    Powerful model for complex tasks
-
-  - `"claude-sonnet-4-0"`
-
-    High-performance model with extended thinking
-
-  - `"claude-sonnet-4-20250514"`
-
-    High-performance model with extended thinking
-
-  - `"claude-3-haiku-20240307"`
-
-    Fast and cost-effective model
-
 ### Output Config
 
 - `OutputConfig`
@@ -2847,9 +2877,7 @@ var_dump($messageTokensCount);
 
   - `?Category category`
 
-    The policy category that triggered the refusal.
-
-    `null` when the refusal doesn't map to a named category.
+    The policy category that triggered a refusal.
 
   - `?string explanation`
 
@@ -3972,6 +4000,30 @@ var_dump($messageTokensCount);
       This is how the tool will be called by the model and in `tool_use` blocks.
 
     - `"code_execution_20260120" type`
+
+    - `?list<AllowedCaller> allowedCallers`
+
+    - `?CacheControlEphemeral cacheControl`
+
+      Create a cache control breakpoint at this content block.
+
+    - `?bool deferLoading`
+
+      If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+    - `?bool strict`
+
+      When true, guarantees schema validation on tool names and inputs
+
+  - `CodeExecutionTool20260521`
+
+    - `"code_execution" name`
+
+      Name of the tool.
+
+      This is how the tool will be called by the model and in `tool_use` blocks.
+
+    - `"code_execution_20260521" type`
 
     - `?list<AllowedCaller> allowedCallers`
 

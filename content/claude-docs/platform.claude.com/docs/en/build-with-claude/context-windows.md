@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/context-windows
-fetched_at: 2026-06-16T03:17:15.143812Z
-sha256: 0aa32f51b0435d23a1977492f883afab483f43d2cae8ae710005ccb7f8dad9dc
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: c4836cd13c664b78b339d92aec8c5a5367ce111a6c8276a14b0c42fa56093bbf
 ---
 
 # Context windows
@@ -102,7 +102,7 @@ For more information about using tools with extended thinking, see the [extended
 
 Claude's tool selection is designed to hold with large input documents, choosing the right tool (or correctly abstaining) when the conversation includes 100K+ tokens of non-tool context. For reducing context consumed by the tools themselves, see [Manage tool context](/docs/en/agents-and-tools/tool-use/manage-tool-context), or defer tool definitions with the [tool search tool](/docs/en/agents-and-tools/tool-use/tool-search-tool).
 
-Claude Opus 4.8, [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.7, Claude Opus 4.6, and Claude Sonnet 4.6 have a 1M-token context window on the Claude API, Amazon Bedrock, and Vertex AI. On Microsoft Foundry, Claude Opus 4.8 has a 200k-token context window. Other Claude models, including Claude Sonnet 4.5, have a 200k-token context window.
+Claude Opus 4.8, [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.7, Claude Opus 4.6, and Claude Sonnet 4.6 have a 1M-token context window on the Claude API, Amazon Bedrock, and Google Cloud. On Microsoft Foundry, Claude Opus 4.8 has a 200k-token context window. Other Claude models, including Claude Sonnet 4.5, have a 200k-token context window.
 
 Claude Fable 5 and Claude Mythos 5 (`claude-fable-5` and `claude-mythos-5`) have a 1M-token context window on the Claude API. The 1M maximum is also the default, and a single request can generate up to 128k output tokens (`max_tokens`).
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/completions
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 30dff0cc2ef0bdc641624c0913219291a53ac57c3449ec4fc5d1bf6b211522df
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: 195dddb364c734751879a7fda3ab97fd8dd3e532f7dce5be55f62957f2599222
 ---
 
 # Completions
@@ -243,26 +243,6 @@ Future models and features will not be compatible with Text Completions. See our
 
         Exceptional model for specialized complex tasks
 
-      - `const ModelClaudeOpus4_0 Model = "claude-opus-4-0"`
-
-        Powerful model for complex tasks
-
-      - `const ModelClaudeOpus4_20250514 Model = "claude-opus-4-20250514"`
-
-        Powerful model for complex tasks
-
-      - `const ModelClaudeSonnet4_0 Model = "claude-sonnet-4-0"`
-
-        High-performance model with extended thinking
-
-      - `const ModelClaudeSonnet4_20250514 Model = "claude-sonnet-4-20250514"`
-
-        High-performance model with extended thinking
-
-      - `const ModelClaude_3_Haiku_20240307 Model = "claude-3-haiku-20240307"`
-
-        Fast and cost-effective model
-
     - `string`
 
   - `StopReason string`
@@ -410,26 +390,6 @@ func main() {
       - `const ModelClaudeOpus4_1_20250805 Model = "claude-opus-4-1-20250805"`
 
         Exceptional model for specialized complex tasks
-
-      - `const ModelClaudeOpus4_0 Model = "claude-opus-4-0"`
-
-        Powerful model for complex tasks
-
-      - `const ModelClaudeOpus4_20250514 Model = "claude-opus-4-20250514"`
-
-        Powerful model for complex tasks
-
-      - `const ModelClaudeSonnet4_0 Model = "claude-sonnet-4-0"`
-
-        High-performance model with extended thinking
-
-      - `const ModelClaudeSonnet4_20250514 Model = "claude-sonnet-4-20250514"`
-
-        High-performance model with extended thinking
-
-      - `const ModelClaude_3_Haiku_20240307 Model = "claude-3-haiku-20240307"`
-
-        Fast and cost-effective model
 
     - `string`
 

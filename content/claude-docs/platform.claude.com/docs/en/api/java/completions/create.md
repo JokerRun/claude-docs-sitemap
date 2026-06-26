@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/completions/create
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 3a05efe0ed6d2347f0a46106a447aa0a997cba3bede00f0537f875f282176696
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: 4de6716bc584c2b090d3113c002b6819e6db671946784e57f5f247966ae07efe
 ---
 
 ## Create a Text Completion
@@ -228,26 +228,6 @@ Future models and features will not be compatible with Text Completions. See our
     - `CLAUDE_OPUS_4_1_20250805("claude-opus-4-1-20250805")`
 
       Exceptional model for specialized complex tasks
-
-    - `CLAUDE_OPUS_4_0("claude-opus-4-0")`
-
-      Powerful model for complex tasks
-
-    - `CLAUDE_OPUS_4_20250514("claude-opus-4-20250514")`
-
-      Powerful model for complex tasks
-
-    - `CLAUDE_SONNET_4_0("claude-sonnet-4-0")`
-
-      High-performance model with extended thinking
-
-    - `CLAUDE_SONNET_4_20250514("claude-sonnet-4-20250514")`
-
-      High-performance model with extended thinking
-
-    - `CLAUDE_3_HAIKU_20240307("claude-3-haiku-20240307")`
-
-      Fast and cost-effective model
 
   - `Optional<String> stopReason`
 

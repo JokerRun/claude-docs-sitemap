@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/webhooks
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 2abe66ca791995e51d51e19fba42e535e54a2ea11e0a826a80e854177d487dd8
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: 1728f3cb45fc0793ee0eebc6f0dc46c6f961d66a6e49856e886098cc5f1e01e3
 ---
 
 # Webhooks
@@ -359,6 +359,20 @@ sha256: 2abe66ca791995e51d51e19fba42e535e54a2ea11e0a826a80e854177d487dd8
 
       - `workspace_id: String`
 
+    - `class BetaWebhookSessionUpdatedEventData`
+
+      - `id: String`
+
+        ID of the session that triggered the event.
+
+      - `organization_id: String`
+
+      - `type: :"session.updated"`
+
+        - `:"session.updated"`
+
+      - `workspace_id: String`
+
   - `type: :event`
 
     Object type. Always `event` for webhook payloads.
@@ -367,7 +381,7 @@ sha256: 2abe66ca791995e51d51e19fba42e535e54a2ea11e0a826a80e854177d487dd8
 
 ### Beta Webhook Event Data
 
-- `BetaWebhookEventData = BetaWebhookSessionCreatedEventData | BetaWebhookSessionPendingEventData | BetaWebhookSessionRunningEventData | 19 more`
+- `BetaWebhookEventData = BetaWebhookSessionCreatedEventData | BetaWebhookSessionPendingEventData | BetaWebhookSessionRunningEventData | 20 more`
 
   - `class BetaWebhookSessionCreatedEventData`
 
@@ -705,6 +719,20 @@ sha256: 2abe66ca791995e51d51e19fba42e535e54a2ea11e0a826a80e854177d487dd8
 
     - `workspace_id: String`
 
+  - `class BetaWebhookSessionUpdatedEventData`
+
+    - `id: String`
+
+      ID of the session that triggered the event.
+
+    - `organization_id: String`
+
+    - `type: :"session.updated"`
+
+      - `:"session.updated"`
+
+    - `workspace_id: String`
+
 ### Beta Webhook Session Archived Event Data
 
 - `class BetaWebhookSessionArchivedEventData`
@@ -954,6 +982,22 @@ sha256: 2abe66ca791995e51d51e19fba42e535e54a2ea11e0a826a80e854177d487dd8
   - `type: :"session.thread_terminated"`
 
     - `:"session.thread_terminated"`
+
+  - `workspace_id: String`
+
+### Beta Webhook Session Updated Event Data
+
+- `class BetaWebhookSessionUpdatedEventData`
+
+  - `id: String`
+
+    ID of the session that triggered the event.
+
+  - `organization_id: String`
+
+  - `type: :"session.updated"`
+
+    - `:"session.updated"`
 
   - `workspace_id: String`
 
@@ -1432,6 +1476,20 @@ sha256: 2abe66ca791995e51d51e19fba42e535e54a2ea11e0a826a80e854177d487dd8
       - `vault_id: String`
 
         ID of the vault that owns this credential.
+
+      - `workspace_id: String`
+
+    - `class BetaWebhookSessionUpdatedEventData`
+
+      - `id: String`
+
+        ID of the session that triggered the event.
+
+      - `organization_id: String`
+
+      - `type: :"session.updated"`
+
+        - `:"session.updated"`
 
       - `workspace_id: String`
 

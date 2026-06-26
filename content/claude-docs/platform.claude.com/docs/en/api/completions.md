@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/completions
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: d7cd3e5f78bb0552dab0339f1ca9130249cb6085a5c8bc552b735d3c161f91be
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: aa6a553336b0d66327b71721685f21246b9752f8eb463380b136a75c1903b8b5
 ---
 
 # Completions
@@ -97,7 +97,7 @@ Future models and features will not be compatible with Text Completions. See our
 
   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-  - `"claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more`
+  - `"claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more`
 
     The model that will complete your prompt.
 
@@ -162,26 +162,6 @@ Future models and features will not be compatible with Text Completions. See our
     - `"claude-opus-4-1-20250805"`
 
       Exceptional model for specialized complex tasks
-
-    - `"claude-opus-4-0"`
-
-      Powerful model for complex tasks
-
-    - `"claude-opus-4-20250514"`
-
-      Powerful model for complex tasks
-
-    - `"claude-sonnet-4-0"`
-
-      High-performance model with extended thinking
-
-    - `"claude-sonnet-4-20250514"`
-
-      High-performance model with extended thinking
-
-    - `"claude-3-haiku-20240307"`
-
-      Fast and cost-effective model
 
   - `string`
 
@@ -273,7 +253,7 @@ Future models and features will not be compatible with Text Completions. See our
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `"claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more`
+    - `"claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more`
 
       The model that will complete your prompt.
 
@@ -338,26 +318,6 @@ Future models and features will not be compatible with Text Completions. See our
       - `"claude-opus-4-1-20250805"`
 
         Exceptional model for specialized complex tasks
-
-      - `"claude-opus-4-0"`
-
-        Powerful model for complex tasks
-
-      - `"claude-opus-4-20250514"`
-
-        Powerful model for complex tasks
-
-      - `"claude-sonnet-4-0"`
-
-        High-performance model with extended thinking
-
-      - `"claude-sonnet-4-20250514"`
-
-        High-performance model with extended thinking
-
-      - `"claude-3-haiku-20240307"`
-
-        Fast and cost-effective model
 
     - `string`
 
@@ -430,7 +390,7 @@ curl https://api.anthropic.com/v1/complete \
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `"claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more`
+    - `"claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more`
 
       The model that will complete your prompt.
 
@@ -495,26 +455,6 @@ curl https://api.anthropic.com/v1/complete \
       - `"claude-opus-4-1-20250805"`
 
         Exceptional model for specialized complex tasks
-
-      - `"claude-opus-4-0"`
-
-        Powerful model for complex tasks
-
-      - `"claude-opus-4-20250514"`
-
-        Powerful model for complex tasks
-
-      - `"claude-sonnet-4-0"`
-
-        High-performance model with extended thinking
-
-      - `"claude-sonnet-4-20250514"`
-
-        High-performance model with extended thinking
-
-      - `"claude-3-haiku-20240307"`
-
-        Fast and cost-effective model
 
     - `string`
 

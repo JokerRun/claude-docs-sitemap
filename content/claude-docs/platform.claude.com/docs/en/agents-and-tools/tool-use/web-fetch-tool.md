@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-fetch-tool
-fetched_at: 2026-06-23T03:14:59.520621Z
-sha256: 60d61a87da3b14db8a9335abed90cb4f4e10178546c68c27fac229c7619571bb
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: e9844d5d0bff60c98a8127adf06ab10385ad1ece1ba1c05c6832d240a8320cd7
 ---
 
 # Web fetch tool
@@ -16,7 +16,7 @@ The web fetch tool allows Claude to retrieve full content from specified web pag
 The latest web fetch tool version (`web_fetch_20260318`) supports **dynamic filtering** with Claude Fable 5, Claude Opus 4.8, Claude Mythos 5, [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.7, Claude Opus 4.6, and Claude Sonnet 4.6. Claude can write and execute code to filter fetched content before it reaches the context window, keeping only relevant information and discarding the rest. This reduces token consumption while maintaining response quality. `web_fetch_20260318` also adds [response inclusion](#response-inclusion) control for agentic workflows. The previous versions (`web_fetch_20260309` for dynamic filtering and [cache bypass](#cache-bypass), `web_fetch_20260209` for dynamic filtering only, `web_fetch_20250910` for basic fetch) remain available.
 
 <Note>
-For [Claude Mythos Preview](https://anthropic.com/glasswing), web fetch is available on the Claude API and Microsoft Foundry. It is not currently available for Mythos Preview on Amazon Bedrock or Vertex AI.
+For [Claude Mythos Preview](https://anthropic.com/glasswing), web fetch is available on the Claude API and Microsoft Foundry. It is not currently available for Mythos Preview on Amazon Bedrock or Google Cloud.
 </Note>
 
 <Note>
@@ -71,7 +71,7 @@ This dynamic filtering is particularly useful for:
 - Reducing token costs when working with large documents
 
 <Note>
-Dynamic filtering requires the [code execution tool](/docs/en/agents-and-tools/tool-use/code-execution-tool) to be enabled. The web fetch tool (with and without dynamic filtering) is available on the Claude API, [Claude Platform on AWS](/docs/en/build-with-claude/claude-platform-on-aws), and [Microsoft Foundry](/docs/en/build-with-claude/claude-in-microsoft-foundry). It is not currently available on Amazon Bedrock or Vertex AI.
+Dynamic filtering requires the [code execution tool](/docs/en/agents-and-tools/tool-use/code-execution-tool) to be enabled. The web fetch tool (with and without dynamic filtering) is available on the Claude API, [Claude Platform on AWS](/docs/en/build-with-claude/claude-platform-on-aws), and [Microsoft Foundry](/docs/en/build-with-claude/claude-in-microsoft-foundry). It is not currently available on Amazon Bedrock or Google Cloud.
 </Note>
 
 To enable dynamic filtering, use `web_fetch_20260209` or any later version. The following examples use `web_fetch_20260209`:

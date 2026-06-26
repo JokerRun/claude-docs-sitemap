@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/messages/create
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: f3bf132f4716d7132d4d44606a0bf87cb41f82dc730fc7270ca02acebae5d35a
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: 2f02cd57cc1dcb5e71f722b1cf604d4c1d34449023f9a161cd2f7b0c0556206b
 ---
 
 ## Create a Message
@@ -1153,19 +1153,17 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
           A `fallback` block echoed back from a prior response.
 
-          Accepted in `messages[].content` and never rendered into the prompt,
-          not validated against the request's `fallbacks` chain or top-level
-          `model`, and stripped before the sticky-routing cache key is computed.
+          Accepted in `messages[].content` and not rendered into the prompt; not
+          validated against the request's `fallbacks` chain or top-level `model`.
 
-          Callers should echo the assistant turn verbatim — block included. The
-          block's position is load-bearing for thinking verification: the thinking
-          runs on either side of a fallback hop carry independently-rooted
-          verification hash chains, and this block is the only record of where one
-          chain ends and the next begins. When thinking runs flank the boundary,
-          omitting the block merges the runs into one contiguous span whose hashes
-          cannot verify (the request is rejected), and moving it into the middle of
-          a single run splits that run's chain and is likewise rejected; between
-          non-thinking blocks the block's placement has no verification effect.
+          Echo the assistant turn back verbatim, including this block in its
+          original position. The block marks the boundary between content produced
+          before and after a fallback hop, and the server relies on that boundary
+          to validate the turn: when thinking runs flank the boundary, omitting
+          the block merges them into one span the server cannot validate (the
+          request is rejected), and moving it into the middle of a single run is
+          likewise rejected; between non-thinking blocks the block's placement has
+          no validation effect.
 
           - `BetaFallbackInfoParam from`
 
@@ -1237,26 +1235,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
                 Exceptional model for specialized complex tasks
 
-              - `CLAUDE_OPUS_4_0("claude-opus-4-0")`
-
-                Powerful model for complex tasks
-
-              - `CLAUDE_OPUS_4_20250514("claude-opus-4-20250514")`
-
-                Powerful model for complex tasks
-
-              - `CLAUDE_SONNET_4_0("claude-sonnet-4-0")`
-
-                High-performance model with extended thinking
-
-              - `CLAUDE_SONNET_4_20250514("claude-sonnet-4-20250514")`
-
-                High-performance model with extended thinking
-
-              - `CLAUDE_3_HAIKU_20240307("claude-3-haiku-20240307")`
-
-                Fast and cost-effective model
-
           - `BetaFallbackInfoParam to`
 
             Identifies one hop of a fallback transition.
@@ -1264,6 +1242,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
           - `JsonValue; type "fallback"constant`
 
             - `FALLBACK("fallback")`
+
+          - `Optional<JsonValue> trigger`
+
+            The response block's `trigger`, echoed verbatim. Accepted and ignored by the server; any object or `null` is allowed.
 
     - `Role role`
 
@@ -1657,6 +1639,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `CODE_EXECUTION_20260120("code_execution_20260120")`
 
+        - `CODE_EXECUTION_20260521("code_execution_20260521")`
+
       - `Optional<BetaCacheControlEphemeral> cacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -1707,6 +1691,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `CODE_EXECUTION_20260120("code_execution_20260120")`
 
+        - `CODE_EXECUTION_20260521("code_execution_20260521")`
+
       - `Optional<BetaCacheControlEphemeral> cacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -1742,6 +1728,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         - `CODE_EXECUTION_20250825("code_execution_20250825")`
 
         - `CODE_EXECUTION_20260120("code_execution_20260120")`
+
+        - `CODE_EXECUTION_20260521("code_execution_20260521")`
 
       - `Optional<BetaCacheControlEphemeral> cacheControl`
 
@@ -1779,6 +1767,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `CODE_EXECUTION_20260120("code_execution_20260120")`
 
+        - `CODE_EXECUTION_20260521("code_execution_20260521")`
+
       - `Optional<BetaCacheControlEphemeral> cacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -1812,6 +1802,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         - `CODE_EXECUTION_20250825("code_execution_20250825")`
 
         - `CODE_EXECUTION_20260120("code_execution_20260120")`
+
+        - `CODE_EXECUTION_20260521("code_execution_20260521")`
 
       - `Optional<BetaCacheControlEphemeral> cacheControl`
 
@@ -1848,6 +1840,46 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         - `CODE_EXECUTION_20250825("code_execution_20250825")`
 
         - `CODE_EXECUTION_20260120("code_execution_20260120")`
+
+        - `CODE_EXECUTION_20260521("code_execution_20260521")`
+
+      - `Optional<BetaCacheControlEphemeral> cacheControl`
+
+        Create a cache control breakpoint at this content block.
+
+      - `Optional<Boolean> deferLoading`
+
+        If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+      - `Optional<Boolean> strict`
+
+        When true, guarantees schema validation on tool names and inputs
+
+    - `class BetaCodeExecutionTool20260521:`
+
+      Code execution tool with REPL state persistence.
+
+      - `JsonValue; name "code_execution"constant`
+
+        Name of the tool.
+
+        This is how the tool will be called by the model and in `tool_use` blocks.
+
+        - `CODE_EXECUTION("code_execution")`
+
+      - `JsonValue; type "code_execution_20260521"constant`
+
+        - `CODE_EXECUTION_20260521("code_execution_20260521")`
+
+      - `Optional<List<AllowedCaller>> allowedCallers`
+
+        - `DIRECT("direct")`
+
+        - `CODE_EXECUTION_20250825("code_execution_20250825")`
+
+        - `CODE_EXECUTION_20260120("code_execution_20260120")`
+
+        - `CODE_EXECUTION_20260521("code_execution_20260521")`
 
       - `Optional<BetaCacheControlEphemeral> cacheControl`
 
@@ -1891,6 +1923,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `CODE_EXECUTION_20260120("code_execution_20260120")`
 
+        - `CODE_EXECUTION_20260521("code_execution_20260521")`
+
       - `Optional<BetaCacheControlEphemeral> cacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -1930,6 +1964,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         - `CODE_EXECUTION_20250825("code_execution_20250825")`
 
         - `CODE_EXECUTION_20260120("code_execution_20260120")`
+
+        - `CODE_EXECUTION_20260521("code_execution_20260521")`
 
       - `Optional<BetaCacheControlEphemeral> cacheControl`
 
@@ -1975,6 +2011,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `CODE_EXECUTION_20260120("code_execution_20260120")`
 
+        - `CODE_EXECUTION_20260521("code_execution_20260521")`
+
       - `Optional<BetaCacheControlEphemeral> cacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -2014,6 +2052,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         - `CODE_EXECUTION_20250825("code_execution_20250825")`
 
         - `CODE_EXECUTION_20260120("code_execution_20260120")`
+
+        - `CODE_EXECUTION_20260521("code_execution_20260521")`
 
       - `Optional<BetaCacheControlEphemeral> cacheControl`
 
@@ -2059,6 +2099,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `CODE_EXECUTION_20260120("code_execution_20260120")`
 
+        - `CODE_EXECUTION_20260521("code_execution_20260521")`
+
       - `Optional<BetaCacheControlEphemeral> cacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -2103,6 +2145,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `CODE_EXECUTION_20260120("code_execution_20260120")`
 
+        - `CODE_EXECUTION_20260521("code_execution_20260521")`
+
       - `Optional<BetaCacheControlEphemeral> cacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -2139,6 +2183,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `CODE_EXECUTION_20260120("code_execution_20260120")`
 
+        - `CODE_EXECUTION_20260521("code_execution_20260521")`
+
       - `Optional<BetaCacheControlEphemeral> cacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -2174,6 +2220,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         - `CODE_EXECUTION_20250825("code_execution_20250825")`
 
         - `CODE_EXECUTION_20260120("code_execution_20260120")`
+
+        - `CODE_EXECUTION_20260521("code_execution_20260521")`
 
       - `Optional<BetaCacheControlEphemeral> cacheControl`
 
@@ -2214,6 +2262,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         - `CODE_EXECUTION_20250825("code_execution_20250825")`
 
         - `CODE_EXECUTION_20260120("code_execution_20260120")`
+
+        - `CODE_EXECUTION_20260521("code_execution_20260521")`
 
       - `Optional<List<String>> allowedDomains`
 
@@ -2285,6 +2335,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `CODE_EXECUTION_20260120("code_execution_20260120")`
 
+        - `CODE_EXECUTION_20260521("code_execution_20260521")`
+
       - `Optional<List<String>> allowedDomains`
 
         List of domains to allow fetching from
@@ -2339,6 +2391,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `CODE_EXECUTION_20260120("code_execution_20260120")`
 
+        - `CODE_EXECUTION_20260521("code_execution_20260521")`
+
       - `Optional<List<String>> allowedDomains`
 
         If provided, only these domains will be included in results. Cannot be used alongside `blocked_domains`.
@@ -2388,6 +2442,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         - `CODE_EXECUTION_20250825("code_execution_20250825")`
 
         - `CODE_EXECUTION_20260120("code_execution_20260120")`
+
+        - `CODE_EXECUTION_20260521("code_execution_20260521")`
 
       - `Optional<List<String>> allowedDomains`
 
@@ -2444,6 +2500,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         - `CODE_EXECUTION_20250825("code_execution_20250825")`
 
         - `CODE_EXECUTION_20260120("code_execution_20260120")`
+
+        - `CODE_EXECUTION_20260521("code_execution_20260521")`
 
       - `Optional<List<String>> allowedDomains`
 
@@ -2509,6 +2567,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `CODE_EXECUTION_20260120("code_execution_20260120")`
 
+        - `CODE_EXECUTION_20260521("code_execution_20260521")`
+
       - `Optional<BetaCacheControlEphemeral> cacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -2557,6 +2617,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `CODE_EXECUTION_20260120("code_execution_20260120")`
 
+        - `CODE_EXECUTION_20260521("code_execution_20260521")`
+
       - `Optional<BetaCacheControlEphemeral> cacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -2592,6 +2654,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
         - `CODE_EXECUTION_20250825("code_execution_20250825")`
 
         - `CODE_EXECUTION_20260120("code_execution_20260120")`
+
+        - `CODE_EXECUTION_20260521("code_execution_20260521")`
 
       - `Optional<BetaCacheControlEphemeral> cacheControl`
 
@@ -3492,9 +3556,9 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       Marks the point in `content` where one model's output gives way to the next.
 
       One block appears per hop where a preceding model actually ran this turn and
-      declined. A turn routed directly by the sticky decision has no such boundary
-      and carries no block — the signal for whether a fallback model served the
-      response is the presence of a `fallback_message` entry in
+      declined. A turn where no preceding model ran and declined has no such
+      boundary and carries no block — the signal for whether a fallback model
+      served the response is the presence of a `fallback_message` entry in
       `usage.iterations`, not this block.
 
       The block is treated like a server-tool content block for streaming: it
@@ -3571,29 +3635,29 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
             Exceptional model for specialized complex tasks
 
-          - `CLAUDE_OPUS_4_0("claude-opus-4-0")`
-
-            Powerful model for complex tasks
-
-          - `CLAUDE_OPUS_4_20250514("claude-opus-4-20250514")`
-
-            Powerful model for complex tasks
-
-          - `CLAUDE_SONNET_4_0("claude-sonnet-4-0")`
-
-            High-performance model with extended thinking
-
-          - `CLAUDE_SONNET_4_20250514("claude-sonnet-4-20250514")`
-
-            High-performance model with extended thinking
-
-          - `CLAUDE_3_HAIKU_20240307("claude-3-haiku-20240307")`
-
-            Fast and cost-effective model
-
       - `BetaFallbackInfo to`
 
         The fallback model producing the content that follows this block. Its `model` is always the canonical id.
+
+      - `BetaFallbackRefusalTrigger trigger`
+
+        What caused the `from` model to hand over at this hop.
+
+        - `Optional<Category> category`
+
+          The policy category that triggered a refusal.
+
+          - `CYBER("cyber")`
+
+          - `BIO("bio")`
+
+          - `FRONTIER_LLM("frontier_llm")`
+
+          - `REASONING_EXTRACTION("reasoning_extraction")`
+
+        - `JsonValue; type "refusal"constant`
+
+          - `REFUSAL("refusal")`
 
       - `JsonValue; type "fallback"constant`
 
@@ -3722,13 +3786,13 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     - `Optional<Category> category`
 
-      The policy category that triggered the refusal.
-
-      `null` when the refusal doesn't map to a named category.
+      The policy category that triggered a refusal.
 
       - `CYBER("cyber")`
 
       - `BIO("bio")`
+
+      - `FRONTIER_LLM("frontier_llm")`
 
       - `REASONING_EXTRACTION("reasoning_extraction")`
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/mcp
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: fe3c317ed5d54af8bb94f69587b7fb18f611c7a17ba001c8263d516d5e58ed82
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: 0dc68a49103ff08bf8b8e79b6b26def1495b1e4d6e1b638428d82f85cbb760eb
 ---
 
 > ## Documentation Index
@@ -188,13 +188,29 @@ Wildcards (`*`) let you allow all tools from a server without listing each one i
 
 To see what tools an MCP server provides, check the server's documentation or connect to the server and inspect the `system` init message:
 
-```typescript theme={null}
-for await (const message of query({ prompt: "...", options })) {
-  if (message.type === "system" && message.subtype === "init") {
-    console.log("Available MCP tools:", message.mcp_servers);
+<CodeGroup>
+  ```typescript TypeScript theme={null}
+  for await (const message of query({ prompt: "...", options })) {
+    if (message.type === "system" && message.subtype === "init") {
+      console.log("Available MCP tools:", message.mcp_servers);
+    }
   }
-}
-```
+  ```
+
+  ```python Python theme={null}
+  import asyncio
+  from claude_agent_sdk import query, SystemMessage
+
+
+  async def main():
+      async for message in query(prompt="...", options=options):
+          if isinstance(message, SystemMessage) and message.subtype == "init":
+              print("Available MCP tools:", message.data["mcp_servers"])
+
+
+  asyncio.run(main())
+  ```
+</CodeGroup>
 
 ## Transport types
 

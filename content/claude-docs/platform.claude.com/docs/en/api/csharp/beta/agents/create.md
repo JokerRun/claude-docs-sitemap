@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/agents/create
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 18bcba50e1a2d4b30ec17ff6e862bb62cfbc027170ee0713c0b824232ffa7585
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: c7994195f3093f17f1e962f721d13f4080ed77d4c970b6e785e659c7f1f2f687
 ---
 
 ## Create Agent
@@ -143,7 +143,7 @@ Create Agent
 
   - `IReadOnlyList<BetaManagedAgentsUrlMcpServerParams> mcpServers`
 
-    Body param: MCP servers this agent connects to. Maximum 20. Names must be unique within the array.
+    Body param: MCP servers this agent connects to. Maximum 20. Names must be unique within the array. Every server must be referenced by an `mcp_toolset` in `tools`; unreferenced servers are rejected. See the [MCP connector guide](https://platform.claude.com/docs/en/managed-agents/mcp-connector).
 
     - `required string Name`
 

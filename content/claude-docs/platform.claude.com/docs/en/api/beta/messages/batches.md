@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/batches
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: b79bb3266746d0568550b8b48c628299cf030237dd5ab19a88614e7ef34b0c66
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: 68a3235f9e386acee558ae24c93a1505a18dc6fd1212ce3130bf2461e2213449
 ---
 
 # Batches
@@ -1169,23 +1169,21 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
               Create a cache control breakpoint at this content block.
 
-          - `BetaFallbackBlockParam object { from, to, type }`
+          - `BetaFallbackBlockParam object { from, to, type, trigger }`
 
             A `fallback` block echoed back from a prior response.
 
-            Accepted in `messages[].content` and never rendered into the prompt,
-            not validated against the request's `fallbacks` chain or top-level
-            `model`, and stripped before the sticky-routing cache key is computed.
+            Accepted in `messages[].content` and not rendered into the prompt; not
+            validated against the request's `fallbacks` chain or top-level `model`.
 
-            Callers should echo the assistant turn verbatim — block included. The
-            block's position is load-bearing for thinking verification: the thinking
-            runs on either side of a fallback hop carry independently-rooted
-            verification hash chains, and this block is the only record of where one
-            chain ends and the next begins. When thinking runs flank the boundary,
-            omitting the block merges the runs into one contiguous span whose hashes
-            cannot verify (the request is rejected), and moving it into the middle of
-            a single run splits that run's chain and is likewise rejected; between
-            non-thinking blocks the block's placement has no verification effect.
+            Echo the assistant turn back verbatim, including this block in its
+            original position. The block marks the boundary between content produced
+            before and after a fallback hop, and the server relies on that boundary
+            to validate the turn: when thinking runs flank the boundary, omitting
+            the block merges them into one span the server cannot validate (the
+            request is rejected), and moving it into the middle of a single run is
+            likewise rejected; between non-thinking blocks the block's placement has
+            no validation effect.
 
             - `from: BetaFallbackInfoParam`
 
@@ -1197,7 +1195,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                 See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-                - `"claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more`
+                - `"claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more`
 
                   The model that will complete your prompt.
 
@@ -1263,26 +1261,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                     Exceptional model for specialized complex tasks
 
-                  - `"claude-opus-4-0"`
-
-                    Powerful model for complex tasks
-
-                  - `"claude-opus-4-20250514"`
-
-                    Powerful model for complex tasks
-
-                  - `"claude-sonnet-4-0"`
-
-                    High-performance model with extended thinking
-
-                  - `"claude-sonnet-4-20250514"`
-
-                    High-performance model with extended thinking
-
-                  - `"claude-3-haiku-20240307"`
-
-                    Fast and cost-effective model
-
                 - `string`
 
             - `to: BetaFallbackInfoParam`
@@ -1292,6 +1270,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `type: "fallback"`
 
               - `"fallback"`
+
+            - `trigger: optional unknown`
+
+              The response block's `trigger`, echoed verbatim. Accepted and ignored by the server; any object or `null` is allowed.
 
       - `role: "user" or "assistant" or "system"`
 
@@ -1863,13 +1845,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           This is how the tool will be called by the model and in `tool_use` blocks.
 
-        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
           - `"direct"`
 
           - `"code_execution_20250825"`
 
           - `"code_execution_20260120"`
+
+          - `"code_execution_20260521"`
 
         - `cache_control: optional BetaCacheControlEphemeral`
 
@@ -1913,13 +1897,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `"bash_20241022"`
 
-        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
           - `"direct"`
 
           - `"code_execution_20250825"`
 
           - `"code_execution_20260120"`
+
+          - `"code_execution_20260521"`
 
         - `cache_control: optional BetaCacheControlEphemeral`
 
@@ -1949,13 +1935,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `"bash_20250124"`
 
-        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
           - `"direct"`
 
           - `"code_execution_20250825"`
 
           - `"code_execution_20260120"`
+
+          - `"code_execution_20260521"`
 
         - `cache_control: optional BetaCacheControlEphemeral`
 
@@ -1985,13 +1973,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `"code_execution_20250522"`
 
-        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
           - `"direct"`
 
           - `"code_execution_20250825"`
 
           - `"code_execution_20260120"`
+
+          - `"code_execution_20260521"`
 
         - `cache_control: optional BetaCacheControlEphemeral`
 
@@ -2019,13 +2009,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `"code_execution_20250825"`
 
-        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
           - `"direct"`
 
           - `"code_execution_20250825"`
 
           - `"code_execution_20260120"`
+
+          - `"code_execution_20260521"`
 
         - `cache_control: optional BetaCacheControlEphemeral`
 
@@ -2055,13 +2047,53 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `"code_execution_20260120"`
 
-        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
           - `"direct"`
 
           - `"code_execution_20250825"`
 
           - `"code_execution_20260120"`
+
+          - `"code_execution_20260521"`
+
+        - `cache_control: optional BetaCacheControlEphemeral`
+
+          Create a cache control breakpoint at this content block.
+
+        - `defer_loading: optional boolean`
+
+          If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+        - `strict: optional boolean`
+
+          When true, guarantees schema validation on tool names and inputs
+
+      - `BetaCodeExecutionTool20260521 object { name, type, allowed_callers, 3 more }`
+
+        Code execution tool with REPL state persistence.
+
+        - `name: "code_execution"`
+
+          Name of the tool.
+
+          This is how the tool will be called by the model and in `tool_use` blocks.
+
+          - `"code_execution"`
+
+        - `type: "code_execution_20260521"`
+
+          - `"code_execution_20260521"`
+
+        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
+
+          - `"direct"`
+
+          - `"code_execution_20250825"`
+
+          - `"code_execution_20260120"`
+
+          - `"code_execution_20260521"`
 
         - `cache_control: optional BetaCacheControlEphemeral`
 
@@ -2097,13 +2129,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `"computer_20241022"`
 
-        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
           - `"direct"`
 
           - `"code_execution_20250825"`
 
           - `"code_execution_20260120"`
+
+          - `"code_execution_20260521"`
 
         - `cache_control: optional BetaCacheControlEphemeral`
 
@@ -2137,13 +2171,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `"memory_20250818"`
 
-        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
           - `"direct"`
 
           - `"code_execution_20250825"`
 
           - `"code_execution_20260120"`
+
+          - `"code_execution_20260521"`
 
         - `cache_control: optional BetaCacheControlEphemeral`
 
@@ -2181,13 +2217,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `"computer_20250124"`
 
-        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
           - `"direct"`
 
           - `"code_execution_20250825"`
 
           - `"code_execution_20260120"`
+
+          - `"code_execution_20260521"`
 
         - `cache_control: optional BetaCacheControlEphemeral`
 
@@ -2221,13 +2259,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `"text_editor_20241022"`
 
-        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
           - `"direct"`
 
           - `"code_execution_20250825"`
 
           - `"code_execution_20260120"`
+
+          - `"code_execution_20260521"`
 
         - `cache_control: optional BetaCacheControlEphemeral`
 
@@ -2265,13 +2305,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `"computer_20251124"`
 
-        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
           - `"direct"`
 
           - `"code_execution_20250825"`
 
           - `"code_execution_20260120"`
+
+          - `"code_execution_20260521"`
 
         - `cache_control: optional BetaCacheControlEphemeral`
 
@@ -2309,13 +2351,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `"text_editor_20250124"`
 
-        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
           - `"direct"`
 
           - `"code_execution_20250825"`
 
           - `"code_execution_20260120"`
+
+          - `"code_execution_20260521"`
 
         - `cache_control: optional BetaCacheControlEphemeral`
 
@@ -2345,13 +2389,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `"text_editor_20250429"`
 
-        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
           - `"direct"`
 
           - `"code_execution_20250825"`
 
           - `"code_execution_20260120"`
+
+          - `"code_execution_20260521"`
 
         - `cache_control: optional BetaCacheControlEphemeral`
 
@@ -2381,13 +2427,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `"text_editor_20250728"`
 
-        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
           - `"direct"`
 
           - `"code_execution_20250825"`
 
           - `"code_execution_20260120"`
+
+          - `"code_execution_20260521"`
 
         - `cache_control: optional BetaCacheControlEphemeral`
 
@@ -2421,13 +2469,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `"web_search_20250305"`
 
-        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
           - `"direct"`
 
           - `"code_execution_20250825"`
 
           - `"code_execution_20260120"`
+
+          - `"code_execution_20260521"`
 
         - `allowed_domains: optional array of string`
 
@@ -2491,13 +2541,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `"web_fetch_20250910"`
 
-        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
           - `"direct"`
 
           - `"code_execution_20250825"`
 
           - `"code_execution_20260120"`
+
+          - `"code_execution_20260521"`
 
         - `allowed_domains: optional array of string`
 
@@ -2545,13 +2597,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `"web_search_20260209"`
 
-        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
           - `"direct"`
 
           - `"code_execution_20250825"`
 
           - `"code_execution_20260120"`
+
+          - `"code_execution_20260521"`
 
         - `allowed_domains: optional array of string`
 
@@ -2595,13 +2649,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `"web_fetch_20260209"`
 
-        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
           - `"direct"`
 
           - `"code_execution_20250825"`
 
           - `"code_execution_20260120"`
+
+          - `"code_execution_20260521"`
 
         - `allowed_domains: optional array of string`
 
@@ -2651,13 +2707,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `"web_fetch_20260309"`
 
-        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
           - `"direct"`
 
           - `"code_execution_20250825"`
 
           - `"code_execution_20260120"`
+
+          - `"code_execution_20260521"`
 
         - `allowed_domains: optional array of string`
 
@@ -2715,13 +2773,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `"advisor_20260301"`
 
-        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
           - `"direct"`
 
           - `"code_execution_20250825"`
 
           - `"code_execution_20260120"`
+
+          - `"code_execution_20260521"`
 
         - `cache_control: optional BetaCacheControlEphemeral`
 
@@ -2763,13 +2823,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `"tool_search_tool_bm25"`
 
-        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
           - `"direct"`
 
           - `"code_execution_20250825"`
 
           - `"code_execution_20260120"`
+
+          - `"code_execution_20260521"`
 
         - `cache_control: optional BetaCacheControlEphemeral`
 
@@ -2799,13 +2861,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `"tool_search_tool_regex"`
 
-        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+        - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
           - `"direct"`
 
           - `"code_execution_20250825"`
 
           - `"code_execution_20260120"`
+
+          - `"code_execution_20260521"`
 
         - `cache_control: optional BetaCacheControlEphemeral`
 
@@ -4696,14 +4760,14 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
               - `"compaction"`
 
-          - `BetaFallbackBlock object { from, to, type }`
+          - `BetaFallbackBlock object { from, to, trigger, type }`
 
             Marks the point in `content` where one model's output gives way to the next.
 
             One block appears per hop where a preceding model actually ran this turn and
-            declined. A turn routed directly by the sticky decision has no such boundary
-            and carries no block — the signal for whether a fallback model served the
-            response is the presence of a `fallback_message` entry in
+            declined. A turn where no preceding model ran and declined has no such
+            boundary and carries no block — the signal for whether a fallback model
+            served the response is the presence of a `fallback_message` entry in
             `usage.iterations`, not this block.
 
             The block is treated like a server-tool content block for streaming: it
@@ -4720,7 +4784,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                 See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-                - `"claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more`
+                - `"claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more`
 
                   The model that will complete your prompt.
 
@@ -4786,31 +4850,31 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                     Exceptional model for specialized complex tasks
 
-                  - `"claude-opus-4-0"`
-
-                    Powerful model for complex tasks
-
-                  - `"claude-opus-4-20250514"`
-
-                    Powerful model for complex tasks
-
-                  - `"claude-sonnet-4-0"`
-
-                    High-performance model with extended thinking
-
-                  - `"claude-sonnet-4-20250514"`
-
-                    High-performance model with extended thinking
-
-                  - `"claude-3-haiku-20240307"`
-
-                    Fast and cost-effective model
-
                 - `string`
 
             - `to: BetaFallbackInfo`
 
               The fallback model producing the content that follows this block. Its `model` is always the canonical id.
+
+            - `trigger: BetaFallbackRefusalTrigger`
+
+              What caused the `from` model to hand over at this hop.
+
+              - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
+
+                The policy category that triggered a refusal.
+
+                - `"cyber"`
+
+                - `"bio"`
+
+                - `"frontier_llm"`
+
+                - `"reasoning_extraction"`
+
+              - `type: "refusal"`
+
+                - `"refusal"`
 
             - `type: "fallback"`
 
@@ -4937,15 +5001,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           Structured information about a refusal.
 
-          - `category: "cyber" or "bio" or "reasoning_extraction"`
+          - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
 
-            The policy category that triggered the refusal.
-
-            `null` when the refusal doesn't map to a named category.
+            The policy category that triggered a refusal.
 
             - `"cyber"`
 
             - `"bio"`
+
+            - `"frontier_llm"`
 
             - `"reasoning_extraction"`
 
@@ -6472,14 +6536,14 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
               - `"compaction"`
 
-          - `BetaFallbackBlock object { from, to, type }`
+          - `BetaFallbackBlock object { from, to, trigger, type }`
 
             Marks the point in `content` where one model's output gives way to the next.
 
             One block appears per hop where a preceding model actually ran this turn and
-            declined. A turn routed directly by the sticky decision has no such boundary
-            and carries no block — the signal for whether a fallback model served the
-            response is the presence of a `fallback_message` entry in
+            declined. A turn where no preceding model ran and declined has no such
+            boundary and carries no block — the signal for whether a fallback model
+            served the response is the presence of a `fallback_message` entry in
             `usage.iterations`, not this block.
 
             The block is treated like a server-tool content block for streaming: it
@@ -6496,7 +6560,7 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
                 See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-                - `"claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more`
+                - `"claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more`
 
                   The model that will complete your prompt.
 
@@ -6562,31 +6626,31 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
                     Exceptional model for specialized complex tasks
 
-                  - `"claude-opus-4-0"`
-
-                    Powerful model for complex tasks
-
-                  - `"claude-opus-4-20250514"`
-
-                    Powerful model for complex tasks
-
-                  - `"claude-sonnet-4-0"`
-
-                    High-performance model with extended thinking
-
-                  - `"claude-sonnet-4-20250514"`
-
-                    High-performance model with extended thinking
-
-                  - `"claude-3-haiku-20240307"`
-
-                    Fast and cost-effective model
-
                 - `string`
 
             - `to: BetaFallbackInfo`
 
               The fallback model producing the content that follows this block. Its `model` is always the canonical id.
+
+            - `trigger: BetaFallbackRefusalTrigger`
+
+              What caused the `from` model to hand over at this hop.
+
+              - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
+
+                The policy category that triggered a refusal.
+
+                - `"cyber"`
+
+                - `"bio"`
+
+                - `"frontier_llm"`
+
+                - `"reasoning_extraction"`
+
+              - `type: "refusal"`
+
+                - `"refusal"`
 
             - `type: "fallback"`
 
@@ -6713,15 +6777,15 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
           Structured information about a refusal.
 
-          - `category: "cyber" or "bio" or "reasoning_extraction"`
+          - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
 
-            The policy category that triggered the refusal.
-
-            `null` when the refusal doesn't map to a named category.
+            The policy category that triggered a refusal.
 
             - `"cyber"`
 
             - `"bio"`
+
+            - `"frontier_llm"`
 
             - `"reasoning_extraction"`
 
@@ -8047,14 +8111,14 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
             - `"compaction"`
 
-        - `BetaFallbackBlock object { from, to, type }`
+        - `BetaFallbackBlock object { from, to, trigger, type }`
 
           Marks the point in `content` where one model's output gives way to the next.
 
           One block appears per hop where a preceding model actually ran this turn and
-          declined. A turn routed directly by the sticky decision has no such boundary
-          and carries no block — the signal for whether a fallback model served the
-          response is the presence of a `fallback_message` entry in
+          declined. A turn where no preceding model ran and declined has no such
+          boundary and carries no block — the signal for whether a fallback model
+          served the response is the presence of a `fallback_message` entry in
           `usage.iterations`, not this block.
 
           The block is treated like a server-tool content block for streaming: it
@@ -8071,7 +8135,7 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
               See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-              - `"claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more`
+              - `"claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more`
 
                 The model that will complete your prompt.
 
@@ -8137,31 +8201,31 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
                   Exceptional model for specialized complex tasks
 
-                - `"claude-opus-4-0"`
-
-                  Powerful model for complex tasks
-
-                - `"claude-opus-4-20250514"`
-
-                  Powerful model for complex tasks
-
-                - `"claude-sonnet-4-0"`
-
-                  High-performance model with extended thinking
-
-                - `"claude-sonnet-4-20250514"`
-
-                  High-performance model with extended thinking
-
-                - `"claude-3-haiku-20240307"`
-
-                  Fast and cost-effective model
-
               - `string`
 
           - `to: BetaFallbackInfo`
 
             The fallback model producing the content that follows this block. Its `model` is always the canonical id.
+
+          - `trigger: BetaFallbackRefusalTrigger`
+
+            What caused the `from` model to hand over at this hop.
+
+            - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
+
+              The policy category that triggered a refusal.
+
+              - `"cyber"`
+
+              - `"bio"`
+
+              - `"frontier_llm"`
+
+              - `"reasoning_extraction"`
+
+            - `type: "refusal"`
+
+              - `"refusal"`
 
           - `type: "fallback"`
 
@@ -8288,15 +8352,15 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
         Structured information about a refusal.
 
-        - `category: "cyber" or "bio" or "reasoning_extraction"`
+        - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
 
-          The policy category that triggered the refusal.
-
-          `null` when the refusal doesn't map to a named category.
+          The policy category that triggered a refusal.
 
           - `"cyber"`
 
           - `"bio"`
+
+          - `"frontier_llm"`
 
           - `"reasoning_extraction"`
 
@@ -9584,14 +9648,14 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
           - `"compaction"`
 
-      - `BetaFallbackBlock object { from, to, type }`
+      - `BetaFallbackBlock object { from, to, trigger, type }`
 
         Marks the point in `content` where one model's output gives way to the next.
 
         One block appears per hop where a preceding model actually ran this turn and
-        declined. A turn routed directly by the sticky decision has no such boundary
-        and carries no block — the signal for whether a fallback model served the
-        response is the presence of a `fallback_message` entry in
+        declined. A turn where no preceding model ran and declined has no such
+        boundary and carries no block — the signal for whether a fallback model
+        served the response is the presence of a `fallback_message` entry in
         `usage.iterations`, not this block.
 
         The block is treated like a server-tool content block for streaming: it
@@ -9608,7 +9672,7 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-            - `"claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more`
+            - `"claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more`
 
               The model that will complete your prompt.
 
@@ -9674,31 +9738,31 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
                 Exceptional model for specialized complex tasks
 
-              - `"claude-opus-4-0"`
-
-                Powerful model for complex tasks
-
-              - `"claude-opus-4-20250514"`
-
-                Powerful model for complex tasks
-
-              - `"claude-sonnet-4-0"`
-
-                High-performance model with extended thinking
-
-              - `"claude-sonnet-4-20250514"`
-
-                High-performance model with extended thinking
-
-              - `"claude-3-haiku-20240307"`
-
-                Fast and cost-effective model
-
             - `string`
 
         - `to: BetaFallbackInfo`
 
           The fallback model producing the content that follows this block. Its `model` is always the canonical id.
+
+        - `trigger: BetaFallbackRefusalTrigger`
+
+          What caused the `from` model to hand over at this hop.
+
+          - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
+
+            The policy category that triggered a refusal.
+
+            - `"cyber"`
+
+            - `"bio"`
+
+            - `"frontier_llm"`
+
+            - `"reasoning_extraction"`
+
+          - `type: "refusal"`
+
+            - `"refusal"`
 
         - `type: "fallback"`
 
@@ -9825,15 +9889,15 @@ curl https://api.anthropic.com/v1/messages/batches/$MESSAGE_BATCH_ID/results \
 
       Structured information about a refusal.
 
-      - `category: "cyber" or "bio" or "reasoning_extraction"`
+      - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
 
-        The policy category that triggered the refusal.
-
-        `null` when the refusal doesn't map to a named category.
+        The policy category that triggered a refusal.
 
         - `"cyber"`
 
         - `"bio"`
+
+        - `"frontier_llm"`
 
         - `"reasoning_extraction"`
 

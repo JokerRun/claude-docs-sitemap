@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/webhooks
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 73299a231e64ebead9b003eeadde744ca23d1e321effd65ced1d6cd022c87aa5
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: 7ced5657d1b7391dfde2859bb1e0f443799a73d3d42dcb6b5f4ade8206338bbb
 ---
 
 # Webhooks
@@ -359,6 +359,20 @@ sha256: 73299a231e64ebead9b003eeadde744ca23d1e321effd65ced1d6cd022c87aa5
 
       - `WorkspaceID string`
 
+    - `type BetaWebhookSessionUpdatedEventData struct{…}`
+
+      - `ID string`
+
+        ID of the session that triggered the event.
+
+      - `OrganizationID string`
+
+      - `Type SessionUpdated`
+
+        - `const SessionUpdatedSessionUpdated SessionUpdated = "session.updated"`
+
+      - `WorkspaceID string`
+
   - `Type Event`
 
     Object type. Always `event` for webhook payloads.
@@ -705,6 +719,20 @@ sha256: 73299a231e64ebead9b003eeadde744ca23d1e321effd65ced1d6cd022c87aa5
 
     - `WorkspaceID string`
 
+  - `type BetaWebhookSessionUpdatedEventData struct{…}`
+
+    - `ID string`
+
+      ID of the session that triggered the event.
+
+    - `OrganizationID string`
+
+    - `Type SessionUpdated`
+
+      - `const SessionUpdatedSessionUpdated SessionUpdated = "session.updated"`
+
+    - `WorkspaceID string`
+
 ### Beta Webhook Session Archived Event Data
 
 - `type BetaWebhookSessionArchivedEventData struct{…}`
@@ -954,6 +982,22 @@ sha256: 73299a231e64ebead9b003eeadde744ca23d1e321effd65ced1d6cd022c87aa5
   - `Type SessionThreadTerminated`
 
     - `const SessionThreadTerminatedSessionThreadTerminated SessionThreadTerminated = "session.thread_terminated"`
+
+  - `WorkspaceID string`
+
+### Beta Webhook Session Updated Event Data
+
+- `type BetaWebhookSessionUpdatedEventData struct{…}`
+
+  - `ID string`
+
+    ID of the session that triggered the event.
+
+  - `OrganizationID string`
+
+  - `Type SessionUpdated`
+
+    - `const SessionUpdatedSessionUpdated SessionUpdated = "session.updated"`
 
   - `WorkspaceID string`
 
@@ -1432,6 +1476,20 @@ sha256: 73299a231e64ebead9b003eeadde744ca23d1e321effd65ced1d6cd022c87aa5
       - `VaultID string`
 
         ID of the vault that owns this credential.
+
+      - `WorkspaceID string`
+
+    - `type BetaWebhookSessionUpdatedEventData struct{…}`
+
+      - `ID string`
+
+        ID of the session that triggered the event.
+
+      - `OrganizationID string`
+
+      - `Type SessionUpdated`
+
+        - `const SessionUpdatedSessionUpdated SessionUpdated = "session.updated"`
 
       - `WorkspaceID string`
 

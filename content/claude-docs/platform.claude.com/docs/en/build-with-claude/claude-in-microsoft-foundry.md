@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry
-fetched_at: 2026-06-11T03:14:59.596724Z
-sha256: e5e5e40627b6e3cc548c0660062fd5d08b79848381cfd17033ac6e3c41bcfa39
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: 6ab6f34261935d60cbeb690151d87ca356121fdcc0da832e109bb82f6a72eb64
 ---
 
 # Claude in Microsoft Foundry
@@ -515,7 +515,7 @@ Claude Fable 5, Claude Opus 4.7, Claude Opus 4.6, and Claude Sonnet 4.6 have a [
 
 ## API responses
 
-API responses from Claude in Foundry follow the standard [Claude API response format](/docs/en/api/messages/create). This includes the `usage` object in response bodies, which provides detailed token consumption information for your requests. The `usage` object is consistent across all platforms (Claude API, Foundry, Claude Platform on AWS, Amazon Bedrock, and Vertex AI).
+API responses from Claude in Foundry follow the standard [Claude API response format](/docs/en/api/messages/create). This includes the `usage` object in response bodies, which provides detailed token consumption information for your requests. The `usage` object is consistent across all platforms (Claude API, Foundry, Claude Platform on AWS, Amazon Bedrock, and Google Cloud).
 
 For details on response headers specific to Foundry, see [Correlation request IDs](#correlation-request-ids).
 

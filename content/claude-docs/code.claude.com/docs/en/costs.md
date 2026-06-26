@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/costs
-fetched_at: 2026-06-17T03:17:04.158711Z
-sha256: a0b3b48bed546b997fb12d2ff6c22048cab202178695f2dff9ec39f986ffa247
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: c883ba384379be69c733775c3f7d18a821a4c3258415ef5f5921fecf340d8418
 ---
 
 > ## Documentation Index
@@ -52,7 +52,7 @@ On Pro and Max plans, you can set a monthly spend limit on usage credits with th
   For organizations with custom rate limits, Claude Code traffic in this workspace counts toward your organization's overall API rate limits. You can set a [workspace rate limit](https://platform.claude.com/docs/en/api/rate-limits#setting-lower-limits-for-workspaces) on this workspace's Limits page in the Claude Console to cap Claude Code's share and protect other production workloads.
 </Note>
 
-On Bedrock, Vertex, and Foundry, Claude Code does not send metrics from your cloud. To get cost metrics, several large enterprises reported using [LiteLLM](/en/llm-gateway#litellm-configuration), which is an open-source tool that helps companies [track spend by key](https://docs.litellm.ai/docs/proxy/virtual_keys#tracking-spend). This project is unaffiliated with Anthropic and has not been audited for security.
+On Bedrock, Vertex, and Foundry, Claude Code does not send metrics from your cloud. Organizations that already route Claude Code through an [LLM gateway](/en/llm-gateway) can track spend there, since the gateway sees every request.
 
 ### Rate limit recommendations
 

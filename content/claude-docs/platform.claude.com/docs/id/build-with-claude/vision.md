@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/vision
-fetched_at: 2026-06-13T03:15:40.418428Z
-sha256: a809f9881d13e6936cbcd3bf3abce5ef20c5aba5118480595548d92660cca503
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: 6f4c2fb28d104dfd4f7322c5366633c6ecedad44bf925117a059b07a512689ed
 ---
 
 # Vision
@@ -11,7 +11,7 @@ Kemampuan vision Claude memungkinkannya untuk memahami dan menganalisis gambar, 
 
 ---
 
-Panduan ini menjelaskan cara bekerja dengan gambar di Claude, termasuk praktik terbaik, contoh kode, dan batasan yang perlu diperhatikan.
+Panduan ini menjelaskan cara bekerja dengan gambar di Claude, termasuk praktik terbaik, contoh kode, dan batasan yang perlu diingat.
 
 ---
 
@@ -36,7 +36,9 @@ Jumlah maksimal gambar per pesan atau permintaan adalah:
   - 100 per permintaan di API, untuk model dengan jendela konteks 200k token.
   - 600 per permintaan di API, untuk semua model lainnya.
 
-Dimensi maksimal per gambar adalah 8000x8000 px. Jika Anda mengirimkan lebih dari 20 gambar dalam satu permintaan API, batas ini dikurangi menjadi 2000x2000 px.
+Dimensi maksimal per gambar adalah 8000x8000 px.
+
+Jika satu permintaan API berisi lebih dari 20 gambar, batas dimensi per gambar yang lebih ketat akan berlaku. Di Amazon Bedrock dan Vertex AI, blok dokumen seperti PDF juga dihitung terhadap ambang batas ini. Gambar yang melebihi batas yang lebih ketat akan ditolak dengan `invalid_request_error` yang pesannya merujuk pada "many-image requests" dan menyatakan batas saat ini dalam piksel. Untuk tetap di bawah batas di semua platform, ubah ukuran setiap gambar sehingga tidak ada dimensi yang melebihi 2000 px, atau batasi permintaan hingga 20 atau kurang blok gambar dan dokumen.
 
 Ukuran maksimal per gambar adalah:
   - 10&nbsp;MB (dikodekan base64) saat menggunakan Claude API secara langsung.
@@ -44,26 +46,26 @@ Ukuran maksimal per gambar adalah:
   - 10&nbsp;MB di [claude.ai](https://claude.ai/).
 
 <Note>
-Meskipun API mendukung hingga 600 gambar per permintaan, [batas ukuran permintaan](/docs/id/api/overview#request-size-limits) (32&nbsp;MB untuk endpoint standar; lebih rendah pada beberapa platform yang dioperasikan mitra, misalnya Amazon Bedrock dan Vertex AI) dapat tercapai terlebih dahulu. Untuk banyak gambar, pertimbangkan untuk mengunggah dengan [Files API](#files-api-image-example) dan mereferensikan melalui `file_id` agar payload permintaan tetap kecil.
+Meskipun API mendukung hingga 600 gambar per permintaan, [batas ukuran permintaan](/docs/id/api/overview#request-size-limits) (32&nbsp;MB untuk endpoint standar; lebih rendah pada beberapa platform yang dioperasikan mitra, misalnya, Amazon Bedrock dan Vertex AI) dapat tercapai terlebih dahulu. Untuk banyak gambar, pertimbangkan untuk mengunggah dengan [Files API](#files-api-image-example) dan mereferensikan dengan `file_id` untuk menjaga payload permintaan tetap kecil.
 
 Bahkan saat menggunakan Files API, permintaan dengan banyak gambar besar dapat gagal sebelum mencapai jumlah 600 gambar. Kurangi dimensi gambar atau ukuran file (misalnya, dengan downsampling) sebelum mengunggah (lihat [Mengevaluasi ukuran gambar](#evaluate-image-size)).
 </Note>
 
 ### Mengevaluasi ukuran gambar \{#evaluate-image-size}
 
-Claude melihat gambar dalam bentuk patch, bukan piksel. Setiap patch adalah blok 28×28 piksel dari gambar, yang disebut sebagai token visual. Oleh karena itu, sebuah gambar menghabiskan `⌈width / 28⌉ × ⌈height / 28⌉` token visual.
+Claude melihat gambar dalam bentuk patch, bukan piksel. Setiap patch adalah blok 28×28 piksel dari gambar, yang disebut sebagai token visual. Oleh karena itu, sebuah gambar membutuhkan `⌈width / 28⌉ × ⌈height / 28⌉` token visual.
 
 Jika Claude menerima gambar yang terlalu besar, Claude akan mengubah ukurannya. Resolusi gambar native maksimal adalah:
 
-- Untuk Claude Fable 5 dan Claude Mythos 5: 4784 token, dan paling banyak 2576 piksel pada sisi terpanjang.
-- Untuk Claude Opus 4.8: 4784 token, dan paling banyak 2576 piksel pada sisi terpanjang.
-- Untuk Claude Opus 4.7: 4784 token, dan paling banyak 2576 piksel pada sisi terpanjang.
-- Untuk model lainnya: 1568 token, dan paling banyak 1568 piksel pada sisi terpanjang.
+- Untuk Claude Fable 5 dan Claude Mythos 5: 4784 token, dan maksimal 2576 piksel pada sisi panjang.
+- Untuk Claude Opus 4.8: 4784 token, dan maksimal 2576 piksel pada sisi panjang.
+- Untuk Claude Opus 4.7: 4784 token, dan maksimal 2576 piksel pada sisi panjang.
+- Untuk model lainnya: 1568 token, dan maksimal 1568 piksel pada sisi panjang.
 
 <Note>
-Jika gambar input Anda lebih besar dari resolusi native ini, gambar tersebut terlebih dahulu diubah ukurannya ke ukuran terbesar yang mungkin dengan mempertahankan rasio aspek. Semua gambar, baik yang diubah ukurannya maupun tidak, kemudian diberi padding pada tepi bawah dan kanan hingga kelipatan 28 piksel. Lihat [Cara Claude mengubah ukuran dan memberi padding pada gambar](#how-claude-resizes-and-pads-images) untuk aturan persisnya.
+Jika gambar input Anda lebih besar dari resolusi native ini, gambar tersebut terlebih dahulu diubah ukurannya ke ukuran terbesar yang memungkinkan sambil mempertahankan rasio aspek. Semua gambar, baik yang diubah ukurannya maupun tidak, kemudian diberi padding pada tepi bawah dan kanan hingga kelipatan 28 piksel. Lihat [Cara Claude mengubah ukuran dan memberi padding pada gambar](#how-claude-resizes-and-pads-images) untuk aturan persisnya.
 
-Saat meminta Claude untuk menghasilkan koordinat (titik, bounding box, dan sebagainya), Claude bekerja paling baik dengan koordinat piksel absolut yang dinyatakan terhadap gambar yang telah diubah ukurannya yang dilihatnya. Lihat [Bekerja dengan koordinat dan bounding box](#working-with-coordinates-and-bounding-boxes) untuk cara menanganinya.
+Saat meminta Claude untuk menghasilkan koordinat (titik, bounding box, dan sebagainya), Claude bekerja paling baik dengan koordinat piksel absolut yang dinyatakan relatif terhadap gambar yang telah diubah ukurannya yang dilihatnya. Lihat [Bekerja dengan koordinat dan bounding box](#working-with-coordinates-and-bounding-boxes) untuk cara menanganinya.
 </Note>
 
 Untuk meminimalkan latensi dan menyederhanakan alur kerja berbasis koordinat, Anda sebaiknya mengubah ukuran gambar sebelum mengunggahnya.
@@ -83,15 +85,15 @@ Berikut adalah contoh tokenisasi dan perkiraan biaya untuk berbagai ukuran gamba
 | 2000x1500 px(3 megapiksel)    | 1564         | \~$0,0047      | \~$4,69           |
 | 3840x2160 px(8,29 megapiksel) | 1560         | \~$0,0047      | \~$4,68           |
 
-Perhatikan bahwa tiga gambar terakhir melebihi resolusi native dan diperkecil sebelum diproses (masing-masing menjadi 1456x819 px, 1270x952 px, dan 1456x819 px), yang membatasi biaya tokennya. Gambar 4K tidak lebih mahal daripada gambar 1920x1080 karena keduanya diperkecil ke ukuran yang sama; resolusi tambahan dibuang.
+Perhatikan bahwa tiga gambar terakhir melebihi resolusi native dan diperkecil sebelum diproses (masing-masing menjadi 1456x819 px, 1270x952 px, dan 1456x819 px), yang membatasi biaya tokennya. Gambar 4K tidak lebih mahal dari gambar 1920x1080 karena keduanya diperkecil ke ukuran yang sama; resolusi tambahan dibuang.
 
 #### Dukungan gambar resolusi tinggi \{#high-resolution-image-support-on-claude-opus-4-7}
 
-Claude Opus 4.7 adalah model Claude pertama dengan dukungan gambar resolusi tinggi; Claude Opus 4.8, Claude Fable 5, Claude Mythos 5, dan model-model selanjutnya juga mendukungnya. Resolusi gambar maksimum adalah 2576 piksel pada sisi terpanjang, naik dari 1568 px pada model sebelumnya. Ini membuka peningkatan performa pada beban kerja yang berat secara visual dan sangat berharga untuk penggunaan komputer, pemahaman tangkapan layar, dan analisis dokumen.
+Claude Opus 4.7 adalah model Claude pertama dengan dukungan gambar resolusi tinggi; Claude Opus 4.8, Claude Fable 5, Claude Mythos 5, dan model-model selanjutnya juga mendukungnya. Resolusi gambar maksimum adalah 2576 piksel pada sisi panjang, naik dari 1568 px pada model sebelumnya. Ini membuka peningkatan performa pada beban kerja yang berat secara visual dan sangat berharga untuk computer use, pemahaman screenshot, dan analisis dokumen.
 
 Dukungan resolusi tinggi bersifat otomatis pada Claude Opus 4.7 dan model-model selanjutnya dan tidak memerlukan header beta atau opt-in dari sisi klien.
 
-Gambar resolusi tinggi pada Claude Opus 4.7, Claude Opus 4.8, Claude Fable 5, dan Claude Mythos 5 dapat menggunakan hingga sekitar 3x lebih banyak token gambar dibandingkan model sebelumnya (4784 versus 1568 token per gambar). Jika Anda tidak memerlukan ketelitian tambahan, lakukan downsample pada gambar sebelum mengirim untuk mengontrol biaya token.
+Gambar resolusi tinggi pada Claude Opus 4.7, Claude Opus 4.8, Claude Fable 5, dan Claude Mythos 5 dapat menggunakan hingga sekitar 3x lebih banyak token gambar dibandingkan model sebelumnya (4784 versus 1568 token per gambar). Jika Anda tidak memerlukan ketajaman tambahan, lakukan downsample pada gambar sebelum mengirim untuk mengontrol biaya token.
 
 Berikut adalah ukuran gambar yang sama yang ditokenisasi untuk Claude Opus 4.7 dan Claude Opus 4.8, berdasarkan harga per token mereka sebesar $5 per juta token input:
 
@@ -104,7 +106,7 @@ Berikut adalah ukuran gambar yang sama yang ditokenisasi untuk Claude Opus 4.7 d
 | 2000x1500 px(3 megapiksel)    | 3888         | \~$0,019       | \~$19,44          |
 | 3840x2160 px(8,29 megapiksel) | 4784         | \~$0,024       | \~$23,92          |
 
-Hanya gambar terakhir yang melebihi batas yang lebih tinggi: gambar 4K diperkecil menjadi 2576x1449 px sebelum diproses. Dukungan resolusi tinggi menaikkan batas resolusi tetapi tidak menghapusnya; gambar yang lebih besar dari 2576 px pada sisi terpanjang (atau 4784 token visual) tetap diperkecil.
+Hanya gambar terakhir yang melebihi batas yang lebih tinggi: gambar 4K diperkecil menjadi 2576x1449 px sebelum diproses. Dukungan resolusi tinggi menaikkan batas resolusi tetapi tidak menghapusnya; gambar yang lebih besar dari 2576 px pada sisi panjang (atau 4784 token visual) tetap diperkecil.
 
 ### Memastikan kualitas gambar \{#ensure-image-quality}
 
@@ -112,19 +114,19 @@ Saat memberikan gambar ke Claude, perhatikan hal-hal berikut untuk hasil terbaik
 
 - **Format gambar**: Gunakan format gambar yang didukung: JPEG, PNG, GIF, atau WebP.\
   Animasi tidak didukung, dan hanya frame pertama yang akan digunakan.
-- **Kejernihan gambar**: Pastikan gambar jernih dan tidak terlalu buram atau pecah.
+- **Kejernihan gambar**: Pastikan gambar jernih dan tidak terlalu buram atau terpikselasi.
 - **Teks**: Jika gambar berisi teks penting, pastikan teks tersebut terbaca dan tidak terlalu kecil. Hindari memotong konteks visual penting hanya untuk memperbesar teks.
-- **Pengubahan ukuran**: Perhitungkan bahwa gambar Anda mungkin diubah ukurannya jika terlalu besar (lihat di atas); ini misalnya dapat membuat teks kurang terbaca. Pertimbangkan untuk mengubah ukuran gambar Anda terlebih dahulu, memotongnya, atau keduanya.
-- **Kompresi gambar**: Mengompresi gambar sebelum mengirimnya, menggunakan format lossy seperti JPEG atau WebP (mode lossy), dapat mengurangi latensi dengan mengurangi ukuran permintaan. Namun, ini dapat menimbulkan artefak yang merugikan performa model, terutama ketika beberapa tahap kompresi diterapkan. Misalnya, kompresi JPEG yang berat dapat membuat teks sulit dibaca. Pastikan pengaturan kompresi Anda sesuai untuk tugas tersebut dengan memeriksa gambar aktual yang dikirim ke API.
+- **Pengubahan ukuran**: Perhitungkan bahwa gambar Anda mungkin diubah ukurannya jika terlalu besar (lihat di atas); ini mungkin misalnya membuat teks kurang terbaca. Pertimbangkan untuk mengubah ukuran gambar Anda terlebih dahulu, memotongnya, atau keduanya.
+- **Kompresi gambar**: Mengompresi gambar sebelum mengirimnya, menggunakan format lossy seperti JPEG atau WebP (mode lossy), dapat mengurangi latensi dengan mengurangi ukuran permintaan. Namun, ini dapat menimbulkan artefak yang merugikan performa model, terutama ketika beberapa tahap kompresi diterapkan. Misalnya, kompresi JPEG yang berat dapat membuat teks sulit dibaca. Konfirmasikan bahwa pengaturan kompresi Anda sesuai untuk tugas dengan memeriksa gambar aktual yang dikirim ke API.
 
 ---
 
 ## Bekerja dengan koordinat dan bounding box \{#working-with-coordinates-and-bounding-boxes}
 
-Claude dapat menemukan dan memberi label pada region gambar (misalnya, mengembalikan bounding box untuk tabel, kolom formulir, elemen grafik, atau komponen UI).
+Claude dapat menemukan dan memberi label pada region dalam gambar (misalnya, mengembalikan bounding box untuk tabel, field formulir, elemen grafik, atau komponen UI).
 
 <Note>
-**Claude bekerja paling baik dengan koordinat piksel absolut.** Minta secara eksplisit dalam prompt Anda. Misalnya: *"Return the bounding box of each table as `[x1, y1, x2, y2]` in pixel coordinates."* Claude tidak bekerja dengan baik ketika Anda meminta koordinat yang dinormalisasi, misalnya: *"Return bounding box coordinates between `0` and `1000`."* Selalu minta koordinat piksel dan lakukan normalisasi dalam kode Anda sendiri jika diperlukan.
+**Claude bekerja paling baik dengan koordinat piksel absolut.** Minta koordinat tersebut secara eksplisit dalam prompt Anda. Misalnya: *"Return the bounding box of each table as `[x1, y1, x2, y2]` in pixel coordinates."* Claude tidak bekerja dengan baik ketika Anda meminta koordinat yang dinormalisasi, misalnya: *"Return bounding box coordinates between `0` and `1000`."* Selalu minta koordinat piksel dan lakukan normalisasi dalam kode Anda sendiri jika diperlukan.
 </Note>
 
 Koordinat mengikuti konvensi gambar standar: titik asal `(0, 0)` adalah sudut kiri atas gambar, dengan x bertambah ke kanan dan y bertambah ke bawah. Koordinat yang dikembalikan Claude adalah posisi piksel dalam gambar yang dilihat Claude: gambar Anda setelah Claude mengubah ukurannya agar sesuai dengan resolusi native model (lihat [Cara Claude mengubah ukuran dan memberi padding pada gambar](#how-claude-resizes-and-pads-images)). Untuk mendapatkan koordinat yang dapat Anda gunakan secara langsung, ubah ukuran gambar Anda terlebih dahulu sehingga koordinat dipetakan satu-ke-satu ke gambar yang Anda miliki (lihat [Ubah ukuran gambar Anda sebelum mengunggah](#resize-your-image-before-uploading)), atau skalakan ulang koordinat yang dikembalikan Claude (lihat [Skalakan ulang koordinat ketika Anda tidak dapat mengubah ukuran terlebih dahulu](#rescale-coordinates-when-you-cannot-pre-resize)).
@@ -140,13 +142,13 @@ Claude menemukan ukuran terbesar yang mempertahankan rasio aspek yang memenuhi k
 1. **Batas tepi:** tidak ada sisi yang melebihi panjang tepi maksimum (1568 px untuk sebagian besar model, 2576 px untuk Claude Opus 4.7 dan model-model selanjutnya).
 2. **Batas token visual:** biaya token gambar `⌈width / 28⌉ × ⌈height / 28⌉` tidak melebihi anggaran token visual model (1568 token untuk sebagian besar model, 4784 untuk Claude Opus 4.7 dan model-model selanjutnya).
 
-Untuk sebagian besar foto dan tangkapan layar, batas tepi adalah yang memicu pengubahan ukuran. Untuk dokumen potret, batas token visual biasanya terpicu terlebih dahulu, dan mengabaikannya adalah penyebab paling umum dari koordinat yang tidak selaras. Misalnya, halaman A4 yang dipindai pada 130 DPI adalah 1075×1520 piksel: kedua sisi di bawah 1568 px, tetapi menghabiskan `39 × 55 = 2145` token visual, sehingga Claude mengubah ukurannya menjadi 924×1307.
+Untuk sebagian besar foto dan screenshot, batas tepi adalah yang memicu pengubahan ukuran. Untuk dokumen portrait, batas token visual biasanya terpicu terlebih dahulu, dan mengabaikannya adalah penyebab paling umum dari koordinat yang tidak selaras. Misalnya, halaman A4 yang dipindai pada 130 DPI adalah 1075×1520 piksel: kedua sisi di bawah 1568 px, tetapi membutuhkan `39 × 55 = 2145` token visual, sehingga Claude mengubah ukurannya menjadi 924×1307.
 
 Claude kemudian memberi padding pada setiap gambar, baik yang diubah ukurannya maupun tidak, hingga kelipatan 28 piksel berikutnya pada tepi bawah dan kanan (924×1307 menjadi 924×1316 dalam contoh tersebut). Padding tidak berisi konten: Claude melihat gambar yang diberi padding, tetapi konten halaman hanya menempati region yang diubah ukurannya tanpa padding. **Selalu normalisasi atau skalakan ulang berdasarkan dimensi yang diubah ukurannya, bukan dimensi yang diberi padding**; membagi dengan dimensi yang diberi padding akan menskalakan setiap koordinat dengan jumlah kecil.
 
 ### Ubah ukuran gambar Anda sebelum mengunggah \{#resize-your-image-before-uploading}
 
-Pendekatan paling andal adalah mengubah ukuran gambar Anda sendiri sebelum mengunggah, sehingga gambar yang Anda miliki persis sama dengan gambar yang dilihat Claude dan koordinat yang dikembalikan Claude tidak memerlukan konversi.
+Pendekatan yang paling andal adalah mengubah ukuran gambar Anda sendiri sebelum mengunggah, sehingga gambar yang Anda miliki persis sama dengan gambar yang dilihat Claude dan koordinat yang dikembalikan Claude tidak memerlukan konversi.
 
 Implementasi referensi berikut menghitung ukuran persis yang digunakan Claude untuk mengubah ukuran gambar:
 
@@ -204,7 +206,7 @@ print(resized_size(1075, 1520))  # (924, 1307)
 
 1. Ubah ukuran gambar ke dimensi yang dikembalikan oleh `resized_size`. Jika gambar sudah sesuai dengan batas model, `resized_size` mengembalikan dimensinya tanpa perubahan dan tidak diperlukan pengubahan ukuran.
 2. Kirim gambar yang telah diubah ukurannya ke API. Jangan memberi padding sendiri; Claude menangani padding, dan padding tidak menggeser titik asal koordinat.
-3. Dalam prompt Anda, minta secara eksplisit koordinat piksel. Misalnya: *"Return the bounding box of each table as `[x1, y1, x2, y2]` in pixel coordinates."*
+3. Dalam prompt Anda, minta koordinat piksel secara eksplisit. Misalnya: *"Return the bounding box of each table as `[x1, y1, x2, y2]` in pixel coordinates."*
 4. Gunakan koordinat yang dikembalikan secara langsung terhadap gambar yang Anda kirim. Jika Anda memerlukan koordinat yang dinormalisasi, bagi dengan dimensi gambar yang Anda kirim, bukan dengan dimensi gambar asli dan bukan dengan dimensi yang diberi padding.
 
 ### Skalakan ulang koordinat ketika Anda tidak dapat mengubah ukuran terlebih dahulu \{#rescale-coordinates-when-you-cannot-pre-resize}
@@ -247,7 +249,7 @@ Banyak [teknik prompting](/docs/id/build-with-claude/prompt-engineering/overview
 Contoh-contoh ini mendemonstrasikan struktur prompt praktik terbaik yang melibatkan gambar.
 
 <Tip>
-  Sama seperti [menempatkan dokumen panjang sebelum kueri Anda](/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices#long-context-prompting) meningkatkan hasil dalam prompt teks, Claude bekerja paling baik ketika gambar ditempatkan sebelum teks. Gambar yang ditempatkan setelah teks atau disisipkan di antara teks tetap berfungsi dengan baik, tetapi jika kasus penggunaan Anda memungkinkan, lebih baik gunakan struktur gambar-lalu-teks.
+  Sama seperti [menempatkan dokumen panjang sebelum kueri Anda](/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices#long-context-prompting) meningkatkan hasil dalam prompt teks, Claude bekerja paling baik ketika gambar ditempatkan sebelum teks. Gambar yang ditempatkan setelah teks atau disisipkan di antara teks tetap berfungsi dengan baik, tetapi jika kasus penggunaan Anda memungkinkan, lebih baik gunakan struktur gambar-kemudian-teks.
 </Tip>
 
 ### Tentang contoh prompt \{#about-the-prompt-examples}
@@ -255,7 +257,7 @@ Contoh-contoh ini mendemonstrasikan struktur prompt praktik terbaik yang melibat
 Contoh-contoh berikut mendemonstrasikan cara menggunakan kemampuan vision Claude menggunakan berbagai bahasa pemrograman dan pendekatan. Anda dapat memberikan gambar ke Claude dengan tiga cara:
 
 1. Sebagai gambar yang dikodekan base64 dalam blok konten `image`
-2. Sebagai referensi URL ke gambar yang dihosting secara online
+2. Sebagai referensi URL ke gambar yang di-host secara online
 3. Menggunakan Files API (unggah sekali, gunakan berkali-kali)
 
 <Note>
@@ -266,7 +268,7 @@ Contoh prompt base64 menggunakan variabel-variabel ini:
 
 <CodeGroup>
 ```bash cURL
-    # Untuk gambar berbasis URL, Anda dapat menggunakan URL secara langsung dalam permintaan JSON Anda
+    # Untuk gambar berbasis URL, Anda dapat menggunakan URL langsung dalam permintaan JSON Anda
 
     # Untuk gambar yang dienkode base64, Anda perlu mengenkode gambar terlebih dahulu
     # Contoh cara mengenkode gambar ke base64 di bash:
@@ -435,7 +437,7 @@ image1_data = download_and_encode_image(image1_url)
 ```
 </CodeGroup>
 
-Berikut adalah contoh cara menyertakan gambar dalam permintaan Messages API menggunakan gambar yang dikodekan base64 dan referensi URL:
+Di bawah ini adalah contoh cara menyertakan gambar dalam permintaan Messages API menggunakan gambar yang dikodekan base64 dan referensi URL:
 
 ### Contoh gambar yang dikodekan base64 \{#base64-encoded-image-example}
 
@@ -998,13 +1000,13 @@ Berikut adalah contoh cara menyertakan gambar dalam permintaan Messages API meng
 Untuk gambar yang akan Anda gunakan berulang kali atau ketika Anda ingin menghindari overhead encoding, gunakan [Files API](/docs/id/build-with-claude/files). Unggah gambar sekali, lalu referensikan `file_id` yang dikembalikan dalam pesan berikutnya alih-alih mengirim ulang data base64.
 
 <Tip>
-  Dalam percakapan multi-giliran dan alur kerja agentic, setiap permintaan
-  mengirim ulang seluruh riwayat percakapan. Jika gambar dikodekan base64,
-  seluruh byte gambar disertakan dalam payload pada setiap giliran, yang dapat
-  secara signifikan meningkatkan ukuran permintaan dan latensi seiring
-  bertambahnya percakapan. Mengunggah gambar ke Files API dan mereferensikannya
-  melalui `file_id` menjaga payload permintaan tetap kecil terlepas dari berapa
-  banyak gambar yang terakumulasi dalam riwayat percakapan.
+  Dalam percakapan multi-turn dan alur kerja agentic, setiap permintaan mengirim
+  ulang seluruh riwayat percakapan. Jika gambar dikodekan base64, seluruh byte
+  gambar disertakan dalam payload pada setiap turn, yang dapat secara signifikan
+  meningkatkan ukuran permintaan dan latensi seiring bertambahnya percakapan.
+  Mengunggah gambar ke Files API dan mereferensikannya dengan `file_id` menjaga
+  payload permintaan tetap kecil terlepas dari berapa banyak gambar yang
+  terakumulasi dalam riwayat percakapan.
 </Tip>
 
 <CodeGroup>
@@ -1594,7 +1596,7 @@ Minta Claude untuk mendeskripsikan perbedaan antara beberapa gambar, sambil memb
 </Tabs>
 
 </section>
-<section title="Contoh: Empat gambar dalam dua giliran percakapan">
+<section title="Contoh: Empat gambar dalam dua turn percakapan">
 
 Kemampuan vision Claude bersinar dalam percakapan multimodal yang menggabungkan gambar dan teks. Anda dapat melakukan pertukaran bolak-balik yang diperpanjang dengan Claude, menambahkan gambar baru atau pertanyaan lanjutan kapan saja. Ini memungkinkan alur kerja yang kuat untuk analisis gambar iteratif, perbandingan, atau menggabungkan visual dengan pengetahuan lain.
 
@@ -1606,7 +1608,7 @@ Minta Claude untuk mengontraskan dua gambar, lalu ajukan pertanyaan lanjutan yan
 | User | Image 1: \[Image 3\] Image 2: \[Image 4\] Are these images similar to the first two? |
 | Assistant | \[Claude's response\] |
 
-Saat menggunakan API, sisipkan gambar baru ke dalam array Messages dalam role `user` sebagai bagian dari struktur [percakapan multi-giliran](/docs/id/api/messages/create) standar apa pun.
+Saat menggunakan API, sisipkan gambar baru ke dalam array Messages dalam role `user` sebagai bagian dari struktur [percakapan multiturn](/docs/id/api/messages/create) standar apa pun.
 
 </section>
 
@@ -1618,8 +1620,8 @@ Meskipun kemampuan pemahaman gambar Claude sangat canggih, ada beberapa batasan 
 
 - **Identifikasi orang**: Claude [tidak dapat digunakan](https://www.anthropic.com/legal/aup) untuk menyebutkan nama orang dalam gambar dan menolak untuk melakukannya.
 - **Akurasi**: Claude mungkin berhalusinasi atau membuat kesalahan saat menginterpretasikan gambar berkualitas rendah, diputar, atau sangat kecil di bawah 200 piksel.
-- **Penalaran spasial**: Output koordinat dan lokalisasi Claude bersifat perkiraan. Ikuti panduan di [Bekerja dengan koordinat dan bounding box](#working-with-coordinates-and-bounding-boxes) dan verifikasi output sebelum mengandalkannya.
-- **Menghitung**: Claude dapat memberikan perkiraan jumlah objek dalam gambar tetapi mungkin tidak selalu akurat secara tepat, terutama dengan jumlah besar objek kecil.
+- **Penalaran spasial**: Output koordinat dan lokalisasi Claude bersifat perkiraan. Ikuti panduan dalam [Bekerja dengan koordinat dan bounding box](#working-with-coordinates-and-bounding-boxes) dan verifikasi output sebelum mengandalkannya.
+- **Penghitungan**: Claude dapat memberikan perkiraan jumlah objek dalam gambar tetapi mungkin tidak selalu akurat secara presisi, terutama dengan jumlah besar objek kecil.
 - **Gambar yang dihasilkan AI**: Claude tidak mengetahui apakah suatu gambar dihasilkan oleh AI dan mungkin salah jika ditanya. Jangan mengandalkannya untuk mendeteksi gambar palsu atau sintetis.
 - **Konten yang tidak pantas**: Claude tidak memproses gambar yang tidak pantas atau eksplisit yang melanggar [Acceptable Use Policy](https://www.anthropic.com/legal/aup).
 - **Aplikasi kesehatan**: Meskipun Claude dapat menganalisis gambar medis umum, Claude tidak dirancang untuk menginterpretasikan pemindaian diagnostik kompleks seperti CT atau MRI. Output Claude tidak boleh dianggap sebagai pengganti saran atau diagnosis medis profesional.
@@ -1668,7 +1670,7 @@ Selalu tinjau dan verifikasi interpretasi gambar Claude dengan cermat, terutama 
 
     Gambar yang lebih besar dari batas ini ditolak dan mengembalikan error saat menggunakan API.
 
-    Ini adalah batas per gambar. [Batas ukuran permintaan](/docs/id/api/overview#request-size-limits) keseluruhan (32&nbsp;MB pada Claude API; lebih rendah pada Amazon Bedrock dan Vertex AI) juga berlaku, sehingga permintaan dengan banyak gambar besar dapat melebihinya sebelum mencapai batas per gambar. Pada Claude API, unggah dengan [Files API](/docs/id/build-with-claude/files) dan referensikan melalui `file_id` agar payload permintaan tetap kecil. Files API saat ini tidak tersedia di Amazon Bedrock atau Vertex AI, jadi kurangi ukuran gambar pada platform tersebut sebagai gantinya.
+    Ini adalah batas per gambar. [Batas ukuran permintaan](/docs/id/api/overview#request-size-limits) keseluruhan (32&nbsp;MB pada Claude API; lebih rendah pada Amazon Bedrock dan Vertex AI) juga berlaku, sehingga permintaan dengan banyak gambar besar dapat melebihinya sebelum mencapai batas per gambar. Pada Claude API, unggah dengan [Files API](/docs/id/build-with-claude/files) dan referensikan dengan `file_id` untuk menjaga payload permintaan tetap kecil. Files API saat ini tidak tersedia di Amazon Bedrock atau Vertex AI, jadi kurangi ukuran gambar pada platform tersebut sebagai gantinya.
 
   
 </section>
@@ -1677,7 +1679,7 @@ Selalu tinjau dan verifikasi interpretasi gambar Claude dengan cermat, terutama 
 
     Batas gambar adalah:
     - Messages API: Hingga 600 gambar per permintaan (100 untuk model dengan jendela konteks 200k token)
-    - claude.ai: Hingga 20 gambar per giliran
+    - claude.ai: Hingga 20 gambar per turn
 
     Permintaan yang melebihi batas ini ditolak dan mengembalikan error. Permintaan dengan banyak gambar besar juga dapat gagal sebelum mencapai batas ini; lihat [Batasan umum](#general-limits) untuk detailnya.
 
@@ -1688,7 +1690,7 @@ Selalu tinjau dan verifikasi interpretasi gambar Claude dengan cermat, terutama 
 
 <section title="Apakah Claude membaca metadata gambar?">
 
-  Tidak, Claude tidak mengurai atau menerima metadata apa pun dari gambar yang diberikan kepadanya.
+  Tidak, Claude tidak mem-parse atau menerima metadata apa pun dari gambar yang diberikan kepadanya.
 
 </section>
 
@@ -1696,7 +1698,7 @@ Selalu tinjau dan verifikasi interpretasi gambar Claude dengan cermat, terutama 
 
 <section title="Bisakah saya menghapus gambar yang telah saya unggah?">
 
-  Tidak. Unggahan gambar bersifat sementara dan tidak disimpan di luar durasi
+  Tidak. Unggahan gambar bersifat sementara dan tidak disimpan melebihi durasi
   permintaan API. Gambar yang diunggah secara otomatis dihapus setelah
   diproses.
 
@@ -1726,7 +1728,7 @@ Selalu tinjau dan verifikasi interpretasi gambar Claude dengan cermat, terutama 
 
   <section title="Bisakah Claude menghasilkan atau mengedit gambar?">
 
-    Tidak, Claude hanya merupakan model pemahaman gambar. Claude dapat menginterpretasikan dan menganalisis gambar, tetapi tidak dapat menghasilkan, memproduksi, mengedit, memanipulasi, atau membuat gambar.
+    Tidak, Claude hanyalah model pemahaman gambar. Claude dapat menginterpretasikan dan menganalisis gambar, tetapi tidak dapat menghasilkan, memproduksi, mengedit, memanipulasi, atau membuat gambar.
   
 </section>
 
@@ -1734,7 +1736,7 @@ Selalu tinjau dan verifikasi interpretasi gambar Claude dengan cermat, terutama 
 
 ## Pelajari lebih dalam tentang vision \{#dive-deeper-into-vision}
 
-Siap untuk mulai membangun dengan gambar menggunakan Claude? Berikut beberapa sumber daya yang berguna:
+Siap untuk mulai membangun dengan gambar menggunakan Claude? Berikut adalah beberapa sumber daya yang berguna:
 
 - [Multimodal cookbook](https://platform.claude.com/cookbook/multimodal-getting-started-with-vision): Cookbook ini memiliki tips tentang [memulai dengan gambar](https://platform.claude.com/cookbook/multimodal-getting-started-with-vision) dan [teknik praktik terbaik](https://platform.claude.com/cookbook/multimodal-best-practices-for-vision) untuk memastikan performa kualitas tertinggi dengan gambar. Lihat bagaimana Anda dapat secara efektif memberikan prompt kepada Claude dengan gambar untuk melakukan tugas seperti [menginterpretasikan dan menganalisis grafik](https://platform.claude.com/cookbook/multimodal-reading-charts-graphs-powerpoints) atau [mengekstrak konten dari formulir](https://platform.claude.com/cookbook/multimodal-how-to-transcribe-text).
 - [Referensi API](/docs/id/api/messages/create): Dokumentasi untuk Messages API, termasuk contoh [panggilan API yang melibatkan gambar](/docs/id/build-with-claude/working-with-messages#vision).

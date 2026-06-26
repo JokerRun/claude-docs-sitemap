@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/overview
-fetched_at: 2026-06-12T03:17:40.104094Z
-sha256: 23502d735e48ccdb4a3ad2eb909627afc3cceed7b5938720e97143ff5c3839cd
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: dc3ade5409c290cfa263ab558ce194a668a6157d50eb67a6d11f446b34841db6
 ---
 
 # Features overview
@@ -36,7 +36,7 @@ Features on the Claude Platform are assigned one of the following availability c
 
 _<sup>*</sup> May carry a qualifier indicating narrower availability or added constraints (for example, "beta: research preview"). See the feature's page for details._
 
-**Platform labels:** Claude API (Anthropic first-party) · [Claude Platform on AWS](/docs/en/build-with-claude/claude-platform-on-aws) (Anthropic-operated on AWS) · [Bedrock](/docs/en/build-with-claude/claude-in-amazon-bedrock) (AWS-operated) · [Vertex AI](/docs/en/build-with-claude/claude-on-vertex-ai) (Google-operated) · [Microsoft Foundry](/docs/en/build-with-claude/claude-in-microsoft-foundry) (Anthropic-operated on Azure)
+**Platform labels:** Claude API (Anthropic first-party) · [Claude Platform on AWS](/docs/en/build-with-claude/claude-platform-on-aws) (Anthropic-operated on AWS) · [Bedrock](/docs/en/build-with-claude/claude-in-amazon-bedrock) (AWS-operated) · [Google Cloud](/docs/en/build-with-claude/claude-on-vertex-ai) (Google-operated) · [Microsoft Foundry](/docs/en/build-with-claude/claude-in-microsoft-foundry) (Anthropic-operated on Azure)
 
 ## Model capabilities
 

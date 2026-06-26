@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/agent-setup
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 240838c6a2726fcfcd11f6ba3d688d062ab9f84b3a2357b041cb3be934b9a71a
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: 39061f0ff68d8f576fc89b6cbbf0d5a9ca6aaa888feed1ec9881c35df10ab976
 ---
 
 # Definisikan agen Anda
@@ -58,11 +58,15 @@ AGENT_VERSION=$(jq -r '.version' <<< "$agent")
 
   
 ````bash
-ant beta:agents create \
+agent=$(ant beta:agents create \
   --name "Coding Assistant" \
   --model '{id: claude-opus-4-8}' \
   --system "You are a helpful coding agent." \
-  --tool '{type: agent_toolset_20260401}'
+  --tool '{type: agent_toolset_20260401}' \
+  --format json)
+
+AGENT_ID=$(jq -r '.id' <<< "$agent")
+AGENT_VERSION=$(jq -r '.version' <<< "$agent")
 ````
 
   
@@ -406,8 +410,8 @@ foreach ($client->beta->agents->versions->list($agent->id)->pagingEachItem() as 
 
   
 ````ruby
-client.beta.agents.versions.list(agent.id).auto_paging_each do
-  puts "Version #{it.version}: #{it.updated_at.iso8601}"
+client.beta.agents.versions.list(agent.id).auto_paging_each do |agent_version|
+  puts "Version #{agent_version.version}: #{agent_version.updated_at.iso8601}"
 end
 ````
 

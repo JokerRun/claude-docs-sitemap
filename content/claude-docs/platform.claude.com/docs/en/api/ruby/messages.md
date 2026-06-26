@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/messages
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 7fe134f92a691c3cc64fa72e7cec0e8f9504a4d41dd2c5c8e36c76092734ba2a
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: 3ca17bd83941ec49d9215207b74eb9d42e7a7ddcb5cb90868a2ca1d5a0e60a73
 ---
 
 # Messages
@@ -951,7 +951,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-  - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 17 more`
+  - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 12 more`
 
     The model that will complete your prompt.
 
@@ -1016,26 +1016,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     - `:"claude-opus-4-1-20250805"`
 
       Exceptional model for specialized complex tasks
-
-    - `:"claude-opus-4-0"`
-
-      Powerful model for complex tasks
-
-    - `:"claude-opus-4-20250514"`
-
-      Powerful model for complex tasks
-
-    - `:"claude-sonnet-4-0"`
-
-      High-performance model with extended thinking
-
-    - `:"claude-sonnet-4-20250514"`
-
-      High-performance model with extended thinking
-
-    - `:"claude-3-haiku-20240307"`
-
-      Fast and cost-effective model
 
   - `String = String`
 
@@ -1337,13 +1317,15 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       This is how the tool will be called by the model and in `tool_use` blocks.
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `cache_control: CacheControlEphemeral`
 
@@ -1387,13 +1369,15 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `:bash_20250124`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `cache_control: CacheControlEphemeral`
 
@@ -1423,13 +1407,15 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `:code_execution_20250522`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `cache_control: CacheControlEphemeral`
 
@@ -1457,13 +1443,15 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `:code_execution_20250825`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `cache_control: CacheControlEphemeral`
 
@@ -1493,13 +1481,53 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `:code_execution_20260120`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
+
+    - `cache_control: CacheControlEphemeral`
+
+      Create a cache control breakpoint at this content block.
+
+    - `defer_loading: bool`
+
+      If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+    - `strict: bool`
+
+      When true, guarantees schema validation on tool names and inputs
+
+  - `class CodeExecutionTool20260521`
+
+    Code execution tool with REPL state persistence.
+
+    - `name: :code_execution`
+
+      Name of the tool.
+
+      This is how the tool will be called by the model and in `tool_use` blocks.
+
+      - `:code_execution`
+
+    - `type: :code_execution_20260521`
+
+      - `:code_execution_20260521`
+
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
+
+      - `:direct`
+
+      - `:code_execution_20250825`
+
+      - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `cache_control: CacheControlEphemeral`
 
@@ -1527,13 +1555,15 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `:memory_20250818`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `cache_control: CacheControlEphemeral`
 
@@ -1563,13 +1593,15 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `:text_editor_20250124`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `cache_control: CacheControlEphemeral`
 
@@ -1599,13 +1631,15 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `:text_editor_20250429`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `cache_control: CacheControlEphemeral`
 
@@ -1635,13 +1669,15 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `:text_editor_20250728`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `cache_control: CacheControlEphemeral`
 
@@ -1675,13 +1711,15 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `:web_search_20250305`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `allowed_domains: Array[String]`
 
@@ -1745,13 +1783,15 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `:web_fetch_20250910`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `allowed_domains: Array[String]`
 
@@ -1799,13 +1839,15 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `:web_search_20260209`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `allowed_domains: Array[String]`
 
@@ -1849,13 +1891,15 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `:web_fetch_20260209`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `allowed_domains: Array[String]`
 
@@ -1905,13 +1949,15 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `:web_fetch_20260309`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `allowed_domains: Array[String]`
 
@@ -1965,13 +2011,15 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `:tool_search_tool_bm25`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `cache_control: CacheControlEphemeral`
 
@@ -2001,13 +2049,15 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `:tool_search_tool_regex`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `cache_control: CacheControlEphemeral`
 
@@ -2726,7 +2776,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 17 more`
+    - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 12 more`
 
       The model that will complete your prompt.
 
@@ -2792,26 +2842,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         Exceptional model for specialized complex tasks
 
-      - `:"claude-opus-4-0"`
-
-        Powerful model for complex tasks
-
-      - `:"claude-opus-4-20250514"`
-
-        Powerful model for complex tasks
-
-      - `:"claude-sonnet-4-0"`
-
-        High-performance model with extended thinking
-
-      - `:"claude-sonnet-4-20250514"`
-
-        High-performance model with extended thinking
-
-      - `:"claude-3-haiku-20240307"`
-
-        Fast and cost-effective model
-
     - `String = String`
 
   - `role: :assistant`
@@ -2826,15 +2856,15 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     Structured information about a refusal.
 
-    - `category: :cyber | :bio | :reasoning_extraction`
+    - `category: :cyber | :bio | :frontier_llm | :reasoning_extraction`
 
-      The policy category that triggered the refusal.
-
-      `null` when the refusal doesn't map to a named category.
+      The policy category that triggered a refusal.
 
       - `:cyber`
 
       - `:bio`
+
+      - `:frontier_llm`
 
       - `:reasoning_extraction`
 
@@ -3983,7 +4013,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-  - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 17 more`
+  - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 12 more`
 
     The model that will complete your prompt.
 
@@ -4048,26 +4078,6 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
     - `:"claude-opus-4-1-20250805"`
 
       Exceptional model for specialized complex tasks
-
-    - `:"claude-opus-4-0"`
-
-      Powerful model for complex tasks
-
-    - `:"claude-opus-4-20250514"`
-
-      Powerful model for complex tasks
-
-    - `:"claude-sonnet-4-0"`
-
-      High-performance model with extended thinking
-
-    - `:"claude-sonnet-4-20250514"`
-
-      High-performance model with extended thinking
-
-    - `:"claude-3-haiku-20240307"`
-
-      Fast and cost-effective model
 
   - `String = String`
 
@@ -4319,13 +4329,15 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       This is how the tool will be called by the model and in `tool_use` blocks.
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `cache_control: CacheControlEphemeral`
 
@@ -4369,13 +4381,15 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `:bash_20250124`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `cache_control: CacheControlEphemeral`
 
@@ -4405,13 +4419,15 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `:code_execution_20250522`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `cache_control: CacheControlEphemeral`
 
@@ -4439,13 +4455,15 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `:code_execution_20250825`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `cache_control: CacheControlEphemeral`
 
@@ -4475,13 +4493,53 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `:code_execution_20260120`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
+
+    - `cache_control: CacheControlEphemeral`
+
+      Create a cache control breakpoint at this content block.
+
+    - `defer_loading: bool`
+
+      If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+    - `strict: bool`
+
+      When true, guarantees schema validation on tool names and inputs
+
+  - `class CodeExecutionTool20260521`
+
+    Code execution tool with REPL state persistence.
+
+    - `name: :code_execution`
+
+      Name of the tool.
+
+      This is how the tool will be called by the model and in `tool_use` blocks.
+
+      - `:code_execution`
+
+    - `type: :code_execution_20260521`
+
+      - `:code_execution_20260521`
+
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
+
+      - `:direct`
+
+      - `:code_execution_20250825`
+
+      - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `cache_control: CacheControlEphemeral`
 
@@ -4509,13 +4567,15 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `:memory_20250818`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `cache_control: CacheControlEphemeral`
 
@@ -4545,13 +4605,15 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `:text_editor_20250124`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `cache_control: CacheControlEphemeral`
 
@@ -4581,13 +4643,15 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `:text_editor_20250429`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `cache_control: CacheControlEphemeral`
 
@@ -4617,13 +4681,15 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `:text_editor_20250728`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `cache_control: CacheControlEphemeral`
 
@@ -4657,13 +4723,15 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `:web_search_20250305`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `allowed_domains: Array[String]`
 
@@ -4727,13 +4795,15 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `:web_fetch_20250910`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `allowed_domains: Array[String]`
 
@@ -4781,13 +4851,15 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `:web_search_20260209`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `allowed_domains: Array[String]`
 
@@ -4831,13 +4903,15 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `:web_fetch_20260209`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `allowed_domains: Array[String]`
 
@@ -4887,13 +4961,15 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `:web_fetch_20260309`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `allowed_domains: Array[String]`
 
@@ -4947,13 +5023,15 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `:tool_search_tool_bm25`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `cache_control: CacheControlEphemeral`
 
@@ -4983,13 +5061,15 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `:tool_search_tool_regex`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `cache_control: CacheControlEphemeral`
 
@@ -5792,13 +5872,15 @@ puts(message_tokens_count)
 
     - `:code_execution_20250522`
 
-  - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+  - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
     - `:direct`
 
     - `:code_execution_20250825`
 
     - `:code_execution_20260120`
+
+    - `:code_execution_20260521`
 
   - `cache_control: CacheControlEphemeral`
 
@@ -5847,13 +5929,15 @@ puts(message_tokens_count)
 
     - `:code_execution_20250825`
 
-  - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+  - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
     - `:direct`
 
     - `:code_execution_20250825`
 
     - `:code_execution_20260120`
+
+    - `:code_execution_20260521`
 
   - `cache_control: CacheControlEphemeral`
 
@@ -5904,13 +5988,74 @@ puts(message_tokens_count)
 
     - `:code_execution_20260120`
 
-  - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+  - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
     - `:direct`
 
     - `:code_execution_20250825`
 
     - `:code_execution_20260120`
+
+    - `:code_execution_20260521`
+
+  - `cache_control: CacheControlEphemeral`
+
+    Create a cache control breakpoint at this content block.
+
+    - `type: :ephemeral`
+
+      - `:ephemeral`
+
+    - `ttl: :"5m" | :"1h"`
+
+      The time-to-live for the cache control breakpoint.
+
+      This may be one the following values:
+
+      - `5m`: 5 minutes
+      - `1h`: 1 hour
+
+      Defaults to `5m`.
+
+      - `:"5m"`
+
+      - `:"1h"`
+
+  - `defer_loading: bool`
+
+    If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+  - `strict: bool`
+
+    When true, guarantees schema validation on tool names and inputs
+
+### Code Execution Tool 20260521
+
+- `class CodeExecutionTool20260521`
+
+  Code execution tool with REPL state persistence.
+
+  - `name: :code_execution`
+
+    Name of the tool.
+
+    This is how the tool will be called by the model and in `tool_use` blocks.
+
+    - `:code_execution`
+
+  - `type: :code_execution_20260521`
+
+    - `:code_execution_20260521`
+
+  - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
+
+    - `:direct`
+
+    - `:code_execution_20250825`
+
+    - `:code_execution_20260120`
+
+    - `:code_execution_20260521`
 
   - `cache_control: CacheControlEphemeral`
 
@@ -8641,13 +8786,15 @@ puts(message_tokens_count)
 
     - `:memory_20250818`
 
-  - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+  - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
     - `:direct`
 
     - `:code_execution_20250825`
 
     - `:code_execution_20260120`
+
+    - `:code_execution_20260521`
 
   - `cache_control: CacheControlEphemeral`
 
@@ -9371,7 +9518,7 @@ puts(message_tokens_count)
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 17 more`
+    - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 12 more`
 
       The model that will complete your prompt.
 
@@ -9437,26 +9584,6 @@ puts(message_tokens_count)
 
         Exceptional model for specialized complex tasks
 
-      - `:"claude-opus-4-0"`
-
-        Powerful model for complex tasks
-
-      - `:"claude-opus-4-20250514"`
-
-        Powerful model for complex tasks
-
-      - `:"claude-sonnet-4-0"`
-
-        High-performance model with extended thinking
-
-      - `:"claude-sonnet-4-20250514"`
-
-        High-performance model with extended thinking
-
-      - `:"claude-3-haiku-20240307"`
-
-        Fast and cost-effective model
-
     - `String = String`
 
   - `role: :assistant`
@@ -9471,15 +9598,15 @@ puts(message_tokens_count)
 
     Structured information about a refusal.
 
-    - `category: :cyber | :bio | :reasoning_extraction`
+    - `category: :cyber | :bio | :frontier_llm | :reasoning_extraction`
 
-      The policy category that triggered the refusal.
-
-      `null` when the refusal doesn't map to a named category.
+      The policy category that triggered a refusal.
 
       - `:cyber`
 
       - `:bio`
+
+      - `:frontier_llm`
 
       - `:reasoning_extraction`
 
@@ -9622,7 +9749,7 @@ puts(message_tokens_count)
 
 ### Message Count Tokens Tool
 
-- `MessageCountTokensTool = Tool | ToolBash20250124 | CodeExecutionTool20250522 | 13 more`
+- `MessageCountTokensTool = Tool | ToolBash20250124 | CodeExecutionTool20250522 | 14 more`
 
   Code execution tool with REPL state persistence (daemon mode + gVisor checkpoint).
 
@@ -9648,13 +9775,15 @@ puts(message_tokens_count)
 
       This is how the tool will be called by the model and in `tool_use` blocks.
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `cache_control: CacheControlEphemeral`
 
@@ -9717,13 +9846,15 @@ puts(message_tokens_count)
 
       - `:bash_20250124`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `cache_control: CacheControlEphemeral`
 
@@ -9753,13 +9884,15 @@ puts(message_tokens_count)
 
       - `:code_execution_20250522`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `cache_control: CacheControlEphemeral`
 
@@ -9787,13 +9920,15 @@ puts(message_tokens_count)
 
       - `:code_execution_20250825`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `cache_control: CacheControlEphemeral`
 
@@ -9823,13 +9958,53 @@ puts(message_tokens_count)
 
       - `:code_execution_20260120`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
+
+    - `cache_control: CacheControlEphemeral`
+
+      Create a cache control breakpoint at this content block.
+
+    - `defer_loading: bool`
+
+      If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+    - `strict: bool`
+
+      When true, guarantees schema validation on tool names and inputs
+
+  - `class CodeExecutionTool20260521`
+
+    Code execution tool with REPL state persistence.
+
+    - `name: :code_execution`
+
+      Name of the tool.
+
+      This is how the tool will be called by the model and in `tool_use` blocks.
+
+      - `:code_execution`
+
+    - `type: :code_execution_20260521`
+
+      - `:code_execution_20260521`
+
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
+
+      - `:direct`
+
+      - `:code_execution_20250825`
+
+      - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `cache_control: CacheControlEphemeral`
 
@@ -9857,13 +10032,15 @@ puts(message_tokens_count)
 
       - `:memory_20250818`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `cache_control: CacheControlEphemeral`
 
@@ -9893,13 +10070,15 @@ puts(message_tokens_count)
 
       - `:text_editor_20250124`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `cache_control: CacheControlEphemeral`
 
@@ -9929,13 +10108,15 @@ puts(message_tokens_count)
 
       - `:text_editor_20250429`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `cache_control: CacheControlEphemeral`
 
@@ -9965,13 +10146,15 @@ puts(message_tokens_count)
 
       - `:text_editor_20250728`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `cache_control: CacheControlEphemeral`
 
@@ -10005,13 +10188,15 @@ puts(message_tokens_count)
 
       - `:web_search_20250305`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `allowed_domains: Array[String]`
 
@@ -10075,13 +10260,15 @@ puts(message_tokens_count)
 
       - `:web_fetch_20250910`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `allowed_domains: Array[String]`
 
@@ -10131,13 +10318,15 @@ puts(message_tokens_count)
 
       - `:web_search_20260209`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `allowed_domains: Array[String]`
 
@@ -10181,13 +10370,15 @@ puts(message_tokens_count)
 
       - `:web_fetch_20260209`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `allowed_domains: Array[String]`
 
@@ -10237,13 +10428,15 @@ puts(message_tokens_count)
 
       - `:web_fetch_20260309`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `allowed_domains: Array[String]`
 
@@ -10297,13 +10490,15 @@ puts(message_tokens_count)
 
       - `:tool_search_tool_bm25`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `cache_control: CacheControlEphemeral`
 
@@ -10333,13 +10528,15 @@ puts(message_tokens_count)
 
       - `:tool_search_tool_regex`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `cache_control: CacheControlEphemeral`
 
@@ -11448,13 +11645,13 @@ puts(message_tokens_count)
 
 ### Model
 
-- `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 17 more | String`
+- `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 12 more | String`
 
   The model that will complete your prompt.
 
   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-  - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 17 more`
+  - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 12 more`
 
     The model that will complete your prompt.
 
@@ -11519,26 +11716,6 @@ puts(message_tokens_count)
     - `:"claude-opus-4-1-20250805"`
 
       Exceptional model for specialized complex tasks
-
-    - `:"claude-opus-4-0"`
-
-      Powerful model for complex tasks
-
-    - `:"claude-opus-4-20250514"`
-
-      Powerful model for complex tasks
-
-    - `:"claude-sonnet-4-0"`
-
-      High-performance model with extended thinking
-
-    - `:"claude-sonnet-4-20250514"`
-
-      High-performance model with extended thinking
-
-    - `:"claude-3-haiku-20240307"`
-
-      Fast and cost-effective model
 
   - `String = String`
 
@@ -12595,15 +12772,15 @@ puts(message_tokens_count)
 
       Structured information about a refusal.
 
-      - `category: :cyber | :bio | :reasoning_extraction`
+      - `category: :cyber | :bio | :frontier_llm | :reasoning_extraction`
 
-        The policy category that triggered the refusal.
-
-        `null` when the refusal doesn't map to a named category.
+        The policy category that triggered a refusal.
 
         - `:cyber`
 
         - `:bio`
+
+        - `:frontier_llm`
 
         - `:reasoning_extraction`
 
@@ -13388,7 +13565,7 @@ puts(message_tokens_count)
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 17 more`
+      - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 12 more`
 
         The model that will complete your prompt.
 
@@ -13454,26 +13631,6 @@ puts(message_tokens_count)
 
           Exceptional model for specialized complex tasks
 
-        - `:"claude-opus-4-0"`
-
-          Powerful model for complex tasks
-
-        - `:"claude-opus-4-20250514"`
-
-          Powerful model for complex tasks
-
-        - `:"claude-sonnet-4-0"`
-
-          High-performance model with extended thinking
-
-        - `:"claude-sonnet-4-20250514"`
-
-          High-performance model with extended thinking
-
-        - `:"claude-3-haiku-20240307"`
-
-          Fast and cost-effective model
-
       - `String = String`
 
     - `role: :assistant`
@@ -13488,15 +13645,15 @@ puts(message_tokens_count)
 
       Structured information about a refusal.
 
-      - `category: :cyber | :bio | :reasoning_extraction`
+      - `category: :cyber | :bio | :frontier_llm | :reasoning_extraction`
 
-        The policy category that triggered the refusal.
-
-        `null` when the refusal doesn't map to a named category.
+        The policy category that triggered a refusal.
 
         - `:cyber`
 
         - `:bio`
+
+        - `:frontier_llm`
 
         - `:reasoning_extraction`
 
@@ -14342,7 +14499,7 @@ puts(message_tokens_count)
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-        - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 17 more`
+        - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 12 more`
 
           The model that will complete your prompt.
 
@@ -14408,26 +14565,6 @@ puts(message_tokens_count)
 
             Exceptional model for specialized complex tasks
 
-          - `:"claude-opus-4-0"`
-
-            Powerful model for complex tasks
-
-          - `:"claude-opus-4-20250514"`
-
-            Powerful model for complex tasks
-
-          - `:"claude-sonnet-4-0"`
-
-            High-performance model with extended thinking
-
-          - `:"claude-sonnet-4-20250514"`
-
-            High-performance model with extended thinking
-
-          - `:"claude-3-haiku-20240307"`
-
-            Fast and cost-effective model
-
         - `String = String`
 
       - `role: :assistant`
@@ -14442,15 +14579,15 @@ puts(message_tokens_count)
 
         Structured information about a refusal.
 
-        - `category: :cyber | :bio | :reasoning_extraction`
+        - `category: :cyber | :bio | :frontier_llm | :reasoning_extraction`
 
-          The policy category that triggered the refusal.
-
-          `null` when the refusal doesn't map to a named category.
+          The policy category that triggered a refusal.
 
           - `:cyber`
 
           - `:bio`
+
+          - `:frontier_llm`
 
           - `:reasoning_extraction`
 
@@ -14794,15 +14931,15 @@ puts(message_tokens_count)
 
   Structured information about a refusal.
 
-  - `category: :cyber | :bio | :reasoning_extraction`
+  - `category: :cyber | :bio | :frontier_llm | :reasoning_extraction`
 
-    The policy category that triggered the refusal.
-
-    `null` when the refusal doesn't map to a named category.
+    The policy category that triggered a refusal.
 
     - `:cyber`
 
     - `:bio`
+
+    - `:frontier_llm`
 
     - `:reasoning_extraction`
 
@@ -16168,13 +16305,15 @@ puts(message_tokens_count)
 
     This is how the tool will be called by the model and in `tool_use` blocks.
 
-  - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+  - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
     - `:direct`
 
     - `:code_execution_20250825`
 
     - `:code_execution_20260120`
+
+    - `:code_execution_20260521`
 
   - `cache_control: CacheControlEphemeral`
 
@@ -16239,13 +16378,15 @@ puts(message_tokens_count)
 
     - `:bash_20250124`
 
-  - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+  - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
     - `:direct`
 
     - `:code_execution_20250825`
 
     - `:code_execution_20260120`
+
+    - `:code_execution_20260521`
 
   - `cache_control: CacheControlEphemeral`
 
@@ -16772,13 +16913,15 @@ puts(message_tokens_count)
 
     - `:tool_search_tool_bm25`
 
-  - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+  - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
     - `:direct`
 
     - `:code_execution_20250825`
 
     - `:code_execution_20260120`
+
+    - `:code_execution_20260521`
 
   - `cache_control: CacheControlEphemeral`
 
@@ -16829,13 +16972,15 @@ puts(message_tokens_count)
 
     - `:tool_search_tool_regex`
 
-  - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+  - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
     - `:direct`
 
     - `:code_execution_20250825`
 
     - `:code_execution_20260120`
+
+    - `:code_execution_20260521`
 
   - `cache_control: CacheControlEphemeral`
 
@@ -17106,13 +17251,15 @@ puts(message_tokens_count)
 
     - `:text_editor_20250124`
 
-  - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+  - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
     - `:direct`
 
     - `:code_execution_20250825`
 
     - `:code_execution_20260120`
+
+    - `:code_execution_20260521`
 
   - `cache_control: CacheControlEphemeral`
 
@@ -17163,13 +17310,15 @@ puts(message_tokens_count)
 
     - `:text_editor_20250429`
 
-  - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+  - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
     - `:direct`
 
     - `:code_execution_20250825`
 
     - `:code_execution_20260120`
+
+    - `:code_execution_20260521`
 
   - `cache_control: CacheControlEphemeral`
 
@@ -17220,13 +17369,15 @@ puts(message_tokens_count)
 
     - `:text_editor_20250728`
 
-  - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+  - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
     - `:direct`
 
     - `:code_execution_20250825`
 
     - `:code_execution_20260120`
+
+    - `:code_execution_20260521`
 
   - `cache_control: CacheControlEphemeral`
 
@@ -17267,7 +17418,7 @@ puts(message_tokens_count)
 
 ### Tool Union
 
-- `ToolUnion = Tool | ToolBash20250124 | CodeExecutionTool20250522 | 13 more`
+- `ToolUnion = Tool | ToolBash20250124 | CodeExecutionTool20250522 | 14 more`
 
   Code execution tool with REPL state persistence (daemon mode + gVisor checkpoint).
 
@@ -17293,13 +17444,15 @@ puts(message_tokens_count)
 
       This is how the tool will be called by the model and in `tool_use` blocks.
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `cache_control: CacheControlEphemeral`
 
@@ -17362,13 +17515,15 @@ puts(message_tokens_count)
 
       - `:bash_20250124`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `cache_control: CacheControlEphemeral`
 
@@ -17398,13 +17553,15 @@ puts(message_tokens_count)
 
       - `:code_execution_20250522`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `cache_control: CacheControlEphemeral`
 
@@ -17432,13 +17589,15 @@ puts(message_tokens_count)
 
       - `:code_execution_20250825`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `cache_control: CacheControlEphemeral`
 
@@ -17468,13 +17627,53 @@ puts(message_tokens_count)
 
       - `:code_execution_20260120`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
+
+    - `cache_control: CacheControlEphemeral`
+
+      Create a cache control breakpoint at this content block.
+
+    - `defer_loading: bool`
+
+      If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+    - `strict: bool`
+
+      When true, guarantees schema validation on tool names and inputs
+
+  - `class CodeExecutionTool20260521`
+
+    Code execution tool with REPL state persistence.
+
+    - `name: :code_execution`
+
+      Name of the tool.
+
+      This is how the tool will be called by the model and in `tool_use` blocks.
+
+      - `:code_execution`
+
+    - `type: :code_execution_20260521`
+
+      - `:code_execution_20260521`
+
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
+
+      - `:direct`
+
+      - `:code_execution_20250825`
+
+      - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `cache_control: CacheControlEphemeral`
 
@@ -17502,13 +17701,15 @@ puts(message_tokens_count)
 
       - `:memory_20250818`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `cache_control: CacheControlEphemeral`
 
@@ -17538,13 +17739,15 @@ puts(message_tokens_count)
 
       - `:text_editor_20250124`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `cache_control: CacheControlEphemeral`
 
@@ -17574,13 +17777,15 @@ puts(message_tokens_count)
 
       - `:text_editor_20250429`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `cache_control: CacheControlEphemeral`
 
@@ -17610,13 +17815,15 @@ puts(message_tokens_count)
 
       - `:text_editor_20250728`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `cache_control: CacheControlEphemeral`
 
@@ -17650,13 +17857,15 @@ puts(message_tokens_count)
 
       - `:web_search_20250305`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `allowed_domains: Array[String]`
 
@@ -17720,13 +17929,15 @@ puts(message_tokens_count)
 
       - `:web_fetch_20250910`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `allowed_domains: Array[String]`
 
@@ -17776,13 +17987,15 @@ puts(message_tokens_count)
 
       - `:web_search_20260209`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `allowed_domains: Array[String]`
 
@@ -17826,13 +18039,15 @@ puts(message_tokens_count)
 
       - `:web_fetch_20260209`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `allowed_domains: Array[String]`
 
@@ -17882,13 +18097,15 @@ puts(message_tokens_count)
 
       - `:web_fetch_20260309`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `allowed_domains: Array[String]`
 
@@ -17942,13 +18159,15 @@ puts(message_tokens_count)
 
       - `:tool_search_tool_bm25`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `cache_control: CacheControlEphemeral`
 
@@ -17978,13 +18197,15 @@ puts(message_tokens_count)
 
       - `:tool_search_tool_regex`
 
-    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
       - `:direct`
 
       - `:code_execution_20250825`
 
       - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
 
     - `cache_control: CacheControlEphemeral`
 
@@ -18560,13 +18781,15 @@ puts(message_tokens_count)
 
     - `:web_fetch_20250910`
 
-  - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+  - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
     - `:direct`
 
     - `:code_execution_20250825`
 
     - `:code_execution_20260120`
+
+    - `:code_execution_20260521`
 
   - `allowed_domains: Array[String]`
 
@@ -18637,13 +18860,15 @@ puts(message_tokens_count)
 
     - `:web_fetch_20260209`
 
-  - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+  - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
     - `:direct`
 
     - `:code_execution_20250825`
 
     - `:code_execution_20260120`
+
+    - `:code_execution_20260521`
 
   - `allowed_domains: Array[String]`
 
@@ -18716,13 +18941,15 @@ puts(message_tokens_count)
 
     - `:web_fetch_20260309`
 
-  - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+  - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
     - `:direct`
 
     - `:code_execution_20250825`
 
     - `:code_execution_20260120`
+
+    - `:code_execution_20260521`
 
   - `allowed_domains: Array[String]`
 
@@ -19356,13 +19583,15 @@ puts(message_tokens_count)
 
     - `:web_search_20250305`
 
-  - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+  - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
     - `:direct`
 
     - `:code_execution_20250825`
 
     - `:code_execution_20260120`
+
+    - `:code_execution_20260521`
 
   - `allowed_domains: Array[String]`
 
@@ -19447,13 +19676,15 @@ puts(message_tokens_count)
 
     - `:web_search_20260209`
 
-  - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+  - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
     - `:direct`
 
     - `:code_execution_20250825`
 
     - `:code_execution_20260120`
+
+    - `:code_execution_20260521`
 
   - `allowed_domains: Array[String]`
 
@@ -20795,7 +21026,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 17 more`
+      - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 12 more`
 
         The model that will complete your prompt.
 
@@ -20860,26 +21091,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
         - `:"claude-opus-4-1-20250805"`
 
           Exceptional model for specialized complex tasks
-
-        - `:"claude-opus-4-0"`
-
-          Powerful model for complex tasks
-
-        - `:"claude-opus-4-20250514"`
-
-          Powerful model for complex tasks
-
-        - `:"claude-sonnet-4-0"`
-
-          High-performance model with extended thinking
-
-        - `:"claude-sonnet-4-20250514"`
-
-          High-performance model with extended thinking
-
-        - `:"claude-3-haiku-20240307"`
-
-          Fast and cost-effective model
 
       - `String = String`
 
@@ -21181,13 +21392,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           This is how the tool will be called by the model and in `tool_use` blocks.
 
-        - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+        - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
           - `:direct`
 
           - `:code_execution_20250825`
 
           - `:code_execution_20260120`
+
+          - `:code_execution_20260521`
 
         - `cache_control: CacheControlEphemeral`
 
@@ -21231,13 +21444,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `:bash_20250124`
 
-        - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+        - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
           - `:direct`
 
           - `:code_execution_20250825`
 
           - `:code_execution_20260120`
+
+          - `:code_execution_20260521`
 
         - `cache_control: CacheControlEphemeral`
 
@@ -21267,13 +21482,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `:code_execution_20250522`
 
-        - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+        - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
           - `:direct`
 
           - `:code_execution_20250825`
 
           - `:code_execution_20260120`
+
+          - `:code_execution_20260521`
 
         - `cache_control: CacheControlEphemeral`
 
@@ -21301,13 +21518,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `:code_execution_20250825`
 
-        - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+        - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
           - `:direct`
 
           - `:code_execution_20250825`
 
           - `:code_execution_20260120`
+
+          - `:code_execution_20260521`
 
         - `cache_control: CacheControlEphemeral`
 
@@ -21337,13 +21556,53 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `:code_execution_20260120`
 
-        - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+        - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
           - `:direct`
 
           - `:code_execution_20250825`
 
           - `:code_execution_20260120`
+
+          - `:code_execution_20260521`
+
+        - `cache_control: CacheControlEphemeral`
+
+          Create a cache control breakpoint at this content block.
+
+        - `defer_loading: bool`
+
+          If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+        - `strict: bool`
+
+          When true, guarantees schema validation on tool names and inputs
+
+      - `class CodeExecutionTool20260521`
+
+        Code execution tool with REPL state persistence.
+
+        - `name: :code_execution`
+
+          Name of the tool.
+
+          This is how the tool will be called by the model and in `tool_use` blocks.
+
+          - `:code_execution`
+
+        - `type: :code_execution_20260521`
+
+          - `:code_execution_20260521`
+
+        - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
+
+          - `:direct`
+
+          - `:code_execution_20250825`
+
+          - `:code_execution_20260120`
+
+          - `:code_execution_20260521`
 
         - `cache_control: CacheControlEphemeral`
 
@@ -21371,13 +21630,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `:memory_20250818`
 
-        - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+        - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
           - `:direct`
 
           - `:code_execution_20250825`
 
           - `:code_execution_20260120`
+
+          - `:code_execution_20260521`
 
         - `cache_control: CacheControlEphemeral`
 
@@ -21407,13 +21668,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `:text_editor_20250124`
 
-        - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+        - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
           - `:direct`
 
           - `:code_execution_20250825`
 
           - `:code_execution_20260120`
+
+          - `:code_execution_20260521`
 
         - `cache_control: CacheControlEphemeral`
 
@@ -21443,13 +21706,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `:text_editor_20250429`
 
-        - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+        - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
           - `:direct`
 
           - `:code_execution_20250825`
 
           - `:code_execution_20260120`
+
+          - `:code_execution_20260521`
 
         - `cache_control: CacheControlEphemeral`
 
@@ -21479,13 +21744,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `:text_editor_20250728`
 
-        - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+        - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
           - `:direct`
 
           - `:code_execution_20250825`
 
           - `:code_execution_20260120`
+
+          - `:code_execution_20260521`
 
         - `cache_control: CacheControlEphemeral`
 
@@ -21519,13 +21786,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `:web_search_20250305`
 
-        - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+        - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
           - `:direct`
 
           - `:code_execution_20250825`
 
           - `:code_execution_20260120`
+
+          - `:code_execution_20260521`
 
         - `allowed_domains: Array[String]`
 
@@ -21589,13 +21858,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `:web_fetch_20250910`
 
-        - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+        - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
           - `:direct`
 
           - `:code_execution_20250825`
 
           - `:code_execution_20260120`
+
+          - `:code_execution_20260521`
 
         - `allowed_domains: Array[String]`
 
@@ -21643,13 +21914,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `:web_search_20260209`
 
-        - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+        - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
           - `:direct`
 
           - `:code_execution_20250825`
 
           - `:code_execution_20260120`
+
+          - `:code_execution_20260521`
 
         - `allowed_domains: Array[String]`
 
@@ -21693,13 +21966,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `:web_fetch_20260209`
 
-        - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+        - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
           - `:direct`
 
           - `:code_execution_20250825`
 
           - `:code_execution_20260120`
+
+          - `:code_execution_20260521`
 
         - `allowed_domains: Array[String]`
 
@@ -21749,13 +22024,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `:web_fetch_20260309`
 
-        - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+        - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
           - `:direct`
 
           - `:code_execution_20250825`
 
           - `:code_execution_20260120`
+
+          - `:code_execution_20260521`
 
         - `allowed_domains: Array[String]`
 
@@ -21809,13 +22086,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `:tool_search_tool_bm25`
 
-        - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+        - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
           - `:direct`
 
           - `:code_execution_20250825`
 
           - `:code_execution_20260120`
+
+          - `:code_execution_20260521`
 
         - `cache_control: CacheControlEphemeral`
 
@@ -21845,13 +22124,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `:tool_search_tool_regex`
 
-        - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120]`
+        - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
 
           - `:direct`
 
           - `:code_execution_20250825`
 
           - `:code_execution_20260120`
+
+          - `:code_execution_20260521`
 
         - `cache_control: CacheControlEphemeral`
 
@@ -23235,7 +23516,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-          - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 17 more`
+          - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 12 more`
 
             The model that will complete your prompt.
 
@@ -23301,26 +23582,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
               Exceptional model for specialized complex tasks
 
-            - `:"claude-opus-4-0"`
-
-              Powerful model for complex tasks
-
-            - `:"claude-opus-4-20250514"`
-
-              Powerful model for complex tasks
-
-            - `:"claude-sonnet-4-0"`
-
-              High-performance model with extended thinking
-
-            - `:"claude-sonnet-4-20250514"`
-
-              High-performance model with extended thinking
-
-            - `:"claude-3-haiku-20240307"`
-
-              Fast and cost-effective model
-
           - `String = String`
 
         - `role: :assistant`
@@ -23335,15 +23596,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           Structured information about a refusal.
 
-          - `category: :cyber | :bio | :reasoning_extraction`
+          - `category: :cyber | :bio | :frontier_llm | :reasoning_extraction`
 
-            The policy category that triggered the refusal.
-
-            `null` when the refusal doesn't map to a named category.
+            The policy category that triggered a refusal.
 
             - `:cyber`
 
             - `:bio`
+
+            - `:frontier_llm`
 
             - `:reasoning_extraction`
 
@@ -24521,7 +24782,7 @@ puts(message_batch_individual_response)
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-          - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 17 more`
+          - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 12 more`
 
             The model that will complete your prompt.
 
@@ -24587,26 +24848,6 @@ puts(message_batch_individual_response)
 
               Exceptional model for specialized complex tasks
 
-            - `:"claude-opus-4-0"`
-
-              Powerful model for complex tasks
-
-            - `:"claude-opus-4-20250514"`
-
-              Powerful model for complex tasks
-
-            - `:"claude-sonnet-4-0"`
-
-              High-performance model with extended thinking
-
-            - `:"claude-sonnet-4-20250514"`
-
-              High-performance model with extended thinking
-
-            - `:"claude-3-haiku-20240307"`
-
-              Fast and cost-effective model
-
           - `String = String`
 
         - `role: :assistant`
@@ -24621,15 +24862,15 @@ puts(message_batch_individual_response)
 
           Structured information about a refusal.
 
-          - `category: :cyber | :bio | :reasoning_extraction`
+          - `category: :cyber | :bio | :frontier_llm | :reasoning_extraction`
 
-            The policy category that triggered the refusal.
-
-            `null` when the refusal doesn't map to a named category.
+            The policy category that triggered a refusal.
 
             - `:cyber`
 
             - `:bio`
+
+            - `:frontier_llm`
 
             - `:reasoning_extraction`
 
@@ -25603,7 +25844,7 @@ puts(message_batch_individual_response)
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-        - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 17 more`
+        - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 12 more`
 
           The model that will complete your prompt.
 
@@ -25669,26 +25910,6 @@ puts(message_batch_individual_response)
 
             Exceptional model for specialized complex tasks
 
-          - `:"claude-opus-4-0"`
-
-            Powerful model for complex tasks
-
-          - `:"claude-opus-4-20250514"`
-
-            Powerful model for complex tasks
-
-          - `:"claude-sonnet-4-0"`
-
-            High-performance model with extended thinking
-
-          - `:"claude-sonnet-4-20250514"`
-
-            High-performance model with extended thinking
-
-          - `:"claude-3-haiku-20240307"`
-
-            Fast and cost-effective model
-
         - `String = String`
 
       - `role: :assistant`
@@ -25703,15 +25924,15 @@ puts(message_batch_individual_response)
 
         Structured information about a refusal.
 
-        - `category: :cyber | :bio | :reasoning_extraction`
+        - `category: :cyber | :bio | :frontier_llm | :reasoning_extraction`
 
-          The policy category that triggered the refusal.
-
-          `null` when the refusal doesn't map to a named category.
+          The policy category that triggered a refusal.
 
           - `:cyber`
 
           - `:bio`
+
+          - `:frontier_llm`
 
           - `:reasoning_extraction`
 
@@ -26647,7 +26868,7 @@ puts(message_batch_individual_response)
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 17 more`
+      - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 12 more`
 
         The model that will complete your prompt.
 
@@ -26713,26 +26934,6 @@ puts(message_batch_individual_response)
 
           Exceptional model for specialized complex tasks
 
-        - `:"claude-opus-4-0"`
-
-          Powerful model for complex tasks
-
-        - `:"claude-opus-4-20250514"`
-
-          Powerful model for complex tasks
-
-        - `:"claude-sonnet-4-0"`
-
-          High-performance model with extended thinking
-
-        - `:"claude-sonnet-4-20250514"`
-
-          High-performance model with extended thinking
-
-        - `:"claude-3-haiku-20240307"`
-
-          Fast and cost-effective model
-
       - `String = String`
 
     - `role: :assistant`
@@ -26747,15 +26948,15 @@ puts(message_batch_individual_response)
 
       Structured information about a refusal.
 
-      - `category: :cyber | :bio | :reasoning_extraction`
+      - `category: :cyber | :bio | :frontier_llm | :reasoning_extraction`
 
-        The policy category that triggered the refusal.
-
-        `null` when the refusal doesn't map to a named category.
+        The policy category that triggered a refusal.
 
         - `:cyber`
 
         - `:bio`
+
+        - `:frontier_llm`
 
         - `:reasoning_extraction`
 

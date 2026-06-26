@@ -1,11 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/streaming
-fetched_at: 2026-06-13T03:15:40.418428Z
-sha256: 35d85d38db29a2a122d1f53884b2f7ce81167d73c58955cf01ddbc464904ee5f
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: 8aa72822ddd8f675dfbdfb0212a49a90380a155154b282ea6518a18d2ef04189
 ---
 
 # Streaming pesan
+
+Lakukan streaming respons Messages API secara bertahap dengan server-sent events, termasuk delta teks, penggunaan alat, dan pemikiran diperpanjang.
 
 ---
 
@@ -186,7 +188,7 @@ SDK [Python](https://github.com/anthropics/anthropic-sdk-python) dan [TypeScript
 
 ## Mendapatkan pesan akhir tanpa menangani event \{#get-the-final-message-without-handling-events}
 
-Jika Anda tidak perlu memproses teks saat teks tersebut tiba, SDK menyediakan cara untuk menggunakan streaming di balik layar sambil mengembalikan objek `Message` lengkap, identik dengan yang dikembalikan oleh `.create()`. Ini sangat berguna untuk permintaan dengan nilai `max_tokens` yang besar, di mana SDK mengharuskan streaming untuk menghindari timeout HTTP.
+Jika Anda tidak perlu memproses teks saat teks tersebut tiba, SDK menyediakan cara untuk menggunakan streaming di balik layar sambil mengembalikan objek `Message` lengkap, identik dengan yang dikembalikan oleh `.create()`. Ini sangat berguna untuk permintaan dengan nilai `max_tokens` yang besar, di mana SDK memerlukan streaming untuk menghindari timeout HTTP.
 
 <CodeGroup>
     ```bash CLI
@@ -372,7 +374,7 @@ Jika Anda tidak perlu memproses teks saat teks tersebut tiba, SDK menyediakan ca
     ```
 </CodeGroup>
 
-Pemanggilan `.stream()` menjaga koneksi HTTP tetap aktif dengan server-sent events, kemudian `.get_final_message()` (Python) atau `.finalMessage()` (TypeScript) mengakumulasi semua event dan mengembalikan objek `Message` lengkap. Di Go, Anda memanggil `message.Accumulate(event)` di dalam loop stream untuk membangun `Message` lengkap yang sama. Di Java, gunakan `MessageAccumulator.create()` dan panggil `accumulator.accumulate(event)` pada setiap event. Di C#, gunakan await pada extension method `.Aggregate()` milik stream untuk mendapatkan `Message` lengkap, atau berikan `MessageContentAggregator` ke `.CollectAsync()` untuk mengagregasi sambil menangani event. Di Ruby, panggil `.accumulated_message` pada stream. Di SDK PHP, Anda melakukan iterasi atas event stream secara manual untuk mengakumulasi respons.
+Pemanggilan `.stream()` menjaga koneksi HTTP tetap aktif dengan server-sent events, kemudian `.get_final_message()` (Python) atau `.finalMessage()` (TypeScript) mengakumulasi semua event dan mengembalikan objek `Message` lengkap. Di Go, Anda memanggil `message.Accumulate(event)` di dalam loop stream untuk membangun `Message` lengkap yang sama. Di Java, gunakan `MessageAccumulator.create()` dan panggil `accumulator.accumulate(event)` pada setiap event. Di C#, gunakan await pada metode ekstensi `.Aggregate()` milik stream untuk mendapatkan `Message` lengkap, atau berikan `MessageContentAggregator` ke `.CollectAsync()` untuk mengagregasi sambil menangani event. Di Ruby, panggil `.accumulated_message` pada stream. Di SDK PHP, Anda melakukan iterasi atas event stream secara manual untuk mengakumulasi respons.
 
 ## Tipe event \{#event-types}
 
@@ -381,7 +383,7 @@ Setiap server-sent event menyertakan tipe event bernama dan data JSON terkait. S
 Setiap stream menggunakan alur event berikut:
 
 1. `message_start`: berisi objek `Message` dengan `content` kosong.
-2. Serangkaian blok konten, yang masing-masing memiliki `content_block_start`, satu atau lebih event `content_block_delta`, dan event `content_block_stop`. Setiap blok konten memiliki `index` yang sesuai dengan indeksnya dalam array `content` Message akhir. Satu pengecualian: selama respons [server-side fallback](/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback), blok konten `fallback` tiba di setiap batas model sebagai pasangan `content_block_start` dan `content_block_stop` tanpa delta di antaranya.
+2. Serangkaian blok konten, yang masing-masing memiliki `content_block_start`, satu atau lebih event `content_block_delta`, dan event `content_block_stop`. Setiap blok konten memiliki `index` yang sesuai dengan indeksnya dalam array `content` Message akhir. Satu pengecualian: selama respons [fallback sisi server](/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback), blok konten `fallback` tiba di setiap batas model sebagai pasangan `content_block_start` dan `content_block_stop` tanpa delta di antaranya.
 3. Satu atau lebih event `message_delta`, yang menunjukkan perubahan tingkat atas pada objek `Message` akhir.
 4. Event `message_stop` terakhir.
 
@@ -418,18 +420,18 @@ event: content_block_delta
 data: {"type": "content_block_delta","index": 0,"delta": {"type": "text_delta", "text": "ello frien"}}
 ```
 
-### Delta input JSON \{#input-json-delta}
+### Delta JSON input \{#input-json-delta}
 
-Delta untuk blok konten `tool_use` sesuai dengan pembaruan untuk field `input` dari blok tersebut. Untuk mendukung granularitas maksimum, delta tersebut adalah _string JSON parsial_, sedangkan `tool_use.input` akhir selalu berupa _objek_.
+Delta untuk blok konten `tool_use` sesuai dengan pembaruan untuk field `input` dari blok tersebut. Untuk mendukung granularitas maksimum, delta tersebut berupa _string JSON parsial_, sedangkan `tool_use.input` akhir selalu berupa _objek_.
 
-Anda dapat mengakumulasi delta string dan mem-parse JSON setelah Anda menerima event `content_block_stop`, dengan menggunakan library seperti [Pydantic](https://docs.pydantic.dev/latest/concepts/json/#partial-json-parsing) untuk melakukan parsing JSON parsial, atau dengan menggunakan [SDK](/docs/id/cli-sdks-libraries/overview), yang menyediakan helper untuk mengakses nilai inkremental yang sudah di-parse.
+Anda dapat mengakumulasi delta string dan mem-parse JSON setelah Anda menerima event `content_block_stop`, dengan menggunakan pustaka seperti [Pydantic](https://docs.pydantic.dev/latest/concepts/json/#partial-json-parsing) untuk melakukan parsing JSON parsial, atau dengan menggunakan [SDK](/docs/id/cli-sdks-libraries/overview), yang menyediakan helper untuk mengakses nilai inkremental yang telah di-parse.
 
 Delta blok konten `tool_use` terlihat seperti:
 ```sse Input JSON delta
 event: content_block_delta
 data: {"type": "content_block_delta","index": 1,"delta": {"type": "input_json_delta","partial_json": "{\"location\": \"San Fra"}}}
 ```
-Catatan: Model saat ini hanya mendukung pengiriman satu properti key dan value lengkap dari `input` pada satu waktu. Oleh karena itu, saat menggunakan alat, mungkin ada jeda antara event streaming saat model sedang bekerja. Setelah key dan value `input` terakumulasi, keduanya dikirim sebagai beberapa event `content_block_delta` dengan JSON parsial yang dipecah-pecah sehingga format tersebut dapat secara otomatis mendukung granularitas yang lebih halus pada model di masa mendatang.
+Catatan: Model saat ini hanya mendukung pengeluaran satu properti key dan value lengkap dari `input` dalam satu waktu. Oleh karena itu, saat menggunakan alat, mungkin ada jeda antara event streaming saat model sedang bekerja. Setelah key dan value `input` terakumulasi, keduanya dikeluarkan sebagai beberapa event `content_block_delta` dengan JSON parsial yang dipecah-pecah sehingga format tersebut dapat secara otomatis mendukung granularitas yang lebih halus pada model mendatang.
 
 ### Delta thinking \{#thinking-delta}
 
@@ -684,7 +686,7 @@ data: {"type": "message_stop"}
 Penggunaan alat mendukung [fine-grained streaming](/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming) untuk nilai parameter. Aktifkan per alat dengan `eager_input_streaming`.
 </Tip>
 
-Permintaan ini meminta Claude untuk menggunakan alat untuk melaporkan cuaca.
+Permintaan ini meminta Claude untuk menggunakan alat guna melaporkan cuaca.
 
 <CodeGroup>
 ```bash cURL
@@ -1404,7 +1406,7 @@ data: {"type": "message_stop"}
 
 ### Permintaan streaming dengan penggunaan alat pencarian web \{#streaming-request-with-web-search-tool-use}
 
-Permintaan ini meminta Claude untuk mencari informasi cuaca terkini di web.
+Permintaan ini meminta Claude untuk mencari di web informasi cuaca terkini.
 
 <CodeGroup>
 ```bash cURL
@@ -1711,20 +1713,20 @@ data: {"type":"message_stop"}
 
 ### Claude 4.5 dan sebelumnya \{#claude-4-5-and-earlier}
 
-Untuk model Claude 4.5 dan sebelumnya, Anda dapat memulihkan permintaan streaming yang terputus karena masalah jaringan, timeout, atau error lainnya dengan melanjutkan dari titik di mana stream terputus. Pendekatan ini menghindarkan Anda dari memproses ulang seluruh respons.
+Untuk model Claude 4.5 dan sebelumnya, Anda dapat memulihkan permintaan streaming yang terputus karena masalah jaringan, timeout, atau error lainnya dengan melanjutkan dari titik di mana stream terputus. Pendekatan ini menghemat Anda dari memproses ulang seluruh respons.
 
 Strategi pemulihan dasar meliputi:
 
 1. **Tangkap respons parsial:** Simpan semua konten yang berhasil diterima sebelum error terjadi
-2. **Buat permintaan lanjutan:** Buat permintaan API baru yang menyertakan respons assistant parsial sebagai awal dari pesan assistant baru
+2. **Buat permintaan lanjutan:** Buat permintaan API baru yang menyertakan respons asisten parsial sebagai awal dari pesan asisten baru
 3. **Lanjutkan streaming:** Lanjutkan menerima sisa respons dari titik di mana respons terputus
 
 ### Claude 4.6 dan setelahnya \{#claude-4-6-and-later}
 
-Untuk model Claude 4.6 dan setelahnya, strategi tangkap-dan-lanjutkan yang sama berlaku, tetapi langkah 2 berubah: alih-alih menempatkan respons parsial dalam pesan assistant, tambahkan pesan user yang menginstruksikan model untuk melanjutkan dari titik terakhir.
+Untuk model Claude 4.6 dan setelahnya, strategi tangkap-dan-lanjutkan yang sama berlaku, tetapi langkah 2 berubah: alih-alih menempatkan respons parsial dalam pesan asisten, tambahkan pesan pengguna yang menginstruksikan model untuk melanjutkan dari titik terakhirnya.
 
 1. **Tangkap respons parsial:** Simpan semua konten yang berhasil diterima sebelum error terjadi
-2. **Buat permintaan lanjutan:** Buat permintaan API baru dengan pesan user yang berisi respons parsial dan instruksi untuk melanjutkan, misalnya:
+2. **Buat permintaan lanjutan:** Buat permintaan API baru dengan pesan pengguna yang berisi respons parsial dan instruksi untuk melanjutkan, misalnya:
    ```text Sample prompt
    Your previous response was interrupted and ended with [previous_response]. Continue from where you left off.
    ```
@@ -1734,3 +1736,23 @@ Untuk model Claude 4.6 dan setelahnya, strategi tangkap-dan-lanjutkan yang sama 
 
 1. **Gunakan fitur SDK:** Manfaatkan kemampuan akumulasi pesan dan penanganan error bawaan SDK
 2. **Tangani tipe konten:** Perhatikan bahwa pesan dapat berisi beberapa blok konten (`text`, `tool_use`, `thinking`). Blok penggunaan alat dan pemikiran diperpanjang tidak dapat dipulihkan secara parsial. Anda dapat melanjutkan streaming dari blok teks terbaru.
+
+## Langkah selanjutnya \{#next-steps}
+
+<CardGroup cols={2}>
+  <Card title="Alasan berhenti dan fallback" icon="list" href="/docs/id/build-with-claude/handling-stop-reasons">
+    Tangani setiap nilai `stop_reason` setelah stream selesai.
+  </Card>
+  <Card title="Fine-grained tool streaming" icon="wrench" href="/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming">
+    Lakukan streaming JSON input alat tanpa buffering sisi server untuk latensi yang lebih rendah.
+  </Card>
+  <Card title="Pemikiran diperpanjang" icon="brain" href="/docs/id/build-with-claude/extended-thinking">
+    Lakukan streaming output pemikiran diperpanjang dengan event `thinking_delta` dan `signature_delta`.
+  </Card>
+  <Card title="SDK klien" icon="code" href="/docs/id/cli-sdks-libraries/overview">
+    Gunakan SDK resmi, yang menangani streaming, akumulasi, dan koneksi ulang untuk Anda.
+  </Card>
+  <Card title="Pemrosesan batch" icon="stack" href="/docs/id/build-with-claude/batch-processing">
+    Proses permintaan dalam volume besar secara asinkron ketika Anda tidak memerlukan respons real-time.
+  </Card>
+</CardGroup>

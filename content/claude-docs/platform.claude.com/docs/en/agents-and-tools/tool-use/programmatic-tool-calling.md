@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/programmatic-tool-calling
-fetched_at: 2026-06-19T03:18:02.201222Z
-sha256: 9b33ac9ebd903c46425bd72938c3405bf89072b458c2fc2fc86da9c4911193d9
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: 65eb7dcc7e152d1d3c08a5d66394185303854af9a2ec990ce852d65cbec0af39
 ---
 
 # Programmatic tool calling
@@ -40,7 +40,7 @@ Programmatic tool calling requires `code_execution_20260120` or later, which is 
 | Claude Opus 4.5 (claude-opus-4-5-20251101) |
 | Claude Sonnet 4.5 (claude-sonnet-4-5-20250929) |
 
-For the full code execution tool version matrix, see the [code execution tool model compatibility table](/docs/en/agents-and-tools/tool-use/code-execution-tool#model-compatibility). Programmatic tool calling is available on the Claude API, [Claude Platform on AWS](/docs/en/build-with-claude/claude-platform-on-aws), and [Microsoft Foundry](/docs/en/build-with-claude/claude-in-microsoft-foundry). It is not currently available on Amazon Bedrock or Vertex AI.
+For the full code execution tool version matrix, see the [code execution tool model compatibility table](/docs/en/agents-and-tools/tool-use/code-execution-tool#model-compatibility). Programmatic tool calling is available on the Claude API, [Claude Platform on AWS](/docs/en/build-with-claude/claude-platform-on-aws), and [Microsoft Foundry](/docs/en/build-with-claude/claude-in-microsoft-foundry). It is not currently available on Amazon Bedrock or Google Cloud.
 
 ## Quick start
 

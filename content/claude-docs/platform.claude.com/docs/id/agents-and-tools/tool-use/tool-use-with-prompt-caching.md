@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-use-with-prompt-caching
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 56f2c5635afcfc21753d4c3f009274fcd9156c54ee1852fb713fd2779955ad75
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: f1714bd2c76322d05f34f27c48305c98ec559b4d3a89934ae44bc4e40fcd69d4
 ---
 
 # Penggunaan alat dengan caching prompt
@@ -11,7 +11,7 @@ Cache definisi alat di seluruh giliran dan pahami apa yang membatalkan cache And
 
 ---
 
-Halaman ini membahas "prompt caching" (caching prompt) untuk definisi alat: di mana menempatkan breakpoint `cache_control`, bagaimana `defer_loading` mempertahankan cache Anda, dan apa yang membatalkannya. Untuk caching prompt secara umum, lihat [Caching prompt](/docs/id/build-with-claude/prompt-caching).
+Halaman ini membahas caching prompt untuk definisi alat: di mana menempatkan breakpoint `cache_control`, bagaimana `defer_loading` mempertahankan cache Anda, dan apa yang membatalkannya. Untuk caching prompt secara umum, lihat [Caching prompt](/docs/id/build-with-claude/prompt-caching).
 
 ## cache_control pada definisi alat \{#cache-control-on-tool-definitions}
 
@@ -55,7 +55,7 @@ Alat yang ditangguhkan tidak disertakan dalam prefiks prompt sistem. Ketika mode
 
 Ini berarti menambahkan alat secara dinamis melalui pencarian alat tidak merusak cache Anda. Anda dapat memulai percakapan dengan sekumpulan kecil alat yang selalu dimuat (di-cache), membiarkan model menemukan alat tambahan sesuai kebutuhan, dan tetap mendapatkan cache hit yang sama di setiap giliran.
 
-`defer_loading` juga bekerja secara independen dari konstruksi grammar untuk [strict mode](/docs/id/agents-and-tools/tool-use/strict-tool-use). Grammar dibangun dari toolset lengkap terlepas dari alat mana yang ditangguhkan, sehingga caching prompt dan caching grammar keduanya tetap terjaga ketika alat dimuat secara dinamis.
+`defer_loading` juga bekerja secara independen dari konstruksi grammar untuk [mode ketat](/docs/id/agents-and-tools/tool-use/strict-tool-use). Grammar dibangun dari toolset lengkap terlepas dari alat mana yang ditangguhkan, sehingga caching prompt dan caching grammar keduanya tetap terjaga ketika alat dimuat secara dinamis.
 
 ## Apa yang membatalkan cache Anda \{#what-invalidates-your-cache}
 
@@ -67,12 +67,20 @@ Cache mengikuti hierarki prefiks (`tools` → `system` → `messages`), sehingga
 | Mengaktifkan/menonaktifkan pencarian web atau sitasi | Cache system dan messages |
 | Mengubah `tool_choice` | Cache messages |
 | Mengubah `disable_parallel_tool_use` | Cache messages |
-| Mengaktifkan/menonaktifkan keberadaan gambar | Cache messages |
+| Mengubah keberadaan gambar (ada/tidak ada) | Cache messages |
 | Mengubah parameter thinking | Cache messages |
 
 <Note>
 Jika Anda perlu memvariasikan `tool_choice` di tengah percakapan, pertimbangkan untuk menempatkan breakpoint cache sebelum titik variasi tersebut.
 </Note>
+
+## Hasil alat server di-cache secara otomatis \{#server-tool-results-are-cached-automatically}
+
+Ketika permintaan Anda mengaktifkan caching prompt dan Claude menggunakan [alat server](/docs/id/agents-and-tools/tool-use/server-tools) seperti pencarian web, web fetch, atau eksekusi kode, API secara otomatis menempatkan breakpoint cache pada hasil alat server sebelum menjalankan iterasi berikutnya dari loop agentik. Ini memungkinkan iterasi selanjutnya dalam permintaan yang sama membaca prefiks yang terus bertambah dari cache alih-alih memprosesnya ulang.
+
+Breakpoint otomatis ini selalu menggunakan TTL default 5 menit, terlepas dari TTL apa pun yang Anda tetapkan pada penanda `cache_control` Anda sendiri. Dalam `usage` respons, penulisan ini muncul di bawah `cache_creation.ephemeral_5m_input_tokens`, sehingga Anda mungkin melihat penulisan cache 5 menit meskipun setiap `cache_control` yang Anda tetapkan menggunakan TTL 1 jam.
+
+Perilaku ini hanya berlaku ketika permintaan Anda sudah memiliki setidaknya satu penanda `cache_control`. Permintaan tanpa caching prompt tidak menerima breakpoint otomatis.
 
 ## Tabel interaksi per alat \{#per-tool-interaction-table}
 
@@ -82,8 +90,8 @@ Jika Anda perlu memvariasikan `tool_choice` di tengah percakapan, pertimbangkan 
 | [Web fetch](/docs/id/agents-and-tools/tool-use/web-fetch-tool) | Mengaktifkan atau menonaktifkan akan membatalkan cache system dan messages |
 | [Eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool) | Status container independen dari cache prompt |
 | [Pencarian alat](/docs/id/agents-and-tools/tool-use/tool-search-tool) | Alat yang ditemukan dimuat sebagai blok `tool_reference`, mempertahankan cache prefiks |
-| [Computer use](/docs/id/agents-and-tools/tool-use/computer-use-tool) | Keberadaan screenshot memengaruhi cache messages |
-| [Text editor](/docs/id/agents-and-tools/tool-use/text-editor-tool) | Alat klien standar, tidak ada interaksi caching khusus |
+| [Penggunaan komputer](/docs/id/agents-and-tools/tool-use/computer-use-tool) | Keberadaan screenshot memengaruhi cache messages |
+| [Editor teks](/docs/id/agents-and-tools/tool-use/text-editor-tool) | Alat klien standar, tidak ada interaksi caching khusus |
 | [Bash](/docs/id/agents-and-tools/tool-use/bash-tool) | Alat klien standar, tidak ada interaksi caching khusus |
 | [Memory](/docs/id/agents-and-tools/tool-use/memory-tool) | Alat klien standar, tidak ada interaksi caching khusus |
 

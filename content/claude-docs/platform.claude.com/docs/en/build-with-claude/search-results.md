@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/search-results
-fetched_at: 2026-06-23T03:14:59.520621Z
-sha256: 0022dac2f1e3cd6313514e72fa093c69e5ab1c6c21eb1df4f15477cd208c862c
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: 4a72a37567e57b07d7c3b9c5e99296e9b5a1ce7c0607c60bdab1005fc6cdb2bd
 ---
 
 # Search results
@@ -26,10 +26,10 @@ The search results feature is available on the following models:
 - Claude Sonnet 4.5 (`claude-sonnet-4-5-20250929`)
 - Claude Opus 4.5 (`claude-opus-4-5-20251101`)
 - Claude Opus 4.1 ([deprecated](/docs/en/about-claude/model-deprecations)) (`claude-opus-4-1-20250805`)
-- Claude Opus 4 ([retired, except on Vertex AI](/docs/en/about-claude/model-deprecations)) (`claude-opus-4-20250514`)
-- Claude Sonnet 4 ([retired, except on Bedrock and Vertex AI](/docs/en/about-claude/model-deprecations)) (`claude-sonnet-4-20250514`)
+- Claude Opus 4 ([retired, except on Google Cloud](/docs/en/about-claude/model-deprecations)) (`claude-opus-4-20250514`)
+- Claude Sonnet 4 ([retired, except on Bedrock and Google Cloud](/docs/en/about-claude/model-deprecations)) (`claude-sonnet-4-20250514`)
 - Claude Haiku 4.5 (`claude-haiku-4-5-20251001`)
-- Claude Haiku 3.5 ([retired, except on Bedrock and Vertex AI](/docs/en/about-claude/model-deprecations)) (`claude-3-5-haiku-20241022`)
+- Claude Haiku 3.5 ([retired, except on Bedrock and Google Cloud](/docs/en/about-claude/model-deprecations)) (`claude-3-5-haiku-20241022`)
 
 ## Key benefits
 
@@ -1511,7 +1511,7 @@ Citations are all-or-nothing: either all search results in a request must have c
 
 ## Limitations
 
-- Search result content blocks are available on Claude API, Amazon Bedrock, and Google Cloud's Vertex AI
+- Search result content blocks are available on Claude API, Amazon Bedrock, and Google Cloud
 - Only text content is supported within search results (no images or other media)
 - The `content` array must contain at least one text block
 

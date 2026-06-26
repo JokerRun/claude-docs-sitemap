@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/agents
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 1ac3b2c3d3c33101cc828cd1bac026dec2d0f773044912f59ed508fcd3dd5489
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: 88f93e92e017d9cd51d19f574ba812169bd06d8380441ca28d322b40c97098a4
 ---
 
 # Agents
@@ -135,7 +135,7 @@ Create Agent
 
 - `mcp_servers: Optional[Iterable[BetaManagedAgentsURLMCPServerParams]]`
 
-  MCP servers this agent connects to. Maximum 20. Names must be unique within the array.
+  MCP servers this agent connects to. Maximum 20. Names must be unique within the array. Every server must be referenced by an `mcp_toolset` in `tools`; unreferenced servers are rejected. See the [MCP connector guide](https://platform.claude.com/docs/en/managed-agents/mcp-connector).
 
   - `name: str`
 
@@ -1857,7 +1857,7 @@ Update Agent
 
 - `mcp_servers: Optional[Iterable[BetaManagedAgentsURLMCPServerParams]]`
 
-  MCP servers. Full replacement. Omit to preserve; send empty array or null to clear. Names must be unique. Maximum 20.
+  MCP servers. Full replacement. Omit to preserve; send empty array or `null` to clear. Names must be unique. Maximum 20. Every server must be referenced by an `mcp_toolset` in the agent's resulting `tools`; unreferenced servers are rejected. See the [MCP connector guide](https://platform.claude.com/docs/en/managed-agents/mcp-connector).
 
   - `name: str`
 

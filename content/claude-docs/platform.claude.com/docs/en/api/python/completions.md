@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/completions
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 1c7569aa83b3dd0178ca0f416db4ad6b4d58bbdee8da00917c6f11a830c6933d
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: ab8fb4b85149ac1bd4d6172132c5461cbf631159f17def8f3ace588d5746ceda
 ---
 
 # Completions
@@ -33,7 +33,7 @@ Future models and features will not be compatible with Text Completions. See our
 
   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-  - `Literal["claude-fable-5", "claude-mythos-5", "claude-opus-4-8", 17 more]`
+  - `Literal["claude-fable-5", "claude-mythos-5", "claude-opus-4-8", 12 more]`
 
     The model that will complete your prompt.
 
@@ -54,11 +54,6 @@ Future models and features will not be compatible with Text Completions. See our
     - `claude-sonnet-4-5-20250929` - High-performance model for agents and coding
     - `claude-opus-4-1` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
     - `claude-opus-4-1-20250805` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
-    - `claude-opus-4-0` - Deprecated: Will reach end-of-life on June 15th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
-    - `claude-opus-4-20250514` - Deprecated: Will reach end-of-life on June 15th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
-    - `claude-sonnet-4-0` - Deprecated: Will reach end-of-life on June 15th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
-    - `claude-sonnet-4-20250514` - Deprecated: Will reach end-of-life on June 15th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
-    - `claude-3-haiku-20240307` - Deprecated: Will reach end-of-life on April 20th, 2026. Please migrate to claude-haiku-4-5. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
 
     - `"claude-fable-5"`
 
@@ -119,26 +114,6 @@ Future models and features will not be compatible with Text Completions. See our
     - `"claude-opus-4-1-20250805"`
 
       Exceptional model for specialized complex tasks
-
-    - `"claude-opus-4-0"`
-
-      Powerful model for complex tasks
-
-    - `"claude-opus-4-20250514"`
-
-      Powerful model for complex tasks
-
-    - `"claude-sonnet-4-0"`
-
-      High-performance model with extended thinking
-
-    - `"claude-sonnet-4-20250514"`
-
-      High-performance model with extended thinking
-
-    - `"claude-3-haiku-20240307"`
-
-      Fast and cost-effective model
 
   - `str`
 
@@ -296,7 +271,7 @@ Future models and features will not be compatible with Text Completions. See our
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `Literal["claude-fable-5", "claude-mythos-5", "claude-opus-4-8", 17 more]`
+    - `Literal["claude-fable-5", "claude-mythos-5", "claude-opus-4-8", 12 more]`
 
       The model that will complete your prompt.
 
@@ -317,11 +292,6 @@ Future models and features will not be compatible with Text Completions. See our
       - `claude-sonnet-4-5-20250929` - High-performance model for agents and coding
       - `claude-opus-4-1` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
       - `claude-opus-4-1-20250805` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
-      - `claude-opus-4-0` - Deprecated: Will reach end-of-life on June 15th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
-      - `claude-opus-4-20250514` - Deprecated: Will reach end-of-life on June 15th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
-      - `claude-sonnet-4-0` - Deprecated: Will reach end-of-life on June 15th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
-      - `claude-sonnet-4-20250514` - Deprecated: Will reach end-of-life on June 15th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
-      - `claude-3-haiku-20240307` - Deprecated: Will reach end-of-life on April 20th, 2026. Please migrate to claude-haiku-4-5. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
 
       - `"claude-fable-5"`
 
@@ -382,26 +352,6 @@ Future models and features will not be compatible with Text Completions. See our
       - `"claude-opus-4-1-20250805"`
 
         Exceptional model for specialized complex tasks
-
-      - `"claude-opus-4-0"`
-
-        Powerful model for complex tasks
-
-      - `"claude-opus-4-20250514"`
-
-        Powerful model for complex tasks
-
-      - `"claude-sonnet-4-0"`
-
-        High-performance model with extended thinking
-
-      - `"claude-sonnet-4-20250514"`
-
-        High-performance model with extended thinking
-
-      - `"claude-3-haiku-20240307"`
-
-        Fast and cost-effective model
 
     - `str`
 
@@ -473,7 +423,7 @@ for completion in client.completions.create(
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `Literal["claude-fable-5", "claude-mythos-5", "claude-opus-4-8", 17 more]`
+    - `Literal["claude-fable-5", "claude-mythos-5", "claude-opus-4-8", 12 more]`
 
       The model that will complete your prompt.
 
@@ -494,11 +444,6 @@ for completion in client.completions.create(
       - `claude-sonnet-4-5-20250929` - High-performance model for agents and coding
       - `claude-opus-4-1` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
       - `claude-opus-4-1-20250805` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
-      - `claude-opus-4-0` - Deprecated: Will reach end-of-life on June 15th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
-      - `claude-opus-4-20250514` - Deprecated: Will reach end-of-life on June 15th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
-      - `claude-sonnet-4-0` - Deprecated: Will reach end-of-life on June 15th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
-      - `claude-sonnet-4-20250514` - Deprecated: Will reach end-of-life on June 15th, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
-      - `claude-3-haiku-20240307` - Deprecated: Will reach end-of-life on April 20th, 2026. Please migrate to claude-haiku-4-5. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
 
       - `"claude-fable-5"`
 
@@ -559,26 +504,6 @@ for completion in client.completions.create(
       - `"claude-opus-4-1-20250805"`
 
         Exceptional model for specialized complex tasks
-
-      - `"claude-opus-4-0"`
-
-        Powerful model for complex tasks
-
-      - `"claude-opus-4-20250514"`
-
-        Powerful model for complex tasks
-
-      - `"claude-sonnet-4-0"`
-
-        High-performance model with extended thinking
-
-      - `"claude-sonnet-4-20250514"`
-
-        High-performance model with extended thinking
-
-      - `"claude-3-haiku-20240307"`
-
-        Fast and cost-effective model
 
     - `str`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/parallel-tool-use
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: ff20f402fae5fe1a61ccf6d7ffb4d2daea4cf5d4162ed15f2572990b004ab03f
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: 45f82d94e71c1c999787dd7beae1545b32de2a22d270fa9182fde9e5a37c034f
 ---
 
 # Penggunaan alat paralel
@@ -20,16 +20,18 @@ Secara default, Claude dapat menggunakan beberapa alat untuk menjawab kueri peng
 
 ## Semantik eksekusi \{#execution-semantics}
 
-Panggilan alat dalam satu giliran asisten tidak berurutan. Anda dapat menjalankannya secara bersamaan (`Promise.all`, `asyncio.gather`), secara berurutan, atau dalam urutan apa pun. Claude tidak mengasumsikan bahwa satu panggilan dalam batch telah selesai sebelum panggilan lainnya. Claude mengeluarkan panggilan yang saling bergantung di giliran yang terpisah.
+Ketika Claude mengembalikan beberapa blok `tool_use` dalam satu giliran asisten, cara Anda menjalankannya adalah keputusan Anda. API tidak menentukan urutan eksekusi: Anda dapat menjalankan panggilan secara bersamaan (`Promise.all`, `asyncio.gather`), secara berurutan sesuai urutan kemunculannya, atau dalam kombinasi apa pun yang sesuai dengan alat Anda.
 
-Claude terkadang mungkin mengelompokkan panggilan yang ternyata saling bergantung satu sama lain (misalnya, operasi create diikuti oleh update pada resource yang sama). Anda tidak perlu mendeteksi hal ini sebelumnya: kirimkan semua panggilan, dan jika salah satu gagal karena prasyarat yang belum terpenuhi, kembalikan pesan error yang wajar dalam `tool_result` dengan `is_error: true`. Claude akan mengenali dependensi tersebut dan mengeluarkan ulang panggilan setelah prasyaratnya selesai.
+Pilih strategi berdasarkan apa yang dilakukan alat Anda. Operasi yang independen dan hanya-baca biasanya aman untuk dijalankan secara paralel demi "latency" (latensi) yang lebih rendah. Alat dengan efek samping, state bersama, atau persyaratan urutan mungkin lebih baik dijalankan secara berurutan.
+
+Strategi apa pun yang Anda gunakan, kembalikan satu `tool_result` untuk setiap blok `tool_use`, semuanya bersama-sama dalam pesan pengguna berikutnya. Jika Anda memilih untuk tidak menjalankan panggilan tertentu (misalnya, karena Anda menjalankan batch secara berurutan dan panggilan sebelumnya gagal), tetap kembalikan `tool_result` untuknya dengan `is_error: true` dan penjelasan singkat.
 
 ```json
 {
   "type": "tool_result",
   "tool_use_id": "toolu_02",
   "is_error": true,
-  "content": "cat: report.md: No such file or directory"
+  "content": "Not executed: the preceding write_file call failed."
 }
 ```
 
@@ -202,7 +204,7 @@ async function testParallelTools() {
     tools: tools
   });
 
-  // Periksa panggilan alat paralel
+  // Periksa pemanggilan alat paralel
   const toolUses = response.content.filter((block) => block.type === "tool_use");
   console.log(`\n✓ Claude made ${toolUses.length} tool calls`);
 
@@ -900,11 +902,11 @@ Or be explicit:
 
 ## Pemecahan masalah \{#troubleshooting}
 
-Jika Claude tidak melakukan panggilan alat paralel seperti yang diharapkan, periksa masalah umum berikut:
+Jika Claude tidak melakukan panggilan alat paralel saat diharapkan, periksa masalah umum berikut:
 
 **1. Format hasil alat yang salah**
 
-Masalah paling umum adalah memformat hasil alat secara tidak benar dalam riwayat percakapan. Hal ini "mengajarkan" Claude untuk menghindari panggilan paralel.
+Masalah paling umum adalah memformat hasil alat secara tidak benar dalam riwayat percakapan. Ini "mengajarkan" Claude untuk menghindari panggilan paralel.
 
 Khusus untuk penggunaan alat paralel:
 - ❌ **Salah**: Mengirim pesan pengguna terpisah untuk setiap hasil alat
@@ -929,7 +931,7 @@ Lihat [Menangani panggilan alat](/docs/id/agents-and-tools/tool-use/handle-tool-
 
 **2. Prompting yang lemah**
 
-Prompting default mungkin tidak cukup. Gunakan prompt sistem yang lebih kuat dari bagian [Memaksimalkan penggunaan alat paralel](#memaksimalkan-penggunaan-alat-paralel) di atas.
+Prompting default mungkin tidak cukup. Gunakan prompt sistem yang lebih kuat dari bagian [Memaksimalkan penggunaan alat paralel](#maximizing-parallel-tool-use) di atas.
 
 **3. Mengukur penggunaan alat paralel**
 
@@ -953,7 +955,7 @@ print(f"Average tools per message: {avg_tools_per_message}")
 
 **4. Panggilan dalam satu batch tampak saling bergantung**
 
-Jika panggilan alat gagal karena bergantung pada panggilan lain dalam batch yang sama, kembalikan `is_error: true` dengan pesan error yang wajar (Anda tidak perlu menjelaskan dependensinya). Claude akan pulih dan mengeluarkan ulang panggilan tersebut. Jangan beralih ke eksekusi berurutan; hal itu menambah latensi dan menyembunyikan masalahnya. Untuk mengurangi kejadian ini, tambahkan ini ke prompt sistem Anda: "Only batch tool calls that are independent of each other."
+Urutan eksekusi adalah pilihan Anda. Jika alat Anda memiliki dependensi urutan, menjalankan batch secara berurutan dan berhenti pada kegagalan pertama adalah strategi yang valid: kembalikan `is_error: true` untuk setiap panggilan yang tidak Anda jalankan. Jika Anda menjalankan secara paralel dan sebuah panggilan gagal karena prasyaratnya belum selesai, kembalikan `is_error: true` dengan pesan error yang wajar; Claude akan mengeluarkannya kembali pada giliran berikutnya. Untuk mengurangi kemunculan panggilan yang saling bergantung secara bersamaan, tambahkan ini ke prompt sistem Anda: "Only batch tool calls that are independent of each other."
 
 ## Langkah selanjutnya \{#next-steps}
 

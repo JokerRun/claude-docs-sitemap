@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/completions/create
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 69f0bb00ccea9920bb851146561c11732e69b2a4b1af1bd5b88b73d850dcb8a1
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: 4348996cf3484e1f7bf23f9e8502cb1cf7183cea5300a75f7b2da784882e0cf8
 ---
 
 ## Create a Text Completion
@@ -240,26 +240,6 @@ Future models and features will not be compatible with Text Completions. See our
       - `const ModelClaudeOpus4_1_20250805 Model = "claude-opus-4-1-20250805"`
 
         Exceptional model for specialized complex tasks
-
-      - `const ModelClaudeOpus4_0 Model = "claude-opus-4-0"`
-
-        Powerful model for complex tasks
-
-      - `const ModelClaudeOpus4_20250514 Model = "claude-opus-4-20250514"`
-
-        Powerful model for complex tasks
-
-      - `const ModelClaudeSonnet4_0 Model = "claude-sonnet-4-0"`
-
-        High-performance model with extended thinking
-
-      - `const ModelClaudeSonnet4_20250514 Model = "claude-sonnet-4-20250514"`
-
-        High-performance model with extended thinking
-
-      - `const ModelClaude_3_Haiku_20240307 Model = "claude-3-haiku-20240307"`
-
-        Fast and cost-effective model
 
     - `string`
 

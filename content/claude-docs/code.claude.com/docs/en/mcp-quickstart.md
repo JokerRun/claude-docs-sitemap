@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/mcp-quickstart
-fetched_at: 2026-06-19T03:18:02.201222Z
-sha256: 5f6d016806415cc787c57aac113aa64d2a1e0409f6d68a00a57decd7ca01fecf
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: f43273b572b5d8119f4fe89fa2b8baa8c5b7fa8e7b6fd4900828957e6ea9b136
 ---
 
 > ## Documentation Index
@@ -301,6 +301,8 @@ If a server doesn't connect, check its status with `/mcp` inside a session or `c
 
   <Accordion title="Status shows Failed to connect or Connection error">
     Both statuses mean the server didn't start or the URL didn't respond. They can also appear for HTTP servers that expect a token rather than the browser sign-in covered in [Connect a server that requires sign-in](#connect-a-server-that-requires-sign-in).
+
+    As of v2.1.191, an HTTP server that returns `404 Not Found` shows `MCP endpoint not found at <url>. Check the URL in your MCP config.` when you select the server in `/mcp`, with the URL Claude Code tried. Earlier versions show a generic `Error POSTing to endpoint` message without the URL. Compare the URL to the server's documented MCP endpoint path, then run `claude mcp remove <name>` and re-add with the correct URL.
 
     For HTTP servers, confirm the URL is reachable from your machine:
 

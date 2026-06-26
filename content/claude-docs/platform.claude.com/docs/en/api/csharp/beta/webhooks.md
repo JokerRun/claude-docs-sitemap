@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/webhooks
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 436f1ee56bb3c5c695500af6cde5394d835c43c2b6b3a2c269b0e1db613904b9
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: 25fd94f28619cc863b8c96097204b69d5048db67ded25302c2eb6a12153dcb54
 ---
 
 # Webhooks
@@ -315,6 +315,18 @@ sha256: 436f1ee56bb3c5c695500af6cde5394d835c43c2b6b3a2c269b0e1db613904b9
 
       - `required string WorkspaceID`
 
+    - `class BetaWebhookSessionUpdatedEventData:`
+
+      - `required string ID`
+
+        ID of the session that triggered the event.
+
+      - `required string OrganizationID`
+
+      - `JsonElement Type "session.updated"constant`
+
+      - `required string WorkspaceID`
+
   - `JsonElement Type "event"constant`
 
     Object type. Always `event` for webhook payloads.
@@ -615,6 +627,18 @@ sha256: 436f1ee56bb3c5c695500af6cde5394d835c43c2b6b3a2c269b0e1db613904b9
 
     - `required string WorkspaceID`
 
+  - `class BetaWebhookSessionUpdatedEventData:`
+
+    - `required string ID`
+
+      ID of the session that triggered the event.
+
+    - `required string OrganizationID`
+
+    - `JsonElement Type "session.updated"constant`
+
+    - `required string WorkspaceID`
+
 ### Beta Webhook Session Archived Event Data
 
 - `class BetaWebhookSessionArchivedEventData:`
@@ -834,6 +858,20 @@ sha256: 436f1ee56bb3c5c695500af6cde5394d835c43c2b6b3a2c269b0e1db613904b9
     ID of the session thread this event refers to.
 
   - `JsonElement Type "session.thread_terminated"constant`
+
+  - `required string WorkspaceID`
+
+### Beta Webhook Session Updated Event Data
+
+- `class BetaWebhookSessionUpdatedEventData:`
+
+  - `required string ID`
+
+    ID of the session that triggered the event.
+
+  - `required string OrganizationID`
+
+  - `JsonElement Type "session.updated"constant`
 
   - `required string WorkspaceID`
 
@@ -1254,6 +1292,18 @@ sha256: 436f1ee56bb3c5c695500af6cde5394d835c43c2b6b3a2c269b0e1db613904b9
       - `required string VaultID`
 
         ID of the vault that owns this credential.
+
+      - `required string WorkspaceID`
+
+    - `class BetaWebhookSessionUpdatedEventData:`
+
+      - `required string ID`
+
+        ID of the session that triggered the event.
+
+      - `required string OrganizationID`
+
+      - `JsonElement Type "session.updated"constant`
 
       - `required string WorkspaceID`
 

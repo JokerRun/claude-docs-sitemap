@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool
-fetched_at: 2026-06-19T03:18:02.201222Z
-sha256: ac548cf82df512bb7a128532e9f2b8135cf629fcc243ccf8910b8ef36c10891d
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: 0d840775fc24ab08d0593f4f0204a663770a6520cd2eb8e264c28703b2d67c1d
 ---
 
 # Computer use tool
@@ -14,7 +14,7 @@ Claude can interact with computer environments through the computer use tool, wh
 <Note>
 Computer use is in beta and requires a [beta header](/docs/en/api/beta-headers):
 - `"computer-use-2025-11-24"` for Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 4.6, and Claude Opus 4.5
-- `"computer-use-2025-01-24"` for Claude Sonnet 4.5, Claude Haiku 4.5, Claude Opus 4.1 ([deprecated](/docs/en/about-claude/model-deprecations)), Claude Sonnet 4 ([retired, except on Bedrock and Vertex AI](/docs/en/about-claude/model-deprecations)), and Claude Opus 4 ([retired, except on Vertex AI](/docs/en/about-claude/model-deprecations))
+- `"computer-use-2025-01-24"` for Claude Sonnet 4.5, Claude Haiku 4.5, Claude Opus 4.1 ([deprecated](/docs/en/about-claude/model-deprecations)), Claude Sonnet 4 ([retired, except on Bedrock and Google Cloud](/docs/en/about-claude/model-deprecations)), and Claude Opus 4 ([retired, except on Google Cloud](/docs/en/about-claude/model-deprecations))
 
 Reach out through the [feedback form](https://forms.gle/H6UFuXaaLywri9hz6) to share your feedback on this feature.
 </Note>

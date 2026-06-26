@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/messages/count_tokens
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: b783e0fedbbde2ea7d54345b3f98b73d9fd6e35149c1f311d3c11cfaacfc6309
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: 94cc89116982fca5f9b5cd98e67329a92bf05526bd25a616eeb5f0eaf71eac1f
 ---
 
 ## Count tokens in a Message
@@ -969,6 +969,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `"code_execution_20260120"CodeExecution20260120`
 
+        - `"code_execution_20260521"CodeExecution20260521`
+
       - `CacheControlEphemeral? CacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -1015,6 +1017,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `"code_execution_20260120"CodeExecution20260120`
 
+        - `"code_execution_20260521"CodeExecution20260521`
+
       - `CacheControlEphemeral? CacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -1047,6 +1051,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `"code_execution_20260120"CodeExecution20260120`
 
+        - `"code_execution_20260521"CodeExecution20260521`
+
       - `CacheControlEphemeral? CacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -1076,6 +1082,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         - `"code_execution_20250825"CodeExecution20250825`
 
         - `"code_execution_20260120"CodeExecution20260120`
+
+        - `"code_execution_20260521"CodeExecution20260521`
 
       - `CacheControlEphemeral? CacheControl`
 
@@ -1109,6 +1117,42 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `"code_execution_20260120"CodeExecution20260120`
 
+        - `"code_execution_20260521"CodeExecution20260521`
+
+      - `CacheControlEphemeral? CacheControl`
+
+        Create a cache control breakpoint at this content block.
+
+      - `Boolean DeferLoading`
+
+        If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+      - `Boolean Strict`
+
+        When true, guarantees schema validation on tool names and inputs
+
+    - `class CodeExecutionTool20260521:`
+
+      Code execution tool with REPL state persistence.
+
+      - `JsonElement Name "code_execution"constant`
+
+        Name of the tool.
+
+        This is how the tool will be called by the model and in `tool_use` blocks.
+
+      - `JsonElement Type "code_execution_20260521"constant`
+
+      - `IReadOnlyList<AllowedCaller> AllowedCallers`
+
+        - `"direct"Direct`
+
+        - `"code_execution_20250825"CodeExecution20250825`
+
+        - `"code_execution_20260120"CodeExecution20260120`
+
+        - `"code_execution_20260521"CodeExecution20260521`
+
       - `CacheControlEphemeral? CacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -1138,6 +1182,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         - `"code_execution_20250825"CodeExecution20250825`
 
         - `"code_execution_20260120"CodeExecution20260120`
+
+        - `"code_execution_20260521"CodeExecution20260521`
 
       - `CacheControlEphemeral? CacheControl`
 
@@ -1171,6 +1217,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `"code_execution_20260120"CodeExecution20260120`
 
+        - `"code_execution_20260521"CodeExecution20260521`
+
       - `CacheControlEphemeral? CacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -1203,6 +1251,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `"code_execution_20260120"CodeExecution20260120`
 
+        - `"code_execution_20260521"CodeExecution20260521`
+
       - `CacheControlEphemeral? CacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -1234,6 +1284,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         - `"code_execution_20250825"CodeExecution20250825`
 
         - `"code_execution_20260120"CodeExecution20260120`
+
+        - `"code_execution_20260521"CodeExecution20260521`
 
       - `CacheControlEphemeral? CacheControl`
 
@@ -1270,6 +1322,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         - `"code_execution_20250825"CodeExecution20250825`
 
         - `"code_execution_20260120"CodeExecution20260120`
+
+        - `"code_execution_20260521"CodeExecution20260521`
 
       - `IReadOnlyList<string>? AllowedDomains`
 
@@ -1335,6 +1389,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `"code_execution_20260120"CodeExecution20260120`
 
+        - `"code_execution_20260521"CodeExecution20260521`
+
       - `IReadOnlyList<string>? AllowedDomains`
 
         List of domains to allow fetching from
@@ -1385,6 +1441,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `"code_execution_20260120"CodeExecution20260120`
 
+        - `"code_execution_20260521"CodeExecution20260521`
+
       - `IReadOnlyList<string>? AllowedDomains`
 
         If provided, only these domains will be included in results. Cannot be used alongside `blocked_domains`.
@@ -1430,6 +1488,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         - `"code_execution_20250825"CodeExecution20250825`
 
         - `"code_execution_20260120"CodeExecution20260120`
+
+        - `"code_execution_20260521"CodeExecution20260521`
 
       - `IReadOnlyList<string>? AllowedDomains`
 
@@ -1482,6 +1542,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         - `"code_execution_20250825"CodeExecution20250825`
 
         - `"code_execution_20260120"CodeExecution20260120`
+
+        - `"code_execution_20260521"CodeExecution20260521`
 
       - `IReadOnlyList<string>? AllowedDomains`
 
@@ -1541,6 +1603,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `"code_execution_20260120"CodeExecution20260120`
 
+        - `"code_execution_20260521"CodeExecution20260521`
+
       - `CacheControlEphemeral? CacheControl`
 
         Create a cache control breakpoint at this content block.
@@ -1574,6 +1638,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         - `"code_execution_20250825"CodeExecution20250825`
 
         - `"code_execution_20260120"CodeExecution20260120`
+
+        - `"code_execution_20260521"CodeExecution20260521`
 
       - `CacheControlEphemeral? CacheControl`
 

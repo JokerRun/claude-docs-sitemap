@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback
-fetched_at: 2026-06-23T03:14:59.520621Z
-sha256: 5491c455f397f183cd1d717f84f1f1d5a92154f0a80969b6c890b6a5e08a4ccb
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: a20b14470b74162484e5a7b1d0e3bbdea830e0783e6b1cf75a3ebdc8fda11768
 ---
 
 # Refusals and fallback
@@ -239,7 +239,7 @@ Server-side fallback and the SDK middleware apply fallback credit for you. You o
 Server-side fallback retries a refused request inside a single API call. You name up to three fallback models, and when Claude Fable 5 declines, the API runs the next model in the chain on the same request. You get back one response that names the model that answered, so your user gets an answer in one round trip.
 
 <Note>
-Server-side fallback is in beta on the Claude API and Claude Platform on AWS. The `fallbacks` parameter is rejected on the [Message Batches API](/docs/en/build-with-claude/batch-processing) and is not available on Amazon Bedrock, Vertex AI, or Microsoft Foundry. On those platforms, use the [SDK middleware](#client-side-fallback) instead.
+Server-side fallback is in beta on the Claude API and Claude Platform on AWS. The `fallbacks` parameter is rejected on the [Message Batches API](/docs/en/build-with-claude/batch-processing) and is not available on Amazon Bedrock, Google Cloud, or Microsoft Foundry. On those platforms, use the [SDK middleware](#client-side-fallback) instead.
 </Note>
 
 ### Making the request

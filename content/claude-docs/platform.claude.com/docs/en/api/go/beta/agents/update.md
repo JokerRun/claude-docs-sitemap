@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/agents/update
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: c04d3d639b3fc5977b2aa5f044d1c1e37c04331f42009065438f6fbd4c2875f2
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: 0f60b27be8160b7c76879fb67be97f161cfd85ec1429b0f83795be3c814039c1
 ---
 
 ## Update Agent
@@ -29,7 +29,7 @@ Update Agent
 
   - `MCPServers param.Field[[]BetaManagedAgentsURLMCPServerParamsResp]`
 
-    Body param: MCP servers. Full replacement. Omit to preserve; send empty array or null to clear. Names must be unique. Maximum 20.
+    Body param: MCP servers. Full replacement. Omit to preserve; send empty array or `null` to clear. Names must be unique. Maximum 20. Every server must be referenced by an `mcp_toolset` in the agent's resulting `tools`; unreferenced servers are rejected. See the [MCP connector guide](https://platform.claude.com/docs/en/managed-agents/mcp-connector).
 
     - `Name string`
 

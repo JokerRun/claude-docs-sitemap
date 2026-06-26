@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback
-fetched_at: 2026-06-13T03:15:40.418428Z
-sha256: 38a12acc6ade4708192c4bd9348eff08969276425a447bba96b3bc7350c45c8b
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: d0658b5e650d297190d5ede5918a6096d09d7ff2c4f64b5029aea5d15572f778
 ---
 
 # Penolakan dan fallback
@@ -11,9 +11,9 @@ Bagaimana Claude Fable 5 mengembalikan penolakan dari classifier dan cara mencob
 
 ---
 
-Claude Fable 5 menyertakan "safety classifiers" (pengklasifikasi keamanan) yang dapat menolak sebuah permintaan. Ketika itu terjadi, Anda menerima respons normal, bukan error, dengan `stop_reason: "refusal"`. Anda biasanya tetap bisa mendapatkan jawaban dengan mengirimkan permintaan yang sama ke model Claude lain. Halaman ini menunjukkan cara mengenali penolakan dan cara menyiapkan percobaan ulang tersebut.
+Claude Fable 5 menyertakan "safety classifiers" (pengklasifikasi keamanan) yang dapat menolak sebuah permintaan. Ketika itu terjadi, Anda menerima respons normal, bukan error, dengan `stop_reason: "refusal"`. Anda biasanya masih bisa mendapatkan jawaban dengan mengirimkan permintaan yang sama ke model Claude lain. Halaman ini menunjukkan cara mengenali penolakan dan cara menyiapkan percobaan ulang tersebut.
 
-Baca halaman ini ketika Anda membangun di atas Claude Fable 5 dan ingin permintaan yang ditolak secara otomatis dialihkan ke model lain. Halaman ini juga berlaku ketika Anda baru saja melihat `"refusal"` dalam sebuah respons dan ingin tahu apa yang harus dilakukan selanjutnya.
+Baca halaman ini ketika Anda membangun di atas Claude Fable 5 dan ingin permintaan yang ditolak diteruskan ke model lain secara otomatis. Halaman ini juga berlaku ketika Anda baru saja melihat `"refusal"` dalam sebuah respons dan ingin tahu apa yang harus dilakukan selanjutnya.
 
 Halaman terkait:
 
@@ -22,17 +22,159 @@ Halaman terkait:
 - [Middleware SDK](/docs/id/cli-sdks-libraries/middleware): helper SDK yang membungkus semua ini.
 - [Cookbook fallback dan penagihan](https://platform.claude.com/cookbook/fable-5-fallback-billing-guide): contoh lengkap dari awal hingga akhir.
 
-Penyiapan paling sederhana: sebutkan model fallback pada permintaan, dan API akan menangani percobaan ulangnya.
+Pengaturan paling sederhana: sebutkan model fallback pada permintaan, dan API akan menangani percobaan ulangnya.
 
-```typescript
+<CodeGroup>
+```bash cURL hidelines={1..2}
+#!/usr/bin/env bash
+set -euo pipefail
+curl --fail-with-body -sS https://api.anthropic.com/v1/messages \
+  -H "x-api-key: $ANTHROPIC_API_KEY" \
+  -H "anthropic-version: 2023-06-01" \
+  -H "anthropic-beta: server-side-fallback-2026-06-01" \
+  -H "content-type: application/json" \
+  -d '{
+    "model": "claude-fable-5",
+    "max_tokens": 1024,
+    "fallbacks": [{"model": "claude-opus-4-8"}],
+    "messages": [{"role": "user", "content": "Hello, Claude"}]
+  }'
+```
+
+```bash CLI hidelines={1..2}
+#!/usr/bin/env bash
+set -euo pipefail
+ant beta:messages create \
+  --model claude-fable-5 \
+  --max-tokens 1024 \
+  --message '{"role":"user","content":"Hello, Claude"}' \
+  --fallback '[{"model":"claude-opus-4-8"}]' \
+  --beta server-side-fallback-2026-06-01
+```
+
+```python Python hidelines={1..2}
+from anthropic import Anthropic
+
+client = Anthropic()
+
+client.beta.messages.create(
+    model="claude-fable-5",
+    max_tokens=1024,
+    messages=[{"role": "user", "content": "Hello, Claude"}],
+    fallbacks=[{"model": "claude-opus-4-8"}],
+    betas=["server-side-fallback-2026-06-01"],
+)
+```
+
+```typescript TypeScript hidelines={1..2}
+import Anthropic from "@anthropic-ai/sdk";
+
+const client = new Anthropic();
+
 await client.beta.messages.create({
   model: "claude-fable-5",
   max_tokens: 1024,
-  messages,
-  betas: ["server-side-fallback-2026-06-01"],
-  fallbacks: [{ model: "claude-opus-4-8" }]
+  messages: [{ role: "user", content: "Hello, Claude" }],
+  fallbacks: [{ model: "claude-opus-4-8" }],
+  betas: ["server-side-fallback-2026-06-01"]
 });
 ```
+
+```csharp C# hidelines={1..5}
+using Anthropic;
+using Anthropic.Models.Beta;
+using Anthropic.Models.Beta.Messages;
+using Messages = Anthropic.Models.Messages;
+
+AnthropicClient client = new();
+
+await client.Beta.Messages.Create(
+    new()
+    {
+        Model = Messages::Model.ClaudeFable5,
+        MaxTokens = 1024,
+        Messages = [new() { Content = "Hello, Claude", Role = Role.User }],
+        Fallbacks = [new(Messages::Model.ClaudeOpus4_8)],
+        Betas = [AnthropicBeta.ServerSideFallback2026_06_01],
+    }
+);
+```
+
+```go Go hidelines={1..9,21}
+package main
+
+import (
+	"context"
+
+	"github.com/anthropics/anthropic-sdk-go"
+)
+
+func main() {
+	client := anthropic.NewClient()
+
+	client.Beta.Messages.New(context.Background(), anthropic.BetaMessageNewParams{
+		Model:     anthropic.ModelClaudeFable5,
+		MaxTokens: 1024,
+		Messages: []anthropic.BetaMessageParam{
+			anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Hello, Claude")),
+		},
+		Fallbacks: []anthropic.BetaFallbackParam{{Model: anthropic.ModelClaudeOpus4_8}},
+		Betas:     []anthropic.AnthropicBeta{anthropic.AnthropicBetaServerSideFallback2026_06_01},
+	})
+}
+```
+
+```java Java hidelines={1..8,18}
+import com.anthropic.client.AnthropicClient;
+import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+import com.anthropic.models.beta.AnthropicBeta;
+import com.anthropic.models.beta.messages.BetaFallbackParam;
+import com.anthropic.models.beta.messages.MessageCreateParams;
+import com.anthropic.models.messages.Model;
+
+void main() {
+    AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+    client.beta().messages().create(MessageCreateParams.builder()
+        .model(Model.CLAUDE_FABLE_5)
+        .maxTokens(1024L)
+        .addUserMessage("Hello, Claude")
+        .addFallback(BetaFallbackParam.builder().model(Model.CLAUDE_OPUS_4_8).build())
+        .addBeta(AnthropicBeta.SERVER_SIDE_FALLBACK_2026_06_01)
+        .build());
+}
+```
+
+```php PHP hidelines={1..4}
+<?php
+
+use Anthropic\Client;
+
+$client = new Client();
+
+$client->beta->messages->create(
+    maxTokens: 1024,
+    messages: [['role' => 'user', 'content' => 'Hello, Claude']],
+    model: 'claude-fable-5',
+    fallbacks: [['model' => 'claude-opus-4-8']],
+    betas: ['server-side-fallback-2026-06-01'],
+);
+```
+
+```ruby Ruby hidelines={1..2}
+require "anthropic"
+
+client = Anthropic::Client.new
+
+client.beta.messages.create(
+  model: "claude-fable-5",
+  max_tokens: 1024,
+  messages: [{role: "user", content: "Hello, Claude"}],
+  fallbacks: [{model: "claude-opus-4-8"}],
+  betas: ["server-side-fallback-2026-06-01"]
+)
+```
+</CodeGroup>
 
 Bagian-bagian di bawah ini membahas apa yang terkandung dalam respons penolakan, kapan menggunakan fallback sisi server atau sisi klien, dan bagaimana masing-masing ditagih.
 
@@ -64,17 +206,17 @@ Objek `stop_details` menjelaskan penolakan tersebut:
 
 - **`category`:** menyebutkan area kebijakan yang memicu classifier.
 - **`explanation`:** deskripsi yang dapat dibaca manusia. Teksnya tidak stabil, jadi tampilkan saja alih-alih mem-parsing-nya.
-- Kedua field bernilai `null` ketika penolakan tidak dipetakan ke kategori yang bernama. Nilai `null` tersebut adalah nilai normal dan permanen, bukan placeholder.
+- Kedua field bernilai `null` ketika penolakan tidak dipetakan ke kategori yang memiliki nama. Nilai `null` tersebut adalah nilai normal dan permanen, bukan placeholder.
 - `stop_details` itu sendiri bernilai `null` untuk setiap stop reason selain `refusal`.
 
 | `category` | Artinya |
 | :--- | :--- |
-| `"cyber"` | Permintaan dapat memungkinkan bahaya siber, seperti pengembangan malware atau exploit. Pekerjaan keamanan siber yang tidak berbahaya juga dapat memicu kategori ini. |
+| `"cyber"` | Permintaan dapat memungkinkan bahaya siber, seperti pengembangan malware atau eksploit. Pekerjaan keamanan siber yang tidak berbahaya juga dapat memicu kategori ini. |
 | `"bio"` | Permintaan dapat memungkinkan bahaya biologis, seperti metode laboratorium yang berbahaya. Pekerjaan ilmu hayati yang bermanfaat juga dapat memicu kategori ini. |
 | `"frontier_llm"` | Permintaan dapat membantu pengembangan model AI pesaing, yang dibatasi berdasarkan [ketentuan komersial Anthropic](https://www.anthropic.com/legal/commercial-terms). Pekerjaan machine learning yang tidak berbahaya juga dapat memicu kategori ini. |
 | `"reasoning_extraction"` | Permintaan meminta model untuk mereproduksi penalaran internalnya dalam teks respons. Untuk mendapatkan penalaran dalam bentuk terstruktur, gunakan [adaptive thinking](/docs/id/build-with-claude/adaptive-thinking). |
 
-Penolakan dapat tiba sebelum ada output apa pun, atau di tengah stream setelah output parsial. Dalam kedua kasus, perlakukan output parsial apa pun sebagai tidak lengkap dan buang.
+Penolakan dapat tiba sebelum ada output apa pun, atau di tengah stream setelah output parsial. Dalam kedua kasus tersebut, perlakukan output parsial apa pun sebagai tidak lengkap dan buang.
 
 <Note>
 **Bagaimana penolakan ditagih:** Anda tidak ditagih untuk penolakan yang tiba sebelum ada output apa pun. `content` kosong, jumlah token muncul di `usage` tetapi tidak dikenakan biaya, dan permintaan tidak dihitung terhadap batas laju. Penolakan di tengah stream menagih token input dan output yang sudah di-stream dengan tarif normal.
@@ -82,12 +224,12 @@ Penolakan dapat tiba sebelum ada output apa pun, atau di tengah stream setelah o
 
 ## Memilih pendekatan fallback \{#picking-a-fallback-approach}
 
-Ada tiga cara untuk mencoba ulang permintaan yang ditolak pada model lain. Pilihan yang tepat bergantung pada di mana Anda menjalankan dan seberapa banyak kontrol yang Anda butuhkan.
+Ada tiga cara untuk mencoba ulang permintaan yang ditolak pada model lain. Pilihan yang tepat bergantung pada di mana Anda menjalankannya dan seberapa banyak kontrol yang Anda butuhkan.
 
 | Situasi Anda | Gunakan | Alasan |
 | :--- | :--- | :--- |
-| Claude API atau Claude Platform di AWS, penyiapan paling sederhana | [Fallback sisi server](#server-side-fallback) | Satu permintaan, satu respons. API menangani percobaan ulang. |
-| Platform apa pun, dengan SDK TypeScript, Python, Go, Java, atau C# | [Middleware SDK](#client-side-fallback) | Konfigurasikan sekali di klien. Percobaan ulang terjadi secara otomatis. |
+| Claude API atau Claude Platform di AWS, pengaturan paling sederhana | [Fallback sisi server](#server-side-fallback) | Satu permintaan, satu respons. API menangani percobaan ulang. |
+| Platform apa pun, dengan SDK TypeScript, Python, Go, Java, atau C# | [Middleware SDK](#client-side-fallback) | Konfigurasi sekali di klien. Percobaan ulang terjadi secara otomatis. |
 | Ruby, PHP, HTTP mentah, atau logika percobaan ulang kustom | Percobaan ulang manual dengan [kredit fallback](/docs/id/build-with-claude/fallback-credit) | Kontrol penuh. Kredit fallback menjaga biaya tetap rendah. |
 
 Fallback sisi server dan middleware SDK menerapkan kredit fallback untuk Anda. Anda hanya memerlukan halaman [Kredit fallback](/docs/id/build-with-claude/fallback-credit) ketika Anda membangun percobaan ulang sendiri.
@@ -150,7 +292,7 @@ response = client.beta.messages.create(
 )
 
 # Entri fallback_message di usage.iterations berarti model fallback dijalankan;
-# padukan dengan stop_reason untuk memastikan fallback yang melayani respons.
+# pasangkan dengan stop_reason untuk memastikan fallback yang melayani respons.
 fallback_ran = any(
     iteration.type == "fallback_message"
     for iteration in response.usage.iterations or []
@@ -181,7 +323,7 @@ const response = await client.beta.messages.create({
   betas: ["server-side-fallback-2026-06-01"]
 });
 
-// Entri fallback_message di usage.iterations berarti model fallback dijalankan;
+// Entri fallback_message dalam usage.iterations berarti model fallback dijalankan;
 // pasangkan dengan stop_reason untuk memastikan fallback yang melayani respons.
 const { stop_reason, model, usage } = response;
 const servedByFallback =
@@ -220,8 +362,8 @@ var response = await client.Beta.Messages.Create(
     }
 );
 
-// Entri fallback_message di usage.iterations berarti model fallback dijalankan;
-// padukan dengan stop_reason untuk memastikan fallback yang melayani respons.
+// Entri fallback_message dalam usage.iterations berarti model fallback telah berjalan;
+// pasangkan dengan stop_reason untuk memastikan fallback yang melayani respons.
 bool fallbackRan = (response.Usage.Iterations ?? []).Any(iteration =>
     iteration.TryPickFallbackMessageIterationUsage(out _)
 );
@@ -271,7 +413,7 @@ func main() {
 	}
 
 	// Entri fallback_message di usage.iterations berarti model fallback dijalankan;
-	// pasangkan dengan stop_reason untuk memastikan fallback yang melayani respons.
+	// padukan dengan stop_reason untuk memastikan fallback yang menyajikan respons.
 	fallbackRan := slices.ContainsFunc(
 		response.Usage.Iterations,
 		func(iteration anthropic.BetaIterationsUsageItemUnion) bool {
@@ -378,8 +520,8 @@ response = client.beta.messages.create(
   betas: ["server-side-fallback-2026-06-01"]
 )
 
-# Entri fallback_message di usage.iterations berarti model fallback dijalankan;
-# padukan dengan stop_reason untuk memastikan fallback yang memberikan respons.
+# Entri fallback_message dalam usage.iterations berarti model fallback dijalankan;
+# pasangkan dengan stop_reason untuk memastikan fallback yang melayani respons.
 iterations = response.usage.iterations || []
 served_by_fallback = iterations.any? { it.type == :fallback_message } &&
   response.stop_reason != :refusal
@@ -393,7 +535,7 @@ puts JSON.generate({stop_reason:, model:, served_by_fallback:})
 Beberapa aturan berlaku untuk daftar `fallbacks`:
 
 - Entri dicoba secara berurutan. Setiap entri harus berbeda dari entri lainnya dan dari model yang diminta.
-- Setiap entri harus merupakan salah satu target yang diizinkan untuk model yang diminta. Dengan header beta disetel, daftar tersebut dipublikasikan sebagai `allowed_fallback_models` pada entri model di [Models API](/docs/id/api/models/list).
+- Setiap entri harus merupakan salah satu target yang diizinkan untuk model yang diminta. Dengan header beta diatur, daftar tersebut dipublikasikan sebagai `allowed_fallback_models` pada entri model di [Models API](/docs/id/api/models/list).
 - Setiap entri menyebutkan sebuah `model` dan dapat menimpa `max_tokens` dan `thinking` hanya untuk percobaan tersebut.
 - Permintaan harus valid sebagai permintaan langsung ke setiap model yang disebutkan. Jika model fallback tidak mendukung fitur yang digunakan permintaan, API menolak permintaan tersebut di awal.
 - Hanya penolakan dari safety classifier yang memicu fallback. Batas laju, overload, atau error server pada model yang diminta dikembalikan kepada Anda apa adanya.
@@ -456,20 +598,20 @@ Pada penolakan sebelum ada output apa pun, blok `fallback` adalah blok konten pe
 }
 ```
 
-Array `usage.iterations` mencatat setiap percobaan. Model yang menolak muncul sebagai entri `message` biasa, dan model yang melayani giliran tersebut muncul sebagai entri `fallback_message`. Jika setiap model dalam rantai menolak, respons adalah penolakan dari model terakhir, dengan entri `message` untuk setiap hop sebelumnya dan entri `fallback_message` untuk yang terakhir.
+Array `usage.iterations` mencatat setiap percobaan. Model yang menolak muncul sebagai entri `message` biasa, dan model yang melayani giliran tersebut muncul sebagai entri `fallback_message`. Jika setiap model dalam rantai menolak, responsnya adalah penolakan dari model terakhir, dengan entri `message` untuk setiap hop sebelumnya dan entri `fallback_message` untuk yang terakhir.
 
 ### Melanjutkan percakapan \{#continuing-the-conversation}
 
-Pada giliran berikutnya, kirim kembali konten asisten seperti yang Anda terima. Setelah fallback di tengah output, `content` dapat menyertakan tipe blok yang dihasilkan model yang menolak sebelum peralihan; tabel di bawah ini mencakup mana yang harus dipertahankan dan mana yang harus dibuang ketika Anda menggemakan giliran tersebut.
+Pada giliran berikutnya, kirim kembali konten asisten sebagaimana Anda menerimanya. Setelah fallback di tengah output, `content` dapat menyertakan tipe blok yang dihasilkan model yang menolak sebelum serah terima; tabel di bawah ini membahas mana yang harus dipertahankan dan mana yang harus dibuang ketika Anda menggemakan giliran tersebut.
 
 | Tipe blok | Pada giliran berikutnya |
 | :--- | :--- |
-| `fallback` | Pertahankan persis di tempat ia muncul. API menggunakan posisinya untuk memvalidasi blok thinking di sekitarnya, sehingga permintaan yang menggemakan blok thinking dari kedua sisi batas akan ditolak jika blok tersebut dihilangkan atau dipindahkan. |
+| `fallback` | Pertahankan persis di tempat kemunculannya. API menggunakan posisinya untuk memvalidasi blok thinking di sekitarnya, sehingga permintaan yang menggemakan blok thinking dari kedua sisi batas akan ditolak jika blok tersebut dihilangkan atau dipindahkan. |
 | `text` | Pertahankan. |
 | Blok apa pun setelah blok `fallback` terakhir | Pertahankan. |
 | `thinking`, `redacted_thinking`, atau `connector_text` sebelum blok `fallback` terakhir | Buang. |
 | `tool_use` sisi klien sebelum blok `fallback` terakhir | Buang. |
-| `server_tool_use` sebelum blok `fallback` terakhir | Pertahankan jika dipasangkan dengan hasilnya. Buang jika tidak memiliki hasil yang cocok. |
+| `server_tool_use` sebelum blok `fallback` terakhir | Pertahankan jika berpasangan dengan hasilnya. Buang jika tidak memiliki hasil yang cocok. |
 
 <Note>
 Blok `connector_text` membawa teks narasi yang disertakan oleh beberapa respons yang menggunakan alat di antara panggilan alat.
@@ -495,18 +637,18 @@ Pada permintaan streaming, percobaan ulang terjadi pada stream yang sama, dan ti
 Pada permintaan non-streaming, penolakan di tengah output berperilaku berbeda: respons menghilangkan output parsial dari model yang ditolak, dan model fallback menjawab dari awal. Hasilnya terlihat seperti penolakan sebelum ada output apa pun, dengan blok `fallback` di awal. Percobaan yang ditolak dan token output-nya tetap muncul di `usage.iterations`.
 
 <Note>
-**Penolakan setelah server tools dijalankan:** ketika penolakan terpicu setelah server tools (misalnya, pencarian web atau eksekusi kode) sudah dieksekusi dalam sebuah permintaan, API mengembalikan penolakan alih-alih melanjutkan ke model fallback. Jika header `fallback-credit-2026-06-01` juga disetel, penolakan tersebut membawa token kredit yang dapat ditukarkan dengan melanjutkan respons parsial, sehingga pekerjaan alat yang sudah selesai tidak hilang. Ini hanya berlaku untuk server tools yang beriterasi dalam satu permintaan. Percakapan yang menggunakan alat sisi klien melakukan fallback secara normal.
+**Penolakan setelah alat server berjalan:** ketika penolakan terjadi setelah alat server (misalnya, pencarian web atau eksekusi kode) sudah dieksekusi dalam sebuah permintaan, API mengembalikan penolakan alih-alih melanjutkan ke model fallback. Jika header `fallback-credit-2026-06-01` juga diatur, penolakan tersebut membawa token kredit yang dapat ditukarkan dengan melanjutkan respons parsial, sehingga pekerjaan alat yang sudah selesai tidak hilang. Ini hanya berlaku untuk alat server yang beriterasi dalam satu permintaan. Percakapan yang menggunakan alat sisi klien melakukan fallback secara normal.
 </Note>
 
 <section title="Sticky routing">
 
-Setelah sebuah percakapan melakukan fallback, API mencatat model mana yang melayaninya. Permintaan selanjutnya untuk percakapan tersebut yang menyertakan `fallbacks` langsung menuju ke model fallback tersebut, tanpa menjalankan model yang diminta. Ini menghindari pembayaran untuk percobaan yang dapat diprediksi akan ditolak lagi pada setiap giliran.
+Setelah sebuah percakapan melakukan fallback, API mencatat model mana yang melayaninya. Permintaan selanjutnya untuk percakapan tersebut yang menyertakan `fallbacks` langsung menuju model fallback tersebut, tanpa menjalankan model yang diminta. Ini menghindari pembayaran untuk percobaan yang dapat diprediksi akan ditolak lagi pada setiap giliran.
 
 Beberapa properti dari keputusan routing:
 
-- Disimpan selama kurang lebih satu jam dan dicakup ke organisasi Anda.
-- Disimpan sebagai hash konten dari prefiks percakapan ditambah model yang melayaninya. Konten pesan itu sendiri tidak disimpan.
-- Bersifat best-effort, sehingga kode Anda harus menangani kemungkinan model yang diminta dicoba lagi kapan saja.
+- Keputusan ini disimpan selama kurang lebih satu jam dan cakupannya terbatas pada organisasi Anda.
+- Keputusan ini disimpan sebagai hash konten dari prefiks percakapan ditambah model yang melayaninya. Konten pesan itu sendiri tidak disimpan.
+- Keputusan ini bersifat best-effort, jadi kode Anda harus menangani kemungkinan model yang diminta dicoba lagi kapan saja.
 
 Giliran yang dilayani secara sticky tidak membawa blok konten `fallback`, karena tidak ada model yang menolak giliran tersebut. Identifikasi dari entri `fallback_message` di `usage.iterations`, tidak adanya entri `message` untuk model yang diminta, dan field `model` pada respons.
 
@@ -528,7 +670,7 @@ Ketika percobaan fallback dilewati dengan cara ini, `stop_details.recommended_mo
 
 ## Fallback sisi klien dengan middleware SDK \{#client-side-fallback}
 
-SDK TypeScript, Python, Go, Java, dan C# menyertakan middleware refusal-fallback. Anda mengonfigurasinya sekali pada klien dengan daftar model fallback Anda. Panggilan melalui `client.beta.messages` kemudian mencoba ulang permintaan yang ditolak secara otomatis, di platform apa pun. Middleware juga mengirimkan header beta `fallback-credit-2026-06-01` pada setiap permintaan yang ditanganinya, sehingga percobaan ulang dihargai ulang tanpa penyiapan per-permintaan.
+SDK TypeScript, Python, Go, Java, dan C# menyertakan middleware refusal-fallback. Anda mengonfigurasinya sekali pada klien dengan daftar model fallback Anda. Panggilan melalui `client.beta.messages` kemudian mencoba ulang permintaan yang ditolak secara otomatis, di platform mana pun. Middleware juga mengirimkan header beta `fallback-credit-2026-06-01` pada setiap permintaan yang ditanganinya, sehingga percobaan ulang dihargai ulang tanpa pengaturan per-permintaan.
 
 <Note>
 Helper middleware refusal-fallback belum tersedia di SDK Ruby dan PHP. Pada SDK tersebut, implementasikan pola deteksi-dan-coba-ulang secara langsung.
@@ -541,20 +683,20 @@ Teruskan middleware ke konstruktor klien, dan bagikan satu instance `BetaFallbac
 <CodeGroup>
 ```bash cURL
 # Middleware refusal-fallback adalah fitur SDK. Lihat
-# bagian fallback sisi server untuk pendekatan satu permintaan yang setara,
+# bagian fallback sisi server untuk pendekatan permintaan tunggal yang setara,
 # atau halaman kredit fallback untuk pola retry HTTP mentah.
 ```
 
 ```bash CLI
 # Middleware refusal-fallback adalah fitur SDK. Lihat
-# bagian fallback sisi server untuk pendekatan satu permintaan yang setara,
+# bagian fallback sisi server untuk pendekatan permintaan tunggal yang setara,
 # atau halaman kredit fallback untuk pola retry HTTP mentah.
 ```
 
 ```python Python hidelines={1..2}
 from anthropic import Anthropic, BetaFallbackState, BetaRefusalFallbackMiddleware
 
-# Saat terjadi penolakan, middleware mencoba ulang pada model fallback yang terdaftar dan
+# Saat terjadi penolakan, middleware mencoba ulang pada model fallback yang tercantum dan
 # secara otomatis mengirim header beta fallback-credit pada setiap permintaan yang ditanganinya.
 client = Anthropic(
     middleware=[BetaRefusalFallbackMiddleware([{"model": "claude-opus-4-8"}])],
@@ -598,10 +740,10 @@ const client = new Anthropic({
 });
 
 // Bagikan satu state di seluruh percakapan agar permintaan lanjutan tetap
-// terpaku pada model yang menerima.
+// terikat pada model yang menerima.
 const fallbackState = new BetaFallbackState();
 
-// Streaming: saat terjadi penolakan, middleware menyambungkan event model fallback
+// Streaming: saat terjadi penolakan, middleware menyambungkan event dari model fallback
 // ke stream yang masih terbuka.
 const stream = client.beta.messages.stream(
   {
@@ -616,7 +758,7 @@ stream.on("text", (text) => process.stdout.write(text));
 const finalMessage = await stream.finalMessage();
 console.log("\nserved by:", finalMessage.model);
 
-// Non-streaming: menggunakan kembali state membuat percakapan tetap terpaku pada model yang menerima.
+// Non-streaming: menggunakan kembali state menjaga percakapan tetap terikat pada model yang menerima.
 const message = await client.beta.messages.create(
   {
     model: "claude-fable-5",
@@ -697,7 +839,7 @@ import (
 func main() {
 	ctx := context.Background()
 
-	// Middleware mencoba ulang permintaan yang ditolak pada setiap model cadangan secara
+	// Middleware mencoba ulang permintaan yang ditolak pada setiap model fallback secara
 	// bergiliran, dan otomatis mengikutsertakan permintaan ke beta fallback-credit.
 	client := anthropic.NewClient(
 		option.WithMiddleware(betafallback.BetaRefusalFallbackMiddleware(
@@ -706,7 +848,7 @@ func main() {
 	)
 
 	// Satu state per percakapan: permintaan yang berbagi state tetap terikat ke
-	// model yang menerima, jadi tindak lanjut tak pernah menanyai ulang model yang menolak.
+	// model yang menerima, jadi tindak lanjut tak pernah bertanya ulang ke model yang menolak.
 	state := &betafallback.BetaFallbackState{}
 	conversation := betafallback.WithBetaFallbackState(state)
 
@@ -719,7 +861,7 @@ func main() {
 	}
 
 	// Streaming: saat ditolak, middleware mencoba ulang di tempat, menyambungkan
-	// event model cadangan ke stream yang terbuka sebagai satu pesan berkelanjutan.
+	// event model fallback ke stream yang terbuka sebagai satu pesan berkelanjutan.
 	stream := client.Beta.Messages.NewStreaming(ctx, params, conversation)
 	var streamed anthropic.BetaMessage
 	for stream.Next() {
@@ -763,7 +905,7 @@ import com.anthropic.models.beta.messages.MessageCreateParams;
 import com.anthropic.models.messages.Model;
 
 void main() {
-    // Interceptor mencoba ulang permintaan yang ditolak pada model fallback. Ia secara otomatis
+    // Interceptor mencoba ulang permintaan yang ditolak pada model fallback. Secara otomatis
     // menambahkan header beta fallback-credit ke setiap permintaan yang ditanganinya.
     AnthropicClient client = AnthropicOkHttpClient.builder()
         .fromEnv()
@@ -781,7 +923,7 @@ void main() {
         .addUserMessage("Hello, Claude")
         .build();
 
-    // Streaming: saat terjadi penolakan, event dari model fallback disambungkan ke stream yang terbuka.
+    // Streaming: saat penolakan, event model fallback disambungkan ke stream yang terbuka.
     BetaMessageAccumulator accumulator = BetaMessageAccumulator.create();
     try (StreamResponse<BetaRawMessageStreamEvent> streamResponse = client.beta()
             .messages()
@@ -818,14 +960,14 @@ void main() {
 
 ### Bagaimana perilakunya \{#how-it-behaves}
 
-- Percobaan ulang menelusuri daftar fallback Anda secara berurutan. Model fallback yang juga menolak meneruskan permintaan ke entri berikutnya.
+- Percobaan ulang menelusuri daftar fallback Anda secara berurutan. Model fallback yang juga menolak akan meneruskan permintaan ke entri berikutnya.
 - Respons penolakan asli dikembalikan hanya ketika setiap model dalam daftar telah menolak. Middleware tidak memunculkan error untuk itu.
 - [Blok thinking dari Claude Fable 5](/docs/id/build-with-claude/adaptive-thinking#thinking-output-on-claude-fable-5-and-claude-mythos-5) ditangani untuk Anda: middleware menghapusnya dari percobaan ulang dan mengelolanya dalam riwayat percakapan pada permintaan selanjutnya.
 - Respons yang dilayani melalui middleware menyertakan blok konten `fallback` di setiap batas model, sama seperti respons fallback sisi server. Middleware mengelola blok-blok tersebut untuk Anda pada permintaan selanjutnya.
 - Model yang menerima dicatat dalam `BetaFallbackState`, sehingga permintaan lanjutan yang berbagi state tersebut tetap terpaku padanya alih-alih bertanya ulang ke model yang menolak.
 
 <Note>
-Middleware dan parameter `fallbacks` sisi server melakukan pekerjaan yang sama. Konfigurasikan salah satunya, jangan pernah keduanya pada permintaan yang sama. Untuk mengirim permintaan `fallbacks` sisi server dari aplikasi yang memasang middleware, gunakan instance klien terpisah tanpa middleware tersebut.
+Middleware dan parameter `fallbacks` sisi server melakukan pekerjaan yang sama. Konfigurasikan salah satunya, jangan pernah keduanya pada permintaan yang sama. Untuk mengirim permintaan `fallbacks` sisi server dari aplikasi yang memasang middleware, gunakan instance klien terpisah tanpa middleware.
 </Note>
 
 <section title="Menulis percobaan ulang sendiri">
@@ -837,7 +979,7 @@ Pada Ruby, PHP, atau HTTP mentah, implementasikan pola yang dibungkus oleh middl
     Periksa respons untuk `stop_reason: "refusal"`.
   </Step>
   <Step title="Kirim ulang pada model fallback">
-    Kirim permintaan yang sama dengan `model` disetel ke model fallback, seperti Claude Opus 4.8. Permintaan yang ditolak oleh classifier Claude Fable 5 biasanya dapat dilayani oleh model lain. Cara Anda menangani riwayat percakapan bergantung pada apakah Anda menukarkan [kredit fallback](/docs/id/build-with-claude/fallback-credit):
+    Kirim permintaan yang sama dengan `model` diatur ke model fallback, seperti Claude Opus 4.8. Permintaan yang ditolak oleh classifier Claude Fable 5 biasanya dapat dilayani oleh model lain. Cara Anda menangani riwayat percakapan bergantung pada apakah Anda menukarkan [kredit fallback](/docs/id/build-with-claude/fallback-credit):
 
     - **Tidak menukarkan kredit:** Anda dapat terlebih dahulu menghapus [blok thinking dari Claude Fable 5](/docs/id/build-with-claude/adaptive-thinking#thinking-output-on-claude-fable-5-and-claude-mythos-5) dari riwayat percakapan. Model lain mengabaikannya, dan menghapusnya menjaga permintaan lintas-model tetap minimal.
     - **Menukarkan kredit:** kirim body tanpa perubahan, karena penukaran memerlukan kecocokan persis.
@@ -865,10 +1007,10 @@ Fallback sisi server tidak tersedia untuk batch (permintaan batch yang menyertak
 
 - **Coba ulang pada model yang berbeda.** Mengirim ulang permintaan yang ditolak ke model yang sama biasanya menghasilkan penolakan lagi. Arahkan percobaan ulang ke model fallback.
 - **Anggarkan percobaan ulang per permintaan, bukan per giliran atau per sesi.** Satu giliran dapat menghasilkan beberapa penolakan, misalnya sebuah agen ditambah sub-agennya.
-- **Konfigurasikan fallback pada setiap jalur permintaan.** Handler percobaan ulang, cabang pemulihan error, dan background worker semuanya membutuhkannya. Handler yang mengirim ulang permintaan tanpa fallback kehilangan perlindungan tepat pada permintaan yang paling mungkin membutuhkannya.
-- **Berikan panggilan sub-agen fallback-nya sendiri.** Parameter `fallbacks` tidak merambat ke panggilan model yang dibuat dari dalam eksekusi alat.
-- **Jadikan fallback sebagai properti dari permintaan, bukan dari state ambien.** Flag bersama, nilai konfigurasi yang di-cache, atau toggle global dapat menjadi tidak sinkron dan secara diam-diam membiarkan permintaan tidak terlindungi. Ketika Anda tidak dapat memastikan fallback aktif, konfigurasikan alih-alih mengasumsikan sudah aktif.
-- **Instrumentasikan penolakan sebagai sinyal tersendiri.** Penolakan adalah HTTP 200, sehingga pemantauan yang dibangun berdasarkan tingkat error atau respons 5xx tidak pernah melihatnya. Pancarkan satu event per penolakan dan satu per respons yang dilayani fallback (entri `fallback_message` di `usage.iterations` menandai yang terakhir), lalu buat alert pada selisih antara kedua hitungan tersebut.
+- **Konfigurasikan fallback pada setiap jalur permintaan.** Handler percobaan ulang, cabang pemulihan error, dan worker latar belakang semuanya membutuhkannya. Handler yang mengeluarkan ulang permintaan tanpa fallback kehilangan perlindungan justru pada permintaan yang paling mungkin membutuhkannya.
+- **Berikan panggilan sub-agen fallback-nya sendiri.** Parameter `fallbacks` tidak dipropagasi ke panggilan model yang dibuat dari dalam eksekusi alat.
+- **Jadikan fallback sebagai properti permintaan, bukan state ambien.** Flag bersama, nilai konfigurasi yang di-cache, atau toggle global dapat menjadi tidak sinkron dan secara diam-diam membiarkan permintaan tidak terlindungi. Ketika Anda tidak dapat memastikan fallback aktif, konfigurasikan alih-alih mengasumsikan sudah aktif.
+- **Instrumentasikan penolakan sebagai sinyal tersendiri.** Penolakan adalah HTTP 200, jadi pemantauan yang dibangun berdasarkan tingkat error atau respons 5xx tidak pernah melihatnya. Pancarkan satu event per penolakan dan satu per respons yang dilayani fallback (entri `fallback_message` di `usage.iterations` menandai yang terakhir), lalu buat alert pada selisih antara kedua hitungan tersebut.
 - **Bercabang berdasarkan `stop_reason`, bukan `stop_details` atau `content`.** `stop_details` bersifat informasional dan dapat bernilai `null` pada penolakan. Periksa apakah `stop_reason` sama dengan `"refusal"` secara langsung.
 
 ## Langkah selanjutnya \{#next-steps}

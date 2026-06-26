@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/webhooks
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 38359703933327a6e56858266c3fcc09d73f08716f4f481a0b1cf6e6108156e8
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: ee1f5fde305b4653840272b68df2be7f57330ba407abd8f4efcba7ffd2aefe5c
 ---
 
 # Webhooks
@@ -359,6 +359,20 @@ sha256: 38359703933327a6e56858266c3fcc09d73f08716f4f481a0b1cf6e6108156e8
 
       - `workspace_id: str`
 
+    - `class BetaWebhookSessionUpdatedEventData: …`
+
+      - `id: str`
+
+        ID of the session that triggered the event.
+
+      - `organization_id: str`
+
+      - `type: Literal["session.updated"]`
+
+        - `"session.updated"`
+
+      - `workspace_id: str`
+
   - `type: Literal["event"]`
 
     Object type. Always `event` for webhook payloads.
@@ -705,6 +719,20 @@ sha256: 38359703933327a6e56858266c3fcc09d73f08716f4f481a0b1cf6e6108156e8
 
     - `workspace_id: str`
 
+  - `class BetaWebhookSessionUpdatedEventData: …`
+
+    - `id: str`
+
+      ID of the session that triggered the event.
+
+    - `organization_id: str`
+
+    - `type: Literal["session.updated"]`
+
+      - `"session.updated"`
+
+    - `workspace_id: str`
+
 ### Beta Webhook Session Archived Event Data
 
 - `class BetaWebhookSessionArchivedEventData: …`
@@ -954,6 +982,22 @@ sha256: 38359703933327a6e56858266c3fcc09d73f08716f4f481a0b1cf6e6108156e8
   - `type: Literal["session.thread_terminated"]`
 
     - `"session.thread_terminated"`
+
+  - `workspace_id: str`
+
+### Beta Webhook Session Updated Event Data
+
+- `class BetaWebhookSessionUpdatedEventData: …`
+
+  - `id: str`
+
+    ID of the session that triggered the event.
+
+  - `organization_id: str`
+
+  - `type: Literal["session.updated"]`
+
+    - `"session.updated"`
 
   - `workspace_id: str`
 
@@ -1432,6 +1476,20 @@ sha256: 38359703933327a6e56858266c3fcc09d73f08716f4f481a0b1cf6e6108156e8
       - `vault_id: str`
 
         ID of the vault that owns this credential.
+
+      - `workspace_id: str`
+
+    - `class BetaWebhookSessionUpdatedEventData: …`
+
+      - `id: str`
+
+        ID of the session that triggered the event.
+
+      - `organization_id: str`
+
+      - `type: Literal["session.updated"]`
+
+        - `"session.updated"`
 
       - `workspace_id: str`
 

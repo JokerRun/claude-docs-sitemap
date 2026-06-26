@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/agents/update
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 4560389f97067cd5bea02d7dba2353185078742df7245fc8a023d3334e760b86
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: f0689931723b4d195e168b9e3c176dcb8e02610b9bf68584abbc11ae608ee855
 ---
 
 ## Update Agent
@@ -27,7 +27,7 @@ Update Agent
 
 - `mcp_servers: Array[BetaManagedAgentsURLMCPServerParams]`
 
-  MCP servers. Full replacement. Omit to preserve; send empty array or null to clear. Names must be unique. Maximum 20.
+  MCP servers. Full replacement. Omit to preserve; send empty array or `null` to clear. Names must be unique. Maximum 20. Every server must be referenced by an `mcp_toolset` in the agent's resulting `tools`; unreferenced servers are rejected. See the [MCP connector guide](https://platform.claude.com/docs/en/managed-agents/mcp-connector).
 
   - `name: String`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/agents/create
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 2f207cd59a92ba561971da4f6c924212ed69cb0038e068d6c5ebb0b9f3dba1cf
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: 6e62d4addcb79de61c337f5cc0cc5f0cf2946174300efe8ad709a69f83e6c886
 ---
 
 ## Create Agent
@@ -101,7 +101,7 @@ Create Agent
 
   - `MCPServers param.Field[[]BetaManagedAgentsURLMCPServerParamsResp]`
 
-    Body param: MCP servers this agent connects to. Maximum 20. Names must be unique within the array.
+    Body param: MCP servers this agent connects to. Maximum 20. Names must be unique within the array. Every server must be referenced by an `mcp_toolset` in `tools`; unreferenced servers are rejected. See the [MCP connector guide](https://platform.claude.com/docs/en/managed-agents/mcp-connector).
 
     - `Name string`
 

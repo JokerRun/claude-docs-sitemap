@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/fast-mode
-fetched_at: 2026-06-25T03:15:21.128912Z
-sha256: 3c379337b3f663ec07c0ed9eacbed2814a44422a935e2ae3c9033359ff5a0400
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: 2075d9fadae715fade6bc9333fce084bc197089cbf16bc1f4dd69b3c0ac201b2
 ---
 
 > ## Documentation Index
@@ -109,18 +109,18 @@ Fast mode requires all of the following:
   Fast mode usage draws directly from usage credits, even if you have remaining usage on your plan. This means fast mode tokens do not count against your plan's included usage and are charged at the fast mode rate from the first token.
 </Note>
 
-* **Admin enablement for Team and Enterprise**: fast mode is disabled by default for Team and Enterprise organizations. An admin must explicitly [enable fast mode](#enable-fast-mode-for-your-organization) before users can access it.
+* **Owner enablement for Team and Enterprise**: fast mode is disabled by default for Team and Enterprise organizations. An Owner must explicitly [enable fast mode](#enable-fast-mode-for-your-organization) before users can access it.
 
 <Note>
-  If your admin has not enabled fast mode for your organization, the `/fast` command will show "Fast mode has been disabled by your organization." If your organization's [`availableModels`](/en/model-config#restrict-model-selection) allowlist excludes the fast-mode Opus model, `/fast` is refused with "is not in your organization's allowed models". The exception is a session already running on an allowed Opus model that supports fast mode: `/fast` then applies to that model.
+  If fast mode has not been enabled for your organization, the `/fast` command will show "Fast mode has been disabled by your organization." If your organization's [`availableModels`](/en/model-config#restrict-model-selection) allowlist excludes the fast-mode Opus model, `/fast` is refused with "is not in your organization's allowed models". The exception is a session already running on an allowed Opus model that supports fast mode: `/fast` enables fast mode on your current model instead of switching models.
 </Note>
 
 ### Enable fast mode for your organization
 
-Admins can enable fast mode in:
+Where you enable fast mode depends on which product your organization uses:
 
-* **Console** (API customers): [Claude Code preferences](https://platform.claude.com/claude-code/preferences)
-* **Claude AI** (Team and Enterprise): [Admin Settings > Claude Code](https://claude.ai/admin-settings/claude-code)
+* **Console** (API customers): an admin enables it in [Claude Code preferences](https://platform.claude.com/claude-code/preferences)
+* **Claude AI** (Team and Enterprise): an Owner enables it at [Admin Settings > Claude Code](https://claude.ai/admin-settings/claude-code)
 
 Another option to disable fast mode entirely is to set `CLAUDE_CODE_DISABLE_FAST_MODE=1`. See [Environment variables](/en/env-vars).
 

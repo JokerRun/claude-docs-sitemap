@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sandboxing
-fetched_at: 2026-06-25T03:15:21.128912Z
-sha256: 22f2ff60a250eb777ee4ebe76eef0f01ec72b8512007d8ec8c5ad990c890b76a
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: 64f748bd9de75890d6e7cacc019175ea7d86456210b7eba053cfda2ae4166fd5
 ---
 
 > ## Documentation Index
@@ -203,7 +203,7 @@ The `.` in `allowRead` resolves to the project root because this configuration l
 
 ### Protect credentials
 
-The `sandbox.credentials` setting declares credential files and environment variables that sandboxed commands must not access. Listed file paths are denied for reads inside the sandbox, the same block that `filesystem.denyRead` applies, and listed environment variables are unset before each sandboxed command runs. The dedicated `credentials` block keeps credential rules grouped with the environment-variable unset and separate from general filesystem rules. Requires Claude Code v2.1.187 or later.
+The `sandbox.credentials` setting declares credential files and environment variables that sandboxed commands must not access. Listed file paths are denied for reads inside the sandbox, the same restriction that `filesystem.denyRead` applies, and listed environment variables are unset before each sandboxed command runs. The dedicated `credentials` block keeps credential rules grouped with the environment variables to unset and separate from general filesystem rules. Requires Claude Code v2.1.187 or later.
 
 The example below blocks reads of the AWS credentials file and the SSH directory and removes `GITHUB_TOKEN` and `NPM_TOKEN` from the environment of sandboxed commands:
 
@@ -247,7 +247,7 @@ You can grant write access to additional paths using `sandbox.filesystem.allowWr
 
 Network access is controlled through a proxy server running outside the sandbox:
 
-* **Domain restrictions**: no domains are pre-allowed. The first time a command needs a new domain, Claude Code prompts for approval. Pre-allow domains with [`allowedDomains`](/en/settings#sandbox-settings) to avoid the prompt.
+* **Domain restrictions**: no domains are pre-allowed. The first time a command needs a new domain, Claude Code prompts for approval. {/* min-version: 2.1.191 */}As of v2.1.191, choosing Yes allows the host for the rest of the current session, so later connections to the same host do not prompt again. Pre-allow domains with [`allowedDomains`](/en/settings#sandbox-settings) to avoid the prompt entirely.
 * **Managed lockdown**: if [`allowManagedDomainsOnly`](/en/settings#sandbox-settings) is set in managed settings, non-allowed domains are blocked automatically instead of prompting, and only `allowedDomains` from managed settings are honored.
 * **Custom proxy support**: advanced users can implement custom rules on outgoing traffic
 * **Comprehensive coverage**: restrictions apply to all scripts, programs, and subprocesses spawned by commands

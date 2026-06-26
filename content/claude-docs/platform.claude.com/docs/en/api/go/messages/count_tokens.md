@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/messages/count_tokens
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 00217131165e30acd35ad5d8f2d4971ca05744e0adf477cdb15e2219addf5f54
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: 199bc7ff32d775d577f7e5813ff88e5e9ac4701ffd6c2b2b7c53007813e176b4
 ---
 
 ## Count tokens in a Message
@@ -1071,6 +1071,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `const ToolAllowedCallerCodeExecution20260120 ToolAllowedCaller = "code_execution_20260120"`
 
+        - `const ToolAllowedCallerCodeExecution20260521 ToolAllowedCaller = "code_execution_20260521"`
+
       - `CacheControl CacheControlEphemeral`
 
         Create a cache control breakpoint at this content block.
@@ -1121,6 +1123,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `const ToolBash20250124AllowedCallerCodeExecution20260120 ToolBash20250124AllowedCaller = "code_execution_20260120"`
 
+        - `const ToolBash20250124AllowedCallerCodeExecution20260521 ToolBash20250124AllowedCaller = "code_execution_20260521"`
+
       - `CacheControl CacheControlEphemeral`
 
         Create a cache control breakpoint at this content block.
@@ -1157,6 +1161,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `const CodeExecutionTool20250522AllowedCallerCodeExecution20260120 CodeExecutionTool20250522AllowedCaller = "code_execution_20260120"`
 
+        - `const CodeExecutionTool20250522AllowedCallerCodeExecution20260521 CodeExecutionTool20250522AllowedCaller = "code_execution_20260521"`
+
       - `CacheControl CacheControlEphemeral`
 
         Create a cache control breakpoint at this content block.
@@ -1190,6 +1196,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         - `const CodeExecutionTool20250825AllowedCallerCodeExecution20250825 CodeExecutionTool20250825AllowedCaller = "code_execution_20250825"`
 
         - `const CodeExecutionTool20250825AllowedCallerCodeExecution20260120 CodeExecutionTool20250825AllowedCaller = "code_execution_20260120"`
+
+        - `const CodeExecutionTool20250825AllowedCallerCodeExecution20260521 CodeExecutionTool20250825AllowedCaller = "code_execution_20260521"`
 
       - `CacheControl CacheControlEphemeral`
 
@@ -1227,6 +1235,46 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `const CodeExecutionTool20260120AllowedCallerCodeExecution20260120 CodeExecutionTool20260120AllowedCaller = "code_execution_20260120"`
 
+        - `const CodeExecutionTool20260120AllowedCallerCodeExecution20260521 CodeExecutionTool20260120AllowedCaller = "code_execution_20260521"`
+
+      - `CacheControl CacheControlEphemeral`
+
+        Create a cache control breakpoint at this content block.
+
+      - `DeferLoading bool`
+
+        If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+      - `Strict bool`
+
+        When true, guarantees schema validation on tool names and inputs
+
+    - `type CodeExecutionTool20260521 struct{…}`
+
+      Code execution tool with REPL state persistence.
+
+      - `Name CodeExecution`
+
+        Name of the tool.
+
+        This is how the tool will be called by the model and in `tool_use` blocks.
+
+        - `const CodeExecutionCodeExecution CodeExecution = "code_execution"`
+
+      - `Type CodeExecution20260521`
+
+        - `const CodeExecution20260521CodeExecution20260521 CodeExecution20260521 = "code_execution_20260521"`
+
+      - `AllowedCallers []string`
+
+        - `const CodeExecutionTool20260521AllowedCallerDirect CodeExecutionTool20260521AllowedCaller = "direct"`
+
+        - `const CodeExecutionTool20260521AllowedCallerCodeExecution20250825 CodeExecutionTool20260521AllowedCaller = "code_execution_20250825"`
+
+        - `const CodeExecutionTool20260521AllowedCallerCodeExecution20260120 CodeExecutionTool20260521AllowedCaller = "code_execution_20260120"`
+
+        - `const CodeExecutionTool20260521AllowedCallerCodeExecution20260521 CodeExecutionTool20260521AllowedCaller = "code_execution_20260521"`
+
       - `CacheControl CacheControlEphemeral`
 
         Create a cache control breakpoint at this content block.
@@ -1260,6 +1308,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         - `const MemoryTool20250818AllowedCallerCodeExecution20250825 MemoryTool20250818AllowedCaller = "code_execution_20250825"`
 
         - `const MemoryTool20250818AllowedCallerCodeExecution20260120 MemoryTool20250818AllowedCaller = "code_execution_20260120"`
+
+        - `const MemoryTool20250818AllowedCallerCodeExecution20260521 MemoryTool20250818AllowedCaller = "code_execution_20260521"`
 
       - `CacheControl CacheControlEphemeral`
 
@@ -1297,6 +1347,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `const ToolTextEditor20250124AllowedCallerCodeExecution20260120 ToolTextEditor20250124AllowedCaller = "code_execution_20260120"`
 
+        - `const ToolTextEditor20250124AllowedCallerCodeExecution20260521 ToolTextEditor20250124AllowedCaller = "code_execution_20260521"`
+
       - `CacheControl CacheControlEphemeral`
 
         Create a cache control breakpoint at this content block.
@@ -1333,6 +1385,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `const ToolTextEditor20250429AllowedCallerCodeExecution20260120 ToolTextEditor20250429AllowedCaller = "code_execution_20260120"`
 
+        - `const ToolTextEditor20250429AllowedCallerCodeExecution20260521 ToolTextEditor20250429AllowedCaller = "code_execution_20260521"`
+
       - `CacheControl CacheControlEphemeral`
 
         Create a cache control breakpoint at this content block.
@@ -1368,6 +1422,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         - `const ToolTextEditor20250728AllowedCallerCodeExecution20250825 ToolTextEditor20250728AllowedCaller = "code_execution_20250825"`
 
         - `const ToolTextEditor20250728AllowedCallerCodeExecution20260120 ToolTextEditor20250728AllowedCaller = "code_execution_20260120"`
+
+        - `const ToolTextEditor20250728AllowedCallerCodeExecution20260521 ToolTextEditor20250728AllowedCaller = "code_execution_20260521"`
 
       - `CacheControl CacheControlEphemeral`
 
@@ -1408,6 +1464,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         - `const WebSearchTool20250305AllowedCallerCodeExecution20250825 WebSearchTool20250305AllowedCaller = "code_execution_20250825"`
 
         - `const WebSearchTool20250305AllowedCallerCodeExecution20260120 WebSearchTool20250305AllowedCaller = "code_execution_20260120"`
+
+        - `const WebSearchTool20250305AllowedCallerCodeExecution20260521 WebSearchTool20250305AllowedCaller = "code_execution_20260521"`
 
       - `AllowedDomains []string`
 
@@ -1479,6 +1537,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `const WebFetchTool20250910AllowedCallerCodeExecution20260120 WebFetchTool20250910AllowedCaller = "code_execution_20260120"`
 
+        - `const WebFetchTool20250910AllowedCallerCodeExecution20260521 WebFetchTool20250910AllowedCaller = "code_execution_20260521"`
+
       - `AllowedDomains []string`
 
         List of domains to allow fetching from
@@ -1533,6 +1593,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `const WebSearchTool20260209AllowedCallerCodeExecution20260120 WebSearchTool20260209AllowedCaller = "code_execution_20260120"`
 
+        - `const WebSearchTool20260209AllowedCallerCodeExecution20260521 WebSearchTool20260209AllowedCaller = "code_execution_20260521"`
+
       - `AllowedDomains []string`
 
         If provided, only these domains will be included in results. Cannot be used alongside `blocked_domains`.
@@ -1582,6 +1644,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         - `const WebFetchTool20260209AllowedCallerCodeExecution20250825 WebFetchTool20260209AllowedCaller = "code_execution_20250825"`
 
         - `const WebFetchTool20260209AllowedCallerCodeExecution20260120 WebFetchTool20260209AllowedCaller = "code_execution_20260120"`
+
+        - `const WebFetchTool20260209AllowedCallerCodeExecution20260521 WebFetchTool20260209AllowedCaller = "code_execution_20260521"`
 
       - `AllowedDomains []string`
 
@@ -1638,6 +1702,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         - `const WebFetchTool20260309AllowedCallerCodeExecution20250825 WebFetchTool20260309AllowedCaller = "code_execution_20250825"`
 
         - `const WebFetchTool20260309AllowedCallerCodeExecution20260120 WebFetchTool20260309AllowedCaller = "code_execution_20260120"`
+
+        - `const WebFetchTool20260309AllowedCallerCodeExecution20260521 WebFetchTool20260309AllowedCaller = "code_execution_20260521"`
 
       - `AllowedDomains []string`
 
@@ -1699,6 +1765,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
         - `const ToolSearchToolBm25_20251119AllowedCallerCodeExecution20260120 ToolSearchToolBm25_20251119AllowedCaller = "code_execution_20260120"`
 
+        - `const ToolSearchToolBm25_20251119AllowedCallerCodeExecution20260521 ToolSearchToolBm25_20251119AllowedCaller = "code_execution_20260521"`
+
       - `CacheControl CacheControlEphemeral`
 
         Create a cache control breakpoint at this content block.
@@ -1734,6 +1802,8 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
         - `const ToolSearchToolRegex20251119AllowedCallerCodeExecution20250825 ToolSearchToolRegex20251119AllowedCaller = "code_execution_20250825"`
 
         - `const ToolSearchToolRegex20251119AllowedCallerCodeExecution20260120 ToolSearchToolRegex20251119AllowedCaller = "code_execution_20260120"`
+
+        - `const ToolSearchToolRegex20251119AllowedCallerCodeExecution20260521 ToolSearchToolRegex20251119AllowedCaller = "code_execution_20260521"`
 
       - `CacheControl CacheControlEphemeral`
 

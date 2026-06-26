@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/discover-plugins
-fetched_at: 2026-06-25T03:15:21.128912Z
-sha256: 19d992a540f843ac5ad4d29efd1a9e84f7f1d0e9ba579fcd96f21537fc7852c2
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: 8f3c80d3393f207100b28e6bee3434c1c7dc6e946b0a64ff4300de3236049e01
 ---
 
 > ## Documentation Index
@@ -303,7 +303,7 @@ From the list you can:
 
 The detail view shows the components the plugin contributes: commands, skills, agents, hooks, MCP servers, and LSP servers. The same inventory is available from the command line with `claude plugin details`.
 
-In Claude Code v2.1.187 and later, the Installed tab adds a **Not used recently** group for marketplace plugins you installed yourself but haven't invoked in at least two weeks and across at least 10 sessions, and the detail view shows a **Last used** line for each plugin. Use these to find plugins that you no longer use but that are still adding startup and context cost, then disable or uninstall them.
+In Claude Code v2.1.187 and later, the Installed tab adds a **Not used recently** group for marketplace plugins you installed yourself but haven't invoked in at least two weeks, over a span of at least 10 sessions, and the detail view shows a **Last used** line for each plugin. Use these to find plugins that you no longer use but that are still adding startup and context cost, then disable or uninstall them.
 
 Plugins that your organization manages or that you load with `--plugin-dir` are never listed as unused, and plugins that contribute an LSP server, theme, output style, monitor, or workflow are also never listed, since those deliver value without an invocation to track. The group and the **Last used** line are both hidden when your organization restricts marketplaces with [`strictKnownMarketplaces`](/en/settings#strictknownmarketplaces).
 

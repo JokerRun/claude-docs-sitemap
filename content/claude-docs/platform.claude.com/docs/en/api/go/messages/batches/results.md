@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/messages/batches/results
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: b18f279e1345cace66c6e63e0006974389a9adf71dd5052569bb97e281d4ccf4
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: cef9335aa3591bf241773560aee22da86a2e6b4989f9fce61d6cb57309dec7e6
 ---
 
 ## Retrieve Message Batch results
@@ -796,26 +796,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
               Exceptional model for specialized complex tasks
 
-            - `const ModelClaudeOpus4_0 Model = "claude-opus-4-0"`
-
-              Powerful model for complex tasks
-
-            - `const ModelClaudeOpus4_20250514 Model = "claude-opus-4-20250514"`
-
-              Powerful model for complex tasks
-
-            - `const ModelClaudeSonnet4_0 Model = "claude-sonnet-4-0"`
-
-              High-performance model with extended thinking
-
-            - `const ModelClaudeSonnet4_20250514 Model = "claude-sonnet-4-20250514"`
-
-              High-performance model with extended thinking
-
-            - `const ModelClaude_3_Haiku_20240307 Model = "claude-3-haiku-20240307"`
-
-              Fast and cost-effective model
-
           - `string`
 
         - `Role Assistant`
@@ -832,13 +812,13 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `Category RefusalStopDetailsCategory`
 
-            The policy category that triggered the refusal.
-
-            `null` when the refusal doesn't map to a named category.
+            The policy category that triggered a refusal.
 
             - `const RefusalStopDetailsCategoryCyber RefusalStopDetailsCategory = "cyber"`
 
             - `const RefusalStopDetailsCategoryBio RefusalStopDetailsCategory = "bio"`
+
+            - `const RefusalStopDetailsCategoryFrontierLLM RefusalStopDetailsCategory = "frontier_llm"`
 
             - `const RefusalStopDetailsCategoryReasoningExtraction RefusalStopDetailsCategory = "reasoning_extraction"`
 

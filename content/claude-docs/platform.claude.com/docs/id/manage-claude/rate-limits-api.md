@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/rate-limits-api
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: a3a564db41d9d1e69125995cc75315e197ca2a5396d1c69e624a44e6ae0a2237
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: aa16c054e1cc062c59c6cbff942426d4d05323d8bcd58156cab97d98d89e84ba
 ---
 
 # Rate Limits API
@@ -24,9 +24,7 @@ Gunakan API ini untuk:
 - **Mengaudit konfigurasi workspace:** Verifikasi bahwa override workspace sesuai dengan yang diharapkan oleh otomatisasi provisioning Anda.
 
 <Check>
-  **Kunci Admin API diperlukan**
-
-  API ini adalah bagian dari [Admin API](/docs/id/manage-claude/admin-api). Endpoint ini memerlukan kunci Admin API (dimulai dengan `sk-ant-admin...`) yang berbeda dari kunci API standar. Hanya anggota organisasi dengan peran admin yang dapat membuat kunci Admin API melalui [Claude Console](/settings/admin-keys).
+  **Kunci Admin API diperlukan.** Endpoint ini memerlukan kunci Admin API, yang berbeda dari kunci API Claude standar. Lihat [Membuat kunci Admin API](/docs/id/manage-claude/admin-api-keys) untuk mengetahui tempat membuatnya sesuai jenis organisasi Anda dan cakupan mana yang harus dipilih.
 </Check>
 
 ## Mulai cepat \{#quick-start}
@@ -41,13 +39,13 @@ curl "https://api.anthropic.com/v1/organizations/rate_limits" \
 
 ## Batas laju organisasi \{#organization-rate-limits}
 
-Endpoint `/v1/organizations/rate_limits` mengembalikan batas laju yang diterapkan pada tingkat organisasi untuk Messages API dan sumber daya pendukungnya. Batas untuk produk lain, seperti [Claude Managed Agents](/docs/id/managed-agents/overview), tidak disertakan.
+Endpoint `/v1/organizations/rate_limits` mengembalikan batas laju yang diterapkan di tingkat organisasi untuk Messages API dan sumber daya pendukungnya. Batas untuk produk lain, seperti [Claude Managed Agents](/docs/id/managed-agents/overview), tidak disertakan.
 
 ### Konsep utama \{#key-concepts}
 
 - **Grup batas laju:** Setiap entri dalam respons mewakili satu grup batas laju. Batas laju model dikelompokkan sehingga beberapa versi model berbagi satu set batas yang sama, dan grup lainnya mencakup sumber daya seperti Message Batches API, Files API, Token Counting API, agent skills, dan alat pencarian web.
-- **`group_type`:** Mengidentifikasi kategori batas mana yang dicakup oleh entri tersebut. Lihat [Memfilter berdasarkan tipe grup](#memfilter-berdasarkan-tipe-grup) untuk daftar nilainya.
-- **Daftar `models`:** Untuk entri `model_group`, field `models` mencantumkan setiap ID model dan alias yang dihitung terhadap batas grup tersebut. Gunakan daftar ini untuk mencari grup mana yang mencakup string model tertentu. Untuk tipe grup lainnya, `models` bernilai `null`.
+- **`group_type`:** Mengidentifikasi kategori batas mana yang dicakup oleh entri tersebut. Lihat [Memfilter berdasarkan tipe grup](#filtering-by-group-type) untuk daftar nilainya.
+- **Daftar `models`:** Untuk entri `model_group`, field `models` mencantumkan setiap ID model dan alias yang dihitung terhadap batas grup tersebut. Gunakan daftar ini untuk mencari grup mana yang mencakup string model apa pun. Untuk tipe grup lainnya, `models` bernilai `null`.
 - **Daftar `limits`:** Setiap grup membawa daftar pasangan `{type, value}`. Field `type` mengidentifikasi pembatas (seperti `requests_per_minute`, `input_tokens_per_minute`, atau `output_tokens_per_minute`) dan `value` adalah batas yang dikonfigurasi. Lihat [Batas laju](/docs/id/api/rate-limits) untuk mengetahui bagaimana setiap pembatas diukur dan diterapkan.
 
 Untuk detail parameter lengkap dan skema respons, lihat [referensi Organization Rate Limits API](/docs/id/api/admin/rate_limits/list).
@@ -100,13 +98,13 @@ curl "https://api.anthropic.com/v1/organizations/rate_limits?model=claude-opus-4
   --header "x-api-key: $ANTHROPIC_ADMIN_KEY"
 ```
 
-Jika string model tidak cocok dengan grup mana pun, endpoint akan mengembalikan error 404. Parameter `model` hanya didukung pada endpoint organisasi; endpoint workspace tidak menerimanya.
+Jika string model tidak cocok dengan grup mana pun, endpoint mengembalikan error 404. Parameter `model` hanya didukung pada endpoint organisasi; endpoint workspace tidak menerimanya.
 
 ## Batas laju workspace \{#workspace-rate-limits}
 
 Endpoint `/v1/organizations/workspaces/{workspace_id}/rate_limits` mengembalikan override batas laju yang dikonfigurasi untuk satu workspace.
 
-Respons hanya menyertakan override, jadi apa pun yang tidak ada di dalamnya diwarisi dari organisasi:
+Respons hanya menyertakan override, sehingga apa pun yang tidak ada di dalamnya diwarisi dari organisasi:
 
 - Grup yang tidak ada dalam `data` tidak memiliki override workspace sama sekali. Workspace mewarisi batas tingkat organisasi untuk grup tersebut (bukan berarti tidak terbatas).
 - Dalam grup yang ada, tipe pembatas yang tidak ada dalam `limits[]` tidak memiliki override workspace untuk pembatas tersebut. Workspace mewarisi nilai organisasi untuknya.
@@ -161,11 +159,11 @@ Nilai yang valid adalah `model_group`, `batch`, `token_count`, `files`, `skills`
 
 ## Paginasi \{#pagination}
 
-Kedua endpoint menerima parameter kueri `page` dan mengembalikan field `next_page`. Saat ini respons selalu berupa satu halaman, sehingga `next_page` bernilai `null`. Lakukan perulangan pada `next_page` agar klien Anda melakukan paginasi dengan benar tanpa perubahan ketika respons bertambah besar.
+Kedua endpoint menerima parameter kueri `page` dan mengembalikan field `next_page`. Respons saat ini selalu berupa satu halaman, sehingga `next_page` bernilai `null`. Lakukan perulangan pada `next_page` agar klien Anda melakukan paginasi dengan benar tanpa perubahan ketika respons bertambah besar.
 
 ## Pertanyaan yang sering diajukan \{#frequently-asked-questions}
 
-### String model mana yang muncul dalam daftar `models`? \{#which-model-strings-appear-in-the-models-list}
+### String model apa yang muncul dalam daftar `models`? \{#which-model-strings-appear-in-the-models-list}
 
 Setiap ID model dan alias yang dihitung terhadap grup tersebut, termasuk ID bertanggal (seperti `claude-sonnet-4-5-20250929`) dan alias tanpa tanggal (seperti `claude-sonnet-4-5`). Cari string model apa pun yang Anda berikan ke Messages API dan Anda akan menemukannya di tepat satu entri `model_group`.
 

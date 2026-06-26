@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/mcp-connector
-fetched_at: 2026-06-12T03:17:40.104094Z
-sha256: 64ff7ac16cd24643f267e2571c4877ac420618a1cf288908ac70d701a6ae6b91
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: b325e025e69ce9d75b6774ab8d79002909166dcc7a6b680a5b72ef48fdb1c65d
 ---
 
 # MCP connector
@@ -42,7 +42,7 @@ You can steer how readily Claude calls MCP tools through your system prompt. See
 
 - Of the feature set of the [MCP specification](https://modelcontextprotocol.io/introduction#explore-mcp), only [tool calls](https://modelcontextprotocol.io/docs/concepts/tools) are currently supported.
 - The server must be publicly exposed through HTTP (supports both Streamable HTTP and SSE transports). Local STDIO servers cannot be connected directly.
-- The MCP connector is available on the Claude API, [Claude Platform on AWS](/docs/en/build-with-claude/claude-platform-on-aws), and [Microsoft Foundry](/docs/en/build-with-claude/claude-in-microsoft-foundry). It is not currently available on Amazon Bedrock or Vertex AI.
+- The MCP connector is available on the Claude API, [Claude Platform on AWS](/docs/en/build-with-claude/claude-platform-on-aws), and [Microsoft Foundry](/docs/en/build-with-claude/claude-in-microsoft-foundry). It is not currently available on Amazon Bedrock or Google Cloud.
 
 ## Using the MCP connector in the Messages API
 

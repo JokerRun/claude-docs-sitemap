@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/create
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 7033ba05af07734fc7242d8d00b12660ded54cfdf8bcf40609317a662b044645
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: 7b024535c2ede4c1fbdf688bdf1d93784a48721f33823c795cbe83adfa66275a
 ---
 
 ## Create Agent
@@ -169,7 +169,7 @@ Create Agent
 
 - `mcp_servers: optional array of BetaManagedAgentsURLMCPServerParams`
 
-  MCP servers this agent connects to. Maximum 20. Names must be unique within the array.
+  MCP servers this agent connects to. Maximum 20. Names must be unique within the array. Every server must be referenced by an `mcp_toolset` in `tools`; unreferenced servers are rejected. See the [MCP connector guide](https://platform.claude.com/docs/en/managed-agents/mcp-connector).
 
   - `name: string`
 

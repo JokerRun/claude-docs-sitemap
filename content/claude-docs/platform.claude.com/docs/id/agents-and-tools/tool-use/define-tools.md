@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: b9caf619f2ff2d926cd43c5fe63a69d5bdce454dd297a130a7e914e2819254e3
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: 984cd8ef7ed0722d5c4670f23590123cc2f9d8f7b838a9b3babd42cabdf07ae9
 ---
 
 # Mendefinisikan alat
@@ -13,7 +13,7 @@ Tentukan skema alat, tulis deskripsi yang efektif, dan kendalikan kapan Claude m
 
 ## Memilih model \{#choosing-a-model}
 
-Gunakan model Claude Opus (4.7) terbaru untuk alat yang kompleks dan kueri yang ambigu; model ini menangani beberapa alat dengan lebih baik dan meminta klarifikasi saat diperlukan.
+Gunakan model Claude Opus (4.8) terbaru untuk alat yang kompleks dan kueri yang ambigu; model ini menangani beberapa alat dengan lebih baik dan meminta klarifikasi saat diperlukan.
 
 Gunakan model Claude Haiku untuk alat yang sederhana, tetapi perhatikan bahwa model ini mungkin menyimpulkan parameter yang hilang.
 
@@ -23,14 +23,14 @@ Jika menggunakan Claude dengan penggunaan alat dan pemikiran diperpanjang, lihat
 
 ## Menentukan alat klien \{#specifying-client-tools}
 
-Alat klien (baik yang menggunakan skema Anthropic maupun yang didefinisikan pengguna) ditentukan dalam parameter tingkat atas `tools` pada permintaan API. Setiap definisi alat mencakup:
+Alat klien (baik skema Anthropic maupun yang didefinisikan pengguna) ditentukan dalam parameter tingkat atas `tools` dari permintaan API. Setiap definisi alat mencakup:
 
 | Parameter      | Deskripsi                                                                                         |
 | :------------- | :-------------------------------------------------------------------------------------------------- |
 | `name`         | Nama alat. Harus cocok dengan regex `^[a-zA-Z0-9_-]{1,64}$`.                                 |
 | `description`  | Deskripsi teks biasa yang terperinci tentang apa yang dilakukan alat, kapan harus digunakan, dan bagaimana perilakunya. |
 | `input_schema` | Objek [JSON Schema](https://json-schema.org/) yang mendefinisikan parameter yang diharapkan untuk alat tersebut.     |
-| `input_examples` | (Opsional) Array berisi objek contoh input untuk membantu Claude memahami cara menggunakan alat. Lihat [Menyediakan contoh penggunaan alat](#menyediakan-contoh-penggunaan-alat). |
+| `input_examples` | (Opsional) Array objek input contoh untuk membantu Claude memahami cara menggunakan alat. Lihat [Menyediakan contoh penggunaan alat](#providing-tool-use-examples). |
 
 Untuk kumpulan lengkap properti opsional yang tersedia pada definisi alat apa pun, termasuk `cache_control`, `strict`, `defer_loading`, dan `allowed_callers`, lihat [Referensi alat](/docs/id/agents-and-tools/tool-use/tool-reference#tool-definition-properties).
 
@@ -85,10 +85,10 @@ Untuk mendapatkan performa terbaik dari Claude saat menggunakan alat, ikuti pand
   - Kapan harus digunakan (dan kapan tidak)
   - Apa arti setiap parameter dan bagaimana pengaruhnya terhadap perilaku alat
   - Peringatan atau batasan penting apa pun, seperti informasi apa yang tidak dikembalikan alat jika nama alat tidak jelas. Semakin banyak konteks yang dapat Anda berikan kepada Claude tentang alat Anda, semakin baik Claude dalam memutuskan kapan dan bagaimana menggunakannya. Usahakan setidaknya 3-4 kalimat per deskripsi alat, lebih banyak jika alatnya kompleks.
-- **Prioritaskan deskripsi, tetapi pertimbangkan menggunakan `input_examples` untuk alat yang kompleks.** Deskripsi yang jelas adalah yang terpenting, tetapi untuk alat dengan input kompleks, objek bersarang, atau parameter yang sensitif terhadap format, Anda dapat menggunakan field `input_examples` untuk menyediakan contoh yang tervalidasi skema. Lihat [Menyediakan contoh penggunaan alat](#menyediakan-contoh-penggunaan-alat) untuk detailnya.
+- **Prioritaskan deskripsi, tetapi pertimbangkan menggunakan `input_examples` untuk alat yang kompleks.** Deskripsi yang jelas adalah yang paling penting, tetapi untuk alat dengan input kompleks, objek bersarang, atau parameter yang sensitif terhadap format, Anda dapat menggunakan field `input_examples` untuk menyediakan contoh yang divalidasi skema. Lihat [Menyediakan contoh penggunaan alat](#providing-tool-use-examples) untuk detailnya.
 - **Konsolidasikan operasi terkait ke dalam lebih sedikit alat.** Daripada membuat alat terpisah untuk setiap tindakan (`create_pr`, `review_pr`, `merge_pr`), kelompokkan ke dalam satu alat dengan parameter `action`. Alat yang lebih sedikit namun lebih mumpuni mengurangi ambiguitas pemilihan dan membuat kumpulan alat Anda lebih mudah dinavigasi oleh Claude.
-- **Gunakan namespacing yang bermakna dalam nama alat.** Ketika alat Anda mencakup beberapa layanan atau sumber daya, beri prefiks nama dengan layanannya (misalnya, `github_list_prs`, `slack_send_message`). Ini membuat pemilihan alat tidak ambigu seiring bertambahnya pustaka Anda, dan sangat penting saat menggunakan [pencarian alat](/docs/id/agents-and-tools/tool-use/tool-search-tool).
-- **Rancang respons alat agar hanya mengembalikan informasi bernilai tinggi.** Kembalikan pengidentifikasi yang semantik dan stabil (misalnya, slug atau UUID) daripada referensi internal yang tidak jelas, dan sertakan hanya field yang dibutuhkan Claude untuk bernalar tentang langkah berikutnya. Respons yang membengkak membuang-buang konteks dan mempersulit Claude untuk mengekstrak hal yang penting.
+- **Gunakan namespacing yang bermakna dalam nama alat.** Ketika alat Anda mencakup beberapa layanan atau sumber daya, beri prefiks nama dengan layanan (misalnya, `github_list_prs`, `slack_send_message`). Ini membuat pemilihan alat tidak ambigu seiring bertambahnya pustaka Anda, dan sangat penting saat menggunakan [pencarian alat](/docs/id/agents-and-tools/tool-use/tool-search-tool).
+- **Rancang respons alat agar hanya mengembalikan informasi bernilai tinggi.** Kembalikan pengidentifikasi yang semantik dan stabil (misalnya, slug atau UUID) daripada referensi internal yang tidak jelas, dan sertakan hanya field yang dibutuhkan Claude untuk bernalar tentang langkah berikutnya. Respons yang membengkak membuang-buang konteks dan mempersulit Claude untuk mengekstrak apa yang penting.
 
 <section title="Contoh deskripsi alat yang baik">
 
@@ -139,11 +139,11 @@ Untuk panduan lebih mendalam tentang desain alat (konsolidasi, penamaan, dan pem
 
 ## Menyediakan contoh penggunaan alat \{#providing-tool-use-examples}
 
-Anda dapat menyediakan contoh konkret input alat yang valid untuk membantu Claude memahami cara menggunakan alat Anda dengan lebih efektif. Ini sangat berguna untuk alat kompleks dengan objek bersarang, parameter opsional, atau input yang sensitif terhadap format.
+Anda dapat menyediakan contoh konkret dari input alat yang valid untuk membantu Claude memahami cara menggunakan alat Anda dengan lebih efektif. Ini sangat berguna untuk alat kompleks dengan objek bersarang, parameter opsional, atau input yang sensitif terhadap format.
 
 ### Penggunaan dasar \{#basic-usage}
 
-Tambahkan field `input_examples` opsional ke definisi alat Anda dengan array berisi objek contoh input. Setiap contoh harus valid sesuai dengan `input_schema` alat:
+Tambahkan field opsional `input_examples` ke definisi alat Anda dengan array objek input contoh. Setiap contoh harus valid sesuai dengan `input_schema` alat:
 
 <CodeGroup>
 ```bash cURL
@@ -582,25 +582,333 @@ puts message
 ```
 </CodeGroup>
 
-Contoh disertakan dalam prompt bersama dengan skema alat Anda, menunjukkan kepada Claude pola konkret untuk pemanggilan alat yang terbentuk dengan baik. Ini membantu Claude memahami kapan harus menyertakan parameter opsional, format apa yang digunakan, dan bagaimana menyusun input yang kompleks.
+Contoh disertakan dalam prompt bersama dengan skema alat Anda, menunjukkan kepada Claude pola konkret untuk panggilan alat yang terbentuk dengan baik. Ini membantu Claude memahami kapan harus menyertakan parameter opsional, format apa yang digunakan, dan bagaimana menyusun input yang kompleks.
 
 ### Persyaratan dan batasan \{#requirements-and-limitations}
 
 - **Validasi skema** - Setiap contoh harus valid sesuai dengan `input_schema` alat. Contoh yang tidak valid mengembalikan error 400
-- **Tidak didukung untuk alat sisi server** - Contoh input berfungsi pada alat klien yang didefinisikan pengguna dan yang menggunakan skema Anthropic, tetapi tidak pada alat server seperti pencarian web atau eksekusi kode
+- **Tidak didukung untuk alat sisi server** - Contoh input berfungsi pada alat klien yang didefinisikan pengguna dan skema Anthropic, tetapi tidak pada alat server seperti pencarian web atau eksekusi kode
 - **Biaya token** - Contoh menambah token prompt: ~20-50 token untuk contoh sederhana, ~100-200 token untuk objek bersarang yang kompleks
 
 ## Mengontrol output Claude \{#controlling-claudes-output}
 
 ### Memaksa penggunaan alat \{#forcing-tool-use}
 
-Dalam beberapa kasus, Anda mungkin ingin Claude menggunakan alat tertentu untuk menjawab pertanyaan pengguna, meskipun Claude sebenarnya akan menjawab langsung tanpa memanggil alat. Anda dapat melakukan ini dengan menentukan alat di field `tool_choice` seperti berikut:
+Dalam beberapa kasus, Anda mungkin ingin Claude menggunakan alat tertentu untuk menjawab pertanyaan pengguna, bahkan jika Claude sebenarnya akan menjawab langsung tanpa memanggil alat. Anda dapat melakukan ini dengan menentukan alat di field `tool_choice` dari permintaan. Baris yang disorot adalah satu-satunya perbedaan dari permintaan penggunaan alat standar:
 
-```text
-tool_choice = {"type": "tool", "name": "get_weather"}
+<CodeGroup>
+```bash cURL highlight={25}
+curl -sS https://api.anthropic.com/v1/messages \
+  -H "content-type: application/json" \
+  -H "x-api-key: $ANTHROPIC_API_KEY" \
+  -H "anthropic-version: 2023-06-01" \
+  -d @- <<'EOF'
+{
+  "model": "claude-opus-4-8",
+  "max_tokens": 1024,
+  "tools": [
+    {
+      "name": "get_weather",
+      "description": "Get the current weather in a given location",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "location": {
+            "type": "string",
+            "description": "The city and state, e.g. San Francisco, CA"
+          }
+        },
+        "required": ["location"]
+      }
+    }
+  ],
+  "tool_choice": {"type": "tool", "name": "get_weather"},
+  "messages": [
+    {"role": "user", "content": "What's the weather like in San Francisco?"}
+  ]
+}
+EOF
 ```
 
-Saat bekerja dengan parameter tool_choice, ada empat opsi yang memungkinkan:
+```bash CLI highlight={14..16}
+ant messages create <<'YAML'
+model: claude-opus-4-8
+max_tokens: 1024
+tools:
+  - name: get_weather
+    description: Get the current weather in a given location
+    input_schema:
+      type: object
+      properties:
+        location:
+          type: string
+          description: The city and state, e.g. San Francisco, CA
+      required: [location]
+tool_choice:
+  type: tool
+  name: get_weather
+messages:
+  - role: user
+    content: What's the weather like in San Francisco?
+YAML
+```
+
+```python Python highlight={26}
+import anthropic
+
+client = anthropic.Anthropic()
+
+tools = [
+    {
+        "name": "get_weather",
+        "description": "Get the current weather in a given location",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "location": {
+                    "type": "string",
+                    "description": "The city and state, e.g. San Francisco, CA",
+                }
+            },
+            "required": ["location"],
+        },
+    }
+]
+
+response = client.messages.create(
+    model="claude-opus-4-8",
+    max_tokens=1024,
+    tools=tools,
+    tool_choice={"type": "tool", "name": "get_weather"},
+    messages=[{"role": "user", "content": "What's the weather like in San Francisco?"}],
+)
+
+print(response)
+```
+
+```typescript TypeScript hidelines={1..4} highlight={24}
+import Anthropic from "@anthropic-ai/sdk";
+
+const client = new Anthropic();
+
+const response = await client.messages.create({
+  model: "claude-opus-4-8",
+  max_tokens: 1024,
+  tools: [
+    {
+      name: "get_weather",
+      description: "Get the current weather in a given location",
+      input_schema: {
+        type: "object",
+        properties: {
+          location: {
+            type: "string",
+            description: "The city and state, e.g. San Francisco, CA"
+          }
+        },
+        required: ["location"]
+      }
+    }
+  ],
+  tool_choice: { type: "tool", name: "get_weather" },
+  messages: [{ role: "user", content: "What's the weather like in San Francisco?" }]
+});
+
+console.log(response);
+```
+
+```csharp C# hidelines={1..7} highlight={29}
+using System;
+using System.Collections.Generic;
+using System.Text.Json;
+using System.Threading.Tasks;
+using Anthropic;
+using Anthropic.Models.Messages;
+
+AnthropicClient client = new();
+
+var parameters = new MessageCreateParams
+{
+    Model = Model.ClaudeOpus4_8,
+    MaxTokens = 1024,
+    Tools = [
+        new ToolUnion(new Tool()
+        {
+            Name = "get_weather",
+            Description = "Get the current weather in a given location",
+            InputSchema = new InputSchema()
+            {
+                Properties = new Dictionary<string, JsonElement>
+                {
+                    ["location"] = JsonSerializer.SerializeToElement(new { type = "string", description = "The city and state, e.g. San Francisco, CA" }),
+                },
+                Required = ["location"],
+            },
+        }),
+    ],
+    ToolChoice = new ToolChoiceTool { Name = "get_weather" },
+    Messages = [
+        new() { Role = Role.User, Content = "What's the weather like in San Francisco?" }
+    ]
+};
+
+var message = await client.Messages.Create(parameters);
+Console.WriteLine(message);
+```
+
+```go Go hidelines={1..11,-1} highlight={32}
+package main
+
+import (
+	"context"
+	"fmt"
+	"log"
+
+	"github.com/anthropics/anthropic-sdk-go"
+)
+
+func main() {
+	client := anthropic.NewClient()
+
+	response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
+		Model:     anthropic.ModelClaudeOpus4_8,
+		MaxTokens: 1024,
+		Tools: []anthropic.ToolUnionParam{
+			{OfTool: &anthropic.ToolParam{
+				Name:        "get_weather",
+				Description: anthropic.String("Get the current weather in a given location"),
+				InputSchema: anthropic.ToolInputSchemaParam{
+					Properties: map[string]any{
+						"location": map[string]any{
+							"type":        "string",
+							"description": "The city and state, e.g. San Francisco, CA",
+						},
+					},
+					Required: []string{"location"},
+				},
+			}},
+		},
+		ToolChoice: anthropic.ToolChoiceUnionParam{OfTool: &anthropic.ToolChoiceToolParam{Name: "get_weather"}},
+		Messages: []anthropic.MessageParam{
+			anthropic.NewUserMessage(anthropic.NewTextBlock("What's the weather like in San Francisco?")),
+		},
+	})
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(response)
+}
+```
+
+```java Java hidelines={1..6,11} highlight={31..33}
+import com.anthropic.client.AnthropicClient;
+import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+import com.anthropic.core.JsonValue;
+import com.anthropic.models.messages.Message;
+import com.anthropic.models.messages.MessageCreateParams;
+import com.anthropic.models.messages.Model;
+import com.anthropic.models.messages.Tool;
+import com.anthropic.models.messages.Tool.InputSchema;
+import com.anthropic.models.messages.ToolChoice;
+import com.anthropic.models.messages.ToolChoiceTool;
+
+void main() {
+    AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+    MessageCreateParams params = MessageCreateParams.builder()
+        .model(Model.CLAUDE_OPUS_4_8)
+        .maxTokens(1024L)
+        .addTool(Tool.builder()
+            .name("get_weather")
+            .description("Get the current weather in a given location")
+            .inputSchema(InputSchema.builder()
+                .properties(JsonValue.from(Map.of(
+                    "location", Map.of(
+                        "type", "string",
+                        "description", "The city and state, e.g. San Francisco, CA"
+                    )
+                )))
+                .required(List.of("location"))
+                .build())
+            .build())
+        .toolChoice(ToolChoice.ofTool(ToolChoiceTool.builder()
+            .name("get_weather")
+            .build()))
+        .addUserMessage("What's the weather like in San Francisco?")
+        .build();
+
+    Message response = client.messages().create(params);
+    IO.println(response);
+}
+```
+
+```php PHP highlight={13}
+<?php
+
+use Anthropic\Client;
+
+$client = new Client();
+
+$message = $client->messages->create(
+    maxTokens: 1024,
+    messages: [
+        ['role' => 'user', 'content' => "What's the weather like in San Francisco?"]
+    ],
+    model: 'claude-opus-4-8',
+    toolChoice: ['type' => 'tool', 'name' => 'get_weather'],
+    tools: [
+        [
+            'name' => 'get_weather',
+            'description' => 'Get the current weather in a given location',
+            'input_schema' => [
+                'type' => 'object',
+                'properties' => [
+                    'location' => [
+                        'type' => 'string',
+                        'description' => 'The city and state, e.g. San Francisco, CA'
+                    ]
+                ],
+                'required' => ['location']
+            ]
+        ]
+    ],
+);
+```
+
+```ruby Ruby highlight={24}
+require "anthropic"
+
+client = Anthropic::Client.new
+
+message = client.messages.create(
+  model: "claude-opus-4-8",
+  max_tokens: 1024,
+  tools: [
+    {
+      name: "get_weather",
+      description: "Get the current weather in a given location",
+      input_schema: {
+        type: "object",
+        properties: {
+          location: {
+            type: "string",
+            description: "The city and state, e.g. San Francisco, CA"
+          }
+        },
+        required: ["location"]
+      }
+    }
+  ],
+  tool_choice: { type: "tool", name: "get_weather" },
+  messages: [
+    { role: "user", content: "What's the weather like in San Francisco?" }
+  ]
+)
+puts message
+```
+</CodeGroup>
+
+Saat bekerja dengan parameter `tool_choice`, ada empat opsi yang memungkinkan:
 
 - `auto` memungkinkan Claude memutuskan apakah akan memanggil alat yang disediakan atau tidak. Ini adalah nilai default ketika `tools` disediakan.
 - `any` memberi tahu Claude bahwa ia harus menggunakan salah satu alat yang disediakan, tetapi tidak memaksa alat tertentu.
@@ -617,7 +925,7 @@ Diagram ini mengilustrasikan cara kerja setiap opsi:
   ![Diagram yang menunjukkan empat opsi tool_choice: auto, any, tool, dan none](/docs/images/tool_choice.png)
 </Frame>
 
-Perhatikan bahwa ketika Anda mengatur `tool_choice` sebagai `any` atau `tool`, API akan mengisi awal pesan asisten untuk memaksa alat digunakan. Ini berarti model tidak akan mengeluarkan respons atau penjelasan bahasa alami sebelum blok konten `tool_use`, bahkan jika diminta secara eksplisit untuk melakukannya.
+Perhatikan bahwa ketika Anda mengatur `tool_choice` sebagai `any` atau `tool`, API melakukan prefill pada pesan asisten untuk memaksa alat digunakan. Ini berarti bahwa model tidak akan mengeluarkan respons atau penjelasan bahasa alami sebelum blok konten `tool_use`, bahkan jika secara eksplisit diminta untuk melakukannya.
 
 <Note>
 Saat menggunakan [pemikiran diperpanjang](/docs/id/build-with-claude/extended-thinking) dengan penggunaan alat, `tool_choice: {"type": "any"}` dan `tool_choice: {"type": "tool", "name": "..."}` tidak didukung dan akan menghasilkan error. Hanya `tool_choice: {"type": "auto"}` (default) dan `tool_choice: {"type": "none"}` yang kompatibel dengan pemikiran diperpanjang.
@@ -627,10 +935,10 @@ Saat menggunakan [pemikiran diperpanjang](/docs/id/build-with-claude/extended-th
 [Claude Mythos Preview](https://anthropic.com/glasswing) tidak mendukung penggunaan alat yang dipaksa. Permintaan dengan `tool_choice: {"type": "any"}` atau `tool_choice: {"type": "tool", "name": "..."}` mengembalikan error 400 pada model ini. Gunakan `tool_choice: {"type": "auto"}` (default) atau `tool_choice: {"type": "none"}` dan andalkan prompting untuk memengaruhi pemilihan alat.
 </Note>
 
-Pengujian telah menunjukkan bahwa hal ini seharusnya tidak mengurangi performa. Jika Anda ingin model memberikan konteks atau penjelasan bahasa alami sambil tetap meminta model menggunakan alat tertentu, Anda dapat menggunakan `{"type": "auto"}` untuk `tool_choice` (default) dan menambahkan instruksi eksplisit dalam pesan `user`. Misalnya: `What's the weather like in London? Use the get_weather tool in your response.`
+Pengujian telah menunjukkan bahwa ini seharusnya tidak mengurangi performa. Jika Anda ingin model memberikan konteks atau penjelasan bahasa alami sambil tetap meminta model menggunakan alat tertentu, Anda dapat menggunakan `{"type": "auto"}` untuk `tool_choice` (default) dan menambahkan instruksi eksplisit dalam pesan `user`. Misalnya: `What's the weather like in London? Use the get_weather tool in your response.`
 
 <Tip>
-**Pemanggilan alat yang dijamin dengan alat strict**
+**Panggilan alat yang dijamin dengan alat strict**
 
 Kombinasikan `tool_choice: {"type": "any"}` dengan [penggunaan alat strict](/docs/id/agents-and-tools/tool-use/strict-tool-use) untuk menjamin bahwa salah satu alat Anda akan dipanggil DAN bahwa input alat secara ketat mengikuti skema Anda. Atur `strict: true` pada definisi alat Anda untuk mengaktifkan validasi skema.
 </Tip>
@@ -661,12 +969,12 @@ Misalnya, diberikan prompt "What's the weather like in San Francisco right now, 
 
 Gaya respons alami ini membantu pengguna memahami apa yang sedang dilakukan Claude dan menciptakan interaksi yang lebih percakapan. Anda dapat memandu gaya dan konten respons ini melalui prompt sistem Anda dan dengan menyediakan `<examples>` dalam prompt Anda.
 
-Penting untuk dicatat bahwa Claude mungkin menggunakan berbagai frasa dan pendekatan saat menjelaskan tindakannya. Kode Anda harus memperlakukan respons ini seperti teks lain yang dihasilkan asisten, dan tidak mengandalkan konvensi pemformatan tertentu.
+Penting untuk dicatat bahwa Claude mungkin menggunakan berbagai frasa dan pendekatan saat menjelaskan tindakannya. Kode Anda harus memperlakukan respons ini seperti teks lain yang dihasilkan asisten, dan tidak bergantung pada konvensi pemformatan tertentu.
 
-## Langkah berikutnya \{#next-steps}
+## Langkah selanjutnya \{#next-steps}
 
 <CardGroup>
-  <Card href="/docs/id/agents-and-tools/tool-use/handle-tool-calls" title="Menangani pemanggilan alat">
+  <Card href="/docs/id/agents-and-tools/tool-use/handle-tool-calls" title="Menangani panggilan alat">
     Parse blok tool_use dan format respons tool_result.
   </Card>
   <Card href="/docs/id/agents-and-tools/tool-use/tool-runner" title="Tool Runner (SDK)">

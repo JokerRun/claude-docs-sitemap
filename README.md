@@ -23,22 +23,22 @@ Automated daily English sitemap collection from Claude documentation sources.
 <!-- tsv_preview_start -->
 | source | loc | lastmod | priority |
 |--------|--------|--------|--------|
-| code | https://code.claude.com/docs/en/admin-setup | 2026-06-24 |  |
+| code | https://code.claude.com/docs/en/admin-setup | 2026-06-25 |  |
 | code | https://code.claude.com/docs/en/advisor | 2026-06-24 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/agent-loop | 2026-06-16 |  |
-| code | https://code.claude.com/docs/en/agent-sdk/claude-cod... | 2026-06-24 |  |
+| code | https://code.claude.com/docs/en/agent-sdk/claude-cod... | 2026-06-25 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/cost-tracking | 2026-06-15 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/custom-tools | 2026-06-09 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/file-check... | 2026-04-08 |  |
-| code | https://code.claude.com/docs/en/agent-sdk/hooks | 2026-06-02 |  |
+| code | https://code.claude.com/docs/en/agent-sdk/hooks | 2026-06-25 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/hosting | 2026-06-15 |  |
-| code | https://code.claude.com/docs/en/agent-sdk/mcp | 2026-06-09 |  |
+| code | https://code.claude.com/docs/en/agent-sdk/mcp | 2026-06-25 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/migration-... | 2026-06-09 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/modifying-... | 2026-05-19 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/observability | 2026-05-27 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/overview | 2026-06-15 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/permissions | 2026-06-10 |  |
-| ... | _(~2021 more rows)_ | | |
+| ... | _(~2029 more rows)_ | | |
 
 <!-- tsv_preview_end -->
 

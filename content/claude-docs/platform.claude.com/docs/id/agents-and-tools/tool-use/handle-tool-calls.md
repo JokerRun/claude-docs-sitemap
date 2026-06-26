@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 4336686bb2bf27719b975ae735483fde7f520326949f87d041c92fbe45083974
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: eacfd5096985a882d2eed1f4d315712ebf3878e09a28ade94e48aebe6ee76f8d
 ---
 
 # Menangani panggilan alat
@@ -14,7 +14,7 @@ Mengurai blok tool_use, memformat respons tool_result, dan menangani kesalahan d
 Halaman ini membahas siklus hidup panggilan alat: membaca blok `tool_use` dari respons Claude, memformat blok `tool_result` dalam balasan Anda, dan memberi sinyal kesalahan. Untuk abstraksi SDK yang menangani hal ini secara otomatis, lihat [Tool Runner](/docs/id/agents-and-tools/tool-use/tool-runner).
 
 <Note>
-**Lebih sederhana dengan Tool Runner**: Penanganan alat secara manual yang dijelaskan di halaman ini dikelola secara otomatis oleh [Tool Runner](/docs/id/agents-and-tools/tool-use/tool-runner). Gunakan halaman ini ketika Anda membutuhkan kontrol khusus atas eksekusi alat.
+**Lebih sederhana dengan Tool Runner**: Penanganan alat secara manual yang dijelaskan di halaman ini dikelola secara otomatis oleh [Tool Runner](/docs/id/agents-and-tools/tool-use/tool-runner). Gunakan halaman ini ketika Anda memerlukan kontrol khusus atas eksekusi alat.
 </Note>
 
 Respons Claude berbeda tergantung pada apakah ia menggunakan [alat klien atau server](/docs/id/agents-and-tools/tool-use/overview#how-tool-use-works).
@@ -55,10 +55,10 @@ Respons akan memiliki `stop_reason` berupa `tool_use` dan satu atau lebih blok k
 Ketika Anda menerima respons penggunaan alat untuk alat klien, Anda harus:
 
 1. Mengekstrak `name`, `id`, dan `input` dari blok `tool_use`.
-2. Menjalankan alat yang sebenarnya dalam basis kode Anda yang sesuai dengan nama alat tersebut, dengan meneruskan `input` alat.
+2. Menjalankan alat yang sebenarnya di basis kode Anda yang sesuai dengan nama alat tersebut, dengan meneruskan `input` alat.
 3. Melanjutkan percakapan dengan mengirim pesan baru dengan `role` berupa `user`, dan blok `content` yang berisi tipe `tool_result` serta informasi berikut:
    - `tool_use_id`: `id` dari permintaan penggunaan alat yang hasilnya ini.
-   - `content` (opsional): Hasil dari alat, sebagai string (misalnya, `"content": "15 degrees"`), daftar blok konten bersarang (misalnya, `"content": [{"type": "text", "text": "15 degrees"}]`), atau daftar blok dokumen (misalnya, `"content": [{"type": "document", "source": {"type": "text", "media_type": "text/plain", "data": "15 degrees"}}]`). Blok konten ini dapat menggunakan tipe `text`, `image`, atau `document`.
+   - `content` (opsional): Hasil dari alat, sebagai string (misalnya, `"content": "15 degrees"`), daftar blok konten bersarang (misalnya, `"content": [{"type": "text", "text": "15 degrees"}]`), atau daftar blok dokumen (misalnya, `"content": [{"type": "document", "source": {"type": "text", "media_type": "text/plain", "data": "15 degrees"}}]`). Blok konten ini dapat menggunakan tipe `text`, `image`, `document`, atau [`search_result`](/docs/id/build-with-claude/search-results).
    - `is_error` (opsional): Atur ke `true` jika eksekusi alat menghasilkan kesalahan.
 
 <Note>
@@ -92,7 +92,7 @@ Jika Anda menerima kesalahan seperti "tool_use ids were found without tool_resul
 </Note>
 
 <Warning>
-Hasil alat sering kali membawa konten dari sumber di luar kendali Anda: halaman web, email masuk, unggahan pengguna, API pihak ketiga. Perlakukan konten tersebut sebagai tidak tepercaya: penyerang yang dapat memengaruhinya mungkin menyematkan instruksi yang mencoba mengalihkan Claude (injeksi prompt tidak langsung). Simpan konten yang tidak tepercaya di dalam blok `tool_result` alih-alih prompt `system` atau blok `text` pengguna biasa, dan lihat [Mitigasi jailbreak dan injeksi prompt](/docs/id/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks#indirect-prompt-injection) untuk penguatan lebih lanjut.
+Hasil alat sering kali membawa konten dari sumber di luar kendali Anda: halaman web, email masuk, unggahan pengguna, API pihak ketiga. Perlakukan konten tersebut sebagai tidak tepercaya: penyerang yang dapat memengaruhinya mungkin menyematkan instruksi yang mencoba mengalihkan Claude (injeksi prompt tidak langsung). Simpan konten yang tidak tepercaya di dalam blok `tool_result` alih-alih prompt `system` atau blok `text` pengguna biasa, dan lihat [Memitigasi jailbreak dan injeksi prompt](/docs/id/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks#indirect-prompt-injection) untuk pengerasan lebih lanjut.
 </Warning>
 
 <section title="Contoh hasil alat yang berhasil">
@@ -227,9 +227,9 @@ Tulis pesan kesalahan yang instruktif. Alih-alih kesalahan generik seperti `"fai
 </section>
 <section title="Nama alat tidak valid">
 
-Jika upaya Claude untuk menggunakan alat tidak valid (misalnya, parameter yang diperlukan tidak ada), biasanya ini berarti tidak ada cukup informasi bagi Claude untuk menggunakan alat dengan benar. Langkah terbaik Anda selama pengembangan adalah mencoba permintaan lagi dengan nilai `description` yang lebih detail dalam definisi alat Anda.
+Jika upaya Claude menggunakan alat tidak valid (misalnya, parameter yang diperlukan tidak ada), biasanya itu berarti tidak ada cukup informasi bagi Claude untuk menggunakan alat dengan benar. Langkah terbaik Anda selama pengembangan adalah mencoba permintaan lagi dengan nilai `description` yang lebih detail dalam definisi alat Anda.
 
-Namun, Anda juga dapat melanjutkan percakapan dengan `tool_result` yang menunjukkan kesalahan tersebut, dan Claude akan mencoba menggunakan alat lagi dengan informasi yang hilang diisi:
+Namun, Anda juga dapat melanjutkan percakapan dengan `tool_result` yang menunjukkan kesalahan, dan Claude akan mencoba menggunakan alat lagi dengan informasi yang hilang diisi:
 
 ```json JSON
 {
@@ -245,7 +245,7 @@ Namun, Anda juga dapat melanjutkan percakapan dengan `tool_result` yang menunjuk
 }
 ```
 
-Jika permintaan alat tidak valid atau parameternya tidak lengkap, Claude akan mencoba ulang 2-3 kali dengan koreksi sebelum meminta maaf kepada pengguna.
+Jika permintaan alat tidak valid atau parameter tidak ada, Claude akan mencoba ulang 2-3 kali dengan koreksi sebelum meminta maaf kepada pengguna.
 
 <Tip>
 Untuk menghilangkan panggilan alat yang tidak valid sepenuhnya, gunakan [penggunaan alat ketat](/docs/id/agents-and-tools/tool-use/strict-tool-use) dengan `strict: true` pada definisi alat Anda. Ini menjamin bahwa input alat akan selalu cocok dengan skema Anda secara persis, mencegah parameter yang hilang dan ketidakcocokan tipe.
@@ -267,6 +267,14 @@ Untuk pencarian web secara khusus, kode kesalahan yang mungkin meliputi:
 
 ## Langkah selanjutnya \{#next-steps}
 
-- Untuk menjalankan beberapa alat dalam satu giliran, lihat [Penggunaan alat paralel](/docs/id/agents-and-tools/tool-use/parallel-tool-use).
-- Untuk abstraksi SDK yang mengotomatiskan loop ini, lihat [Tool Runner](/docs/id/agents-and-tools/tool-use/tool-runner).
-- Untuk alur kerja penggunaan alat lengkap, lihat [Mendefinisikan alat](/docs/id/agents-and-tools/tool-use/define-tools).
+<CardGroup cols={3}>
+  <Card title="Penggunaan alat paralel" icon="grid" href="/docs/id/agents-and-tools/tool-use/parallel-tool-use">
+    Tangani respons di mana Claude memanggil beberapa alat dalam satu giliran.
+  </Card>
+  <Card title="Tool Runner (SDK)" icon="wrench" href="/docs/id/agents-and-tools/tool-use/tool-runner">
+    Biarkan SDK mengelola loop `tool_use`, pemformatan hasil, dan percobaan ulang untuk Anda.
+  </Card>
+  <Card title="Mendefinisikan alat" icon="hammer" href="/docs/id/agents-and-tools/tool-use/define-tools">
+    Tulis skema dan deskripsi yang mengarahkan Claude ke alat yang tepat.
+  </Card>
+</CardGroup>

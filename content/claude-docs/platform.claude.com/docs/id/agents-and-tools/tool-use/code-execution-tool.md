@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool
-fetched_at: 2026-06-13T03:15:40.418428Z
-sha256: 47557b98c23a9d8765b2aea9a9d9872e0481ca69a083f2f37bdb55689ec5fc8a
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: 114f8fead40d634ea92e948df2408099df8e78ecb2967bdf624081445de7e103
 ---
 
 # Alat eksekusi kode
@@ -13,9 +13,9 @@ Jalankan kode Python dan bash dalam kontainer sandbox untuk menganalisis data, m
 
 Claude dapat menganalisis data, membuat visualisasi, melakukan perhitungan kompleks, menjalankan perintah sistem, membuat dan mengedit file, serta memproses file yang diunggah secara langsung dalam percakapan API. Alat eksekusi kode memungkinkan Claude menjalankan perintah Bash dan memanipulasi file, termasuk menulis kode, dalam lingkungan sandbox yang aman.
 
-**Eksekusi kode gratis ketika digunakan bersama web search atau web fetch.** Ketika `web_search_20260209` atau `web_fetch_20260209` disertakan dalam permintaan Anda, tidak ada biaya tambahan untuk pemanggilan alat eksekusi kode di luar biaya token input dan output standar. Biaya eksekusi kode standar berlaku ketika alat-alat tersebut tidak disertakan.
+**Eksekusi kode gratis jika digunakan bersama web search atau web fetch.** Ketika `web_search_20260209` (atau yang lebih baru) atau `web_fetch_20260209` (atau yang lebih baru) disertakan dalam permintaan Anda, tidak ada biaya tambahan untuk panggilan alat eksekusi kode di luar biaya token input dan output standar. Biaya eksekusi kode standar berlaku jika alat-alat tersebut tidak disertakan.
 
-Eksekusi kode adalah primitif inti untuk membangun agen berkinerja tinggi. Fitur ini memungkinkan pemfilteran dinamis pada alat web search dan web fetch, sehingga Claude dapat memproses hasil sebelum mencapai "context window" (jendela konteks), meningkatkan akurasi sekaligus mengurangi konsumsi token.
+Eksekusi kode adalah primitif inti untuk membangun agen berkinerja tinggi. Fitur ini memungkinkan pemfilteran dinamis pada alat web search dan web fetch, sehingga Claude dapat memproses hasil sebelum masuk ke jendela konteks, meningkatkan akurasi sekaligus mengurangi konsumsi token.
 
 <Note>
 Hubungi kami melalui [formulir umpan balik](https://forms.gle/LTAU6Xn2puCJMi1n6) untuk membagikan masukan Anda tentang fitur ini.
@@ -31,21 +31,19 @@ Alat eksekusi kode tersedia pada model-model berikut:
 
 | Model | Versi alat |
 |-------|--------------|
-| Claude Fable 5 (claude-fable-5) | `code_execution_20250825`, `code_execution_20260120` |
-| Claude Mythos 5 (claude-mythos-5) | `code_execution_20250825`, `code_execution_20260120` |
-| Claude Opus 4.8 (claude-opus-4-8) | `code_execution_20250825`, `code_execution_20260120` |
-| Claude Opus 4.7 (claude-opus-4-7) | `code_execution_20250825`, `code_execution_20260120` |
-| Claude Opus 4.6 (claude-opus-4-6) | `code_execution_20250825`, `code_execution_20260120` |
-| Claude Sonnet 4.6 (claude-sonnet-4-6) | `code_execution_20250825`, `code_execution_20260120` |
-| Claude Opus 4.5 (claude-opus-4-5-20251101) | `code_execution_20250825`, `code_execution_20260120` |
-| Claude Sonnet 4.5 (claude-sonnet-4-5-20250929) | `code_execution_20250825`, `code_execution_20260120` |
+| Claude Fable 5 (claude-fable-5) | `code_execution_20250825`, `code_execution_20260120`, `code_execution_20260521` |
+| Claude Mythos 5 (claude-mythos-5) | `code_execution_20250825`, `code_execution_20260120`, `code_execution_20260521` |
+| Claude Opus 4.8 (claude-opus-4-8) | `code_execution_20250825`, `code_execution_20260120`, `code_execution_20260521` |
+| Claude Opus 4.7 (claude-opus-4-7) | `code_execution_20250825`, `code_execution_20260120`, `code_execution_20260521` |
+| Claude Opus 4.6 (claude-opus-4-6) | `code_execution_20250825`, `code_execution_20260120`, `code_execution_20260521` |
+| Claude Sonnet 4.6 (claude-sonnet-4-6) | `code_execution_20250825`, `code_execution_20260120`, `code_execution_20260521` |
+| Claude Opus 4.5 (claude-opus-4-5-20251101) | `code_execution_20250825`, `code_execution_20260120`, `code_execution_20260521` |
+| Claude Sonnet 4.5 (claude-sonnet-4-5-20250929) | `code_execution_20250825`, `code_execution_20260120`, `code_execution_20260521` |
 | Claude Haiku 4.5 (claude-haiku-4-5-20251001) | `code_execution_20250825` |
 | Claude Opus 4.1 (claude-opus-4-1-20250805) ([tidak digunakan lagi](/docs/id/about-claude/model-deprecations)) | `code_execution_20250825` |
-| Claude Opus 4 (claude-opus-4-20250514) ([tidak digunakan lagi](/docs/id/about-claude/model-deprecations)) | `code_execution_20250825` |
-| Claude Sonnet 4 (claude-sonnet-4-20250514) ([tidak digunakan lagi](/docs/id/about-claude/model-deprecations)) | `code_execution_20250825` |
 
 <Note>
-`code_execution_20250825` mendukung perintah Bash dan operasi file, serta tersedia pada setiap model dalam tabel. `code_execution_20260120` menambahkan persistensi state REPL dan [pemanggilan alat secara programatik](/docs/id/agents-and-tools/tool-use/programmatic-tool-calling) dari dalam sandbox, dan hanya tersedia pada Claude Fable 5, Claude Mythos 5, Opus 4.5+, dan Sonnet 4.5+. Jika Anda masih menggunakan `code_execution_20250522` lama (hanya Python), lihat [Upgrade ke versi alat terbaru](#upgrade-ke-versi-alat-terbaru) untuk bermigrasi darinya.
+`code_execution_20250825` mendukung perintah Bash dan operasi file, serta tersedia pada setiap model dalam tabel. `code_execution_20260120` menambahkan persistensi state REPL dan [pemanggilan alat secara programatik](/docs/id/agents-and-tools/tool-use/programmatic-tool-calling) dari dalam sandbox, dan hanya tersedia pada Claude Fable 5, Claude Mythos 5, Opus 4.5+, dan Sonnet 4.5+. `code_execution_20260521` adalah runtime yang sama dengan `_20260120` dengan batas waktu eksekusi per sel yang diungkapkan dalam deskripsi alat, sehingga Claude dapat mengatur anggaran waktu untuk sel yang berjalan lama. Setiap sel memiliki batas waktu wall-clock 90 detik; kode yang melebihinya akan mengembalikan hasil `detection_timeout`. Jika Anda masih menggunakan `code_execution_20250522` lama (hanya Python), lihat [Upgrade ke versi alat terbaru](#upgrade-to-latest-tool-version) untuk bermigrasi darinya.
 </Note>
 
 <Warning>
@@ -338,7 +336,7 @@ Hal ini sangat penting ketika menggabungkan eksekusi kode dengan [web search](/d
 
 ### Unggah dan analisis file Anda sendiri \{#upload-and-analyze-your-own-files}
 
-Untuk menganalisis file data Anda sendiri (seperti CSV, Excel, atau gambar), unggah file tersebut melalui Files API dan referensikan dalam permintaan Anda:
+Untuk menganalisis file data Anda sendiri (seperti CSV, Excel, atau gambar), unggah melalui Files API dan referensikan dalam permintaan Anda:
 
 <Note>
 Menggunakan Files API dengan Code Execution memerlukan header beta Files API: `"anthropic-beta": "files-api-2025-04-14"`
@@ -772,7 +770,7 @@ def extract_file_ids(response):
     return file_ids
 
 
-# Unduh file yang dibuat
+# Unduh file yang telah dibuat
 for file_id in extract_file_ids(response):
     file_metadata = client.beta.files.retrieve_metadata(file_id)
     file_content = client.beta.files.download(file_id)
@@ -1018,13 +1016,13 @@ void main() throws Exception {
 
 List<String> extractFileIds(BetaMessage response) {
     List<String> fileIds = new ArrayList<>();
-    // .ifPresent() adalah guard diskriminator (tidak bertipe konkret; scanner tidak bisa melihat guard lambda)
+    // .ifPresent() adalah penjaga diskriminator (tidak bertipe konkret; pemindai tidak dapat melihat penjaga lambda)
     for (BetaContentBlock item : response.content()) {
         item.bashCodeExecutionToolResult().ifPresent(toolResult -> {
             if (toolResult.content().isBetaBashCodeExecutionResultBlock()) {
                 BetaBashCodeExecutionResultBlock result =
                     toolResult.content().asBetaBashCodeExecutionResultBlock();
-                // list bertipe konkret: BetaBashCodeExecutionOutputBlock
+                // daftar bertipe konkret: BetaBashCodeExecutionOutputBlock
                 for (BetaBashCodeExecutionOutputBlock output : result.content()) {
                     fileIds.add(output.fileId());
                 }
@@ -1726,11 +1724,11 @@ data: {"type": "content_block_start", "index": 2, "content_block": {"type": "cod
 
 ## Permintaan batch \{#batch-requests}
 
-Anda dapat menyertakan alat eksekusi kode dalam [Messages Batches API](/docs/id/build-with-claude/batch-processing). Pemanggilan alat eksekusi kode melalui Messages Batches API dikenakan harga yang sama dengan permintaan Messages API reguler.
+Anda dapat menyertakan alat eksekusi kode dalam [Messages Batches API](/docs/id/build-with-claude/batch-processing). Panggilan alat eksekusi kode melalui Messages Batches API dikenakan harga yang sama dengan permintaan Messages API biasa.
 
 ## Penggunaan dan harga \{#usage-and-pricing}
 
-**Code execution gratis jika digunakan bersama web search atau web fetch.** Ketika `web_search_20260209` atau `web_fetch_20260209` disertakan dalam permintaan API Anda, tidak ada biaya tambahan untuk panggilan alat code execution selain biaya token input dan output standar.
+**Code execution gratis ketika digunakan bersama web search atau web fetch.** Ketika `web_search_20260209` (atau versi lebih baru) atau `web_fetch_20260209` (atau versi lebih baru) disertakan dalam permintaan API Anda, tidak ada biaya tambahan untuk panggilan alat code execution selain biaya token input dan output standar.
 
 Ketika digunakan tanpa alat-alat tersebut, code execution ditagih berdasarkan waktu eksekusi, yang dilacak secara terpisah dari penggunaan token:
 
@@ -1768,7 +1766,7 @@ Dengan melakukan upgrade ke `code-execution-2025-08-25`, Anda mendapatkan akses 
 
 ### Kompatibilitas mundur \{#backward-compatibility}
 
-- Semua eksekusi kode Python yang ada terus berfungsi persis seperti sebelumnya
+- Semua eksekusi kode Python yang sudah ada tetap berfungsi persis seperti sebelumnya
 - Tidak ada perubahan yang diperlukan pada alur kerja yang hanya menggunakan Python
 
 ### Langkah-langkah upgrade \{#upgrade-steps}

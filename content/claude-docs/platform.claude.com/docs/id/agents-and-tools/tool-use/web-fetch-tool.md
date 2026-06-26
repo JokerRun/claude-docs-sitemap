@@ -1,19 +1,19 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool
-fetched_at: 2026-06-13T03:15:40.418428Z
-sha256: 5ab5f1d00f3a767f8f324e8494f8ab41aaf79ec6ad14649fcf1e28fb4b4fef02
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: 81b9df7d48f403a88acee18cad82012f21074c2471646de7b1990a0ba9ae4ae5
 ---
 
 # Alat web fetch
 
-Ambil dan baca konten dari URL tertentu untuk memperkaya konteks Claude dengan konten web langsung.
+Mengambil dan membaca konten dari URL tertentu untuk memperkaya konteks Claude dengan konten web langsung.
 
 ---
 
 Alat web fetch memungkinkan Claude mengambil konten lengkap dari halaman web dan dokumen PDF yang ditentukan.
 
-Versi alat web fetch terbaru (`web_fetch_20260209`) mendukung **dynamic filtering** (pemfilteran dinamis) dengan Claude Fable 5, Claude Opus 4.8, Claude Mythos 5, [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.7, Claude Opus 4.6, dan Claude Sonnet 4.6. Claude dapat menulis dan mengeksekusi kode untuk memfilter konten yang diambil sebelum mencapai jendela konteks, hanya menyimpan informasi yang relevan dan membuang sisanya. Ini mengurangi konsumsi token sambil mempertahankan kualitas respons. Versi alat sebelumnya (`web_fetch_20250910`) tetap tersedia tanpa pemfilteran dinamis.
+Versi alat web fetch terbaru (`web_fetch_20260318`) mendukung **dynamic filtering** (pemfilteran dinamis) dengan Claude Fable 5, Claude Opus 4.8, Claude Mythos 5, [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.7, Claude Opus 4.6, dan Claude Sonnet 4.6. Claude dapat menulis dan mengeksekusi kode untuk memfilter konten yang diambil sebelum mencapai jendela konteks, hanya menyimpan informasi yang relevan dan membuang sisanya. Hal ini mengurangi konsumsi token sambil mempertahankan kualitas respons. `web_fetch_20260318` juga menambahkan kontrol [penyertaan respons](#response-inclusion) untuk alur kerja agentik. Versi sebelumnya (`web_fetch_20260309` untuk pemfilteran dinamis dan [cache bypass](#cache-bypass), `web_fetch_20260209` untuk pemfilteran dinamis saja, `web_fetch_20250910` untuk fetch dasar) tetap tersedia.
 
 <Note>
 Untuk [Claude Mythos Preview](https://anthropic.com/glasswing), web fetch tersedia di Claude API dan Microsoft Foundry. Saat ini tidak tersedia untuk Mythos Preview di Amazon Bedrock atau Vertex AI.
@@ -28,7 +28,7 @@ Untuk kelayakan Zero Data Retention dan solusi `allowed_callers`, lihat [Alat se
 <Warning>
 Mengaktifkan alat web fetch di lingkungan tempat Claude memproses input yang tidak tepercaya bersama dengan data sensitif menimbulkan risiko eksfiltrasi data. Hanya gunakan alat ini di lingkungan tepercaya atau saat menangani data yang tidak sensitif.
 
-Untuk meminimalkan risiko eksfiltrasi, Claude tidak diizinkan untuk membuat URL secara dinamis. Claude hanya dapat mengambil URL yang telah disediakan secara eksplisit oleh pengguna atau yang berasal dari hasil web search atau web fetch sebelumnya. Namun, masih ada risiko residual yang harus dipertimbangkan dengan cermat saat menggunakan alat ini.
+Untuk meminimalkan risiko eksfiltrasi, Claude tidak diizinkan untuk membangun URL secara dinamis. Claude hanya dapat mengambil URL yang telah disediakan secara eksplisit oleh pengguna atau yang berasal dari hasil web search atau web fetch sebelumnya. Namun, masih ada risiko residual yang harus dipertimbangkan dengan cermat saat menggunakan alat ini.
 
 Jika eksfiltrasi data menjadi perhatian, pertimbangkan untuk:
 - Menonaktifkan alat web fetch sepenuhnya
@@ -62,7 +62,7 @@ Claude **tidak** melakukan fetch untuk pertanyaan pengetahuan umum atau pertanya
 
 ### Pemfilteran dinamis \{#dynamic-filtering}
 
-Mengambil halaman web dan PDF lengkap dapat dengan cepat menghabiskan token, terutama ketika hanya informasi tertentu yang dibutuhkan dari dokumen besar. Dengan versi alat `web_fetch_20260209`, Claude dapat menulis dan mengeksekusi kode untuk memfilter konten yang diambil sebelum memuatnya ke dalam konteks.
+Mengambil halaman web dan PDF secara penuh dapat dengan cepat menghabiskan token, terutama ketika hanya informasi tertentu yang dibutuhkan dari dokumen besar. Dengan `web_fetch_20260209` atau yang lebih baru, Claude dapat menulis dan mengeksekusi kode untuk memfilter konten yang diambil sebelum memuatnya ke dalam konteks.
 
 Pemfilteran dinamis ini sangat berguna untuk:
 - Mengekstrak bagian tertentu dari dokumen panjang
@@ -71,10 +71,10 @@ Pemfilteran dinamis ini sangat berguna untuk:
 - Mengurangi biaya token saat bekerja dengan dokumen besar
 
 <Note>
-Pemfilteran dinamis memerlukan [alat code execution](/docs/id/agents-and-tools/tool-use/code-execution-tool) untuk diaktifkan. Alat web fetch (dengan dan tanpa pemfilteran dinamis) tersedia di Claude API, [Claude Platform on AWS](/docs/id/build-with-claude/claude-platform-on-aws), dan [Microsoft Foundry](/docs/id/build-with-claude/claude-in-microsoft-foundry). Saat ini tidak tersedia di Amazon Bedrock atau Vertex AI.
+Pemfilteran dinamis memerlukan [alat code execution](/docs/id/agents-and-tools/tool-use/code-execution-tool) untuk diaktifkan. Alat web fetch (dengan dan tanpa pemfilteran dinamis) tersedia di Claude API, [Claude Platform di AWS](/docs/id/build-with-claude/claude-platform-on-aws), dan [Microsoft Foundry](/docs/id/build-with-claude/claude-in-microsoft-foundry). Saat ini tidak tersedia di Amazon Bedrock atau Vertex AI.
 </Note>
 
-Untuk mengaktifkan pemfilteran dinamis, gunakan versi alat `web_fetch_20260209`:
+Untuk mengaktifkan pemfilteran dinamis, gunakan `web_fetch_20260209` atau versi yang lebih baru. Contoh berikut menggunakan `web_fetch_20260209`:
 
 <CodeGroup>
 ```bash cURL
@@ -473,7 +473,7 @@ puts message
 ```
 </CodeGroup>
 
-### Definisi alat \{#tool-definition}
+## Definisi alat \{#tool-definition}
 
 Alat web fetch mendukung parameter berikut:
 
@@ -501,15 +501,15 @@ Alat web fetch mendukung parameter berikut:
 }
 ```
 
-#### Max uses \{#max-uses}
+### Max uses \{#max-uses}
 
 Parameter `max_uses` membatasi jumlah web fetch yang dilakukan. Jika Claude mencoba lebih banyak fetch dari yang diizinkan, `web_fetch_tool_result` akan berupa error dengan kode error `max_uses_exceeded`. Saat ini tidak ada batas default.
 
-#### Pemfilteran domain \{#domain-filtering}
+### Pemfilteran domain \{#domain-filtering}
 
 Untuk pemfilteran domain dengan `allowed_domains` dan `blocked_domains`, lihat [Alat server](/docs/id/agents-and-tools/tool-use/server-tools#domain-filtering).
 
-#### Batas konten \{#content-limits}
+### Batas konten \{#content-limits}
 
 Parameter `max_content_tokens` membatasi jumlah konten yang disertakan dalam konteks. Jika konten yang diambil melebihi batas ini, alat akan memotongnya. Ini membantu mengontrol penggunaan token saat mengambil dokumen besar.
 
@@ -517,7 +517,35 @@ Parameter `max_content_tokens` membatasi jumlah konten yang disertakan dalam kon
 Batas parameter `max_content_tokens` bersifat perkiraan. Jumlah token input aktual yang digunakan dapat bervariasi dalam jumlah kecil.
 </Note>
 
-#### Sitasi \{#citations}
+### Cache bypass \{#cache-bypass}
+
+<Note>
+Memerlukan `web_fetch_20260309` atau yang lebih baru (termasuk `web_fetch_20260318`).
+</Note>
+
+Parameter `use_cache` mengontrol apakah konten yang di-cache dapat dikembalikan. Atur `"use_cache": false` untuk melewati cache dan mengambil konten baru; nilai default adalah `true`. Hanya nonaktifkan caching ketika pengguna secara eksplisit meminta konten baru atau saat mengambil sumber yang berubah dengan cepat, karena melewati cache meningkatkan latensi.
+
+### Penyertaan respons \{#response-inclusion}
+
+<Note>
+Memerlukan `web_fetch_20260318` atau yang lebih baru.
+</Note>
+
+Parameter `response_inclusion` mengontrol bagaimana blok hasil fetch muncul dalam respons API ketika hasil tersebut dikonsumsi oleh panggilan [code execution](/docs/id/agents-and-tools/tool-use/code-execution-tool) yang telah selesai dalam giliran yang sama. Atur `"response_inclusion": "excluded"` untuk menghapus pasangan blok `server_tool_use` dan blok hasil bersarang tersebut sepenuhnya dari respons, sehingga mengurangi biaya token output untuk alur kerja agentik yang tidak perlu mengirim kembali konten halaman mentah ke klien. Nilai default adalah `"full"`. Hasil dari panggilan langsung, atau dari panggilan code execution yang dijeda sebelum selesai, selalu dikembalikan secara penuh sehingga dapat dikirim kembali pada giliran berikutnya.
+
+```json
+{
+  "tools": [
+    {
+      "type": "web_fetch_20260318",
+      "name": "web_fetch",
+      "response_inclusion": "excluded"
+    }
+  ]
+}
+```
+
+### Sitasi \{#citations}
 
 Tidak seperti web search di mana sitasi selalu diaktifkan, sitasi bersifat opsional untuk web fetch. Atur `"citations": {"enabled": true}` untuk memungkinkan Claude mengutip bagian tertentu dari dokumen yang diambil.
 
@@ -525,7 +553,7 @@ Tidak seperti web search di mana sitasi selalu diaktifkan, sitasi bersifat opsio
 Saat menampilkan output API secara langsung kepada pengguna akhir, sitasi harus disertakan ke sumber asli. Jika Anda melakukan modifikasi pada output API, termasuk dengan memproses ulang dan/atau menggabungkannya dengan materi Anda sendiri sebelum menampilkannya kepada pengguna akhir, tampilkan sitasi sebagaimana mestinya berdasarkan konsultasi dengan tim hukum Anda.
 </Note>
 
-### Respons \{#response}
+## Respons \{#response}
 
 Berikut adalah contoh struktur respons:
 
@@ -599,7 +627,7 @@ Berikut adalah contoh struktur respons:
 }
 ```
 
-#### Hasil fetch \{#fetch-results}
+### Hasil fetch \{#fetch-results}
 
 Hasil fetch mencakup:
 
@@ -608,10 +636,10 @@ Hasil fetch mencakup:
 - `retrieved_at`: Timestamp saat konten diambil
 
 <Note>
-Alat web fetch menyimpan hasil dalam cache untuk meningkatkan kinerja dan mengurangi permintaan yang redundan. Konten yang dikembalikan mungkin tidak selalu mencerminkan versi terbaru yang tersedia di URL. Perilaku cache dikelola secara otomatis dan dapat berubah seiring waktu untuk mengoptimalkan berbagai jenis konten dan pola penggunaan.
+Alat web fetch melakukan cache hasil untuk meningkatkan performa dan mengurangi permintaan yang redundan. Konten yang dikembalikan mungkin tidak selalu mencerminkan versi terbaru yang tersedia di URL tersebut. Perilaku cache dikelola secara otomatis dan dapat berubah seiring waktu untuk mengoptimalkan berbagai jenis konten dan pola penggunaan.
 </Note>
 
-Untuk dokumen PDF, konten dikembalikan sebagai data yang dikodekan base64:
+Untuk dokumen PDF, konten dikembalikan sebagai data yang dienkode base64:
 
 ```json Output
 {
@@ -634,7 +662,7 @@ Untuk dokumen PDF, konten dikembalikan sebagai data yang dikodekan base64:
 }
 ```
 
-#### Error \{#errors}
+### Error \{#errors}
 
 Ketika alat web fetch mengalami error, Claude API mengembalikan respons 200 (sukses) dengan error yang direpresentasikan dalam body respons:
 
@@ -668,11 +696,63 @@ Untuk alasan keamanan, alat web fetch hanya dapat mengambil URL yang sebelumnya 
 - URL dalam hasil alat sisi klien
 - URL dari hasil web search atau web fetch sebelumnya
 
-Alat ini tidak dapat mengambil URL sembarang yang dihasilkan Claude atau URL dari alat server berbasis container (Code Execution, Bash, dll.).
+Alat ini tidak dapat mengambil URL sembarang yang dihasilkan Claude atau URL dari alat server berbasis kontainer (Code Execution, Bash, dll.).
 
 ## Gabungan search dan fetch \{#combined-search-and-fetch}
 
 Web fetch bekerja secara mulus dengan web search untuk pengumpulan informasi yang komprehensif:
+
+<CodeGroup>
+```bash cURL
+curl https://api.anthropic.com/v1/messages \
+    --header "x-api-key: $ANTHROPIC_API_KEY" \
+    --header "anthropic-version: 2023-06-01" \
+    --header "content-type: application/json" \
+    --data '{
+        "model": "claude-opus-4-8",
+        "max_tokens": 4096,
+        "messages": [
+            {
+                "role": "user",
+                "content": "Find recent articles about quantum computing and analyze the most relevant one in detail"
+            }
+        ],
+        "tools": [
+            {
+                "type": "web_search_20250305",
+                "name": "web_search",
+                "max_uses": 3
+            },
+            {
+                "type": "web_fetch_20250910",
+                "name": "web_fetch",
+                "max_uses": 5,
+                "citations": {"enabled": true}
+            }
+        ]
+    }'
+```
+
+```bash CLI
+ant messages create <<'YAML'
+model: claude-opus-4-8
+max_tokens: 4096
+messages:
+  - role: user
+    content: >-
+      Find recent articles about quantum computing
+      and analyze the most relevant one in detail
+tools:
+  - type: web_search_20250305
+    name: web_search
+    max_uses: 3
+  - type: web_fetch_20250910
+    name: web_fetch
+    max_uses: 5
+    citations:
+      enabled: true
+YAML
+```
 
 ```python Python hidelines={1..2}
 import anthropic
@@ -701,6 +781,183 @@ response = client.messages.create(
 print(response)
 ```
 
+```typescript TypeScript hidelines={1..2}
+import Anthropic from "@anthropic-ai/sdk";
+
+const client = new Anthropic();
+
+const response = await client.messages.create({
+  model: "claude-opus-4-8",
+  max_tokens: 4096,
+  messages: [
+    {
+      role: "user",
+      content:
+        "Find recent articles about quantum computing and analyze the most relevant one in detail"
+    }
+  ],
+  tools: [
+    { type: "web_search_20250305", name: "web_search", max_uses: 3 },
+    {
+      type: "web_fetch_20250910",
+      name: "web_fetch",
+      max_uses: 5,
+      citations: { enabled: true }
+    }
+  ]
+});
+
+console.log(response);
+```
+
+```csharp C# hidelines={1..3}
+using Anthropic;
+using Anthropic.Models.Messages;
+
+AnthropicClient client = new();
+
+var parameters = new MessageCreateParams
+{
+    Model = Model.ClaudeOpus4_8,
+    MaxTokens = 4096,
+    Messages = [new() { Role = Role.User, Content = "Find recent articles about quantum computing and analyze the most relevant one in detail" }],
+    Tools = [
+        new ToolUnion(new WebSearchTool20250305() { MaxUses = 3 }),
+        new ToolUnion(new WebFetchTool20250910() { MaxUses = 5, Citations = new() { Enabled = true } })
+    ]
+};
+
+var message = await client.Messages.Create(parameters);
+Console.WriteLine(message);
+```
+
+```go Go hidelines={1..11,-1}
+package main
+
+import (
+	"context"
+	"fmt"
+	"log"
+
+	"github.com/anthropics/anthropic-sdk-go"
+)
+
+func main() {
+	client := anthropic.NewClient()
+
+	response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
+		Model:     anthropic.ModelClaudeOpus4_8,
+		MaxTokens: 4096,
+		Messages: []anthropic.MessageParam{
+			anthropic.NewUserMessage(anthropic.NewTextBlock("Find recent articles about quantum computing and analyze the most relevant one in detail")),
+		},
+		Tools: []anthropic.ToolUnionParam{
+			{OfWebSearchTool20250305: &anthropic.WebSearchTool20250305Param{
+				MaxUses: anthropic.Int(3),
+			}},
+			{OfWebFetchTool20250910: &anthropic.WebFetchTool20250910Param{
+				MaxUses:   anthropic.Int(5),
+				Citations: anthropic.CitationsConfigParam{Enabled: anthropic.Bool(true)},
+			}},
+		},
+	})
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(response)
+}
+```
+
+```java Java hidelines={1..2,4..6}
+import com.anthropic.client.AnthropicClient;
+import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+import com.anthropic.models.messages.CitationsConfigParam;
+import com.anthropic.models.messages.Message;
+import com.anthropic.models.messages.MessageCreateParams;
+import com.anthropic.models.messages.Model;
+import com.anthropic.models.messages.WebFetchTool20250910;
+import com.anthropic.models.messages.WebSearchTool20250305;
+
+void main() {
+    AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+    MessageCreateParams params = MessageCreateParams.builder()
+        .model(Model.CLAUDE_OPUS_4_8)
+        .maxTokens(4096L)
+        .addUserMessage("Find recent articles about quantum computing and analyze the most relevant one in detail")
+        .addTool(WebSearchTool20250305.builder()
+            .maxUses(3L)
+            .build())
+        .addTool(WebFetchTool20250910.builder()
+            .maxUses(5L)
+            .citations(CitationsConfigParam.builder().enabled(true).build())
+            .build())
+        .build();
+
+    Message response = client.messages().create(params);
+    IO.println(response);
+}
+```
+
+```php PHP hidelines={1..4}
+<?php
+
+use Anthropic\Client;
+
+$client = new Client();
+
+$message = $client->messages->create(
+    maxTokens: 4096,
+    messages: [
+        ['role' => 'user', 'content' => 'Find recent articles about quantum computing and analyze the most relevant one in detail']
+    ],
+    model: 'claude-opus-4-8',
+    tools: [
+        [
+            'type' => 'web_search_20250305',
+            'name' => 'web_search',
+            'max_uses' => 3,
+        ],
+        [
+            'type' => 'web_fetch_20250910',
+            'name' => 'web_fetch',
+            'max_uses' => 5,
+            'citations' => ['enabled' => true],
+        ],
+    ],
+);
+echo $message;
+```
+
+```ruby Ruby hidelines={1..2}
+require "anthropic"
+
+client = Anthropic::Client.new
+
+message = client.messages.create(
+  model: "claude-opus-4-8",
+  max_tokens: 4096,
+  messages: [
+    { role: "user", content: "Find recent articles about quantum computing and analyze the most relevant one in detail" }
+  ],
+  tools: [
+    {
+      type: "web_search_20250305",
+      name: "web_search",
+      max_uses: 3
+    },
+    {
+      type: "web_fetch_20250910",
+      name: "web_fetch",
+      max_uses: 5,
+      citations: { enabled: true }
+    }
+  ]
+)
+puts message
+```
+</CodeGroup>
+
 Dalam alur kerja ini, Claude akan:
 1. Menggunakan web search untuk menemukan artikel yang relevan
 2. Memilih hasil yang paling menjanjikan
@@ -711,7 +968,7 @@ Ketika alat web search dan web fetch keduanya diaktifkan, dan pengguna menyebutk
 
 ## Caching prompt \{#prompt-caching}
 
-Untuk melakukan caching definisi alat di seluruh giliran, lihat [Penggunaan alat dengan caching prompt](/docs/id/agents-and-tools/tool-use/tool-use-with-prompt-caching).
+Untuk melakukan cache definisi alat di seluruh giliran, lihat [Penggunaan alat dengan caching prompt](/docs/id/agents-and-tools/tool-use/tool-use-with-prompt-caching).
 
 ## Streaming \{#streaming}
 
@@ -744,7 +1001,7 @@ data: {"type": "content_block_start", "index": 2, "content_block": {"type": "web
 
 ## Permintaan batch \{#batch-requests}
 
-Anda dapat menyertakan alat web fetch dalam [Messages Batches API](/docs/id/build-with-claude/batch-processing). Panggilan alat web fetch melalui Messages Batches API dikenakan harga yang sama dengan permintaan Messages API reguler.
+Anda dapat menyertakan alat web fetch dalam [Messages Batches API](/docs/id/build-with-claude/batch-processing). Panggilan alat web fetch melalui Messages Batches API dikenakan harga yang sama dengan panggilan dalam permintaan Messages API reguler.
 
 ## Penggunaan dan harga \{#usage-and-pricing}
 
@@ -781,5 +1038,8 @@ Contoh penggunaan token untuk konten umum:
   </Card>
   <Card href="/docs/id/agents-and-tools/tool-use/tool-reference" title="Referensi alat">
     Direktori semua alat yang disediakan Anthropic.
+  </Card>
+  <Card href="/docs/id/agents-and-tools/tool-use/code-execution-tool" title="Alat code execution">
+    Jalankan kode Python dan bash dalam kontainer sandbox.
   </Card>
 </CardGroup>

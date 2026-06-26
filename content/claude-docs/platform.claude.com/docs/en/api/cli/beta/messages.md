@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/messages
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 249bbe918cec7dbb0864052493bb0635dada322a555a781ca21a2a6752f238cf
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: 759a21007082e48ac15d2f647966c837118ec9cdd3369d50445590e3398889ec
 ---
 
 # Messages
@@ -82,7 +82,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   There is a limit of 100,000 messages in a single request.
 
-- `--model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+- `--model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
   Body param: The model that will complete your prompt.
 
@@ -1015,14 +1015,14 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `type: "compaction"`
 
-    - `beta_fallback_block: object { from, to, type }`
+    - `beta_fallback_block: object { from, to, trigger, type }`
 
       Marks the point in `content` where one model's output gives way to the next.
 
       One block appears per hop where a preceding model actually ran this turn and
-      declined. A turn routed directly by the sticky decision has no such boundary
-      and carries no block — the signal for whether a fallback model served the
-      response is the presence of a `fallback_message` entry in
+      declined. A turn where no preceding model ran and declined has no such
+      boundary and carries no block — the signal for whether a fallback model
+      served the response is the presence of a `fallback_message` entry in
       `usage.iterations`, not this block.
 
       The block is treated like a server-tool content block for streaming: it
@@ -1033,7 +1033,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         The model whose output ends at this point — the model that declined at this hop. When the declining hop is the requested model, its `model` echoes the top-level `model` string the caller sent (alias or canonical); when the declining hop is a fallback model, its `model` is that model's canonical id.
 
-        - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+        - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
           The model that will complete your prompt.
 
@@ -1099,35 +1099,33 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
             Exceptional model for specialized complex tasks
 
-          - `"claude-opus-4-0"`
-
-            Powerful model for complex tasks
-
-          - `"claude-opus-4-20250514"`
-
-            Powerful model for complex tasks
-
-          - `"claude-sonnet-4-0"`
-
-            High-performance model with extended thinking
-
-          - `"claude-sonnet-4-20250514"`
-
-            High-performance model with extended thinking
-
-          - `"claude-3-haiku-20240307"`
-
-            Fast and cost-effective model
-
       - `to: object { model }`
 
         The fallback model producing the content that follows this block. Its `model` is always the canonical id.
 
-        - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+        - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
           The model that will complete your prompt.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `trigger: object { category, type }`
+
+        What caused the `from` model to hand over at this hop.
+
+        - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
+
+          The policy category that triggered a refusal.
+
+          - `"cyber"`
+
+          - `"bio"`
+
+          - `"frontier_llm"`
+
+          - `"reasoning_extraction"`
+
+        - `type: "refusal"`
 
       - `type: "fallback"`
 
@@ -1218,7 +1216,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         - `type: "unavailable"`
 
-  - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+  - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
     The model that will complete your prompt.
 
@@ -1284,26 +1282,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       Exceptional model for specialized complex tasks
 
-    - `"claude-opus-4-0"`
-
-      Powerful model for complex tasks
-
-    - `"claude-opus-4-20250514"`
-
-      Powerful model for complex tasks
-
-    - `"claude-sonnet-4-0"`
-
-      High-performance model with extended thinking
-
-    - `"claude-sonnet-4-20250514"`
-
-      High-performance model with extended thinking
-
-    - `"claude-3-haiku-20240307"`
-
-      Fast and cost-effective model
-
   - `role: "assistant"`
 
     Conversational role of the generated message.
@@ -1314,15 +1292,15 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     Structured information about a refusal.
 
-    - `category: "cyber" or "bio" or "reasoning_extraction"`
+    - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
 
-      The policy category that triggered the refusal.
-
-      `null` when the refusal doesn't map to a named category.
+      The policy category that triggered a refusal.
 
       - `"cyber"`
 
       - `"bio"`
+
+      - `"frontier_llm"`
 
       - `"reasoning_extraction"`
 
@@ -1504,7 +1482,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
           The number of input tokens which were used.
 
-        - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+        - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
           The model that will complete your prompt.
 
@@ -1569,26 +1547,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
           - `"claude-opus-4-1-20250805"`
 
             Exceptional model for specialized complex tasks
-
-          - `"claude-opus-4-0"`
-
-            Powerful model for complex tasks
-
-          - `"claude-opus-4-20250514"`
-
-            Powerful model for complex tasks
-
-          - `"claude-sonnet-4-0"`
-
-            High-performance model with extended thinking
-
-          - `"claude-sonnet-4-20250514"`
-
-            High-performance model with extended thinking
-
-          - `"claude-3-haiku-20240307"`
-
-            Fast and cost-effective model
 
         - `output_tokens: number`
 
@@ -1662,7 +1620,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
           The number of input tokens which were used.
 
-        - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+        - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
           The model that will complete your prompt.
 
@@ -1727,26 +1685,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
           - `"claude-opus-4-1-20250805"`
 
             Exceptional model for specialized complex tasks
-
-          - `"claude-opus-4-0"`
-
-            Powerful model for complex tasks
-
-          - `"claude-opus-4-20250514"`
-
-            Powerful model for complex tasks
-
-          - `"claude-sonnet-4-0"`
-
-            High-performance model with extended thinking
-
-          - `"claude-sonnet-4-20250514"`
-
-            High-performance model with extended thinking
-
-          - `"claude-3-haiku-20240307"`
-
-            Fast and cost-effective model
 
         - `output_tokens: number`
 
@@ -1789,7 +1727,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
           The number of input tokens which were used.
 
-        - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+        - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
           The model that will complete your prompt.
 
@@ -1854,26 +1792,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
           - `"claude-opus-4-1-20250805"`
 
             Exceptional model for specialized complex tasks
-
-          - `"claude-opus-4-0"`
-
-            Powerful model for complex tasks
-
-          - `"claude-opus-4-20250514"`
-
-            Powerful model for complex tasks
-
-          - `"claude-sonnet-4-0"`
-
-            High-performance model with extended thinking
-
-          - `"claude-sonnet-4-20250514"`
-
-            High-performance model with extended thinking
-
-          - `"claude-3-haiku-20240307"`
-
-            Fast and cost-effective model
 
         - `output_tokens: number`
 
@@ -2110,7 +2028,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
   There is a limit of 100,000 messages in a single request.
 
-- `--model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+- `--model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
   Body param: The model that will complete your prompt.
 
@@ -2162,7 +2080,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
   Body param: How the model should use the provided tools. The model can use a specific tool, any available tool, decide by itself, or not use tools at all.
 
-- `--tool: optional array of BetaTool or BetaToolBash20241022 or BetaToolBash20250124 or 20 more`
+- `--tool: optional array of BetaTool or BetaToolBash20241022 or BetaToolBash20250124 or 21 more`
 
   Body param: Definitions of tools that the model may use.
 
@@ -2298,7 +2216,7 @@ ant beta:messages count-tokens \
 
     The number of input tokens which were used.
 
-  - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+  - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
     The model that will complete your prompt.
 
@@ -2363,26 +2281,6 @@ ant beta:messages count-tokens \
     - `"claude-opus-4-1-20250805"`
 
       Exceptional model for specialized complex tasks
-
-    - `"claude-opus-4-0"`
-
-      Powerful model for complex tasks
-
-    - `"claude-opus-4-20250514"`
-
-      Powerful model for complex tasks
-
-    - `"claude-sonnet-4-0"`
-
-      High-performance model with extended thinking
-
-    - `"claude-sonnet-4-20250514"`
-
-      High-performance model with extended thinking
-
-    - `"claude-3-haiku-20240307"`
-
-      Fast and cost-effective model
 
   - `output_tokens: number`
 
@@ -2444,7 +2342,7 @@ ant beta:messages count-tokens \
 
 - `beta_advisor_tool_20260301: object { model, name, type, 7 more }`
 
-  - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+  - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
     The model that will complete your prompt.
 
@@ -2510,26 +2408,6 @@ ant beta:messages count-tokens \
 
       Exceptional model for specialized complex tasks
 
-    - `"claude-opus-4-0"`
-
-      Powerful model for complex tasks
-
-    - `"claude-opus-4-20250514"`
-
-      Powerful model for complex tasks
-
-    - `"claude-sonnet-4-0"`
-
-      High-performance model with extended thinking
-
-    - `"claude-sonnet-4-20250514"`
-
-      High-performance model with extended thinking
-
-    - `"claude-3-haiku-20240307"`
-
-      Fast and cost-effective model
-
   - `name: "advisor"`
 
     Name of the tool.
@@ -2538,13 +2416,15 @@ ant beta:messages count-tokens \
 
   - `type: "advisor_20260301"`
 
-  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
     - `"direct"`
 
     - `"code_execution_20250825"`
 
     - `"code_execution_20260120"`
+
+    - `"code_execution_20260521"`
 
   - `cache_control: optional object { type, ttl }`
 
@@ -3579,13 +3459,15 @@ ant beta:messages count-tokens \
 
   - `type: "code_execution_20250522"`
 
-  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
     - `"direct"`
 
     - `"code_execution_20250825"`
 
     - `"code_execution_20260120"`
+
+    - `"code_execution_20260521"`
 
   - `cache_control: optional object { type, ttl }`
 
@@ -3628,13 +3510,15 @@ ant beta:messages count-tokens \
 
   - `type: "code_execution_20250825"`
 
-  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
     - `"direct"`
 
     - `"code_execution_20250825"`
 
     - `"code_execution_20260120"`
+
+    - `"code_execution_20260521"`
 
   - `cache_control: optional object { type, ttl }`
 
@@ -3679,13 +3563,68 @@ ant beta:messages count-tokens \
 
   - `type: "code_execution_20260120"`
 
-  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
     - `"direct"`
 
     - `"code_execution_20250825"`
 
     - `"code_execution_20260120"`
+
+    - `"code_execution_20260521"`
+
+  - `cache_control: optional object { type, ttl }`
+
+    Create a cache control breakpoint at this content block.
+
+    - `type: "ephemeral"`
+
+    - `ttl: optional "5m" or "1h"`
+
+      The time-to-live for the cache control breakpoint.
+
+      This may be one the following values:
+
+      - `5m`: 5 minutes
+      - `1h`: 1 hour
+
+      Defaults to `5m`.
+
+      - `"5m"`
+
+      - `"1h"`
+
+  - `defer_loading: optional boolean`
+
+    If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+  - `strict: optional boolean`
+
+    When true, guarantees schema validation on tool names and inputs
+
+### Beta Code Execution Tool 20260521
+
+- `beta_code_execution_tool_20260521: object { name, type, allowed_callers, 3 more }`
+
+  Code execution tool with REPL state persistence.
+
+  - `name: "code_execution"`
+
+    Name of the tool.
+
+    This is how the tool will be called by the model and in `tool_use` blocks.
+
+  - `type: "code_execution_20260521"`
+
+  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
+
+    - `"direct"`
+
+    - `"code_execution_20250825"`
+
+    - `"code_execution_20260120"`
+
+    - `"code_execution_20260521"`
 
   - `cache_control: optional object { type, ttl }`
 
@@ -4914,14 +4853,14 @@ ant beta:messages count-tokens \
 
     - `type: "compaction"`
 
-  - `beta_fallback_block: object { from, to, type }`
+  - `beta_fallback_block: object { from, to, trigger, type }`
 
     Marks the point in `content` where one model's output gives way to the next.
 
     One block appears per hop where a preceding model actually ran this turn and
-    declined. A turn routed directly by the sticky decision has no such boundary
-    and carries no block — the signal for whether a fallback model served the
-    response is the presence of a `fallback_message` entry in
+    declined. A turn where no preceding model ran and declined has no such
+    boundary and carries no block — the signal for whether a fallback model
+    served the response is the presence of a `fallback_message` entry in
     `usage.iterations`, not this block.
 
     The block is treated like a server-tool content block for streaming: it
@@ -4932,7 +4871,7 @@ ant beta:messages count-tokens \
 
       The model whose output ends at this point — the model that declined at this hop. When the declining hop is the requested model, its `model` echoes the top-level `model` string the caller sent (alias or canonical); when the declining hop is a fallback model, its `model` is that model's canonical id.
 
-      - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+      - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
         The model that will complete your prompt.
 
@@ -4998,35 +4937,33 @@ ant beta:messages count-tokens \
 
           Exceptional model for specialized complex tasks
 
-        - `"claude-opus-4-0"`
-
-          Powerful model for complex tasks
-
-        - `"claude-opus-4-20250514"`
-
-          Powerful model for complex tasks
-
-        - `"claude-sonnet-4-0"`
-
-          High-performance model with extended thinking
-
-        - `"claude-sonnet-4-20250514"`
-
-          High-performance model with extended thinking
-
-        - `"claude-3-haiku-20240307"`
-
-          Fast and cost-effective model
-
     - `to: object { model }`
 
       The fallback model producing the content that follows this block. Its `model` is always the canonical id.
 
-      - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+      - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+    - `trigger: object { category, type }`
+
+      What caused the `from` model to hand over at this hop.
+
+      - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
+
+        The policy category that triggered a refusal.
+
+        - `"cyber"`
+
+        - `"bio"`
+
+        - `"frontier_llm"`
+
+        - `"reasoning_extraction"`
+
+      - `type: "refusal"`
 
     - `type: "fallback"`
 
@@ -6238,29 +6175,27 @@ ant beta:messages count-tokens \
 
         Defaults to `5m`.
 
-  - `beta_fallback_block_param: object { from, to, type }`
+  - `beta_fallback_block_param: object { from, to, type, trigger }`
 
     A `fallback` block echoed back from a prior response.
 
-    Accepted in `messages[].content` and never rendered into the prompt,
-    not validated against the request's `fallbacks` chain or top-level
-    `model`, and stripped before the sticky-routing cache key is computed.
+    Accepted in `messages[].content` and not rendered into the prompt; not
+    validated against the request's `fallbacks` chain or top-level `model`.
 
-    Callers should echo the assistant turn verbatim — block included. The
-    block's position is load-bearing for thinking verification: the thinking
-    runs on either side of a fallback hop carry independently-rooted
-    verification hash chains, and this block is the only record of where one
-    chain ends and the next begins. When thinking runs flank the boundary,
-    omitting the block merges the runs into one contiguous span whose hashes
-    cannot verify (the request is rejected), and moving it into the middle of
-    a single run splits that run's chain and is likewise rejected; between
-    non-thinking blocks the block's placement has no verification effect.
+    Echo the assistant turn back verbatim, including this block in its
+    original position. The block marks the boundary between content produced
+    before and after a fallback hop, and the server relies on that boundary
+    to validate the turn: when thinking runs flank the boundary, omitting
+    the block merges them into one span the server cannot validate (the
+    request is rejected), and moving it into the middle of a single run is
+    likewise rejected; between non-thinking blocks the block's placement has
+    no validation effect.
 
     - `from: object { model }`
 
       Identifies one hop of a fallback transition.
 
-      - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+      - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
         The model that will complete your prompt.
 
@@ -6326,37 +6261,21 @@ ant beta:messages count-tokens \
 
           Exceptional model for specialized complex tasks
 
-        - `"claude-opus-4-0"`
-
-          Powerful model for complex tasks
-
-        - `"claude-opus-4-20250514"`
-
-          Powerful model for complex tasks
-
-        - `"claude-sonnet-4-0"`
-
-          High-performance model with extended thinking
-
-        - `"claude-sonnet-4-20250514"`
-
-          High-performance model with extended thinking
-
-        - `"claude-3-haiku-20240307"`
-
-          Fast and cost-effective model
-
     - `to: object { model }`
 
       Identifies one hop of a fallback transition.
 
-      - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+      - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
     - `type: "fallback"`
+
+    - `trigger: optional unknown`
+
+      The response block's `trigger`, echoed verbatim. Accepted and ignored by the server; any object or `null` is allowed.
 
 ### Beta Content Block Source
 
@@ -7010,14 +6929,14 @@ ant beta:messages count-tokens \
 
 ### Beta Fallback Block
 
-- `beta_fallback_block: object { from, to, type }`
+- `beta_fallback_block: object { from, to, trigger, type }`
 
   Marks the point in `content` where one model's output gives way to the next.
 
   One block appears per hop where a preceding model actually ran this turn and
-  declined. A turn routed directly by the sticky decision has no such boundary
-  and carries no block — the signal for whether a fallback model served the
-  response is the presence of a `fallback_message` entry in
+  declined. A turn where no preceding model ran and declined has no such
+  boundary and carries no block — the signal for whether a fallback model
+  served the response is the presence of a `fallback_message` entry in
   `usage.iterations`, not this block.
 
   The block is treated like a server-tool content block for streaming: it
@@ -7028,7 +6947,7 @@ ant beta:messages count-tokens \
 
     The model whose output ends at this point — the model that declined at this hop. When the declining hop is the requested model, its `model` echoes the top-level `model` string the caller sent (alias or canonical); when the declining hop is a fallback model, its `model` is that model's canonical id.
 
-    - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+    - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
       The model that will complete your prompt.
 
@@ -7093,64 +7012,60 @@ ant beta:messages count-tokens \
       - `"claude-opus-4-1-20250805"`
 
         Exceptional model for specialized complex tasks
-
-      - `"claude-opus-4-0"`
-
-        Powerful model for complex tasks
-
-      - `"claude-opus-4-20250514"`
-
-        Powerful model for complex tasks
-
-      - `"claude-sonnet-4-0"`
-
-        High-performance model with extended thinking
-
-      - `"claude-sonnet-4-20250514"`
-
-        High-performance model with extended thinking
-
-      - `"claude-3-haiku-20240307"`
-
-        Fast and cost-effective model
 
   - `to: object { model }`
 
     The fallback model producing the content that follows this block. Its `model` is always the canonical id.
 
-    - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+    - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+  - `trigger: object { category, type }`
+
+    What caused the `from` model to hand over at this hop.
+
+    - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
+
+      The policy category that triggered a refusal.
+
+      - `"cyber"`
+
+      - `"bio"`
+
+      - `"frontier_llm"`
+
+      - `"reasoning_extraction"`
+
+    - `type: "refusal"`
+
   - `type: "fallback"`
 
 ### Beta Fallback Block Param
 
-- `beta_fallback_block_param: object { from, to, type }`
+- `beta_fallback_block_param: object { from, to, type, trigger }`
 
   A `fallback` block echoed back from a prior response.
 
-  Accepted in `messages[].content` and never rendered into the prompt,
-  not validated against the request's `fallbacks` chain or top-level
-  `model`, and stripped before the sticky-routing cache key is computed.
+  Accepted in `messages[].content` and not rendered into the prompt; not
+  validated against the request's `fallbacks` chain or top-level `model`.
 
-  Callers should echo the assistant turn verbatim — block included. The
-  block's position is load-bearing for thinking verification: the thinking
-  runs on either side of a fallback hop carry independently-rooted
-  verification hash chains, and this block is the only record of where one
-  chain ends and the next begins. When thinking runs flank the boundary,
-  omitting the block merges the runs into one contiguous span whose hashes
-  cannot verify (the request is rejected), and moving it into the middle of
-  a single run splits that run's chain and is likewise rejected; between
-  non-thinking blocks the block's placement has no verification effect.
+  Echo the assistant turn back verbatim, including this block in its
+  original position. The block marks the boundary between content produced
+  before and after a fallback hop, and the server relies on that boundary
+  to validate the turn: when thinking runs flank the boundary, omitting
+  the block merges them into one span the server cannot validate (the
+  request is rejected), and moving it into the middle of a single run is
+  likewise rejected; between non-thinking blocks the block's placement has
+  no validation effect.
 
   - `from: object { model }`
 
     Identifies one hop of a fallback transition.
 
-    - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+    - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
       The model that will complete your prompt.
 
@@ -7216,37 +7131,21 @@ ant beta:messages count-tokens \
 
         Exceptional model for specialized complex tasks
 
-      - `"claude-opus-4-0"`
-
-        Powerful model for complex tasks
-
-      - `"claude-opus-4-20250514"`
-
-        Powerful model for complex tasks
-
-      - `"claude-sonnet-4-0"`
-
-        High-performance model with extended thinking
-
-      - `"claude-sonnet-4-20250514"`
-
-        High-performance model with extended thinking
-
-      - `"claude-3-haiku-20240307"`
-
-        Fast and cost-effective model
-
   - `to: object { model }`
 
     Identifies one hop of a fallback transition.
 
-    - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+    - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
   - `type: "fallback"`
+
+  - `trigger: optional unknown`
+
+    The response block's `trigger`, echoed verbatim. Accepted and ignored by the server; any object or `null` is allowed.
 
 ### Beta Fallback Info
 
@@ -7254,7 +7153,7 @@ ant beta:messages count-tokens \
 
   Identifies one hop of a fallback transition.
 
-  - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+  - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
     The model that will complete your prompt.
 
@@ -7319,26 +7218,6 @@ ant beta:messages count-tokens \
     - `"claude-opus-4-1-20250805"`
 
       Exceptional model for specialized complex tasks
-
-    - `"claude-opus-4-0"`
-
-      Powerful model for complex tasks
-
-    - `"claude-opus-4-20250514"`
-
-      Powerful model for complex tasks
-
-    - `"claude-sonnet-4-0"`
-
-      High-performance model with extended thinking
-
-    - `"claude-sonnet-4-20250514"`
-
-      High-performance model with extended thinking
-
-    - `"claude-3-haiku-20240307"`
-
-      Fast and cost-effective model
 
 ### Beta Fallback Info Param
 
@@ -7346,7 +7225,7 @@ ant beta:messages count-tokens \
 
   Identifies one hop of a fallback transition.
 
-  - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+  - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
     The model that will complete your prompt.
 
@@ -7411,26 +7290,6 @@ ant beta:messages count-tokens \
     - `"claude-opus-4-1-20250805"`
 
       Exceptional model for specialized complex tasks
-
-    - `"claude-opus-4-0"`
-
-      Powerful model for complex tasks
-
-    - `"claude-opus-4-20250514"`
-
-      Powerful model for complex tasks
-
-    - `"claude-sonnet-4-0"`
-
-      High-performance model with extended thinking
-
-    - `"claude-sonnet-4-20250514"`
-
-      High-performance model with extended thinking
-
-    - `"claude-3-haiku-20240307"`
-
-      Fast and cost-effective model
 
 ### Beta Fallback Message Iteration Usage
 
@@ -7467,7 +7326,7 @@ ant beta:messages count-tokens \
 
     The number of input tokens which were used.
 
-  - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+  - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
     The model that will complete your prompt.
 
@@ -7532,26 +7391,6 @@ ant beta:messages count-tokens \
     - `"claude-opus-4-1-20250805"`
 
       Exceptional model for specialized complex tasks
-
-    - `"claude-opus-4-0"`
-
-      Powerful model for complex tasks
-
-    - `"claude-opus-4-20250514"`
-
-      Powerful model for complex tasks
-
-    - `"claude-sonnet-4-0"`
-
-      High-performance model with extended thinking
-
-    - `"claude-sonnet-4-20250514"`
-
-      High-performance model with extended thinking
-
-    - `"claude-3-haiku-20240307"`
-
-      Fast and cost-effective model
 
   - `output_tokens: number`
 
@@ -7572,7 +7411,7 @@ ant beta:messages count-tokens \
   for this attempt only and are validated as if the request were made to
   `model`. Any other key is rejected at parse time.
 
-  - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+  - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
     The model that will complete your prompt.
 
@@ -7637,26 +7476,6 @@ ant beta:messages count-tokens \
     - `"claude-opus-4-1-20250805"`
 
       Exceptional model for specialized complex tasks
-
-    - `"claude-opus-4-0"`
-
-      Powerful model for complex tasks
-
-    - `"claude-opus-4-20250514"`
-
-      Powerful model for complex tasks
-
-    - `"claude-sonnet-4-0"`
-
-      High-performance model with extended thinking
-
-    - `"claude-sonnet-4-20250514"`
-
-      High-performance model with extended thinking
-
-    - `"claude-3-haiku-20240307"`
-
-      Fast and cost-effective model
 
   - `max_tokens: optional number`
 
@@ -7745,6 +7564,26 @@ ant beta:messages count-tokens \
         - `"summarized"`
 
         - `"omitted"`
+
+### Beta Fallback Refusal Trigger
+
+- `beta_fallback_refusal_trigger: object { category, type }`
+
+  The `from` model declined for policy reasons.
+
+  - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
+
+    The policy category that triggered a refusal.
+
+    - `"cyber"`
+
+    - `"bio"`
+
+    - `"frontier_llm"`
+
+    - `"reasoning_extraction"`
+
+  - `type: "refusal"`
 
 ### Beta File Document Source
 
@@ -7883,7 +7722,7 @@ ant beta:messages count-tokens \
 
       The number of input tokens which were used.
 
-    - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+    - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
       The model that will complete your prompt.
 
@@ -7948,26 +7787,6 @@ ant beta:messages count-tokens \
       - `"claude-opus-4-1-20250805"`
 
         Exceptional model for specialized complex tasks
-
-      - `"claude-opus-4-0"`
-
-        Powerful model for complex tasks
-
-      - `"claude-opus-4-20250514"`
-
-        Powerful model for complex tasks
-
-      - `"claude-sonnet-4-0"`
-
-        High-performance model with extended thinking
-
-      - `"claude-sonnet-4-20250514"`
-
-        High-performance model with extended thinking
-
-      - `"claude-3-haiku-20240307"`
-
-        Fast and cost-effective model
 
     - `output_tokens: number`
 
@@ -8041,7 +7860,7 @@ ant beta:messages count-tokens \
 
       The number of input tokens which were used.
 
-    - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+    - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
       The model that will complete your prompt.
 
@@ -8106,26 +7925,6 @@ ant beta:messages count-tokens \
       - `"claude-opus-4-1-20250805"`
 
         Exceptional model for specialized complex tasks
-
-      - `"claude-opus-4-0"`
-
-        Powerful model for complex tasks
-
-      - `"claude-opus-4-20250514"`
-
-        Powerful model for complex tasks
-
-      - `"claude-sonnet-4-0"`
-
-        High-performance model with extended thinking
-
-      - `"claude-sonnet-4-20250514"`
-
-        High-performance model with extended thinking
-
-      - `"claude-3-haiku-20240307"`
-
-        Fast and cost-effective model
 
     - `output_tokens: number`
 
@@ -8168,7 +7967,7 @@ ant beta:messages count-tokens \
 
       The number of input tokens which were used.
 
-    - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+    - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
       The model that will complete your prompt.
 
@@ -8233,26 +8032,6 @@ ant beta:messages count-tokens \
       - `"claude-opus-4-1-20250805"`
 
         Exceptional model for specialized complex tasks
-
-      - `"claude-opus-4-0"`
-
-        Powerful model for complex tasks
-
-      - `"claude-opus-4-20250514"`
-
-        Powerful model for complex tasks
-
-      - `"claude-sonnet-4-0"`
-
-        High-performance model with extended thinking
-
-      - `"claude-sonnet-4-20250514"`
-
-        High-performance model with extended thinking
-
-      - `"claude-3-haiku-20240307"`
-
-        Fast and cost-effective model
 
     - `output_tokens: number`
 
@@ -8537,13 +8316,15 @@ ant beta:messages count-tokens \
 
   - `type: "memory_20250818"`
 
-  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
     - `"direct"`
 
     - `"code_execution_20250825"`
 
     - `"code_execution_20260120"`
+
+    - `"code_execution_20260521"`
 
   - `cache_control: optional object { type, ttl }`
 
@@ -9495,14 +9276,14 @@ ant beta:messages count-tokens \
 
       - `type: "compaction"`
 
-    - `beta_fallback_block: object { from, to, type }`
+    - `beta_fallback_block: object { from, to, trigger, type }`
 
       Marks the point in `content` where one model's output gives way to the next.
 
       One block appears per hop where a preceding model actually ran this turn and
-      declined. A turn routed directly by the sticky decision has no such boundary
-      and carries no block — the signal for whether a fallback model served the
-      response is the presence of a `fallback_message` entry in
+      declined. A turn where no preceding model ran and declined has no such
+      boundary and carries no block — the signal for whether a fallback model
+      served the response is the presence of a `fallback_message` entry in
       `usage.iterations`, not this block.
 
       The block is treated like a server-tool content block for streaming: it
@@ -9513,7 +9294,7 @@ ant beta:messages count-tokens \
 
         The model whose output ends at this point — the model that declined at this hop. When the declining hop is the requested model, its `model` echoes the top-level `model` string the caller sent (alias or canonical); when the declining hop is a fallback model, its `model` is that model's canonical id.
 
-        - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+        - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
           The model that will complete your prompt.
 
@@ -9579,35 +9360,33 @@ ant beta:messages count-tokens \
 
             Exceptional model for specialized complex tasks
 
-          - `"claude-opus-4-0"`
-
-            Powerful model for complex tasks
-
-          - `"claude-opus-4-20250514"`
-
-            Powerful model for complex tasks
-
-          - `"claude-sonnet-4-0"`
-
-            High-performance model with extended thinking
-
-          - `"claude-sonnet-4-20250514"`
-
-            High-performance model with extended thinking
-
-          - `"claude-3-haiku-20240307"`
-
-            Fast and cost-effective model
-
       - `to: object { model }`
 
         The fallback model producing the content that follows this block. Its `model` is always the canonical id.
 
-        - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+        - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
           The model that will complete your prompt.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `trigger: object { category, type }`
+
+        What caused the `from` model to hand over at this hop.
+
+        - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
+
+          The policy category that triggered a refusal.
+
+          - `"cyber"`
+
+          - `"bio"`
+
+          - `"frontier_llm"`
+
+          - `"reasoning_extraction"`
+
+        - `type: "refusal"`
 
       - `type: "fallback"`
 
@@ -9698,7 +9477,7 @@ ant beta:messages count-tokens \
 
         - `type: "unavailable"`
 
-  - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+  - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
     The model that will complete your prompt.
 
@@ -9764,26 +9543,6 @@ ant beta:messages count-tokens \
 
       Exceptional model for specialized complex tasks
 
-    - `"claude-opus-4-0"`
-
-      Powerful model for complex tasks
-
-    - `"claude-opus-4-20250514"`
-
-      Powerful model for complex tasks
-
-    - `"claude-sonnet-4-0"`
-
-      High-performance model with extended thinking
-
-    - `"claude-sonnet-4-20250514"`
-
-      High-performance model with extended thinking
-
-    - `"claude-3-haiku-20240307"`
-
-      Fast and cost-effective model
-
   - `role: "assistant"`
 
     Conversational role of the generated message.
@@ -9794,15 +9553,15 @@ ant beta:messages count-tokens \
 
     Structured information about a refusal.
 
-    - `category: "cyber" or "bio" or "reasoning_extraction"`
+    - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
 
-      The policy category that triggered the refusal.
-
-      `null` when the refusal doesn't map to a named category.
+      The policy category that triggered a refusal.
 
       - `"cyber"`
 
       - `"bio"`
+
+      - `"frontier_llm"`
 
       - `"reasoning_extraction"`
 
@@ -9984,7 +9743,7 @@ ant beta:messages count-tokens \
 
           The number of input tokens which were used.
 
-        - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+        - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
           The model that will complete your prompt.
 
@@ -10049,26 +9808,6 @@ ant beta:messages count-tokens \
           - `"claude-opus-4-1-20250805"`
 
             Exceptional model for specialized complex tasks
-
-          - `"claude-opus-4-0"`
-
-            Powerful model for complex tasks
-
-          - `"claude-opus-4-20250514"`
-
-            Powerful model for complex tasks
-
-          - `"claude-sonnet-4-0"`
-
-            High-performance model with extended thinking
-
-          - `"claude-sonnet-4-20250514"`
-
-            High-performance model with extended thinking
-
-          - `"claude-3-haiku-20240307"`
-
-            Fast and cost-effective model
 
         - `output_tokens: number`
 
@@ -10142,7 +9881,7 @@ ant beta:messages count-tokens \
 
           The number of input tokens which were used.
 
-        - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+        - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
           The model that will complete your prompt.
 
@@ -10207,26 +9946,6 @@ ant beta:messages count-tokens \
           - `"claude-opus-4-1-20250805"`
 
             Exceptional model for specialized complex tasks
-
-          - `"claude-opus-4-0"`
-
-            Powerful model for complex tasks
-
-          - `"claude-opus-4-20250514"`
-
-            Powerful model for complex tasks
-
-          - `"claude-sonnet-4-0"`
-
-            High-performance model with extended thinking
-
-          - `"claude-sonnet-4-20250514"`
-
-            High-performance model with extended thinking
-
-          - `"claude-3-haiku-20240307"`
-
-            Fast and cost-effective model
 
         - `output_tokens: number`
 
@@ -10269,7 +9988,7 @@ ant beta:messages count-tokens \
 
           The number of input tokens which were used.
 
-        - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+        - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
           The model that will complete your prompt.
 
@@ -10334,26 +10053,6 @@ ant beta:messages count-tokens \
           - `"claude-opus-4-1-20250805"`
 
             Exceptional model for specialized complex tasks
-
-          - `"claude-opus-4-0"`
-
-            Powerful model for complex tasks
-
-          - `"claude-opus-4-20250514"`
-
-            Powerful model for complex tasks
-
-          - `"claude-sonnet-4-0"`
-
-            High-performance model with extended thinking
-
-          - `"claude-sonnet-4-20250514"`
-
-            High-performance model with extended thinking
-
-          - `"claude-3-haiku-20240307"`
-
-            Fast and cost-effective model
 
         - `output_tokens: number`
 
@@ -10471,7 +10170,7 @@ ant beta:messages count-tokens \
 
         The number of input tokens which were used.
 
-      - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+      - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
         The model that will complete your prompt.
 
@@ -10536,26 +10235,6 @@ ant beta:messages count-tokens \
         - `"claude-opus-4-1-20250805"`
 
           Exceptional model for specialized complex tasks
-
-        - `"claude-opus-4-0"`
-
-          Powerful model for complex tasks
-
-        - `"claude-opus-4-20250514"`
-
-          Powerful model for complex tasks
-
-        - `"claude-sonnet-4-0"`
-
-          High-performance model with extended thinking
-
-        - `"claude-sonnet-4-20250514"`
-
-          High-performance model with extended thinking
-
-        - `"claude-3-haiku-20240307"`
-
-          Fast and cost-effective model
 
       - `output_tokens: number`
 
@@ -10629,7 +10308,7 @@ ant beta:messages count-tokens \
 
         The number of input tokens which were used.
 
-      - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+      - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
         The model that will complete your prompt.
 
@@ -10694,26 +10373,6 @@ ant beta:messages count-tokens \
         - `"claude-opus-4-1-20250805"`
 
           Exceptional model for specialized complex tasks
-
-        - `"claude-opus-4-0"`
-
-          Powerful model for complex tasks
-
-        - `"claude-opus-4-20250514"`
-
-          Powerful model for complex tasks
-
-        - `"claude-sonnet-4-0"`
-
-          High-performance model with extended thinking
-
-        - `"claude-sonnet-4-20250514"`
-
-          High-performance model with extended thinking
-
-        - `"claude-3-haiku-20240307"`
-
-          Fast and cost-effective model
 
       - `output_tokens: number`
 
@@ -10756,7 +10415,7 @@ ant beta:messages count-tokens \
 
         The number of input tokens which were used.
 
-      - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+      - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
         The model that will complete your prompt.
 
@@ -10821,26 +10480,6 @@ ant beta:messages count-tokens \
         - `"claude-opus-4-1-20250805"`
 
           Exceptional model for specialized complex tasks
-
-        - `"claude-opus-4-0"`
-
-          Powerful model for complex tasks
-
-        - `"claude-opus-4-20250514"`
-
-          Powerful model for complex tasks
-
-        - `"claude-sonnet-4-0"`
-
-          High-performance model with extended thinking
-
-        - `"claude-sonnet-4-20250514"`
-
-          High-performance model with extended thinking
-
-        - `"claude-3-haiku-20240307"`
-
-          Fast and cost-effective model
 
       - `output_tokens: number`
 
@@ -10916,7 +10555,7 @@ ant beta:messages count-tokens \
 
     The number of input tokens which were used.
 
-  - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+  - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
     The model that will complete your prompt.
 
@@ -10981,26 +10620,6 @@ ant beta:messages count-tokens \
     - `"claude-opus-4-1-20250805"`
 
       Exceptional model for specialized complex tasks
-
-    - `"claude-opus-4-0"`
-
-      Powerful model for complex tasks
-
-    - `"claude-opus-4-20250514"`
-
-      Powerful model for complex tasks
-
-    - `"claude-sonnet-4-0"`
-
-      High-performance model with extended thinking
-
-    - `"claude-sonnet-4-20250514"`
-
-      High-performance model with extended thinking
-
-    - `"claude-3-haiku-20240307"`
-
-      Fast and cost-effective model
 
   - `output_tokens: number`
 
@@ -12218,29 +11837,27 @@ ant beta:messages count-tokens \
 
           Defaults to `5m`.
 
-    - `beta_fallback_block_param: object { from, to, type }`
+    - `beta_fallback_block_param: object { from, to, type, trigger }`
 
       A `fallback` block echoed back from a prior response.
 
-      Accepted in `messages[].content` and never rendered into the prompt,
-      not validated against the request's `fallbacks` chain or top-level
-      `model`, and stripped before the sticky-routing cache key is computed.
+      Accepted in `messages[].content` and not rendered into the prompt; not
+      validated against the request's `fallbacks` chain or top-level `model`.
 
-      Callers should echo the assistant turn verbatim — block included. The
-      block's position is load-bearing for thinking verification: the thinking
-      runs on either side of a fallback hop carry independently-rooted
-      verification hash chains, and this block is the only record of where one
-      chain ends and the next begins. When thinking runs flank the boundary,
-      omitting the block merges the runs into one contiguous span whose hashes
-      cannot verify (the request is rejected), and moving it into the middle of
-      a single run splits that run's chain and is likewise rejected; between
-      non-thinking blocks the block's placement has no verification effect.
+      Echo the assistant turn back verbatim, including this block in its
+      original position. The block marks the boundary between content produced
+      before and after a fallback hop, and the server relies on that boundary
+      to validate the turn: when thinking runs flank the boundary, omitting
+      the block merges them into one span the server cannot validate (the
+      request is rejected), and moving it into the middle of a single run is
+      likewise rejected; between non-thinking blocks the block's placement has
+      no validation effect.
 
       - `from: object { model }`
 
         Identifies one hop of a fallback transition.
 
-        - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+        - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
           The model that will complete your prompt.
 
@@ -12306,37 +11923,21 @@ ant beta:messages count-tokens \
 
             Exceptional model for specialized complex tasks
 
-          - `"claude-opus-4-0"`
-
-            Powerful model for complex tasks
-
-          - `"claude-opus-4-20250514"`
-
-            Powerful model for complex tasks
-
-          - `"claude-sonnet-4-0"`
-
-            High-performance model with extended thinking
-
-          - `"claude-sonnet-4-20250514"`
-
-            High-performance model with extended thinking
-
-          - `"claude-3-haiku-20240307"`
-
-            Fast and cost-effective model
-
       - `to: object { model }`
 
         Identifies one hop of a fallback transition.
 
-        - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+        - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
           The model that will complete your prompt.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
       - `type: "fallback"`
+
+      - `trigger: optional unknown`
+
+        The response block's `trigger`, echoed verbatim. Accepted and ignored by the server; any object or `null` is allowed.
 
   - `role: "user" or "assistant" or "system"`
 
@@ -13560,14 +13161,14 @@ ant beta:messages count-tokens \
 
       - `type: "compaction"`
 
-    - `beta_fallback_block: object { from, to, type }`
+    - `beta_fallback_block: object { from, to, trigger, type }`
 
       Marks the point in `content` where one model's output gives way to the next.
 
       One block appears per hop where a preceding model actually ran this turn and
-      declined. A turn routed directly by the sticky decision has no such boundary
-      and carries no block — the signal for whether a fallback model served the
-      response is the presence of a `fallback_message` entry in
+      declined. A turn where no preceding model ran and declined has no such
+      boundary and carries no block — the signal for whether a fallback model
+      served the response is the presence of a `fallback_message` entry in
       `usage.iterations`, not this block.
 
       The block is treated like a server-tool content block for streaming: it
@@ -13578,7 +13179,7 @@ ant beta:messages count-tokens \
 
         The model whose output ends at this point — the model that declined at this hop. When the declining hop is the requested model, its `model` echoes the top-level `model` string the caller sent (alias or canonical); when the declining hop is a fallback model, its `model` is that model's canonical id.
 
-        - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+        - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
           The model that will complete your prompt.
 
@@ -13644,35 +13245,33 @@ ant beta:messages count-tokens \
 
             Exceptional model for specialized complex tasks
 
-          - `"claude-opus-4-0"`
-
-            Powerful model for complex tasks
-
-          - `"claude-opus-4-20250514"`
-
-            Powerful model for complex tasks
-
-          - `"claude-sonnet-4-0"`
-
-            High-performance model with extended thinking
-
-          - `"claude-sonnet-4-20250514"`
-
-            High-performance model with extended thinking
-
-          - `"claude-3-haiku-20240307"`
-
-            Fast and cost-effective model
-
       - `to: object { model }`
 
         The fallback model producing the content that follows this block. Its `model` is always the canonical id.
 
-        - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+        - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
           The model that will complete your prompt.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `trigger: object { category, type }`
+
+        What caused the `from` model to hand over at this hop.
+
+        - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
+
+          The policy category that triggered a refusal.
+
+          - `"cyber"`
+
+          - `"bio"`
+
+          - `"frontier_llm"`
+
+          - `"reasoning_extraction"`
+
+        - `type: "refusal"`
 
       - `type: "fallback"`
 
@@ -13766,15 +13365,15 @@ ant beta:messages count-tokens \
 
       Structured information about a refusal.
 
-      - `category: "cyber" or "bio" or "reasoning_extraction"`
+      - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
 
-        The policy category that triggered the refusal.
-
-        `null` when the refusal doesn't map to a named category.
+        The policy category that triggered a refusal.
 
         - `"cyber"`
 
         - `"bio"`
+
+        - `"frontier_llm"`
 
         - `"reasoning_extraction"`
 
@@ -13919,7 +13518,7 @@ ant beta:messages count-tokens \
 
           The number of input tokens which were used.
 
-        - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+        - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
           The model that will complete your prompt.
 
@@ -13984,26 +13583,6 @@ ant beta:messages count-tokens \
           - `"claude-opus-4-1-20250805"`
 
             Exceptional model for specialized complex tasks
-
-          - `"claude-opus-4-0"`
-
-            Powerful model for complex tasks
-
-          - `"claude-opus-4-20250514"`
-
-            Powerful model for complex tasks
-
-          - `"claude-sonnet-4-0"`
-
-            High-performance model with extended thinking
-
-          - `"claude-sonnet-4-20250514"`
-
-            High-performance model with extended thinking
-
-          - `"claude-3-haiku-20240307"`
-
-            Fast and cost-effective model
 
         - `output_tokens: number`
 
@@ -14077,7 +13656,7 @@ ant beta:messages count-tokens \
 
           The number of input tokens which were used.
 
-        - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+        - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
           The model that will complete your prompt.
 
@@ -14142,26 +13721,6 @@ ant beta:messages count-tokens \
           - `"claude-opus-4-1-20250805"`
 
             Exceptional model for specialized complex tasks
-
-          - `"claude-opus-4-0"`
-
-            Powerful model for complex tasks
-
-          - `"claude-opus-4-20250514"`
-
-            Powerful model for complex tasks
-
-          - `"claude-sonnet-4-0"`
-
-            High-performance model with extended thinking
-
-          - `"claude-sonnet-4-20250514"`
-
-            High-performance model with extended thinking
-
-          - `"claude-3-haiku-20240307"`
-
-            Fast and cost-effective model
 
         - `output_tokens: number`
 
@@ -14204,7 +13763,7 @@ ant beta:messages count-tokens \
 
           The number of input tokens which were used.
 
-        - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+        - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
           The model that will complete your prompt.
 
@@ -14269,26 +13828,6 @@ ant beta:messages count-tokens \
           - `"claude-opus-4-1-20250805"`
 
             Exceptional model for specialized complex tasks
-
-          - `"claude-opus-4-0"`
-
-            Powerful model for complex tasks
-
-          - `"claude-opus-4-20250514"`
-
-            Powerful model for complex tasks
-
-          - `"claude-sonnet-4-0"`
-
-            High-performance model with extended thinking
-
-          - `"claude-sonnet-4-20250514"`
-
-            High-performance model with extended thinking
-
-          - `"claude-3-haiku-20240307"`
-
-            Fast and cost-effective model
 
         - `output_tokens: number`
 
@@ -15063,14 +14602,14 @@ ant beta:messages count-tokens \
 
         - `type: "compaction"`
 
-      - `beta_fallback_block: object { from, to, type }`
+      - `beta_fallback_block: object { from, to, trigger, type }`
 
         Marks the point in `content` where one model's output gives way to the next.
 
         One block appears per hop where a preceding model actually ran this turn and
-        declined. A turn routed directly by the sticky decision has no such boundary
-        and carries no block — the signal for whether a fallback model served the
-        response is the presence of a `fallback_message` entry in
+        declined. A turn where no preceding model ran and declined has no such
+        boundary and carries no block — the signal for whether a fallback model
+        served the response is the presence of a `fallback_message` entry in
         `usage.iterations`, not this block.
 
         The block is treated like a server-tool content block for streaming: it
@@ -15081,7 +14620,7 @@ ant beta:messages count-tokens \
 
           The model whose output ends at this point — the model that declined at this hop. When the declining hop is the requested model, its `model` echoes the top-level `model` string the caller sent (alias or canonical); when the declining hop is a fallback model, its `model` is that model's canonical id.
 
-          - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+          - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
             The model that will complete your prompt.
 
@@ -15147,35 +14686,33 @@ ant beta:messages count-tokens \
 
               Exceptional model for specialized complex tasks
 
-            - `"claude-opus-4-0"`
-
-              Powerful model for complex tasks
-
-            - `"claude-opus-4-20250514"`
-
-              Powerful model for complex tasks
-
-            - `"claude-sonnet-4-0"`
-
-              High-performance model with extended thinking
-
-            - `"claude-sonnet-4-20250514"`
-
-              High-performance model with extended thinking
-
-            - `"claude-3-haiku-20240307"`
-
-              Fast and cost-effective model
-
         - `to: object { model }`
 
           The fallback model producing the content that follows this block. Its `model` is always the canonical id.
 
-          - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+          - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
             The model that will complete your prompt.
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `trigger: object { category, type }`
+
+          What caused the `from` model to hand over at this hop.
+
+          - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
+
+            The policy category that triggered a refusal.
+
+            - `"cyber"`
+
+            - `"bio"`
+
+            - `"frontier_llm"`
+
+            - `"reasoning_extraction"`
+
+          - `type: "refusal"`
 
         - `type: "fallback"`
 
@@ -15266,7 +14803,7 @@ ant beta:messages count-tokens \
 
           - `type: "unavailable"`
 
-    - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+    - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
       The model that will complete your prompt.
 
@@ -15332,26 +14869,6 @@ ant beta:messages count-tokens \
 
         Exceptional model for specialized complex tasks
 
-      - `"claude-opus-4-0"`
-
-        Powerful model for complex tasks
-
-      - `"claude-opus-4-20250514"`
-
-        Powerful model for complex tasks
-
-      - `"claude-sonnet-4-0"`
-
-        High-performance model with extended thinking
-
-      - `"claude-sonnet-4-20250514"`
-
-        High-performance model with extended thinking
-
-      - `"claude-3-haiku-20240307"`
-
-        Fast and cost-effective model
-
     - `role: "assistant"`
 
       Conversational role of the generated message.
@@ -15362,15 +14879,15 @@ ant beta:messages count-tokens \
 
       Structured information about a refusal.
 
-      - `category: "cyber" or "bio" or "reasoning_extraction"`
+      - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
 
-        The policy category that triggered the refusal.
-
-        `null` when the refusal doesn't map to a named category.
+        The policy category that triggered a refusal.
 
         - `"cyber"`
 
         - `"bio"`
+
+        - `"frontier_llm"`
 
         - `"reasoning_extraction"`
 
@@ -15552,7 +15069,7 @@ ant beta:messages count-tokens \
 
             The number of input tokens which were used.
 
-          - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+          - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
             The model that will complete your prompt.
 
@@ -15617,26 +15134,6 @@ ant beta:messages count-tokens \
             - `"claude-opus-4-1-20250805"`
 
               Exceptional model for specialized complex tasks
-
-            - `"claude-opus-4-0"`
-
-              Powerful model for complex tasks
-
-            - `"claude-opus-4-20250514"`
-
-              Powerful model for complex tasks
-
-            - `"claude-sonnet-4-0"`
-
-              High-performance model with extended thinking
-
-            - `"claude-sonnet-4-20250514"`
-
-              High-performance model with extended thinking
-
-            - `"claude-3-haiku-20240307"`
-
-              Fast and cost-effective model
 
           - `output_tokens: number`
 
@@ -15710,7 +15207,7 @@ ant beta:messages count-tokens \
 
             The number of input tokens which were used.
 
-          - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+          - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
             The model that will complete your prompt.
 
@@ -15775,26 +15272,6 @@ ant beta:messages count-tokens \
             - `"claude-opus-4-1-20250805"`
 
               Exceptional model for specialized complex tasks
-
-            - `"claude-opus-4-0"`
-
-              Powerful model for complex tasks
-
-            - `"claude-opus-4-20250514"`
-
-              Powerful model for complex tasks
-
-            - `"claude-sonnet-4-0"`
-
-              High-performance model with extended thinking
-
-            - `"claude-sonnet-4-20250514"`
-
-              High-performance model with extended thinking
-
-            - `"claude-3-haiku-20240307"`
-
-              Fast and cost-effective model
 
           - `output_tokens: number`
 
@@ -15837,7 +15314,7 @@ ant beta:messages count-tokens \
 
             The number of input tokens which were used.
 
-          - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+          - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
             The model that will complete your prompt.
 
@@ -15902,26 +15379,6 @@ ant beta:messages count-tokens \
             - `"claude-opus-4-1-20250805"`
 
               Exceptional model for specialized complex tasks
-
-            - `"claude-opus-4-0"`
-
-              Powerful model for complex tasks
-
-            - `"claude-opus-4-20250514"`
-
-              Powerful model for complex tasks
-
-            - `"claude-sonnet-4-0"`
-
-              High-performance model with extended thinking
-
-            - `"claude-sonnet-4-20250514"`
-
-              High-performance model with extended thinking
-
-            - `"claude-3-haiku-20240307"`
-
-              Fast and cost-effective model
 
           - `output_tokens: number`
 
@@ -16724,14 +16181,14 @@ ant beta:messages count-tokens \
 
           - `type: "compaction"`
 
-        - `beta_fallback_block: object { from, to, type }`
+        - `beta_fallback_block: object { from, to, trigger, type }`
 
           Marks the point in `content` where one model's output gives way to the next.
 
           One block appears per hop where a preceding model actually ran this turn and
-          declined. A turn routed directly by the sticky decision has no such boundary
-          and carries no block — the signal for whether a fallback model served the
-          response is the presence of a `fallback_message` entry in
+          declined. A turn where no preceding model ran and declined has no such
+          boundary and carries no block — the signal for whether a fallback model
+          served the response is the presence of a `fallback_message` entry in
           `usage.iterations`, not this block.
 
           The block is treated like a server-tool content block for streaming: it
@@ -16742,7 +16199,7 @@ ant beta:messages count-tokens \
 
             The model whose output ends at this point — the model that declined at this hop. When the declining hop is the requested model, its `model` echoes the top-level `model` string the caller sent (alias or canonical); when the declining hop is a fallback model, its `model` is that model's canonical id.
 
-            - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+            - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
               The model that will complete your prompt.
 
@@ -16808,35 +16265,33 @@ ant beta:messages count-tokens \
 
                 Exceptional model for specialized complex tasks
 
-              - `"claude-opus-4-0"`
-
-                Powerful model for complex tasks
-
-              - `"claude-opus-4-20250514"`
-
-                Powerful model for complex tasks
-
-              - `"claude-sonnet-4-0"`
-
-                High-performance model with extended thinking
-
-              - `"claude-sonnet-4-20250514"`
-
-                High-performance model with extended thinking
-
-              - `"claude-3-haiku-20240307"`
-
-                Fast and cost-effective model
-
           - `to: object { model }`
 
             The fallback model producing the content that follows this block. Its `model` is always the canonical id.
 
-            - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+            - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
               The model that will complete your prompt.
 
               See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `trigger: object { category, type }`
+
+            What caused the `from` model to hand over at this hop.
+
+            - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
+
+              The policy category that triggered a refusal.
+
+              - `"cyber"`
+
+              - `"bio"`
+
+              - `"frontier_llm"`
+
+              - `"reasoning_extraction"`
+
+            - `type: "refusal"`
 
           - `type: "fallback"`
 
@@ -16927,7 +16382,7 @@ ant beta:messages count-tokens \
 
             - `type: "unavailable"`
 
-      - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+      - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
         The model that will complete your prompt.
 
@@ -16993,26 +16448,6 @@ ant beta:messages count-tokens \
 
           Exceptional model for specialized complex tasks
 
-        - `"claude-opus-4-0"`
-
-          Powerful model for complex tasks
-
-        - `"claude-opus-4-20250514"`
-
-          Powerful model for complex tasks
-
-        - `"claude-sonnet-4-0"`
-
-          High-performance model with extended thinking
-
-        - `"claude-sonnet-4-20250514"`
-
-          High-performance model with extended thinking
-
-        - `"claude-3-haiku-20240307"`
-
-          Fast and cost-effective model
-
       - `role: "assistant"`
 
         Conversational role of the generated message.
@@ -17023,15 +16458,15 @@ ant beta:messages count-tokens \
 
         Structured information about a refusal.
 
-        - `category: "cyber" or "bio" or "reasoning_extraction"`
+        - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
 
-          The policy category that triggered the refusal.
-
-          `null` when the refusal doesn't map to a named category.
+          The policy category that triggered a refusal.
 
           - `"cyber"`
 
           - `"bio"`
+
+          - `"frontier_llm"`
 
           - `"reasoning_extraction"`
 
@@ -17213,7 +16648,7 @@ ant beta:messages count-tokens \
 
               The number of input tokens which were used.
 
-            - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+            - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
               The model that will complete your prompt.
 
@@ -17278,26 +16713,6 @@ ant beta:messages count-tokens \
               - `"claude-opus-4-1-20250805"`
 
                 Exceptional model for specialized complex tasks
-
-              - `"claude-opus-4-0"`
-
-                Powerful model for complex tasks
-
-              - `"claude-opus-4-20250514"`
-
-                Powerful model for complex tasks
-
-              - `"claude-sonnet-4-0"`
-
-                High-performance model with extended thinking
-
-              - `"claude-sonnet-4-20250514"`
-
-                High-performance model with extended thinking
-
-              - `"claude-3-haiku-20240307"`
-
-                Fast and cost-effective model
 
             - `output_tokens: number`
 
@@ -17371,7 +16786,7 @@ ant beta:messages count-tokens \
 
               The number of input tokens which were used.
 
-            - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+            - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
               The model that will complete your prompt.
 
@@ -17436,26 +16851,6 @@ ant beta:messages count-tokens \
               - `"claude-opus-4-1-20250805"`
 
                 Exceptional model for specialized complex tasks
-
-              - `"claude-opus-4-0"`
-
-                Powerful model for complex tasks
-
-              - `"claude-opus-4-20250514"`
-
-                Powerful model for complex tasks
-
-              - `"claude-sonnet-4-0"`
-
-                High-performance model with extended thinking
-
-              - `"claude-sonnet-4-20250514"`
-
-                High-performance model with extended thinking
-
-              - `"claude-3-haiku-20240307"`
-
-                Fast and cost-effective model
 
             - `output_tokens: number`
 
@@ -17498,7 +16893,7 @@ ant beta:messages count-tokens \
 
               The number of input tokens which were used.
 
-            - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+            - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
               The model that will complete your prompt.
 
@@ -17563,26 +16958,6 @@ ant beta:messages count-tokens \
               - `"claude-opus-4-1-20250805"`
 
                 Exceptional model for specialized complex tasks
-
-              - `"claude-opus-4-0"`
-
-                Powerful model for complex tasks
-
-              - `"claude-opus-4-20250514"`
-
-                Powerful model for complex tasks
-
-              - `"claude-sonnet-4-0"`
-
-                High-performance model with extended thinking
-
-              - `"claude-sonnet-4-20250514"`
-
-                High-performance model with extended thinking
-
-              - `"claude-3-haiku-20240307"`
-
-                Fast and cost-effective model
 
             - `output_tokens: number`
 
@@ -17680,11 +17055,9 @@ ant beta:messages count-tokens \
 
         Structured information about a refusal.
 
-        - `category: "cyber" or "bio" or "reasoning_extraction"`
+        - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
 
-          The policy category that triggered the refusal.
-
-          `null` when the refusal doesn't map to a named category.
+          The policy category that triggered a refusal.
 
         - `explanation: string`
 
@@ -18038,14 +17411,14 @@ ant beta:messages count-tokens \
 
         - `type: "compaction"`
 
-      - `beta_fallback_block: object { from, to, type }`
+      - `beta_fallback_block: object { from, to, trigger, type }`
 
         Marks the point in `content` where one model's output gives way to the next.
 
         One block appears per hop where a preceding model actually ran this turn and
-        declined. A turn routed directly by the sticky decision has no such boundary
-        and carries no block — the signal for whether a fallback model served the
-        response is the presence of a `fallback_message` entry in
+        declined. A turn where no preceding model ran and declined has no such
+        boundary and carries no block — the signal for whether a fallback model
+        served the response is the presence of a `fallback_message` entry in
         `usage.iterations`, not this block.
 
         The block is treated like a server-tool content block for streaming: it
@@ -18059,6 +17432,10 @@ ant beta:messages count-tokens \
         - `to: object { model }`
 
           The fallback model producing the content that follows this block. Its `model` is always the canonical id.
+
+        - `trigger: object { category, type }`
+
+          What caused the `from` model to hand over at this hop.
 
         - `type: "fallback"`
 
@@ -18246,15 +17623,15 @@ ant beta:messages count-tokens \
 
   Structured information about a refusal.
 
-  - `category: "cyber" or "bio" or "reasoning_extraction"`
+  - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
 
-    The policy category that triggered the refusal.
-
-    `null` when the refusal doesn't map to a named category.
+    The policy category that triggered a refusal.
 
     - `"cyber"`
 
     - `"bio"`
+
+    - `"frontier_llm"`
 
     - `"reasoning_extraction"`
 
@@ -20027,13 +19404,15 @@ ant beta:messages count-tokens \
 
     This is how the tool will be called by the model and in `tool_use` blocks.
 
-  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
     - `"direct"`
 
     - `"code_execution_20250825"`
 
     - `"code_execution_20260120"`
+
+    - `"code_execution_20260521"`
 
   - `cache_control: optional object { type, ttl }`
 
@@ -20092,13 +19471,15 @@ ant beta:messages count-tokens \
 
   - `type: "bash_20241022"`
 
-  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
     - `"direct"`
 
     - `"code_execution_20250825"`
 
     - `"code_execution_20260120"`
+
+    - `"code_execution_20260521"`
 
   - `cache_control: optional object { type, ttl }`
 
@@ -20143,13 +19524,15 @@ ant beta:messages count-tokens \
 
   - `type: "bash_20250124"`
 
-  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
     - `"direct"`
 
     - `"code_execution_20250825"`
 
     - `"code_execution_20260120"`
+
+    - `"code_execution_20260521"`
 
   - `cache_control: optional object { type, ttl }`
 
@@ -20308,13 +19691,15 @@ ant beta:messages count-tokens \
 
   - `type: "computer_20241022"`
 
-  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
     - `"direct"`
 
     - `"code_execution_20250825"`
 
     - `"code_execution_20260120"`
+
+    - `"code_execution_20260521"`
 
   - `cache_control: optional object { type, ttl }`
 
@@ -20371,13 +19756,15 @@ ant beta:messages count-tokens \
 
   - `type: "computer_20250124"`
 
-  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
     - `"direct"`
 
     - `"code_execution_20250825"`
 
     - `"code_execution_20260120"`
+
+    - `"code_execution_20260521"`
 
   - `cache_control: optional object { type, ttl }`
 
@@ -20434,13 +19821,15 @@ ant beta:messages count-tokens \
 
   - `type: "computer_20251124"`
 
-  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
     - `"direct"`
 
     - `"code_execution_20250825"`
 
     - `"code_execution_20260120"`
+
+    - `"code_execution_20260521"`
 
   - `cache_control: optional object { type, ttl }`
 
@@ -20896,13 +20285,15 @@ ant beta:messages count-tokens \
 
     - `"tool_search_tool_bm25"`
 
-  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
     - `"direct"`
 
     - `"code_execution_20250825"`
 
     - `"code_execution_20260120"`
+
+    - `"code_execution_20260521"`
 
   - `cache_control: optional object { type, ttl }`
 
@@ -20949,13 +20340,15 @@ ant beta:messages count-tokens \
 
     - `"tool_search_tool_regex"`
 
-  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
     - `"direct"`
 
     - `"code_execution_20250825"`
 
     - `"code_execution_20260120"`
+
+    - `"code_execution_20260521"`
 
   - `cache_control: optional object { type, ttl }`
 
@@ -21189,13 +20582,15 @@ ant beta:messages count-tokens \
 
   - `type: "text_editor_20241022"`
 
-  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
     - `"direct"`
 
     - `"code_execution_20250825"`
 
     - `"code_execution_20260120"`
+
+    - `"code_execution_20260521"`
 
   - `cache_control: optional object { type, ttl }`
 
@@ -21240,13 +20635,15 @@ ant beta:messages count-tokens \
 
   - `type: "text_editor_20250124"`
 
-  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
     - `"direct"`
 
     - `"code_execution_20250825"`
 
     - `"code_execution_20260120"`
+
+    - `"code_execution_20260521"`
 
   - `cache_control: optional object { type, ttl }`
 
@@ -21291,13 +20688,15 @@ ant beta:messages count-tokens \
 
   - `type: "text_editor_20250429"`
 
-  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
     - `"direct"`
 
     - `"code_execution_20250825"`
 
     - `"code_execution_20260120"`
+
+    - `"code_execution_20260521"`
 
   - `cache_control: optional object { type, ttl }`
 
@@ -21342,13 +20741,15 @@ ant beta:messages count-tokens \
 
   - `type: "text_editor_20250728"`
 
-  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
     - `"direct"`
 
     - `"code_execution_20250825"`
 
     - `"code_execution_20260120"`
+
+    - `"code_execution_20260521"`
 
   - `cache_control: optional object { type, ttl }`
 
@@ -21387,7 +20788,7 @@ ant beta:messages count-tokens \
 
 ### Beta Tool Union
 
-- `beta_tool_union: BetaTool or BetaToolBash20241022 or BetaToolBash20250124 or 20 more`
+- `beta_tool_union: BetaTool or BetaToolBash20241022 or BetaToolBash20250124 or 21 more`
 
   Code execution tool with REPL state persistence (daemon mode + gVisor checkpoint).
 
@@ -21411,13 +20812,15 @@ ant beta:messages count-tokens \
 
       This is how the tool will be called by the model and in `tool_use` blocks.
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
 
       - `"code_execution_20260120"`
+
+      - `"code_execution_20260521"`
 
     - `cache_control: optional object { type, ttl }`
 
@@ -21474,13 +20877,15 @@ ant beta:messages count-tokens \
 
     - `type: "bash_20241022"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
 
       - `"code_execution_20260120"`
+
+      - `"code_execution_20260521"`
 
     - `cache_control: optional object { type, ttl }`
 
@@ -21519,13 +20924,15 @@ ant beta:messages count-tokens \
 
     - `type: "bash_20250124"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
 
       - `"code_execution_20260120"`
+
+      - `"code_execution_20260521"`
 
     - `cache_control: optional object { type, ttl }`
 
@@ -21564,13 +20971,15 @@ ant beta:messages count-tokens \
 
     - `type: "code_execution_20250522"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
 
       - `"code_execution_20260120"`
+
+      - `"code_execution_20260521"`
 
     - `cache_control: optional object { type, ttl }`
 
@@ -21607,13 +21016,15 @@ ant beta:messages count-tokens \
 
     - `type: "code_execution_20250825"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
 
       - `"code_execution_20260120"`
+
+      - `"code_execution_20260521"`
 
     - `cache_control: optional object { type, ttl }`
 
@@ -21652,13 +21063,62 @@ ant beta:messages count-tokens \
 
     - `type: "code_execution_20260120"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
 
       - `"code_execution_20260120"`
+
+      - `"code_execution_20260521"`
+
+    - `cache_control: optional object { type, ttl }`
+
+      Create a cache control breakpoint at this content block.
+
+      - `type: "ephemeral"`
+
+      - `ttl: optional "5m" or "1h"`
+
+        The time-to-live for the cache control breakpoint.
+
+        This may be one the following values:
+
+        - `5m`: 5 minutes
+        - `1h`: 1 hour
+
+        Defaults to `5m`.
+
+    - `defer_loading: optional boolean`
+
+      If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+    - `strict: optional boolean`
+
+      When true, guarantees schema validation on tool names and inputs
+
+  - `beta_code_execution_tool_20260521: object { name, type, allowed_callers, 3 more }`
+
+    Code execution tool with REPL state persistence.
+
+    - `name: "code_execution"`
+
+      Name of the tool.
+
+      This is how the tool will be called by the model and in `tool_use` blocks.
+
+    - `type: "code_execution_20260521"`
+
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
+
+      - `"direct"`
+
+      - `"code_execution_20250825"`
+
+      - `"code_execution_20260120"`
+
+      - `"code_execution_20260521"`
 
     - `cache_control: optional object { type, ttl }`
 
@@ -21703,13 +21163,15 @@ ant beta:messages count-tokens \
 
     - `type: "computer_20241022"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
 
       - `"code_execution_20260120"`
+
+      - `"code_execution_20260521"`
 
     - `cache_control: optional object { type, ttl }`
 
@@ -21752,13 +21214,15 @@ ant beta:messages count-tokens \
 
     - `type: "memory_20250818"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
 
       - `"code_execution_20260120"`
+
+      - `"code_execution_20260521"`
 
     - `cache_control: optional object { type, ttl }`
 
@@ -21805,13 +21269,15 @@ ant beta:messages count-tokens \
 
     - `type: "computer_20250124"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
 
       - `"code_execution_20260120"`
+
+      - `"code_execution_20260521"`
 
     - `cache_control: optional object { type, ttl }`
 
@@ -21854,13 +21320,15 @@ ant beta:messages count-tokens \
 
     - `type: "text_editor_20241022"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
 
       - `"code_execution_20260120"`
+
+      - `"code_execution_20260521"`
 
     - `cache_control: optional object { type, ttl }`
 
@@ -21907,13 +21375,15 @@ ant beta:messages count-tokens \
 
     - `type: "computer_20251124"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
 
       - `"code_execution_20260120"`
+
+      - `"code_execution_20260521"`
 
     - `cache_control: optional object { type, ttl }`
 
@@ -21960,13 +21430,15 @@ ant beta:messages count-tokens \
 
     - `type: "text_editor_20250124"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
 
       - `"code_execution_20260120"`
+
+      - `"code_execution_20260521"`
 
     - `cache_control: optional object { type, ttl }`
 
@@ -22005,13 +21477,15 @@ ant beta:messages count-tokens \
 
     - `type: "text_editor_20250429"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
 
       - `"code_execution_20260120"`
+
+      - `"code_execution_20260521"`
 
     - `cache_control: optional object { type, ttl }`
 
@@ -22050,13 +21524,15 @@ ant beta:messages count-tokens \
 
     - `type: "text_editor_20250728"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
 
       - `"code_execution_20260120"`
+
+      - `"code_execution_20260521"`
 
     - `cache_control: optional object { type, ttl }`
 
@@ -22099,13 +21575,15 @@ ant beta:messages count-tokens \
 
     - `type: "web_search_20250305"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
 
       - `"code_execution_20260120"`
+
+      - `"code_execution_20260521"`
 
     - `allowed_domains: optional array of string`
 
@@ -22176,13 +21654,15 @@ ant beta:messages count-tokens \
 
     - `type: "web_fetch_20250910"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
 
       - `"code_execution_20260120"`
+
+      - `"code_execution_20260521"`
 
     - `allowed_domains: optional array of string`
 
@@ -22241,13 +21721,15 @@ ant beta:messages count-tokens \
 
     - `type: "web_search_20260209"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
 
       - `"code_execution_20260120"`
+
+      - `"code_execution_20260521"`
 
     - `allowed_domains: optional array of string`
 
@@ -22318,13 +21800,15 @@ ant beta:messages count-tokens \
 
     - `type: "web_fetch_20260209"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
 
       - `"code_execution_20260120"`
+
+      - `"code_execution_20260521"`
 
     - `allowed_domains: optional array of string`
 
@@ -22385,13 +21869,15 @@ ant beta:messages count-tokens \
 
     - `type: "web_fetch_20260309"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
 
       - `"code_execution_20260120"`
+
+      - `"code_execution_20260521"`
 
     - `allowed_domains: optional array of string`
 
@@ -22446,7 +21932,7 @@ ant beta:messages count-tokens \
 
   - `beta_advisor_tool_20260301: object { model, name, type, 7 more }`
 
-    - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+    - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
       The model that will complete your prompt.
 
@@ -22512,26 +21998,6 @@ ant beta:messages count-tokens \
 
         Exceptional model for specialized complex tasks
 
-      - `"claude-opus-4-0"`
-
-        Powerful model for complex tasks
-
-      - `"claude-opus-4-20250514"`
-
-        Powerful model for complex tasks
-
-      - `"claude-sonnet-4-0"`
-
-        High-performance model with extended thinking
-
-      - `"claude-sonnet-4-20250514"`
-
-        High-performance model with extended thinking
-
-      - `"claude-3-haiku-20240307"`
-
-        Fast and cost-effective model
-
     - `name: "advisor"`
 
       Name of the tool.
@@ -22540,13 +22006,15 @@ ant beta:messages count-tokens \
 
     - `type: "advisor_20260301"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
 
       - `"code_execution_20260120"`
+
+      - `"code_execution_20260521"`
 
     - `cache_control: optional object { type, ttl }`
 
@@ -22612,13 +22080,15 @@ ant beta:messages count-tokens \
 
       - `"tool_search_tool_bm25"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
 
       - `"code_execution_20260120"`
+
+      - `"code_execution_20260521"`
 
     - `cache_control: optional object { type, ttl }`
 
@@ -22659,13 +22129,15 @@ ant beta:messages count-tokens \
 
       - `"tool_search_tool_regex"`
 
-    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+    - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
       - `"direct"`
 
       - `"code_execution_20250825"`
 
       - `"code_execution_20260120"`
+
+      - `"code_execution_20260521"`
 
     - `cache_control: optional object { type, ttl }`
 
@@ -22933,7 +22405,7 @@ ant beta:messages count-tokens \
 
         The number of input tokens which were used.
 
-      - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+      - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
         The model that will complete your prompt.
 
@@ -22998,26 +22470,6 @@ ant beta:messages count-tokens \
         - `"claude-opus-4-1-20250805"`
 
           Exceptional model for specialized complex tasks
-
-        - `"claude-opus-4-0"`
-
-          Powerful model for complex tasks
-
-        - `"claude-opus-4-20250514"`
-
-          Powerful model for complex tasks
-
-        - `"claude-sonnet-4-0"`
-
-          High-performance model with extended thinking
-
-        - `"claude-sonnet-4-20250514"`
-
-          High-performance model with extended thinking
-
-        - `"claude-3-haiku-20240307"`
-
-          Fast and cost-effective model
 
       - `output_tokens: number`
 
@@ -23091,7 +22543,7 @@ ant beta:messages count-tokens \
 
         The number of input tokens which were used.
 
-      - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+      - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
         The model that will complete your prompt.
 
@@ -23156,26 +22608,6 @@ ant beta:messages count-tokens \
         - `"claude-opus-4-1-20250805"`
 
           Exceptional model for specialized complex tasks
-
-        - `"claude-opus-4-0"`
-
-          Powerful model for complex tasks
-
-        - `"claude-opus-4-20250514"`
-
-          Powerful model for complex tasks
-
-        - `"claude-sonnet-4-0"`
-
-          High-performance model with extended thinking
-
-        - `"claude-sonnet-4-20250514"`
-
-          High-performance model with extended thinking
-
-        - `"claude-3-haiku-20240307"`
-
-          Fast and cost-effective model
 
       - `output_tokens: number`
 
@@ -23218,7 +22650,7 @@ ant beta:messages count-tokens \
 
         The number of input tokens which were used.
 
-      - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+      - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
         The model that will complete your prompt.
 
@@ -23283,26 +22715,6 @@ ant beta:messages count-tokens \
         - `"claude-opus-4-1-20250805"`
 
           Exceptional model for specialized complex tasks
-
-        - `"claude-opus-4-0"`
-
-          Powerful model for complex tasks
-
-        - `"claude-opus-4-20250514"`
-
-          Powerful model for complex tasks
-
-        - `"claude-sonnet-4-0"`
-
-          High-performance model with extended thinking
-
-        - `"claude-sonnet-4-20250514"`
-
-          High-performance model with extended thinking
-
-        - `"claude-3-haiku-20240307"`
-
-          Fast and cost-effective model
 
       - `output_tokens: number`
 
@@ -23703,13 +23115,15 @@ ant beta:messages count-tokens \
 
   - `type: "web_fetch_20250910"`
 
-  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
     - `"direct"`
 
     - `"code_execution_20250825"`
 
     - `"code_execution_20260120"`
+
+    - `"code_execution_20260521"`
 
   - `allowed_domains: optional array of string`
 
@@ -23774,13 +23188,15 @@ ant beta:messages count-tokens \
 
   - `type: "web_fetch_20260209"`
 
-  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
     - `"direct"`
 
     - `"code_execution_20250825"`
 
     - `"code_execution_20260120"`
+
+    - `"code_execution_20260521"`
 
   - `allowed_domains: optional array of string`
 
@@ -23847,13 +23263,15 @@ ant beta:messages count-tokens \
 
   - `type: "web_fetch_20260309"`
 
-  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
     - `"direct"`
 
     - `"code_execution_20250825"`
 
     - `"code_execution_20260120"`
+
+    - `"code_execution_20260521"`
 
   - `allowed_domains: optional array of string`
 
@@ -24456,13 +23874,15 @@ ant beta:messages count-tokens \
 
   - `type: "web_search_20250305"`
 
-  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
     - `"direct"`
 
     - `"code_execution_20250825"`
 
     - `"code_execution_20260120"`
+
+    - `"code_execution_20260521"`
 
   - `allowed_domains: optional array of string`
 
@@ -24539,13 +23959,15 @@ ant beta:messages count-tokens \
 
   - `type: "web_search_20260209"`
 
-  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120"`
+  - `allowed_callers: optional array of "direct" or "code_execution_20250825" or "code_execution_20260120" or "code_execution_20260521"`
 
     - `"direct"`
 
     - `"code_execution_20250825"`
 
     - `"code_execution_20260120"`
+
+    - `"code_execution_20260521"`
 
   - `allowed_domains: optional array of string`
 
@@ -26295,14 +25717,14 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             - `type: "compaction"`
 
-          - `beta_fallback_block: object { from, to, type }`
+          - `beta_fallback_block: object { from, to, trigger, type }`
 
             Marks the point in `content` where one model's output gives way to the next.
 
             One block appears per hop where a preceding model actually ran this turn and
-            declined. A turn routed directly by the sticky decision has no such boundary
-            and carries no block — the signal for whether a fallback model served the
-            response is the presence of a `fallback_message` entry in
+            declined. A turn where no preceding model ran and declined has no such
+            boundary and carries no block — the signal for whether a fallback model
+            served the response is the presence of a `fallback_message` entry in
             `usage.iterations`, not this block.
 
             The block is treated like a server-tool content block for streaming: it
@@ -26313,7 +25735,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
               The model whose output ends at this point — the model that declined at this hop. When the declining hop is the requested model, its `model` echoes the top-level `model` string the caller sent (alias or canonical); when the declining hop is a fallback model, its `model` is that model's canonical id.
 
-              - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+              - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
                 The model that will complete your prompt.
 
@@ -26379,35 +25801,33 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                   Exceptional model for specialized complex tasks
 
-                - `"claude-opus-4-0"`
-
-                  Powerful model for complex tasks
-
-                - `"claude-opus-4-20250514"`
-
-                  Powerful model for complex tasks
-
-                - `"claude-sonnet-4-0"`
-
-                  High-performance model with extended thinking
-
-                - `"claude-sonnet-4-20250514"`
-
-                  High-performance model with extended thinking
-
-                - `"claude-3-haiku-20240307"`
-
-                  Fast and cost-effective model
-
             - `to: object { model }`
 
               The fallback model producing the content that follows this block. Its `model` is always the canonical id.
 
-              - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+              - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
                 The model that will complete your prompt.
 
                 See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `trigger: object { category, type }`
+
+              What caused the `from` model to hand over at this hop.
+
+              - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
+
+                The policy category that triggered a refusal.
+
+                - `"cyber"`
+
+                - `"bio"`
+
+                - `"frontier_llm"`
+
+                - `"reasoning_extraction"`
+
+              - `type: "refusal"`
 
             - `type: "fallback"`
 
@@ -26498,7 +25918,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
               - `type: "unavailable"`
 
-        - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+        - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
           The model that will complete your prompt.
 
@@ -26564,26 +25984,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             Exceptional model for specialized complex tasks
 
-          - `"claude-opus-4-0"`
-
-            Powerful model for complex tasks
-
-          - `"claude-opus-4-20250514"`
-
-            Powerful model for complex tasks
-
-          - `"claude-sonnet-4-0"`
-
-            High-performance model with extended thinking
-
-          - `"claude-sonnet-4-20250514"`
-
-            High-performance model with extended thinking
-
-          - `"claude-3-haiku-20240307"`
-
-            Fast and cost-effective model
-
         - `role: "assistant"`
 
           Conversational role of the generated message.
@@ -26594,15 +25994,15 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           Structured information about a refusal.
 
-          - `category: "cyber" or "bio" or "reasoning_extraction"`
+          - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
 
-            The policy category that triggered the refusal.
-
-            `null` when the refusal doesn't map to a named category.
+            The policy category that triggered a refusal.
 
             - `"cyber"`
 
             - `"bio"`
+
+            - `"frontier_llm"`
 
             - `"reasoning_extraction"`
 
@@ -26784,7 +26184,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                 The number of input tokens which were used.
 
-              - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+              - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
                 The model that will complete your prompt.
 
@@ -26849,26 +26249,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
                 - `"claude-opus-4-1-20250805"`
 
                   Exceptional model for specialized complex tasks
-
-                - `"claude-opus-4-0"`
-
-                  Powerful model for complex tasks
-
-                - `"claude-opus-4-20250514"`
-
-                  Powerful model for complex tasks
-
-                - `"claude-sonnet-4-0"`
-
-                  High-performance model with extended thinking
-
-                - `"claude-sonnet-4-20250514"`
-
-                  High-performance model with extended thinking
-
-                - `"claude-3-haiku-20240307"`
-
-                  Fast and cost-effective model
 
               - `output_tokens: number`
 
@@ -26942,7 +26322,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                 The number of input tokens which were used.
 
-              - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+              - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
                 The model that will complete your prompt.
 
@@ -27007,26 +26387,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
                 - `"claude-opus-4-1-20250805"`
 
                   Exceptional model for specialized complex tasks
-
-                - `"claude-opus-4-0"`
-
-                  Powerful model for complex tasks
-
-                - `"claude-opus-4-20250514"`
-
-                  Powerful model for complex tasks
-
-                - `"claude-sonnet-4-0"`
-
-                  High-performance model with extended thinking
-
-                - `"claude-sonnet-4-20250514"`
-
-                  High-performance model with extended thinking
-
-                - `"claude-3-haiku-20240307"`
-
-                  Fast and cost-effective model
 
               - `output_tokens: number`
 
@@ -27069,7 +26429,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                 The number of input tokens which were used.
 
-              - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+              - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
                 The model that will complete your prompt.
 
@@ -27134,26 +26494,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
                 - `"claude-opus-4-1-20250805"`
 
                   Exceptional model for specialized complex tasks
-
-                - `"claude-opus-4-0"`
-
-                  Powerful model for complex tasks
-
-                - `"claude-opus-4-20250514"`
-
-                  Powerful model for complex tasks
-
-                - `"claude-sonnet-4-0"`
-
-                  High-performance model with extended thinking
-
-                - `"claude-sonnet-4-20250514"`
-
-                  High-performance model with extended thinking
-
-                - `"claude-3-haiku-20240307"`
-
-                  Fast and cost-effective model
 
               - `output_tokens: number`
 
@@ -28230,14 +27570,14 @@ ant beta:messages:batches results \
 
             - `type: "compaction"`
 
-          - `beta_fallback_block: object { from, to, type }`
+          - `beta_fallback_block: object { from, to, trigger, type }`
 
             Marks the point in `content` where one model's output gives way to the next.
 
             One block appears per hop where a preceding model actually ran this turn and
-            declined. A turn routed directly by the sticky decision has no such boundary
-            and carries no block — the signal for whether a fallback model served the
-            response is the presence of a `fallback_message` entry in
+            declined. A turn where no preceding model ran and declined has no such
+            boundary and carries no block — the signal for whether a fallback model
+            served the response is the presence of a `fallback_message` entry in
             `usage.iterations`, not this block.
 
             The block is treated like a server-tool content block for streaming: it
@@ -28248,7 +27588,7 @@ ant beta:messages:batches results \
 
               The model whose output ends at this point — the model that declined at this hop. When the declining hop is the requested model, its `model` echoes the top-level `model` string the caller sent (alias or canonical); when the declining hop is a fallback model, its `model` is that model's canonical id.
 
-              - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+              - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
                 The model that will complete your prompt.
 
@@ -28314,35 +27654,33 @@ ant beta:messages:batches results \
 
                   Exceptional model for specialized complex tasks
 
-                - `"claude-opus-4-0"`
-
-                  Powerful model for complex tasks
-
-                - `"claude-opus-4-20250514"`
-
-                  Powerful model for complex tasks
-
-                - `"claude-sonnet-4-0"`
-
-                  High-performance model with extended thinking
-
-                - `"claude-sonnet-4-20250514"`
-
-                  High-performance model with extended thinking
-
-                - `"claude-3-haiku-20240307"`
-
-                  Fast and cost-effective model
-
             - `to: object { model }`
 
               The fallback model producing the content that follows this block. Its `model` is always the canonical id.
 
-              - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+              - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
                 The model that will complete your prompt.
 
                 See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `trigger: object { category, type }`
+
+              What caused the `from` model to hand over at this hop.
+
+              - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
+
+                The policy category that triggered a refusal.
+
+                - `"cyber"`
+
+                - `"bio"`
+
+                - `"frontier_llm"`
+
+                - `"reasoning_extraction"`
+
+              - `type: "refusal"`
 
             - `type: "fallback"`
 
@@ -28433,7 +27771,7 @@ ant beta:messages:batches results \
 
               - `type: "unavailable"`
 
-        - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+        - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
           The model that will complete your prompt.
 
@@ -28499,26 +27837,6 @@ ant beta:messages:batches results \
 
             Exceptional model for specialized complex tasks
 
-          - `"claude-opus-4-0"`
-
-            Powerful model for complex tasks
-
-          - `"claude-opus-4-20250514"`
-
-            Powerful model for complex tasks
-
-          - `"claude-sonnet-4-0"`
-
-            High-performance model with extended thinking
-
-          - `"claude-sonnet-4-20250514"`
-
-            High-performance model with extended thinking
-
-          - `"claude-3-haiku-20240307"`
-
-            Fast and cost-effective model
-
         - `role: "assistant"`
 
           Conversational role of the generated message.
@@ -28529,15 +27847,15 @@ ant beta:messages:batches results \
 
           Structured information about a refusal.
 
-          - `category: "cyber" or "bio" or "reasoning_extraction"`
+          - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
 
-            The policy category that triggered the refusal.
-
-            `null` when the refusal doesn't map to a named category.
+            The policy category that triggered a refusal.
 
             - `"cyber"`
 
             - `"bio"`
+
+            - `"frontier_llm"`
 
             - `"reasoning_extraction"`
 
@@ -28719,7 +28037,7 @@ ant beta:messages:batches results \
 
                 The number of input tokens which were used.
 
-              - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+              - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
                 The model that will complete your prompt.
 
@@ -28784,26 +28102,6 @@ ant beta:messages:batches results \
                 - `"claude-opus-4-1-20250805"`
 
                   Exceptional model for specialized complex tasks
-
-                - `"claude-opus-4-0"`
-
-                  Powerful model for complex tasks
-
-                - `"claude-opus-4-20250514"`
-
-                  Powerful model for complex tasks
-
-                - `"claude-sonnet-4-0"`
-
-                  High-performance model with extended thinking
-
-                - `"claude-sonnet-4-20250514"`
-
-                  High-performance model with extended thinking
-
-                - `"claude-3-haiku-20240307"`
-
-                  Fast and cost-effective model
 
               - `output_tokens: number`
 
@@ -28877,7 +28175,7 @@ ant beta:messages:batches results \
 
                 The number of input tokens which were used.
 
-              - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+              - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
                 The model that will complete your prompt.
 
@@ -28942,26 +28240,6 @@ ant beta:messages:batches results \
                 - `"claude-opus-4-1-20250805"`
 
                   Exceptional model for specialized complex tasks
-
-                - `"claude-opus-4-0"`
-
-                  Powerful model for complex tasks
-
-                - `"claude-opus-4-20250514"`
-
-                  Powerful model for complex tasks
-
-                - `"claude-sonnet-4-0"`
-
-                  High-performance model with extended thinking
-
-                - `"claude-sonnet-4-20250514"`
-
-                  High-performance model with extended thinking
-
-                - `"claude-3-haiku-20240307"`
-
-                  Fast and cost-effective model
 
               - `output_tokens: number`
 
@@ -29004,7 +28282,7 @@ ant beta:messages:batches results \
 
                 The number of input tokens which were used.
 
-              - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+              - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
                 The model that will complete your prompt.
 
@@ -29069,26 +28347,6 @@ ant beta:messages:batches results \
                 - `"claude-opus-4-1-20250805"`
 
                   Exceptional model for specialized complex tasks
-
-                - `"claude-opus-4-0"`
-
-                  Powerful model for complex tasks
-
-                - `"claude-opus-4-20250514"`
-
-                  Powerful model for complex tasks
-
-                - `"claude-sonnet-4-0"`
-
-                  High-performance model with extended thinking
-
-                - `"claude-sonnet-4-20250514"`
-
-                  High-performance model with extended thinking
-
-                - `"claude-3-haiku-20240307"`
-
-                  Fast and cost-effective model
 
               - `output_tokens: number`
 
@@ -29995,14 +29253,14 @@ ant beta:messages:batches results \
 
           - `type: "compaction"`
 
-        - `beta_fallback_block: object { from, to, type }`
+        - `beta_fallback_block: object { from, to, trigger, type }`
 
           Marks the point in `content` where one model's output gives way to the next.
 
           One block appears per hop where a preceding model actually ran this turn and
-          declined. A turn routed directly by the sticky decision has no such boundary
-          and carries no block — the signal for whether a fallback model served the
-          response is the presence of a `fallback_message` entry in
+          declined. A turn where no preceding model ran and declined has no such
+          boundary and carries no block — the signal for whether a fallback model
+          served the response is the presence of a `fallback_message` entry in
           `usage.iterations`, not this block.
 
           The block is treated like a server-tool content block for streaming: it
@@ -30013,7 +29271,7 @@ ant beta:messages:batches results \
 
             The model whose output ends at this point — the model that declined at this hop. When the declining hop is the requested model, its `model` echoes the top-level `model` string the caller sent (alias or canonical); when the declining hop is a fallback model, its `model` is that model's canonical id.
 
-            - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+            - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
               The model that will complete your prompt.
 
@@ -30079,35 +29337,33 @@ ant beta:messages:batches results \
 
                 Exceptional model for specialized complex tasks
 
-              - `"claude-opus-4-0"`
-
-                Powerful model for complex tasks
-
-              - `"claude-opus-4-20250514"`
-
-                Powerful model for complex tasks
-
-              - `"claude-sonnet-4-0"`
-
-                High-performance model with extended thinking
-
-              - `"claude-sonnet-4-20250514"`
-
-                High-performance model with extended thinking
-
-              - `"claude-3-haiku-20240307"`
-
-                Fast and cost-effective model
-
           - `to: object { model }`
 
             The fallback model producing the content that follows this block. Its `model` is always the canonical id.
 
-            - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+            - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
               The model that will complete your prompt.
 
               See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `trigger: object { category, type }`
+
+            What caused the `from` model to hand over at this hop.
+
+            - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
+
+              The policy category that triggered a refusal.
+
+              - `"cyber"`
+
+              - `"bio"`
+
+              - `"frontier_llm"`
+
+              - `"reasoning_extraction"`
+
+            - `type: "refusal"`
 
           - `type: "fallback"`
 
@@ -30198,7 +29454,7 @@ ant beta:messages:batches results \
 
             - `type: "unavailable"`
 
-      - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+      - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
         The model that will complete your prompt.
 
@@ -30264,26 +29520,6 @@ ant beta:messages:batches results \
 
           Exceptional model for specialized complex tasks
 
-        - `"claude-opus-4-0"`
-
-          Powerful model for complex tasks
-
-        - `"claude-opus-4-20250514"`
-
-          Powerful model for complex tasks
-
-        - `"claude-sonnet-4-0"`
-
-          High-performance model with extended thinking
-
-        - `"claude-sonnet-4-20250514"`
-
-          High-performance model with extended thinking
-
-        - `"claude-3-haiku-20240307"`
-
-          Fast and cost-effective model
-
       - `role: "assistant"`
 
         Conversational role of the generated message.
@@ -30294,15 +29530,15 @@ ant beta:messages:batches results \
 
         Structured information about a refusal.
 
-        - `category: "cyber" or "bio" or "reasoning_extraction"`
+        - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
 
-          The policy category that triggered the refusal.
-
-          `null` when the refusal doesn't map to a named category.
+          The policy category that triggered a refusal.
 
           - `"cyber"`
 
           - `"bio"`
+
+          - `"frontier_llm"`
 
           - `"reasoning_extraction"`
 
@@ -30484,7 +29720,7 @@ ant beta:messages:batches results \
 
               The number of input tokens which were used.
 
-            - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+            - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
               The model that will complete your prompt.
 
@@ -30549,26 +29785,6 @@ ant beta:messages:batches results \
               - `"claude-opus-4-1-20250805"`
 
                 Exceptional model for specialized complex tasks
-
-              - `"claude-opus-4-0"`
-
-                Powerful model for complex tasks
-
-              - `"claude-opus-4-20250514"`
-
-                Powerful model for complex tasks
-
-              - `"claude-sonnet-4-0"`
-
-                High-performance model with extended thinking
-
-              - `"claude-sonnet-4-20250514"`
-
-                High-performance model with extended thinking
-
-              - `"claude-3-haiku-20240307"`
-
-                Fast and cost-effective model
 
             - `output_tokens: number`
 
@@ -30642,7 +29858,7 @@ ant beta:messages:batches results \
 
               The number of input tokens which were used.
 
-            - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+            - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
               The model that will complete your prompt.
 
@@ -30707,26 +29923,6 @@ ant beta:messages:batches results \
               - `"claude-opus-4-1-20250805"`
 
                 Exceptional model for specialized complex tasks
-
-              - `"claude-opus-4-0"`
-
-                Powerful model for complex tasks
-
-              - `"claude-opus-4-20250514"`
-
-                Powerful model for complex tasks
-
-              - `"claude-sonnet-4-0"`
-
-                High-performance model with extended thinking
-
-              - `"claude-sonnet-4-20250514"`
-
-                High-performance model with extended thinking
-
-              - `"claude-3-haiku-20240307"`
-
-                Fast and cost-effective model
 
             - `output_tokens: number`
 
@@ -30769,7 +29965,7 @@ ant beta:messages:batches results \
 
               The number of input tokens which were used.
 
-            - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+            - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
               The model that will complete your prompt.
 
@@ -30834,26 +30030,6 @@ ant beta:messages:batches results \
               - `"claude-opus-4-1-20250805"`
 
                 Exceptional model for specialized complex tasks
-
-              - `"claude-opus-4-0"`
-
-                Powerful model for complex tasks
-
-              - `"claude-opus-4-20250514"`
-
-                Powerful model for complex tasks
-
-              - `"claude-sonnet-4-0"`
-
-                High-performance model with extended thinking
-
-              - `"claude-sonnet-4-20250514"`
-
-                High-performance model with extended thinking
-
-              - `"claude-3-haiku-20240307"`
-
-                Fast and cost-effective model
 
             - `output_tokens: number`
 
@@ -31722,14 +30898,14 @@ ant beta:messages:batches results \
 
         - `type: "compaction"`
 
-      - `beta_fallback_block: object { from, to, type }`
+      - `beta_fallback_block: object { from, to, trigger, type }`
 
         Marks the point in `content` where one model's output gives way to the next.
 
         One block appears per hop where a preceding model actually ran this turn and
-        declined. A turn routed directly by the sticky decision has no such boundary
-        and carries no block — the signal for whether a fallback model served the
-        response is the presence of a `fallback_message` entry in
+        declined. A turn where no preceding model ran and declined has no such
+        boundary and carries no block — the signal for whether a fallback model
+        served the response is the presence of a `fallback_message` entry in
         `usage.iterations`, not this block.
 
         The block is treated like a server-tool content block for streaming: it
@@ -31740,7 +30916,7 @@ ant beta:messages:batches results \
 
           The model whose output ends at this point — the model that declined at this hop. When the declining hop is the requested model, its `model` echoes the top-level `model` string the caller sent (alias or canonical); when the declining hop is a fallback model, its `model` is that model's canonical id.
 
-          - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+          - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
             The model that will complete your prompt.
 
@@ -31806,35 +30982,33 @@ ant beta:messages:batches results \
 
               Exceptional model for specialized complex tasks
 
-            - `"claude-opus-4-0"`
-
-              Powerful model for complex tasks
-
-            - `"claude-opus-4-20250514"`
-
-              Powerful model for complex tasks
-
-            - `"claude-sonnet-4-0"`
-
-              High-performance model with extended thinking
-
-            - `"claude-sonnet-4-20250514"`
-
-              High-performance model with extended thinking
-
-            - `"claude-3-haiku-20240307"`
-
-              Fast and cost-effective model
-
         - `to: object { model }`
 
           The fallback model producing the content that follows this block. Its `model` is always the canonical id.
 
-          - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+          - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
             The model that will complete your prompt.
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `trigger: object { category, type }`
+
+          What caused the `from` model to hand over at this hop.
+
+          - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
+
+            The policy category that triggered a refusal.
+
+            - `"cyber"`
+
+            - `"bio"`
+
+            - `"frontier_llm"`
+
+            - `"reasoning_extraction"`
+
+          - `type: "refusal"`
 
         - `type: "fallback"`
 
@@ -31925,7 +31099,7 @@ ant beta:messages:batches results \
 
           - `type: "unavailable"`
 
-    - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+    - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
       The model that will complete your prompt.
 
@@ -31991,26 +31165,6 @@ ant beta:messages:batches results \
 
         Exceptional model for specialized complex tasks
 
-      - `"claude-opus-4-0"`
-
-        Powerful model for complex tasks
-
-      - `"claude-opus-4-20250514"`
-
-        Powerful model for complex tasks
-
-      - `"claude-sonnet-4-0"`
-
-        High-performance model with extended thinking
-
-      - `"claude-sonnet-4-20250514"`
-
-        High-performance model with extended thinking
-
-      - `"claude-3-haiku-20240307"`
-
-        Fast and cost-effective model
-
     - `role: "assistant"`
 
       Conversational role of the generated message.
@@ -32021,15 +31175,15 @@ ant beta:messages:batches results \
 
       Structured information about a refusal.
 
-      - `category: "cyber" or "bio" or "reasoning_extraction"`
+      - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
 
-        The policy category that triggered the refusal.
-
-        `null` when the refusal doesn't map to a named category.
+        The policy category that triggered a refusal.
 
         - `"cyber"`
 
         - `"bio"`
+
+        - `"frontier_llm"`
 
         - `"reasoning_extraction"`
 
@@ -32211,7 +31365,7 @@ ant beta:messages:batches results \
 
             The number of input tokens which were used.
 
-          - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+          - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
             The model that will complete your prompt.
 
@@ -32276,26 +31430,6 @@ ant beta:messages:batches results \
             - `"claude-opus-4-1-20250805"`
 
               Exceptional model for specialized complex tasks
-
-            - `"claude-opus-4-0"`
-
-              Powerful model for complex tasks
-
-            - `"claude-opus-4-20250514"`
-
-              Powerful model for complex tasks
-
-            - `"claude-sonnet-4-0"`
-
-              High-performance model with extended thinking
-
-            - `"claude-sonnet-4-20250514"`
-
-              High-performance model with extended thinking
-
-            - `"claude-3-haiku-20240307"`
-
-              Fast and cost-effective model
 
           - `output_tokens: number`
 
@@ -32369,7 +31503,7 @@ ant beta:messages:batches results \
 
             The number of input tokens which were used.
 
-          - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+          - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
             The model that will complete your prompt.
 
@@ -32434,26 +31568,6 @@ ant beta:messages:batches results \
             - `"claude-opus-4-1-20250805"`
 
               Exceptional model for specialized complex tasks
-
-            - `"claude-opus-4-0"`
-
-              Powerful model for complex tasks
-
-            - `"claude-opus-4-20250514"`
-
-              Powerful model for complex tasks
-
-            - `"claude-sonnet-4-0"`
-
-              High-performance model with extended thinking
-
-            - `"claude-sonnet-4-20250514"`
-
-              High-performance model with extended thinking
-
-            - `"claude-3-haiku-20240307"`
-
-              Fast and cost-effective model
 
           - `output_tokens: number`
 
@@ -32496,7 +31610,7 @@ ant beta:messages:batches results \
 
             The number of input tokens which were used.
 
-          - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+          - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
             The model that will complete your prompt.
 
@@ -32561,26 +31675,6 @@ ant beta:messages:batches results \
             - `"claude-opus-4-1-20250805"`
 
               Exceptional model for specialized complex tasks
-
-            - `"claude-opus-4-0"`
-
-              Powerful model for complex tasks
-
-            - `"claude-opus-4-20250514"`
-
-              Powerful model for complex tasks
-
-            - `"claude-sonnet-4-0"`
-
-              High-performance model with extended thinking
-
-            - `"claude-sonnet-4-20250514"`
-
-              High-performance model with extended thinking
-
-            - `"claude-3-haiku-20240307"`
-
-              Fast and cost-effective model
 
           - `output_tokens: number`
 

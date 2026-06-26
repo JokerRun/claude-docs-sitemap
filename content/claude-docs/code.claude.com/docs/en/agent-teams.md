@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-teams
-fetched_at: 2026-06-23T03:14:59.520621Z
-sha256: 4cb1bdadb4454a25ef6eca069acb438420ec6014b1858dc3df46f9e986df69cc
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: cdce63417a062bf72f8c0ff7ce38ddaffeb5e3851da8afb16c287982de4964aa
 ---
 
 > ## Documentation Index
@@ -147,6 +147,8 @@ each teammate.
 ```
 
 Teammates don't inherit the lead's `/model` selection by default. To change the model used when the prompt doesn't specify one, set **Default teammate model** in `/config`. Pick **Default (leader's model)** to have teammates follow the lead's current model.
+
+{/* min-version: 2.1.186 */}Teammates inherit the lead's [effort level](/en/model-config#adjust-effort-level). In split-pane mode this applies from v2.1.186; earlier versions did not pass the lead's session effort to split-pane teammates.
 
 ### Require plan approval for teammates
 

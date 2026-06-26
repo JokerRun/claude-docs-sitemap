@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/build-a-tool-using-agent
-fetched_at: 2026-06-13T03:15:40.418428Z
-sha256: 2585e3072d58aca2aa8ff871cf6b6d431506662e8564ef58dbb267e5d50650dc
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: bd1f31edd2934651596d29d4274f77a002ef591c6161be1ae04218df035885ff
 ---
 
 # Tutorial: Membangun agen yang menggunakan alat
@@ -1674,24 +1674,24 @@ Tool Runner tersedia di ketujuh SDK: Python, TypeScript, C#, Go, Java, PHP, dan 
   
 ````bash
 #!/bin/bash
-# Ring 5: Abstraksi Tool Runner SDK.
+# Ring 5: The Tool Runner SDK abstraction.
 
-# Abstraksi Tool Runner SDK tersedia di SDK Python, TypeScript,
-# dan Ruby. Tidak ada padanan untuk permintaan curl mentah. Beralihlah ke
-# tab Python atau TypeScript untuk melihat Ring 5, atau pertahankan loop Ring 4
-# sebagai implementasi shell Anda.
+# The Tool Runner SDK abstraction is available in all seven SDKs: Python,
+# TypeScript, C#, Go, Java, PHP, and Ruby. There is no equivalent for raw
+# curl requests. Switch to any SDK tab to see Ring 5, or keep the Ring 4
+# loop as your shell implementation.
 ````
 
   
 ````bash
 #!/usr/bin/env bash
-# Ring 5: Abstraksi Tool Runner SDK.
+# Ring 5: The Tool Runner SDK abstraction.
 set -euo pipefail
 
-# Abstraksi Tool Runner SDK tersedia di SDK Python, TypeScript,
-# dan Ruby. CLI ant mengekspos Messages API secara langsung dan tidak
-# memiliki helper yang setara. Beralihlah ke tab Python atau TypeScript untuk melihat
-# Ring 5, atau pertahankan loop Ring 4 sebagai implementasi CLI Anda.
+# The Tool Runner SDK abstraction is available in all seven SDKs: Python,
+# TypeScript, C#, Go, Java, PHP, and Ruby. The ant CLI exposes the Messages
+# API directly and has no equivalent helper. Switch to any SDK tab to see
+# Ring 5, or keep the Ring 4 loop as your CLI implementation.
 ````
 
   

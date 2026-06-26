@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/cmek
-fetched_at: 2026-06-19T03:18:02.201222Z
-sha256: 4b382b2e5746935963bd8f4402bb558f7ad1c4c47edda567cfccb5459d83bdd1
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: 7da23ee9396b2a1eacd4ba384221a64b7377dbdecc386ae3a26306f95ed0303f
 ---
 
 # Customer-managed encryption keys
@@ -41,6 +41,7 @@ Anthropic calls your key management service from its standard public IP range. I
 
 - Cloud Admin access in the account, project, or subscription that will host the encryption key.
 - An admin role in your Anthropic organization: an Organization Admin role in the Claude Console on Claude Platform, or an Owner or Primary Owner role on Claude Enterprise.
+- [Zero data retention (ZDR)](/docs/en/manage-claude/api-and-data-retention) turned off for your organization.
 
 ## Availability and regions
 
@@ -71,6 +72,7 @@ What CMEK covers depends on which product you use.
 - Chat content, including skills, plugins, and artifacts.
 - Chat attachments and project attachments.
 - Claude Code on the CLI, including message content.
+- Cowork in Claude Desktop.
 
 On both products, backups and snapshots inherit the key.
 
@@ -104,7 +106,7 @@ These features remain available, but their data is not encrypted under your key.
 
 **Claude Enterprise**
 
-- Claude Code Desktop, Claude Code on the web, Cowork, Office agents, and Claude in Slack. Anthropic recommends disabling any of these that are not appropriate for your use case in the admin console.
+- Claude Code Desktop, Claude Code on the web, Office agents, and Claude in Slack. Anthropic recommends disabling any of these that are not appropriate for your use case in the admin console.
 - Beta and research preview features may not be covered by CMEK and can break in CMEK organizations, for example Claude Security and Claude Design.
 - On-demand data export under Settings > Privacy.
 

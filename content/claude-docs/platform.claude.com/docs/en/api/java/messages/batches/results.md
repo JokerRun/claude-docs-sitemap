@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/messages/batches/results
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: f3abbab7a6bbe16faa93d56402ac751bd59f1f0518e91980f61276ce5e4bda71
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: 02871e41e0996d45ba48f1cc0b8e9b0f3b9455a3fdabfcdf76674cfd7b06eee1
 ---
 
 ## Retrieve Message Batch results
@@ -792,26 +792,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             Exceptional model for specialized complex tasks
 
-          - `CLAUDE_OPUS_4_0("claude-opus-4-0")`
-
-            Powerful model for complex tasks
-
-          - `CLAUDE_OPUS_4_20250514("claude-opus-4-20250514")`
-
-            Powerful model for complex tasks
-
-          - `CLAUDE_SONNET_4_0("claude-sonnet-4-0")`
-
-            High-performance model with extended thinking
-
-          - `CLAUDE_SONNET_4_20250514("claude-sonnet-4-20250514")`
-
-            High-performance model with extended thinking
-
-          - `CLAUDE_3_HAIKU_20240307("claude-3-haiku-20240307")`
-
-            Fast and cost-effective model
-
         - `JsonValue; role "assistant"constant`
 
           Conversational role of the generated message.
@@ -826,13 +806,13 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `Optional<Category> category`
 
-            The policy category that triggered the refusal.
-
-            `null` when the refusal doesn't map to a named category.
+            The policy category that triggered a refusal.
 
             - `CYBER("cyber")`
 
             - `BIO("bio")`
+
+            - `FRONTIER_LLM("frontier_llm")`
 
             - `REASONING_EXTRACTION("reasoning_extraction")`
 

@@ -1,18 +1,21 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/token-counting
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 4083c7e3547c5b9e68a162a26be202e984bbdd76c34cd5a0c6475add71a991a0
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: d2a4578159615f22e3a082fd93af7ebee655e610ab8ec0735e06dcc3c01c3943
 ---
 
 # Penghitungan token
 
+Hitung token dalam sebuah pesan sebelum Anda mengirimkannya ke Claude. Gunakan jumlah token untuk mengelola batas laju dan biaya, membuat keputusan perutean model, dan menyesuaikan prompt dengan panjang target.
+
 ---
 
-Penghitungan token memungkinkan Anda menentukan jumlah token dalam sebuah pesan sebelum mengirimkannya ke Claude, membantu Anda membuat keputusan yang tepat tentang prompt dan penggunaan Anda. Dengan penghitungan token, Anda dapat
+Penghitungan token memungkinkan Anda menentukan jumlah token dalam sebuah pesan sebelum Anda mengirimkannya ke Claude. Ini membantu Anda membuat keputusan yang tepat tentang prompt dan penggunaan Anda. Dengan penghitungan token, Anda dapat:
+
 - Mengelola batas laju dan biaya secara proaktif
 - Membuat keputusan perutean model yang cerdas
-- Mengoptimalkan prompt agar memiliki panjang tertentu
+- Mengoptimalkan prompt ke panjang tertentu
 
 <Note>
 Fitur ini memenuhi syarat untuk [Zero Data Retention (ZDR)](/docs/id/build-with-claude/api-and-data-retention). Ketika organisasi Anda memiliki pengaturan ZDR, data yang dikirim melalui fitur ini tidak disimpan setelah respons API dikembalikan.
@@ -27,7 +30,7 @@ Endpoint [penghitungan token](/docs/id/api/messages-count-tokens) menerima dafta
 <Note>
 Jumlah token harus dianggap sebagai **estimasi**. Dalam beberapa kasus, jumlah token input aktual yang digunakan saat membuat pesan mungkin berbeda sedikit.
 
-Jumlah token dapat mencakup token yang ditambahkan secara otomatis oleh Anthropic untuk optimasi sistem. **Anda tidak ditagih untuk token yang ditambahkan sistem**. Penagihan hanya mencerminkan konten Anda.
+Jumlah token mungkin mencakup token yang ditambahkan secara otomatis oleh Anthropic untuk optimasi sistem. **Anda tidak ditagih untuk token yang ditambahkan sistem**. Penagihan hanya mencerminkan konten Anda.
 </Note>
 
 ### Model yang didukung \{#supported-models}
@@ -894,7 +897,7 @@ puts response
 ### Menghitung token dalam pesan dengan pemikiran diperpanjang \{#count-tokens-in-messages-with-extended-thinking}
 
 <Note>
-Lihat [cara jendela konteks dihitung dengan pemikiran diperpanjang](/docs/id/build-with-claude/extended-thinking#how-context-window-is-calculated-with-extended-thinking) untuk detail lebih lanjut
+Lihat [bagaimana jendela konteks dihitung dengan pemikiran diperpanjang](/docs/id/build-with-claude/extended-thinking#how-context-window-is-calculated-with-extended-thinking) untuk detail lebih lanjut
 - Blok pemikiran dari giliran asisten **sebelumnya** diabaikan dan **tidak** dihitung terhadap token input Anda
 - Pemikiran giliran asisten **saat ini** **dihitung** terhadap token input Anda
 </Note>
@@ -1608,7 +1611,7 @@ puts response
 Claude Fable 5 dan Claude Mythos 5 menggunakan tokenizer yang diperkenalkan dengan Claude Opus 4.7, yang menghasilkan sekitar 30% lebih banyak token dibandingkan model sebelum Claude Opus 4.7 untuk teks yang sama. Endpoint penghitungan token mengembalikan jumlah berdasarkan tokenizer dari `model` yang Anda berikan, jadi untuk mengukur perbedaan pada beban kerja Anda, hitung permintaan yang sama dua kali: sekali dengan model Anda saat ini dan sekali dengan `model: "claude-fable-5"` (atau `"claude-mythos-5"`), lalu bandingkan kedua nilai `input_tokens`.
 
 <Note>
-**Penagihan dan migrasi:** Penggunaan dan penagihan pada Claude Fable 5 dan Claude Mythos 5 mencerminkan jumlah dari tokenizer ini. Jika Anda bermigrasi dari model sebelum Claude Opus 4.7, konten yang sama mengonsumsi sekitar 30% lebih banyak token. Saat memigrasikan beban kerja ke Claude Fable 5 dan Claude Mythos 5, jangan gunakan kembali jumlah token yang diukur pada model sebelum Claude Opus 4.7 untuk memperkirakan biaya atau kesesuaian jendela konteks. Hitung prompt Anda dengan `model: "claude-fable-5"` (atau `"claude-mythos-5"`).
+**Penagihan dan migrasi:** Penggunaan dan penagihan pada Claude Fable 5 dan Claude Mythos 5 mencerminkan jumlah dari tokenizer ini. Jika Anda bermigrasi dari model sebelum Claude Opus 4.7, konten yang sama mengonsumsi sekitar 30% lebih banyak token. Saat memigrasikan beban kerja ke Claude Fable 5 dan Claude Mythos 5, jangan menggunakan kembali jumlah token yang diukur pada model sebelum Claude Opus 4.7 untuk memperkirakan biaya atau kesesuaian jendela konteks. Hitung prompt Anda dengan `model: "claude-fable-5"` (atau `"claude-mythos-5"`).
 </Note>
 
 ---
@@ -1636,3 +1639,22 @@ Penghitungan token **gratis untuk digunakan** tetapi tunduk pada batas laju perm
     Tidak, penghitungan token memberikan estimasi tanpa menggunakan logika caching. Meskipun Anda dapat menyediakan blok `cache_control` dalam permintaan penghitungan token Anda, caching prompt hanya terjadi selama pembuatan pesan yang sebenarnya.
   
 </section>
+
+---
+
+## Langkah selanjutnya \{#next-steps}
+
+<CardGroup cols={2}>
+  <Card title="Menghitung token pesan" icon="code" href="/docs/id/api/messages-count-tokens">
+    Baca referensi API lengkap untuk endpoint penghitungan token.
+  </Card>
+  <Card title="Jendela konteks" icon="arrows-maximize" href="/docs/id/build-with-claude/context-windows">
+    Gunakan jumlah token untuk menjaga prompt tetap dalam jendela konteks model.
+  </Card>
+  <Card title="Batas laju" icon="gauge" href="/docs/id/api/rate-limits">
+    Periksa jumlah token sebelum Anda mengirim permintaan agar tetap dalam tingkat penggunaan Anda.
+  </Card>
+  <Card title="Caching prompt" icon="database" href="/docs/id/build-with-claude/prompt-caching">
+    Kurangi biaya dan latensi pada prompt berulang dengan melakukan caching pada prefiks prompt.
+  </Card>
+</CardGroup>

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/php/beta/agents
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: f274b8c02051c2c69419d92b912218b56586c2540cc3bed226ca8ea831e383e6
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: b0eb4a171c2b2d6dae6b883849522750f219e75b42f8801a6d075502ed1bdc00
 ---
 
 # Agents
@@ -31,7 +31,7 @@ Create Agent
 
 - `mcpServers?:optional list<BetaManagedAgentsURLMCPServerParams>`
 
-  MCP servers this agent connects to. Maximum 20. Names must be unique within the array.
+  MCP servers this agent connects to. Maximum 20. Names must be unique within the array. Every server must be referenced by an `mcp_toolset` in `tools`; unreferenced servers are rejected. See the [MCP connector guide](https://platform.claude.com/docs/en/managed-agents/mcp-connector).
 
 - `metadata?:optional array<string,string>`
 
@@ -579,7 +579,7 @@ Update Agent
 
 - `mcpServers?:optional list<BetaManagedAgentsURLMCPServerParams>`
 
-  MCP servers. Full replacement. Omit to preserve; send empty array or null to clear. Names must be unique. Maximum 20.
+  MCP servers. Full replacement. Omit to preserve; send empty array or `null` to clear. Names must be unique. Maximum 20. Every server must be referenced by an `mcp_toolset` in the agent's resulting `tools`; unreferenced servers are rejected. See the [MCP connector guide](https://platform.claude.com/docs/en/managed-agents/mcp-connector).
 
 - `metadata?:optional array<string,string>`
 

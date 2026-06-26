@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/agents
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: ba4b1230b7f4fb3e84bb86859f1e32a85c861bfe84ff10d4c5a68a9c1cf6e183
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: 6dff1a349eda7e361df3ce0885dacdad5466ae52fe3bd99153cf91bcf040dba3
 ---
 
 # Agents
@@ -105,7 +105,7 @@ Create Agent
 
   - `mcp_servers?: Array<BetaManagedAgentsURLMCPServerParams>`
 
-    Body param: MCP servers this agent connects to. Maximum 20. Names must be unique within the array.
+    Body param: MCP servers this agent connects to. Maximum 20. Names must be unique within the array. Every server must be referenced by an `mcp_toolset` in `tools`; unreferenced servers are rejected. See the [MCP connector guide](https://platform.claude.com/docs/en/managed-agents/mcp-connector).
 
     - `name: string`
 
@@ -1786,7 +1786,7 @@ Update Agent
 
   - `mcp_servers?: Array<BetaManagedAgentsURLMCPServerParams> | null`
 
-    Body param: MCP servers. Full replacement. Omit to preserve; send empty array or null to clear. Names must be unique. Maximum 20.
+    Body param: MCP servers. Full replacement. Omit to preserve; send empty array or `null` to clear. Names must be unique. Maximum 20. Every server must be referenced by an `mcp_toolset` in the agent's resulting `tools`; unreferenced servers are rejected. See the [MCP connector guide](https://platform.claude.com/docs/en/managed-agents/mcp-connector).
 
     - `name: string`
 

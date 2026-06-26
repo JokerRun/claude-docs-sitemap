@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/claude-code-analytics-api
-fetched_at: 2026-06-19T03:18:02.201222Z
-sha256: 9a03e4c7ccc9d1205c86671d2b5978a1ff152476e2520382e0cb6204793e21bc
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: 6cb3b6623b7da1e5d2178423b01b91bd293e6229a4f8e9ef8469032af5fa3fe1
 ---
 
 # Claude Code Analytics API
@@ -246,7 +246,7 @@ The `customer_type` field indicates whether the usage is from `api` customers (p
 Historical Claude Code analytics data is retained and accessible through the API. There is no specified deletion period for this data.
 
 ### Which Claude Code deployments are supported?
-This API only tracks Claude Code usage on the Claude API. Usage through [Claude Platform on AWS](/docs/en/build-with-claude/claude-platform-on-aws), [Claude in Microsoft Foundry](/docs/en/build-with-claude/claude-in-microsoft-foundry), [Claude in Amazon Bedrock](/docs/en/build-with-claude/claude-in-amazon-bedrock), or [Claude on Vertex AI](/docs/en/build-with-claude/claude-on-vertex-ai) is not included.
+This API only tracks Claude Code usage on the Claude API. Usage through [Claude Platform on AWS](/docs/en/build-with-claude/claude-platform-on-aws), [Claude in Microsoft Foundry](/docs/en/build-with-claude/claude-in-microsoft-foundry), [Claude in Amazon Bedrock](/docs/en/build-with-claude/claude-in-amazon-bedrock), or [Claude on Google Cloud](/docs/en/build-with-claude/claude-on-vertex-ai) is not included.
 
 ### What does it cost to use this API?
 The Claude Code Analytics API is free to use for all organizations with access to the Admin API.

@@ -1,20 +1,20 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/fast-mode
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 9eb7a39876f9b5fcc9f13c59ea91f6834cb2b6df05cce5e12219ea94296242db
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: 08855bf63db9835b039185adc6fc6f31b333884213856fd57f1be2da18f71de1
 ---
 
-# Mode cepat (pratinjau riset)
+# Fast mode (pratinjau riset)
 
-Kecepatan output yang lebih tinggi untuk model Claude Opus yang didukung, menghasilkan pembuatan token yang jauh lebih cepat untuk alur kerja yang sensitif terhadap latensi dan alur kerja agentik.
+Dapatkan hingga 2,5x lebih banyak token output per detik dari model Claude Opus.
 
 ---
 
-Mode cepat menyediakan pembuatan token output yang jauh lebih cepat untuk Claude Opus 4.8, Claude Opus 4.7, dan Claude Opus 4.6 dengan harga premium. Atur `speed: "fast"` dalam permintaan API Anda untuk mengaktifkannya. Mode cepat menghasilkan hingga 2,5x lebih tinggi token output per detik dari model yang sama.
+Fast mode menghasilkan hingga 2,5x lebih banyak token output per detik dari Claude Opus 4.8, Claude Opus 4.7, dan Claude Opus 4.6 dengan harga premium. Tetapkan `speed: "fast"` bersama header beta `fast-mode-2026-02-01` pada permintaan Anda untuk mengaktifkannya.
 
 <Note>
-Mode cepat berada dalam pratinjau riset. Hubungi manajer akun Anda untuk meminta akses. Jika Anda tidak memiliki manajer akun, [bergabunglah dengan daftar tunggu](https://claude.com/fast-mode) untuk mode cepat.
+Fast mode berada dalam tahap pratinjau riset. Hubungi manajer akun Anda untuk meminta akses. Jika Anda tidak memiliki manajer akun, [bergabunglah dengan daftar tunggu](https://claude.com/fast-mode) untuk fast mode.
 </Note>
 
 <Note>
@@ -23,27 +23,28 @@ Fitur ini memenuhi syarat untuk [Zero Data Retention (ZDR)](/docs/id/build-with-
 
 ## Model yang didukung \{#supported-models}
 
-Mode cepat didukung pada model-model berikut:
+Fast mode didukung pada model berikut:
 
 - Claude Opus 4.8 (claude-opus-4-8)
 - Claude Opus 4.7 (claude-opus-4-7)
 - Claude Opus 4.6 (claude-opus-4-6)
 
 <Note>
-Mode cepat untuk Claude Opus 4.8 diluncurkan sebagai pratinjau riset hanya di Claude API, termasuk Claude Managed Agents. Mode ini tidak tersedia di platform pihak ketiga, termasuk Vertex AI, Amazon Bedrock, dan Microsoft Foundry.
+Fast mode untuk Claude Opus 4.8 diluncurkan sebagai pratinjau riset hanya di Claude API, termasuk [Claude Managed Agents](/docs/id/managed-agents/overview). Fitur ini tidak tersedia di platform pihak ketiga, termasuk Vertex AI, Amazon Bedrock, dan Microsoft Foundry.
 </Note>
 
 <Warning>
-Mode cepat untuk Claude Opus 4.6 tidak digunakan lagi (deprecated) sejak peluncuran Claude Opus 4.8 dan akan dihapus sekitar 30 hari setelahnya. Setelah dihapus, permintaan ke `claude-opus-4-6` dengan `speed: "fast"` akan kembali ke kecepatan standar dengan harga standar, bukan mengembalikan error. Migrasikan ke mode cepat untuk Claude Opus 4.8 atau Claude Opus 4.7 untuk mempertahankan peningkatan kecepatan.
+Fast mode untuk Claude Opus 4.6 tidak digunakan lagi (deprecated) sejak peluncuran Claude Opus 4.8 dan akan dihapus sekitar 30 hari setelahnya. Setelah dihapus, permintaan ke `claude-opus-4-6` dengan `speed: "fast"` akan kembali ke kecepatan standar dengan harga standar alih-alih mengembalikan error. Migrasikan ke fast mode untuk Claude Opus 4.8 atau Claude Opus 4.7 untuk mempertahankan peningkatan kecepatan.
 </Warning>
 
-## Cara kerja mode cepat \{#how-fast-mode-works}
+## Cara kerja fast mode \{#how-fast-mode-works}
 
-Mode cepat menjalankan model yang sama dengan konfigurasi inferensi yang lebih cepat. Tidak ada perubahan pada kecerdasan atau kemampuan.
+Fast mode menjalankan model yang sama dengan konfigurasi inferensi yang lebih cepat. Tidak ada perubahan pada kecerdasan atau kemampuan.
 
-- Hingga 2,5x lebih tinggi token output per detik dibandingkan dengan kecepatan standar
-- Manfaat kecepatan difokuskan pada "output tokens per second" (token output per detik), atau OTPS, bukan "time to first token" (waktu hingga token pertama), atau TTFT
+- Hingga 2,5x lebih banyak token output per detik dibandingkan kecepatan standar
+- Manfaat kecepatan berfokus pada "output tokens per second" (token output per detik), atau OTPS, bukan "time to first token" (waktu hingga token pertama), atau TTFT
 - Bobot dan perilaku model yang sama (bukan model yang berbeda)
+- Kompatibel dengan [streaming](/docs/id/build-with-claude/streaming), di mana peningkatan OTPS paling terlihat
 
 ## Penggunaan dasar \{#basic-usage}
 
@@ -68,7 +69,8 @@ curl https://api.anthropic.com/v1/messages \
 ```bash CLI
 ant beta:messages create \
   --beta fast-mode-2026-02-01 \
-  --transform 'content.0.text' --raw-output <<'YAML'
+  --transform 'content.0.text' \
+  --raw-output <<'YAML'
 model: claude-opus-4-8
 max_tokens: 4096
 speed: fast
@@ -78,7 +80,7 @@ messages:
 YAML
 ```
 
-```python Python nocheck hidelines={1..2}
+```python Python hidelines={1..2}
 import anthropic
 
 client = anthropic.Anthropic()
@@ -234,40 +236,40 @@ puts response.content[0].text
 
 ## Harga \{#pricing}
 
-Mode cepat dihargai dengan pengali per model pada tarif standar di seluruh jendela konteks penuh, termasuk permintaan dengan lebih dari 200k token input. Tabel berikut menunjukkan harga mode cepat untuk setiap model yang didukung:
+Fast mode dihargai dengan pengali per model atas tarif standar di seluruh jendela konteks, termasuk permintaan dengan lebih dari 200k token input. Tabel berikut menunjukkan harga fast mode untuk setiap model yang didukung:
 
 | Model | Input | Output |
 |:------|:------|:-------|
-| Claude Opus 4.6 / Claude Opus 4.7 | $30 / MTok | $150 / MTok |
 | Claude Opus 4.8 | $10 / MTok | $50 / MTok |
+| Claude Opus 4.7 / Claude Opus 4.6 | $30 / MTok | $150 / MTok |
 
-Harga mode cepat digabungkan dengan pengubah harga lainnya:
+Harga fast mode berlaku kumulatif dengan pengubah harga lainnya:
 
-- [Pengali caching prompt](/docs/id/about-claude/pricing#prompt-caching) diterapkan di atas harga mode cepat
-- Pengali [residensi data](/docs/id/manage-claude/data-residency) diterapkan di atas harga mode cepat
+- [Pengali caching prompt](/docs/id/about-claude/pricing#prompt-caching) berlaku di atas harga fast mode
+- Pengali [residensi data](/docs/id/manage-claude/data-residency) berlaku di atas harga fast mode
 
 Untuk detail harga lengkap, lihat [halaman harga](/docs/id/about-claude/pricing#fast-mode-pricing).
 
 ## Batas laju \{#rate-limits}
 
-Mode cepat memiliki batas laju khusus yang terpisah dari batas laju Opus standar. Ketika batas laju mode cepat Anda terlampaui, API mengembalikan error `429` dengan header `retry-after` yang menunjukkan kapan kapasitas akan tersedia.
+Fast mode memiliki batas laju khusus yang terpisah dari batas laju Opus standar. Ketika batas laju fast mode Anda terlampaui, API mengembalikan error `429` dengan header `retry-after` yang menunjukkan kapan kapasitas akan tersedia.
 
-Respons menyertakan header yang menunjukkan status batas laju mode cepat Anda:
+Respons menyertakan header yang menunjukkan status batas laju fast mode Anda:
 
 | Header | Deskripsi |
 |:-------|:------------|
-| `anthropic-fast-input-tokens-limit` | Token input mode cepat maksimum per menit |
-| `anthropic-fast-input-tokens-remaining` | Token input mode cepat yang tersisa |
-| `anthropic-fast-input-tokens-reset` | Waktu ketika batas token input mode cepat direset |
-| `anthropic-fast-output-tokens-limit` | Token output mode cepat maksimum per menit |
-| `anthropic-fast-output-tokens-remaining` | Token output mode cepat yang tersisa |
-| `anthropic-fast-output-tokens-reset` | Waktu ketika batas token output mode cepat direset |
+| `anthropic-fast-input-tokens-limit` | Token input fast mode maksimum per menit |
+| `anthropic-fast-input-tokens-remaining` | Token input fast mode yang tersisa |
+| `anthropic-fast-input-tokens-reset` | Waktu ketika batas token input fast mode direset |
+| `anthropic-fast-output-tokens-limit` | Token output fast mode maksimum per menit |
+| `anthropic-fast-output-tokens-remaining` | Token output fast mode yang tersisa |
+| `anthropic-fast-output-tokens-reset` | Waktu ketika batas token output fast mode direset |
 
-Untuk batas laju spesifik per tingkat, lihat [halaman batas laju](/docs/id/api/rate-limits).
+Untuk batas laju spesifik per tier, lihat [halaman batas laju](/docs/id/api/rate-limits).
 
 ## Memeriksa kecepatan mana yang digunakan \{#checking-which-speed-was-used}
 
-Objek `usage` dalam respons menyertakan field `speed` yang menunjukkan kecepatan mana yang digunakan, baik `"fast"` atau `"standard"`:
+Objek `usage` dalam respons menyertakan field `speed` yang menunjukkan kecepatan mana yang digunakan, baik `"fast"` atau `"standard"`. Fast mode tidak secara diam-diam kembali ke kecepatan standar saat terjadi batas laju atau masalah kapasitas (Anda akan mendapatkan `429` atau `529` sebagai gantinya), jadi ketika Anda meminta `speed: "fast"` pada model yang didukung, `usage.speed` adalah `"fast"`.
 
 <CodeGroup>
 ```bash cURL
@@ -285,8 +287,10 @@ curl https://api.anthropic.com/v1/messages \
 ```
 
 ```bash CLI
-ant beta:messages create --beta fast-mode-2026-02-01 \
-  --transform usage.speed --raw-output <<'YAML'
+ant beta:messages create \
+  --beta fast-mode-2026-02-01 \
+  --transform usage.speed \
+  --raw-output <<'YAML'
 model: claude-opus-4-8
 max_tokens: 1024
 speed: fast
@@ -296,7 +300,11 @@ messages:
 YAML
 ```
 
-```python Python nocheck
+```python Python hidelines={1..2}
+import anthropic
+
+client = anthropic.Anthropic()
+
 response = client.beta.messages.create(
     model="claude-opus-4-8",
     max_tokens=1024,
@@ -308,7 +316,11 @@ response = client.beta.messages.create(
 print(response.usage.speed)  # "fast" or "standard"
 ```
 
-```typescript TypeScript
+```typescript TypeScript hidelines={1..2}
+import Anthropic from "@anthropic-ai/sdk";
+
+const client = new Anthropic();
+
 const response = await client.beta.messages.create({
   model: "claude-opus-4-8",
   max_tokens: 1024,
@@ -410,7 +422,11 @@ $response = $client->beta->messages->create(
 echo $response->usage->speed;  // "fast" or "standard"
 ```
 
-```ruby Ruby nocheck
+```ruby Ruby hidelines={1..2}
+require "anthropic"
+
+client = Anthropic::Client.new
+
 response = client.beta.messages.create(
   model: "claude-opus-4-8",
   max_tokens: 1024,
@@ -440,23 +456,23 @@ puts(response.usage.speed)  # "fast" or "standard"
 }
 ```
 
-Untuk melacak penggunaan dan biaya mode cepat di seluruh organisasi Anda, lihat [Usage and Cost API](/docs/id/manage-claude/usage-cost-api).
+Untuk melacak penggunaan dan biaya fast mode di seluruh organisasi Anda, lihat [Usage and Cost API](/docs/id/manage-claude/usage-cost-api).
 
 ## Percobaan ulang dan fallback \{#retries-and-fallback}
 
 ### Percobaan ulang otomatis \{#automatic-retries}
 
-Ketika batas laju mode cepat terlampaui, API mengembalikan error `429` dengan header `retry-after`. SDK Anthropic secara otomatis mencoba ulang permintaan ini hingga 2 kali secara default (dapat dikonfigurasi melalui `max_retries`), menunggu selama penundaan yang ditentukan server sebelum setiap percobaan ulang. Karena mode cepat menggunakan pengisian ulang token secara berkelanjutan, penundaan `retry-after` biasanya singkat dan permintaan berhasil setelah kapasitas tersedia.
+Ketika batas laju fast mode terlampaui, API mengembalikan error `429` dengan header `retry-after`. SDK Anthropic secara otomatis mencoba ulang permintaan ini hingga 2 kali secara default (dapat dikonfigurasi dengan `max_retries`), menunggu selama penundaan yang ditentukan server sebelum setiap percobaan ulang. Karena fast mode menggunakan pengisian ulang token secara kontinu, penundaan `retry-after` biasanya singkat dan permintaan berhasil setelah kapasitas tersedia.
 
 ### Kembali ke kecepatan standar \{#falling-back-to-standard-speed}
 
-Jika Anda lebih memilih untuk kembali ke kecepatan standar daripada menunggu kapasitas mode cepat, tangkap error batas laju dan coba ulang tanpa `speed: "fast"`. Atur `max_retries` ke `0` pada permintaan cepat awal untuk melewati percobaan ulang otomatis dan langsung gagal pada error batas laju.
+Jika Anda lebih memilih untuk kembali ke kecepatan standar daripada menunggu kapasitas fast mode, tangkap error batas laju dan coba ulang tanpa `speed: "fast"`. Tetapkan `max_retries` ke `0` pada permintaan fast awal untuk melewati percobaan ulang otomatis dan langsung gagal pada error batas laju.
 
 <Note>
-Kembali dari kecepatan cepat ke kecepatan standar akan menghasilkan cache miss pada [cache prompt](/docs/id/build-with-claude/prompt-caching). Permintaan pada kecepatan yang berbeda tidak berbagi prefiks yang di-cache.
+Kembali dari kecepatan fast ke standar akan menghasilkan cache miss pada [caching prompt](/docs/id/build-with-claude/prompt-caching). Permintaan pada kecepatan yang berbeda tidak berbagi prefiks yang di-cache.
 </Note>
 
-Karena mengatur `max_retries` ke `0` juga menonaktifkan percobaan ulang untuk error sementara lainnya (overloaded, internal server error), contoh di bawah ini mengirim ulang permintaan asli dengan percobaan ulang default untuk kasus-kasus tersebut.
+Karena menetapkan `max_retries` ke `0` juga menonaktifkan percobaan ulang untuk error sementara lainnya (overloaded, internal server error), contoh berikut mengirim ulang permintaan asli dengan percobaan ulang default untuk kasus-kasus tersebut.
 
 <CodeGroup>
 ```bash CLI
@@ -498,7 +514,7 @@ YAML
 )
 ```
 
-```python Python nocheck hidelines={1..2}
+```python Python hidelines={1..2}
 import anthropic
 
 client = anthropic.Anthropic()
@@ -822,23 +838,26 @@ message = create_message_with_fast_fallback(
 
 ## Pertimbangan \{#considerations}
 
-- **Caching prompt:** Beralih antara kecepatan cepat dan standar membatalkan cache prompt. Permintaan pada kecepatan yang berbeda tidak berbagi prefiks yang di-cache.
-- **Model yang didukung:** Mode cepat didukung pada Claude Opus 4.8, Claude Opus 4.7, dan Claude Opus 4.6. Mengirim `speed: "fast"` dengan model yang tidak didukung akan mengembalikan error.
-- **TTFT:** Manfaat mode cepat difokuskan pada token output per detik (OTPS), bukan waktu hingga token pertama (TTFT).
-- **Batch API:** Mode cepat tidak tersedia dengan [Batch API](/docs/id/build-with-claude/batch-processing).
-- **Priority Tier:** Mode cepat tidak tersedia dengan [Priority Tier](/docs/id/api/service-tiers).
-- **Claude Platform di AWS:** Mode cepat saat ini tidak tersedia di [Claude Platform di AWS](/docs/id/build-with-claude/claude-platform-on-aws).
+- **Caching prompt:** Beralih antara kecepatan fast dan standar membatalkan cache prompt. Permintaan pada kecepatan yang berbeda tidak berbagi prefiks yang di-cache.
+- **Model yang didukung:** Fast mode didukung pada Claude Opus 4.8, Claude Opus 4.7, dan Claude Opus 4.6. Mengirim `speed: "fast"` dengan model yang tidak didukung akan mengembalikan error.
+- **TTFT:** Manfaat fast mode berfokus pada token output per detik (OTPS), bukan waktu hingga token pertama (TTFT).
+- **Batch API:** Fast mode tidak tersedia dengan [Batch API](/docs/id/build-with-claude/batch-processing).
+- **Priority Tier:** Fast mode tidak tersedia dengan [Priority Tier](/docs/id/api/service-tiers).
+- **Claude Platform on AWS:** Fast mode saat ini tidak tersedia di [Claude Platform on AWS](/docs/id/build-with-claude/claude-platform-on-aws).
 
 ## Langkah selanjutnya \{#next-steps}
 
-<CardGroup>
-  <Card title="Harga" icon="dollar-sign" href="/docs/id/about-claude/pricing#fast-mode-pricing">
-    Lihat informasi harga mode cepat secara detail.
+<CardGroup cols={2}>
+  <Card title="Output terstruktur" icon="code-brackets" href="/docs/id/build-with-claude/structured-outputs">
+    Dapatkan hasil JSON yang tervalidasi dari alur kerja agen.
   </Card>
-  <Card title="Batas laju" icon="gauge" href="/docs/id/api/rate-limits">
-    Periksa tingkat batas laju untuk mode cepat.
+  <Card title="Harga" icon="calculator" href="/docs/id/about-claude/pricing#fast-mode-pricing">
+    Pelajari struktur harga Anthropic untuk model dan fitur.
   </Card>
-  <Card title="Parameter effort" icon="sliders" href="/docs/id/build-with-claude/effort">
-    Kontrol penggunaan token dengan parameter effort.
+  <Card title="Effort" icon="gauge" href="/docs/id/build-with-claude/effort">
+    Kontrol berapa banyak token yang digunakan Claude saat merespons dengan parameter effort, menyeimbangkan antara kelengkapan respons dan efisiensi token.
+  </Card>
+  <Card title="Streaming pesan" icon="arrow-right" href="/docs/id/build-with-claude/streaming">
+    Stream respons Messages API secara inkremental dengan server-sent events, termasuk delta teks, penggunaan alat, dan pemikiran diperpanjang.
   </Card>
 </CardGroup>

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/ultrareview
-fetched_at: 2026-06-23T03:14:59.520621Z
-sha256: 6b2aa688a9b8109b0b23d1cfaf5ad7c57d421aaf8f5c54cac43178b2c7ba4096
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: 65f33a5946e2c3a51f196f0cfb34133461d461d533378ea6831b5f87978e54d7
 ---
 
 > ## Documentation Index
@@ -43,7 +43,7 @@ To review a GitHub pull request instead, pass the PR number.
 /code-review ultra 1234
 ```
 
-In PR mode, the remote sandbox clones the pull request directly from the host rather than bundling your local working tree. PR mode works with repositories on `github.com` and on [GitHub Enterprise Server](/en/github-enterprise-server) instances that an admin has connected to Claude Code.
+In PR mode, the remote sandbox clones the pull request directly from the host rather than bundling your local working tree. PR mode works with repositories on `github.com` and on [GitHub Enterprise Server](/en/github-enterprise-server) instances that an Owner has connected to Claude Code.
 
 <Tip>
   If your repository is too large to bundle, Claude Code prompts you to use PR mode instead. Push your branch and open a draft PR, then run `/code-review ultra <PR-number>`.

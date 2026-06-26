@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/messages/create
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 845c24db47e9749a4a8d02d8ef4b98499b86610fa3d22843dcf7d493634081e2
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: 3f7e9a1af81bd1fba3a3dae28febb080dd23b4f9d51d19309c863eb3692e56cc
 ---
 
 ## Create a Message
@@ -80,7 +80,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   There is a limit of 100,000 messages in a single request.
 
-- `--model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+- `--model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
   The model that will complete your prompt.
 
@@ -823,7 +823,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       - `type: "container_upload"`
 
-  - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 17 more or string`
+  - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
 
     The model that will complete your prompt.
 
@@ -889,26 +889,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       Exceptional model for specialized complex tasks
 
-    - `"claude-opus-4-0"`
-
-      Powerful model for complex tasks
-
-    - `"claude-opus-4-20250514"`
-
-      Powerful model for complex tasks
-
-    - `"claude-sonnet-4-0"`
-
-      High-performance model with extended thinking
-
-    - `"claude-sonnet-4-20250514"`
-
-      High-performance model with extended thinking
-
-    - `"claude-3-haiku-20240307"`
-
-      Fast and cost-effective model
-
   - `role: "assistant"`
 
     Conversational role of the generated message.
@@ -919,15 +899,15 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     Structured information about a refusal.
 
-    - `category: "cyber" or "bio" or "reasoning_extraction"`
+    - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
 
-      The policy category that triggered the refusal.
-
-      `null` when the refusal doesn't map to a named category.
+      The policy category that triggered a refusal.
 
       - `"cyber"`
 
       - `"bio"`
+
+      - `"frontier_llm"`
 
       - `"reasoning_extraction"`
 

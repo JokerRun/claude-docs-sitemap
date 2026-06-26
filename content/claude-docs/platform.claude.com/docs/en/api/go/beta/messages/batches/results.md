@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/messages/batches/results
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: cfeb504d4a6317194b1a3c0d20a3a01b7624c7f6cde881cb00794d2e33904a59
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: 4d1aecb0a5aecdef0abe14306543e2742375cab38204681c165148c89e36bb32
 ---
 
 ## Retrieve Message Batch results
@@ -939,9 +939,9 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             Marks the point in `content` where one model's output gives way to the next.
 
             One block appears per hop where a preceding model actually ran this turn and
-            declined. A turn routed directly by the sticky decision has no such boundary
-            and carries no block — the signal for whether a fallback model served the
-            response is the presence of a `fallback_message` entry in
+            declined. A turn where no preceding model ran and declined has no such
+            boundary and carries no block — the signal for whether a fallback model
+            served the response is the presence of a `fallback_message` entry in
             `usage.iterations`, not this block.
 
             The block is treated like a server-tool content block for streaming: it
@@ -1024,31 +1024,31 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                     Exceptional model for specialized complex tasks
 
-                  - `const ModelClaudeOpus4_0 Model = "claude-opus-4-0"`
-
-                    Powerful model for complex tasks
-
-                  - `const ModelClaudeOpus4_20250514 Model = "claude-opus-4-20250514"`
-
-                    Powerful model for complex tasks
-
-                  - `const ModelClaudeSonnet4_0 Model = "claude-sonnet-4-0"`
-
-                    High-performance model with extended thinking
-
-                  - `const ModelClaudeSonnet4_20250514 Model = "claude-sonnet-4-20250514"`
-
-                    High-performance model with extended thinking
-
-                  - `const ModelClaude_3_Haiku_20240307 Model = "claude-3-haiku-20240307"`
-
-                    Fast and cost-effective model
-
                 - `string`
 
             - `To BetaFallbackInfo`
 
               The fallback model producing the content that follows this block. Its `model` is always the canonical id.
+
+            - `Trigger BetaFallbackRefusalTrigger`
+
+              What caused the `from` model to hand over at this hop.
+
+              - `Category BetaFallbackRefusalTriggerCategory`
+
+                The policy category that triggered a refusal.
+
+                - `const BetaFallbackRefusalTriggerCategoryCyber BetaFallbackRefusalTriggerCategory = "cyber"`
+
+                - `const BetaFallbackRefusalTriggerCategoryBio BetaFallbackRefusalTriggerCategory = "bio"`
+
+                - `const BetaFallbackRefusalTriggerCategoryFrontierLLM BetaFallbackRefusalTriggerCategory = "frontier_llm"`
+
+                - `const BetaFallbackRefusalTriggerCategoryReasoningExtraction BetaFallbackRefusalTriggerCategory = "reasoning_extraction"`
+
+              - `Type Refusal`
+
+                - `const RefusalRefusal Refusal = "refusal"`
 
             - `Type Fallback`
 
@@ -1177,13 +1177,13 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           - `Category BetaRefusalStopDetailsCategory`
 
-            The policy category that triggered the refusal.
-
-            `null` when the refusal doesn't map to a named category.
+            The policy category that triggered a refusal.
 
             - `const BetaRefusalStopDetailsCategoryCyber BetaRefusalStopDetailsCategory = "cyber"`
 
             - `const BetaRefusalStopDetailsCategoryBio BetaRefusalStopDetailsCategory = "bio"`
+
+            - `const BetaRefusalStopDetailsCategoryFrontierLLM BetaRefusalStopDetailsCategory = "frontier_llm"`
 
             - `const BetaRefusalStopDetailsCategoryReasoningExtraction BetaRefusalStopDetailsCategory = "reasoning_extraction"`
 

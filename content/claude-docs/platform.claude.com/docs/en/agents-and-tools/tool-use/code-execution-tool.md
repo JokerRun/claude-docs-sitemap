@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool
-fetched_at: 2026-06-19T03:18:02.201222Z
-sha256: 3036385d5b8965bd662a7e1965365d4a4bb8ee6745062911941ab66921397491
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: 7a5a53b5e7f9407866a351d8326d4a92dbb132741a36aba964ce1ee2ea7e5f06
 ---
 
 # Code execution tool
@@ -57,10 +57,10 @@ Code execution is available on:
 - **[Claude Platform on AWS](/docs/en/build-with-claude/claude-platform-on-aws)**
 - **[Microsoft Foundry](/docs/en/build-with-claude/claude-in-microsoft-foundry)**
 
-Code execution is not currently available on Amazon Bedrock or Vertex AI.
+Code execution is not currently available on Amazon Bedrock or Google Cloud.
 
 <Note>
-For [Claude Mythos Preview](https://anthropic.com/glasswing), code execution is supported on the Claude API and Microsoft Foundry only. It is not available for Mythos Preview on Amazon Bedrock, Vertex AI, or Claude Platform on AWS.
+For [Claude Mythos Preview](https://anthropic.com/glasswing), code execution is supported on the Claude API and Microsoft Foundry only. It is not available for Mythos Preview on Amazon Bedrock, Google Cloud, or Claude Platform on AWS.
 </Note>
 
 ## Quick start

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/claude-code-analytics-api
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 22f40c276e3c1c2a89e6f4ffaee48faecfe7bacffaeb49c676703cb669a7c5aa
+fetched_at: 2026-06-26T03:16:19.812719Z
+sha256: c1fd3b0da57ae4aeab088139b0dc33dc95dd0b2146f5ffca7949f14db5a216f6
 ---
 
 # Claude Code Analytics API
@@ -26,13 +26,15 @@ API ini memungkinkan Anda untuk memantau, menganalisis, dan mengoptimalkan adops
 * **Justifikasi penggunaan:** Sediakan metrik untuk menjustifikasi dan memperluas adopsi Claude Code secara internal
 
 <Check>
-  **Kunci Admin API diperlukan**
-
-  API ini merupakan bagian dari [Admin API](/docs/id/manage-claude/admin-api). Endpoint ini memerlukan kunci Admin API (dimulai dengan `sk-ant-admin...`) yang berbeda dari kunci API standar. Hanya anggota organisasi dengan peran admin yang dapat menyediakan kunci Admin API melalui [Claude Console](/settings/admin-keys).
+  **Kunci Admin API diperlukan.** Endpoint ini memerlukan kunci Admin API, yang berbeda dari kunci API Claude standar. Lihat [Membuat kunci Admin API](/docs/id/manage-claude/admin-api-keys) untuk mengetahui tempat membuatnya sesuai jenis organisasi Anda dan cakupan mana yang harus dipilih.
 </Check>
 
 <Note>
 **Claude Platform di AWS:** Claude Code Analytics API saat ini tidak tersedia. Lihat penggunaan Claude Code di halaman **Usage** pada Claude Console sebagai gantinya.
+</Note>
+
+<Note>
+**Organisasi Claude Enterprise:** Aktivitas Claude Code untuk pengguna claude.ai dilaporkan oleh Claude Enterprise Analytics API, yang menggunakan kunci Analytics API alih-alih kunci Admin API. Lihat [Analytics API](/docs/id/manage-claude/analytics-api) untuk mengetahui API dan jenis kunci mana yang dibutuhkan organisasi Anda.
 </Note>
 
 ## Mulai cepat \{#quick-start}
@@ -66,10 +68,10 @@ Lacak penggunaan Claude Code, metrik produktivitas, dan aktivitas developer di s
 - **Data tingkat pengguna**: Setiap record mewakili aktivitas satu pengguna untuk hari yang ditentukan
 - **Metrik produktivitas**: Lacak sesi, baris kode, commit, pull request, dan penggunaan alat
 - **Data token dan biaya**: Pantau penggunaan dan estimasi biaya yang dirinci berdasarkan model Claude
-- **Paginasi berbasis cursor**: Tangani dataset besar dengan paginasi yang stabil menggunakan cursor opaque
+- **Paginasi berbasis kursor**: Tangani dataset besar dengan paginasi yang stabil menggunakan kursor opaque
 - **Kesegaran data**: Metrik tersedia dengan penundaan hingga 1 jam untuk konsistensi
 
-Untuk detail parameter lengkap dan skema respons, lihat [referensi Claude Code Analytics API](/docs/id/api/admin-api/claude-code/get-claude-code-usage-report).
+Untuk detail parameter lengkap dan skema respons, lihat [referensi Claude Code Analytics API](/docs/id/api/admin/usage_report/retrieve_claude_code).
 
 ### Contoh dasar \{#basic-examples}
 
@@ -106,7 +108,7 @@ page=page_MjAyNS0wNS0xNFQwMDowMDowMFo=" \
 |-----------|------|----------|-------------|
 | `starting_at` | string | Ya | Tanggal UTC dalam format YYYY-MM-DD; mengembalikan metrik hanya untuk satu hari ini |
 | `limit` | integer | Tidak | Jumlah record per halaman (default: 20, maks: 1000) |
-| `page` | string | Tidak | Token cursor opaque dari field `next_page` pada respons sebelumnya |
+| `page` | string | Tidak | Token kursor opaque dari field `next_page` pada respons sebelumnya |
 
 ### Metrik yang tersedia \{#available-metrics}
 
@@ -116,18 +118,18 @@ Setiap record respons berisi metrik berikut untuk satu pengguna pada satu hari:
 - **date**: Tanggal dalam format RFC 3339 (timestamp UTC)
 - **actor**: Pengguna atau kunci API yang melakukan tindakan Claude Code (baik `user_actor` dengan `email_address` atau `api_actor` dengan `api_key_name`)
 - **organization_id**: UUID organisasi
-- **customer_type**: Tipe akun pelanggan (`api` untuk pelanggan API, `subscription` untuk pelanggan Pro/Team)
-- **terminal_type**: Tipe terminal atau lingkungan tempat Claude Code digunakan (misalnya, `vscode`, `iTerm.app`, `tmux`)
+- **customer_type**: Jenis akun pelanggan (`api` untuk pelanggan API, `subscription` untuk pelanggan Pro/Team)
+- **terminal_type**: Jenis terminal atau lingkungan tempat Claude Code digunakan (misalnya, `vscode`, `iTerm.app`, `tmux`)
 
 #### Metrik inti \{#core-metrics}
-- **num_sessions**: Jumlah sesi Claude Code berbeda yang diinisiasi oleh actor ini
+- **num_sessions**: Jumlah sesi Claude Code berbeda yang diinisiasi oleh aktor ini
 - **lines_of_code.added**: Total jumlah baris kode yang ditambahkan di semua file oleh Claude Code
 - **lines_of_code.removed**: Total jumlah baris kode yang dihapus di semua file oleh Claude Code
 - **commits_by_claude_code**: Jumlah git commit yang dibuat melalui fungsionalitas commit Claude Code
 - **pull_requests_by_claude_code**: Jumlah pull request yang dibuat melalui fungsionalitas PR Claude Code
 
 #### Metrik tindakan alat \{#tool-action-metrics}
-Rincian tingkat penerimaan dan penolakan tindakan alat berdasarkan tipe alat:
+Rincian tingkat penerimaan dan penolakan tindakan alat berdasarkan jenis alat:
 - **edit_tool.accepted/rejected:** Jumlah proposal alat Edit yang diterima/ditolak oleh pengguna
 - **multi_edit_tool.accepted/rejected:** Jumlah proposal alat MultiEdit yang diterima/ditolak oleh pengguna
 - **write_tool.accepted/rejected:** Jumlah proposal alat Write yang diterima/ditolak oleh pengguna
@@ -208,13 +210,13 @@ API mengembalikan data dalam format berikut:
 
 ## Paginasi \{#pagination}
 
-API mendukung paginasi berbasis cursor untuk organisasi dengan jumlah pengguna yang besar:
+API mendukung paginasi berbasis kursor untuk organisasi dengan jumlah pengguna yang besar:
 
 1. Buat permintaan awal Anda dengan parameter `limit` opsional
 2. Jika `has_more` bernilai `true` dalam respons, gunakan nilai `next_page` dalam permintaan Anda berikutnya
 3. Lanjutkan hingga `has_more` bernilai `false`
 
-Cursor mengenkode posisi record terakhir dan memastikan paginasi yang stabil bahkan saat data baru masuk. Setiap sesi paginasi mempertahankan batas data yang konsisten untuk memastikan Anda tidak melewatkan atau menduplikasi record.
+Kursor mengenkode posisi record terakhir dan memastikan paginasi yang stabil bahkan saat data baru masuk. Setiap sesi paginasi mempertahankan batas data yang konsisten untuk memastikan Anda tidak melewatkan atau menduplikasi record.
 
 ## Kasus penggunaan umum \{#common-use-cases}
 
@@ -222,7 +224,7 @@ Cursor mengenkode posisi record terakhir dan memastikan paginasi yang stabil bah
 - **Perbandingan alat AI**: Ekspor metrik untuk membandingkan Claude Code dengan alat coding AI lainnya seperti Copilot dan Cursor
 - **Analisis produktivitas developer**: Lacak metrik produktivitas individu dan tim dari waktu ke waktu
 - **Pelacakan dan alokasi biaya**: Pantau pola pengeluaran dan alokasikan biaya berdasarkan tim atau proyek
-- **Pemantauan adopsi**: Identifikasi tim dan pengguna mana yang mendapatkan nilai paling banyak dari Claude Code
+- **Pemantauan adopsi**: Identifikasi tim dan pengguna mana yang mendapatkan nilai paling besar dari Claude Code
 - **Justifikasi ROI**: Sediakan metrik konkret untuk menjustifikasi dan memperluas adopsi Claude Code secara internal
 
 ## Pertanyaan yang sering diajukan \{#frequently-asked-questions}
@@ -250,7 +252,7 @@ API ini hanya melacak penggunaan Claude Code pada Claude API. Penggunaan melalui
 Claude Code Analytics API gratis digunakan untuk semua organisasi yang memiliki akses ke Admin API.
 
 ### Bagaimana cara menghitung tingkat penerimaan alat? \{#how-do-i-calculate-tool-acceptance-rates}
-Tingkat penerimaan alat = `accepted / (accepted + rejected)` untuk setiap tipe alat. Misalnya, jika alat edit menunjukkan 45 diterima dan 5 ditolak, tingkat penerimaannya adalah 90%.
+Tingkat penerimaan alat = `accepted / (accepted + rejected)` untuk setiap jenis alat. Misalnya, jika alat edit menunjukkan 45 diterima dan 5 ditolak, tingkat penerimaannya adalah 90%.
 
 ### Zona waktu apa yang digunakan untuk parameter tanggal? \{#what-time-zone-is-used-for-the-date-parameter}
 Semua tanggal dalam UTC. Parameter `starting_at` harus dalam format YYYY-MM-DD dan mewakili tengah malam UTC untuk hari tersebut.
