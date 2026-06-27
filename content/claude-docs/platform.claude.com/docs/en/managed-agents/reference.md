@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/reference
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 8451128bd66dcf782eeff2daa3de972d095a27823455b61aa4a50aa7694bb559
+fetched_at: 2026-06-27T03:14:28.973816Z
+sha256: 756476caee09cce64e4a0ff6e0bb2c8eda154bd6bf61f5794c5beb76b6c8ac72
 ---
 
 # Reference
@@ -117,9 +117,9 @@ Managed Agents endpoints are rate-limited per organization:
 | Operation | Limit |
 |-----------|-------|
 | Create endpoints (such as agents, sessions, and environments) | 300 requests per minute |
-| Read endpoints (such as retrieve, list, and stream) | 600 requests per minute |
+| Read endpoints (such as retrieve, list, and stream) | 1,200 requests per minute |
 
-Organization-level [spend limits and tier-based rate limits](/docs/en/api/rate-limits) also apply.
+Organization-level [spend limits and usage-tier rate limits](/docs/en/api/rate-limits) also apply.
 
 ## Branding guidelines
 

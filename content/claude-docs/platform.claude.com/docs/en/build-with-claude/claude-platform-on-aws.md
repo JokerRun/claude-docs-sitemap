@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws
-fetched_at: 2026-06-12T03:17:40.104094Z
-sha256: dc1ba1fbdfdac7a8a3a6fb1dd364b338551ac0ed2fe14f28fc1601d0cfe1d29e
+fetched_at: 2026-06-27T03:14:28.973816Z
+sha256: daf4b9149e12c8c5d5d9bc0360ded996f6827bc21a8a8db8965b4bdf4139bfb5
 ---
 
 # Claude Platform on AWS
@@ -790,9 +790,9 @@ The Claude Console does not support organization switching for Claude Platform o
 
 ## Rate limits and quotas
 
-Claude Platform on AWS assigns Tier 1 rate limits on sign-up. Anthropic manages rate limits directly, not through AWS quota systems.
+Organizations on Claude Platform on AWS are placed on the Start tier. Anthropic manages rate limits directly, not through AWS quota systems.
 
-Unlike the first-party Claude API, automatic tier advancement does not apply. If you need higher limits, contact your Anthropic account representative. For tier details and per-model limits, see [Rate limits](/docs/en/api/rate-limits).
+Organizations on Claude Platform on AWS do not move between usage tiers automatically. To request higher limits, contact your Anthropic account representative. For tier details and per-model limits, see [Rate limits](/docs/en/api/rate-limits).
 
 ## Billing
 

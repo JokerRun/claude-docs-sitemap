@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects
-fetched_at: 2026-06-19T03:18:02.201222Z
-sha256: 6e003f077e24f64d7ef54f1126afc90df4812c9c4245889a02e14fe0d9d16725
+fetched_at: 2026-06-27T03:14:28.973816Z
+sha256: a76618daa6992db224ee313ad6dc60d6e4bb43076ac37ffa91a7af7879d5af0c
 ---
 
 # Projects
@@ -258,21 +258,21 @@ curl https://api.anthropic.com/v1/compliance/apps/projects/$PROJECT_ID \
 
 ```json
 {
-  "id": "id",
-  "attachments_count": 0,
-  "chats_count": 0,
-  "created_at": "2019-12-27T18:11:19.117Z",
+  "id": "claude_proj_01Nm7PqRsTuVwXyZaBcDeFgH",
+  "attachments_count": 3,
+  "chats_count": 14,
+  "created_at": "2025-03-12T18:22:41.123456Z",
   "deleted_at": "2019-12-27T18:11:19.117Z",
-  "description": "description",
-  "instructions": "instructions",
+  "description": "Planning and research for the Q3 launch",
+  "instructions": "Focus on concise, actionable answers.",
   "is_private": true,
-  "name": "name",
-  "organization_id": "organization_id",
-  "organization_uuid": "organization_uuid",
-  "updated_at": "2019-12-27T18:11:19.117Z",
+  "name": "Q3 Product Launch",
+  "organization_id": "org_015eofRkKpogX7uDKUyvBTph",
+  "organization_uuid": "a1b2c3d4-e5f6-4789-a012-3456789abcde",
+  "updated_at": "2025-03-14T09:05:17.456789Z",
   "user": {
-    "id": "id",
-    "email_address": "email_address"
+    "id": "user_01WCz1FkmYMm4gnmykNKUu3Q",
+    "email_address": "jane.doe@example.com"
   }
 }
 ```
@@ -1073,13 +1073,13 @@ curl https://api.anthropic.com/v1/compliance/apps/projects/documents/$DOCUMENT_I
 
 ```json
 {
-  "id": "id",
-  "content": "content",
-  "created_at": "2019-12-27T18:11:19.117Z",
-  "filename": "filename",
+  "id": "claude_proj_doc_01Qr8StUvWxYzAbCdEfGhJjK",
+  "content": "# Design notes\n\n- Item one\n- Item two\n",
+  "created_at": "2025-03-12T18:22:41.123456Z",
+  "filename": "design-notes.txt",
   "user": {
-    "id": "id",
-    "email_address": "email_address"
+    "id": "user_01WCz1FkmYMm4gnmykNKUu3Q",
+    "email_address": "jane.doe@example.com"
   }
 }
 ```
@@ -1172,8 +1172,8 @@ curl https://api.anthropic.com/v1/compliance/apps/projects/documents/$DOCUMENT_I
   "mime_type": "text/plain",
   "size_bytes": 0,
   "user": {
-    "id": "id",
-    "email_address": "email_address"
+    "id": "user_01WCz1FkmYMm4gnmykNKUu3Q",
+    "email_address": "jane.doe@example.com"
   }
 }
 ```

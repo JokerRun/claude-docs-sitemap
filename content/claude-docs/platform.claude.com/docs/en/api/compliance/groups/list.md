@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/groups/list
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 8ef819b418cd98364dbf5c7b9d2f026d30c01f42cc30f22de1db71e023d60e7f
+fetched_at: 2026-06-27T03:14:28.973816Z
+sha256: f92da4573ff7823acfffebc43538cf3817d7713e3a83c2755091767409ff7dc8
 ---
 
 ## List Compliance Groups
@@ -84,18 +84,19 @@ curl https://api.anthropic.com/v1/compliance/groups \
 {
   "data": [
     {
-      "id": "id",
-      "created_at": "created_at",
-      "description": "description",
-      "name": "name",
+      "id": "rbac_group_012rppKaSVsmTo6NqRDXQXNF",
+      "created_at": "2025-03-12T18:22:41.123456",
+      "description": "All members of the engineering organization",
+      "name": "Engineering Team",
       "roles": [
-        "string"
+        "rbac_role_01SGBg3kEnZrdsVR2QmyJbvD",
+        "rbac_role_01HtCd4mFoAseWS3RnzKcwE7"
       ],
-      "source_type": "source_type",
-      "updated_at": "updated_at"
+      "source_type": "scim",
+      "updated_at": "2025-03-14T09:05:17.456789"
     }
   ],
   "has_more": true,
-  "next_page": "next_page"
+  "next_page": "cGFnZV90b2tlbl9leGFtcGxlXzE3MzQ1Njc4OTA="
 }
 ```

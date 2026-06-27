@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/roles/permissions/list
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 4f15dac39325da67958694968b2adbd00ba4dfe2af9158060928db1bce9b7fa2
+fetched_at: 2026-06-27T03:14:28.973816Z
+sha256: 7d4948bf8199193d94a980ced6ef2fd853f8550289282ec617689aa52c2b7e5c
 ---
 
 ## List Compliance Role Permissions
@@ -74,12 +74,12 @@ curl https://api.anthropic.com/v1/compliance/organizations/$ORG_UUID/roles/$ROLE
 {
   "data": [
     {
-      "action": "action",
-      "resource_id": "resource_id",
-      "resource_type": "resource_type"
+      "action": "claude_code",
+      "resource_id": "a1b2c3d4-e5f6-4789-a012-3456789abcde",
+      "resource_type": "organization"
     }
   ],
   "has_more": true,
-  "next_page": "next_page"
+  "next_page": "cGFnZV90b2tlbl9leGFtcGxlXzE3MzQ1Njc4OTA="
 }
 ```

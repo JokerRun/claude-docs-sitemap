@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/llm-gateway-protocol
-fetched_at: 2026-06-26T03:16:19.812719Z
-sha256: cba07820883dd1f462e3d34b896060b4bf209ea91954c19f5066048134510cdd
+fetched_at: 2026-06-27T03:14:28.973816Z
+sha256: 75512d0d9226b6134dc1736f63f85ccc253a9106b26abaee51c28ff557afafa6
 ---
 
 > ## Documentation Index
@@ -161,7 +161,7 @@ Claude Code reads `id` and the optional `display_name` from each entry in the re
 {
   "data": [
     { "id": "claude-sonnet-4-6", "display_name": "Claude Sonnet 4.6" },
-    { "id": "claude-opus-4-7" }
+    { "id": "claude-opus-4-8" }
   ]
 }
 ```

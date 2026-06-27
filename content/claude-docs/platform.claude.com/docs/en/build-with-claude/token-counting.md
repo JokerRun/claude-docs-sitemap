@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/token-counting
-fetched_at: 2026-06-16T03:17:15.143812Z
-sha256: 9d3e18f775077f88500ee23fc4dadfe0945e0f2568ae5253516fff3e0c846b9c
+fetched_at: 2026-06-27T03:14:28.973816Z
+sha256: cf9e22c28fb2ebeaf36dd212dd89eced3908ee4efa01a2c9e5007a2ea0f5c24b
 ---
 
 # Token counting
@@ -1279,7 +1279,7 @@ Token counting supports PDFs with the same [limitations](/docs/en/build-with-cla
 <CodeGroup>
 ```bash cURL hidelines={1..3}
 PDF_URL="https://assets.anthropic.com/m/1cd9d098ac3e6467/original/Claude-3-Model-Card-October-Addendum.pdf"
-PDF_BASE64=$(curl -s "$PDF_URL" | base64 | tr -d '\n')
+PDF_BASE64=$(curl -sL "$PDF_URL" | base64 | tr -d '\n')
 
 curl https://api.anthropic.com/v1/messages/count_tokens \
     --header "x-api-key: $ANTHROPIC_API_KEY" \
@@ -1309,9 +1309,9 @@ curl https://api.anthropic.com/v1/messages/count_tokens \
 EOF
 ```
 
-```bash CLI nocheck hidelines={1..3}
+```bash CLI hidelines={1..3}
 PDF_URL="https://assets.anthropic.com/m/1cd9d098ac3e6467/original/Claude-3-Model-Card-October-Addendum.pdf"
-curl -s "$PDF_URL" -o document.pdf
+curl -sL "$PDF_URL" -o document.pdf
 
 ant messages count-tokens <<'YAML'
 model: claude-opus-4-8
@@ -1328,13 +1328,13 @@ messages:
 YAML
 ```
 
-```python Python nocheck
+```python Python
 import base64
 import anthropic
 
 client = anthropic.Anthropic()
 
-with open("document.pdf", "rb") as pdf_file:
+with open("/path/to/document.pdf", "rb") as pdf_file:
     pdf_base64 = base64.standard_b64encode(pdf_file.read()).decode("utf-8")
 
 response = client.messages.count_tokens(
@@ -1360,13 +1360,13 @@ response = client.messages.count_tokens(
 print(response.json())
 ```
 
-```typescript TypeScript nocheck hidelines={1}
+```typescript TypeScript hidelines={1}
 import Anthropic from "@anthropic-ai/sdk";
 import { readFile } from "fs/promises";
 
 const client = new Anthropic();
 
-const pdfBase64 = await readFile("document.pdf", { encoding: "base64" });
+const pdfBase64 = await readFile("/path/to/document.pdf", { encoding: "base64" });
 
 const response = await client.messages.countTokens({
   model: "claude-opus-4-8",
@@ -1394,7 +1394,7 @@ const response = await client.messages.countTokens({
 console.log(response);
 ```
 
-```csharp C# nocheck
+```csharp C#
 using System;
 using System.IO;
 using System.Threading.Tasks;
@@ -1408,7 +1408,7 @@ class Program
     {
         AnthropicClient client = new();
 
-        byte[] pdfBytes = await File.ReadAllBytesAsync("document.pdf");
+        byte[] pdfBytes = await File.ReadAllBytesAsync("/path/to/document.pdf");
         string pdfBase64 = Convert.ToBase64String(pdfBytes);
 
         var parameters = new MessageCountTokensParams
@@ -1425,7 +1425,6 @@ class Program
                             new DocumentBlockParamSource(new Base64PdfSource()
                             {
                                 Data = pdfBase64,
-                                MediaType = MediaType.ApplicationPdf,
                             })
                         )),
                         new ContentBlockParam(new TextBlockParam("Please summarize this document.")),
@@ -1440,7 +1439,7 @@ class Program
 }
 ```
 
-```go Go nocheck hidelines={1..15,-1}
+```go Go hidelines={1..15,-1}
 package main
 
 import (
@@ -1456,7 +1455,7 @@ import (
 func main() {
 	client := anthropic.NewClient()
 
-	pdfBytes, err := os.ReadFile("document.pdf")
+	pdfBytes, err := os.ReadFile("/path/to/document.pdf")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -1481,7 +1480,7 @@ func main() {
 }
 ```
 
-```java Java nocheck hidelines={1..2,4,8..17,-2..}
+```java Java hidelines={1..2,4,8..17,-2..}
 import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.messages.Base64PdfSource;
@@ -1501,17 +1500,12 @@ public class CountTokensPdfExample {
   public static void main(String[] args) throws Exception {
     AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-    byte[] fileBytes = Files.readAllBytes(Path.of("document.pdf"));
+    byte[] fileBytes = Files.readAllBytes(Path.of("/path/to/document.pdf"));
     String pdfBase64 = Base64.getEncoder().encodeToString(fileBytes);
 
     ContentBlockParam documentBlock = ContentBlockParam.ofDocument(
       DocumentBlockParam.builder()
-        .source(
-          Base64PdfSource.builder()
-            .mediaType(Base64PdfSource.MediaType.APPLICATION_PDF)
-            .data(pdfBase64)
-            .build()
-        )
+        .source(Base64PdfSource.builder().data(pdfBase64).build())
         .build()
     );
 
@@ -1530,14 +1524,14 @@ public class CountTokensPdfExample {
 }
 ```
 
-```php PHP hidelines={1..4} nocheck
+```php PHP hidelines={1..4}
 <?php
 
 use Anthropic\Client;
 
 $client = new Client();
 
-$pdfBase64 = base64_encode(file_get_contents("document.pdf"));
+$pdfBase64 = base64_encode(file_get_contents("/path/to/document.pdf"));
 
 $response = $client->messages->countTokens(
     messages: [
@@ -1565,13 +1559,13 @@ $response = $client->messages->countTokens(
 echo json_encode($response);
 ```
 
-```ruby Ruby nocheck hidelines={1}
+```ruby Ruby hidelines={1}
 require "anthropic"
 require "base64"
 
 client = Anthropic::Client.new
 
-pdf_base64 = Base64.strict_encode64(File.binread("document.pdf"))
+pdf_base64 = Base64.strict_encode64(File.binread("/path/to/document.pdf"))
 
 response = client.messages.count_tokens(
   model: "claude-opus-4-8",
@@ -1618,14 +1612,13 @@ Claude Fable 5 and Claude Mythos 5 use the tokenizer introduced with Claude Opus
 
 ## Pricing and rate limits
 
-Token counting is **free to use** but subject to requests per minute rate limits based on your [usage tier](/docs/en/api/rate-limits#rate-limits). If you need higher limits, contact sales through the [Claude Console](/settings/limits).
+Token counting is **free to use** but subject to requests per minute rate limits based on your [usage tier](/docs/en/api/rate-limits#rate-limits). If you need higher limits, use **Request rate limit increase** on the [Limits](/settings/limits) page.
 
 | Usage tier | Requests per minute (RPM) |
 |------------|---------------------------|
-| 1          | 100                       |
-| 2          | 2,000                     |
-| 3          | 4,000                     |
-| 4          | 8,000                     |
+| Start      | 2,000                     |
+| Build      | 4,000                     |
+| Scale      | 8,000                     |
 
 <Note>
   Token counting and message creation have separate and independent rate limits. Usage of one does not count against the limits of the other.

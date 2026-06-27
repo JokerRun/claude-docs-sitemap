@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/environments
-fetched_at: 2026-06-13T03:15:40.418428Z
-sha256: 3b3dfe9376428ad7b14771e5f840efd8466c96f2e9f26d73171370829afb6452
+fetched_at: 2026-06-27T03:14:28.973816Z
+sha256: 7b19929f463c5f7540f06875d8f821aae69780f6630f9d50e6c7952d16d2b3cf
 ---
 
 # Penyiapan lingkungan cloud
@@ -553,16 +553,16 @@ curl -fsS -X DELETE "https://api.anthropic.com/v1/environments/$environment_id" 
 
   
 ````bash
-# Daftar environment
+# List environments
 ant beta:environments list
 
-# Ambil environment tertentu
+# Retrieve a specific environment
 ant beta:environments retrieve --environment-id "$ENVIRONMENT_ID"
 
-# Arsipkan environment (hanya-baca, sesi yang ada tetap berjalan)
+# Archive an environment (read-only, existing sessions continue)
 ant beta:environments archive --environment-id "$ENVIRONMENT_ID"
 
-# Hapus environment (hanya jika tidak ada sesi yang mereferensikannya)
+# Delete an environment (only if no sessions reference it)
 ant beta:environments delete --environment-id "$ENVIRONMENT_ID"
 ````
 

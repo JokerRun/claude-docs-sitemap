@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/artifacts
-fetched_at: 2026-06-26T03:16:19.812719Z
-sha256: de6ad354fa1b66866a643223a609fbfbbac02e0327b8936de6c6325d3de68817
+fetched_at: 2026-06-27T03:14:28.973816Z
+sha256: 7936991f2f736dae71eddcbbf002aeea292b14b9e1c6e79d2d3c27f09556c1c0
 ---
 
 > ## Documentation Index
@@ -24,15 +24,6 @@ An artifact is a live, interactive web page that Claude Code publishes from your
 <Frame>
   <img src="https://mintcdn.com/claude-code/kaHIYYMIYMYPxQg9/images/artifacts-viewer.png?fit=max&auto=format&n=kaHIYYMIYMYPxQg9&q=85&s=dbfd671cdb0d15f49f808b9e89778fe1" alt="An artifact open in a browser at claude.ai/code/artifact. The viewer header shows the artifact title acme-funnel-fix, a Share button, and the author avatar. The Share menu is open with the Always share latest version toggle, a version picker reading Sharing version 2, an Everyone at Acme audience selector, and a Copy link button. Below the header, the artifact page shows two mobile mockups side by side, a funnel chart, and a row of metric cards." width="2511" height="1890" data-path="images/artifacts-viewer.png" />
 </Frame>
-
-This page covers how to:
-
-* Decide [when to use an artifact](#when-to-use-an-artifact)
-* [Create](#create-an-artifact), [update](#update-an-artifact), and [share](#share-an-artifact) an artifact
-* Apply [prompting patterns](#what-you-can-build) for richer pages
-* [Apply your own design system](#improve-the-visual-design) so artifacts match your product's branding
-* Understand the [page constraints](#page-constraints) and [availability requirements](#availability)
-* [Disable](#disable-artifacts) or [manage artifacts for your organization](#manage-artifacts-for-your-organization)
 
 ## When to use an artifact
 

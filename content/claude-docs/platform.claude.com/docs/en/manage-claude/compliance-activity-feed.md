@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/compliance-activity-feed
-fetched_at: 2026-06-12T03:17:40.104094Z
-sha256: bb45d2447180256c05956c8a6dce61a25902b5ab7ae0ca26d7cd79f2928af85b
+fetched_at: 2026-06-27T03:14:28.973816Z
+sha256: af9dd78dc90f835c78d574c633cb7248de0d09e67c24ac6bd1c78f2b9706eb9b
 ---
 
 # Query the Activity Feed
@@ -86,9 +86,9 @@ The Compliance API uses two pagination schemes depending on the endpoint family:
 | :---- | :---- | :---- | :---- |
 | Activities | Newest first | Cursor | `after_id`, `before_id` (returned as `first_id`, `last_id`) |
 | Chats and chat messages | Oldest first | Cursor | `after_id`, `before_id` (returned as `first_id`, `last_id`) |
-| Projects, project attachments, users, roles, role permissions, groups, group members | Endpoint-specific | Page token | `page` (returned as `next_page`) |
+| Organizations, projects, project attachments, users, roles, role permissions, groups, group members | Endpoint-specific | Page token | `page` (returned as `next_page`) |
 
-Organizations and files do not paginate: [List organizations](/docs/en/manage-claude/compliance-org-data#list-organizations) returns all results in one response, and files are retrieved individually by ID.
+Files do not paginate: they are retrieved individually by ID.
 
 Pagination cursors and page tokens are opaque strings: pass them back unchanged. Their internal format is not stable, and parsing them will break without notice. Only one of `after_id` or `before_id` may be set in each request, and both schemes return `has_more` so you know when to stop.
 

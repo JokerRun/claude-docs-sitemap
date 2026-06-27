@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/groups/retrieve
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 1428eeff5c24e6afb8e968d06b017e2c201f0ff53d73c8aad6f4b93f664f9475
+fetched_at: 2026-06-27T03:14:28.973816Z
+sha256: 42bf13eea8272a970a0835eb73521d575e66bbd27680ce0595497de03d0db27c
 ---
 
 ## Get Compliance Group
@@ -62,14 +62,15 @@ curl https://api.anthropic.com/v1/compliance/groups/$GROUP_ID \
 
 ```json
 {
-  "id": "id",
-  "created_at": "created_at",
-  "description": "description",
-  "name": "name",
+  "id": "rbac_group_012rppKaSVsmTo6NqRDXQXNF",
+  "created_at": "2025-03-12T18:22:41.123456",
+  "description": "All members of the engineering organization",
+  "name": "Engineering Team",
   "roles": [
-    "string"
+    "rbac_role_01SGBg3kEnZrdsVR2QmyJbvD",
+    "rbac_role_01HtCd4mFoAseWS3RnzKcwE7"
   ],
-  "source_type": "source_type",
-  "updated_at": "updated_at"
+  "source_type": "scim",
+  "updated_at": "2025-03-14T09:05:17.456789"
 }
 ```

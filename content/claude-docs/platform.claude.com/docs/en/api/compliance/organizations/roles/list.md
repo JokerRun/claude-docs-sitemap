@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/roles/list
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: f7dea510366b0d160ca8739ff8df80d83b466bbb33941f5f0ecb9cfb14764b1e
+fetched_at: 2026-06-27T03:14:28.973816Z
+sha256: a8cc210b2670b59a8fdfa3a34037a6fe811d33daf72d910c84614e365d332238
 ---
 
 ## List Compliance Roles
@@ -78,14 +78,14 @@ curl https://api.anthropic.com/v1/compliance/organizations/$ORG_UUID/roles \
 {
   "data": [
     {
-      "id": "id",
-      "created_at": "created_at",
-      "description": "description",
-      "name": "name",
-      "updated_at": "updated_at"
+      "id": "rbac_role_01SGBg3kEnZrdsVR2QmyJbvD",
+      "created_at": "2025-03-12T18:22:41.123456",
+      "description": "Full administrative access to organization settings and members",
+      "name": "Organization Admin",
+      "updated_at": "2025-03-14T09:05:17.456789"
     }
   ],
   "has_more": true,
-  "next_page": "next_page"
+  "next_page": "cGFnZV90b2tlbl9leGFtcGxlXzE3MzQ1Njc4OTA="
 }
 ```

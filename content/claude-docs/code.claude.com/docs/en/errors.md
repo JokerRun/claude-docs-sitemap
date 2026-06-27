@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/errors
-fetched_at: 2026-06-26T03:16:19.812719Z
-sha256: 253addb4d78c3ddd7b092650fe21fe99b29c47e545779ff9030de45e78ad9442
+fetched_at: 2026-06-27T03:14:28.973816Z
+sha256: bc408c8809458b694a8e89cb05e68a24b1916ffa0502372ba01f93854ca92f94
 ---
 
 > ## Documentation Index
@@ -678,7 +678,7 @@ API Error: 400 ... "thinking.type.enabled" is not supported for this model. Use 
 
 * Run `claude update` and restart Claude Code. Opus 4.7 needs v2.1.111 or later. Opus 4.8 needs v2.1.154 or later
 * If you cannot upgrade, run `/model` and select Opus 4.6 or Sonnet instead
-* If you hit this in the Agent SDK, see [SDK troubleshooting](/en/agent-sdk/quickstart#troubleshooting)
+* {/* min-version: agent-sdk@0.3.154 */}If you hit this in the [Agent SDK](/en/agent-sdk/overview), upgrade the SDK package instead. Opus 4.8 needs TypeScript SDK v0.3.154 or later and Python SDK v0.2.88 or later
 
 ### Thinking budget exceeds output limit
 

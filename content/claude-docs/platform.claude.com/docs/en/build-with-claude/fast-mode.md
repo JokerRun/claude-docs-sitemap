@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/fast-mode
-fetched_at: 2026-06-26T03:16:19.812719Z
-sha256: 8159fb04717546e01c6cd9d9b51269afc75044ed3e35049787846c479c07a664
+fetched_at: 2026-06-27T03:14:28.973816Z
+sha256: 331c165e6cea5c1f0e6684f60a5a4fb2ce1b6c9694b9891a1178699558a6f72d
 ---
 
 # Fast mode (research preview)
@@ -34,7 +34,11 @@ Fast mode for Claude Opus 4.8 launches as a research preview on the Claude API, 
 </Note>
 
 <Warning>
-Fast mode for Claude Opus 4.6 is deprecated as of the Claude Opus 4.8 launch and will be removed approximately 30 days later. After removal, requests to `claude-opus-4-6` with `speed: "fast"` will fall back to standard speed at standard pricing rather than return an error. Migrate to fast mode for Claude Opus 4.8 or Claude Opus 4.7 to keep the speedup.
+Fast mode for Claude Opus 4.7 is deprecated as of June 25, 2026, and will be removed on July 24, 2026. After removal, requests to `claude-opus-4-7` with `speed: "fast"` will return an error. Claude Opus 4.7 remains available at standard speed.
+
+Fast mode for Claude Opus 4.6 is deprecated and will be removed on June 29, 2026. After removal, requests to `claude-opus-4-6` with `speed: "fast"` will fall back to standard speed at standard pricing rather than return an error.
+
+Migrate to fast mode for Claude Opus 4.8 to keep the speedup.
 </Warning>
 
 ## How fast mode works

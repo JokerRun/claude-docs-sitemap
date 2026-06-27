@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/list
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 6f4165f51213fb60909f3d3e1dfbd846b040d5090ad6a82c8ad5a520ffbe3689
+fetched_at: 2026-06-27T03:14:28.973816Z
+sha256: 17853e6e7411b4837d3dd79fef5fd1758c59ac538948045932ccf431d746c3a3
 ---
 
 ## List organizations
@@ -11,9 +11,19 @@ sha256: 6f4165f51213fb60909f3d3e1dfbd846b040d5090ad6a82c8ad5a520ffbe3689
 
 List organizations under the parent organization.
 
-Returns a list of organizations sorted by creation date in ascending order.
-This endpoint does not support pagination and will return an error if the
-response would exceed 1,000 organizations.
+Returns organizations sorted by creation date in ascending order. Use
+`limit` and `page` to paginate: each response includes `has_more` and a
+`next_page` token to pass on the next request.
+
+### Query Parameters
+
+- `limit: optional number`
+
+  Maximum results (default: 1000, max: 1000)
+
+- `page: optional string`
+
+  Opaque pagination token from a previous response's `next_page` field. Pass this to retrieve the next page of results. Clients should treat this value as an opaque string and not attempt to parse or interpret its contents, as the format may change without notice.
 
 ### Header Parameters
 
@@ -37,6 +47,14 @@ response would exceed 1,000 organizations.
 
     Unique identifier for the organization (UUID format)
 
+- `has_more: boolean`
+
+  Whether more records exist beyond the current result set
+
+- `next_page: optional string`
+
+  Token to retrieve the next page. Use this as the 'page' parameter in your next request
+
 ### Example
 
 ```http
@@ -50,10 +68,12 @@ curl https://api.anthropic.com/v1/compliance/organizations \
 {
   "data": [
     {
-      "created_at": "created_at",
-      "name": "name",
-      "uuid": "uuid"
+      "created_at": "2025-03-12T18:22:41.123456+00:00",
+      "name": "Acme Corp",
+      "uuid": "a1b2c3d4-e5f6-4789-a012-3456789abcde"
     }
-  ]
+  ],
+  "has_more": true,
+  "next_page": "cGFnZV90b2tlbl9leGFtcGxlXzE3MzQ1Njc4OTA="
 }
 ```

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-teams
-fetched_at: 2026-06-26T03:16:19.812719Z
-sha256: cdce63417a062bf72f8c0ff7ce38ddaffeb5e3851da8afb16c287982de4964aa
+fetched_at: 2026-06-27T03:14:28.973816Z
+sha256: 8f69779c7a917a509f0020ccc47f6dd71c86897f2e0d4dc0d5a3bb7599c423ec
 ---
 
 > ## Documentation Index
@@ -24,13 +24,6 @@ Unlike [subagents](/en/sub-agents), which run within a single session and can on
 <Note>
   This page describes agent teams as of v2.1.178. With `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS` set, spawning a teammate no longer needs a setup step, and cleanup happens automatically when the session exits. Before v2.1.178, you asked Claude to create and name a team first, and Claude used the `TeamCreate` and `TeamDelete` tools to set it up and remove it. Both tools no longer exist. The `team_name` input on the Agent tool is accepted but ignored, and the `team_name` field in `TaskCreated`, `TaskCompleted`, and `TeammateIdle` [hook payloads](/en/hooks#taskcreated) carries the session-derived name and is deprecated.
 </Note>
-
-This page covers:
-
-* [When to use agent teams](#when-to-use-agent-teams), including best use cases and how they compare with subagents
-* [Starting a team](#start-your-first-agent-team)
-* [Controlling teammates](#control-your-agent-team), including display modes, task assignment, and delegation
-* [Best practices for parallel work](#best-practices)
 
 ## When to use agent teams
 

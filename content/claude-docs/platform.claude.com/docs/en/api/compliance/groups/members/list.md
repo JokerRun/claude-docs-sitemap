@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/groups/members/list
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: ae0d108d1735e255b361a82cd9a8d9c55a5b95b20e8133ee60eb7017aa6fd4ba
+fetched_at: 2026-06-27T03:14:28.973816Z
+sha256: a919955a0aae6bcdd58e9a2f01d1f7521bf2b39efaa659ab3581ace293032ac7
 ---
 
 ## List Compliance Group Members
@@ -74,13 +74,13 @@ curl https://api.anthropic.com/v1/compliance/groups/$GROUP_ID/members \
 {
   "data": [
     {
-      "created_at": "created_at",
-      "email": "email",
-      "updated_at": "updated_at",
-      "user_id": "user_id"
+      "created_at": "2025-03-12T18:22:41.123456",
+      "email": "jane.doe@example.com",
+      "updated_at": "2025-03-14T09:05:17.456789",
+      "user_id": "user_01WCz1FkmYMm4gnmykNKUu3Q"
     }
   ],
   "has_more": true,
-  "next_page": "next_page"
+  "next_page": "cGFnZV90b2tlbl9leGFtcGxlXzE3MzQ1Njc4OTA="
 }
 ```

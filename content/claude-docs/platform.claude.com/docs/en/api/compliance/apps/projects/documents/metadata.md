@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/projects/documents/metadata
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 7871e6d8bb41a24651e588d6bfd9eee3508ef168d8469cf0bf0cf63ff07fbf30
+fetched_at: 2026-06-27T03:14:28.973816Z
+sha256: ff2a5faf61947bc43e2480f7f128feff81a071a7999cca78ed25cbe93a9040c7
 ---
 
 ## Get project document metadata
@@ -93,8 +93,8 @@ curl https://api.anthropic.com/v1/compliance/apps/projects/documents/$DOCUMENT_I
   "mime_type": "text/plain",
   "size_bytes": 0,
   "user": {
-    "id": "id",
-    "email_address": "email_address"
+    "id": "user_01WCz1FkmYMm4gnmykNKUu3Q",
+    "email_address": "jane.doe@example.com"
   }
 }
 ```

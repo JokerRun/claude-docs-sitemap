@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls
-fetched_at: 2026-06-23T03:14:59.520621Z
-sha256: c0077f3af5af50cf56b4dab16378c7c2c1e3725a64e2c103d1d5481f0ace6a46
+fetched_at: 2026-06-27T03:14:28.973816Z
+sha256: eaa0311d8f4be272633a64f012a9760b8a502fadab35cff0b3ae86c05599357d
 ---
 
 # Handle tool calls
@@ -65,6 +65,7 @@ When you receive a tool use response for a client tool, you should:
 **Important formatting requirements**:
 - Tool result blocks must immediately follow their corresponding tool use blocks in the message history. You cannot include any messages between the assistant's tool use message and the user's tool result message.
 - In the user message containing tool results, the tool_result blocks must come FIRST in the content array. Any text must come AFTER all tool results.
+- If the assistant turn also called a [server tool](/docs/en/agents-and-tools/tool-use/server-tools) that has no result block yet, the user message must contain only `tool_result` blocks. Text after the results ends the turn early; for a server tool Claude called directly, the request then fails with a 400 error that names the unresolved server tool. See [Stop reasons and fallback](/docs/en/build-with-claude/handling-stop-reasons#tool-use).
 
 For example, this will cause a 400 error:
 ```json
@@ -77,7 +78,7 @@ For example, this will cause a 400 error:
 }
 ```
 
-This is correct:
+This is correct when the assistant turn calls only client tools:
 ```json
 {
   "role": "user",
@@ -186,6 +187,10 @@ After receiving the tool result, Claude will use that information to continue ge
 ## Handling results from server tools
 
 Claude executes the tool internally and incorporates the results directly into its response without requiring additional user interaction.
+
+<Note>
+A response can contain both a client `tool_use` block and a `server_tool_use` block that has no result block. That server tool call is not finished yet, and its result block arrives in a later response. Reply with a user message that contains only the `tool_result` blocks for the client tools and keep the same `tools` array; for a server tool Claude called directly, the API runs it on that request and the next response starts with its result block. See [Stop reasons and fallback](/docs/en/build-with-claude/handling-stop-reasons#tool-use).
+</Note>
 
 <Tip>
   **Differences from other APIs**

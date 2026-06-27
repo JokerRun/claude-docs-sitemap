@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/files
-fetched_at: 2026-06-13T03:15:40.418428Z
-sha256: bb09e40c512c224e77a99af55fd78ed63a4fb88ecc693fc4554772d6ddd1488c
+fetched_at: 2026-06-27T03:14:28.973816Z
+sha256: b059d630b91a2420e45fe5e280e9deee40afb1ea46398c9f316af2ce4f8eed92
 ---
 
 # Files API
@@ -961,7 +961,7 @@ ant beta:files download \
 ````python
 file_content = client.beta.files.download(file_id)
 
-# Simpan ke file
+# Save to file
 file_content.write_to_file("downloaded_file.txt")
 ````
 

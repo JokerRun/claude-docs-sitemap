@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/code/artifacts
-fetched_at: 2026-06-12T03:17:40.104094Z
-sha256: 4805ad12bac63ad6d2ed212e778c2119f13792fe33edb8d146a30badef21dccd
+fetched_at: 2026-06-27T03:14:28.973816Z
+sha256: 4b8adfbec0c084d90db1a08e2e7f8ada5a1d3fd0917a9c250049059eec14fe54
 ---
 
 # Artifacts
@@ -158,28 +158,28 @@ curl https://api.anthropic.com/v1/compliance/code/artifacts \
 {
   "data": [
     {
-      "id": "id",
-      "organization_id": "organization_id",
-      "organization_uuid": "organization_uuid",
-      "owner_user_id": "owner_user_id",
-      "published_version_id": "published_version_id",
+      "id": "cart_01Tu9VwXyZaBcDeFgHiJkLmN",
+      "organization_id": "org_015eofRkKpogX7uDKUyvBTph",
+      "organization_uuid": "a1b2c3d4-e5f6-4789-a012-3456789abcde",
+      "owner_user_id": "user_01WCz1FkmYMm4gnmykNKUu3Q",
+      "published_version_id": "1741803761-9f3a",
       "read_mode": "org",
-      "updated_at": "2019-12-27T18:11:19.117Z",
+      "updated_at": "2025-03-14T09:05:17.456789Z",
       "user": {
-        "id": "id",
-        "email_address": "email_address"
+        "id": "user_01WCz1FkmYMm4gnmykNKUu3Q",
+        "email_address": "jane.doe@example.com"
       },
       "versions": [
         {
-          "id": "id",
-          "created_at": "2019-12-27T18:11:19.117Z",
-          "name": "name"
+          "id": "1741803761-9f3a",
+          "created_at": "2025-03-12T18:22:41.123456Z",
+          "name": "Team dashboard"
         }
       ]
     }
   ],
   "has_more": true,
-  "next_page": "next_page"
+  "next_page": "cGFnZV90b2tlbl9leGFtcGxlXzE3MzQ1Njc4OTA="
 }
 ```
 

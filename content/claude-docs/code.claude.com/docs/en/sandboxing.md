@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sandboxing
-fetched_at: 2026-06-26T03:16:19.812719Z
-sha256: 64f748bd9de75890d6e7cacc019175ea7d86456210b7eba053cfda2ae4166fd5
+fetched_at: 2026-06-27T03:14:28.973816Z
+sha256: 42101d435bab9163cff294cb0a42c5c2763476580e72ffda68fcd0a168be2288
 ---
 
 > ## Documentation Index
@@ -14,13 +14,6 @@ sha256: 64f748bd9de75890d6e7cacc019175ea7d86456210b7eba053cfda2ae4166fd5
 > Learn how Claude Code's sandboxed Bash tool provides filesystem and network isolation for safer, more autonomous agent execution.
 
 The Bash sandbox lets Claude run most shell commands without stopping to ask permission. Instead of approving each command, you define which files and network domains commands can touch, and the operating system enforces that boundary for every Bash command and its child processes.
-
-This page covers how to:
-
-* [Enable the sandbox](#get-started) and choose how sandboxed commands are approved
-* [Configure](#configure-sandboxing) which paths and network domains commands can reach
-* [Combine sandboxing with permission rules and permission modes](#how-sandboxing-relates-to-permissions-and-permission-modes)
-* [Enforce sandboxing across an organization](#configure-the-sandbox-for-your-organization) with managed settings
 
 <Note>
   To compare other isolation approaches such as dev containers, custom containers, and virtual machines, see [Sandbox environments](/en/sandbox-environments). To reduce permission prompts for tools other than Bash, see [permission modes](/en/permission-modes).

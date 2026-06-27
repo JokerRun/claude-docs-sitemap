@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations/users/list
-fetched_at: 2026-06-03T03:18:49.025048Z
-sha256: 942a40ad8978cb87a78c634c8532742c005ef07752dfa124ce5931cfc0cb67e7
+fetched_at: 2026-06-27T03:14:28.973816Z
+sha256: f333adafa8e7a1058f4fc4168f10c37280de445b375fa528c2cb6edc6a91693a
 ---
 
 ## List organization users
@@ -96,14 +96,14 @@ curl https://api.anthropic.com/v1/compliance/organizations/$ORG_UUID/users \
 {
   "data": [
     {
-      "id": "id",
-      "created_at": "2019-12-27T18:11:19.117Z",
-      "email": "email",
-      "full_name": "full_name",
+      "id": "user_01WCz1FkmYMm4gnmykNKUu3Q",
+      "created_at": "2025-03-12T18:22:41.123456Z",
+      "email": "jane.doe@example.com",
+      "full_name": "Jane Doe",
       "organization_role": "admin"
     }
   ],
   "has_more": true,
-  "next_page": "next_page"
+  "next_page": "cGFnZV90b2tlbl9leGFtcGxlXzE3MzQ1Njc4OTA="
 }
 ```

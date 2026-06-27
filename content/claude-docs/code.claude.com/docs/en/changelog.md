@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/changelog
-fetched_at: 2026-06-26T03:16:19.812719Z
-sha256: e53eb88483223316d31f787cb399358721a536a0602379464d8a30f5f056569e
+fetched_at: 2026-06-27T03:14:28.973816Z
+sha256: 7617ad2e9142bfd9924e9867cbb1ddfd04bb2c7ba4acb860dc74b127b8dee7ff
 ---
 
 > ## Documentation Index
@@ -16,6 +16,21 @@ sha256: e53eb88483223316d31f787cb399358721a536a0602379464d8a30f5f056569e
 This page is generated from the [CHANGELOG.md on GitHub](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md).
 
 Run `claude --version` to check your installed version.
+
+<Update label="2.1.195" description="June 26, 2026">
+  * Added `CLAUDE_CODE_DISABLE_MOUSE_CLICKS` to disable mouse click/drag/hover in fullscreen mode while keeping wheel scroll
+  * Fixed hook matchers with hyphenated identifiers (e.g. `code-reviewer`, `mcp__brave-search`) accidentally substring-matching — they now exact-match. Use `mcp__brave-search__.*` to match all tools from a hyphenated MCP server.
+  * Fixed voice dictation on macOS capturing silence in long-running sessions after the default input device changes
+  * Fixed voice dictation auto-submit never firing for languages written without spaces (Japanese, Chinese, Thai)
+  * Fixed external plugins enabled only by project `.claude/settings.json` not requiring explicit install consent on every loader path
+  * Fixed `/plugin` Enable/Disable not working when a plugin's `plugin.json` `name` differs from its marketplace entry name
+  * Fixed background jobs disappearing from `claude agents` or losing data when written by a newer Claude Code version
+  * Fixed reopening a crashed background task showing a blank screen for up to 5 seconds instead of its restart
+  * Fixed background agent daemons running unreachable when the control socket fails to start, blocking restarts
+  * Improved voice mode on Linux: now distinguishes "no microphone" from "SoX not installed" when SoX is present but no audio capture device exists
+  * Improved `claude agents` completed list to fill available vertical space; on short terminals the header compacts so live sessions stay visible
+  * Improved Remote session startup with a provisioning checklist while the container starts
+</Update>
 
 <Update label="2.1.193" description="June 25, 2026">
   * Added `autoMode.classifyAllShell` setting to route all Bash/PowerShell commands through the auto-mode classifier instead of only arbitrary-code-execution patterns
