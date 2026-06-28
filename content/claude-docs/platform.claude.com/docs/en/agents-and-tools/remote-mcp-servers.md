@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/remote-mcp-servers
-fetched_at: 2026-05-30T03:14:18.300217Z
-sha256: e7b7901764047e563daf5c5e850ea949e90e7c9414d011a144b0df0c6eabf4b0
+fetched_at: 2026-06-28T03:16:32.677203Z
+sha256: fccfbf9d8d0e53f319d383a03571e6a394b0e7b3bb186ea657a4b05c7f2b104c
 ---
 
 # Remote MCP servers
@@ -12,9 +12,7 @@ sha256: e7b7901764047e563daf5c5e850ea949e90e7c9414d011a144b0df0c6eabf4b0
 Several companies have deployed remote MCP servers that developers can connect to via the Anthropic MCP connector API. These servers expand the capabilities available to developers and end users by providing remote access to various services and tools through the MCP protocol.
 
 <Note>
-    The remote MCP servers listed below are third-party services designed to work with the Claude API. These servers
-    are not owned, operated, or endorsed by Anthropic. Users should only connect to remote MCP servers they trust and
-    should review each server's security practices and terms before connecting.
+  The remote MCP servers listed below are third-party services designed to work with the Claude API. These servers are not owned, operated, or endorsed by Anthropic. Users should only connect to remote MCP servers they trust and should review each server's security practices and terms before connecting.
 </Note>
 
 ## Connecting to remote MCP servers
@@ -28,7 +26,7 @@ To connect to a remote MCP server:
 For more information about using remote MCP servers with the Claude API, see the [MCP connector docs](/docs/en/agents-and-tools/mcp-connector).
 
 <Note>
-Once connected, remote MCP tools follow the same triggering behavior as any other tool. See [When Claude uses MCP tools](/docs/en/agents-and-tools/mcp-connector#when-claude-uses-mcp-tools).
+  Once connected, remote MCP tools follow the same triggering behavior as any other tool. See [When Claude uses MCP tools](/docs/en/agents-and-tools/mcp-connector#when-claude-uses-mcp-tools).
 </Note>
 
 ## Remote MCP server examples
@@ -36,5 +34,5 @@ Once connected, remote MCP tools follow the same triggering behavior as any othe
 <MCPServersTable platform="mcpConnector" />
 
 <Note>
-**Looking for more?** [Find hundreds more MCP servers on GitHub](https://github.com/modelcontextprotocol/servers).
+  **Looking for more?** [Find hundreds more MCP servers on GitHub](https://github.com/modelcontextprotocol/servers).
 </Note>

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/cloud-sandboxes-reference
-fetched_at: 2026-06-02T03:18:54.775717Z
-sha256: 006bf1385fd3477727e601ebf0c7c79f7f9387b9279e1b4c5245c5a3350c1318
+fetched_at: 2026-06-28T03:16:32.677203Z
+sha256: 7855e6b70cba37706bedb6e941e7c370e1762c495a98ff75d4aecdd6db12959b
 ---
 
 # Cloud sandbox reference
@@ -16,65 +16,65 @@ Cloud sandboxes run as isolated Linux containers on Anthropic-managed infrastruc
 These specifications apply to `cloud` environments. Self-hosted sandboxes run on your infrastructure with whatever your worker provides.
 
 <Note>
-All Managed Agents API requests require the `managed-agents-2026-04-01` beta header. The SDK sets the beta header automatically.
+  All Managed Agents API requests require the `managed-agents-2026-04-01` beta header. The SDK sets the beta header automatically.
 </Note>
 
 ## Programming languages
 
 | Language | Version | Package manager |
-|----------|---------|-----------------|
-| Python | 3.12+ | pip, uv |
-| Node.js | 20+ | npm, yarn, pnpm |
-| Go | 1.22+ | go modules |
-| Rust | 1.77+ | cargo |
-| Java | 21+ | maven, gradle |
-| Ruby | 3.3+ | bundler, gem |
-| PHP | 8.3+ | composer |
-| C/C++ | GCC 13+ | make, cmake |
+| -------- | ------- | --------------- |
+| Python   | 3.12+   | pip, uv         |
+| Node.js  | 20+     | npm, yarn, pnpm |
+| Go       | 1.22+   | go modules      |
+| Rust     | 1.77+   | cargo           |
+| Java     | 21+     | maven, gradle   |
+| Ruby     | 3.3+    | bundler, gem    |
+| PHP      | 8.3+    | composer        |
+| C/C++    | GCC 13+ | make, cmake     |
 
 ## Databases
 
-| Database | Description |
-|----------|-------------|
-| SQLite | Pre-installed, available immediately |
+| Database          | Description                                        |
+| ----------------- | -------------------------------------------------- |
+| SQLite            | Pre-installed, available immediately               |
 | PostgreSQL client | `psql` client for connecting to external databases |
-| Redis client | `redis-cli` for connecting to external instances |
+| Redis client      | `redis-cli` for connecting to external instances   |
 
 <Note>
-Database servers (such as PostgreSQL and Redis) are not running in the sandbox by default. The sandbox includes client tools for connecting to external database instances. SQLite is fully available for local use.
+  Database servers (such as PostgreSQL and Redis) are not running in the sandbox by default. The sandbox includes client tools for connecting to external database instances. SQLite is fully available for local use.
 </Note>
 
 ## Utilities
 
 ### System tools
 
-- `git` - Version control
-- `curl`, `wget` - HTTP clients
-- `jq` - JSON processing
-- `tar`, `zip`, `unzip` - Archive tools
-- `ssh`, `scp` - Remote access (requires network enabled)
-- `tmux`, `screen` - Terminal multiplexers
+* `git` - Version control
+* `curl`, `wget` - HTTP clients
+* `jq` - JSON processing
+* `tar`, `zip`, `unzip` - Archive tools
+* `ssh`, `scp` - Remote access (requires network enabled)
+* `tmux`, `screen` - Terminal multiplexers
 
 ### Development tools
 
-- `make`, `cmake` - Build systems
-- `docker` - Container management (limited availability)
-- `ripgrep` (`rg`) - Fast file search
-- `tree` - Directory visualization
-- `htop` - Process monitoring
+* `make`, `cmake` - Build systems
+* `docker` - Container management (limited availability)
+* `ripgrep` (`rg`) - Fast file search
+* `tree` - Directory visualization
+* `htop` - Process monitoring
 
 ### Text processing
 
-- `sed`, `awk`, `grep` - Stream editors
-- `vim`, `nano` - Text editors
-- `diff`, `patch` - File comparison
+* `sed`, `awk`, `grep` - Stream editors
+* `vim`, `nano` - Text editors
+* `diff`, `patch` - File comparison
 
 ## Sandbox specifications
 
-| Property | Value |
-|----------|-------|
-| Operating system | Ubuntu 22.04 LTS |
-| Architecture | x86_64 (amd64) |
-| Memory | Up to 8 GB |
-| Disk space | Up to 10 GB |
-| Network | Disabled by default (enable in environment config) |
+| Property         | Value                                              |
+| ---------------- | -------------------------------------------------- |
+| Operating system | Ubuntu 22.04 LTS                                   |
+| Architecture     | x86\_64 (amd64)                                    |
+| Memory           | Up to 8 GB                                         |
+| Disk space       | Up to 10 GB                                        |
+| Network          | Disabled by default (enable in environment config) |

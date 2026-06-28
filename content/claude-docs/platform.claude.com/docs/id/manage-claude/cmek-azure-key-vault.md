@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek-azure-key-vault
-fetched_at: 2026-06-26T03:16:19.812719Z
-sha256: b9f2106dcd84e9d35e14cc0b0f44579bba1cd2a7ddb05beef1cdc677f7313d7b
+fetched_at: 2026-06-28T03:16:32.677203Z
+sha256: 1ef9685b49d0c74d198916267a4d7b5b6cd2882be909542b84608eee27806843
 ---
 
 # Mengonfigurasi Azure Key Vault untuk CMEK
@@ -11,7 +11,7 @@ Gunakan Azure Key Vault untuk menyediakan kunci enkripsi bagi organisasi Anda.
 
 ---
 
-```bash title="Configure with the /claude-api skill in Claude Code"
+```bash Configure with the /claude-api skill in Claude Code
 claude "/claude-api help me configure a customer-managed encryption key with Azure Key Vault"
 ```
 
@@ -21,30 +21,30 @@ Panduan ini menjelaskan langkah-langkah mengonfigurasi kunci Azure Key Vault seb
   Mengaktifkan CMEK bersifat permanen. Jika kunci Key Vault Anda dihapus atau dinonaktifkan, Anthropic tidak dapat memulihkan data yang dienkripsi dengan kunci tersebut. Tinjau [peringatan dan batasan](/docs/id/manage-claude/cmek) sebelum Anda memulai.
 </Warning>
 
-## Prasyarat \{#prerequisites}
+## Prasyarat
 
-- Azure Key Vault dengan **otorisasi RBAC diaktifkan** (`enableRbacAuthorization: true`) dan **akses jaringan publik diizinkan**. Anthropic memanggil vault Anda melalui endpoint data-plane publik; endpoint privat tidak didukung.
-- **Purge protection diaktifkan** (`enablePurgeProtection: true`) pada vault. Tanpa ini, kunci yang dihapus dapat dihapus secara permanen selama periode retensi soft-delete, yang menyebabkan hilangnya data yang dilindungi CMEK secara permanen. Purge protection tidak dapat dinonaktifkan setelah diaktifkan.
-- Izin untuk membuat kunci di vault dan untuk menetapkan peran RBAC pada vault tersebut.
-- Izin untuk membuat service principal di tenant Entra Anda (`Application Administrator`, `Cloud Application Administrator`, atau peran kustom yang setara).
-- Kunci Admin API Anthropic untuk organisasi Anda.
-- [`az` CLI](https://learn.microsoft.com/en-us/cli/azure/?view=azure-cli-latest) terinstal dan terautentikasi.
-- **Diagnostic Settings** dikonfigurasi pada vault untuk merutekan kategori log `AuditEvent` ke Log Analytics, storage account, atau event hub. Azure Key Vault tidak mengeluarkan log audit data-plane (seperti `KeyWrap`, `KeyUnwrap`, dan `KeyGet`) secara default, sehingga tanpa ini Anda tidak mendapatkan jejak audit untuk operasi kunci yang dilakukan Anthropic.
+* Azure Key Vault dengan **otorisasi RBAC diaktifkan** (`enableRbacAuthorization: true`) dan **akses jaringan publik diizinkan**. Anthropic memanggil vault Anda melalui endpoint data-plane publik; endpoint privat tidak didukung.
+* **Purge protection diaktifkan** (`enablePurgeProtection: true`) pada vault. Tanpa ini, kunci yang dihapus dapat dihapus secara permanen selama periode retensi soft-delete, yang menyebabkan hilangnya data yang dilindungi CMEK secara permanen. Purge protection tidak dapat dinonaktifkan setelah diaktifkan.
+* Izin untuk membuat kunci di vault dan untuk menetapkan peran RBAC pada vault tersebut.
+* Izin untuk membuat service principal di tenant Entra Anda (`Application Administrator`, `Cloud Application Administrator`, atau peran kustom yang setara).
+* Kunci Admin API Anthropic untuk organisasi Anda.
+* [`az` CLI](https://learn.microsoft.com/en-us/cli/azure/?view=azure-cli-latest) terinstal dan terautentikasi.
+* **Diagnostic Settings** dikonfigurasi pada vault untuk merutekan kategori log `AuditEvent` ke Log Analytics, storage account, atau event hub. Azure Key Vault tidak mengeluarkan log audit data-plane (seperti `KeyWrap`, `KeyUnwrap`, dan `KeyGet`) secara default, sehingga tanpa ini Anda tidak mendapatkan jejak audit untuk operasi kunci yang dilakukan Anthropic.
 
-## Informasi aplikasi Anthropic \{#anthropic-app-information}
+## Informasi aplikasi Anthropic
 
 Agar Anthropic dapat menggunakan kunci enkripsi Anda, Anda harus mengonfigurasi ID aplikasi multi-tenant Anthropic dan nama tampilan. Nilai-nilai tersebut adalah:
 
-| Bidang | Nilai |
-|:------|:------|
+| Bidang                          | Nilai                                  |
+| ------------------------------- | -------------------------------------- |
 | Multi-tenant app client ID (US) | `8635ae1a-3e5d-44e8-a4ed-e0f614466f87` |
-| App display name | `anthropic-cmek-client-us` |
+| App display name                | `anthropic-cmek-client-us`             |
 
 <Warning>
   Gunakan hanya client ID dan nama tampilan yang dipublikasikan ini. Jangan pernah memercayai pengidentifikasi yang diberikan melalui email, chat, atau saluran onboarding apa pun.
 </Warning>
 
-## Penyiapan kunci enkripsi \{#encryption-key-setup}
+## Penyiapan kunci enkripsi
 
 <Steps>
   <Step title="Berikan persetujuan untuk aplikasi multi-tenant Anthropic">
@@ -135,17 +135,16 @@ Agar Anthropic dapat menggunakan kunci enkripsi Anda, Anda harus mengonfigurasi 
 
     Pastikan bahwa:
 
-    - `rbac` bernilai `true`.
-    - `purge` bernilai `true`. Jika bernilai `false` atau `null`, aktifkan purge protection pada vault sebelum melanjutkan. Tanpa itu, kunci yang di-soft-delete dapat dihapus secara permanen selama periode retensi, sehingga data Anda yang dilindungi CMEK tidak dapat dipulihkan.
-    - `pub` bernilai `"Enabled"`. Jika bernilai `"Disabled"`, Anthropic tidak dapat menjangkau vault melalui endpoint data-plane publiknya dan validasi akan gagal.
-    - `net` bernilai `"Allow"`, atau, jika bernilai `"Deny"`, pastikan `ipRules` menyertakan rentang egress Anthropic (hubungi Anthropic untuk daftar terkini).
-    - `uri` adalah URI vault yang Anda gunakan saat mendaftarkan kunci.
-    - `tenantId` adalah tenant yang mengatur vault. Gunakan nilai ini sebagai `tenant_id` saat Anda mendaftarkan kunci, bukan tenant dari subscription yang sedang aktif (keduanya dapat berbeda dalam pengaturan cross-tenant).
+    * `rbac` bernilai `true`.
+    * `purge` bernilai `true`. Jika bernilai `false` atau `null`, aktifkan purge protection pada vault sebelum melanjutkan. Tanpa itu, kunci yang di-soft-delete dapat dihapus secara permanen selama periode retensi, sehingga data Anda yang dilindungi CMEK tidak dapat dipulihkan.
+    * `pub` bernilai `"Enabled"`. Jika bernilai `"Disabled"`, Anthropic tidak dapat menjangkau vault melalui endpoint data-plane publiknya dan validasi akan gagal.
+    * `net` bernilai `"Allow"`, atau, jika bernilai `"Deny"`, pastikan `ipRules` menyertakan rentang egress Anthropic (hubungi Anthropic untuk daftar terkini).
+    * `uri` adalah URI vault yang Anda gunakan saat mendaftarkan kunci.
+    * `tenantId` adalah tenant yang mengatur vault. Gunakan nilai ini sebagai `tenant_id` saat Anda mendaftarkan kunci, bukan tenant dari subscription yang sedang aktif (keduanya dapat berbeda dalam pengaturan cross-tenant).
   </Step>
-
 </Steps>
 
-## Daftarkan kunci ke Anthropic \{#register-the-key-with-anthropic}
+## Daftarkan kunci ke Anthropic
 
 Cara Anda mendaftarkan kunci bergantung pada produk yang Anda gunakan.
 
@@ -155,8 +154,7 @@ Cara Anda mendaftarkan kunci bergantung pada produk yang Anda gunakan.
       <Step title="Daftarkan kunci ke Anthropic">
         Buat konfigurasi kunci eksternal melalui Admin API.
 
-        
-        ```bash nocheck
+        ```bash
         curl -sS https://api.anthropic.com/v1/organizations/external_keys \
           -H "x-api-key: <anthropic-admin-api-key>" \
           -H "anthropic-version: 2023-06-01" \
@@ -187,8 +185,7 @@ Cara Anda mendaftarkan kunci bergantung pada produk yang Anda gunakan.
       <Step title="Validasi kunci">
         Picu round-trip enkripsi dan dekripsi terhadap kunci Anda. Ini mengonfirmasi bahwa Anthropic dapat mengautentikasi ke tenant Anda dan melakukan operasi wrap dan unwrap.
 
-        
-        ```bash nocheck
+        ```bash
         curl -sS -X POST https://api.anthropic.com/v1/organizations/external_keys/ekey_<id>/validate \
           -H "x-api-key: <anthropic-admin-api-key>" \
           -H "anthropic-version: 2023-06-01" \
@@ -203,16 +200,15 @@ Cara Anda mendaftarkan kunci bergantung pada produk yang Anda gunakan.
 
         Jika validasi gagal, bidang `error` menjelaskan masalahnya. Penyebab umum adalah:
 
-        - **Penundaan propagasi RBAC:** penetapan peran dapat memerlukan beberapa menit untuk berlaku. Tunggu dan coba lagi.
-        - **Network ACL memblokir Anthropic:** konfirmasi akses jaringan publik dan `ipRules` seperti yang dijelaskan di langkah verifikasi.
-        - **Kebijakan conditional access pada workload identities:** jika tenant Anda memiliki kebijakan conditional access yang menargetkan service principal, kecualikan service principal Anthropic atau tambahkan rentang egress Anthropic ke named locations kebijakan tersebut.
+        * **Penundaan propagasi RBAC:** penetapan peran dapat memerlukan beberapa menit untuk berlaku. Tunggu dan coba lagi.
+        * **Network ACL memblokir Anthropic:** konfirmasi akses jaringan publik dan `ipRules` seperti yang dijelaskan di langkah verifikasi.
+        * **Kebijakan conditional access pada workload identities:** jika tenant Anda memiliki kebijakan conditional access yang menargetkan service principal, kecualikan service principal Anthropic atau tambahkan rentang egress Anthropic ke named locations kebijakan tersebut.
       </Step>
 
       <Step title="Lampirkan kunci ke workspace">
         Setelah kunci divalidasi, lampirkan ke workspace untuk mengaktifkan CMEK bagi data workspace tersebut.
 
-        
-        ```bash nocheck
+        ```bash
         curl -sS -X POST https://api.anthropic.com/v1/organizations/workspaces/<workspace-id> \
           -H "x-api-key: <anthropic-admin-api-key>" \
           -H "anthropic-version: 2023-06-01" \
@@ -232,6 +228,6 @@ Cara Anda mendaftarkan kunci bergantung pada produk yang Anda gunakan.
   </Tab>
 </Tabs>
 
-## Terraform \{#terraform}
+## Terraform
 
 Untuk deployment infrastructure-as-code, langkah-langkah yang sama dipetakan ke provider `azurerm` dan `azuread`.

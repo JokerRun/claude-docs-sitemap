@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms
-fetched_at: 2026-06-26T03:16:19.812719Z
-sha256: ab2a7320a078ce6d8604602bd22199c3bc48674e77b9afdb5ba3453492946257
+fetched_at: 2026-06-28T03:16:32.677203Z
+sha256: 58358ca57ac97dc35f0fc2a821cab348efb2181f17dd533a774e345e27ebdb7d
 ---
 
 # Mengonfigurasi AWS KMS untuk CMEK
@@ -11,7 +11,7 @@ Gunakan AWS KMS untuk menyediakan kunci enkripsi bagi organisasi Anda.
 
 ---
 
-```bash title="Configure with the /claude-api skill in Claude Code"
+```bash Configure with the /claude-api skill in Claude Code
 claude "/claude-api help me configure a customer-managed encryption key with AWS KMS"
 ```
 
@@ -21,17 +21,17 @@ Panduan ini menjelaskan langkah-langkah mengonfigurasi kunci [AWS KMS](https://a
   Mengaktifkan CMEK bersifat permanen. Jika kunci KMS Anda dihapus atau dinonaktifkan, Anthropic tidak dapat memulihkan data yang dienkripsi dengan kunci tersebut. Tinjau [peringatan dan batasan](/docs/id/manage-claude/cmek) sebelum Anda memulai.
 </Warning>
 
-## Prasyarat \{#prerequisites}
+## Prasyarat
 
-- Akun AWS dengan izin untuk membuat kunci KMS dan mengatur kebijakan kunci (`kms:CreateKey` dan `kms:PutKeyPolicy`).
-- Kunci Admin API Anthropic untuk organisasi Anda.
-- [AWS CLI](https://aws.amazon.com/cli/) yang sudah terinstal dan terautentikasi.
+* Akun AWS dengan izin untuk membuat kunci KMS dan mengatur kebijakan kunci (`kms:CreateKey` dan `kms:PutKeyPolicy`).
+* Kunci Admin API Anthropic untuk organisasi Anda.
+* [AWS CLI](https://aws.amazon.com/cli/) yang sudah terinstal dan terautentikasi.
 
-## Amazon Resource Name (ARN) untuk Anthropic \{#amazon-resource-name-arn-for-anthropic}
+## Amazon Resource Name (ARN) untuk Anthropic
 
 Agar Anthropic dapat menggunakan kunci enkripsi Anda, Anda harus memberikan peran IAM Anthropic sebuah kunci KMS yang dapat digunakan untuk mengenkripsi data. ARN untuk CMEK Anthropic adalah:
 
-```text
+```text wrap
 arn:aws:iam::915198916910:role/anthropic-cmek-client-us
 ```
 
@@ -39,7 +39,7 @@ arn:aws:iam::915198916910:role/anthropic-cmek-client-us
   Gunakan hanya ARN yang dipublikasikan ini. Jangan pernah memercayai pengidentifikasi yang diberikan melalui email, chat, atau saluran onboarding apa pun.
 </Warning>
 
-## Penyiapan kunci enkripsi \{#encryption-key-setup}
+## Penyiapan kunci enkripsi
 
 <Steps>
   <Step title="Buat kunci KMS dengan kebijakan kunci lintas akun">
@@ -115,10 +115,9 @@ arn:aws:iam::915198916910:role/anthropic-cmek-client-us
       ![Langkah Define key usage permissions AWS KMS ditampilkan sebagai anti-pola: menambahkan ID akun Anthropic 915198916910 di bawah Other AWS accounts di sini menghasilkan kebijakan dengan izin berlebihan. Lewati langkah ini dan biarkan kosong.](/docs/images/cmek/aws-usage-permissions.png)
     </Frame>
   </Step>
-
 </Steps>
 
-## Daftarkan kunci ke Anthropic \{#register-the-key-with-anthropic}
+## Daftarkan kunci ke Anthropic
 
 Cara Anda mendaftarkan kunci bergantung pada produk yang Anda gunakan.
 
@@ -132,8 +131,7 @@ Cara Anda mendaftarkan kunci bergantung pada produk yang Anda gunakan.
           Untuk organisasi yang menggunakan [Claude Platform on AWS](/docs/id/build-with-claude/claude-platform-on-aws), endpoint kunci eksternal belum tersedia. Daftarkan, validasi, dan lampirkan kunci Anda di Claude Console sebagai gantinya.
         </Note>
 
-        
-        ```bash nocheck
+        ```bash
         curl -sS https://api.anthropic.com/v1/organizations/external_keys \
           -H "x-api-key: <anthropic-admin-api-key>" \
           -H "anthropic-version: 2023-06-01" \
@@ -163,8 +161,7 @@ Cara Anda mendaftarkan kunci bergantung pada produk yang Anda gunakan.
       <Step title="Validasi kunci">
         Picu round-trip enkripsi dan dekripsi terhadap kunci Anda.
 
-        
-        ```bash nocheck
+        ```bash
         curl -sS -X POST https://api.anthropic.com/v1/organizations/external_keys/ekey_<id>/validate \
           -H "x-api-key: <anthropic-admin-api-key>" \
           -H "anthropic-version: 2023-06-01" \
@@ -179,15 +176,14 @@ Cara Anda mendaftarkan kunci bergantung pada produk yang Anda gunakan.
 
         Jika validasi gagal, penyebab umumnya adalah:
 
-        - **Ketidakcocokan encryption context:** Jika Anda mempertahankan kondisi `EncryptionContext` dalam kebijakan kunci, pastikan Anda telah mengganti `<compartment-uuid>` dengan compartment ID workspace Anda yang sebenarnya (lihat langkah Buat kunci KMS di bagian Penyiapan kunci enkripsi). Nilai yang salah atau belum diganti membuat KMS mengembalikan `AccessDeniedException` yang tidak jelas. Untuk mengesampingkan kemungkinan ini, hapus sementara blok `Condition` dari pernyataan `AllowAnthropicCMEKCrypto` dan validasi ulang.
-        - **Resource control policies (RCP):** Jika organisasi AWS Anda memiliki RCP yang menolak operasi KMS ketika `aws:PrincipalOrgID` tidak cocok dengan organisasi Anda, RCP tersebut memblokir peran lintas akun Anthropic. RCP memerlukan pengecualian untuk kunci ini atau untuk ARN peran Anthropic. Service control policies tidak berlaku di sini, karena tidak dievaluasi untuk principal eksternal yang memanggil melalui kebijakan berbasis sumber daya.
-        - **Akses diberikan melalui IAM alih-alih kebijakan kunci:** Akses KMS lintas akun harus diberikan dalam kebijakan kunci itu sendiri, bukan melalui kebijakan IAM di akun Anda. Periksa dengan `aws kms get-key-policy --key-id <id> --policy-name default`.
-        - **Ketidakcocokan region:** Pastikan region kunci adalah salah satu region tempat Anthropic beroperasi untuk tingkat geo yang Anda konfigurasikan.
+        * **Ketidakcocokan encryption context:** Jika Anda mempertahankan kondisi `EncryptionContext` dalam kebijakan kunci, pastikan Anda telah mengganti `<compartment-uuid>` dengan compartment ID workspace Anda yang sebenarnya (lihat langkah Buat kunci KMS di bagian Penyiapan kunci enkripsi). Nilai yang salah atau belum diganti membuat KMS mengembalikan `AccessDeniedException` yang tidak jelas. Untuk mengesampingkan kemungkinan ini, hapus sementara blok `Condition` dari pernyataan `AllowAnthropicCMEKCrypto` dan validasi ulang.
+        * **Resource control policies (RCP):** Jika organisasi AWS Anda memiliki RCP yang menolak operasi KMS ketika `aws:PrincipalOrgID` tidak cocok dengan organisasi Anda, RCP tersebut memblokir peran lintas akun Anthropic. RCP memerlukan pengecualian untuk kunci ini atau untuk ARN peran Anthropic. Service control policies tidak berlaku di sini, karena tidak dievaluasi untuk principal eksternal yang memanggil melalui kebijakan berbasis sumber daya.
+        * **Akses diberikan melalui IAM alih-alih kebijakan kunci:** Akses KMS lintas akun harus diberikan dalam kebijakan kunci itu sendiri, bukan melalui kebijakan IAM di akun Anda. Periksa dengan `aws kms get-key-policy --key-id <id> --policy-name default`.
+        * **Ketidakcocokan region:** Pastikan region kunci adalah salah satu region tempat Anthropic beroperasi untuk tingkat geo yang Anda konfigurasikan.
       </Step>
 
       <Step title="Lampirkan kunci ke workspace">
-        
-        ```bash nocheck
+        ```bash
         curl -sS -X POST https://api.anthropic.com/v1/organizations/workspaces/<workspace-id> \
           -H "x-api-key: <anthropic-admin-api-key>" \
           -H "anthropic-version: 2023-06-01" \
@@ -207,6 +203,6 @@ Cara Anda mendaftarkan kunci bergantung pada produk yang Anda gunakan.
   </Tab>
 </Tabs>
 
-## Terraform \{#terraform}
+## Terraform
 
 Untuk deployment infrastructure-as-code, langkah-langkah yang sama dipetakan ke provider `aws` dengan sumber daya `aws_kms_key` dan `aws_kms_alias`.

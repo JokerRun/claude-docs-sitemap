@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/rate-limits-api
-fetched_at: 2026-06-26T03:16:19.812719Z
-sha256: aa16c054e1cc062c59c6cbff942426d4d05323d8bcd58156cab97d98d89e84ba
+fetched_at: 2026-06-28T03:16:32.677203Z
+sha256: 3e0a61f0de9bb823d395ca6a5ba72bf9402c18d7c48ce91cda019882d3ea7c13
 ---
 
 # Rate Limits API
@@ -12,22 +12,22 @@ Kueri batas laju API organisasi Anda secara terprogram dengan Rate Limits API.
 ---
 
 <Tip>
-**Admin API tidak tersedia untuk akun individu.** Untuk berkolaborasi dengan rekan tim dan menambahkan anggota, atur organisasi Anda di **Console → Settings → Organization**.
+  **Admin API tidak tersedia untuk akun individu.** Untuk berkolaborasi dengan rekan tim dan menambahkan anggota, atur organisasi Anda di **Console → Settings → Organization**.
 </Tip>
 
 Rate Limits API menyediakan akses terprogram ke "rate limits" (batas laju) yang dikonfigurasi untuk organisasi Anda dan workspace-nya. Ini adalah informasi yang sama dengan yang ditampilkan di halaman [Limits](/settings/limits) di Claude Console.
 
 Gunakan API ini untuk:
 
-- **Menjaga gateway dan proxy tetap sinkron:** Baca batas Anda saat ini pada saat startup dan secara terjadwal, alih-alih melakukan hardcode nilai yang akan menyimpang ketika Anthropic menyesuaikannya.
-- **Mendukung peringatan internal:** Bandingkan data penggunaan dari [Usage and Cost API](/docs/id/manage-claude/usage-cost-api) dengan batas yang telah Anda konfigurasi.
-- **Mengaudit konfigurasi workspace:** Verifikasi bahwa override workspace sesuai dengan yang diharapkan oleh otomatisasi provisioning Anda.
+* **Menjaga gateway dan proxy tetap sinkron:** Baca batas Anda saat ini pada saat startup dan secara terjadwal, alih-alih melakukan hardcode nilai yang akan menyimpang ketika Anthropic menyesuaikannya.
+* **Mendukung peringatan internal:** Bandingkan data penggunaan dari [Usage and Cost API](/docs/id/manage-claude/usage-cost-api) dengan batas yang telah Anda konfigurasi.
+* **Mengaudit konfigurasi workspace:** Verifikasi bahwa override workspace sesuai dengan yang diharapkan oleh otomatisasi provisioning Anda.
 
 <Check>
   **Kunci Admin API diperlukan.** Endpoint ini memerlukan kunci Admin API, yang berbeda dari kunci API Claude standar. Lihat [Membuat kunci Admin API](/docs/id/manage-claude/admin-api-keys) untuk mengetahui tempat membuatnya sesuai jenis organisasi Anda dan cakupan mana yang harus dipilih.
 </Check>
 
-## Mulai cepat \{#quick-start}
+## Mulai cepat
 
 Tampilkan daftar batas laju yang dikonfigurasi untuk organisasi Anda:
 
@@ -37,20 +37,20 @@ curl "https://api.anthropic.com/v1/organizations/rate_limits" \
   --header "x-api-key: $ANTHROPIC_ADMIN_KEY"
 ```
 
-## Batas laju organisasi \{#organization-rate-limits}
+## Batas laju organisasi
 
 Endpoint `/v1/organizations/rate_limits` mengembalikan batas laju yang diterapkan di tingkat organisasi untuk Messages API dan sumber daya pendukungnya. Batas untuk produk lain, seperti [Claude Managed Agents](/docs/id/managed-agents/overview), tidak disertakan.
 
-### Konsep utama \{#key-concepts}
+### Konsep utama
 
-- **Grup batas laju:** Setiap entri dalam respons mewakili satu grup batas laju. Batas laju model dikelompokkan sehingga beberapa versi model berbagi satu set batas yang sama, dan grup lainnya mencakup sumber daya seperti Message Batches API, Files API, Token Counting API, agent skills, dan alat pencarian web.
-- **`group_type`:** Mengidentifikasi kategori batas mana yang dicakup oleh entri tersebut. Lihat [Memfilter berdasarkan tipe grup](#filtering-by-group-type) untuk daftar nilainya.
-- **Daftar `models`:** Untuk entri `model_group`, field `models` mencantumkan setiap ID model dan alias yang dihitung terhadap batas grup tersebut. Gunakan daftar ini untuk mencari grup mana yang mencakup string model apa pun. Untuk tipe grup lainnya, `models` bernilai `null`.
-- **Daftar `limits`:** Setiap grup membawa daftar pasangan `{type, value}`. Field `type` mengidentifikasi pembatas (seperti `requests_per_minute`, `input_tokens_per_minute`, atau `output_tokens_per_minute`) dan `value` adalah batas yang dikonfigurasi. Lihat [Batas laju](/docs/id/api/rate-limits) untuk mengetahui bagaimana setiap pembatas diukur dan diterapkan.
+* **Grup batas laju:** Setiap entri dalam respons mewakili satu grup batas laju. Batas laju model dikelompokkan sehingga beberapa versi model berbagi satu set batas yang sama, dan grup lainnya mencakup sumber daya seperti Message Batches API, Files API, Token Counting API, agent skills, dan alat pencarian web.
+* **`group_type`:** Mengidentifikasi kategori batas mana yang dicakup oleh entri tersebut. Lihat [Memfilter berdasarkan tipe grup](#filtering-by-group-type) untuk daftar nilainya.
+* **Daftar `models`:** Untuk entri `model_group`, field `models` mencantumkan setiap ID model dan alias yang dihitung terhadap batas grup tersebut. Gunakan daftar ini untuk mencari grup mana yang mencakup string model apa pun. Untuk tipe grup lainnya, `models` bernilai `null`.
+* **Daftar `limits`:** Setiap grup membawa daftar pasangan `{type, value}`. Field `type` mengidentifikasi pembatas (seperti `requests_per_minute`, `input_tokens_per_minute`, atau `output_tokens_per_minute`) dan `value` adalah batas yang dikonfigurasi. Lihat [Batas laju](/docs/id/api/rate-limits) untuk mengetahui bagaimana setiap pembatas diukur dan diterapkan.
 
 Untuk detail parameter lengkap dan skema respons, lihat [referensi Organization Rate Limits API](/docs/id/api/admin/rate_limits/list).
 
-### Menampilkan semua batas laju organisasi \{#list-all-organization-rate-limits}
+### Menampilkan semua batas laju organisasi
 
 ```bash cURL
 curl "https://api.anthropic.com/v1/organizations/rate_limits" \
@@ -88,7 +88,7 @@ curl "https://api.anthropic.com/v1/organizations/rate_limits" \
 }
 ```
 
-### Mencari batas untuk model tertentu \{#look-up-the-limits-for-a-specific-model}
+### Mencari batas untuk model tertentu
 
 Berikan ID model atau alias apa pun sebagai parameter kueri `model` untuk mengembalikan hanya entri yang memuatnya:
 
@@ -100,20 +100,20 @@ curl "https://api.anthropic.com/v1/organizations/rate_limits?model=claude-opus-4
 
 Jika string model tidak cocok dengan grup mana pun, endpoint mengembalikan error 404. Parameter `model` hanya didukung pada endpoint organisasi; endpoint workspace tidak menerimanya.
 
-## Batas laju workspace \{#workspace-rate-limits}
+## Batas laju workspace
 
 Endpoint `/v1/organizations/workspaces/{workspace_id}/rate_limits` mengembalikan override batas laju yang dikonfigurasi untuk satu workspace.
 
 Respons hanya menyertakan override, sehingga apa pun yang tidak ada di dalamnya diwarisi dari organisasi:
 
-- Grup yang tidak ada dalam `data` tidak memiliki override workspace sama sekali. Workspace mewarisi batas tingkat organisasi untuk grup tersebut (bukan berarti tidak terbatas).
-- Dalam grup yang ada, tipe pembatas yang tidak ada dalam `limits[]` tidak memiliki override workspace untuk pembatas tersebut. Workspace mewarisi nilai organisasi untuknya.
-- Untuk setiap pembatas yang ada, `org_limit` adalah nilai tingkat organisasi untuk pembatas yang sama, atau `null` jika organisasi tidak memiliki batas yang dikonfigurasi untuk tipe pembatas tersebut.
+* Grup yang tidak ada dalam `data` tidak memiliki override workspace sama sekali. Workspace mewarisi batas tingkat organisasi untuk grup tersebut (bukan berarti tidak terbatas).
+* Dalam grup yang ada, tipe pembatas yang tidak ada dalam `limits[]` tidak memiliki override workspace untuk pembatas tersebut. Workspace mewarisi nilai organisasi untuknya.
+* Untuk setiap pembatas yang ada, `org_limit` adalah nilai tingkat organisasi untuk pembatas yang sama, atau `null` jika organisasi tidak memiliki batas yang dikonfigurasi untuk tipe pembatas tersebut.
 
 Untuk detail parameter lengkap dan skema respons, lihat [referensi Workspace Rate Limits API](/docs/id/api/admin/workspaces/rate_limits/list).
 
 <Tip>
-Untuk mengambil ID workspace organisasi Anda, gunakan endpoint [List Workspaces](/docs/id/api/admin/workspaces/list), atau temukan di [Claude Console](/settings/workspaces). Workspace default tidak dapat memiliki override batas laju, sehingga tidak memiliki entri pada endpoint ini; gunakan endpoint organisasi untuk membaca batasnya.
+  Untuk mengambil ID workspace organisasi Anda, gunakan endpoint [List Workspaces](/docs/id/api/admin/workspaces/list), atau temukan di [Claude Console](/settings/workspaces). Workspace default tidak dapat memiliki override batas laju, sehingga tidak memiliki entri pada endpoint ini; gunakan endpoint organisasi untuk membaca batasnya.
 </Tip>
 
 ```bash cURL
@@ -145,7 +145,7 @@ curl "https://api.anthropic.com/v1/organizations/workspaces/wrkspc_01JwQvzr7rXLA
 }
 ```
 
-## Memfilter berdasarkan tipe grup \{#filtering-by-group-type}
+## Memfilter berdasarkan tipe grup
 
 Kedua endpoint menerima parameter kueri opsional `group_type` yang membatasi respons ke satu kategori:
 
@@ -157,28 +157,28 @@ curl "https://api.anthropic.com/v1/organizations/rate_limits?group_type=batch" \
 
 Nilai yang valid adalah `model_group`, `batch`, `token_count`, `files`, `skills`, dan `web_search`.
 
-## Paginasi \{#pagination}
+## Paginasi
 
 Kedua endpoint menerima parameter kueri `page` dan mengembalikan field `next_page`. Respons saat ini selalu berupa satu halaman, sehingga `next_page` bernilai `null`. Lakukan perulangan pada `next_page` agar klien Anda melakukan paginasi dengan benar tanpa perubahan ketika respons bertambah besar.
 
-## Pertanyaan yang sering diajukan \{#frequently-asked-questions}
+## Pertanyaan yang sering diajukan
 
-### String model apa yang muncul dalam daftar `models`? \{#which-model-strings-appear-in-the-models-list}
+### String model apa yang muncul dalam daftar `models`?
 
 Setiap ID model dan alias yang dihitung terhadap grup tersebut, termasuk ID bertanggal (seperti `claude-sonnet-4-5-20250929`) dan alias tanpa tanggal (seperti `claude-sonnet-4-5`). Cari string model apa pun yang Anda berikan ke Messages API dan Anda akan menemukannya di tepat satu entri `model_group`.
 
-### Apa artinya jika sebuah grup tidak ada dalam respons workspace? \{#what-does-it-mean-if-a-group-is-missing-from-the-workspace-response}
+### Apa artinya jika sebuah grup tidak ada dalam respons workspace?
 
 Workspace tidak memiliki override untuk grup tersebut dan mewarisi batas tingkat organisasi. Kueri endpoint organisasi untuk melihat nilai yang diwarisi.
 
-### Bisakah saya memperbarui batas laju dengan API ini? \{#can-i-update-rate-limits-with-this-api}
+### Bisakah saya memperbarui batas laju dengan API ini?
 
 Tidak. Untuk mengatur batas laju workspace, buka workspace di [Claude Console](/settings/workspaces) dan gunakan tab **Limits**.
 
-## Lihat juga \{#see-also}
+## Lihat juga
 
-- [Batas laju](/docs/id/api/rate-limits)
-- [Admin API](/docs/id/manage-claude/admin-api)
-- [Referensi Admin API](/docs/id/api/admin)
-- [Workspace](/docs/id/manage-claude/workspaces)
-- [Usage and Cost API](/docs/id/manage-claude/usage-cost-api)
+* [Batas laju](/docs/id/api/rate-limits)
+* [Admin API](/docs/id/manage-claude/admin-api)
+* [Referensi Admin API](/docs/id/api/admin)
+* [Workspace](/docs/id/manage-claude/workspaces)
+* [Usage and Cost API](/docs/id/manage-claude/usage-cost-api)

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/cmek-aws-kms
-fetched_at: 2026-06-16T03:17:15.143812Z
-sha256: b89efd590aa6aa997c3a838cfffe45514e64f47d1880d535b2e46b15b2198389
+fetched_at: 2026-06-28T03:16:32.677203Z
+sha256: f5a18934400479be67988cf6ae3de3930060463b5290912f1de8cf338eea382b
 ---
 
 # Configure AWS KMS for CMEK
@@ -11,7 +11,7 @@ Use AWS KMS to provide an encryption key for your organization.
 
 ---
 
-```bash title="Configure with the /claude-api skill in Claude Code"
+```bash Configure with the /claude-api skill in Claude Code
 claude "/claude-api help me configure a customer-managed encryption key with AWS KMS"
 ```
 
@@ -23,15 +23,15 @@ This guide walks through configuring an [AWS KMS](https://aws.amazon.com/kms/) k
 
 ## Prerequisites
 
-- An AWS account with permissions to create KMS keys and set key policies (`kms:CreateKey` and `kms:PutKeyPolicy`).
-- An Anthropic Admin API key for your organization.
-- The [AWS CLI](https://aws.amazon.com/cli/) installed and authenticated.
+* An AWS account with permissions to create KMS keys and set key policies (`kms:CreateKey` and `kms:PutKeyPolicy`).
+* An Anthropic Admin API key for your organization.
+* The [AWS CLI](https://aws.amazon.com/cli/) installed and authenticated.
 
 ## Amazon Resource Name (ARN) for Anthropic
 
 To have Anthropic use your encryption key, you must give Anthropic's IAM role a KMS key it can use for encrypting data. The ARN for Anthropic CMEK is:
 
-```text
+```text wrap
 arn:aws:iam::915198916910:role/anthropic-cmek-client-us
 ```
 
@@ -115,7 +115,6 @@ arn:aws:iam::915198916910:role/anthropic-cmek-client-us
       ![AWS KMS Define key usage permissions step shown as an anti-pattern: adding Anthropic's account ID 915198916910 under Other AWS accounts here yields an over-permissive policy. Skip this step and leave it empty.](/docs/images/cmek/aws-usage-permissions.png)
     </Frame>
   </Step>
-
 </Steps>
 
 ## Register the key with Anthropic
@@ -132,8 +131,7 @@ How you register the key depends on which product you use.
           For organizations on [Claude Platform on AWS](/docs/en/build-with-claude/claude-platform-on-aws), the external key endpoints are not yet available. Register, validate, and attach your key in the Claude Console instead.
         </Note>
 
-        
-        ```bash nocheck
+        ```bash
         curl -sS https://api.anthropic.com/v1/organizations/external_keys \
           -H "x-api-key: <anthropic-admin-api-key>" \
           -H "anthropic-version: 2023-06-01" \
@@ -163,8 +161,7 @@ How you register the key depends on which product you use.
       <Step title="Validate the key">
         Trigger an encrypt and decrypt round-trip against your key.
 
-        
-        ```bash nocheck
+        ```bash
         curl -sS -X POST https://api.anthropic.com/v1/organizations/external_keys/ekey_<id>/validate \
           -H "x-api-key: <anthropic-admin-api-key>" \
           -H "anthropic-version: 2023-06-01" \
@@ -179,15 +176,14 @@ How you register the key depends on which product you use.
 
         If validation fails, common causes are:
 
-        - **Encryption context mismatch:** If you kept the `EncryptionContext` condition in the key policy, confirm you replaced `<compartment-uuid>` with your workspace's actual compartment ID (see the Create the KMS key step under Encryption key setup). A wrong or unsubstituted value makes KMS return an opaque `AccessDeniedException`. To rule it out, temporarily remove the `Condition` block from the `AllowAnthropicCMEKCrypto` statement and re-validate.
-        - **Resource control policies (RCPs):** If your AWS organization has an RCP that denies KMS operations when `aws:PrincipalOrgID` does not match your org, it blocks Anthropic's cross-account role. The RCP needs a carve-out for this key or for Anthropic's role ARN. Service control policies do not apply here, because they do not evaluate for external principals calling through resource-based policies.
-        - **Access granted through IAM instead of the key policy:** Cross-account KMS access must be granted in the key policy itself, not through an IAM policy in your account. Check with `aws kms get-key-policy --key-id <id> --policy-name default`.
-        - **Region mismatch:** Confirm the key's region is one Anthropic operates in for the geo tier you configured.
+        * **Encryption context mismatch:** If you kept the `EncryptionContext` condition in the key policy, confirm you replaced `<compartment-uuid>` with your workspace's actual compartment ID (see the Create the KMS key step under Encryption key setup). A wrong or unsubstituted value makes KMS return an opaque `AccessDeniedException`. To rule it out, temporarily remove the `Condition` block from the `AllowAnthropicCMEKCrypto` statement and re-validate.
+        * **Resource control policies (RCPs):** If your AWS organization has an RCP that denies KMS operations when `aws:PrincipalOrgID` does not match your org, it blocks Anthropic's cross-account role. The RCP needs a carve-out for this key or for Anthropic's role ARN. Service control policies do not apply here, because they do not evaluate for external principals calling through resource-based policies.
+        * **Access granted through IAM instead of the key policy:** Cross-account KMS access must be granted in the key policy itself, not through an IAM policy in your account. Check with `aws kms get-key-policy --key-id <id> --policy-name default`.
+        * **Region mismatch:** Confirm the key's region is one Anthropic operates in for the geo tier you configured.
       </Step>
 
       <Step title="Attach the key to a workspace">
-        
-        ```bash nocheck
+        ```bash
         curl -sS -X POST https://api.anthropic.com/v1/organizations/workspaces/<workspace-id> \
           -H "x-api-key: <anthropic-admin-api-key>" \
           -H "anthropic-version: 2023-06-01" \

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/permission-policies
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: a1747bcaef0471f99d3357405c4b2839878cdbb1ae0335f64f1f0021766ef5e3
+fetched_at: 2026-06-28T03:16:32.677203Z
+sha256: 123093762122190b275d17b5d2c0f49bbc28e652dbc79766888810a3dee1b1d8
 ---
 
 # Kebijakan izin
@@ -14,185 +14,186 @@ Kontrol kapan alat agen dan MCP dieksekusi.
 Kebijakan izin mengontrol apakah alat yang dieksekusi server (toolset agen bawaan dan toolset MCP) berjalan secara otomatis atau menunggu persetujuan Anda. Alat kustom dieksekusi oleh aplikasi Anda dan dikontrol oleh Anda, sehingga tidak diatur oleh kebijakan izin.
 
 <Note>
-Semua permintaan Managed Agents API memerlukan beta header `managed-agents-2026-04-01`. SDK menetapkan beta header tersebut secara otomatis.
+  Semua permintaan Managed Agents API memerlukan beta header `managed-agents-2026-04-01`. SDK menetapkan beta header tersebut secara otomatis.
 </Note>
 
-## Jenis kebijakan izin \{#permission-policy-types}
+## Jenis kebijakan izin
 
-| Kebijakan | Perilaku |
-| --- | --- |
-| `always_allow` | Alat dieksekusi secara otomatis tanpa konfirmasi. |
-| `always_ask` | Sesi dijeda dan menunggu persetujuan Anda sebelum mengeksekusi. Lihat [Merespons permintaan konfirmasi](#merespons-permintaan-konfirmasi) untuk alur event. |
+| Kebijakan      | Perilaku                                                                                                                                                    |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `always_allow` | Alat dieksekusi secara otomatis tanpa konfirmasi.                                                                                                           |
+| `always_ask`   | Sesi dijeda dan menunggu persetujuan Anda sebelum mengeksekusi. Lihat [Merespons permintaan konfirmasi](#merespons-permintaan-konfirmasi) untuk alur event. |
 
-## Menetapkan kebijakan untuk toolset \{#set-a-policy-for-a-toolset}
+## Menetapkan kebijakan untuk toolset
 
-### Izin toolset agen \{#agent-toolset-permissions}
+### Izin toolset agen
+
 Saat membuat agen, Anda dapat secara opsional menerapkan kebijakan ke setiap alat dalam `agent_toolset_20260401` menggunakan `default_config.permission_policy`:
 
 <CodeGroup defaultLanguage="CLI">
-```bash curl
-agent=$(curl -fsSL https://api.anthropic.com/v1/agents \
-  -H "x-api-key: $ANTHROPIC_API_KEY" \
-  -H "anthropic-version: 2023-06-01" \
-  -H "anthropic-beta: managed-agents-2026-04-01" \
-  -H "content-type: application/json" \
-  -d '{
-    "name": "Coding Assistant",
-    "model": "claude-opus-4-8",
-    "tools": [
+  ```bash curl
+  agent=$(curl -fsSL https://api.anthropic.com/v1/agents \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-beta: managed-agents-2026-04-01" \
+    -H "content-type: application/json" \
+    -d '{
+      "name": "Coding Assistant",
+      "model": "claude-opus-4-8",
+      "tools": [
+        {
+          "type": "agent_toolset_20260401",
+          "default_config": {
+            "permission_policy": {"type": "always_ask"}
+          }
+        }
+      ]
+    }')
+  ```
+
+  ```bash CLI
+  ant beta:agents create <<'YAML'
+  name: Coding Assistant
+  model: claude-opus-4-8
+  tools:
+    - type: agent_toolset_20260401
+      default_config:
+        permission_policy:
+          type: always_ask
+  YAML
+  ```
+
+  ```python Python
+  agent = client.beta.agents.create(
+      name="Coding Assistant",
+      model="claude-opus-4-8",
+      tools=[
+          {
+              "type": "agent_toolset_20260401",
+              "default_config": {
+                  "permission_policy": {"type": "always_ask"},
+              },
+          },
+      ],
+  )
+  ```
+
+  ```typescript TypeScript
+  const agent = await client.beta.agents.create({
+    name: "Coding Assistant",
+    model: "claude-opus-4-8",
+    tools: [
       {
-        "type": "agent_toolset_20260401",
-        "default_config": {
-          "permission_policy": {"type": "always_ask"}
+        type: "agent_toolset_20260401",
+        default_config: {
+          permission_policy: { type: "always_ask" }
         }
       }
     ]
-  }')
-```
+  });
+  ```
 
-```bash CLI
-ant beta:agents create <<'YAML'
-name: Coding Assistant
-model: claude-opus-4-8
-tools:
-  - type: agent_toolset_20260401
-    default_config:
-      permission_policy:
-        type: always_ask
-YAML
-```
+  ```csharp C#
+  var agent = await client.Beta.Agents.Create(new()
+  {
+      Name = "Coding Assistant",
+      Model = new("claude-opus-4-8"),
+      Tools =
+      [
+          new BetaManagedAgentsAgentToolset20260401Params
+          {
+              Type = "agent_toolset_20260401",
+              DefaultConfig = new()
+              {
+                  PermissionPolicy = new BetaManagedAgentsAlwaysAskPolicy { Type = "always_ask" },
+              },
+          },
+      ],
+  });
+  ```
 
-```python Python
-agent = client.beta.agents.create(
-    name="Coding Assistant",
-    model="claude-opus-4-8",
-    tools=[
-        {
-            "type": "agent_toolset_20260401",
-            "default_config": {
-                "permission_policy": {"type": "always_ask"},
-            },
-        },
-    ],
-)
-```
+  ```go Go
+  agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
+  	Name: "Coding Assistant",
+  	Model: anthropic.BetaManagedAgentsModelConfigParams{
+  		ID: "claude-opus-4-8",
+  	},
+  	Tools: []anthropic.BetaAgentNewParamsToolUnion{{
+  		OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{
+  			Type: anthropic.BetaManagedAgentsAgentToolset20260401ParamsTypeAgentToolset20260401,
+  			DefaultConfig: anthropic.BetaManagedAgentsAgentToolsetDefaultConfigParams{
+  				PermissionPolicy: anthropic.BetaManagedAgentsAgentToolsetDefaultConfigParamsPermissionPolicyUnion{
+  					OfAlwaysAsk: &anthropic.BetaManagedAgentsAlwaysAskPolicyParam{
+  						Type: anthropic.BetaManagedAgentsAlwaysAskPolicyTypeAlwaysAsk,
+  					},
+  				},
+  			},
+  		},
+  	}},
+  })
+  if err != nil {
+  	panic(err)
+  }
+  _ = agent
+  ```
 
-```typescript TypeScript
-const agent = await client.beta.agents.create({
-  name: "Coding Assistant",
-  model: "claude-opus-4-8",
-  tools: [
-    {
-      type: "agent_toolset_20260401",
-      default_config: {
-        permission_policy: { type: "always_ask" }
-      }
-    }
-  ]
-});
-```
+  ```java Java
+  var agent = client.beta().agents().create(
+      AgentCreateParams.builder()
+          .name("Coding Assistant")
+          .model(BetaManagedAgentsModel.CLAUDE_OPUS_4_8)
+          .addTool(
+              BetaManagedAgentsAgentToolset20260401Params.builder()
+                  .type(BetaManagedAgentsAgentToolset20260401Params.Type.AGENT_TOOLSET_20260401)
+                  .defaultConfig(
+                      BetaManagedAgentsAgentToolsetDefaultConfigParams.builder()
+                          .permissionPolicy(
+                              BetaManagedAgentsAlwaysAskPolicy.builder()
+                                  .type(BetaManagedAgentsAlwaysAskPolicy.Type.ALWAYS_ASK)
+                                  .build()
+                          )
+                          .build()
+                  )
+                  .build()
+          )
+          .build()
+  );
+  ```
 
-```csharp C#
-var agent = await client.Beta.Agents.Create(new()
-{
-    Name = "Coding Assistant",
-    Model = new("claude-opus-4-8"),
-    Tools =
-    [
-        new BetaManagedAgentsAgentToolset20260401Params
-        {
-            Type = "agent_toolset_20260401",
-            DefaultConfig = new()
-            {
-                PermissionPolicy = new BetaManagedAgentsAlwaysAskPolicy { Type = "always_ask" },
-            },
-        },
-    ],
-});
-```
+  ```php PHP
+  $agent = $client->beta->agents->create(
+      name: 'Coding Assistant',
+      model: 'claude-opus-4-8',
+      tools: [
+          BetaManagedAgentsAgentToolset20260401Params::with(
+              type: 'agent_toolset_20260401',
+              defaultConfig: BetaManagedAgentsAgentToolsetDefaultConfigParams::with(
+                  permissionPolicy: BetaManagedAgentsAlwaysAskPolicy::with(type: 'always_ask'),
+              ),
+          ),
+      ],
+  );
+  ```
 
-```go Go
-agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
-	Name: "Coding Assistant",
-	Model: anthropic.BetaManagedAgentsModelConfigParams{
-		ID: "claude-opus-4-8",
-	},
-	Tools: []anthropic.BetaAgentNewParamsToolUnion{{
-		OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{
-			Type: anthropic.BetaManagedAgentsAgentToolset20260401ParamsTypeAgentToolset20260401,
-			DefaultConfig: anthropic.BetaManagedAgentsAgentToolsetDefaultConfigParams{
-				PermissionPolicy: anthropic.BetaManagedAgentsAgentToolsetDefaultConfigParamsPermissionPolicyUnion{
-					OfAlwaysAsk: &anthropic.BetaManagedAgentsAlwaysAskPolicyParam{
-						Type: anthropic.BetaManagedAgentsAlwaysAskPolicyTypeAlwaysAsk,
-					},
-				},
-			},
-		},
-	}},
-})
-if err != nil {
-	panic(err)
-}
-_ = agent
-```
-
-```java Java
-var agent = client.beta().agents().create(
-    AgentCreateParams.builder()
-        .name("Coding Assistant")
-        .model(BetaManagedAgentsModel.CLAUDE_OPUS_4_8)
-        .addTool(
-            BetaManagedAgentsAgentToolset20260401Params.builder()
-                .type(BetaManagedAgentsAgentToolset20260401Params.Type.AGENT_TOOLSET_20260401)
-                .defaultConfig(
-                    BetaManagedAgentsAgentToolsetDefaultConfigParams.builder()
-                        .permissionPolicy(
-                            BetaManagedAgentsAlwaysAskPolicy.builder()
-                                .type(BetaManagedAgentsAlwaysAskPolicy.Type.ALWAYS_ASK)
-                                .build()
-                        )
-                        .build()
-                )
-                .build()
-        )
-        .build()
-);
-```
-
-```php PHP
-$agent = $client->beta->agents->create(
-    name: 'Coding Assistant',
-    model: 'claude-opus-4-8',
+  ```ruby Ruby
+  agent = client.beta.agents.create(
+    name: "Coding Assistant",
+    model: "claude-opus-4-8",
     tools: [
-        BetaManagedAgentsAgentToolset20260401Params::with(
-            type: 'agent_toolset_20260401',
-            defaultConfig: BetaManagedAgentsAgentToolsetDefaultConfigParams::with(
-                permissionPolicy: BetaManagedAgentsAlwaysAskPolicy::with(type: 'always_ask'),
-            ),
-        ),
-    ],
-);
-```
-
-```ruby Ruby
-agent = client.beta.agents.create(
-  name: "Coding Assistant",
-  model: "claude-opus-4-8",
-  tools: [
-    {
-      type: "agent_toolset_20260401",
-      default_config: {
-        permission_policy: {type: "always_ask"}
+      {
+        type: "agent_toolset_20260401",
+        default_config: {
+          permission_policy: {type: "always_ask"}
+        }
       }
-    }
-  ]
-)
-```
+    ]
+  )
+  ```
 </CodeGroup>
 
 `default_config` adalah pengaturan opsional. Jika Anda menghilangkannya, toolset agen diaktifkan dengan kebijakan izin default, `always_allow`.
 
-### Izin toolset MCP \{#mcp-toolset-permissions}
+### Izin toolset MCP
 
 Toolset MCP secara default menggunakan `always_ask`. Ini memastikan bahwa alat baru yang ditambahkan ke server MCP tidak dieksekusi di aplikasi Anda tanpa persetujuan. Untuk menyetujui alat secara otomatis dari server MCP tepercaya, atur `default_config.permission_policy` pada entri `mcp_toolset`.
 
@@ -201,422 +202,422 @@ Toolset MCP secara default menggunakan `always_ask`. Ini memastikan bahwa alat b
 Contoh ini menghubungkan server MCP GitHub dan mengizinkan alatnya berjalan tanpa konfirmasi:
 
 <CodeGroup defaultLanguage="CLI">
-```bash curl
-agent=$(curl -fsSL https://api.anthropic.com/v1/agents \
-  -H "x-api-key: $ANTHROPIC_API_KEY" \
-  -H "anthropic-version: 2023-06-01" \
-  -H "anthropic-beta: managed-agents-2026-04-01" \
-  -H "content-type: application/json" \
-  -d '{
-    "name": "Dev Assistant",
-    "model": "claude-opus-4-8",
-    "mcp_servers": [
-      {"type": "url", "name": "github", "url": "https://mcp.example.com/github"}
-    ],
-    "tools": [
-      {"type": "agent_toolset_20260401"},
+  ```bash curl
+  agent=$(curl -fsSL https://api.anthropic.com/v1/agents \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-beta: managed-agents-2026-04-01" \
+    -H "content-type: application/json" \
+    -d '{
+      "name": "Dev Assistant",
+      "model": "claude-opus-4-8",
+      "mcp_servers": [
+        {"type": "url", "name": "github", "url": "https://mcp.example.com/github"}
+      ],
+      "tools": [
+        {"type": "agent_toolset_20260401"},
+        {
+          "type": "mcp_toolset",
+          "mcp_server_name": "github",
+          "default_config": {
+            "permission_policy": {"type": "always_allow"}
+          }
+        }
+      ]
+    }')
+  ```
+
+  ```bash CLI
+  ant beta:agents create <<'YAML'
+  name: Dev Assistant
+  model: claude-opus-4-8
+  mcp_servers:
+    - type: url
+      name: github
+      url: https://mcp.example.com/github
+  tools:
+    - type: agent_toolset_20260401
+    - type: mcp_toolset
+      mcp_server_name: github
+      default_config:
+        permission_policy:
+          type: always_allow
+  YAML
+  ```
+
+  ```python Python
+  agent = client.beta.agents.create(
+      name="Dev Assistant",
+      model="claude-opus-4-8",
+      mcp_servers=[
+          {"type": "url", "name": "github", "url": "https://mcp.example.com/github"},
+      ],
+      tools=[
+          {"type": "agent_toolset_20260401"},
+          {
+              "type": "mcp_toolset",
+              "mcp_server_name": "github",
+              "default_config": {
+                  "permission_policy": {"type": "always_allow"},
+              },
+          },
+      ],
+  )
+  ```
+
+  ```typescript TypeScript
+  const agent = await client.beta.agents.create({
+    name: "Dev Assistant",
+    model: "claude-opus-4-8",
+    mcp_servers: [{ type: "url", name: "github", url: "https://mcp.example.com/github" }],
+    tools: [
+      { type: "agent_toolset_20260401" },
       {
-        "type": "mcp_toolset",
-        "mcp_server_name": "github",
-        "default_config": {
-          "permission_policy": {"type": "always_allow"}
+        type: "mcp_toolset",
+        mcp_server_name: "github",
+        default_config: {
+          permission_policy: { type: "always_allow" }
         }
       }
     ]
-  }')
-```
+  });
+  ```
 
-```bash CLI
-ant beta:agents create <<'YAML'
-name: Dev Assistant
-model: claude-opus-4-8
-mcp_servers:
-  - type: url
-    name: github
-    url: https://mcp.example.com/github
-tools:
-  - type: agent_toolset_20260401
-  - type: mcp_toolset
-    mcp_server_name: github
-    default_config:
-      permission_policy:
-        type: always_allow
-YAML
-```
+  ```csharp C#
+  var agent = await client.Beta.Agents.Create(new()
+  {
+      Name = "Dev Assistant",
+      Model = new("claude-opus-4-8"),
+      McpServers =
+      [
+          new() { Type = "url", Name = "github", Url = "https://mcp.example.com/github" },
+      ],
+      Tools =
+      [
+          new BetaManagedAgentsAgentToolset20260401Params
+          {
+              Type = "agent_toolset_20260401",
+          },
+          new BetaManagedAgentsMcpToolsetParams
+          {
+              Type = "mcp_toolset",
+              McpServerName = "github",
+              DefaultConfig = new()
+              {
+                  PermissionPolicy = new BetaManagedAgentsAlwaysAllowPolicy { Type = "always_allow" },
+              },
+          },
+      ],
+  });
+  ```
 
-```python Python
-agent = client.beta.agents.create(
-    name="Dev Assistant",
-    model="claude-opus-4-8",
-    mcp_servers=[
-        {"type": "url", "name": "github", "url": "https://mcp.example.com/github"},
-    ],
-    tools=[
-        {"type": "agent_toolset_20260401"},
-        {
-            "type": "mcp_toolset",
-            "mcp_server_name": "github",
-            "default_config": {
-                "permission_policy": {"type": "always_allow"},
-            },
-        },
-    ],
-)
-```
+  ```go Go
+  agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
+  	Name: "Dev Assistant",
+  	Model: anthropic.BetaManagedAgentsModelConfigParams{
+  		ID: "claude-opus-4-8",
+  	},
+  	MCPServers: []anthropic.BetaManagedAgentsURLMCPServerParams{{
+  		Type: anthropic.BetaManagedAgentsURLMCPServerParamsTypeURL,
+  		Name: "github",
+  		URL:  "https://mcp.example.com/github",
+  	}},
+  	Tools: []anthropic.BetaAgentNewParamsToolUnion{
+  		{
+  			OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{
+  				Type: anthropic.BetaManagedAgentsAgentToolset20260401ParamsTypeAgentToolset20260401,
+  			},
+  		},
+  		{
+  			OfMCPToolset: &anthropic.BetaManagedAgentsMCPToolsetParams{
+  				Type:          anthropic.BetaManagedAgentsMCPToolsetParamsTypeMCPToolset,
+  				MCPServerName: "github",
+  				DefaultConfig: anthropic.BetaManagedAgentsMCPToolsetDefaultConfigParams{
+  					PermissionPolicy: anthropic.BetaManagedAgentsMCPToolsetDefaultConfigParamsPermissionPolicyUnion{
+  						OfAlwaysAllow: &anthropic.BetaManagedAgentsAlwaysAllowPolicyParam{
+  							Type: anthropic.BetaManagedAgentsAlwaysAllowPolicyTypeAlwaysAllow,
+  						},
+  					},
+  				},
+  			},
+  		},
+  	},
+  })
+  if err != nil {
+  	panic(err)
+  }
+  _ = agent
+  ```
 
-```typescript TypeScript
-const agent = await client.beta.agents.create({
-  name: "Dev Assistant",
-  model: "claude-opus-4-8",
-  mcp_servers: [{ type: "url", name: "github", url: "https://mcp.example.com/github" }],
-  tools: [
-    { type: "agent_toolset_20260401" },
-    {
-      type: "mcp_toolset",
-      mcp_server_name: "github",
-      default_config: {
-        permission_policy: { type: "always_allow" }
-      }
-    }
-  ]
-});
-```
+  ```java Java
+  var agent = client.beta().agents().create(
+      AgentCreateParams.builder()
+          .name("Dev Assistant")
+          .model(BetaManagedAgentsModel.CLAUDE_OPUS_4_8)
+          .addMcpServer(
+              BetaManagedAgentsUrlMcpServerParams.builder()
+                  .type(BetaManagedAgentsUrlMcpServerParams.Type.URL)
+                  .name("github")
+                  .url("https://mcp.example.com/github")
+                  .build()
+          )
+          .addTool(
+              BetaManagedAgentsAgentToolset20260401Params.builder()
+                  .type(BetaManagedAgentsAgentToolset20260401Params.Type.AGENT_TOOLSET_20260401)
+                  .build()
+          )
+          .addTool(
+              BetaManagedAgentsMcpToolsetParams.builder()
+                  .type(BetaManagedAgentsMcpToolsetParams.Type.MCP_TOOLSET)
+                  .mcpServerName("github")
+                  .defaultConfig(
+                      BetaManagedAgentsMcpToolsetDefaultConfigParams.builder()
+                          .permissionPolicy(
+                              BetaManagedAgentsAlwaysAllowPolicy.builder()
+                                  .type(BetaManagedAgentsAlwaysAllowPolicy.Type.ALWAYS_ALLOW)
+                                  .build()
+                          )
+                          .build()
+                  )
+                  .build()
+          )
+          .build()
+  );
+  ```
 
-```csharp C#
-var agent = await client.Beta.Agents.Create(new()
-{
-    Name = "Dev Assistant",
-    Model = new("claude-opus-4-8"),
-    McpServers =
-    [
-        new() { Type = "url", Name = "github", Url = "https://mcp.example.com/github" },
-    ],
-    Tools =
-    [
-        new BetaManagedAgentsAgentToolset20260401Params
-        {
-            Type = "agent_toolset_20260401",
-        },
-        new BetaManagedAgentsMcpToolsetParams
-        {
-            Type = "mcp_toolset",
-            McpServerName = "github",
-            DefaultConfig = new()
-            {
-                PermissionPolicy = new BetaManagedAgentsAlwaysAllowPolicy { Type = "always_allow" },
-            },
-        },
-    ],
-});
-```
+  ```php PHP
+  use Anthropic\Beta\Agents\BetaManagedAgentsMCPToolsetDefaultConfigParams;
+  use Anthropic\Beta\Agents\BetaManagedAgentsMCPToolsetParams;
+  use Anthropic\Beta\Agents\BetaManagedAgentsURLMCPServerParams;
 
-```go Go
-agent, err := client.Beta.Agents.New(ctx, anthropic.BetaAgentNewParams{
-	Name: "Dev Assistant",
-	Model: anthropic.BetaManagedAgentsModelConfigParams{
-		ID: "claude-opus-4-8",
-	},
-	MCPServers: []anthropic.BetaManagedAgentsURLMCPServerParams{{
-		Type: anthropic.BetaManagedAgentsURLMCPServerParamsTypeURL,
-		Name: "github",
-		URL:  "https://mcp.example.com/github",
-	}},
-	Tools: []anthropic.BetaAgentNewParamsToolUnion{
-		{
-			OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{
-				Type: anthropic.BetaManagedAgentsAgentToolset20260401ParamsTypeAgentToolset20260401,
-			},
-		},
-		{
-			OfMCPToolset: &anthropic.BetaManagedAgentsMCPToolsetParams{
-				Type:          anthropic.BetaManagedAgentsMCPToolsetParamsTypeMCPToolset,
-				MCPServerName: "github",
-				DefaultConfig: anthropic.BetaManagedAgentsMCPToolsetDefaultConfigParams{
-					PermissionPolicy: anthropic.BetaManagedAgentsMCPToolsetDefaultConfigParamsPermissionPolicyUnion{
-						OfAlwaysAllow: &anthropic.BetaManagedAgentsAlwaysAllowPolicyParam{
-							Type: anthropic.BetaManagedAgentsAlwaysAllowPolicyTypeAlwaysAllow,
-						},
-					},
-				},
-			},
-		},
-	},
-})
-if err != nil {
-	panic(err)
-}
-_ = agent
-```
+  $agent = $client->beta->agents->create(
+      name: 'Dev Assistant',
+      model: 'claude-opus-4-8',
+      mcpServers: [
+          BetaManagedAgentsURLMCPServerParams::with(
+              type: 'url',
+              name: 'github',
+              url: 'https://mcp.example.com/github',
+          ),
+      ],
+      tools: [
+          BetaManagedAgentsAgentToolset20260401Params::with(
+              type: 'agent_toolset_20260401',
+          ),
+          BetaManagedAgentsMCPToolsetParams::with(
+              type: 'mcp_toolset',
+              mcpServerName: 'github',
+              defaultConfig: BetaManagedAgentsMCPToolsetDefaultConfigParams::with(
+                  permissionPolicy: BetaManagedAgentsAlwaysAllowPolicy::with(type: 'always_allow'),
+              ),
+          ),
+      ],
+  );
+  ```
 
-```java Java
-var agent = client.beta().agents().create(
-    AgentCreateParams.builder()
-        .name("Dev Assistant")
-        .model(BetaManagedAgentsModel.CLAUDE_OPUS_4_8)
-        .addMcpServer(
-            BetaManagedAgentsUrlMcpServerParams.builder()
-                .type(BetaManagedAgentsUrlMcpServerParams.Type.URL)
-                .name("github")
-                .url("https://mcp.example.com/github")
-                .build()
-        )
-        .addTool(
-            BetaManagedAgentsAgentToolset20260401Params.builder()
-                .type(BetaManagedAgentsAgentToolset20260401Params.Type.AGENT_TOOLSET_20260401)
-                .build()
-        )
-        .addTool(
-            BetaManagedAgentsMcpToolsetParams.builder()
-                .type(BetaManagedAgentsMcpToolsetParams.Type.MCP_TOOLSET)
-                .mcpServerName("github")
-                .defaultConfig(
-                    BetaManagedAgentsMcpToolsetDefaultConfigParams.builder()
-                        .permissionPolicy(
-                            BetaManagedAgentsAlwaysAllowPolicy.builder()
-                                .type(BetaManagedAgentsAlwaysAllowPolicy.Type.ALWAYS_ALLOW)
-                                .build()
-                        )
-                        .build()
-                )
-                .build()
-        )
-        .build()
-);
-```
-
-```php PHP
-use Anthropic\Beta\Agents\BetaManagedAgentsMCPToolsetDefaultConfigParams;
-use Anthropic\Beta\Agents\BetaManagedAgentsMCPToolsetParams;
-use Anthropic\Beta\Agents\BetaManagedAgentsURLMCPServerParams;
-
-$agent = $client->beta->agents->create(
-    name: 'Dev Assistant',
-    model: 'claude-opus-4-8',
-    mcpServers: [
-        BetaManagedAgentsURLMCPServerParams::with(
-            type: 'url',
-            name: 'github',
-            url: 'https://mcp.example.com/github',
-        ),
+  ```ruby Ruby
+  agent = client.beta.agents.create(
+    name: "Dev Assistant",
+    model: "claude-opus-4-8",
+    mcp_servers: [
+      {type: "url", name: "github", url: "https://mcp.example.com/github"}
     ],
     tools: [
-        BetaManagedAgentsAgentToolset20260401Params::with(
-            type: 'agent_toolset_20260401',
-        ),
-        BetaManagedAgentsMCPToolsetParams::with(
-            type: 'mcp_toolset',
-            mcpServerName: 'github',
-            defaultConfig: BetaManagedAgentsMCPToolsetDefaultConfigParams::with(
-                permissionPolicy: BetaManagedAgentsAlwaysAllowPolicy::with(type: 'always_allow'),
-            ),
-        ),
-    ],
-);
-```
-
-```ruby Ruby
-agent = client.beta.agents.create(
-  name: "Dev Assistant",
-  model: "claude-opus-4-8",
-  mcp_servers: [
-    {type: "url", name: "github", url: "https://mcp.example.com/github"}
-  ],
-  tools: [
-    {type: "agent_toolset_20260401"},
-    {
-      type: "mcp_toolset",
-      mcp_server_name: "github",
-      default_config: {
-        permission_policy: {type: "always_allow"}
+      {type: "agent_toolset_20260401"},
+      {
+        type: "mcp_toolset",
+        mcp_server_name: "github",
+        default_config: {
+          permission_policy: {type: "always_allow"}
+        }
       }
-    }
-  ]
-)
-```
+    ]
+  )
+  ```
 </CodeGroup>
 
-## Mengganti kebijakan alat individual \{#override-an-individual-tool-policy}
+## Mengganti kebijakan alat individual
 
 Gunakan array `configs` untuk mengganti default pada alat individual. Contoh ini mengizinkan seluruh toolset agen secara default tetapi memerlukan konfirmasi sebelum perintah bash apa pun dijalankan:
 
 <CodeGroup defaultLanguage="CLI">
-```bash curl
-tools='[
-  {
-    "type": "agent_toolset_20260401",
-    "default_config": {
-      "permission_policy": {"type": "always_allow"}
-    },
-    "configs": [
-      {
-        "name": "bash",
-        "permission_policy": {"type": "always_ask"}
-      }
-    ]
-  }
-]'
-```
-
-```bash CLI
-tools=$(cat <<'YAML'
-- type: agent_toolset_20260401
-  default_config:
-    permission_policy:
-      type: always_allow
-  configs:
-    - name: bash
-      permission_policy:
-        type: always_ask
-YAML
-)
-```
-
-```python Python
-tools = [
+  ```bash curl
+  tools='[
     {
-        "type": "agent_toolset_20260401",
-        "default_config": {
-            "permission_policy": {"type": "always_allow"},
-        },
-        "configs": [
-            {
-                "name": "bash",
-                "permission_policy": {"type": "always_ask"},
-            },
-        ],
-    },
-]
-```
-
-```typescript TypeScript
-const tools = [
-  {
-    type: "agent_toolset_20260401",
-    default_config: {
-      permission_policy: { type: "always_allow" }
-    },
-    configs: [
-      {
-        name: "bash",
-        permission_policy: { type: "always_ask" }
-      }
-    ]
-  }
-] satisfies Anthropic.Beta.AgentCreateParams["tools"];
-```
-
-```csharp C#
-Tool[] tools =
-[
-    new BetaManagedAgentsAgentToolset20260401Params
-    {
-        Type = "agent_toolset_20260401",
-        DefaultConfig = new()
+      "type": "agent_toolset_20260401",
+      "default_config": {
+        "permission_policy": {"type": "always_allow"}
+      },
+      "configs": [
         {
-            PermissionPolicy = new BetaManagedAgentsAlwaysAllowPolicy { Type = "always_allow" },
-        },
-        Configs =
-        [
-            new()
-            {
-                Name = "bash",
-                PermissionPolicy = new BetaManagedAgentsAlwaysAskPolicy { Type = "always_ask" },
-            },
-        ],
-    },
-];
-```
+          "name": "bash",
+          "permission_policy": {"type": "always_ask"}
+        }
+      ]
+    }
+  ]'
+  ```
 
-```go Go
-tools := []anthropic.BetaAgentNewParamsToolUnion{{
-	OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{
-		Type: anthropic.BetaManagedAgentsAgentToolset20260401ParamsTypeAgentToolset20260401,
-		DefaultConfig: anthropic.BetaManagedAgentsAgentToolsetDefaultConfigParams{
-			PermissionPolicy: anthropic.BetaManagedAgentsAgentToolsetDefaultConfigParamsPermissionPolicyUnion{
-				OfAlwaysAllow: &anthropic.BetaManagedAgentsAlwaysAllowPolicyParam{
-					Type: anthropic.BetaManagedAgentsAlwaysAllowPolicyTypeAlwaysAllow,
-				},
-			},
-		},
-		Configs: []anthropic.BetaManagedAgentsAgentToolConfigParams{{
-			Name: anthropic.BetaManagedAgentsAgentToolConfigParamsNameBash,
-			PermissionPolicy: anthropic.BetaManagedAgentsAgentToolConfigParamsPermissionPolicyUnion{
-				OfAlwaysAsk: &anthropic.BetaManagedAgentsAlwaysAskPolicyParam{
-					Type: anthropic.BetaManagedAgentsAlwaysAskPolicyTypeAlwaysAsk,
-				},
-			},
-		}},
-	},
-}}
-```
+  ```bash CLI
+  tools=$(cat <<'YAML'
+  - type: agent_toolset_20260401
+    default_config:
+      permission_policy:
+        type: always_allow
+    configs:
+      - name: bash
+        permission_policy:
+          type: always_ask
+  YAML
+  )
+  ```
 
-```java Java
-var tools = List.of(
-    AgentCreateParams.Tool.ofAgentToolset20260401(
-        BetaManagedAgentsAgentToolset20260401Params.builder()
-            .type(BetaManagedAgentsAgentToolset20260401Params.Type.AGENT_TOOLSET_20260401)
-            .defaultConfig(
-                BetaManagedAgentsAgentToolsetDefaultConfigParams.builder()
-                    .permissionPolicy(
-                        BetaManagedAgentsAlwaysAllowPolicy.builder()
-                            .type(BetaManagedAgentsAlwaysAllowPolicy.Type.ALWAYS_ALLOW)
-                            .build()
-                    )
-                    .build()
-            )
-            .addConfig(
-                BetaManagedAgentsAgentToolConfigParams.builder()
-                    .name(BetaManagedAgentsAgentToolConfigParams.Name.BASH)
-                    .permissionPolicy(
-                        BetaManagedAgentsAlwaysAskPolicy.builder()
-                            .type(BetaManagedAgentsAlwaysAskPolicy.Type.ALWAYS_ASK)
-                            .build()
-                    )
-                    .build()
-            )
-            .build()
-    )
-);
-```
-
-```php PHP
-use Anthropic\Beta\Agents\BetaManagedAgentsAlwaysAskPolicy;
-
-$tools = [
-    BetaManagedAgentsAgentToolset20260401Params::with(
-        type: 'agent_toolset_20260401',
-        defaultConfig: BetaManagedAgentsAgentToolsetDefaultConfigParams::with(
-            permissionPolicy: BetaManagedAgentsAlwaysAllowPolicy::with(type: 'always_allow'),
-        ),
-        configs: [
-            BetaManagedAgentsAgentToolConfigParams::with(
-                name: 'bash',
-                permissionPolicy: BetaManagedAgentsAlwaysAskPolicy::with(type: 'always_ask'),
-            ),
-        ],
-    ),
-];
-```
-
-```ruby Ruby
-tools = [
-  {
-    type: "agent_toolset_20260401",
-    default_config: {
-      permission_policy: {type: "always_allow"}
-    },
-    configs: [
+  ```python Python
+  tools = [
       {
-        name: "bash",
-        permission_policy: {type: "always_ask"}
-      }
-    ]
-  }
-]
-```
+          "type": "agent_toolset_20260401",
+          "default_config": {
+              "permission_policy": {"type": "always_allow"},
+          },
+          "configs": [
+              {
+                  "name": "bash",
+                  "permission_policy": {"type": "always_ask"},
+              },
+          ],
+      },
+  ]
+  ```
+
+  ```typescript TypeScript
+  const tools = [
+    {
+      type: "agent_toolset_20260401",
+      default_config: {
+        permission_policy: { type: "always_allow" }
+      },
+      configs: [
+        {
+          name: "bash",
+          permission_policy: { type: "always_ask" }
+        }
+      ]
+    }
+  ] satisfies Anthropic.Beta.AgentCreateParams["tools"];
+  ```
+
+  ```csharp C#
+  Tool[] tools =
+  [
+      new BetaManagedAgentsAgentToolset20260401Params
+      {
+          Type = "agent_toolset_20260401",
+          DefaultConfig = new()
+          {
+              PermissionPolicy = new BetaManagedAgentsAlwaysAllowPolicy { Type = "always_allow" },
+          },
+          Configs =
+          [
+              new()
+              {
+                  Name = "bash",
+                  PermissionPolicy = new BetaManagedAgentsAlwaysAskPolicy { Type = "always_ask" },
+              },
+          ],
+      },
+  ];
+  ```
+
+  ```go Go
+  tools := []anthropic.BetaAgentNewParamsToolUnion{{
+  	OfAgentToolset20260401: &anthropic.BetaManagedAgentsAgentToolset20260401Params{
+  		Type: anthropic.BetaManagedAgentsAgentToolset20260401ParamsTypeAgentToolset20260401,
+  		DefaultConfig: anthropic.BetaManagedAgentsAgentToolsetDefaultConfigParams{
+  			PermissionPolicy: anthropic.BetaManagedAgentsAgentToolsetDefaultConfigParamsPermissionPolicyUnion{
+  				OfAlwaysAllow: &anthropic.BetaManagedAgentsAlwaysAllowPolicyParam{
+  					Type: anthropic.BetaManagedAgentsAlwaysAllowPolicyTypeAlwaysAllow,
+  				},
+  			},
+  		},
+  		Configs: []anthropic.BetaManagedAgentsAgentToolConfigParams{{
+  			Name: anthropic.BetaManagedAgentsAgentToolConfigParamsNameBash,
+  			PermissionPolicy: anthropic.BetaManagedAgentsAgentToolConfigParamsPermissionPolicyUnion{
+  				OfAlwaysAsk: &anthropic.BetaManagedAgentsAlwaysAskPolicyParam{
+  					Type: anthropic.BetaManagedAgentsAlwaysAskPolicyTypeAlwaysAsk,
+  				},
+  			},
+  		}},
+  	},
+  }}
+  ```
+
+  ```java Java
+  var tools = List.of(
+      AgentCreateParams.Tool.ofAgentToolset20260401(
+          BetaManagedAgentsAgentToolset20260401Params.builder()
+              .type(BetaManagedAgentsAgentToolset20260401Params.Type.AGENT_TOOLSET_20260401)
+              .defaultConfig(
+                  BetaManagedAgentsAgentToolsetDefaultConfigParams.builder()
+                      .permissionPolicy(
+                          BetaManagedAgentsAlwaysAllowPolicy.builder()
+                              .type(BetaManagedAgentsAlwaysAllowPolicy.Type.ALWAYS_ALLOW)
+                              .build()
+                      )
+                      .build()
+              )
+              .addConfig(
+                  BetaManagedAgentsAgentToolConfigParams.builder()
+                      .name(BetaManagedAgentsAgentToolConfigParams.Name.BASH)
+                      .permissionPolicy(
+                          BetaManagedAgentsAlwaysAskPolicy.builder()
+                              .type(BetaManagedAgentsAlwaysAskPolicy.Type.ALWAYS_ASK)
+                              .build()
+                      )
+                      .build()
+              )
+              .build()
+      )
+  );
+  ```
+
+  ```php PHP
+  use Anthropic\Beta\Agents\BetaManagedAgentsAlwaysAskPolicy;
+
+  $tools = [
+      BetaManagedAgentsAgentToolset20260401Params::with(
+          type: 'agent_toolset_20260401',
+          defaultConfig: BetaManagedAgentsAgentToolsetDefaultConfigParams::with(
+              permissionPolicy: BetaManagedAgentsAlwaysAllowPolicy::with(type: 'always_allow'),
+          ),
+          configs: [
+              BetaManagedAgentsAgentToolConfigParams::with(
+                  name: 'bash',
+                  permissionPolicy: BetaManagedAgentsAlwaysAskPolicy::with(type: 'always_ask'),
+              ),
+          ],
+      ),
+  ];
+  ```
+
+  ```ruby Ruby
+  tools = [
+    {
+      type: "agent_toolset_20260401",
+      default_config: {
+        permission_policy: {type: "always_allow"}
+      },
+      configs: [
+        {
+          name: "bash",
+          permission_policy: {type: "always_ask"}
+        }
+      ]
+    }
+  ]
+  ```
 </CodeGroup>
 
-## Merespons permintaan konfirmasi \{#respond-to-confirmation-requests}
+## Merespons permintaan konfirmasi
 
 Ketika agen memanggil alat dengan kebijakan `always_ask`:
 
@@ -628,256 +629,256 @@ Ketika agen memanggil alat dengan kebijakan `always_ask`:
 Pelajari lebih lanjut tentang penanganan event dalam panduan [Aliran event sesi](/docs/id/managed-agents/events-and-streaming).
 
 <CodeGroup defaultLanguage="CLI">
-```bash curl
-# Izinkan alat untuk dieksekusi
-curl -fsSL "https://api.anthropic.com/v1/sessions/$SESSION_ID/events" \
-  -H "x-api-key: $ANTHROPIC_API_KEY" \
-  -H "anthropic-version: 2023-06-01" \
-  -H "anthropic-beta: managed-agents-2026-04-01" \
-  -H "content-type: application/json" \
-  -d '{
-    "events": [
+  ```bash curl
+  # Izinkan alat untuk dieksekusi
+  curl -fsSL "https://api.anthropic.com/v1/sessions/$SESSION_ID/events" \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-beta: managed-agents-2026-04-01" \
+    -H "content-type: application/json" \
+    -d '{
+      "events": [
+        {
+          "type": "user.tool_confirmation",
+          "tool_use_id": "'$AGENT_TOOL_USE_EVENT_ID'",
+          "result": "allow"
+        }
+      ]
+    }'
+
+  # Atau tolak dengan penjelasan
+  curl -fsSL "https://api.anthropic.com/v1/sessions/$SESSION_ID/events" \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-beta: managed-agents-2026-04-01" \
+    -H "content-type: application/json" \
+    -d '{
+      "events": [
+        {
+          "type": "user.tool_confirmation",
+          "tool_use_id": "'$MCP_TOOL_USE_EVENT_ID'",
+          "result": "deny",
+          "deny_message": "Don'\''t create issues in the production project. Use the staging project."
+        }
+      ]
+    }'
+  ```
+
+  ```bash CLI
+  # Izinkan alat untuk dieksekusi
+  ant beta:sessions:events send \
+    --session-id "$SESSION_ID" \
+    --event "{type: user.tool_confirmation, tool_use_id: $AGENT_TOOL_USE_EVENT_ID, result: allow}"
+
+  # Atau tolak dengan penjelasan
+  ant beta:sessions:events send \
+    --session-id "$SESSION_ID" \
+    --event "{type: user.tool_confirmation, tool_use_id: $MCP_TOOL_USE_EVENT_ID, result: deny,
+      deny_message: Don't create issues in the production project. Use the staging project.}"
+  ```
+
+  ```python Python
+  # Izinkan alat untuk dieksekusi
+  client.beta.sessions.events.send(
+      session.id,
+      events=[
+          {
+              "type": "user.tool_confirmation",
+              "tool_use_id": agent_tool_use_event.id,
+              "result": "allow",
+          },
+      ],
+  )
+
+  # Atau tolak dengan penjelasan
+  client.beta.sessions.events.send(
+      session.id,
+      events=[
+          {
+              "type": "user.tool_confirmation",
+              "tool_use_id": mcp_tool_use_event.id,
+              "result": "deny",
+              "deny_message": "Don't create issues in the production project. Use the staging project.",
+          },
+      ],
+  )
+  ```
+
+  ```typescript TypeScript
+  // Izinkan alat untuk dieksekusi
+  await client.beta.sessions.events.send(session.id, {
+    events: [
       {
-        "type": "user.tool_confirmation",
-        "tool_use_id": "'$AGENT_TOOL_USE_EVENT_ID'",
-        "result": "allow"
+        type: "user.tool_confirmation",
+        tool_use_id: agent_tool_use_event.id,
+        result: "allow"
       }
     ]
-  }'
+  });
 
-# Atau tolak dengan penjelasan
-curl -fsSL "https://api.anthropic.com/v1/sessions/$SESSION_ID/events" \
-  -H "x-api-key: $ANTHROPIC_API_KEY" \
-  -H "anthropic-version: 2023-06-01" \
-  -H "anthropic-beta: managed-agents-2026-04-01" \
-  -H "content-type: application/json" \
-  -d '{
-    "events": [
+  // Atau tolak dengan penjelasan
+  await client.beta.sessions.events.send(session.id, {
+    events: [
       {
-        "type": "user.tool_confirmation",
-        "tool_use_id": "'$MCP_TOOL_USE_EVENT_ID'",
-        "result": "deny",
-        "deny_message": "Don'\''t create issues in the production project. Use the staging project."
+        type: "user.tool_confirmation",
+        tool_use_id: mcp_tool_use_event.id,
+        result: "deny",
+        deny_message: "Don't create issues in the production project. Use the staging project."
       }
     ]
-  }'
-```
+  });
+  ```
 
-```bash CLI nocheck
-# Izinkan alat untuk dieksekusi
-ant beta:sessions:events send \
-  --session-id "$SESSION_ID" \
-  --event "{type: user.tool_confirmation, tool_use_id: $AGENT_TOOL_USE_EVENT_ID, result: allow}"
+  ```csharp C#
+  // Izinkan alat untuk dieksekusi
+  await client.Beta.Sessions.Events.Send(session.ID, new()
+  {
+      Events =
+      [
+          new BetaManagedAgentsUserToolConfirmationEventParams
+          {
+              Type = "user.tool_confirmation",
+              ToolUseID = agentToolUseEvent.ID,
+              Result = "allow",
+          },
+      ],
+  });
 
-# Atau tolak dengan penjelasan
-ant beta:sessions:events send \
-  --session-id "$SESSION_ID" \
-  --event "{type: user.tool_confirmation, tool_use_id: $MCP_TOOL_USE_EVENT_ID, result: deny,
-    deny_message: Don't create issues in the production project. Use the staging project.}"
-```
+  // Atau tolak dengan penjelasan
+  await client.Beta.Sessions.Events.Send(session.ID, new()
+  {
+      Events =
+      [
+          new BetaManagedAgentsUserToolConfirmationEventParams
+          {
+              Type = "user.tool_confirmation",
+              ToolUseID = mcpToolUseEvent.ID,
+              Result = "deny",
+              DenyMessage = "Don't create issues in the production project. Use the staging project.",
+          },
+      ],
+  });
+  ```
 
-```python Python
-# Izinkan alat untuk dieksekusi
-client.beta.sessions.events.send(
+  ```go Go
+  // Izinkan alat untuk dieksekusi
+  _, err = client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
+  	Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
+  		OfUserToolConfirmation: &anthropic.BetaManagedAgentsUserToolConfirmationEventParams{
+  			Type:      anthropic.BetaManagedAgentsUserToolConfirmationEventParamsTypeUserToolConfirmation,
+  			ToolUseID: agentToolUseEvent.ID,
+  			Result:    anthropic.BetaManagedAgentsUserToolConfirmationEventParamsResultAllow,
+  		},
+  	}},
+  })
+  if err != nil {
+  	panic(err)
+  }
+
+  // Atau tolak dengan penjelasan
+  _, err = client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
+  	Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
+  		OfUserToolConfirmation: &anthropic.BetaManagedAgentsUserToolConfirmationEventParams{
+  			Type:        anthropic.BetaManagedAgentsUserToolConfirmationEventParamsTypeUserToolConfirmation,
+  			ToolUseID:   mcpToolUseEvent.ID,
+  			Result:      anthropic.BetaManagedAgentsUserToolConfirmationEventParamsResultDeny,
+  			DenyMessage: anthropic.String("Don't create issues in the production project. Use the staging project."),
+  		},
+  	}},
+  })
+  if err != nil {
+  	panic(err)
+  }
+  ```
+
+  ```java Java
+  // Izinkan alat untuk dieksekusi
+  client.beta().sessions().events().send(
+      session.id(),
+      EventSendParams.builder()
+          .addEvent(
+              BetaManagedAgentsUserToolConfirmationEventParams.builder()
+                  .type(BetaManagedAgentsUserToolConfirmationEventParams.Type.USER_TOOL_CONFIRMATION)
+                  .toolUseId(agentToolUseEvent.id())
+                  .result(BetaManagedAgentsUserToolConfirmationEventParams.Result.ALLOW)
+                  .build()
+          )
+          .build()
+  );
+
+  // Atau tolak dengan penjelasan
+  client.beta().sessions().events().send(
+      session.id(),
+      EventSendParams.builder()
+          .addEvent(
+              BetaManagedAgentsUserToolConfirmationEventParams.builder()
+                  .type(BetaManagedAgentsUserToolConfirmationEventParams.Type.USER_TOOL_CONFIRMATION)
+                  .toolUseId(mcpToolUseEvent.id())
+                  .result(BetaManagedAgentsUserToolConfirmationEventParams.Result.DENY)
+                  .denyMessage("Don't create issues in the production project. Use the staging project.")
+                  .build()
+          )
+          .build()
+  );
+  ```
+
+  ```php PHP
+  use Anthropic\Beta\Sessions\Events\ManagedAgentsUserToolConfirmationEventParams;
+
+  // Izinkan alat untuk dieksekusi
+  $client->beta->sessions->events->send(
+      $session->id,
+      events: [
+          ManagedAgentsUserToolConfirmationEventParams::with(
+              type: 'user.tool_confirmation',
+              toolUseID: $agentToolUseEvent->id,
+              result: 'allow',
+          ),
+      ],
+  );
+
+  // Atau tolak dengan penjelasan
+  $client->beta->sessions->events->send(
+      $session->id,
+      events: [
+          ManagedAgentsUserToolConfirmationEventParams::with(
+              type: 'user.tool_confirmation',
+              toolUseID: $mcpToolUseEvent->id,
+              result: 'deny',
+              denyMessage: "Don't create issues in the production project. Use the staging project.",
+          ),
+      ],
+  );
+  ```
+
+  ```ruby Ruby
+  # Izinkan alat untuk dieksekusi
+  client.beta.sessions.events.send_(
     session.id,
-    events=[
-        {
-            "type": "user.tool_confirmation",
-            "tool_use_id": agent_tool_use_event.id,
-            "result": "allow",
-        },
-    ],
-)
+    events: [
+      {
+        type: "user.tool_confirmation",
+        tool_use_id: agent_tool_use_event.id,
+        result: "allow"
+      }
+    ]
+  )
 
-# Atau tolak dengan penjelasan
-client.beta.sessions.events.send(
+  # Atau tolak dengan penjelasan
+  client.beta.sessions.events.send_(
     session.id,
-    events=[
-        {
-            "type": "user.tool_confirmation",
-            "tool_use_id": mcp_tool_use_event.id,
-            "result": "deny",
-            "deny_message": "Don't create issues in the production project. Use the staging project.",
-        },
-    ],
-)
-```
-
-```typescript TypeScript
-// Izinkan alat untuk dieksekusi
-await client.beta.sessions.events.send(session.id, {
-  events: [
-    {
-      type: "user.tool_confirmation",
-      tool_use_id: agent_tool_use_event.id,
-      result: "allow"
-    }
-  ]
-});
-
-// Atau tolak dengan penjelasan
-await client.beta.sessions.events.send(session.id, {
-  events: [
-    {
-      type: "user.tool_confirmation",
-      tool_use_id: mcp_tool_use_event.id,
-      result: "deny",
-      deny_message: "Don't create issues in the production project. Use the staging project."
-    }
-  ]
-});
-```
-
-```csharp C#
-// Izinkan alat untuk dieksekusi
-await client.Beta.Sessions.Events.Send(session.ID, new()
-{
-    Events =
-    [
-        new BetaManagedAgentsUserToolConfirmationEventParams
-        {
-            Type = "user.tool_confirmation",
-            ToolUseID = agentToolUseEvent.ID,
-            Result = "allow",
-        },
-    ],
-});
-
-// Atau tolak dengan penjelasan
-await client.Beta.Sessions.Events.Send(session.ID, new()
-{
-    Events =
-    [
-        new BetaManagedAgentsUserToolConfirmationEventParams
-        {
-            Type = "user.tool_confirmation",
-            ToolUseID = mcpToolUseEvent.ID,
-            Result = "deny",
-            DenyMessage = "Don't create issues in the production project. Use the staging project.",
-        },
-    ],
-});
-```
-
-```go Go
-// Izinkan alat untuk dieksekusi
-_, err = client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
-	Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
-		OfUserToolConfirmation: &anthropic.BetaManagedAgentsUserToolConfirmationEventParams{
-			Type:      anthropic.BetaManagedAgentsUserToolConfirmationEventParamsTypeUserToolConfirmation,
-			ToolUseID: agentToolUseEvent.ID,
-			Result:    anthropic.BetaManagedAgentsUserToolConfirmationEventParamsResultAllow,
-		},
-	}},
-})
-if err != nil {
-	panic(err)
-}
-
-// Atau tolak dengan penjelasan
-_, err = client.Beta.Sessions.Events.Send(ctx, session.ID, anthropic.BetaSessionEventSendParams{
-	Events: []anthropic.BetaManagedAgentsEventParamsUnion{{
-		OfUserToolConfirmation: &anthropic.BetaManagedAgentsUserToolConfirmationEventParams{
-			Type:        anthropic.BetaManagedAgentsUserToolConfirmationEventParamsTypeUserToolConfirmation,
-			ToolUseID:   mcpToolUseEvent.ID,
-			Result:      anthropic.BetaManagedAgentsUserToolConfirmationEventParamsResultDeny,
-			DenyMessage: anthropic.String("Don't create issues in the production project. Use the staging project."),
-		},
-	}},
-})
-if err != nil {
-	panic(err)
-}
-```
-
-```java Java
-// Izinkan alat untuk dieksekusi
-client.beta().sessions().events().send(
-    session.id(),
-    EventSendParams.builder()
-        .addEvent(
-            BetaManagedAgentsUserToolConfirmationEventParams.builder()
-                .type(BetaManagedAgentsUserToolConfirmationEventParams.Type.USER_TOOL_CONFIRMATION)
-                .toolUseId(agentToolUseEvent.id())
-                .result(BetaManagedAgentsUserToolConfirmationEventParams.Result.ALLOW)
-                .build()
-        )
-        .build()
-);
-
-// Atau tolak dengan penjelasan
-client.beta().sessions().events().send(
-    session.id(),
-    EventSendParams.builder()
-        .addEvent(
-            BetaManagedAgentsUserToolConfirmationEventParams.builder()
-                .type(BetaManagedAgentsUserToolConfirmationEventParams.Type.USER_TOOL_CONFIRMATION)
-                .toolUseId(mcpToolUseEvent.id())
-                .result(BetaManagedAgentsUserToolConfirmationEventParams.Result.DENY)
-                .denyMessage("Don't create issues in the production project. Use the staging project.")
-                .build()
-        )
-        .build()
-);
-```
-
-```php PHP
-use Anthropic\Beta\Sessions\Events\ManagedAgentsUserToolConfirmationEventParams;
-
-// Izinkan alat untuk dieksekusi
-$client->beta->sessions->events->send(
-    $session->id,
     events: [
-        ManagedAgentsUserToolConfirmationEventParams::with(
-            type: 'user.tool_confirmation',
-            toolUseID: $agentToolUseEvent->id,
-            result: 'allow',
-        ),
-    ],
-);
-
-// Atau tolak dengan penjelasan
-$client->beta->sessions->events->send(
-    $session->id,
-    events: [
-        ManagedAgentsUserToolConfirmationEventParams::with(
-            type: 'user.tool_confirmation',
-            toolUseID: $mcpToolUseEvent->id,
-            result: 'deny',
-            denyMessage: "Don't create issues in the production project. Use the staging project.",
-        ),
-    ],
-);
-```
-
-```ruby Ruby
-# Izinkan alat untuk dieksekusi
-client.beta.sessions.events.send_(
-  session.id,
-  events: [
-    {
-      type: "user.tool_confirmation",
-      tool_use_id: agent_tool_use_event.id,
-      result: "allow"
-    }
-  ]
-)
-
-# Atau tolak dengan penjelasan
-client.beta.sessions.events.send_(
-  session.id,
-  events: [
-    {
-      type: "user.tool_confirmation",
-      tool_use_id: mcp_tool_use_event.id,
-      result: "deny",
-      deny_message: "Don't create issues in the production project. Use the staging project."
-    }
-  ]
-)
-```
+      {
+        type: "user.tool_confirmation",
+        tool_use_id: mcp_tool_use_event.id,
+        result: "deny",
+        deny_message: "Don't create issues in the production project. Use the staging project."
+      }
+    ]
+  )
+  ```
 </CodeGroup>
 
-## Alat kustom \{#custom-tools}
+## Alat kustom
 
 Kebijakan izin tidak berlaku untuk alat kustom. Ketika agen memanggil alat kustom, aplikasi Anda menerima event `agent.custom_tool_use` dan bertanggung jawab untuk memutuskan apakah akan mengeksekusinya sebelum mengirim kembali `user.custom_tool_result`. Lihat [Aliran event sesi](/docs/id/managed-agents/events-and-streaming#handling-custom-tool-calls) untuk alur lengkapnya.

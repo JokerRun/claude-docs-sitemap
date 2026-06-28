@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-admin-api
-fetched_at: 2026-06-26T03:16:19.812719Z
-sha256: 14abb0c619f5cdde2ec1c053231388fa68561b6ccf529e61c7f8a007de3f7b4e
+fetched_at: 2026-06-28T03:16:32.677203Z
+sha256: 910ba70df6619a966bacd6c6be3830e4ace0c9960f5831103db509f691dc8885
 ---
 
 # Mengelola WIF dengan Admin API
@@ -13,13 +13,13 @@ Buat dan kelola akun layanan, issuer, dan aturan Workload Identity Federation se
 
 Admin API memungkinkan Anda membuat dan mengelola sumber daya [Workload Identity Federation](/docs/id/manage-claude/workload-identity-federation) secara terprogram: akun layanan, federation issuer, dan federation rule. Gunakan API ini untuk menyimpan konfigurasi federasi Anda dalam infrastructure as code, menyediakannya dari CI, dan mereproduksinya di berbagai organisasi alih-alih mengklik satu per satu melalui Claude Console. Endpoint ini berbagi prefiks path `/v1/organizations` dengan bagian lain dari [Admin API](/docs/id/manage-claude/admin-api).
 
-## Prasyarat \{#prerequisites}
+## Prasyarat
 
 Setiap permintaan di halaman ini diautentikasi dengan OAuth bearer token yang membawa scope `org:admin`. Scope ini hanya diberikan kepada anggota organisasi dengan peran admin, owner, atau primary owner, dan memberikan akses ke seluruh organisasi: binding workspace apa pun akan diabaikan. Ada dua cara untuk mendapatkan token, dan keduanya membawa izin yang berbeda: token dari login Anda sendiri bertindak sebagai pengguna, sedangkan token terfederasi bertindak sebagai akun layanan dan tidak dapat melakukan semua operasi di halaman ini.
 
 **Interaktif (terminal Anda):** Login dengan [CLI `ant`](/docs/id/cli-sdks-libraries/cli/quickstart) menggunakan profil khusus, dengan meminta scope `org:admin` (lihat [Akses admin](/docs/id/cli-sdks-libraries/cli/authentication#admin-access)), lalu ekspor bearer token:
 
-```bash CLI nocheck
+```bash CLI
 ant auth login --profile admin --scope "org:admin"
 export ANTHROPIC_OAUTH_TOKEN=$(ant auth print-credentials --profile admin --access-token)
 ```
@@ -28,7 +28,7 @@ Token interaktif berumur pendek; jika permintaan mulai mengembalikan 401, jalank
 
 **Workload (CI dan otomatisasi):** Buat federation rule dengan `oauth_scope: org:admin` yang menargetkan akun layanan dengan `organization_role` bernilai `admin`. Aturan itu sendiri harus dibuat di Claude Console: memberikan akses admin organisasi kepada sebuah workload adalah tindakan manusia yang disengaja, bukan sesuatu yang dapat di-bootstrap sendiri oleh otomatisasi. Bagian berikutnya memandu Anda melalui penyiapan sekali-per-organisasi ini.
 
-## Bootstrap workload untuk mengelola WIF \{#bootstrap-a-workload-to-manage-wif}
+## Bootstrap workload untuk mengelola WIF
 
 Satu aturan yang dibuat di Console sudah cukup untuk menempatkan sisa konfigurasi federasi Anda di bawah infrastructure as code: berikan scope `org:admin` kepada satu workload tepercaya, dan biarkan workload tersebut mengelola federation issuer dan setiap federation rule dengan scope workspace melalui API ini.
 
@@ -52,11 +52,11 @@ Satu aturan yang dibuat di Console sudah cukup untuk menempatkan sisa konfiguras
 
 Untuk operasi yang dapat dan tidak dapat dilakukan oleh token yang dicetak workload, lihat [Izin dan batasan](#permissions-and-constraints). Jika Anda sudah membuat issuer, akun layanan, atau aturan dengan wizard Connect workload, daftarkan semuanya dengan endpoint berikut dan impor ke dalam state infrastructure-as-code Anda alih-alih membuatnya ulang.
 
-## Autentikasi \{#authentication}
+## Autentikasi
 
 Semua endpoint berada di bawah `https://api.anthropic.com/v1/organizations/`. Setiap permintaan ke endpoint federasi dan akun layanan memerlukan header versi API dan bearer token:
 
-```bash cURL nocheck
+```bash cURL
 curl --fail-with-body -sS "https://api.anthropic.com/v1/organizations/service_accounts" \
   --header "anthropic-version: 2023-06-01" \
   --header "authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
@@ -64,11 +64,11 @@ curl --fail-with-body -sS "https://api.anthropic.com/v1/organizations/service_ac
 
 Kunci Admin API tidak diterima pada endpoint ini; contoh `x-api-key` di halaman Admin API tidak berlaku di sini.
 
-## Akun layanan \{#service-accounts}
+## Akun layanan
 
 [Akun layanan](/docs/id/manage-claude/workload-identity-federation#service-accounts) (`svac_...`) adalah identitas non-manusia yang diwakili oleh token terfederasi. Atur `organization_role` ke `developer`.
 
-```bash cURL nocheck
+```bash cURL
 # Membuat akun layanan
 curl --fail-with-body -sS "https://api.anthropic.com/v1/organizations/service_accounts" \
   --header "anthropic-version: 2023-06-01" \
@@ -107,17 +107,17 @@ Untuk membaca atau memperbarui satu akun layanan, gunakan `GET` dan `POST` pada 
 
 Untuk detail parameter lengkap dan skema respons, lihat [referensi API Service accounts](/docs/id/api/admin/service_accounts).
 
-## Federation issuer \{#federation-issuers}
+## Federation issuer
 
 [Federation issuer](/docs/id/manage-claude/workload-identity-federation#federation-issuers) (`fdis_...`) mendaftarkan identity provider OIDC ke organisasi Anda. Field `jwks` adalah discriminated union yang mengontrol bagaimana Anthropic mengambil signing key dari provider:
 
-| Nilai `jwks`                          | Kapan digunakan                                                                  |
-| ------------------------------------- | -------------------------------------------------------------------------------- |
-| `{"type": "discovery"}`               | Provider menyajikan `/.well-known/openid-configuration` di URL issuer.           |
+| Nilai `jwks`                             | Kapan digunakan                                                                |
+| ---------------------------------------- | ------------------------------------------------------------------------------ |
+| `{"type": "discovery"}`                  | Provider menyajikan `/.well-known/openid-configuration` di URL issuer.         |
 | `{"type": "explicit_url", "url": "..."}` | Menunjuk langsung ke endpoint JWKS.                                            |
-| `{"type": "inline", "keys": [...]}`   | Unggah key set untuk provider yang tidak dapat dijangkau dari internet publik.   |
+| `{"type": "inline", "keys": [...]}`      | Unggah key set untuk provider yang tidak dapat dijangkau dari internet publik. |
 
-```bash cURL nocheck
+```bash cURL
 # Daftarkan issuer (GitHub Actions, dengan penemuan JWKS)
 curl --fail-with-body -sS "https://api.anthropic.com/v1/organizations/federation_issuers" \
   --header "anthropic-version: 2023-06-01" \
@@ -144,11 +144,11 @@ Untuk membaca atau memperbarui satu issuer, gunakan `GET` dan `POST` pada `/v1/o
 
 Untuk detail parameter lengkap dan skema respons, lihat [referensi API Federation issuers](/docs/id/api/admin/federation_issuers).
 
-## Federation rule \{#federation-rules}
+## Federation rule
 
 [Federation rule](/docs/id/manage-claude/workload-identity-federation#federation-rules) (`fdrl_...`) mengikat issuer ke akun layanan: JWT dari issuer yang memenuhi kondisi pencocokan aturan dapat mencetak token yang bertindak sebagai target aturan tersebut. `workspace_id` dalam permintaan create mengaktifkan aturan di workspace tersebut saat pembuatan; tambahkan workspace lain nanti melalui sub-resource `/federation_rules/{rule_id}/workspaces`. Salah satu dari `workspace_id` atau `applies_to_all_workspaces: true` wajib ada saat create.
 
-```bash cURL nocheck
+```bash cURL
 # Buat aturan (GitHub Actions melakukan deploy dari branch main)
 curl --fail-with-body -sS "https://api.anthropic.com/v1/organizations/federation_rules" \
   --header "anthropic-version: 2023-06-01" \
@@ -194,25 +194,25 @@ Untuk membaca atau memperbarui satu aturan, gunakan `GET` dan `POST` pada `/v1/o
 
 Untuk detail parameter lengkap dan skema respons, lihat [referensi API Federation rules](/docs/id/api/admin/federation_rules).
 
-## Izin dan batasan \{#permissions-and-constraints}
+## Izin dan batasan
 
 <Note>
-  - Pemanggil yang diautentikasi OAuth hanya dapat membuat atau memodifikasi aturan dengan `oauth_scope` bernilai `workspace:developer` atau `workspace:inference`. Untuk membuat atau memodifikasi aturan dengan scope lain (seperti `org:admin` atau `org:manage_tunnels`), gunakan Console.
-  - Pemanggil OAuth tidak dapat memperbarui federation issuer yang mendukung aturan dengan `oauth_scope` selain `workspace:developer` atau `workspace:inference` (seperti `org:admin` atau `org:manage_tunnels`). Pertimbangkan untuk mendaftarkan issuer khusus untuk aturan bootstrap agar issuer di balik aturan dengan scope workspace tetap dapat diperbarui melalui API.
-  - Kunci Admin API tidak diterima pada endpoint ini, baik untuk membaca maupun menulis; gunakan OAuth token `org:admin`.
+  * Pemanggil yang diautentikasi OAuth hanya dapat membuat atau memodifikasi aturan dengan `oauth_scope` bernilai `workspace:developer` atau `workspace:inference`. Untuk membuat atau memodifikasi aturan dengan scope lain (seperti `org:admin` atau `org:manage_tunnels`), gunakan Console.
+  * Pemanggil OAuth tidak dapat memperbarui federation issuer yang mendukung aturan dengan `oauth_scope` selain `workspace:developer` atau `workspace:inference` (seperti `org:admin` atau `org:manage_tunnels`). Pertimbangkan untuk mendaftarkan issuer khusus untuk aturan bootstrap agar issuer di balik aturan dengan scope workspace tetap dapat diperbarui melalui API.
+  * Kunci Admin API tidak diterima pada endpoint ini, baik untuk membaca maupun menulis; gunakan OAuth token `org:admin`.
 </Note>
 
 Aturan dengan `oauth_scope: org:admin` harus menargetkan akun layanan dengan `organization_role` bernilai `admin`. Nama resource harus cocok dengan `^[a-z0-9-]+$`, terdiri dari 1 hingga 255 karakter, dan unik dalam satu organisasi untuk setiap tipe resource; untuk batasan lengkap di tingkat field, lihat [Aturan validasi](/docs/id/manage-claude/wif-reference#validation-rules).
 
-## Paginasi dan pengarsipan \{#pagination-and-archiving}
+## Paginasi dan pengarsipan
 
 Endpoint list untuk akun layanan, federation issuer, dan federation rule menerima `limit` (1 hingga 100, default 20) dan cursor `page` yang diambil dari respons sebelumnya. Teruskan nilai `next_page` dari respons sebagai parameter query `page` pada permintaan berikutnya. List sub-resource rule-workspaces mengembalikan set lengkap tanpa paginasi. Resource yang diarsipkan disembunyikan dari daftar secara default; teruskan `include_archived=true` untuk menyertakannya.
 
 Pengarsipan adalah soft delete dan bersifat idempoten: mengarsipkan resource yang sudah diarsipkan akan berhasil. Mengarsipkan issuer atau akun layanan mengembalikan `400` selama masih ada federation rule aktif yang mereferensikannya; arsipkan aturan tersebut terlebih dahulu.
 
-## Lihat juga \{#see-also}
+## Lihat juga
 
-- [Workload Identity Federation](/docs/id/manage-claude/workload-identity-federation): konsep dan panduan penyiapan di Console
-- [Referensi WIF](/docs/id/manage-claude/wif-reference): variabel lingkungan, aturan validasi, OAuth scope, dan kode error
-- [Admin API](/docs/id/manage-claude/admin-api): bagian lain dari permukaan manajemen organisasi
-- [Referensi Admin API](/docs/id/api/admin): skema permintaan dan respons yang dihasilkan untuk setiap endpoint Admin API
+* [Workload Identity Federation](/docs/id/manage-claude/workload-identity-federation): konsep dan panduan penyiapan di Console
+* [Referensi WIF](/docs/id/manage-claude/wif-reference): variabel lingkungan, aturan validasi, OAuth scope, dan kode error
+* [Admin API](/docs/id/manage-claude/admin-api): bagian lain dari permukaan manajemen organisasi
+* [Referensi Admin API](/docs/id/api/admin): skema permintaan dan respons yang dihasilkan untuk setiap endpoint Admin API

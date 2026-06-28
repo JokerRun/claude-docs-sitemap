@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/security
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 1f36b5d8ee5985f3136724e28bf588731e43167252c0d8fd3f3a5be82793259f
+fetched_at: 2026-06-28T03:16:32.677203Z
+sha256: c5da8f724e3153c2fcb5e17b7d76a3ca6623de2033b01d4d8d727b9cc99ecca3
 ---
 
 # Keamanan MCP tunnels
@@ -17,19 +17,19 @@ Panduan penguatan keamanan, rotasi kredensial, respons terhadap pelanggaran, dan
 
 Arsitektur tunnel menyediakan pengaturan default yang kuat (konektivitas hanya keluar, enkripsi end-to-end, dan validasi IP), tetapi keamanan keseluruhan dari [tunnel stack](/docs/id/agents-and-tools/mcp-tunnels/concepts#components) Anda juga bergantung pada cara Anda mengonfigurasi dan mengoperasikannya. Halaman ini membahas rekomendasi penguatan keamanan, respons terhadap pelanggaran, dan cara menonaktifkan tunnel.
 
-## Praktik terbaik \{#best-practices}
+## Praktik terbaik
 
-- **Wajibkan OAuth pada setiap server MCP.** Konfigurasikan setiap [server MCP upstream](/docs/id/agents-and-tools/mcp-tunnels/concepts#components) untuk mewajibkan OAuth seperti yang dijelaskan dalam [spesifikasi otorisasi MCP](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization). OAuth menyediakan pertahanan berlapis di atas autentikasi transport tunnel dan memungkinkan otorisasi tingkat pengguna pada lapisan data.
-- **Aktifkan SSO untuk organisasi Anda.** Tunnel, aturan federasi, dan akun layanan dikelola di Claude Console. SSO menerapkan kontrol sesi dari penyedia identitas Anda pada admin yang dapat mengubahnya.
-- **Batasi `upstream.allowed_ips`.** Gunakan rentang CIDR terkecil yang mencakup server MCP Anda. Ini adalah pertahanan SSRF utama dari [proxy](/docs/id/agents-and-tools/mcp-tunnels/concepts#components).
-- **Pantau log.** Buat peringatan untuk warning, error, dan pola lalu lintas yang tidak biasa dari tunnel stack.
-- **Rotasi kredensial.** Lakukan rotasi sertifikat server dan token tunnel secara berkala, dan segera lakukan jika Anda mencurigai adanya kompromi.
-- **Selalu perbarui image.** Pantau rilis proxy baru dan pin image berdasarkan digest SHA-256.
-- **Batasi jangkauan jaringan.** Proxy dan [cloudflared](/docs/id/agents-and-tools/mcp-tunnels/concepts#components) seharusnya hanya dapat menjangkau tujuan yang tercantum dalam [persyaratan jaringan](/docs/id/agents-and-tools/mcp-tunnels/overview#network-requirements). Gunakan NetworkPolicy (Kubernetes) atau aturan firewall host (Compose).
-- **Batasi cakupan server MCP.** Setiap server seharusnya hanya mengekspos alat dan data yang diperlukan untuk tujuannya.
-- **Lindungi kredensial saat disimpan.** Terapkan praktik manajemen rahasia organisasi Anda pada kunci privat dan token tunnel.
+* **Wajibkan OAuth pada setiap server MCP.** Konfigurasikan setiap [server MCP upstream](/docs/id/agents-and-tools/mcp-tunnels/concepts#components) untuk mewajibkan OAuth seperti yang dijelaskan dalam [spesifikasi otorisasi MCP](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization). OAuth menyediakan pertahanan berlapis di atas autentikasi transport tunnel dan memungkinkan otorisasi tingkat pengguna pada lapisan data.
+* **Aktifkan SSO untuk organisasi Anda.** Tunnel, aturan federasi, dan akun layanan dikelola di Claude Console. SSO menerapkan kontrol sesi dari penyedia identitas Anda pada admin yang dapat mengubahnya.
+* **Batasi `upstream.allowed_ips`.** Gunakan rentang CIDR terkecil yang mencakup server MCP Anda. Ini adalah pertahanan SSRF utama dari [proxy](/docs/id/agents-and-tools/mcp-tunnels/concepts#components).
+* **Pantau log.** Buat peringatan untuk warning, error, dan pola lalu lintas yang tidak biasa dari tunnel stack.
+* **Rotasi kredensial.** Lakukan rotasi sertifikat server dan token tunnel secara berkala, dan segera lakukan jika Anda mencurigai adanya kompromi.
+* **Selalu perbarui image.** Pantau rilis proxy baru dan pin image berdasarkan digest SHA-256.
+* **Batasi jangkauan jaringan.** Proxy dan [cloudflared](/docs/id/agents-and-tools/mcp-tunnels/concepts#components) seharusnya hanya dapat menjangkau tujuan yang tercantum dalam [persyaratan jaringan](/docs/id/agents-and-tools/mcp-tunnels/overview#network-requirements). Gunakan NetworkPolicy (Kubernetes) atau aturan firewall host (Compose).
+* **Batasi cakupan server MCP.** Setiap server seharusnya hanya mengekspos alat dan data yang diperlukan untuk tujuannya.
+* **Lindungi kredensial saat disimpan.** Terapkan praktik manajemen rahasia organisasi Anda pada kunci privat dan token tunnel.
 
-## Merespons dugaan pelanggaran \{#respond-to-a-suspected-breach}
+## Merespons dugaan pelanggaran
 
 Jika Anda yakin token tunnel, kunci TLS, atau host proxy Anda telah dikompromikan:
 
@@ -41,6 +41,7 @@ Jika Anda yakin token tunnel, kunci TLS, atau host proxy Anda telah dikompromika
         helm uninstall mcp-tunnel -n mcp-tunnel
         ```
       </Tab>
+
       <Tab title="Docker Compose">
         ```bash
         docker compose down --timeout 0
@@ -48,24 +49,29 @@ Jika Anda yakin token tunnel, kunci TLS, atau host proxy Anda telah dikompromika
       </Tab>
     </Tabs>
   </Step>
+
   <Step title="Lepaskan server MCP upstream">
     Hapus server MCP upstream dari sesi Managed Agent mana pun yang menggunakannya, dan berhenti meneruskan URL-nya dalam blok `mcp_servers` pada permintaan Messages API.
   </Step>
+
   <Step title="Arsipkan tunnel">
     Pengarsipan akan membatalkan token tunnel dan melepaskan domain. Di Console, [arsipkan tunnel](/docs/id/agents-and-tools/mcp-tunnels/console#archive-a-tunnel) dari daftar **MCP tunnels**. Untuk mengarsipkan melalui API, lihat [Archive a tunnel](/docs/id/api/admin/mcp_tunnels/archive).
   </Step>
+
   <Step title="Hubungi Anthropic">
     Laporkan dugaan kompromi tersebut ke dukungan Anthropic.
   </Step>
+
   <Step title="Rotasi kredensial downstream">
     Sediakan ulang tunnel baru dan lakukan rotasi pada semua token OAuth yang diterbitkan oleh server MCP yang terdampak.
   </Step>
+
   <Step title="Tinjau log sebelum memulihkan layanan">
     Periksa log proxy, cloudflared, dan server MCP untuk rentang waktu dugaan kompromi sebelum mengaktifkan tunnel baru.
   </Step>
 </Steps>
 
-## Membongkar tunnel \{#tear-down-a-tunnel}
+## Membongkar tunnel
 
 Ikuti langkah-langkah berikut untuk menonaktifkan tunnel dan menghapus semua kredensial yang tersimpan.
 
@@ -77,6 +83,7 @@ Ikuti langkah-langkah berikut untuk menonaktifkan tunnel dan menghapus semua kre
         helm uninstall mcp-tunnel -n mcp-tunnel
         ```
       </Tab>
+
       <Tab title="Docker Compose">
         ```bash
         docker compose down
@@ -100,11 +107,11 @@ Ikuti langkah-langkah berikut untuk menonaktifkan tunnel dan menghapus semua kre
           --ignore-not-found
         ```
       </Tab>
+
       <Tab title="Docker Compose">
         Kunci privat dan sertifikat berada di `data/`. Token tunnel berada di `data/tunnel-token` (alur terprogram) atau di environment shell Anda (alur manual). Direktori `config/` dan `docker-compose.yaml` tidak berisi rahasia apa pun; simpan jika Anda berencana untuk menyediakan ulang, atau hapus juga.
 
-        
-        ```bash nocheck
+        ```bash
         sudo rm -rf data
         ```
       </Tab>

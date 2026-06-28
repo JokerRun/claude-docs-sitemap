@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool
-fetched_at: 2026-06-26T03:16:19.812719Z
-sha256: cea9f785b25bb8af89356312b68e31f8f3fc72c716470c3a5cacf378070dc218
+fetched_at: 2026-06-28T03:16:32.677203Z
+sha256: b271b56d26ffeab91094472b705a594ce72054403b200b95e1ee4ca68eed66cf
 ---
 
 # Alat pencarian web
@@ -14,14 +14,14 @@ Alat pencarian web memberikan Claude akses langsung ke konten web secara real-ti
 Versi alat pencarian web terbaru (`web_search_20260318`) mendukung **dynamic filtering** (pemfilteran dinamis) dengan Claude Fable 5, Claude Opus 4.8, Claude Mythos 5, [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.7, Claude Opus 4.6, dan Claude Sonnet 4.6. Claude dapat menulis dan mengeksekusi kode untuk memfilter hasil pencarian sebelum masuk ke jendela konteks, hanya menyimpan informasi yang relevan dan membuang sisanya. Hal ini menghasilkan respons yang lebih akurat sekaligus mengurangi konsumsi token. `web_search_20260318` juga menambahkan kontrol [penyertaan respons](#response-inclusion) untuk alur kerja agentik. Versi sebelumnya (`web_search_20260209` untuk pemfilteran dinamis saja, `web_search_20250305` untuk pencarian dasar) tetap tersedia.
 
 <Note>
-Untuk [Claude Mythos Preview](https://anthropic.com/glasswing), pencarian web didukung pada Claude API, Microsoft Foundry, dan Vertex AI. Pencarian web tidak tersedia untuk Mythos Preview pada Amazon Bedrock atau [Claude Platform on AWS](/docs/id/build-with-claude/claude-platform-on-aws).
+  Untuk [Claude Mythos Preview](https://anthropic.com/glasswing), pencarian web didukung pada Claude API, Microsoft Foundry, dan Vertex AI. Pencarian web tidak tersedia untuk Mythos Preview pada Amazon Bedrock atau [Claude Platform on AWS](/docs/id/build-with-claude/claude-platform-on-aws).
 </Note>
 
 Untuk kelayakan Zero Data Retention dan solusi `allowed_callers`, lihat [Alat server](/docs/id/agents-and-tools/tool-use/server-tools#zdr-and-allowed-callers).
 
 Untuk dukungan model, lihat [Referensi alat](/docs/id/agents-and-tools/tool-use/tool-reference).
 
-## Cara kerja pencarian web \{#how-web-search-works}
+## Cara kerja pencarian web
 
 Ketika Anda menambahkan alat pencarian web ke permintaan API Anda:
 
@@ -29,294 +29,258 @@ Ketika Anda menambahkan alat pencarian web ke permintaan API Anda:
 2. API mengeksekusi pencarian dan memberikan hasilnya kepada Claude. Proses ini dapat berulang beberapa kali dalam satu permintaan.
 3. Di akhir gilirannya, Claude memberikan respons akhir dengan sumber yang disitasi.
 
-### Kapan Claude melakukan pencarian \{#when-claude-searches}
+### Kapan Claude melakukan pencarian
 
 Claude melakukan pencarian ketika permintaan bergantung pada informasi yang terkini, berubah, atau berada di luar data pelatihannya:
 
-- Peristiwa, berita, atau pengumuman terbaru
-- Harga, kurs, skor, atau statistik terkini
-- Informasi tentang organisasi, orang, atau produk tertentu yang mungkin telah berubah
-- Permintaan eksplisit untuk mencari atau menelusuri sesuatu
+* Peristiwa, berita, atau pengumuman terbaru
+* Harga, kurs, skor, atau statistik terkini
+* Informasi tentang organisasi, orang, atau produk tertentu yang mungkin telah berubah
+* Permintaan eksplisit untuk mencari atau menelusuri sesuatu
 
 Claude menjawab langsung tanpa mencari ketika permintaan mengandalkan pengetahuan yang stabil:
 
-- Fakta yang sudah mapan, matematika, dasar-dasar sains, atau konsep pemrograman
-- Penulisan kreatif atau brainstorming
-- Analisis konten yang sudah disediakan dalam percakapan
-- Giliran percakapan dan sapaan
+* Fakta yang sudah mapan, matematika, dasar-dasar sains, atau konsep pemrograman
+* Penulisan kreatif atau brainstorming
+* Analisis konten yang sudah disediakan dalam percakapan
+* Giliran percakapan dan sapaan
 
 Pemicuan dapat diarahkan melalui prompt sistem Anda: Anda dapat mendorong Claude untuk lebih sering mencari atau lebih memilih menjawab langsung. Untuk batasan tegas, gunakan `max_uses` untuk membatasi jumlah pencarian pada setiap permintaan.
 
-### Pemfilteran dinamis \{#dynamic-filtering}
+### Pemfilteran dinamis
 
 Pencarian web adalah tugas yang intensif token. Dengan pencarian web dasar, Claude perlu menarik hasil pencarian ke dalam konteks, mengambil HTML lengkap dari beberapa situs web, dan bernalar atas semuanya sebelum sampai pada jawaban. Sering kali, sebagian besar konten ini tidak relevan, yang dapat menurunkan kualitas respons.
 
 Dengan `web_search_20260209` atau yang lebih baru, Claude dapat menulis dan mengeksekusi kode untuk memproses hasil kueri setelahnya. Alih-alih bernalar atas file HTML lengkap, Claude secara dinamis memfilter hasil pencarian sebelum memuatnya ke dalam konteks, hanya menyimpan yang relevan dan membuang sisanya.
 
 Pemfilteran dinamis sangat efektif untuk:
-- Menelusuri dokumentasi teknis
-- Tinjauan literatur dan verifikasi sitasi
-- Riset teknis
-- Pendasaran dan verifikasi respons
+
+* Menelusuri dokumentasi teknis
+* Tinjauan literatur dan verifikasi sitasi
+* Riset teknis
+* Pendasaran dan verifikasi respons
 
 <Note>
-Pemfilteran dinamis memerlukan [alat eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool) untuk diaktifkan. Alat pencarian web (dengan dan tanpa pemfilteran dinamis) tersedia pada Claude API, [Claude Platform on AWS](/docs/id/build-with-claude/claude-platform-on-aws), dan [Microsoft Foundry](/docs/id/build-with-claude/claude-in-microsoft-foundry). Pada Vertex AI, hanya alat pencarian web dasar (tanpa pemfilteran dinamis) yang tersedia. Pencarian web tidak tersedia pada Amazon Bedrock.
+  Pemfilteran dinamis memerlukan [alat eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool) untuk diaktifkan. Alat pencarian web (dengan dan tanpa pemfilteran dinamis) tersedia pada Claude API, [Claude Platform on AWS](/docs/id/build-with-claude/claude-platform-on-aws), dan [Microsoft Foundry](/docs/id/build-with-claude/claude-in-microsoft-foundry). Pada Vertex AI, hanya alat pencarian web dasar (tanpa pemfilteran dinamis) yang tersedia. Pencarian web tidak tersedia pada Amazon Bedrock.
 </Note>
 
 Untuk mengaktifkan pemfilteran dinamis, gunakan `web_search_20260209` atau versi yang lebih baru. Contoh berikut menggunakan `web_search_20260209`:
 
 <CodeGroup>
-```bash cURL
-curl https://api.anthropic.com/v1/messages \
-    --header "x-api-key: $ANTHROPIC_API_KEY" \
-    --header "anthropic-version: 2023-06-01" \
-    --header "content-type: application/json" \
-    --data '{
-        "model": "claude-opus-4-8",
-        "max_tokens": 4096,
-        "messages": [
-            {
-                "role": "user",
-                "content": "Search for the current prices of AAPL and GOOGL, then calculate which has a better P/E ratio."
-            }
-        ],
-        "tools": [{
-            "type": "web_search_20260209",
-            "name": "web_search"
-        }]
-    }'
-```
+  ```bash cURL
+  curl https://api.anthropic.com/v1/messages \
+      --header "x-api-key: $ANTHROPIC_API_KEY" \
+      --header "anthropic-version: 2023-06-01" \
+      --header "content-type: application/json" \
+      --data '{
+          "model": "claude-opus-4-8",
+          "max_tokens": 4096,
+          "messages": [
+              {
+                  "role": "user",
+                  "content": "Search for the current prices of AAPL and GOOGL, then calculate which has a better P/E ratio."
+              }
+          ],
+          "tools": [{
+              "type": "web_search_20260209",
+              "name": "web_search"
+          }]
+      }'
+  ```
 
-```bash CLI
-ant messages create <<'YAML'
-model: claude-opus-4-8
-max_tokens: 4096
-messages:
-  - role: user
-    content: >-
-      Search for the current prices of AAPL and GOOGL, then calculate
-      which has a better P/E ratio.
-tools:
-  - type: web_search_20260209
-    name: web_search
-YAML
-```
+  ```bash CLI
+  ant messages create <<'YAML'
+  model: claude-opus-4-8
+  max_tokens: 4096
+  messages:
+    - role: user
+      content: >-
+        Search for the current prices of AAPL and GOOGL, then calculate
+        which has a better P/E ratio.
+  tools:
+    - type: web_search_20260209
+      name: web_search
+  YAML
+  ```
 
-```python Python hidelines={1..2}
-import anthropic
+  ```python Python
+  client = anthropic.Anthropic()
 
-client = anthropic.Anthropic()
+  response = client.messages.create(
+      model="claude-opus-4-8",
+      max_tokens=4096,
+      messages=[
+          {
+              "role": "user",
+              "content": "Search for the current prices of AAPL and GOOGL, then calculate which has a better P/E ratio.",
+          }
+      ],
+      tools=[{"type": "web_search_20260209", "name": "web_search"}],
+  )
+  print(response)
+  ```
 
-response = client.messages.create(
-    model="claude-opus-4-8",
-    max_tokens=4096,
-    messages=[
-        {
-            "role": "user",
-            "content": "Search for the current prices of AAPL and GOOGL, then calculate which has a better P/E ratio.",
-        }
-    ],
-    tools=[{"type": "web_search_20260209", "name": "web_search"}],
-)
-print(response)
-```
+  ```typescript TypeScript
+  const anthropic = new Anthropic();
 
-```typescript TypeScript hidelines={1..2}
-import Anthropic from "@anthropic-ai/sdk";
-
-const anthropic = new Anthropic();
-
-const response = await anthropic.messages.create({
-  model: "claude-opus-4-8",
-  max_tokens: 4096,
-  messages: [
-    {
-      role: "user",
-      content:
-        "Search for the current prices of AAPL and GOOGL, then calculate which has a better P/E ratio."
-    }
-  ],
-  tools: [{ type: "web_search_20260209", name: "web_search" }]
-});
-
-console.log(response);
-```
-
-```csharp C# hidelines={1..3}
-using Anthropic;
-using Anthropic.Models.Messages;
-
-AnthropicClient client = new();
-
-var parameters = new MessageCreateParams
-{
-    Model = Model.ClaudeOpus4_8,
-    MaxTokens = 4096,
-    Messages = [new() { Role = Role.User, Content = "Search for the current prices of AAPL and GOOGL, then calculate which has a better P/E ratio." }],
-    Tools = [new ToolUnion(new WebSearchTool20260209())]
-};
-
-var message = await client.Messages.Create(parameters);
-Console.WriteLine(message);
-```
-
-```go Go hidelines={1..11,-1}
-package main
-
-import (
-	"context"
-	"fmt"
-	"log"
-
-	"github.com/anthropics/anthropic-sdk-go"
-)
-
-func main() {
-	client := anthropic.NewClient()
-
-	response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-		Model:     anthropic.ModelClaudeOpus4_8,
-		MaxTokens: 4096,
-		Messages: []anthropic.MessageParam{
-			anthropic.NewUserMessage(anthropic.NewTextBlock("Search for the current prices of AAPL and GOOGL, then calculate which has a better P/E ratio.")),
-		},
-		Tools: []anthropic.ToolUnionParam{
-			{OfWebSearchTool20260209: &anthropic.WebSearchTool20260209Param{}},
-		},
-	})
-	if err != nil {
-		log.Fatal(err)
-	}
-	fmt.Println(response)
-}
-```
-
-```java Java hidelines={1..5}
-import com.anthropic.client.AnthropicClient;
-import com.anthropic.client.okhttp.AnthropicOkHttpClient;
-import com.anthropic.models.messages.Message;
-import com.anthropic.models.messages.MessageCreateParams;
-import com.anthropic.models.messages.Model;
-import com.anthropic.models.messages.WebSearchTool20260209;
-
-void main() {
-    AnthropicClient client = AnthropicOkHttpClient.fromEnv();
-
-    MessageCreateParams params = MessageCreateParams.builder()
-        .model(Model.CLAUDE_OPUS_4_8)
-        .maxTokens(4096L)
-        .addUserMessage("Search for the current prices of AAPL and GOOGL, then calculate which has a better P/E ratio.")
-        .addTool(WebSearchTool20260209.builder().build())
-        .build();
-
-    Message response = client.messages().create(params);
-    IO.println(response);
-}
-```
-
-```php PHP hidelines={1..4}
-<?php
-
-use Anthropic\Client;
-
-$client = new Client();
-
-$message = $client->messages->create(
-    maxTokens: 4096,
+  const response = await anthropic.messages.create({
+    model: "claude-opus-4-8",
+    max_tokens: 4096,
     messages: [
-        ['role' => 'user', 'content' => 'Search for the current prices of AAPL and GOOGL, then calculate which has a better P/E ratio.'],
+      {
+        role: "user",
+        content:
+          "Search for the current prices of AAPL and GOOGL, then calculate which has a better P/E ratio."
+      }
     ],
-    model: 'claude-opus-4-8',
-    tools: [
-        [
-            'type' => 'web_search_20260209',
-            'name' => 'web_search',
-        ],
+    tools: [{ type: "web_search_20260209", name: "web_search" }]
+  });
+
+  console.log(response);
+  ```
+
+  ```csharp C#
+  AnthropicClient client = new();
+
+  var parameters = new MessageCreateParams
+  {
+      Model = Model.ClaudeOpus4_8,
+      MaxTokens = 4096,
+      Messages = [new() { Role = Role.User, Content = "Search for the current prices of AAPL and GOOGL, then calculate which has a better P/E ratio." }],
+      Tools = [new ToolUnion(new WebSearchTool20260209())]
+  };
+
+  var message = await client.Messages.Create(parameters);
+  Console.WriteLine(message);
+  ```
+
+  ```go Go
+  client := anthropic.NewClient()
+
+  response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
+  	Model:     anthropic.ModelClaudeOpus4_8,
+  	MaxTokens: 4096,
+  	Messages: []anthropic.MessageParam{
+  		anthropic.NewUserMessage(anthropic.NewTextBlock("Search for the current prices of AAPL and GOOGL, then calculate which has a better P/E ratio.")),
+  	},
+  	Tools: []anthropic.ToolUnionParam{
+  		{OfWebSearchTool20260209: &anthropic.WebSearchTool20260209Param{}},
+  	},
+  })
+  if err != nil {
+  	log.Fatal(err)
+  }
+  fmt.Println(response)
+  ```
+
+  ```java Java
+  import com.anthropic.models.messages.WebSearchTool20260209;
+
+  void main() {
+      AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+      MessageCreateParams params = MessageCreateParams.builder()
+          .model(Model.CLAUDE_OPUS_4_8)
+          .maxTokens(4096L)
+          .addUserMessage("Search for the current prices of AAPL and GOOGL, then calculate which has a better P/E ratio.")
+          .addTool(WebSearchTool20260209.builder().build())
+          .build();
+
+      Message response = client.messages().create(params);
+      IO.println(response);
+  }
+  ```
+
+  ```php PHP
+  $client = new Client();
+
+  $message = $client->messages->create(
+      maxTokens: 4096,
+      messages: [
+          ['role' => 'user', 'content' => 'Search for the current prices of AAPL and GOOGL, then calculate which has a better P/E ratio.'],
+      ],
+      model: 'claude-opus-4-8',
+      tools: [
+          [
+              'type' => 'web_search_20260209',
+              'name' => 'web_search',
+          ],
+      ],
+  );
+
+  echo $message;
+  ```
+
+  ```ruby Ruby
+  client = Anthropic::Client.new
+
+  message = client.messages.create(
+    model: "claude-opus-4-8",
+    max_tokens: 4096,
+    messages: [
+      { role: "user", content: "Search for the current prices of AAPL and GOOGL, then calculate which has a better P/E ratio." }
     ],
-);
-
-echo $message;
-```
-
-```ruby Ruby hidelines={1..2}
-require "anthropic"
-
-client = Anthropic::Client.new
-
-message = client.messages.create(
-  model: "claude-opus-4-8",
-  max_tokens: 4096,
-  messages: [
-    { role: "user", content: "Search for the current prices of AAPL and GOOGL, then calculate which has a better P/E ratio." }
-  ],
-  tools: [{
-    type: "web_search_20260209",
-    name: "web_search"
-  }]
-)
-puts message
-```
+    tools: [{
+      type: "web_search_20260209",
+      name: "web_search"
+    }]
+  )
+  puts message
+  ```
 </CodeGroup>
 
-## Cara menggunakan pencarian web \{#how-to-use-web-search}
+## Cara menggunakan pencarian web
 
 <Note>
-Administrator organisasi Anda harus mengaktifkan pencarian web di [Claude Console](/settings/privacy).
+  Administrator organisasi Anda harus mengaktifkan pencarian web di [Claude Console](/settings/privacy).
 </Note>
 
 Sediakan alat pencarian web dalam permintaan API Anda:
 
 <CodeGroup>
-```bash cURL
-curl https://api.anthropic.com/v1/messages \
-    --header "x-api-key: $ANTHROPIC_API_KEY" \
-    --header "anthropic-version: 2023-06-01" \
-    --header "content-type: application/json" \
-    --data '{
-        "model": "claude-opus-4-8",
-        "max_tokens": 1024,
-        "messages": [
-            {
-                "role": "user",
-                "content": "What is the weather in NYC?"
-            }
-        ],
-        "tools": [{
-            "type": "web_search_20250305",
-            "name": "web_search",
-            "max_uses": 5
-        }]
-    }'
-```
+  ```bash cURL
+  curl https://api.anthropic.com/v1/messages \
+      --header "x-api-key: $ANTHROPIC_API_KEY" \
+      --header "anthropic-version: 2023-06-01" \
+      --header "content-type: application/json" \
+      --data '{
+          "model": "claude-opus-4-8",
+          "max_tokens": 1024,
+          "messages": [
+              {
+                  "role": "user",
+                  "content": "What is the weather in NYC?"
+              }
+          ],
+          "tools": [{
+              "type": "web_search_20250305",
+              "name": "web_search",
+              "max_uses": 5
+          }]
+      }'
+  ```
 
-```bash CLI
-ant messages create \
-  --model claude-opus-4-8 \
-  --max-tokens 1024 \
-  --message '{role: user, content: What is the weather in NYC?}' \
-  --tool '{type: web_search_20250305, name: web_search, max_uses: 5}'
-```
+  ```bash CLI
+  ant messages create \
+    --model claude-opus-4-8 \
+    --max-tokens 1024 \
+    --message '{role: user, content: What is the weather in NYC?}' \
+    --tool '{type: web_search_20250305, name: web_search, max_uses: 5}'
+  ```
 
-```python Python hidelines={1..2}
-import anthropic
+  ```python Python
+  client = anthropic.Anthropic()
 
-client = anthropic.Anthropic()
+  response = client.messages.create(
+      model="claude-opus-4-8",
+      max_tokens=1024,
+      messages=[{"role": "user", "content": "What's the weather in NYC?"}],
+      tools=[{"type": "web_search_20250305", "name": "web_search", "max_uses": 5}],
+  )
+  print(response)
+  ```
 
-response = client.messages.create(
-    model="claude-opus-4-8",
-    max_tokens=1024,
-    messages=[{"role": "user", "content": "What's the weather in NYC?"}],
-    tools=[{"type": "web_search_20250305", "name": "web_search", "max_uses": 5}],
-)
-print(response)
-```
-
-```typescript TypeScript hidelines={1..5,-3..-1}
-import Anthropic from "@anthropic-ai/sdk";
-
-const client = new Anthropic();
-
-async function main() {
+  ```typescript TypeScript
   const response = await client.messages.create({
     model: "claude-opus-4-8",
     max_tokens: 1024,
@@ -336,134 +300,105 @@ async function main() {
   });
 
   console.log(response);
-}
+  ```
 
-main().catch(console.error);
-```
+  ```csharp C#
+  AnthropicClient client = new();
 
-```csharp C# hidelines={1..3}
-using Anthropic;
-using Anthropic.Models.Messages;
+  var parameters = new MessageCreateParams
+  {
+      Model = Model.ClaudeOpus4_8,
+      MaxTokens = 1024,
+      Messages = [new() { Role = Role.User, Content = "What's the weather in NYC?" }],
+      Tools = [new ToolUnion(new WebSearchTool20250305() { MaxUses = 5 })]
+  };
 
-AnthropicClient client = new();
+  var message = await client.Messages.Create(parameters);
+  Console.WriteLine(message);
+  ```
 
-var parameters = new MessageCreateParams
-{
-    Model = Model.ClaudeOpus4_8,
-    MaxTokens = 1024,
-    Messages = [new() { Role = Role.User, Content = "What's the weather in NYC?" }],
-    Tools = [new ToolUnion(new WebSearchTool20250305() { MaxUses = 5 })]
-};
+  ```go Go
+  client := anthropic.NewClient()
 
-var message = await client.Messages.Create(parameters);
-Console.WriteLine(message);
-```
+  response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
+  	Model:     anthropic.ModelClaudeOpus4_8,
+  	MaxTokens: 1024,
+  	Messages: []anthropic.MessageParam{
+  		anthropic.NewUserMessage(anthropic.NewTextBlock("What's the weather in NYC?")),
+  	},
+  	Tools: []anthropic.ToolUnionParam{
+  		{OfWebSearchTool20250305: &anthropic.WebSearchTool20250305Param{
+  			MaxUses: anthropic.Int(5),
+  		}},
+  	},
+  })
+  if err != nil {
+  	log.Fatal(err)
+  }
+  fmt.Println(response)
+  ```
 
-```go Go hidelines={1..11,-1}
-package main
+  ```java Java
+  import com.anthropic.models.messages.WebSearchTool20250305;
 
-import (
-	"context"
-	"fmt"
-	"log"
+  void main() {
+      AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-	"github.com/anthropics/anthropic-sdk-go"
-)
+      MessageCreateParams params = MessageCreateParams.builder()
+          .model(Model.CLAUDE_OPUS_4_8)
+          .maxTokens(1024L)
+          .addUserMessage("What's the weather in NYC?")
+          .addTool(WebSearchTool20250305.builder()
+              .maxUses(5L)
+              .build())
+          .build();
 
-func main() {
-	client := anthropic.NewClient()
+      Message response = client.messages().create(params);
+      IO.println(response);
+  }
+  ```
 
-	response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-		Model:     anthropic.ModelClaudeOpus4_8,
-		MaxTokens: 1024,
-		Messages: []anthropic.MessageParam{
-			anthropic.NewUserMessage(anthropic.NewTextBlock("What's the weather in NYC?")),
-		},
-		Tools: []anthropic.ToolUnionParam{
-			{OfWebSearchTool20250305: &anthropic.WebSearchTool20250305Param{
-				MaxUses: anthropic.Int(5),
-			}},
-		},
-	})
-	if err != nil {
-		log.Fatal(err)
-	}
-	fmt.Println(response)
-}
-```
+  ```php PHP
+  $client = new Client();
 
-```java Java hidelines={1..5}
-import com.anthropic.client.AnthropicClient;
-import com.anthropic.client.okhttp.AnthropicOkHttpClient;
-import com.anthropic.models.messages.Message;
-import com.anthropic.models.messages.MessageCreateParams;
-import com.anthropic.models.messages.Model;
-import com.anthropic.models.messages.WebSearchTool20250305;
+  $message = $client->messages->create(
+      maxTokens: 1024,
+      messages: [
+          ['role' => 'user', 'content' => "What's the weather in NYC?"],
+      ],
+      model: 'claude-opus-4-8',
+      tools: [
+          [
+              'type' => 'web_search_20250305',
+              'name' => 'web_search',
+              'max_uses' => 5,
+          ],
+      ],
+  );
 
-void main() {
-    AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+  echo $message;
+  ```
 
-    MessageCreateParams params = MessageCreateParams.builder()
-        .model(Model.CLAUDE_OPUS_4_8)
-        .maxTokens(1024L)
-        .addUserMessage("What's the weather in NYC?")
-        .addTool(WebSearchTool20250305.builder()
-            .maxUses(5L)
-            .build())
-        .build();
+  ```ruby Ruby
+  client = Anthropic::Client.new
 
-    Message response = client.messages().create(params);
-    IO.println(response);
-}
-```
-
-```php PHP hidelines={1..4}
-<?php
-
-use Anthropic\Client;
-
-$client = new Client();
-
-$message = $client->messages->create(
-    maxTokens: 1024,
+  message = client.messages.create(
+    model: "claude-opus-4-8",
+    max_tokens: 1024,
     messages: [
-        ['role' => 'user', 'content' => "What's the weather in NYC?"],
+      { role: "user", content: "What's the weather in NYC?" }
     ],
-    model: 'claude-opus-4-8',
-    tools: [
-        [
-            'type' => 'web_search_20250305',
-            'name' => 'web_search',
-            'max_uses' => 5,
-        ],
-    ],
-);
-
-echo $message;
-```
-
-```ruby Ruby hidelines={1..2}
-require "anthropic"
-
-client = Anthropic::Client.new
-
-message = client.messages.create(
-  model: "claude-opus-4-8",
-  max_tokens: 1024,
-  messages: [
-    { role: "user", content: "What's the weather in NYC?" }
-  ],
-  tools: [{
-    type: "web_search_20250305",
-    name: "web_search",
-    max_uses: 5
-  }]
-)
-puts message
-```
+    tools: [{
+      type: "web_search_20250305",
+      name: "web_search",
+      max_uses: 5
+    }]
+  )
+  puts message
+  ```
 </CodeGroup>
 
-## Definisi alat \{#tool-definition}
+## Definisi alat
 
 Alat pencarian web mendukung parameter berikut:
 
@@ -492,30 +427,30 @@ Alat pencarian web mendukung parameter berikut:
 }
 ```
 
-### Max uses \{#max-uses}
+### Max uses
 
 Parameter `max_uses` membatasi jumlah pencarian yang dilakukan. Jika Claude mencoba melakukan lebih banyak pencarian dari yang diizinkan, `web_search_tool_result` akan berupa error dengan kode error `max_uses_exceeded`.
 
 Kueri faktual sederhana biasanya menggunakan 1–3 pencarian; riset komparatif atau multi-entitas dapat menggunakan 10 atau lebih. Untuk pencarian yang sensitif terhadap latensi, `max_uses: 3` membatasi biaya sambil jarang memotong hasil. Untuk agen riset, atur `max_uses` ke 15–20 atau hilangkan sepenuhnya.
 
-### Pemfilteran domain \{#domain-filtering}
+### Pemfilteran domain
 
 Untuk pemfilteran domain dengan `allowed_domains` dan `blocked_domains`, lihat [Alat server](/docs/id/agents-and-tools/tool-use/server-tools#domain-filtering).
 
-### Lokalisasi \{#localization}
+### Lokalisasi
 
 Parameter `user_location` memungkinkan Anda melokalkan hasil pencarian berdasarkan lokasi pengguna.
 
-- `type`: Jenis lokasi (harus `approximate`)
-- `city`: Nama kota
-- `region`: Wilayah atau negara bagian
-- `country`: Negara
-- `timezone`: [ID zona waktu IANA](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+* `type`: Jenis lokasi (harus `approximate`)
+* `city`: Nama kota
+* `region`: Wilayah atau negara bagian
+* `country`: Negara
+* `timezone`: [ID zona waktu IANA](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
 
-### Penyertaan respons \{#response-inclusion}
+### Penyertaan respons
 
 <Note>
-Memerlukan `web_search_20260318` atau yang lebih baru.
+  Memerlukan `web_search_20260318` atau yang lebih baru.
 </Note>
 
 Parameter `response_inclusion` mengontrol bagaimana blok hasil pencarian muncul dalam respons API ketika hasil tersebut dikonsumsi oleh panggilan [eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool) yang telah selesai dalam giliran yang sama. Atur `"response_inclusion": "excluded"` untuk menghapus pasangan blok `server_tool_use` dan blok hasil yang bersarang tersebut sepenuhnya dari respons, sehingga mengurangi biaya token output untuk alur kerja agentik yang tidak perlu mengirim kembali konten pencarian mentah ke klien. Nilai default-nya adalah `"full"`. Hasil dari panggilan langsung, atau dari panggilan eksekusi kode yang dijeda sebelum selesai, selalu dikembalikan secara penuh agar dapat dikirim kembali pada giliran berikutnya.
@@ -532,7 +467,7 @@ Parameter `response_inclusion` mengontrol bagaimana blok hasil pencarian muncul 
 }
 ```
 
-## Respons \{#response}
+## Respons
 
 Berikut adalah contoh struktur respons:
 
@@ -599,23 +534,23 @@ Berikut adalah contoh struktur respons:
 }
 ```
 
-### Hasil pencarian \{#search-results}
+### Hasil pencarian
 
 Hasil pencarian mencakup:
 
-- `url`: URL halaman sumber
-- `title`: Judul halaman sumber
-- `page_age`: Kapan situs terakhir diperbarui
-- `encrypted_content`: Konten terenkripsi yang harus dikirim kembali dalam percakapan multi-giliran untuk sitasi
+* `url`: URL halaman sumber
+* `title`: Judul halaman sumber
+* `page_age`: Kapan situs terakhir diperbarui
+* `encrypted_content`: Konten terenkripsi yang harus dikirim kembali dalam percakapan multi-giliran untuk sitasi
 
-### Sitasi \{#citations}
+### Sitasi
 
 Sitasi selalu diaktifkan untuk pencarian web, dan setiap `web_search_result_location` mencakup:
 
-- `url`: URL sumber yang disitasi
-- `title`: Judul sumber yang disitasi
-- `encrypted_index`: Referensi yang harus dikirim kembali untuk percakapan multi-giliran.
-- `cited_text`: Hingga 150 karakter dari konten yang disitasi
+* `url`: URL sumber yang disitasi
+* `title`: Judul sumber yang disitasi
+* `encrypted_index`: Referensi yang harus dikirim kembali untuk percakapan multi-giliran.
+* `cited_text`: Hingga 150 karakter dari konten yang disitasi
 
 Field sitasi pencarian web `cited_text`, `title`, dan `url` tidak dihitung terhadap penggunaan token input atau output.
 
@@ -623,7 +558,7 @@ Field sitasi pencarian web `cited_text`, `title`, dan `url` tidak dihitung terha
   Saat menampilkan output API secara langsung kepada pengguna akhir, sitasi harus disertakan ke sumber aslinya. Jika Anda melakukan modifikasi pada output API, termasuk dengan memproses ulang dan/atau menggabungkannya dengan materi Anda sendiri sebelum menampilkannya kepada pengguna akhir, tampilkan sitasi sebagaimana mestinya berdasarkan konsultasi dengan tim hukum Anda.
 </Note>
 
-### Error \{#errors}
+### Error
 
 Ketika alat pencarian web mengalami error (seperti mencapai batas laju), Claude API tetap mengembalikan respons 200 (sukses). Error tersebut direpresentasikan dalam body respons menggunakan struktur berikut:
 
@@ -640,21 +575,21 @@ Ketika alat pencarian web mengalami error (seperti mencapai batas laju), Claude 
 
 Berikut adalah kode error yang mungkin muncul:
 
-- `too_many_requests`: Batas laju terlampaui
-- `invalid_input`: Parameter kueri pencarian tidak valid
-- `max_uses_exceeded`: Penggunaan maksimum alat pencarian web terlampaui
-- `query_too_long`: Kueri melebihi panjang maksimum
-- `unavailable`: Terjadi error internal
+* `too_many_requests`: Batas laju terlampaui
+* `invalid_input`: Parameter kueri pencarian tidak valid
+* `max_uses_exceeded`: Penggunaan maksimum alat pencarian web terlampaui
+* `query_too_long`: Kueri melebihi panjang maksimum
+* `unavailable`: Terjadi error internal
 
-### Stop reason `pause_turn` \{#pause-turn-stop-reason}
+### Stop reason `pause_turn`
 
 Untuk melanjutkan setelah stop reason `pause_turn`, lihat [Alat server](/docs/id/agents-and-tools/tool-use/server-tools#the-server-side-loop-and-pause-turn).
 
-## Caching prompt \{#prompt-caching}
+## Caching prompt
 
 Untuk melakukan caching definisi alat di seluruh giliran, lihat [Penggunaan alat dengan caching prompt](/docs/id/agents-and-tools/tool-use/tool-use-with-prompt-caching).
 
-## Streaming \{#streaming}
+## Streaming
 
 Dengan streaming diaktifkan, Anda akan menerima event pencarian sebagai bagian dari stream. Akan ada jeda saat pencarian dieksekusi:
 
@@ -683,13 +618,13 @@ data: {"type": "content_block_start", "index": 2, "content_block": {"type": "web
 // Claude's response with citations (omitted in this example)
 ```
 
-## Permintaan batch \{#batch-requests}
+## Permintaan batch
 
 Anda dapat menyertakan alat pencarian web dalam [Messages Batches API](/docs/id/build-with-claude/batch-processing). Panggilan alat pencarian web melalui Messages Batches API dikenakan harga yang sama dengan permintaan Messages API reguler.
 
 Untuk melindungi kapasitas bersama, Batches API membatasi permintaan pencarian web per organisasi, sehingga batch besar dengan banyak pencarian mungkin memerlukan waktu lebih lama untuk selesai. Anda dapat melihat batas laju pencarian web organisasi Anda di halaman [Limits](/settings/limits) di Claude Console; hubungi bagian penjualan dari halaman tersebut untuk meminta batas yang lebih tinggi. Beban kerja pencarian web batch yang umum mencakup memperkaya record dengan data web terkini, meneliti daftar entitas yang besar, dan mendasarkan atau memeriksa korpus konten terhadap sumber langsung.
 
-## Penggunaan dan harga \{#usage-and-pricing}
+## Penggunaan dan harga
 
 Penggunaan pencarian web dikenakan biaya sebagai tambahan dari penggunaan token:
 
@@ -711,12 +646,13 @@ Pencarian web tersedia di API Claude dengan harga **$10 per 1.000 pencarian**, d
 
 Setiap pencarian web dihitung sebagai satu penggunaan, terlepas dari jumlah hasil yang dikembalikan. Jika terjadi kesalahan selama pencarian web, pencarian web tersebut tidak akan ditagih.
 
-## Langkah selanjutnya \{#next-steps}
+## Langkah selanjutnya
 
 <CardGroup>
   <Card href="/docs/id/agents-and-tools/tool-use/server-tools" title="Alat server">
     Mekanisme bersama untuk alat yang dieksekusi Anthropic.
   </Card>
+
   <Card href="/docs/id/agents-and-tools/tool-use/tool-reference" title="Referensi alat">
     Direktori semua alat yang disediakan Anthropic.
   </Card>

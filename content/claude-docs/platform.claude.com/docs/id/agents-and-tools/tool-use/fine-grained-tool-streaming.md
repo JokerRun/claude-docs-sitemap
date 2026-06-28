@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming
-fetched_at: 2026-06-13T03:15:40.418428Z
-sha256: 0a866d55b1b8ac344071ab6fd4e7b929104f70edffc7dbb7243a15b85ccd5e9a
+fetched_at: 2026-06-28T03:16:32.677203Z
+sha256: f13910158274c7dc0f7e1f248bbdaffee0b44352138d2d75d98b5e30b3114c7d
 ---
 
 # Streaming alat terperinci
@@ -12,22 +12,22 @@ Lakukan streaming input alat tanpa buffering JSON di sisi server untuk aplikasi 
 ---
 
 <Note>
-Fitur ini memenuhi syarat untuk [Zero Data Retention (ZDR)](/docs/id/build-with-claude/api-and-data-retention). Ketika organisasi Anda memiliki pengaturan ZDR, data yang dikirim melalui fitur ini tidak disimpan setelah respons API dikembalikan.
+  Fitur ini memenuhi syarat untuk [Zero Data Retention (ZDR)](/docs/id/build-with-claude/api-and-data-retention). Ketika organisasi Anda memiliki pengaturan ZDR, data yang dikirim melalui fitur ini tidak disimpan setelah respons API dikembalikan.
 </Note>
 
 "Fine-grained tool streaming" (streaming alat terperinci) tersedia di semua model dan semua platform. Fitur ini memungkinkan [streaming](/docs/id/build-with-claude/streaming) nilai parameter penggunaan alat tanpa buffering atau validasi JSON, sehingga mengurangi latensi untuk mulai menerima parameter berukuran besar.
 
 <Warning>
-Saat menggunakan streaming alat terperinci, Anda berpotensi menerima input JSON yang tidak valid atau parsial. Pastikan untuk memperhitungkan kasus-kasus khusus ini dalam kode Anda.
+  Saat menggunakan streaming alat terperinci, Anda berpotensi menerima input JSON yang tidak valid atau parsial. Pastikan untuk memperhitungkan kasus-kasus khusus ini dalam kode Anda.
 </Warning>
 
-## Cara menggunakan streaming alat terperinci \{#how-to-use-fine-grained-tool-streaming}
+## Cara menggunakan streaming alat terperinci
+
 Streaming alat terperinci didukung pada Claude API, [Claude Platform di AWS](/docs/id/build-with-claude/claude-platform-on-aws), [Amazon Bedrock](/docs/id/build-with-claude/claude-in-amazon-bedrock), [Vertex AI](/docs/id/build-with-claude/claude-on-vertex-ai), dan [Microsoft Foundry](/docs/id/build-with-claude/claude-in-microsoft-foundry). Untuk menggunakannya, atur `eager_input_streaming` ke `true` pada setiap alat yang didefinisikan pengguna di mana Anda ingin mengaktifkan streaming terperinci, dan aktifkan streaming pada permintaan Anda.
 
 Berikut adalah contoh cara menggunakan streaming alat terperinci dengan API:
 
 <CodeGroup>
-
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
     -H "content-type: application/json" \
@@ -94,9 +94,7 @@ Berikut adalah contoh cara menggunakan streaming alat terperinci dengan API:
     jq 'select(.type == "message_delta") | .usage'
   ```
 
-  ```python Python hidelines={1..2}
-  import anthropic
-
+  ```python Python
   client = anthropic.Anthropic()
 
   with client.messages.stream(
@@ -136,9 +134,7 @@ Berikut adalah contoh cara menggunakan streaming alat terperinci dengan API:
   print(f"Output tokens: {final_message.usage.output_tokens}")
   ```
 
-  ```typescript TypeScript hidelines={1..2}
-  import Anthropic from "@anthropic-ai/sdk";
-
+  ```typescript TypeScript
   const anthropic = new Anthropic();
 
   const stream = anthropic.messages.stream({
@@ -178,11 +174,7 @@ Berikut adalah contoh cara menggunakan streaming alat terperinci dengan API:
   console.log(`Output tokens: ${message.usage.output_tokens}`);
   ```
 
-  ```csharp C# hidelines={1..4}
-  using System.Text.Json;
-  using Anthropic;
-  using Anthropic.Models.Messages;
-
+  ```csharp C#
   AnthropicClient client = new();
 
   MessageCreateParams parameters = new()
@@ -241,121 +233,95 @@ Berikut adalah contoh cara menggunakan streaming alat terperinci dengan API:
   Console.WriteLine($"Output tokens: {outputTokens}");
   ```
 
-  ```go Go hidelines={1..10,-1}
-  package main
+  ```go Go
+  client := anthropic.NewClient()
 
-  import (
-  	"context"
-  	"fmt"
-
-  	"github.com/anthropics/anthropic-sdk-go"
-  )
-
-  func main() {
-  	client := anthropic.NewClient()
-
-  	makeFileTool := anthropic.ToolParam{
-  		Name:                "make_file",
-  		Description:         anthropic.String("Write text to a file"),
-  		EagerInputStreaming: anthropic.Bool(true),
-  		InputSchema: anthropic.ToolInputSchemaParam{
-  			Properties: map[string]any{
-  				"filename": map[string]any{
-  					"type":        "string",
-  					"description": "The filename to write text to",
-  				},
-  				"lines_of_text": map[string]any{
-  					"type":        "array",
-  					"description": "An array of lines of text to write to the file",
-  				},
+  makeFileTool := anthropic.ToolParam{
+  	Name:                "make_file",
+  	Description:         anthropic.String("Write text to a file"),
+  	EagerInputStreaming: anthropic.Bool(true),
+  	InputSchema: anthropic.ToolInputSchemaParam{
+  		Properties: map[string]any{
+  			"filename": map[string]any{
+  				"type":        "string",
+  				"description": "The filename to write text to",
   			},
-  			Required: []string{"filename", "lines_of_text"},
+  			"lines_of_text": map[string]any{
+  				"type":        "array",
+  				"description": "An array of lines of text to write to the file",
+  			},
   		},
-  	}
+  		Required: []string{"filename", "lines_of_text"},
+  	},
+  }
 
-  	stream := client.Messages.NewStreaming(context.Background(), anthropic.MessageNewParams{
-  		Model:     anthropic.ModelClaudeOpus4_8,
-  		MaxTokens: 65536,
-  		Tools:     []anthropic.ToolUnionParam{{OfTool: &makeFileTool}},
-  		Messages: []anthropic.MessageParam{
-  			anthropic.NewUserMessage(anthropic.NewTextBlock(
-  				"Can you write a long poem and make a file called poem.txt?",
-  			)),
-  		},
-  	})
+  stream := client.Messages.NewStreaming(context.Background(), anthropic.MessageNewParams{
+  	Model:     anthropic.ModelClaudeOpus4_8,
+  	MaxTokens: 65536,
+  	Tools:     []anthropic.ToolUnionParam{{OfTool: &makeFileTool}},
+  	Messages: []anthropic.MessageParam{
+  		anthropic.NewUserMessage(anthropic.NewTextBlock(
+  			"Can you write a long poem and make a file called poem.txt?",
+  		)),
+  	},
+  })
 
-  	message := anthropic.Message{}
-  	for stream.Next() {
-  		event := stream.Current()
-  		if err := message.Accumulate(event); err != nil {
-  			panic(err)
-  		}
-  	}
-  	if err := stream.Err(); err != nil {
+  message := anthropic.Message{}
+  for stream.Next() {
+  	event := stream.Current()
+  	if err := message.Accumulate(event); err != nil {
   		panic(err)
   	}
-
-  	fmt.Printf("Input tokens: %d\n", message.Usage.InputTokens)
-  	fmt.Printf("Output tokens: %d\n", message.Usage.OutputTokens)
   }
+  if err := stream.Err(); err != nil {
+  	panic(err)
+  }
+
+  fmt.Printf("Input tokens: %d\n", message.Usage.InputTokens)
+  fmt.Printf("Output tokens: %d\n", message.Usage.OutputTokens)
   ```
 
-  ```java Java hidelines={1..12,-1}
-  import com.anthropic.client.AnthropicClient;
-  import com.anthropic.client.okhttp.AnthropicOkHttpClient;
-  import com.anthropic.core.JsonValue;
-  import com.anthropic.core.http.StreamResponse;
-  import com.anthropic.helpers.MessageAccumulator;
-  import com.anthropic.models.messages.MessageCreateParams;
-  import com.anthropic.models.messages.Model;
-  import com.anthropic.models.messages.RawMessageStreamEvent;
-  import com.anthropic.models.messages.Tool;
-  import com.anthropic.models.messages.Usage;
+  ```java Java
+  AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-  void main() {
-      AnthropicClient client = AnthropicOkHttpClient.fromEnv();
-
-      Tool makeFileTool = Tool.builder()
-          .name("make_file")
-          .description("Write text to a file")
-          .eagerInputStreaming(true)
-          .inputSchema(Tool.InputSchema.builder()
-              .properties(Tool.InputSchema.Properties.builder()
-                  .putAdditionalProperty("filename", JsonValue.from(Map.of(
-                      "type", "string",
-                      "description", "The filename to write text to")))
-                  .putAdditionalProperty("lines_of_text", JsonValue.from(Map.of(
-                      "type", "array",
-                      "description", "An array of lines of text to write to the file")))
-                  .build())
-              .addRequired("filename")
-              .addRequired("lines_of_text")
+  Tool makeFileTool = Tool.builder()
+      .name("make_file")
+      .description("Write text to a file")
+      .eagerInputStreaming(true)
+      .inputSchema(Tool.InputSchema.builder()
+          .properties(Tool.InputSchema.Properties.builder()
+              .putAdditionalProperty("filename", JsonValue.from(Map.of(
+                  "type", "string",
+                  "description", "The filename to write text to")))
+              .putAdditionalProperty("lines_of_text", JsonValue.from(Map.of(
+                  "type", "array",
+                  "description", "An array of lines of text to write to the file")))
               .build())
-          .build();
+          .addRequired("filename")
+          .addRequired("lines_of_text")
+          .build())
+      .build();
 
-      MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_4_8)
-          .maxTokens(65536L)
-          .addTool(makeFileTool)
-          .addUserMessage("Can you write a long poem and make a file called poem.txt?")
-          .build();
+  MessageCreateParams params = MessageCreateParams.builder()
+      .model(Model.CLAUDE_OPUS_4_8)
+      .maxTokens(65536L)
+      .addTool(makeFileTool)
+      .addUserMessage("Can you write a long poem and make a file called poem.txt?")
+      .build();
 
-      MessageAccumulator accumulator = MessageAccumulator.create();
+  MessageAccumulator accumulator = MessageAccumulator.create();
 
-      try (StreamResponse<RawMessageStreamEvent> streamResponse =
-              client.messages().createStreaming(params)) {
-          streamResponse.stream().forEach(accumulator::accumulate);
-      }
-
-      Usage usage = accumulator.message().usage();
-      IO.println("Input tokens: " + usage.inputTokens());
-      IO.println("Output tokens: " + usage.outputTokens());
+  try (StreamResponse<RawMessageStreamEvent> streamResponse =
+          client.messages().createStreaming(params)) {
+      streamResponse.stream().forEach(accumulator::accumulate);
   }
+
+  Usage usage = accumulator.message().usage();
+  IO.println("Input tokens: " + usage.inputTokens());
+  IO.println("Output tokens: " + usage.outputTokens());
   ```
 
-  ```php PHP hidelines={1..2}
-  <?php
-
+  ```php PHP
   use Anthropic\Client;
   use Anthropic\Messages\Model;
   use Anthropic\Messages\RawMessageDeltaEvent;
@@ -410,9 +376,7 @@ Berikut adalah contoh cara menggunakan streaming alat terperinci dengan API:
   echo "Output tokens: {$outputTokens}\n";
   ```
 
-  ```ruby Ruby hidelines={1..2}
-  require "anthropic"
-
+  ```ruby Ruby
   anthropic = Anthropic::Client.new
 
   stream = anthropic.messages.stream(
@@ -451,21 +415,19 @@ Berikut adalah contoh cara menggunakan streaming alat terperinci dengan API:
   puts "Input tokens: #{usage.input_tokens}"
   puts "Output tokens: #{usage.output_tokens}"
   ```
-
 </CodeGroup>
 
 Dalam contoh ini, streaming alat terperinci memungkinkan Claude untuk melakukan streaming baris-baris puisi panjang ke dalam pemanggilan alat `make_file` tanpa buffering untuk memvalidasi apakah parameter `lines_of_text` adalah JSON yang valid. Ini berarti Anda dapat melihat parameter mengalir saat tiba, tanpa harus menunggu seluruh parameter di-buffer dan divalidasi.
 
 <Note>
-Dengan streaming alat terperinci, potongan input alat mulai tiba lebih cepat karena server melewati buffering validasi JSON. Sebagai efek samping, potongan biasanya lebih panjang dan mengandung lebih sedikit pemutusan di tengah token.
+  Dengan streaming alat terperinci, potongan input alat mulai tiba lebih cepat karena server melewati buffering validasi JSON. Sebagai efek samping, potongan biasanya lebih panjang dan mengandung lebih sedikit pemutusan di tengah token.
 </Note>
 
 <Warning>
-Karena streaming terperinci mengirimkan parameter tanpa buffering atau validasi JSON, tidak ada jaminan bahwa stream yang dihasilkan akan selesai dalam bentuk string JSON yang valid.
-Khususnya, jika [stop reason](/docs/id/build-with-claude/handling-stop-reasons) `max_tokens` tercapai, stream mungkin berakhir di tengah-tengah parameter dan mungkin tidak lengkap. Anda umumnya harus menulis penanganan khusus untuk menangani kasus ketika `max_tokens` tercapai.
+  Karena streaming terperinci mengirimkan parameter tanpa buffering atau validasi JSON, tidak ada jaminan bahwa stream yang dihasilkan akan selesai dalam bentuk string JSON yang valid. Khususnya, jika [stop reason](/docs/id/build-with-claude/handling-stop-reasons) `max_tokens` tercapai, stream mungkin berakhir di tengah-tengah parameter dan mungkin tidak lengkap. Anda umumnya harus menulis penanganan khusus untuk menangani kasus ketika `max_tokens` tercapai.
 </Warning>
 
-## Mengakumulasi delta input alat \{#accumulating-tool-input-deltas}
+## Mengakumulasi delta input alat
 
 Ketika blok konten `tool_use` di-stream, event `content_block_start` awal berisi `input: {}` (objek kosong). Ini adalah placeholder. Input yang sebenarnya tiba sebagai serangkaian event `input_json_delta`, masing-masing membawa fragmen string `partial_json`. Untuk menyusun input lengkap, gabungkan fragmen-fragmen ini dan parse hasilnya ketika blok ditutup.
 
@@ -480,11 +442,7 @@ Kontrak akumulasi:
 Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) memang dirancang demikian. Objek kosong menandai slot dalam array konten; string delta membangun nilai sebenarnya.
 
 <CodeGroup>
-
-  ```python Python hidelines={1..3}
-  import json
-  import anthropic
-
+  ```python Python
   client = anthropic.Anthropic()
 
   tool_inputs: dict[int, str] = {}  # index -> accumulated JSON string
@@ -517,9 +475,7 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
                   print(f"Tool input: {parsed}")
   ```
 
-  ```typescript TypeScript hidelines={1..2}
-  import Anthropic from "@anthropic-ai/sdk";
-
+  ```typescript TypeScript
   const anthropic = new Anthropic();
 
   const toolInputs = new Map<number, string>();
@@ -557,12 +513,7 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
   }
   ```
 
-  ```csharp C# hidelines={1..5}
-  using System.Text;
-  using System.Text.Json;
-  using Anthropic;
-  using Anthropic.Models.Messages;
-
+  ```csharp C#
   AnthropicClient client = new();
 
   MessageCreateParams parameters = new()
@@ -621,135 +572,109 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
   }
   ```
 
-  ```go Go hidelines={1..11,-1}
-  package main
+  ```go Go
+  client := anthropic.NewClient()
 
-  import (
-  	"context"
-  	"encoding/json"
-  	"fmt"
+  toolInputs := map[int64]string{} // content block index -> accumulated JSON
 
-  	"github.com/anthropics/anthropic-sdk-go"
-  )
-
-  func main() {
-  	client := anthropic.NewClient()
-
-  	toolInputs := map[int64]string{} // content block index -> accumulated JSON
-
-  	stream := client.Messages.NewStreaming(context.Background(), anthropic.MessageNewParams{
-  		Model:     anthropic.ModelClaudeOpus4_8,
-  		MaxTokens: 1024,
-  		Tools: []anthropic.ToolUnionParam{{
-  			OfTool: &anthropic.ToolParam{
-  				Name:                "get_weather",
-  				Description:         anthropic.String("Get current weather for a city"),
-  				EagerInputStreaming: anthropic.Bool(true),
-  				InputSchema: anthropic.ToolInputSchemaParam{
-  					Properties: map[string]any{
-  						"city": map[string]any{"type": "string"},
-  					},
-  					Required: []string{"city"},
+  stream := client.Messages.NewStreaming(context.Background(), anthropic.MessageNewParams{
+  	Model:     anthropic.ModelClaudeOpus4_8,
+  	MaxTokens: 1024,
+  	Tools: []anthropic.ToolUnionParam{{
+  		OfTool: &anthropic.ToolParam{
+  			Name:                "get_weather",
+  			Description:         anthropic.String("Get current weather for a city"),
+  			EagerInputStreaming: anthropic.Bool(true),
+  			InputSchema: anthropic.ToolInputSchemaParam{
+  				Properties: map[string]any{
+  					"city": map[string]any{"type": "string"},
   				},
+  				Required: []string{"city"},
   			},
-  		}},
-  		Messages: []anthropic.MessageParam{
-  			anthropic.NewUserMessage(anthropic.NewTextBlock("Weather in Paris?")),
   		},
-  	})
+  	}},
+  	Messages: []anthropic.MessageParam{
+  		anthropic.NewUserMessage(anthropic.NewTextBlock("Weather in Paris?")),
+  	},
+  })
 
-  	for stream.Next() {
-  		switch event := stream.Current().AsAny().(type) {
-  		case anthropic.ContentBlockStartEvent:
-  			if _, ok := event.ContentBlock.AsAny().(anthropic.ToolUseBlock); ok {
-  				toolInputs[event.Index] = ""
+  for stream.Next() {
+  	switch event := stream.Current().AsAny().(type) {
+  	case anthropic.ContentBlockStartEvent:
+  		if _, ok := event.ContentBlock.AsAny().(anthropic.ToolUseBlock); ok {
+  			toolInputs[event.Index] = ""
+  		}
+  	case anthropic.ContentBlockDeltaEvent:
+  		if delta, ok := event.Delta.AsAny().(anthropic.InputJSONDelta); ok {
+  			toolInputs[event.Index] += delta.PartialJSON
+  		}
+  	case anthropic.ContentBlockStopEvent:
+  		if accumulated, ok := toolInputs[event.Index]; ok {
+  			var parsed map[string]any
+  			if err := json.Unmarshal([]byte(accumulated), &parsed); err != nil {
+  				panic(err)
   			}
-  		case anthropic.ContentBlockDeltaEvent:
-  			if delta, ok := event.Delta.AsAny().(anthropic.InputJSONDelta); ok {
-  				toolInputs[event.Index] += delta.PartialJSON
-  			}
-  		case anthropic.ContentBlockStopEvent:
-  			if accumulated, ok := toolInputs[event.Index]; ok {
-  				var parsed map[string]any
-  				if err := json.Unmarshal([]byte(accumulated), &parsed); err != nil {
-  					panic(err)
-  				}
-  				fmt.Println("Tool input:", parsed)
-  			}
+  			fmt.Println("Tool input:", parsed)
   		}
   	}
-  	if err := stream.Err(); err != nil {
-  		panic(err)
-  	}
+  }
+  if err := stream.Err(); err != nil {
+  	panic(err)
   }
   ```
 
-  ```java Java hidelines={1..11,-1}
-  import com.anthropic.client.AnthropicClient;
-  import com.anthropic.client.okhttp.AnthropicOkHttpClient;
-  import com.anthropic.core.JsonValue;
-  import com.anthropic.core.http.StreamResponse;
-  import com.anthropic.models.messages.MessageCreateParams;
-  import com.anthropic.models.messages.Model;
-  import com.anthropic.models.messages.RawMessageStreamEvent;
-  import com.anthropic.models.messages.Tool;
-  import com.fasterxml.jackson.databind.ObjectMapper;
+  ```java Java
+  AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+  ObjectMapper objectMapper = new ObjectMapper();
 
-  void main() throws Exception {
-      AnthropicClient client = AnthropicOkHttpClient.fromEnv();
-      ObjectMapper objectMapper = new ObjectMapper();
+  Tool weatherTool = Tool.builder()
+          .name("get_weather")
+          .description("Get current weather for a city")
+          .eagerInputStreaming(true)
+          .inputSchema(Tool.InputSchema.builder()
+                  .properties(Tool.InputSchema.Properties.builder()
+                          .putAdditionalProperty("city", JsonValue.from(Map.of("type", "string")))
+                          .build())
+                  .addRequired("city")
+                  .build())
+          .build();
 
-      Tool weatherTool = Tool.builder()
-              .name("get_weather")
-              .description("Get current weather for a city")
-              .eagerInputStreaming(true)
-              .inputSchema(Tool.InputSchema.builder()
-                      .properties(Tool.InputSchema.Properties.builder()
-                              .putAdditionalProperty("city", JsonValue.from(Map.of("type", "string")))
-                              .build())
-                      .addRequired("city")
-                      .build())
-              .build();
+  MessageCreateParams createParams = MessageCreateParams.builder()
+          .model(Model.CLAUDE_OPUS_4_8)
+          .maxTokens(1024)
+          .addTool(weatherTool)
+          .addUserMessage("Weather in Paris?")
+          .build();
 
-      MessageCreateParams createParams = MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_4_8)
-              .maxTokens(1024)
-              .addTool(weatherTool)
-              .addUserMessage("Weather in Paris?")
-              .build();
+  // Indeks blok konten -> JSON input alat yang terakumulasi
+  Map<Long, StringBuilder> toolInputs = new HashMap<>();
 
-      // Indeks blok konten -> JSON input alat yang terakumulasi
-      Map<Long, StringBuilder> toolInputs = new HashMap<>();
-
-      try (StreamResponse<RawMessageStreamEvent> streamResponse = client.messages().createStreaming(createParams)) {
-          var eventIterator = streamResponse.stream().iterator();
-          while (eventIterator.hasNext()) {
-              RawMessageStreamEvent event = eventIterator.next();
-              if (event.isContentBlockStart()) {
-                  var blockStart = event.asContentBlockStart();
-                  if (blockStart.contentBlock().isToolUse()) {
-                      toolInputs.put(blockStart.index(), new StringBuilder());
-                  }
-              } else if (event.isContentBlockDelta()) {
-                  var blockDelta = event.asContentBlockDelta();
-                  if (blockDelta.delta().isInputJson() && toolInputs.containsKey(blockDelta.index())) {
-                      toolInputs.get(blockDelta.index()).append(blockDelta.delta().asInputJson().partialJson());
-                  }
-              } else if (event.isContentBlockStop()) {
-                  var blockStop = event.asContentBlockStop();
-                  if (toolInputs.containsKey(blockStop.index())) {
-                      var parsedInput = objectMapper.readTree(toolInputs.get(blockStop.index()).toString());
-                      IO.println("Tool input: " + parsedInput);
-                  }
+  try (StreamResponse<RawMessageStreamEvent> streamResponse = client.messages().createStreaming(createParams)) {
+      var eventIterator = streamResponse.stream().iterator();
+      while (eventIterator.hasNext()) {
+          RawMessageStreamEvent event = eventIterator.next();
+          if (event.isContentBlockStart()) {
+              var blockStart = event.asContentBlockStart();
+              if (blockStart.contentBlock().isToolUse()) {
+                  toolInputs.put(blockStart.index(), new StringBuilder());
+              }
+          } else if (event.isContentBlockDelta()) {
+              var blockDelta = event.asContentBlockDelta();
+              if (blockDelta.delta().isInputJson() && toolInputs.containsKey(blockDelta.index())) {
+                  toolInputs.get(blockDelta.index()).append(blockDelta.delta().asInputJson().partialJson());
+              }
+          } else if (event.isContentBlockStop()) {
+              var blockStop = event.asContentBlockStop();
+              if (toolInputs.containsKey(blockStop.index())) {
+                  var parsedInput = objectMapper.readTree(toolInputs.get(blockStop.index()).toString());
+                  IO.println("Tool input: " + parsedInput);
               }
           }
       }
   }
   ```
 
-  ```php PHP hidelines={1..2}
-  <?php
-
+  ```php PHP
   use Anthropic\Client;
   use Anthropic\Messages\InputJSONDelta;
   use Anthropic\Messages\Model;
@@ -803,10 +728,7 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
   }
   ```
 
-  ```ruby Ruby hidelines={1..3}
-  require "anthropic"
-  require "json"
-
+  ```ruby Ruby
   client = Anthropic::Client.new
 
   tool_inputs = {} # index -> accumulated JSON string
@@ -845,14 +767,13 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
     end
   end
   ```
-
 </CodeGroup>
 
 <Tip>
-Gunakan pola manual ketika Anda perlu bereaksi terhadap input parsial sebelum blok ditutup (misalnya, merender indikator progres). Jika tidak, lebih baik gunakan helper akumulator SDK Anda seperti yang digunakan pada contoh pertama di halaman ini.
+  Gunakan pola manual ketika Anda perlu bereaksi terhadap input parsial sebelum blok ditutup (misalnya, merender indikator progres). Jika tidak, lebih baik gunakan helper akumulator SDK Anda seperti yang digunakan pada contoh pertama di halaman ini.
 </Tip>
 
-## Menangani JSON yang tidak valid dalam respons alat \{#handling-invalid-json-in-tool-responses}
+## Menangani JSON yang tidak valid dalam respons alat
 
 Saat menggunakan streaming alat terperinci, Anda mungkin menerima JSON yang tidak valid atau tidak lengkap dari model. Jika Anda perlu mengirimkan kembali JSON yang tidak valid ini ke model dalam blok respons error, Anda dapat membungkusnya dalam objek JSON untuk memastikan penanganan yang tepat (dengan key yang masuk akal). Sebagai contoh:
 
@@ -865,18 +786,20 @@ Saat menggunakan streaming alat terperinci, Anda mungkin menerima JSON yang tida
 Pendekatan ini membantu model memahami bahwa konten tersebut adalah JSON yang tidak valid sambil mempertahankan data asli yang rusak untuk keperluan debugging.
 
 <Note>
-Saat membungkus JSON yang tidak valid, pastikan untuk melakukan escape dengan benar pada tanda kutip atau karakter khusus apa pun dalam string JSON yang tidak valid tersebut untuk menjaga struktur JSON yang valid pada objek pembungkus.
+  Saat membungkus JSON yang tidak valid, pastikan untuk melakukan escape dengan benar pada tanda kutip atau karakter khusus apa pun dalam string JSON yang tidak valid tersebut untuk menjaga struktur JSON yang valid pada objek pembungkus.
 </Note>
 
-## Langkah selanjutnya \{#next-steps}
+## Langkah selanjutnya
 
 <CardGroup cols={3}>
   <Card title="Streaming pesan" href="/docs/id/build-with-claude/streaming">
     Referensi lengkap untuk server-sent events dan tipe event stream.
   </Card>
+
   <Card title="Menangani pemanggilan alat" href="/docs/id/agents-and-tools/tool-use/handle-tool-calls">
     Jalankan alat dan kembalikan hasil dalam format pesan yang diperlukan.
   </Card>
+
   <Card title="Referensi alat" href="/docs/id/agents-and-tools/tool-use/tool-reference">
     Direktori lengkap alat skema Anthropic dan string versinya.
   </Card>

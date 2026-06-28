@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek-google-cloud-kms
-fetched_at: 2026-06-26T03:16:19.812719Z
-sha256: 0e0f6363c925e5263ef1a47fff815fd7f9e8ea6314fbb2017ee4b7e82bf15fda
+fetched_at: 2026-06-28T03:16:32.677203Z
+sha256: 64416eb4a20cb28efdabfb9e0b97729c4d7aa277b4fc0d12ab896ff70fec301c
 ---
 
 # Mengonfigurasi Google Cloud KMS untuk CMEK
@@ -11,7 +11,7 @@ Gunakan Google Cloud KMS untuk menyediakan kunci enkripsi bagi organisasi Anda.
 
 ---
 
-```bash title="Configure with the /claude-api skill in Claude Code"
+```bash Configure with the /claude-api skill in Claude Code
 claude "/claude-api help me configure a customer-managed encryption key with Google Cloud KMS"
 ```
 
@@ -21,20 +21,20 @@ Panduan ini menjelaskan langkah-langkah mengonfigurasi kunci Google Cloud KMS se
   Mengaktifkan CMEK bersifat permanen. Jika kunci KMS Anda dihapus atau dinonaktifkan, Anthropic tidak dapat memulihkan data yang dienkripsi dengan kunci tersebut. Tinjau [peringatan dan batasan](/docs/id/manage-claude/cmek) sebelum Anda memulai.
 </Warning>
 
-## Prasyarat \{#prerequisites}
+## Prasyarat
 
-- Proyek Google Cloud dengan penagihan yang diaktifkan.
-- Cloud KMS API diaktifkan (`cloudkms.googleapis.com`).
-- Izin untuk membuat key ring dan kunci KMS, serta untuk mengatur kebijakan IAM pada keduanya (`roles/cloudkms.admin` atau yang setara).
-- Kunci Admin API Anthropic untuk organisasi Anda.
-- [`gcloud` CLI](https://cloud.google.com/cli) terinstal dan terautentikasi.
-- **Data Access audit logs** Cloud KMS diaktifkan untuk proyek (IAM & Admin > Audit Logs > Cloud Key Management Service, dengan `DATA_READ` dan `DATA_WRITE`). Log ini nonaktif secara default; tanpa log ini, operasi enkripsi dan dekripsi Anthropic tidak menghasilkan entri apa pun di Cloud Logging.
+* Proyek Google Cloud dengan penagihan yang diaktifkan.
+* Cloud KMS API diaktifkan (`cloudkms.googleapis.com`).
+* Izin untuk membuat key ring dan kunci KMS, serta untuk mengatur kebijakan IAM pada keduanya (`roles/cloudkms.admin` atau yang setara).
+* Kunci Admin API Anthropic untuk organisasi Anda.
+* [`gcloud` CLI](https://cloud.google.com/cli) terinstal dan terautentikasi.
+* **Data Access audit logs** Cloud KMS diaktifkan untuk proyek (IAM & Admin > Audit Logs > Cloud Key Management Service, dengan `DATA_READ` dan `DATA_WRITE`). Log ini nonaktif secara default; tanpa log ini, operasi enkripsi dan dekripsi Anthropic tidak menghasilkan entri apa pun di Cloud Logging.
 
-## Email akun layanan Anthropic \{#anthropic-service-account-email}
+## Email akun layanan Anthropic
 
 Agar Anthropic dapat menggunakan kunci enkripsi Anda, Anda harus memberikan akun layanan Anthropic sebuah kunci yang dapat digunakan untuk mengenkripsi data. Email akun layanan untuk CMEK Anthropic adalah:
 
-```text
+```text wrap
 anthropic-cmek-client-us@gcp-anthropic-cmek-clients.iam.gserviceaccount.com
 ```
 
@@ -46,7 +46,7 @@ anthropic-cmek-client-us@gcp-anthropic-cmek-clients.iam.gserviceaccount.com
   **Domain restricted sharing:** Jika proyek Anda berada di bawah organisasi Google Cloud yang menerapkan `constraints/iam.allowedPolicyMemberDomains`, binding IAM di bawah ini akan ditolak karena akun layanan Anthropic berada di luar organisasi Anda. Anda memerlukan pengecualian tingkat proyek pada batasan tersebut, atau menambahkan Cloud Identity customer ID Anthropic (format `C0xxxxxxxx`) ke daftar yang diizinkan. Hubungi Anthropic untuk mendapatkan customer ID jika diperlukan.
 </Note>
 
-## Penyiapan kunci enkripsi \{#encryption-key-setup}
+## Penyiapan kunci enkripsi
 
 <Steps>
   <Step title="Buat atau pilih key ring">
@@ -115,7 +115,7 @@ anthropic-cmek-client-us@gcp-anthropic-cmek-clients.iam.gserviceaccount.com
   <Step title="Catat nama resource lengkap kunci">
     Anda meneruskan ini ke Anthropic saat mendaftarkan kunci. Formatnya adalah:
 
-    ```text
+    ```text wrap
     projects/<your-project-id>/locations/<region>/keyRings/<your-keyring-name>/cryptoKeys/<your-key-name>
     ```
 
@@ -135,10 +135,9 @@ anthropic-cmek-client-us@gcp-anthropic-cmek-clients.iam.gserviceaccount.com
       ![Detail key ring Google Cloud dengan tindakan Copy resource name yang disorot di menu tindakan kunci.](/docs/images/cmek/gcp-copy-resource-name.png)
     </Frame>
   </Step>
-
 </Steps>
 
-## Daftarkan kunci ke Anthropic \{#register-the-key-with-anthropic}
+## Daftarkan kunci ke Anthropic
 
 Cara Anda mendaftarkan kunci bergantung pada produk yang Anda gunakan.
 
@@ -148,8 +147,7 @@ Cara Anda mendaftarkan kunci bergantung pada produk yang Anda gunakan.
       <Step title="Daftarkan kunci ke Anthropic">
         Buat konfigurasi kunci eksternal melalui Admin API, menggunakan nama resource dari langkah Catat nama resource lengkap kunci di bagian Penyiapan kunci enkripsi.
 
-        
-        ```bash nocheck
+        ```bash
         curl -sS https://api.anthropic.com/v1/organizations/external_keys \
           -H "x-api-key: <anthropic-admin-api-key>" \
           -H "anthropic-version: 2023-06-01" \
@@ -178,8 +176,7 @@ Cara Anda mendaftarkan kunci bergantung pada produk yang Anda gunakan.
       <Step title="Validasi kunci">
         Picu round-trip enkripsi dan dekripsi terhadap kunci Anda.
 
-        
-        ```bash nocheck
+        ```bash
         curl -sS -X POST https://api.anthropic.com/v1/organizations/external_keys/ekey_<id>/validate \
           -H "x-api-key: <anthropic-admin-api-key>" \
           -H "anthropic-version: 2023-06-01" \
@@ -194,14 +191,13 @@ Cara Anda mendaftarkan kunci bergantung pada produk yang Anda gunakan.
 
         Jika validasi gagal, penyebab umumnya adalah:
 
-        - **VPC Service Controls:** jika service perimeter melindungi Cloud KMS di proyek Anda, tambahkan Anthropic ke access level pada perimeter (atau kecualikan proyek kunci) agar Anthropic dapat menjangkau kunci tersebut.
-        - **Domain restricted sharing:** kebijakan organisasi `constraints/iam.allowedPolicyMemberDomains` dapat menghapus binding akun layanan Anthropic (lihat catatan di atas). Konfirmasikan bahwa binding tersebut ada dengan `gcloud kms keys get-iam-policy <your-key-name> --project=<your-project-id> --location=<region> --keyring=<your-keyring-name>`.
-        - **Versi kunci yang dinonaktifkan atau dihancurkan:** konfirmasikan bahwa versi utama kunci diaktifkan, dan tidak dinonaktifkan, dijadwalkan untuk dihancurkan, atau telah dihancurkan.
+        * **VPC Service Controls:** jika service perimeter melindungi Cloud KMS di proyek Anda, tambahkan Anthropic ke access level pada perimeter (atau kecualikan proyek kunci) agar Anthropic dapat menjangkau kunci tersebut.
+        * **Domain restricted sharing:** kebijakan organisasi `constraints/iam.allowedPolicyMemberDomains` dapat menghapus binding akun layanan Anthropic (lihat catatan di atas). Konfirmasikan bahwa binding tersebut ada dengan `gcloud kms keys get-iam-policy <your-key-name> --project=<your-project-id> --location=<region> --keyring=<your-keyring-name>`.
+        * **Versi kunci yang dinonaktifkan atau dihancurkan:** konfirmasikan bahwa versi utama kunci diaktifkan, dan tidak dinonaktifkan, dijadwalkan untuk dihancurkan, atau telah dihancurkan.
       </Step>
 
       <Step title="Lampirkan kunci ke workspace">
-        
-        ```bash nocheck
+        ```bash
         curl -sS -X POST https://api.anthropic.com/v1/organizations/workspaces/<workspace-id> \
           -H "x-api-key: <anthropic-admin-api-key>" \
           -H "anthropic-version: 2023-06-01" \
@@ -221,6 +217,6 @@ Cara Anda mendaftarkan kunci bergantung pada produk yang Anda gunakan.
   </Tab>
 </Tabs>
 
-## Terraform \{#terraform}
+## Terraform
 
 Untuk deployment infrastructure-as-code, langkah-langkah yang sama dipetakan ke provider `google` dengan resource `google_kms_key_ring`, `google_kms_crypto_key`, dan `google_kms_crypto_key_iam_member`.

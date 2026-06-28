@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-use-with-prompt-caching
-fetched_at: 2026-06-26T03:16:19.812719Z
-sha256: f1714bd2c76322d05f34f27c48305c98ec559b4d3a89934ae44bc4e40fcd69d4
+fetched_at: 2026-06-28T03:16:32.677203Z
+sha256: 5982f01bf319b1b32796a56dbfa22e710571693dad5fd9576e5a59084aabb59c
 ---
 
 # Penggunaan alat dengan caching prompt
@@ -13,7 +13,7 @@ Cache definisi alat di seluruh giliran dan pahami apa yang membatalkan cache And
 
 Halaman ini membahas caching prompt untuk definisi alat: di mana menempatkan breakpoint `cache_control`, bagaimana `defer_loading` mempertahankan cache Anda, dan apa yang membatalkannya. Untuk caching prompt secara umum, lihat [Caching prompt](/docs/id/build-with-claude/prompt-caching).
 
-## cache_control pada definisi alat \{#cache-control-on-tool-definitions}
+## cache\_control pada definisi alat
 
 Tempatkan `cache_control: {"type": "ephemeral"}` pada alat terakhir dalam array `tools` Anda. Ini akan meng-cache seluruh prefiks definisi alat, dari alat pertama hingga breakpoint yang ditandai:
 
@@ -49,7 +49,7 @@ Tempatkan `cache_control: {"type": "ephemeral"}` pada alat terakhir dalam array 
 
 Untuk `mcp_toolset`, breakpoint `cache_control` ditempatkan pada alat terakhir dalam set tersebut. Anda tidak mengontrol urutan alat dalam toolset MCP, jadi tempatkan breakpoint pada entri `mcp_toolset` itu sendiri dan API akan menerapkannya pada alat terakhir yang diperluas.
 
-## defer_loading dan pemeliharaan cache \{#defer-loading-and-cache-preservation}
+## defer\_loading dan pemeliharaan cache
 
 Alat yang ditangguhkan tidak disertakan dalam prefiks prompt sistem. Ketika model menemukan alat yang ditangguhkan melalui [pencarian alat](/docs/id/agents-and-tools/tool-use/tool-search-tool), definisinya ditambahkan secara inline sebagai blok `tool_reference` dalam riwayat percakapan. Prefiks tidak tersentuh, sehingga caching prompt tetap terjaga.
 
@@ -57,24 +57,24 @@ Ini berarti menambahkan alat secara dinamis melalui pencarian alat tidak merusak
 
 `defer_loading` juga bekerja secara independen dari konstruksi grammar untuk [mode ketat](/docs/id/agents-and-tools/tool-use/strict-tool-use). Grammar dibangun dari toolset lengkap terlepas dari alat mana yang ditangguhkan, sehingga caching prompt dan caching grammar keduanya tetap terjaga ketika alat dimuat secara dinamis.
 
-## Apa yang membatalkan cache Anda \{#what-invalidates-your-cache}
+## Apa yang membatalkan cache Anda
 
 Cache mengikuti hierarki prefiks (`tools` → `system` → `messages`), sehingga perubahan pada satu level akan membatalkan level tersebut dan semua yang ada setelahnya:
 
-| Perubahan | Membatalkan |
-|---|---|
-| Memodifikasi definisi alat | Seluruh cache (tools, system, messages) |
-| Mengaktifkan/menonaktifkan pencarian web atau sitasi | Cache system dan messages |
-| Mengubah `tool_choice` | Cache messages |
-| Mengubah `disable_parallel_tool_use` | Cache messages |
-| Mengubah keberadaan gambar (ada/tidak ada) | Cache messages |
-| Mengubah parameter thinking | Cache messages |
+| Perubahan                                            | Membatalkan                             |
+| ---------------------------------------------------- | --------------------------------------- |
+| Memodifikasi definisi alat                           | Seluruh cache (tools, system, messages) |
+| Mengaktifkan/menonaktifkan pencarian web atau sitasi | Cache system dan messages               |
+| Mengubah `tool_choice`                               | Cache messages                          |
+| Mengubah `disable_parallel_tool_use`                 | Cache messages                          |
+| Mengubah keberadaan gambar (ada/tidak ada)           | Cache messages                          |
+| Mengubah parameter thinking                          | Cache messages                          |
 
 <Note>
-Jika Anda perlu memvariasikan `tool_choice` di tengah percakapan, pertimbangkan untuk menempatkan breakpoint cache sebelum titik variasi tersebut.
+  Jika Anda perlu memvariasikan `tool_choice` di tengah percakapan, pertimbangkan untuk menempatkan breakpoint cache sebelum titik variasi tersebut.
 </Note>
 
-## Hasil alat server di-cache secara otomatis \{#server-tool-results-are-cached-automatically}
+## Hasil alat server di-cache secara otomatis
 
 Ketika permintaan Anda mengaktifkan caching prompt dan Claude menggunakan [alat server](/docs/id/agents-and-tools/tool-use/server-tools) seperti pencarian web, web fetch, atau eksekusi kode, API secara otomatis menempatkan breakpoint cache pada hasil alat server sebelum menjalankan iterasi berikutnya dari loop agentik. Ini memungkinkan iterasi selanjutnya dalam permintaan yang sama membaca prefiks yang terus bertambah dari cache alih-alih memprosesnya ulang.
 
@@ -82,28 +82,30 @@ Breakpoint otomatis ini selalu menggunakan TTL default 5 menit, terlepas dari TT
 
 Perilaku ini hanya berlaku ketika permintaan Anda sudah memiliki setidaknya satu penanda `cache_control`. Permintaan tanpa caching prompt tidak menerima breakpoint otomatis.
 
-## Tabel interaksi per alat \{#per-tool-interaction-table}
+## Tabel interaksi per alat
 
-| Alat | Pertimbangan caching |
-|---|---|
-| [Pencarian web](/docs/id/agents-and-tools/tool-use/web-search-tool) | Mengaktifkan atau menonaktifkan akan membatalkan cache system dan messages |
-| [Web fetch](/docs/id/agents-and-tools/tool-use/web-fetch-tool) | Mengaktifkan atau menonaktifkan akan membatalkan cache system dan messages |
-| [Eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool) | Status container independen dari cache prompt |
-| [Pencarian alat](/docs/id/agents-and-tools/tool-use/tool-search-tool) | Alat yang ditemukan dimuat sebagai blok `tool_reference`, mempertahankan cache prefiks |
-| [Penggunaan komputer](/docs/id/agents-and-tools/tool-use/computer-use-tool) | Keberadaan screenshot memengaruhi cache messages |
-| [Editor teks](/docs/id/agents-and-tools/tool-use/text-editor-tool) | Alat klien standar, tidak ada interaksi caching khusus |
-| [Bash](/docs/id/agents-and-tools/tool-use/bash-tool) | Alat klien standar, tidak ada interaksi caching khusus |
-| [Memory](/docs/id/agents-and-tools/tool-use/memory-tool) | Alat klien standar, tidak ada interaksi caching khusus |
+| Alat                                                                        | Pertimbangan caching                                                                   |
+| --------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| [Pencarian web](/docs/id/agents-and-tools/tool-use/web-search-tool)         | Mengaktifkan atau menonaktifkan akan membatalkan cache system dan messages             |
+| [Web fetch](/docs/id/agents-and-tools/tool-use/web-fetch-tool)              | Mengaktifkan atau menonaktifkan akan membatalkan cache system dan messages             |
+| [Eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool)     | Status container independen dari cache prompt                                          |
+| [Pencarian alat](/docs/id/agents-and-tools/tool-use/tool-search-tool)       | Alat yang ditemukan dimuat sebagai blok `tool_reference`, mempertahankan cache prefiks |
+| [Penggunaan komputer](/docs/id/agents-and-tools/tool-use/computer-use-tool) | Keberadaan screenshot memengaruhi cache messages                                       |
+| [Editor teks](/docs/id/agents-and-tools/tool-use/text-editor-tool)          | Alat klien standar, tidak ada interaksi caching khusus                                 |
+| [Bash](/docs/id/agents-and-tools/tool-use/bash-tool)                        | Alat klien standar, tidak ada interaksi caching khusus                                 |
+| [Memory](/docs/id/agents-and-tools/tool-use/memory-tool)                    | Alat klien standar, tidak ada interaksi caching khusus                                 |
 
-## Langkah selanjutnya \{#next-steps}
+## Langkah selanjutnya
 
 <CardGroup cols={3}>
   <Card title="Caching prompt" icon="database" href="/docs/id/build-with-claude/prompt-caching">
     Pelajari model caching prompt lengkap, termasuk TTL dan harga.
   </Card>
+
   <Card title="Pencarian alat" icon="magnifying-glass" href="/docs/id/agents-and-tools/tool-use/tool-search-tool">
     Muat alat sesuai permintaan tanpa merusak cache Anda.
   </Card>
+
   <Card title="Referensi alat" icon="book" href="/docs/id/agents-and-tools/tool-use/tool-reference">
     Jelajahi semua alat yang tersedia dan parameternya.
   </Card>

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/get-started
-fetched_at: 2026-06-11T03:14:59.596724Z
-sha256: b5e4ac605aca262deb714f3f22269f4336184961351b2b943d6cd1b7607bb8d4
+fetched_at: 2026-06-28T03:16:32.677203Z
+sha256: 9e98e6b5d0f3ca2dc768ae5b9dafd2ab34375200df8bffea85623e6d814a9494
 ---
 
 # Memulai dengan Claude
@@ -11,12 +11,12 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
 
 ---
 
-## Prasyarat \{#prerequisites}
+## Prasyarat
 
-- Akun [Console](/) Anthropic
-- [Kunci API](/settings/keys)
+* Akun [Console](/) Anthropic
+* [Kunci API](/settings/keys)
 
-## Memanggil API \{#call-the-api}
+## Memanggil API
 
 <Tabs>
   <Tab title="cURL">
@@ -182,7 +182,7 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
         python quickstart.py
         ```
 
-        ```text Output
+        ```text Output wrap
         [TextBlock(citations=None, text='Here are some effective search strategies to find the latest developments in renewable energy:\n\n## General Search Terms\n- "Renewable energy news 2025"\n- ...', type='text')]
         ```
       </Step>
@@ -235,7 +235,7 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
         npx tsx quickstart.ts
         ```
 
-        ```text Output
+        ```text Output wrap
         [
           {
             type: 'text',
@@ -306,7 +306,7 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
         dotnet run
         ```
 
-        ```text Output
+        ```text Output wrap
         {
           "type": "text",
           "text": "Here are some effective search strategies to find the latest developments in renewable energy:\n\n## General Search Terms\n- \"Renewable energy news 2025\"\n- ..."
@@ -374,7 +374,7 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
         go run .
         ```
 
-        ```text Output
+        ```text Output wrap
         [{"type":"text","text":"Here are some effective search strategies to find the latest developments in renewable energy:\n\n## General Search Terms\n- \"Renewable energy news 2025\"\n- ..."}]
         ```
       </Step>
@@ -428,6 +428,7 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
             }
             ```
           </Tab>
+
           <Tab title="Maven">
             Simpan ini sebagai `pom.xml`:
 
@@ -487,6 +488,7 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
             gradle run
             ```
           </Tab>
+
           <Tab title="Maven">
             ```bash
             mvn compile exec:java -Dexec.mainClass=QuickStart
@@ -494,7 +496,7 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
           </Tab>
         </Tabs>
 
-        ```text Output
+        ```text Output wrap
         [ContentBlock{text=TextBlock{citations=, text=Here are some effective search strategies to find the latest developments in renewable energy:
 
         ## General Search Terms
@@ -554,7 +556,7 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
         php quickstart.php
         ```
 
-        ```text Output
+        ```text Output wrap
         Array
         (
             [0] => Anthropic\Messages\TextBlock Object
@@ -620,7 +622,7 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
         bundle exec ruby quickstart.rb
         ```
 
-        ```text Output
+        ```text Output wrap
         [#<Anthropic::Models::TextBlock:0xc8 {text: "Here are some effective search strategies to find the latest developments in renewable energy:\n\n## General Search Terms\n- \"Renewable energy news 2025\"\n- ...", type: :text}>]
         ```
       </Step>
@@ -628,7 +630,7 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
   </Tab>
 </Tabs>
 
-## Langkah selanjutnya \{#next-steps}
+## Langkah selanjutnya
 
 Anda telah melakukan panggilan API pertama Anda. Selanjutnya, pelajari pola Messages API yang akan Anda gunakan di setiap integrasi Claude.
 
@@ -642,9 +644,11 @@ Setelah Anda terbiasa dengan dasar-dasarnya, jelajahi lebih lanjut:
   <Card title="Ikhtisar model" icon="brain" href="/docs/id/about-claude/models/overview">
     Bandingkan model Claude berdasarkan kemampuan dan biaya.
   </Card>
+
   <Card title="Ikhtisar fitur" icon="list" href="/docs/id/build-with-claude/overview">
     Jelajahi semua kemampuan Claude: alat, manajemen konteks, output terstruktur, dan lainnya.
   </Card>
+
   <Card title="SDK Klien" icon="code-brackets" href="/docs/id/cli-sdks-libraries/overview">
     Dokumentasi referensi untuk Python, TypeScript, C#, dan pustaka klien lainnya.
   </Card>
