@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/pdf-support
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 08b0b86d84a8512bfc69b310afe85c9365ecfaa4e21cb322f52cf9e7cf0613c0
+fetched_at: 2026-06-30T03:15:27.286427Z
+sha256: 5bc50e1978c9aa2e6d1e0798806761401b457a6738aa913e55c8e55d4133c993
 ---
 
 # PDF support
@@ -520,7 +520,7 @@ For PDFs you'll use repeatedly, or when you want to avoid encoding overhead, use
 
   ```typescript TypeScript
   import Anthropic, { toFile } from "@anthropic-ai/sdk";
-  import fs from "fs";
+  import fs from "node:fs";
 
   const anthropic = new Anthropic();
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 146674a4bbb3f31ba62e575896e03b8f62fca29e40a36a9cccdd5c24a50e7f57
+fetched_at: 2026-06-30T03:15:27.286427Z
+sha256: da1544877413c0e9d54755f8edf4ec323d0d676e8cef5281299f3aeb08e34260
 ---
 
 # Web search tool
@@ -61,7 +61,7 @@ Dynamic filtering is particularly effective for:
 * Response grounding and verification
 
 <Note>
-  Dynamic filtering requires the [code execution tool](/docs/en/agents-and-tools/tool-use/code-execution-tool) to be enabled. The web search tool (with and without dynamic filtering) is available on the Claude API, [Claude Platform on AWS](/docs/en/build-with-claude/claude-platform-on-aws), and [Microsoft Foundry](/docs/en/build-with-claude/claude-in-microsoft-foundry). On Google Cloud, only the basic web search tool (without dynamic filtering) is available. Web search is not available on Amazon Bedrock.
+  Dynamic filtering requires the [code execution tool](/docs/en/agents-and-tools/tool-use/code-execution-tool) to be enabled. The web search tool (with and without dynamic filtering) is available on the Claude API, [Claude Platform on AWS](/docs/en/build-with-claude/claude-platform-on-aws), and [Microsoft Foundry](/docs/en/build-with-claude/claude-in-microsoft-foundry). On Microsoft Foundry, web search requires a [Hosted on Anthropic deployment](/docs/en/build-with-claude/claude-in-microsoft-foundry#additional-features-not-supported-when-hosted-on-azure). On Google Cloud, only the basic web search tool (without dynamic filtering) is available. Web search is not available on Amazon Bedrock.
 </Note>
 
 To enable dynamic filtering, use `web_search_20260209` or any later version. The following examples use `web_search_20260209`:

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/agent-setup
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 323b6a4222e82654780f3788a80aa8b9bd23d590014677910eab14c2bd7c6a62
+fetched_at: 2026-06-30T03:15:27.286427Z
+sha256: a5420bf5d48fcb5975d89079b93b88c22283b694176244fb66f6c243e3fd189c
 ---
 
 # Define your agent
@@ -162,7 +162,7 @@ The examples use curl, the `ant` CLI, or one of the SDKs. If you haven't set one
 </CodeGroup>
 
 <Tip>
-  To use Claude Opus 4.8, Claude Opus 4.7, or Claude Opus 4.6 with [fast mode](/docs/en/build-with-claude/fast-mode), pass `model` as an object, for example: `{"id": "claude-opus-4-8", "speed": "fast"}`. Fast mode for Claude Opus 4.7 and Claude Opus 4.6 is deprecated; see [Fast mode](/docs/en/build-with-claude/fast-mode#supported-models) for removal dates and behavior.
+  To use Claude Opus 4.8 or Claude Opus 4.7 with [fast mode](/docs/en/build-with-claude/fast-mode), pass `model` as an object, for example: `{"id": "claude-opus-4-8", "speed": "fast"}`. Fast mode for Claude Opus 4.7 is deprecated; see [Fast mode](/docs/en/build-with-claude/fast-mode#supported-models) for the removal date and behavior.
 </Tip>
 
 The response echoes your configuration and adds `id`, `type`, `version`, `created_at`, `updated_at`, and `archived_at` fields. The `version` starts at 1 and increments each time an update changes the agent.

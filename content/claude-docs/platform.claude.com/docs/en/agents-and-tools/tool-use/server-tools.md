@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/server-tools
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: bf502386e0c841dbf4866c6e0e677652b5381af62896ba38d5b89f3d2c2e15c2
+fetched_at: 2026-06-30T03:15:27.286427Z
+sha256: c99993fb50f20e435cd1154cf0765235e193665db9c74f4b4432fd8946cee895
 ---
 
 # Server tools
@@ -439,7 +439,7 @@ Claude can call a server tool and a client tool in the same group of parallel to
 }
 ```
 
-To continue the turn, run the client tools and send a user message whose content is only the `tool_result` blocks, one for each `tool_use` block in that response. Keep the same `tools` array: a resume request that no longer defines the waiting server tool fails with a 400 whose message ends `but no web_fetch tool was provided`.
+To continue the turn, run the client tools and send a user message whose content is only the `tool_result` blocks, one for each `tool_use` block in that response. Keep the same `tools` array: a resume request that no longer defines the waiting server tool fails with a 400 whose message ends ``but no `web_fetch` tool was provided``.
 
 ```json
 {

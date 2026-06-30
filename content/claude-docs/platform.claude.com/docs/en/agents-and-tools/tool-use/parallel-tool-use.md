@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/parallel-tool-use
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: cf2d3856630b5a1529f47edb1b38b80d5b0015a17767d67d2084df49e498d280
+fetched_at: 2026-06-30T03:15:27.286427Z
+sha256: 6fb20c0a1425a5fb9665bd26c0d092f0601273c09400a551bc97f5e3a3507a7c
 ---
 
 # Parallel tool use
@@ -210,11 +210,11 @@ The following script sends a request that should trigger parallel tool calls, ve
 
     if (toolUses.length > 1) {
       console.log("✓ Parallel tool calls detected!");
-      toolUses.forEach((tool) => {
+      for (const tool of toolUses) {
         if (tool.type === "tool_use") {
           console.log(`  - ${tool.name}: ${JSON.stringify(tool.input)}`);
         }
-      });
+      }
     } else {
       console.log("✗ No parallel tool calls detected");
     }

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/vision
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 4f41f44ed8a835f1623ae10e0c8aea028b22bab9ac320dbe053b5d4652cf84e7
+fetched_at: 2026-06-30T03:15:27.286427Z
+sha256: eaacb2d3b0887035e0f0e2d185b92b711c067a6a04eff2aadde22c2b3c05d35d
 ---
 
 # Vision
@@ -644,7 +644,7 @@ For images you'll use repeatedly or when you want to avoid encoding overhead, us
 
   ```typescript TypeScript
   import Anthropic, { toFile } from "@anthropic-ai/sdk";
-  import fs from "fs";
+  import fs from "node:fs";
 
   const anthropic = new Anthropic();
 

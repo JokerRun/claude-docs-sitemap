@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/files
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: ba3bc88907dd055cc715f580770b3f3b5d7df33b9cc09ae27e726cc5239511d3
+fetched_at: 2026-06-30T03:15:27.286427Z
+sha256: abc5e3df37d2f8f43cefd92e2ecfb427b4ad2c49920c1af5246a907d1539f463
 ---
 
 # Files API
@@ -23,7 +23,7 @@ The Files API lets you upload and manage files to use with the Claude API withou
 
 Referencing a `file_id` in a Messages request is supported on all models that support the given file type. [Images](/docs/en/build-with-claude/vision) are supported on all current Claude models. For [PDFs](/docs/en/build-with-claude/pdf-support) and [other file types with the code execution tool](/docs/en/agents-and-tools/tool-use/code-execution-tool#model-compatibility), see the linked pages for model support.
 
-The Files API is available on the Claude API, [Claude Platform on AWS](/docs/en/build-with-claude/claude-platform-on-aws), and [Microsoft Foundry](/docs/en/build-with-claude/claude-in-microsoft-foundry). It is not currently available on Amazon Bedrock or Google Cloud.
+The Files API is available on the Claude API, [Claude Platform on AWS](/docs/en/build-with-claude/claude-platform-on-aws), and [Microsoft Foundry](/docs/en/build-with-claude/claude-in-microsoft-foundry). On Microsoft Foundry, the Files API requires a [Hosted on Anthropic deployment](/docs/en/build-with-claude/claude-in-microsoft-foundry#additional-features-not-supported-when-hosted-on-azure). It is not currently available on Amazon Bedrock or Google Cloud.
 
 ## How the Files API works
 
@@ -471,7 +471,7 @@ For file types that are not supported as `document` blocks (.csv, .txt, .md, .do
   ```
 
   ```typescript TypeScript
-  import fs from "fs/promises";
+  import fs from "node:fs/promises";
 
   const anthropic = new Anthropic();
 

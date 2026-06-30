@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/token-counting
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 0b442dd05e7e1b41ad78188f5ad64aeeff45738cd40c3ac9df8f671ac86d1afe
+fetched_at: 2026-06-30T03:15:27.286427Z
+sha256: 37d9f1cdf40704b461e932bb78b1df69aeb3dc49ed1b8194caf9f7de14a493c3
 ---
 
 # Token counting
@@ -1213,7 +1213,7 @@ All [active models](/docs/en/about-claude/models/overview) support token countin
   ```
 
   ```typescript TypeScript
-  import { readFile } from "fs/promises";
+  import { readFile } from "node:fs/promises";
 
   const client = new Anthropic();
 

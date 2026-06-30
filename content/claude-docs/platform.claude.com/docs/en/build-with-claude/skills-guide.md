@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/skills-guide
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: b5ccdde0bad13420b33f27053392d92324fc7a50e41f59822e7d1f2b84037669
+fetched_at: 2026-06-30T03:15:27.286427Z
+sha256: 2cfc94dcdec6510497482064113550e3c9e7a7bc5a247b1aba545116b6a7e4b6
 ---
 
 # Using Agent Skills with the API
@@ -2369,7 +2369,7 @@ Upload your custom Skill to make it available in your workspace. You can upload 
 
   ```typescript TypeScript
   import Anthropic, { toFile } from "@anthropic-ai/sdk";
-  import fs from "fs";
+  import fs from "node:fs";
 
   const client = new Anthropic();
 
@@ -3182,7 +3182,7 @@ Skills support versioning to manage updates safely:
   ```
 
   ```typescript TypeScript
-  import fs from "fs";
+  import fs from "node:fs";
 
   const client = new Anthropic();
 
@@ -3718,7 +3718,7 @@ Combine Excel and custom DCF analysis Skills:
   ```typescript TypeScript
   // Create custom DCF analysis Skill
   import Anthropic, { toFile } from "@anthropic-ai/sdk";
-  import fs from "fs";
+  import fs from "node:fs";
 
   const client = new Anthropic();
 

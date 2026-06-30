@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/llm-gateway-connect
-fetched_at: 2026-06-26T03:16:19.812719Z
-sha256: c91aadccb36716e7c597d2bd1220e6cd73e968d5874238c0a4f6e9634193d83b
+fetched_at: 2026-06-30T03:15:27.286427Z
+sha256: 7a03233fa4befccb178d5d7621bb4d0af9670419036480bb7f7d2b2ea5dd3195
 ---
 
 > ## Documentation Index
@@ -210,7 +210,7 @@ steps:
       anthropic_api_key: ${{ secrets.GATEWAY_API_KEY }}
 ```
 
-For a bearer-token gateway, pass the same secret as both the `anthropic_api_key` input and `ANTHROPIC_AUTH_TOKEN` in the workflow `env` block. The action requires `anthropic_api_key`, `CLAUDE_CODE_OAUTH_TOKEN`, or workload identity federation before it launches Claude Code, and it doesn't read `ANTHROPIC_AUTH_TOKEN`, so the input satisfies that launch check while the env variable puts the key in the `Authorization` header the gateway reads. The copy in `x-api-key` is ignored:
+For a bearer-token gateway, pass the same secret twice: as the `anthropic_api_key` input and as `ANTHROPIC_AUTH_TOKEN` in the workflow `env` block. The action requires `anthropic_api_key`, `CLAUDE_CODE_OAUTH_TOKEN`, or workload identity federation before it launches Claude Code, and it doesn't read `ANTHROPIC_AUTH_TOKEN`, so the input is there only to satisfy that launch check. The env variable is what puts the key in the `Authorization` header the gateway reads; the copy in `x-api-key` is ignored:
 
 ```yaml theme={null}
 env:
@@ -289,7 +289,7 @@ You can also set `ANTHROPIC_CUSTOM_HEADERS` in the `env` block of a settings fil
 ```json theme={null}
 {
   "env": {
-    "ANTHROPIC_CUSTOM_HEADERS": "X-Org-Route: prod\nX-Tenant: acme"
+    "ANTHROPIC_CUSTOM_HEADERS": "X-Org-Route: prod\nX-Tenant: example"
   }
 }
 ```
@@ -353,9 +353,9 @@ The helper's value is sent in both the `Authorization` and `x-api-key` headers, 
 
 ### Route to a cloud provider through a gateway
 
-These configurations point Claude Code at a gateway through a provider-specific base URL variable in place of `ANTHROPIC_BASE_URL`. Bedrock and Vertex gateways accept those providers' native request formats; Foundry and Claude Platform on AWS gateways accept the Anthropic Messages format and differ only in which base URL variable reaches them.
+These configurations point Claude Code at a gateway through a provider-specific base URL variable in place of `ANTHROPIC_BASE_URL`. Bedrock and Agent Platform gateways accept those providers' native request formats; Foundry and Claude Platform on AWS gateways accept the Anthropic Messages format and differ only in which base URL variable reaches them.
 
-Use one only if your gateway team specifically named Bedrock, Vertex, Foundry, or the Claude Platform on AWS. If the [verification request](#verify-the-connection) above returned JSON, you can skip this section.
+Use one only if your gateway team specifically named Bedrock, Agent Platform, Foundry, or the Claude Platform on AWS. If the [verification request](#verify-the-connection) above returned JSON, you can skip this section.
 
 Set the block for the provider your gateway team named. The skip-auth variables tell Claude Code not to sign requests with provider credentials, since the gateway holds those. If the gateway needs its own token, add `ANTHROPIC_AUTH_TOKEN` after the block, except for Foundry, which uses `ANTHROPIC_FOUNDRY_API_KEY` as shown.
 
@@ -379,7 +379,7 @@ Set the block for the provider your gateway team named. The skip-auth variables 
   </Tab>
 </Tabs>
 
-#### Google Vertex AI
+#### Google Cloud's Agent Platform
 
 <Tabs>
   <Tab title="Bash or Zsh">
