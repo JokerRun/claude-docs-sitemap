@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/messages/batches/list
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 4f9d979d89b1f30def01c7f6a1c293288861205b0dbe71d9cc13252abf449714
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: d8d1d216565de419409469743ba13a3bb0f4940fb87154d446a96a29c903854a
 ---
 
 ## List Message Batches
@@ -13,7 +13,7 @@ sha256: 4f9d979d89b1f30def01c7f6a1c293288861205b0dbe71d9cc13252abf449714
 
 List all Message Batches within a Workspace. Most recently created batches are returned first.
 
-Learn more about the Message Batches API in our [user guide](https://docs.claude.com/en/docs/build-with-claude/batch-processing)
+Learn more about the Message Batches API in our [user guide](https://platform.claude.com/docs/en/build-with-claude/batch-processing)
 
 ### Parameters
 

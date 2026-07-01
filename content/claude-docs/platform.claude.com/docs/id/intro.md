@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/intro
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 762487ddcffb93988ec923428b963e424656691c835f72d7a85cee6b8286b077
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: cbb0c24f755282d727165457cceb0c8d85329238359204e8875a144e751801e0
 ---
 
 # Pengenalan Claude
@@ -12,7 +12,7 @@ Claude adalah platform AI yang sangat berkinerja tinggi, tepercaya, dan cerdas y
 ---
 
 <Tip>
-  Generasi terbaru model Claude:
+  Generasi terbaru dari model Claude:
 
   **Claude Fable 5** - Model Anthropic paling mumpuni yang dirilis secara luas untuk penalaran paling menuntut dan pekerjaan agentik jangka panjang. Baca [pengumuman Claude Fable 5](https://www.anthropic.com/news/claude-fable-5-mythos-5).
 
@@ -20,9 +20,9 @@ Claude adalah platform AI yang sangat berkinerja tinggi, tepercaya, dan cerdas y
 
   **Claude Opus 4.8** - Model tingkat Opus paling mumpuni dari Anthropic untuk penalaran kompleks dan pengodean agentik. Baca [pengumuman Claude Opus 4.8](https://www.anthropic.com/news/claude-opus-4-8).
 
-  **Claude Sonnet 4.6** - Kecerdasan terdepan dalam skala besar, dibangun untuk pengodean, agen, dan alur kerja enterprise. Baca [pengumuman Claude Sonnet 4.6](https://www.anthropic.com/news/claude-sonnet-4-6).
+  **Claude Sonnet 5** - Kecerdasan terdepan dalam skala besar, dibangun untuk pengodean, agen, dan alur kerja enterprise. Baca [pengumuman Claude Sonnet 5](https://www.anthropic.com/news/claude-sonnet-5).
 
-  **Claude Haiku 4.5** - Model tercepat dengan kecerdasan mendekati terdepan. Baca [pengumuman Claude Haiku 4.5](https://www.anthropic.com/news/claude-haiku-4-5).
+  **Claude Haiku 4.5** - Model tercepat dengan kecerdasan mendekati level terdepan. Baca [pengumuman Claude Haiku 4.5](https://www.anthropic.com/news/claude-haiku-4-5).
 </Tip>
 
 <Note>

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/compliance-faq
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 09e7b7a7f78a407ca12675e96f194439aa3c99fee47059d6a2a1f0e8b81856ea
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 0168ac20da040c44d49db2aa369f735448b2d64b12a734352677f0f29c4efb58
 ---
 
 # Compliance API FAQ
@@ -32,7 +32,7 @@ Answers to common questions about Compliance API access, scopes, retention, and 
   </Accordion>
 
   <Accordion title="Why does my Admin API key return 403 on chat or file endpoints?">
-    Admin API keys carry a fixed `read:compliance_activities` scope, which authorizes the Activity Feed only. Every other Compliance API endpoint requires a scope that only a Compliance Access Key created in claude.ai can carry. Calling a content or directory endpoint with an Admin API key returns a 403 naming the scope that endpoint family requires: `read:compliance_user_data` for chats, files, projects, project attachments, users, and group members, `read:compliance_org_data` for organizations, roles, and groups, and `read:compliance_org_settings` for effective organization settings. For example, listing chats returns the following response.
+    Admin API keys carry a fixed `read:compliance_activities` scope, which authorizes the Activity Feed only. Every other Compliance API endpoint requires a scope that only a Compliance Access Key created in claude.ai can carry. Calling a content or directory endpoint with an Admin API key returns a 403 naming the scope that endpoint family requires: `read:compliance_user_data` for chats, files, projects, project attachments, users, and group members, and `read:compliance_org_data` for organizations, roles, groups, and effective organization settings. For example, listing chats returns the following response.
 
     ```json Response
     {
@@ -43,7 +43,7 @@ Answers to common questions about Compliance API access, scopes, retention, and 
     }
     ```
 
-    To access content endpoints, the primary owner of your parent organization must [create a Compliance Access Key](/docs/en/manage-claude/compliance-api-access#create-a-compliance-access-key) with `read:compliance_user_data` (and `delete:compliance_user_data` for deletes), `read:compliance_org_data` for organization, role, and group endpoints, or `read:compliance_org_settings` for the effective-settings endpoint. See [Handle Compliance API errors](/docs/en/manage-claude/compliance-errors#403-forbidden) for the full per-endpoint catalog.
+    To access content endpoints, the primary owner of your parent organization must [create a Compliance Access Key](/docs/en/manage-claude/compliance-api-access#create-a-compliance-access-key) with `read:compliance_user_data` (and `delete:compliance_user_data` for deletes), or `read:compliance_org_data` for organization, role, group, and effective-settings endpoints. See [Handle Compliance API errors](/docs/en/manage-claude/compliance-errors#403-forbidden) for the full per-endpoint catalog.
   </Accordion>
 </AccordionGroup>
 

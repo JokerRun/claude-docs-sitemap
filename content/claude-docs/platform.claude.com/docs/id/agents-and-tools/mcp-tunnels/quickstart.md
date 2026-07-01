@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/quickstart
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 4af12b2ce1889d2a0275c8f59fa06e540f0e653059feaf2ee803a99db39ad0dc
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: d201e16b3c251cd10d66efff2cd80b28aa2a15ba78fd8bf99b1e9603ed051a26
 ---
 
 # Quickstart MCP tunnels
@@ -15,20 +15,20 @@ Hubungkan Claude ke server MCP privat menggunakan deployment Docker Compose loka
   Tunnel MCP sedang dalam pratinjau riset. [Minta akses](https://claude.com/form/claude-managed-agents) untuk mencobanya.
 </Note>
 
-Quickstart ini memandu Anda dari nol hingga Claude memanggil server MCP privat melalui sebuah tunnel. Panduan ini menggunakan Docker Compose dengan penyediaan kredensial [manual](/docs/id/agents-and-tools/mcp-tunnels/concepts#credential-provisioning), yang merupakan jalur tersingkat untuk pengujian lokal. Untuk deployment produksi, lihat [Deploy dengan Helm](/docs/id/agents-and-tools/mcp-tunnels/deploy-helm) atau [Deploy dengan Docker Compose](/docs/id/agents-and-tools/mcp-tunnels/deploy-compose).
+Quickstart ini membawa Anda dari nol hingga Claude memanggil server MCP privat melalui sebuah tunnel. Panduan ini menggunakan Docker Compose dengan penyediaan kredensial [manual](/docs/id/agents-and-tools/mcp-tunnels/concepts#credential-provisioning), yang merupakan jalur terpendek untuk pengujian lokal. Untuk deployment produksi, lihat [Deploy dengan Helm](/docs/id/agents-and-tools/mcp-tunnels/deploy-helm) atau [Deploy dengan Docker Compose](/docs/id/agents-and-tools/mcp-tunnels/deploy-compose).
 
 ## Apa yang akan Anda bangun
 
-Sebuah [tunnel stack](/docs/id/agents-and-tools/mcp-tunnels/concepts#components) dua kontainer ([proxy](/docs/id/agents-and-tools/mcp-tunnels/concepts#components) dan [cloudflared](/docs/id/agents-and-tools/mcp-tunnels/concepts#components)) ditambah sebuah server MCP contoh yang berjalan berdampingan dengannya. Ketika semuanya berjalan, server contoh tersebut dapat dijangkau dari Claude di `https://echo.<your-tunnel-domain>/mcp` meskipun tidak ada yang mendengarkan pada port publik.
+Sebuah [tunnel stack](/docs/id/agents-and-tools/mcp-tunnels/concepts#components) dua kontainer (yaitu [proxy](/docs/id/agents-and-tools/mcp-tunnels/concepts#components) dan [cloudflared](/docs/id/agents-and-tools/mcp-tunnels/concepts#components)) ditambah sebuah server MCP sampel yang berjalan berdampingan dengannya. Ketika semuanya berjalan, server sampel dapat dijangkau dari Claude di `https://echo.<your-tunnel-domain>/mcp` meskipun tidak ada yang mendengarkan pada port publik.
 
 ## Apa yang Anda butuhkan
 
 * [Docker dan Docker Compose](https://docs.docker.com/get-docker/) pada mesin dengan akses internet keluar.
-* Peran di [Claude Console](https://platform.claude.com) yang dapat mengelola MCP tunnels. Lihat [prasyarat panduan Console](/docs/id/agents-and-tools/mcp-tunnels/console#prerequisites).
-* [OpenSSL](https://openssl-library.org/source/) 1.1.1 atau lebih baru. Sudah terpasang di macOS dan sebagian besar distribusi Linux; di Windows, instal secara terpisah (binary `openssl` harus ada di `PATH` Anda).
+* Sebuah peran di [Claude Console](https://platform.claude.com) yang dapat mengelola MCP tunnels. Lihat [prasyarat panduan Console](/docs/id/agents-and-tools/mcp-tunnels/console#prerequisites).
+* [OpenSSL](https://openssl-library.org/source/) 1.1.1 atau lebih baru. Sudah terpasang secara bawaan di macOS dan sebagian besar distribusi Linux; di Windows, instal secara terpisah (binary `openssl` harus ada di `PATH` Anda).
 
 <Steps>
-  <Step title="Buat tunnel">
+  <Step title="Buat sebuah tunnel">
     Di sidebar Claude Console, buka **Manage > MCP tunnels** dan klik **New tunnel**. Beri nama. Biarkan **Set up programmatic access** nonaktif; quickstart ini menggunakan penyediaan kredensial manual.
 
     Setelah dibuat, buka tunnel tersebut. Salin dua nilai dari bagian **Connection**:
@@ -117,7 +117,7 @@ Sebuah [tunnel stack](/docs/id/agents-and-tools/mcp-tunnels/concepts#components)
     Kembali ke Console, pada halaman detail tunnel, klik **Add certificate** dan unggah `data/ca.crt` (atau tempel isinya). Status tunnel berubah menjadi **Active**.
   </Step>
 
-  <Step title="Tulis server MCP contoh">
+  <Step title="Tulis server MCP sampel">
     <Tabs>
       <Tab title="macOS / Linux">
         ```bash
@@ -178,7 +178,7 @@ Sebuah [tunnel stack](/docs/id/agents-and-tools/mcp-tunnels/concepts#components)
         cat > docker-compose.yaml <<'EOF'
         services:
           mcp-proxy:
-            image: us-docker.pkg.dev/anthropic-public-registry/images/mcp-proxy@sha256:6b9adedbf2763143ec72f106ecaf0ce7fd3294e89b208f54a1db97a33d14c5ba
+            image: us-docker.pkg.dev/anthropic-public-registry/images/mcp-proxy@sha256:dab8c3f6ac44c15d91b1580af23a7da6e579865d5852e9ad31e35b6940daf436
             volumes:
               - ./config/mcp-proxy.yaml:/etc/mcp-gateway/config.yaml:ro
               - ./data:/data:ro
@@ -218,7 +218,7 @@ Sebuah [tunnel stack](/docs/id/agents-and-tools/mcp-tunnels/concepts#components)
         @'
         services:
           mcp-proxy:
-            image: us-docker.pkg.dev/anthropic-public-registry/images/mcp-proxy@sha256:6b9adedbf2763143ec72f106ecaf0ce7fd3294e89b208f54a1db97a33d14c5ba
+            image: us-docker.pkg.dev/anthropic-public-registry/images/mcp-proxy@sha256:dab8c3f6ac44c15d91b1580af23a7da6e579865d5852e9ad31e35b6940daf436
             volumes:
               - ./config/mcp-proxy.yaml:/etc/mcp-gateway/config.yaml:ro
               - ./data:/data:ro
@@ -268,7 +268,7 @@ Sebuah [tunnel stack](/docs/id/agents-and-tools/mcp-tunnels/concepts#components)
   </Step>
 
   <Step title="Panggil dari Claude">
-    Di Console, buka **Managed Agents > Sessions** dan buat sebuah session. Di pemilih agent pilih **Create new agent**, beri nama agent tersebut, dan pertahankan model yang sudah terisi. Klik **+ MCP Server**, pilih tunnel Anda, atur **Subdomain** ke `echo` dan **Path** ke `mcp`. Kemudian minta:
+    Di Console, buka **Managed Agents > Sessions** dan buat sebuah sesi. Di pemilih agen, pilih **Create new agent**, beri nama agen, dan pertahankan model yang sudah terisi sebelumnya. Klik **+ MCP Server**, pilih tunnel Anda, atur **Subdomain** ke `echo` dan **Path** ke `mcp`. Lalu tanyakan:
 
     > Use the hello tool to greet tunnel.
 
@@ -278,13 +278,13 @@ Sebuah [tunnel stack](/docs/id/agents-and-tools/mcp-tunnels/concepts#components)
 
 ## Langkah selanjutnya
 
-Tunnel telah diverifikasi secara end-to-end. Untuk mengganti dengan server MCP Anda sendiri, tambahkan ke `docker-compose.yaml` (atau jalankan di jaringan Docker yang sama), tambahkan route untuknya di `config/mcp-proxy.yaml`, lalu restart proxy (`docker compose restart mcp-proxy`).
+Tunnel telah diverifikasi secara end-to-end. Untuk menggantinya dengan server MCP Anda sendiri, tambahkan ke `docker-compose.yaml` (atau jalankan di jaringan Docker yang sama), tambahkan rute untuknya di `config/mcp-proxy.yaml`, lalu mulai ulang proxy (`docker compose restart mcp-proxy`).
 
 Untuk deployment produksi:
 
 <CardGroup cols={2}>
   <Card title="Deploy dengan Docker Compose" icon="cube" href="/docs/id/agents-and-tools/mcp-tunnels/deploy-compose">
-    Deployment single-host yang diperkuat, dengan atau tanpa akses programatik.
+    Deployment single-host yang diperkuat, dengan atau tanpa akses terprogram.
   </Card>
 
   <Card title="Deploy dengan Helm" icon="stack" href="/docs/id/agents-and-tools/mcp-tunnels/deploy-helm">

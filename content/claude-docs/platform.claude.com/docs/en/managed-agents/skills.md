@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/skills
-fetched_at: 2026-06-30T03:15:27.286427Z
-sha256: 04bf5292e3043d523fb980ee2ef7529012594e24d155917bc8931821e65de7fe
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: c7ca829a1908ebc27a8a6a03cdde0c211ce60b64e6cc433b6d7b6bac6743791c
 ---
 
 # Skills
@@ -200,7 +200,7 @@ To list, retrieve, delete, and version custom skills, see [Managing custom skill
 
 ## Attach skills to an agent
 
-Attach skills when creating an agent. Each [session](/docs/en/managed-agents/sessions) supports up to 20 skills total, counted across every agent in the session (see [Multiagent sessions](/docs/en/managed-agents/multi-agent)).
+Attach skills when creating an agent. Each [session](/docs/en/managed-agents/sessions) supports up to 20 skills total, counted across every agent in the session (see [Multi-agent sessions](/docs/en/managed-agents/multi-agent)).
 
 Each entry in the `skills` array uses the following fields:
 

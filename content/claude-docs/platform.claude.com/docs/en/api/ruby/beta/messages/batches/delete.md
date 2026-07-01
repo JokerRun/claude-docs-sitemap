@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/messages/batches/delete
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 97f86c931cb894926bf9b28f96f821d2a746da5b7fc7d3e95702acb7a5a6bdff
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 95ab709cc8df6330fad9106ff7f4e5a19ea0e5ee373f389e102bbe95f5e0bd34
 ---
 
 ## Delete a Message Batch
@@ -15,7 +15,7 @@ Delete a Message Batch.
 
 Message Batches can only be deleted once they've finished processing. If you'd like to delete an in-progress batch, you must first cancel it.
 
-Learn more about the Message Batches API in our [user guide](https://docs.claude.com/en/docs/build-with-claude/batch-processing)
+Learn more about the Message Batches API in our [user guide](https://platform.claude.com/docs/en/build-with-claude/batch-processing)
 
 ### Parameters
 

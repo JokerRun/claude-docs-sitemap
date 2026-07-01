@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/data-residency
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 35dc49c4b1563c0d79d694948af9973de53d32218c277009afc0ac79d3c6b196
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 9ad590dc72c3ba64d7e8200a400c57a81dc7593c9c0297c8765410ae99b91c5b
 ---
 
 # Residensi data
@@ -21,17 +21,17 @@ Kontrol residensi data memungkinkan Anda mengelola di mana data Anda diproses da
 * **Workspace geo:** Mengontrol di mana data disimpan saat tidak aktif (at rest) dan di mana pemrosesan endpoint (seperti transcoding gambar dan eksekusi kode) terjadi. Dikonfigurasi pada tingkat workspace di [Claude Console](https://platform.claude.com).
 
 <Note>
-  [Claude Managed Agents](/docs/id/managed-agents/overview) tidak mendukung parameter `inference_geo`, tetapi mematuhi Workspace geo yang dikonfigurasi di Console. Dengan [self-hosted sandboxes](/docs/id/managed-agents/self-hosted-sandboxes), eksekusi alat dan filesystem sandbox tetap berada di infrastruktur yang Anda kontrol.
+  [Claude Managed Agents](/docs/id/managed-agents/overview) tidak mendukung parameter `inference_geo`, tetapi mengikuti Workspace geo yang dikonfigurasi di Console. Dengan [self-hosted sandboxes](/docs/id/managed-agents/self-hosted-sandboxes), eksekusi alat dan filesystem sandbox tetap berada di infrastruktur yang Anda kontrol.
 </Note>
 
 ## Inference geo
 
 Parameter `inference_geo` mengontrol di mana inferensi model dijalankan untuk permintaan API tertentu. Tambahkan parameter ini ke panggilan `POST /v1/messages` mana pun.
 
-| Nilai      | Deskripsi                                                                                                       |
-| ---------- | --------------------------------------------------------------------------------------------------------------- |
-| `"global"` | Default. Inferensi dapat dijalankan di geografi mana pun yang tersedia untuk performa dan ketersediaan optimal. |
-| `"us"`     | Inferensi hanya dijalankan di infrastruktur berbasis AS.                                                        |
+| Nilai      | Deskripsi                                                                                                                |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `"global"` | Default. Inferensi dapat dijalankan di wilayah geografis mana pun yang tersedia untuk performa dan ketersediaan optimal. |
+| `"us"`     | Inferensi hanya dijalankan di infrastruktur yang berbasis di AS.                                                         |
 
 ### Penggunaan API
 
@@ -121,7 +121,7 @@ Objek `usage` dalam respons menyertakan field `inference_geo` yang menunjukkan d
 Parameter `inference_geo` didukung pada Claude Opus 4.6, Claude Sonnet 4.6, dan model yang lebih baru. Permintaan dengan `inference_geo` pada Claude Opus 4.5, Claude Sonnet 4.5, Claude Haiku 4.5, atau model yang lebih lama akan mengembalikan error 400.
 
 <Note>
-  Parameter `inference_geo` tersedia di Claude API (first-party) dan [Claude Platform on AWS](/docs/id/build-with-claude/claude-platform-on-aws). Di Amazon Bedrock, Vertex AI, dan Microsoft Foundry, region inferensi ditentukan oleh URL endpoint atau profil inferensi, sehingga `inference_geo` tidak berlaku. Parameter `inference_geo` juga tidak tersedia melalui [endpoint kompatibilitas OpenAI SDK](/docs/id/cli-sdks-libraries/libraries/openai-sdk).
+  Parameter `inference_geo` tersedia di Claude API (first-party) dan [Claude Platform on AWS](/docs/id/build-with-claude/claude-platform-on-aws). Di Amazon Bedrock dan Google Cloud, wilayah inferensi ditentukan oleh URL endpoint atau profil inferensi, sehingga `inference_geo` tidak berlaku. Di [Claude in Microsoft Foundry](/docs/id/build-with-claude/claude-in-microsoft-foundry), `inference_geo` juga tidak berlaku: deployment yang di-host di Azure dapat menggunakan tipe deployment US Data Zone Standard, yang menjaga inferensi tetap berada di Amerika Serikat. Parameter `inference_geo` juga tidak tersedia melalui [endpoint kompatibilitas OpenAI SDK](/docs/id/cli-sdks-libraries/libraries/openai-sdk).
 </Note>
 
 ### Pembatasan tingkat workspace
@@ -155,10 +155,10 @@ Harga residensi data bervariasi berdasarkan generasi model:
 * **Routing global** (`inference_geo: "global"`): Harga standar berlaku.
 * **Model lama:** Tidak mendukung `inference_geo` (lihat [Ketersediaan model](#model-availability)); harga standar berlaku. Permintaan yang menyertakan parameter ini akan mengembalikan error 400.
 
-Harga ini berlaku untuk Claude API (first-party) dan Claude Platform on AWS. Platform yang dioperasikan mitra (Bedrock dan Vertex AI) memiliki harga regional mereka sendiri. Lihat [Harga residensi data](/docs/id/about-claude/pricing#data-residency-pricing) untuk detailnya.
+Harga ini berlaku untuk Claude API (first-party) dan Claude Platform on AWS. Di Claude in Microsoft Foundry, pengali 1,1x yang sama berlaku untuk deployment yang di-host di Azure yang menggunakan tipe deployment US Data Zone Standard. Platform yang dioperasikan mitra (Bedrock dan Google Cloud) memiliki harga regional mereka sendiri. Lihat [Harga residensi data](/docs/id/about-claude/pricing#data-residency-pricing) untuk detailnya.
 
 <Note>
-  Jika Anda menggunakan [Priority Tier](/docs/id/api/service-tiers), pengali 1,1x untuk inferensi khusus AS juga memengaruhi bagaimana token dihitung terhadap kapasitas Priority Tier Anda. Setiap token yang dikonsumsi dengan `inference_geo: "us"` mengurangi 1,1 token dari TPM yang telah Anda komitmenkan, konsisten dengan bagaimana pengali harga lainnya (seperti caching prompt) memengaruhi tingkat burndown.
+  Jika Anda memiliki komitmen [Priority Tier](/docs/id/api/service-tiers), pengali 1,1x untuk inferensi khusus AS juga memengaruhi cara token dihitung terhadap kapasitas Priority Tier Anda. Setiap token yang dikonsumsi dengan `inference_geo: "us"` mengurangi 1,1 token dari TPM yang telah Anda komitmenkan, konsisten dengan cara pengali harga lainnya (seperti caching prompt) memengaruhi tingkat burndown.
 </Note>
 
 ## Dukungan Batch API
@@ -194,11 +194,11 @@ Jika persyaratan residensi data Anda telah berubah dan Anda ingin memanfaatkan r
 
 Model lama tidak terpengaruh oleh migrasi ini. Untuk harga terkini pada model yang lebih baru, lihat [Harga](#pricing).
 
-## Batasan saat ini
+## Keterbatasan saat ini
 
 * **Batas laju bersama:** Batas laju dibagi di semua geo.
 * **Inference geo:** Hanya `"us"` dan `"global"` yang tersedia.
-* **Workspace geo:** Hanya `"us"` yang saat ini tersedia. Workspace geo tidak dapat diubah setelah pembuatan workspace.
+* **Workspace geo:** Hanya `"us"` yang saat ini tersedia. Workspace geo tidak dapat diubah setelah workspace dibuat.
 
 ## Langkah selanjutnya
 

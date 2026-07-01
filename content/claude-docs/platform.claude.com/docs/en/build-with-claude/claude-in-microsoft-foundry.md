@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry
-fetched_at: 2026-06-30T03:15:27.286427Z
-sha256: 257acba47bfb6f3666635598cf848b823732b87546f701e1357173c91b0fe0c6
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: c96a3d216a24e7eca8ee393f1d946108f9e402c5a05e0661853cdde135b7223f
 ---
 
 # Claude in Microsoft Foundry
@@ -510,7 +510,7 @@ Claude in Microsoft Foundry supports most of Claude's powerful features. You can
 
 ### Context window
 
-Claude Fable 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, and Claude Sonnet 4.6 have a [1M-token context window](/docs/en/build-with-claude/context-windows) on Microsoft Foundry. Other Claude models, including Claude Sonnet 4.5, have a 200k-token context window.
+Claude Fable 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5, and Claude Sonnet 4.6 have a [1M-token context window](/docs/en/build-with-claude/context-windows) on Microsoft Foundry. Other Claude models, including Claude Sonnet 4.5, have a 200k-token context window.
 
 ### Claude features not supported for Claude in Microsoft Foundry
 
@@ -555,6 +555,7 @@ The following Claude models are available through Foundry:
 | Claude Opus 4.6                                      | claude-opus-4-6         |                 | ✓                   |
 | Claude Opus 4.5                                      | claude-opus-4-5         |                 | ✓                   |
 | Claude Opus 4.1 Deprecated. Retiring August 5, 2026. | claude-opus-4-1         |                 | ✓                   |
+| Claude Sonnet 5 (preview)                            | `claude-sonnet-5`       |                 | ✓                   |
 | Claude Sonnet 4.6                                    | claude-sonnet-4-6       |                 | ✓                   |
 | Claude Sonnet 4.5                                    | claude-sonnet-4-5       |                 | ✓                   |
 | Claude Haiku 4.5                                     | claude-haiku-4-5        | ✓               | ✓                   |

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/messages/batches/list
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: d4bdf606f57f2c943ffef760d0672e3cda4d08499d4851d5c7438341924fbd8b
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: d298c097527fc5643c6cc6e16da2eb5d183ba4550ad095d2a8985114f7017726
 ---
 
 ## List Message Batches
@@ -13,7 +13,7 @@ sha256: d4bdf606f57f2c943ffef760d0672e3cda4d08499d4851d5c7438341924fbd8b
 
 List all Message Batches within a Workspace. Most recently created batches are returned first.
 
-Learn more about the Message Batches API in our [user guide](https://docs.claude.com/en/docs/build-with-claude/batch-processing)
+Learn more about the Message Batches API in our [user guide](https://platform.claude.com/docs/en/build-with-claude/batch-processing)
 
 ### Parameters
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/reference
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: eac0abf24b1937799c88e3c8977a88186681716b61844eeb73ce73f5c3bcbd45
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: c16cab7db3e362a3216780414b6f15a35066a1309551da8016f6afa5b575f789
 ---
 
 # Referensi
@@ -19,7 +19,7 @@ Halaman ini mengumpulkan materi referensi untuk Claude Managed Agents. Untuk pan
 
 ## Jenis event
 
-String jenis event mengikuti konvensi penamaan `{domain}.{action}`. Lihat [Stream event sesi](/docs/id/managed-agents/events-and-streaming) untuk mengirim, melakukan streaming, dan mencantumkan event.
+String jenis event mengikuti konvensi penamaan `{domain}.{action}`. Lihat [Stream event sesi](/docs/id/managed-agents/events-and-streaming) untuk mengirim, melakukan streaming, dan membuat daftar event.
 
 <Tabs>
   <Tab title="Event pengguna">
@@ -29,7 +29,7 @@ String jenis event mengikuti konvensi penamaan `{domain}.{action}`. Lihat [Strea
     | `user.interrupt`          | Menghentikan agen di tengah eksekusi.                                                                                                                                                                                           |
     | `user.custom_tool_result` | Respons terhadap panggilan alat kustom dari agen.                                                                                                                                                                               |
     | `user.tool_confirmation`  | Menyetujui atau menolak panggilan alat agen atau MCP ketika kebijakan izin memerlukan konfirmasi.                                                                                                                               |
-    | `user.define_outcome`     | Mendefinisikan [outcome](/docs/id/managed-agents/define-outcomes) yang menjadi target kerja agen.                                                                                                                               |
+    | `user.define_outcome`     | Mendefinisikan [outcome](/docs/id/managed-agents/define-outcomes) yang menjadi tujuan kerja agen.                                                                                                                               |
     | `user.tool_result`        | Hanya untuk sesi dengan [environment](/docs/id/managed-agents/self-hosted-sandboxes) `self_hosted`, integrasi Anda bertanggung jawab untuk menyediakan hasil `agent_toolset`. Helper SDK dan CLI melakukan ini secara otomatis. |
   </Tab>
 
@@ -58,11 +58,11 @@ String jenis event mengikuti konvensi penamaan `{domain}.{action}`. Lihat [Strea
     | `session.deleted`                   | Sesi telah dihapus. Mengakhiri stream event aktif apa pun; tidak ada event lebih lanjut yang dikeluarkan untuk sesi ini.                      |
     | `session.updated`                   | Permintaan pembaruan sesi mengubah setidaknya satu field. Hanya menyertakan field yang berubah. Pembaruan diterapkan pada giliran berikutnya. |
     | `session.error`                     | Terjadi error selama pemrosesan. Menyertakan objek `error` bertipe dengan `retry_status`.                                                     |
-    | `session.thread_created`            | Thread [multiagent](/docs/id/managed-agents/multi-agent) telah dibuat.                                                                        |
-    | `session.thread_status_running`     | Thread [multiagent](/docs/id/managed-agents/multi-agent) memulai aktivitas.                                                                   |
-    | `session.thread_status_idle`        | Thread [multiagent](/docs/id/managed-agents/multi-agent) menyelesaikan gilirannya dan menunggu input. Menyertakan `stop_reason`.              |
-    | `session.thread_status_rescheduled` | Thread [multiagent](/docs/id/managed-agents/multi-agent) mengalami error sementara dan mencoba ulang secara otomatis.                         |
-    | `session.thread_status_terminated`  | Thread [multiagent](/docs/id/managed-agents/multi-agent) diarsipkan atau mencapai error terminal.                                             |
+    | `session.thread_created`            | Sebuah thread [multiagent](/docs/id/managed-agents/multi-agent) telah dibuat.                                                                 |
+    | `session.thread_status_running`     | Sebuah thread [multiagent](/docs/id/managed-agents/multi-agent) memulai aktivitas.                                                            |
+    | `session.thread_status_idle`        | Sebuah thread [multiagent](/docs/id/managed-agents/multi-agent) menyelesaikan gilirannya dan menunggu input. Menyertakan `stop_reason`.       |
+    | `session.thread_status_rescheduled` | Sebuah thread [multiagent](/docs/id/managed-agents/multi-agent) mengalami error sementara dan mencoba ulang secara otomatis.                  |
+    | `session.thread_status_terminated`  | Sebuah thread [multiagent](/docs/id/managed-agents/multi-agent) diarsipkan atau mencapai error terminal.                                      |
   </Tab>
 
   <Tab title="Event span">
@@ -93,7 +93,7 @@ Berikut adalah flag CLI `ant beta:worker` untuk worker bawaan yang menjalankan e
 | `--environment-id`     | Environment yang akan di-poll untuk pekerjaan. Juga membaca dari `ANTHROPIC_ENVIRONMENT_ID`.                                                                         |
 | `--environment-key`    | Mengautentikasi worker dengan environment ini. Juga membaca dari `ANTHROPIC_ENVIRONMENT_KEY`.                                                                        |
 | `--workdir`            | Direktori tempat skill diunduh dan alat membaca serta menulis file. Default-nya adalah `.` (direktori saat ini); direktori kerja default sistem adalah `/workspace`. |
-| `--on-work`            | Skrip yang dipanggil untuk setiap item pekerjaan yang diklaim alih-alih menjalankan alat dalam proses. Menerima detail sesi sebagai variabel environment.            |
+| `--on-work`            | Skrip yang dipanggil untuk setiap item pekerjaan yang diklaim alih-alih menjalankan alat secara in-process. Menerima detail sesi sebagai variabel environment.       |
 | `--unrestricted-paths` | Mengizinkan panggilan alat untuk mengakses path di luar `--workdir`.                                                                                                 |
 | `--max-idle`           | Berapa lama menunggu setelah sesi menjadi idle dengan [stop reason](/docs/id/api/handling-stop-reasons) `end_turn` sebelum dimatikan. Default-nya adalah `60s`.      |
 | `--log-format`         | Format output log. Gunakan `json` untuk ingesti log terstruktur. Default-nya adalah `text`.                                                                          |
@@ -108,12 +108,12 @@ Untuk informasi lebih lanjut tentang MCP dan membangun server MCP, lihat [dokume
 
 Endpoint Managed Agents memiliki batas laju per organisasi:
 
-| Operasi                                                  | Batas                    |
-| -------------------------------------------------------- | ------------------------ |
-| Endpoint pembuatan (seperti agen, sesi, dan environment) | 300 permintaan per menit |
-| Endpoint pembacaan (seperti retrieve, list, dan stream)  | 600 permintaan per menit |
+| Operasi                                                  | Batas                      |
+| -------------------------------------------------------- | -------------------------- |
+| Endpoint pembuatan (seperti agen, sesi, dan environment) | 300 permintaan per menit   |
+| Endpoint pembacaan (seperti retrieve, list, dan stream)  | 1.200 permintaan per menit |
 
-[Batas pengeluaran dan batas laju berbasis tier](/docs/id/api/rate-limits) tingkat organisasi juga berlaku.
+[Batas pengeluaran dan batas laju tingkat penggunaan](/docs/id/api/rate-limits) tingkat organisasi juga berlaku.
 
 ## Pedoman branding
 
@@ -122,8 +122,8 @@ Untuk mitra yang mengintegrasikan Claude Managed Agents, penggunaan branding Cla
 **Diizinkan:**
 
 * "Claude Agent" (lebih disukai untuk menu dropdown)
-* "Claude" (ketika berada dalam menu yang sudah diberi label "Agents")
-* "\{YourAgentName} Powered by Claude" (jika Anda sudah memiliki nama agen)
+* "Claude" (ketika berada dalam menu yang sudah berlabel "Agents")
+* "\{YourAgentName} Powered by Claude" (jika Anda memiliki nama agen yang sudah ada)
 
 **Tidak diizinkan:**
 

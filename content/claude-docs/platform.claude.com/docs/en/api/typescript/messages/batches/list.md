@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/messages/batches/list
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 18fc8936bb4f485c2f05959108fa9d34f958db5def36fbab7274abb4e36d3451
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 707162ae4c3730740bb57572174b77837b4e76b4cdc1e24006bb2131c2464def
 ---
 
 ## List Message Batches
@@ -13,7 +13,7 @@ sha256: 18fc8936bb4f485c2f05959108fa9d34f958db5def36fbab7274abb4e36d3451
 
 List all Message Batches within a Workspace. Most recently created batches are returned first.
 
-Learn more about the Message Batches API in our [user guide](https://docs.claude.com/en/docs/build-with-claude/batch-processing)
+Learn more about the Message Batches API in our [user guide](https://platform.claude.com/docs/en/build-with-claude/batch-processing)
 
 ### Parameters
 

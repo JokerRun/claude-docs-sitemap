@@ -1,13 +1,15 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/mcp_tunnels/archive
-fetched_at: 2026-06-12T03:17:40.104094Z
-sha256: 432cd2679dac0e74bf21b3794585b54aa9e0675c45c6a86b60fafb8ccd7158eb
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: d70306b1d44a75ecaaa0928688a4ffbe63e7e778823b046e250fb9c6cf622d10
 ---
 
 ## Archive Tunnel
 
 **post** `/v1/organizations/tunnels/{tunnel_id}/archive`
+
+**Deprecated.** This Admin API endpoint is superseded by `/v1/tunnels` on the Claude API and will be removed after a migration window. New integrations should use [`/v1/tunnels`](/docs/en/api/beta/tunnels) with the `anthropic-beta: mcp-tunnels-2026-06-22` header and a WIF token carrying the `workspace:manage_tunnels` scope. Existing integrations continue to work with the `mcp-tunnels-2026-05-19` header and `org:manage_tunnels` scope during the migration window.
 
 Archive a tunnel. Archival is irreversible.
 

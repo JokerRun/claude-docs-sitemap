@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/concepts
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: e4373699b88edd4cf391e219d5e1bb2df9ed4c1617256448dea7c362f5f13d55
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 6ef71d83fda2535f439bdadc15d59fa60e0eea40b147734a233072cd4339efe5
 ---
 
 # Architecture and components
@@ -33,10 +33,10 @@ This page defines the terms used throughout the [MCP tunnels](/docs/en/agents-an
 
 The tunnel stack needs two credentials at runtime: the **tunnel token**, which authenticates cloudflared's outbound connection, and a **server certificate** signed by a CA registered on the tunnel, which the proxy presents during the inner TLS handshake. There are two ways to supply them, presented throughout this guide as a pair of tabs.
 
-| Mode                    | How credentials reach the stack                                                                                                                                                                                                                                                                                                                          | Helm chart name                                   | Tab label                       |
-| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- | ------------------------------- |
-| **Programmatic access** | The setup component authenticates to the Tunnels API through [Workload Identity Federation](/docs/en/manage-claude/workload-identity-federation), fetches the tunnel token, generates a CA and server certificate locally, and registers the CA. No long-lived secret is copied by hand. Requires a federation rule with the `org:manage_tunnels` scope. | Managed mode (`setup.enabled: true`, the default) | **With programmatic access**    |
-| **Manual**              | You copy the tunnel token from the Claude Console, generate a CA and server certificate yourself (for example with `openssl`), register the CA in the Console, and supply the token and certificate to the stack as secrets. No setup component runs.                                                                                                    | External mode (`setup.enabled: false`)            | **Without programmatic access** |
+| Mode                    | How credentials reach the stack                                                                                                                                                                                                                                                                                                                                | Helm chart name                                   | Tab label                       |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- | ------------------------------- |
+| **Programmatic access** | The setup component authenticates to the Tunnels API through [Workload Identity Federation](/docs/en/manage-claude/workload-identity-federation), fetches the tunnel token, generates a CA and server certificate locally, and registers the CA. No long-lived secret is copied by hand. Requires a federation rule with the `workspace:manage_tunnels` scope. | Managed mode (`setup.enabled: true`, the default) | **With programmatic access**    |
+| **Manual**              | You copy the tunnel token from the Claude Console, generate a CA and server certificate yourself (for example with `openssl`), register the CA in the Console, and supply the token and certificate to the stack as secrets. No setup component runs.                                                                                                          | External mode (`setup.enabled: false`)            | **Without programmatic access** |
 
 These modes are also referred to as **the programmatic flow** and **the manual flow** in the deploy guides.
 

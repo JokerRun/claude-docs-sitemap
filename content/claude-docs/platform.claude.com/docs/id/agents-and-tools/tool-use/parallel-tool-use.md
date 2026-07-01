@@ -1,30 +1,25 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/parallel-tool-use
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: b8f13eedcff163e3c24116870c4cc82e3684198467f15c694af533cfdc3dd64e
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 3359b7b660aff54fdd9b090f6dfcf487f61c9972803cdcf9e4fe6fe83b50ae9a
 ---
 
 # Penggunaan alat paralel
 
-Aktifkan dan format panggilan alat paralel, dengan panduan riwayat pesan dan pemecahan masalah.
+Aktifkan, format, dan nonaktifkan panggilan alat paralel, dengan panduan riwayat pesan dan pemecahan masalah.
 
 ---
 
-Halaman ini membahas panggilan alat paralel: ketika Claude memanggil beberapa alat dalam satu giliran, cara memformat riwayat pesan agar paralelisme tetap berfungsi, dan cara menonaktifkannya. Untuk alur panggilan tunggal, lihat [Menangani panggilan alat](/docs/id/agents-and-tools/tool-use/handle-tool-calls).
-
-Secara default, Claude dapat menggunakan beberapa alat untuk menjawab kueri pengguna. Anda dapat menonaktifkan perilaku ini dengan:
-
-* Mengatur `disable_parallel_tool_use=true` ketika tipe `tool_choice` adalah `auto`, yang memastikan bahwa Claude menggunakan **paling banyak satu** alat
-* Mengatur `disable_parallel_tool_use=true` ketika tipe `tool_choice` adalah `any` atau `tool`, yang memastikan bahwa Claude menggunakan **tepat satu** alat
+Secara default, Claude dapat memanggil beberapa alat dalam satu respons. Halaman ini membahas cara menjalankan panggilan tersebut, cara memformat riwayat pesan agar paralelisme tetap berfungsi, dan cara menonaktifkan penggunaan alat paralel saat Anda membutuhkannya. Untuk alur panggilan tunggal, lihat [Menangani panggilan alat](/docs/id/agents-and-tools/tool-use/handle-tool-calls).
 
 ## Semantik eksekusi
 
-Ketika Claude mengembalikan beberapa blok `tool_use` dalam satu giliran asisten, cara Anda menjalankannya adalah keputusan Anda. API tidak menentukan urutan eksekusi: Anda dapat menjalankan panggilan secara bersamaan (`Promise.all`, `asyncio.gather`), secara berurutan sesuai urutan kemunculannya, atau dalam kombinasi apa pun yang sesuai dengan alat Anda.
+Ketika Claude memanggil alat, respons memiliki `stop_reason` berupa `tool_use` dan dapat berisi beberapa blok `tool_use` dalam satu giliran asisten. Cara Anda menjalankan panggilan tersebut adalah keputusan Anda. API tidak menentukan urutan eksekusi: Anda dapat menjalankan panggilan secara bersamaan (`Promise.all`, `asyncio.gather`), secara berurutan sesuai urutan kemunculannya, atau dalam kombinasi apa pun yang sesuai dengan alat Anda.
 
-Pilih strategi berdasarkan apa yang dilakukan alat Anda. Operasi yang independen dan hanya-baca biasanya aman untuk dijalankan secara paralel demi "latency" (latensi) yang lebih rendah. Alat dengan efek samping, state bersama, atau persyaratan urutan mungkin lebih baik dijalankan secara berurutan.
+Pilih strategi berdasarkan apa yang dilakukan alat Anda. Operasi independen yang bersifat read-only biasanya aman dijalankan secara paralel untuk "latency" (latensi) yang lebih rendah. Alat dengan efek samping, state bersama, atau persyaratan urutan mungkin lebih baik dijalankan secara berurutan.
 
-Strategi apa pun yang Anda gunakan, kembalikan satu `tool_result` untuk setiap blok `tool_use`, semuanya bersama-sama dalam pesan pengguna berikutnya. Jika Anda memilih untuk tidak menjalankan panggilan tertentu (misalnya, karena Anda menjalankan batch secara berurutan dan panggilan sebelumnya gagal), tetap kembalikan `tool_result` untuknya dengan `is_error: true` dan penjelasan singkat.
+Strategi apa pun yang Anda gunakan, kembalikan satu `tool_result` untuk setiap blok `tool_use`, semuanya bersama-sama dalam pesan pengguna berikutnya. Cocokkan setiap hasil dengan panggilannya menggunakan `tool_use_id`, dan letakkan setiap blok `tool_result` sebelum konten teks apa pun dalam pesan tersebut. Lihat [Menangani panggilan alat](/docs/id/agents-and-tools/tool-use/handle-tool-calls) untuk aturan pemformatan lengkap. Jika Anda memilih untuk tidak menjalankan panggilan tertentu (misalnya, karena Anda menjalankan batch secara berurutan dan panggilan sebelumnya gagal), tetap kembalikan `tool_result` untuknya dengan `is_error: true` dan penjelasan singkat.
 
 ```json
 {
@@ -35,16 +30,29 @@ Strategi apa pun yang Anda gunakan, kembalikan satu `tool_result` untuk setiap b
 }
 ```
 
-## Contoh lengkap
+## Menguji panggilan alat paralel
 
 <Note>
-  **Lebih sederhana dengan Tool Runner**: Contoh di bawah ini menunjukkan penanganan alat paralel secara manual. Untuk sebagian besar kasus penggunaan, [Tool Runner](/docs/id/agents-and-tools/tool-use/tool-runner) secara otomatis menangani eksekusi alat paralel dengan kode yang jauh lebih sedikit.
+  **Gunakan Tool Runner untuk sebagian besar aplikasi:** [Tool Runner](/docs/id/agents-and-tools/tool-use/tool-runner) SDK menangani respons dengan beberapa panggilan alat dan memformat hasilnya untuk Anda, sehingga Anda tidak perlu menulis penanganan ini sendiri. Gunakan pola manual di halaman ini ketika Anda membutuhkan kontrol langsung atas cara panggilan dijalankan, seperti batching kustom, pengurutan, atau penanganan kesalahan.
 </Note>
 
-Berikut adalah skrip lengkap yang dapat dijalankan untuk menguji dan memverifikasi bahwa panggilan alat paralel berfungsi dengan benar:
+Skrip berikut mengirimkan permintaan yang seharusnya memicu panggilan alat paralel, memverifikasi bahwa respons berisi panggilan tersebut, dan memformat hasil alat agar paralelisme tetap berfungsi. Jalankan dengan `ANTHROPIC_API_KEY` yang telah diatur di environment Anda:
 
 <CodeGroup>
+  ```bash cURL
+  # Alur pengujian end-to-end ini tidak mudah diterjemahkan menjadi perintah shell sekali jalan.
+  # Lihat tab SDK untuk alur lengkapnya. Permintaan HTTP yang mendasarinya adalah permintaan
+  # penggunaan alat standar dengan beberapa alat yang didefinisikan.
+  ```
+
+  ```bash CLI
+  # Alur pengujian end-to-end ini tidak mudah diterjemahkan menjadi perintah shell sekali jalan.
+  # Lihat tab SDK untuk alur lengkapnya.
+  ```
+
   ```python Python
+  client = Anthropic()
+
   # Definisikan alat
   tools = [
       {
@@ -134,7 +142,10 @@ Berikut adalah skrip lengkap yang dapat dijalankan untuk menguji dan memverifika
       model="claude-opus-4-8", max_tokens=1024, messages=messages, tools=tools
   )
 
-  print(f"\nClaude's response:\n{final_response.content[0].text}")
+  final_text = next(
+      block.text for block in final_response.content if block.type == "text"
+  )
+  print(f"\nClaude's response:\n{final_text}")
 
   # Verifikasi pemformatan
   print("\n--- Verification ---")
@@ -144,6 +155,8 @@ Berikut adalah skrip lengkap yang dapat dijalankan untuk menguji dan memverifika
   ```
 
   ```typescript TypeScript
+  const client = new Anthropic();
+
   // Definisikan alat
   const tools: Anthropic.Tool[] = [
     {
@@ -191,17 +204,17 @@ Berikut adalah skrip lengkap yang dapat dijalankan untuk menguji dan memverifika
       tools: tools
     });
 
-    // Periksa pemanggilan alat paralel
+    // Periksa panggilan alat paralel
     const toolUses = response.content.filter((block) => block.type === "tool_use");
     console.log(`\n✓ Claude made ${toolUses.length} tool calls`);
 
     if (toolUses.length > 1) {
       console.log("✓ Parallel tool calls detected!");
-      toolUses.forEach((tool) => {
+      for (const tool of toolUses) {
         if (tool.type === "tool_use") {
           console.log(`  - ${tool.name}: ${JSON.stringify(tool.input)}`);
         }
-      });
+      }
     } else {
       console.log("✗ No parallel tool calls detected");
     }
@@ -311,19 +324,19 @@ Berikut adalah skrip lengkap yang dapat dijalankan untuk menguji dan memverifika
           toolUses.Add(toolUse);
       }
   }
-  Console.WriteLine($"\n\u2713 Claude made {toolUses.Count} tool calls");
+  Console.WriteLine($"\n✓ Claude made {toolUses.Count} tool calls");
 
   if (toolUses.Count > 1)
   {
-      Console.WriteLine("\u2713 Parallel tool calls detected!");
+      Console.WriteLine("✓ Parallel tool calls detected!");
       foreach (var tool in toolUses)
       {
-          Console.WriteLine($"  - {tool.Name}: {tool.Input}");
+          Console.WriteLine($"  - {tool.Name}: {JsonSerializer.Serialize(tool.Input)}");
       }
   }
   else
   {
-      Console.WriteLine("\u2717 No parallel tool calls detected");
+      Console.WriteLine("✗ No parallel tool calls detected");
   }
 
   var toolResults = new List<ContentBlockParam>();
@@ -332,13 +345,13 @@ Berikut adalah skrip lengkap yang dapat dijalankan untuk menguji dan memverifika
       string result;
       if (toolUse.Name == "get_weather")
       {
-          result = toolUse.Input.ToString()!.Contains("San Francisco")
-              ? "San Francisco: 68\u00b0F, partly cloudy"
-              : "New York: 45\u00b0F, clear skies";
+          result = JsonSerializer.Serialize(toolUse.Input).Contains("San Francisco")
+              ? "San Francisco: 68°F, partly cloudy"
+              : "New York: 45°F, clear skies";
       }
       else
       {
-          result = toolUse.Input.ToString()!.Contains("Los_Angeles")
+          result = JsonSerializer.Serialize(toolUse.Input).Contains("Los_Angeles")
               ? "2:30 PM PST"
               : "5:30 PM EST";
       }
@@ -368,12 +381,14 @@ Berikut adalah skrip lengkap yang dapat dijalankan untuk menguji dan memverifika
   Console.WriteLine($"\nClaude's response:\n{text?.Text}");
 
   Console.WriteLine("\n--- Verification ---");
-  Console.WriteLine($"\u2713 Tool results sent in single user message: {toolResults.Count} results");
-  Console.WriteLine("\u2713 No text before tool results in content array");
-  Console.WriteLine("\u2713 Conversation formatted correctly for future parallel tool use");
+  Console.WriteLine($"✓ Tool results sent in single user message: {toolResults.Count} results");
+  Console.WriteLine("✓ No text before tool results in content array");
+  Console.WriteLine("✓ Conversation formatted correctly for future parallel tool use");
   ```
 
   ```go Go
+  client := anthropic.NewClient()
+
   tools := []anthropic.ToolUnionParam{
   	{OfTool: &anthropic.ToolParam{
   		Name:        "get_weather",
@@ -468,19 +483,13 @@ Berikut adalah skrip lengkap yang dapat dijalankan untuk menguji dan memverifika
   	toolResults = append(toolResults, anthropic.NewToolResultBlock(toolUse.ID, result, false))
   }
 
-  // Konversi konten respons ke tipe param untuk pesan asisten
-  var contentParams []anthropic.ContentBlockParamUnion
-  for _, block := range response.Content {
-  	contentParams = append(contentParams, block.ToParam())
-  }
-
   fmt.Println("\nGetting final response...")
   finalResponse, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
   	Model:     anthropic.ModelClaudeOpus4_8,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock("What's the weather in SF and NYC, and what time is it there?")),
-  		anthropic.NewAssistantMessage(contentParams...),
+  		response.ToParam(),
   		anthropic.NewUserMessage(toolResults...),
   	},
   	Tools: tools,
@@ -602,6 +611,8 @@ Berikut adalah skrip lengkap yang dapat dijalankan untuk menguji dan memverifika
   ```
 
   ```php PHP
+  $client = new Client();
+
   $tools = [
       [
           'name' => 'get_weather',
@@ -695,8 +706,6 @@ Berikut adalah skrip lengkap yang dapat dijalankan untuk menguji dan memverifika
   ```
 
   ```ruby Ruby
-  require "anthropic"
-
   client = Anthropic::Client.new
 
   tools = [
@@ -754,10 +763,10 @@ Berikut adalah skrip lengkap yang dapat dijalankan untuk menguji dan memverifika
 
   tool_results = tool_uses.map do |tool_use|
     result = if tool_use.name == "get_weather"
-      location = tool_use.input["location"].to_s
+      location = tool_use.input[:location].to_s
       location.include?("San Francisco") ? "San Francisco: 68°F, partly cloudy" : "New York: 45°F, clear skies"
     else
-      timezone = tool_use.input["timezone"].to_s
+      timezone = tool_use.input[:timezone].to_s
       timezone.include?("Los_Angeles") ? "2:30 PM PST" : "5:30 PM EST"
     end
 
@@ -780,7 +789,8 @@ Berikut adalah skrip lengkap yang dapat dijalankan untuk menguji dan memverifika
     tools: tools
   )
 
-  puts "\nClaude's response:\n#{final_response.content.first.text}"
+  final_text = final_response.content.find { |block| block.type == :text }
+  puts "\nClaude's response:\n#{final_text.text}"
 
   puts "\n--- Verification ---"
   puts "✓ Tool results sent in single user message: #{tool_results.length} results"
@@ -789,18 +799,11 @@ Berikut adalah skrip lengkap yang dapat dijalankan untuk menguji dan memverifika
   ```
 </CodeGroup>
 
-Skrip ini mendemonstrasikan:
-
-* Cara memformat panggilan alat paralel dan hasilnya dengan benar
-* Cara memverifikasi bahwa panggilan paralel sedang dilakukan
-* Struktur pesan yang benar yang mendorong penggunaan alat paralel di masa mendatang
-* Kesalahan umum yang harus dihindari (seperti teks sebelum hasil alat)
-
-Jalankan skrip ini untuk menguji implementasi Anda dan memastikan Claude melakukan panggilan alat paralel secara efektif.
+Baris ringkasan di bagian akhir menegaskan kembali dua aturan pemformatan yang menjaga paralelisme tetap berfungsi: setiap hasil alat dikembalikan dalam satu pesan pengguna, dan tidak ada konten teks yang muncul sebelum hasil alat dalam pesan tersebut.
 
 ## Memaksimalkan penggunaan alat paralel
 
-Meskipun model Claude 4 memiliki kemampuan penggunaan alat paralel yang sangat baik secara default, Anda dapat meningkatkan kemungkinan eksekusi alat paralel di semua model dengan prompting yang ditargetkan:
+Model Claude 4 melakukan panggilan alat paralel secara default ketika sebuah permintaan mendapat manfaat dari beberapa alat. Untuk semua model, Anda dapat meningkatkan kemungkinan panggilan alat paralel dengan prompting yang ditargetkan:
 
 <AccordionGroup>
   <Accordion title="Prompt sistem untuk penggunaan alat paralel">
@@ -819,7 +822,7 @@ Meskipun model Claude 4 memiliki kemampuan penggunaan alat paralel yang sangat b
     ```
   </Accordion>
 
-  <Accordion title="Prompting melalui pesan pengguna">
+  <Accordion title="Prompting pesan pengguna">
     Anda juga dapat mendorong penggunaan alat paralel dalam pesan pengguna tertentu:
 
     ```text wrap
@@ -835,28 +838,594 @@ Meskipun model Claude 4 memiliki kemampuan penggunaan alat paralel yang sangat b
   </Accordion>
 </AccordionGroup>
 
+## Menonaktifkan penggunaan alat paralel
+
+Penggunaan alat paralel aktif secara default. Untuk menonaktifkannya, atur `disable_parallel_tool_use: true` di dalam objek [`tool_choice`](/docs/id/agents-and-tools/tool-use/define-tools#forcing-tool-use). Ini bukan parameter permintaan tingkat atas. Efeknya bergantung pada tipe `tool_choice`.
+
+### Paling banyak satu panggilan alat
+
+Ketika tipe `tool_choice` adalah `auto` (default), mengatur `disable_parallel_tool_use: true` berarti Claude memanggil paling banyak satu alat per respons. Claude masih dapat menjawab dalam teks biasa tanpa memanggil alat apa pun. Baris yang disorot adalah satu-satunya perubahan dari permintaan penggunaan alat standar:
+
+<CodeGroup>
+  ```bash cURL
+  curl https://api.anthropic.com/v1/messages \
+    -H "content-type: application/json" \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -d '{
+      "model": "claude-opus-4-8",
+      "max_tokens": 1024,
+      "tools": [{
+        "name": "get_weather",
+        "description": "Get the current weather in a given location",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "location": {
+              "type": "string",
+              "description": "The city and state, e.g. San Francisco, CA"
+            }
+          },
+          "required": ["location"]
+        }
+      }],
+      "tool_choice": {"type": "auto", "disable_parallel_tool_use": true},
+      "messages": [
+        {"role": "user", "content": "What is the weather in San Francisco and New York?"}
+      ]
+    }'
+  ```
+
+  ```bash CLI
+  ant messages create <<'YAML'
+  model: claude-opus-4-8
+  max_tokens: 1024
+  tools:
+    - name: get_weather
+      description: Get the current weather in a given location
+      input_schema:
+        type: object
+        properties:
+          location:
+            type: string
+            description: The city and state, e.g. San Francisco, CA
+        required: [location]
+  tool_choice:
+    type: auto
+    disable_parallel_tool_use: true
+  messages:
+    - role: user
+      content: What is the weather in San Francisco and New York?
+  YAML
+  ```
+
+  ```python Python
+  client = Anthropic()
+
+  response = client.messages.create(
+      model="claude-opus-4-8",
+      max_tokens=1024,
+      tools=[
+          {
+              "name": "get_weather",
+              "description": "Get the current weather in a given location",
+              "input_schema": {
+                  "type": "object",
+                  "properties": {
+                      "location": {
+                          "type": "string",
+                          "description": "The city and state, e.g. San Francisco, CA",
+                      }
+                  },
+                  "required": ["location"],
+              },
+          }
+      ],
+      tool_choice={"type": "auto", "disable_parallel_tool_use": True},
+      messages=[
+          {
+              "role": "user",
+              "content": "What is the weather in San Francisco and New York?",
+          }
+      ],
+  )
+  print(response.content)
+  ```
+
+  ```typescript TypeScript
+  const client = new Anthropic();
+
+  const response = await client.messages.create({
+    model: "claude-opus-4-8",
+    max_tokens: 1024,
+    tools: [
+      {
+        name: "get_weather",
+        description: "Get the current weather in a given location",
+        input_schema: {
+          type: "object",
+          properties: {
+            location: {
+              type: "string",
+              description: "The city and state, e.g. San Francisco, CA"
+            }
+          },
+          required: ["location"]
+        }
+      }
+    ],
+    tool_choice: { type: "auto", disable_parallel_tool_use: true },
+    messages: [{ role: "user", content: "What is the weather in San Francisco and New York?" }]
+  });
+  console.log(response.content);
+  ```
+
+  ```csharp C#
+  AnthropicClient client = new();
+
+  var parameters = new MessageCreateParams
+  {
+      Model = Model.ClaudeOpus4_8,
+      MaxTokens = 1024,
+      Tools = [
+          new ToolUnion(new Tool()
+          {
+              Name = "get_weather",
+              Description = "Get the current weather in a given location",
+              InputSchema = new InputSchema()
+              {
+                  Properties = new Dictionary<string, JsonElement>
+                  {
+                      ["location"] = JsonSerializer.SerializeToElement(new { type = "string", description = "The city and state, e.g. San Francisco, CA" }),
+                  },
+                  Required = ["location"],
+              },
+          }),
+      ],
+      ToolChoice = new ToolChoiceAuto { DisableParallelToolUse = true },
+      Messages = [new() { Role = Role.User, Content = "What is the weather in San Francisco and New York?" }]
+  };
+
+  var response = await client.Messages.Create(parameters);
+  Console.WriteLine(response);
+  ```
+
+  ```go Go
+  client := anthropic.NewClient()
+
+  response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
+  	Model:     anthropic.ModelClaudeOpus4_8,
+  	MaxTokens: 1024,
+  	Tools: []anthropic.ToolUnionParam{
+  		{OfTool: &anthropic.ToolParam{
+  			Name:        "get_weather",
+  			Description: anthropic.String("Get the current weather in a given location"),
+  			InputSchema: anthropic.ToolInputSchemaParam{
+  				Properties: map[string]any{
+  					"location": map[string]any{
+  						"type":        "string",
+  						"description": "The city and state, e.g. San Francisco, CA",
+  					},
+  				},
+  				Required: []string{"location"},
+  			},
+  		}},
+  	},
+  	ToolChoice: anthropic.ToolChoiceUnionParam{
+  		OfAuto: &anthropic.ToolChoiceAutoParam{
+  			DisableParallelToolUse: anthropic.Bool(true),
+  		},
+  	},
+  	Messages: []anthropic.MessageParam{
+  		anthropic.NewUserMessage(anthropic.NewTextBlock("What is the weather in San Francisco and New York?")),
+  	},
+  })
+  if err != nil {
+  	log.Fatal(err)
+  }
+  fmt.Println(response.Content)
+  ```
+
+  ```java Java
+  AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+  InputSchema schema = InputSchema.builder()
+      .properties(
+          JsonValue.from(
+              Map.of(
+                  "location", Map.of(
+                      "type", "string",
+                      "description", "The city and state, e.g. San Francisco, CA"
+                  )
+              )
+          )
+      )
+      .putAdditionalProperty("required", JsonValue.from(List.of("location")))
+      .build();
+
+  MessageCreateParams params = MessageCreateParams.builder()
+      .model(Model.CLAUDE_OPUS_4_8)
+      .maxTokens(1024L)
+      .addTool(
+          Tool.builder()
+              .name("get_weather")
+              .description("Get the current weather in a given location")
+              .inputSchema(schema)
+              .build()
+      )
+      .toolChoice(ToolChoiceAuto.builder().disableParallelToolUse(true).build())
+      .addUserMessage("What is the weather in San Francisco and New York?")
+      .build();
+
+  Message response = client.messages().create(params);
+  IO.println(response.content());
+  ```
+
+  ```php PHP
+  $client = new Client();
+
+  $response = $client->messages->create(
+      maxTokens: 1024,
+      messages: [
+          ['role' => 'user', 'content' => 'What is the weather in San Francisco and New York?']
+      ],
+      model: 'claude-opus-4-8',
+      toolChoice: ['type' => 'auto', 'disableParallelToolUse' => true],
+      tools: [
+          [
+              'name' => 'get_weather',
+              'description' => 'Get the current weather in a given location',
+              'input_schema' => [
+                  'type' => 'object',
+                  'properties' => [
+                      'location' => [
+                          'type' => 'string',
+                          'description' => 'The city and state, e.g. San Francisco, CA'
+                      ]
+                  ],
+                  'required' => ['location']
+              ]
+          ]
+      ],
+  );
+
+  echo $response;
+  ```
+
+  ```ruby Ruby
+  client = Anthropic::Client.new
+
+  response = client.messages.create(
+    model: "claude-opus-4-8",
+    max_tokens: 1024,
+    tools: [
+      {
+        name: "get_weather",
+        description: "Get the current weather in a given location",
+        input_schema: {
+          type: "object",
+          properties: {
+            location: {
+              type: "string",
+              description: "The city and state, e.g. San Francisco, CA"
+            }
+          },
+          required: ["location"]
+        }
+      }
+    ],
+    tool_choice: { type: "auto", disable_parallel_tool_use: true },
+    messages: [
+      { role: "user", content: "What is the weather in San Francisco and New York?" }
+    ]
+  )
+  puts response.content
+  ```
+</CodeGroup>
+
+### Tepat satu panggilan alat
+
+Ketika tipe `tool_choice` adalah `any` atau `tool`, mengatur `disable_parallel_tool_use: true` berarti Claude memanggil tepat satu alat. Contoh berikut menggunakan `any`. Field yang sama juga berfungsi dengan `tool`:
+
+<CodeGroup>
+  ```bash cURL
+  curl https://api.anthropic.com/v1/messages \
+    -H "content-type: application/json" \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -d '{
+      "model": "claude-opus-4-8",
+      "max_tokens": 1024,
+      "tools": [{
+        "name": "get_weather",
+        "description": "Get the current weather in a given location",
+        "input_schema": {
+          "type": "object",
+          "properties": {
+            "location": {
+              "type": "string",
+              "description": "The city and state, e.g. San Francisco, CA"
+            }
+          },
+          "required": ["location"]
+        }
+      }],
+      "tool_choice": {"type": "any", "disable_parallel_tool_use": true},
+      "messages": [
+        {"role": "user", "content": "What is the weather in San Francisco and New York?"}
+      ]
+    }'
+  ```
+
+  ```bash CLI
+  ant messages create <<'YAML'
+  model: claude-opus-4-8
+  max_tokens: 1024
+  tools:
+    - name: get_weather
+      description: Get the current weather in a given location
+      input_schema:
+        type: object
+        properties:
+          location:
+            type: string
+            description: The city and state, e.g. San Francisco, CA
+        required: [location]
+  tool_choice:
+    type: any
+    disable_parallel_tool_use: true
+  messages:
+    - role: user
+      content: What is the weather in San Francisco and New York?
+  YAML
+  ```
+
+  ```python Python
+  client = Anthropic()
+
+  response = client.messages.create(
+      model="claude-opus-4-8",
+      max_tokens=1024,
+      tools=[
+          {
+              "name": "get_weather",
+              "description": "Get the current weather in a given location",
+              "input_schema": {
+                  "type": "object",
+                  "properties": {
+                      "location": {
+                          "type": "string",
+                          "description": "The city and state, e.g. San Francisco, CA",
+                      }
+                  },
+                  "required": ["location"],
+              },
+          }
+      ],
+      tool_choice={"type": "any", "disable_parallel_tool_use": True},
+      messages=[
+          {
+              "role": "user",
+              "content": "What is the weather in San Francisco and New York?",
+          }
+      ],
+  )
+  print(response.content)
+  ```
+
+  ```typescript TypeScript
+  const client = new Anthropic();
+
+  const response = await client.messages.create({
+    model: "claude-opus-4-8",
+    max_tokens: 1024,
+    tools: [
+      {
+        name: "get_weather",
+        description: "Get the current weather in a given location",
+        input_schema: {
+          type: "object",
+          properties: {
+            location: {
+              type: "string",
+              description: "The city and state, e.g. San Francisco, CA"
+            }
+          },
+          required: ["location"]
+        }
+      }
+    ],
+    tool_choice: { type: "any", disable_parallel_tool_use: true },
+    messages: [{ role: "user", content: "What is the weather in San Francisco and New York?" }]
+  });
+  console.log(response.content);
+  ```
+
+  ```csharp C#
+  AnthropicClient client = new();
+
+  var parameters = new MessageCreateParams
+  {
+      Model = Model.ClaudeOpus4_8,
+      MaxTokens = 1024,
+      Tools = [
+          new ToolUnion(new Tool()
+          {
+              Name = "get_weather",
+              Description = "Get the current weather in a given location",
+              InputSchema = new InputSchema()
+              {
+                  Properties = new Dictionary<string, JsonElement>
+                  {
+                      ["location"] = JsonSerializer.SerializeToElement(new { type = "string", description = "The city and state, e.g. San Francisco, CA" }),
+                  },
+                  Required = ["location"],
+              },
+          }),
+      ],
+      ToolChoice = new ToolChoiceAny { DisableParallelToolUse = true },
+      Messages = [new() { Role = Role.User, Content = "What is the weather in San Francisco and New York?" }]
+  };
+
+  var response = await client.Messages.Create(parameters);
+  Console.WriteLine(response);
+  ```
+
+  ```go Go
+  client := anthropic.NewClient()
+
+  response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
+  	Model:     anthropic.ModelClaudeOpus4_8,
+  	MaxTokens: 1024,
+  	Tools: []anthropic.ToolUnionParam{
+  		{OfTool: &anthropic.ToolParam{
+  			Name:        "get_weather",
+  			Description: anthropic.String("Get the current weather in a given location"),
+  			InputSchema: anthropic.ToolInputSchemaParam{
+  				Properties: map[string]any{
+  					"location": map[string]any{
+  						"type":        "string",
+  						"description": "The city and state, e.g. San Francisco, CA",
+  					},
+  				},
+  				Required: []string{"location"},
+  			},
+  		}},
+  	},
+  	ToolChoice: anthropic.ToolChoiceUnionParam{
+  		OfAny: &anthropic.ToolChoiceAnyParam{
+  			DisableParallelToolUse: anthropic.Bool(true),
+  		},
+  	},
+  	Messages: []anthropic.MessageParam{
+  		anthropic.NewUserMessage(anthropic.NewTextBlock("What is the weather in San Francisco and New York?")),
+  	},
+  })
+  if err != nil {
+  	log.Fatal(err)
+  }
+  fmt.Println(response.Content)
+  ```
+
+  ```java Java
+  AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+  InputSchema schema = InputSchema.builder()
+      .properties(
+          JsonValue.from(
+              Map.of(
+                  "location", Map.of(
+                      "type", "string",
+                      "description", "The city and state, e.g. San Francisco, CA"
+                  )
+              )
+          )
+      )
+      .putAdditionalProperty("required", JsonValue.from(List.of("location")))
+      .build();
+
+  MessageCreateParams params = MessageCreateParams.builder()
+      .model(Model.CLAUDE_OPUS_4_8)
+      .maxTokens(1024L)
+      .addTool(
+          Tool.builder()
+              .name("get_weather")
+              .description("Get the current weather in a given location")
+              .inputSchema(schema)
+              .build()
+      )
+      .toolChoice(ToolChoiceAny.builder().disableParallelToolUse(true).build())
+      .addUserMessage("What is the weather in San Francisco and New York?")
+      .build();
+
+  Message response = client.messages().create(params);
+  IO.println(response.content());
+  ```
+
+  ```php PHP
+  $client = new Client();
+
+  $response = $client->messages->create(
+      maxTokens: 1024,
+      messages: [
+          ['role' => 'user', 'content' => 'What is the weather in San Francisco and New York?']
+      ],
+      model: 'claude-opus-4-8',
+      toolChoice: ['type' => 'any', 'disableParallelToolUse' => true],
+      tools: [
+          [
+              'name' => 'get_weather',
+              'description' => 'Get the current weather in a given location',
+              'input_schema' => [
+                  'type' => 'object',
+                  'properties' => [
+                      'location' => [
+                          'type' => 'string',
+                          'description' => 'The city and state, e.g. San Francisco, CA'
+                      ]
+                  ],
+                  'required' => ['location']
+              ]
+          ]
+      ],
+  );
+
+  echo $response;
+  ```
+
+  ```ruby Ruby
+  client = Anthropic::Client.new
+
+  response = client.messages.create(
+    model: "claude-opus-4-8",
+    max_tokens: 1024,
+    tools: [
+      {
+        name: "get_weather",
+        description: "Get the current weather in a given location",
+        input_schema: {
+          type: "object",
+          properties: {
+            location: {
+              type: "string",
+              description: "The city and state, e.g. San Francisco, CA"
+            }
+          },
+          required: ["location"]
+        }
+      }
+    ],
+    tool_choice: { type: "any", disable_parallel_tool_use: true },
+    messages: [
+      { role: "user", content: "What is the weather in San Francisco and New York?" }
+    ]
+  )
+  puts response.content
+  ```
+</CodeGroup>
+
 ## Pemecahan masalah
 
 Jika Claude tidak melakukan panggilan alat paralel saat diharapkan, periksa masalah umum berikut:
 
-**1. Format hasil alat yang salah**
+**1. Pemformatan hasil alat yang salah**
 
 Masalah paling umum adalah memformat hasil alat secara tidak benar dalam riwayat percakapan. Ini "mengajarkan" Claude untuk menghindari panggilan paralel.
 
 Khusus untuk penggunaan alat paralel:
 
-* ❌ **Salah**: Mengirim pesan pengguna terpisah untuk setiap hasil alat
-* ✅ **Benar**: Semua hasil alat harus berada dalam satu pesan pengguna
+* **Salah:** pesan pengguna terpisah untuk setiap hasil alat
+* **Benar:** semua hasil alat bersama-sama dalam satu pesan pengguna
 
 ```json
-// ❌ This reduces parallel tool use
+// Wrong: separate user messages reduce parallel tool use
 [
   {"role": "assistant", "content": [tool_use_1, tool_use_2]},
   {"role": "user", "content": [tool_result_1]},
   {"role": "user", "content": [tool_result_2]}  // Separate message
 ]
 
-// ✅ This maintains parallel tool use
+// Correct: one user message with all results maintains parallel tool use
 [
   {"role": "assistant", "content": [tool_use_1, tool_use_2]},
   {"role": "user", "content": [tool_result_1, tool_result_2]}  // Single message
@@ -867,33 +1436,153 @@ Lihat [Menangani panggilan alat](/docs/id/agents-and-tools/tool-use/handle-tool-
 
 **2. Prompting yang lemah**
 
-Prompting default mungkin tidak cukup. Gunakan prompt sistem yang lebih kuat dari bagian [Memaksimalkan penggunaan alat paralel](#maximizing-parallel-tool-use) di atas.
+Prompting default mungkin tidak cukup. Gunakan prompt sistem yang lebih kuat dari [Memaksimalkan penggunaan alat paralel](#maximizing-parallel-tool-use).
 
 **3. Mengukur penggunaan alat paralel**
 
 Untuk memverifikasi bahwa panggilan alat paralel berfungsi:
 
-```python
-# Hitung rata-rata alat per pesan pemanggilan alat
-tool_call_messages = [
-    msg for msg in messages if any(block.type == "tool_use" for block in msg.content)
-]
-total_tool_calls = sum(
-    len([b for b in msg.content if b.type == "tool_use"]) for msg in tool_call_messages
-)
-avg_tools_per_message = (
-    total_tool_calls / len(tool_call_messages) if tool_call_messages else 0.0
-)
-print(f"Average tools per message: {avg_tools_per_message}")
-# Seharusnya > 1.0 jika panggilan paralel berfungsi
-```
+<CodeGroup>
+  ```bash cURL
+  # Mengukur penggunaan alat paralel adalah analisis sisi klien terhadap respons yang sudah Anda
+  # kumpulkan, jadi tidak dapat diterjemahkan ke perintah shell sekali jalan. Lihat tab SDK.
+  ```
+
+  ```bash CLI
+  # Mengukur penggunaan alat paralel adalah analisis sisi klien terhadap respons yang sudah Anda
+  # kumpulkan, jadi tidak bisa diterjemahkan ke perintah shell sekali jalan. Lihat tab SDK.
+  ```
+
+  ```python Python
+  messages = []  # Message objects returned by client.messages.create across your run
+
+  tool_call_messages = [
+      msg for msg in messages if any(block.type == "tool_use" for block in msg.content)
+  ]
+  total_tool_calls = sum(
+      len([block for block in msg.content if block.type == "tool_use"])
+      for msg in tool_call_messages
+  )
+  avg_tools_per_message = (
+      total_tool_calls / len(tool_call_messages) if tool_call_messages else 0.0
+  )
+  print(f"Average tools per message: {avg_tools_per_message}")
+  # Seharusnya > 1.0 jika panggilan paralel berfungsi
+  ```
+
+  ```typescript TypeScript
+  const messages: Anthropic.Message[] = []; // Message objects returned by client.messages.create across your run
+
+  const toolCallMessages = messages.filter((message) =>
+    message.content.some((block) => block.type === "tool_use")
+  );
+  const totalToolCalls = toolCallMessages.reduce(
+    (sum, message) => sum + message.content.filter((block) => block.type === "tool_use").length,
+    0
+  );
+  const avgToolsPerMessage =
+    toolCallMessages.length > 0 ? totalToolCalls / toolCallMessages.length : 0;
+  console.log(`Average tools per message: ${avgToolsPerMessage}`);
+  // Seharusnya > 1.0 jika panggilan paralel berfungsi
+  ```
+
+  ```csharp C#
+  List<Message> messages = []; // Message objects returned by client.Messages.Create across your run
+
+  var toolCallMessages = messages
+      .Where(message => message.Content.Any(block => block.TryPickToolUse(out _)))
+      .ToList();
+  var totalToolCalls = toolCallMessages
+      .Sum(message => message.Content.Count(block => block.TryPickToolUse(out _)));
+  var avgToolsPerMessage = toolCallMessages.Count > 0 ? (double)totalToolCalls / toolCallMessages.Count : 0.0;
+  Console.WriteLine($"Average tools per message: {avgToolsPerMessage}");
+  // Seharusnya > 1.0 jika panggilan paralel berfungsi
+  ```
+
+  ```go Go
+  var messages []anthropic.Message // Message values returned by client.Messages.New across your run
+
+  toolCallMessageCount := 0
+  totalToolCalls := 0
+  for _, message := range messages {
+  	callsInMessage := 0
+  	for _, block := range message.Content {
+  		if block.Type == "tool_use" {
+  			callsInMessage++
+  		}
+  	}
+  	if callsInMessage > 0 {
+  		toolCallMessageCount++
+  		totalToolCalls += callsInMessage
+  	}
+  }
+
+  avgToolsPerMessage := 0.0
+  if toolCallMessageCount > 0 {
+  	avgToolsPerMessage = float64(totalToolCalls) / float64(toolCallMessageCount)
+  }
+  fmt.Println("Average tools per message:", avgToolsPerMessage)
+  // Seharusnya > 1.0 jika panggilan paralel berfungsi
+  ```
+
+  ```java Java
+  List<Message> messages = List.of(); // Message objects returned by client.messages().create() across your run
+
+  List<Message> toolCallMessages = messages.stream()
+      .filter(message -> message.content().stream().anyMatch(ContentBlock::isToolUse))
+      .toList();
+  long totalToolCalls = toolCallMessages.stream()
+      .mapToLong(message -> message.content().stream().filter(ContentBlock::isToolUse).count())
+      .sum();
+  double avgToolsPerMessage = toolCallMessages.isEmpty() ? 0.0 : (double) totalToolCalls / toolCallMessages.size();
+  IO.println("Average tools per message: " + avgToolsPerMessage);
+  // Seharusnya > 1.0 jika panggilan paralel berfungsi
+  ```
+
+  ```php PHP
+  // $messages: Objek Message yang dikembalikan oleh $client->messages->create() selama proses Anda
+  $messages = [];
+
+  $toolCallMessages = array_values(array_filter(
+      $messages,
+      fn ($message) => count(array_filter($message->content, fn ($block) => $block->type === 'tool_use')) > 0
+  ));
+  $totalToolCalls = array_sum(array_map(
+      fn ($message) => count(array_filter($message->content, fn ($block) => $block->type === 'tool_use')),
+      $toolCallMessages
+  ));
+  $avgToolsPerMessage = count($toolCallMessages) > 0 ? $totalToolCalls / count($toolCallMessages) : 0.0;
+  echo "Average tools per message: {$avgToolsPerMessage}\n";
+  // Seharusnya > 1.0 jika panggilan paralel berfungsi
+  ```
+
+  ```ruby Ruby
+  messages = [] # Message objects returned by client.messages.create across your run
+
+  tool_call_messages = messages.select { |message| message.content.any? { |block| block.type == :tool_use } }
+  total_tool_calls = tool_call_messages.sum { |message| message.content.count { |block| block.type == :tool_use } }
+  avg_tools_per_message = tool_call_messages.empty? ? 0.0 : total_tool_calls.to_f / tool_call_messages.size
+  puts "Average tools per message: #{avg_tools_per_message}"
+  # Seharusnya > 1.0 jika panggilan paralel berfungsi
+  ```
+</CodeGroup>
 
 **4. Panggilan dalam satu batch tampak saling bergantung**
 
-Urutan eksekusi adalah pilihan Anda. Jika alat Anda memiliki dependensi urutan, menjalankan batch secara berurutan dan berhenti pada kegagalan pertama adalah strategi yang valid: kembalikan `is_error: true` untuk setiap panggilan yang tidak Anda jalankan. Jika Anda menjalankan secara paralel dan sebuah panggilan gagal karena prasyaratnya belum selesai, kembalikan `is_error: true` dengan pesan error yang wajar; Claude akan mengeluarkannya kembali pada giliran berikutnya. Untuk mengurangi kemunculan panggilan yang saling bergantung secara bersamaan, tambahkan ini ke prompt sistem Anda: "Only batch tool calls that are independent of each other."
+Urutan eksekusi adalah pilihan Anda. Jika alat Anda memiliki dependensi urutan, menjalankan batch secara berurutan dan berhenti pada kegagalan pertama adalah strategi yang valid: kembalikan `is_error: true` untuk setiap panggilan yang tidak Anda jalankan. Jika Anda menjalankan secara paralel dan sebuah panggilan gagal karena prasyaratnya belum selesai, kembalikan `is_error: true` dengan pesan kesalahan yang wajar. Claude akan mengeluarkan kembali panggilan tersebut pada giliran berikutnya. Untuk mengurangi panggilan yang saling bergantung muncul bersamaan, tambahkan ini ke prompt sistem Anda: "Only batch tool calls that are independent of each other."
 
 ## Langkah selanjutnya
 
-* Untuk alur panggilan alat tunggal dan aturan pemformatan `tool_result`, lihat [Menangani panggilan alat](/docs/id/agents-and-tools/tool-use/handle-tool-calls).
-* Untuk abstraksi SDK yang menangani eksekusi paralel secara otomatis, lihat [Tool Runner](/docs/id/agents-and-tools/tool-use/tool-runner).
-* Untuk alur kerja penggunaan alat lengkap, lihat [Mendefinisikan alat](/docs/id/agents-and-tools/tool-use/define-tools).
+<CardGroup cols={3}>
+  <Card title="Tool Runner (SDK)" icon="wrench" href="/docs/id/agents-and-tools/tool-use/tool-runner">
+    Gunakan abstraksi Tool Runner SDK untuk menangani loop agentik, pembungkusan kesalahan, dan type safety secara otomatis.
+  </Card>
+
+  <Card title="Menangani panggilan alat" icon="arrows-left-right" href="/docs/id/agents-and-tools/tool-use/handle-tool-calls">
+    Parse blok tool\_use, format respons tool\_result, dan tangani kesalahan dengan is\_error.
+  </Card>
+
+  <Card title="Mendefinisikan alat" icon="hammer" href="/docs/id/agents-and-tools/tool-use/define-tools">
+    Tentukan skema alat, tulis deskripsi yang efektif, dan kontrol kapan Claude memanggil alat Anda.
+  </Card>
+</CardGroup>

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins-reference
-fetched_at: 2026-06-19T03:18:02.201222Z
-sha256: 1427291b1a372c78e9ac4826f2e9073d5a8336716f9d34febcf70fca4ff9065d
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 72099a2abb47caf51e34da30cec9dd97c42c89947d7d8e2e6deba2ab931b9950
 ---
 
 > ## Documentation Index
@@ -453,9 +453,9 @@ The manifest is optional. If omitted, Claude Code auto-discovers components in [
 
 If you include a manifest, `name` is the only required field.
 
-| Field  | Type   | Description                               | Example              |
-| :----- | :----- | :---------------------------------------- | :------------------- |
-| `name` | string | Unique identifier (kebab-case, no spaces) | `"deployment-tools"` |
+| Field  | Type   | Description                                                                                                                                                                                                                       | Example              |
+| :----- | :----- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------- |
+| `name` | string | Unique identifier (kebab-case, no spaces). When a [marketplace entry](/en/plugin-marketplaces#plugin-entries) lists the plugin under a different name, the marketplace entry name is what `enabledPlugins` keys and `/plugin` use | `"deployment-tools"` |
 
 This name is used for namespacing components. For example, in the UI, the
 agent `agent-creator` for the plugin with name `plugin-dev` will appear as

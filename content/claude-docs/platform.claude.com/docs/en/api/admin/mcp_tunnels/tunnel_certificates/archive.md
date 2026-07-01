@@ -1,13 +1,15 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/mcp_tunnels/tunnel_certificates/archive
-fetched_at: 2026-06-12T03:17:40.104094Z
-sha256: 64d4405f75f743911f120fb25fb6a61b933389660561cd65e7ecc15a11fba1dc
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: e5fa3f46762b4d99f6c86b3199e05104455ef1913bb3e817f9d2890ea7aee7b6
 ---
 
 ## Archive Tunnel Certificate
 
 **post** `/v1/organizations/tunnels/{tunnel_id}/certificates/{certificate_id}/archive`
+
+**Deprecated.** This Admin API endpoint is superseded by `/v1/tunnels` on the Claude API and will be removed after a migration window. New integrations should use [`/v1/tunnels`](/docs/en/api/beta/tunnels) with the `anthropic-beta: mcp-tunnels-2026-06-22` header and a WIF token carrying the `workspace:manage_tunnels` scope. Existing integrations continue to work with the `mcp-tunnels-2026-05-19` header and `org:manage_tunnels` scope during the migration window.
 
 Archive a certificate, removing it from the set Anthropic trusts for this tunnel.
 

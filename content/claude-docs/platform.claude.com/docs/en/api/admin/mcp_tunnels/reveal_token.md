@@ -1,13 +1,15 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/mcp_tunnels/reveal_token
-fetched_at: 2026-06-12T03:17:40.104094Z
-sha256: d8b1c95af240805ba2ad638109f5ee4965f709b03039211b4a1432055ea9b3ae
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 9d9f986f3118c5a15417c415bc2657d70e911c07f616a800c428984ece790a74
 ---
 
 ## Reveal Tunnel Token
 
 **post** `/v1/organizations/tunnels/{tunnel_id}/reveal_token`
+
+**Deprecated.** This Admin API endpoint is superseded by `/v1/tunnels` on the Claude API and will be removed after a migration window. New integrations should use [`/v1/tunnels`](/docs/en/api/beta/tunnels) with the `anthropic-beta: mcp-tunnels-2026-06-22` header and a WIF token carrying the `workspace:manage_tunnels` scope. Existing integrations continue to work with the `mcp-tunnels-2026-05-19` header and `org:manage_tunnels` scope during the migration window.
 
 Return the tunnel's current connection token.
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/microsoft-foundry
-fetched_at: 2026-06-12T03:17:40.104094Z
-sha256: bfd2d9462375a5e6bc5e05513a428cf70846e599be63f0599e3c2e86e6cf2265
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: b6f55c7b4daade6ce766617b9038c6066b415987159320a1b681479e6414e4d8
 ---
 
 > ## Documentation Index
@@ -166,7 +166,7 @@ Without `ANTHROPIC_DEFAULT_OPUS_MODEL`, the `opus` alias on Foundry resolves to 
 
 ```bash theme={null}
 export ANTHROPIC_DEFAULT_OPUS_MODEL='claude-opus-4-8'
-export ANTHROPIC_DEFAULT_SONNET_MODEL='claude-sonnet-4-6'
+export ANTHROPIC_DEFAULT_SONNET_MODEL='claude-sonnet-5'
 export ANTHROPIC_DEFAULT_HAIKU_MODEL='claude-haiku-4-5'
 ```
 

@@ -1,28 +1,28 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 299bf440846ba444b3344f55b687a243d34a5a5e1f5f70264ce124a18428c47b
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 09e878c2193b06e6f4cd0db01c75821a859b77d693cb10a4405ea87f8623f2ec
 ---
 
-# Claude di Vertex AI
+# Claude di Google Cloud
 
-Model Claude dari Anthropic tersedia melalui [Vertex AI](https://cloud.google.com/vertex-ai).
+Model Claude dari Anthropic tersedia melalui [Agent Platform dari Google Cloud](https://cloud.google.com/vertex-ai).
 
 ---
 
-API Vertex untuk mengakses Claude hampir identik dengan [Messages API](/docs/id/api/messages/create), dengan dua perbedaan utama dalam format permintaan:
+API untuk mengakses Claude di Agent Platform dari Google Cloud hampir identik dengan [Messages API](/docs/id/api/messages/create), dengan dua perbedaan utama dalam format permintaan:
 
-* Di Vertex, `model` tidak dikirimkan dalam body permintaan. Sebagai gantinya, model ditentukan dalam URL endpoint Google Cloud.
-* Di Vertex, `anthropic_version` dikirimkan dalam body permintaan (bukan sebagai header), dan harus diatur ke nilai `vertex-2023-10-16`.
+* Di Agent Platform, `model` tidak dikirimkan dalam body permintaan. Sebagai gantinya, model ditentukan dalam URL endpoint Google Cloud.
+* Di Agent Platform, `anthropic_version` dikirimkan dalam body permintaan (bukan sebagai header), dan harus diatur ke nilai `vertex-2023-10-16`.
 
-Vertex juga didukung oleh [client SDK](/docs/id/cli-sdks-libraries/overview) resmi Anthropic. Panduan ini memandu Anda dalam membuat permintaan ke Claude di Vertex AI menggunakan salah satu client SDK Anthropic.
+Agent Platform juga didukung oleh [client SDK](/docs/id/cli-sdks-libraries/overview) resmi Anthropic. Panduan ini memandu Anda membuat permintaan ke Claude di Agent Platform menggunakan salah satu client SDK Anthropic.
 
-Perhatikan bahwa panduan ini mengasumsikan Anda sudah memiliki proyek GCP yang dapat menggunakan Vertex AI. Lihat [Model Claude Anthropic di Vertex AI](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/claude) untuk informasi lebih lanjut tentang penyiapan yang diperlukan dan panduan lengkapnya.
+Perhatikan bahwa panduan ini mengasumsikan Anda sudah memiliki proyek Google Cloud yang dapat menggunakan Agent Platform. Lihat [Model Claude dari Anthropic di Agent Platform](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/claude) untuk informasi lebih lanjut tentang penyiapan yang diperlukan dan panduan lengkapnya.
 
-## Menginstal SDK untuk mengakses Vertex AI
+## Menginstal SDK untuk mengakses Agent Platform
 
-Pertama, instal [client SDK](/docs/id/cli-sdks-libraries/overview) Anthropic untuk bahasa pemrograman pilihan Anda.
+Pertama, instal [client SDK](/docs/id/cli-sdks-libraries/overview) Anthropic untuk bahasa pilihan Anda.
 
 <Tabs>
   <Tab title="Python">
@@ -104,22 +104,23 @@ Pertama, instal [client SDK](/docs/id/cli-sdks-libraries/overview) Anthropic unt
   </Tab>
 </Tabs>
 
-## Mengakses Vertex AI
+## Mengakses Agent Platform
 
 ### Ketersediaan model
 
-Perhatikan bahwa ketersediaan model Anthropic bervariasi berdasarkan region. Cari "Claude" di [Vertex AI Model Garden](https://cloud.google.com/model-garden) atau kunjungi [Model Claude Anthropic](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/claude) untuk informasi terbaru.
+Perhatikan bahwa ketersediaan model Anthropic bervariasi berdasarkan region. Cari "Claude" di [Model Garden](https://cloud.google.com/model-garden) atau kunjungi [Model Claude dari Anthropic](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/claude) untuk informasi terbaru.
 
 #### ID model API
 
-Istilah siklus hidup (Deprecated, Retired) didefinisikan dalam [Deprekasi model](/docs/id/about-claude/model-deprecations). Tanggal siklus hidup pada platform yang dioperasikan mitra ditetapkan oleh mitra dan dapat berbeda dari jadwal API Claude. Untuk tanggal penghentian terkini dari model apa pun di Vertex AI, lihat [dokumentasi Google Cloud untuk model Claude di Vertex AI](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/claude).
+Istilah siklus hidup (Deprecated, Retired) didefinisikan di [Deprekasi model](/docs/id/about-claude/model-deprecations). Tanggal siklus hidup pada platform yang dioperasikan mitra ditetapkan oleh mitra dan dapat berbeda dari jadwal API Claude. Untuk tanggal penghentian terkini dari model apa pun di Agent Platform, lihat [dokumentasi Google Cloud untuk model Claude di Agent Platform](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/claude).
 
-| Model                        | ID model API Vertex AI      |
+| Model                        | ID model API Agent Platform |
 | ---------------------------- | --------------------------- |
 | Claude Fable 5               | claude-fable-5              |
 | Claude Opus 4.8              | claude-opus-4-8             |
 | Claude Opus 4.7              | claude-opus-4-7             |
 | Claude Opus 4.6              | claude-opus-4-6             |
+| Claude Sonnet 5              | `claude-sonnet-5`           |
 | Claude Sonnet 4.6            | claude-sonnet-4-6           |
 | Claude Sonnet 4.5            | claude-sonnet-4-5\@20250929 |
 | Claude Sonnet 4 Deprecated.  | claude-sonnet-4\@20250514   |
@@ -136,9 +137,9 @@ Istilah siklus hidup (Deprecated, Retired) didefinisikan dalam [Deprekasi model]
 
 ### Membuat permintaan
 
-Sebelum menjalankan permintaan, Anda mungkin perlu menjalankan `gcloud auth application-default login` untuk melakukan autentikasi dengan GCP.
+Sebelum menjalankan permintaan, Anda mungkin perlu menjalankan `gcloud auth application-default login` untuk melakukan autentikasi dengan Google Cloud.
 
-Contoh berikut menunjukkan cara menghasilkan teks dari Claude di Vertex AI:
+Contoh berikut menunjukkan cara menghasilkan teks dari Claude di Agent Platform:
 
 <CodeGroup>
   ```bash cURL
@@ -162,7 +163,7 @@ Contoh berikut menunjukkan cara menghasilkan teks dari Claude di Vertex AI:
   ```
 
   ```bash CLI
-  # CLI ant tidak mendukung Vertex AI.
+  # CLI ant tidak mendukung Agent Platform.
   ```
 
   ```python Python
@@ -329,27 +330,27 @@ Contoh berikut menunjukkan cara menghasilkan teks dari Claude di Vertex AI:
   ```
 </CodeGroup>
 
-Lihat [client SDK](/docs/id/cli-sdks-libraries/overview) dan [dokumentasi resmi Vertex AI](https://cloud.google.com/vertex-ai/docs) untuk detail lebih lanjut.
+Lihat [client SDK](/docs/id/cli-sdks-libraries/overview) dan [dokumentasi Agent Platform](https://cloud.google.com/vertex-ai/docs) resmi untuk detail lebih lanjut.
 
 Claude juga tersedia melalui [Amazon Bedrock](/docs/id/build-with-claude/claude-in-amazon-bedrock), [Claude Platform di AWS](/docs/id/build-with-claude/claude-platform-on-aws), dan [Microsoft Foundry](/docs/id/build-with-claude/claude-in-microsoft-foundry).
 
 ## Retensi data
 
-Penanganan data untuk penawaran ini diatur oleh Google Cloud Vertex AI. Untuk detailnya, lihat [Vertex AI dan zero data retention](https://cloud.google.com/vertex-ai/generative-ai/docs/data-governance).
+Penanganan data untuk penawaran ini diatur oleh Google Cloud. Untuk detailnya, lihat [Agent Platform dan retensi data nol](https://cloud.google.com/vertex-ai/generative-ai/docs/data-governance).
 
 ## Pencatatan aktivitas
 
-Vertex menyediakan [layanan pencatatan permintaan-respons](https://cloud.google.com/vertex-ai/generative-ai/docs/multimodal/request-response-logging) yang memungkinkan pelanggan mencatat prompt dan completion yang terkait dengan penggunaan Anda.
+Agent Platform menyediakan [layanan pencatatan permintaan-respons](https://cloud.google.com/vertex-ai/generative-ai/docs/multimodal/request-response-logging) yang memungkinkan pelanggan mencatat prompt dan completion yang terkait dengan penggunaan Anda.
 
 Anthropic merekomendasikan agar Anda mencatat aktivitas Anda setidaknya secara bergulir selama 30 hari untuk memahami aktivitas Anda dan menyelidiki potensi penyalahgunaan.
 
 <Note>
-  Mengaktifkan layanan ini tidak memberikan akses apa pun kepada Google atau Anthropic terhadap konten Anda.
+  Mengaktifkan layanan ini tidak memberikan Google atau Anthropic akses apa pun ke konten Anda.
 </Note>
 
 ## Dukungan fitur
 
-Untuk daftar fitur lengkap beserta ketersediaannya di Vertex AI, lihat [Ikhtisar fitur](/docs/id/build-with-claude/overview).
+Untuk daftar fitur lengkap dengan ketersediaan Google Cloud, lihat [Ikhtisar fitur](/docs/id/build-with-claude/overview).
 
 ### Sorotan fitur yang didukung
 
@@ -372,19 +373,19 @@ Untuk daftar fitur lengkap beserta ketersediaannya di Vertex AI, lihat [Ikhtisar
 
 ### Jendela konteks
 
-Claude Fable 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, dan Claude Sonnet 4.6 memiliki ["context window" (jendela konteks) 1 juta token](/docs/id/build-with-claude/context-windows) di Vertex AI. Model Claude lainnya, termasuk Sonnet 4.5 dan Sonnet 4 (deprecated), memiliki jendela konteks 200 ribu token.
+Claude Fable 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5, dan Claude Sonnet 4.6 memiliki [jendela konteks 1 juta token](/docs/id/build-with-claude/context-windows) di Agent Platform. Model Claude lainnya, termasuk Sonnet 4.5 dan Sonnet 4 (deprecated), memiliki jendela konteks 200 ribu token.
 
-Vertex AI membatasi payload permintaan hingga 30 MB. Saat mengirim dokumen besar atau banyak gambar, Anda mungkin mencapai batas ini sebelum mencapai batas token.
+Agent Platform membatasi payload permintaan hingga 30 MB. Saat mengirim dokumen besar atau banyak gambar, Anda mungkin mencapai batas ini sebelum mencapai batas token.
 
 ## Endpoint global, multi-region, dan regional
 
-Vertex AI menawarkan tiga jenis endpoint:
+Agent Platform menawarkan tiga jenis endpoint:
 
-* **Endpoint global:** Perutean dinamis untuk ketersediaan maksimum
-* **Endpoint multi-region:** Perutean dinamis dalam area geografis (misalnya, Amerika Serikat atau Uni Eropa) untuk residensi data dengan ketersediaan tinggi
-* **Endpoint regional:** Perutean data yang dijamin melalui region geografis tertentu
+* **Endpoint global:** Routing dinamis untuk ketersediaan maksimum
+* **Endpoint multi-region:** Routing dinamis dalam area geografis (misalnya, Amerika Serikat atau Uni Eropa) untuk residensi data dengan ketersediaan tinggi
+* **Endpoint regional:** Routing data yang dijamin melalui region geografis tertentu
 
-Endpoint regional dan multi-region dikenakan premium harga 10% dibandingkan endpoint global.
+Endpoint regional dan multi-region menyertakan premium harga 10% di atas endpoint global.
 
 <Note>
   Ini berlaku untuk Claude Sonnet 4.5 dan model yang lebih baru saja. Model yang lebih lama (Claude Sonnet 4 (deprecated), Opus 4 (deprecated), dan sebelumnya) mempertahankan struktur harga yang sudah ada.
@@ -398,19 +399,19 @@ Endpoint regional dan multi-region dikenakan premium harga 10% dibandingkan endp
 * Merutekan permintaan secara dinamis ke region dengan kapasitas yang tersedia
 * Tanpa premium harga
 * Terbaik untuk aplikasi di mana residensi data bersifat fleksibel
-* Hanya mendukung lalu lintas pay-as-you-go (provisioned throughput memerlukan endpoint regional)
+* Hanya mendukung trafik pay-as-you-go (provisioned throughput memerlukan endpoint regional)
 
 **Endpoint multi-region:**
 
 * Merutekan permintaan secara dinamis di seluruh region dalam area geografis (saat ini `us` dan `eu`)
 * Berguna ketika Anda membutuhkan residensi data dalam geografi yang luas tetapi menginginkan ketersediaan yang lebih tinggi daripada satu region
-* Premium harga 10% dibandingkan endpoint global
-* Hanya mendukung lalu lintas pay-as-you-go (provisioned throughput memerlukan endpoint regional)
+* Premium harga 10% di atas endpoint global
+* Hanya mendukung trafik pay-as-you-go (provisioned throughput memerlukan endpoint regional)
 
 **Endpoint regional:**
 
-* Merutekan lalu lintas melalui region geografis tertentu
-* Diperlukan untuk residensi data region tunggal, mandat kepatuhan yang ketat, atau provisioned throughput
+* Merutekan trafik melalui region geografis tertentu
+* Diperlukan untuk residensi data satu region, mandat kepatuhan yang ketat, atau provisioned throughput
 * Mendukung pay-as-you-go dan provisioned throughput
 * Premium harga 10% mencerminkan biaya infrastruktur untuk kapasitas regional khusus
 
@@ -422,7 +423,7 @@ Atur parameter `region` ke `"global"` saat menginisialisasi klien:
 
 <CodeGroup>
   ```bash CLI
-  # CLI ant tidak mendukung Vertex AI.
+  # CLI ant tidak mendukung Agent Platform.
   ```
 
   ```python Python
@@ -588,11 +589,11 @@ Atur parameter `region` ke `"global"` saat menginisialisasi klien:
 
 **Menggunakan endpoint multi-region:**
 
-Atur parameter `region` ke pengidentifikasi multi-region: `"us"` untuk Amerika Serikat atau `"eu"` untuk Uni Eropa. SDK merutekan permintaan ke endpoint multi-region yang sesuai (`https://aiplatform.us.rep.googleapis.com` atau `https://aiplatform.eu.rep.googleapis.com`), yang secara dinamis menyeimbangkan lalu lintas di seluruh region dalam geografi tersebut.
+Atur parameter `region` ke pengidentifikasi multi-region: `"us"` untuk Amerika Serikat atau `"eu"` untuk Uni Eropa. SDK merutekan permintaan ke endpoint multi-region yang sesuai (`https://aiplatform.us.rep.googleapis.com` atau `https://aiplatform.eu.rep.googleapis.com`), yang secara dinamis menyeimbangkan trafik di seluruh region dalam geografi tersebut.
 
 <CodeGroup>
   ```bash CLI
-  # CLI ant tidak mendukung Vertex AI.
+  # CLI ant tidak mendukung Agent Platform.
   ```
 
   ```python Python
@@ -761,7 +762,7 @@ Tentukan region spesifik seperti `"us-east1"` atau `"europe-west1"`:
 
 <CodeGroup>
   ```bash CLI
-  # CLI ant tidak mendukung Vertex AI.
+  # CLI ant tidak mendukung Agent Platform.
   ```
 
   ```python Python
@@ -925,12 +926,12 @@ Tentukan region spesifik seperti `"us-east1"` atau `"europe-west1"`:
 </CodeGroup>
 
 <Note>
-  Claude Mythos Preview adalah pratinjau riset yang tersedia untuk pelanggan yang diundang di Vertex AI. Untuk informasi lebih lanjut, lihat [Project Glasswing](https://anthropic.com/glasswing).
+  Claude Mythos Preview adalah pratinjau riset yang tersedia untuk pelanggan yang diundang di Agent Platform. Untuk informasi lebih lanjut, lihat [Project Glasswing](https://anthropic.com/glasswing).
 </Note>
 
 ## Sumber daya tambahan
 
-* **Harga Vertex AI:** [cloud.google.com/vertex-ai/generative-ai/pricing](https://cloud.google.com/vertex-ai/generative-ai/pricing)
-* **Dokumentasi model Claude:** [Claude di Vertex AI](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/claude)
+* **Harga Agent Platform:** [Harga Generative AI di cloud.google.com](https://cloud.google.com/vertex-ai/generative-ai/pricing)
+* **Dokumentasi model Claude:** [Claude di Agent Platform](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/claude)
 * **Postingan blog Google:** [Endpoint global untuk model Claude](https://cloud.google.com/blog/products/ai-machine-learning/global-endpoint-for-claude-models-generally-available-on-vertex-ai)
 * **Detail harga Anthropic:** [Harga platform cloud](/docs/id/about-claude/pricing#cloud-platform-pricing)

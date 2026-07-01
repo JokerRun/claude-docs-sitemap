@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/deployments/run
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: e0b8daa070f5f095ec4713da3dbe03b1ab04333f43d47ec058974fe3443f87ac
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 25c5bb3586963b7c3b3a56aa751d42e051c1b2ef68301e60c7c45cf7568c1fd5
 ---
 
 ## Run Deployment Now
@@ -349,7 +349,7 @@ client = Anthropic(
     api_key=os.environ.get("ANTHROPIC_API_KEY"),  # This is the default and can be omitted
 )
 beta_managed_agents_deployment_run = client.beta.deployments.run(
-    deployment_id="deployment_id",
+    deployment_id="depl_011CZkZcDH3vPqd7xnEfwTai",
 )
 print(beta_managed_agents_deployment_run.id)
 ```

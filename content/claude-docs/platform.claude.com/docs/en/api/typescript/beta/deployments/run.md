@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/deployments/run
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: fccd210bc817c370c483ef6071ca93ef5570b877eb63c363ec76370bc8102da6
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 457237728726312c68d2a1ffa97850babccd40616cd65866a4d3d0bcdd845c24
 ---
 
 ## Run Deployment Now
@@ -350,7 +350,9 @@ const client = new Anthropic({
   apiKey: process.env['ANTHROPIC_API_KEY'], // This is the default and can be omitted
 });
 
-const betaManagedAgentsDeploymentRun = await client.beta.deployments.run('deployment_id');
+const betaManagedAgentsDeploymentRun = await client.beta.deployments.run(
+  'depl_011CZkZcDH3vPqd7xnEfwTai',
+);
 
 console.log(betaManagedAgentsDeploymentRun.id);
 ```

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/messages/batches/retrieve
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 7161f05974c1ed3938c7dcf91db0b0fec77fcb4445c26102ed5ea4ef9c57247a
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: cd9992b4048d8620bcea80b2d150e95bed920459ab1f49812c6b6b5adf32c2f5
 ---
 
 ## Retrieve a Message Batch
@@ -13,7 +13,7 @@ sha256: 7161f05974c1ed3938c7dcf91db0b0fec77fcb4445c26102ed5ea4ef9c57247a
 
 This endpoint is idempotent and can be used to poll for Message Batch completion. To access the results of a Message Batch, make a request to the `results_url` field in the response.
 
-Learn more about the Message Batches API in our [user guide](https://docs.claude.com/en/docs/build-with-claude/batch-processing)
+Learn more about the Message Batches API in our [user guide](https://platform.claude.com/docs/en/build-with-claude/batch-processing)
 
 ### Parameters
 

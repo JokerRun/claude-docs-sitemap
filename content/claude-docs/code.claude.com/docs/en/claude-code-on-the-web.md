@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-code-on-the-web
-fetched_at: 2026-06-27T03:14:28.973816Z
-sha256: 1e6e2a6525b72377d56dd39a30f43d10e176de084880762e4008dc9389b4e248
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 8d8ebd8549402c92d711d28aa71761f31a3a2e120527f7af3c1907568f82a44d
 ---
 
 > ## Documentation Index
@@ -564,6 +564,7 @@ When using **Trusted** network access, the following domains are allowed by defa
     * \*.sentry.io
     * downloads.sentry-cdn.com
     * http-intake.logs.datadoghq.com
+    * browser-intake-us5-datadoghq.com
     * \*.datadoghq.com
     * \*.datadoghq.eu
     * api.honeycomb.io
@@ -607,6 +608,8 @@ claude --remote "Fix the authentication bug in src/auth/login.ts"
 ```
 
 This creates a new cloud session on claude.ai. The session clones your current directory's GitHub remote at your current branch, so push first if you have local commits, since the VM clones from GitHub rather than your machine. `--remote` works with a single repository at a time. The task runs in the cloud while you continue working locally.
+
+{/* min-version: 2.1.195 */}As of v2.1.195, the CLI shows a live checklist of setup steps, such as cloning the repository and running your [setup script](#setup-scripts), while the cloud container starts. Messages you type while the container is provisioning are queued and sent once the session is ready.
 
 <Note>
   `--remote` creates cloud sessions. `--remote-control` is unrelated: it exposes a local CLI session for monitoring from the web. See [Remote Control](/en/remote-control).

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/messages/batches/results
-fetched_at: 2026-06-26T03:16:19.812719Z
-sha256: cef9335aa3591bf241773560aee22da86a2e6b4989f9fce61d6cb57309dec7e6
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 716bbbda0635cd9f8727cba40f0e14bde618eb3adb792e7f61c5b2396e88d46b
 ---
 
 ## Retrieve Message Batch results
@@ -15,7 +15,7 @@ Streams the results of a Message Batch as a `.jsonl` file.
 
 Each line in the file is a JSON object containing the result of a single request in the Message Batch. Results are not guaranteed to be in the same order as requests. Use the `custom_id` field to match results to requests.
 
-Learn more about the Message Batches API in our [user guide](https://docs.claude.com/en/docs/build-with-claude/batch-processing)
+Learn more about the Message Batches API in our [user guide](https://platform.claude.com/docs/en/build-with-claude/batch-processing)
 
 ### Parameters
 
@@ -821,6 +821,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `const RefusalStopDetailsCategoryFrontierLLM RefusalStopDetailsCategory = "frontier_llm"`
 
             - `const RefusalStopDetailsCategoryReasoningExtraction RefusalStopDetailsCategory = "reasoning_extraction"`
+
+            - `const RefusalStopDetailsCategoryMilitaryWeapons RefusalStopDetailsCategory = "military_weapons"`
 
           - `Explanation string`
 

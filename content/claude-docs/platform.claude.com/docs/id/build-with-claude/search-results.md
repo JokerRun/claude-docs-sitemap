@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/search-results
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: c341feb855b6f0da90b3f8d1ada5b7c0009a928d3741467cde7b6850d63d5b24
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 2534ae7d939ea80e696f4d506ad32a3ca3798893233746c79d2142f9f44fffba
 ---
 
 # Hasil pencarian
@@ -15,21 +15,22 @@ Aktifkan sitasi alami untuk aplikasi RAG dengan menyediakan hasil pencarian bese
   Fitur ini memenuhi syarat untuk [Zero Data Retention (ZDR)](/docs/id/build-with-claude/api-and-data-retention). Ketika organisasi Anda memiliki pengaturan ZDR, data yang dikirim melalui fitur ini tidak disimpan setelah respons API dikembalikan.
 </Note>
 
-Blok konten hasil pencarian memungkinkan sitasi alami dengan atribusi sumber yang tepat, menghadirkan sitasi berkualitas setara pencarian web ke aplikasi kustom Anda. Fitur ini sangat berguna untuk aplikasi "RAG" (Retrieval-Augmented Generation) di mana Anda membutuhkan Claude untuk mengutip sumber secara akurat.
+Blok konten hasil pencarian memungkinkan sitasi alami dengan atribusi sumber yang tepat, menghadirkan sitasi berkualitas setara pencarian web ke aplikasi kustom Anda. Fitur ini sangat berguna untuk aplikasi "Retrieval-Augmented Generation" (generasi yang diperkaya pengambilan), atau RAG, di mana Anda membutuhkan Claude untuk mengutip sumber secara akurat.
 
 Fitur hasil pencarian tersedia pada model-model berikut:
 
 * Claude Opus 4.8 (claude-opus-4-8)
 * Claude Opus 4.7 (`claude-opus-4-7`)
 * Claude Opus 4.6 (`claude-opus-4-6`)
+* Claude Sonnet 5 (`claude-sonnet-5`)
 * Claude Sonnet 4.6 (`claude-sonnet-4-6`)
 * Claude Sonnet 4.5 (`claude-sonnet-4-5-20250929`)
 * Claude Opus 4.5 (`claude-opus-4-5-20251101`)
 * Claude Opus 4.1 ([tidak digunakan lagi](/docs/id/about-claude/model-deprecations)) (`claude-opus-4-1-20250805`)
-* Claude Opus 4 ([dihentikan, kecuali di Vertex AI](/docs/id/about-claude/model-deprecations)) (`claude-opus-4-20250514`)
-* Claude Sonnet 4 ([dihentikan, kecuali di Bedrock dan Vertex AI](/docs/id/about-claude/model-deprecations)) (`claude-sonnet-4-20250514`)
+* Claude Opus 4 ([dihentikan, kecuali di Google Cloud](/docs/id/about-claude/model-deprecations)) (`claude-opus-4-20250514`)
+* Claude Sonnet 4 ([dihentikan, kecuali di Bedrock dan Google Cloud](/docs/id/about-claude/model-deprecations)) (`claude-sonnet-4-20250514`)
 * Claude Haiku 4.5 (`claude-haiku-4-5-20251001`)
-* Claude Haiku 3.5 ([dihentikan, kecuali di Bedrock dan Vertex AI](/docs/id/about-claude/model-deprecations)) (`claude-3-5-haiku-20241022`)
+* Claude Haiku 3.5 ([dihentikan, kecuali di Bedrock dan Google Cloud](/docs/id/about-claude/model-deprecations)) (`claude-3-5-haiku-20241022`)
 
 ## Manfaat utama
 
@@ -43,7 +44,7 @@ Fitur hasil pencarian tersedia pada model-model berikut:
 
 Hasil pencarian dapat disediakan dengan dua cara:
 
-1. **Dari panggilan alat:** Alat kustom Anda mengembalikan hasil pencarian, memungkinkan aplikasi RAG dinamis
+1. **Dari pemanggilan alat:** Alat kustom Anda mengembalikan hasil pencarian, memungkinkan aplikasi RAG dinamis
 2. **Sebagai konten tingkat atas:** Anda menyediakan hasil pencarian secara langsung dalam pesan pengguna untuk konten yang telah diambil sebelumnya atau di-cache
 
 Dalam kedua kasus tersebut, Claude dapat secara otomatis mengutip informasi dari hasil pencarian dengan atribusi sumber yang tepat.
@@ -92,7 +93,7 @@ Setiap item dalam array `content` harus berupa blok teks dengan:
 * `type`: Harus berupa `"text"`
 * `text`: Konten teks sebenarnya (string yang tidak kosong)
 
-## Metode 1: Hasil pencarian dari panggilan alat
+## Metode 1: Hasil pencarian dari pemanggilan alat
 
 Kasus penggunaan yang paling kuat adalah mengembalikan hasil pencarian dari alat kustom Anda. Ini memungkinkan aplikasi RAG dinamis di mana alat mengambil dan mengembalikan konten yang relevan dengan sitasi otomatis.
 
@@ -163,11 +164,11 @@ Kasus penggunaan yang paling kuat adalah mengembalikan hasil pencarian dari alat
       ],
   )
 
-  # Saat Claude memanggil alat, berikan hasil pencariannya
+  # Ketika Claude memanggil alat, berikan hasil pencarian
   if response.content[0].type == "tool_use":
       tool_result = search_knowledge_base(response.content[0].input["query"])
 
-      # Kirim kembali hasil alat tersebut
+      # Kirim kembali hasil alat
       final_response = client.messages.create(
           model="claude-opus-4-8",  # Works with all supported models
           max_tokens=1024,
@@ -1238,7 +1239,7 @@ Setiap sitasi mencakup:
 | `start_block_index`   | integer          | Indeks berbasis 0 dari blok pertama yang dikutip dalam array `content` hasil pencarian.                                                                                             |
 | `end_block_index`     | integer          | Indeks akhir eksklusif dari rentang blok yang dikutip dalam array `content` hasil pencarian. Selalu lebih besar dari `start_block_index`.                                           |
 
-Indeks blok mengidentifikasi potongan dari array `content` hasil pencarian, dan `cited_text` adalah teks lengkap dari potongan tersebut. Blok teks adalah unit terkecil yang dapat dikutip: Claude mengutip seluruh blok, bukan substring di dalam blok. Untuk mendapatkan sitasi yang lebih terperinci, pisahkan konten hasil pencarian Anda menjadi blok-blok yang lebih kecil (lihat [Beberapa blok konten](#multiple-content-blocks)).
+Indeks blok mengidentifikasi potongan dari array `content` hasil pencarian, dan `cited_text` adalah teks lengkap dari potongan tersebut. Blok teks adalah unit terkecil yang dapat dikutip: Claude mengutip blok secara utuh, bukan substring di dalam sebuah blok. Untuk mendapatkan sitasi yang lebih terperinci, pecah konten hasil pencarian Anda menjadi blok-blok yang lebih kecil (lihat [Beberapa blok konten](#multiple-content-blocks)).
 
 ## Beberapa blok konten
 
@@ -1266,7 +1267,7 @@ Hasil pencarian dapat berisi beberapa blok teks dalam array `content`:
 }
 ```
 
-Sitasi yang mereferensikan blok batas laju terlihat seperti ini:
+Sitasi yang merujuk pada blok batas laju terlihat seperti ini:
 
 ```json
 {
@@ -1280,7 +1281,7 @@ Sitasi yang mereferensikan blok batas laju terlihat seperti ini:
 }
 ```
 
-Ketika hasil pencarian ini dikutip, `start_block_index` dan `end_block_index` mengidentifikasi blok mana yang dicakup oleh sitasi, dan `cited_text` berisi persis teks dari blok-blok tersebut. Memisahkan konten menjadi blok-blok yang lebih kecil dan terfokus memberi Claude batas sitasi yang lebih halus; menggabungkan konten menjadi satu blok berarti setiap sitasi mengembalikan teks lengkap. Ini adalah model yang sama yang digunakan oleh [dokumen konten kustom](/docs/id/build-with-claude/citations#custom-content-documents) dalam fitur Citations.
+Ketika hasil pencarian ini dikutip, `start_block_index` dan `end_block_index` mengidentifikasi blok mana yang dicakup oleh sitasi, dan `cited_text` berisi persis teks dari blok-blok tersebut. Memecah konten menjadi blok-blok yang lebih kecil dan terfokus memberi Claude batas sitasi yang lebih halus; menggabungkan konten menjadi satu blok berarti setiap sitasi mengembalikan teks lengkap. Ini adalah model yang sama yang digunakan oleh [dokumen konten kustom](/docs/id/build-with-claude/citations#custom-content-documents) dalam fitur Citations.
 
 ## Penggunaan lanjutan
 
@@ -1398,7 +1399,7 @@ Ketika `citations.enabled` diatur ke `true`, Claude menyertakan referensi sitasi
 * Sitasi berkualitas setara pencarian web untuk alat kustom apa pun yang mengembalikan hasil pencarian
 
 <Warning>
-  Sitasi bersifat semua-atau-tidak-sama-sekali: semua hasil pencarian dalam sebuah permintaan harus mengaktifkan sitasi, atau semuanya harus menonaktifkannya. Mencampur hasil pencarian dengan pengaturan sitasi yang berbeda akan menghasilkan error.
+  Sitasi bersifat semua-atau-tidak-sama-sekali: semua hasil pencarian dalam sebuah permintaan harus memiliki sitasi yang diaktifkan, atau semuanya harus dinonaktifkan. Mencampur hasil pencarian dengan pengaturan sitasi yang berbeda akan menghasilkan error.
 </Warning>
 
 ## Praktik terbaik
@@ -1407,7 +1408,7 @@ Ketika `citations.enabled` diatur ke `true`, Claude menyertakan referensi sitasi
 
 * **Konten dinamis:** Gunakan untuk pencarian real-time dan aplikasi RAG dinamis
 * **Penanganan error:** Kembalikan pesan yang sesuai ketika pencarian gagal
-* **Batas hasil:** Kembalikan hanya hasil yang paling relevan untuk menghindari kelebihan konteks
+* **Batas hasil:** Kembalikan hanya hasil yang paling relevan untuk menghindari konteks yang meluap
 
 ### Untuk pencarian tingkat atas (Metode 2)
 
@@ -1423,10 +1424,10 @@ Ketika `citations.enabled` diatur ke `true`, Claude menyertakan referensi sitasi
    * Sediakan judul yang deskriptif
    * Pecah konten panjang menjadi blok teks yang logis untuk memberi Claude batas sitasi yang lebih halus
 
-2. **Jaga konsistensi:**
+2. **Pertahankan konsistensi:**
 
    * Gunakan format sumber yang konsisten di seluruh aplikasi Anda
-   * Pastikan judul mencerminkan konten secara akurat
+   * Pastikan judul secara akurat mencerminkan konten
    * Jaga format tetap konsisten
 
 3. **Tangani error dengan baik:**
@@ -1444,7 +1445,7 @@ Ketika `citations.enabled` diatur ke `true`, Claude menyertakan referensi sitasi
 
 ## Batasan
 
-* Blok konten hasil pencarian tersedia di Claude API, Amazon Bedrock, dan Vertex AI dari Google Cloud
+* Blok konten hasil pencarian tersedia di Claude API, Amazon Bedrock, dan Google Cloud
 * Hanya konten teks yang didukung dalam hasil pencarian (tidak ada gambar atau media lainnya)
 * Array `content` harus berisi setidaknya satu blok teks
 

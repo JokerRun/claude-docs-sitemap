@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/working-with-messages
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 6e36cc7b77212f19ada079afcac6e3ce72a03f76e57173ac5a91693c7b34324f
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: c269c4463b7b8c24fe0c2799b2d3c89f8f8ab66bde540d05b8276e76578de442
 ---
 
 # Menggunakan Messages API
@@ -28,7 +28,7 @@ Panduan ini membahas pola umum untuk bekerja dengan Messages API, termasuk permi
 ## Permintaan dan respons dasar
 
 <Note>
-  Parameter sampling `temperature`, `top_p`, dan `top_k` tidak didukung pada Claude Opus 4.7 dan model yang lebih baru, termasuk Claude Opus 4.8. Mengaturnya ke nilai non-default akan mengembalikan error 400. Hilangkan parameter tersebut dari payload permintaan dan gunakan prompting untuk memandu perilaku model sebagai gantinya. Lihat [panduan migrasi](/docs/id/about-claude/models/migration-guide#migrating-from-claude-opus-47).
+  Parameter sampling `temperature`, `top_p`, dan `top_k` tidak didukung pada Claude Opus 4.7 dan model yang lebih baru, termasuk Claude Opus 4.8. Mengaturnya ke nilai non-default akan mengembalikan error 400. Hilangkan parameter tersebut dari payload permintaan dan gunakan prompting untuk mengarahkan perilaku model sebagai gantinya. Lihat [panduan migrasi](/docs/id/about-claude/models/migration-guide#migrating-from-claude-opus-47).
 </Note>
 
 <CodeGroup>
@@ -339,18 +339,18 @@ Messages API bersifat stateless, yang berarti Anda selalu mengirimkan riwayat pe
 
 ### Peran system dalam pesan
 
-Pada Claude Opus 4.8, Anda dapat menyertakan pesan dengan `"role": "system"` setelah giliran user (dengan tunduk pada [aturan penempatan](/docs/id/build-with-claude/mid-conversation-system-messages#limitations)) untuk menambahkan instruksi sistem baru di tengah percakapan. Pesan `system` tidak boleh menjadi entri pertama dalam `messages`; gunakan field `system` tingkat atas untuk instruksi yang berlaku sejak awal.
+Pada Claude Opus 4.8, Anda dapat menyertakan pesan dengan `"role": "system"` setelah giliran user (sesuai dengan [aturan penempatan](/docs/id/build-with-claude/mid-conversation-system-messages#limitations)) untuk menambahkan instruksi sistem baru di tengah percakapan. Pesan `system` tidak boleh menjadi entri pertama dalam `messages`; gunakan field `system` tingkat atas untuk instruksi yang berlaku sejak awal.
 
-Pesan sistem di tengah percakapan memiliki otoritas yang sama dengan field `system` tingkat atas, tetapi karena ditambahkan di akhir riwayat pesan, pesan ini tidak membatalkan prefiks yang telah di-cache sebelumnya. Gunakan field `system` tingkat atas untuk instruksi yang harus berlaku sejak giliran pertama, dan pesan sistem di tengah percakapan untuk instruksi yang baru menjadi relevan di kemudian waktu.
+Pesan sistem di tengah percakapan memiliki otoritas yang sama dengan field `system` tingkat atas, tetapi karena ditambahkan di akhir riwayat pesan, pesan ini tidak membatalkan prefix yang telah di-cache sebelumnya. Gunakan field `system` tingkat atas untuk instruksi yang harus berlaku sejak giliran pertama, dan pesan sistem di tengah percakapan untuk instruksi yang baru menjadi relevan di kemudian waktu.
 
 Lihat [Pesan sistem di tengah percakapan](/docs/id/build-with-claude/mid-conversation-system-messages) untuk panduan lengkap, termasuk cara menggabungkannya dengan [caching prompt](/docs/id/build-with-claude/prompt-caching).
 
-## Menempatkan kata-kata di mulut Claude
+## Menaruh kata-kata di mulut Claude
 
 Anda dapat mengisi sebagian respons Claude terlebih dahulu di posisi terakhir daftar pesan input. Ini dapat digunakan untuk membentuk respons Claude. Contoh di bawah ini menggunakan `"max_tokens": 1` untuk mendapatkan satu jawaban pilihan ganda dari Claude.
 
 <Warning>
-  Prefilling tidak didukung pada Claude Fable 5, [Claude Mythos 5](https://anthropic.com/glasswing), [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, dan Claude Sonnet 4.6. Permintaan yang menggunakan prefill dengan model-model ini akan mengembalikan error 400. Gunakan [structured outputs](/docs/id/build-with-claude/structured-outputs) pada model yang mendukungnya, atau instruksi prompt sistem, sebagai gantinya. Lihat [panduan migrasi](/docs/id/about-claude/models/migration-guide) untuk pola migrasi.
+  Prefilling tidak didukung pada Claude Fable 5, [Claude Mythos 5](https://anthropic.com/glasswing), [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5, dan Claude Sonnet 4.6. Permintaan yang menggunakan prefill dengan model-model ini akan mengembalikan error 400. Gunakan [structured outputs](/docs/id/build-with-claude/structured-outputs) pada model yang mendukungnya, atau instruksi prompt sistem, sebagai gantinya. Lihat [panduan migrasi](/docs/id/about-claude/models/migration-guide) untuk pola migrasi.
 </Warning>
 
 <CodeGroup>
@@ -521,13 +521,13 @@ Anda dapat mengisi sebagian respons Claude terlebih dahulu di posisi terakhir da
 
 ## Vision
 
-Claude dapat membaca teks dan gambar dalam permintaan. Gambar dapat disediakan menggunakan tipe sumber `base64`, `url`, atau `file`. Tipe sumber `file` mereferensikan gambar yang diunggah melalui [Files API](/docs/id/build-with-claude/files). Tipe media yang didukung adalah `image/jpeg`, `image/png`, `image/gif`, dan `image/webp`. Lihat [panduan vision](/docs/id/build-with-claude/vision) untuk detail lebih lanjut.
+Claude dapat membaca teks dan gambar dalam permintaan. Gambar dapat disediakan menggunakan tipe sumber `base64`, `url`, atau `file`. Tipe sumber `file` merujuk pada gambar yang diunggah melalui [Files API](/docs/id/build-with-claude/files). Tipe media yang didukung adalah `image/jpeg`, `image/png`, `image/gif`, dan `image/webp`. Lihat [panduan vision](/docs/id/build-with-claude/vision) untuk detail lebih lanjut.
 
 <CodeGroup>
   ```bash cURL
   #!/bin/sh
 
-  # Opsi 1: Gambar yang dienkode Base64
+  # Opsi 1: Gambar yang di-encode Base64
   IMAGE_URL="https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg"
   IMAGE_MEDIA_TYPE="image/jpeg"
   IMAGE_BASE64=$(curl "$IMAGE_URL" | base64 | tr -d '\n')
@@ -614,7 +614,7 @@ Claude dapat membaca teks dan gambar dalam permintaan. Gambar dapat disediakan m
   import base64
   import httpx
 
-  # Opsi 1: Gambar yang dienkode Base64
+  # Opsi 1: Gambar yang di-encode Base64
   image_url = "https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg"
   image_media_type = "image/jpeg"
   image_data = base64.standard_b64encode(httpx.get(image_url).content).decode("utf-8")
@@ -796,7 +796,7 @@ Claude dapat membaca teks dan gambar dalam permintaan. Gambar dapat disediakan m
   ```
 
   ```go Go
-  // Opsi 1: Gambar yang di-encode Base64
+  // Opsi 1: Gambar yang dienkode Base64
   imageURL := "https://upload.wikimedia.org/wikipedia/commons/a/a7/Camponotus_flavomarginatus_ant.jpg"
 
   req, err := http.NewRequest("GET", imageURL, nil)
@@ -1069,7 +1069,7 @@ Claude dapat membaca teks dan gambar dalam permintaan. Gambar dapat disediakan m
     Dapatkan output JSON yang terjamin dan tervalidasi skema dari Claude.
   </Card>
 
-  <Card title="Task budget" icon="gauge" href="/docs/id/build-with-claude/task-budgets">
-    Tetapkan anggaran token advisory di seluruh loop agentic penuh dengan `output_config.task_budget`.
+  <Card title="Task budgets" icon="gauge" href="/docs/id/build-with-claude/task-budgets">
+    Tetapkan anggaran token advisori di seluruh loop agentik penuh dengan `output_config.task_budget`.
   </Card>
 </CardGroup>

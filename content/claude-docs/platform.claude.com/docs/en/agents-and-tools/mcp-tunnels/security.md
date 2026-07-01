@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/security
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 7572f00e4969538b2da3afd9fc92150548ad90a040d86348c37bc3f9cbb5ed4e
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: e2c66b6e392593805220cb1b5832975d4609cf1282e13e2a8c5e8a1196d45980
 ---
 
 # MCP tunnels security
@@ -55,7 +55,7 @@ If you believe your tunnel token, TLS keys, or proxy host has been compromised:
   </Step>
 
   <Step title="Archive the tunnel">
-    Archiving invalidates the tunnel token and detaches the domain. In the Console, [archive the tunnel](/docs/en/agents-and-tools/mcp-tunnels/console#archive-a-tunnel) from the **MCP tunnels** list. To archive over the API instead, see [Archive a tunnel](/docs/en/api/admin/mcp_tunnels/archive).
+    Archiving invalidates the tunnel token and detaches the domain. In the Console, [archive the tunnel](/docs/en/agents-and-tools/mcp-tunnels/console#archive-a-tunnel) from the **MCP tunnels** list. To archive over the API instead, see [Archive a tunnel](/docs/en/api/beta/tunnels/archive).
   </Step>
 
   <Step title="Contact Anthropic">

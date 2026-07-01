@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/analytics/chat_projects
-fetched_at: 2026-06-17T03:17:04.158711Z
-sha256: 844a002881a37b7744b4d4e0d9c116fe030c60cd762f17cbd28f446309f918cc
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: b79c729bed4f9cdfbf743d9a35ec361bd4f66fbaea1560e2bb7d169b7e9423f4
 ---
 
 # Chat Projects
@@ -37,11 +37,7 @@ Requires an API key with the `read:analytics` scope.
 
   Response for GET /v1/organizations/analytics/apps/chat/projects.
 
-  - `data: array of object { distinct_conversation_count, distinct_user_count, message_count, 4 more }`
-
-    - `distinct_conversation_count: number`
-
-      Number of distinct conversations in the project on the requested day
+  - `data: array of object { distinct_user_count, message_count, project_id, 4 more }`
 
     - `distinct_user_count: number`
 
@@ -74,6 +70,10 @@ Requires an API key with the `read:analytics` scope.
       - `email_address: string`
 
         Email address of the user
+
+    - `distinct_conversation_count: optional number`
+
+      Number of distinct conversations in the project. Null on aggregated rows where a distinct count cannot be computed.
 
   - `next_page: string`
 
@@ -93,7 +93,6 @@ curl https://api.anthropic.com/v1/organizations/analytics/apps/chat/projects \
 {
   "data": [
     {
-      "distinct_conversation_count": 0,
       "distinct_user_count": 0,
       "message_count": 0,
       "project_id": "project_id",
@@ -102,7 +101,8 @@ curl https://api.anthropic.com/v1/organizations/analytics/apps/chat/projects \
       "created_by": {
         "id": "id",
         "email_address": "email_address"
-      }
+      },
+      "distinct_conversation_count": 0
     }
   ],
   "next_page": "next_page"
@@ -117,11 +117,7 @@ curl https://api.anthropic.com/v1/organizations/analytics/apps/chat/projects \
 
   Response for GET /v1/organizations/analytics/apps/chat/projects.
 
-  - `data: array of object { distinct_conversation_count, distinct_user_count, message_count, 4 more }`
-
-    - `distinct_conversation_count: number`
-
-      Number of distinct conversations in the project on the requested day
+  - `data: array of object { distinct_user_count, message_count, project_id, 4 more }`
 
     - `distinct_user_count: number`
 
@@ -154,6 +150,10 @@ curl https://api.anthropic.com/v1/organizations/analytics/apps/chat/projects \
       - `email_address: string`
 
         Email address of the user
+
+    - `distinct_conversation_count: optional number`
+
+      Number of distinct conversations in the project. Null on aggregated rows where a distinct count cannot be computed.
 
   - `next_page: string`
 

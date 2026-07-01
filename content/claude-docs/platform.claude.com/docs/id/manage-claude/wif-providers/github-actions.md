@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/github-actions
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 23379e8d7ab62ec8ba66bd12afcbf3a2c469db25ed131fc9342726af4a54f564
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: b76cd02f96afc32ec4eee0525e5248f613741f94d6c0ba05c67034b697e86fc3
 ---
 
 # Menggunakan WIF dengan GitHub Actions
@@ -89,7 +89,7 @@ Wizard ini membuat sumber daya tersebut untuk Anda. Gunakan nilai-nilai berikut 
 }
 ```
 
-**Federation rule:** Cocokkan hanya eksekusi alur kerja yang ingin Anda percaya. Lihat [Membatasi alur kerja mana yang dapat melakukan autentikasi](#membatasi-alur-kerja-mana-yang-dapat-melakukan-autentikasi) untuk cara membatasi cakupan klaim ini dengan aman.
+**Federation rule:** Cocokkan hanya eksekusi alur kerja yang ingin Anda percaya. Lihat [Membatasi alur kerja mana yang dapat melakukan autentikasi](#restrict-which-workflows-can-authenticate) untuk cara membatasi cakupan klaim ini dengan aman.
 
 ```json
 {

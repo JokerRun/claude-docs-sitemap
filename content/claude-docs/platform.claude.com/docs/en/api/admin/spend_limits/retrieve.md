@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/spend_limits/retrieve
-fetched_at: 2026-06-17T03:17:04.158711Z
-sha256: 05b8544607301d437d5b70ee5da619e689c6050ddb05a7cd299e53e739a43f82
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: c9beca98b6664445c79e0859b9931f02c8f34264e7b2fd0486490a4ce8925506
 ---
 
 ## Get Spend Limit
@@ -96,9 +96,9 @@ curl https://api.anthropic.com/v1/organizations/spend_limits/$SPEND_LIMIT_ID \
 ```json
 {
   "id": "id",
-  "amount": "amount",
+  "amount": "50000",
   "created_at": "2019-12-27T18:11:19.117Z",
-  "currency": "currency",
+  "currency": "USD",
   "period": "monthly",
   "scope": {
     "type": "user",

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/php/beta/deployments/run
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: e15effc5e0664cd31e9c21e6fe45c620f3861b346745798b3e8e0fc4a4ab8a01
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: f71a99c4bf3e56bcb54f53fef129ec78e2eda6eea672b27d05eebfd2ad320fd7
 ---
 
 ## Run Deployment Now
@@ -65,7 +65,7 @@ require_once dirname(__DIR__) . '/vendor/autoload.php';
 $client = new Client(apiKey: 'my-anthropic-api-key');
 
 $betaManagedAgentsDeploymentRun = $client->beta->deployments->run(
-  'deployment_id', betas: ['message-batches-2024-09-24']
+  'depl_011CZkZcDH3vPqd7xnEfwTai', betas: ['message-batches-2024-09-24']
 );
 
 var_dump($betaManagedAgentsDeploymentRun);

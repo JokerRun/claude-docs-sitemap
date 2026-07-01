@@ -1,20 +1,20 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/fast-mode
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 600e04c2b408349656bae9064ce6e244318e031d2ee74b7d9f1464fa20e076b5
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 3a24e9bdafcd47bff8b10637f259237b58497ffa573710018883971e877cf6ee
 ---
 
-# Fast mode (pratinjau riset)
+# Mode cepat (pratinjau riset)
 
-Dapatkan hingga 2,5x lebih banyak token output per detik dari model Claude Opus.
+Dapatkan hingga 2,5x lebih banyak token output per detik dari model Claude Opus yang didukung.
 
 ---
 
-Fast mode menghasilkan hingga 2,5x lebih banyak token output per detik dari Claude Opus 4.8, Claude Opus 4.7, dan Claude Opus 4.6 dengan harga premium. Tetapkan `speed: "fast"` bersama header beta `fast-mode-2026-02-01` pada permintaan Anda untuk mengaktifkannya.
+Mode cepat menghasilkan hingga 2,5x lebih banyak token output per detik dari Claude Opus 4.8 dan Claude Opus 4.7 dengan harga premium. Atur `speed: "fast"` dengan header beta `fast-mode-2026-02-01` pada permintaan Anda untuk mengaktifkannya.
 
 <Note>
-  Fast mode berada dalam tahap pratinjau riset. Hubungi manajer akun Anda untuk meminta akses. Jika Anda tidak memiliki manajer akun, [bergabunglah dengan daftar tunggu](https://claude.com/fast-mode) untuk fast mode.
+  Mode cepat berada dalam tahap pratinjau riset. Hubungi manajer akun Anda untuk meminta akses. Jika Anda tidak memiliki manajer akun, [bergabunglah dengan daftar tunggu](https://claude.com/fast-mode) untuk mode cepat.
 </Note>
 
 <Note>
@@ -23,26 +23,29 @@ Fast mode menghasilkan hingga 2,5x lebih banyak token output per detik dari Clau
 
 ## Model yang didukung
 
-Fast mode didukung pada model berikut:
+Mode cepat didukung pada model berikut:
 
 * Claude Opus 4.8 (claude-opus-4-8)
 * Claude Opus 4.7 (claude-opus-4-7)
-* Claude Opus 4.6 (claude-opus-4-6)
 
 <Note>
-  Fast mode untuk Claude Opus 4.8 diluncurkan sebagai pratinjau riset hanya di Claude API, termasuk [Claude Managed Agents](/docs/id/managed-agents/overview). Fitur ini tidak tersedia di platform pihak ketiga, termasuk Vertex AI, Amazon Bedrock, dan Microsoft Foundry.
+  Mode cepat untuk Claude Opus 4.8 diluncurkan sebagai pratinjau riset hanya di Claude API, termasuk [Claude Managed Agents](/docs/id/managed-agents/overview). Fitur ini tidak tersedia di Amazon Bedrock, Google Cloud, atau Microsoft Foundry.
 </Note>
 
 <Warning>
-  Fast mode untuk Claude Opus 4.6 tidak digunakan lagi (deprecated) sejak peluncuran Claude Opus 4.8 dan akan dihapus sekitar 30 hari setelahnya. Setelah dihapus, permintaan ke `claude-opus-4-6` dengan `speed: "fast"` akan kembali ke kecepatan standar dengan harga standar alih-alih mengembalikan error. Migrasikan ke fast mode untuk Claude Opus 4.8 atau Claude Opus 4.7 untuk mempertahankan peningkatan kecepatan.
+  Mode cepat untuk Claude Opus 4.7 tidak digunakan lagi (deprecated) per 25 Juni 2026, dan akan dihapus pada 24 Juli 2026. Setelah penghapusan, permintaan ke `claude-opus-4-7` dengan `speed: "fast"` akan mengembalikan error; tidak seperti Claude Opus 4.6 (lihat catatan berikut), Claude Opus 4.7 tidak beralih ke kecepatan standar. Model itu sendiri tetap tersedia pada kecepatan standar. Untuk terus menggunakan mode cepat, migrasikan ke Claude Opus 4.8.
 </Warning>
 
-## Cara kerja fast mode
+<Note>
+  Per 29 Juni 2026, mode cepat tidak tersedia pada Claude Opus 4.6. Permintaan ke `claude-opus-4-6` dengan `speed: "fast"` tidak mengembalikan error: permintaan tersebut berjalan pada kecepatan standar dan ditagih dengan [tarif standar](/docs/id/about-claude/pricing) alih-alih tarif premium mode cepat, dan respons melaporkan [`usage.speed: "standard"`](#checking-which-speed-was-used). Untuk terus menggunakan mode cepat, migrasikan ke [Claude Opus 4.8](/docs/id/about-claude/models/migration-guide).
+</Note>
 
-Fast mode menjalankan model yang sama dengan konfigurasi inferensi yang lebih cepat. Tidak ada perubahan pada kecerdasan atau kemampuan.
+## Cara kerja mode cepat
 
-* Hingga 2,5x lebih banyak token output per detik dibandingkan kecepatan standar
-* Manfaat kecepatan berfokus pada "output tokens per second" (token output per detik), atau OTPS, bukan "time to first token" (waktu hingga token pertama), atau TTFT
+Mode cepat menjalankan model yang sama dengan konfigurasi inferensi yang lebih cepat. Tidak ada perubahan pada kecerdasan atau kemampuan.
+
+* Hingga 2,5x lebih banyak token output per detik dibandingkan dengan kecepatan standar
+* Manfaat kecepatan difokuskan pada "output tokens per second" (token output per detik), atau OTPS, bukan "time to first token" (waktu hingga token pertama), atau TTFT
 * Bobot dan perilaku model yang sama (bukan model yang berbeda)
 * Kompatibel dengan [streaming](/docs/id/build-with-claude/streaming), di mana peningkatan OTPS paling terlihat
 
@@ -199,40 +202,40 @@ Fast mode menjalankan model yang sama dengan konfigurasi inferensi yang lebih ce
 
 ## Harga
 
-Fast mode dihargai dengan pengali per model atas tarif standar di seluruh jendela konteks, termasuk permintaan dengan lebih dari 200k token input. Tabel berikut menunjukkan harga fast mode untuk setiap model yang didukung:
+Mode cepat dihargai dengan pengali per model di atas tarif standar di seluruh jendela konteks penuh, termasuk permintaan dengan lebih dari 200k token input. Tabel berikut menunjukkan harga mode cepat untuk setiap model yang didukung:
 
-| Model                             | Input      | Output      |
-| --------------------------------- | ---------- | ----------- |
-| Claude Opus 4.8                   | $10 / MTok | $50 / MTok  |
-| Claude Opus 4.7 / Claude Opus 4.6 | $30 / MTok | $150 / MTok |
+| Model           | Input      | Output      |
+| --------------- | ---------- | ----------- |
+| Claude Opus 4.8 | $10 / MTok | $50 / MTok  |
+| Claude Opus 4.7 | $30 / MTok | $150 / MTok |
 
-Harga fast mode berlaku kumulatif dengan pengubah harga lainnya:
+Harga mode cepat digabungkan dengan pengubah harga lainnya:
 
-* [Pengali caching prompt](/docs/id/about-claude/pricing#prompt-caching) berlaku di atas harga fast mode
-* Pengali [residensi data](/docs/id/manage-claude/data-residency) berlaku di atas harga fast mode
+* [Pengali caching prompt](/docs/id/about-claude/pricing#prompt-caching) diterapkan di atas harga mode cepat
+* Pengali [residensi data](/docs/id/manage-claude/data-residency) diterapkan di atas harga mode cepat
 
 Untuk detail harga lengkap, lihat [halaman harga](/docs/id/about-claude/pricing#fast-mode-pricing).
 
 ## Batas laju
 
-Fast mode memiliki batas laju khusus yang terpisah dari batas laju Opus standar. Ketika batas laju fast mode Anda terlampaui, API mengembalikan error `429` dengan header `retry-after` yang menunjukkan kapan kapasitas akan tersedia.
+Mode cepat memiliki batas laju khusus yang terpisah dari batas laju Opus standar. Ketika batas laju mode cepat Anda terlampaui, API mengembalikan error `429` dengan header `retry-after` yang menunjukkan kapan kapasitas akan tersedia.
 
-Respons menyertakan header yang menunjukkan status batas laju fast mode Anda:
+Respons menyertakan header yang menunjukkan status batas laju mode cepat Anda:
 
-| Header                                   | Deskripsi                                         |
-| ---------------------------------------- | ------------------------------------------------- |
-| `anthropic-fast-input-tokens-limit`      | Token input fast mode maksimum per menit          |
-| `anthropic-fast-input-tokens-remaining`  | Token input fast mode yang tersisa                |
-| `anthropic-fast-input-tokens-reset`      | Waktu ketika batas token input fast mode direset  |
-| `anthropic-fast-output-tokens-limit`     | Token output fast mode maksimum per menit         |
-| `anthropic-fast-output-tokens-remaining` | Token output fast mode yang tersisa               |
-| `anthropic-fast-output-tokens-reset`     | Waktu ketika batas token output fast mode direset |
+| Header                                   | Deskripsi                                          |
+| ---------------------------------------- | -------------------------------------------------- |
+| `anthropic-fast-input-tokens-limit`      | Token input mode cepat maksimum per menit          |
+| `anthropic-fast-input-tokens-remaining`  | Token input mode cepat yang tersisa                |
+| `anthropic-fast-input-tokens-reset`      | Waktu ketika batas token input mode cepat direset  |
+| `anthropic-fast-output-tokens-limit`     | Token output mode cepat maksimum per menit         |
+| `anthropic-fast-output-tokens-remaining` | Token output mode cepat yang tersisa               |
+| `anthropic-fast-output-tokens-reset`     | Waktu ketika batas token output mode cepat direset |
 
 Untuk batas laju spesifik per tier, lihat [halaman batas laju](/docs/id/api/rate-limits).
 
 ## Memeriksa kecepatan mana yang digunakan
 
-Objek `usage` dalam respons menyertakan field `speed` yang menunjukkan kecepatan mana yang digunakan, baik `"fast"` atau `"standard"`. Fast mode tidak secara diam-diam kembali ke kecepatan standar saat terjadi batas laju atau masalah kapasitas (Anda akan mendapatkan `429` atau `529` sebagai gantinya), jadi ketika Anda meminta `speed: "fast"` pada model yang didukung, `usage.speed` adalah `"fast"`.
+Objek `usage` dalam respons menyertakan field `speed` yang menunjukkan kecepatan mana yang digunakan, baik `"fast"` atau `"standard"`. Pada model yang didukung, mode cepat tidak secara diam-diam beralih ke kecepatan standar saat terjadi batas laju atau masalah kapasitas (Anda akan mendapatkan `429` atau `529` sebagai gantinya), jadi ketika Anda meminta `speed: "fast"` pada Claude Opus 4.8 atau Claude Opus 4.7, `usage.speed` adalah `"fast"`. Pada Claude Opus 4.6, di mana mode cepat [tidak tersedia](#supported-models), permintaan dengan `speed: "fast"` berjalan pada kecepatan standar dan mengembalikan `usage.speed: "standard"`. Periksa field ini untuk mengonfirmasi kecepatan mana yang melayani permintaan.
 
 <CodeGroup>
   ```bash cURL
@@ -380,23 +383,27 @@ Objek `usage` dalam respons menyertakan field `speed` yang menunjukkan kecepatan
 }
 ```
 
-Untuk melacak penggunaan dan biaya fast mode di seluruh organisasi Anda, lihat [Usage and Cost API](/docs/id/manage-claude/usage-cost-api).
+Untuk melacak penggunaan dan biaya mode cepat di seluruh organisasi Anda, lihat [Usage and Cost API](/docs/id/manage-claude/usage-cost-api).
 
 ## Percobaan ulang dan fallback
 
 ### Percobaan ulang otomatis
 
-Ketika batas laju fast mode terlampaui, API mengembalikan error `429` dengan header `retry-after`. SDK Anthropic secara otomatis mencoba ulang permintaan ini hingga 2 kali secara default (dapat dikonfigurasi dengan `max_retries`), menunggu selama penundaan yang ditentukan server sebelum setiap percobaan ulang. Karena fast mode menggunakan pengisian ulang token secara kontinu, penundaan `retry-after` biasanya singkat dan permintaan berhasil setelah kapasitas tersedia.
+Ketika batas laju mode cepat terlampaui, API mengembalikan error `429` dengan header `retry-after`. SDK Anthropic secara otomatis mencoba ulang permintaan ini hingga 2 kali secara default (dapat dikonfigurasi dengan `max_retries`), menunggu selama penundaan yang ditentukan server sebelum setiap percobaan ulang. Karena mode cepat menggunakan pengisian ulang token secara kontinu, penundaan `retry-after` biasanya singkat dan permintaan berhasil setelah kapasitas tersedia.
 
-### Kembali ke kecepatan standar
-
-Jika Anda lebih memilih untuk kembali ke kecepatan standar daripada menunggu kapasitas fast mode, tangkap error batas laju dan coba ulang tanpa `speed: "fast"`. Tetapkan `max_retries` ke `0` pada permintaan fast awal untuk melewati percobaan ulang otomatis dan langsung gagal pada error batas laju.
+### Beralih ke kecepatan standar
 
 <Note>
-  Kembali dari kecepatan fast ke standar akan menghasilkan cache miss pada [caching prompt](/docs/id/build-with-claude/prompt-caching). Permintaan pada kecepatan yang berbeda tidak berbagi prefiks yang di-cache.
+  Bagian ini membahas fallback sisi klien yang bersifat opt-in ketika mode cepat terkena batas laju. Ini terpisah dari perilaku pada [Claude Opus 4.6](#supported-models), di mana mode cepat tidak tersedia dan permintaan berjalan pada kecepatan standar secara otomatis.
 </Note>
 
-Karena menetapkan `max_retries` ke `0` juga menonaktifkan percobaan ulang untuk error sementara lainnya (overloaded, internal server error), contoh berikut mengirim ulang permintaan asli dengan percobaan ulang default untuk kasus-kasus tersebut.
+Jika Anda lebih memilih untuk beralih ke kecepatan standar daripada menunggu kapasitas mode cepat, tangkap error batas laju dan coba ulang tanpa `speed: "fast"`. Atur `max_retries` ke `0` pada permintaan cepat awal untuk melewati percobaan ulang otomatis dan langsung gagal pada error batas laju.
+
+<Note>
+  Beralih dari kecepatan cepat ke standar akan menghasilkan cache miss pada [caching prompt](/docs/id/build-with-claude/prompt-caching). Permintaan pada kecepatan yang berbeda tidak berbagi prefiks yang di-cache.
+</Note>
+
+Karena mengatur `max_retries` ke `0` juga menonaktifkan percobaan ulang untuk error sementara lainnya (overloaded, internal server error), contoh berikut mengirim ulang permintaan asli dengan percobaan ulang default untuk kasus-kasus tersebut.
 
 <CodeGroup>
   ```bash CLI
@@ -727,12 +734,12 @@ Karena menetapkan `max_retries` ke `0` juga menonaktifkan percobaan ulang untuk 
 
 ## Pertimbangan
 
-* **Caching prompt:** Beralih antara kecepatan fast dan standar membatalkan cache prompt. Permintaan pada kecepatan yang berbeda tidak berbagi prefiks yang di-cache.
-* **Model yang didukung:** Fast mode didukung pada Claude Opus 4.8, Claude Opus 4.7, dan Claude Opus 4.6. Mengirim `speed: "fast"` dengan model yang tidak didukung akan mengembalikan error.
-* **TTFT:** Manfaat fast mode berfokus pada token output per detik (OTPS), bukan waktu hingga token pertama (TTFT).
-* **Batch API:** Fast mode tidak tersedia dengan [Batch API](/docs/id/build-with-claude/batch-processing).
-* **Priority Tier:** Fast mode tidak tersedia dengan [Priority Tier](/docs/id/api/service-tiers).
-* **Claude Platform on AWS:** Fast mode saat ini tidak tersedia di [Claude Platform on AWS](/docs/id/build-with-claude/claude-platform-on-aws).
+* **Caching prompt:** Beralih antara kecepatan cepat dan standar membatalkan cache prompt. Permintaan pada kecepatan yang berbeda tidak berbagi prefiks yang di-cache.
+* **Model yang didukung:** Mode cepat didukung pada Claude Opus 4.8 dan Claude Opus 4.7 (mode cepat tidak digunakan lagi; penghapusan pada 24 Juli 2026, dengan model itu sendiri tidak terpengaruh). Pada Claude Opus 4.6, permintaan dengan `speed: "fast"` tidak mengembalikan error: permintaan tersebut berjalan pada kecepatan standar dan ditagih dengan tarif standar. Pada model lain mana pun, mengirim `speed: "fast"` mengembalikan error.
+* **TTFT:** Manfaat mode cepat difokuskan pada token output per detik (OTPS), bukan waktu hingga token pertama (TTFT).
+* **Batch API:** Mode cepat tidak tersedia dengan [Batch API](/docs/id/build-with-claude/batch-processing).
+* **Priority Tier:** Mode cepat tidak tersedia dengan komitmen [Priority Tier](/docs/id/api/service-tiers).
+* **Claude Platform on AWS:** Mode cepat saat ini tidak tersedia di [Claude Platform on AWS](/docs/id/build-with-claude/claude-platform-on-aws).
 
 ## Langkah selanjutnya
 
@@ -742,7 +749,7 @@ Karena menetapkan `max_retries` ke `0` juga menonaktifkan percobaan ulang untuk 
   </Card>
 
   <Card title="Harga" icon="calculator" href="/docs/id/about-claude/pricing#fast-mode-pricing">
-    Pelajari struktur harga Anthropic untuk model dan fitur.
+    Pelajari tentang struktur harga Anthropic untuk model dan fitur.
   </Card>
 
   <Card title="Effort" icon="gauge" href="/docs/id/build-with-claude/effort">

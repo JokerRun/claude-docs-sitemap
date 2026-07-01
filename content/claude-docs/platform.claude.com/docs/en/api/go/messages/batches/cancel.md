@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/messages/batches/cancel
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: f5c6620f684943c4129dc7830aea295623db0b61c96cb7b4babf6808abe0fc6e
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: d80042f25f71ff15f4152586478fcddf35ca575f61849c3d4048a2e8e7e75541
 ---
 
 ## Cancel a Message Batch
@@ -15,7 +15,7 @@ Batches may be canceled any time before processing ends. Once cancellation is in
 
 The number of canceled requests is specified in `request_counts`. To determine which requests were canceled, check the individual results within the batch. Note that cancellation may not result in any canceled requests if they were non-interruptible.
 
-Learn more about the Message Batches API in our [user guide](https://docs.claude.com/en/docs/build-with-claude/batch-processing)
+Learn more about the Message Batches API in our [user guide](https://platform.claude.com/docs/en/build-with-claude/batch-processing)
 
 ### Parameters
 

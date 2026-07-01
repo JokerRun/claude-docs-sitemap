@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/github-actions
-fetched_at: 2026-06-25T03:15:21.128912Z
-sha256: b3af7e3fddd3eecae1528c4dfc2226083468f4fc97bd1933f71579ad84bfa78a
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 7ba3b698da2e11e588b426d102b5ddda8129b4f0042acc266c15d2df1e6b1d5b
 ---
 
 > ## Documentation Index
@@ -117,7 +117,7 @@ All beta users must make these changes to their workflow files in order to upgra
     anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
     custom_instructions: "Follow our coding standards"
     max_turns: "10"
-    model: "claude-sonnet-4-6"
+    model: "claude-sonnet-5"
 ```
 
 **GA version (v1.0):**
@@ -130,7 +130,7 @@ All beta users must make these changes to their workflow files in order to upgra
     claude_args: |
       --append-system-prompt "Follow our coding standards"
       --max-turns 10
-      --model claude-sonnet-4-6
+      --model claude-sonnet-5
 ```
 
 <Tip>
@@ -208,7 +208,7 @@ jobs:
 
 In issue or PR comments:
 
-```text theme={null}
+```text wrap theme={null}
 @claude implement this feature based on the issue description
 @claude how should I implement user authentication for this endpoint?
 @claude fix the TypeError in the user dashboard component
@@ -655,13 +655,13 @@ The Claude Code Action v1 uses a simplified configuration:
 The `claude_args` parameter accepts any Claude Code CLI arguments:
 
 ```yaml theme={null}
-claude_args: "--max-turns 5 --model claude-sonnet-4-6 --mcp-config /path/to/config.json"
+claude_args: "--max-turns 5 --model claude-sonnet-5 --mcp-config /path/to/config.json"
 ```
 
 Common arguments:
 
 * `--max-turns`: Maximum conversation turns (default: 10)
-* `--model`: Model to use (for example, `claude-sonnet-4-6`)
+* `--model`: Model to use (for example, `claude-sonnet-5`)
 * `--mcp-config`: Path to MCP configuration
 * `--allowedTools`: Comma-separated list of allowed tools. The `--allowed-tools` alias also works.
 * `--debug`: Enable debug output

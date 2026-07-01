@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/spend_limits/increase_requests/deny
-fetched_at: 2026-06-17T03:17:04.158711Z
-sha256: 2ea46da6ca5703bf103849adbf08984eb58103544309d535fddbe5bf0f6f68b3
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 47c3f6baf37f0c128adbb821c7c224a5e64545e60044bd5943d16b79f7fb4c70
 ---
 
 ## Deny Spend Limit Increase Request
@@ -232,8 +232,8 @@ curl https://api.anthropic.com/v1/organizations/spend_limit_increase_requests/$S
       "type": "user_actor",
       "user_id": "user_id"
     },
-    "amount": "amount",
-    "currency": "currency",
+    "amount": "50000",
+    "currency": "USD",
     "period": "monthly",
     "period_to_date_spend": "period_to_date_spend",
     "scope": {

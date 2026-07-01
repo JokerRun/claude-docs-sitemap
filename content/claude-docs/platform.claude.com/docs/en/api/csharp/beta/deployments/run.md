@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/deployments/run
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: b65c399bfc12ba6d7610fe27896dd34677001ba41cc3036b88788ae49e95d1eb
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 40101f4d282e7e0d97c82011ceb9da29fb47b9c05c63a0619b0e194d9b1ee6bf
 ---
 
 ## Run Deployment Now
@@ -342,7 +342,10 @@ Run Deployment Now
 ### Example
 
 ```csharp
-DeploymentRunParams parameters = new() { DeploymentID = "deployment_id" };
+DeploymentRunParams parameters = new()
+{
+    DeploymentID = "depl_011CZkZcDH3vPqd7xnEfwTai"
+};
 
 var betaManagedAgentsDeploymentRun = await client.Beta.Deployments.Run(parameters);
 

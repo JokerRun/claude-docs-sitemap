@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/deployments/run
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: f3127cf151f2eec956f0b205a302ea01b2e49b6e976ecbdb52cb5f52cd8d5979
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 6bb48fd197932affa69a7a939160e317b94601d61e2f1a184aa0ac596369b6c6
 ---
 
 ## Run Deployment Now
@@ -286,7 +286,7 @@ Run Deployment Now
 ```cli
 ant beta:deployments run \
   --api-key my-anthropic-api-key \
-  --deployment-id deployment_id
+  --deployment-id depl_011CZkZcDH3vPqd7xnEfwTai
 ```
 
 #### Response

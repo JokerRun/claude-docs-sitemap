@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-teams
-fetched_at: 2026-06-27T03:14:28.973816Z
-sha256: 8f69779c7a917a509f0020ccc47f6dd71c86897f2e0d4dc0d5a3bb7599c423ec
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 81a452e0d3ebd991a95ab27e71257e4c308824493eb488776230e705e94b587b
 ---
 
 > ## Documentation Index
@@ -107,7 +107,7 @@ Agent teams support two display modes:
   `tmux` has known limitations on certain operating systems and traditionally works best on macOS. Using `tmux -CC` in iTerm2 is the suggested entrypoint into `tmux`.
 </Note>
 
-The default is `"in-process"`. Before v2.1.179 the default was `"auto"`, so upgraded sessions that previously opened split panes now stay in one terminal unless you set the mode explicitly. Set `"auto"` to enable split panes when you're already running inside a tmux session or your terminal is iTerm2, falling back to in-process otherwise. The `"tmux"` setting enables split-pane mode and auto-detects whether to use tmux or iTerm2 based on your terminal.
+The default is `"in-process"`. Before v2.1.179 the default was `"auto"`, so upgraded sessions that previously opened split panes now stay in one terminal unless you set the mode explicitly. Set `"auto"` to enable split panes when you're already running inside a tmux session, or when your terminal is iTerm2 with the `it2` CLI installed, falling back to in-process otherwise. The `"tmux"` setting enables split-pane mode and auto-detects whether to use tmux or iTerm2 based on your terminal.
 
 {/* min-version: 2.1.186 */}As of v2.1.186, set `"iterm2"` to use iTerm2 native split panes explicitly. This mode requires the [`it2` CLI](https://github.com/mkusaka/it2) and shows an error with the install command if `it2` is missing. The setup prompt that offers to install `it2` or switch to tmux appears under `"auto"` or `"tmux"` when your terminal is iTerm2 and tmux is available as a fallback.
 
@@ -256,6 +256,8 @@ The teammate honors that definition's `tools` allowlist and `model`, and the def
 ### Permissions
 
 Teammates start with the lead's permission settings. If the lead runs with `--dangerously-skip-permissions`, all teammates do too. After spawning, you can change individual teammate modes, but you can't set per-teammate modes at spawn time.
+
+When one agent sends another a message over `SendMessage`, the receiving agent is told it came from another Claude session, not from you. A teammate cannot approve a permission prompt or supply consent on your behalf, and a teammate that was denied an action cannot relay it to another teammate to bypass the check. In [auto mode](/en/permission-modes#eliminate-prompts-with-auto-mode), the classifier treats an approval claim relayed from another agent as untrusted input rather than confirmation from you. Teammate permission prompts bubble up to the lead session, so approve them there yourself.
 
 ### Context and communication
 

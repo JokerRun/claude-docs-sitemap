@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/deployments/run
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: cd302e1683ab727e3af9ccc97f6cfb6f61365237dedc174a864c9b585ea01710
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 43f361d9fb5d265fe6514fc8195c0243bb750203775479f4eb712c36e273a8f6
 ---
 
 ## Run Deployment Now
@@ -346,7 +346,7 @@ require "anthropic"
 
 anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
 
-beta_managed_agents_deployment_run = anthropic.beta.deployments.run("deployment_id")
+beta_managed_agents_deployment_run = anthropic.beta.deployments.run("depl_011CZkZcDH3vPqd7xnEfwTai")
 
 puts(beta_managed_agents_deployment_run)
 ```

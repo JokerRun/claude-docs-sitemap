@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/quickstart
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 0c79847b276b617fecc171d700abb4e3aa171ad9532033c9a7c96be47f70e6a4
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: d1010d29b6f183a2060caba8f98b096b0fd0c8c9b898ecf32baf542a19f3c964
 ---
 
 # MCP tunnels quickstart
@@ -178,7 +178,7 @@ A two-container [tunnel stack](/docs/en/agents-and-tools/mcp-tunnels/concepts#co
         cat > docker-compose.yaml <<'EOF'
         services:
           mcp-proxy:
-            image: us-docker.pkg.dev/anthropic-public-registry/images/mcp-proxy@sha256:6b9adedbf2763143ec72f106ecaf0ce7fd3294e89b208f54a1db97a33d14c5ba
+            image: us-docker.pkg.dev/anthropic-public-registry/images/mcp-proxy@sha256:dab8c3f6ac44c15d91b1580af23a7da6e579865d5852e9ad31e35b6940daf436
             volumes:
               - ./config/mcp-proxy.yaml:/etc/mcp-gateway/config.yaml:ro
               - ./data:/data:ro
@@ -218,7 +218,7 @@ A two-container [tunnel stack](/docs/en/agents-and-tools/mcp-tunnels/concepts#co
         @'
         services:
           mcp-proxy:
-            image: us-docker.pkg.dev/anthropic-public-registry/images/mcp-proxy@sha256:6b9adedbf2763143ec72f106ecaf0ce7fd3294e89b208f54a1db97a33d14c5ba
+            image: us-docker.pkg.dev/anthropic-public-registry/images/mcp-proxy@sha256:dab8c3f6ac44c15d91b1580af23a7da6e579865d5852e9ad31e35b6940daf436
             volumes:
               - ./config/mcp-proxy.yaml:/etc/mcp-gateway/config.yaml:ro
               - ./data:/data:ro

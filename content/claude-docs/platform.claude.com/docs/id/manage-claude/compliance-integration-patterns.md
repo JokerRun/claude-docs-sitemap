@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-integration-patterns
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: cfac9f65c27787ee1892a9fd17ddecf5ad9f2a18bce13124ed0abdb05f57a3e2
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 5e57e9bb4e3e9bfa0c18d5f4bdec35b48251c199a4583cd1a42d0ccfec5aa515
 ---
 
 # Rancang integrasi kepatuhan Anda
@@ -21,7 +21,7 @@ Pilih antara polling dan konsumsi Activity Feed berbasis kursor, korelasikan per
 
 Integrasi Compliance API untuk produksi membuat tiga pilihan desain: bagaimana integrasi tersebut mengonsumsi Activity Feed, bagaimana output-nya berkorelasi dengan sistem "security information and event management" (manajemen informasi dan peristiwa keamanan), atau SIEM, Anda, dan di mana salinan jangka panjang dari aktivitas dan konten disimpan. Pilihan-pilihan ini tidak bergantung pada endpoint itu sendiri; halaman ini membantu Anda mengevaluasi pertukarannya.
 
-Halaman ini mengasumsikan Anda telah membaca [Mengkueri Activity Feed](/docs/id/manage-claude/compliance-activity-feed), yang mendefinisikan parameter dan kontrak paginasi yang dirujuk di seluruh halaman ini, dan [Mengambil dan menghapus obrolan, file, dan proyek](/docs/id/manage-claude/compliance-content-data), yang mendefinisikan endpoint konten dan semantik `deleted_at` yang dirujuk di [Rencanakan retensi konten](#rencanakan-retensi-konten).
+Halaman ini mengasumsikan Anda telah membaca [Mengkueri Activity Feed](/docs/id/manage-claude/compliance-activity-feed), yang mendefinisikan parameter dan kontrak paginasi yang dirujuk di seluruh halaman ini, dan [Mengambil dan menghapus obrolan, file, dan proyek](/docs/id/manage-claude/compliance-content-data), yang mendefinisikan endpoint konten dan semantik `deleted_at` yang dirujuk di [Rencanakan retensi konten](#plan-content-retention).
 
 ## Pilih pola konsumsi feed
 

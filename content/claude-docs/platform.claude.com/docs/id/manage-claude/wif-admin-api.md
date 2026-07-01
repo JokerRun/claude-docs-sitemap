@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-admin-api
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 910ba70df6619a966bacd6c6be3830e4ace0c9960f5831103db509f691dc8885
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 5a89be88fb4a9dafb475bb1cf28ce130d4a9924fda3d1fa5505407ad2a958a5f
 ---
 
 # Mengelola WIF dengan Admin API
@@ -15,9 +15,9 @@ Admin API memungkinkan Anda membuat dan mengelola sumber daya [Workload Identity
 
 ## Prasyarat
 
-Setiap permintaan di halaman ini diautentikasi dengan OAuth bearer token yang membawa scope `org:admin`. Scope ini hanya diberikan kepada anggota organisasi dengan peran admin, owner, atau primary owner, dan memberikan akses ke seluruh organisasi: binding workspace apa pun akan diabaikan. Ada dua cara untuk mendapatkan token, dan keduanya membawa izin yang berbeda: token dari login Anda sendiri bertindak sebagai pengguna, sedangkan token terfederasi bertindak sebagai akun layanan dan tidak dapat melakukan semua operasi di halaman ini.
+Setiap permintaan di halaman ini diautentikasi dengan OAuth bearer token yang membawa scope `org:admin`. Scope ini hanya diberikan kepada anggota organisasi dengan peran admin, owner, atau primary owner, dan memberikan akses ke seluruh organisasi: pengikatan workspace apa pun akan diabaikan. Ada dua cara untuk memperoleh token, dan keduanya membawa izin yang berbeda: token dari login Anda sendiri bertindak sebagai pengguna, sedangkan token terfederasi bertindak sebagai akun layanan dan tidak dapat melakukan semua operasi di halaman ini.
 
-**Interaktif (terminal Anda):** Login dengan [CLI `ant`](/docs/id/cli-sdks-libraries/cli/quickstart) menggunakan profil khusus, dengan meminta scope `org:admin` (lihat [Akses admin](/docs/id/cli-sdks-libraries/cli/authentication#admin-access)), lalu ekspor bearer token:
+**Interaktif (terminal Anda):** Masuk dengan [CLI `ant`](/docs/id/cli-sdks-libraries/cli/quickstart) menggunakan profil khusus, dengan meminta scope `org:admin` (lihat [Akses admin](/docs/id/cli-sdks-libraries/cli/authentication#admin-access)), lalu ekspor bearer token:
 
 ```bash CLI
 ant auth login --profile admin --scope "org:admin"
@@ -30,14 +30,14 @@ Token interaktif berumur pendek; jika permintaan mulai mengembalikan 401, jalank
 
 ## Bootstrap workload untuk mengelola WIF
 
-Satu aturan yang dibuat di Console sudah cukup untuk menempatkan sisa konfigurasi federasi Anda di bawah infrastructure as code: berikan scope `org:admin` kepada satu workload tepercaya, dan biarkan workload tersebut mengelola federation issuer dan setiap federation rule dengan scope workspace melalui API ini.
+Satu aturan yang dibuat di Console sudah cukup untuk menempatkan sisa konfigurasi federasi Anda di bawah infrastructure as code: berikan satu workload tepercaya scope `org:admin`, dan biarkan workload tersebut mengelola federation issuer dan setiap federation rule berlingkup workspace melalui API ini.
 
 <Steps>
   <Step title="Buat aturan org:admin di Console">
-    Di Claude Console, buka **Settings → Workload identity** dan pilih **Connect workload** untuk membuat satu federation rule bagi workload otomatisasi Anda, misalnya workflow GitHub Actions di repositori infrastruktur Anda. Di bawah **Advanced rule options**, atur OAuth scope aturan ke `org:admin`: wizard kemudian membuat akun layanan baru dengan peran organisasi Admin (atau meminta Anda memilih akun layanan admin yang sudah ada sebagai target).
+    Di Claude Console, buka **Settings → Workload identity** dan pilih **Connect workload** untuk membuat satu federation rule bagi workload otomatisasi Anda, misalnya alur kerja GitHub Actions di repositori infrastruktur Anda. Di bawah **Advanced rule options**, atur OAuth scope aturan ke `org:admin`: wizard kemudian membuat akun layanan baru dengan peran organisasi Admin (atau meminta Anda memilih akun layanan admin yang sudah ada sebagai target).
 
     <Warning>
-      Cocokkan aturan dengan satu identitas workload yang persis, bukan pola yang luas. `subject_prefix` adalah pencocokan persis kecuali diakhiri dengan `*`. Untuk GitHub Actions, pin subject ke branch yang dilindungi, seperti `repo:my-org/my-repo:ref:refs/heads/main`. Wildcard di akhir seperti `repo:my-org/my-repo:*` juga mencocokkan run `pull_request`, termasuk run yang dipicu dari fork, sehingga siapa pun yang dapat membuka pull request terhadap repositori tersebut dapat mencetak token `org:admin`. Lihat [Membatasi workflow mana yang dapat mengautentikasi](/docs/id/manage-claude/wif-providers/github-actions#restrict-which-workflows-can-authenticate).
+      Cocokkan aturan dengan satu identitas workload yang persis, bukan pola yang luas. `subject_prefix` adalah pencocokan persis kecuali diakhiri dengan `*`. Untuk GitHub Actions, sematkan subject ke branch yang dilindungi, seperti `repo:my-org/my-repo:ref:refs/heads/main`. Wildcard di akhir seperti `repo:my-org/my-repo:*` juga mencocokkan run `pull_request`, termasuk run yang dipicu dari fork, sehingga siapa pun yang dapat membuka pull request terhadap repositori tersebut dapat mencetak token `org:admin`. Lihat [Membatasi alur kerja mana yang dapat mengautentikasi](/docs/id/manage-claude/wif-providers/github-actions#restrict-which-workflows-can-authenticate).
     </Warning>
   </Step>
 
@@ -45,8 +45,8 @@ Satu aturan yang dibuat di Console sudah cukup untuk menempatkan sisa konfiguras
     Saat runtime, workload menukarkan JWT dari identity provider-nya dengan bearer token `org:admin` berumur pendek menggunakan [token exchange](/docs/id/manage-claude/workload-identity-federation#authenticate-from-your-workload) yang sama seperti workload terfederasi lainnya.
   </Step>
 
-  <Step title="Kelola issuer dan aturan dengan scope workspace melalui API">
-    Dengan token yang dicetak di `ANTHROPIC_OAUTH_TOKEN`, workload membuat dan mengelola konfigurasi federasi Anda menggunakan endpoint di halaman ini.
+  <Step title="Kelola issuer dan aturan berlingkup workspace melalui API">
+    Dengan token yang dicetak berada di `ANTHROPIC_OAUTH_TOKEN`, workload membuat dan mengelola konfigurasi federasi Anda menggunakan endpoint di halaman ini.
   </Step>
 </Steps>
 
@@ -66,7 +66,7 @@ Kunci Admin API tidak diterima pada endpoint ini; contoh `x-api-key` di halaman 
 
 ## Akun layanan
 
-[Akun layanan](/docs/id/manage-claude/workload-identity-federation#service-accounts) (`svac_...`) adalah identitas non-manusia yang diwakili oleh token terfederasi. Atur `organization_role` ke `developer`.
+[Akun layanan](/docs/id/manage-claude/workload-identity-federation#service-accounts) (`svac_...`) adalah identitas non-manusia yang diwakili oleh token terfederasi saat bertindak. Atur `organization_role` ke `developer`.
 
 ```bash cURL
 # Membuat akun layanan
@@ -170,7 +170,7 @@ curl --fail-with-body -sS "https://api.anthropic.com/v1/organizations/federation
     "token_lifetime_seconds": 600
   }'
 
-# Tampilkan daftar aturan, dapat difilter berdasarkan penerbit
+# Tampilkan daftar aturan, opsional difilter berdasarkan penerbit
 curl --fail-with-body -sS "https://api.anthropic.com/v1/organizations/federation_rules?issuer_id=fdis_..." \
   --header "anthropic-version: 2023-06-01" \
   --header "authorization: Bearer $ANTHROPIC_OAUTH_TOKEN"
@@ -197,8 +197,8 @@ Untuk detail parameter lengkap dan skema respons, lihat [referensi API Federatio
 ## Izin dan batasan
 
 <Note>
-  * Pemanggil yang diautentikasi OAuth hanya dapat membuat atau memodifikasi aturan dengan `oauth_scope` bernilai `workspace:developer` atau `workspace:inference`. Untuk membuat atau memodifikasi aturan dengan scope lain (seperti `org:admin` atau `org:manage_tunnels`), gunakan Console.
-  * Pemanggil OAuth tidak dapat memperbarui federation issuer yang mendukung aturan dengan `oauth_scope` selain `workspace:developer` atau `workspace:inference` (seperti `org:admin` atau `org:manage_tunnels`). Pertimbangkan untuk mendaftarkan issuer khusus untuk aturan bootstrap agar issuer di balik aturan dengan scope workspace tetap dapat diperbarui melalui API.
+  * Pemanggil yang diautentikasi OAuth hanya dapat membuat atau memodifikasi aturan dengan `oauth_scope` bernilai `workspace:developer` atau `workspace:inference`. Untuk membuat atau memodifikasi aturan dengan scope lain (seperti `org:admin` atau `workspace:manage_tunnels`), gunakan Console.
+  * Pemanggil OAuth tidak dapat memperbarui federation issuer yang mendukung aturan dengan `oauth_scope` selain `workspace:developer` atau `workspace:inference` (seperti `org:admin` atau `workspace:manage_tunnels`). Pertimbangkan untuk mendaftarkan issuer khusus untuk aturan bootstrap agar issuer di balik aturan berlingkup workspace tetap dapat diperbarui melalui API.
   * Kunci Admin API tidak diterima pada endpoint ini, baik untuk membaca maupun menulis; gunakan OAuth token `org:admin`.
 </Note>
 

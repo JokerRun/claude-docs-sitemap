@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/batches/delete
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: a56512fb158045515f9edc5ab330f75d1eed2215cbc6ed62e60686aec0732540
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: fbc18af4dbdfd184b81fc0d4f1ea019e8a84816e315fcb5fa8a1ea4180da82be
 ---
 
 ## Delete a Message Batch
@@ -13,7 +13,7 @@ Delete a Message Batch.
 
 Message Batches can only be deleted once they've finished processing. If you'd like to delete an in-progress batch, you must first cancel it.
 
-Learn more about the Message Batches API in our [user guide](https://docs.claude.com/en/docs/build-with-claude/batch-processing)
+Learn more about the Message Batches API in our [user guide](https://platform.claude.com/docs/en/build-with-claude/batch-processing)
 
 ### Path Parameters
 

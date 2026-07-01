@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/analytics/usage
-fetched_at: 2026-06-17T03:17:04.158711Z
-sha256: be2dc749b98e34d09a76410538742d7e841dca36b21e2ab2e4ef7bce7a60116f
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: c48ce661ff98e04746ba0fbaafafb9fd48cacb85edfd7cd3418ae3d0402f8534
 ---
 
 # Usage
@@ -230,9 +230,12 @@ curl https://api.anthropic.com/v1/organizations/analytics/usage_report \
 Get per-user token usage across a date range.
 
 Returns one row per user, ranked by the chosen token metric. Use this to
-see which users consume the most tokens. Available to organizations on
-a Claude Enterprise plan. Requires an API key with the `read:analytics`
-scope.
+see which users consume the most tokens. Only usage attributable to a
+seat user is included; for organization-wide totals including direct
+API-key and automation traffic, use the bucketed
+`/v1/organizations/analytics/usage_report` endpoint. Available to
+organizations on a Claude Enterprise plan. Requires an API key with the
+`read:analytics` scope.
 
 ### Query Parameters
 

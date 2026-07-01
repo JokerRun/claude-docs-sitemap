@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/messages/batches/list
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 4200aac0022dc380bbe6e6972d900312f118b0e222be215679b309fe8b927152
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 1d24a2310d22b355858283cf2f45faff79f3aa3cddc85ed9071807ee7c4f89d1
 ---
 
 ## List Message Batches
@@ -13,7 +13,7 @@ sha256: 4200aac0022dc380bbe6e6972d900312f118b0e222be215679b309fe8b927152
 
 List all Message Batches within a Workspace. Most recently created batches are returned first.
 
-Learn more about the Message Batches API in our [user guide](https://docs.claude.com/en/docs/build-with-claude/batch-processing)
+Learn more about the Message Batches API in our [user guide](https://platform.claude.com/docs/en/build-with-claude/batch-processing)
 
 ### Parameters
 

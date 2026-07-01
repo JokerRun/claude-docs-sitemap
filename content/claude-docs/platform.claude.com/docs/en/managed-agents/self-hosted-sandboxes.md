@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: ae5824c630ef3d5a509a4d03c82def3226e356eef32dcd400227314ea0e48441
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: eb427bdc3a950ac98599919f902c4ca83a944839e24590cdc708b0253bc13627
 ---
 
 # Self-hosted sandboxes
@@ -206,7 +206,10 @@ Choose **always-on** for the simplest setup: a long-running process polls the qu
         ```bash
         VERSION=1.12.0
         OS=$(uname -s | tr '[:upper:]' '[:lower:]')
-        ARCH=$(uname -m | sed -e 's/x86_64/amd64/' -e 's/aarch64/arm64/')
+        case $(uname -m) in
+          x86_64) ARCH=amd64 ;;
+          aarch64) ARCH=arm64 ;;
+        esac
         curl -fsSL "https://github.com/anthropics/anthropic-cli/releases/download/v${VERSION}/ant_${VERSION}_${OS}_${ARCH}.tar.gz" \
           | sudo tar -xz -C /usr/local/bin ant
         ```

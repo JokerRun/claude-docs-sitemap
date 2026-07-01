@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/api-and-data-retention
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 9cd7ab87aa78cf3e202c1eae99e9418c3d25cd0b158209bbecc71e2cc599ef46
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 8df4d859154d421ced5da36530a543f40d639df989cddd74a02efcc3fc5324e9
 ---
 
 # API and data retention
@@ -188,7 +188,7 @@ The following table lists which Claude API features are eligible for ZDR and HIP
 | [Agent skills](/docs/en/agents-and-tools/agent-skills/overview)                               | `/v1/messages` (with `skills`) / `/v1/skills`    | <Eligible status="no">No</Eligible>                     | <Eligible status="no">No</Eligible> | Skill data retained per standard policy. See [Agent skills](/docs/en/agents-and-tools/agent-skills/overview#data-retention).                                                                                                                                                                                                                                         |
 | [MCP connector](/docs/en/agents-and-tools/mcp-connector)                                      | `/v1/messages` (with `mcp_servers`)              | <Eligible status="no">No</Eligible>                     | <Eligible status="no">No</Eligible> | Data retained per standard policy. See [MCP connector](/docs/en/agents-and-tools/mcp-connector#data-retention).                                                                                                                                                                                                                                                      |
 | [Claude Managed Agents](/docs/en/managed-agents/overview)                                     | `/v1/agents`, `/v1/sessions`, `/v1/environments` | <Eligible status="no">No</Eligible>                     | <Eligible status="no">No</Eligible> | Sessions are stateful resources; transcripts persist until you delete them. Applies to all Managed Agents sub-features, including [Self-hosted sandboxes](/docs/en/managed-agents/self-hosted-sandboxes).                                                                                                                                                            |
-| [MCP tunnels](/docs/en/agents-and-tools/mcp-tunnels/overview)                                 | `/v1/organizations/tunnels`                      | <Eligible status="no">No</Eligible>                     | <Eligible status="no">No</Eligible> | Research preview. See [MCP tunnels security](/docs/en/agents-and-tools/mcp-tunnels/security) for the data-flow boundary and subprocessor details.                                                                                                                                                                                                                    |
+| [MCP tunnels](/docs/en/agents-and-tools/mcp-tunnels/overview)                                 | `/v1/tunnels`                                    | <Eligible status="no">No</Eligible>                     | <Eligible status="no">No</Eligible> | Research preview. See [MCP tunnels security](/docs/en/agents-and-tools/mcp-tunnels/security) for the data-flow boundary and subprocessor details.                                                                                                                                                                                                                    |
 
 1 [Dynamic filtering](/docs/en/agents-and-tools/tool-use/web-search-tool#dynamic-filtering) is not eligible for ZDR or HIPAA.
 

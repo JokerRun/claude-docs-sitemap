@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/deployments/run
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 7527a8e628bca08094ebf4f74cfc84d68caf6aca94b6edf816e02751ebe7b878
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 1495c1fb27d36528675196f7524d458a90bf2b8a28fd1755508c9b61d248e239
 ---
 
 ## Run Deployment Now
@@ -353,7 +353,7 @@ public final class Main {
     public static void main(String[] args) {
         AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-        BetaManagedAgentsDeploymentRun betaManagedAgentsDeploymentRun = client.beta().deployments().run("deployment_id");
+        BetaManagedAgentsDeploymentRun betaManagedAgentsDeploymentRun = client.beta().deployments().run("depl_011CZkZcDH3vPqd7xnEfwTai");
     }
 }
 ```

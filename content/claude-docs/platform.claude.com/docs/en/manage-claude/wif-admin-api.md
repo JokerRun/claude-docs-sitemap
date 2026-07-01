@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/wif-admin-api
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 0866085760391f6af4089a5acba3693266e39db2812c63589b8f7c1dec8d74a5
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 992074a401f0192e625c87e9d27040d5ef68384f13090fe5bf24b36ba31b042c
 ---
 
 # Manage WIF with the Admin API
@@ -197,8 +197,8 @@ For complete parameter details and response schemas, see the [Federation rules A
 ## Permissions and constraints
 
 <Note>
-  * OAuth-authenticated callers can only create or modify rules whose `oauth_scope` is `workspace:developer` or `workspace:inference`. To create or modify a rule with any other scope (such as `org:admin` or `org:manage_tunnels`), use the Console.
-  * An OAuth caller cannot update a federation issuer that backs a rule whose `oauth_scope` is anything other than `workspace:developer` or `workspace:inference` (such as `org:admin` or `org:manage_tunnels`). Consider registering a dedicated issuer for the bootstrap rule so the issuers behind workspace-scoped rules stay updatable through the API.
+  * OAuth-authenticated callers can only create or modify rules whose `oauth_scope` is `workspace:developer` or `workspace:inference`. To create or modify a rule with any other scope (such as `org:admin` or `workspace:manage_tunnels`), use the Console.
+  * An OAuth caller cannot update a federation issuer that backs a rule whose `oauth_scope` is anything other than `workspace:developer` or `workspace:inference` (such as `org:admin` or `workspace:manage_tunnels`). Consider registering a dedicated issuer for the bootstrap rule so the issuers behind workspace-scoped rules stay updatable through the API.
   * Admin API keys are not accepted on these endpoints, for reads or writes; use an `org:admin` OAuth token.
 </Note>
 

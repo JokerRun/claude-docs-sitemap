@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/events-and-streaming
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 0e55a32cbac1e27db61097f7e0637ad5a432e2ab04221add70bd2afa6e86cb6f
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 3e886014776ef04be2a5bdfffee755534a80fe37bd1b654dc94036799dc3c7d0
 ---
 
 # Aliran event sesi
@@ -377,7 +377,7 @@ Setiap event menyertakan timestamp `processed_at` yang menunjukkan kapan event t
 
     <CodeGroup>
       ```bash curl
-      # Buka stream terlebih dahulu, lalu kirim pesan pengguna
+      # Open the stream first, then send the user message
       exec {stream}< <(
         curl --fail-with-body -sS -N \
           "https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream?beta=true" \
@@ -425,12 +425,12 @@ Setiap event menyertakan timestamp `processed_at` yang menunjukkan kapan event t
       ```
 
       ```bash CLI
-      # Alur kerja ini tidak cocok diterjemahkan menjadi perintah shell sekali jalan.
-      # Gunakan salah satu contoh SDK dalam grup kode ini sebagai gantinya.
+      # This workflow does not translate well to a one-off shell command.
+      # Use one of the SDK examples in this code group instead.
       ```
 
       ```python Python
-      # Buka stream terlebih dahulu, lalu kirim pesan pengguna
+      # Open the stream first, then send the user message
       with client.beta.sessions.events.stream(session.id) as stream:
           client.beta.sessions.events.send(
               session.id,
@@ -457,7 +457,7 @@ Setiap event menyertakan timestamp `processed_at` yang menunjukkan kapan event t
       ```
 
       ```typescript TypeScript
-      // Buka stream terlebih dahulu, lalu kirim pesan pengguna
+      // Open the stream first, then send the user message
       const stream = await client.beta.sessions.events.stream(session.id);
       await client.beta.sessions.events.send(session.id, {
         events: [
@@ -485,7 +485,7 @@ Setiap event menyertakan timestamp `processed_at` yang menunjukkan kapan event t
       ```
 
       ```csharp C#
-      // Buka stream terlebih dahulu, lalu kirim pesan pengguna
+      // Open the stream first, then send the user message
       using var stream = await client.Beta.Sessions.Events.WithRawResponse.StreamStreaming(session.ID);
       await client.Beta.Sessions.Events.Send(session.ID, new()
       {
@@ -528,7 +528,7 @@ Setiap event menyertakan timestamp `processed_at` yang menunjukkan kapan event t
       ```
 
       ```go Go
-      	// Buka stream terlebih dahulu, lalu kirim pesan pengguna
+      	// Open the stream first, then send the user message
       	stream := client.Beta.Sessions.Events.StreamEvents(ctx, session.ID, anthropic.BetaSessionEventStreamParams{})
       	defer stream.Close()
 
@@ -552,7 +552,7 @@ Setiap event menyertakan timestamp `processed_at` yang menunjukkan kapan event t
       	for stream.Next() {
       		switch event := stream.Current().AsAny().(type) {
       		case anthropic.BetaManagedAgentsAgentMessageEvent:
-      			// list bertipe konkret: BetaManagedAgentsTextBlock
+      			// concrete-typed list: BetaManagedAgentsTextBlock
       			for _, block := range event.Content {
       				fmt.Print(block.Text)
       			}
@@ -569,7 +569,7 @@ Setiap event menyertakan timestamp `processed_at` yang menunjukkan kapan event t
       ```
 
       ```java Java
-      // Buka stream terlebih dahulu, lalu kirim pesan pengguna
+      // Open the stream first, then send the user message
       try (var stream = client.beta().sessions().events().streamStreaming(session.id())) {
           client.beta().sessions().events().send(
               session.id(),
@@ -588,7 +588,7 @@ Setiap event menyertakan timestamp `processed_at` yang menunjukkan kapan event t
               } else if (event.isSessionStatusIdle()) {
                   break;
               } else if (event.isSessionError()) {
-                  // Field `message` ada di semua varian error; baca dari JSON mentah.
+                  // The `message` field spans all error variants; read it from the raw JSON.
                   var errorMessage =
                       event.asSessionError().error()._json().orElse(null) instanceof JsonObject json
                           ? json.values().get("message").asStringOrThrow()
@@ -601,7 +601,7 @@ Setiap event menyertakan timestamp `processed_at` yang menunjukkan kapan event t
       ```
 
       ```php PHP
-      // Buka stream terlebih dahulu, lalu kirim pesan pengguna
+      // Open the stream first, then send the user message
       $stream = $client->beta->sessions->events->streamStream($session->id);
       $client->beta->sessions->events->send(
           $session->id,
@@ -630,7 +630,7 @@ Setiap event menyertakan timestamp `processed_at` yang menunjukkan kapan event t
       ```
 
       ```ruby Ruby
-      # Buka stream terlebih dahulu, lalu kirim pesan pengguna
+      # Open the stream first, then send the user message
       stream = client.beta.sessions.events.stream_events(session.id)
 
       client.beta.sessions.events.send_(
@@ -651,7 +651,7 @@ Setiap event menyertakan timestamp `processed_at` yang menunjukkan kapan event t
           puts "\n[Error: #{event.error&.message || "unknown"}]"
           break
         else
-          # abaikan tipe event lainnya
+          # ignore other event types
         end
       end
       ```
@@ -675,7 +675,7 @@ Setiap event menyertakan timestamp `processed_at` yang menunjukkan kapan event t
           -H "accept: text/event-stream"
       )
 
-      # Stream terbuka dan sedang buffering. Tampilkan riwayat sebelum mengikuti event live.
+      # Stream is open and buffering. List history before tailing live.
       declare -A seen_event_ids
       while IFS= read -r event_id; do
         seen_event_ids[$event_id]=1
@@ -688,7 +688,7 @@ Setiap event menyertakan timestamp `processed_at` yang menunjukkan kapan event t
           -H "content-type: application/json" | jq -r '.data[].id'
       )
 
-      # Ikuti event live, lewati yang sudah pernah dilihat
+      # Tail live events, skipping anything already seen
       while IFS= read -r -u "$stream" event_line; do
         [[ $event_line == data:* ]] || continue
         event_json=${event_line#data: }
@@ -708,18 +708,21 @@ Setiap event menyertakan timestamp `processed_at` yang menunjukkan kapan event t
       ```
 
       ```bash CLI
-      # Alur kerja ini tidak cocok diterjemahkan menjadi perintah shell sekali jalan.
-      # Gunakan salah satu contoh SDK dalam grup kode ini sebagai gantinya.
+      # This workflow does not translate well to a one-off shell command.
+      # Use one of the SDK examples in this code group instead.
       ```
 
       ```python Python
       with client.beta.sessions.events.stream(session.id) as stream:
-          # Stream terbuka dan sedang buffering. Tampilkan riwayat sebelum tail event live.
+          # Stream is open and buffering. List history before tailing live.
           history = client.beta.sessions.events.list(session.id)
           seen_event_ids = {past_event.id for past_event in history}
 
-          # Tail event live, lewati yang sudah pernah dilihat
+          # Tail live events, skipping anything already seen
           for event in stream:
+              if event.type == "event_start" or event.type == "event_delta":
+                  # Delta previews aren't enabled on this connection.
+                  continue
               if event.id in seen_event_ids:
                   continue
               seen_event_ids.add(event.id)
@@ -736,13 +739,15 @@ Setiap event menyertakan timestamp `processed_at` yang menunjukkan kapan event t
       const seenEventIds = new Set<string>();
       const stream = await client.beta.sessions.events.stream(session.id);
 
-      // Stream terbuka dan melakukan buffering. Tampilkan riwayat sebelum mengikuti event live.
+      // Stream is open and buffering. List history before tailing live.
       for await (const event of client.beta.sessions.events.list(session.id)) {
         seenEventIds.add(event.id);
       }
 
-      // Ikuti event live, lewati yang sudah pernah dilihat
+      // Tail live events, skipping anything already seen
       for await (const event of stream) {
+        // Preview events (event_start/event_delta) carry no top-level id
+        if (event.type === "event_start" || event.type === "event_delta") continue;
         if (seenEventIds.has(event.id)) continue;
         seenEventIds.add(event.id);
         if (event.type === "agent.message") {
@@ -760,7 +765,7 @@ Setiap event menyertakan timestamp `processed_at` yang menunjukkan kapan event t
       ```csharp C#
       using var stream = await client.Beta.Sessions.Events.WithRawResponse.StreamStreaming(session.ID);
 
-      // Stream terbuka dan melakukan buffering. Tampilkan riwayat sebelum mengikuti event live.
+      // Stream is open and buffering. List history before tailing live.
       HashSet<string> seenEventIds = [];
       var history = await client.Beta.Sessions.Events.List(session.ID);
       await foreach (var pastEvent in history.Paginate())
@@ -768,7 +773,7 @@ Setiap event menyertakan timestamp `processed_at` yang menunjukkan kapan event t
           seenEventIds.Add(pastEvent.ID);
       }
 
-      // Ikuti event live, lewati yang sudah pernah dilihat
+      // Tail live events, skipping anything already seen
       await foreach (var streamEvent in stream.Enumerate())
       {
           if (!seenEventIds.Add(streamEvent.ID))
@@ -793,7 +798,7 @@ Setiap event menyertakan timestamp `processed_at` yang menunjukkan kapan event t
       	stream := client.Beta.Sessions.Events.StreamEvents(ctx, session.ID, anthropic.BetaSessionEventStreamParams{})
       	defer stream.Close()
 
-      	// Stream terbuka dan sedang buffering. Tampilkan riwayat sebelum tailing live.
+      	// Stream is open and buffering. List history before tailing live.
       	seenEventIDs := map[string]struct{}{}
       	history := client.Beta.Sessions.Events.ListAutoPaging(ctx, session.ID, anthropic.BetaSessionEventListParams{})
       	for history.Next() {
@@ -803,7 +808,7 @@ Setiap event menyertakan timestamp `processed_at` yang menunjukkan kapan event t
       		panic(err)
       	}
 
-      	// Tail event live, lewati yang sudah terlihat sebelumnya
+      	// Tail live events, skipping anything already seen
       tail:
       	for stream.Next() {
       		event := stream.Current()
@@ -813,7 +818,7 @@ Setiap event menyertakan timestamp `processed_at` yang menunjukkan kapan event t
       		seenEventIDs[event.ID] = struct{}{}
       		switch event := event.AsAny().(type) {
       		case anthropic.BetaManagedAgentsAgentMessageEvent:
-      			// list bertipe konkret: BetaManagedAgentsTextBlock
+      			// concrete-typed list: BetaManagedAgentsTextBlock
       			for _, block := range event.Content {
       				fmt.Print(block.Text)
       			}
@@ -828,8 +833,8 @@ Setiap event menyertakan timestamp `processed_at` yang menunjukkan kapan event t
 
       ```java Java
       try (var stream = client.beta().sessions().events().streamStreaming(session.id())) {
-          // Stream terbuka dan melakukan buffering. Tampilkan riwayat sebelum tail event live.
-          // Setiap varian event membawa `id`; baca dari JSON mentah untuk dedup lintas varian.
+          // Stream is open and buffering. List history before tailing live.
+          // Every event variant carries `id`; read it from the raw JSON to dedup across variants.
           var seenEventIds = new HashSet<String>();
           for (var pastEvent : client.beta().sessions().events().list(session.id()).autoPager()) {
               if (pastEvent._json().orElseThrow() instanceof JsonObject json) {
@@ -837,7 +842,7 @@ Setiap event menyertakan timestamp `processed_at` yang menunjukkan kapan event t
               }
           }
 
-          // Tail event live; Set.add mengembalikan false untuk ID yang sudah dilihat, melewati replay.
+          // Tail live events; Set.add returns false for already-seen IDs, skipping the replay.
           stream.stream()
               .filter(event -> event._json().orElseThrow() instanceof JsonObject json
                   && seenEventIds.add(json.values().get("id").asStringOrThrow()))
@@ -850,13 +855,13 @@ Setiap event menyertakan timestamp `processed_at` yang menunjukkan kapan event t
       ```php PHP
       $stream = $client->beta->sessions->events->streamStream($session->id);
 
-      // Stream terbuka dan sedang buffering. Tampilkan riwayat sebelum mengikuti event live.
+      // Stream is open and buffering. List history before tailing live.
       $seenEventIds = [];
       foreach ($client->beta->sessions->events->list($session->id)->pagingEachItem() as $event) {
           $seenEventIds[$event->id] = true;
       }
 
-      // Ikuti event live, lewati yang sudah terlihat sebelumnya
+      // Tail live events, skipping anything already seen
       foreach ($stream as $event) {
           if (isset($seenEventIds[$event->id])) {
               continue;
@@ -879,11 +884,11 @@ Setiap event menyertakan timestamp `processed_at` yang menunjukkan kapan event t
       ```ruby Ruby
       stream = client.beta.sessions.events.stream_events(session.id)
 
-      # Stream terbuka dan sedang buffering. Tampilkan riwayat sebelum tail event live.
+      # Stream is open and buffering. List history before tailing live.
       seen_event_ids = Set.new
       client.beta.sessions.events.list(session.id).auto_paging_each { seen_event_ids << it.id }
 
-      # Tail event live, lewati yang sudah terlihat — Set#add? mengembalikan nil untuk duplikat
+      # Tail live events, skipping anything already seen — Set#add? returns nil for duplicates
       stream.each do |event|
         next unless seen_event_ids.add?(event.id)
         case event.type
@@ -892,7 +897,7 @@ Setiap event menyertakan timestamp `processed_at` yang menunjukkan kapan event t
         in :"session.status_idle"
           break
         else
-          # abaikan tipe event lainnya
+          # ignore other event types
         end
       end
       ```

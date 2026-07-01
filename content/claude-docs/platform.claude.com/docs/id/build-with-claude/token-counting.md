@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/token-counting
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 894385f62534c28005fde7b3c4c2e36f72558da91204975009fb4e146488c465
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 908a2ab6f42da2b797f3a94dc482dad3b79ec4686a276bc7a0117ef71e17bb00
 ---
 
 # Penghitungan token
@@ -30,12 +30,16 @@ Endpoint [penghitungan token](/docs/id/api/messages-count-tokens) menerima dafta
 <Note>
   Jumlah token harus dianggap sebagai **estimasi**. Dalam beberapa kasus, jumlah token input aktual yang digunakan saat membuat pesan mungkin berbeda sedikit.
 
-  Jumlah token mungkin mencakup token yang ditambahkan secara otomatis oleh Anthropic untuk optimasi sistem. **Anda tidak ditagih untuk token yang ditambahkan sistem**. Penagihan hanya mencerminkan konten Anda.
+  Jumlah token dapat mencakup token yang ditambahkan secara otomatis oleh Anthropic untuk optimasi sistem. **Anda tidak ditagih untuk token yang ditambahkan sistem**. Penagihan hanya mencerminkan konten Anda.
 </Note>
 
 ### Model yang didukung
 
-Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitungan token.
+Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitungan token, termasuk Claude Sonnet 5.
+
+<Note>
+  Claude Opus 4.7 dan model Opus yang lebih baru, Claude Fable 5, Claude Mythos 5, Claude Mythos Preview, dan Claude Sonnet 5 menggunakan tokenizer yang lebih baru. Teks input yang sama menghasilkan sekitar 30% lebih banyak token dibandingkan model sebelumnya. Hitung ulang prompt terhadap model yang akan Anda gunakan, alih-alih menggunakan kembali jumlah yang diukur terhadap model sebelumnya.
+</Note>
 
 ### Menghitung token dalam pesan dasar
 
@@ -1186,7 +1190,7 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
 
   client = anthropic.Anthropic()
 
-  with open("document.pdf", "rb") as pdf_file:
+  with open("/path/to/document.pdf", "rb") as pdf_file:
       pdf_base64 = base64.standard_b64encode(pdf_file.read()).decode("utf-8")
 
   response = client.messages.count_tokens(
@@ -1213,11 +1217,11 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
   ```
 
   ```typescript TypeScript
-  import { readFile } from "fs/promises";
+  import { readFile } from "node:fs/promises";
 
   const client = new Anthropic();
 
-  const pdfBase64 = await readFile("document.pdf", { encoding: "base64" });
+  const pdfBase64 = await readFile("/path/to/document.pdf", { encoding: "base64" });
 
   const response = await client.messages.countTokens({
     model: "claude-opus-4-8",
@@ -1259,7 +1263,7 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
       {
           AnthropicClient client = new();
 
-          byte[] pdfBytes = await File.ReadAllBytesAsync("document.pdf");
+          byte[] pdfBytes = await File.ReadAllBytesAsync("/path/to/document.pdf");
           string pdfBase64 = Convert.ToBase64String(pdfBytes);
 
           var parameters = new MessageCountTokensParams
@@ -1276,7 +1280,6 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
                               new DocumentBlockParamSource(new Base64PdfSource()
                               {
                                   Data = pdfBase64,
-                                  MediaType = MediaType.ApplicationPdf,
                               })
                           )),
                           new ContentBlockParam(new TextBlockParam("Please summarize this document.")),
@@ -1292,7 +1295,7 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
   ```
 
   ```go Go
-  pdfBytes, err := os.ReadFile("document.pdf")
+  pdfBytes, err := os.ReadFile("/path/to/document.pdf")
   if err != nil {
   	log.Fatal(err)
   }
@@ -1325,17 +1328,12 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
   // ...
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-      byte[] fileBytes = Files.readAllBytes(Path.of("document.pdf"));
+      byte[] fileBytes = Files.readAllBytes(Path.of("/path/to/document.pdf"));
       String pdfBase64 = Base64.getEncoder().encodeToString(fileBytes);
 
       ContentBlockParam documentBlock = ContentBlockParam.ofDocument(
         DocumentBlockParam.builder()
-          .source(
-            Base64PdfSource.builder()
-              .mediaType(Base64PdfSource.MediaType.APPLICATION_PDF)
-              .data(pdfBase64)
-              .build()
-          )
+          .source(Base64PdfSource.builder().data(pdfBase64).build())
           .build()
       );
 
@@ -1355,7 +1353,7 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
   ```php PHP
   $client = new Client();
 
-  $pdfBase64 = base64_encode(file_get_contents("document.pdf"));
+  $pdfBase64 = base64_encode(file_get_contents("/path/to/document.pdf"));
 
   $response = $client->messages->countTokens(
       messages: [
@@ -1388,7 +1386,7 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
 
   client = Anthropic::Client.new
 
-  pdf_base64 = Base64.strict_encode64(File.binread("document.pdf"))
+  pdf_base64 = Base64.strict_encode64(File.binread("/path/to/document.pdf"))
 
   response = client.messages.count_tokens(
     model: "claude-opus-4-8",
@@ -1428,21 +1426,20 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
 Claude Fable 5 dan Claude Mythos 5 menggunakan tokenizer yang diperkenalkan dengan Claude Opus 4.7, yang menghasilkan sekitar 30% lebih banyak token dibandingkan model sebelum Claude Opus 4.7 untuk teks yang sama. Endpoint penghitungan token mengembalikan jumlah berdasarkan tokenizer dari `model` yang Anda berikan, jadi untuk mengukur perbedaan pada beban kerja Anda, hitung permintaan yang sama dua kali: sekali dengan model Anda saat ini dan sekali dengan `model: "claude-fable-5"` (atau `"claude-mythos-5"`), lalu bandingkan kedua nilai `input_tokens`.
 
 <Note>
-  **Penagihan dan migrasi:** Penggunaan dan penagihan pada Claude Fable 5 dan Claude Mythos 5 mencerminkan jumlah dari tokenizer ini. Jika Anda bermigrasi dari model sebelum Claude Opus 4.7, konten yang sama mengonsumsi sekitar 30% lebih banyak token. Saat memigrasikan beban kerja ke Claude Fable 5 dan Claude Mythos 5, jangan menggunakan kembali jumlah token yang diukur pada model sebelum Claude Opus 4.7 untuk memperkirakan biaya atau kesesuaian jendela konteks. Hitung prompt Anda dengan `model: "claude-fable-5"` (atau `"claude-mythos-5"`).
+  **Penagihan dan migrasi:** Penggunaan dan penagihan pada Claude Fable 5 dan Claude Mythos 5 mencerminkan jumlah dari tokenizer ini. Jika Anda bermigrasi dari model sebelum Claude Opus 4.7, konten yang sama mengonsumsi sekitar 30% lebih banyak token. Saat memigrasikan beban kerja ke Claude Fable 5 dan Claude Mythos 5, jangan gunakan kembali jumlah token yang diukur pada model sebelum Claude Opus 4.7 untuk memperkirakan biaya atau kesesuaian jendela konteks. Hitung prompt Anda dengan `model: "claude-fable-5"` (atau `"claude-mythos-5"`).
 </Note>
 
 ***
 
 ## Harga dan batas laju
 
-Penghitungan token **gratis untuk digunakan** tetapi tunduk pada batas laju permintaan per menit berdasarkan [tingkat penggunaan](/docs/id/api/rate-limits#rate-limits) Anda. Jika Anda memerlukan batas yang lebih tinggi, hubungi tim penjualan melalui [Claude Console](/settings/limits).
+Penghitungan token **gratis untuk digunakan** tetapi tunduk pada batas laju permintaan per menit berdasarkan [tingkat penggunaan](/docs/id/api/rate-limits#rate-limits) Anda. Jika Anda memerlukan batas yang lebih tinggi, gunakan **Request rate limit increase** pada halaman [Limits](/settings/limits).
 
 | Tingkat penggunaan | Permintaan per menit (RPM) |
 | ------------------ | -------------------------- |
-| 1                  | 100                        |
-| 2                  | 2.000                      |
-| 3                  | 4.000                      |
-| 4                  | 8.000                      |
+| Start              | 2.000                      |
+| Build              | 4.000                      |
+| Scale              | 8.000                      |
 
 <Note>
   Penghitungan token dan pembuatan pesan memiliki batas laju yang terpisah dan independen. Penggunaan salah satunya tidak dihitung terhadap batas yang lain.

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/skills-guide
-fetched_at: 2026-06-30T03:15:27.286427Z
-sha256: 2cfc94dcdec6510497482064113550e3c9e7a7bc5a247b1aba545116b6a7e4b6
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: b614f613d8567fe3358f9409eb78db4005a889ad5296371908cd24f6d5979121
 ---
 
 # Using Agent Skills with the API
@@ -880,16 +880,11 @@ When Skills create documents (Excel, PowerPoint, PDF, Word), they return `file_i
   ```bash CLI
   # Get file metadata
   ant beta:files retrieve-metadata --file-id "$FILE_ID" \
-    --transform '{filename,size_bytes}' --format yaml \
-    | { read -r _ name; read -r _ size
-        printf 'Filename: %s, Size: %s bytes\n' "$name" "$size"; }
+    --transform '{filename,size_bytes}' --format yaml
 
   # List all files
   ant beta:files list \
-    --transform '{filename,created_at}' --format yaml \
-    | while read -r _ name && read -r _ date; do
-        printf '%s - %s\n' "$name" "${date//\"/}"
-      done
+    --transform '{filename,created_at}' --format yaml
 
   # Delete a file
   ant beta:files delete --file-id "$FILE_ID" >/dev/null
@@ -1471,37 +1466,33 @@ Skills may perform operations that require multiple turns. Handle `pause_turn` s
       }]
     }')
 
-  # Check stop_reason and handle pause_turn in a loop
+  # If stop_reason is "pause_turn", continue in the same container.
+  # Repeat this continuation request until stop_reason changes.
   STOP_REASON=$(echo "$RESPONSE" | jq -r '.stop_reason')
   CONTAINER_ID=$(echo "$RESPONSE" | jq -r '.container.id')
 
-  while [ "$STOP_REASON" = "pause_turn" ]; do
-    # Continue with same container
-    RESPONSE=$(curl https://api.anthropic.com/v1/messages \
-      -H "x-api-key: $ANTHROPIC_API_KEY" \
-      -H "anthropic-version: 2023-06-01" \
-      -H "anthropic-beta: code-execution-2025-08-25,skills-2025-10-02" \
-      -H "content-type: application/json" \
-      -d "{
-        \"model\": \"claude-opus-4-8\",
-        \"max_tokens\": 4096,
-        \"container\": {
-          \"id\": \"$CONTAINER_ID\",
-          \"skills\": [{
-            \"type\": \"custom\",
-            \"skill_id\": \"skill_01AbCdEfGhIjKlMnOpQrStUv\",
-            \"version\": \"latest\"
-          }]
-        },
-        \"messages\": [/* include conversation history */],
-        \"tools\": [{
-          \"type\": \"code_execution_20250825\",
-          \"name\": \"code_execution\"
+  RESPONSE=$(curl https://api.anthropic.com/v1/messages \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-beta: code-execution-2025-08-25,skills-2025-10-02" \
+    -H "content-type: application/json" \
+    -d "{
+      \"model\": \"claude-opus-4-8\",
+      \"max_tokens\": 4096,
+      \"container\": {
+        \"id\": \"$CONTAINER_ID\",
+        \"skills\": [{
+          \"type\": \"custom\",
+          \"skill_id\": \"skill_01AbCdEfGhIjKlMnOpQrStUv\",
+          \"version\": \"latest\"
         }]
-      }")
-
-    STOP_REASON=$(echo "$RESPONSE" | jq -r '.stop_reason')
-  done
+      },
+      \"messages\": [/* include conversation history */],
+      \"tools\": [{
+        \"type\": \"code_execution_20250825\",
+        \"name\": \"code_execution\"
+      }]
+    }")
   ```
 
   ```bash CLI
@@ -1527,17 +1518,14 @@ Skills may perform operations that require multiple turns. Handle `pause_turn` s
       name: code_execution
   YAML
 
-  # Handle pause_turn for long operations (up to 10 iterations)
-  for _ in {1..10}; do
-    [[ $(jq -r '.stop_reason' "$RESP") == pause_turn ]] || break
+  # If stop_reason is "pause_turn", continue in the same container,
+  # appending the prior response's content array to messages as the
+  # assistant turn. Repeat until stop_reason is no longer "pause_turn".
+  CONTAINER_ID=$(jq -r '.container.id' "$RESP")
 
-    CONTAINER_ID=$(jq -r '.container.id' "$RESP")
-
-    # Continue in the same container, appending the prior response's
-    # content array to messages as the assistant turn.
-    ant beta:messages create \
-      --beta code-execution-2025-08-25 \
-      --beta skills-2025-10-02 \
+  ant beta:messages create \
+    --beta code-execution-2025-08-25 \
+    --beta skills-2025-10-02 \
    > "$RESP" <<YAML
   model: claude-opus-4-8
   max_tokens: 4096
@@ -1553,7 +1541,6 @@ Skills may perform operations that require multiple turns. Handle `pause_turn` s
     - type: code_execution_20250825
       name: code_execution
   YAML
-  done
   ```
 
   ```python Python
@@ -2854,15 +2841,15 @@ To delete a Skill, you must first delete all its versions:
   ```
 
   ```bash CLI
-  # Step 1: Delete all versions
+  # Step 1: List the versions, then delete each one
   ant beta:skills:versions list \
     --skill-id skill_01AbCdEfGhIjKlMnOpQrStUv \
-    --transform version --raw-output \
-    | while read -r VERSION; do
-        ant beta:skills:versions delete \
-          --skill-id skill_01AbCdEfGhIjKlMnOpQrStUv \
-          --version "$VERSION" >/dev/null
-      done
+    --transform version --raw-output
+
+  # Repeat for each version id the list returned
+  ant beta:skills:versions delete \
+    --skill-id skill_01AbCdEfGhIjKlMnOpQrStUv \
+    --version 20260115.120000 >/dev/null
 
   # Step 2: Delete the Skill
   ant beta:skills delete \

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 66be5d447d1ec28e0f749da78794ac39170db052a7654523b68cc4b5256da211
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 80e6e3a776e330db09e7ed9c8d7f809d09927ee955d618aefa613a18efaa0c8f
 ---
 
 # Advisor tool
@@ -42,6 +42,7 @@ The executor model (the top-level `model` field) and the advisor model (the `mod
 | -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Claude Haiku 4.5 (claude-haiku-4-5-20251001) | Claude Fable 5 (claude-fable-5) Claude Mythos 5 (claude-mythos-5) Claude Opus 4.8 (claude-opus-4-8) Claude Opus 4.7 (claude-opus-4-7) Claude Opus 4.6 (claude-opus-4-6) Claude Sonnet 4.6 (claude-sonnet-4-6) |
 | Claude Sonnet 4.6 (claude-sonnet-4-6)        | Claude Fable 5 (claude-fable-5) Claude Mythos 5 (claude-mythos-5) Claude Opus 4.8 (claude-opus-4-8) Claude Opus 4.7 (claude-opus-4-7) Claude Opus 4.6 (claude-opus-4-6) Claude Sonnet 4.6 (claude-sonnet-4-6) |
+| Claude Sonnet 5 (claude-sonnet-5)            | Claude Fable 5 (claude-fable-5) Claude Mythos 5 (claude-mythos-5) Claude Opus 4.8 (claude-opus-4-8) Claude Opus 4.7 (claude-opus-4-7)                                                                         |
 | Claude Opus 4.6 (claude-opus-4-6)            | Claude Fable 5 (claude-fable-5) Claude Mythos 5 (claude-mythos-5) Claude Opus 4.8 (claude-opus-4-8) Claude Opus 4.7 (claude-opus-4-7) Claude Opus 4.6 (claude-opus-4-6)                                       |
 | Claude Opus 4.7 (claude-opus-4-7)            | Claude Fable 5 (claude-fable-5) Claude Mythos 5 (claude-mythos-5) Claude Opus 4.8 (claude-opus-4-8) Claude Opus 4.7 (claude-opus-4-7)                                                                         |
 | Claude Opus 4.8 (claude-opus-4-8)            | Claude Fable 5 (claude-fable-5) Claude Mythos 5 (claude-mythos-5) Claude Opus 4.8 (claude-opus-4-8) Claude Opus 4.7 (claude-opus-4-7)                                                                         |

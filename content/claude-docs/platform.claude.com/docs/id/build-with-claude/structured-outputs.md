@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/structured-outputs
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 1a261c1060b17dca4bf42022b1d586af01f8164946332ac440a23659f2ad8c1d
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: cee00dfb8b177a634a684736b39abac7f02b3b397d3269865ce3f092c3ff7f0e
 ---
 
 # Output terstruktur
@@ -11,7 +11,7 @@ Dapatkan hasil JSON yang tervalidasi dari alur kerja agen
 
 ---
 
-Output terstruktur membatasi respons Claude agar mengikuti skema tertentu, memastikan output yang valid dan dapat diurai untuk pemrosesan selanjutnya. Output terstruktur menyediakan dua fitur yang saling melengkapi:
+Output terstruktur membatasi respons Claude agar mengikuti skema tertentu, memastikan output yang valid dan dapat diurai untuk pemrosesan lanjutan. Output terstruktur menyediakan dua fitur yang saling melengkapi:
 
 * **Output JSON** (`output_config.format`): Dapatkan respons Claude dalam format JSON tertentu
 * **Penggunaan alat ketat** (`strict: true`): Menjamin validasi skema pada nama dan input alat
@@ -19,7 +19,7 @@ Output terstruktur membatasi respons Claude agar mengikuti skema tertentu, memas
 Anda dapat menggunakan fitur-fitur ini secara independen atau bersamaan dalam permintaan yang sama.
 
 <Note>
-  Output terstruktur tersedia secara umum di Claude API untuk Claude Fable 5, Claude Mythos 5, Claude Opus 4.8, [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 4.6, Claude Sonnet 4.5, Claude Opus 4.5, dan Claude Haiku 4.5. Di Amazon Bedrock, output terstruktur tersedia secara umum untuk Claude Opus 4.6, Claude Sonnet 4.6, Claude Sonnet 4.5, Claude Opus 4.5, dan Claude Haiku 4.5; Claude Opus 4.7 dan Claude Mythos Preview tersedia melalui [Claude di Amazon Bedrock](/docs/id/build-with-claude/claude-in-amazon-bedrock) (endpoint Bedrock Messages-API). Output terstruktur tersedia di [Claude Platform on AWS](/docs/id/build-with-claude/claude-platform-on-aws) dan dalam versi beta di [Microsoft Foundry](/docs/id/build-with-claude/claude-in-microsoft-foundry). Di [Vertex AI](/docs/id/build-with-claude/claude-on-vertex-ai), output terstruktur tersedia secara umum untuk Claude Fable 5, Claude Mythos 5, Claude Opus 4.8, Claude Mythos Preview, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 4.6, Claude Sonnet 4.5, Claude Opus 4.5, dan Claude Haiku 4.5.
+  Output terstruktur tersedia secara umum di Claude API untuk Claude Fable 5, Claude Mythos 5, Claude Opus 4.8, [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5, Claude Sonnet 4.6, Claude Sonnet 4.5, Claude Opus 4.5, dan Claude Haiku 4.5. Di Amazon Bedrock, output terstruktur tersedia secara umum untuk Claude Opus 4.6, Claude Sonnet 4.6, Claude Sonnet 4.5, Claude Opus 4.5, dan Claude Haiku 4.5; Claude Sonnet 5, Claude Opus 4.7, dan Claude Mythos Preview tersedia melalui [Claude di Amazon Bedrock](/docs/id/build-with-claude/claude-in-amazon-bedrock) (endpoint Bedrock Messages-API). Output terstruktur tersedia di [Claude Platform di AWS](/docs/id/build-with-claude/claude-platform-on-aws). Di [Google Cloud](/docs/id/build-with-claude/claude-on-vertex-ai), output terstruktur tersedia secara umum untuk Claude Fable 5, Claude Mythos 5, Claude Opus 4.8, Claude Mythos Preview, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5, Claude Sonnet 4.6, Claude Sonnet 4.5, Claude Opus 4.5, dan Claude Haiku 4.5. Output terstruktur tersedia secara umum di [Microsoft Foundry](/docs/id/build-with-claude/claude-in-microsoft-foundry) dan memerlukan [deployment Hosted on Anthropic](/docs/id/build-with-claude/claude-in-microsoft-foundry#additional-features-not-supported-when-hosted-on-azure).
 </Note>
 
 <Note>
@@ -32,17 +32,17 @@ Anda dapat menggunakan fitur-fitur ini secara independen atau bersamaan dalam pe
 
 ## Mengapa menggunakan output terstruktur
 
-Tanpa output terstruktur, Claude dapat menghasilkan respons JSON yang salah format atau input alat yang tidak valid yang merusak aplikasi Anda. Bahkan dengan prompting yang cermat, Anda mungkin mengalami:
+Tanpa output terstruktur, Claude dapat menghasilkan respons JSON yang salah format atau input alat yang tidak valid yang merusak aplikasi Anda. Bahkan dengan prompting yang cermat, Anda mungkin menemui:
 
 * Kesalahan parsing dari sintaks JSON yang tidak valid
 * Field wajib yang hilang
 * Tipe data yang tidak konsisten
 * Pelanggaran skema yang memerlukan penanganan kesalahan dan percobaan ulang
 
-Output terstruktur menjamin respons yang sesuai skema melalui "constrained decoding" (decoding terbatas):
+Output terstruktur menjamin respons yang sesuai skema melalui "constrained decoding" (dekode terbatas):
 
 * **Selalu valid:** Tidak ada lagi kesalahan `JSON.parse()`
-* **Type safe:** Tipe field dan field wajib yang terjamin
+* **Aman secara tipe:** Tipe field dan field wajib yang terjamin
 * **Andal:** Tidak perlu percobaan ulang untuk pelanggaran skema
 
 ## Output JSON
@@ -381,7 +381,7 @@ Output JSON mengontrol format respons Claude, memastikan Claude mengembalikan JS
 SDK menyediakan helper yang memudahkan bekerja dengan output JSON, termasuk transformasi skema, validasi otomatis, dan integrasi dengan pustaka skema populer.
 
 <Note>
-  Metode `client.messages.parse()` di Python SDK masih menerima `output_format` sebagai parameter kemudahan dan menerjemahkannya ke `output_config.format` secara internal. SDK lain memerlukan `output_config` secara langsung. Contoh berikut menunjukkan sintaks helper SDK.
+  `client.messages.parse()` pada SDK Python masih menerima `output_format` sebagai parameter kemudahan dan menerjemahkannya ke `output_config.format` secara internal. SDK lain memerlukan `output_config` secara langsung. Contoh berikut menunjukkan sintaks helper SDK.
 </Note>
 
 #### Menggunakan definisi skema native
@@ -764,7 +764,7 @@ Setiap SDK menyediakan helper yang memudahkan bekerja dengan output terstruktur.
   <Tab title="TypeScript">
     **`client.messages.parse()` dengan `zodOutputFormat()`**
 
-    Metode `parse()` menerima skema Zod, memvalidasi respons, dan mengembalikan atribut `parsed_output` dengan tipe TypeScript yang disimpulkan cocok dengan skema.
+    Metode `parse()` menerima skema Zod, memvalidasi respons, dan mengembalikan atribut `parsed_output` dengan tipe TypeScript yang disimpulkan yang cocok dengan skema.
 
     ```typescript
     import { z } from "zod";
@@ -798,7 +798,7 @@ Setiap SDK menyediakan helper yang memudahkan bekerja dengan output terstruktur.
 
     Helper `jsonSchemaOutputFormat()` menerima objek JSON Schema dan mengintegrasikannya dengan `parse()` tanpa memerlukan Zod. Zod adalah peer dependency opsional yang Anda instal secara terpisah; `jsonSchemaOutputFormat()` berfungsi langsung karena SDK membundel `json-schema-to-ts` secara langsung.
 
-    Untuk **literal skema inline** (dideklarasikan dengan `as const` di sumber Anda), Anda juga mendapatkan inferensi tipe saat kompilasi: `parsed_output` diketik agar cocok dengan struktur skema. Untuk **skema yang diimpor atau dihasilkan** (dari file JSON atau codegen OpenAPI), helper tetap mengirim skema dan mengurai respons, tetapi tipe yang disimpulkan adalah `unknown` karena `as const` hanya dapat diterapkan pada ekspresi literal.
+    Untuk **literal skema inline** (dideklarasikan dengan `as const` di sumber Anda), Anda juga mendapatkan inferensi tipe pada waktu kompilasi: `parsed_output` diberi tipe agar cocok dengan struktur skema. Untuk **skema yang diimpor atau dihasilkan** (dari file JSON atau codegen OpenAPI), helper tetap mengirim skema dan mengurai respons, tetapi tipe yang disimpulkan adalah `unknown` karena `as const` hanya dapat diterapkan pada ekspresi literal.
 
     ```typescript
     import { jsonSchemaOutputFormat } from "@anthropic-ai/sdk/helpers/json-schema";
@@ -832,7 +832,7 @@ Setiap SDK menyediakan helper yang memudahkan bekerja dengan output terstruktur.
     console.log(response.parsed_output!.email);
     ```
 
-    **Inferensi tipe memerlukan `as const`.** Gunakan ekspresi objek literal dengan assertion `const` sehingga TypeScript dapat mempersempit tipe properti. Tanpa `as const`, tipe yang disimpulkan akan menjadi `unknown`.
+    **Inferensi tipe memerlukan `as const`.** Gunakan ekspresi objek literal dengan assertion `const` sehingga TypeScript dapat mempersempit tipe properti. Tanpa `as const`, tipe yang disimpulkan runtuh menjadi `unknown`.
 
     **Transformasi skema.** Secara default, helper mentransformasi skema dengan cara yang sama seperti `zodOutputFormat()`: menghapus constraint yang tidak didukung, menambahkan `additionalProperties: false` ke objek, dan memfilter format string. Teruskan `jsonSchemaOutputFormat(schema, { transform: false })` untuk mengirim skema Anda ke API tanpa perubahan. Lihat [Cara kerja transformasi SDK](#how-sdk-transformation-works).
   </Tab>
@@ -840,7 +840,7 @@ Setiap SDK menyediakan helper yang memudahkan bekerja dengan output terstruktur.
   <Tab title="C#">
     **Skema JSON melalui `OutputConfig`**
 
-    C# SDK menerima skema JSON mentah yang dibangun secara programatis dengan `JsonSerializer.SerializeToElement`, seperti yang ditunjukkan di sini, atau menurunkan skema dari kelas C# biasa dengan overload generik `Create<T>()`. Deserialisasi JSON respons dengan `JsonSerializer.Deserialize`.
+    SDK C# menerima skema JSON mentah yang dibangun secara programatik dengan `JsonSerializer.SerializeToElement`, seperti yang ditunjukkan di sini, atau menurunkan skema dari kelas C# biasa dengan overload generik `Create<T>()`. Deserialisasi JSON respons dengan `JsonSerializer.Deserialize`.
 
     ```csharp
     using System.Text.Json;
@@ -890,7 +890,7 @@ Setiap SDK menyediakan helper yang memudahkan bekerja dengan output terstruktur.
   <Tab title="Go">
     **Skema JSON mentah melalui `OutputConfigParam`**
 
-    Go SDK bekerja dengan skema JSON mentah. Definisikan struct Go dengan tag json, hasilkan skema JSON (misalnya, menggunakan `invopop/jsonschema`), dan unmarshal teks respons ke dalam struct Anda. Pada API beta, meneruskan struct sebagai skema format output akan merefleksikannya menjadi skema JSON secara otomatis.
+    SDK Go bekerja dengan skema JSON mentah. Definisikan struct Go dengan tag json, hasilkan skema JSON (misalnya, menggunakan `invopop/jsonschema`), dan unmarshal teks respons ke dalam struct Anda. Pada API beta, meneruskan struct sebagai skema format output akan merefleksikannya menjadi skema JSON secara otomatis.
 
     ```go
     import (
@@ -943,14 +943,14 @@ Setiap SDK menyediakan helper yang memudahkan bekerja dengan output terstruktur.
   </Tab>
 
   <Tab title="Java">
-    Contoh Java di halaman ini menggunakan sintaks [compact source file JDK 25](https://openjdk.org/jeps/512); lihat [persyaratan Java SDK](/docs/id/cli-sdks-libraries/sdks/java#requirements) untuk substitusi pada JDK yang lebih lama.
+    Contoh Java di halaman ini menggunakan sintaks [compact source file JDK 25](https://openjdk.org/jeps/512); lihat [persyaratan SDK Java](/docs/id/cli-sdks-libraries/sdks/java#requirements) untuk substitusi pada JDK yang lebih lama.
 
     **Metode `outputConfig(Class<T>)`**
 
     Teruskan kelas Java ke `outputConfig()` dan SDK secara otomatis menurunkan skema JSON, memvalidasinya, dan mengembalikan `StructuredMessageCreateParams<T>`. Akses hasil yang diurai melalui `response.content().stream().flatMap(block -> block.text().stream()).findFirst().orElseThrow().text()`.
 
     <Note>
-      Deklarasikan kelas skema Anda sebagai kelas tingkat atas atau kelas bersarang `static`. Persyaratan ini berasal dari pustaka Jackson Databind (`com.fasterxml.jackson.databind`), yang digunakan SDK untuk mendeserialisasi respons JSON ke dalam instance kelas Anda dan tidak dapat menginstansiasi inner class non-static.
+      Deklarasikan kelas skema Anda sebagai kelas tingkat atas atau kelas bersarang `static`. Persyaratan ini berasal dari pustaka Jackson Databind (`com.fasterxml.jackson.databind`), yang digunakan SDK untuk mendeserialisasi respons JSON menjadi instance kelas Anda dan tidak dapat menginstansiasi inner class non-static.
     </Note>
 
     ```java
@@ -1066,7 +1066,7 @@ Setiap SDK menyediakan helper yang memudahkan bekerja dengan output terstruktur.
       }
       ```
 
-      **Pewarisan** menghasilkan output JSON datar. Menurunkan skema dari kelas `Derived` yang memperluas `Base`:
+      **Pewarisan** menghasilkan output JSON datar. Menurunkan skema dari kelas `Derived` yang meng-extend `Base`:
 
       ```java
       static class Base {
@@ -1200,7 +1200,7 @@ Setiap SDK menyediakan helper yang memudahkan bekerja dengan output terstruktur.
       }
       ```
 
-      Untuk contoh yang lebih luas yang membangun skema bersarang dengan array dan deskripsi, lihat [`StructuredOutputsRawExample.java`](https://github.com/anthropics/anthropic-sdk-java/blob/main/anthropic-java-example/src/main/java/com/anthropic/example/StructuredOutputsRawExample.java) di repositori SDK.
+      Untuk contoh yang lebih ekstensif yang membangun skema bersarang dengan array dan deskripsi, lihat [`StructuredOutputsRawExample.java`](https://github.com/anthropics/anthropic-sdk-java/blob/main/anthropic-java-example/src/main/java/com/anthropic/example/StructuredOutputsRawExample.java) di repositori SDK.
     </Accordion>
   </Tab>
 
@@ -1284,13 +1284,13 @@ Setiap SDK menyediakan helper yang memudahkan bekerja dengan output terstruktur.
       }
       ```
 
-      **Constraint yang diterapkan API** (dikirim dalam skema): `description`, `format`, `const`, `itemClass`, `minItems` (hanya 0 atau 1).
+      **Constraint yang ditegakkan API** (dikirim dalam skema): `description`, `format`, `const`, `itemClass`, `minItems` (hanya 0 atau 1).
 
       **Constraint yang divalidasi SDK** (dihapus dari skema yang dikirim, ditambahkan ke deskripsi, dan divalidasi terhadap respons): `minimum`, `maximum`, `multipleOf`, `minLength`, `maxLength`.
     </Accordion>
 
     <Accordion title="Fallback skema JSON mentah">
-      Untuk skema yang tidak dapat diekspresikan oleh type hint PHP, teruskan array asosiatif mentah melalui `OutputConfig::with()`. Jalur ini melewati helper `parsedOutput()`; decode respons dengan `json_decode()`:
+      Untuk skema yang tidak dapat diekspresikan oleh type hint PHP, teruskan array asosiatif mentah melalui `OutputConfig::with()`. Jalur ini melewati helper `parsedOutput()`; dekode respons dengan `json_decode()`:
 
       ```php
       use Anthropic\Messages\OutputConfig;
@@ -1325,7 +1325,7 @@ Setiap SDK menyediakan helper yang memudahkan bekerja dengan output terstruktur.
   <Tab title="Ruby">
     **`output_config: {format: Model}` dengan `parsed_output`**
 
-    Definisikan kelas model yang memperluas `Anthropic::BaseModel` dan teruskan sebagai format ke `messages.create()`. Respons menyertakan atribut `parsed_output` dengan objek Ruby bertipe.
+    Definisikan kelas model yang meng-extend `Anthropic::BaseModel` dan teruskan sebagai format ke `messages.create()`. Respons menyertakan atribut `parsed_output` dengan objek Ruby bertipe.
 
     ```ruby
     class ContactInfo < Anthropic::BaseModel
@@ -1353,11 +1353,11 @@ Setiap SDK menyediakan helper yang memudahkan bekerja dengan output terstruktur.
     ```
 
     <Accordion title="Fitur model lanjutan">
-      Ruby SDK mendukung fitur definisi model tambahan untuk skema yang lebih kaya:
+      SDK Ruby mendukung fitur definisi model tambahan untuk skema yang lebih kaya:
 
       * **Kata kunci `doc:`:** Tambahkan deskripsi ke field untuk output skema yang lebih informatif
       * **`Anthropic::ArrayOf[T]`:** Array bertipe. Teruskan constraint tingkat array (`min_items:`, `max_items:`) sebagai kata kunci pada `required`/`optional`, bukan pada `ArrayOf` itu sendiri
-      * **`Anthropic::EnumOf[:a, :b]`:** Field enum dengan nilai yang dibatasi
+      * **`Anthropic::EnumOf[:a, :b]`:** Field enum dengan nilai terbatas
       * **`Anthropic::UnionOf[T1, T2]`:** Tipe union yang dipetakan ke `anyOf`
 
       ```ruby
@@ -1394,7 +1394,7 @@ SDK Python, TypeScript, Ruby, dan PHP secara otomatis mentransformasi skema deng
 4. **Memfilter format string** ke daftar yang didukung saja
 5. **Memvalidasi respons** terhadap skema asli Anda (dengan semua constraint)
 
-Ini berarti Claude menerima skema yang disederhanakan, tetapi kode Anda tetap menerapkan semua constraint melalui validasi.
+Ini berarti Claude menerima skema yang disederhanakan, tetapi kode Anda tetap menegakkan semua constraint melalui validasi.
 
 **Contoh:** Field Pydantic dengan `minimum: 100` menjadi integer biasa dalam skema yang dikirim, tetapi SDK memperbarui deskripsi menjadi "Must be at least 100" dan memvalidasi respons terhadap constraint asli.
 
@@ -1953,7 +1953,7 @@ Ini berarti Claude menerima skema yang disederhanakan, tetapi kode Anda tetap me
   </Accordion>
 
   <Accordion title="Pemformatan respons API">
-    Hasilkan respons siap API:
+    Hasilkan respons siap-API:
 
     <CodeGroup>
       ```bash CLI
@@ -2260,7 +2260,7 @@ Ini berarti Claude menerima skema yang disederhanakan, tetapi kode Anda tetap me
 
 ## Penggunaan alat ketat
 
-Untuk menerapkan kepatuhan JSON Schema pada input alat dengan sampling yang dibatasi grammar, lihat [Penggunaan alat ketat](/docs/id/agents-and-tools/tool-use/strict-tool-use).
+Untuk menegakkan kepatuhan JSON Schema pada input alat dengan sampling yang dibatasi grammar, lihat [Penggunaan alat ketat](/docs/id/agents-and-tools/tool-use/strict-tool-use).
 
 ## Menggunakan kedua fitur bersamaan
 
@@ -2269,7 +2269,7 @@ Output JSON dan penggunaan alat ketat menyelesaikan masalah yang berbeda dan bek
 * **Output JSON** mengontrol format respons Claude (apa yang dikatakan Claude)
 * **Penggunaan alat ketat** memvalidasi parameter alat (bagaimana Claude memanggil fungsi Anda)
 
-Ketika digabungkan, Claude dapat memanggil alat dengan parameter yang dijamin valid DAN mengembalikan respons JSON terstruktur. Ini berguna untuk alur kerja agentic di mana Anda memerlukan panggilan alat yang andal dan output akhir yang terstruktur.
+Ketika digabungkan, Claude dapat memanggil alat dengan parameter yang dijamin valid DAN mengembalikan respons JSON terstruktur. Ini berguna untuk alur kerja agentik di mana Anda memerlukan pemanggilan alat yang andal dan output akhir yang terstruktur.
 
 <CodeGroup>
   ```bash CLI
@@ -2294,7 +2294,7 @@ Ketika digabungkan, Claude dapat memanggil alat dengan parameter yang dijamin va
               type: string
         required: [summary, next_steps]
         additionalProperties: false
-  # Penggunaan alat ketat: parameter alat terjamin
+  # Penggunaan alat yang ketat: parameter alat terjamin
   tools:
     - name: search_flights
       strict: true
@@ -2377,7 +2377,7 @@ Ketika digabungkan, Claude dapat memanggil alat dengan parameter yang dijamin va
         }
       }
     },
-    // Penggunaan alat ketat: parameter alat terjamin
+    // Penggunaan alat ketat: parameter alat yang terjamin
     tools: [
       {
         name: "search_flights",
@@ -2431,7 +2431,7 @@ Ketika digabungkan, Claude dapat memanggil alat dengan parameter yang dijamin va
               },
           },
       },
-      // Penggunaan alat ketat: parameter alat terjamin
+      // Penggunaan alat ketat: parameter alat yang terjamin
       Tools =
       [
           new Tool
@@ -2516,7 +2516,7 @@ Ketika digabungkan, Claude dapat memanggil alat dengan parameter yang dijamin va
       .putAdditionalProperty("additionalProperties", JsonValue.from(false))
       .build();
 
-  // Penggunaan alat ketat: parameter alat terjamin
+  // Penggunaan alat ketat: parameter alat yang terjamin
   InputSchema toolSchema = InputSchema.builder()
       .properties(JsonValue.from(Map.of(
           "destination", Map.of("type", "string"),
@@ -2568,7 +2568,7 @@ Ketika digabungkan, Claude dapat memanggil alat dengan parameter yang dijamin va
       model: 'claude-opus-4-8',
       // Output JSON: format respons terstruktur
       outputConfig: ['format' => TripPlan::class],
-      // Penggunaan alat yang ketat: parameter alat terjamin
+      // Penggunaan alat ketat: parameter alat terjamin
       tools: [
           [
               'name' => 'search_flights',
@@ -2619,7 +2619,7 @@ Ketika digabungkan, Claude dapat memanggil alat dengan parameter yang dijamin va
         }
       }
     },
-    # Penggunaan alat ketat: parameter alat terjamin
+    # Penggunaan alat ketat: parameter alat yang terjamin
     tools: [
       {
         name: "search_flights",
@@ -2642,7 +2642,7 @@ Ketika digabungkan, Claude dapat memanggil alat dengan parameter yang dijamin va
 
 ## Pertimbangan penting
 
-### Kompilasi dan caching grammar
+### Kompilasi grammar dan caching
 
 Output terstruktur menggunakan sampling terbatas dengan artefak grammar yang dikompilasi. Ini memperkenalkan beberapa karakteristik performa yang perlu diperhatikan:
 
@@ -2716,7 +2716,7 @@ Output terstruktur mendukung JSON Schema standar dengan beberapa batasan. Baik o
 
 ### Pengurutan properti
 
-Saat menggunakan output terstruktur, properti dalam objek mempertahankan urutan yang didefinisikan dari skema Anda, dengan satu catatan penting: **properti wajib muncul terlebih dahulu, diikuti oleh properti opsional**.
+Saat menggunakan output terstruktur, properti dalam objek mempertahankan urutan yang didefinisikan dari skema Anda, dengan satu peringatan penting: **properti wajib muncul terlebih dahulu, diikuti oleh properti opsional**.
 
 Misalnya, dengan skema ini:
 
@@ -2777,39 +2777,39 @@ Jika respons terpotong karena mencapai batas `max_tokens`:
 
 ### Batas kompleksitas skema
 
-Output terstruktur bekerja dengan mengompilasi skema JSON Anda menjadi grammar yang membatasi output Claude. Skema yang lebih kompleks menghasilkan grammar yang lebih besar yang membutuhkan waktu lebih lama untuk dikompilasi. Untuk melindungi dari waktu kompilasi yang berlebihan, API menerapkan beberapa batas kompleksitas.
+Output terstruktur bekerja dengan mengompilasi skema JSON Anda menjadi grammar yang membatasi output Claude. Skema yang lebih kompleks menghasilkan grammar yang lebih besar yang membutuhkan waktu lebih lama untuk dikompilasi. Untuk melindungi dari waktu kompilasi yang berlebihan, API menegakkan beberapa batas kompleksitas.
 
 #### Batas eksplisit
 
 Batas berikut berlaku untuk semua permintaan dengan `output_config.format` atau `strict: true`:
 
-| Batas                       | Nilai | Deskripsi                                                                                                                                                                                  |
-| --------------------------- | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Alat strict per permintaan  | 20    | Jumlah maksimum alat dengan `strict: true`. Alat non-strict tidak dihitung terhadap batas ini.                                                                                             |
-| Parameter opsional          | 24    | Total parameter opsional di semua skema alat strict dan skema output JSON. Setiap parameter yang tidak tercantum dalam `required` dihitung terhadap batas ini.                             |
-| Parameter dengan tipe union | 16    | Total parameter yang menggunakan `anyOf` atau array tipe (misalnya, `"type": ["string", "null"]`) di semua skema strict. Ini sangat mahal karena menciptakan biaya kompilasi eksponensial. |
+| Batas                       | Nilai | Deskripsi                                                                                                                                                                                 |
+| --------------------------- | ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Alat ketat per permintaan   | 20    | Jumlah maksimum alat dengan `strict: true`. Alat non-ketat tidak dihitung terhadap batas ini.                                                                                             |
+| Parameter opsional          | 24    | Total parameter opsional di semua skema alat ketat dan skema output JSON. Setiap parameter yang tidak tercantum dalam `required` dihitung terhadap batas ini.                             |
+| Parameter dengan tipe union | 16    | Total parameter yang menggunakan `anyOf` atau array tipe (misalnya, `"type": ["string", "null"]`) di semua skema ketat. Ini sangat mahal karena menciptakan biaya kompilasi eksponensial. |
 
 <Note>
-  Batas ini berlaku untuk total gabungan di semua skema strict dalam satu permintaan. Misalnya, jika Anda memiliki 4 alat strict dengan masing-masing 6 parameter opsional, Anda akan mencapai batas 24 parameter meskipun tidak ada satu alat pun yang tampak kompleks.
+  Batas ini berlaku untuk total gabungan di semua skema ketat dalam satu permintaan. Misalnya, jika Anda memiliki 4 alat ketat dengan masing-masing 6 parameter opsional, Anda akan mencapai batas 24 parameter meskipun tidak ada satu alat pun yang tampak kompleks.
 </Note>
 
 #### Batas internal tambahan
 
 Di luar batas eksplisit dalam tabel sebelumnya, ada batas internal tambahan pada ukuran grammar yang dikompilasi. Batas ini ada karena kompleksitas skema tidak dapat direduksi menjadi satu dimensi: fitur seperti parameter opsional, tipe union, objek bersarang, dan jumlah alat berinteraksi satu sama lain dengan cara yang dapat membuat grammar yang dikompilasi menjadi sangat besar secara tidak proporsional.
 
-Ketika batas ini terlampaui, Anda akan menerima kesalahan 400 dengan pesan "Schema is too complex for compilation." Kesalahan ini berarti kompleksitas gabungan skema Anda melebihi apa yang dapat dikompilasi secara efisien, bahkan jika setiap batas individual dalam tabel sebelumnya terpenuhi. Sebagai pengaman terakhir, API juga menerapkan **batas waktu kompilasi 180 detik**. Skema yang lolos semua pemeriksaan eksplisit tetapi menghasilkan grammar terkompilasi yang sangat besar mungkin mencapai batas waktu ini.
+Ketika batas ini terlampaui, Anda akan menerima kesalahan 400 dengan pesan "Schema is too complex for compilation." Kesalahan ini berarti kompleksitas gabungan skema Anda melebihi apa yang dapat dikompilasi secara efisien, bahkan jika setiap batas individual dalam tabel sebelumnya terpenuhi. Sebagai pengaman terakhir, API juga menegakkan **batas waktu kompilasi 180 detik**. Skema yang lolos semua pemeriksaan eksplisit tetapi menghasilkan grammar terkompilasi yang sangat besar mungkin mencapai batas waktu ini.
 
 #### Tips untuk mengurangi kompleksitas skema
 
 Jika Anda mencapai batas kompleksitas, coba strategi ini secara berurutan:
 
-1. **Tandai hanya alat kritis sebagai strict.** Jika Anda memiliki banyak alat, cadangkan untuk alat di mana pelanggaran skema menyebabkan masalah nyata, dan andalkan kepatuhan alami Claude untuk alat yang lebih sederhana.
+1. **Tandai hanya alat kritis sebagai ketat.** Jika Anda memiliki banyak alat, simpan untuk alat di mana pelanggaran skema menyebabkan masalah nyata, dan andalkan kepatuhan alami Claude untuk alat yang lebih sederhana.
 
-2. **Kurangi parameter opsional.** Jadikan parameter `required` jika memungkinkan. Setiap parameter opsional kira-kira menggandakan sebagian dari ruang state grammar. Jika parameter selalu memiliki default yang masuk akal, pertimbangkan untuk menjadikannya wajib dan meminta Claude memberikan default tersebut secara eksplisit.
+2. **Kurangi parameter opsional.** Buat parameter `required` jika memungkinkan. Setiap parameter opsional kira-kira menggandakan sebagian dari ruang state grammar. Jika parameter selalu memiliki default yang masuk akal, pertimbangkan untuk membuatnya wajib dan meminta Claude memberikan default tersebut secara eksplisit.
 
-3. **Sederhanakan struktur bersarang.** Objek yang bersarang dalam dengan field opsional memperparah kompleksitas. Ratakan struktur jika memungkinkan.
+3. **Sederhanakan struktur bersarang.** Objek bersarang dalam dengan field opsional memperparah kompleksitas. Ratakan struktur jika memungkinkan.
 
-4. **Pisahkan menjadi beberapa permintaan.** Jika Anda memiliki banyak alat strict, pertimbangkan untuk memisahkannya ke permintaan atau sub-agen terpisah.
+4. **Pisahkan menjadi beberapa permintaan.** Jika Anda memiliki banyak alat ketat, pertimbangkan untuk memisahkannya ke permintaan atau sub-agen terpisah.
 
 Untuk masalah yang terus berlanjut dengan skema yang valid, [hubungi dukungan](https://support.claude.com/en/articles/9015913-how-to-get-support) dengan definisi skema Anda.
 
@@ -2832,26 +2832,26 @@ Untuk kelayakan ZDR dan HIPAA di semua fitur, lihat [API dan retensi data](/docs
 
 **Tidak kompatibel dengan:**
 
-* **[Citations](/docs/id/build-with-claude/citations):** Citations memerlukan penyisipan blok sitasi dengan teks, yang bertentangan dengan constraint skema JSON yang ketat. Mengembalikan kesalahan 400 jika citations diaktifkan dengan `output_config.format`.
-* **Message Prefilling:** Tidak kompatibel dengan output JSON
+* **[Sitasi](/docs/id/build-with-claude/citations):** Sitasi memerlukan penyisipan blok sitasi dengan teks, yang bertentangan dengan constraint skema JSON yang ketat. Mengembalikan kesalahan 400 jika sitasi diaktifkan dengan `output_config.format`.
+* **Prefilling Pesan:** Tidak kompatibel dengan output JSON
 
 <Tip>
-  **Cakupan grammar:** Grammar hanya berlaku untuk output langsung Claude, bukan untuk panggilan penggunaan alat, hasil alat, atau tag thinking (saat menggunakan [Pemikiran Diperpanjang](/docs/id/build-with-claude/extended-thinking)). State grammar direset di antara bagian, memungkinkan Claude berpikir secara bebas sambil tetap menghasilkan output terstruktur dalam respons akhir.
+  **Cakupan grammar:** Grammar hanya berlaku untuk output langsung Claude, bukan untuk pemanggilan penggunaan alat, hasil alat, atau tag thinking (saat menggunakan [Pemikiran Diperpanjang](/docs/id/build-with-claude/extended-thinking)). State grammar direset di antara bagian, memungkinkan Claude berpikir dengan bebas sambil tetap menghasilkan output terstruktur dalam respons akhir.
 </Tip>
 
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
-  <Card title="Citations" icon="book-bookmark" href="/docs/id/build-with-claude/citations">
+  <Card title="Sitasi" icon="book-bookmark" href="/docs/id/build-with-claude/citations">
     Minta Claude mengutip sumbernya saat menjawab pertanyaan tentang dokumen yang disediakan.
   </Card>
 
   <Card title="Penggunaan alat ketat" icon="check" href="/docs/id/agents-and-tools/tool-use/strict-tool-use">
-    Terapkan kepatuhan JSON Schema pada input alat Claude dengan sampling yang dibatasi grammar.
+    Tegakkan kepatuhan JSON Schema pada input alat Claude dengan sampling yang dibatasi grammar.
   </Card>
 
   <Card title="Penggunaan alat dengan Claude" icon="wrench" href="/docs/id/agents-and-tools/tool-use/overview">
-    Hubungkan Claude ke alat dan API eksternal. Pelajari di mana alat dieksekusi dan bagaimana loop agentic bekerja.
+    Hubungkan Claude ke alat dan API eksternal. Pelajari di mana alat dieksekusi dan bagaimana loop agentik bekerja.
   </Card>
 
   <Card title="Harga" icon="calculator" href="/docs/id/about-claude/pricing">

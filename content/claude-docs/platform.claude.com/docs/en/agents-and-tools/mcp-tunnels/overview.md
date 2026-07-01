@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/overview
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 76d25c86fef44d8889cca2a308c714d46e001b29022f29418b72040629cde782
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: ac5561ac973aecf3a41eb2451cfe24071c73010f0ea7144c68938c2722da2a65
 ---
 
 # MCP tunnels
@@ -34,11 +34,11 @@ Before deploying, make sure you have:
 
 * A deployment target: a Kubernetes cluster, or a VM with Docker and Docker Compose.
 
-* A tunnel created in the Claude Console. See [Create a tunnel](/docs/en/agents-and-tools/mcp-tunnels/console#create-a-tunnel).
+* A tunnel. Create one in the Claude Console (see [Create a tunnel](/docs/en/agents-and-tools/mcp-tunnels/console#create-a-tunnel)) or through the API; the Helm chart's setup hook can also create one for you during install.
 
 * A way for your stack to authenticate to the Tunnels API. Choose one:
 
-  * **[Programmatic access](/docs/en/agents-and-tools/mcp-tunnels/concepts#credential-provisioning) (recommended).** Set up [Workload Identity Federation](/docs/en/manage-claude/workload-identity-federation) when you create the tunnel. Your stack mints short-lived API tokens from your identity provider, fetches the tunnel token, and generates and registers a CA certificate automatically. Requires permission to manage federation rules, a registered OIDC issuer, and a federation rule with the `org:manage_tunnels` scope.
+  * **[Programmatic access](/docs/en/agents-and-tools/mcp-tunnels/concepts#credential-provisioning) (recommended).** Set up [Workload Identity Federation](/docs/en/manage-claude/workload-identity-federation) when you create the tunnel. Your stack mints short-lived API tokens from your identity provider, fetches the tunnel token, and generates and registers a CA certificate automatically. Requires permission to manage federation rules, a registered OIDC issuer, and a federation rule with the `workspace:manage_tunnels` scope.
   * **[Manual](/docs/en/agents-and-tools/mcp-tunnels/concepts#credential-provisioning).** Supply static credentials yourself: the tunnel token from the Console and a server certificate signed by a CA you register there. See [Get the connection details](/docs/en/agents-and-tools/mcp-tunnels/console#get-the-connection-details) and [Add a CA certificate](/docs/en/agents-and-tools/mcp-tunnels/console#add-a-ca-certificate).
 
 * One or more MCP servers running in your private network. See [Remote MCP servers](/docs/en/agents-and-tools/remote-mcp-servers) for examples.

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/enterprise
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 3f76ee7a96955341d47ef0ae410da8ebbdb61b66886bfdc7d5f22cf57ab3dc0e
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: a52ef62e03fbf30773cb53f6a1a3a43652a4ed858acada6b20c7a2a1c8f798c5
 ---
 
 # Skills untuk enterprise
@@ -90,7 +90,7 @@ Hasil evaluasi memberi sinyal kapan harus bertindak:
   </Step>
 
   <Step title="Buat dan tinjau">
-    Pastikan penulis Skill mengikuti [praktik terbaik](/docs/id/agents-and-tools/agent-skills/best-practices). Wajibkan tinjauan keamanan menggunakan [daftar periksa tinjauan](#daftar-periksa-tinjauan) di atas. Wajibkan rangkaian evaluasi sebelum persetujuan. Tetapkan pemisahan tugas: penulis Skill tidak boleh menjadi peninjau mereka sendiri.
+    Pastikan penulis Skill mengikuti [praktik terbaik](/docs/id/agents-and-tools/agent-skills/best-practices). Wajibkan tinjauan keamanan menggunakan [daftar periksa tinjauan](#review-checklist) di atas. Wajibkan rangkaian evaluasi sebelum persetujuan. Tetapkan pemisahan tugas: penulis Skill tidak boleh menjadi peninjau mereka sendiri.
   </Step>
 
   <Step title="Uji">

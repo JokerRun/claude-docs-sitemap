@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/compaction
-fetched_at: 2026-06-30T03:15:27.286427Z
-sha256: d2f10cd6b70fdb6ef4ee0f90d803d391bff086816d34db492b6fcd7a2c80dfc5
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 85bf626d37ab3cef7a4c4d4824b2b4558b3a90e2a2bfd78c755adcd38da40370
 ---
 
 # Compaction
@@ -44,6 +44,7 @@ Compaction is supported on the following models:
 * Claude Opus 4.8 (claude-opus-4-8)
 * Claude Opus 4.7 (claude-opus-4-7)
 * Claude Opus 4.6 (claude-opus-4-6)
+* Claude Sonnet 5 (claude-sonnet-5)
 * Claude Sonnet 4.6 (claude-sonnet-4-6)
 
 ## How compaction works

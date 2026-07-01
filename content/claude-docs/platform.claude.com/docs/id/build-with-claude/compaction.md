@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/compaction
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: e81bc4296be13c356e7add1f0b125d5eb858f0a494913b0e5c7d04ed721a1a6c
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: d5415fdcdb71727934586d1b90bf2cf64b5dcf453988388dfe0095610a7266f4
 ---
 
 # Compaction
@@ -16,16 +16,16 @@ Pemadatan konteks sisi server untuk mengelola percakapan panjang yang mendekati 
 </Note>
 
 <Tip>
-  "Compaction" (pemadatan) sisi server adalah strategi yang direkomendasikan untuk mengelola konteks dalam percakapan yang berjalan lama dan alur kerja agentik. Fitur ini menangani manajemen konteks secara otomatis dengan upaya integrasi yang minimal.
+  "Compaction" (pemadatan) sisi server adalah strategi yang direkomendasikan untuk mengelola konteks dalam percakapan yang berjalan lama dan alur kerja agentik. Fitur ini menangani manajemen konteks secara otomatis, tanpa kode peringkasan sisi klien.
 </Tip>
 
-Compaction memperpanjang panjang konteks efektif untuk percakapan dan tugas yang berjalan lama dengan secara otomatis merangkum konteks yang lebih lama ketika mendekati batas "context window" (jendela konteks). Ini bukan hanya tentang tetap berada di bawah batas token. Seiring percakapan menjadi lebih panjang, model kesulitan mempertahankan fokus di seluruh riwayat lengkap. Compaction menjaga konteks aktif tetap fokus dan berkinerja baik dengan mengganti konten yang sudah usang dengan ringkasan yang padat.
+Compaction memperpanjang panjang konteks efektif untuk percakapan dan tugas yang berjalan lama dengan secara otomatis meringkas konteks yang lebih lama ketika mendekati batas jendela konteks. Fitur ini juga menjaga konteks aktif tetap kecil: seiring percakapan bertambah panjang, kualitas respons menurun, sehingga compaction menggantikan konten yang lebih lama dengan ringkasan yang padat.
 
 <Tip>
-  Untuk pemahaman lebih mendalam tentang mengapa konteks panjang mengalami penurunan kualitas dan bagaimana compaction membantu, lihat [Effective context engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents).
+  Untuk pemahaman lebih dalam tentang mengapa konteks panjang mengalami penurunan kualitas dan bagaimana compaction membantu, lihat [Effective context engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents).
 </Tip>
 
-Ini ideal untuk:
+Fitur ini ideal untuk:
 
 * Percakapan multi-giliran berbasis chat di mana Anda ingin pengguna menggunakan satu chat untuk jangka waktu yang lama
 * Prompt berorientasi tugas yang memerlukan banyak pekerjaan lanjutan (sering kali penggunaan alat) yang mungkin melebihi jendela konteks
@@ -38,26 +38,27 @@ Ini ideal untuk:
 
 Compaction didukung pada model-model berikut:
 
-* Claude Fable 5 (`claude-fable-5`)
-* [Claude Mythos 5](https://anthropic.com/glasswing) (`claude-mythos-5`)
+* Claude Fable 5 (claude-fable-5)
+* [Claude Mythos 5](https://anthropic.com/glasswing) (claude-mythos-5)
 * [Claude Mythos Preview](https://anthropic.com/glasswing) (claude-mythos-preview)
 * Claude Opus 4.8 (claude-opus-4-8)
 * Claude Opus 4.7 (claude-opus-4-7)
 * Claude Opus 4.6 (claude-opus-4-6)
+* Claude Sonnet 5 (claude-sonnet-5)
 * Claude Sonnet 4.6 (claude-sonnet-4-6)
 
 ## Cara kerja compaction
 
-Ketika compaction diaktifkan, Claude secara otomatis merangkum percakapan Anda ketika mendekati ambang batas token yang dikonfigurasi. API akan:
+Ketika compaction diaktifkan, Claude secara otomatis meringkas percakapan Anda ketika mencapai ambang batas token yang dikonfigurasi. API akan:
 
-1. Mendeteksi ketika token input melebihi ambang batas pemicu yang Anda tentukan.
+1. Mendeteksi ketika token input mencapai ambang batas pemicu yang Anda tentukan.
 2. Menghasilkan ringkasan dari percakapan saat ini.
 3. Membuat blok `compaction` yang berisi ringkasan tersebut.
 4. Melanjutkan respons dengan konteks yang telah dipadatkan.
 
-Pada permintaan berikutnya, tambahkan respons tersebut ke pesan Anda. API secara otomatis menghapus semua blok pesan sebelum blok `compaction`, melanjutkan percakapan dari ringkasan tersebut.
+Pada permintaan berikutnya, tambahkan respons ke pesan Anda. API secara otomatis menghapus semua blok konten sebelum blok `compaction`, melanjutkan percakapan dari ringkasan.
 
-![Diagram alur yang menunjukkan proses compaction: ketika token input melebihi ambang batas pemicu, Claude menghasilkan ringkasan dalam blok compaction dan melanjutkan respons dengan konteks yang telah dipadatkan](/docs/images/compaction-flow.svg)
+![Alur compaction: ketika token input mencapai pemicu, Claude menulis ringkasan ke dalam blok compaction dan melanjutkan](/docs/images/compaction-flow.svg)
 
 ## Penggunaan dasar
 
@@ -66,28 +67,27 @@ Aktifkan compaction dengan menambahkan strategi `compact_20260112` ke `context_m
 <CodeGroup>
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
-       --header "x-api-key: $ANTHROPIC_API_KEY" \
-       --header "anthropic-version: 2023-06-01" \
-       --header "anthropic-beta: compact-2026-01-12" \
-       --header "content-type: application/json" \
-       --data \
-  '{
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-beta: compact-2026-01-12" \
+    -H "content-type: application/json" \
+    -d '{
       "model": "claude-opus-4-8",
       "max_tokens": 4096,
       "messages": [
-          {
-              "role": "user",
-              "content": "Help me build a website"
-          }
+        {
+          "role": "user",
+          "content": "Help me build a website"
+        }
       ],
       "context_management": {
-          "edits": [
-              {
-                  "type": "compact_20260112"
-              }
-          ]
+        "edits": [
+          {
+            "type": "compact_20260112"
+          }
+        ]
       }
-  }'
+    }'
   ```
 
   ```bash CLI
@@ -295,18 +295,47 @@ Aktifkan compaction dengan menambahkan strategi `compact_20260112` ke `context_m
 
 ## Parameter
 
-| Parameter                | Tipe    | Default       | Deskripsi                                                                        |
-| ------------------------ | ------- | ------------- | -------------------------------------------------------------------------------- |
-| `type`                   | string  | Wajib         | Harus berupa `"compact_20260112"`                                                |
-| `trigger`                | object  | 150.000 token | Kapan compaction dipicu. Harus minimal 50.000 token.                             |
-| `pause_after_compaction` | boolean | `false`       | Apakah akan berhenti sejenak setelah menghasilkan ringkasan compaction           |
-| `instructions`           | string  | `null`        | Prompt ringkasan kustom. Sepenuhnya menggantikan prompt default jika disediakan. |
+| Parameter                | Tipe    | Default                                     | Deskripsi                                                                                                                  |
+| ------------------------ | ------- | ------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| `type`                   | string  | Wajib                                       | Harus berupa `"compact_20260112"`                                                                                          |
+| `trigger`                | object  | `{"type": "input_tokens", "value": 150000}` | Kapan compaction dipicu. `input_tokens` adalah satu-satunya tipe pemicu yang didukung. `value` harus minimal 50.000 token. |
+| `pause_after_compaction` | boolean | `false`                                     | Apakah akan berhenti sejenak setelah menghasilkan ringkasan compaction                                                     |
+| `instructions`           | string  | `null`                                      | Prompt peringkasan kustom. Sepenuhnya menggantikan prompt default jika disediakan.                                         |
 
-### Konfigurasi trigger
+### Konfigurasi pemicu
 
 Konfigurasikan kapan compaction dipicu menggunakan parameter `trigger`:
 
 <CodeGroup>
+  ```bash cURL
+  curl https://api.anthropic.com/v1/messages \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-beta: compact-2026-01-12" \
+    -H "content-type: application/json" \
+    -d '{
+      "model": "claude-opus-4-8",
+      "max_tokens": 4096,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Hello, Claude"
+        }
+      ],
+      "context_management": {
+        "edits": [
+          {
+            "type": "compact_20260112",
+            "trigger": {
+              "type": "input_tokens",
+              "value": 150000
+            }
+          }
+        ]
+      }
+    }'
+  ```
+
   ```bash CLI
   ant beta:messages create --beta compact-2026-01-12 <<'YAML'
   model: claude-opus-4-8
@@ -344,7 +373,9 @@ Konfigurasikan kapan compaction dipicu menggunakan parameter `trigger`:
 
   ```typescript TypeScript
   const client = new Anthropic();
-  const messages: Anthropic.Beta.Messages.BetaMessageParam[] = [];
+  const messages: Anthropic.Beta.Messages.BetaMessageParam[] = [
+    { role: "user", content: "Hello, Claude" }
+  ];
 
   const response = await client.beta.messages.create({
     betas: ["compact-2026-01-12"],
@@ -366,6 +397,9 @@ Konfigurasikan kapan compaction dipicu menggunakan parameter `trigger`:
   ```
 
   ```csharp C#
+  AnthropicClient client = new();
+  List<BetaMessageParam> messages = [new() { Role = Role.User, Content = "Hello" }];
+
   var parameters = new MessageCreateParams
   {
       Model = "claude-opus-4-8",
@@ -483,17 +517,43 @@ Konfigurasikan kapan compaction dipicu menggunakan parameter `trigger`:
   ```
 </CodeGroup>
 
-### Instruksi ringkasan kustom
+### Instruksi peringkasan kustom
 
-Secara default, compaction menggunakan prompt ringkasan berikut:
+Prompt peringkasan default bervariasi menurut model. Setiap default menginstruksikan Claude untuk menulis ringkasan di dalam tag `<summary></summary>` dengan informasi yang diperlukan untuk melanjutkan tugas di jendela konteks berikutnya. Sebagai contoh, beberapa model menggunakan prompt berikut:
 
 ```text wrap
 You have written a partial transcript for the initial task above. Please write a summary of the transcript. The purpose of this summary is to provide continuity so you can continue to make progress towards solving the task in a future context, where the raw history above may not be accessible and will be replaced with this summary. Write down anything that would be helpful, including the state, next steps, learnings etc. You must wrap your summary in a <summary></summary> block.
 ```
 
-Anda dapat menyediakan instruksi kustom melalui parameter `instructions` untuk menggantikan prompt ini sepenuhnya. Instruksi kustom tidak melengkapi prompt default; instruksi tersebut sepenuhnya menggantikannya:
+Anda dapat memberikan instruksi kustom melalui parameter `instructions`. Instruksi kustom tidak melengkapi prompt default. Instruksi tersebut menggantikannya sepenuhnya:
 
 <CodeGroup>
+  ```bash cURL
+  curl https://api.anthropic.com/v1/messages \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-beta: compact-2026-01-12" \
+    -H "content-type: application/json" \
+    -d '{
+      "model": "claude-opus-4-8",
+      "max_tokens": 4096,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Hello, Claude"
+        }
+      ],
+      "context_management": {
+        "edits": [
+          {
+            "type": "compact_20260112",
+            "instructions": "Focus on preserving code snippets, variable names, and technical decisions."
+          }
+        ]
+      }
+    }'
+  ```
+
   ```bash CLI
   ant beta:messages create --beta compact-2026-01-12 <<'YAML'
   model: claude-opus-4-8
@@ -531,7 +591,9 @@ Anda dapat menyediakan instruksi kustom melalui parameter `instructions` untuk m
 
   ```typescript TypeScript
   const client = new Anthropic();
-  const messages: Anthropic.Beta.Messages.BetaMessageParam[] = [];
+  const messages: Anthropic.Beta.Messages.BetaMessageParam[] = [
+    { role: "user", content: "Hello, Claude" }
+  ];
 
   const response = await client.beta.messages.create({
     betas: ["compact-2026-01-12"],
@@ -692,46 +754,59 @@ Anda dapat menyediakan instruksi kustom melalui parameter `instructions` untuk m
 
 ### Berhenti sejenak setelah compaction
 
-Gunakan `pause_after_compaction` untuk menghentikan sementara API setelah menghasilkan ringkasan compaction. Ini memungkinkan Anda menambahkan blok konten tambahan (seperti mempertahankan pesan terbaru atau pesan berorientasi instruksi tertentu) sebelum API melanjutkan dengan respons.
+Gunakan `pause_after_compaction` untuk menjeda API setelah menghasilkan ringkasan compaction. Ini memungkinkan Anda menambahkan blok konten tambahan (seperti mempertahankan pesan terbaru atau pesan berorientasi instruksi tertentu) sebelum API melanjutkan dengan respons.
 
 Ketika diaktifkan, API mengembalikan pesan dengan stop reason `compaction` setelah menghasilkan blok compaction:
 
 <CodeGroup>
+  ```bash cURL
+  # pause_after_compaction menghentikan respons tepat setelah ringkasan
+  # pemadatan agar Anda dapat menyesuaikan pesan sebelum melanjutkan. Langkah
+  # lanjutan tidak cocok dijalankan sebagai perintah shell sekali jalan; lihat tab SDK
+  # untuk alur jeda-dan-lanjutkan lengkap. Permintaan tunggal yang dijeda:
+  curl https://api.anthropic.com/v1/messages \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-beta: compact-2026-01-12" \
+    -H "content-type: application/json" \
+    -d '{
+      "model": "claude-opus-4-8",
+      "max_tokens": 4096,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Hello, Claude"
+        }
+      ],
+      "context_management": {
+        "edits": [
+          {
+            "type": "compact_20260112",
+            "pause_after_compaction": true
+          }
+        ]
+      }
+    }'
+  ```
+
   ```bash CLI
-  ant beta:messages create --beta compact-2026-01-12 \
-    --transform '{stop_reason,content}' --format jsonl <<'YAML' > resp.json
+  # pause_after_compaction menghentikan respons tepat setelah ringkasan
+  # pemadatan agar Anda dapat menyesuaikan pesan sebelum melanjutkan. Langkah
+  # lanjutan tidak cocok untuk perintah CLI sekali jalan; lihat tab SDK
+  # untuk alur jeda-dan-lanjutkan lengkap. Permintaan tunggal yang dijeda:
+  ant beta:messages create \
+    --beta compact-2026-01-12 \
+    --format jsonl <<'YAML'
   model: claude-opus-4-8
   max_tokens: 4096
   messages:
     - role: user
-      content: "Hello, Claude"
+      content: Hello, Claude
   context_management:
     edits:
       - type: compact_20260112
         pause_after_compaction: true
   YAML
-
-  # Periksa apakah pemadatan memicu jeda
-  if grep -q '"stop_reason":"compaction"' resp.json; then
-    # Respons hanya berisi blok pemadatan
-    RESP=$(cat resp.json)
-    CONTENT="${RESP#*\"content\":}"
-    printf '%s' "${CONTENT%\}}" > content.json
-
-    # Lanjutkan permintaan
-    ant beta:messages create --beta compact-2026-01-12 <<YAML > /dev/null
-  model: claude-opus-4-8
-  max_tokens: 4096
-  messages:
-    - role: user
-      content: "Hello, Claude"
-    - role: assistant
-      content: $(cat content.json)
-  context_management:
-    edits:
-      - type: compact_20260112
-  YAML
-  fi
   ```
 
   ```python Python
@@ -937,7 +1012,7 @@ Ketika diaktifkan, API mengembalikan pesan dengan stop reason `compaction` setel
           if (response.stopReason().isPresent()
                   && response.stopReason().get().equals(BetaStopReason.COMPACTION)) {
               // Tambahkan blok pemadatan dan lanjutkan permintaan
-              // dengan membangun permintaan baru menggunakan konteks yang dipadatkan
+              // dengan membuat permintaan baru menggunakan konteks yang dipadatkan
               MessageCreateParams continueParams = MessageCreateParams.builder()
                   .model("claude-opus-4-8")
                   .maxTokens(4096L)
@@ -1035,50 +1110,307 @@ Ketika diaktifkan, API mengembalikan pesan dengan stop reason `compaction` setel
 
 #### Menerapkan anggaran token total
 
-Ketika model mengerjakan tugas panjang dengan banyak iterasi penggunaan alat, konsumsi token total dapat meningkat secara signifikan. Anda dapat menggabungkan `pause_after_compaction` dengan penghitung compaction untuk memperkirakan penggunaan kumulatif dan menyelesaikan tugas dengan baik setelah anggaran tercapai:
+Ketika model mengerjakan tugas panjang dengan banyak iterasi penggunaan alat, konsumsi token total dapat meningkat secara signifikan. Anda dapat menggabungkan `pause_after_compaction` dengan penghitung compaction untuk memperkirakan penggunaan kumulatif dan menyelesaikan tugas dengan baik setelah anggaran tercapai.
 
-```python Python
-client = anthropic.Anthropic()
-messages = [{"role": "user", "content": "Hello, Claude"}]
-TRIGGER_THRESHOLD = 100_000
-TOTAL_TOKEN_BUDGET = 3_000_000
-n_compactions = 0
+Contoh ini hanya muncul dalam bahasa SDK: nilainya terletak pada logika pelacakan anggaran di sekitar permintaan. Permintaan mentahnya menggabungkan `trigger` dari [Konfigurasi pemicu](#trigger-configuration) dengan `pause_after_compaction` dari [Berhenti sejenak setelah compaction](#pausing-after-compaction).
 
-response = client.beta.messages.create(
-    betas=["compact-2026-01-12"],
-    model="claude-opus-4-8",
-    max_tokens=4096,
-    messages=messages,
-    context_management={
-        "edits": [
-            {
-                "type": "compact_20260112",
-                "trigger": {"type": "input_tokens", "value": TRIGGER_THRESHOLD},
-                "pause_after_compaction": True,
-            }
-        ]
-    },
-)
+<CodeGroup>
+  ```python Python
+  client = anthropic.Anthropic()
+  messages = [{"role": "user", "content": "Hello, Claude"}]
+  TRIGGER_THRESHOLD = 100_000
+  TOTAL_TOKEN_BUDGET = 3_000_000
+  n_compactions = 0
 
-if response.stop_reason == "compaction":
-    n_compactions += 1
-    messages.append({"role": "assistant", "content": response.content})
+  response = client.beta.messages.create(
+      betas=["compact-2026-01-12"],
+      model="claude-opus-4-8",
+      max_tokens=4096,
+      messages=messages,
+      context_management={
+          "edits": [
+              {
+                  "type": "compact_20260112",
+                  "trigger": {"type": "input_tokens", "value": TRIGGER_THRESHOLD},
+                  "pause_after_compaction": True,
+              }
+          ]
+      },
+  )
+
+  if response.stop_reason == "compaction":
+      n_compactions += 1
+      messages.append({"role": "assistant", "content": response.content})
+
+      # Estimasi total token yang dikonsumsi; minta penutupan jika melebihi anggaran
+      if n_compactions * TRIGGER_THRESHOLD >= TOTAL_TOKEN_BUDGET:
+          messages.append(
+              {
+                  "role": "user",
+                  "content": "Please wrap up your current work and summarize the final state.",
+              }
+          )
+  ```
+
+  ```typescript TypeScript
+  const client = new Anthropic();
+  const messages: Anthropic.Beta.Messages.BetaMessageParam[] = [
+    { role: "user", content: "Hello, Claude" }
+  ];
+  const TRIGGER_THRESHOLD = 100_000;
+  const TOTAL_TOKEN_BUDGET = 3_000_000;
+  let compactionCount = 0;
+
+  const response = await client.beta.messages.create({
+    betas: ["compact-2026-01-12"],
+    model: "claude-opus-4-8",
+    max_tokens: 4096,
+    messages,
+    context_management: {
+      edits: [
+        {
+          type: "compact_20260112",
+          trigger: { type: "input_tokens", value: TRIGGER_THRESHOLD },
+          pause_after_compaction: true
+        }
+      ]
+    }
+  });
+
+  if (response.stop_reason === "compaction") {
+    compactionCount += 1;
+    messages.push({ role: "assistant", content: response.content });
+
+    // Estimasi total token yang dikonsumsi; minta penutupan jika melebihi anggaran
+    if (compactionCount * TRIGGER_THRESHOLD >= TOTAL_TOKEN_BUDGET) {
+      messages.push({
+        role: "user",
+        content: "Please wrap up your current work and summarize the final state."
+      });
+    }
+  }
+  ```
+
+  ```csharp C#
+  AnthropicClient client = new();
+  List<BetaMessageParam> messages = [new() { Role = Role.User, Content = "Hello, Claude" }];
+
+  const int TriggerThreshold = 100_000;
+  const int TotalTokenBudget = 3_000_000;
+  int compactionCount = 0;
+
+  var response = await client.Beta.Messages.Create(new()
+  {
+      Betas = ["compact-2026-01-12"],
+      Model = "claude-opus-4-8",
+      MaxTokens = 4096,
+      Messages = messages,
+      ContextManagement = new BetaContextManagementConfig
+      {
+          Edits = [new BetaCompact20260112Edit
+          {
+              Trigger = new BetaInputTokensTrigger(TriggerThreshold),
+              PauseAfterCompaction = true
+          }]
+      }
+  });
+
+  if (response.StopReason == BetaStopReason.Compaction)
+  {
+      compactionCount += 1;
+      messages.Add(new()
+      {
+          Role = Role.Assistant,
+          Content = response.Content.Select(b => new BetaContentBlockParam(b.Json)).ToList()
+      });
+
+      // Estimasi total token yang dikonsumsi; minta penutupan jika melebihi anggaran
+      if (compactionCount * TriggerThreshold >= TotalTokenBudget)
+      {
+          messages.Add(new()
+          {
+              Role = Role.User,
+              Content = "Please wrap up your current work and summarize the final state."
+          });
+      }
+  }
+
+  Console.WriteLine(response);
+  ```
+
+  ```go Go
+  client := anthropic.NewClient()
+  messages := []anthropic.BetaMessageParam{anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Hello, Claude"))}
+
+  const triggerThreshold = 100_000
+  const totalTokenBudget = 3_000_000
+  compactionCount := 0
+
+  response, err := client.Beta.Messages.New(context.TODO(), anthropic.BetaMessageNewParams{
+  	Model:     anthropic.ModelClaudeOpus4_8,
+  	MaxTokens: 4096,
+  	Messages:  messages,
+  	ContextManagement: anthropic.BetaContextManagementConfigParam{
+  		Edits: []anthropic.BetaContextManagementConfigEditUnionParam{
+  			{OfCompact20260112: &anthropic.BetaCompact20260112EditParam{
+  				Trigger:              anthropic.BetaInputTokensTriggerParam{Value: triggerThreshold},
+  				PauseAfterCompaction: anthropic.Bool(true),
+  			}},
+  		},
+  	},
+  	Betas: []anthropic.AnthropicBeta{"compact-2026-01-12"},
+  })
+  if err != nil {
+  	log.Fatal(err)
+  }
+
+  if response.StopReason == "compaction" {
+  	compactionCount++
+  	messages = append(messages, response.ToParam())
+
+  	// Estimasi total token yang dikonsumsi; minta penutupan jika melebihi anggaran
+  	if compactionCount*triggerThreshold >= totalTokenBudget {
+  		messages = append(messages, anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Please wrap up your current work and summarize the final state.")))
+  	}
+  }
+
+  fmt.Println(response)
+  ```
+
+  ```java Java
+  import com.anthropic.models.beta.messages.BetaContextManagementConfig;
+  import com.anthropic.models.beta.messages.BetaCompact20260112Edit;
+  import com.anthropic.models.beta.messages.BetaInputTokensTrigger;
+  import com.anthropic.models.beta.messages.BetaStopReason;
+  // ...
+          AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+          long triggerThreshold = 100_000;
+          long totalTokenBudget = 3_000_000;
+          int compactionCount = 0;
+
+          List<BetaMessageParam> messages = new ArrayList<>();
+          messages.add(BetaMessageParam.builder()
+              .role(BetaMessageParam.Role.USER)
+              .content("Hello, Claude")
+              .build());
+
+          MessageCreateParams params = MessageCreateParams.builder()
+              .addBeta("compact-2026-01-12")
+              .model("claude-opus-4-8")
+              .maxTokens(4096L)
+              .messages(messages)
+              .contextManagement(BetaContextManagementConfig.builder()
+                  .addEdit(BetaCompact20260112Edit.builder()
+                      .trigger(BetaInputTokensTrigger.builder()
+                          .value(triggerThreshold)
+                          .build())
+                      .pauseAfterCompaction(true)
+                      .build())
+                  .build())
+              .build();
+
+          BetaMessage response = client.beta().messages().create(params);
+
+          if (response.stopReason().isPresent()
+                  && response.stopReason().get().equals(BetaStopReason.COMPACTION)) {
+              compactionCount += 1;
+              messages.add(response.toParam());
+
+              // Estimasi total token yang dikonsumsi; minta penutupan jika melebihi anggaran
+              if (compactionCount * triggerThreshold >= totalTokenBudget) {
+                  messages.add(BetaMessageParam.builder()
+                      .role(BetaMessageParam.Role.USER)
+                      .content("Please wrap up your current work and summarize the final state.")
+                      .build());
+              }
+          }
+
+          System.out.println(response);
+  ```
+
+  ```php PHP
+  $client = new Client();
+
+  $triggerThreshold = 100_000;
+  $totalTokenBudget = 3_000_000;
+  $compactionCount = 0;
+
+  $messages = [['role' => 'user', 'content' => 'Hello, Claude']];
+
+  $response = $client->beta->messages->create(
+      maxTokens: 4096,
+      messages: $messages,
+      model: 'claude-opus-4-8',
+      betas: ['compact-2026-01-12'],
+      contextManagement: [
+          'edits' => [
+              [
+                  'type' => 'compact_20260112',
+                  'trigger' => ['type' => 'input_tokens', 'value' => $triggerThreshold],
+                  'pause_after_compaction' => true
+              ]
+          ]
+      ]
+  );
+
+  if ($response->stopReason === 'compaction') {
+      $compactionCount += 1;
+      $messages[] = ['role' => 'assistant', 'content' => $response->content];
+
+      // Estimasi total token yang dikonsumsi; minta penutupan jika melebihi anggaran
+      if ($compactionCount * $triggerThreshold >= $totalTokenBudget) {
+          $messages[] = [
+              'role' => 'user',
+              'content' => 'Please wrap up your current work and summarize the final state.'
+          ];
+      }
+  }
+  ```
+
+  ```ruby Ruby
+  client = Anthropic::Client.new
+  messages = [{ role: "user", content: "Hello, Claude" }]
+  TRIGGER_THRESHOLD = 100_000
+  TOTAL_TOKEN_BUDGET = 3_000_000
+  compaction_count = 0
+
+  response = client.beta.messages.create(
+    betas: ["compact-2026-01-12"],
+    model: "claude-opus-4-8",
+    max_tokens: 4096,
+    messages: messages,
+    context_management: {
+      edits: [
+        {
+          type: "compact_20260112",
+          trigger: { type: "input_tokens", value: TRIGGER_THRESHOLD },
+          pause_after_compaction: true
+        }
+      ]
+    }
+  )
+
+  if response.stop_reason == :compaction
+    compaction_count += 1
+    messages << { role: "assistant", content: response.content }
 
     # Estimasi total token yang dikonsumsi; minta penutupan jika melebihi anggaran
-    if n_compactions * TRIGGER_THRESHOLD >= TOTAL_TOKEN_BUDGET:
-        messages.append(
-            {
-                "role": "user",
-                "content": "Please wrap up your current work and summarize the final state.",
-            }
-        )
-```
+    if compaction_count * TRIGGER_THRESHOLD >= TOTAL_TOKEN_BUDGET
+      messages << {
+        role: "user",
+        content: "Please wrap up your current work and summarize the final state."
+      }
+    end
+  end
+  ```
+</CodeGroup>
 
 ## Bekerja dengan blok compaction
 
 Ketika compaction dipicu, API mengembalikan blok `compaction` di awal respons asisten.
 
-Percakapan yang berjalan lama dapat menghasilkan beberapa compaction. Blok compaction terakhir mencerminkan keadaan akhir dari prompt, menggantikan konten sebelumnya dengan ringkasan yang dihasilkan.
+Percakapan yang berjalan lama mungkin menghasilkan beberapa compaction. Blok compaction terakhir mencerminkan keadaan akhir prompt, menggantikan konten sebelumnya dengan ringkasan yang dihasilkan.
 
 ```json Output
 {
@@ -1100,9 +1432,40 @@ Percakapan yang berjalan lama dapat menghasilkan beberapa compaction. Blok compa
 Anda harus mengirim kembali blok `compaction` ke API pada permintaan berikutnya untuk melanjutkan percakapan dengan prompt yang telah dipersingkat. Pendekatan paling sederhana adalah menambahkan seluruh konten respons ke pesan Anda:
 
 <CodeGroup>
+  ```bash cURL
+  # Konten respons, termasuk blok pemadatan, harus dikirim kembali ke
+  # API sebagai giliran asisten pada permintaan berikutnya. Mengelola daftar pesan itu
+  # tidak cocok dilakukan lewat perintah shell sekali jalan; lihat tab CLI dan SDK
+  # untuk alur lengkapnya. Permintaan pertama:
+  curl https://api.anthropic.com/v1/messages \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-beta: compact-2026-01-12" \
+    -H "content-type: application/json" \
+    -d '{
+      "model": "claude-opus-4-8",
+      "max_tokens": 4096,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Hello, Claude"
+        }
+      ],
+      "context_management": {
+        "edits": [
+          {
+            "type": "compact_20260112"
+          }
+        ]
+      }
+    }'
+  ```
+
   ```bash CLI
-  ant beta:messages create --beta compact-2026-01-12 \
-    --transform content --format jsonl <<'YAML' > content.json
+  ant beta:messages create \
+    --beta compact-2026-01-12 \
+    --transform content \
+    --format jsonl <<'YAML' > content.json
   model: claude-opus-4-8
   max_tokens: 4096
   messages:
@@ -1158,9 +1521,10 @@ Anda harus mengirim kembali blok `compaction` ke API pada permintaan berikutnya 
 
   ```typescript TypeScript
   const client = new Anthropic();
-  const messages: Anthropic.Beta.Messages.BetaMessageParam[] = [];
+  const messages: Anthropic.Beta.Messages.BetaMessageParam[] = [
+    { role: "user", content: "Hello, Claude" }
+  ];
 
-  // Asumsikan kita sudah memiliki respons dari permintaan sebelumnya
   const response = await client.beta.messages.create({
     betas: ["compact-2026-01-12"],
     model: "claude-opus-4-8",
@@ -1394,19 +1758,47 @@ Anda harus mengirim kembali blok `compaction` ke API pada permintaan berikutnya 
   ```
 </CodeGroup>
 
-Ketika API menerima blok `compaction`, semua blok konten sebelumnya akan diabaikan. Anda dapat:
+Ketika API menerima blok `compaction`, semua blok konten sebelumnya diabaikan. Anda dapat:
 
 * Menyimpan pesan asli dalam daftar Anda dan membiarkan API menangani penghapusan konten yang telah dipadatkan
 * Secara manual menghapus pesan yang telah dipadatkan dan hanya menyertakan blok compaction dan seterusnya
 
 ### Streaming
 
-Saat melakukan streaming respons dengan compaction diaktifkan, Anda akan menerima event `content_block_start` ketika compaction dimulai. Blok compaction di-stream secara berbeda dari blok teks. Anda akan menerima event `content_block_start`, diikuti oleh satu `content_block_delta` dengan konten ringkasan lengkap (tanpa streaming perantara), dan kemudian event `content_block_stop`.
+Blok compaction di-stream secara berbeda dari blok teks. Anda menerima event `content_block_start`, diikuti oleh satu `content_block_delta` dengan konten ringkasan lengkap (tanpa streaming perantara), dan kemudian event `content_block_stop`.
 
 <CodeGroup>
+  ```bash cURL
+  curl https://api.anthropic.com/v1/messages \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-beta: compact-2026-01-12" \
+    -H "content-type: application/json" \
+    -d '{
+      "model": "claude-opus-4-8",
+      "max_tokens": 4096,
+      "stream": true,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Hello, Claude"
+        }
+      ],
+      "context_management": {
+        "edits": [
+          {
+            "type": "compact_20260112"
+          }
+        ]
+      }
+    }'
+  ```
+
   ```bash CLI
-  ant beta:messages create --stream --format jsonl \
-    --beta compact-2026-01-12 <<'YAML'
+  ant beta:messages create \
+    --stream \
+    --beta compact-2026-01-12 \
+    --format jsonl <<'YAML'
   model: claude-opus-4-8
   max_tokens: 4096
   messages:
@@ -1449,7 +1841,9 @@ Saat melakukan streaming respons dengan compaction diaktifkan, Anda akan menerim
 
   ```typescript TypeScript
   const client = new Anthropic();
-  const messages: Anthropic.Beta.Messages.BetaMessageParam[] = [];
+  const messages: Anthropic.Beta.Messages.BetaMessageParam[] = [
+    { role: "user", content: "Hello, Claude" }
+  ];
 
   const stream = await client.beta.messages.stream({
     betas: ["compact-2026-01-12"],
@@ -1486,6 +1880,9 @@ Saat melakukan streaming respons dengan compaction diaktifkan, Anda akan menerim
   ```
 
   ```csharp C#
+  var client = new AnthropicClient();
+  List<BetaMessageParam> messages = [new() { Role = Role.User, Content = "Hello" }];
+
   var parameters = new MessageCreateParams
   {
       Betas = ["compact-2026-01-12"],
@@ -1672,7 +2069,7 @@ Saat melakukan streaming respons dengan compaction diaktifkan, Anda akan menerim
 
 ### Caching prompt
 
-Compaction bekerja dengan baik bersama [caching prompt](/docs/id/build-with-claude/prompt-caching). Anda dapat menambahkan breakpoint `cache_control` pada blok compaction untuk meng-cache konten yang telah diringkas. Konten asli yang telah dipadatkan akan diabaikan.
+Compaction bekerja dengan baik bersama [caching prompt](/docs/id/build-with-claude/prompt-caching). Anda dapat menambahkan breakpoint `cache_control` pada blok compaction untuk meng-cache konten yang telah diringkas.
 
 ```json
 {
@@ -1693,7 +2090,7 @@ Compaction bekerja dengan baik bersama [caching prompt](/docs/id/build-with-clau
 
 #### Memaksimalkan cache hit dengan prompt sistem
 
-Ketika compaction terjadi, ringkasan menjadi konten baru yang perlu ditulis ke cache. Tanpa breakpoint cache tambahan, ini juga akan membatalkan prompt sistem yang telah di-cache, sehingga perlu di-cache ulang bersama dengan ringkasan compaction.
+Ketika compaction terjadi, ringkasan menjadi konten baru yang perlu ditulis ke cache. Tanpa breakpoint cache tambahan, hal ini juga akan membatalkan prompt sistem yang telah di-cache, sehingga perlu di-cache ulang bersama dengan ringkasan compaction.
 
 Untuk memaksimalkan tingkat cache hit, tambahkan breakpoint `cache_control` di akhir prompt sistem Anda. Ini menjaga prompt sistem tetap di-cache secara terpisah dari percakapan, sehingga ketika compaction terjadi:
 
@@ -1701,6 +2098,40 @@ Untuk memaksimalkan tingkat cache hit, tambahkan breakpoint `cache_control` di a
 * Hanya ringkasan compaction yang perlu ditulis sebagai entri cache baru
 
 <CodeGroup>
+  ```bash cURL
+  curl https://api.anthropic.com/v1/messages \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-beta: compact-2026-01-12" \
+    -H "content-type: application/json" \
+    -d '{
+      "model": "claude-opus-4-8",
+      "max_tokens": 4096,
+      "system": [
+        {
+          "type": "text",
+          "text": "You are a helpful coding assistant...",
+          "cache_control": {
+            "type": "ephemeral"
+          }
+        }
+      ],
+      "messages": [
+        {
+          "role": "user",
+          "content": "Hello, Claude"
+        }
+      ],
+      "context_management": {
+        "edits": [
+          {
+            "type": "compact_20260112"
+          }
+        ]
+      }
+    }'
+  ```
+
   ```bash CLI
   ant beta:messages create --beta compact-2026-01-12 <<'YAML'
   model: claude-opus-4-8
@@ -1742,7 +2173,9 @@ Untuk memaksimalkan tingkat cache hit, tambahkan breakpoint `cache_control` di a
 
   ```typescript TypeScript
   const client = new Anthropic();
-  const messages: Anthropic.Beta.Messages.BetaMessageParam[] = [];
+  const messages: Anthropic.Beta.Messages.BetaMessageParam[] = [
+    { role: "user", content: "Hello, Claude" }
+  ];
 
   const response = await client.beta.messages.create({
     betas: ["compact-2026-01-12"],
@@ -1788,7 +2221,7 @@ Untuk memaksimalkan tingkat cache hit, tambahkan breakpoint `cache_control` di a
                       CacheControl = new BetaCacheControlEphemeral()
                   }
               },
-              Messages = [],
+              Messages = [new() { Role = Role.User, Content = "Hello, Claude" }],
               ContextManagement = new BetaContextManagementConfig
               {
                   Edits = [new BetaCompact20260112Edit()]
@@ -1897,7 +2330,7 @@ Untuk memaksimalkan tingkat cache hit, tambahkan breakpoint `cache_control` di a
         }
       }
     ],
-    messages: [],
+    messages: [{ role: "user", content: "Hello, Claude" }],
     context_management: {
       edits: [{ type: "compact_20260112" }]
     }
@@ -1906,7 +2339,7 @@ Untuk memaksimalkan tingkat cache hit, tambahkan breakpoint `cache_control` di a
   ```
 </CodeGroup>
 
-Pendekatan ini sangat bermanfaat untuk prompt sistem yang panjang, karena prompt tersebut tetap di-cache bahkan di sepanjang beberapa peristiwa compaction dalam satu percakapan.
+Ini menjaga prompt sistem yang panjang tetap di-cache di sepanjang beberapa peristiwa compaction selama percakapan.
 
 ## Memahami penggunaan
 
@@ -1933,25 +2366,49 @@ Compaction memerlukan langkah sampling tambahan, yang berkontribusi pada batas l
 }
 ```
 
-Array `iterations` menunjukkan penggunaan untuk setiap iterasi sampling. Ketika compaction terjadi, Anda akan melihat iterasi `compaction` diikuti oleh iterasi `message` utama. Nilai `input_tokens` dan `output_tokens` tingkat atas sama persis dengan iterasi `message` dalam contoh ini karena hanya ada satu iterasi non-compaction. Jumlah token iterasi terakhir mencerminkan ukuran konteks efektif setelah compaction.
+Array `iterations` menunjukkan penggunaan untuk setiap iterasi sampling. Ketika compaction terjadi, Anda akan melihat iterasi `compaction` diikuti oleh iterasi `message` utama. `input_tokens` dan `output_tokens` tingkat atas sama persis dengan iterasi `message` dalam contoh ini karena hanya ada satu iterasi non-compaction. Jumlah token iterasi terakhir mencerminkan ukuran konteks efektif setelah compaction.
 
 <Note>
-  Nilai `input_tokens` dan `output_tokens` tingkat atas tidak menyertakan penggunaan iterasi compaction. Nilai tersebut mencerminkan jumlah dari semua iterasi non-compaction. Untuk menghitung total token yang dikonsumsi dan ditagih untuk sebuah permintaan, jumlahkan semua entri dalam array `usage.iterations`.
+  `input_tokens` dan `output_tokens` tingkat atas tidak menyertakan penggunaan iterasi compaction. Keduanya mencerminkan jumlah dari semua iterasi non-compaction. Untuk menghitung total token yang dikonsumsi dan ditagih untuk sebuah permintaan, jumlahkan semua entri dalam array `usage.iterations`.
 
-  Jika sebelumnya Anda mengandalkan `usage.input_tokens` dan `usage.output_tokens` untuk pelacakan biaya atau audit, Anda perlu memperbarui logika pelacakan Anda untuk mengagregasi di seluruh `usage.iterations` ketika compaction diaktifkan. Array `iterations` hanya diisi ketika compaction baru dipicu selama permintaan. Menerapkan kembali blok `compaction` sebelumnya tidak menimbulkan biaya compaction tambahan, dan field penggunaan tingkat atas tetap akurat dalam kasus tersebut.
+  Jika sebelumnya Anda mengandalkan `usage.input_tokens` dan `usage.output_tokens` untuk pelacakan biaya atau audit, Anda perlu memperbarui logika pelacakan Anda untuk mengagregasi di seluruh `usage.iterations` ketika compaction diaktifkan. Dengan beta compaction diaktifkan, setiap respons menyertakan `usage.iterations`, bahkan jika tidak ada compaction yang terjadi. Entri `compaction` hanya muncul ketika compaction baru dipicu selama permintaan. Menerapkan kembali blok `compaction` sebelumnya tidak menimbulkan biaya compaction tambahan, dan field penggunaan tingkat atas tetap akurat dalam kasus tersebut.
 </Note>
 
 ## Menggabungkan dengan fitur lain
 
-### Server tools
+### Alat server
 
-Saat menggunakan server tools (seperti pencarian web), pemicu compaction diperiksa di awal setiap iterasi sampling. Compaction dapat terjadi beberapa kali dalam satu permintaan tergantung pada ambang batas pemicu Anda dan jumlah output yang dihasilkan.
+Saat menggunakan alat server (seperti pencarian web), pemicu compaction diperiksa di awal setiap iterasi sampling. Compaction mungkin terjadi beberapa kali dalam satu permintaan tergantung pada ambang batas pemicu Anda dan jumlah output yang dihasilkan.
 
 ### Penghitungan token
 
 Endpoint penghitungan token (`/v1/messages/count_tokens`) menerapkan blok `compaction` yang sudah ada dalam prompt Anda tetapi tidak memicu compaction baru. Gunakan endpoint ini untuk memeriksa jumlah token efektif Anda setelah compaction sebelumnya:
 
 <CodeGroup>
+  ```bash cURL
+  curl https://api.anthropic.com/v1/messages/count_tokens \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-beta: compact-2026-01-12" \
+    -H "content-type: application/json" \
+    -d '{
+      "model": "claude-opus-4-8",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Hello, Claude"
+        }
+      ],
+      "context_management": {
+        "edits": [
+          {
+            "type": "compact_20260112"
+          }
+        ]
+      }
+    }'
+  ```
+
   ```bash CLI
   cat > request.yaml <<'YAML'
   model: claude-opus-4-8
@@ -1965,7 +2422,8 @@ Endpoint penghitungan token (`/v1/messages/count_tokens`) menerapkan blok `compa
 
   CURRENT=$(ant beta:messages count-tokens \
     --beta compact-2026-01-12 \
-    --transform input_tokens --raw-output < request.yaml)
+    --transform input_tokens \
+    --raw-output < request.yaml)
 
   ORIGINAL=$(ant beta:messages count-tokens \
     --beta compact-2026-01-12 \
@@ -2010,6 +2468,9 @@ Endpoint penghitungan token (`/v1/messages/count_tokens`) menerapkan blok `compa
   ```
 
   ```csharp C#
+  AnthropicClient client = new();
+  List<BetaMessageParam> messages = [new() { Role = Role.User, Content = "Hello" }];
+
   var countParams = new MessageCountTokensParams
   {
       Model = "claude-opus-4-8",
@@ -2112,12 +2573,46 @@ Endpoint penghitungan token (`/v1/messages/count_tokens`) menerapkan blok `compa
 Berikut adalah contoh lengkap percakapan yang berjalan lama dengan compaction:
 
 <CodeGroup>
+  ```bash cURL
+  # curl mengirim permintaan individual; kelola array messages di
+  # skrip pemanggil. Lihat tab SDK untuk loop chat() lengkap. Bentuk
+  # permintaan satu giliran:
+  curl https://api.anthropic.com/v1/messages \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-beta: compact-2026-01-12" \
+    -H "content-type: application/json" \
+    -d '{
+      "model": "claude-opus-4-8",
+      "max_tokens": 4096,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Help me build a Python web scraper"
+        }
+      ],
+      "context_management": {
+        "edits": [
+          {
+            "type": "compact_20260112",
+            "trigger": {
+              "type": "input_tokens",
+              "value": 100000
+            }
+          }
+        ]
+      }
+    }'
+  ```
+
   ```bash CLI
   # CLI menangani giliran individual; pertahankan array messages di
   # skrip pemanggil. Lihat tab SDK untuk loop chat() lengkap. Bentuk
   # permintaan satu giliran:
-  ant beta:messages create --beta compact-2026-01-12 \
-    --transform 'content.#(type=="text").text' --raw-output <<'YAML'
+  ant beta:messages create \
+    --beta compact-2026-01-12 \
+    --transform 'content.#(type=="text").text' \
+    --raw-output <<'YAML'
   model: claude-opus-4-8
   max_tokens: 4096
   messages:
@@ -2167,13 +2662,13 @@ Berikut adalah contoh lengkap percakapan yang berjalan lama dengan compaction:
   print(chat("Help me build a Python web scraper"))
   print(chat("Add support for JavaScript-rendered pages"))
   print(chat("Now add rate limiting and error handling"))
-  # ... lanjutkan selama diperlukan
+  # Terus panggil chat() selama percakapan masih diperlukan
   ```
 
   ```typescript TypeScript
   const client = new Anthropic();
 
-  const messages: Anthropic.Beta.BetaMessageParam[] = [];
+  const messages: Anthropic.Beta.Messages.BetaMessageParam[] = [];
 
   async function chat(userMessage: string): Promise<string> {
     messages.push({ role: "user", content: userMessage });
@@ -2205,7 +2700,7 @@ Berikut adalah contoh lengkap percakapan yang berjalan lama dengan compaction:
   console.log(await chat("Help me build a Python web scraper"));
   console.log(await chat("Add support for JavaScript-rendered pages"));
   console.log(await chat("Now add rate limiting and error handling"));
-  // ... lanjutkan selama diperlukan
+  // Terus panggil chat() selama percakapan masih diperlukan
   ```
 
   ```csharp C#
@@ -2434,15 +2929,50 @@ Berikut adalah contoh lengkap percakapan yang berjalan lama dengan compaction:
   ```
 </CodeGroup>
 
-Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertahankan pertukaran sebelumnya dan pesan pengguna saat ini (total tiga pesan) secara verbatim alih-alih merangkumnya:
+Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertahankan pertukaran sebelumnya dan pesan pengguna saat ini (total tiga pesan) secara verbatim alih-alih meringkasnya:
 
 <CodeGroup>
+  ```bash cURL
+  # curl mengirim permintaan individual; kelola array messages di skrip
+  # pemanggil. Lihat tab SDK untuk loop chat() lengkap dengan penanganan
+  # jeda-dan-pertahankan. Bentuk permintaan satu giliran:
+  curl https://api.anthropic.com/v1/messages \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-beta: compact-2026-01-12" \
+    -H "content-type: application/json" \
+    -d '{
+      "model": "claude-opus-4-8",
+      "max_tokens": 4096,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Help me build a Python web scraper"
+        }
+      ],
+      "context_management": {
+        "edits": [
+          {
+            "type": "compact_20260112",
+            "trigger": {
+              "type": "input_tokens",
+              "value": 100000
+            },
+            "pause_after_compaction": true
+          }
+        ]
+      }
+    }'
+  ```
+
   ```bash CLI
   # CLI menangani giliran individual; pertahankan array messages di
   # skrip pemanggil. Lihat tab SDK untuk loop chat() lengkap dengan
   # penanganan jeda-dan-pertahankan. Bentuk permintaan satu giliran:
-  ant beta:messages create --beta compact-2026-01-12 \
-    --transform 'content.#(type=="text").text' --raw-output <<'YAML'
+  ant beta:messages create \
+    --beta compact-2026-01-12 \
+    --transform 'content.#(type=="text").text' \
+    --raw-output <<'YAML'
   model: claude-opus-4-8
   max_tokens: 4096
   messages:
@@ -2524,13 +3054,13 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
   print(chat("Help me build a Python web scraper"))
   print(chat("Add support for JavaScript-rendered pages"))
   print(chat("Now add rate limiting and error handling"))
-  # ... lanjutkan selama diperlukan
+  # Terus panggil chat() selama percakapan masih membutuhkannya
   ```
 
   ```typescript TypeScript
   const client = new Anthropic();
 
-  let messages: Anthropic.Beta.BetaMessageParam[] = [];
+  let messages: Anthropic.Beta.Messages.BetaMessageParam[] = [];
 
   async function chat(userMessage: string): Promise<string> {
     messages.push({ role: "user", content: userMessage });
@@ -2561,7 +3091,7 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
       const preservedMessages = messages.length >= 3 ? messages.slice(-3) : [...messages];
 
       // Bangun daftar pesan baru: pemadatan + pesan yang dipertahankan
-      const messagesAfterCompaction: Anthropic.Beta.BetaMessageParam[] = [
+      const messagesAfterCompaction: Anthropic.Beta.Messages.BetaMessageParam[] = [
         { role: "assistant", content: [compactionBlock] },
         ...preservedMessages
       ];
@@ -2593,7 +3123,7 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
   console.log(await chat("Help me build a Python web scraper"));
   console.log(await chat("Add support for JavaScript-rendered pages"));
   console.log(await chat("Now add rate limiting and error handling"));
-  // ... lanjutkan selama diperlukan
+  // Terus panggil chat() selama percakapan masih membutuhkannya
   ```
 
   ```csharp C#
@@ -2631,7 +3161,7 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
 
           if (response.StopReason == BetaStopReason.Compaction)
           {
-              if (!response.Content[0].TryPickCompaction(out var cb))
+              if (!response.Content[0].TryPickCompaction(out _))
                   throw new InvalidOperationException("Expected compaction block");
 
               var preserved = messages.Count >= 3
@@ -2643,7 +3173,7 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
                   new()
                   {
                       Role = Role.Assistant,
-                      Content = new List<BetaContentBlockParam> { new BetaCompactionBlockParam(cb.Content) }
+                      Content = new List<BetaContentBlockParam> { new BetaContentBlockParam(response.Content[0].Json) }
                   }
               };
               messagesAfterCompaction.AddRange(preserved);
@@ -2974,11 +3504,11 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
   ```
 </CodeGroup>
 
-## Keterbatasan saat ini
+## Batasan saat ini
 
-* **Model yang sama untuk ringkasan:** Model yang ditentukan dalam permintaan Anda digunakan untuk ringkasan. Tidak ada opsi untuk menggunakan model yang berbeda (misalnya, yang lebih murah) untuk ringkasan.
+* **Model yang sama untuk peringkasan:** Model yang ditentukan dalam permintaan Anda digunakan untuk peringkasan. Tidak ada opsi untuk menggunakan model yang berbeda (misalnya, yang lebih murah) untuk ringkasan.
 
-* **Compaction mungkin gagal ketika tools didefinisikan:** Ketika permintaan Anda menyertakan `tools`, model terkadang memanggil tool selama langkah ringkasan internal alih-alih menulis ringkasan. Ketika ini terjadi, respons berisi blok `compaction` dengan `content: null`. Untuk mencegah hal ini, atur [`instructions`](#custom-summarization-instructions) ke prompt yang secara eksplisit memberi tahu model untuk tidak memanggil tools, misalnya:
+* **Compaction mungkin gagal ketika alat didefinisikan:** Ketika permintaan Anda menyertakan `tools`, model terkadang memanggil alat selama langkah peringkasan internal alih-alih menulis ringkasan. Ketika ini terjadi, respons berisi blok `compaction` dengan `content: null`. Untuk mencegah hal ini, atur [`instructions`](#custom-summarization-instructions) ke prompt yang secara eksplisit memberi tahu model untuk tidak memanggil alat, misalnya:
 
   ```text wrap
   Summarize the transcript inside <summary></summary> tags. Include relevant information in the summary for continuing the task in the next context window. Do not call any tools while writing this summary; respond with text only.
@@ -2986,16 +3516,16 @@ Berikut adalah contoh yang menggunakan `pause_after_compaction` untuk mempertaha
 
 ## Langkah selanjutnya
 
-<CardGroup>
-  <Card title="Cookbook pemadatan memori sesi" icon="book" href="https://platform.claude.com/cookbook/misc-session-memory-compaction">
-    Jelajahi implementasi praktis yang mengelola percakapan yang berjalan lama dengan pemadatan memori sesi instan menggunakan background threading dan caching prompt.
+<CardGroup cols={3}>
+  <Card title="Pengeditan konteks" icon="edit" href="/docs/id/build-with-claude/context-editing">
+    Kelola konteks percakapan secara otomatis seiring pertumbuhannya dengan pengeditan konteks.
   </Card>
 
-  <Card title="Jendela konteks" icon="arrows-maximize" href="/docs/id/build-with-claude/context-windows">
+  <Card title="Jendela konteks" icon="arrows-left-right" href="/docs/id/build-with-claude/context-windows">
     Pelajari tentang ukuran jendela konteks dan strategi pengelolaannya.
   </Card>
 
-  <Card title="Pengeditan konteks" icon="pen" href="/docs/id/build-with-claude/context-editing">
-    Jelajahi strategi lain untuk mengelola konteks percakapan seperti pembersihan hasil tool dan pembersihan blok thinking.
+  <Card title="Cookbook pemadatan memori sesi" icon="book" href="https://platform.claude.com/cookbook/misc-session-memory-compaction">
+    Jelajahi implementasi praktis yang mengelola percakapan yang berjalan lama dengan pemadatan memori sesi instan menggunakan background threading dan caching prompt.
   </Card>
 </CardGroup>

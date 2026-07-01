@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/batch-processing
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 7aee70adda6782c10fbc2c7cf5668a583d2c16371718e7f3e405994e87cc2b6b
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 2a8bfc3669e34f28df0d83256d58e632d358e49f72997eaf1f1388f3864f8dd8
 ---
 
 # Pemrosesan batch
@@ -30,7 +30,7 @@ Anda dapat [menjelajahi referensi API secara langsung](/docs/id/api/creating-mes
 
 ## Cara kerja Message Batches API
 
-Ketika Anda mengirim permintaan ke Message Batches API:
+Saat Anda mengirim permintaan ke Message Batches API:
 
 1. Sistem membuat Message Batch baru dengan permintaan Messages yang disediakan.
 2. Batch kemudian diproses secara asinkron, dengan setiap permintaan ditangani secara independen.
@@ -48,9 +48,9 @@ Ini sangat berguna untuk operasi massal yang tidak memerlukan hasil langsung, se
 * Sebuah Message Batch dibatasi hingga 100.000 permintaan Message atau ukuran 256 MB, mana saja yang tercapai lebih dulu.
 * Sistem memproses setiap batch secepat mungkin, dengan sebagian besar batch selesai dalam 1 jam. Anda dapat mengakses hasil batch ketika semua pesan telah selesai atau setelah 24 jam, mana saja yang lebih dulu. Batch akan kedaluwarsa jika pemrosesan tidak selesai dalam 24 jam.
 * Hasil batch tersedia selama 29 hari setelah pembuatan. Setelah itu, Anda masih dapat melihat Batch, tetapi hasilnya tidak lagi tersedia untuk diunduh.
-* Batch dicakup dalam sebuah [Workspace](/settings/workspaces). Anda dapat melihat semua batch (dan hasilnya) yang dibuat dalam Workspace tempat kunci API Anda berada.
-* Batas laju berlaku untuk permintaan HTTP Batches API dan jumlah permintaan dalam batch yang menunggu untuk diproses. Lihat [batas laju Message Batches API](/docs/id/api/rate-limits#message-batches-api). Selain itu, pemrosesan dapat diperlambat berdasarkan permintaan saat ini dan volume permintaan Anda. Dalam kasus tersebut, Anda mungkin melihat lebih banyak permintaan yang kedaluwarsa setelah 24 jam.
-* Karena throughput tinggi dan pemrosesan konkuren, batch mungkin sedikit melebihi [batas pengeluaran](/settings/limits) yang dikonfigurasi untuk Workspace Anda.
+* Batch dibatasi dalam lingkup [Workspace](/settings/workspaces). Anda dapat melihat semua batch (dan hasilnya) yang dibuat dalam Workspace tempat kunci API Anda berada.
+* Batas laju berlaku untuk permintaan HTTP Batches API dan jumlah permintaan dalam batch yang menunggu untuk diproses. Lihat [Batas laju Message Batches API](/docs/id/api/rate-limits#message-batches-api). Selain itu, pemrosesan dapat diperlambat berdasarkan permintaan saat ini dan volume permintaan Anda. Dalam kasus tersebut, Anda mungkin melihat lebih banyak permintaan yang kedaluwarsa setelah 24 jam.
+* Karena throughput tinggi dan pemrosesan konkuren, batch mungkin sedikit melebihi [batas pengeluaran](/settings/limits) yang dikonfigurasi pada Workspace Anda.
 * Setiap permintaan dalam batch harus memiliki `max_tokens` minimal `1`. `max_tokens: 0` ([pemanasan awal cache](/docs/id/build-with-claude/prompt-caching#pre-warming-the-cache)) tidak didukung di dalam batch, karena entri cache sementara yang ditulis selama pemrosesan batch kemungkinan besar akan kedaluwarsa sebelum permintaan lanjutan dijalankan.
 
 ### Model yang didukung
@@ -89,21 +89,23 @@ Sejumlah kecil parameter Messages API **tidak** didukung dalam permintaan batch.
 
 Batches API menawarkan penghematan biaya yang signifikan. Semua penggunaan dikenakan biaya 50% dari harga API standar.
 
-| Model                                                                                                       | Input batch  | Output batch  |
-| ----------------------------------------------------------------------------------------------------------- | ------------ | ------------- |
-| Claude Fable 5                                                                                              | $5 / MTok    | $25 / MTok    |
-| Claude Mythos 5 ([ketersediaan terbatas](https://anthropic.com/glasswing))                                  | $5 / MTok    | $25 / MTok    |
-| Claude Opus 4.8                                                                                             | $2.50 / MTok | $12.50 / MTok |
-| Claude Opus 4.7                                                                                             | $2.50 / MTok | $12.50 / MTok |
-| Claude Opus 4.6                                                                                             | $2.50 / MTok | $12.50 / MTok |
-| Claude Opus 4.5                                                                                             | $2.50 / MTok | $12.50 / MTok |
-| Claude Opus 4.1 ([tidak digunakan lagi](/docs/id/about-claude/model-deprecations))                          | $7.50 / MTok | $37.50 / MTok |
-| Claude Opus 4 ([dihentikan, kecuali di Vertex AI](/docs/id/about-claude/model-deprecations))                | $7.50 / MTok | $37.50 / MTok |
-| Claude Sonnet 4.6                                                                                           | $1.50 / MTok | $7.50 / MTok  |
-| Claude Sonnet 4.5                                                                                           | $1.50 / MTok | $7.50 / MTok  |
-| Claude Sonnet 4 ([dihentikan, kecuali di Bedrock dan Vertex AI](/docs/id/about-claude/model-deprecations))  | $1.50 / MTok | $7.50 / MTok  |
-| Claude Haiku 4.5                                                                                            | $0.50 / MTok | $2.50 / MTok  |
-| Claude Haiku 3.5 ([dihentikan, kecuali di Bedrock dan Vertex AI](/docs/id/about-claude/model-deprecations)) | $0.40 / MTok | $2 / MTok     |
+| Model                                                                                                          | Input batch  | Output batch  |
+| -------------------------------------------------------------------------------------------------------------- | ------------ | ------------- |
+| Claude Fable 5                                                                                                 | $5 / MTok    | $25 / MTok    |
+| Claude Mythos 5 ([ketersediaan terbatas](https://anthropic.com/glasswing))                                     | $5 / MTok    | $25 / MTok    |
+| Claude Opus 4.8                                                                                                | $2.50 / MTok | $12.50 / MTok |
+| Claude Opus 4.7                                                                                                | $2.50 / MTok | $12.50 / MTok |
+| Claude Opus 4.6                                                                                                | $2.50 / MTok | $12.50 / MTok |
+| Claude Opus 4.5                                                                                                | $2.50 / MTok | $12.50 / MTok |
+| Claude Opus 4.1 ([tidak digunakan lagi](/docs/id/about-claude/model-deprecations))                             | $7.50 / MTok | $37.50 / MTok |
+| Claude Opus 4 ([dihentikan, kecuali di Google Cloud](/docs/id/about-claude/model-deprecations))                | $7.50 / MTok | $37.50 / MTok |
+| Claude Sonnet 5 [hingga 31 Agustus 2026](/docs/id/about-claude/pricing#claude-sonnet-5-introductory-pricing)   | $1 / MTok    | $5 / MTok     |
+| Claude Sonnet 5 mulai 1 September 2026                                                                         | $1.50 / MTok | $7.50 / MTok  |
+| Claude Sonnet 4.6                                                                                              | $1.50 / MTok | $7.50 / MTok  |
+| Claude Sonnet 4.5                                                                                              | $1.50 / MTok | $7.50 / MTok  |
+| Claude Sonnet 4 ([dihentikan, kecuali di Bedrock dan Google Cloud](/docs/id/about-claude/model-deprecations))  | $1.50 / MTok | $7.50 / MTok  |
+| Claude Haiku 4.5                                                                                               | $0.50 / MTok | $2.50 / MTok  |
+| Claude Haiku 3.5 ([dihentikan, kecuali di Bedrock dan Google Cloud](/docs/id/about-claude/model-deprecations)) | $0.40 / MTok | $2 / MTok     |
 
 ## Cara menggunakan Message Batches API
 
@@ -111,7 +113,7 @@ Batches API menawarkan penghematan biaya yang signifikan. Semua penggunaan diken
 
 Sebuah Message Batch terdiri dari daftar permintaan untuk membuat Message. Bentuk permintaan individual terdiri dari:
 
-* `custom_id` unik untuk mengidentifikasi permintaan Messages. Harus terdiri dari 1 hingga 64 karakter dan hanya berisi karakter alfanumerik, tanda hubung, dan garis bawah (sesuai dengan `^[a-zA-Z0-9_-]{1,64}$`).
+* `custom_id` unik untuk mengidentifikasi permintaan Messages. Harus terdiri dari 1 hingga 64 karakter dan hanya berisi karakter alfanumerik, tanda hubung, dan garis bawah (cocok dengan `^[a-zA-Z0-9_-]{1,64}$`).
 * Objek `params` dengan parameter [Messages API](/docs/id/api/messages/create) standar
 
 Anda dapat [membuat batch](/docs/id/api/creating-message-batches) dengan meneruskan daftar ini ke parameter `requests`:
@@ -423,7 +425,7 @@ Dalam contoh ini, dua permintaan terpisah di-batch bersama untuk pemrosesan asin
   Validasi objek `params` untuk setiap permintaan pesan dilakukan secara asinkron, dan kesalahan validasi dikembalikan ketika pemrosesan seluruh batch telah selesai. Anda dapat memastikan bahwa Anda membangun input dengan benar dengan memverifikasi bentuk permintaan Anda menggunakan [Messages API](/docs/id/api/messages/create) terlebih dahulu.
 </Tip>
 
-Ketika batch pertama kali dibuat, respons akan memiliki status pemrosesan `in_progress`.
+Saat batch pertama kali dibuat, respons akan memiliki status pemrosesan `in_progress`.
 
 ```json Output
 {
@@ -632,7 +634,7 @@ Anda dapat mencantumkan semua Message Batch di Workspace Anda menggunakan [endpo
   after_id=""
 
   while [ "$has_more" = true ]; do
-      # Buat URL dengan after_id jika ada
+      # Susun URL dengan after_id jika ada
       if [ -n "$after_id" ]; then
           url="${BASE_URL}?limit=20&after_id=${after_id}"
       else
@@ -662,7 +664,7 @@ Anda dapat mencantumkan semua Message Batch di Workspace Anda menggunakan [endpo
   ```python Python
   client = anthropic.Anthropic()
 
-  # Automatically fetches more pages as needed.
+  # Secara otomatis mengambil lebih banyak halaman sesuai kebutuhan.
   for message_batch in client.messages.batches.list(limit=20):
       print(message_batch)
   ```
@@ -684,7 +686,7 @@ Anda dapat mencantumkan semua Message Batch di Workspace Anda menggunakan [endpo
       Limit = 20
   };
 
-  // Secara otomatis mengambil lebih banyak halaman sesuai kebutuhan
+  // Automatically fetches more pages as needed
   var page = await client.Messages.Batches.List(parameters);
   await foreach (var messageBatch in page.Paginate())
   {
@@ -826,7 +828,7 @@ Hasil batch tersedia untuk diunduh di properti `results_url` pada Message Batch,
   ```python Python
   client = anthropic.Anthropic()
 
-  # Stream file hasil dalam potongan hemat memori, memproses satu per satu
+  # Stream file hasil dalam potongan yang hemat memori, memproses satu per satu
   for result in client.messages.batches.results(
       "msgbatch_01HkcTjaV5uDC8jWR4ZsDV8d",
   ):
@@ -1627,25 +1629,25 @@ Contoh implementasi caching prompt dalam batch:
 
 Dalam contoh ini, kedua permintaan dalam batch menyertakan pesan sistem yang identik dan teks lengkap Pride and Prejudice yang ditandai dengan `cache_control` untuk meningkatkan kemungkinan cache hit.
 
-### Server tools dan agentic loop
+### Server tools dan loop agentik
 
-Semua [server tools](/docs/id/agents-and-tools/tool-use/server-tools) (web search, web fetch, code execution, MCP connectors, advisor, dan tool search) berfungsi dalam permintaan batch. Batch worker menjalankan agentic loop sisi server yang sama dengan Messages API sinkron.
+Semua [server tools](/docs/id/agents-and-tools/tool-use/server-tools) (web search, web fetch, code execution, MCP connectors, advisor, dan tool search) berfungsi dalam permintaan batch. Worker batch menjalankan loop agentik sisi server yang sama dengan Messages API sinkron.
 
-Karena tidak ada koneksi terbuka yang perlu dipertahankan, batch loop menjalankan **lebih banyak iterasi per giliran** daripada permintaan sinkron sebelum mengembalikan `stop_reason: "pause_turn"`. Jika hasil batch kembali dengan `pause_turn`, giliran tersebut belum selesai; Anda dapat melanjutkannya dengan mengirimkan konten asisten yang dijeda dalam permintaan lanjutan (batch atau sinkron) persis seperti yang ditunjukkan dalam [pola kelanjutan pause\_turn](/docs/id/agents-and-tools/tool-use/server-tools#the-server-side-loop-and-pause-turn).
+Karena tidak ada koneksi terbuka yang perlu dipertahankan, loop batch menjalankan **lebih banyak iterasi per giliran** daripada permintaan sinkron sebelum mengembalikan `stop_reason: "pause_turn"`. Jika hasil batch kembali dengan `pause_turn`, giliran tersebut belum selesai; Anda dapat melanjutkannya dengan mengirimkan konten asisten yang dijeda dalam permintaan lanjutan (batch atau sinkron) persis seperti yang ditunjukkan dalam [pola kelanjutan pause\_turn](/docs/id/agents-and-tools/tool-use/server-tools#the-server-side-loop-and-pause-turn).
 
-Batch worker juga membatasi `web_search` per organisasi sehingga pemrosesan batch yang sangat konkuren tidak menghabiskan batas laju web-search organisasi Anda. Batch mencoba ulang permintaan yang dibatasi secara otomatis; Anda tidak perlu menangani ini sendiri, tetapi batch web-search yang sangat besar mungkin memerlukan waktu lebih lama untuk selesai.
+Worker batch juga membatasi `web_search` per organisasi sehingga pemrosesan batch yang sangat konkuren tidak menghabiskan batas laju web-search organisasi Anda. Batch mencoba ulang permintaan yang dibatasi secara otomatis; Anda tidak perlu menangani ini sendiri, tetapi batch web-search yang sangat besar mungkin memerlukan waktu lebih lama untuk diselesaikan.
 
 ### Output diperpanjang (beta)
 
-Header beta `output-300k-2026-03-24` menaikkan batas `max_tokens` menjadi 300.000 untuk permintaan batch yang menggunakan Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, atau Claude Sonnet 4.6. Sertakan header ini untuk menghasilkan output yang jauh lebih panjang dari batas standar (64k hingga 128k tergantung model) dalam satu giliran.
+Header beta `output-300k-2026-03-24` menaikkan batas `max_tokens` menjadi 300.000 untuk permintaan batch yang menggunakan Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5, atau Claude Sonnet 4.6. Sertakan header tersebut untuk menghasilkan output yang jauh lebih panjang dari batas standar (64k hingga 128k tergantung model) dalam satu giliran.
 
 <Note>
-  Output diperpanjang hanya tersedia di Message Batches API, bukan di Messages API sinkron. Fitur ini didukung di Claude API dan Claude Platform di AWS, dan saat ini tidak tersedia di Amazon Bedrock, Vertex AI, atau Microsoft Foundry.
+  Output diperpanjang hanya tersedia di Message Batches API, bukan di Messages API sinkron. Fitur ini didukung di Claude API dan Claude Platform di AWS, dan saat ini tidak tersedia di Amazon Bedrock, Google Cloud, atau Microsoft Foundry.
 </Note>
 
 Gunakan output diperpanjang untuk pembuatan konten panjang seperti draf sepanjang buku dan dokumentasi teknis, ekstraksi data terstruktur yang menyeluruh, kerangka pembuatan kode berskala besar, dan rantai penalaran yang panjang.
 
-Satu pembuatan 300k token dapat memakan waktu lebih dari satu jam untuk selesai, jadi rencanakan pengiriman batch Anda dengan mempertimbangkan jendela pemrosesan 24 jam. Harga batch standar (50% dari harga API standar) berlaku.
+Satu pembuatan 300k token dapat memakan waktu lebih dari satu jam untuk diselesaikan, jadi rencanakan pengiriman batch Anda dengan mempertimbangkan jendela pemrosesan 24 jam. Harga batch standar (50% dari harga API standar) berlaku.
 
 <CodeGroup>
   ```bash cURL
@@ -1887,7 +1889,7 @@ Jika mengalami perilaku yang tidak terduga:
 * Verifikasi bahwa total ukuran permintaan batch tidak melebihi 256 MB. Jika ukuran permintaan terlalu besar, Anda mungkin mendapatkan kesalahan 413 `request_too_large`.
 * Periksa bahwa Anda menggunakan [model yang didukung](#supported-models) untuk semua permintaan dalam batch.
 * Pastikan setiap permintaan dalam batch memiliki `custom_id` yang unik.
-* Pastikan bahwa belum lewat 29 hari sejak waktu `created_at` batch (bukan waktu `ended_at` pemrosesan). Jika sudah lewat 29 hari, hasil tidak lagi dapat dilihat.
+* Pastikan bahwa belum lewat 29 hari sejak waktu `created_at` batch (bukan waktu `ended_at` pemrosesan). Jika sudah lebih dari 29 hari, hasil tidak lagi dapat dilihat.
 * Konfirmasi bahwa batch belum dibatalkan.
 
 Perhatikan bahwa kegagalan satu permintaan dalam batch tidak memengaruhi pemrosesan permintaan lainnya.
@@ -1928,11 +1930,11 @@ Untuk kelayakan ZDR di semua fitur, lihat [API dan retensi data](/docs/id/manage
   </Accordion>
 
   <Accordion title="Apakah ada batas laju Message Batches API dan apakah berinteraksi dengan batas laju Messages API?">
-    Message Batches API memiliki batas laju berbasis permintaan HTTP selain batas jumlah permintaan yang perlu diproses. Lihat [batas laju Message Batches API](/docs/id/api/rate-limits#message-batches-api). Penggunaan Batches API tidak memengaruhi batas laju di Messages API.
+    Message Batches API memiliki batas laju berbasis permintaan HTTP selain batas jumlah permintaan yang perlu diproses. Lihat [Batas laju Message Batches API](/docs/id/api/rate-limits#message-batches-api). Penggunaan Batches API tidak memengaruhi batas laju di Messages API.
   </Accordion>
 
   <Accordion title="Bagaimana cara menangani kesalahan dalam permintaan batch saya?">
-    Ketika Anda mengambil hasil, setiap permintaan akan memiliki field `result` yang menunjukkan apakah permintaan tersebut `succeeded`, `errored`, `canceled`, atau `expired`. Untuk hasil `errored`, informasi kesalahan tambahan akan disediakan. Lihat objek respons kesalahan di [referensi API](/docs/id/api/creating-message-batches).
+    Saat Anda mengambil hasil, setiap permintaan akan memiliki field `result` yang menunjukkan apakah permintaan tersebut `succeeded`, `errored`, `canceled`, atau `expired`. Untuk hasil `errored`, informasi kesalahan tambahan akan disediakan. Lihat objek respons kesalahan di [referensi API](/docs/id/api/creating-message-batches).
   </Accordion>
 
   <Accordion title="Bagaimana Message Batches API menangani privasi dan pemisahan data?">
@@ -1941,7 +1943,7 @@ Untuk kelayakan ZDR di semua fitur, lihat [API dan retensi data](/docs/id/manage
     1. Batch dan hasilnya diisolasi dalam Workspace tempat batch tersebut dibuat. Ini berarti batch hanya dapat diakses oleh kunci API dari Workspace yang sama.
     2. Setiap permintaan dalam batch diproses secara independen, tanpa kebocoran data antar permintaan.
     3. Hasil hanya tersedia untuk waktu terbatas (29 hari), dan mengikuti [kebijakan retensi data](https://support.claude.com/en/articles/7996866-how-long-do-you-store-personal-data) Anthropic.
-    4. Pengunduhan hasil batch di Console dapat dinonaktifkan pada tingkat organisasi atau per workspace.
+    4. Pengunduhan hasil batch di Console dapat dinonaktifkan di tingkat organisasi atau per workspace.
   </Accordion>
 
   <Accordion title="Dapatkah saya menggunakan caching prompt di Message Batches API?">
@@ -1957,6 +1959,6 @@ Untuk kelayakan ZDR di semua fitur, lihat [API dan retensi data](/docs/id/manage
   </Card>
 
   <Card title="Caching prompt" icon="database" href="/docs/id/build-with-claude/prompt-caching">
-    Kurangi biaya dan latensi dengan melakukan caching pada prefiks prompt yang dibagikan di seluruh permintaan dalam batch.
+    Kurangi biaya dan latensi dengan melakukan caching prefiks prompt yang dibagikan di seluruh permintaan dalam batch.
   </Card>
 </CardGroup>

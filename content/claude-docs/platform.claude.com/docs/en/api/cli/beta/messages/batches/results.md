@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/messages/batches/results
-fetched_at: 2026-06-26T03:16:19.812719Z
-sha256: eb4f7e534f0adf91544507a904e1a6730bf010f7149819d8d375060d4f9eb331
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: a715a07ae962fbfe8ca0cd1fa80b9b1e6eb8fcb3b396037e5d8c21e77120bd4c
 ---
 
 ## Retrieve Message Batch results
@@ -15,7 +15,7 @@ Streams the results of a Message Batch as a `.jsonl` file.
 
 Each line in the file is a JSON object containing the result of a single request in the Message Batch. Results are not guaranteed to be in the same order as requests. Use the `custom_id` field to match results to requests.
 
-Learn more about the Message Batches API in our [user guide](https://docs.claude.com/en/docs/build-with-claude/batch-processing)
+Learn more about the Message Batches API in our [user guide](https://platform.claude.com/docs/en/build-with-claude/batch-processing)
 
 ### Parameters
 
@@ -870,7 +870,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
               What caused the `from` model to hand over at this hop.
 
-              - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
+              - `category: "cyber" or "bio" or "frontier_llm" or 2 more`
 
                 The policy category that triggered a refusal.
 
@@ -881,6 +881,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
                 - `"frontier_llm"`
 
                 - `"reasoning_extraction"`
+
+                - `"military_weapons"`
 
               - `type: "refusal"`
 
@@ -1049,7 +1051,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           Structured information about a refusal.
 
-          - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
+          - `category: "cyber" or "bio" or "frontier_llm" or 2 more`
 
             The policy category that triggered a refusal.
 
@@ -1060,6 +1062,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `"frontier_llm"`
 
             - `"reasoning_extraction"`
+
+            - `"military_weapons"`
 
           - `explanation: string`
 

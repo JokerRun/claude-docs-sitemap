@@ -1,13 +1,13 @@
 ---
 - source: code
   loc: https://code.claude.com/docs/en/admin-setup
-  lastmod: '2026-06-29T20:40:39.420Z'
+  lastmod: '2026-06-30T06:02:27.176Z'
 - source: code
   loc: https://code.claude.com/docs/en/advisor
-  lastmod: '2026-06-24T15:39:22.225Z'
+  lastmod: '2026-06-30T18:03:11.995Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/agent-loop
-  lastmod: '2026-06-16T21:44:13.697Z'
+  lastmod: '2026-06-30T18:03:12.009Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/claude-code-features
   lastmod: '2026-06-25T03:54:06.506Z'
@@ -22,10 +22,10 @@
   lastmod: '2026-04-08T17:53:06.435Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/hooks
-  lastmod: '2026-06-26T22:28:47.667Z'
+  lastmod: '2026-06-30T06:02:27.182Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/hosting
-  lastmod: '2026-06-15T21:48:04.554Z'
+  lastmod: '2026-06-30T06:02:27.173Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/mcp
   lastmod: '2026-06-25T19:06:01.731Z'
@@ -43,13 +43,13 @@
   lastmod: '2026-06-15T21:48:04.591Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/permissions
-  lastmod: '2026-06-10T00:06:25.641Z'
+  lastmod: '2026-06-30T21:49:54.648Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/plugins
   lastmod: '2026-06-01T23:00:07.291Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/python
-  lastmod: '2026-06-24T15:39:22.223Z'
+  lastmod: '2026-06-30T21:49:54.699Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/quickstart
   lastmod: '2026-06-26T21:52:49.099Z'
@@ -58,7 +58,7 @@
   lastmod: '2026-04-29T06:50:30.729Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/session-storage
-  lastmod: '2026-06-09T18:56:46.810Z'
+  lastmod: '2026-06-30T06:02:27.175Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/sessions
   lastmod: '2026-06-09T18:56:46.812Z'
@@ -88,25 +88,25 @@
   lastmod: '2026-06-26T20:30:20.100Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/typescript
-  lastmod: '2026-06-26T22:35:32.366Z'
+  lastmod: '2026-06-30T21:49:54.700Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/typescript-v2-preview
   lastmod: '2026-05-18T22:55:25.011Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/user-input
-  lastmod: '2026-06-09T14:23:32.840Z'
+  lastmod: '2026-06-30T21:49:54.657Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-teams
-  lastmod: '2026-06-26T20:30:20.103Z'
+  lastmod: '2026-07-01T01:34:43.184Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-view
-  lastmod: '2026-06-26T22:28:47.678Z'
+  lastmod: '2026-07-01T01:32:54.208Z'
 - source: code
   loc: https://code.claude.com/docs/en/agents
   lastmod: '2026-06-09T01:23:13.533Z'
 - source: code
   loc: https://code.claude.com/docs/en/amazon-bedrock
-  lastmod: '2026-06-25T03:54:06.509Z'
+  lastmod: '2026-06-30T19:11:10.048Z'
 - source: code
   loc: https://code.claude.com/docs/en/analytics
   lastmod: '2026-05-01T03:26:55.183Z'
@@ -118,7 +118,7 @@
   lastmod: '2026-06-29T20:40:39.516Z'
 - source: code
   loc: https://code.claude.com/docs/en/auto-mode-config
-  lastmod: '2026-06-29T20:40:39.514Z'
+  lastmod: '2026-06-30T06:02:27.169Z'
 - source: code
   loc: https://code.claude.com/docs/en/best-practices
   lastmod: '2026-05-28T16:54:46.454Z'
@@ -127,7 +127,7 @@
   lastmod: '2026-04-28T15:54:10.733Z'
 - source: code
   loc: https://code.claude.com/docs/en/changelog
-  lastmod: '2026-06-27T00:32:59.860Z'
+  lastmod: '2026-06-30T18:47:36.323Z'
 - source: code
   loc: https://code.claude.com/docs/en/channels
   lastmod: '2026-06-26T20:30:20.101Z'
@@ -142,37 +142,37 @@
   lastmod: '2026-06-19T22:06:29.464Z'
 - source: code
   loc: https://code.claude.com/docs/en/claude-apps-gateway
-  lastmod: '2026-06-29T20:40:39.539Z'
+  lastmod: '2026-06-30T19:11:10.049Z'
 - source: code
   loc: https://code.claude.com/docs/en/claude-apps-gateway-config
-  lastmod: '2026-06-29T20:40:39.542Z'
+  lastmod: '2026-06-30T06:16:46.423Z'
 - source: code
   loc: https://code.claude.com/docs/en/claude-apps-gateway-deploy
-  lastmod: '2026-06-29T20:40:39.548Z'
+  lastmod: '2026-06-30T06:16:46.426Z'
 - source: code
   loc: https://code.claude.com/docs/en/claude-apps-gateway-on-gcp
   lastmod: '2026-06-29T20:40:39.540Z'
 - source: code
   loc: https://code.claude.com/docs/en/claude-apps-gateway-spend-limits
-  lastmod: '2026-06-29T20:40:39.550Z'
+  lastmod: '2026-06-30T06:16:46.419Z'
 - source: code
   loc: https://code.claude.com/docs/en/claude-code-on-the-web
-  lastmod: '2026-06-26T22:28:47.676Z'
+  lastmod: '2026-06-30T06:02:27.185Z'
 - source: code
   loc: https://code.claude.com/docs/en/claude-directory
   lastmod: '2026-06-09T20:02:34.216Z'
 - source: code
   loc: https://code.claude.com/docs/en/claude-platform-on-aws
-  lastmod: '2026-06-22T23:42:34.827Z'
+  lastmod: '2026-06-30T19:11:10.051Z'
 - source: code
   loc: https://code.claude.com/docs/en/cli-reference
-  lastmod: '2026-06-29T20:40:39.579Z'
+  lastmod: '2026-06-30T18:03:12.004Z'
 - source: code
   loc: https://code.claude.com/docs/en/code-review
   lastmod: '2026-06-25T23:09:26.971Z'
 - source: code
   loc: https://code.claude.com/docs/en/commands
-  lastmod: '2026-06-24T15:39:22.231Z'
+  lastmod: '2026-06-30T04:55:48.078Z'
 - source: code
   loc: https://code.claude.com/docs/en/common-workflows
   lastmod: '2026-05-26T22:47:27.867Z'
@@ -181,10 +181,10 @@
   lastmod: '2026-06-09T16:56:28.227Z'
 - source: code
   loc: https://code.claude.com/docs/en/computer-use
-  lastmod: '2026-04-10T17:56:24.575Z'
+  lastmod: '2026-06-30T06:02:31.314Z'
 - source: code
   loc: https://code.claude.com/docs/en/context-window
-  lastmod: '2026-06-09T16:56:28.226Z'
+  lastmod: '2026-06-30T18:03:12.017Z'
 - source: code
   loc: https://code.claude.com/docs/en/costs
   lastmod: '2026-06-29T20:40:39.719Z'
@@ -193,16 +193,19 @@
   lastmod: '2026-06-29T20:40:39.725Z'
 - source: code
   loc: https://code.claude.com/docs/en/debug-your-config
-  lastmod: '2026-06-25T16:38:07.637Z'
+  lastmod: '2026-06-30T06:02:31.315Z'
 - source: code
   loc: https://code.claude.com/docs/en/deep-links
-  lastmod: '2026-06-04T23:12:20.062Z'
+  lastmod: '2026-06-30T06:02:31.335Z'
 - source: code
   loc: https://code.claude.com/docs/en/desktop
-  lastmod: '2026-06-24T15:39:22.229Z'
+  lastmod: '2026-06-30T19:11:10.059Z'
+- source: code
+  loc: https://code.claude.com/docs/en/desktop-linux
+  lastmod: '2026-06-30T16:05:44.714Z'
 - source: code
   loc: https://code.claude.com/docs/en/desktop-quickstart
-  lastmod: '2026-06-09T16:56:28.221Z'
+  lastmod: '2026-06-30T16:05:44.711Z'
 - source: code
   loc: https://code.claude.com/docs/en/desktop-scheduled-tasks
   lastmod: '2026-05-14T14:28:27.041Z'
@@ -211,13 +214,13 @@
   lastmod: '2026-06-26T20:30:20.102Z'
 - source: code
   loc: https://code.claude.com/docs/en/discover-plugins
-  lastmod: '2026-06-26T22:28:47.659Z'
+  lastmod: '2026-06-30T06:02:31.332Z'
 - source: code
   loc: https://code.claude.com/docs/en/env-vars
-  lastmod: '2026-06-29T20:40:39.767Z'
+  lastmod: '2026-06-30T18:03:12.059Z'
 - source: code
   loc: https://code.claude.com/docs/en/errors
-  lastmod: '2026-06-26T21:52:49.104Z'
+  lastmod: '2026-06-30T18:03:12.015Z'
 - source: code
   loc: https://code.claude.com/docs/en/fast-mode
   lastmod: '2026-06-26T20:30:20.100Z'
@@ -229,13 +232,13 @@
   lastmod: '2026-06-18T18:02:56.590Z'
 - source: code
   loc: https://code.claude.com/docs/en/fullscreen
-  lastmod: '2026-06-26T22:28:47.665Z'
+  lastmod: '2026-06-30T06:02:31.333Z'
 - source: code
   loc: https://code.claude.com/docs/en/gateways
   lastmod: '2026-06-29T20:40:39.754Z'
 - source: code
   loc: https://code.claude.com/docs/en/github-actions
-  lastmod: '2026-06-24T15:39:22.264Z'
+  lastmod: '2026-06-30T18:03:12.003Z'
 - source: code
   loc: https://code.claude.com/docs/en/github-enterprise-server
   lastmod: '2026-06-25T23:09:26.969Z'
@@ -244,19 +247,19 @@
   lastmod: '2026-06-09T14:23:39.394Z'
 - source: code
   loc: https://code.claude.com/docs/en/glossary
-  lastmod: '2026-06-25T03:54:06.537Z'
+  lastmod: '2026-06-30T18:03:24.976Z'
 - source: code
   loc: https://code.claude.com/docs/en/goal
   lastmod: '2026-06-26T20:30:20.095Z'
 - source: code
   loc: https://code.claude.com/docs/en/google-vertex-ai
-  lastmod: '2026-06-05T21:14:21.914Z'
+  lastmod: '2026-06-30T19:11:10.053Z'
 - source: code
   loc: https://code.claude.com/docs/en/headless
   lastmod: '2026-06-19T22:06:29.465Z'
 - source: code
   loc: https://code.claude.com/docs/en/hooks
-  lastmod: '2026-06-26T22:28:47.694Z'
+  lastmod: '2026-06-30T22:18:36.221Z'
 - source: code
   loc: https://code.claude.com/docs/en/hooks-guide
   lastmod: '2026-06-25T16:38:07.646Z'
@@ -265,10 +268,10 @@
   lastmod: '2026-06-10T00:06:25.638Z'
 - source: code
   loc: https://code.claude.com/docs/en/interactive-mode
-  lastmod: '2026-06-26T22:28:47.671Z'
+  lastmod: '2026-06-30T06:02:31.331Z'
 - source: code
   loc: https://code.claude.com/docs/en/jetbrains
-  lastmod: '2026-06-13T02:22:21.667Z'
+  lastmod: '2026-06-30T06:21:09.167Z'
 - source: code
   loc: https://code.claude.com/docs/en/keybindings
   lastmod: '2026-06-19T22:06:29.466Z'
@@ -283,7 +286,7 @@
   lastmod: '2026-06-29T20:40:39.841Z'
 - source: code
   loc: https://code.claude.com/docs/en/llm-gateway-connect
-  lastmod: '2026-06-29T20:40:39.843Z'
+  lastmod: '2026-06-30T06:02:31.313Z'
 - source: code
   loc: https://code.claude.com/docs/en/llm-gateway-protocol
   lastmod: '2026-06-29T20:40:39.842Z'
@@ -295,7 +298,7 @@
   lastmod: '2026-06-19T22:06:29.467Z'
 - source: code
   loc: https://code.claude.com/docs/en/mcp
-  lastmod: '2026-06-26T22:29:01.984Z'
+  lastmod: '2026-06-30T06:02:40.414Z'
 - source: code
   loc: https://code.claude.com/docs/en/mcp-quickstart
   lastmod: '2026-06-25T15:38:56.897Z'
@@ -304,13 +307,13 @@
   lastmod: '2026-06-18T01:33:07.362Z'
 - source: code
   loc: https://code.claude.com/docs/en/microsoft-foundry
-  lastmod: '2026-06-05T21:14:21.920Z'
+  lastmod: '2026-06-30T19:11:10.048Z'
 - source: code
   loc: https://code.claude.com/docs/en/model-config
-  lastmod: '2026-06-26T22:29:01.933Z'
+  lastmod: '2026-06-30T19:11:10.050Z'
 - source: code
   loc: https://code.claude.com/docs/en/monitoring-usage
-  lastmod: '2026-06-29T20:40:39.867Z'
+  lastmod: '2026-06-30T18:03:25.001Z'
 - source: code
   loc: https://code.claude.com/docs/en/network-config
   lastmod: '2026-06-29T20:40:39.869Z'
@@ -322,22 +325,22 @@
   lastmod: '2026-06-25T19:06:02.069Z'
 - source: code
   loc: https://code.claude.com/docs/en/permission-modes
-  lastmod: '2026-06-29T20:40:39.869Z'
+  lastmod: '2026-06-30T19:11:10.049Z'
 - source: code
   loc: https://code.claude.com/docs/en/permissions
-  lastmod: '2026-06-29T20:40:39.871Z'
+  lastmod: '2026-06-30T06:02:40.405Z'
 - source: code
   loc: https://code.claude.com/docs/en/platforms
   lastmod: '2026-06-09T23:09:21.749Z'
 - source: code
   loc: https://code.claude.com/docs/en/plugin-dependencies
-  lastmod: '2026-05-28T22:51:26.181Z'
+  lastmod: '2026-06-30T06:02:40.404Z'
 - source: code
   loc: https://code.claude.com/docs/en/plugin-hints
   lastmod: '2026-06-16T21:44:14.124Z'
 - source: code
   loc: https://code.claude.com/docs/en/plugin-marketplaces
-  lastmod: '2026-06-26T22:29:01.962Z'
+  lastmod: '2026-06-30T06:21:09.181Z'
 - source: code
   loc: https://code.claude.com/docs/en/plugin-relevance
   lastmod: '2026-06-22T23:42:34.968Z'
@@ -346,7 +349,7 @@
   lastmod: '2026-06-10T23:19:53.217Z'
 - source: code
   loc: https://code.claude.com/docs/en/plugins-reference
-  lastmod: '2026-06-18T19:23:53.862Z'
+  lastmod: '2026-06-30T06:02:40.412Z'
 - source: code
   loc: https://code.claude.com/docs/en/prompt-caching
   lastmod: '2026-06-09T23:34:21.475Z'
@@ -358,7 +361,7 @@
   lastmod: '2026-06-29T20:40:39.895Z'
 - source: code
   loc: https://code.claude.com/docs/en/remote-control
-  lastmod: '2026-06-25T23:09:29.147Z'
+  lastmod: '2026-06-30T06:02:40.406Z'
 - source: code
   loc: https://code.claude.com/docs/en/routines
   lastmod: '2026-06-25T23:09:29.140Z'
@@ -370,7 +373,7 @@
   lastmod: '2026-06-26T20:30:20.102Z'
 - source: code
   loc: https://code.claude.com/docs/en/scheduled-tasks
-  lastmod: '2026-06-01T21:46:03.378Z'
+  lastmod: '2026-06-30T06:02:40.403Z'
 - source: code
   loc: https://code.claude.com/docs/en/security
   lastmod: '2026-06-09T18:28:40.953Z'
@@ -379,28 +382,28 @@
   lastmod: '2026-06-01T21:46:03.373Z'
 - source: code
   loc: https://code.claude.com/docs/en/server-managed-settings
-  lastmod: '2026-06-29T20:40:39.917Z'
+  lastmod: '2026-06-30T21:45:38.990Z'
 - source: code
   loc: https://code.claude.com/docs/en/sessions
-  lastmod: '2026-06-26T20:30:27.685Z'
+  lastmod: '2026-06-30T06:21:09.172Z'
 - source: code
   loc: https://code.claude.com/docs/en/settings
-  lastmod: '2026-06-29T20:40:39.927Z'
+  lastmod: '2026-06-30T21:46:35.220Z'
 - source: code
   loc: https://code.claude.com/docs/en/setup
-  lastmod: '2026-06-25T19:06:02.186Z'
+  lastmod: '2026-06-30T16:05:44.842Z'
 - source: code
   loc: https://code.claude.com/docs/en/skills
-  lastmod: '2026-06-24T15:39:22.332Z'
+  lastmod: '2026-06-30T06:02:45.844Z'
 - source: code
   loc: https://code.claude.com/docs/en/slack
   lastmod: '2026-06-23T19:51:58.325Z'
 - source: code
   loc: https://code.claude.com/docs/en/statusline
-  lastmod: '2026-06-18T19:23:53.862Z'
+  lastmod: '2026-06-30T06:02:45.845Z'
 - source: code
   loc: https://code.claude.com/docs/en/sub-agents
-  lastmod: '2026-06-26T22:29:02.070Z'
+  lastmod: '2026-06-30T18:03:24.977Z'
 - source: code
   loc: https://code.claude.com/docs/en/terminal-config
   lastmod: '2026-06-02T20:00:00.661Z'
@@ -409,10 +412,10 @@
   lastmod: '2026-06-29T20:40:39.948Z'
 - source: code
   loc: https://code.claude.com/docs/en/tools-reference
-  lastmod: '2026-06-26T22:29:02.187Z'
+  lastmod: '2026-06-30T06:02:45.848Z'
 - source: code
   loc: https://code.claude.com/docs/en/troubleshoot-install
-  lastmod: '2026-06-26T06:31:25.896Z'
+  lastmod: '2026-06-30T16:05:44.864Z'
 - source: code
   loc: https://code.claude.com/docs/en/troubleshooting
   lastmod: '2026-06-09T14:23:52.964Z'
@@ -424,7 +427,7 @@
   lastmod: '2026-06-25T23:09:29.138Z'
 - source: code
   loc: https://code.claude.com/docs/en/voice-dictation
-  lastmod: '2026-06-26T22:29:02.056Z'
+  lastmod: '2026-06-30T06:02:45.846Z'
 - source: code
   loc: https://code.claude.com/docs/en/vs-code
   lastmod: '2026-06-12T21:36:37.053Z'
@@ -466,7 +469,7 @@
   lastmod: '2026-06-03T18:25:43.840Z'
 - source: code
   loc: https://code.claude.com/docs/en/whats-new/2026-w23
-  lastmod: '2026-06-15T23:20:01.618Z'
+  lastmod: '2026-06-30T06:21:09.168Z'
 - source: code
   loc: https://code.claude.com/docs/en/whats-new/2026-w24
   lastmod: '2026-06-18T19:24:00.343Z'
@@ -478,7 +481,7 @@
   lastmod: '2026-06-27T00:48:56.674Z'
 - source: code
   loc: https://code.claude.com/docs/en/workflows
-  lastmod: '2026-06-26T20:30:27.671Z'
+  lastmod: '2026-06-30T06:02:45.846Z'
 - source: code
   loc: https://code.claude.com/docs/en/worktrees
   lastmod: '2026-06-09T18:50:39.878Z'
@@ -1275,6 +1278,42 @@
   loc: https://platform.claude.com/docs/en/api/beta/skills/versions/retrieve
   priority: '0.9'
 - source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/tunnels
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/tunnels/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/tunnels/certificates
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/tunnels/certificates/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/tunnels/certificates/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/tunnels/certificates/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/tunnels/certificates/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/tunnels/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/tunnels/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/tunnels/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/tunnels/reveal_token
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/beta/tunnels/rotate_token
+  priority: '0.9'
+- source: platform
   loc: https://platform.claude.com/docs/en/api/beta/user_profiles
   priority: '0.9'
 - source: platform
@@ -1663,6 +1702,42 @@
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/cli/beta/skills/versions/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/tunnels
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/tunnels/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/tunnels/certificates
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/tunnels/certificates/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/tunnels/certificates/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/tunnels/certificates/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/tunnels/certificates/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/tunnels/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/tunnels/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/tunnels/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/tunnels/reveal_token
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/cli/beta/tunnels/rotate_token
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/cli/beta/user_profiles
@@ -2262,6 +2337,42 @@
   loc: https://platform.claude.com/docs/en/api/csharp/beta/skills/versions/retrieve
   priority: '0.9'
 - source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/tunnels
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/tunnels/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/tunnels/certificates
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/tunnels/certificates/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/tunnels/certificates/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/tunnels/certificates/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/tunnels/certificates/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/tunnels/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/tunnels/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/tunnels/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/tunnels/reveal_token
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/csharp/beta/tunnels/rotate_token
+  priority: '0.9'
+- source: platform
   loc: https://platform.claude.com/docs/en/api/csharp/beta/user_profiles
   priority: '0.9'
 - source: platform
@@ -2697,6 +2808,42 @@
   loc: https://platform.claude.com/docs/en/api/go/beta/skills/versions/retrieve
   priority: '0.9'
 - source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/tunnels
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/tunnels/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/tunnels/certificates
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/tunnels/certificates/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/tunnels/certificates/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/tunnels/certificates/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/tunnels/certificates/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/tunnels/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/tunnels/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/tunnels/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/tunnels/reveal_token
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/go/beta/tunnels/rotate_token
+  priority: '0.9'
+- source: platform
   loc: https://platform.claude.com/docs/en/api/go/beta/user_profiles
   priority: '0.9'
 - source: platform
@@ -3130,6 +3277,42 @@
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/java/beta/skills/versions/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/tunnels
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/tunnels/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/tunnels/certificates
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/tunnels/certificates/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/tunnels/certificates/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/tunnels/certificates/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/tunnels/certificates/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/tunnels/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/tunnels/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/tunnels/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/tunnels/reveal_token
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/java/beta/tunnels/rotate_token
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/java/beta/user_profiles
@@ -3606,6 +3789,42 @@
   loc: https://platform.claude.com/docs/en/api/php/beta/skills/versions/retrieve
   priority: '0.9'
 - source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/tunnels
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/tunnels/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/tunnels/certificates
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/tunnels/certificates/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/tunnels/certificates/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/tunnels/certificates/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/tunnels/certificates/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/tunnels/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/tunnels/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/tunnels/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/tunnels/reveal_token
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/php/beta/tunnels/rotate_token
+  priority: '0.9'
+- source: platform
   loc: https://platform.claude.com/docs/en/api/php/beta/user_profiles
   priority: '0.9'
 - source: platform
@@ -4039,6 +4258,42 @@
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/python/beta/skills/versions/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/tunnels
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/tunnels/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/tunnels/certificates
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/tunnels/certificates/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/tunnels/certificates/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/tunnels/certificates/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/tunnels/certificates/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/tunnels/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/tunnels/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/tunnels/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/tunnels/reveal_token
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/python/beta/tunnels/rotate_token
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/python/beta/user_profiles
@@ -4476,6 +4731,42 @@
   loc: https://platform.claude.com/docs/en/api/ruby/beta/skills/versions/retrieve
   priority: '0.9'
 - source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/tunnels
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/tunnels/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/tunnels/certificates
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/tunnels/certificates/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/tunnels/certificates/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/tunnels/certificates/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/tunnels/certificates/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/tunnels/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/tunnels/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/tunnels/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/tunnels/reveal_token
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/ruby/beta/tunnels/rotate_token
+  priority: '0.9'
+- source: platform
   loc: https://platform.claude.com/docs/en/api/ruby/beta/user_profiles
   priority: '0.9'
 - source: platform
@@ -4911,6 +5202,42 @@
   loc: https://platform.claude.com/docs/en/api/terraform/beta/skills/versions/retrieve
   priority: '0.9'
 - source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/tunnels
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/tunnels/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/tunnels/certificates
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/tunnels/certificates/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/tunnels/certificates/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/tunnels/certificates/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/tunnels/certificates/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/tunnels/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/tunnels/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/tunnels/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/tunnels/reveal_token
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/terraform/beta/tunnels/rotate_token
+  priority: '0.9'
+- source: platform
   loc: https://platform.claude.com/docs/en/api/terraform/beta/user_profiles
   priority: '0.9'
 - source: platform
@@ -5344,6 +5671,42 @@
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/typescript/beta/skills/versions/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/tunnels
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/tunnels/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/tunnels/certificates
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/tunnels/certificates/archive
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/tunnels/certificates/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/tunnels/certificates/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/tunnels/certificates/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/tunnels/create
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/tunnels/list
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/tunnels/retrieve
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/tunnels/reveal_token
+  priority: '0.9'
+- source: platform
+  loc: https://platform.claude.com/docs/en/api/typescript/beta/tunnels/rotate_token
   priority: '0.9'
 - source: platform
   loc: https://platform.claude.com/docs/en/api/typescript/beta/user_profiles
@@ -5965,6 +6328,9 @@
   priority: '0.7'
 - source: platform
   loc: https://platform.claude.com/docs/id/build-with-claude/vision
+  priority: '0.7'
+- source: platform
+  loc: https://platform.claude.com/docs/id/build-with-claude/vision-coordinates
   priority: '0.7'
 - source: platform
   loc: https://platform.claude.com/docs/id/build-with-claude/working-with-messages

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta
-fetched_at: 2026-06-26T03:16:19.812719Z
-sha256: 4da9c8318de8309ed3ed5e8fec2dde595fc7663b7f4cd03b9be99bb8440ec833
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 61fadea713e3eecd1624a6b8b72d4698be388c4cbec7568026cd0d5d1bbb2736
 ---
 
 # Beta
@@ -1318,7 +1318,7 @@ Send a structured list of input messages with text and/or image content, and the
 
 The Messages API can be used for either single queries or stateless multi-turn conversations.
 
-Learn more about the Messages API in our [user guide](https://docs.claude.com/en/docs/initial-setup)
+Learn more about the Messages API in our [user guide](https://platform.claude.com/docs/en/get-started)
 
 ### Parameters
 
@@ -1328,9 +1328,9 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   Note that our models may stop _before_ reaching this maximum. This parameter only specifies the absolute maximum number of tokens to generate.
 
-  Set to `0` to populate the [prompt cache](https://docs.claude.com/en/docs/build-with-claude/prompt-caching#pre-warming-the-cache) without generating a response.
+  Set to `0` to populate the [prompt cache](https://platform.claude.com/docs/en/build-with-claude/prompt-caching#pre-warming-the-cache) without generating a response.
 
-  Different models have different maximum values for this parameter.  See [models](https://docs.claude.com/en/docs/models-overview) for details.
+  Different models have different maximum values for this parameter.  See [models](https://platform.claude.com/docs/en/about-claude/models/overview) for details.
 
 - `messages: Array[BetaMessageParam]`
 
@@ -1377,9 +1377,9 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
   {"role": "user", "content": [{"type": "text", "text": "Hello, Claude"}]}
   ```
 
-  See [input examples](https://docs.claude.com/en/api/messages-examples).
+  See [input examples](https://platform.claude.com/docs/en/build-with-claude/working-with-messages).
 
-  Note that if you want to include a [system prompt](https://docs.claude.com/en/docs/system-prompts), you can use the top-level `system` parameter — there is no `"system"` role for input messages in the Messages API.
+  Note that if you want to include a [system prompt](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#give-claude-a-role), you can use the top-level `system` parameter — there is no `"system"` role for input messages in the Messages API.
 
   There is a limit of 100,000 messages in a single request.
 
@@ -1414,7 +1414,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
             - `5m`: 5 minutes
             - `1h`: 1 hour
 
-            Defaults to `5m`.
+            Defaults to `5m`. See [prompt caching pricing](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) for details.
 
             - `:"5m"`
 
@@ -2770,7 +2770,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         Must be ≥1024 and less than `max_tokens`.
 
-        See [extended thinking](https://docs.claude.com/en/docs/build-with-claude/extended-thinking) for details.
+        See [extended thinking](https://platform.claude.com/docs/en/build-with-claude/extended-thinking) for details.
 
       - `type: :enabled`
 
@@ -2852,7 +2852,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   Determines whether to use priority capacity (if available) or standard capacity for this request.
 
-  Anthropic offers different levels of service for your API requests. See [service-tiers](https://docs.claude.com/en/api/service-tiers) for details.
+  Anthropic offers different levels of service for your API requests. See [service-tiers](https://platform.claude.com/docs/en/api/service-tiers) for details.
 
   - `:auto`
 
@@ -2878,13 +2878,13 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   Whether to incrementally stream the response using server-sent events.
 
-  See [streaming](https://docs.claude.com/en/api/messages-streaming) for details.
+  See [streaming](https://platform.claude.com/docs/en/build-with-claude/streaming) for details.
 
 - `system_: String | Array[BetaTextBlockParam]`
 
   System prompt.
 
-  A system prompt is a way of providing context and instructions to Claude, such as specifying a particular goal or role. See our [guide to system prompts](https://docs.claude.com/en/docs/system-prompts).
+  A system prompt is a way of providing context and instructions to Claude, such as specifying a particular goal or role. See our [guide to system prompts](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#give-claude-a-role).
 
   - `String = String`
 
@@ -2914,7 +2914,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   When enabled, responses include `thinking` content blocks showing Claude's thinking process before the final answer. Requires a minimum budget of 1,024 tokens and counts towards your `max_tokens` limit.
 
-  See [extended thinking](https://docs.claude.com/en/docs/build-with-claude/extended-thinking) for details.
+  See [extended thinking](https://platform.claude.com/docs/en/build-with-claude/extended-thinking) for details.
 
   - `class BetaThinkingConfigEnabled`
 
@@ -2986,7 +2986,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   If you include `tools` in your API request, the model may return `tool_use` content blocks that represent the model's use of those tools. You can then run those tools using the tool input generated by the model and then optionally return results back to the model using `tool_result` content blocks.
 
-  There are two types of tools: **client tools** and **server tools**. The behavior described below applies to client tools. For [server tools](https://docs.claude.com/en/docs/agents-and-tools/tool-use/overview#server-tools), see their individual documentation as each has its own behavior (e.g., the [web search tool](https://docs.claude.com/en/docs/agents-and-tools/tool-use/web-search-tool)).
+  There are two types of tools: **client tools** and **server tools**. The behavior described below applies to client tools. For [server tools](https://platform.claude.com/docs/en/agents-and-tools/tool-use/server-tools), see their individual documentation as each has its own behavior (e.g., the [web search tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool)).
 
   Each tool definition includes:
 
@@ -3042,7 +3042,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   Tools can be used for workflows that include running client-side tools and functions, or more generally whenever you want the model to produce a particular JSON structure of output.
 
-  See our [guide](https://docs.claude.com/en/docs/tool-use) for more details.
+  See our [guide](https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview) for more details.
 
   - `class BetaTool`
 
@@ -3974,6 +3974,134 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
       Whether to use cached content. Set to false to bypass the cache and fetch fresh content. Only set to false when the user explicitly requests fresh content or when fetching rapidly-changing sources.
 
+  - `class BetaWebSearchTool20260318`
+
+    - `name: :web_search`
+
+      Name of the tool.
+
+      This is how the tool will be called by the model and in `tool_use` blocks.
+
+      - `:web_search`
+
+    - `type: :web_search_20260318`
+
+      - `:web_search_20260318`
+
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
+
+      - `:direct`
+
+      - `:code_execution_20250825`
+
+      - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
+
+    - `allowed_domains: Array[String]`
+
+      If provided, only these domains will be included in results. Cannot be used alongside `blocked_domains`.
+
+    - `blocked_domains: Array[String]`
+
+      If provided, these domains will never appear in results. Cannot be used alongside `allowed_domains`.
+
+    - `cache_control: BetaCacheControlEphemeral`
+
+      Create a cache control breakpoint at this content block.
+
+    - `defer_loading: bool`
+
+      If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+    - `max_uses: Integer`
+
+      Maximum number of times the tool can be used in the API request.
+
+    - `response_inclusion: :full | :excluded`
+
+      How this tool's result blocks appear in the API response when the result was consumed by a completed code_execution call in the same turn. 'full' returns the complete content (default). 'excluded' drops the nested server_tool_use and result block pair entirely. Results from direct calls, or from code_execution calls that paused before completing, are always returned in full so they can be sent back on the next turn.
+
+      - `:full`
+
+      - `:excluded`
+
+    - `strict: bool`
+
+      When true, guarantees schema validation on tool names and inputs
+
+    - `user_location: BetaUserLocation`
+
+      Parameters for the user's location. Used to provide more relevant search results.
+
+  - `class BetaWebFetchTool20260318`
+
+    - `name: :web_fetch`
+
+      Name of the tool.
+
+      This is how the tool will be called by the model and in `tool_use` blocks.
+
+      - `:web_fetch`
+
+    - `type: :web_fetch_20260318`
+
+      - `:web_fetch_20260318`
+
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
+
+      - `:direct`
+
+      - `:code_execution_20250825`
+
+      - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
+
+    - `allowed_domains: Array[String]`
+
+      List of domains to allow fetching from
+
+    - `blocked_domains: Array[String]`
+
+      List of domains to block fetching from
+
+    - `cache_control: BetaCacheControlEphemeral`
+
+      Create a cache control breakpoint at this content block.
+
+    - `citations: BetaCitationsConfigParam`
+
+      Citations configuration for fetched documents. Citations are disabled by default.
+
+    - `defer_loading: bool`
+
+      If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+    - `max_content_tokens: Integer`
+
+      Maximum number of tokens used by including web page text content in the context. The limit is approximate and does not apply to binary content such as PDFs.
+
+    - `max_uses: Integer`
+
+      Maximum number of times the tool can be used in the API request.
+
+    - `response_inclusion: :full | :excluded`
+
+      How this tool's result blocks appear in the API response when the result was consumed by a completed code_execution call in the same turn. 'full' returns the complete content (default). 'excluded' drops the nested server_tool_use and result block pair entirely. Results from direct calls, or from code_execution calls that paused before completing, are always returned in full so they can be sent back on the next turn.
+
+      - `:full`
+
+      - `:excluded`
+
+    - `strict: bool`
+
+      When true, guarantees schema validation on tool names and inputs
+
+    - `use_cache: bool`
+
+      Whether to use cached content. Set to false to bypass the cache and fetch fresh content. Only set to false when the user explicitly requests fresh content or when fetching rapidly-changing sources.
+
   - `class BetaAdvisorTool20260301`
 
     - `model: Model`
@@ -4155,10 +4283,6 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
   Recommended for advanced use cases only.
 
-- `user_profile_id: String`
-
-  The user profile ID to attribute this request to. Use when acting on behalf of a party other than your organization.
-
 - `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
@@ -4222,6 +4346,10 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
     - `:"server-side-fallback-2026-06-01"`
 
     - `:"fallback-credit-2026-06-01"`
+
+- `user_profile_id: String`
+
+  The user profile ID to attribute this request to. Use when acting on behalf of a party other than your organization. Requires the `user-profiles` beta header.
 
 ### Returns
 
@@ -5150,7 +5278,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
         What caused the `from` model to hand over at this hop.
 
-        - `category: :cyber | :bio | :frontier_llm | :reasoning_extraction`
+        - `category: :cyber | :bio | :frontier_llm | 2 more`
 
           The policy category that triggered a refusal.
 
@@ -5161,6 +5289,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
           - `:frontier_llm`
 
           - `:reasoning_extraction`
+
+          - `:military_weapons`
 
         - `type: :refusal`
 
@@ -5291,7 +5421,7 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
 
     Structured information about a refusal.
 
-    - `category: :cyber | :bio | :frontier_llm | :reasoning_extraction`
+    - `category: :cyber | :bio | :frontier_llm | 2 more`
 
       The policy category that triggered a refusal.
 
@@ -5302,6 +5432,8 @@ Learn more about the Messages API in our [user guide](https://docs.claude.com/en
       - `:frontier_llm`
 
       - `:reasoning_extraction`
+
+      - `:military_weapons`
 
     - `explanation: String`
 
@@ -5778,7 +5910,7 @@ Count the number of tokens in a Message.
 
 The Token Count API can be used to count the number of tokens in a Message, including tools, images, and documents, without creating it.
 
-Learn more about token counting in our [user guide](https://docs.claude.com/en/docs/build-with-claude/token-counting)
+Learn more about token counting in our [user guide](https://platform.claude.com/docs/en/build-with-claude/token-counting)
 
 ### Parameters
 
@@ -5827,9 +5959,9 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
   {"role": "user", "content": [{"type": "text", "text": "Hello, Claude"}]}
   ```
 
-  See [input examples](https://docs.claude.com/en/api/messages-examples).
+  See [input examples](https://platform.claude.com/docs/en/build-with-claude/working-with-messages).
 
-  Note that if you want to include a [system prompt](https://docs.claude.com/en/docs/system-prompts), you can use the top-level `system` parameter — there is no `"system"` role for input messages in the Messages API.
+  Note that if you want to include a [system prompt](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#give-claude-a-role), you can use the top-level `system` parameter — there is no `"system"` role for input messages in the Messages API.
 
   There is a limit of 100,000 messages in a single request.
 
@@ -5864,7 +5996,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
             - `5m`: 5 minutes
             - `1h`: 1 hour
 
-            Defaults to `5m`.
+            Defaults to `5m`. See [prompt caching pricing](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) for details.
 
             - `:"5m"`
 
@@ -7166,7 +7298,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
   System prompt.
 
-  A system prompt is a way of providing context and instructions to Claude, such as specifying a particular goal or role. See our [guide to system prompts](https://docs.claude.com/en/docs/system-prompts).
+  A system prompt is a way of providing context and instructions to Claude, such as specifying a particular goal or role. See our [guide to system prompts](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#give-claude-a-role).
 
   - `String = String`
 
@@ -7188,7 +7320,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
   When enabled, responses include `thinking` content blocks showing Claude's thinking process before the final answer. Requires a minimum budget of 1,024 tokens and counts towards your `max_tokens` limit.
 
-  See [extended thinking](https://docs.claude.com/en/docs/build-with-claude/extended-thinking) for details.
+  See [extended thinking](https://platform.claude.com/docs/en/build-with-claude/extended-thinking) for details.
 
   - `class BetaThinkingConfigEnabled`
 
@@ -7198,7 +7330,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       Must be ≥1024 and less than `max_tokens`.
 
-      See [extended thinking](https://docs.claude.com/en/docs/build-with-claude/extended-thinking) for details.
+      See [extended thinking](https://platform.claude.com/docs/en/build-with-claude/extended-thinking) for details.
 
     - `type: :enabled`
 
@@ -7290,13 +7422,13 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       - `:none`
 
-- `tools: Array[BetaTool | BetaToolBash20241022 | BetaToolBash20250124 | 21 more]`
+- `tools: Array[BetaTool | BetaToolBash20241022 | BetaToolBash20250124 | 23 more]`
 
   Definitions of tools that the model may use.
 
   If you include `tools` in your API request, the model may return `tool_use` content blocks that represent the model's use of those tools. You can then run those tools using the tool input generated by the model and then optionally return results back to the model using `tool_result` content blocks.
 
-  There are two types of tools: **client tools** and **server tools**. The behavior described below applies to client tools. For [server tools](https://docs.claude.com/en/docs/agents-and-tools/tool-use/overview#server-tools), see their individual documentation as each has its own behavior (e.g., the [web search tool](https://docs.claude.com/en/docs/agents-and-tools/tool-use/web-search-tool)).
+  There are two types of tools: **client tools** and **server tools**. The behavior described below applies to client tools. For [server tools](https://platform.claude.com/docs/en/agents-and-tools/tool-use/server-tools), see their individual documentation as each has its own behavior (e.g., the [web search tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool)).
 
   Each tool definition includes:
 
@@ -7352,7 +7484,7 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
   Tools can be used for workflows that include running client-side tools and functions, or more generally whenever you want the model to produce a particular JSON structure of output.
 
-  See our [guide](https://docs.claude.com/en/docs/tool-use) for more details.
+  See our [guide](https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview) for more details.
 
   - `class BetaTool`
 
@@ -8284,6 +8416,134 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
 
       Whether to use cached content. Set to false to bypass the cache and fetch fresh content. Only set to false when the user explicitly requests fresh content or when fetching rapidly-changing sources.
 
+  - `class BetaWebSearchTool20260318`
+
+    - `name: :web_search`
+
+      Name of the tool.
+
+      This is how the tool will be called by the model and in `tool_use` blocks.
+
+      - `:web_search`
+
+    - `type: :web_search_20260318`
+
+      - `:web_search_20260318`
+
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
+
+      - `:direct`
+
+      - `:code_execution_20250825`
+
+      - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
+
+    - `allowed_domains: Array[String]`
+
+      If provided, only these domains will be included in results. Cannot be used alongside `blocked_domains`.
+
+    - `blocked_domains: Array[String]`
+
+      If provided, these domains will never appear in results. Cannot be used alongside `allowed_domains`.
+
+    - `cache_control: BetaCacheControlEphemeral`
+
+      Create a cache control breakpoint at this content block.
+
+    - `defer_loading: bool`
+
+      If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+    - `max_uses: Integer`
+
+      Maximum number of times the tool can be used in the API request.
+
+    - `response_inclusion: :full | :excluded`
+
+      How this tool's result blocks appear in the API response when the result was consumed by a completed code_execution call in the same turn. 'full' returns the complete content (default). 'excluded' drops the nested server_tool_use and result block pair entirely. Results from direct calls, or from code_execution calls that paused before completing, are always returned in full so they can be sent back on the next turn.
+
+      - `:full`
+
+      - `:excluded`
+
+    - `strict: bool`
+
+      When true, guarantees schema validation on tool names and inputs
+
+    - `user_location: BetaUserLocation`
+
+      Parameters for the user's location. Used to provide more relevant search results.
+
+  - `class BetaWebFetchTool20260318`
+
+    - `name: :web_fetch`
+
+      Name of the tool.
+
+      This is how the tool will be called by the model and in `tool_use` blocks.
+
+      - `:web_fetch`
+
+    - `type: :web_fetch_20260318`
+
+      - `:web_fetch_20260318`
+
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
+
+      - `:direct`
+
+      - `:code_execution_20250825`
+
+      - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
+
+    - `allowed_domains: Array[String]`
+
+      List of domains to allow fetching from
+
+    - `blocked_domains: Array[String]`
+
+      List of domains to block fetching from
+
+    - `cache_control: BetaCacheControlEphemeral`
+
+      Create a cache control breakpoint at this content block.
+
+    - `citations: BetaCitationsConfigParam`
+
+      Citations configuration for fetched documents. Citations are disabled by default.
+
+    - `defer_loading: bool`
+
+      If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+    - `max_content_tokens: Integer`
+
+      Maximum number of tokens used by including web page text content in the context. The limit is approximate and does not apply to binary content such as PDFs.
+
+    - `max_uses: Integer`
+
+      Maximum number of times the tool can be used in the API request.
+
+    - `response_inclusion: :full | :excluded`
+
+      How this tool's result blocks appear in the API response when the result was consumed by a completed code_execution call in the same turn. 'full' returns the complete content (default). 'excluded' drops the nested server_tool_use and result block pair entirely. Results from direct calls, or from code_execution calls that paused before completing, are always returned in full so they can be sent back on the next turn.
+
+      - `:full`
+
+      - `:excluded`
+
+    - `strict: bool`
+
+      When true, guarantees schema validation on tool names and inputs
+
+    - `use_cache: bool`
+
+      Whether to use cached content. Set to false to bypass the cache and fetch fresh content. Only set to false when the user explicitly requests fresh content or when fetching rapidly-changing sources.
+
   - `class BetaAdvisorTool20260301`
 
     - `model: Model`
@@ -8512,6 +8772,10 @@ Learn more about token counting in our [user guide](https://docs.claude.com/en/d
     - `:"server-side-fallback-2026-06-01"`
 
     - `:"fallback-credit-2026-06-01"`
+
+- `user_profile_id: String`
+
+  The user profile ID to attribute this request to. Use when acting on behalf of a party other than your organization. Requires the `user-profiles` beta header.
 
 ### Returns
 
@@ -8844,7 +9108,7 @@ puts(beta_message_tokens_count)
       - `5m`: 5 minutes
       - `1h`: 1 hour
 
-      Defaults to `5m`.
+      Defaults to `5m`. See [prompt caching pricing](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) for details.
 
       - `:"5m"`
 
@@ -9003,7 +9267,7 @@ puts(beta_message_tokens_count)
       - `5m`: 5 minutes
       - `1h`: 1 hour
 
-      Defaults to `5m`.
+      Defaults to `5m`. See [prompt caching pricing](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) for details.
 
       - `:"5m"`
 
@@ -9280,7 +9544,7 @@ puts(beta_message_tokens_count)
       - `5m`: 5 minutes
       - `1h`: 1 hour
 
-      Defaults to `5m`.
+      Defaults to `5m`. See [prompt caching pricing](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) for details.
 
       - `:"5m"`
 
@@ -9343,7 +9607,7 @@ puts(beta_message_tokens_count)
     - `5m`: 5 minutes
     - `1h`: 1 hour
 
-    Defaults to `5m`.
+    Defaults to `5m`. See [prompt caching pricing](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) for details.
 
     - `:"5m"`
 
@@ -10024,7 +10288,7 @@ puts(beta_message_tokens_count)
       - `5m`: 5 minutes
       - `1h`: 1 hour
 
-      Defaults to `5m`.
+      Defaults to `5m`. See [prompt caching pricing](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) for details.
 
       - `:"5m"`
 
@@ -10081,7 +10345,7 @@ puts(beta_message_tokens_count)
       - `5m`: 5 minutes
       - `1h`: 1 hour
 
-      Defaults to `5m`.
+      Defaults to `5m`. See [prompt caching pricing](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) for details.
 
       - `:"5m"`
 
@@ -10140,7 +10404,7 @@ puts(beta_message_tokens_count)
       - `5m`: 5 minutes
       - `1h`: 1 hour
 
-      Defaults to `5m`.
+      Defaults to `5m`. See [prompt caching pricing](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) for details.
 
       - `:"5m"`
 
@@ -10199,7 +10463,7 @@ puts(beta_message_tokens_count)
       - `5m`: 5 minutes
       - `1h`: 1 hour
 
-      Defaults to `5m`.
+      Defaults to `5m`. See [prompt caching pricing](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) for details.
 
       - `:"5m"`
 
@@ -10432,7 +10696,7 @@ puts(beta_message_tokens_count)
       - `5m`: 5 minutes
       - `1h`: 1 hour
 
-      Defaults to `5m`.
+      Defaults to `5m`. See [prompt caching pricing](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) for details.
 
       - `:"5m"`
 
@@ -10631,7 +10895,7 @@ puts(beta_message_tokens_count)
       - `5m`: 5 minutes
       - `1h`: 1 hour
 
-      Defaults to `5m`.
+      Defaults to `5m`. See [prompt caching pricing](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) for details.
 
       - `:"5m"`
 
@@ -10805,7 +11069,7 @@ puts(beta_message_tokens_count)
       - `5m`: 5 minutes
       - `1h`: 1 hour
 
-      Defaults to `5m`.
+      Defaults to `5m`. See [prompt caching pricing](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) for details.
 
       - `:"5m"`
 
@@ -11673,7 +11937,7 @@ puts(beta_message_tokens_count)
 
       What caused the `from` model to hand over at this hop.
 
-      - `category: :cyber | :bio | :frontier_llm | :reasoning_extraction`
+      - `category: :cyber | :bio | :frontier_llm | 2 more`
 
         The policy category that triggered a refusal.
 
@@ -11684,6 +11948,8 @@ puts(beta_message_tokens_count)
         - `:frontier_llm`
 
         - `:reasoning_extraction`
+
+        - `:military_weapons`
 
       - `type: :refusal`
 
@@ -11724,7 +11990,7 @@ puts(beta_message_tokens_count)
         - `5m`: 5 minutes
         - `1h`: 1 hour
 
-        Defaults to `5m`.
+        Defaults to `5m`. See [prompt caching pricing](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) for details.
 
         - `:"5m"`
 
@@ -12841,7 +13107,7 @@ puts(beta_message_tokens_count)
             - `5m`: 5 minutes
             - `1h`: 1 hour
 
-            Defaults to `5m`.
+            Defaults to `5m`. See [prompt caching pricing](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) for details.
 
             - `:"5m"`
 
@@ -13032,7 +13298,7 @@ puts(beta_message_tokens_count)
         - `5m`: 5 minutes
         - `1h`: 1 hour
 
-        Defaults to `5m`.
+        Defaults to `5m`. See [prompt caching pricing](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) for details.
 
         - `:"5m"`
 
@@ -13630,7 +13896,7 @@ puts(beta_message_tokens_count)
 
     What caused the `from` model to hand over at this hop.
 
-    - `category: :cyber | :bio | :frontier_llm | :reasoning_extraction`
+    - `category: :cyber | :bio | :frontier_llm | 2 more`
 
       The policy category that triggered a refusal.
 
@@ -13641,6 +13907,8 @@ puts(beta_message_tokens_count)
       - `:frontier_llm`
 
       - `:reasoning_extraction`
+
+      - `:military_weapons`
 
     - `type: :refusal`
 
@@ -14186,7 +14454,7 @@ puts(beta_message_tokens_count)
 
         Must be ≥1024 and less than `max_tokens`.
 
-        See [extended thinking](https://docs.claude.com/en/docs/build-with-claude/extended-thinking) for details.
+        See [extended thinking](https://platform.claude.com/docs/en/build-with-claude/extended-thinking) for details.
 
       - `type: :enabled`
 
@@ -14226,7 +14494,7 @@ puts(beta_message_tokens_count)
 
   The `from` model declined for policy reasons.
 
-  - `category: :cyber | :bio | :frontier_llm | :reasoning_extraction`
+  - `category: :cyber | :bio | :frontier_llm | 2 more`
 
     The policy category that triggered a refusal.
 
@@ -14237,6 +14505,8 @@ puts(beta_message_tokens_count)
     - `:frontier_llm`
 
     - `:reasoning_extraction`
+
+    - `:military_weapons`
 
   - `type: :refusal`
 
@@ -14323,7 +14593,7 @@ puts(beta_message_tokens_count)
       - `5m`: 5 minutes
       - `1h`: 1 hour
 
-      Defaults to `5m`.
+      Defaults to `5m`. See [prompt caching pricing](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) for details.
 
       - `:"5m"`
 
@@ -14817,7 +15087,7 @@ puts(beta_message_tokens_count)
       - `5m`: 5 minutes
       - `1h`: 1 hour
 
-      Defaults to `5m`.
+      Defaults to `5m`. See [prompt caching pricing](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) for details.
 
       - `:"5m"`
 
@@ -14857,7 +15127,7 @@ puts(beta_message_tokens_count)
       - `5m`: 5 minutes
       - `1h`: 1 hour
 
-      Defaults to `5m`.
+      Defaults to `5m`. See [prompt caching pricing](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) for details.
 
       - `:"5m"`
 
@@ -14922,7 +15192,7 @@ puts(beta_message_tokens_count)
       - `5m`: 5 minutes
       - `1h`: 1 hour
 
-      Defaults to `5m`.
+      Defaults to `5m`. See [prompt caching pricing](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) for details.
 
       - `:"5m"`
 
@@ -16081,7 +16351,7 @@ puts(beta_message_tokens_count)
 
         What caused the `from` model to hand over at this hop.
 
-        - `category: :cyber | :bio | :frontier_llm | :reasoning_extraction`
+        - `category: :cyber | :bio | :frontier_llm | 2 more`
 
           The policy category that triggered a refusal.
 
@@ -16092,6 +16362,8 @@ puts(beta_message_tokens_count)
           - `:frontier_llm`
 
           - `:reasoning_extraction`
+
+          - `:military_weapons`
 
         - `type: :refusal`
 
@@ -16222,7 +16494,7 @@ puts(beta_message_tokens_count)
 
     Structured information about a refusal.
 
-    - `category: :cyber | :bio | :frontier_llm | :reasoning_extraction`
+    - `category: :cyber | :bio | :frontier_llm | 2 more`
 
       The policy category that triggered a refusal.
 
@@ -16233,6 +16505,8 @@ puts(beta_message_tokens_count)
       - `:frontier_llm`
 
       - `:reasoning_extraction`
+
+      - `:military_weapons`
 
     - `explanation: String`
 
@@ -17015,7 +17289,7 @@ puts(beta_message_tokens_count)
             - `5m`: 5 minutes
             - `1h`: 1 hour
 
-            Defaults to `5m`.
+            Defaults to `5m`. See [prompt caching pricing](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) for details.
 
             - `:"5m"`
 
@@ -18167,7 +18441,7 @@ puts(beta_message_tokens_count)
         - `5m`: 5 minutes
         - `1h`: 1 hour
 
-        Defaults to `5m`.
+        Defaults to `5m`. See [prompt caching pricing](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) for details.
 
         - `:"5m"`
 
@@ -19576,7 +19850,7 @@ puts(beta_message_tokens_count)
 
         What caused the `from` model to hand over at this hop.
 
-        - `category: :cyber | :bio | :frontier_llm | :reasoning_extraction`
+        - `category: :cyber | :bio | :frontier_llm | 2 more`
 
           The policy category that triggered a refusal.
 
@@ -19587,6 +19861,8 @@ puts(beta_message_tokens_count)
           - `:frontier_llm`
 
           - `:reasoning_extraction`
+
+          - `:military_weapons`
 
         - `type: :refusal`
 
@@ -19694,7 +19970,7 @@ puts(beta_message_tokens_count)
 
       Structured information about a refusal.
 
-      - `category: :cyber | :bio | :frontier_llm | :reasoning_extraction`
+      - `category: :cyber | :bio | :frontier_llm | 2 more`
 
         The policy category that triggered a refusal.
 
@@ -19705,6 +19981,8 @@ puts(beta_message_tokens_count)
         - `:frontier_llm`
 
         - `:reasoning_extraction`
+
+        - `:military_weapons`
 
       - `explanation: String`
 
@@ -21007,7 +21285,7 @@ puts(beta_message_tokens_count)
 
           What caused the `from` model to hand over at this hop.
 
-          - `category: :cyber | :bio | :frontier_llm | :reasoning_extraction`
+          - `category: :cyber | :bio | :frontier_llm | 2 more`
 
             The policy category that triggered a refusal.
 
@@ -21018,6 +21296,8 @@ puts(beta_message_tokens_count)
             - `:frontier_llm`
 
             - `:reasoning_extraction`
+
+            - `:military_weapons`
 
           - `type: :refusal`
 
@@ -21148,7 +21428,7 @@ puts(beta_message_tokens_count)
 
       Structured information about a refusal.
 
-      - `category: :cyber | :bio | :frontier_llm | :reasoning_extraction`
+      - `category: :cyber | :bio | :frontier_llm | 2 more`
 
         The policy category that triggered a refusal.
 
@@ -21159,6 +21439,8 @@ puts(beta_message_tokens_count)
         - `:frontier_llm`
 
         - `:reasoning_extraction`
+
+        - `:military_weapons`
 
       - `explanation: String`
 
@@ -22454,7 +22736,7 @@ puts(beta_message_tokens_count)
 
             What caused the `from` model to hand over at this hop.
 
-            - `category: :cyber | :bio | :frontier_llm | :reasoning_extraction`
+            - `category: :cyber | :bio | :frontier_llm | 2 more`
 
               The policy category that triggered a refusal.
 
@@ -22465,6 +22747,8 @@ puts(beta_message_tokens_count)
               - `:frontier_llm`
 
               - `:reasoning_extraction`
+
+              - `:military_weapons`
 
             - `type: :refusal`
 
@@ -22595,7 +22879,7 @@ puts(beta_message_tokens_count)
 
         Structured information about a refusal.
 
-        - `category: :cyber | :bio | :frontier_llm | :reasoning_extraction`
+        - `category: :cyber | :bio | :frontier_llm | 2 more`
 
           The policy category that triggered a refusal.
 
@@ -22606,6 +22890,8 @@ puts(beta_message_tokens_count)
           - `:frontier_llm`
 
           - `:reasoning_extraction`
+
+          - `:military_weapons`
 
         - `explanation: String`
 
@@ -23219,7 +23505,7 @@ puts(beta_message_tokens_count)
 
   Structured information about a refusal.
 
-  - `category: :cyber | :bio | :frontier_llm | :reasoning_extraction`
+  - `category: :cyber | :bio | :frontier_llm | 2 more`
 
     The policy category that triggered a refusal.
 
@@ -23230,6 +23516,8 @@ puts(beta_message_tokens_count)
     - `:frontier_llm`
 
     - `:reasoning_extraction`
+
+    - `:military_weapons`
 
   - `explanation: String`
 
@@ -23353,7 +23641,7 @@ puts(beta_message_tokens_count)
                 - `5m`: 5 minutes
                 - `1h`: 1 hour
 
-                Defaults to `5m`.
+                Defaults to `5m`. See [prompt caching pricing](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) for details.
 
                 - `:"5m"`
 
@@ -23602,7 +23890,7 @@ puts(beta_message_tokens_count)
       - `5m`: 5 minutes
       - `1h`: 1 hour
 
-      Defaults to `5m`.
+      Defaults to `5m`. See [prompt caching pricing](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) for details.
 
       - `:"5m"`
 
@@ -23761,7 +24049,7 @@ puts(beta_message_tokens_count)
         - `5m`: 5 minutes
         - `1h`: 1 hour
 
-        Defaults to `5m`.
+        Defaults to `5m`. See [prompt caching pricing](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) for details.
 
         - `:"5m"`
 
@@ -24030,7 +24318,7 @@ puts(beta_message_tokens_count)
       - `5m`: 5 minutes
       - `1h`: 1 hour
 
-      Defaults to `5m`.
+      Defaults to `5m`. See [prompt caching pricing](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) for details.
 
       - `:"5m"`
 
@@ -24293,7 +24581,7 @@ puts(beta_message_tokens_count)
       - `5m`: 5 minutes
       - `1h`: 1 hour
 
-      Defaults to `5m`.
+      Defaults to `5m`. See [prompt caching pricing](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) for details.
 
       - `:"5m"`
 
@@ -24866,7 +25154,7 @@ puts(beta_message_tokens_count)
       - `5m`: 5 minutes
       - `1h`: 1 hour
 
-      Defaults to `5m`.
+      Defaults to `5m`. See [prompt caching pricing](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) for details.
 
       - `:"5m"`
 
@@ -25022,7 +25310,7 @@ puts(beta_message_tokens_count)
 
     Must be ≥1024 and less than `max_tokens`.
 
-    See [extended thinking](https://docs.claude.com/en/docs/build-with-claude/extended-thinking) for details.
+    See [extended thinking](https://platform.claude.com/docs/en/build-with-claude/extended-thinking) for details.
 
   - `type: :enabled`
 
@@ -25044,7 +25332,7 @@ puts(beta_message_tokens_count)
 
   When enabled, responses include `thinking` content blocks showing Claude's thinking process before the final answer. Requires a minimum budget of 1,024 tokens and counts towards your `max_tokens` limit.
 
-  See [extended thinking](https://docs.claude.com/en/docs/build-with-claude/extended-thinking) for details.
+  See [extended thinking](https://platform.claude.com/docs/en/build-with-claude/extended-thinking) for details.
 
   - `class BetaThinkingConfigEnabled`
 
@@ -25054,7 +25342,7 @@ puts(beta_message_tokens_count)
 
       Must be ≥1024 and less than `max_tokens`.
 
-      See [extended thinking](https://docs.claude.com/en/docs/build-with-claude/extended-thinking) for details.
+      See [extended thinking](https://platform.claude.com/docs/en/build-with-claude/extended-thinking) for details.
 
     - `type: :enabled`
 
@@ -25183,7 +25471,7 @@ puts(beta_message_tokens_count)
       - `5m`: 5 minutes
       - `1h`: 1 hour
 
-      Defaults to `5m`.
+      Defaults to `5m`. See [prompt caching pricing](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) for details.
 
       - `:"5m"`
 
@@ -25256,7 +25544,7 @@ puts(beta_message_tokens_count)
       - `5m`: 5 minutes
       - `1h`: 1 hour
 
-      Defaults to `5m`.
+      Defaults to `5m`. See [prompt caching pricing](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) for details.
 
       - `:"5m"`
 
@@ -25315,7 +25603,7 @@ puts(beta_message_tokens_count)
       - `5m`: 5 minutes
       - `1h`: 1 hour
 
-      Defaults to `5m`.
+      Defaults to `5m`. See [prompt caching pricing](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) for details.
 
       - `:"5m"`
 
@@ -25504,7 +25792,7 @@ puts(beta_message_tokens_count)
       - `5m`: 5 minutes
       - `1h`: 1 hour
 
-      Defaults to `5m`.
+      Defaults to `5m`. See [prompt caching pricing](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) for details.
 
       - `:"5m"`
 
@@ -25575,7 +25863,7 @@ puts(beta_message_tokens_count)
       - `5m`: 5 minutes
       - `1h`: 1 hour
 
-      Defaults to `5m`.
+      Defaults to `5m`. See [prompt caching pricing](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) for details.
 
       - `:"5m"`
 
@@ -25646,7 +25934,7 @@ puts(beta_message_tokens_count)
       - `5m`: 5 minutes
       - `1h`: 1 hour
 
-      Defaults to `5m`.
+      Defaults to `5m`. See [prompt caching pricing](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) for details.
 
       - `:"5m"`
 
@@ -25709,7 +25997,7 @@ puts(beta_message_tokens_count)
       - `5m`: 5 minutes
       - `1h`: 1 hour
 
-      Defaults to `5m`.
+      Defaults to `5m`. See [prompt caching pricing](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) for details.
 
       - `:"5m"`
 
@@ -25742,7 +26030,7 @@ puts(beta_message_tokens_count)
       - `5m`: 5 minutes
       - `1h`: 1 hour
 
-      Defaults to `5m`.
+      Defaults to `5m`. See [prompt caching pricing](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) for details.
 
       - `:"5m"`
 
@@ -26083,7 +26371,7 @@ puts(beta_message_tokens_count)
       - `5m`: 5 minutes
       - `1h`: 1 hour
 
-      Defaults to `5m`.
+      Defaults to `5m`. See [prompt caching pricing](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) for details.
 
       - `:"5m"`
 
@@ -26142,7 +26430,7 @@ puts(beta_message_tokens_count)
       - `5m`: 5 minutes
       - `1h`: 1 hour
 
-      Defaults to `5m`.
+      Defaults to `5m`. See [prompt caching pricing](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) for details.
 
       - `:"5m"`
 
@@ -26251,7 +26539,7 @@ puts(beta_message_tokens_count)
             - `5m`: 5 minutes
             - `1h`: 1 hour
 
-            Defaults to `5m`.
+            Defaults to `5m`. See [prompt caching pricing](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) for details.
 
             - `:"5m"`
 
@@ -26356,7 +26644,7 @@ puts(beta_message_tokens_count)
         - `5m`: 5 minutes
         - `1h`: 1 hour
 
-        Defaults to `5m`.
+        Defaults to `5m`. See [prompt caching pricing](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) for details.
 
         - `:"5m"`
 
@@ -26409,7 +26697,7 @@ puts(beta_message_tokens_count)
       - `5m`: 5 minutes
       - `1h`: 1 hour
 
-      Defaults to `5m`.
+      Defaults to `5m`. See [prompt caching pricing](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) for details.
 
       - `:"5m"`
 
@@ -26468,7 +26756,7 @@ puts(beta_message_tokens_count)
       - `5m`: 5 minutes
       - `1h`: 1 hour
 
-      Defaults to `5m`.
+      Defaults to `5m`. See [prompt caching pricing](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) for details.
 
       - `:"5m"`
 
@@ -26527,7 +26815,7 @@ puts(beta_message_tokens_count)
       - `5m`: 5 minutes
       - `1h`: 1 hour
 
-      Defaults to `5m`.
+      Defaults to `5m`. See [prompt caching pricing](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) for details.
 
       - `:"5m"`
 
@@ -26586,7 +26874,7 @@ puts(beta_message_tokens_count)
       - `5m`: 5 minutes
       - `1h`: 1 hour
 
-      Defaults to `5m`.
+      Defaults to `5m`. See [prompt caching pricing](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) for details.
 
       - `:"5m"`
 
@@ -26608,7 +26896,7 @@ puts(beta_message_tokens_count)
 
 ### Beta Tool Union
 
-- `BetaToolUnion = BetaTool | BetaToolBash20241022 | BetaToolBash20250124 | 21 more`
+- `BetaToolUnion = BetaTool | BetaToolBash20241022 | BetaToolBash20250124 | 23 more`
 
   Code execution tool with REPL state persistence (daemon mode + gVisor checkpoint).
 
@@ -26661,7 +26949,7 @@ puts(beta_message_tokens_count)
         - `5m`: 5 minutes
         - `1h`: 1 hour
 
-        Defaults to `5m`.
+        Defaults to `5m`. See [prompt caching pricing](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) for details.
 
         - `:"5m"`
 
@@ -27563,6 +27851,134 @@ puts(beta_message_tokens_count)
 
       Whether to use cached content. Set to false to bypass the cache and fetch fresh content. Only set to false when the user explicitly requests fresh content or when fetching rapidly-changing sources.
 
+  - `class BetaWebSearchTool20260318`
+
+    - `name: :web_search`
+
+      Name of the tool.
+
+      This is how the tool will be called by the model and in `tool_use` blocks.
+
+      - `:web_search`
+
+    - `type: :web_search_20260318`
+
+      - `:web_search_20260318`
+
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
+
+      - `:direct`
+
+      - `:code_execution_20250825`
+
+      - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
+
+    - `allowed_domains: Array[String]`
+
+      If provided, only these domains will be included in results. Cannot be used alongside `blocked_domains`.
+
+    - `blocked_domains: Array[String]`
+
+      If provided, these domains will never appear in results. Cannot be used alongside `allowed_domains`.
+
+    - `cache_control: BetaCacheControlEphemeral`
+
+      Create a cache control breakpoint at this content block.
+
+    - `defer_loading: bool`
+
+      If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+    - `max_uses: Integer`
+
+      Maximum number of times the tool can be used in the API request.
+
+    - `response_inclusion: :full | :excluded`
+
+      How this tool's result blocks appear in the API response when the result was consumed by a completed code_execution call in the same turn. 'full' returns the complete content (default). 'excluded' drops the nested server_tool_use and result block pair entirely. Results from direct calls, or from code_execution calls that paused before completing, are always returned in full so they can be sent back on the next turn.
+
+      - `:full`
+
+      - `:excluded`
+
+    - `strict: bool`
+
+      When true, guarantees schema validation on tool names and inputs
+
+    - `user_location: BetaUserLocation`
+
+      Parameters for the user's location. Used to provide more relevant search results.
+
+  - `class BetaWebFetchTool20260318`
+
+    - `name: :web_fetch`
+
+      Name of the tool.
+
+      This is how the tool will be called by the model and in `tool_use` blocks.
+
+      - `:web_fetch`
+
+    - `type: :web_fetch_20260318`
+
+      - `:web_fetch_20260318`
+
+    - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
+
+      - `:direct`
+
+      - `:code_execution_20250825`
+
+      - `:code_execution_20260120`
+
+      - `:code_execution_20260521`
+
+    - `allowed_domains: Array[String]`
+
+      List of domains to allow fetching from
+
+    - `blocked_domains: Array[String]`
+
+      List of domains to block fetching from
+
+    - `cache_control: BetaCacheControlEphemeral`
+
+      Create a cache control breakpoint at this content block.
+
+    - `citations: BetaCitationsConfigParam`
+
+      Citations configuration for fetched documents. Citations are disabled by default.
+
+    - `defer_loading: bool`
+
+      If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+    - `max_content_tokens: Integer`
+
+      Maximum number of tokens used by including web page text content in the context. The limit is approximate and does not apply to binary content such as PDFs.
+
+    - `max_uses: Integer`
+
+      Maximum number of times the tool can be used in the API request.
+
+    - `response_inclusion: :full | :excluded`
+
+      How this tool's result blocks appear in the API response when the result was consumed by a completed code_execution call in the same turn. 'full' returns the complete content (default). 'excluded' drops the nested server_tool_use and result block pair entirely. Results from direct calls, or from code_execution calls that paused before completing, are always returned in full so they can be sent back on the next turn.
+
+      - `:full`
+
+      - `:excluded`
+
+    - `strict: bool`
+
+      When true, guarantees schema validation on tool names and inputs
+
+    - `use_cache: bool`
+
+      Whether to use cached content. Set to false to bypass the cache and fetch fresh content. Only set to false when the user explicitly requests fresh content or when fetching rapidly-changing sources.
+
   - `class BetaAdvisorTool20260301`
 
     - `model: Model`
@@ -27871,7 +28287,7 @@ puts(beta_message_tokens_count)
       - `5m`: 5 minutes
       - `1h`: 1 hour
 
-      Defaults to `5m`.
+      Defaults to `5m`. See [prompt caching pricing](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) for details.
 
       - `:"5m"`
 
@@ -28401,7 +28817,7 @@ puts(beta_message_tokens_count)
                   - `5m`: 5 minutes
                   - `1h`: 1 hour
 
-                  Defaults to `5m`.
+                  Defaults to `5m`. See [prompt caching pricing](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) for details.
 
                   - `:"5m"`
 
@@ -28658,7 +29074,7 @@ puts(beta_message_tokens_count)
       - `5m`: 5 minutes
       - `1h`: 1 hour
 
-      Defaults to `5m`.
+      Defaults to `5m`. See [prompt caching pricing](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) for details.
 
       - `:"5m"`
 
@@ -28737,7 +29153,7 @@ puts(beta_message_tokens_count)
       - `5m`: 5 minutes
       - `1h`: 1 hour
 
-      Defaults to `5m`.
+      Defaults to `5m`. See [prompt caching pricing](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) for details.
 
       - `:"5m"`
 
@@ -28818,7 +29234,7 @@ puts(beta_message_tokens_count)
       - `5m`: 5 minutes
       - `1h`: 1 hour
 
-      Defaults to `5m`.
+      Defaults to `5m`. See [prompt caching pricing](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) for details.
 
       - `:"5m"`
 
@@ -28841,6 +29257,97 @@ puts(beta_message_tokens_count)
   - `max_uses: Integer`
 
     Maximum number of times the tool can be used in the API request.
+
+  - `strict: bool`
+
+    When true, guarantees schema validation on tool names and inputs
+
+  - `use_cache: bool`
+
+    Whether to use cached content. Set to false to bypass the cache and fetch fresh content. Only set to false when the user explicitly requests fresh content or when fetching rapidly-changing sources.
+
+### Beta Web Fetch Tool 20260318
+
+- `class BetaWebFetchTool20260318`
+
+  - `name: :web_fetch`
+
+    Name of the tool.
+
+    This is how the tool will be called by the model and in `tool_use` blocks.
+
+    - `:web_fetch`
+
+  - `type: :web_fetch_20260318`
+
+    - `:web_fetch_20260318`
+
+  - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
+
+    - `:direct`
+
+    - `:code_execution_20250825`
+
+    - `:code_execution_20260120`
+
+    - `:code_execution_20260521`
+
+  - `allowed_domains: Array[String]`
+
+    List of domains to allow fetching from
+
+  - `blocked_domains: Array[String]`
+
+    List of domains to block fetching from
+
+  - `cache_control: BetaCacheControlEphemeral`
+
+    Create a cache control breakpoint at this content block.
+
+    - `type: :ephemeral`
+
+      - `:ephemeral`
+
+    - `ttl: :"5m" | :"1h"`
+
+      The time-to-live for the cache control breakpoint.
+
+      This may be one the following values:
+
+      - `5m`: 5 minutes
+      - `1h`: 1 hour
+
+      Defaults to `5m`. See [prompt caching pricing](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) for details.
+
+      - `:"5m"`
+
+      - `:"1h"`
+
+  - `citations: BetaCitationsConfigParam`
+
+    Citations configuration for fetched documents. Citations are disabled by default.
+
+    - `enabled: bool`
+
+  - `defer_loading: bool`
+
+    If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+  - `max_content_tokens: Integer`
+
+    Maximum number of tokens used by including web page text content in the context. The limit is approximate and does not apply to binary content such as PDFs.
+
+  - `max_uses: Integer`
+
+    Maximum number of times the tool can be used in the API request.
+
+  - `response_inclusion: :full | :excluded`
+
+    How this tool's result blocks appear in the API response when the result was consumed by a completed code_execution call in the same turn. 'full' returns the complete content (default). 'excluded' drops the nested server_tool_use and result block pair entirely. Results from direct calls, or from code_execution calls that paused before completing, are always returned in full so they can be sent back on the next turn.
+
+    - `:full`
+
+    - `:excluded`
 
   - `strict: bool`
 
@@ -29069,7 +29576,7 @@ puts(beta_message_tokens_count)
                       - `5m`: 5 minutes
                       - `1h`: 1 hour
 
-                      Defaults to `5m`.
+                      Defaults to `5m`. See [prompt caching pricing](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) for details.
 
                       - `:"5m"`
 
@@ -29476,7 +29983,7 @@ puts(beta_message_tokens_count)
       - `5m`: 5 minutes
       - `1h`: 1 hour
 
-      Defaults to `5m`.
+      Defaults to `5m`. See [prompt caching pricing](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) for details.
 
       - `:"5m"`
 
@@ -29569,7 +30076,7 @@ puts(beta_message_tokens_count)
       - `5m`: 5 minutes
       - `1h`: 1 hour
 
-      Defaults to `5m`.
+      Defaults to `5m`. See [prompt caching pricing](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) for details.
 
       - `:"5m"`
 
@@ -29582,6 +30089,107 @@ puts(beta_message_tokens_count)
   - `max_uses: Integer`
 
     Maximum number of times the tool can be used in the API request.
+
+  - `strict: bool`
+
+    When true, guarantees schema validation on tool names and inputs
+
+  - `user_location: BetaUserLocation`
+
+    Parameters for the user's location. Used to provide more relevant search results.
+
+    - `type: :approximate`
+
+      - `:approximate`
+
+    - `city: String`
+
+      The city of the user.
+
+    - `country: String`
+
+      The two letter [ISO country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) of the user.
+
+    - `region: String`
+
+      The region of the user.
+
+    - `timezone: String`
+
+      The [IANA timezone](https://nodatime.org/TimeZones) of the user.
+
+### Beta Web Search Tool 20260318
+
+- `class BetaWebSearchTool20260318`
+
+  - `name: :web_search`
+
+    Name of the tool.
+
+    This is how the tool will be called by the model and in `tool_use` blocks.
+
+    - `:web_search`
+
+  - `type: :web_search_20260318`
+
+    - `:web_search_20260318`
+
+  - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
+
+    - `:direct`
+
+    - `:code_execution_20250825`
+
+    - `:code_execution_20260120`
+
+    - `:code_execution_20260521`
+
+  - `allowed_domains: Array[String]`
+
+    If provided, only these domains will be included in results. Cannot be used alongside `blocked_domains`.
+
+  - `blocked_domains: Array[String]`
+
+    If provided, these domains will never appear in results. Cannot be used alongside `allowed_domains`.
+
+  - `cache_control: BetaCacheControlEphemeral`
+
+    Create a cache control breakpoint at this content block.
+
+    - `type: :ephemeral`
+
+      - `:ephemeral`
+
+    - `ttl: :"5m" | :"1h"`
+
+      The time-to-live for the cache control breakpoint.
+
+      This may be one the following values:
+
+      - `5m`: 5 minutes
+      - `1h`: 1 hour
+
+      Defaults to `5m`. See [prompt caching pricing](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) for details.
+
+      - `:"5m"`
+
+      - `:"1h"`
+
+  - `defer_loading: bool`
+
+    If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+  - `max_uses: Integer`
+
+    Maximum number of times the tool can be used in the API request.
+
+  - `response_inclusion: :full | :excluded`
+
+    How this tool's result blocks appear in the API response when the result was consumed by a completed code_execution call in the same turn. 'full' returns the complete content (default). 'excluded' drops the nested server_tool_use and result block pair entirely. Results from direct calls, or from code_execution calls that paused before completing, are always returned in full so they can be sent back on the next turn.
+
+    - `:full`
+
+    - `:excluded`
 
   - `strict: bool`
 
@@ -29810,7 +30418,7 @@ puts(beta_message_tokens_count)
       - `5m`: 5 minutes
       - `1h`: 1 hour
 
-      Defaults to `5m`.
+      Defaults to `5m`. See [prompt caching pricing](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) for details.
 
       - `:"5m"`
 
@@ -29934,7 +30542,7 @@ Send a batch of Message creation requests.
 
 The Message Batches API can be used to process multiple Messages API requests at once. Once a Message Batch is created, it begins processing immediately. Batches can take up to 24 hours to complete.
 
-Learn more about the Message Batches API in our [user guide](https://docs.claude.com/en/docs/build-with-claude/batch-processing)
+Learn more about the Message Batches API in our [user guide](https://platform.claude.com/docs/en/build-with-claude/batch-processing)
 
 ### Parameters
 
@@ -29948,11 +30556,11 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
     Must be unique for each request within the Message Batch.
 
-  - `params: Params{ max_tokens, messages, model, 23 more}`
+  - `params: Params{ max_tokens, messages, model, 22 more}`
 
     Messages API creation parameters for the individual request.
 
-    See the [Messages API reference](https://docs.claude.com/en/api/messages) for full documentation on available parameters.
+    See the [Messages API reference](https://platform.claude.com/docs/en/api/messages) for full documentation on available parameters.
 
     - `max_tokens: Integer`
 
@@ -29960,9 +30568,9 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       Note that our models may stop _before_ reaching this maximum. This parameter only specifies the absolute maximum number of tokens to generate.
 
-      Set to `0` to populate the [prompt cache](https://docs.claude.com/en/docs/build-with-claude/prompt-caching#pre-warming-the-cache) without generating a response.
+      Set to `0` to populate the [prompt cache](https://platform.claude.com/docs/en/build-with-claude/prompt-caching#pre-warming-the-cache) without generating a response.
 
-      Different models have different maximum values for this parameter.  See [models](https://docs.claude.com/en/docs/models-overview) for details.
+      Different models have different maximum values for this parameter.  See [models](https://platform.claude.com/docs/en/about-claude/models/overview) for details.
 
     - `messages: Array[BetaMessageParam]`
 
@@ -30009,9 +30617,9 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
       {"role": "user", "content": [{"type": "text", "text": "Hello, Claude"}]}
       ```
 
-      See [input examples](https://docs.claude.com/en/api/messages-examples).
+      See [input examples](https://platform.claude.com/docs/en/build-with-claude/working-with-messages).
 
-      Note that if you want to include a [system prompt](https://docs.claude.com/en/docs/system-prompts), you can use the top-level `system` parameter — there is no `"system"` role for input messages in the Messages API.
+      Note that if you want to include a [system prompt](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#give-claude-a-role), you can use the top-level `system` parameter — there is no `"system"` role for input messages in the Messages API.
 
       There is a limit of 100,000 messages in a single request.
 
@@ -30046,7 +30654,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
                 - `5m`: 5 minutes
                 - `1h`: 1 hour
 
-                Defaults to `5m`.
+                Defaults to `5m`. See [prompt caching pricing](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) for details.
 
                 - `:"5m"`
 
@@ -31402,7 +32010,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
             Must be ≥1024 and less than `max_tokens`.
 
-            See [extended thinking](https://docs.claude.com/en/docs/build-with-claude/extended-thinking) for details.
+            See [extended thinking](https://platform.claude.com/docs/en/build-with-claude/extended-thinking) for details.
 
           - `type: :enabled`
 
@@ -31484,7 +32092,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       Determines whether to use priority capacity (if available) or standard capacity for this request.
 
-      Anthropic offers different levels of service for your API requests. See [service-tiers](https://docs.claude.com/en/api/service-tiers) for details.
+      Anthropic offers different levels of service for your API requests. See [service-tiers](https://platform.claude.com/docs/en/api/service-tiers) for details.
 
       - `:auto`
 
@@ -31510,13 +32118,13 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       Whether to incrementally stream the response using server-sent events.
 
-      See [streaming](https://docs.claude.com/en/api/messages-streaming) for details.
+      See [streaming](https://platform.claude.com/docs/en/build-with-claude/streaming) for details.
 
     - `system_: String | Array[BetaTextBlockParam]`
 
       System prompt.
 
-      A system prompt is a way of providing context and instructions to Claude, such as specifying a particular goal or role. See our [guide to system prompts](https://docs.claude.com/en/docs/system-prompts).
+      A system prompt is a way of providing context and instructions to Claude, such as specifying a particular goal or role. See our [guide to system prompts](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#give-claude-a-role).
 
       - `String = String`
 
@@ -31546,7 +32154,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       When enabled, responses include `thinking` content blocks showing Claude's thinking process before the final answer. Requires a minimum budget of 1,024 tokens and counts towards your `max_tokens` limit.
 
-      See [extended thinking](https://docs.claude.com/en/docs/build-with-claude/extended-thinking) for details.
+      See [extended thinking](https://platform.claude.com/docs/en/build-with-claude/extended-thinking) for details.
 
       - `class BetaThinkingConfigEnabled`
 
@@ -31618,7 +32226,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       If you include `tools` in your API request, the model may return `tool_use` content blocks that represent the model's use of those tools. You can then run those tools using the tool input generated by the model and then optionally return results back to the model using `tool_result` content blocks.
 
-      There are two types of tools: **client tools** and **server tools**. The behavior described below applies to client tools. For [server tools](https://docs.claude.com/en/docs/agents-and-tools/tool-use/overview#server-tools), see their individual documentation as each has its own behavior (e.g., the [web search tool](https://docs.claude.com/en/docs/agents-and-tools/tool-use/web-search-tool)).
+      There are two types of tools: **client tools** and **server tools**. The behavior described below applies to client tools. For [server tools](https://platform.claude.com/docs/en/agents-and-tools/tool-use/server-tools), see their individual documentation as each has its own behavior (e.g., the [web search tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool)).
 
       Each tool definition includes:
 
@@ -31674,7 +32282,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       Tools can be used for workflows that include running client-side tools and functions, or more generally whenever you want the model to produce a particular JSON structure of output.
 
-      See our [guide](https://docs.claude.com/en/docs/tool-use) for more details.
+      See our [guide](https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview) for more details.
 
       - `class BetaTool`
 
@@ -32606,6 +33214,134 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           Whether to use cached content. Set to false to bypass the cache and fetch fresh content. Only set to false when the user explicitly requests fresh content or when fetching rapidly-changing sources.
 
+      - `class BetaWebSearchTool20260318`
+
+        - `name: :web_search`
+
+          Name of the tool.
+
+          This is how the tool will be called by the model and in `tool_use` blocks.
+
+          - `:web_search`
+
+        - `type: :web_search_20260318`
+
+          - `:web_search_20260318`
+
+        - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
+
+          - `:direct`
+
+          - `:code_execution_20250825`
+
+          - `:code_execution_20260120`
+
+          - `:code_execution_20260521`
+
+        - `allowed_domains: Array[String]`
+
+          If provided, only these domains will be included in results. Cannot be used alongside `blocked_domains`.
+
+        - `blocked_domains: Array[String]`
+
+          If provided, these domains will never appear in results. Cannot be used alongside `allowed_domains`.
+
+        - `cache_control: BetaCacheControlEphemeral`
+
+          Create a cache control breakpoint at this content block.
+
+        - `defer_loading: bool`
+
+          If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+        - `max_uses: Integer`
+
+          Maximum number of times the tool can be used in the API request.
+
+        - `response_inclusion: :full | :excluded`
+
+          How this tool's result blocks appear in the API response when the result was consumed by a completed code_execution call in the same turn. 'full' returns the complete content (default). 'excluded' drops the nested server_tool_use and result block pair entirely. Results from direct calls, or from code_execution calls that paused before completing, are always returned in full so they can be sent back on the next turn.
+
+          - `:full`
+
+          - `:excluded`
+
+        - `strict: bool`
+
+          When true, guarantees schema validation on tool names and inputs
+
+        - `user_location: BetaUserLocation`
+
+          Parameters for the user's location. Used to provide more relevant search results.
+
+      - `class BetaWebFetchTool20260318`
+
+        - `name: :web_fetch`
+
+          Name of the tool.
+
+          This is how the tool will be called by the model and in `tool_use` blocks.
+
+          - `:web_fetch`
+
+        - `type: :web_fetch_20260318`
+
+          - `:web_fetch_20260318`
+
+        - `allowed_callers: Array[:direct | :code_execution_20250825 | :code_execution_20260120 | :code_execution_20260521]`
+
+          - `:direct`
+
+          - `:code_execution_20250825`
+
+          - `:code_execution_20260120`
+
+          - `:code_execution_20260521`
+
+        - `allowed_domains: Array[String]`
+
+          List of domains to allow fetching from
+
+        - `blocked_domains: Array[String]`
+
+          List of domains to block fetching from
+
+        - `cache_control: BetaCacheControlEphemeral`
+
+          Create a cache control breakpoint at this content block.
+
+        - `citations: BetaCitationsConfigParam`
+
+          Citations configuration for fetched documents. Citations are disabled by default.
+
+        - `defer_loading: bool`
+
+          If true, tool will not be included in initial system prompt. Only loaded when returned via tool_reference from tool search.
+
+        - `max_content_tokens: Integer`
+
+          Maximum number of tokens used by including web page text content in the context. The limit is approximate and does not apply to binary content such as PDFs.
+
+        - `max_uses: Integer`
+
+          Maximum number of times the tool can be used in the API request.
+
+        - `response_inclusion: :full | :excluded`
+
+          How this tool's result blocks appear in the API response when the result was consumed by a completed code_execution call in the same turn. 'full' returns the complete content (default). 'excluded' drops the nested server_tool_use and result block pair entirely. Results from direct calls, or from code_execution calls that paused before completing, are always returned in full so they can be sent back on the next turn.
+
+          - `:full`
+
+          - `:excluded`
+
+        - `strict: bool`
+
+          When true, guarantees schema validation on tool names and inputs
+
+        - `use_cache: bool`
+
+          Whether to use cached content. Set to false to bypass the cache and fetch fresh content. Only set to false when the user explicitly requests fresh content or when fetching rapidly-changing sources.
+
       - `class BetaAdvisorTool20260301`
 
         - `model: Model`
@@ -32787,10 +33523,6 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
       Recommended for advanced use cases only.
 
-    - `user_profile_id: String`
-
-      The user profile ID to attribute this request to. Use when acting on behalf of a party other than your organization.
-
 - `betas: Array[AnthropicBeta]`
 
   Optional header to specify the beta version(s) you want to use.
@@ -32854,6 +33586,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
     - `:"server-side-fallback-2026-06-01"`
 
     - `:"fallback-credit-2026-06-01"`
+
+- `user_profile_id: String`
+
+  The user profile ID to attribute the requests in this batch to. Use when acting on behalf of a party other than your organization. Requires the `user-profiles` beta header. Applies to every request in the batch; an individual request whose `user_profile_id` body field conflicts with this header is errored.
 
 ### Returns
 
@@ -32995,7 +33731,7 @@ puts(beta_message_batch)
 
 This endpoint is idempotent and can be used to poll for Message Batch completion. To access the results of a Message Batch, make a request to the `results_url` field in the response.
 
-Learn more about the Message Batches API in our [user guide](https://docs.claude.com/en/docs/build-with-claude/batch-processing)
+Learn more about the Message Batches API in our [user guide](https://platform.claude.com/docs/en/build-with-claude/batch-processing)
 
 ### Parameters
 
@@ -33200,7 +33936,7 @@ puts(beta_message_batch)
 
 List all Message Batches within a Workspace. Most recently created batches are returned first.
 
-Learn more about the Message Batches API in our [user guide](https://docs.claude.com/en/docs/build-with-claude/batch-processing)
+Learn more about the Message Batches API in our [user guide](https://platform.claude.com/docs/en/build-with-claude/batch-processing)
 
 ### Parameters
 
@@ -33424,7 +34160,7 @@ Batches may be canceled any time before processing ends. Once cancellation is in
 
 The number of canceled requests is specified in `request_counts`. To determine which requests were canceled, check the individual results within the batch. Note that cancellation may not result in any canceled requests if they were non-interruptible.
 
-Learn more about the Message Batches API in our [user guide](https://docs.claude.com/en/docs/build-with-claude/batch-processing)
+Learn more about the Message Batches API in our [user guide](https://platform.claude.com/docs/en/build-with-claude/batch-processing)
 
 ### Parameters
 
@@ -33631,7 +34367,7 @@ Delete a Message Batch.
 
 Message Batches can only be deleted once they've finished processing. If you'd like to delete an in-progress batch, you must first cancel it.
 
-Learn more about the Message Batches API in our [user guide](https://docs.claude.com/en/docs/build-with-claude/batch-processing)
+Learn more about the Message Batches API in our [user guide](https://platform.claude.com/docs/en/build-with-claude/batch-processing)
 
 ### Parameters
 
@@ -33750,7 +34486,7 @@ Streams the results of a Message Batch as a `.jsonl` file.
 
 Each line in the file is a JSON object containing the result of a single request in the Message Batch. Results are not guaranteed to be in the same order as requests. Use the `custom_id` field to match results to requests.
 
-Learn more about the Message Batches API in our [user guide](https://docs.claude.com/en/docs/build-with-claude/batch-processing)
+Learn more about the Message Batches API in our [user guide](https://platform.claude.com/docs/en/build-with-claude/batch-processing)
 
 ### Parameters
 
@@ -34767,7 +35503,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
               What caused the `from` model to hand over at this hop.
 
-              - `category: :cyber | :bio | :frontier_llm | :reasoning_extraction`
+              - `category: :cyber | :bio | :frontier_llm | 2 more`
 
                 The policy category that triggered a refusal.
 
@@ -34778,6 +35514,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
                 - `:frontier_llm`
 
                 - `:reasoning_extraction`
+
+                - `:military_weapons`
 
               - `type: :refusal`
 
@@ -34908,7 +35646,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           Structured information about a refusal.
 
-          - `category: :cyber | :bio | :frontier_llm | :reasoning_extraction`
+          - `category: :cyber | :bio | :frontier_llm | 2 more`
 
             The policy category that triggered a refusal.
 
@@ -34919,6 +35657,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `:frontier_llm`
 
             - `:reasoning_extraction`
+
+            - `:military_weapons`
 
           - `explanation: String`
 
@@ -36546,7 +37286,7 @@ puts(beta_message_batch_individual_response)
 
               What caused the `from` model to hand over at this hop.
 
-              - `category: :cyber | :bio | :frontier_llm | :reasoning_extraction`
+              - `category: :cyber | :bio | :frontier_llm | 2 more`
 
                 The policy category that triggered a refusal.
 
@@ -36557,6 +37297,8 @@ puts(beta_message_batch_individual_response)
                 - `:frontier_llm`
 
                 - `:reasoning_extraction`
+
+                - `:military_weapons`
 
               - `type: :refusal`
 
@@ -36687,7 +37429,7 @@ puts(beta_message_batch_individual_response)
 
           Structured information about a refusal.
 
-          - `category: :cyber | :bio | :frontier_llm | :reasoning_extraction`
+          - `category: :cyber | :bio | :frontier_llm | 2 more`
 
             The policy category that triggered a refusal.
 
@@ -36698,6 +37440,8 @@ puts(beta_message_batch_individual_response)
             - `:frontier_llm`
 
             - `:reasoning_extraction`
+
+            - `:military_weapons`
 
           - `explanation: String`
 
@@ -38121,7 +38865,7 @@ puts(beta_message_batch_individual_response)
 
             What caused the `from` model to hand over at this hop.
 
-            - `category: :cyber | :bio | :frontier_llm | :reasoning_extraction`
+            - `category: :cyber | :bio | :frontier_llm | 2 more`
 
               The policy category that triggered a refusal.
 
@@ -38132,6 +38876,8 @@ puts(beta_message_batch_individual_response)
               - `:frontier_llm`
 
               - `:reasoning_extraction`
+
+              - `:military_weapons`
 
             - `type: :refusal`
 
@@ -38262,7 +39008,7 @@ puts(beta_message_batch_individual_response)
 
         Structured information about a refusal.
 
-        - `category: :cyber | :bio | :frontier_llm | :reasoning_extraction`
+        - `category: :cyber | :bio | :frontier_llm | 2 more`
 
           The policy category that triggered a refusal.
 
@@ -38273,6 +39019,8 @@ puts(beta_message_batch_individual_response)
           - `:frontier_llm`
 
           - `:reasoning_extraction`
+
+          - `:military_weapons`
 
         - `explanation: String`
 
@@ -39658,7 +40406,7 @@ puts(beta_message_batch_individual_response)
 
           What caused the `from` model to hand over at this hop.
 
-          - `category: :cyber | :bio | :frontier_llm | :reasoning_extraction`
+          - `category: :cyber | :bio | :frontier_llm | 2 more`
 
             The policy category that triggered a refusal.
 
@@ -39669,6 +40417,8 @@ puts(beta_message_batch_individual_response)
             - `:frontier_llm`
 
             - `:reasoning_extraction`
+
+            - `:military_weapons`
 
           - `type: :refusal`
 
@@ -39799,7 +40549,7 @@ puts(beta_message_batch_individual_response)
 
       Structured information about a refusal.
 
-      - `category: :cyber | :bio | :frontier_llm | :reasoning_extraction`
+      - `category: :cyber | :bio | :frontier_llm | 2 more`
 
         The policy category that triggered a refusal.
 
@@ -39810,6 +40560,8 @@ puts(beta_message_batch_individual_response)
         - `:frontier_llm`
 
         - `:reasoning_extraction`
+
+        - `:military_weapons`
 
       - `explanation: String`
 
@@ -78930,31 +79682,29 @@ puts(beta_managed_agents_deployment)
 
 ```json
 {
-  "id": "id",
+  "id": "depl_011CZkZcDH3vPqd7xnEfwTai",
   "agent": {
-    "id": "agent_011CZkYqphY8vELVzwCUpqiQ",
+    "id": "agent_011CZkYpogX7uDKUyvBTophP",
     "type": "agent",
     "version": 1
   },
-  "archived_at": "2019-12-27T18:11:19.117Z",
-  "created_at": "2019-12-27T18:11:19.117Z",
-  "description": "description",
-  "environment_id": "environment_id",
+  "archived_at": null,
+  "created_at": "2026-03-15T10:00:00Z",
+  "description": "Compiles yesterday's orders into a report every weekday morning.",
+  "environment_id": "env_011CZkZ9X2dpNyB7HsEFoRfW",
   "initial_events": [
     {
       "content": [
         {
-          "text": "Where is my order #1234?",
+          "text": "Compile yesterday's orders into report.md.",
           "type": "text"
         }
       ],
       "type": "user.message"
     }
   ],
-  "metadata": {
-    "foo": "string"
-  },
-  "name": "name",
+  "metadata": {},
+  "name": "Daily order report",
   "paused_reason": {
     "type": "manual"
   },
@@ -78970,19 +79720,20 @@ puts(beta_managed_agents_deployment)
     }
   ],
   "schedule": {
-    "expression": "x",
-    "timezone": "x",
+    "expression": "0 9 * * 1-5",
+    "timezone": "America/Los_Angeles",
     "type": "cron",
-    "last_run_at": "2019-12-27T18:11:19.117Z",
+    "last_run_at": "2026-03-16T16:00:09Z",
     "upcoming_runs_at": [
-      "2019-12-27T18:11:19.117Z"
+      "2026-03-17T16:00:00Z",
+      "2026-03-18T16:00:00Z"
     ]
   },
   "status": "active",
   "type": "deployment",
-  "updated_at": "2019-12-27T18:11:19.117Z",
+  "updated_at": "2026-03-15T10:00:00Z",
   "vault_ids": [
-    "string"
+    "vlt_011CZkZDLs7fYzm1hXNPeRjv"
   ]
 }
 ```
@@ -79643,31 +80394,29 @@ puts(page)
 {
   "data": [
     {
-      "id": "id",
+      "id": "depl_011CZkZcDH3vPqd7xnEfwTai",
       "agent": {
-        "id": "agent_011CZkYqphY8vELVzwCUpqiQ",
+        "id": "agent_011CZkYpogX7uDKUyvBTophP",
         "type": "agent",
         "version": 1
       },
-      "archived_at": "2019-12-27T18:11:19.117Z",
-      "created_at": "2019-12-27T18:11:19.117Z",
-      "description": "description",
-      "environment_id": "environment_id",
+      "archived_at": null,
+      "created_at": "2026-03-15T10:00:00Z",
+      "description": "Compiles yesterday's orders into a report every weekday morning.",
+      "environment_id": "env_011CZkZ9X2dpNyB7HsEFoRfW",
       "initial_events": [
         {
           "content": [
             {
-              "text": "Where is my order #1234?",
+              "text": "Compile yesterday's orders into report.md.",
               "type": "text"
             }
           ],
           "type": "user.message"
         }
       ],
-      "metadata": {
-        "foo": "string"
-      },
-      "name": "name",
+      "metadata": {},
+      "name": "Daily order report",
       "paused_reason": {
         "type": "manual"
       },
@@ -79683,23 +80432,24 @@ puts(page)
         }
       ],
       "schedule": {
-        "expression": "x",
-        "timezone": "x",
+        "expression": "0 9 * * 1-5",
+        "timezone": "America/Los_Angeles",
         "type": "cron",
-        "last_run_at": "2019-12-27T18:11:19.117Z",
+        "last_run_at": "2026-03-16T16:00:09Z",
         "upcoming_runs_at": [
-          "2019-12-27T18:11:19.117Z"
+          "2026-03-17T16:00:00Z",
+          "2026-03-18T16:00:00Z"
         ]
       },
       "status": "active",
       "type": "deployment",
-      "updated_at": "2019-12-27T18:11:19.117Z",
+      "updated_at": "2026-03-15T10:00:00Z",
       "vault_ids": [
-        "string"
+        "vlt_011CZkZDLs7fYzm1hXNPeRjv"
       ]
     }
   ],
-  "next_page": "next_page"
+  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="
 }
 ```
 
@@ -80318,7 +81068,7 @@ require "anthropic"
 
 anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
 
-beta_managed_agents_deployment = anthropic.beta.deployments.retrieve("deployment_id")
+beta_managed_agents_deployment = anthropic.beta.deployments.retrieve("depl_011CZkZcDH3vPqd7xnEfwTai")
 
 puts(beta_managed_agents_deployment)
 ```
@@ -80327,31 +81077,29 @@ puts(beta_managed_agents_deployment)
 
 ```json
 {
-  "id": "id",
+  "id": "depl_011CZkZcDH3vPqd7xnEfwTai",
   "agent": {
-    "id": "agent_011CZkYqphY8vELVzwCUpqiQ",
+    "id": "agent_011CZkYpogX7uDKUyvBTophP",
     "type": "agent",
     "version": 1
   },
-  "archived_at": "2019-12-27T18:11:19.117Z",
-  "created_at": "2019-12-27T18:11:19.117Z",
-  "description": "description",
-  "environment_id": "environment_id",
+  "archived_at": null,
+  "created_at": "2026-03-15T10:00:00Z",
+  "description": "Compiles yesterday's orders into a report every weekday morning.",
+  "environment_id": "env_011CZkZ9X2dpNyB7HsEFoRfW",
   "initial_events": [
     {
       "content": [
         {
-          "text": "Where is my order #1234?",
+          "text": "Compile yesterday's orders into report.md.",
           "type": "text"
         }
       ],
       "type": "user.message"
     }
   ],
-  "metadata": {
-    "foo": "string"
-  },
-  "name": "name",
+  "metadata": {},
+  "name": "Daily order report",
   "paused_reason": {
     "type": "manual"
   },
@@ -80367,19 +81115,20 @@ puts(beta_managed_agents_deployment)
     }
   ],
   "schedule": {
-    "expression": "x",
-    "timezone": "x",
+    "expression": "0 9 * * 1-5",
+    "timezone": "America/Los_Angeles",
     "type": "cron",
-    "last_run_at": "2019-12-27T18:11:19.117Z",
+    "last_run_at": "2026-03-16T16:00:09Z",
     "upcoming_runs_at": [
-      "2019-12-27T18:11:19.117Z"
+      "2026-03-17T16:00:00Z",
+      "2026-03-18T16:00:00Z"
     ]
   },
   "status": "active",
   "type": "deployment",
-  "updated_at": "2019-12-27T18:11:19.117Z",
+  "updated_at": "2026-03-15T10:00:00Z",
   "vault_ids": [
-    "string"
+    "vlt_011CZkZDLs7fYzm1hXNPeRjv"
   ]
 }
 ```
@@ -81367,7 +82116,7 @@ require "anthropic"
 
 anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
 
-beta_managed_agents_deployment = anthropic.beta.deployments.update("deployment_id")
+beta_managed_agents_deployment = anthropic.beta.deployments.update("depl_011CZkZcDH3vPqd7xnEfwTai")
 
 puts(beta_managed_agents_deployment)
 ```
@@ -81376,31 +82125,29 @@ puts(beta_managed_agents_deployment)
 
 ```json
 {
-  "id": "id",
+  "id": "depl_011CZkZcDH3vPqd7xnEfwTai",
   "agent": {
-    "id": "agent_011CZkYqphY8vELVzwCUpqiQ",
+    "id": "agent_011CZkYpogX7uDKUyvBTophP",
     "type": "agent",
     "version": 1
   },
-  "archived_at": "2019-12-27T18:11:19.117Z",
-  "created_at": "2019-12-27T18:11:19.117Z",
-  "description": "description",
-  "environment_id": "environment_id",
+  "archived_at": null,
+  "created_at": "2026-03-15T10:00:00Z",
+  "description": "Compiles yesterday's orders into a report every weekday morning.",
+  "environment_id": "env_011CZkZ9X2dpNyB7HsEFoRfW",
   "initial_events": [
     {
       "content": [
         {
-          "text": "Where is my order #1234?",
+          "text": "Compile yesterday's orders into report.md.",
           "type": "text"
         }
       ],
       "type": "user.message"
     }
   ],
-  "metadata": {
-    "foo": "string"
-  },
-  "name": "name",
+  "metadata": {},
+  "name": "Daily order report",
   "paused_reason": {
     "type": "manual"
   },
@@ -81416,19 +82163,20 @@ puts(beta_managed_agents_deployment)
     }
   ],
   "schedule": {
-    "expression": "x",
-    "timezone": "x",
+    "expression": "0 9 * * 1-5",
+    "timezone": "America/Los_Angeles",
     "type": "cron",
-    "last_run_at": "2019-12-27T18:11:19.117Z",
+    "last_run_at": "2026-03-16T16:00:09Z",
     "upcoming_runs_at": [
-      "2019-12-27T18:11:19.117Z"
+      "2026-03-17T16:00:00Z",
+      "2026-03-18T16:00:00Z"
     ]
   },
   "status": "active",
   "type": "deployment",
-  "updated_at": "2019-12-27T18:11:19.117Z",
+  "updated_at": "2026-03-15T10:00:00Z",
   "vault_ids": [
-    "string"
+    "vlt_011CZkZDLs7fYzm1hXNPeRjv"
   ]
 }
 ```
@@ -82048,7 +82796,7 @@ require "anthropic"
 
 anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
 
-beta_managed_agents_deployment = anthropic.beta.deployments.archive("deployment_id")
+beta_managed_agents_deployment = anthropic.beta.deployments.archive("depl_011CZkZcDH3vPqd7xnEfwTai")
 
 puts(beta_managed_agents_deployment)
 ```
@@ -82057,31 +82805,29 @@ puts(beta_managed_agents_deployment)
 
 ```json
 {
-  "id": "id",
+  "id": "depl_011CZkZcDH3vPqd7xnEfwTai",
   "agent": {
-    "id": "agent_011CZkYqphY8vELVzwCUpqiQ",
+    "id": "agent_011CZkYpogX7uDKUyvBTophP",
     "type": "agent",
     "version": 1
   },
-  "archived_at": "2019-12-27T18:11:19.117Z",
-  "created_at": "2019-12-27T18:11:19.117Z",
-  "description": "description",
-  "environment_id": "environment_id",
+  "archived_at": null,
+  "created_at": "2026-03-15T10:00:00Z",
+  "description": "Compiles yesterday's orders into a report every weekday morning.",
+  "environment_id": "env_011CZkZ9X2dpNyB7HsEFoRfW",
   "initial_events": [
     {
       "content": [
         {
-          "text": "Where is my order #1234?",
+          "text": "Compile yesterday's orders into report.md.",
           "type": "text"
         }
       ],
       "type": "user.message"
     }
   ],
-  "metadata": {
-    "foo": "string"
-  },
-  "name": "name",
+  "metadata": {},
+  "name": "Daily order report",
   "paused_reason": {
     "type": "manual"
   },
@@ -82097,19 +82843,20 @@ puts(beta_managed_agents_deployment)
     }
   ],
   "schedule": {
-    "expression": "x",
-    "timezone": "x",
+    "expression": "0 9 * * 1-5",
+    "timezone": "America/Los_Angeles",
     "type": "cron",
-    "last_run_at": "2019-12-27T18:11:19.117Z",
+    "last_run_at": "2026-03-16T16:00:09Z",
     "upcoming_runs_at": [
-      "2019-12-27T18:11:19.117Z"
+      "2026-03-17T16:00:00Z",
+      "2026-03-18T16:00:00Z"
     ]
   },
   "status": "active",
   "type": "deployment",
-  "updated_at": "2019-12-27T18:11:19.117Z",
+  "updated_at": "2026-03-15T10:00:00Z",
   "vault_ids": [
-    "string"
+    "vlt_011CZkZDLs7fYzm1hXNPeRjv"
   ]
 }
 ```
@@ -82455,7 +83202,7 @@ require "anthropic"
 
 anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
 
-beta_managed_agents_deployment_run = anthropic.beta.deployments.run("deployment_id")
+beta_managed_agents_deployment_run = anthropic.beta.deployments.run("depl_011CZkZcDH3vPqd7xnEfwTai")
 
 puts(beta_managed_agents_deployment_run)
 ```
@@ -83100,7 +83847,7 @@ require "anthropic"
 
 anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
 
-beta_managed_agents_deployment = anthropic.beta.deployments.pause("deployment_id")
+beta_managed_agents_deployment = anthropic.beta.deployments.pause("depl_011CZkZcDH3vPqd7xnEfwTai")
 
 puts(beta_managed_agents_deployment)
 ```
@@ -83109,31 +83856,29 @@ puts(beta_managed_agents_deployment)
 
 ```json
 {
-  "id": "id",
+  "id": "depl_011CZkZcDH3vPqd7xnEfwTai",
   "agent": {
-    "id": "agent_011CZkYqphY8vELVzwCUpqiQ",
+    "id": "agent_011CZkYpogX7uDKUyvBTophP",
     "type": "agent",
     "version": 1
   },
-  "archived_at": "2019-12-27T18:11:19.117Z",
-  "created_at": "2019-12-27T18:11:19.117Z",
-  "description": "description",
-  "environment_id": "environment_id",
+  "archived_at": null,
+  "created_at": "2026-03-15T10:00:00Z",
+  "description": "Compiles yesterday's orders into a report every weekday morning.",
+  "environment_id": "env_011CZkZ9X2dpNyB7HsEFoRfW",
   "initial_events": [
     {
       "content": [
         {
-          "text": "Where is my order #1234?",
+          "text": "Compile yesterday's orders into report.md.",
           "type": "text"
         }
       ],
       "type": "user.message"
     }
   ],
-  "metadata": {
-    "foo": "string"
-  },
-  "name": "name",
+  "metadata": {},
+  "name": "Daily order report",
   "paused_reason": {
     "type": "manual"
   },
@@ -83149,19 +83894,20 @@ puts(beta_managed_agents_deployment)
     }
   ],
   "schedule": {
-    "expression": "x",
-    "timezone": "x",
+    "expression": "0 9 * * 1-5",
+    "timezone": "America/Los_Angeles",
     "type": "cron",
-    "last_run_at": "2019-12-27T18:11:19.117Z",
+    "last_run_at": "2026-03-16T16:00:09Z",
     "upcoming_runs_at": [
-      "2019-12-27T18:11:19.117Z"
+      "2026-03-17T16:00:00Z",
+      "2026-03-18T16:00:00Z"
     ]
   },
   "status": "active",
   "type": "deployment",
-  "updated_at": "2019-12-27T18:11:19.117Z",
+  "updated_at": "2026-03-15T10:00:00Z",
   "vault_ids": [
-    "string"
+    "vlt_011CZkZDLs7fYzm1hXNPeRjv"
   ]
 }
 ```
@@ -83781,7 +84527,7 @@ require "anthropic"
 
 anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
 
-beta_managed_agents_deployment = anthropic.beta.deployments.unpause("deployment_id")
+beta_managed_agents_deployment = anthropic.beta.deployments.unpause("depl_011CZkZcDH3vPqd7xnEfwTai")
 
 puts(beta_managed_agents_deployment)
 ```
@@ -83790,31 +84536,29 @@ puts(beta_managed_agents_deployment)
 
 ```json
 {
-  "id": "id",
+  "id": "depl_011CZkZcDH3vPqd7xnEfwTai",
   "agent": {
-    "id": "agent_011CZkYqphY8vELVzwCUpqiQ",
+    "id": "agent_011CZkYpogX7uDKUyvBTophP",
     "type": "agent",
     "version": 1
   },
-  "archived_at": "2019-12-27T18:11:19.117Z",
-  "created_at": "2019-12-27T18:11:19.117Z",
-  "description": "description",
-  "environment_id": "environment_id",
+  "archived_at": null,
+  "created_at": "2026-03-15T10:00:00Z",
+  "description": "Compiles yesterday's orders into a report every weekday morning.",
+  "environment_id": "env_011CZkZ9X2dpNyB7HsEFoRfW",
   "initial_events": [
     {
       "content": [
         {
-          "text": "Where is my order #1234?",
+          "text": "Compile yesterday's orders into report.md.",
           "type": "text"
         }
       ],
       "type": "user.message"
     }
   ],
-  "metadata": {
-    "foo": "string"
-  },
-  "name": "name",
+  "metadata": {},
+  "name": "Daily order report",
   "paused_reason": {
     "type": "manual"
   },
@@ -83830,19 +84574,20 @@ puts(beta_managed_agents_deployment)
     }
   ],
   "schedule": {
-    "expression": "x",
-    "timezone": "x",
+    "expression": "0 9 * * 1-5",
+    "timezone": "America/Los_Angeles",
     "type": "cron",
-    "last_run_at": "2019-12-27T18:11:19.117Z",
+    "last_run_at": "2026-03-16T16:00:09Z",
     "upcoming_runs_at": [
-      "2019-12-27T18:11:19.117Z"
+      "2026-03-17T16:00:00Z",
+      "2026-03-18T16:00:00Z"
     ]
   },
   "status": "active",
   "type": "deployment",
-  "updated_at": "2019-12-27T18:11:19.117Z",
+  "updated_at": "2026-03-15T10:00:00Z",
   "vault_ids": [
-    "string"
+    "vlt_011CZkZDLs7fYzm1hXNPeRjv"
   ]
 }
 ```
@@ -97414,6 +98159,10 @@ puts(beta_user_profile_enrollment_url)
     - `:pending`
 
     - `:rejected`
+
+# Tunnels
+
+# Certificates
 
 # Webhooks
 

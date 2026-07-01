@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/spend_limits/list_effective
-fetched_at: 2026-06-17T03:17:04.158711Z
-sha256: d60c9294058704c1752db77c91ef42bafbf2ffb89a9c4ed330f86fb7258d74eb
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 0689d6b1028200ab6612b0072b1be2bb88e2b2bf00273adbaed28679621f6bbc
 ---
 
 ## List Effective Spend Limits
@@ -11,9 +11,9 @@ sha256: d60c9294058704c1752db77c91ef42bafbf2ffb89a9c4ed330f86fb7258d74eb
 
 List each member's effective spend limit and period-to-date spend.
 
-Returns one row per (member, period) the member resolves a cap for, with
-the `source` scope the cap was inherited from. Paginates by member, so a
-member's periods never split across pages.
+Returns one row per (member, period) the member resolves a spend limit
+for, with the `source` scope the spend limit was inherited from.
+Paginates by member, so a member's periods never split across pages.
 
 ### Query Parameters
 
@@ -134,8 +134,8 @@ curl https://api.anthropic.com/v1/organizations/spend_limits/effective \
         "type": "user_actor",
         "user_id": "user_id"
       },
-      "amount": "amount",
-      "currency": "currency",
+      "amount": "50000",
+      "currency": "USD",
       "period": "monthly",
       "period_to_date_spend": "period_to_date_spend",
       "scope": {

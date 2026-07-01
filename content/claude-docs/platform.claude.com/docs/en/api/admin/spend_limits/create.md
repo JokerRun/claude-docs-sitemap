@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/spend_limits/create
-fetched_at: 2026-06-17T03:17:04.158711Z
-sha256: fd9d8da331d348010f0606e282cc57b87a18354d74a93cac489e4527a1cfe897
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: b71352ab4b209c4cd3b0c099ecb6c9fb7ce0cd0a3dbfc67ea3cff75c98e829e0
 ---
 
 ## Set Spend Limit
@@ -109,7 +109,7 @@ curl https://api.anthropic.com/v1/organizations/spend_limits \
     -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN" \
     -d '{
-          "amount": "amount",
+          "amount": "50000",
           "scope": {
             "type": "user",
             "user_id": "user_id"
@@ -122,9 +122,9 @@ curl https://api.anthropic.com/v1/organizations/spend_limits \
 ```json
 {
   "id": "id",
-  "amount": "amount",
+  "amount": "50000",
   "created_at": "2019-12-27T18:11:19.117Z",
-  "currency": "currency",
+  "currency": "USD",
   "period": "monthly",
   "scope": {
     "type": "user",

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/messages/batches/create
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 9d2682f8f75ac030cfeea6556da40551e8dc641376c9e3418b3489d956129b0b
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: c250eeb85422c4e97f852d4fcb716d43fbb016535edd35606d0267846dd623de
 ---
 
 ## Create a Message Batch
@@ -15,13 +15,17 @@ Send a batch of Message creation requests.
 
 The Message Batches API can be used to process multiple Messages API requests at once. Once a Message Batch is created, it begins processing immediately. Batches can take up to 24 hours to complete.
 
-Learn more about the Message Batches API in our [user guide](https://docs.claude.com/en/docs/build-with-claude/batch-processing)
+Learn more about the Message Batches API in our [user guide](https://platform.claude.com/docs/en/build-with-claude/batch-processing)
 
 ### Parameters
 
 - `--request: array of object { custom_id, params }`
 
-  List of requests for prompt completion. Each is an individual request to create a Message.
+  Body param: List of requests for prompt completion. Each is an individual request to create a Message.
+
+- `--user-profile-id: optional string`
+
+  Header param: The user profile ID to attribute the requests in this batch to. Use when acting on behalf of a party other than your organization. Requires the `user-profiles` beta header. Applies to every request in the batch; an individual request whose `user_profile_id` body field conflicts with this header is errored.
 
 ### Returns
 

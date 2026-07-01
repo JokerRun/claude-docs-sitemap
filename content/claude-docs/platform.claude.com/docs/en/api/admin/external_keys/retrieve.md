@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/external_keys/retrieve
-fetched_at: 2026-06-12T03:17:40.104094Z
-sha256: fbe27d4921af1b473d52dca67e3cd5894ba49f32a9aac783e4a54c9e0e6acc7b
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 47fefe5a82c305e01ffe95f49e4cbeb3330d5c5af0c3535243caa849ff1379fb
 ---
 
 ## Get External Key
@@ -33,19 +33,15 @@ Retrieve a single external key config in the caller's organization by ID.
 
   Data residency geo. Selects which regional validator handles this key's encrypt/decrypt roundtrips.
 
-- `provider_config: object { kms_arn, role_arn, type, region }  or object { key_name, type }  or object { key_name, tenant_id, type, 2 more }`
+- `provider_config: object { kms_arn, type, region, role_arn }  or object { key_name, type }  or object { key_name, tenant_id, type, 2 more }`
 
   KMS provider identity and auth coordinates.
 
-  - `Aws object { kms_arn, role_arn, type, region }`
+  - `Aws object { kms_arn, type, region, role_arn }`
 
     - `kms_arn: string`
 
       Full ARN of the AWS KMS key.
-
-    - `role_arn: string`
-
-      IAM role ARN that Anthropic assumes to access the KMS key.
 
     - `type: "aws"`
 
@@ -54,6 +50,10 @@ Retrieve a single external key config in the caller's organization by ID.
     - `region: optional string`
 
       AWS region. Derived from kms_arn if omitted.
+
+    - `role_arn: optional string`
+
+      IAM role ARN. Deprecated — Anthropic reaches the KMS key via a managed intermediate role; this field is ignored.
 
   - `Gcp object { key_name, type }`
 
@@ -111,9 +111,9 @@ curl https://api.anthropic.com/v1/organizations/external_keys/$EXTERNAL_KEY_ID \
   "geo": "us",
   "provider_config": {
     "kms_arn": "arn:aws:kms:us-east-1:111122223333:key/abcd1234-5678-90ab-cdef-000011112222",
-    "role_arn": "arn:aws:iam::111122223333:role/anthropic-cmek",
     "type": "aws",
-    "region": "us-east-1"
+    "region": "us-east-1",
+    "role_arn": "arn:aws:iam::111122223333:role/anthropic-cmek"
   },
   "type": "external_key",
   "updated_at": "2024-10-30T23:58:27.427722Z"

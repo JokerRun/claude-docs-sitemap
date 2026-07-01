@@ -1,13 +1,15 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/mcp_tunnels/tunnel_certificates/retrieve
-fetched_at: 2026-06-12T03:17:40.104094Z
-sha256: 85abd6b6c3524c3055e1cf188f08503cd760fae90be042d2cb205a5acdddb98e
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 53b6f23c0f5af1bb7e04962bf684a23771b52b6275f45e36e20c5ab08a44ec57
 ---
 
 ## Get Tunnel Certificate
 
 **get** `/v1/organizations/tunnels/{tunnel_id}/certificates/{certificate_id}`
+
+**Deprecated.** This Admin API endpoint is superseded by `/v1/tunnels` on the Claude API and will be removed after a migration window. New integrations should use [`/v1/tunnels`](/docs/en/api/beta/tunnels) with the `anthropic-beta: mcp-tunnels-2026-06-22` header and a WIF token carrying the `workspace:manage_tunnels` scope. Existing integrations continue to work with the `mcp-tunnels-2026-05-19` header and `org:manage_tunnels` scope during the migration window.
 
 Retrieve a single certificate registered on a tunnel by ID.
 

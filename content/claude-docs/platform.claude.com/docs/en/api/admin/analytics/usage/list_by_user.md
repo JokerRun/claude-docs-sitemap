@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/analytics/usage/list_by_user
-fetched_at: 2026-06-17T03:17:04.158711Z
-sha256: 6a206bdb87c9240e37d679bf3845ea5f65213749f22141ec7f0950b8335934a5
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 661c05b8be93afef3aa26aefbf4e1bcfc1027604880336f642db9aa6dac49bc9
 ---
 
 ## Get Per-User Token Usage
@@ -12,9 +12,12 @@ sha256: 6a206bdb87c9240e37d679bf3845ea5f65213749f22141ec7f0950b8335934a5
 Get per-user token usage across a date range.
 
 Returns one row per user, ranked by the chosen token metric. Use this to
-see which users consume the most tokens. Available to organizations on
-a Claude Enterprise plan. Requires an API key with the `read:analytics`
-scope.
+see which users consume the most tokens. Only usage attributable to a
+seat user is included; for organization-wide totals including direct
+API-key and automation traffic, use the bucketed
+`/v1/organizations/analytics/usage_report` endpoint. Available to
+organizations on a Claude Enterprise plan. Requires an API key with the
+`read:analytics` scope.
 
 ### Query Parameters
 

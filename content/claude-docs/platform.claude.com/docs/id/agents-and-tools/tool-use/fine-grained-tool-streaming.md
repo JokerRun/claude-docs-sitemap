@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: f13910158274c7dc0f7e1f248bbdaffee0b44352138d2d75d98b5e30b3114c7d
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 52f922393d61f586badb9f8df54b7c55fee2c4f71b56e830c1798a1f537ff91f
 ---
 
 # Streaming alat terperinci
 
-Lakukan streaming input alat tanpa buffering JSON di sisi server untuk aplikasi yang sensitif terhadap latensi.
+Stream input alat tanpa buffering JSON di sisi server untuk aplikasi yang sensitif terhadap latensi.
 
 ---
 
@@ -15,17 +15,19 @@ Lakukan streaming input alat tanpa buffering JSON di sisi server untuk aplikasi 
   Fitur ini memenuhi syarat untuk [Zero Data Retention (ZDR)](/docs/id/build-with-claude/api-and-data-retention). Ketika organisasi Anda memiliki pengaturan ZDR, data yang dikirim melalui fitur ini tidak disimpan setelah respons API dikembalikan.
 </Note>
 
-"Fine-grained tool streaming" (streaming alat terperinci) tersedia di semua model dan semua platform. Fitur ini memungkinkan [streaming](/docs/id/build-with-claude/streaming) nilai parameter penggunaan alat tanpa buffering atau validasi JSON, sehingga mengurangi latensi untuk mulai menerima parameter berukuran besar.
+"Fine-grained tool streaming" (streaming alat terperinci) mengirimkan input sebuah alat ke klien Anda saat Claude menghasilkannya, tanpa buffering atau validasi JSON di sisi server. Melewatkan langkah buffering mengurangi waktu hingga fragmen pertama dari parameter besar, seperti dokumen atau blok kode, dan fragmen-fragmen tersebut tiba melalui event [Streaming messages](/docs/id/build-with-claude/streaming) yang sama seperti penggunaan alat standar.
 
 <Warning>
-  Saat menggunakan streaming alat terperinci, Anda berpotensi menerima input JSON yang tidak valid atau parsial. Pastikan untuk memperhitungkan kasus-kasus khusus ini dalam kode Anda.
+  Karena API tidak melakukan buffering atau memvalidasi input alat sebelum melakukan streaming, Anda mungkin menerima JSON yang parsial atau tidak valid. Respons yang berakhir dengan [stop reason](/docs/id/build-with-claude/handling-stop-reasons) `max_tokens` juga dapat memotong parameter di tengah jalan. Akumulasikan fragmen-fragmen tersebut, lindungi proses parsing, dan lihat [Menangani JSON tidak valid dalam respons alat](#handling-invalid-json-in-tool-responses) untuk cara mengembalikan input yang tidak dapat di-parse ke Claude.
 </Warning>
 
 ## Cara menggunakan streaming alat terperinci
 
-Streaming alat terperinci didukung pada Claude API, [Claude Platform di AWS](/docs/id/build-with-claude/claude-platform-on-aws), [Amazon Bedrock](/docs/id/build-with-claude/claude-in-amazon-bedrock), [Vertex AI](/docs/id/build-with-claude/claude-on-vertex-ai), dan [Microsoft Foundry](/docs/id/build-with-claude/claude-in-microsoft-foundry). Untuk menggunakannya, atur `eager_input_streaming` ke `true` pada setiap alat yang didefinisikan pengguna di mana Anda ingin mengaktifkan streaming terperinci, dan aktifkan streaming pada permintaan Anda.
+Semua model mendukung streaming alat terperinci pada Claude API, [Claude Platform di AWS](/docs/id/build-with-claude/claude-platform-on-aws), [Amazon Bedrock](/docs/id/build-with-claude/claude-in-amazon-bedrock), [Google Cloud](/docs/id/build-with-claude/claude-on-vertex-ai), dan [Microsoft Foundry](/docs/id/build-with-claude/claude-in-microsoft-foundry). Untuk menggunakannya, atur `eager_input_streaming` ke `true` pada setiap alat yang didefinisikan pengguna di mana Anda ingin mengaktifkan streaming terperinci, dan aktifkan streaming pada permintaan Anda.
 
-Berikut adalah contoh cara menggunakan streaming alat terperinci dengan API:
+Field `eager_input_streaming` bersifat opsional. Mengaturnya ke `true` mengaktifkan streaming terperinci untuk alat tersebut, dan menghilangkannya memberi Anda streaming dengan buffering standar, di mana API melakukan buffering dan memvalidasi setiap nilai parameter sebelum melakukan streaming kembali. Pengecualiannya adalah permintaan yang masih mengirim header beta lama `fine-grained-tool-streaming-2025-05-14`, yang mengaktifkan streaming terperinci untuk alat yang tidak mengatur field tersebut. Field per-alat ini menggantikan header tersebut, dan nilai `false` yang eksplisit mempertahankan streaming dengan buffering untuk sebuah alat bahkan ketika permintaan masih mengirim header tersebut. Lihat [Referensi alat](/docs/id/agents-and-tools/tool-use/tool-reference) untuk definisi field.
+
+Contoh berikut mengaktifkan streaming terperinci untuk alat `make_file` dan meminta Claude untuk membuat puisi panjang, sehingga input alat cukup besar untuk diamati saat di-stream:
 
 <CodeGroup>
   ```bash cURL
@@ -91,7 +93,7 @@ Berikut adalah contoh cara menggunakan streaming alat terperinci dengan API:
     - role: user
       content: Can you write a long poem and make a file called poem.txt?
   YAML
-    jq 'select(.type == "message_delta") | .usage'
+    jq -rj 'select(.delta.type == "input_json_delta") | .delta.partial_json'
   ```
 
   ```python Python
@@ -128,16 +130,21 @@ Berikut adalah contoh cara menggunakan streaming alat terperinci dengan API:
           }
       ],
   ) as stream:
+      for event in stream:
+          if event.type == "input_json":
+              print(event.partial_json, end="", flush=True)
       final_message = stream.get_final_message()
 
-  print(f"Input tokens: {final_message.usage.input_tokens}")
-  print(f"Output tokens: {final_message.usage.output_tokens}")
+  print()
+  for block in final_message.content:
+      if block.type == "tool_use":
+          print(f"Complete tool input: {block.input}")
   ```
 
   ```typescript TypeScript
-  const anthropic = new Anthropic();
+  const client = new Anthropic();
 
-  const stream = anthropic.messages.stream({
+  const stream = client.messages.stream({
     model: "claude-opus-4-8",
     max_tokens: 65536,
     tools: [
@@ -169,9 +176,17 @@ Berikut adalah contoh cara menggunakan streaming alat terperinci dengan API:
     ]
   });
 
+  stream.on("inputJson", (partialJson) => {
+    process.stdout.write(partialJson);
+  });
+
   const message = await stream.finalMessage();
-  console.log(`Input tokens: ${message.usage.input_tokens}`);
-  console.log(`Output tokens: ${message.usage.output_tokens}`);
+  console.log();
+  for (const block of message.content) {
+    if (block.type === "tool_use") {
+      console.log("Complete tool input:", block.input);
+    }
+  }
   ```
 
   ```csharp C#
@@ -213,24 +228,33 @@ Berikut adalah contoh cara menggunakan streaming alat terperinci dengan API:
       ],
   };
 
-  long inputTokens = 0;
-  long outputTokens = 0;
+  // Contoh C# merakit input-nya sendiri: indeks blok konten -> JSON yang terakumulasi
+  var toolInputs = new Dictionary<long, StringBuilder>();
 
   await foreach (var streamEvent in client.Messages.CreateStreaming(parameters))
   {
-      switch (streamEvent.Value)
+      if (
+          streamEvent.TryPickContentBlockStart(out var start)
+          && start.ContentBlock.TryPickToolUse(out _)
+      )
       {
-          case RawMessageStartEvent startEvent:
-              inputTokens = startEvent.Message.Usage.InputTokens;
-              break;
-          case RawMessageDeltaEvent deltaEvent:
-              outputTokens = deltaEvent.Usage.OutputTokens;
-              break;
+          toolInputs[start.Index] = new StringBuilder();
+      }
+      else if (
+          streamEvent.TryPickContentBlockDelta(out var delta)
+          && delta.Delta.TryPickInputJson(out var inputJson)
+      )
+      {
+          Console.Write(inputJson.PartialJson);
+          toolInputs[delta.Index].Append(inputJson.PartialJson);
       }
   }
 
-  Console.WriteLine($"Input tokens: {inputTokens}");
-  Console.WriteLine($"Output tokens: {outputTokens}");
+  Console.WriteLine();
+  foreach (var accumulatedInput in toolInputs.Values)
+  {
+      Console.WriteLine($"Complete tool input: {accumulatedInput}");
+  }
   ```
 
   ```go Go
@@ -272,13 +296,22 @@ Berikut adalah contoh cara menggunakan streaming alat terperinci dengan API:
   	if err := message.Accumulate(event); err != nil {
   		panic(err)
   	}
+  	if delta, ok := event.AsAny().(anthropic.ContentBlockDeltaEvent); ok {
+  		if inputJSON, ok := delta.Delta.AsAny().(anthropic.InputJSONDelta); ok {
+  			fmt.Print(inputJSON.PartialJSON)
+  		}
+  	}
   }
   if err := stream.Err(); err != nil {
   	panic(err)
   }
 
-  fmt.Printf("Input tokens: %d\n", message.Usage.InputTokens)
-  fmt.Printf("Output tokens: %d\n", message.Usage.OutputTokens)
+  fmt.Println()
+  for _, block := range message.Content {
+  	if toolUse, ok := block.AsAny().(anthropic.ToolUseBlock); ok {
+  		fmt.Printf("Complete tool input: %s\n", toolUse.Input)
+  	}
+  }
   ```
 
   ```java Java
@@ -313,19 +346,30 @@ Berikut adalah contoh cara menggunakan streaming alat terperinci dengan API:
 
   try (StreamResponse<RawMessageStreamEvent> streamResponse =
           client.messages().createStreaming(params)) {
-      streamResponse.stream().forEach(accumulator::accumulate);
+      streamResponse.stream().forEach(event -> {
+          accumulator.accumulate(event);
+          if (event.isContentBlockDelta()) {
+              var delta = event.asContentBlockDelta().delta();
+              if (delta.isInputJson()) {
+                  IO.print(delta.asInputJson().partialJson());
+              }
+          }
+      });
   }
 
-  Usage usage = accumulator.message().usage();
-  IO.println("Input tokens: " + usage.inputTokens());
-  IO.println("Output tokens: " + usage.outputTokens());
+  IO.println("");
+  accumulator.message().content().forEach(block ->
+      block.toolUse().ifPresent(toolUse ->
+          IO.println("Complete tool input: " + toolUse._input())));
   ```
 
   ```php PHP
   use Anthropic\Client;
+  use Anthropic\Messages\InputJSONDelta;
   use Anthropic\Messages\Model;
-  use Anthropic\Messages\RawMessageDeltaEvent;
-  use Anthropic\Messages\RawMessageStartEvent;
+  use Anthropic\Messages\RawContentBlockDeltaEvent;
+  use Anthropic\Messages\RawContentBlockStartEvent;
+  use Anthropic\Messages\ToolUseBlock;
 
   $client = new Client();
 
@@ -361,25 +405,34 @@ Berikut adalah contoh cara menggunakan streaming alat terperinci dengan API:
       ],
   );
 
-  $inputTokens = 0;
-  $outputTokens = 0;
+  // Contoh PHP merakit input-nya sendiri: index => string JSON yang terakumulasi
+  $toolInputs = [];
 
   foreach ($stream as $event) {
-      if ($event instanceof RawMessageStartEvent) {
-          $inputTokens = $event->message->usage->inputTokens;
-      } elseif ($event instanceof RawMessageDeltaEvent) {
-          $outputTokens = $event->usage->outputTokens;
+      if (
+          $event instanceof RawContentBlockStartEvent
+          && $event->contentBlock instanceof ToolUseBlock
+      ) {
+          $toolInputs[$event->index] = '';
+      } elseif (
+          $event instanceof RawContentBlockDeltaEvent
+          && $event->delta instanceof InputJSONDelta
+      ) {
+          echo $event->delta->partialJSON;
+          $toolInputs[$event->index] .= $event->delta->partialJSON;
       }
   }
 
-  echo "Input tokens: {$inputTokens}\n";
-  echo "Output tokens: {$outputTokens}\n";
+  echo "\n";
+  foreach ($toolInputs as $toolInput) {
+      echo "Complete tool input: {$toolInput}\n";
+  }
   ```
 
   ```ruby Ruby
-  anthropic = Anthropic::Client.new
+  client = Anthropic::Client.new
 
-  stream = anthropic.messages.stream(
+  stream = client.messages.stream(
     model: Anthropic::Models::Model::CLAUDE_OPUS_4_8,
     max_tokens: 65_536,
     tools: [
@@ -411,37 +464,55 @@ Berikut adalah contoh cara menggunakan streaming alat terperinci dengan API:
     ]
   )
 
-  usage = stream.accumulated_message.usage
-  puts "Input tokens: #{usage.input_tokens}"
-  puts "Output tokens: #{usage.output_tokens}"
+  stream.each do |event|
+    print event.partial_json if event.is_a?(Anthropic::Streaming::InputJsonEvent)
+  end
+
+  puts
+  stream.accumulated_message.content.each do |block|
+    puts "Complete tool input: #{block.input}" if block.type == :tool_use
+  end
   ```
 </CodeGroup>
 
-Dalam contoh ini, streaming alat terperinci memungkinkan Claude untuk melakukan streaming baris-baris puisi panjang ke dalam pemanggilan alat `make_file` tanpa buffering untuk memvalidasi apakah parameter `lines_of_text` adalah JSON yang valid. Ini berarti Anda dapat melihat parameter mengalir saat tiba, tanpa harus menunggu seluruh parameter di-buffer dan divalidasi.
+Setiap tab mengaktifkan streaming terperinci untuk alat `make_file`. Tab SDK mencetak setiap fragmen input pada saat fragmen tersebut tiba, kemudian mencetak input lengkap yang terakumulasi setelah stream berakhir. Tab cURL menampilkan stream event mentah, dan tab CLI menggunakan `jq` untuk mencetak hanya fragmen-fragmennya. Karena fragmen yang dicetak bergabung menjadi input alat lengkap, puisi tersebut mengisi terminal Anda saat Claude menulisnya:
 
-<Note>
-  Dengan streaming alat terperinci, potongan input alat mulai tiba lebih cepat karena server melewati buffering validasi JSON. Sebagai efek samping, potongan biasanya lebih panjang dan mengandung lebih sedikit pemutusan di tengah token.
-</Note>
+```text wrap
+{"filename": "poem.txt", "lines_of_text": ["The Wanderer's Journey", "", "I.", "", "Beneath the vast and star-strewn sky,", "Where silver moonbeams softly lie,", ...
+Complete tool input: {"filename": "poem.txt", "lines_of_text": ["The Wanderer's Journey", ...]}
+```
 
-<Warning>
-  Karena streaming terperinci mengirimkan parameter tanpa buffering atau validasi JSON, tidak ada jaminan bahwa stream yang dihasilkan akan selesai dalam bentuk string JSON yang valid. Khususnya, jika [stop reason](/docs/id/build-with-claude/handling-stop-reasons) `max_tokens` tercapai, stream mungkin berakhir di tengah-tengah parameter dan mungkin tidak lengkap. Anda umumnya harus menulis penanganan khusus untuk menangani kasus ketika `max_tokens` tercapai.
-</Warning>
+Tanpa `eager_input_streaming`, API melakukan buffering dan memvalidasi setiap nilai parameter sebelum melakukan streaming kembali, sehingga tidak ada yang dicetak untuk parameter besar sampai Claude selesai menghasilkannya. Dengan field tersebut, fragmen mulai tiba segera setelah Claude memulai parameter, dan fragmen-fragmen tersebut biasanya lebih panjang, dengan lebih sedikit pemotongan di tengah kata.
 
 ## Mengakumulasi delta input alat
 
-Ketika blok konten `tool_use` di-stream, event `content_block_start` awal berisi `input: {}` (objek kosong). Ini adalah placeholder. Input yang sebenarnya tiba sebagai serangkaian event `input_json_delta`, masing-masing membawa fragmen string `partial_json`. Untuk menyusun input lengkap, gabungkan fragmen-fragmen ini dan parse hasilnya ketika blok ditutup.
+Kontrak akumulasi sama dengan streaming penggunaan alat standar, sehingga bagian ini berlaku dengan dan tanpa `eager_input_streaming`. Lihat [Input JSON delta](/docs/id/build-with-claude/streaming#input-json-delta) di Streaming messages untuk format event. Streaming alat terperinci mengubah apa yang dapat Anda asumsikan tentang hasilnya: server melakukan streaming fragmen tanpa memvalidasinya, sehingga string yang terakumulasi mungkin bukan JSON yang valid.
 
-Jika SDK Anda menyediakan helper akumulator (seperti yang digunakan dalam contoh pertama di halaman ini), helper tersebut akan menangani ini untuk Anda. Pola manual ditujukan untuk SDK tanpa helper, atau ketika Anda perlu bereaksi terhadap input parsial sebelum blok ditutup.
+Ketika blok konten `tool_use` di-stream, event `content_block_start` awal berisi `input: {}` (objek kosong). Ini adalah placeholder. Input sebenarnya tiba sebagai serangkaian event `input_json_delta`, masing-masing membawa fragmen string `partial_json`. Untuk menyusun input lengkap, gabungkan fragmen-fragmen ini dan parse hasilnya ketika blok ditutup.
+
+Jika SDK Anda menyediakan helper akumulator (seperti yang dilakukan tab Python, TypeScript, Go, Java, dan Ruby pada contoh sebelumnya), helper tersebut menangani ini untuk Anda. Pola manual ditujukan untuk SDK tanpa helper, atau ketika Anda menginginkan kontrol penuh atas bagaimana input disusun.
 
 Kontrak akumulasi:
 
 1. Pada `content_block_start` dengan `type: "tool_use"`, inisialisasi string kosong: `input_json = ""`
 2. Untuk setiap `content_block_delta` dengan `type: "input_json_delta"`, tambahkan: `input_json += event.delta.partial_json`
-3. Pada `content_block_stop`, parse string yang terakumulasi: `json.loads(input_json)`
+3. Pada `content_block_stop`, parse string yang terakumulasi
 
-Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) memang dirancang demikian. Objek kosong menandai slot dalam array konten; string delta membangun nilai sebenarnya.
+Lindungi proses parsing, seperti yang dilakukan contoh SDK berikut. Respons juga dapat berhenti pada `max_tokens` di tengah parameter. Periksa [stop reason](/docs/id/build-with-claude/handling-stop-reasons) dan putuskan apakah akan mencoba ulang permintaan dengan `max_tokens` yang lebih tinggi atau memperbaiki input parsial.
+
+Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) memang disengaja. Objek kosong menandai slot dalam array konten. String delta membangun nilai sebenarnya.
 
 <CodeGroup>
+  ```bash cURL
+  # Mengakumulasi delta input per blok memerlukan bahasa pemrograman; tab CLI
+  # contoh pertama menampilkan fragmen mentah dengan jq. Lihat tab SDK.
+  ```
+
+  ```bash CLI
+  # Mengakumulasi delta input per-blok memerlukan bahasa pemrograman; tab CLI
+  # contoh pertama menampilkan fragmen mentah dengan jq. Lihat tab SDK.
+  ```
+
   ```python Python
   client = anthropic.Anthropic()
 
@@ -471,16 +542,23 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
               case "content_block_delta" if event.delta.type == "input_json_delta":
                   tool_inputs[event.index] += event.delta.partial_json
               case "content_block_stop" if event.index in tool_inputs:
-                  parsed = json.loads(tool_inputs[event.index])
-                  print(f"Tool input: {parsed}")
+                  raw_input = tool_inputs[event.index]
+                  try:
+                      parsed = json.loads(raw_input)
+                  except json.JSONDecodeError:
+                      # String yang terakumulasi tidak dijamin merupakan JSON yang valid.
+                      # Lihat "Handling invalid JSON in tool responses" di halaman ini.
+                      print(f"Invalid tool input: {raw_input}")
+                  else:
+                      print(f"Tool input: {parsed}")
   ```
 
   ```typescript TypeScript
-  const anthropic = new Anthropic();
+  const client = new Anthropic();
 
   const toolInputs = new Map<number, string>();
 
-  const stream = anthropic.messages.stream({
+  const stream = client.messages.stream({
     model: "claude-opus-4-8",
     max_tokens: 1024,
     tools: [
@@ -507,8 +585,14 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
         (toolInputs.get(event.index) ?? "") + event.delta.partial_json
       );
     } else if (event.type === "content_block_stop" && toolInputs.has(event.index)) {
-      const parsed = JSON.parse(toolInputs.get(event.index)!);
-      console.log("Tool input:", parsed);
+      const rawInput = toolInputs.get(event.index)!;
+      try {
+        console.log("Tool input:", JSON.parse(rawInput));
+      } catch {
+        // String yang terakumulasi tidak dijamin merupakan JSON yang valid.
+        // Lihat "Handling invalid JSON in tool responses" di halaman ini.
+        console.log("Invalid tool input:", rawInput);
+      }
     }
   }
   ```
@@ -566,8 +650,17 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
           && toolInputs.TryGetValue(stop.Index, out var accumulated)
       )
       {
-          using var parsed = JsonDocument.Parse(accumulated.ToString());
-          Console.WriteLine($"Tool input: {parsed.RootElement}");
+          try
+          {
+              using var parsed = JsonDocument.Parse(accumulated.ToString());
+              Console.WriteLine($"Tool input: {parsed.RootElement}");
+          }
+          catch (JsonException)
+          {
+              // String yang terakumulasi tidak dijamin merupakan JSON yang valid.
+              // Lihat "Menangani JSON yang tidak valid dalam respons alat" di halaman ini.
+              Console.WriteLine($"Invalid tool input: {accumulated}");
+          }
       }
   }
   ```
@@ -612,9 +705,12 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
   		if accumulated, ok := toolInputs[event.Index]; ok {
   			var parsed map[string]any
   			if err := json.Unmarshal([]byte(accumulated), &parsed); err != nil {
-  				panic(err)
+  				// String yang terakumulasi tidak dijamin merupakan JSON yang valid.
+  				// Lihat "Handling invalid JSON in tool responses" di halaman ini.
+  				fmt.Println("Invalid tool input:", accumulated)
+  			} else {
+  				fmt.Println("Tool input:", parsed)
   			}
-  			fmt.Println("Tool input:", parsed)
   		}
   	}
   }
@@ -666,8 +762,14 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
           } else if (event.isContentBlockStop()) {
               var blockStop = event.asContentBlockStop();
               if (toolInputs.containsKey(blockStop.index())) {
-                  var parsedInput = objectMapper.readTree(toolInputs.get(blockStop.index()).toString());
-                  IO.println("Tool input: " + parsedInput);
+                  String accumulated = toolInputs.get(blockStop.index()).toString();
+                  try {
+                      IO.println("Tool input: " + objectMapper.readTree(accumulated));
+                  } catch (JsonProcessingException e) {
+                      // String yang terakumulasi tidak dijamin merupakan JSON yang valid.
+                      // Lihat "Menangani JSON yang tidak valid dalam respons alat" di halaman ini.
+                      IO.println("Invalid tool input: " + accumulated);
+                  }
               }
           }
       }
@@ -685,8 +787,8 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
 
   $client = new Client();
 
-  // SDK PHP saat ini tidak menyediakan akumulator stream untuk input alat;
-  // pola manual yang ditunjukkan di sini adalah pendekatan yang didukung.
+  // The PHP SDK does not provide a stream accumulator for tool input;
+  // the manual pattern shown here is the supported approach.
   $toolInputs = []; // index => accumulated JSON string
 
   $stream = $client->messages->createStream(
@@ -722,8 +824,15 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
           $event instanceof RawContentBlockStopEvent
           && isset($toolInputs[$event->index])
       ) {
-          $parsed = json_decode($toolInputs[$event->index], associative: true, flags: JSON_THROW_ON_ERROR);
-          echo "Tool input: " . json_encode($parsed) . "\n";
+          $accumulated = $toolInputs[$event->index];
+          try {
+              $parsed = json_decode($accumulated, associative: true, flags: JSON_THROW_ON_ERROR);
+              echo "Tool input: " . json_encode($parsed) . "\n";
+          } catch (JsonException $e) {
+              // The accumulated string is not guaranteed to be valid JSON.
+              // See "Handling invalid JSON in tool responses" on this page.
+              echo "Invalid tool input: {$accumulated}\n";
+          }
       }
   }
   ```
@@ -761,8 +870,15 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
       end
     when Anthropic::Models::RawContentBlockStopEvent
       if tool_inputs.key?(event.index)
-        parsed = JSON.parse(tool_inputs[event.index])
-        puts "Tool input: #{parsed}"
+        accumulated = tool_inputs[event.index]
+        begin
+          parsed = JSON.parse(accumulated)
+          puts "Tool input: #{parsed}"
+        rescue JSON::ParserError
+          # String yang terakumulasi tidak dijamin merupakan JSON yang valid.
+          # Lihat "Handling invalid JSON in tool responses" di halaman ini.
+          puts "Invalid tool input: #{accumulated}"
+        end
       end
     end
   end
@@ -770,37 +886,50 @@ Ketidakcocokan tipe antara `input: {}` awal (objek) dan `partial_json` (string) 
 </CodeGroup>
 
 <Tip>
-  Gunakan pola manual ketika Anda perlu bereaksi terhadap input parsial sebelum blok ditutup (misalnya, merender indikator progres). Jika tidak, lebih baik gunakan helper akumulator SDK Anda seperti yang digunakan pada contoh pertama di halaman ini.
+  Bereaksi terhadap fragmen dan menyusunnya adalah dua hal yang terpisah. Contoh pertama bereaksi terhadap setiap fragmen saat tiba dan tetap menyerahkan penyusunan ke SDK pada tab yang menggunakan helper akumulator. Gunakan pola manual ketika Anda tidak menggunakan helper akumulator atau ketika Anda menginginkan kontrol penuh atas penyusunan.
 </Tip>
 
-## Menangani JSON yang tidak valid dalam respons alat
+## Menangani JSON tidak valid dalam respons alat
 
-Saat menggunakan streaming alat terperinci, Anda mungkin menerima JSON yang tidak valid atau tidak lengkap dari model. Jika Anda perlu mengirimkan kembali JSON yang tidak valid ini ke model dalam blok respons error, Anda dapat membungkusnya dalam objek JSON untuk memastikan penanganan yang tepat (dengan key yang masuk akal). Sebagai contoh:
+Dengan streaming alat terperinci, input yang terakumulasi untuk pemanggilan alat mungkin berupa JSON yang tidak valid atau tidak lengkap. Ketika hal itu terjadi, Anda tidak dapat menjalankan alat tersebut, jadi laporkan kegagalan tersebut kembali ke Claude. `content` dari hasil alat tidak harus berupa JSON, tetapi membungkus string mentah dalam objek JSON di bawah satu key membuat jelas bagi Claude bahwa Anda menerima JSON yang tidak valid, dan mempertahankan input asli untuk debugging:
 
 ```json
 {
-  "INVALID_JSON": "<your invalid json string>"
+  "INVALID_JSON": "<the unparseable input you received>"
 }
 ```
 
-Pendekatan ini membantu model memahami bahwa konten tersebut adalah JSON yang tidak valid sambil mempertahankan data asli yang rusak untuk keperluan debugging.
+Kembalikan wrapper tersebut, yang diserialisasi menjadi string, sebagai `content` dari blok konten [tool result](/docs/id/agents-and-tools/tool-use/handle-tool-calls#handling-errors-with-is-error) dengan `is_error` diatur ke `true`:
+
+```json
+{
+  "type": "tool_result",
+  "tool_use_id": "toolu_01A09q90qw90lq917835lq9",
+  "is_error": true,
+  "content": "{\"INVALID_JSON\": \"<the unparseable input you received>\"}"
+}
+```
 
 <Note>
-  Saat membungkus JSON yang tidak valid, pastikan untuk melakukan escape dengan benar pada tanda kutip atau karakter khusus apa pun dalam string JSON yang tidak valid tersebut untuk menjaga struktur JSON yang valid pada objek pembungkus.
+  Bangun wrapper dengan library JSON Anda daripada dengan menggabungkan string, sehingga tanda kutip dan karakter khusus lainnya dalam input yang tidak valid di-escape dengan benar.
 </Note>
 
 ## Langkah selanjutnya
 
-<CardGroup cols={3}>
-  <Card title="Streaming pesan" href="/docs/id/build-with-claude/streaming">
-    Referensi lengkap untuk server-sent events dan tipe event stream.
+<CardGroup cols={2}>
+  <Card title="Jendela konteks" icon="stack" href="/docs/id/build-with-claude/context-windows">
+    Pahami cara kerja jendela konteks, bagaimana pemikiran diperpanjang dan penggunaan alat dihitung terhadapnya, dan cara mengelola konteks seiring berkembangnya percakapan.
   </Card>
 
-  <Card title="Menangani pemanggilan alat" href="/docs/id/agents-and-tools/tool-use/handle-tool-calls">
-    Jalankan alat dan kembalikan hasil dalam format pesan yang diperlukan.
+  <Card title="Streaming messages" icon="lightning" href="/docs/id/build-with-claude/streaming">
+    Stream respons Messages API secara inkremental dengan server-sent events, termasuk delta teks, penggunaan alat, dan pemikiran diperpanjang.
   </Card>
 
-  <Card title="Referensi alat" href="/docs/id/agents-and-tools/tool-use/tool-reference">
-    Direktori lengkap alat skema Anthropic dan string versinya.
+  <Card title="Menangani pemanggilan alat" icon="arrows-left-right" href="/docs/id/agents-and-tools/tool-use/handle-tool-calls">
+    Parse blok tool\_use, format respons tool\_result, dan tangani error dengan is\_error.
+  </Card>
+
+  <Card title="Referensi alat" icon="book" href="/docs/id/agents-and-tools/tool-use/tool-reference">
+    Direktori alat yang disediakan Anthropic dan referensi untuk properti definisi alat opsional.
   </Card>
 </CardGroup>

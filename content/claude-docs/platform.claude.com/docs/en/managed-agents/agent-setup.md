@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/agent-setup
-fetched_at: 2026-06-30T03:15:27.286427Z
-sha256: a5420bf5d48fcb5975d89079b93b88c22283b694176244fb66f6c243e3fd189c
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: be5470cdaa19f06a6af574013d464c07f3c4a60cbcfdb6c2073817df03525d12
 ---
 
 # Define your agent
@@ -29,9 +29,11 @@ Create the agent once as a reusable resource and reference it by ID each time yo
 | `tools`       | The tools available to the agent. Combines [pre-built agent tools](/docs/en/managed-agents/tools), [MCP tools](/docs/en/managed-agents/mcp-connector), and [custom tools](/docs/en/managed-agents/tools#custom-tools).                                                                                           |
 | `mcp_servers` | [MCP servers](/docs/en/managed-agents/mcp-connector) that provide standardized third-party capabilities.                                                                                                                                                                                                         |
 | `skills`      | [Skills](/docs/en/managed-agents/skills) that supply domain-specific context with progressive disclosure.                                                                                                                                                                                                        |
-| `multiagent`  | A coordinator declaration listing the agents this agent can delegate to. See [Multiagent sessions](/docs/en/managed-agents/multi-agent).                                                                                                                                                                         |
+| `multiagent`  | A coordinator declaration listing the agents this agent can delegate to. See [Multi-agent sessions](/docs/en/managed-agents/multi-agent).                                                                                                                                                                        |
 | `description` | A description of what the agent does.                                                                                                                                                                                                                                                                            |
 | `metadata`    | Arbitrary key-value pairs for your own tracking.                                                                                                                                                                                                                                                                 |
+
+You can also override `model`, `system`, `tools`, `mcp_servers`, and `skills` for a single session without changing the agent. See [Override agent configuration for a session](/docs/en/managed-agents/sessions#override-agent-configuration-for-a-session).
 
 ## Create an agent
 

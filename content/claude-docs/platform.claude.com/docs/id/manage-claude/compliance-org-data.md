@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-org-data
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 812def312b016606db052cc4c0a43ea459f947255f8bdf82f63a6d0ad4aba838
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 3a9d9715535ae4ed9c99ff71e946ed130f052030f83526f7db90a4ec968abf8c
 ---
 
 # Mencantumkan organisasi, pengguna, peran, grup, dan pengaturan
@@ -16,18 +16,18 @@ Enumerasi organisasi di bawah organisasi induk Anda (pengguna, peran, dan grup m
 </Note>
 
 <Check>
-  **Scope yang diperlukan:** `read:compliance_org_data` pada Compliance Access Key. Endpoint pengguna dan anggota grup memerlukan `read:compliance_user_data` sebagai gantinya, dan endpoint pengaturan efektif memerlukan `read:compliance_org_settings`.
+  **Scope yang diperlukan:** `read:compliance_org_data` pada Compliance Access Key. Endpoint pengguna dan anggota grup memerlukan `read:compliance_user_data` sebagai gantinya, dan endpoint effective-settings memerlukan `read:compliance_org_settings`.
 
   Compliance Access Key (`sk-ant-api01-...`) yang dibuat di claude.ai adalah satu-satunya jenis kunci yang diterima; lihat [Mendapatkan akses ke Compliance API](/docs/id/manage-claude/compliance-api-access) untuk menyediakannya. Panggilan yang diautentikasi dengan kunci Admin API (`sk-ant-admin01-...`) mengembalikan [403 Forbidden](/docs/id/manage-claude/compliance-errors#403-forbidden).
 </Check>
 
-Endpoint pada halaman ini mengekspos sisi direktori dari organisasi Claude Enterprise: organisasi yang tertaut, pengguna di masing-masing organisasi, peran yang didefinisikan pada masing-masing, serta grup "role-based access control" (kontrol akses berbasis peran), atau RBAC, maupun grup yang disediakan melalui "System for Cross-domain Identity Management" (Sistem untuk Manajemen Identitas Lintas Domain), atau SCIM, beserta anggotanya. Gunakan endpoint ini untuk menyiapkan daftar pengguna eDiscovery, membangun dasbor pelaporan, dan merekonsiliasi keanggotaan grup terhadap sistem pencatatan eksternal. Compliance Access Key terikat pada organisasi induk dan mengembalikan data dari setiap organisasi tertaut di bawahnya, sehingga satu kunci menjangkau seluruh pohon. [Endpoint pengaturan efektif](#get-effective-organization-settings) melengkapi direktori: endpoint ini mengembalikan pengaturan privasi data, keamanan, dan kapabilitas yang benar-benar berlaku untuk satu organisasi.
+Endpoint pada halaman ini mengekspos sisi direktori dari organisasi Claude Enterprise: organisasi yang tertaut, pengguna di masing-masing organisasi, peran yang didefinisikan pada masing-masing, serta grup "role-based access control" (kontrol akses berbasis peran), atau RBAC, maupun grup yang disediakan melalui "System for Cross-domain Identity Management" (Sistem untuk Manajemen Identitas Lintas Domain), atau SCIM, beserta anggotanya. Gunakan endpoint ini untuk menyiapkan daftar pengguna eDiscovery, membangun dasbor pelaporan, dan merekonsiliasi keanggotaan grup terhadap sistem pencatatan eksternal. Compliance Access Key terikat pada organisasi induk dan mengembalikan data dari setiap organisasi tertaut di bawahnya, sehingga satu kunci menjangkau seluruh pohon. [Endpoint effective-settings](#get-effective-organization-settings) melengkapi direktori: endpoint ini mengembalikan pengaturan privasi data, keamanan, dan kapabilitas yang benar-benar berlaku untuk satu organisasi.
 
 ## Mencantumkan organisasi
 
 Endpoint [List organizations](/docs/id/api/compliance/organizations/list) mengembalikan setiap organisasi di bawah induk tempat kunci tersebut terikat.
 
-Panggilan berikut mencantumkan setiap organisasi di bawah induk Anda. Responsnya adalah satu array `data` berisi record organisasi yang diurutkan berdasarkan `created_at` secara menaik. Endpoint ini mengembalikan hingga 1.000 organisasi dalam satu panggilan; jika pohon Anda melebihi jumlah tersebut, endpoint mengembalikan [error 500](/docs/id/manage-claude/compliance-errors#500-internal-server-error).
+Panggilan berikut mencantumkan setiap organisasi di bawah induk Anda. Responsnya adalah array `data` berisi record organisasi yang diurutkan berdasarkan `created_at` secara menaik, ditambah `has_more` dan `next_page` untuk paginasi. Ketika `has_more` bernilai `true`, kirimkan kembali token `next_page` yang dikembalikan tanpa perubahan sebagai parameter kueri `page` pada permintaan Anda berikutnya. Lihat [List organizations](/docs/id/api/compliance/organizations/list) di referensi API untuk nilai default dan rentang parameter `limit` dan `page`.
 
 <CodeGroup>
   ```bash cURL
@@ -50,23 +50,25 @@ Panggilan berikut mencantumkan setiap organisasi di bawah induk Anda. Responsnya
       "name": "Acme Legal",
       "created_at": "2025-07-15T14:30:00Z"
     }
-  ]
+  ],
+  "has_more": false,
+  "next_page": null
 }
 ```
 
-Field `uuid` adalah pengidentifikasi kanonis untuk pencarian lanjutan. Tabel berikut memetakannya ke pengidentifikasi organisasi lain di seluruh Compliance API:
+Field `uuid` adalah pengidentifikasi kanonis untuk pencarian hilir. Tabel berikut memetakannya ke pengidentifikasi organisasi lainnya di seluruh Compliance API:
 
-| Field                | Lokasi                                                                                                                                                                                            | Hubungan dengan `uuid`                                                                                                                                                 |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `{org_uuid}`         | Parameter path pada endpoint per-organisasi di halaman ini                                                                                                                                        | Nilai yang sama                                                                                                                                                        |
-| `organization_uuid`  | Record Activity Feed, chat, dan project                                                                                                                                                           | Nilai yang sama; gabungkan langsung pada kedua field ini                                                                                                               |
-| `organization_id`    | Record Activity Feed, chat, dan project                                                                                                                                                           | Organisasi yang sama, dengan prefiks `org_`. Sudah usang pada record chat dan project; gunakan `organization_uuid` sebagai gantinya.                                   |
-| `organization_ids[]` | Filter pada [Mengkueri Activity Feed](/docs/id/manage-claude/compliance-activity-feed) dan [Mengambil chat dan pesan](/docs/id/manage-claude/compliance-content-data#retrieve-chats-and-messages) | Menerima `uuid` atau bentuk dengan prefiks `org_`                                                                                                                      |
-| `organization_id`    | Respons [Get effective organization settings](#get-effective-organization-settings)                                                                                                               | Nilai yang sama, UUID polos; respons ini **tidak** menggunakan bentuk dengan prefiks `org_` yang dibawa `organization_id` pada record Activity Feed, chat, dan project |
+| Field                | Lokasi                                                                                                                                                                                            | Hubungan dengan `uuid`                                                                                                                                                |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `{org_uuid}`         | Parameter path pada endpoint per-organisasi di halaman ini                                                                                                                                        | Nilai yang sama                                                                                                                                                       |
+| `organization_uuid`  | Record Activity Feed, chat, dan proyek                                                                                                                                                            | Nilai yang sama; gabungkan langsung pada kedua field ini                                                                                                              |
+| `organization_id`    | Record Activity Feed, chat, dan proyek                                                                                                                                                            | Organisasi yang sama, dengan prefiks `org_`. Tidak digunakan lagi pada record chat dan proyek; gunakan `organization_uuid` sebagai gantinya.                          |
+| `organization_ids[]` | Filter pada [Mengkueri Activity Feed](/docs/id/manage-claude/compliance-activity-feed) dan [Mengambil chat dan pesan](/docs/id/manage-claude/compliance-content-data#retrieve-chats-and-messages) | Menerima `uuid` atau bentuk dengan prefiks `org_`                                                                                                                     |
+| `organization_id`    | Respons [Get effective organization settings](#get-effective-organization-settings)                                                                                                               | Nilai yang sama, UUID polos; respons ini **tidak** menggunakan bentuk dengan prefiks `org_` yang dibawa `organization_id` pada record Activity Feed, chat, dan proyek |
 
 Sebagian besar API Anthropic lainnya menggunakan bentuk dengan prefiks `org_`.
 
-Jika pohon Anda melebihi batas 1.000 organisasi, hubungi dukungan Anthropic. Untuk melacak perubahan keanggotaan organisasi dari waktu ke waktu, cantumkan ulang endpoint ini secara berkala. Activity Feed juga memunculkan peristiwa keanggotaan melalui tipe aktivitas `org_deletion_requested`, `org_deleted_via_bulk`, `org_parent_join_proposal_created`, dan `org_join_proposal_decided`; lihat [Mengkueri Activity Feed](/docs/id/manage-claude/compliance-activity-feed).
+Untuk melacak perubahan keanggotaan organisasi dari waktu ke waktu, cantumkan ulang endpoint ini secara berkala, dengan mengikuti token `next_page` melalui setiap halaman pada setiap iterasi. Activity Feed juga memunculkan peristiwa keanggotaan melalui tipe aktivitas `org_deletion_requested`, `org_deleted_via_bulk`, `org_parent_join_proposal_created`, dan `org_join_proposal_decided`; lihat [Mengkueri Activity Feed](/docs/id/manage-claude/compliance-activity-feed).
 
 ## Mencantumkan pengguna organisasi
 
@@ -76,7 +78,7 @@ Endpoint ini memerlukan `read:compliance_user_data`, bukan `read:compliance_org_
 
 Lihat [List organization users](/docs/id/api/compliance/organizations/users/list) di referensi API untuk nilai default dan rentang parameter kueri `limit` dan `page`.
 
-Hasil diurutkan berdasarkan tanggal bergabung ke organisasi secara menaik. Tidak seperti kursor `before_id`/`after_id` pada Activity Feed (lihat [Memaginasi hasil](/docs/id/manage-claude/compliance-activity-feed#paginate-results)), endpoint direktori melakukan paginasi dengan token `next_page`: ketika `has_more` bernilai `true`, teruskan `next_page` tanpa perubahan sebagai parameter kueri `page` pada permintaan berikutnya.
+Hasil diurutkan berdasarkan tanggal bergabung ke organisasi secara menaik. Tidak seperti kursor `before_id`/`after_id` pada Activity Feed (lihat [Mempaginasi hasil](/docs/id/manage-claude/compliance-activity-feed#paginate-results)), endpoint direktori melakukan paginasi dengan token `next_page`: ketika `has_more` bernilai `true`, kirimkan kembali `next_page` tanpa perubahan sebagai parameter kueri `page` pada permintaan berikutnya.
 
 <CodeGroup>
   ```bash cURL
@@ -105,15 +107,15 @@ Hasil diurutkan berdasarkan tanggal bergabung ke organisasi secara menaik. Tidak
 }
 ```
 
-ID pengguna yang dikembalikan di sini adalah pengidentifikasi `user_...` yang sama dengan yang diterima oleh filter `actor_ids[]` pada [Mengkueri Activity Feed](/docs/id/manage-claude/compliance-activity-feed) dan filter `user_ids[]` pada [Mengambil chat dan pesan](/docs/id/manage-claude/compliance-content-data#retrieve-chats-and-messages). Field `organization_role` membawa tingkat keanggotaan bawaan pengguna dalam organisasi yang dicantumkan (salah satu dari `admin`, `billing`, `claude_code_user`, `developer`, `managed`, `membership_admin`, `owner`, `primary_owner`, atau `user`), sebuah sumbu yang independen dari penugasan peran RBAC kustom apa pun yang dikembalikan oleh [Mencantumkan peran](#list-roles). Alur eDiscovery yang umum mencantumkan pengguna untuk satu atau beberapa organisasi, memfilternya terhadap catatan eksternal Anda sendiri, dan memasukkan ID yang dihasilkan ke dalam kueri chat dan project.
+ID pengguna yang dikembalikan di sini adalah pengidentifikasi `user_...` yang sama dengan yang diterima oleh filter `actor_ids[]` pada [Mengkueri Activity Feed](/docs/id/manage-claude/compliance-activity-feed) dan filter `user_ids[]` pada [Mengambil chat dan pesan](/docs/id/manage-claude/compliance-content-data#retrieve-chats-and-messages). Field `organization_role` membawa tingkat keanggotaan bawaan pengguna dalam organisasi yang dicantumkan (salah satu dari `admin`, `billing`, `claude_code_user`, `developer`, `managed`, `membership_admin`, `owner`, `primary_owner`, atau `user`), sebuah sumbu yang independen dari penugasan peran RBAC kustom apa pun yang dikembalikan oleh [Mencantumkan peran](#list-roles). Alur eDiscovery yang umum mencantumkan pengguna untuk satu atau beberapa organisasi, memfilternya terhadap catatan eksternal Anda sendiri, dan memasukkan ID yang dihasilkan ke dalam kueri chat dan proyek.
 
-Seorang pengguna hanya muncul di sini selama mereka adalah anggota aktif organisasi. Pengguna yang dihapus langsung dikeluarkan dari daftar. Aktivitas historis mereka tetap dapat dikueri melalui Activity Feed selama jendela retensi penuh, diindeks dengan ID `user_...` yang sama.
+Seorang pengguna hanya muncul di sini selama mereka adalah anggota aktif organisasi. Pengguna yang dihapus langsung dihilangkan dari daftar. Aktivitas historis mereka tetap dapat dikueri melalui Activity Feed selama jendela retensi penuh, diindeks dengan ID `user_...` yang sama.
 
 ## Mencantumkan peran
 
 Endpoint [List Compliance Roles](/docs/id/api/compliance/organizations/roles/list) mengembalikan daftar record peran yang dipaginasi yang didefinisikan pada satu organisasi, dan [Get Compliance Role](/docs/id/api/compliance/organizations/roles/retrieve) mengembalikan satu peran berdasarkan ID.
 
-Kedua endpoint peran memerlukan `read:compliance_org_data`. Endpoint daftar menerima parameter `limit` dan `page` yang sama seperti [Mencantumkan pengguna organisasi](#list-organization-users).
+Kedua endpoint peran memerlukan `read:compliance_org_data`. Endpoint list menerima parameter `limit` dan `page` yang sama seperti [Mencantumkan pengguna organisasi](#list-organization-users).
 
 <CodeGroup>
   ```bash cURL
@@ -147,7 +149,7 @@ Lihat skema respons [List Compliance Roles](/docs/id/api/compliance/organization
 
 Endpoint [List Compliance Groups](/docs/id/api/compliance/groups/list) mengembalikan daftar grup RBAC dan grup yang disediakan melalui SCIM yang dipaginasi, dan [Get Compliance Group](/docs/id/api/compliance/groups/retrieve) mengembalikan satu grup berdasarkan ID. Endpoint [List Compliance Group Members](/docs/id/api/compliance/groups/members/list) mengembalikan anggota dari satu grup.
 
-Endpoint daftar dan pengambilan grup memerlukan `read:compliance_org_data`. Endpoint anggota memerlukan `read:compliance_user_data`. Buat kunci dengan kedua scope tersebut untuk menelusuri grup dari awal hingga akhir. Kedua endpoint daftar menerima parameter `limit` dan `page` yang sama seperti [Mencantumkan pengguna organisasi](#list-organization-users).
+Endpoint daftar dan pengambilan grup memerlukan `read:compliance_org_data`. Endpoint anggota memerlukan `read:compliance_user_data`. Buat kunci dengan kedua scope tersebut untuk menelusuri grup secara menyeluruh. Kedua endpoint list menerima parameter `limit` dan `page` yang sama seperti [Mencantumkan pengguna organisasi](#list-organization-users).
 
 Lihat skema respons [List Compliance Groups](/docs/id/api/compliance/groups/list) untuk bentuk lengkap record grup. Array `roles` mencantumkan ID peran yang ditugaskan ke grup, yang cocok dengan ID dari [Mencantumkan peran](#list-roles). `source_type` adalah pembeda antara grup yang dibuat secara manual melalui claude.ai (`direct`) dan grup yang disinkronkan dari penyedia identitas eksternal melalui SCIM (`scim`).
 
@@ -222,7 +224,7 @@ curl --fail-with-body -sS \
   --header "x-api-key: $ANTHROPIC_COMPLIANCE_ACCESS_KEY"
 ```
 
-Responsnya adalah daftar baris pengaturan bertipe, dan baris mana yang muncul bervariasi menurut organisasi: pengaturan yang tidak dapat diubah oleh administrator organisasi, karena dikendalikan oleh kebijakan Anthropic atau tidak tersedia untuk organisasi tersebut, dihilangkan dari daftar. Perlakukan baris yang hilang sebagai "tidak dapat dikontrol oleh administrator organisasi ini", bukan sebagai "nonaktif". Contoh singkat berikut menunjukkan tiga dari baris yang dapat dimuat dalam respons:
+Responsnya adalah daftar baris pengaturan bertipe, dan baris mana yang muncul bervariasi menurut organisasi: pengaturan yang tidak dapat diubah oleh administrator organisasi, karena dikontrol oleh kebijakan Anthropic atau tidak tersedia untuk organisasi tersebut, dihilangkan dari daftar. Perlakukan baris yang hilang sebagai "tidak dapat dikontrol oleh administrator organisasi ini", bukan sebagai "nonaktif". Contoh singkat berikut menunjukkan tiga dari baris yang dapat dimuat dalam respons:
 
 ```json Response
 {
@@ -256,13 +258,13 @@ Responsnya adalah daftar baris pengaturan bertipe, dan baris mana yang muncul be
 
 Setiap baris membawa `name`, `type`, dan `value`; field `type` (`boolean`, `integer`, `string_list`, `provisioning_mode`, atau `data_retention`) memberi tahu Anda bentuk dari `value`. Daftar lengkap nama pengaturan, dan skema `value` untuk setiap tipe, ada di [Get effective organization settings](/docs/id/api/compliance/organizations/settings/retrieve) di referensi API.
 
-`organization_id` tingkat atas adalah UUID polos organisasi: nilai yang sama dengan `uuid` dalam daftar organisasi, bukan bentuk dengan prefiks `org_` yang dibawa `organization_id` pada record Activity Feed, chat, dan project (lihat tabel pengidentifikasi di [Mencantumkan organisasi](#list-organizations)).
+`organization_id` tingkat atas adalah UUID polos organisasi: nilai yang sama dengan `uuid` dalam daftar organisasi, bukan bentuk dengan prefiks `org_` yang dibawa `organization_id` pada record Activity Feed, chat, dan proyek (lihat tabel pengidentifikasi di [Mencantumkan organisasi](#list-organizations)).
 
-Baris mencerminkan keadaan yang diberlakukan, bukan konfigurasi yang terakhir disimpan: misalnya, `sso_provisioning_mode` melaporkan mode SCIM yang dikonfigurasi hanya selama sinkronisasi direktori diaktifkan, `ip_allowlist_enabled` bernilai `true` hanya selama daftar yang diizinkan aktif dan memiliki setidaknya satu rentang aktif, dan `code_execution_network_egress_enabled` bernilai `false` setiap kali eksekusi kode nonaktif.
+Baris mencerminkan keadaan yang diberlakukan, bukan konfigurasi yang terakhir disimpan: misalnya, `sso_provisioning_mode` melaporkan mode SCIM yang dikonfigurasi hanya selama sinkronisasi direktori diaktifkan, `ip_allowlist_enabled` bernilai `true` hanya selama daftar yang diizinkan aktif dan memiliki setidaknya satu rentang aktif, dan `code_execution_network_egress_enabled` bernilai `false` setiap kali eksekusi kode dinonaktifkan.
 
-Respons mencerminkan keadaan pada waktu pembacaan; tidak ada yang di-snapshot. Perubahan pada sebagian besar pengaturan ini muncul sebagai peristiwa di [Activity Feed](/docs/id/manage-claude/compliance-activity-feed); gunakan endpoint ini untuk keadaan terselesaikan saat ini dan feed untuk mengaudit siapa yang mengubah apa, dan kapan.
+Respons mencerminkan keadaan pada waktu pembacaan; tidak ada yang di-snapshot. Perubahan pada sebagian besar pengaturan ini muncul sebagai peristiwa di [Activity Feed](/docs/id/manage-claude/compliance-activity-feed); gunakan endpoint ini untuk keadaan terselesaikan saat ini dan gunakan feed untuk mengaudit siapa yang mengubah apa, dan kapan.
 
-## Langkah selanjutnya
+## Langkah berikutnya
 
 <CardGroup cols={2}>
   <Card title="Referensi API organisasi Compliance" href="/docs/id/api/compliance/organizations">

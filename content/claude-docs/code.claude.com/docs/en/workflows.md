@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/workflows
-fetched_at: 2026-06-27T03:14:28.973816Z
-sha256: 741f1989cf59716168884f0ae704e033ee2d330ab32633323fa9ea52d040fb9c
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: db6213677eedee08639bbee60d17764aa2515c2acdc7c89f686dbabfe05df5e8
 ---
 
 > ## Documentation Index
@@ -71,6 +71,8 @@ The quickest way to see a workflow in action is to run `/deep-research`, the [bu
 
   <Step title="Read the report">
     When the run finishes, the report lands in your session. It cites the sources each claim came from, with claims that didn't survive cross-checking already filtered out.
+
+    {/* min-version: 2.1.196 */}As of v2.1.196, when the verifier agents can't check a claim, such as after a rate limit or API error, the report lists that claim as unverified instead of counting it as refuted.
   </Step>
 </Steps>
 

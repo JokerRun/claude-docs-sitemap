@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/completions/create
-fetched_at: 2026-06-26T03:16:19.812719Z
-sha256: e73677142cf1b15fa44ed29184d5c7780ff5300bc52cb7d85e53b9ab1c949094
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 5547918a2bd3ea8319fc5d072805034d52373ea8bbc1e58d7167ab51f5ca0d69
 ---
 
 ## Create a Text Completion
@@ -13,9 +13,9 @@ sha256: e73677142cf1b15fa44ed29184d5c7780ff5300bc52cb7d85e53b9ab1c949094
 
 [Legacy] Create a Text Completion.
 
-The Text Completions API is a legacy API. We recommend using the [Messages API](https://docs.claude.com/en/api/messages) going forward.
+The Text Completions API is a legacy API. We recommend using the [Messages API](https://platform.claude.com/docs/en/api/messages) going forward.
 
-Future models and features will not be compatible with Text Completions. See our [migration guide](https://docs.claude.com/en/api/migrating-from-text-completions-to-messages) for guidance in migrating from Text Completions to Messages.
+Future models and features will not be compatible with Text Completions. See our [migration guide](https://platform.claude.com/docs/en/build-with-claude/working-with-messages) for guidance in migrating from Text Completions to Messages.
 
 ### Parameters
 
@@ -117,7 +117,7 @@ Future models and features will not be compatible with Text Completions. See our
       Assistant:"
       ```
 
-      See [prompt validation](https://docs.claude.com/en/api/prompt-validation) and our guide to [prompt design](https://docs.claude.com/en/docs/intro-to-prompting) for more details.
+      See [prompt validation](https://platform.claude.com/docs/en/build-with-claude/working-with-messages) and our guide to [prompt design](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview) for more details.
 
     - `metadata?: Metadata`
 
@@ -141,7 +141,7 @@ Future models and features will not be compatible with Text Completions. See our
 
       Body param: Whether to incrementally stream the response using server-sent events.
 
-      See [streaming](https://docs.claude.com/en/api/streaming) for details.
+      See [streaming](https://platform.claude.com/docs/en/build-with-claude/streaming) for details.
 
       - `false`
 
@@ -239,7 +239,7 @@ Future models and features will not be compatible with Text Completions. See our
 
       Body param: Whether to incrementally stream the response using server-sent events.
 
-      See [streaming](https://docs.claude.com/en/api/streaming) for details.
+      See [streaming](https://platform.claude.com/docs/en/build-with-claude/streaming) for details.
 
   - `CompletionCreateParamsStreaming extends CompletionCreateParamsBase`
 
@@ -247,7 +247,7 @@ Future models and features will not be compatible with Text Completions. See our
 
       Body param: Whether to incrementally stream the response using server-sent events.
 
-      See [streaming](https://docs.claude.com/en/api/streaming) for details.
+      See [streaming](https://platform.claude.com/docs/en/build-with-claude/streaming) for details.
 
       - `true`
 

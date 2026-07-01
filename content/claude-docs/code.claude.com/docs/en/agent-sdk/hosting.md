@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/hosting
-fetched_at: 2026-06-16T03:17:15.143812Z
-sha256: 9d57731e3cdf2407ffa05ab859c3ff6edd97f6d6650c4a35dc8f1a581c703e6d
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: db074eebefe2ba6b2e4a94ebf23602b53d3abf7a09c67c35b1a73869fea19d59
 ---
 
 > ## Documentation Index
@@ -188,7 +188,7 @@ Three things to know about how `SessionStore` behaves:
 
 * **Transcripts only**: `SessionStore` mirrors transcripts, not `CLAUDE.md` memory files or other working-directory artifacts. Mount a shared volume or sync those separately.
 * **Mirror, not replacement**: the subprocess writes to local disk first, and the store receives a copy of each batch. Local writes remain authoritative.
-* **`mirror_error` messages**: if the store rejects or times out, the SDK emits a `{ type: "system", subtype: "mirror_error" }` message and continues the query without retry. Alert on these if store durability matters.
+* **`mirror_error` messages**: a batch the store rejects is sent up to three times in total, with a short backoff before each retry; a timed-out call isn't retried. If the batch still fails, the SDK drops it, emits a `{ type: "system", subtype: "mirror_error" }` message, and continues the query. Alert on these if store durability matters.
 
 ### Observability
 

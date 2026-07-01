@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/messages/batches/cancel
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 326f04a376ca48b472ea7025f57f5442a338d0d2a103eb911dc06c6ae54fa1a7
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 67673713fc0e3ae15fe2b6347460d2e3bf6624c75b187af4a8bf44326d655808
 ---
 
 ## Cancel a Message Batch
@@ -15,7 +15,7 @@ Batches may be canceled any time before processing ends. Once cancellation is in
 
 The number of canceled requests is specified in `request_counts`. To determine which requests were canceled, check the individual results within the batch. Note that cancellation may not result in any canceled requests if they were non-interruptible.
 
-Learn more about the Message Batches API in our [user guide](https://docs.claude.com/en/docs/build-with-claude/batch-processing)
+Learn more about the Message Batches API in our [user guide](https://platform.claude.com/docs/en/build-with-claude/batch-processing)
 
 ### Parameters
 

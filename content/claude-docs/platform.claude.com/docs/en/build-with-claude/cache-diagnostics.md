@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 0e62eb7bc12e10a329c6e1c78f7ddb821c4d9adc2ffa77d8fea5f3d967340dfc
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 2fd09f0e54c6e4a4c5d0f3b1699dfcf45f4b030d7ca0bae2c666225782ba1c4a
 ---
 
 # Cache diagnostics
@@ -442,7 +442,7 @@ In streaming responses, `diagnostics` appears on the `message_start` event.
     --header "anthropic-version: 2023-06-01" \
     --header "anthropic-beta: cache-diagnosis-2026-04-07" \
     --header "content-type: application/json" \
-    --data @- <<EOF | sed -n 's/^data: //p' | jq -s '.[] | select(.type == "message_start") | .message.diagnostics'
+    --data @- <<EOF | jq -R 'select(startswith("data: ")) | ltrimstr("data: ") | fromjson | select(.type == "message_start") | .message.diagnostics'
   {
     "model": "claude-opus-4-8",
     "max_tokens": 1024,

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/messages/batches/list
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: a14e2d20c52a6d43a8a8797ce8d4fe6c1684ddcc58b9e1e3f952c862785cf734
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 4b4c9b927429aa079f9d0ad822dd51b29aaf2871f46135289b2fd65a6c43db2d
 ---
 
 ## List Message Batches
@@ -13,7 +13,7 @@ sha256: a14e2d20c52a6d43a8a8797ce8d4fe6c1684ddcc58b9e1e3f952c862785cf734
 
 List all Message Batches within a Workspace. Most recently created batches are returned first.
 
-Learn more about the Message Batches API in our [user guide](https://docs.claude.com/en/docs/build-with-claude/batch-processing)
+Learn more about the Message Batches API in our [user guide](https://platform.claude.com/docs/en/build-with-claude/batch-processing)
 
 ### Parameters
 

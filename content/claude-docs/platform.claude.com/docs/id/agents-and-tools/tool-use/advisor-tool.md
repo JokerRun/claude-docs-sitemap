@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: a6a2c8bc846a4edb6bea8c1e37850fc65094edd452d911d786c64611aa4fa420
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: af821211a14d2a53cb59f8b519a6cd71d513833c2688f48155f99bd690e5bf12
 ---
 
 # Alat advisor
@@ -11,9 +11,9 @@ Pasangkan model eksekutor yang lebih cepat dengan model advisor berkecerdasan le
 
 ---
 
-Alat advisor memungkinkan **model eksekutor** yang lebih cepat dan berbiaya lebih rendah untuk berkonsultasi dengan **model advisor** berkecerdasan lebih tinggi di tengah proses generasi untuk mendapatkan panduan strategis. Advisor membaca seluruh percakapan, menghasilkan rencana atau koreksi arah (biasanya 400 hingga 700 token teks, 1.400 hingga 1.800 token total termasuk thinking), dan eksekutor melanjutkan tugasnya.
+Alat advisor memungkinkan **model eksekutor** yang lebih cepat dan berbiaya lebih rendah untuk berkonsultasi dengan **model advisor** berkecerdasan lebih tinggi di tengah proses generasi untuk mendapatkan panduan strategis. Advisor membaca seluruh percakapan, menghasilkan rencana atau koreksi arah, dan eksekutor melanjutkan tugasnya.
 
-Pola ini cocok untuk beban kerja agentik jangka panjang (agen pengkodean, penggunaan komputer, pipeline riset multi-langkah) di mana sebagian besar giliran bersifat mekanis tetapi memiliki rencana yang sangat baik sangatlah krusial. Anda mendapatkan kualitas yang mendekati advisor-solo sementara sebagian besar generasi token terjadi pada tarif model eksekutor.
+Pola ini cocok untuk beban kerja agentik jangka panjang (agen pengkodean, penggunaan komputer, pipeline riset multi-langkah) di mana sebagian besar giliran bersifat mekanis tetapi memiliki rencana yang sangat baik sangatlah penting. Anda mendapatkan kualitas yang mendekati advisor-solo sementara sebagian besar generasi token terjadi pada tarif model eksekutor.
 
 <Note>
   Alat advisor masih dalam tahap beta. Sertakan header beta `advisor-tool-2026-03-01` dalam permintaan Anda.
@@ -25,7 +25,7 @@ Pola ini cocok untuk beban kerja agentik jangka panjang (agen pengkodean, penggu
 
 ## Kapan menggunakannya
 
-Benchmark awal menunjukkan peningkatan yang berarti untuk konfigurasi berikut:
+Advisor cocok untuk konfigurasi berikut:
 
 * **Anda saat ini menggunakan Sonnet pada tugas kompleks:** Tambahkan Opus sebagai advisor untuk peningkatan kualitas dengan total biaya yang serupa atau lebih rendah.
 * **Anda saat ini menggunakan Haiku dan menginginkan peningkatan kecerdasan:** Tambahkan Opus sebagai advisor. Perkirakan biaya lebih tinggi daripada Haiku saja, tetapi lebih rendah daripada mengganti eksekutor ke model yang lebih besar.
@@ -36,23 +36,24 @@ Advisor kurang cocok untuk tanya jawab satu giliran (tidak ada yang perlu direnc
 
 ## Kompatibilitas model
 
-Model eksekutor (field `model` tingkat atas) dan model advisor (field `model` di dalam definisi alat) harus membentuk pasangan yang valid. Advisor harus setidaknya sama mampunya dengan eksekutor.
+Model eksekutor (field `model` tingkat atas) dan model advisor (field `model` di dalam definisi alat) harus membentuk pasangan yang valid. Advisor harus Claude Sonnet 4.6 atau model yang lebih mumpuni, dan harus setidaknya semumpuni eksekutor. Model dengan kemampuan setara (misalnya, Claude Opus 4.7 dan Claude Opus 4.8) dapat saling menjadi advisor.
 
-| Model eksekutor                              | Model advisor                                                        |
-| -------------------------------------------- | -------------------------------------------------------------------- |
-| Claude Haiku 4.5 (claude-haiku-4-5-20251001) | Claude Opus 4.8 (claude-opus-4-8), Claude Opus 4.7 (claude-opus-4-7) |
-| Claude Sonnet 4.6 (claude-sonnet-4-6)        | Claude Opus 4.8 (claude-opus-4-8), Claude Opus 4.7 (claude-opus-4-7) |
-| Claude Opus 4.6 (claude-opus-4-6)            | Claude Opus 4.8 (claude-opus-4-8), Claude Opus 4.7 (claude-opus-4-7) |
-| Claude Opus 4.7 (claude-opus-4-7)            | Claude Opus 4.8 (claude-opus-4-8), Claude Opus 4.7 (claude-opus-4-7) |
-| Claude Opus 4.8 (claude-opus-4-8)            | Claude Opus 4.8 (claude-opus-4-8)                                    |
-| Claude Fable 5 (`claude-fable-5`)            | Claude Fable 5 (`claude-fable-5`)                                    |
-| Claude Mythos 5 (`claude-mythos-5`)          | Claude Mythos 5 (`claude-mythos-5`)                                  |
+| Model eksekutor                              | Model advisor                                                                                                                                                                                                 |
+| -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Claude Haiku 4.5 (claude-haiku-4-5-20251001) | Claude Fable 5 (claude-fable-5) Claude Mythos 5 (claude-mythos-5) Claude Opus 4.8 (claude-opus-4-8) Claude Opus 4.7 (claude-opus-4-7) Claude Opus 4.6 (claude-opus-4-6) Claude Sonnet 4.6 (claude-sonnet-4-6) |
+| Claude Sonnet 4.6 (claude-sonnet-4-6)        | Claude Fable 5 (claude-fable-5) Claude Mythos 5 (claude-mythos-5) Claude Opus 4.8 (claude-opus-4-8) Claude Opus 4.7 (claude-opus-4-7) Claude Opus 4.6 (claude-opus-4-6) Claude Sonnet 4.6 (claude-sonnet-4-6) |
+| Claude Sonnet 5 (claude-sonnet-5)            | Claude Fable 5 (claude-fable-5) Claude Mythos 5 (claude-mythos-5) Claude Opus 4.8 (claude-opus-4-8) Claude Opus 4.7 (claude-opus-4-7)                                                                         |
+| Claude Opus 4.6 (claude-opus-4-6)            | Claude Fable 5 (claude-fable-5) Claude Mythos 5 (claude-mythos-5) Claude Opus 4.8 (claude-opus-4-8) Claude Opus 4.7 (claude-opus-4-7) Claude Opus 4.6 (claude-opus-4-6)                                       |
+| Claude Opus 4.7 (claude-opus-4-7)            | Claude Fable 5 (claude-fable-5) Claude Mythos 5 (claude-mythos-5) Claude Opus 4.8 (claude-opus-4-8) Claude Opus 4.7 (claude-opus-4-7)                                                                         |
+| Claude Opus 4.8 (claude-opus-4-8)            | Claude Fable 5 (claude-fable-5) Claude Mythos 5 (claude-mythos-5) Claude Opus 4.8 (claude-opus-4-8) Claude Opus 4.7 (claude-opus-4-7)                                                                         |
+| Claude Fable 5 (claude-fable-5)              | Claude Fable 5 (claude-fable-5)                                                                                                                                                                               |
+| Claude Mythos 5 (claude-mythos-5)            | Claude Mythos 5 (claude-mythos-5)                                                                                                                                                                             |
 
 Jika Anda meminta pasangan yang tidak valid, API mengembalikan `400 invalid_request_error` yang menyebutkan kombinasi yang tidak didukung.
 
 ## Ketersediaan platform
 
-Alat advisor tersedia dalam versi beta di Claude API dan di [Claude Platform on AWS](/docs/id/build-with-claude/claude-platform-on-aws). Saat ini belum tersedia di AWS Bedrock, Vertex AI, atau Microsoft Foundry.
+Alat advisor tersedia dalam versi beta di Claude API dan di [Claude Platform on AWS](/docs/id/build-with-claude/claude-platform-on-aws). Saat ini tidak tersedia di Amazon Bedrock, Google Cloud, atau Microsoft Foundry.
 
 ## Mulai cepat
 
@@ -120,6 +121,8 @@ Alat advisor tersedia dalam versi beta di Claude API dan di [Claude Platform on 
   ```
 
   ```typescript TypeScript
+  const client = new Anthropic();
+
   const response = await client.beta.messages.create({
     model: "claude-sonnet-4-6",
     max_tokens: 4096,
@@ -251,16 +254,16 @@ Alat advisor tersedia dalam versi beta di Claude API dan di [Claude Platform on 
 
 ## Cara kerjanya
 
-Ketika Anda menambahkan alat advisor ke array `tools` Anda, model eksekutor memutuskan kapan memanggilnya, sama seperti alat lainnya. Ketika eksekutor memanggil advisor:
+Ketika Anda menambahkan alat advisor ke array `tools` Anda, model eksekutor menentukan kapan memanggilnya, seperti alat lainnya. Ketika eksekutor memanggil advisor:
 
-1. Eksekutor mengeluarkan blok `server_tool_use` dengan `name: "advisor"` dan `input` kosong. Eksekutor memberi sinyal waktu; server menyediakan konteks.
-2. Anthropic menjalankan proses inferensi terpisah pada model advisor di sisi server, meneruskan transkrip lengkap eksekutor. Advisor melihat prompt sistem, semua definisi alat, semua giliran sebelumnya, dan semua hasil alat sebelumnya.
+1. Eksekutor mengeluarkan blok [`server_tool_use`](/docs/id/agents-and-tools/tool-use/server-tools) dengan `name: "advisor"` dan `input` kosong. Eksekutor memberi sinyal waktu, dan server menyediakan konteks.
+2. Anthropic menjalankan proses inferensi terpisah pada model advisor di sisi server. Advisor berjalan di bawah prompt sistem yang disediakan Anthropic sendiri dan menerima transkrip lengkap eksekutor sebagai konteks yang dikutip dalam inputnya. Transkrip tersebut mencakup prompt sistem Anda, definisi alat, giliran sebelumnya dan hasil alat, serta teks yang telah dihasilkan eksekutor sejauh ini dalam giliran ini.
 3. Respons advisor dikembalikan ke eksekutor sebagai blok `advisor_tool_result`.
 4. Eksekutor melanjutkan generasi, dengan informasi dari saran tersebut.
 
-Semua ini terjadi di dalam satu permintaan `/v1/messages`. Tidak ada round trip tambahan di sisi Anda.
+Semua ini terjadi di dalam satu permintaan `/v1/messages`, tanpa perjalanan bolak-balik tambahan di sisi Anda. Pengecualiannya adalah giliran yang dijeda di tengah panggilan, yang Anda lanjutkan dengan permintaan tindak lanjut (lihat [Melanjutkan giliran yang dijeda](#resuming-a-paused-turn)).
 
-Advisor itu sendiri berjalan tanpa alat dan tanpa manajemen konteks. Blok thinking-nya dibuang sebelum hasil dikembalikan; hanya teks saran yang sampai ke eksekutor.
+Advisor itu sendiri berjalan tanpa alat dan tanpa manajemen konteks. Blok pemikirannya dibuang sebelum hasil dikembalikan. Hanya teks saran yang mencapai eksekutor.
 
 ## Parameter alat
 
@@ -268,12 +271,12 @@ Advisor itu sendiri berjalan tanpa alat dan tanpa manajemen konteks. Blok thinki
 | ------------ | -------------- | -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `type`       | string         | *wajib*                    | Harus `"advisor_20260301"`.                                                                                                                                                                                                                                                                                                                                                                                          |
 | `name`       | string         | *wajib*                    | Harus `"advisor"`.                                                                                                                                                                                                                                                                                                                                                                                                   |
-| `model`      | string         | *wajib*                    | ID model advisor, seperti `"claude-opus-4-8"`. Ditagih dengan tarif model ini untuk sub-inferensi.                                                                                                                                                                                                                                                                                                                   |
-| `max_uses`   | integer        | tak terbatas               | Jumlah maksimum panggilan advisor yang diizinkan dalam satu permintaan. Setelah eksekutor mencapai batas ini, panggilan advisor selanjutnya mengembalikan `advisor_tool_result_error` dengan `error_code: "max_uses_exceeded"` dan eksekutor melanjutkan tanpa saran lebih lanjut. Ini adalah batas per-permintaan, bukan batas per-percakapan; lihat [Kontrol biaya](#cost-control) untuk batas tingkat percakapan. |
-| `max_tokens` | integer        | batas output model advisor | Membatasi total output advisor (thinking plus teks) per panggilan. Minimum 1024. Lihat [Membatasi output advisor](#capping-advisor-output).                                                                                                                                                                                                                                                                          |
-| `caching`    | object \| null | `null` (nonaktif)          | Mengaktifkan caching prompt untuk transkrip advisor sendiri di seluruh panggilan dalam satu percakapan. Lihat [Caching prompt advisor](#advisor-prompt-caching).                                                                                                                                                                                                                                                     |
+| `model`      | string         | *wajib*                    | ID model advisor, seperti claude-opus-4-8. Ditagih dengan tarif model ini untuk sub-inferensi.                                                                                                                                                                                                                                                                                                                       |
+| `max_uses`   | integer        | tidak terbatas             | Jumlah maksimum panggilan advisor yang diizinkan dalam satu permintaan. Setelah eksekutor mencapai batas ini, panggilan advisor selanjutnya mengembalikan `advisor_tool_result_error` dengan `error_code: "max_uses_exceeded"` dan eksekutor melanjutkan tanpa saran lebih lanjut. Ini adalah batas per-permintaan, bukan batas per-percakapan. Lihat [Kontrol biaya](#cost-control) untuk batas tingkat percakapan. |
+| `max_tokens` | integer        | batas output model advisor | Membatasi total output advisor (pemikiran plus teks) per panggilan. Minimum 1024. Lihat [Membatasi output advisor](#capping-advisor-output).                                                                                                                                                                                                                                                                         |
+| `caching`    | object \| null | `null` (nonaktif)          | Mengaktifkan [caching prompt](/docs/id/build-with-claude/prompt-caching) untuk transkrip advisor sendiri di seluruh panggilan dalam satu percakapan. Lihat [Caching prompt advisor](#advisor-prompt-caching).                                                                                                                                                                                                        |
 
-Objek `caching` memiliki bentuk `{"type": "ephemeral", "ttl": "5m" | "1h"}`. Tidak seperti `cache_control` pada blok konten, ini bukan penanda breakpoint; ini adalah sakelar aktif/nonaktif. Server yang memutuskan di mana batas cache ditempatkan.
+Objek `caching` memiliki bentuk `{"type": "ephemeral", "ttl": "5m" | "1h"}`. Tidak seperti `cache_control` pada blok konten, ini bukan penanda breakpoint. Ini adalah sakelar aktif/nonaktif. Server menentukan di mana batas cache ditempatkan.
 
 Alat advisor juga menerima properti generik yang tersedia pada definisi alat apa pun: `cache_control`, `allowed_callers`, `defer_loading`, dan `strict` (dibahas dalam [structured outputs](/docs/id/build-with-claude/structured-outputs)). Lihat [Referensi alat](/docs/id/agents-and-tools/tool-use/tool-reference#tool-definition-properties) untuk semantiknya.
 
@@ -313,7 +316,7 @@ Ketika advisor dipanggil, blok `server_tool_use` diikuti oleh blok `advisor_tool
 }
 ```
 
-`server_tool_use.input` selalu kosong. Server membangun tampilan advisor dari transkrip lengkap secara otomatis; tidak ada yang dimasukkan eksekutor ke dalam `input` yang sampai ke advisor.
+`server_tool_use.input` selalu kosong. Server membangun tampilan advisor dari transkrip lengkap secara otomatis. Tidak ada yang dimasukkan eksekutor ke dalam `input` yang mencapai advisor.
 
 ### Varian hasil
 
@@ -324,11 +327,13 @@ Field `advisor_tool_result.content` adalah discriminated union. Untuk panggilan 
 | `advisor_result`          | `text`, `stop_reason`              | Model advisor mengembalikan plaintext (misalnya, Claude Opus 4.8). |
 | `advisor_redacted_result` | `encrypted_content`, `stop_reason` | Model advisor mengembalikan output terenkripsi.                    |
 
-Field `stop_reason` ada pada kedua varian hasil setiap kali [`max_tokens`](#capping-advisor-output) diatur pada definisi alat, membawa stop reason dari sub-panggilan advisor (biasanya `"end_turn"`; `"max_tokens"` ketika batas tercapai), sesuai dengan [`stop_reason`](/docs/id/build-with-claude/handling-stop-reasons) tingkat atas Messages API. Field ini tidak ada ketika `max_tokens` tidak diatur.
+Advisor Claude Fable 5 dan Claude Mythos 5 mengembalikan `advisor_redacted_result`. Model advisor lainnya dalam [tabel kompatibilitas](#model-compatibility) mengembalikan `advisor_result`.
 
-Dengan `advisor_result`, field `text` berisi saran yang dapat dibaca manusia. Dengan `advisor_redacted_result`, field `encrypted_content` berisi blob buram yang tidak dapat Anda baca; pada giliran berikutnya, server mendekripsinya dan merender plaintext ke dalam prompt eksekutor.
+Kedua varian hasil membawa field `stop_reason` ketika Anda mengatur [`max_tokens`](#capping-advisor-output) pada definisi alat, dan menghilangkannya ketika Anda tidak mengaturnya. Field ini menyimpan stop reason dari sub-panggilan advisor, biasanya `"end_turn"`, atau `"max_tokens"` ketika batas tercapai. Nilainya cocok dengan [`stop_reason`](/docs/id/build-with-claude/handling-stop-reasons) tingkat atas Messages API.
 
-Dalam kedua kasus, kirim kembali konten secara verbatim pada giliran berikutnya. Jika Anda mengganti model advisor di tengah percakapan, lakukan percabangan pada `content.type` untuk menangani kedua bentuk tersebut.
+Dengan `advisor_result`, field `text` berisi saran yang dapat dibaca manusia. Dengan `advisor_redacted_result`, field `encrypted_content` berisi blob buram yang tidak dapat Anda baca. Pada giliran berikutnya, server mendekripsinya dan merender plaintext ke dalam prompt eksekutor.
+
+Dalam kedua kasus, kirim kembali konten secara verbatim pada giliran berikutnya. Jika Anda mengganti model advisor di tengah percakapan, lakukan percabangan pada `content.type` untuk menangani kedua bentuk.
 
 ### Hasil error
 
@@ -353,129 +358,578 @@ Eksekutor melihat error tersebut dan melanjutkan tanpa saran lebih lanjut. Permi
 | `too_many_requests`       | Sub-inferensi advisor terkena batas laju.                                                                                                              |
 | `overloaded`              | Sub-inferensi advisor mencapai batas kapasitas.                                                                                                        |
 | `prompt_too_long`         | Transkrip melebihi jendela konteks model advisor.                                                                                                      |
-| `execution_time_exceeded` | Sub-inferensi advisor mengalami timeout.                                                                                                               |
+| `execution_time_exceeded` | Sub-inferensi advisor kehabisan waktu.                                                                                                                 |
 | `unavailable`             | Kegagalan advisor lainnya.                                                                                                                             |
 
-Batas laju advisor diambil dari bucket per-model yang sama dengan panggilan langsung ke model advisor. Batas laju pada advisor muncul sebagai `too_many_requests` di dalam hasil alat; batas laju pada eksekutor menggagalkan seluruh permintaan dengan HTTP 429.
+Batas laju advisor diambil dari bucket per-model yang sama dengan panggilan langsung ke model advisor. Batas laju pada advisor muncul sebagai `too_many_requests` di dalam hasil alat. Batas laju pada eksekutor menggagalkan seluruh permintaan dengan HTTP 429.
 
 ## Percakapan multi-giliran
 
 Kirim kembali konten asisten lengkap, termasuk blok `advisor_tool_result`, ke API pada giliran berikutnya:
 
-```python
-import anthropic
+<CodeGroup>
+  ```python Python
+  client = anthropic.Anthropic()
 
-client = anthropic.Anthropic()
+  tools = [
+      {
+          "type": "advisor_20260301",
+          "name": "advisor",
+          "model": "claude-opus-4-8",
+      }
+  ]
 
-tools = [
+  messages = [
+      {
+          "role": "user",
+          "content": "Build a concurrent worker pool in Go with graceful shutdown.",
+      }
+  ]
+
+  response = client.beta.messages.create(
+      model="claude-sonnet-4-6",
+      max_tokens=4096,
+      betas=["advisor-tool-2026-03-01"],
+      tools=tools,
+      messages=messages,
+  )
+
+  # Tambahkan seluruh konten respons, termasuk blok advisor_tool_result apa pun
+  messages.append({"role": "assistant", "content": response.content})
+
+  # Lanjutkan percakapan
+  messages.append({"role": "user", "content": "Now add a max-in-flight limit of 10."})
+
+  response = client.beta.messages.create(
+      model="claude-sonnet-4-6",
+      max_tokens=4096,
+      betas=["advisor-tool-2026-03-01"],
+      tools=tools,
+      messages=messages,
+  )
+  ```
+
+  ```typescript TypeScript
+  const client = new Anthropic();
+
+  const tools: Anthropic.Beta.Messages.BetaToolUnion[] = [
     {
-        "type": "advisor_20260301",
-        "name": "advisor",
-        "model": "claude-opus-4-8",
+      type: "advisor_20260301",
+      name: "advisor",
+      model: "claude-opus-4-8"
     }
-]
+  ];
 
-messages = [
+  const messages: Anthropic.Beta.Messages.BetaMessageParam[] = [
     {
-        "role": "user",
-        "content": "Build a concurrent worker pool in Go with graceful shutdown.",
+      role: "user",
+      content: "Build a concurrent worker pool in Go with graceful shutdown."
     }
-]
+  ];
 
-response = client.beta.messages.create(
-    model="claude-sonnet-4-6",
-    max_tokens=4096,
-    betas=["advisor-tool-2026-03-01"],
-    tools=tools,
-    messages=messages,
-)
+  const response = await client.beta.messages.create({
+    model: "claude-sonnet-4-6",
+    max_tokens: 4096,
+    betas: ["advisor-tool-2026-03-01"],
+    tools,
+    messages
+  });
 
-# Tambahkan seluruh konten respons, termasuk blok advisor_tool_result apa pun
-messages.append({"role": "assistant", "content": response.content})
+  // Tambahkan seluruh konten respons, termasuk blok advisor_tool_result apa pun
+  messages.push({ role: "assistant", content: response.content });
 
-# Lanjutkan percakapan
-messages.append({"role": "user", "content": "Now add a max-in-flight limit of 10."})
+  // Lanjutkan percakapan
+  messages.push({ role: "user", content: "Now add a max-in-flight limit of 10." });
 
-response = client.beta.messages.create(
-    model="claude-sonnet-4-6",
-    max_tokens=4096,
-    betas=["advisor-tool-2026-03-01"],
-    tools=tools,
-    messages=messages,
-)
-```
+  const followUp = await client.beta.messages.create({
+    model: "claude-sonnet-4-6",
+    max_tokens: 4096,
+    betas: ["advisor-tool-2026-03-01"],
+    tools,
+    messages
+  });
+  ```
 
-Jika Anda menghilangkan alat advisor dari `tools` pada giliran lanjutan sementara riwayat pesan masih berisi blok `advisor_tool_result`, API mengembalikan `400 invalid_request_error`.
+  ```csharp C#
+  using Anthropic.Models.Beta.Messages;
+  using Messages = Anthropic.Models.Messages;
+
+  var client = new AnthropicClient();
+
+  var tools = new BetaToolUnion[]
+  {
+      new BetaAdvisorTool20260301 { Model = Messages::Model.ClaudeOpus4_8 }
+  };
+
+  var messages = new List<BetaMessageParam>
+  {
+      new() { Role = Role.User, Content = "Build a concurrent worker pool in Go with graceful shutdown." }
+  };
+
+  var response = await client.Beta.Messages.Create(new MessageCreateParams
+  {
+      Model = Messages::Model.ClaudeSonnet4_6,
+      MaxTokens = 4096,
+      Tools = tools,
+      Messages = messages,
+      Betas = ["advisor-tool-2026-03-01"]
+  });
+
+  // Tambahkan seluruh konten respons, termasuk blok advisor_tool_result apa pun
+  messages.Add(new BetaMessageParam
+  {
+      Role = Role.Assistant,
+      Content = response.Content.Select(block => new BetaContentBlockParam(block.Json)).ToList()
+  });
+
+  // Lanjutkan percakapan
+  messages.Add(new BetaMessageParam { Role = Role.User, Content = "Now add a max-in-flight limit of 10." });
+
+  var followUp = await client.Beta.Messages.Create(new MessageCreateParams
+  {
+      Model = Messages::Model.ClaudeSonnet4_6,
+      MaxTokens = 4096,
+      Tools = tools,
+      Messages = messages,
+      Betas = ["advisor-tool-2026-03-01"]
+  });
+  ```
+
+  ```php PHP
+  $client = new Client();
+
+  $tools = [
+      [
+          'type' => 'advisor_20260301',
+          'name' => 'advisor',
+          'model' => 'claude-opus-4-8',
+      ],
+  ];
+
+  $messages = [
+      [
+          'role' => 'user',
+          'content' => 'Build a concurrent worker pool in Go with graceful shutdown.',
+      ],
+  ];
+
+  $response = $client->beta->messages->create(
+      maxTokens: 4096,
+      messages: $messages,
+      model: 'claude-sonnet-4-6',
+      tools: $tools,
+      betas: ['advisor-tool-2026-03-01'],
+  );
+
+  // Tambahkan seluruh konten respons, termasuk blok advisor_tool_result apa pun
+  $messages[] = ['role' => 'assistant', 'content' => $response->content];
+
+  // Lanjutkan percakapan
+  $messages[] = ['role' => 'user', 'content' => 'Now add a max-in-flight limit of 10.'];
+
+  $response = $client->beta->messages->create(
+      maxTokens: 4096,
+      messages: $messages,
+      model: 'claude-sonnet-4-6',
+      tools: $tools,
+      betas: ['advisor-tool-2026-03-01'],
+  );
+  ```
+
+  ```ruby Ruby
+  client = Anthropic::Client.new
+
+  tools = [
+    {
+      type: "advisor_20260301",
+      name: "advisor",
+      model: "claude-opus-4-8"
+    }
+  ]
+
+  messages = [
+    {
+      role: "user",
+      content: "Build a concurrent worker pool in Go with graceful shutdown."
+    }
+  ]
+
+  response = client.beta.messages.create(
+    model: "claude-sonnet-4-6",
+    max_tokens: 4096,
+    tools: tools,
+    messages: messages,
+    betas: ["advisor-tool-2026-03-01"]
+  )
+
+  # Tambahkan seluruh konten respons, termasuk blok advisor_tool_result apa pun
+  messages << { role: "assistant", content: response.content }
+
+  # Lanjutkan percakapan
+  messages << { role: "user", content: "Now add a max-in-flight limit of 10." }
+
+  response = client.beta.messages.create(
+    model: "claude-sonnet-4-6",
+    max_tokens: 4096,
+    tools: tools,
+    messages: messages,
+    betas: ["advisor-tool-2026-03-01"]
+  )
+  ```
+</CodeGroup>
+
+Jika Anda menghilangkan alat advisor dari `tools` pada giliran tindak lanjut sementara riwayat pesan masih berisi blok `advisor_tool_result`, API mengembalikan `400 invalid_request_error`.
 
 <Note>
-  Alat advisor tidak memiliki batas tingkat percakapan bawaan. Untuk membatasi panggilan advisor di seluruh percakapan, hitung di sisi klien. Ketika Anda mencapai batas atas Anda, hapus alat advisor dari array `tools` Anda **dan** hapus semua blok `advisor_tool_result` dari riwayat pesan Anda untuk menghindari `400 invalid_request_error`.
+  Alat advisor tidak memiliki batas tingkat percakapan bawaan. Untuk membatasi panggilan advisor di seluruh percakapan, hitung di sisi klien. Ketika Anda mencapai batas maksimum Anda, hapus alat advisor dari array `tools` Anda **dan** hapus semua blok `advisor_tool_result` dari riwayat pesan Anda untuk menghindari `400 invalid_request_error`.
 </Note>
+
+### Melanjutkan giliran yang dijeda
+
+Respons dapat berakhir dengan `stop_reason: "pause_turn"` sementara panggilan advisor masih tertunda. Ketika itu terjadi, respons berisi blok `server_tool_use` advisor tanpa `advisor_tool_result` untuknya. Untuk melanjutkan, tambahkan pesan asisten tersebut ke `messages` dengan kontennya tidak berubah, pertahankan blok `server_tool_use`, dan kirim permintaan lagi dengan alat advisor dan header beta yang sama. Anda tidak perlu menambahkan pesan pengguna atau blok `tool_result`. API menjalankan panggilan advisor yang tertunda dan melanjutkan giliran eksekutor dalam respons baru. Giliran yang dilanjutkan dapat dijeda lagi. Jika itu terjadi, ulangi langkah yang sama. Menghilangkan alat advisor dari permintaan lanjutan mengembalikan `400 invalid_request_error`. Jika sebaliknya eksekutor memanggil salah satu alat Anda dalam giliran yang sama, respons berakhir dengan `stop_reason: "tool_use"` sementara panggilan advisor masih tertunda. Kirim blok `tool_result` seperti biasa, dan panggilan advisor yang tertunda berjalan di awal permintaan berikutnya tersebut. Lihat [Mencampur alat server dan alat klien dalam satu giliran](/docs/id/agents-and-tools/tool-use/server-tools#mixing-server-tools-and-client-tools-in-one-turn).
 
 ### Dorongan di tengah percakapan untuk eksekutor yang jarang memanggil
 
-Jika eksekutor Haiku belum memanggil advisor pada giliran asisten pertamanya, tambahkan pengingat singkat sebagai pesan pengguna tambahan sebelum giliran asisten kedua. Dalam evaluasi perilaku internal Anthropic, ini meningkatkan tingkat kelulusan tugas sekitar 7 poin persentase pada eksekutor Haiku. Pada eksekutor Sonnet, dorongan plain-text tidak memiliki efek terukur dalam pengujian Anthropic; pertimbangan waktu panggilan di bawah ini sangat relevan untuk Sonnet. Jangan terapkan dorongan ini pada eksekutor Opus; pada Opus hal ini sedikit menurunkan tingkat kelulusan.
+Jika eksekutor Haiku belum memanggil advisor pada giliran asisten pertamanya, tambahkan pengingat singkat sebagai pesan pengguna tambahan sebelum giliran asisten kedua. Dalam evaluasi perilaku internal Anthropic, ini meningkatkan tingkat kelulusan tugas sekitar 7 poin persentase pada eksekutor Haiku. Pada eksekutor Sonnet, dorongan plain-text tidak memiliki efek terukur dalam pengujian Anthropic. Pertimbangan waktu panggilan yang mengikuti sangat relevan untuk Sonnet. Jangan terapkan dorongan pada eksekutor Opus: Pada Opus, ini sedikit menurunkan tingkat kelulusan.
 
 Dengan `NUDGE_TURN` default 2, pengingat biasanya tiba setelah model berorientasi pada tugas tetapi sebelum berkomitmen pada suatu pendekatan.
 
-```python Python
-import anthropic
+<CodeGroup>
+  ```python Python
+  client = anthropic.Anthropic()
 
-client = anthropic.Anthropic()
+  NUDGE_TURN = 2  # inject before this assistant turn if no advisor call yet
+  NUDGE_TEXT = (
+      "You have not consulted the advisor yet. If the task has a non-obvious "
+      "design decision or a failure mode you haven't ruled out, call advisor "
+      "now before committing to an approach."
+  )
+  MAX_TURNS = 10  # agent loop cap
 
-NUDGE_TURN = 2  # inject before this assistant turn if no advisor call yet
-NUDGE_TEXT = (
-    "You have not consulted the advisor yet. If the task has a non-obvious "
-    "design decision or a failure mode you haven't ruled out, call advisor "
+
+  def run_your_tools(content):
+      # Ganti dengan dispatch alat Anda. Mengembalikan satu blok tool_result per blok tool_use.
+      return [
+          {
+              "type": "tool_result",
+              "tool_use_id": block.id,
+              "content": "Replace with your tool output.",
+          }
+          for block in content
+          if block.type == "tool_use"
+      ]
+
+
+  tools = [
+      {"type": "advisor_20260301", "name": "advisor", "model": "claude-opus-4-8"},
+      # ... alat Anda yang lain
+  ]
+  task = "Build a concurrent worker pool in Go with graceful shutdown."
+  messages = [{"role": "user", "content": task}]
+  advisor_called = False
+
+  for turn in range(1, MAX_TURNS + 1):
+      response = client.beta.messages.create(
+          model="claude-haiku-4-5",
+          max_tokens=4096,
+          betas=["advisor-tool-2026-03-01"],
+          tools=tools,
+          messages=messages,
+      )
+      messages.append({"role": "assistant", "content": response.content})
+      advisor_called = advisor_called or any(
+          b.type == "server_tool_use" and b.name == "advisor" for b in response.content
+      )
+      if response.stop_reason == "end_turn":
+          break
+      if response.stop_reason == "pause_turn":
+          continue  # server tool pending; re-send to let the API complete it
+
+      results = run_your_tools(response.content)  # list of tool_result blocks
+      if results:
+          messages.append({"role": "user", "content": results})
+      # Lewati ini jika prompt sistem Anda sudah memberi tahu model untuk memanggil seperlunya.
+      if turn == NUDGE_TURN - 1 and not advisor_called:
+          messages.append({"role": "user", "content": NUDGE_TEXT})
+  ```
+
+  ```typescript TypeScript
+  const client = new Anthropic();
+
+  const NUDGE_TURN = 2; // inject before this assistant turn if no advisor call yet
+  const NUDGE_TEXT =
+    "You have not consulted the advisor yet. If the task has a non-obvious " +
+    "design decision or a failure mode you haven't ruled out, call advisor " +
+    "now before committing to an approach.";
+  const MAX_TURNS = 10; // agent loop cap
+
+  function runYourTools(
+    content: Anthropic.Beta.Messages.BetaContentBlock[]
+  ): Anthropic.Beta.Messages.BetaToolResultBlockParam[] {
+    // Ganti dengan dispatch alat Anda. Mengembalikan satu blok tool_result per blok tool_use.
+    return content
+      .filter((block) => block.type === "tool_use")
+      .map((block) => ({
+        type: "tool_result" as const,
+        tool_use_id: block.id,
+        content: "Replace with your tool output."
+      }));
+  }
+
+  const tools: Anthropic.Beta.Messages.BetaToolUnion[] = [
+    { type: "advisor_20260301", name: "advisor", model: "claude-opus-4-8" }
+    // ... alat Anda yang lain
+  ];
+  const task = "Build a concurrent worker pool in Go with graceful shutdown.";
+  const messages: Anthropic.Beta.Messages.BetaMessageParam[] = [{ role: "user", content: task }];
+  let advisorCalled = false;
+
+  for (let turn = 1; turn <= MAX_TURNS; turn++) {
+    const response = await client.beta.messages.create({
+      model: "claude-haiku-4-5",
+      max_tokens: 4096,
+      betas: ["advisor-tool-2026-03-01"],
+      tools,
+      messages
+    });
+    messages.push({ role: "assistant", content: response.content });
+    advisorCalled =
+      advisorCalled ||
+      response.content.some(
+        (block) => block.type === "server_tool_use" && block.name === "advisor"
+      );
+    if (response.stop_reason === "end_turn") {
+      break;
+    }
+    if (response.stop_reason === "pause_turn") {
+      continue; // server tool pending; re-send to let the API complete it
+    }
+
+    const results = runYourTools(response.content); // list of tool_result blocks
+    if (results.length > 0) {
+      messages.push({ role: "user", content: results });
+    }
+    // Lewati ini jika prompt sistem Anda sudah memberi tahu model untuk memanggil seperlunya.
+    if (turn === NUDGE_TURN - 1 && !advisorCalled) {
+      messages.push({ role: "user", content: NUDGE_TEXT });
+    }
+  }
+  ```
+
+  ```csharp C#
+  using Anthropic.Models.Beta.Messages;
+  using Messages = Anthropic.Models.Messages;
+
+  var client = new AnthropicClient();
+
+  const int NudgeTurn = 2; // inject before this assistant turn if no advisor call yet
+  const string NudgeText =
+      "You have not consulted the advisor yet. If the task has a non-obvious "
+      + "design decision or a failure mode you haven't ruled out, call advisor "
+      + "now before committing to an approach.";
+  const int MaxTurns = 10; // agent loop cap
+
+  // Ganti dengan dispatch alat Anda. Mengembalikan satu blok tool_result per blok tool_use.
+  List<BetaContentBlockParam> RunYourTools(IReadOnlyList<BetaContentBlock> content)
+  {
+      List<BetaContentBlockParam> results = [];
+      foreach (var block in content)
+      {
+          if (block.TryPickToolUse(out var toolUse))
+          {
+              results.Add(new BetaToolResultBlockParam
+              {
+                  ToolUseID = toolUse.ID,
+                  Content = "Replace with your tool output."
+              });
+          }
+      }
+      return results;
+  }
+
+  var tools = new BetaToolUnion[]
+  {
+      new BetaAdvisorTool20260301 { Model = Messages::Model.ClaudeOpus4_8 }
+      // ... alat Anda yang lain
+  };
+  var task = "Build a concurrent worker pool in Go with graceful shutdown.";
+  var messages = new List<BetaMessageParam> { new() { Role = Role.User, Content = task } };
+  var advisorCalled = false;
+
+  for (var turn = 1; turn <= MaxTurns; turn++)
+  {
+      var response = await client.Beta.Messages.Create(new MessageCreateParams
+      {
+          Model = Messages::Model.ClaudeHaiku4_5,
+          MaxTokens = 4096,
+          Tools = tools,
+          Messages = messages,
+          Betas = ["advisor-tool-2026-03-01"]
+      });
+      messages.Add(new BetaMessageParam
+      {
+          Role = Role.Assistant,
+          Content = response.Content.Select(block => new BetaContentBlockParam(block.Json)).ToList()
+      });
+      advisorCalled =
+          advisorCalled
+          || response.Content.Any(block =>
+              block.TryPickServerToolUse(out var serverToolUse)
+              && serverToolUse.Name.Value() == Name.Advisor
+          );
+      if (response.StopReason == BetaStopReason.EndTurn)
+      {
+          break;
+      }
+      if (response.StopReason == BetaStopReason.PauseTurn)
+      {
+          continue; // server tool pending; re-send to let the API complete it
+      }
+
+      var results = RunYourTools(response.Content); // list of tool_result blocks
+      if (results.Count > 0)
+      {
+          messages.Add(new BetaMessageParam { Role = Role.User, Content = results });
+      }
+      // Lewati ini jika prompt sistem Anda sudah memberi tahu model untuk memanggil secara hemat.
+      if (turn == NudgeTurn - 1 && !advisorCalled)
+      {
+          messages.Add(new BetaMessageParam { Role = Role.User, Content = NudgeText });
+      }
+  }
+  ```
+
+  ```php PHP
+  $client = new Client();
+
+  const NUDGE_TURN = 2; // inject before this assistant turn if no advisor call yet
+  const NUDGE_TEXT = "You have not consulted the advisor yet. If the task has a non-obvious "
+      . "design decision or a failure mode you haven't ruled out, call advisor "
+      . "now before committing to an approach.";
+  const MAX_TURNS = 10; // agent loop cap
+
+  // Ganti dengan dispatch alat Anda. Mengembalikan satu blok tool_result per blok tool_use.
+  function runYourTools(array $content): array
+  {
+      $results = [];
+      foreach ($content as $block) {
+          if ($block->type === 'tool_use') {
+              $results[] = [
+                  'type' => 'tool_result',
+                  'tool_use_id' => $block->id,
+                  'content' => 'Replace with your tool output.',
+              ];
+          }
+      }
+      return $results;
+  }
+
+  $tools = [
+      ['type' => 'advisor_20260301', 'name' => 'advisor', 'model' => 'claude-opus-4-8'],
+      // ... alat Anda yang lain
+  ];
+  $task = 'Build a concurrent worker pool in Go with graceful shutdown.';
+  $messages = [['role' => 'user', 'content' => $task]];
+  $advisorCalled = false;
+
+  for ($turn = 1; $turn <= MAX_TURNS; $turn++) {
+      $response = $client->beta->messages->create(
+          maxTokens: 4096,
+          messages: $messages,
+          model: 'claude-haiku-4-5',
+          tools: $tools,
+          betas: ['advisor-tool-2026-03-01'],
+      );
+      $messages[] = ['role' => 'assistant', 'content' => $response->content];
+      foreach ($response->content as $block) {
+          if ($block->type === 'server_tool_use' && $block->name === 'advisor') {
+              $advisorCalled = true;
+          }
+      }
+      if ($response->stopReason === 'end_turn') {
+          break;
+      }
+      if ($response->stopReason === 'pause_turn') {
+          continue; // server tool pending; re-send to let the API complete it
+      }
+
+      $results = runYourTools($response->content); // list of tool_result blocks
+      if ($results !== []) {
+          $messages[] = ['role' => 'user', 'content' => $results];
+      }
+      // Lewati ini jika prompt sistem Anda sudah memberi tahu model untuk memanggil secara hemat.
+      if ($turn === NUDGE_TURN - 1 && !$advisorCalled) {
+          $messages[] = ['role' => 'user', 'content' => NUDGE_TEXT];
+      }
+  }
+  ```
+
+  ```ruby Ruby
+  client = Anthropic::Client.new
+
+  NUDGE_TURN = 2 # inject before this assistant turn if no advisor call yet
+  NUDGE_TEXT =
+    "You have not consulted the advisor yet. If the task has a non-obvious " \
+    "design decision or a failure mode you haven't ruled out, call advisor " \
     "now before committing to an approach."
-)
+  MAX_TURNS = 10 # agent loop cap
 
-tools = [
-    {"type": "advisor_20260301", "name": "advisor", "model": "claude-opus-4-8"},
+  # Ganti dengan dispatch alat Anda. Mengembalikan satu blok tool_result per blok tool_use.
+  def run_your_tools(content)
+    content.filter_map do |block|
+      next unless block.type == :tool_use
+      { type: "tool_result", tool_use_id: block.id, content: "Replace with your tool output." }
+    end
+  end
+
+  tools = [
+    { type: "advisor_20260301", name: "advisor", model: "claude-opus-4-8" }
     # ... alat Anda yang lain
-]
-# task: prompt pengguna awal Anda; MAX_TURNS: batas loop agen Anda
-messages = [{"role": "user", "content": task}]
-advisor_called = False
+  ]
+  task = "Build a concurrent worker pool in Go with graceful shutdown."
+  messages = [{ role: "user", content: task }]
+  advisor_called = false
 
-for turn in range(1, MAX_TURNS + 1):
+  (1..MAX_TURNS).each do |turn|
     response = client.beta.messages.create(
-        model="claude-haiku-4-5",
-        max_tokens=4096,
-        betas=["advisor-tool-2026-03-01"],
-        tools=tools,
-        messages=messages,
+      model: "claude-haiku-4-5",
+      max_tokens: 4096,
+      tools: tools,
+      messages: messages,
+      betas: ["advisor-tool-2026-03-01"]
     )
-    messages.append({"role": "assistant", "content": response.content})
-    advisor_called = advisor_called or any(
-        b.type == "server_tool_use" and b.name == "advisor" for b in response.content
-    )
-    if response.stop_reason == "end_turn":
-        break
-    if response.stop_reason == "pause_turn":
-        continue  # server tool pending; re-send to let the API complete it
+    messages << { role: "assistant", content: response.content }
+    advisor_called ||= response.content.any? do |block|
+      block.type == :server_tool_use && block.name == :advisor
+    end
+    break if response.stop_reason == :end_turn
+    next if response.stop_reason == :pause_turn # server tool pending; re-send to let the API complete it
 
-    results = run_your_tools(response.content)  # list of tool_result blocks
-    messages.append({"role": "user", "content": results})
+    results = run_your_tools(response.content) # list of tool_result blocks
+    messages << { role: "user", content: results } unless results.empty?
     # Lewati ini jika prompt sistem Anda sudah memberi tahu model untuk memanggil seperlunya.
-    if turn == NUDGE_TURN - 1 and not advisor_called:
-        messages.append({"role": "user", "content": NUDGE_TEXT})
-```
+    messages << { role: "user", content: NUDGE_TEXT } if turn == NUDGE_TURN - 1 && !advisor_called
+  end
+  ```
+</CodeGroup>
 
-Tambahkan dorongan sebagai pesan pengguna tersendiri setelah hasil alat, bukan sebagai blok saudara dalam pesan yang sama. Pesan pengguna berturut-turut adalah valid; dalam pengujian Anthropic pada eksekutor Haiku dan Sonnet, perilakunya setara dengan blok saudara. Bentuk pesan terpisah juga menjaga pengingat tetap jelas berbeda dari output alat.
+Tambahkan dorongan sebagai pesan pengguna tersendiri setelah hasil alat, bukan sebagai blok saudara dalam pesan yang sama. Pesan pengguna berturut-turut adalah valid. Dalam pengujian Anthropic pada eksekutor Haiku dan Sonnet, keduanya berperilaku setara dengan blok saudara. Bentuk pesan terpisah juga menjaga pengingat tetap jelas terpisah dari output alat.
 
-**Trade-off:** Dorongan ini meningkatkan tingkat panggilan, yang dapat mendorong tugas yang sangat sederhana ke konsultasi yang tidak perlu. Jika beban kerja Anda mencampur tugas sederhana dan kompleks, pertimbangkan untuk menaikkan `NUDGE_TURN` ke 3 sehingga tugas dua giliran selesai sebelum dorongan dipicu, atau batasi dorongan berdasarkan sinyal kompleksitas tugas yang sudah Anda hitung. Jika prompt sistem Anda sudah berisi bahasa pengekangan ("simpan advisor untuk ketidakpastian yang nyata"), lewati dorongan sepenuhnya; kedua instruksi tersebut bertentangan.
+**Trade-off:** Dorongan meningkatkan tingkat panggilan, yang dapat mendorong tugas yang sangat sederhana ke konsultasi yang tidak perlu. Jika beban kerja Anda mencampur tugas sederhana dan kompleks, pertimbangkan untuk menaikkan `NUDGE_TURN` ke 3 sehingga tugas dua giliran selesai sebelum dorongan aktif, atau batasi dorongan berdasarkan sinyal kompleksitas tugas yang sudah Anda hitung. Jika prompt sistem Anda sudah berisi bahasa pengekangan ("simpan advisor untuk ketidakpastian yang nyata"), lewati dorongan sepenuhnya, karena kedua instruksi tersebut bertentangan.
 
-Dorongan plain-text sangat menonjol pada eksekutor Haiku dan Sonnet: 74 persen (Sonnet) hingga 98 persen (Haiku) dari upaya yang didorong dalam pengujian Anthropic memanggil advisor segera pada giliran 2. Jika itu terjadi sebelum eksekutor Anda membaca masalah atau mengumpulkan konteks, panggilan advisor yang dihasilkan memiliki konteks rendah dan dapat menggantikan panggilan yang lebih tepat waktu di kemudian hari. Ukur giliran panggilan pertama baseline eksekutor Anda sebelum menambahkan dorongan. Jika eksekutor sudah memanggil advisor secara andal dan panggilan pertamanya biasanya terjadi pada giliran N, atur `NUDGE_TURN` lebih besar dari N. Dalam pengujian Anthropic, dorongan giliran-2 pada beban kerja di mana panggilan pertama baseline adalah giliran 7 atau lebih berkorelasi dengan penurunan performa tugas 3 hingga 4 poin persentase; pada beban kerja browse di mana tingkat panggilan baseline adalah 86 persen, dorongan yang sama meningkatkan keterlibatan tanpa biaya performa tugas.
+Dorongan plain-text sangat menonjol pada eksekutor Haiku dan Sonnet: 74 persen (Sonnet) hingga 98 persen (Haiku) dari upaya yang didorong dalam pengujian Anthropic memanggil advisor segera pada giliran 2. Jika itu terjadi sebelum eksekutor Anda membaca masalah atau mengumpulkan konteks, panggilan advisor yang dihasilkan memiliki konteks rendah dan dapat menggantikan panggilan selanjutnya yang waktunya lebih tepat. Ukur giliran panggilan pertama baseline eksekutor Anda sebelum menambahkan dorongan. Jika eksekutor sudah memanggil advisor secara andal dan panggilan pertamanya biasanya terjadi pada giliran N, atur `NUDGE_TURN` lebih besar dari N. Dalam pengujian Anthropic, dorongan giliran-2 pada beban kerja di mana panggilan pertama baseline adalah giliran 7 atau lebih berkorelasi dengan penurunan kinerja tugas 3 hingga 4 poin persentase. Pada beban kerja penelusuran di mana tingkat panggilan baseline adalah 86 persen, dorongan yang sama meningkatkan keterlibatan tanpa biaya kinerja tugas.
+
+Untuk memaksa konsultasi pada permintaan tertentu alih-alih mendorong, atur `tool_choice` ke `{"type": "tool", "name": "advisor"}`, dengan tunduk pada batasan dalam [Memaksa penggunaan alat](/docs/id/agents-and-tools/tool-use/define-tools#forcing-tool-use). Memaksa penggunaan alat tidak dapat digabungkan dengan pemikiran diperpanjang: API mengembalikan `400 invalid_request_error` jika Anda mengaktifkan keduanya.
 
 ## Streaming
 
-Sub-inferensi advisor tidak melakukan streaming. Stream eksekutor berhenti sementara advisor berjalan, kemudian hasil lengkap tiba dalam satu event.
+Sub-inferensi advisor tidak melakukan streaming. Stream eksekutor dijeda sementara advisor berjalan, kemudian hasil lengkap tiba dalam satu event.
 
-Blok `server_tool_use` dengan `name: "advisor"` menandakan bahwa panggilan advisor sedang dimulai. Jeda dimulai ketika blok tersebut ditutup (`content_block_stop`). Selama jeda, stream diam kecuali untuk keepalive `ping` SSE standar yang dikeluarkan kira-kira setiap 30 detik; panggilan advisor yang singkat mungkin tidak menampilkan ping.
+Blok `server_tool_use` dengan `name: "advisor"` menandakan bahwa panggilan advisor dimulai. Jeda dimulai ketika blok tersebut ditutup (`content_block_stop`). Selama jeda, stream diam kecuali untuk keepalive `ping` SSE standar yang dikeluarkan kira-kira setiap 30 detik. Panggilan advisor yang singkat mungkin tidak menampilkan ping.
 
 Ketika advisor selesai, `advisor_tool_result` tiba dalam bentuk lengkap dalam satu event `content_block_start` (tanpa delta). Output eksekutor kemudian melanjutkan streaming.
 
-Event `message_delta` menyusul dengan array `usage.iterations` yang diperbarui yang mencerminkan jumlah token advisor.
+Event `message_delta` mengikuti dengan array `usage.iterations` yang diperbarui mencerminkan jumlah token advisor.
 
 ## Penggunaan dan penagihan
 
@@ -516,13 +970,15 @@ Panggilan advisor berjalan sebagai sub-inferensi terpisah yang ditagih dengan ta
 }
 ```
 
-Field `usage` tingkat atas hanya mencerminkan token eksekutor. Token advisor tidak digabungkan ke dalam total tingkat atas karena ditagih dengan tarif yang berbeda. Iterasi dengan `type: "advisor_message"` ditagih dengan tarif model advisor; iterasi dengan `type: "message"` ditagih dengan tarif model eksekutor.
+Field `usage` tingkat atas hanya mencerminkan token eksekutor. Token advisor tidak digabungkan ke dalam total tingkat atas karena ditagih dengan tarif yang berbeda. Iterasi dengan `type: "advisor_message"` ditagih dengan tarif model advisor, dan iterasi dengan `type: "message"` ditagih dengan tarif model eksekutor.
 
-Aturan agregasi berbeda per field. `output_tokens` tingkat atas adalah jumlah dari semua iterasi eksekutor. `input_tokens` dan `cache_read_input_tokens` tingkat atas hanya mencerminkan iterasi eksekutor pertama; input iterasi eksekutor berikutnya tidak dijumlahkan ulang karena mencakup token output sebelumnya. Gunakan `usage.iterations` untuk rincian lengkap per-iterasi saat membangun logika pelacakan biaya.
+Aturan agregasi berbeda berdasarkan field. `output_tokens` tingkat atas adalah jumlah dari semua iterasi eksekutor. `input_tokens` dan `cache_read_input_tokens` tingkat atas hanya mencerminkan iterasi eksekutor pertama. Input iterasi eksekutor berikutnya tidak dijumlahkan ulang karena sudah mencakup token output sebelumnya. Gunakan `usage.iterations` untuk rincian lengkap per-iterasi saat membangun logika pelacakan biaya.
 
-Output advisor biasanya 400 hingga 700 token teks, atau 1.400 hingga 1.800 token total termasuk thinking. Penghematan biaya berasal dari advisor yang tidak menghasilkan output akhir lengkap Anda; eksekutor yang melakukannya dengan tarif yang lebih rendah.
+Output advisor biasanya 400 hingga 700 token teks, atau 1.400 hingga 1.800 token total termasuk pemikiran. Penghematan biaya berasal dari advisor yang tidak menghasilkan output akhir lengkap Anda. Eksekutor melakukan itu dengan tarifnya yang lebih rendah.
 
-`max_tokens` tingkat atas hanya berlaku untuk output eksekutor. Ini tidak membatasi token sub-inferensi advisor. Untuk membatasi output advisor secara langsung, atur [`max_tokens` pada definisi alat](#capping-advisor-output). Token advisor juga tidak diambil dari anggaran tugas apa pun yang diterapkan pada eksekutor.
+`max_tokens` tingkat atas hanya berlaku untuk output eksekutor. Ini tidak membatasi token sub-inferensi advisor. Untuk membatasi output advisor secara langsung, atur [`max_tokens` pada definisi alat](#capping-advisor-output). Token advisor juga tidak diambil dari [anggaran tugas](/docs/id/build-with-claude/task-budgets) apa pun yang diterapkan pada eksekutor.
+
+[Priority Tier](/docs/id/api/service-tiers) berlaku untuk setiap model secara independen. Komitmen Priority Tier pada model eksekutor tidak meluas ke advisor. Panggilan advisor berjalan pada Priority Tier hanya jika organisasi Anda juga memiliki komitmen pada model advisor.
 
 ## Caching prompt advisor
 
@@ -547,19 +1003,19 @@ tools = [
 ]
 ```
 
-Prompt advisor pada panggilan ke-N adalah prompt panggilan ke-(N-1) dengan satu segmen lagi ditambahkan, sehingga prefiksnya stabil di seluruh panggilan. Dengan `caching` diaktifkan, setiap panggilan advisor menulis entri cache; panggilan berikutnya membaca hingga titik tersebut dan hanya membayar untuk delta. Anda akan melihat `cache_read_input_tokens` menjadi bukan nol pada iterasi `advisor_message` kedua dan selanjutnya.
+Prompt advisor pada panggilan ke-N adalah prompt panggilan ke-(N-1) dengan satu segmen lagi ditambahkan, sehingga prefiksnya stabil di seluruh panggilan. Dengan `caching` diaktifkan, setiap panggilan advisor menulis entri cache, dan panggilan berikutnya membaca hingga titik tersebut dan hanya membayar untuk delta. Anda akan melihat `cache_read_input_tokens` menjadi bukan nol pada iterasi `advisor_message` kedua dan selanjutnya.
 
-**Kapan mengaktifkannya:** Penulisan cache lebih mahal daripada penghematan dari pembacaan ketika advisor dipanggil dua kali atau kurang per percakapan. Caching mencapai titik impas pada kira-kira tiga panggilan advisor dan membaik dari sana. Aktifkan untuk loop agen yang panjang; biarkan nonaktif untuk tugas singkat.
+**Kapan mengaktifkannya:** Penulisan cache lebih mahal daripada penghematan dari pembacaan ketika advisor dipanggil dua kali atau kurang per percakapan. Caching mencapai titik impas pada kira-kira tiga panggilan advisor dan membaik dari sana. Aktifkan untuk loop agen yang panjang, dan biarkan nonaktif untuk tugas singkat.
 
 **Jaga konsistensi:** Atur `caching` sekali dan biarkan untuk seluruh percakapan. Mengaktifkan dan menonaktifkannya di tengah percakapan menyebabkan cache miss.
 
 <Warning>
-  [`clear_thinking`](/docs/id/build-with-claude/context-editing) dengan nilai `keep` selain `"all"` menggeser transkrip yang dikutip advisor setiap giliran, menyebabkan cache miss di sisi advisor. Ini hanya degradasi biaya; kualitas saran tidak terpengaruh. Ketika pemikiran diperpanjang diaktifkan tanpa konfigurasi `clear_thinking` eksplisit, API secara default menggunakan `keep: {type: "thinking_turns", value: 1}`, yang memicu perilaku ini (default pada model Opus/Sonnet sebelumnya dan semua model Haiku; pada Opus 4.5+ dan Sonnet 4.6+ default-nya adalah menyimpan semua giliran). Atur `keep: "all"` untuk menjaga stabilitas cache advisor.
+  [`clear_thinking`](/docs/id/build-with-claude/context-editing) dengan nilai `keep` selain `"all"` menggeser transkrip yang dikutip advisor setiap giliran, menyebabkan cache miss sisi advisor. Ini hanya degradasi biaya. Kualitas saran tidak terpengaruh. Ketika pemikiran diperpanjang diaktifkan tanpa konfigurasi `clear_thinking` eksplisit, API secara default menggunakan `keep: {type: "thinking_turns", value: 1}`, yang memicu perilaku ini (default pada model Opus/Sonnet sebelumnya dan semua model Haiku, sedangkan pada Opus 4.5+ dan Sonnet 4.6+ defaultnya adalah mempertahankan semua giliran). Atur `keep: "all"` untuk menjaga stabilitas cache advisor.
 </Warning>
 
 ## Menggabungkan dengan alat lain
 
-Alat advisor dapat dikombinasikan dengan alat sisi server dan sisi klien lainnya. Tambahkan semuanya ke array `tools` yang sama:
+Alat advisor dapat dikomposisikan dengan alat sisi server dan sisi klien lainnya. Tambahkan semuanya ke array `tools` yang sama:
 
 ```python
 tools = [
@@ -586,29 +1042,29 @@ tools = [
 
 Eksekutor dapat mencari web, memanggil advisor, dan menggunakan alat kustom Anda dalam giliran yang sama. Rencana advisor dapat menginformasikan alat mana yang akan digunakan eksekutor selanjutnya.
 
-| Fitur                                                           | Interaksi                                                                                                                                                                                                                                                                                         |
-| --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Batch processing](/docs/id/build-with-claude/batch-processing) | Didukung. `usage.iterations` dilaporkan per item.                                                                                                                                                                                                                                                 |
-| [Token counting](/docs/id/build-with-claude/token-counting)     | Mengembalikan token input iterasi pertama eksekutor saja. Untuk estimasi kasar advisor, panggil `count_tokens` dengan `model` diatur ke model advisor dan pesan yang sama.                                                                                                                        |
-| [Context editing](/docs/id/build-with-claude/context-editing)   | `clear_tool_uses` tidak sepenuhnya kompatibel dengan blok alat advisor. Dengan `clear_thinking`, lihat peringatan caching sebelumnya.                                                                                                                                                             |
-| `pause_turn`                                                    | Panggilan advisor yang menggantung mengakhiri respons dengan `stop_reason: "pause_turn"` dan blok `server_tool_use` sebagai blok konten terakhir. Advisor dieksekusi saat dilanjutkan. Lihat [Server tools](/docs/id/agents-and-tools/tool-use/server-tools#the-server-side-loop-and-pause-turn). |
+| Fitur                                                            | Interaksi                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [Pemrosesan batch](/docs/id/build-with-claude/batch-processing)  | Didukung. `usage.iterations` dilaporkan per item.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| [Penghitungan token](/docs/id/build-with-claude/token-counting)  | Hanya mengembalikan token input iterasi pertama eksekutor. Untuk estimasi kasar advisor, panggil `count_tokens` dengan `model` diatur ke model advisor dan pesan yang sama.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| [Pengeditan konteks](/docs/id/build-with-claude/context-editing) | `clear_tool_uses` tidak sepenuhnya kompatibel dengan blok alat advisor. Dengan `clear_thinking`, lihat peringatan caching sebelumnya.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| `pause_turn`                                                     | Panggilan advisor yang menggantung mengakhiri respons dengan `stop_reason: "pause_turn"` dan blok `server_tool_use` tanpa hasil ketika tidak ada blok `tool_use` klien yang menunggu hasil Anda dalam giliran yang sama. Advisor dieksekusi saat dilanjutkan. Jika eksekutor juga memanggil salah satu alat Anda dalam giliran tersebut, respons berakhir dengan `stop_reason: "tool_use"` sebagai gantinya, dan panggilan advisor yang tertunda berjalan di awal permintaan Anda berikutnya, setelah Anda mengirim blok `tool_result`. Lihat [Melanjutkan giliran yang dijeda](#resuming-a-paused-turn), [Mencampur alat server dan alat klien dalam satu giliran](/docs/id/agents-and-tools/tool-use/server-tools#mixing-server-tools-and-client-tools-in-one-turn), dan [Alat server](/docs/id/agents-and-tools/tool-use/server-tools#the-server-side-loop-and-pause-turn). |
 
 ## Praktik terbaik
 
 ### Prompting untuk tugas pengkodean dan agen
 
-Alat advisor dilengkapi dengan deskripsi bawaan yang mendorong eksekutor untuk memanggilnya di awal tugas kompleks dan ketika menemui kesulitan. Untuk tugas riset, biasanya tidak diperlukan prompting tambahan.
+Alat advisor dilengkapi dengan deskripsi bawaan yang mendorong eksekutor untuk memanggilnya di dekat awal tugas kompleks dan ketika mengalami kesulitan. Untuk tugas riset, biasanya tidak diperlukan prompting tambahan.
 
 Pada tugas pengkodean dan agen, advisor menghasilkan kecerdasan lebih tinggi dengan biaya serupa ketika mengurangi total panggilan alat dan panjang percakapan. Dua waktu mendorong peningkatan ini:
 
-1. Panggilan advisor pertama yang awal, setelah beberapa pembacaan eksploratif ada dalam transkrip.
+1. Panggilan advisor pertama yang awal, setelah beberapa pembacaan eksplorasi ada dalam transkrip.
 2. Untuk tugas sulit, panggilan advisor terakhir setelah penulisan file dan output pengujian ada dalam transkrip.
 
-Jika agen Anda mengekspos alat seperti perencana lainnya (misalnya, alat daftar todo), arahkan model untuk memanggil advisor sebelum alat-alat tersebut sehingga rencana advisor mengalir ke dalamnya. Prompt sistem yang disarankan di bawah ini memperkuat pola panggilan awal; tambahkan kalimat pengarah Anda sendiri yang menunjuk ke alat perencana mana pun yang diekspos agen Anda.
+Jika agen Anda mengekspos alat seperti perencana lainnya (misalnya, alat daftar todo), arahkan model untuk memanggil advisor sebelum alat-alat tersebut sehingga rencana advisor mengalir ke dalamnya. [Prompt sistem yang disarankan](#suggested-system-prompt-for-coding-tasks) memperkuat pola panggilan awal. Tambahkan kalimat pengarahan Anda sendiri yang menunjuk ke alat perencana apa pun yang diekspos agen Anda.
 
 #### Prompt sistem yang disarankan untuk tugas pengkodean
 
-Tanpa pengarahan prompt sistem, eksekutor cenderung jarang memanggil advisor di beberapa domain — khususnya tugas pengkodean. Untuk tugas pengkodean di mana Anda menginginkan waktu advisor yang konsisten dan sekitar dua hingga tiga panggilan per tugas, tambahkan blok berikut di awal prompt sistem eksekutor Anda sebelum kalimat lain yang menyebutkan advisor.
+Tanpa pengarahan prompt sistem, eksekutor cenderung jarang memanggil advisor di beberapa domain, terutama tugas pengkodean. Untuk tugas pengkodean di mana Anda menginginkan waktu advisor yang konsisten dan sekitar dua hingga tiga panggilan untuk setiap tugas, tambahkan blok berikut di awal prompt sistem eksekutor Anda sebelum kalimat lain yang menyebutkan advisor.
 
 Panduan waktu:
 
@@ -635,9 +1091,9 @@ If you've already retrieved data pointing one way and the advisor points another
 
 #### Prompt sistem alternatif untuk Haiku pada beban kerja pengkodean
 
-Claude Haiku 4.5 menerapkan panduan advisor default secara konservatif. Hal itu menjaga tingkat panggilannya tetap rendah secara tepat pada beban kerja riset dan pencarian, tetapi menyisakan kualitas yang belum dimanfaatkan untuk pengkodean, di mana konsultasi advisor awal secara andal membayar dirinya sendiri. Pada benchmark pengkodean internal, varian yang mirip dengan blok di bawah ini (pengecualian read-only dalam Hard rule ditambahkan setelah pengukuran) meningkatkan tingkat kelulusan Haiku sekitar 7,5 poin persentase dibandingkan default bawaan.
+Claude Haiku 4.5 menerapkan panduan advisor default secara konservatif. Itu menjaga tingkat panggilannya tetap rendah secara tepat pada beban kerja riset dan pencarian tetapi mengorbankan kualitas pada beban kerja pengkodean, di mana konsultasi advisor awal secara andal sepadan dengan biayanya. Pada benchmark pengkodean internal, varian yang mirip dari blok berikut (pengecualian read-only dalam Hard rule ditambahkan setelah pengukuran) meningkatkan tingkat kelulusan Haiku sekitar 7,5 poin persentase dibandingkan default bawaan.
 
-Gunakan blok ini sebagai pengganti blok waktu dan saran di atas ketika eksekutor Haiku Anda menjalankan beban kerja yang didominasi pengkodean atau tugas penulisan:
+Gunakan blok ini sebagai pengganti blok waktu dan saran sebelumnya ketika eksekutor Haiku Anda menjalankan beban kerja yang didominasi pengkodean atau tugas penulisan:
 
 ```text wrap
 Consult a stronger reviewer who sees your full conversation transcript.
@@ -662,7 +1118,7 @@ Call advisor for design, architecture, and risk questions where you won't touch 
 Hard rule: your first write_file, edit_file, or state-changing bash call on a task must be preceded by an advisor call in the same or an earlier turn. Read-only orientation commands (ls, cat, grep, find) are not state-changing. This is a checkpoint, not a difficulty judgment. It applies to one-line edits too.
 ```
 
-**Catatan:** pada benchmark browse-comprehension internal (n = 1266), varian yang mirip dengan blok ini (pengecualian read-only dalam Hard rule ditambahkan setelah pengukuran) mengurangi akurasi sekitar 4 poin persentase relatif terhadap default bawaan. Jika beban kerja Anda mencampur pengkodean dengan pencarian atau pengambilan yang substansial, tetap gunakan blok yang disarankan di atas, atau batasi penggantian berdasarkan sinyal tipe beban kerja yang sudah Anda hitung.
+**Peringatan:** Pada benchmark pemahaman penelusuran internal (n = 1.266), varian yang mirip dari blok ini mengurangi akurasi sekitar 4 poin persentase relatif terhadap default bawaan. Jika beban kerja Anda mencampur pengkodean dengan pencarian atau pengambilan yang substansial, tetap gunakan [blok yang disarankan](#suggested-system-prompt-for-coding-tasks), atau batasi pertukaran berdasarkan sinyal tipe beban kerja yang sudah Anda hitung.
 
 #### Meningkatkan panggilan advisor pada eksekutor Opus
 
@@ -674,7 +1130,7 @@ Call advisor for design, architecture, and risk questions where you won't touch 
 Hard rule: your first write_file, edit_file, or state-changing bash call on a task must be preceded by an advisor call in the same or an earlier turn. Read-only orientation commands (ls, cat, grep, find) are not state-changing. This is a checkpoint, not a difficulty judgment. It applies to one-line edits too.
 ```
 
-**Catatan:** Dalam pengujian Anthropic, varian yang mirip dengan blok ini (pengecualian read-only dalam Hard rule ditambahkan setelah pengukuran) meningkatkan tingkat kelulusan pada tugas yang jarang memanggil sekitar 7 hingga 10 poin persentase tetapi menyebabkan Opus terlalu sering memanggil pada tugas yang dimulai dengan tindakan pertama yang sederhana. Efek bersihnya kira-kira datar pada beban kerja campuran. Hanya tambahkan jika Anda telah mengamati Opus melewatkan advisor pada tugas di mana konsultasi akan membantu; jangan tambahkan sebagai default.
+**Peringatan:** Dalam pengujian Anthropic, varian yang mirip dari blok ini (pengecualian read-only dalam Hard rule ditambahkan setelah pengukuran) meningkatkan tingkat kelulusan pada tugas yang jarang memanggil sekitar 7 hingga 10 poin persentase tetapi menyebabkan Opus terlalu sering memanggil pada tugas yang tindakan pertamanya tidak memerlukan perencanaan. Efek bersihnya kira-kira datar pada beban kerja campuran. Hanya tambahkan jika Anda telah mengamati Opus melewatkan advisor pada tugas di mana konsultasi akan membantu. Jangan tambahkan sebagai default.
 
 #### Memangkas panjang output advisor
 
@@ -684,17 +1140,17 @@ Output advisor adalah pendorong biaya terbesar advisor, dan `max_tokens` tingkat
 (Advisor: please keep your guidance under 80 words — I need a focused starting point, not a comprehensive plan.)
 ```
 
-Baris ini dapat ditambahkan sebagai prefiks secara terprogram oleh framework agen Anda sebelum mengirim permintaan. Batas ini adalah batasan lunak; advisor kadang-kadang akan melebihinya, jadi minta sekitar 80 persen dari batas atas sebenarnya Anda.
+Baris ini dapat ditambahkan di awal secara terprogram oleh framework agen Anda sebelum mengirim permintaan. Batas ini adalah batasan lunak. Advisor kadang-kadang melebihinya, jadi minta sekitar 80 persen dari batas maksimum Anda yang sebenarnya.
 
 <Note>
   Dalam pengujian Anthropic, baris ini juga meningkatkan seberapa sering eksekutor berkonsultasi dengan advisor, tetapi efek bersihnya tetap total biaya yang lebih rendah (lebih banyak konsultasi, masing-masing lebih pendek).
 </Note>
 
-Pasangkan pendekatan ini dengan panduan waktu di [Prompt sistem yang disarankan untuk tugas pengkodean](#suggested-system-prompt-for-coding-tasks) (atau [blok Haiku alternatif](#alternative-system-prompt-for-haiku-on-coding-workloads) jika Anda menggantinya) untuk trade-off biaya-versus-kualitas terkuat. Untuk batas atas keras daripada permintaan lunak, lihat [Membatasi output advisor](#capping-advisor-output).
+Pasangkan pendekatan ini dengan panduan waktu dalam [Prompt sistem yang disarankan untuk tugas pengkodean](#suggested-system-prompt-for-coding-tasks) (atau [blok Haiku alternatif](#alternative-system-prompt-for-haiku-on-coding-workloads) jika Anda menukarnya) untuk trade-off biaya-versus-kualitas terkuat. Untuk batas keras alih-alih permintaan lunak, lihat [Membatasi output advisor](#capping-advisor-output).
 
 ### Membatasi output advisor
 
-Atur `max_tokens` pada definisi alat untuk membatasi total output advisor (thinking plus teks) per panggilan:
+Atur `max_tokens` pada definisi alat untuk membatasi total output advisor (pemikiran plus teks) per panggilan:
 
 ```python
 tools = [
@@ -707,11 +1163,11 @@ tools = [
 ]
 ```
 
-Nilai minimum adalah 1024. Mengatur `max_tokens` di atas batas output model advisor sendiri mengembalikan error 400. Batas ini berlaku untuk setiap panggilan advisor secara independen dan tidak dibagi di seluruh panggilan dalam permintaan yang sama.
+Nilai minimum adalah 1024. Mengatur `max_tokens` di atas batas output model advisor sendiri mengembalikan error 400. Batas berlaku untuk setiap panggilan advisor secara independen dan tidak dibagi di seluruh panggilan dalam permintaan yang sama.
 
 Ini bukan pemotongan keras semata. Server juga meneruskan anggaran token yang tersisa kepada advisor, sehingga advisor membentuk responsnya agar sesuai.
 
-**Titik awal yang direkomendasikan:** `max_tokens: 2048`. Dalam pengujian Anthropic pada benchmark penalaran sulit (n=40 per konfigurasi), ini mengurangi rata-rata output advisor sekitar 7x dibandingkan dengan membiarkan batas tidak diatur, dengan pemotongan mendekati nol dan tanpa degradasi kualitas yang terdeteksi. Nilai minimum 1024 mengurangi output sekitar 10x tetapi memotong sekitar 10 persen panggilan. Perbedaan akurasi di semua konfigurasi berada dalam noise pada ukuran sampel ini; validasi pada beban kerja Anda sendiri.
+**Titik awal yang direkomendasikan:** `max_tokens: 2048`. Dalam pengujian Anthropic pada benchmark penalaran sulit (n = 40 per konfigurasi), ini mengurangi rata-rata output advisor sekitar 7x dibandingkan dengan membiarkan batas tidak diatur, dengan pemotongan mendekati nol dan tanpa degradasi kualitas yang terdeteksi. Nilai minimum 1024 mengurangi output sekitar 10x tetapi memotong sekitar 10 persen panggilan. Perbedaan akurasi di semua konfigurasi berada dalam noise pada ukuran sampel ini. Validasi pada beban kerja Anda sendiri.
 
 | `max_tokens` | Rata-rata token output advisor | Panggilan terpotong |
 | ------------ | ------------------------------ | ------------------- |
@@ -721,7 +1177,7 @@ Ini bukan pemotongan keras semata. Server juga meneruskan anggaran token yang te
 
 Tugas penalaran sulit memunculkan output advisor yang jauh lebih panjang daripada [1.400 hingga 1.800 token tipikal](#usage-and-billing) yang dikutip sebelumnya untuk beban kerja yang lebih ringan. Gunakan tabel ini untuk mengukur rasio penghematan, bukan sebagai baseline universal untuk output advisor.
 
-Ketika advisor mencapai batas, blok hasil membawa `stop_reason: "max_tokens"`. Gunakan ini untuk mendeteksi saran yang terpotong dan memutuskan apakah akan menaikkan batas atau membiarkan eksekutor melanjutkan dengan panduan parsial. Field ini tidak ada ketika `max_tokens` tidak diatur.
+Ketika advisor mencapai batas, blok hasil membawa `stop_reason: "max_tokens"`. API juga menambahkan `[Advisor output truncated at max_tokens=2048.]` (menyebutkan batas Anda) ke teks saran, sehingga eksekutor melihat pemotongan dalam konteksnya sendiri. Gunakan `stop_reason` untuk mendeteksi saran yang terpotong dan memutuskan apakah akan menaikkan batas atau membiarkan eksekutor melanjutkan dengan panduan parsial. Kedua sinyal hanya muncul ketika Anda mengatur `max_tokens` pada definisi alat.
 
 ```json
 {
@@ -729,15 +1185,15 @@ Ketika advisor mencapai batas, blok hasil membawa `stop_reason: "max_tokens"`. G
   "tool_use_id": "srvtoolu_abc123",
   "content": {
     "type": "advisor_result",
-    "text": "Use a channel-based coordination pattern. The tricky part is",
+    "text": "Use a channel-based coordination pattern. The tricky part is\n\n[Advisor output truncated at max_tokens=2048.]",
     "stop_reason": "max_tokens"
   }
 }
 ```
 
-Periksa `output_tokens` pada entri `advisor_message` yang sesuai di `usage.iterations` untuk melihat seberapa dekat setiap panggilan dengan batasnya.
+Periksa `output_tokens` pada entri `advisor_message` yang sesuai dalam `usage.iterations` untuk melihat seberapa dekat setiap panggilan dengan batasnya.
 
-Dibandingkan dengan [pendekatan berbasis prompt](#trimming-advisor-output-length), `max_tokens` adalah batas atas keras daripada permintaan lunak. Gunakan `max_tokens` ketika Anda membutuhkan batas yang dijamin untuk biaya atau latensi; gunakan pendekatan berbasis prompt (atau keduanya bersama-sama) ketika Anda ingin mengarahkan ke keringkasan tanpa risiko pemotongan di tengah pemikiran.
+Dibandingkan dengan [pendekatan berbasis prompt](#trimming-advisor-output-length), `max_tokens` adalah batas keras alih-alih permintaan lunak. Gunakan `max_tokens` ketika Anda memerlukan batas yang dijamin untuk biaya atau latensi. Gunakan pendekatan berbasis prompt (atau keduanya bersama-sama) ketika Anda ingin mengarahkan ke arah keringkasan tanpa risiko terpotong di tengah pemikiran.
 
 ### Memasangkan dengan pengaturan effort
 
@@ -745,12 +1201,25 @@ Untuk tugas pengkodean, memasangkan eksekutor Sonnet pada [effort](/docs/id/buil
 
 ### Kontrol biaya
 
-* Untuk anggaran tingkat percakapan, hitung panggilan advisor di sisi klien. Ketika Anda mencapai batas Anda, hapus alat advisor dari `tools` **dan** hapus semua blok `advisor_tool_result` dari riwayat pesan Anda untuk menghindari `400 invalid_request_error`.
+* Untuk anggaran tingkat percakapan, hitung panggilan advisor di sisi klien. Ketika Anda mencapai batas Anda, hapus alat advisor dari `tools` **dan** hapus semua blok `advisor_tool_result` dari riwayat pesan Anda untuk menghindari `400 invalid_request_error` (lihat catatan dalam [Percakapan multi-giliran](#multi-turn-conversations)).
 * Aktifkan `caching` hanya untuk percakapan di mana Anda mengharapkan tiga atau lebih panggilan advisor.
 
-## Keterbatasan
+## Langkah selanjutnya
 
-* **Output advisor tidak melakukan streaming.** Perkirakan jeda dalam stream saat sub-inferensi berjalan.
-* **Tidak ada batas tingkat percakapan bawaan pada panggilan advisor.** Lacak dan batasi di sisi klien.
-* **`max_tokens` tingkat atas hanya berlaku untuk output eksekutor.** Ini tidak membatasi token advisor. Untuk membatasi output advisor, atur [`max_tokens` pada definisi alat](#capping-advisor-output).
-* **[Priority Tier](/docs/id/api/service-tiers)** dihormati untuk setiap model. Priority Tier pada model eksekutor tidak meluas ke advisor; Anda memerlukan Priority Tier pada model advisor secara spesifik.
+<CardGroup cols={2}>
+  <Card title="Alat memori" icon="brain" href="/docs/id/agents-and-tools/tool-use/memory-tool">
+    Simpan dan ambil informasi di seluruh percakapan dengan direktori memori sisi klien.
+  </Card>
+
+  <Card title="Alat server" icon="tool" href="/docs/id/agents-and-tools/tool-use/server-tools">
+    Bekerja dengan alat yang dieksekusi Anthropic: blok server\_tool\_use, kelanjutan pause\_turn, dan pemfilteran domain.
+  </Card>
+
+  <Card title="Referensi alat" icon="book" href="/docs/id/agents-and-tools/tool-use/tool-reference">
+    Direktori alat yang disediakan Anthropic dan referensi untuk properti definisi alat opsional.
+  </Card>
+
+  <Card title="Effort" icon="gauge" href="/docs/id/build-with-claude/effort">
+    Kontrol berapa banyak token yang digunakan Claude saat merespons dengan parameter effort, menukar antara kelengkapan respons dan efisiensi token.
+  </Card>
+</CardGroup>

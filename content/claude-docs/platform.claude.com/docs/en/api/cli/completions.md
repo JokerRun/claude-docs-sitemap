@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/completions
-fetched_at: 2026-06-26T03:16:19.812719Z
-sha256: 3ad10a41b9a956ef46c35759026d79bd7af92d4639a9da79b1c1ea3bd15f881b
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: f86c3bf8d94859273ce89f1d4dea2b5deb8c6f977ca21dbca0f6dc94041d9cfd
 ---
 
 # Completions
@@ -15,9 +15,9 @@ sha256: 3ad10a41b9a956ef46c35759026d79bd7af92d4639a9da79b1c1ea3bd15f881b
 
 [Legacy] Create a Text Completion.
 
-The Text Completions API is a legacy API. We recommend using the [Messages API](https://docs.claude.com/en/api/messages) going forward.
+The Text Completions API is a legacy API. We recommend using the [Messages API](https://platform.claude.com/docs/en/api/messages) going forward.
 
-Future models and features will not be compatible with Text Completions. See our [migration guide](https://docs.claude.com/en/api/migrating-from-text-completions-to-messages) for guidance in migrating from Text Completions to Messages.
+Future models and features will not be compatible with Text Completions. See our [migration guide](https://platform.claude.com/docs/en/build-with-claude/working-with-messages) for guidance in migrating from Text Completions to Messages.
 
 ### Parameters
 
@@ -51,7 +51,7 @@ Future models and features will not be compatible with Text Completions. See our
   Assistant:"
   ```
 
-  See [prompt validation](https://docs.claude.com/en/api/prompt-validation) and our guide to [prompt design](https://docs.claude.com/en/docs/intro-to-prompting) for more details.
+  See [prompt validation](https://platform.claude.com/docs/en/build-with-claude/working-with-messages) and our guide to [prompt design](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview) for more details.
 
 - `--metadata: optional object { user_id }`
 

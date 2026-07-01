@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/messages/batches/create
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 77ed9ad47b5d7982544d801203d80b2ff0ee159d42ca8d23744269d6c559f76e
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 386b544137e1b37b7c1ce06163430ecc06268ec8dc5f087242bea71c65c5e38e
 ---
 
 ## Create a Message Batch
@@ -15,7 +15,7 @@ Send a batch of Message creation requests.
 
 The Message Batches API can be used to process multiple Messages API requests at once. Once a Message Batch is created, it begins processing immediately. Batches can take up to 24 hours to complete.
 
-Learn more about the Message Batches API in our [user guide](https://docs.claude.com/en/docs/build-with-claude/batch-processing)
+Learn more about the Message Batches API in our [user guide](https://platform.claude.com/docs/en/build-with-claude/batch-processing)
 
 ### Parameters
 
@@ -26,6 +26,10 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 - `--beta: optional array of AnthropicBeta`
 
   Header param: Optional header to specify the beta version(s) you want to use.
+
+- `--user-profile-id: optional string`
+
+  Header param: The user profile ID to attribute the requests in this batch to. Use when acting on behalf of a party other than your organization. Requires the `user-profiles` beta header. Applies to every request in the batch; an individual request whose `user_profile_id` body field conflicts with this header is errored.
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/compliance-api-access
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 1944d567a472b9607887259bcbd96c15485896a915971c125616ca1da3a4162a
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: f1bbe09b3277420a88d4a3e3e99c018e25c6c2d1157cacb319d0e8f14079b503
 ---
 
 # Get access to the Compliance API
@@ -70,13 +70,12 @@ After Anthropic enables the Compliance API for your parent organization, Admin A
   <Step title="Create the key">
     Click **Create key**, name the key, and select one or more scopes from the following table. Click **Create**.
 
-    | Scope                          | Grants                                                                                                                                |
-    | ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------- |
-    | `read:compliance_activities`   | Read the Activity Feed for the parent organization and all linked organizations                                                       |
-    | `read:compliance_user_data`    | Read user chats, messages, files, projects, organization users, and group members                                                     |
-    | `delete:compliance_user_data`  | Delete user chats, files, and projects                                                                                                |
-    | `read:compliance_org_data`     | Read organization metadata (names, types, roles, and groups). User listings and group membership require `read:compliance_user_data`. |
-    | `read:compliance_org_settings` | Read the effective settings in force for organizations under the parent organization                                                  |
+    | Scope                         | Grants                                                                                                                                                                                                                    |
+    | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+    | `read:compliance_activities`  | Read the Activity Feed for the parent organization and all linked organizations                                                                                                                                           |
+    | `read:compliance_user_data`   | Read user chats, messages, files, projects, organization users, and group members                                                                                                                                         |
+    | `delete:compliance_user_data` | Delete user chats, files, and projects                                                                                                                                                                                    |
+    | `read:compliance_org_data`    | Read organization metadata (names, types, roles, and groups) and the effective settings in force for organizations under the parent organization. User listings and group membership require `read:compliance_user_data`. |
 
     Choose the smallest scope set that your integration needs:
 

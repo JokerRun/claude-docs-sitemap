@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/deployments/run
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: c84efdc8a172e6932e2bb05c9a17269cd31c65dabfa4934c928f4e4af15b3e45
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 43db3794ad90533efd88371e8b900266e92ca6f9e12df1389e747870ad5cce60
 ---
 
 ## Run Deployment Now
@@ -360,7 +360,7 @@ func main() {
   )
   betaManagedAgentsDeploymentRun, err := client.Beta.Deployments.Run(
     context.TODO(),
-    "deployment_id",
+    "depl_011CZkZcDH3vPqd7xnEfwTai",
     anthropic.BetaDeploymentRunParams{
 
     },

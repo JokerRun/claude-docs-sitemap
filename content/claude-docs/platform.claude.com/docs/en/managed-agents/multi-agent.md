@@ -1,17 +1,17 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/multi-agent
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 2e38548f52f20f158e2b6ecb4a6dfba155f837a0d4a42dc26ccd8f919400fd37
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 024f5e3bcb478f52aac2df6b507c0b0d10b6485fa0effe1acc1ac94591e37387
 ---
 
-# Multiagent sessions
+# Multi-agent sessions
 
 Coordinate multiple agents within a single session.
 
 ---
 
-Multiagent orchestration lets one agent coordinate with others to complete complex work. Agents can act in parallel with their own isolated context, which helps improve output quality and can also improve time to completion.
+Multi-agent orchestration lets one agent coordinate with others to complete complex work. Agents can act in parallel with their own isolated context, which helps improve output quality and can also improve time to completion.
 
 <Note>
   All Managed Agents API requests require the `managed-agents-2026-04-01` beta header. The SDK sets the beta header automatically.
@@ -23,11 +23,11 @@ All agents share the same sandbox, filesystem, and [vault credentials](/docs/en/
 
 Threads are persistent: the coordinator can send a follow-up to an agent it called earlier, and that agent retains everything from its previous turns.
 
-Each agent uses its own configuration (model, system prompt, tools, MCP servers, and skills) as defined when that agent was created. Tools, MCP servers, and context are not shared.
+Each agent uses its own configuration: model, system prompt, tools, MCP servers, and skills. Session-level [agent configuration overrides](/docs/en/managed-agents/sessions#override-agent-configuration-for-a-session) are the exception; they apply to the coordinator and its `self` copies. Tools, MCP servers, and context are not shared.
 
 ### What to delegate
 
-Multiagent coordination is best suited for complex tasks that either require work across a variety of surfaces, or where multiple well-scoped tasks contribute to an overall goal.
+Multi-agent coordination is best suited for complex tasks that either require work across a variety of surfaces, or where multiple well-scoped tasks contribute to an overall goal.
 
 Patterns that work well:
 
@@ -231,7 +231,7 @@ When [defining your agent](/docs/en/managed-agents/agent-setup), set `multiagent
 
 * `{"type": "agent", "id": agent.id}` references a previously created `agent` by ID. If no `version` is specified, the reference is pinned to the latest version of that agent at the time the coordinator is created.
 * `{"type": "agent", "id": agent.id, "version": agent.version}` pins a specific agent version.
-* `{"type": "self"}` allows the coordinator to spawn copies of itself.
+* `{"type": "self"}` allows the coordinator to spawn copies of itself. If the session was created with [agent configuration overrides](/docs/en/managed-agents/sessions#override-agent-configuration-for-a-session), those overrides also apply to these copies; roster entries referenced by ID are unaffected.
 
 The coordinator's configuration, including its `multiagent.agents` roster, is snapshotted when the coordinator is created or updated. Referenced agents stay pinned to the versions resolved at that time and do not automatically pick up later updates to their definitions. To delegate to a newer version of a referenced agent, [update the coordinator](/docs/en/managed-agents/agent-setup#update-an-agent) so its roster references that version.
 
@@ -326,6 +326,8 @@ MCP servers are agent-scoped (each agent definition declares its own servers and
 
 * To authenticate MCP servers, include a vault credential for every MCP server used across all agents.
 * To limit an agent's access, declare only the servers it needs in its agent definition.
+
+[Agent configuration overrides](/docs/en/managed-agents/sessions#override-agent-configuration-for-a-session) at session creation can replace the coordinator's MCP servers and those of its `self` copies.
 
 <CodeGroup>
   ```bash curl
@@ -1043,7 +1045,7 @@ The session `status` is an aggregation of all agent activity; if at least one th
 
 ### Primary thread events
 
-These events surface multiagent activity on the primary thread at `/v1/sessions/:id/events/stream`.
+These events surface multi-agent activity on the primary thread at `/v1/sessions/:id/events/stream`.
 
 | Type                               | Description                                                                                                            |
 | ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |

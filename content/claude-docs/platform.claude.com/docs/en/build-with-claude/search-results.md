@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/search-results
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 6d537fe85832c8cc3a7a1d8ba4e109993942dbd7c1d0530e632ad4b5f316cbfe
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: dd37b86878b71338d94c1bbd61fb31af227f6df1548ee2c7a31a47ca7350aa39
 ---
 
 # Search results
@@ -22,6 +22,7 @@ The search results feature is available on the following models:
 * Claude Opus 4.8 (claude-opus-4-8)
 * Claude Opus 4.7 (`claude-opus-4-7`)
 * Claude Opus 4.6 (`claude-opus-4-6`)
+* Claude Sonnet 5 (`claude-sonnet-5`)
 * Claude Sonnet 4.6 (`claude-sonnet-4-6`)
 * Claude Sonnet 4.5 (`claude-sonnet-4-5-20250929`)
 * Claude Opus 4.5 (`claude-opus-4-5-20251101`)

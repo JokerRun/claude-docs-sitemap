@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/quickstart
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: d568b0d9cf3282e67f1135e3b52beee00fd6e0e92b96cdde4047f605904c035e
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 33f423a856592b203522ea8361c2d91c5ed5c202b8301c645856e99e4ab2bd05
 ---
 
 # Get started with Claude Managed Agents
@@ -46,7 +46,10 @@ This guide walks you through creating an agent, setting up an environment, start
     ```bash
     VERSION=1.12.0
     OS=$(uname -s | tr '[:upper:]' '[:lower:]')
-    ARCH=$(uname -m | sed -e 's/x86_64/amd64/' -e 's/aarch64/arm64/')
+    case $(uname -m) in
+      x86_64) ARCH=amd64 ;;
+      aarch64) ARCH=arm64 ;;
+    esac
     curl -fsSL "https://github.com/anthropics/anthropic-cli/releases/download/v${VERSION}/ant_${VERSION}_${OS}_${ARCH}.tar.gz" \
       | sudo tar -xz -C /usr/local/bin ant
     ```

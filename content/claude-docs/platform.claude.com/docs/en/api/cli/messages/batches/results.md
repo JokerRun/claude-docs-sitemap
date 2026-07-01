@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/messages/batches/results
-fetched_at: 2026-06-26T03:16:19.812719Z
-sha256: 1b707cfdf67a6ed57bd895c61302aba727a2235703e406c7c3c903781eb72c66
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 4c8a715928902c3cea1d602017125c7df3f21266997923e45cf1586c0270fc28
 ---
 
 ## Retrieve Message Batch results
@@ -15,7 +15,7 @@ Streams the results of a Message Batch as a `.jsonl` file.
 
 Each line in the file is a JSON object containing the result of a single request in the Message Batch. Results are not guaranteed to be in the same order as requests. Use the `custom_id` field to match results to requests.
 
-Learn more about the Message Batches API in our [user guide](https://docs.claude.com/en/docs/build-with-claude/batch-processing)
+Learn more about the Message Batches API in our [user guide](https://platform.claude.com/docs/en/build-with-claude/batch-processing)
 
 ### Parameters
 
@@ -714,7 +714,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           Structured information about a refusal.
 
-          - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
+          - `category: "cyber" or "bio" or "frontier_llm" or 2 more`
 
             The policy category that triggered a refusal.
 
@@ -725,6 +725,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `"frontier_llm"`
 
             - `"reasoning_extraction"`
+
+            - `"military_weapons"`
 
           - `explanation: string`
 

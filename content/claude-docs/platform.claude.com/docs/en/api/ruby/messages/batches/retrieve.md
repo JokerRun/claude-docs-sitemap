@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/messages/batches/retrieve
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 2c71269bc33cfb5cbbfe2bac9d367233583e9d74ad34c17426f541e0599619fd
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 0b2dff7ca2e94934df847cded496c3bbf08a42f380ee0347ce93715836c5ea6c
 ---
 
 ## Retrieve a Message Batch
@@ -13,7 +13,7 @@ sha256: 2c71269bc33cfb5cbbfe2bac9d367233583e9d74ad34c17426f541e0599619fd
 
 This endpoint is idempotent and can be used to poll for Message Batch completion. To access the results of a Message Batch, make a request to the `results_url` field in the response.
 
-Learn more about the Message Batches API in our [user guide](https://docs.claude.com/en/docs/build-with-claude/batch-processing)
+Learn more about the Message Batches API in our [user guide](https://platform.claude.com/docs/en/build-with-claude/batch-processing)
 
 ### Parameters
 

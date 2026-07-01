@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/session-storage
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 3654433877d67ad6de7499345ba5c68219404d48dbe7c735d2d5e9fb56b8d8fb
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 19d8df1874fab6d2e49e4e25ccc38e4ff142d463966e1b6d0748e1328087cd56
 ---
 
 > ## Documentation Index
@@ -226,7 +226,7 @@ The store is a mirror, not a replacement. The Claude Code subprocess always writ
 
 ### Mirror writes are best-effort
 
-If `append()` rejects or times out, the error is logged, a `{ type: "system", subtype: "mirror_error" }` message is emitted into the iterator, and the query continues. The local transcript is already durable on disk, so a store outage does not interrupt the agent or lose data locally. Batches that fail are not retried, so monitor for `mirror_error` if you need to detect store data loss.
+If `append()` rejects, the SDK retries the batch up to two more times with a short backoff, for at most three attempts in total. A call that times out isn't retried, since the original call may still land. If the batch still fails, the error is logged, a `{ type: "system", subtype: "mirror_error" }` message is emitted into the iterator, the batch is dropped, and the query continues. The local transcript is already durable on disk, so a store outage doesn't interrupt the agent or lose data locally. Monitor for `mirror_error` if you need to detect store data loss. Because a retried batch can re-deliver entries that already landed, deduplicate by `entry.uuid` in your `append()` implementation.
 
 ### `getSessionMessages` returns the post-compaction chain
 

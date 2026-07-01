@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool
-fetched_at: 2026-06-30T03:15:27.286427Z
-sha256: 834fab1afc433633fa205fbfa6e97cc1d890385de852408480cc53da38907f88
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 8c8ffdeb1592b69ebe0b14a7e8fcba2aee88a873891391485269e22d0e61b8c7
 ---
 
 # Code execution tool
@@ -33,6 +33,7 @@ The code execution tool is available on the following models:
 | --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
 | Claude Fable 5 (claude-fable-5)                                                                     | `code_execution_20250825`, `code_execution_20260120`, `code_execution_20260521` |
 | Claude Mythos 5 (claude-mythos-5)                                                                   | `code_execution_20250825`, `code_execution_20260120`, `code_execution_20260521` |
+| Claude Sonnet 5 (claude-sonnet-5)                                                                   | `code_execution_20250825`, `code_execution_20260120`, `code_execution_20260521` |
 | Claude Opus 4.8 (claude-opus-4-8)                                                                   | `code_execution_20250825`, `code_execution_20260120`, `code_execution_20260521` |
 | Claude Opus 4.7 (claude-opus-4-7)                                                                   | `code_execution_20250825`, `code_execution_20260120`, `code_execution_20260521` |
 | Claude Opus 4.6 (claude-opus-4-6)                                                                   | `code_execution_20250825`, `code_execution_20260120`, `code_execution_20260521` |

@@ -1,13 +1,15 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/mcp_tunnels/retrieve
-fetched_at: 2026-06-12T03:17:40.104094Z
-sha256: 6881884534acc840ecc73fd0fa2c8eb6adfc350c420f49ef65b39b0fffcc7d04
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 89cb8b88c1e48ec502f146aa4e1a0ad95696d3b58937256ed98b03c6e17b069b
 ---
 
 ## Get Tunnel
 
 **get** `/v1/organizations/tunnels/{tunnel_id}`
+
+**Deprecated.** This Admin API endpoint is superseded by `/v1/tunnels` on the Claude API and will be removed after a migration window. New integrations should use [`/v1/tunnels`](/docs/en/api/beta/tunnels) with the `anthropic-beta: mcp-tunnels-2026-06-22` header and a WIF token carrying the `workspace:manage_tunnels` scope. Existing integrations continue to work with the `mcp-tunnels-2026-05-19` header and `org:manage_tunnels` scope during the migration window.
 
 Retrieve a single tunnel in the caller's organization by ID.
 

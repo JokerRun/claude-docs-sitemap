@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/analytics/users/list
-fetched_at: 2026-06-17T03:17:04.158711Z
-sha256: 399c98cf9dffc8c54262b3315d7c02e2c9e6a54f30c2fe20000a23f7043218f7
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 9613e62109e0e26cbb4967bd91f5df9d9cee5b2b46f0a753c906d91b9167fe9d
 ---
 
 ## List User Activity
@@ -35,19 +35,47 @@ an API key with the `read:analytics` scope.
 
   Response for GET /v1/organizations/analytics/users.
 
-  - `data: array of object { chat_metrics, claude_code_metrics, cowork_metrics, 4 more }`
+  - `data: array of object { bioscience_metrics, chat_metrics, claude_code_metrics, 5 more }`
 
-    - `chat_metrics: object { connectors_used_count, distinct_artifacts_created_count, distinct_conversation_count, 8 more }`
+    - `bioscience_metrics: object { delegation_count, distinct_session_count, message_count, 2 more }`
+
+      Claude Bioscience activity metrics for a single user on a given day.
+
+      - `delegation_count: number`
+
+        Number of delegations (handoffs to a specialized agent) in Claude Bioscience sessions
+
+      - `distinct_session_count: number`
+
+        Number of distinct Claude Bioscience sessions. Null on aggregated rows where a distinct count cannot be computed.
+
+      - `message_count: number`
+
+        Number of messages sent in Claude Bioscience sessions
+
+      - `remote_compute_job_count: number`
+
+        Number of remote compute jobs launched from Claude Bioscience sessions
+
+      - `skills_used_count: number`
+
+        Total number of skill invocations in Claude Bioscience sessions
+
+    - `chat_metrics: object { connectors_used_count, distinct_artifacts_created_count, distinct_connectors_used_count, 9 more }`
 
       Claude.ai activity metrics for a single user on a given day.
 
       - `connectors_used_count: number`
 
-        Number of MCP connectors used. Null on aggregated rows where a distinct count cannot be computed.
+        Number of MCP connector invocations.
 
       - `distinct_artifacts_created_count: number`
 
         Number of distinct artifacts created
+
+      - `distinct_connectors_used_count: number`
+
+        Distinct claude.ai connectors this user used. Excludes calls whose connector could not be identified and all calls from organizations with zero data retention. Null on aggregated rows where a distinct count cannot be computed.
 
       - `distinct_conversation_count: number`
 
@@ -279,9 +307,17 @@ curl https://api.anthropic.com/v1/organizations/analytics/users \
 {
   "data": [
     {
+      "bioscience_metrics": {
+        "delegation_count": 0,
+        "distinct_session_count": 0,
+        "message_count": 0,
+        "remote_compute_job_count": 0,
+        "skills_used_count": 0
+      },
       "chat_metrics": {
         "connectors_used_count": 0,
         "distinct_artifacts_created_count": 0,
+        "distinct_connectors_used_count": 0,
         "distinct_conversation_count": 0,
         "distinct_files_uploaded_count": 0,
         "distinct_projects_created_count": 0,

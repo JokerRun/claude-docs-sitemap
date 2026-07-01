@@ -1,35 +1,35 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 8de86601adb2a10237c558195eef45f127ea9ee214e6ad5994f2b0c514829c02
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 8dd29377bad767d04457b0fa15f35c4bf6abddb505e84a0bc0aaf422b9903a8b
 ---
 
-# Stop reason dan fallback
+# Alasan berhenti dan fallback
 
 Pelajari arti setiap nilai stop_reason dan cara menangani pemotongan, penggunaan alat, giliran yang dijeda, dan penolakan dalam aplikasi Anda.
 
 ---
 
-Setiap respons Messages API menyertakan field `stop_reason` yang memberi tahu Anda mengapa Claude berhenti menghasilkan. Periksa field ini untuk memutuskan apakah akan menggunakan respons apa adanya, melanjutkan percakapan, mencoba ulang, atau beralih ke model lain.
+Setiap respons Messages API menyertakan field `stop_reason` yang memberi tahu Anda mengapa Claude berhenti menghasilkan output. Periksa field ini untuk memutuskan apakah akan menggunakan respons apa adanya, melanjutkan percakapan, mencoba ulang, atau beralih ke model lain sebagai fallback.
 
 Untuk skema respons lengkap, lihat [referensi Messages API](/docs/id/api/messages/create).
 
 ## Referensi cepat
 
-| Nilai                                                             | Kapan terjadi                                         | Apa yang harus dilakukan                                                                                    |
-| ----------------------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| [`end_turn`](#end-turn)                                           | Claude menyelesaikan responsnya secara alami.         | Gunakan respons tersebut.                                                                                   |
-| [`max_tokens`](#max-tokens)                                       | Respons mencapai batas `max_tokens` Anda.             | Naikkan `max_tokens` atau [lanjutkan respons](#ensuring-complete-responses).                                |
-| [`stop_sequence`](#stop-sequence)                                 | Claude mengeluarkan salah satu `stop_sequences` Anda. | Baca `stop_sequence` untuk melihat mana yang terpicu.                                                       |
-| [`tool_use`](#tool-use)                                           | Claude sedang memanggil alat.                         | Jalankan alat tersebut dan kembalikan hasilnya.                                                             |
-| [`pause_turn`](#pause-turn)                                       | Loop alat server mencapai batas iterasinya.           | Kirim kembali konten asisten untuk melanjutkan.                                                             |
-| [`refusal`](#refusal)                                             | Claude menolak untuk merespons.                       | Baca `stop_details` dan [coba ulang pada model fallback](/docs/id/build-with-claude/refusals-and-fallback). |
-| [`model_context_window_exceeded`](#model-context-window-exceeded) | Respons memenuhi jendela konteks model.               | Perlakukan respons sebagai terpotong.                                                                       |
+| Nilai                                                             | Kapan terjadi                                         | Apa yang harus dilakukan                                                                                                                         |
+| ----------------------------------------------------------------- | ----------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [`end_turn`](#end-turn)                                           | Claude menyelesaikan responsnya secara alami.         | Gunakan respons tersebut.                                                                                                                        |
+| [`max_tokens`](#max-tokens)                                       | Respons mencapai batas `max_tokens` Anda.             | Naikkan `max_tokens` atau [lanjutkan respons](#ensuring-complete-responses).                                                                     |
+| [`stop_sequence`](#stop-sequence)                                 | Claude menghasilkan salah satu `stop_sequences` Anda. | Baca `stop_sequence` untuk melihat mana yang terpicu.                                                                                            |
+| [`tool_use`](#tool-use)                                           | Claude memanggil sebuah alat.                         | Jalankan alat tersebut dan kembalikan hasilnya. Panggilan alat server yang belum memiliki blok hasil akan diselesaikan dalam respons berikutnya. |
+| [`pause_turn`](#pause-turn)                                       | Loop alat server mencapai batas iterasinya.           | Kirim kembali konten asisten untuk melanjutkan.                                                                                                  |
+| [`refusal`](#refusal)                                             | Claude menolak untuk merespons.                       | Baca `stop_details` dan [coba ulang pada model fallback](/docs/id/build-with-claude/refusals-and-fallback).                                      |
+| [`model_context_window_exceeded`](#model-context-window-exceeded) | Respons memenuhi jendela konteks model.               | Perlakukan respons sebagai terpotong.                                                                                                            |
 
 ## Field stop\_reason
 
-Field `stop_reason` adalah bagian dari setiap respons Messages API yang berhasil. Tidak seperti error, yang menunjukkan kegagalan dalam memproses permintaan Anda, `stop_reason` memberi tahu Anda mengapa Claude menyelesaikan pembuatan responsnya.
+Field `stop_reason` adalah bagian dari setiap respons Messages API yang berhasil. Berbeda dengan error, yang menunjukkan kegagalan dalam memproses permintaan Anda, `stop_reason` memberi tahu Anda mengapa Claude menyelesaikan pembuatan responsnya.
 
 ```json Example response
 {
@@ -52,11 +52,11 @@ Field `stop_reason` adalah bagian dari setiap respons Messages API yang berhasil
 }
 ```
 
-## Nilai stop reason
+## Nilai-nilai stop reason
 
 ### end\_turn
 
-Stop reason yang paling umum. Menunjukkan Claude menyelesaikan responsnya secara alami.
+Alasan berhenti yang paling umum. Menunjukkan bahwa Claude menyelesaikan responsnya secara alami.
 
 <CodeGroup>
   ```bash cURL
@@ -201,11 +201,11 @@ Stop reason yang paling umum. Menunjukkan Claude menyelesaikan responsnya secara
 </CodeGroup>
 
 <Accordion title="Respons kosong dengan end_turn">
-  Terkadang Claude mengembalikan respons kosong (tepat 2-3 token tanpa konten) dengan `stop_reason: "end_turn"`. Ini biasanya terjadi ketika Claude menafsirkan bahwa giliran asisten sudah selesai, terutama setelah hasil alat.
+  Terkadang Claude mengembalikan respons kosong (tepat 2-3 token tanpa konten) dengan `stop_reason: "end_turn"`. Ini biasanya terjadi ketika Claude menginterpretasikan bahwa giliran asisten sudah selesai, terutama setelah hasil alat.
 
   **Penyebab umum:**
 
-  * Menambahkan blok teks segera setelah hasil alat (Claude belajar untuk mengharapkan pengguna selalu menyisipkan teks setelah hasil alat, sehingga ia mengakhiri gilirannya untuk mengikuti pola tersebut)
+  * Menambahkan blok teks langsung setelah hasil alat (Claude belajar untuk mengharapkan pengguna selalu menyisipkan teks setelah hasil alat, sehingga ia mengakhiri gilirannya untuk mengikuti pola tersebut)
   * Mengirim kembali respons Claude yang sudah selesai tanpa menambahkan apa pun (Claude sudah memutuskan bahwa ia selesai, jadi ia akan tetap selesai)
 
   **Cara mencegah respons kosong:**
@@ -377,7 +377,7 @@ Stop reason yang paling umum. Menunjukkan Claude menyelesaikan responsnya secara
     	),
     }
 
-    // BENAR: Kirim hasil alat secara langsung tanpa teks tambahan
+    // BENAR: Kirim hasil alat langsung tanpa teks tambahan
     messages = []anthropic.MessageParam{
     	anthropic.NewUserMessage(anthropic.NewTextBlock("Calculate the sum of 1234 and 5678")),
     	anthropic.NewAssistantMessage(
@@ -505,7 +505,7 @@ Stop reason yang paling umum. Menunjukkan Claude menyelesaikan responsnya secara
       }
     ]
 
-    # BENAR: Kirim hasil alat langsung tanpa teks tambahan
+    # BENAR: Kirim hasil alat secara langsung tanpa teks tambahan
     messages = [
       { role: "user", content: "Calculate the sum of 1234 and 5678" },
       {
@@ -530,7 +530,7 @@ Stop reason yang paling umum. Menunjukkan Claude menyelesaikan responsnya secara
     ```
   </CodeGroup>
 
-  Jika Anda masih mendapatkan respons kosong setelah memperbaiki struktur pesan, tambahkan prompt lanjutan dalam pesan pengguna baru daripada mencoba ulang dengan respons kosong:
+  Jika Anda masih mendapatkan respons kosong setelah memperbaiki struktur pesan, tambahkan prompt lanjutan dalam pesan pengguna baru alih-alih mencoba ulang dengan respons kosong:
 
   <CodeGroup>
     ```python Python
@@ -655,7 +655,7 @@ Stop reason yang paling umum. Menunjukkan Claude menyelesaikan responsnya secara
         // Periksa apakah respons kosong
         boolean isEndTurn = response.stopReason().map(StopReason.END_TURN::equals).orElse(false);
         if (isEndTurn && response.content().isEmpty()) {
-            // BENAR: Tambahkan prompt lanjutan dalam pesan user BARU
+            // BENAR: Tambahkan prompt lanjutan dalam pesan pengguna BARU
             List<MessageParam> extended = new ArrayList<>(messages);
             extended.add(MessageParam.builder()
                 .role(MessageParam.Role.USER)
@@ -686,7 +686,7 @@ Stop reason yang paling umum. Menunjukkan Claude menyelesaikan responsnya secara
 
         // Periksa apakah respons kosong
         if ($response->stopReason === 'end_turn' && count($response->content) === 0) {
-            // BENAR: Tambahkan prompt lanjutan dalam pesan pengguna BARU
+            // BENAR: Tambahkan prompt lanjutan dalam pesan user BARU
             $messages[] = ['role' => 'user', 'content' => 'Please continue'];
 
             $response = $client->messages->create(
@@ -710,7 +710,7 @@ Stop reason yang paling umum. Menunjukkan Claude menyelesaikan responsnya secara
 
       # Periksa apakah respons kosong
       if response.stop_reason == :end_turn && response.content.empty?
-        # BENAR: Tambahkan prompt lanjutan dalam pesan pengguna BARU
+        # BENAR: Tambahkan prompt lanjutan dalam pesan user BARU
         messages << { role: "user", content: "Please continue" }
 
         response = client.messages.create(
@@ -727,9 +727,9 @@ Stop reason yang paling umum. Menunjukkan Claude menyelesaikan responsnya secara
 
   **Praktik terbaik:**
 
-  1. **Jangan pernah menambahkan blok teks segera setelah hasil alat:** Ini mengajarkan Claude untuk mengharapkan input pengguna setelah setiap penggunaan alat.
+  1. **Jangan pernah menambahkan blok teks langsung setelah hasil alat:** Ini mengajarkan Claude untuk mengharapkan input pengguna setelah setiap penggunaan alat.
   2. **Jangan mencoba ulang respons kosong tanpa modifikasi:** Mengirim kembali respons kosong tidak akan membantu.
-  3. **Gunakan prompt lanjutan sebagai upaya terakhir:** Hanya jika perbaikan ini tidak menyelesaikan masalah.
+  3. **Gunakan prompt lanjutan sebagai upaya terakhir:** Hanya jika perbaikan di atas tidak menyelesaikan masalah.
 </Accordion>
 
 ### max\_tokens
@@ -885,7 +885,7 @@ Claude berhenti karena mencapai batas `max_tokens` yang ditentukan dalam permint
 </CodeGroup>
 
 <Accordion title="Blok tool use yang tidak lengkap">
-  Jika respons Claude terpotong karena mencapai batas `max_tokens`, dan respons yang terpotong berisi blok tool use yang tidak lengkap, Anda perlu mencoba ulang permintaan dengan nilai `max_tokens` yang lebih tinggi untuk mendapatkan tool use yang lengkap.
+  Jika respons Claude terpotong karena mencapai batas `max_tokens`, dan respons yang terpotong tersebut berisi blok tool use yang tidak lengkap, Anda perlu mencoba ulang permintaan dengan nilai `max_tokens` yang lebih tinggi untuk mendapatkan tool use yang lengkap.
 
   <CodeGroup>
     ```bash CLI
@@ -1193,7 +1193,7 @@ Claude menemukan salah satu stop sequence kustom Anda.
 
 ### tool\_use
 
-Claude sedang memanggil alat dan mengharapkan Anda untuk mengeksekusinya.
+Claude memanggil sebuah alat dan mengharapkan Anda untuk mengeksekusinya.
 
 <Note>
   Untuk sebagian besar implementasi penggunaan alat, gunakan [tool runner](/docs/id/agents-and-tools/tool-use/tool-runner), yang secara otomatis menangani eksekusi alat, pemformatan hasil, dan manajemen percakapan.
@@ -1485,16 +1485,65 @@ Claude sedang memanggil alat dan mengharapkan Anda untuk mengeksekusinya.
   ```
 </CodeGroup>
 
+Respons `tool_use` juga dapat berisi blok `server_tool_use` yang `id`-nya tidak memiliki blok hasil yang cocok. Panggilan alat server tersebut belum selesai, dan respons ini tidak membawa hasilnya. Dalam kasus umum, Claude memanggil sebuah [alat server](/docs/id/agents-and-tools/tool-use/server-tools) dan salah satu alat klien Anda dalam kelompok panggilan alat paralel yang sama: API mengembalikan respons tanpa menjalankan alat server sehingga Anda dapat menjalankan alat klien terlebih dahulu. Tidak ada penanda lain untuk keadaan ini; deteksi dengan memeriksa `id` setiap blok `server_tool_use` atau `mcp_tool_use` untuk mencari blok hasil yang cocok.
+
+<Note>
+  Dengan [programmatic tool calling](/docs/id/agents-and-tools/tool-use/programmatic-tool-calling), bentuk respons yang sama memiliki arti yang berbeda. Blok `tool_use` klien berasal dari kode yang berjalan di alat `code_execution` alih-alih dari Claude secara langsung, dan field `caller`-nya menyebutkan blok `code_execution` yang memanggilnya. Kode tersebut sudah mulai berjalan: ia dijeda menunggu blok `tool_result` Anda, dan mengirimkannya akan melanjutkan eksekusi alih-alih memulai alat yang ditangguhkan. Blok hasil milik blok `code_execution` itu sendiri akan tiba setelah kode selesai, yang dapat memerlukan lebih dari satu putaran hasil alat. Pesan pengguna lanjutan itu sendiri sama dalam kedua kasus; dengan programmatic tool calling, sertakan juga kembali `id` dari field `container` respons, seperti yang ditunjukkan pada halaman tersebut.
+</Note>
+
+```json A mixed tool_use response
+{
+  "stop_reason": "tool_use",
+  "content": [
+    {
+      "type": "server_tool_use",
+      "id": "srvtoolu_01HxbWnMRmbWyMfUtJKC45rA",
+      "name": "web_fetch",
+      "input": { "url": "https://example.com/article" }
+    },
+    {
+      "type": "tool_use",
+      "id": "toolu_01PjgRJLbXrXEMZwDNYLnBqk",
+      "name": "run_command",
+      "input": { "command": "uname -a" }
+    }
+  ]
+}
+```
+
+Lanjutannya adalah pesan pengguna berisi blok `tool_result`, satu untuk setiap blok `tool_use` dalam respons (lihat [Menangani panggilan alat](/docs/id/agents-and-tools/tool-use/handle-tool-calls)), dengan dua aturan tambahan: pesan tersebut tidak boleh berisi apa pun selain blok `tool_result`, dan permintaan harus mempertahankan array `tools` yang sama. Permintaan lanjutan yang tidak lagi mendefinisikan alat server yang sedang menunggu akan gagal dengan error 400 yang pesannya diakhiri dengan ``but no `web_fetch` tool was provided``. API melampirkan hasil Anda ke giliran asisten yang masih terbuka, menjalankan alat server yang ditangguhkan (untuk eksekusi kode yang dijeda, melanjutkannya), dan melanjutkan giliran tersebut. Untuk alat server yang dipanggil Claude secara langsung, `content` respons berikutnya dimulai dengan blok hasil yang menjawab `id` `server_tool_use` dari respons sebelumnya.
+
+```json The follow-up user message
+{
+  "role": "user",
+  "content": [
+    {
+      "type": "tool_result",
+      "tool_use_id": "toolu_01PjgRJLbXrXEMZwDNYLnBqk",
+      "content": "Linux demo-host 6.8.0-52-generic x86_64 GNU/Linux"
+    }
+  ]
+}
+```
+
+Menambahkan apa pun setelah blok `tool_result` dalam pesan pengguna tersebut, seperti teks, akan mengakhiri giliran asisten; untuk alat server yang dipanggil Claude secara langsung, permintaan kemudian gagal dengan `invalid_request_error` 400 yang menyebutkan alat server yang belum terselesaikan:
+
+```text wrap
+`web_fetch` tool use with id `srvtoolu_01HxbWnMRmbWyMfUtJKC45rA` was found without a corresponding `web_fetch_tool_result` block
+```
+
+Menghilangkan sebuah `tool_result`, atau menempatkannya setelah konten lain, akan gagal lebih awal dengan error standar `tool_use ids were found without tool_result blocks immediately after`. Untuk memberikan Claude input tambahan, kirimkan sebagai pesan pengguna terpisah setelah giliran selesai.
+
 ### pause\_turn
 
 Dikembalikan ketika loop sampling sisi server mencapai batas iterasinya saat mengeksekusi [alat server](/docs/id/agents-and-tools/tool-use/server-tools) seperti web search atau web fetch. Batas default adalah 10 iterasi per permintaan.
 
-Ketika ini terjadi, respons mungkin berisi blok `server_tool_use` tanpa `server_tool_result` yang sesuai. Untuk membiarkan Claude menyelesaikan pemrosesan, lanjutkan percakapan dengan mengirim kembali respons apa adanya.
+Ketika ini terjadi, respons mungkin berisi blok `server_tool_use` tanpa blok hasil yang sesuai. Untuk membiarkan Claude menyelesaikan pemrosesan, lanjutkan percakapan dengan mengirim kembali respons apa adanya. Respons yang meninggalkan blok `tool_use` klien menunggu Anda tidak pernah memiliki `stop_reason` berupa `pause_turn`: ketika Claude berhenti untuk memanggil alat Anda, `stop_reason` adalah [`tool_use`](#tool-use), dan Anda melanjutkannya dengan mengirim blok `tool_result` klien alih-alih respons itu sendiri.
 
 <CodeGroup>
   ```bash cURL
   # SDK menangani kelanjutan secara langsung. Dengan cURL, periksa stop_reason
-  # pada respons dan kirim ulang POST dengan konten asisten ditambahkan.
+  # pada respons dan kirim ulang POST dengan konten asisten yang ditambahkan.
   curl https://api.anthropic.com/v1/messages \
     --header "x-api-key: $ANTHROPIC_API_KEY" \
     --header "anthropic-version: 2023-06-01" \
@@ -1509,7 +1558,7 @@ Ketika ini terjadi, respons mungkin berisi blok `server_tool_use` tanpa `server_
 
   ```bash CLI
   # Periksa stop_reason; jika nilainya pause_turn, jalankan ulang dengan respons
-  # asisten yang ditambahkan ke --message.
+  # asisten ditambahkan ke --message.
   ant messages create --format json <<'YAML' | jq '{stop_reason, content}'
   model: claude-opus-4-8
   max_tokens: 4096
@@ -1578,7 +1627,7 @@ Ketika ini terjadi, respons mungkin berisi blok `server_tool_use` tanpa `server_
 
   if (response.StopReason == "pause_turn")
   {
-      // Lanjutkan percakapan dengan mengirim kembali respons tersebut
+      // Lanjutkan percakapan dengan mengirimkan kembali respons tersebut
       var continuation = await client.Messages.Create(new MessageCreateParams
       {
           Model = Model.ClaudeOpus4_8,
@@ -1710,7 +1759,7 @@ Ketika ini terjadi, respons mungkin berisi blok `server_tool_use` tanpa `server_
 
 ### refusal
 
-Claude menolak untuk menghasilkan respons. Pada Claude Fable 5, pengklasifikasi keamanan mengembalikan stop reason ini sebagai respons HTTP 200 normal, bukan error.
+Claude menolak untuk menghasilkan respons. Pada Claude Fable 5, pengklasifikasi keamanan mengembalikan alasan berhenti ini sebagai respons HTTP 200 normal, bukan error.
 
 <CodeGroup>
   ```bash cURL
@@ -1854,10 +1903,10 @@ Claude menolak untuk menghasilkan respons. Pada Claude Fable 5, pengklasifikasi 
 </CodeGroup>
 
 <Tip>
-  Jika Anda sering menemukan stop reason `refusal` saat menggunakan Claude Sonnet 4.5 atau Opus 4.1 ([tidak digunakan lagi](/docs/id/about-claude/model-deprecations)), Anda dapat mencoba memperbarui panggilan API Anda untuk menggunakan Haiku 4.5 (`claude-haiku-4-5-20251001`), yang memiliki batasan penggunaan yang berbeda. Pelajari lebih lanjut tentang [memahami filter keamanan API Sonnet 4.5](https://support.claude.com/en/articles/12449294-understanding-sonnet-4-5-s-api-safety-filters).
+  Jika Anda sering menemukan alasan berhenti `refusal` saat menggunakan Claude Sonnet 4.5 atau Opus 4.1 ([tidak digunakan lagi](/docs/id/about-claude/model-deprecations)), Anda dapat mencoba memperbarui panggilan API Anda untuk menggunakan Haiku 4.5 (`claude-haiku-4-5-20251001`), yang memiliki batasan penggunaan yang berbeda. Pelajari lebih lanjut tentang [memahami filter keamanan API Sonnet 4.5](https://support.claude.com/en/articles/12449294-understanding-sonnet-4-5-s-api-safety-filters).
 </Tip>
 
-Pada penolakan, objek `stop_details` mengidentifikasi kategori kebijakan yang memicunya. Kategori dan bentuk respons penolakan lengkap dibahas di [Penolakan dan fallback](/docs/id/build-with-claude/refusals-and-fallback#refusal-response). `stop_details` bernilai `null` untuk semua stop reason selain `refusal`.
+Pada penolakan, objek `stop_details` mengidentifikasi kategori kebijakan yang memicunya. Kategori-kategori dan bentuk respons penolakan lengkap dibahas di [Penolakan dan fallback](/docs/id/build-with-claude/refusals-and-fallback#refusal-response). `stop_details` bernilai `null` untuk semua alasan berhenti selain `refusal`.
 
 Permintaan yang ditolak pada Claude Fable 5 biasanya dapat dilayani dengan mencoba ulang pada model Claude lain, dan [Penolakan dan fallback](/docs/id/build-with-claude/refusals-and-fallback) menunjukkan cara menyiapkan percobaan ulang tersebut, di sisi server atau di klien Anda. [Kredit fallback](/docs/id/build-with-claude/fallback-credit) membahas cara menghindari membayar biaya cache prompt dua kali ketika Anda membangun percobaan ulang sendiri.
 
@@ -1866,7 +1915,7 @@ Permintaan yang ditolak pada Claude Fable 5 biasanya dapat dilayani dengan menco
 Claude berhenti karena mencapai batas jendela konteks model. Ini memungkinkan Anda meminta token maksimum yang mungkin tanpa mengetahui ukuran input yang tepat.
 
 <Note>
-  Stop reason ini saat ini hanya diketik dalam namespace `beta` SDK, sehingga contoh berikut memanggil `client.beta.messages` dan menggunakan tipe dengan prefiks `Beta`. Pada Sonnet 4.5 dan model yang lebih baru, API mengembalikan nilai ini tanpa header beta. Untuk model sebelumnya, tambahkan header beta `model-context-window-exceeded-2025-08-26` untuk mengaktifkannya.
+  Alasan berhenti ini saat ini hanya diketik dalam namespace `beta` SDK, sehingga contoh berikut memanggil `client.beta.messages` dan menggunakan tipe dengan prefiks `Beta`. Pada Sonnet 4.5 dan model yang lebih baru, API mengembalikan nilai ini tanpa header beta. Untuk model sebelumnya, tambahkan header beta `model-context-window-exceeded-2025-08-26` untuk mengaktifkannya.
 </Note>
 
 <CodeGroup>
@@ -2013,7 +2062,7 @@ Claude berhenti karena mencapai batas jendela konteks model. Ini memungkinkan An
   ```
 </CodeGroup>
 
-## Praktik terbaik untuk menangani stop reason
+## Praktik terbaik untuk menangani alasan berhenti
 
 ### Selalu periksa stop\_reason
 
@@ -2268,7 +2317,7 @@ Ketika respons terpotong karena batas token atau jendela konteks, tambahkan pemb
 
 ### Implementasikan logika percobaan ulang untuk pause\_turn
 
-Saat menggunakan [alat server](/docs/id/agents-and-tools/tool-use/server-tools), API mungkin mengembalikan `pause_turn` jika loop sampling sisi server mencapai batas iterasinya (default 10). Tangani ini dengan melanjutkan percakapan:
+Saat menggunakan [alat server](/docs/id/agents-and-tools/tool-use/server-tools), API dapat mengembalikan `pause_turn` jika loop sampling sisi server mencapai batas iterasinya (default 10). Tangani ini dengan melanjutkan percakapan:
 
 <CodeGroup>
   ```python Python
@@ -2291,7 +2340,7 @@ Saat menggunakan [alat server](/docs/id/agents-and-tools/tool-use/server-tools),
               # Claude selesai memproses - kembalikan respons akhir
               return response
 
-          # pause_turn: ganti seluruh daftar pesan untuk menjaga peran tetap bergantian
+          # pause_turn: ganti seluruh daftar pesan untuk mempertahankan peran yang berselang-seling
           messages = [
               {"role": "user", "content": user_query},
               {"role": "assistant", "content": response.content},
@@ -2324,7 +2373,7 @@ Saat menggunakan [alat server](/docs/id/agents-and-tools/tool-use/server-tools),
         return response;
       }
 
-      // pause_turn: ganti seluruh daftar pesan untuk menjaga peran yang bergantian
+      // pause_turn: ganti seluruh daftar pesan untuk menjaga peran yang berselang-seling
       messages = [
         { role: "user", content: userQuery },
         { role: "assistant", content: response.content }
@@ -2362,7 +2411,7 @@ Saat menggunakan [alat server](/docs/id/agents-and-tools/tool-use/server-tools),
               return response;
           }
 
-          // pause_turn: ganti seluruh daftar pesan untuk menjaga peran tetap bergantian
+          // pause_turn: ganti seluruh daftar pesan untuk menjaga peran yang berselang-seling
           messages =
           [
               new() { Role = Role.User, Content = userQuery },
@@ -2406,7 +2455,7 @@ Saat menggunakan [alat server](/docs/id/agents-and-tools/tool-use/server-tools),
   			return response, nil
   		}
 
-  		// pause_turn: ganti seluruh daftar pesan untuk menjaga peran yang berselang-seling
+  		// pause_turn: ganti seluruh daftar pesan untuk mempertahankan peran yang berselang-seling
   		var contentParams []anthropic.ContentBlockParamUnion
   		for _, block := range response.Content {
   			contentParams = append(contentParams, block.ToParam())
@@ -2451,7 +2500,7 @@ Saat menggunakan [alat server](/docs/id/agents-and-tools/tool-use/server-tools),
           // pause_turn: ulangi loop dan kirim kembali responsnya
       }
 
-      // Mencapai batas maksimum kelanjutan - kembalikan respons terakhir
+      // Mencapai jumlah kelanjutan maksimum - kembalikan respons terakhir
       return response;
   }
   ```
@@ -2507,24 +2556,24 @@ Saat menggunakan [alat server](/docs/id/agents-and-tools/tool-use/server-tools),
       # Claude selesai memproses - kembalikan respons akhir
       return response unless response.stop_reason == :pause_turn
 
-      # pause_turn: ganti seluruh daftar pesan untuk mempertahankan peran yang berselang-seling
+      # pause_turn: ganti seluruh daftar pesan untuk menjaga peran tetap bergantian
       messages = [
         { role: "user", content: user_query },
         { role: "assistant", content: response.content }
       ]
     end
 
-    # Mencapai jumlah kelanjutan maksimum - kembalikan respons terakhir
+    # Mencapai batas maksimum kelanjutan - kembalikan respons terakhir
     response
   end
   ```
 </CodeGroup>
 
-## Stop reason vs. error
+## Alasan berhenti vs. error
 
 Penting untuk membedakan antara nilai `stop_reason` dan error yang sebenarnya:
 
-### Stop reason (respons berhasil)
+### Alasan berhenti (respons berhasil)
 
 * Bagian dari body respons
 * Menunjukkan mengapa pembuatan berhenti secara normal
@@ -2681,12 +2730,12 @@ Penting untuk membedakan antara nilai `stop_reason` dan error yang sebenarnya:
               .build()
       );
 
-      // Handle successful response with stop_reason
+      // Tangani respons yang berhasil dengan stop_reason
       if (response.stopReason().map(StopReason.MAX_TOKENS::equals).orElse(false)) {
           IO.println("Response was truncated");
       }
   } catch (RateLimitException e) {
-      // Handle actual errors
+      // Tangani error yang sebenarnya
       IO.println("Rate limit exceeded");
   } catch (AnthropicServiceException e) {
       if (e.statusCode() == 500) {
@@ -2835,7 +2884,7 @@ Saat menggunakan streaming, `stop_reason` adalah:
   	},
   })
 
-  // Akumulasikan event ke dalam Message akhir, yang membawa stop_reason.
+  // Akumulasikan event menjadi Message akhir, yang membawa stop_reason.
   message := anthropic.Message{}
   for stream.Next() {
   	if err := message.Accumulate(stream.Current()); err != nil {
@@ -2860,7 +2909,7 @@ Saat menggunakan streaming, `stop_reason` adalah:
       .addUserMessage("Hello!")
       .build();
 
-  // Akumulasikan event menjadi Message final, yang membawa stop_reason.
+  // Akumulasikan event menjadi Message akhir, yang membawa stop_reason.
   MessageAccumulator accumulator = MessageAccumulator.create();
   try (StreamResponse<RawMessageStreamEvent> streamResponse =
           client.messages().createStreaming(params)) {
@@ -3352,7 +3401,7 @@ Saat menggunakan streaming, `stop_reason` adalah:
 
 ### Mendapatkan token maksimum tanpa mengetahui ukuran input
 
-Dengan stop reason `model_context_window_exceeded`, Anda dapat meminta token maksimum yang mungkin tanpa menghitung ukuran input:
+Dengan alasan berhenti `model_context_window_exceeded`, Anda dapat meminta token maksimum yang mungkin tanpa menghitung ukuran input:
 
 <CodeGroup>
   ```python Python
@@ -3493,10 +3542,10 @@ Dengan stop reason `model_context_window_exceeded`, Anda dapat meminta token mak
       long tokens = response.usage().outputTokens();
       BetaStopReason reason = response.stopReason().orElse(BetaStopReason.END_TURN);
       if (reason.equals(BetaStopReason.MODEL_CONTEXT_WINDOW_EXCEEDED)) {
-          // Mendapat token maksimum yang mungkin berdasarkan ukuran input
+          // Mendapatkan jumlah token maksimum yang mungkin berdasarkan ukuran input
           IO.println("Generated " + tokens + " tokens (context limit reached)");
       } else if (reason.equals(BetaStopReason.MAX_TOKENS)) {
-          // Mendapat persis jumlah token yang diminta
+          // Mendapatkan persis jumlah token yang diminta
           IO.println("Generated " + tokens + " tokens (max_tokens reached)");
       } else {
           // Penyelesaian alami
@@ -3518,9 +3567,9 @@ Dengan stop reason `model_context_window_exceeded`, Anda dapat meminta token mak
 
       $tokens = $response->usage->outputTokens;
       echo match ($response->stopReason) {
-          // Mendapat token maksimum yang mungkin berdasarkan ukuran input
+          // Mendapatkan token maksimum yang mungkin berdasarkan ukuran input
           'model_context_window_exceeded' => "Generated {$tokens} tokens (context limit reached)",
-          // Mendapat persis jumlah token yang diminta
+          // Mendapatkan persis jumlah token yang diminta
           'max_tokens' => "Generated {$tokens} tokens (max_tokens reached)",
           // Penyelesaian alami
           default => "Generated {$tokens} tokens (natural completion)",
@@ -3568,10 +3617,10 @@ Dengan stop reason `model_context_window_exceeded`, Anda dapat meminta token mak
   </Card>
 
   <Card title="Streaming pesan" icon="lightning" href="/docs/id/build-with-claude/streaming">
-    Baca `stop_reason` dari event `message_delta` saat streaming.
+    Baca `stop_reason` dari event `message_delta` saat melakukan streaming.
   </Card>
 
   <Card title="Error" icon="info" href="/docs/id/api/errors">
-    Tangani error HTTP 4xx dan 5xx, yang berbeda dari stop reason.
+    Tangani error HTTP 4xx dan 5xx, yang berbeda dari alasan berhenti.
   </Card>
 </CardGroup>

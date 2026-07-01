@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-apps-gateway-spend-limits
-fetched_at: 2026-06-30T03:15:27.286427Z
-sha256: a9775b6d8a8fa91ef4c3ab57dece7c4b494f97dad63bfcc859ded06d8b1b209e
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: e566c85281066e69e92e4970bc02d7f4f6f73bf7bc845ad646f575630522cbcd
 ---
 
 > ## Documentation Index
@@ -95,7 +95,7 @@ Conventions mirror Anthropic's Admin API:
 
 Every mutation writes a before/after row to `admin_audit` in the same transaction, attributed to `admin-key:<id>` or `oidc:<sub>`.
 
-The `spend_limit_increase_requests` queue is not implemented.
+The gateway serves the spend-limits endpoints only. Other Admin API surfaces, such as the `spend_limit_increase_requests` queue, aren't part of the gateway's admin API.
 
 ### `/effective`
 
@@ -108,13 +108,13 @@ The `spend_limit_increase_requests` queue is not implemented.
 
 Group-sourced caps resolve against those last-seen groups with the same `group_limit_mode` tie-break that enforcement uses, so the viewer shows the cap that actually applies.
 
-| Query parameter  | Description                                                                                         |
-| ---------------- | --------------------------------------------------------------------------------------------------- |
-| `user_ids[]`     | Repeatable. Filter to specific principals by OIDC `sub`.                                            |
-| `period[]`       | Repeatable. Filter to `daily`, `weekly`, or `monthly` rows.                                         |
-| `sort`           | `spend_desc` lists top spenders first. Requires exactly one `period[]`.                             |
-| `q`              | Case-insensitive substring filter over the OIDC `sub`, last-seen email, and last-seen display name. |
-| `limit` / `page` | Page size (1–1000, default 20) and the opaque cursor from the previous response's `next_page`.      |
+| Query parameter  | Description                                                                                             |
+| ---------------- | ------------------------------------------------------------------------------------------------------- |
+| `user_ids[]`     | Repeatable. Filter to specific principals by OIDC `sub`.                                                |
+| `period[]`       | Repeatable. Filter to `daily`, `weekly`, or `monthly` rows.                                             |
+| `sort`           | `spend_desc` lists top spenders first. Requires exactly one `period[]`.                                 |
+| `q`              | Case-insensitive substring filter over the OIDC `sub`, last-seen email, and last-seen display name.     |
+| `limit` / `page` | Page size, 1–1000 with a default of 20, and the opaque cursor from the previous response's `next_page`. |
 
 <Warning>
   `q=` and `user_ids[]=` ride GET query strings, so any fronting proxy or load balancer captures them in its access logs. If your PII log policy is strict, scrub these parameters there.

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/kubernetes
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: be03cdef9a721a93fa36457ae53e622e146c9569ebd1809fe3ee2ee91760911a
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 60e65ae49cb1aceab5c48ed01ef2cd6f6ec6d964b5fac0d08d0502d60c868056
 ---
 
 # Menggunakan WIF dengan Kubernetes
@@ -30,7 +30,7 @@ kubectl get --raw /.well-known/openid-configuration | jq -r .issuer
 * Salah satu dari berikut ini agar Anthropic dapat memvalidasi tanda tangan token:
 
   * Endpoint JWKS issuer dapat dijangkau dari internet publik melalui HTTPS pada port 443, atau
-  * Anda dapat mengambil JWKS dari dalam klaster dan mendaftarkannya dalam mode `inline` (dibahas di [Mengonfigurasi Anthropic](#mengonfigurasi-anthropic)).
+  * Anda dapat mengambil JWKS dari dalam klaster dan mendaftarkannya dalam mode `inline` (dibahas di [Mengonfigurasi Anthropic](#configure-anthropic)).
 
 * Izin untuk membuat service account, federation issuer, dan federation rule di Claude Console untuk organisasi Anthropic Anda.
 
@@ -131,7 +131,7 @@ Buat sespesifik yang dimungkinkan oleh workload. Longgarkan `subject_prefix` men
 
 ## Memperoleh dan menggunakan token
 
-Spesifikasi pod di [Mengonfigurasi Kubernetes](#mengonfigurasi-kubernetes) mengatur `ANTHROPIC_IDENTITY_TOKEN_FILE` ke mount path yang diproyeksikan, bersama dengan `ANTHROPIC_FEDERATION_RULE_ID`, `ANTHROPIC_ORGANIZATION_ID`, `ANTHROPIC_SERVICE_ACCOUNT_ID`, dan `ANTHROPIC_WORKSPACE_ID`. Dengan semua itu tersedia, SDK membaca token dari disk pada setiap pertukaran dan menyegarkan access token Anthropic secara otomatis.
+Spesifikasi pod di [Mengonfigurasi Kubernetes](#configure-kubernetes) mengatur `ANTHROPIC_IDENTITY_TOKEN_FILE` ke mount path yang diproyeksikan, bersama dengan `ANTHROPIC_FEDERATION_RULE_ID`, `ANTHROPIC_ORGANIZATION_ID`, `ANTHROPIC_SERVICE_ACCOUNT_ID`, dan `ANTHROPIC_WORKSPACE_ID`. Dengan semua itu tersedia, SDK membaca token dari disk pada setiap pertukaran dan menyegarkan access token Anthropic secara otomatis.
 
 <CodeGroup>
   ```bash cURL

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/extended-thinking
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 81b9b30eb551dd43f2801358319d39919dfc49738150a98e2a949801766dc4d8
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: e76ebf54e5d3a5112749d6bfbd09fa8a78aaefcd6e1e4add25922112288be9e5
 ---
 
 # Pemikiran diperpanjang
@@ -19,7 +19,7 @@ Berikan Claude kemampuan penalaran yang ditingkatkan untuk tugas-tugas kompleks 
 
 ## Model yang didukung
 
-Pemikiran diperpanjang tersedia pada semua model Claude saat ini. Cara Anda mengaktifkannya bergantung pada model:
+Pemikiran diperpanjang tersedia di semua model Claude saat ini. Cara Anda mengaktifkannya bergantung pada model:
 
 | Model                                                    | Pemikiran diperpanjang manual (`budget_tokens`)                                  | Direkomendasikan                                                                                                                                                |
 | -------------------------------------------------------- | -------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -27,6 +27,7 @@ Pemikiran diperpanjang tersedia pada semua model Claude saat ini. Cara Anda meng
 | [Claude Mythos Preview](https://anthropic.com/glasswing) | Didukung                                                                         | [Pemikiran adaptif](/docs/id/build-with-claude/adaptive-thinking), aktif secara default                                                                         |
 | Claude Opus 4.8                                          | Tidak didukung (error 400)                                                       | [Pemikiran adaptif](/docs/id/build-with-claude/adaptive-thinking) dengan [effort](/docs/id/build-with-claude/effort)                                            |
 | Claude Opus 4.7                                          | Tidak didukung (error 400)                                                       | [Pemikiran adaptif](/docs/id/build-with-claude/adaptive-thinking) dengan [effort](/docs/id/build-with-claude/effort)                                            |
+| Claude Sonnet 5                                          | Tidak didukung (error 400)                                                       | [Pemikiran adaptif](/docs/id/build-with-claude/adaptive-thinking) dengan [effort](/docs/id/build-with-claude/effort)                                            |
 | Claude Opus 4.6                                          | [Tidak digunakan lagi](/docs/id/build-with-claude/overview#feature-availability) | [Pemikiran adaptif](/docs/id/build-with-claude/adaptive-thinking) dengan [effort](/docs/id/build-with-claude/effort)                                            |
 | Claude Sonnet 4.6                                        | [Tidak digunakan lagi](/docs/id/build-with-claude/overview#feature-availability) | [Pemikiran adaptif](/docs/id/build-with-claude/adaptive-thinking) dengan [effort](/docs/id/build-with-claude/effort)                                            |
 | Claude Opus 4.5                                          | Didukung                                                                         | N/A                                                                                                                                                             |
@@ -63,7 +64,7 @@ Untuk informasi lebih lanjut tentang format respons pemikiran diperpanjang, liha
 
 ## Cara menggunakan pemikiran diperpanjang
 
-Berikut adalah contoh penggunaan pemikiran diperpanjang dalam Messages API:
+Berikut adalah contoh penggunaan pemikiran diperpanjang di Messages API:
 
 <CodeGroup>
   ```bash cURL
@@ -73,28 +74,33 @@ Berikut adalah contoh penggunaan pemikiran diperpanjang dalam Messages API:
        --header "content-type: application/json" \
        --data \
   '{
-      "model": "claude-sonnet-4-6",
-      "max_tokens": 16000,
-      "thinking": {
-          "type": "enabled",
-          "budget_tokens": 10000
-      },
-      "messages": [
-          {
-              "role": "user",
-              "content": "Are there an infinite number of prime numbers such that n mod 4 == 3?"
-          }
-      ]
+    "model": "claude-sonnet-4-6",
+    "max_tokens": 16000,
+    "thinking": {
+      "type": "enabled",
+      "budget_tokens": 10000
+    },
+    "messages": [
+      {
+        "role": "user",
+        "content": "Are there an infinite number of prime numbers such that n mod 4 == 3?"
+      }
+    ]
   }'
   ```
 
   ```bash CLI
   ant messages create \
-    --transform content --format yaml \
-      --model claude-sonnet-4-6 \
-      --max-tokens 16000 \
-      --thinking '{type: enabled, budget_tokens: 10000}' \
-      --message '{role: user, content: Are there an infinite number of prime numbers such that n mod 4 == 3?}'
+    --transform content --format yaml <<'YAML'
+  model: claude-sonnet-4-6
+  max_tokens: 16000
+  thinking:
+    type: enabled
+    budget_tokens: 10000
+  messages:
+    - role: user
+      content: Are there an infinite number of prime numbers such that n mod 4 == 3?
+  YAML
   ```
 
   ```python Python
@@ -114,10 +120,11 @@ Berikut adalah contoh penggunaan pemikiran diperpanjang dalam Messages API:
 
   # Respons berisi blok pemikiran yang diringkas dan blok teks
   for block in response.content:
-      if block.type == "thinking":
-          print(f"\nThinking summary: {block.thinking}")
-      elif block.type == "text":
-          print(f"\nResponse: {block.text}")
+      match block.type:
+          case "thinking":
+              print(f"\nThinking summary: {block.thinking}")
+          case "text":
+              print(f"\nResponse: {block.text}")
   ```
 
   ```typescript TypeScript
@@ -128,14 +135,14 @@ Berikut adalah contoh penggunaan pemikiran diperpanjang dalam Messages API:
     max_tokens: 16000,
     thinking: {
       type: "enabled",
-      budget_tokens: 10000
+      budget_tokens: 10000,
     },
     messages: [
       {
         role: "user",
-        content: "Are there an infinite number of prime numbers such that n mod 4 == 3?"
-      }
-    ]
+        content: "Are there an infinite number of prime numbers such that n mod 4 == 3?",
+      },
+    ],
   });
 
   // Respons berisi blok pemikiran yang diringkas dan blok teks
@@ -151,28 +158,29 @@ Berikut adalah contoh penggunaan pemikiran diperpanjang dalam Messages API:
   ```csharp C#
   AnthropicClient client = new();
 
-  var parameters = new MessageCreateParams
+  var response = await client.Messages.Create(new()
   {
       Model = Model.ClaudeSonnet4_6,
       MaxTokens = 16000,
       Thinking = new ThinkingConfigEnabled(budgetTokens: 10000),
-      Messages = [
-          new() {
+      Messages =
+      [
+          new()
+          {
               Role = Role.User,
-              Content = "Are there an infinite number of prime numbers such that n mod 4 == 3?"
-          }
-      ]
-  };
+              Content = "Are there an infinite number of prime numbers such that n mod 4 == 3?",
+          },
+      ],
+  });
 
-  var message = await client.Messages.Create(parameters);
-
-  foreach (var block in message.Content)
+  // Respons berisi blok pemikiran yang diringkas dan blok teks
+  foreach (var block in response.Content)
   {
-      if (block.TryPickThinking(out ThinkingBlock? thinking))
+      if (block.TryPickThinking(out var thinking))
       {
           Console.WriteLine($"\nThinking summary: {thinking.Thinking}");
       }
-      else if (block.TryPickText(out TextBlock? text))
+      else if (block.TryPickText(out var text))
       {
           Console.WriteLine($"\nResponse: {text.Text}");
       }
@@ -182,7 +190,7 @@ Berikut adalah contoh penggunaan pemikiran diperpanjang dalam Messages API:
   ```go Go
   client := anthropic.NewClient()
 
-  response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
+  response, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
   	Model:     anthropic.ModelClaudeSonnet4_6,
   	MaxTokens: 16000,
   	Thinking:  anthropic.ThinkingConfigParamOfEnabled(10000),
@@ -194,92 +202,103 @@ Berikut adalah contoh penggunaan pemikiran diperpanjang dalam Messages API:
   	log.Fatal(err)
   }
 
+  // Respons berisi blok pemikiran yang diringkas dan blok teks
   for _, block := range response.Content {
-  	switch v := block.AsAny().(type) {
+  	switch block := block.AsAny().(type) {
   	case anthropic.ThinkingBlock:
-  		fmt.Printf("\nThinking summary: %s", v.Thinking)
+  		fmt.Printf("\nThinking summary: %s", block.Thinking)
   	case anthropic.TextBlock:
-  		fmt.Printf("\nResponse: %s", v.Text)
+  		fmt.Printf("\nResponse: %s", block.Text)
   	}
   }
   ```
 
   ```java Java
-  AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+  import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+  import com.anthropic.models.messages.MessageCreateParams;
+  import com.anthropic.models.messages.Model;
 
-  MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_SONNET_4_6)
-      .maxTokens(16000L)
-      .enabledThinking(10000L)
-      .addUserMessage("Are there an infinite number of prime numbers such that n mod 4 == 3?")
-      .build();
+  void main() {
+      var client = AnthropicOkHttpClient.fromEnv();
 
-  Message response = client.messages().create(params);
+      var params = MessageCreateParams.builder()
+          .model(Model.CLAUDE_SONNET_4_6)
+          .maxTokens(16_000)
+          .enabledThinking(10_000)
+          .addUserMessage("Are there an infinite number of prime numbers such that n mod 4 == 3?")
+          .build();
 
-  response.content().forEach(block -> {
-      block.thinking().ifPresent(thinkingBlock ->
-          IO.println("\nThinking summary: " + thinkingBlock.thinking())
-      );
-      block.text().ifPresent(textBlock ->
-          IO.println("\nResponse: " + textBlock.text())
-      );
-  });
+      var response = client.messages().create(params);
+
+      // Respons berisi blok pemikiran yang diringkas dan blok teks
+      for (var block : response.content()) {
+          block.thinking().ifPresent(thinkingBlock ->
+              IO.println("\nThinking summary: " + thinkingBlock.thinking())
+          );
+          block.text().ifPresent(textBlock ->
+              IO.println("\nResponse: " + textBlock.text())
+          );
+      }
+  }
   ```
 
   ```php PHP
   $client = new Client();
 
-  $message = $client->messages->create(
+  $response = $client->messages->create(
+      model: 'claude-sonnet-4-6',
       maxTokens: 16000,
+      thinking: ['type' => 'enabled', 'budget_tokens' => 10000],
       messages: [
           [
               'role' => 'user',
-              'content' => 'Are there an infinite number of prime numbers such that n mod 4 == 3?'
-          ]
+              'content' => 'Are there an infinite number of prime numbers such that n mod 4 == 3?',
+          ],
       ],
-      model: 'claude-sonnet-4-6',
-      thinking: ['type' => 'enabled', 'budget_tokens' => 10000],
   );
 
-  foreach ($message->content as $block) {
-      if ($block->type === 'thinking') {
-          echo "\nThinking summary: " . $block->thinking;
-      } elseif ($block->type === 'text') {
-          echo "\nResponse: " . $block->text;
-      }
+  // Respons berisi blok pemikiran yang diringkas dan blok teks
+  foreach ($response->content as $block) {
+      echo match ($block->type) {
+          'thinking' => "\nThinking summary: {$block->thinking}",
+          'text' => "\nResponse: {$block->text}",
+          default => '',
+      };
   }
   ```
 
   ```ruby Ruby
   client = Anthropic::Client.new
 
-  message = client.messages.create(
+  response = client.messages.create(
     model: "claude-sonnet-4-6",
-    max_tokens: 16000,
+    max_tokens: 16_000,
     thinking: {
-      type: "enabled",
-      budget_tokens: 10000
+      type: :enabled,
+      budget_tokens: 10_000
     },
     messages: [
       {
-        role: "user",
+        role: :user,
         content: "Are there an infinite number of prime numbers such that n mod 4 == 3?"
       }
     ]
   )
 
-  message.content.each do |block|
-    case block.type
-    when :thinking
-      puts "\nThinking summary: #{block.thinking}"
-    when :text
-      puts "\nResponse: #{block.text}"
+  # Respons berisi blok pemikiran yang diringkas dan blok teks
+  response.content.each do |block|
+    case block
+    in {type: :thinking, thinking:}
+      puts "\nThinking summary: #{thinking}"
+    in {type: :text, text:}
+      puts "\nResponse: #{text}"
+    else
     end
   end
   ```
 </CodeGroup>
 
-Untuk mengaktifkan pemikiran diperpanjang, tambahkan objek `thinking` dengan `type` diatur ke `enabled` dan nilai `budget_tokens`. Pada model di mana pemikiran diperpanjang manual tidak digunakan lagi atau tidak didukung (lihat [Model yang didukung](#supported-models)), gunakan `type: "adaptive"` sebagai gantinya seperti yang dijelaskan dalam [Pemikiran adaptif](/docs/id/build-with-claude/adaptive-thinking).
+Untuk mengaktifkan pemikiran diperpanjang, tambahkan objek `thinking` dengan `type` diatur ke `enabled` dan nilai `budget_tokens`. Pada model di mana pemikiran diperpanjang manual tidak digunakan lagi atau tidak didukung (lihat [Model yang didukung](#supported-models)), gunakan `type: "adaptive"` sebagai gantinya seperti yang dijelaskan di [Pemikiran adaptif](/docs/id/build-with-claude/adaptive-thinking).
 
 Parameter `budget_tokens` menetapkan jumlah maksimum token yang dapat digunakan Claude untuk proses penalaran internalnya. Batas ini berlaku untuk token pemikiran penuh, bukan untuk [output yang diringkas](#summarized-thinking). Anggaran yang lebih besar dapat meningkatkan kualitas respons dengan memungkinkan analisis yang lebih menyeluruh untuk masalah kompleks, meskipun Claude mungkin tidak menggunakan seluruh anggaran yang dialokasikan, terutama pada rentang di atas 32k.
 
@@ -288,7 +307,7 @@ Parameter `budget_tokens` menetapkan jumlah maksimum token yang dapat digunakan 
 </Warning>
 
 <Note>
-  [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, dan Claude Sonnet 4.6 mendukung hingga 128k token output. Claude Haiku 4.5 mendukung hingga 64k. Lihat [ikhtisar model](/docs/id/about-claude/models/overview) untuk batas pada model lama. Pada [Message Batches API](/docs/id/build-with-claude/batch-processing#extended-output-beta), [beta header](/docs/id/api/beta-headers) `output-300k-2026-03-24` menaikkan batas output menjadi 300k untuk Claude Opus 4.8, Opus 4.7, Opus 4.6, dan Sonnet 4.6.
+  [Claude Mythos Preview](https://anthropic.com/glasswing), Claude Opus 4.8, Claude Opus 4.7, Claude Sonnet 5, Claude Opus 4.6, dan Claude Sonnet 4.6 mendukung hingga 128k token output. Claude Haiku 4.5 mendukung hingga 64k. Lihat [ikhtisar model](/docs/id/about-claude/models/overview) untuk batas pada model lama. Pada [Message Batches API](/docs/id/build-with-claude/batch-processing#extended-output-beta), [beta header](/docs/id/api/beta-headers) `output-300k-2026-03-24` menaikkan batas output menjadi 300k untuk Claude Opus 4.8, Opus 4.7, Sonnet 5, Opus 4.6, dan Sonnet 4.6.
 </Note>
 
 `budget_tokens` harus diatur ke nilai yang lebih kecil dari `max_tokens`. Namun, saat menggunakan [pemikiran berselang dengan alat](#interleaved-thinking), Anda dapat melebihi batas ini karena batas token menjadi seluruh jendela konteks Anda. Karena `budget_tokens` harus lebih kecil dari `max_tokens`, pemikiran diperpanjang tidak dapat digabungkan dengan `max_tokens: 0` ([pre-warming cache](/docs/id/build-with-claude/prompt-caching#pre-warming-the-cache)).
@@ -297,15 +316,15 @@ Parameter `budget_tokens` menetapkan jumlah maksimum token yang dapat digunakan 
 
 Field `display` pada konfigurasi thinking mengontrol bagaimana konten thinking dikembalikan dalam respons API. Field ini menerima dua nilai:
 
-* `"summarized"`: Blok thinking berisi teks thinking yang diringkas. Lihat [Summarized thinking](#summarized-thinking) untuk detailnya. Ini adalah nilai default pada Claude Opus 4.6, Claude Sonnet 4.6, dan model Claude 4 sebelumnya.
-* `"omitted"`: Blok thinking dikembalikan dengan field `thinking` yang kosong. Field `signature` tetap membawa thinking lengkap yang terenkripsi untuk kontinuitas multi-turn (lihat [Thinking encryption](#thinking-encryption)). Ini adalah nilai default pada Claude Fable 5, Claude Mythos 5, Claude Opus 4.8, Claude Opus 4.7, dan [Claude Mythos Preview](https://anthropic.com/glasswing).
+* `"summarized"`: Blok thinking berisi teks thinking yang diringkas. Lihat [Summarized thinking](#summarized-thinking) untuk detailnya. Ini adalah default pada Claude Opus 4.6, Claude Sonnet 4.6, dan model Claude 4 sebelumnya.
+* `"omitted"`: Blok thinking dikembalikan dengan field `thinking` kosong. Field `signature` tetap membawa thinking lengkap yang terenkripsi untuk kontinuitas multi-turn (lihat [Enkripsi thinking](#thinking-encryption)). Ini adalah default pada Claude Fable 5, Claude Mythos 5, Claude Sonnet 5, Claude Opus 4.8, Claude Opus 4.7, dan [Claude Mythos Preview](https://anthropic.com/glasswing).
 
 Mengatur `display: "omitted"` berguna ketika aplikasi Anda tidak menampilkan konten thinking kepada pengguna. Manfaat utamanya adalah **time-to-first-text-token yang lebih cepat saat streaming:** Server melewati streaming token thinking sepenuhnya dan hanya mengirimkan signature, sehingga respons teks akhir mulai di-stream lebih cepat.
 
 Berikut adalah beberapa pertimbangan penting untuk omitted thinking:
 
 * Anda tetap dikenakan biaya untuk token thinking penuh. Menghilangkan thinking mengurangi latensi, bukan biaya.
-* Jika Anda mengirimkan kembali blok thinking dalam percakapan multi-turn, kirimkan tanpa perubahan. Server mendekripsi `signature` untuk merekonstruksi thinking asli guna menyusun prompt (lihat [Preserving thinking blocks](/docs/id/build-with-claude/extended-thinking#preserving-thinking-blocks)). Teks apa pun yang Anda tempatkan di field `thinking` dari blok omitted yang dikirim ulang akan diabaikan.
+* Jika Anda mengirimkan kembali blok thinking dalam percakapan multi-turn, kirimkan tanpa perubahan. Server mendekripsi `signature` untuk merekonstruksi thinking asli untuk konstruksi prompt (lihat [Mempertahankan blok thinking](/docs/id/build-with-claude/extended-thinking#preserving-thinking-blocks)). Teks apa pun yang Anda tempatkan di field `thinking` dari blok omitted yang dikirim bolak-balik akan diabaikan.
 * `display` tidak valid dengan `thinking.type: "disabled"` (tidak ada yang perlu ditampilkan).
 * Saat menggunakan `thinking.type: "adaptive"` dan model melewati thinking untuk permintaan sederhana, tidak ada blok thinking yang dihasilkan terlepas dari nilai `display`.
 
@@ -317,7 +336,7 @@ Berikut adalah beberapa pertimbangan penting untuk omitted thinking:
   Pada [Claude Mythos Preview](https://anthropic.com/glasswing), `display` secara default adalah `"omitted"`. Contoh-contoh di bagian ini meneruskan `display` secara eksplisit sehingga berlaku untuk semua model, tetapi pada Mythos Preview Anda dapat membiarkannya tidak diatur dan menerima perilaku yang sama. Untuk menerima pemikiran yang diringkas pada Mythos Preview, atur `display: "summarized"` secara eksplisit.
 </Note>
 
-Pipeline otomatis yang tidak pernah menampilkan konten pemikiran kepada pengguna akhir dapat melewati overhead menerima token pemikiran melalui jaringan. Aplikasi yang sensitif terhadap latensi mendapatkan kualitas penalaran yang sama tanpa menunggu teks pemikiran di-stream sebelum respons akhir dimulai.
+Pipeline otomatis yang tidak pernah menampilkan konten pemikiran kepada pengguna akhir dapat melewati overhead penerimaan token pemikiran melalui jaringan. Aplikasi yang sensitif terhadap latensi mendapatkan kualitas penalaran yang sama tanpa menunggu teks pemikiran di-stream sebelum respons akhir dimulai.
 
 <CodeGroup>
   ```bash cURL
@@ -546,8 +565,8 @@ Pipeline otomatis yang tidak pernah menampilkan konten pemikiran kepada pengguna
     thinking: {
       type: :enabled,
       budget_tokens: 10000,
-      # SDK Ruby menggunakan `display_` (garis bawah di akhir) untuk menghindari
-      # penimpaan Kernel#display; field pada wire tetap `display`.
+      # SDK Ruby menggunakan `display_` (dengan garis bawah di akhir) untuk menghindari
+      # pembayangan Kernel#display; field pada wire tetap `display`.
       display_: :omitted
     },
     messages: [{role: "user", content: "What is 27 * 453?"}]
@@ -582,23 +601,23 @@ Ketika `display: "omitted"` diatur, respons berisi blok `thinking` dengan field 
 }
 ```
 
-Saat streaming dengan `display: "omitted"`, tidak ada event `thinking_delta` yang dipancarkan; lihat [Streaming pemikiran](#streaming-thinking) untuk urutan event.
+Saat streaming dengan `display: "omitted"`, tidak ada event `thinking_delta` yang dikeluarkan; lihat [Streaming pemikiran](#streaming-thinking) untuk urutan event.
 
 ### Pemikiran yang diringkas
 
-Dengan pemikiran diperpanjang diaktifkan, Messages API untuk model Claude 4 mengembalikan ringkasan dari proses pemikiran lengkap Claude. Pemikiran yang diringkas memberikan manfaat kecerdasan penuh dari pemikiran diperpanjang, sekaligus mencegah penyalahgunaan. Ini adalah perilaku default pada model Claude 4 ketika field `display` pada konfigurasi thinking tidak disetel atau disetel ke `"summarized"`. Pada Claude Fable 5, Claude Mythos 5, Claude Opus 4.8, Claude Opus 4.7, dan [Claude Mythos Preview](https://anthropic.com/glasswing), `display` secara default disetel ke `"omitted"`, sehingga Anda harus menyetel `display: "summarized"` secara eksplisit untuk menerima pemikiran yang diringkas.
+Dengan "extended thinking" (pemikiran diperpanjang) diaktifkan, Messages API untuk model Claude 4 mengembalikan ringkasan dari proses pemikiran lengkap Claude. Pemikiran yang diringkas memberikan manfaat kecerdasan penuh dari pemikiran diperpanjang, sekaligus mencegah penyalahgunaan. Ini adalah perilaku default pada model Claude 4 ketika field `display` pada konfigurasi thinking tidak disetel atau disetel ke `"summarized"`. Pada Claude Fable 5, Claude Mythos 5, Claude Sonnet 5, Claude Opus 4.8, Claude Opus 4.7, dan [Claude Mythos Preview](https://anthropic.com/glasswing), `display` secara default disetel ke `"omitted"`, sehingga Anda harus menyetel `display: "summarized"` secara eksplisit untuk menerima pemikiran yang diringkas.
 
 Berikut adalah beberapa pertimbangan penting untuk pemikiran yang diringkas:
 
 * Anda dikenakan biaya untuk token pemikiran penuh yang dihasilkan oleh permintaan asli, bukan token ringkasan.
 * Jumlah token output yang ditagih **tidak akan sama** dengan jumlah token yang Anda lihat dalam respons.
-* Pada model Claude 4, beberapa baris pertama dari output pemikiran lebih panjang dan rinci, memberikan penalaran mendetail yang sangat membantu untuk keperluan rekayasa prompt. [Claude Mythos Preview](https://anthropic.com/glasswing) meringkas sejak token pertama, sehingga blok pemikirannya tidak menampilkan pembukaan yang rinci ini.
+* Pada model Claude 4, beberapa baris pertama dari output pemikiran lebih verbose, memberikan penalaran terperinci yang sangat membantu untuk keperluan rekayasa prompt. [Claude Mythos Preview](https://anthropic.com/glasswing) meringkas sejak token pertama, sehingga blok pemikirannya tidak menampilkan pembukaan verbose ini.
 * Karena Anthropic terus berupaya meningkatkan fitur pemikiran diperpanjang, perilaku peringkasan dapat berubah sewaktu-waktu.
 * Peringkasan mempertahankan ide-ide kunci dari proses pemikiran Claude dengan latensi tambahan yang minimal, memungkinkan pengalaman pengguna yang dapat di-stream.
 * Peringkasan diproses oleh model yang berbeda dari model yang Anda targetkan dalam permintaan Anda. Model pemikiran tidak melihat output yang diringkas.
 
 <Note>
-  Dalam kasus yang jarang terjadi di mana Anda memerlukan akses ke output pemikiran penuh untuk model Claude 4, [hubungi tim penjualan Anthropic](mailto:sales@anthropic.com).
+  Dalam kasus langka di mana Anda memerlukan akses ke output pemikiran penuh untuk model Claude 4, [hubungi tim penjualan Anthropic](mailto:sales@anthropic.com).
 </Note>
 
 ### Streaming pemikiran
@@ -607,7 +626,7 @@ Anda dapat melakukan streaming respons pemikiran diperpanjang menggunakan [serve
 
 Ketika streaming diaktifkan untuk pemikiran diperpanjang, Anda menerima konten pemikiran melalui event `thinking_delta`.
 
-Ketika `display: "omitted"` diatur, tidak ada event `thinking_delta` yang dipancarkan. Lihat [Mengontrol tampilan pemikiran](#controlling-thinking-display).
+Ketika `display: "omitted"` diatur, tidak ada event `thinking_delta` yang dikeluarkan. Lihat [Mengontrol tampilan pemikiran](#controlling-thinking-display).
 
 Untuk dokumentasi lebih lanjut tentang streaming melalui Messages API, lihat [Streaming Messages](/docs/id/build-with-claude/streaming).
 
@@ -1004,7 +1023,7 @@ data: {"type":"content_block_start","index":1,"content_block":{"type":"text","te
 <Note>
   Saat menggunakan streaming dengan pemikiran diaktifkan, Anda mungkin memperhatikan bahwa teks terkadang tiba dalam potongan yang lebih besar bergantian dengan pengiriman token demi token yang lebih kecil. Ini adalah perilaku yang diharapkan, terutama untuk konten pemikiran.
 
-  Sistem streaming perlu memproses konten dalam batch untuk kinerja optimal, yang dapat menghasilkan pola pengiriman "berpotongan" ini, dengan kemungkinan penundaan antara event streaming.
+  Sistem streaming perlu memproses konten dalam batch untuk kinerja optimal, yang dapat menghasilkan pola pengiriman "bergumpal" ini, dengan kemungkinan penundaan antara event streaming.
 </Note>
 
 ## Pemikiran diperpanjang dengan penggunaan alat
@@ -1026,7 +1045,7 @@ Anda tidak dapat mengalihkan pemikiran di tengah giliran asisten, termasuk selam
 
 Dari perspektif model, **loop penggunaan alat adalah bagian dari giliran asisten**. Giliran asisten tidak selesai sampai Claude menyelesaikan respons penuhnya, yang mungkin mencakup beberapa panggilan alat dan hasil.
 
-Misalnya, urutan ini semuanya merupakan bagian dari **satu giliran asisten**:
+Sebagai contoh, urutan ini semuanya merupakan bagian dari **satu giliran asisten**:
 
 ```text wrap
 User: "What's the weather in Paris?"
@@ -1039,7 +1058,7 @@ Meskipun ada beberapa pesan API, loop penggunaan alat secara konseptual merupaka
 
 #### Degradasi pemikiran yang mulus
 
-Ketika konflik pemikiran di tengah giliran terjadi (seperti mengaktifkan atau menonaktifkan pemikiran selama loop penggunaan alat), API secara otomatis menonaktifkan pemikiran untuk permintaan tersebut. Untuk menjaga kualitas model dan tetap sesuai distribusi, API dapat:
+Ketika konflik pemikiran di tengah giliran terjadi (seperti mengaktifkan atau menonaktifkan pemikiran selama loop penggunaan alat), API secara otomatis menonaktifkan pemikiran untuk permintaan tersebut. Untuk menjaga kualitas model dan tetap dalam distribusi, API dapat:
 
 * Menghapus blok pemikiran dari percakapan ketika blok tersebut akan menciptakan struktur giliran yang tidak valid
 * Menonaktifkan pemikiran untuk permintaan saat ini ketika riwayat percakapan tidak kompatibel dengan pemikiran yang diaktifkan
@@ -1135,7 +1154,7 @@ Dengan menyelesaikan giliran asisten sebelum mengalihkan pemikiran, Anda memasti
         }
       };
 
-      // Permintaan pertama - Claude merespons dengan pemikiran dan permintaan alat
+      // First request - Claude responds with thinking and tool request
       const response = await client.messages.create({
         model: "claude-sonnet-4-6",
         max_tokens: 16000,
@@ -1410,7 +1429,7 @@ Dengan menyelesaikan giliran asisten sebelum mengalihkan pemikiran, Anda memasti
           (block for block in response.content if block.type == "tool_use"), None
       )
 
-      # Panggil API cuaca Anda yang sebenarnya, di sinilah panggilan API Anda yang sebenarnya akan ditempatkan
+      # Panggil API cuaca Anda yang sebenarnya, di sinilah pemanggilan API Anda yang sebenarnya akan dilakukan
       # Anggap saja ini yang kita dapatkan kembali
       weather_data = {"temperature": 88}
 
@@ -1837,7 +1856,7 @@ Dengan menyelesaikan giliran asisten sebelum mengalihkan pemikiran, Anda memasti
       ```
     </CodeGroup>
 
-    Respons API sekarang **hanya** mencakup teks
+    Respons API sekarang **hanya** mencakup text
 
     ```json Output
     {
@@ -1870,13 +1889,13 @@ Selama penggunaan alat, Anda harus meneruskan blok `thinking` kembali ke API, da
   Saat mengalihkan mode pemikiran selama percakapan, ingat bahwa seluruh giliran asisten (termasuk loop penggunaan alat) harus beroperasi dalam satu mode pemikiran. Untuk detail lebih lanjut, lihat [Mengalihkan mode pemikiran dalam percakapan](#toggling-thinking-modes-in-conversations).
 </Note>
 
-Ketika Claude memanggil alat, ia menjeda konstruksi responsnya untuk menunggu informasi eksternal. Ketika hasil alat dikembalikan, Claude melanjutkan membangun respons yang ada tersebut. Ini mengharuskan mempertahankan blok pemikiran selama penggunaan alat, karena beberapa alasan:
+Ketika Claude memanggil alat, ia menjeda konstruksi responsnya untuk menunggu informasi eksternal. Ketika hasil alat dikembalikan, Claude melanjutkan membangun respons yang sudah ada tersebut. Ini mengharuskan mempertahankan blok pemikiran selama penggunaan alat, karena beberapa alasan:
 
 1. **Kontinuitas penalaran**: Blok pemikiran menangkap penalaran langkah demi langkah Claude yang mengarah ke permintaan alat. Ketika Anda mengirimkan hasil alat, menyertakan pemikiran asli memastikan Claude dapat melanjutkan penalarannya dari tempat ia berhenti.
 
 2. **Pemeliharaan konteks**: Meskipun hasil alat muncul sebagai pesan pengguna dalam struktur API, hasil tersebut merupakan bagian dari alur penalaran yang berkelanjutan. Mempertahankan blok pemikiran menjaga alur konseptual ini di seluruh beberapa panggilan API. Untuk informasi lebih lanjut tentang manajemen konteks, lihat [panduan tentang jendela konteks](/docs/id/build-with-claude/context-windows).
 
-**Penting**: Saat menyediakan blok `thinking`, seluruh urutan blok `thinking` yang berurutan harus cocok dengan output yang dihasilkan oleh model selama permintaan asli; Anda tidak dapat mengatur ulang atau memodifikasi urutan blok ini.
+**Penting**: Saat menyediakan blok `thinking`, seluruh urutan blok `thinking` yang berurutan harus cocok dengan output yang dihasilkan oleh model selama permintaan asli; Anda tidak dapat mengatur ulang atau memodifikasi urutan blok-blok ini.
 
 <Note>
   Jika blok pemikiran dimodifikasi, API mengembalikan `invalid_request_error` 400 yang pesannya berisi `` `thinking` or `redacted_thinking` blocks in the latest assistant message cannot be modified ``. Penyebab paling umum adalah kode aplikasi yang memfilter blok konten berdasarkan tipe dan menghapus blok `redacted_thinking`, atau yang membangun ulang pesan asisten alih-alih mengembalikannya apa adanya. Lihat [Blok pemikiran tidak dapat dimodifikasi](/docs/id/api/errors#thinking-blocks-cannot-be-modified) untuk error lengkap dan langkah perbaikan.
@@ -1901,19 +1920,20 @@ Cara Anda mengaktifkan pemikiran berselang bergantung pada model:
 | Claude Opus 4.8                                          | Otomatis dengan [pemikiran adaptif](/docs/id/build-with-claude/adaptive-thinking) (satu-satunya mode pemikiran yang didukung). Tidak perlu beta header.                                          |
 | Claude Opus 4.7                                          | Otomatis dengan [pemikiran adaptif](/docs/id/build-with-claude/adaptive-thinking) (satu-satunya mode pemikiran yang didukung). Tidak perlu beta header.                                          |
 | Claude Opus 4.6                                          | Otomatis dengan [pemikiran adaptif](/docs/id/build-with-claude/adaptive-thinking). Beta header `interleaved-thinking-2025-05-14` tidak digunakan lagi dan diabaikan dengan aman jika disertakan. |
+| Claude Sonnet 5                                          | Otomatis dengan [pemikiran adaptif](/docs/id/build-with-claude/adaptive-thinking). Beta header `interleaved-thinking-2025-05-14` tidak digunakan lagi dan diabaikan dengan aman jika disertakan. |
 | Claude Sonnet 4.6                                        | Otomatis dengan [pemikiran adaptif](/docs/id/build-with-claude/adaptive-thinking) (direkomendasikan). Beta header dengan `type: "enabled"` manual masih berfungsi tetapi tidak digunakan lagi.   |
 | Claude Opus 4.5                                          | Tambahkan [beta header](/docs/id/api/beta-headers) `interleaved-thinking-2025-05-14` ke permintaan API Anda.                                                                                     |
-| Claude Haiku 4.5                                         | Tidak didukung. Beta header diterima pada Claude API tetapi diabaikan.                                                                                                                           |
+| Claude Haiku 4.5                                         | Tidak didukung. Beta header diterima di Claude API tetapi diabaikan.                                                                                                                             |
 | Model Claude 4 sebelumnya                                | Tambahkan [beta header](/docs/id/api/beta-headers) `interleaved-thinking-2025-05-14` ke permintaan API Anda.                                                                                     |
 
-Model Claude 4 sebelumnya di sini berarti Claude Sonnet 4.5, Claude Opus 4.1 (tidak digunakan lagi), Claude Opus 4 ([dihentikan, kecuali pada Vertex AI](/docs/id/about-claude/model-deprecations)), dan Claude Sonnet 4 ([dihentikan, kecuali pada Bedrock dan Vertex AI](/docs/id/about-claude/model-deprecations)).
+Model Claude 4 sebelumnya di sini berarti Claude Sonnet 4.5, Claude Opus 4.1 (tidak digunakan lagi), Claude Opus 4 ([dihentikan, kecuali di Google Cloud](/docs/id/about-claude/model-deprecations)), dan Claude Sonnet 4 ([dihentikan, kecuali di Bedrock dan Google Cloud](/docs/id/about-claude/model-deprecations)).
 
 Berikut adalah beberapa pertimbangan penting untuk pemikiran berselang:
 
 * Dengan pemikiran berselang, `budget_tokens` dapat melebihi parameter `max_tokens`, karena mewakili total anggaran di seluruh blok pemikiran dalam satu giliran asisten.
 * Pemikiran berselang hanya didukung untuk [alat yang digunakan melalui Messages API](/docs/id/agents-and-tools/tool-use/overview).
-* Claude API dan [Claude Platform di AWS](/docs/id/build-with-claude/claude-platform-on-aws) menerima `interleaved-thinking-2025-05-14` dalam permintaan ke model apa pun tanpa mengembalikan error. Pada model yang tidak mendukung pemikiran berselang, header diabaikan. Pada Claude Opus 4.8, Claude Opus 4.7, dan Claude Opus 4.6, header tersebut tidak digunakan lagi dan diabaikan dengan aman. Pada Claude Mythos Preview, header tersebut tidak diperlukan dan diabaikan dengan aman.
-* Pada platform yang dioperasikan mitra (misalnya, [Amazon Bedrock](/docs/id/build-with-claude/claude-in-amazon-bedrock) dan [Vertex AI](/docs/id/build-with-claude/claude-on-vertex-ai)), jika Anda meneruskan `interleaved-thinking-2025-05-14` ke model apa pun selain Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 4.6, Claude Opus 4.5, Claude Opus 4.1 (tidak digunakan lagi), Opus 4 ([dihentikan, kecuali pada Vertex AI](/docs/id/about-claude/model-deprecations)), Sonnet 4.5, atau Sonnet 4 ([dihentikan, kecuali pada Bedrock dan Vertex AI](/docs/id/about-claude/model-deprecations)), permintaan Anda akan gagal.
+* Claude API dan [Claude Platform di AWS](/docs/id/build-with-claude/claude-platform-on-aws) menerima `interleaved-thinking-2025-05-14` dalam permintaan ke model apa pun tanpa mengembalikan error. Pada model yang tidak mendukung pemikiran berselang, header diabaikan. Pada Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, dan Claude Sonnet 5, header tersebut tidak digunakan lagi dan diabaikan dengan aman. Pada Claude Mythos Preview, header tersebut tidak diperlukan dan diabaikan dengan aman.
+* Pada platform yang dioperasikan mitra (misalnya, [Amazon Bedrock](/docs/id/build-with-claude/claude-in-amazon-bedrock) dan [Google Cloud](/docs/id/build-with-claude/claude-on-vertex-ai)), jika Anda meneruskan `interleaved-thinking-2025-05-14` ke model apa pun selain Claude Opus 4.8, Claude Opus 4.7, Claude Sonnet 5, Claude Opus 4.6, Claude Sonnet 4.6, Claude Opus 4.5, Claude Opus 4.1 (tidak digunakan lagi), Opus 4 ([dihentikan, kecuali di Google Cloud](/docs/id/about-claude/model-deprecations)), Sonnet 4.5, atau Sonnet 4 ([dihentikan, kecuali di Bedrock dan Google Cloud](/docs/id/about-claude/model-deprecations)), permintaan Anda akan gagal.
 
 <AccordionGroup>
   <Accordion title="Penggunaan alat tanpa pemikiran berselang">
@@ -2091,7 +2111,7 @@ User: [Text response, cache=True]
       }
 
       # Permintaan pertama (anggaran 4000): membentuk cache. Tangkap usage
-      # dan content sebagai dua baris jsonl agar balasan bisa diteruskan.
+      # dan content sebagai dua baris jsonl agar balasan dapat diteruskan.
       printf 'First request - establishing cache\n'
       {
         read -r USAGE1
@@ -2158,7 +2178,7 @@ User: [Text response, cache=True]
 
       MESSAGES = [{"role": "user", "content": "Analyze the tone of this passage."}]
 
-      # Permintaan pertama - membangun cache
+      # Permintaan pertama - membuat cache
       print("First request - establishing cache")
       response1 = client.messages.create(
           model="claude-sonnet-4-6",
@@ -2473,7 +2493,7 @@ User: [Text response, cache=True]
           Message response1 = client.messages().create(params1);
           IO.println("First response usage: " + response1.usage());
 
-          // Permintaan kedua - parameter pemikiran yang sama (diharapkan cache hit)
+          // Permintaan kedua - parameter pemikiran yang sama (cache hit diharapkan)
           IO.println("\nSecond request - same thinking parameters (cache hit expected)");
           MessageCreateParams params2 = MessageCreateParams.builder()
               .model(Model.CLAUDE_SONNET_4_6)
@@ -2547,7 +2567,7 @@ User: [Text response, cache=True]
       $messages[] = ['role' => 'assistant', 'content' => $response1->content];
       $messages[] = ['role' => 'user', 'content' => 'Analyze the characters in this passage.'];
 
-      // Permintaan kedua - parameter pemikiran yang sama (diharapkan cache hit)
+      // Permintaan kedua - parameter pemikiran yang sama (cache hit diharapkan)
       echo "\nSecond request - same thinking parameters (cache hit expected)\n";
       $response2 = $client->messages->create(
           maxTokens: 20000,
@@ -2679,7 +2699,7 @@ User: [Text response, cache=True]
 
           # Pecah menjadi baris-baris dan hapus spasi di awal dan akhir setiap baris
           lines = (line.strip() for line in text.splitlines())
-          # Pecah multi-headline menjadi satu baris masing-masing
+          # Pecah multi-headline menjadi satu baris per headline
           chunks = (phrase.strip() for line in lines for phrase in line.split("  "))
           # Buang baris kosong
           text = "\n".join(chunk for chunk in chunks if chunk)
@@ -3019,7 +3039,7 @@ User: [Text response, cache=True]
       messages = append(messages, response1.ToParam())
       messages = append(messages, anthropic.NewUserMessage(anthropic.NewTextBlock("Analyze the characters in this passage.")))
 
-      // Permintaan kedua - parameter pemikiran sama (diharapkan cache hit)
+      // Permintaan kedua - parameter thinking sama (diharapkan cache hit)
       fmt.Println("\nSecond request - same thinking parameters (cache hit expected)")
       response2, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
       	Model:     anthropic.ModelClaudeSonnet4_6,
@@ -3035,7 +3055,7 @@ User: [Text response, cache=True]
       messages = append(messages, response2.ToParam())
       messages = append(messages, anthropic.NewUserMessage(anthropic.NewTextBlock("Analyze the setting in this passage.")))
 
-      // Permintaan ketiga - anggaran pemikiran berbeda (diharapkan cache miss)
+      // Permintaan ketiga - budget thinking berbeda (diharapkan cache miss)
       fmt.Println("\nThird request - different thinking budget (cache miss expected)")
       response3, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
       	Model:     anthropic.ModelClaudeSonnet4_6,
@@ -3395,7 +3415,7 @@ User: [Text response, cache=True]
     Third response usage: { cache_creation_input_tokens: 1370, cache_read_input_tokens: 0, input_tokens: 747, output_tokens: 619 }
     ```
 
-    Contoh ini menunjukkan bahwa ketika caching diatur dalam array pesan, mengubah parameter pemikiran (budget\_tokens ditingkatkan dari 4000 menjadi 8000) **membatalkan cache**. Permintaan ketiga tidak menunjukkan cache hit dengan `cache_creation_input_tokens=1370` dan `cache_read_input_tokens=0`, membuktikan bahwa caching berbasis pesan dibatalkan ketika parameter pemikiran berubah.
+    Contoh ini menunjukkan bahwa ketika caching diatur dalam array pesan, mengubah parameter pemikiran (budget\_tokens ditingkatkan dari 4000 menjadi 8000) **membatalkan cache**. Permintaan ketiga menunjukkan tidak ada cache hit dengan `cache_creation_input_tokens=1370` dan `cache_read_input_tokens=0`, membuktikan bahwa caching berbasis pesan dibatalkan ketika parameter pemikiran berubah.
   </Accordion>
 </AccordionGroup>
 
@@ -3449,28 +3469,28 @@ Diagram di bawah ini mengilustrasikan manajemen token untuk pemikiran diperpanja
 Mengingat perilaku jendela konteks dan `max_tokens` dengan pemikiran diperpanjang, Anda mungkin perlu:
 
 * Lebih aktif memantau dan mengelola penggunaan token Anda
-* Menyesuaikan nilai `max_tokens` saat panjang prompt Anda berubah
+* Menyesuaikan nilai `max_tokens` seiring perubahan panjang prompt Anda
 * Berpotensi menggunakan [endpoint penghitungan token](/docs/id/build-with-claude/token-counting) lebih sering
 * Menyadari bahwa blok pemikiran sebelumnya tidak terakumulasi dalam jendela konteks Anda
 
 ## Enkripsi pemikiran
 
-Konten pemikiran lengkap dienkripsi dan dikembalikan dalam field `signature`. Field ini digunakan untuk memverifikasi bahwa blok pemikiran dihasilkan oleh Claude ketika dikirimkan kembali ke API.
+Konten pemikiran lengkap dienkripsi dan dikembalikan dalam field `signature`. Field ini digunakan untuk memverifikasi bahwa blok pemikiran dihasilkan oleh Claude ketika dikirim kembali ke API.
 
 <Note>
-  Mengirimkan kembali blok pemikiran hanya benar-benar diperlukan ketika menggunakan [alat dengan pemikiran diperpanjang](/docs/id/build-with-claude/extended-thinking#extended-thinking-with-tool-use). Jika tidak, Anda dapat menghilangkan blok pemikiran dari giliran sebelumnya. Jika Anda mengirimkannya kembali, apakah API menyimpan atau menghapusnya bergantung pada model: Opus 4.5+ dan Sonnet 4.6+ menyimpannya dalam konteks secara default; model Opus/Sonnet sebelumnya dan semua model Haiku menghapusnya. Lihat [pengeditan konteks](/docs/id/build-with-claude/context-editing) untuk mengonfigurasi hal ini.
+  Mengirim kembali blok pemikiran hanya benar-benar diperlukan ketika menggunakan [alat dengan pemikiran diperpanjang](/docs/id/build-with-claude/extended-thinking#extended-thinking-with-tool-use). Jika tidak, Anda dapat menghilangkan blok pemikiran dari giliran sebelumnya. Jika Anda mengirimkannya kembali, apakah API menyimpan atau menghapusnya bergantung pada model: Opus 4.5+ dan Sonnet 4.6+ menyimpannya dalam konteks secara default; model Opus/Sonnet sebelumnya dan semua model Haiku menghapusnya. Lihat [pengeditan konteks](/docs/id/build-with-claude/context-editing) untuk mengonfigurasi hal ini.
 
-  Jika mengirimkan kembali blok pemikiran, kirimkan semuanya kembali persis seperti yang Anda terima demi konsistensi dan untuk menghindari potensi masalah.
+  Jika mengirim kembali blok pemikiran, kirimkan semuanya kembali persis seperti yang Anda terima demi konsistensi dan untuk menghindari potensi masalah.
 </Note>
 
 Berikut adalah beberapa pertimbangan penting tentang enkripsi pemikiran:
 
-* Saat [melakukan streaming respons](/docs/id/build-with-claude/extended-thinking#streaming-thinking), signature ditambahkan melalui `signature_delta` di dalam event `content_block_delta` tepat sebelum event `content_block_stop`.
+* Saat melakukan [streaming respons](/docs/id/build-with-claude/extended-thinking#streaming-thinking), signature ditambahkan melalui `signature_delta` di dalam event `content_block_delta` tepat sebelum event `content_block_stop`.
 * Nilai `signature` secara signifikan lebih panjang pada model Claude 4 dibandingkan model sebelumnya.
 * Field `signature` adalah field opaque dan tidak boleh diinterpretasikan atau di-parse.
-* Nilai `signature` kompatibel di seluruh platform (API Claude, [Amazon Bedrock](/docs/id/build-with-claude/claude-in-amazon-bedrock), dan [Vertex AI](/docs/id/build-with-claude/claude-on-vertex-ai)). Nilai yang dihasilkan di satu platform akan kompatibel dengan platform lainnya.
+* Nilai `signature` kompatibel di berbagai platform (Claude API, [Amazon Bedrock](/docs/id/build-with-claude/claude-in-amazon-bedrock), dan [Google Cloud](/docs/id/build-with-claude/claude-on-vertex-ai)). Nilai yang dihasilkan di satu platform akan kompatibel dengan platform lainnya.
 
-## Blok pemikiran yang diredaksi
+## Blok pemikiran yang disunting
 
 Selain blok `thinking` reguler, API dapat mengembalikan blok `redacted_thinking`. Blok `redacted_thinking` berisi konten pemikiran terenkripsi dalam field `data`, tanpa ringkasan yang dapat dibaca:
 
@@ -3488,7 +3508,7 @@ Field `data` bersifat opaque dan terenkripsi. Seperti field `signature` pada blo
 </Tip>
 
 <Note>
-  Blok `redacted_thinking` adalah tipe blok konten yang berbeda yang dikembalikan oleh API ketika bagian dari pemikiran diredaksi karena alasan keamanan. Ini terpisah dari opsi [`display: "omitted"`](#controlling-thinking-display), yang mengembalikan blok `thinking` reguler dengan field `thinking` kosong.
+  Blok `redacted_thinking` adalah tipe blok konten yang berbeda yang dikembalikan oleh API ketika bagian dari pemikiran disunting karena alasan keamanan. Ini terpisah dari opsi [`display: "omitted"`](#controlling-thinking-display), yang mengembalikan blok `thinking` reguler dengan field `thinking` kosong.
 </Note>
 
 ## Perbedaan pemikiran di berbagai versi model
@@ -3501,6 +3521,7 @@ Messages API menangani pemikiran secara berbeda di berbagai versi model Claude. 
 | [Claude Mythos Preview](https://anthropic.com/glasswing) | Didukung             | Dihilangkan secara default1 | Otomatis2                  | Dipertahankan3                                                          |
 | Claude Opus 4.8                                          | Tidak didukung       | Dihilangkan secara default1 | Otomatis2                  | Dipertahankan                                                           |
 | Claude Opus 4.7                                          | Tidak didukung       | Dihilangkan secara default1 | Otomatis2                  | Dipertahankan                                                           |
+| Claude Sonnet 5                                          | Tidak didukung       | Dihilangkan secara default1 | Otomatis2                  | Dipertahankan                                                           |
 | Claude Opus 4.6                                          | Tidak digunakan lagi | Diringkas                   | Otomatis2                  | Dipertahankan                                                           |
 | Claude Sonnet 4.6                                        | Tidak digunakan lagi | Diringkas                   | Otomatis, atau beta header | Dipertahankan                                                           |
 | Claude Opus 4.5                                          | Didukung             | Diringkas                   | Beta header                | Dipertahankan                                                           |
@@ -3517,7 +3538,7 @@ Apakah blok pemikiran dari giliran asisten sebelumnya dipertahankan dalam kontek
 
 **Manfaat preservasi blok pemikiran:**
 
-* **Optimasi cache**: Saat menggunakan penggunaan alat, blok pemikiran yang dipertahankan memungkinkan cache hit karena diteruskan kembali dengan hasil alat dan di-cache secara bertahap di seluruh giliran asisten, menghasilkan penghematan token dalam alur kerja multi-langkah
+* **Optimasi cache**: Saat menggunakan penggunaan alat, blok pemikiran yang dipertahankan memungkinkan cache hit karena diteruskan kembali dengan hasil alat dan di-cache secara inkremental di seluruh giliran asisten, menghasilkan penghematan token dalam alur kerja multi-langkah
 * **Tidak ada dampak pada kecerdasan**: Mempertahankan blok pemikiran tidak memiliki efek negatif pada kinerja model
 
 **Pertimbangan penting:**
@@ -3581,22 +3602,22 @@ Untuk melihat berapa banyak token output yang ditagih yang digunakan untuk penal
 
 ### Bekerja dengan anggaran pemikiran
 
-* **Optimasi anggaran:** Anggaran minimum adalah 1.024 token. Mulailah dari nilai minimum dan tingkatkan anggaran pemikiran secara bertahap untuk menemukan rentang optimal bagi kasus penggunaan Anda. Jumlah token yang lebih tinggi memungkinkan penalaran yang lebih komprehensif, tetapi dengan hasil yang semakin berkurang tergantung pada tugasnya. Meningkatkan anggaran dapat meningkatkan kualitas respons dengan konsekuensi peningkatan latensi. Untuk tugas-tugas penting, uji berbagai pengaturan untuk menemukan keseimbangan yang optimal. Perhatikan bahwa anggaran pemikiran adalah target, bukan batas yang ketat. Penggunaan token aktual dapat bervariasi berdasarkan tugas.
+* **Optimasi anggaran:** Anggaran minimum adalah 1.024 token. Mulailah dari nilai minimum dan tingkatkan anggaran pemikiran secara bertahap untuk menemukan rentang optimal bagi kasus penggunaan Anda. Jumlah token yang lebih tinggi memungkinkan penalaran yang lebih komprehensif, tetapi dengan hasil yang semakin berkurang tergantung pada tugasnya. Meningkatkan anggaran dapat meningkatkan kualitas respons dengan konsekuensi peningkatan latensi. Untuk tugas-tugas penting, uji berbagai pengaturan untuk menemukan keseimbangan optimal. Perhatikan bahwa anggaran pemikiran adalah target, bukan batas yang ketat. Penggunaan token aktual dapat bervariasi berdasarkan tugas.
 * **Titik awal:** Mulailah dengan anggaran pemikiran yang lebih besar (16k+ token) untuk tugas-tugas kompleks dan sesuaikan berdasarkan kebutuhan Anda.
 * **Anggaran besar:** Untuk anggaran pemikiran di atas 32k, gunakan [batch processing](/docs/id/build-with-claude/batch-processing) untuk menghindari masalah jaringan. Permintaan yang mendorong model untuk berpikir di atas 32k token menyebabkan permintaan yang berjalan lama yang mungkin terbentur dengan batas waktu sistem dan batas koneksi terbuka.
-* **Pelacakan penggunaan token:** Pantau penggunaan token pemikiran untuk mengoptimalkan biaya dan kinerja. Field `usage.output_tokens_details.thinking_tokens` dalam respons melaporkan berapa banyak dari token output yang ditagih merupakan penalaran internal. Saat streaming, rincian ini hanya muncul pada event `message_delta` terakhir.
+* **Pelacakan penggunaan token:** Pantau penggunaan token pemikiran untuk mengoptimalkan biaya dan performa. Field `usage.output_tokens_details.thinking_tokens` dalam respons melaporkan berapa banyak dari token output yang ditagih merupakan penalaran internal. Saat streaming, rincian ini hanya muncul pada event `message_delta` terakhir.
 
-### Pertimbangan kinerja
+### Pertimbangan performa
 
 * **Waktu respons:** Bersiaplah untuk waktu respons yang lebih lama karena pemrosesan tambahan. Menghasilkan blok pemikiran meningkatkan waktu respons secara keseluruhan.
 * **Persyaratan streaming:** SDK mengharuskan streaming ketika `max_tokens` lebih besar dari 21.333 untuk menghindari timeout HTTP pada permintaan yang berjalan lama. Ini adalah validasi sisi klien, bukan pembatasan API. Jika Anda tidak perlu memproses event secara bertahap, gunakan `.stream()` dengan `.get_final_message()` (Python) atau `.finalMessage()` (TypeScript) untuk mendapatkan objek `Message` lengkap tanpa menangani event satu per satu. Lihat [Streaming Messages](/docs/id/build-with-claude/streaming#get-the-final-message-without-handling-events) untuk detailnya. Saat streaming, bersiaplah untuk menangani blok konten pemikiran dan teks saat keduanya tiba.
-* **Menghilangkan pemikiran untuk latensi:** Jika aplikasi Anda tidak menampilkan konten pemikiran, atur `display: "omitted"` pada konfigurasi pemikiran untuk mengurangi waktu hingga token teks pertama. Lihat [Mengontrol tampilan pemikiran](#controlling-thinking-display).
+* **Menghilangkan pemikiran untuk latensi:** Jika aplikasi Anda tidak menampilkan konten pemikiran, atur `display: "omitted"` pada konfigurasi pemikiran untuk mengurangi waktu-ke-token-teks-pertama. Lihat [Mengontrol tampilan pemikiran](#controlling-thinking-display).
 
 ### Kompatibilitas fitur
 
 * Pemikiran tidak kompatibel dengan modifikasi `temperature` atau `top_k` serta [penggunaan alat yang dipaksakan](/docs/id/agents-and-tools/tool-use/define-tools#forcing-tool-use).
 * Ketika pemikiran diaktifkan, Anda dapat mengatur `top_p` ke nilai antara 1 dan 0,95.
-* Anda tidak dapat mengisi respons terlebih dahulu (pre-fill) ketika pemikiran diaktifkan.
+* Anda tidak dapat melakukan pre-fill respons ketika pemikiran diaktifkan.
 * Perubahan pada anggaran pemikiran membatalkan prefiks prompt yang di-cache yang menyertakan pesan. Namun, prompt sistem dan definisi alat yang di-cache akan tetap berfungsi ketika parameter pemikiran berubah.
 
 ### Panduan penggunaan

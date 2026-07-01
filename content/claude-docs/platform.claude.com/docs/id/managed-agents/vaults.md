@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/vaults
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 9cf6f261083a0b98957e3fc4b47d7d54cd764a449b5c775a0034e7473e1a8631
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 698b8c45af77d4a9a1004a2d116605bf28aef00b385890758e99943747fe07d9
 ---
 
 # Autentikasi dengan vault
@@ -508,16 +508,17 @@ Nilai kredensial aktual yang Anda berikan (`token`, `access_token`, `refresh_tok
         -H "anthropic-version: 2023-06-01" \
         -H "anthropic-beta: managed-agents-2026-04-01" \
         -H "content-type: application/json" \
-        --data @- <<'EOF'
+        --data @- <<'EOF' | jq '.auth.injection_location'
       {
         "auth": {
           "type": "environment_variable",
           "secret_name": "NOTION_API_KEY",
-          "secret_value": "sk-your-secret-here",
+          "secret_value": "ntn_your-secret-here",
           "networking": {
             "type": "limited",
             "allowed_hosts": ["api.notion.com"]
-          }
+          },
+          "injection_location": {"header": true}
         },
         "display_name": "Notion API key for sandbox"
       }
@@ -525,12 +526,16 @@ Nilai kredensial aktual yang Anda berikan (`token`, `access_token`, `refresh_tok
       ```
 
       ```bash CLI
-      ant beta:vaults:credentials create --vault-id "$VAULT_ID" <<'YAML'
+      ant beta:vaults:credentials create \
+        --vault-id "$VAULT_ID" \
+        --transform 'auth.injection_location' --format json <<'YAML'
       display_name: Notion API key for sandbox
       auth:
         type: environment_variable
         secret_name: NOTION_API_KEY
-        secret_value: sk-your-secret-here
+        secret_value: ntn_your-secret-here
+        injection_location:
+          header: true
         networking:
           type: limited
           allowed_hosts: [api.notion.com]
@@ -540,32 +545,40 @@ Nilai kredensial aktual yang Anda berikan (`token`, `access_token`, `refresh_tok
       ```python Python
       env_credential = client.beta.vaults.credentials.create(
           vault_id=vault.id,
+          display_name="Notion API key for sandbox",
           auth={
               "type": "environment_variable",
               "secret_name": "NOTION_API_KEY",
-              "secret_value": "sk-your-secret-here",
+              "secret_value": "ntn_your-secret-here",
               "networking": {
                   "type": "limited",
                   "allowed_hosts": ["api.notion.com"],
               },
+              "injection_location": {"header": True},
           },
-          display_name="Notion API key for sandbox",
       )
+      if env_credential.auth.type == "environment_variable":
+          location = env_credential.auth.injection_location
+          print(f"header: {location.header}, body: {location.body}")  # header: True, body: False
       ```
 
       ```typescript TypeScript
       const envVarCredential = await client.beta.vaults.credentials.create(vault.id, {
+        display_name: "Notion API key for sandbox",
         auth: {
           type: "environment_variable",
           secret_name: "NOTION_API_KEY",
-          secret_value: "sk-your-secret-here",
+          secret_value: "ntn_your-secret-here",
           networking: {
             type: "limited",
             allowed_hosts: ["api.notion.com"],
           },
+          injection_location: { header: true },
         },
-        display_name: "Notion API key for sandbox",
       });
+      if (envVarCredential.auth.type === "environment_variable") {
+        console.log(envVarCredential.auth.injection_location); // { header: true, body: false }
+      }
       ```
 
       ```csharp C#
@@ -576,14 +589,20 @@ Nilai kredensial aktual yang Anda berikan (`token`, `access_token`, `refresh_tok
           {
               Type = BetaManagedAgentsEnvironmentVariableCreateParamsType.EnvironmentVariable,
               SecretName = "NOTION_API_KEY",
-              SecretValue = "sk-your-secret-here",
+              SecretValue = "ntn_your-secret-here",
               Networking = new BetaManagedAgentsLimitedCredentialNetworkingParams
               {
                   Type = BetaManagedAgentsLimitedCredentialNetworkingParamsType.Limited,
                   AllowedHosts = ["api.notion.com"],
               },
+              InjectionLocation = new() { Header = true },
           },
       });
+      if (envVarCredential.Auth.TryPickBetaManagedAgentsEnvironmentVariableAuthResponse(out var envVarAuth))
+      {
+          var injectionLocation = envVarAuth.InjectionLocation;
+          Console.WriteLine($"Header: {injectionLocation.Header}, Body: {injectionLocation.Body}"); // "Header: True, Body: False"
+      }
       ```
 
       ```go Go
@@ -593,12 +612,15 @@ Nilai kredensial aktual yang Anda berikan (`token`, `access_token`, `refresh_tok
       		OfEnvironmentVariable: &anthropic.BetaManagedAgentsEnvironmentVariableCreateParams{
       			Type:        anthropic.BetaManagedAgentsEnvironmentVariableCreateParamsTypeEnvironmentVariable,
       			SecretName:  "NOTION_API_KEY",
-      			SecretValue: "sk-your-secret-here",
+      			SecretValue: "ntn_your-secret-here",
       			Networking: anthropic.BetaManagedAgentsCredentialNetworkingParamsUnion{
       				OfLimited: &anthropic.BetaManagedAgentsLimitedCredentialNetworkingParams{
       					Type:         anthropic.BetaManagedAgentsLimitedCredentialNetworkingParamsTypeLimited,
       					AllowedHosts: []string{"api.notion.com"},
       				},
+      			},
+      			InjectionLocation: anthropic.BetaManagedAgentsInjectionLocationParams{
+      				Header: anthropic.Bool(true),
       			},
       		},
       	},
@@ -606,7 +628,10 @@ Nilai kredensial aktual yang Anda berikan (`token`, `access_token`, `refresh_tok
       if err != nil {
       	panic(err)
       }
-      _ = envVarCredential
+      if envVarAuth, ok := envVarCredential.Auth.AsAny().(anthropic.BetaManagedAgentsEnvironmentVariableAuthResponse); ok {
+      	injectionLocation := envVarAuth.InjectionLocation
+      	fmt.Printf("Header:%t Body:%t\n", injectionLocation.Header, injectionLocation.Body) // "Header:true Body:false"
+      }
       ```
 
       ```java Java
@@ -616,10 +641,17 @@ Nilai kredensial aktual yang Anda berikan (`token`, `access_token`, `refresh_tok
               .auth(BetaManagedAgentsEnvironmentVariableCreateParams.builder()
                   .type(BetaManagedAgentsEnvironmentVariableCreateParams.Type.ENVIRONMENT_VARIABLE)
                   .secretName("NOTION_API_KEY")
-                  .secretValue("sk-your-secret-here")
+                  .secretValue("ntn_your-secret-here")
                   .limitedNetworking(List.of("api.notion.com"))
+                  .injectionLocation(BetaManagedAgentsInjectionLocationParams.builder()
+                      .header(true)
+                      .build())
                   .build())
               .build());
+      envVarCredential.auth().environmentVariable().ifPresent(envVarAuth -> {
+          var injectionLocation = envVarAuth.injectionLocation();
+          IO.println("header=" + injectionLocation.header() + " body=" + injectionLocation.body()); // header=true body=false
+      });
       ```
 
       ```php PHP
@@ -627,15 +659,21 @@ Nilai kredensial aktual yang Anda berikan (`token`, `access_token`, `refresh_tok
           vaultID: $vault->id,
           displayName: 'Notion API key for sandbox',
           auth: ManagedAgentsEnvironmentVariableCreateParams::with(
-              type: 'environment_variable',
+              type: ManagedAgentsEnvironmentVariableCreateParams\Type::ENVIRONMENT_VARIABLE,
               secretName: 'NOTION_API_KEY',
-              secretValue: 'sk-your-secret-here',
+              secretValue: 'ntn_your-secret-here',
               networking: ManagedAgentsLimitedCredentialNetworkingParams::with(
-                  type: 'limited',
+                  type: ManagedAgentsLimitedCredentialNetworkingParams\Type::LIMITED,
                   allowedHosts: ['api.notion.com'],
               ),
+              injectionLocation: ManagedAgentsInjectionLocationParams::with(header: true),
           ),
       );
+      if ($envVarCredential->auth instanceof ManagedAgentsEnvironmentVariableAuthResponse) {
+          $injectionLocation = $envVarCredential->auth->injectionLocation;
+          echo 'header: ' . json_encode($injectionLocation->header) . "\n"; // header: true
+          echo 'body: ' . json_encode($injectionLocation->body) . "\n"; // body: false
+      }
       ```
 
       ```ruby Ruby
@@ -645,13 +683,18 @@ Nilai kredensial aktual yang Anda berikan (`token`, `access_token`, `refresh_tok
         auth: {
           type: "environment_variable",
           secret_name: "NOTION_API_KEY",
-          secret_value: "sk-your-secret-here",
+          secret_value: "ntn_your-secret-here",
           networking: {
             type: "limited",
             allowed_hosts: ["api.notion.com"]
-          }
+          },
+          injection_location: {header: true}
         }
       )
+      if env_credential.auth.type == :environment_variable
+        env_credential.auth.injection_location => {header:, body:}
+        puts "header: #{header}, body: #{body}" # header: true, body: false
+      end
       ```
     </CodeGroup>
 

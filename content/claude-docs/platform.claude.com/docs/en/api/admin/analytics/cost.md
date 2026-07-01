@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/analytics/cost
-fetched_at: 2026-06-17T03:17:04.158711Z
-sha256: 789faeed787702394057facaa88f04381040d5d482e91a9d1523e0b6dec794da
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: b30e260e9e189e9f29878f572dd64ea68855b10a574a3ee454004053ae298978
 ---
 
 # Cost
@@ -237,8 +237,12 @@ curl https://api.anthropic.com/v1/organizations/analytics/cost_report \
 Get per-user cost in USD across a date range.
 
 Returns one row per user, ranked by spend. Use this to see which users
-account for the most cost. Available to organizations on a Claude
-Enterprise plan. Requires an API key with the `read:analytics` scope.
+account for the most cost. Only cost attributable to a seat user is
+included; for organization-wide totals including direct API-key and
+automation traffic, use the bucketed
+`/v1/organizations/analytics/cost_report` endpoint. Available to
+organizations on a Claude Enterprise plan. Requires an API key with the
+`read:analytics` scope.
 
 ### Query Parameters
 

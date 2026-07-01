@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/spend-limits-api
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 4968cf308d9f5b17575ade71df7ed4ec090c5b59f67a90e69bb64c36779d640e
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 470503fbe7a1bdcbf4a3460188f727e77df5b1d81b0c72bb90b5d26bbbb760cc
 ---
 
 # Spend Limits API
@@ -18,7 +18,7 @@ Untuk *pelaporan* penggunaan dan biaya per pengguna dan berdasarkan rentang wakt
 <Check>
   **Diperlukan kunci Admin API dengan cakupan tertentu**
 
-  Endpoint ini memerlukan kunci Admin API dengan cakupan `read:spend_limits` (untuk endpoint `GET`) atau cakupan `write:spend_limits` (untuk endpoint `POST` dan `DELETE`). Lihat [Membuat kunci Admin API](/docs/id/manage-claude/admin-api-keys#create-a-key-for-a-claude-enterprise-organization) untuk mengetahui di mana pemilik utama Anda membuatnya dan cakupan mana yang harus dipilih. Sertakan kunci tersebut dalam header `x-api-key` pada setiap permintaan.
+  Endpoint ini memerlukan kunci Admin API dengan cakupan `read:spend_limits` (untuk endpoint `GET`) atau cakupan `write:spend_limits` (untuk endpoint `POST` dan `DELETE`). Lihat [Membuat kunci Admin API](/docs/id/manage-claude/admin-api-keys#create-a-key-for-a-claude-enterprise-organization) untuk mengetahui di mana primary owner Anda membuatnya dan cakupan mana yang harus dipilih. Sertakan kunci tersebut di header `x-api-key` pada setiap permintaan.
 </Check>
 
 <Note>
@@ -39,7 +39,7 @@ Gunakan endpoint **spend limits** untuk menjawab "batas pengeluaran apa yang ber
 ## Prasyarat
 
 * Organisasi Anda harus menggunakan paket Claude Enterprise.
-* Kredit penggunaan harus diaktifkan untuk organisasi Anda. Pemilik utama Anda dapat mengaktifkannya di pengaturan penagihan claude.ai.
+* Kredit penggunaan harus diaktifkan untuk organisasi Anda. Primary owner Anda dapat mengaktifkannya di pengaturan penagihan claude.ai.
 
 ## Mulai cepat
 
@@ -56,9 +56,9 @@ curl "https://api.anthropic.com/v1/organizations/spend_limits/effective?limit=20
 
 Sebuah **batas pengeluaran efektif** berlaku untuk pengeluaran setiap anggota, yang diresolusi dari hierarki tingkat cakupan. Ketika seorang anggota tidak memiliki override per pengguna, mereka mewarisi batas pengeluaran yang dikonfigurasi untuk grup mereka (jika organisasi Anda menggunakan batas berbasis grup), tingkat kursi mereka, atau default seluruh organisasi. Batas pengeluaran grup adalah default per anggota: setiap anggota yang mewarisinya dibatasi berdasarkan pengeluaran mereka sendiri, bukan anggaran grup yang digabungkan.
 
-Membaca `GET /v1/organizations/spend_limits/effective` mengembalikan setiap anggota saat ini dengan batas pengeluaran efektif mereka yang telah diresolusi, dari mana batas tersebut diresolusi (`source`), dan pengeluaran periode-hingga-saat-ini mereka. Menetapkan override per pengguna dengan `POST /v1/organizations/spend_limits` mengunci seorang anggota ke batas pengeluaran tertentu terlepas dari apa yang seharusnya mereka warisi. Menghapus override mengembalikan mereka ke batas pengeluaran yang diwarisi (atau membiarkan mereka tanpa batas jika tidak ada yang diwarisi).
+Membaca `GET /v1/organizations/spend_limits/effective` mengembalikan setiap anggota saat ini dengan batas pengeluaran efektif mereka yang telah diresolusi, dari mana batas tersebut diresolusi (`source`), dan pengeluaran periode-hingga-saat-ini mereka. Menetapkan override per pengguna dengan `POST /v1/organizations/spend_limits` mengunci anggota ke batas pengeluaran tertentu terlepas dari apa yang seharusnya mereka warisi. Menghapus override mengembalikan mereka ke batas pengeluaran yang diwarisi (atau membiarkan mereka tanpa batas jika tidak ada yang tersedia).
 
-Field `source` pada setiap baris anggota memberi tahu Anda dari tingkat mana batas pengeluaran mereka diresolusi: `user` (override per pengguna), `seat_tier`, `rbac_group`, atau `organization`. Perlakukan tipe cakupan sebagai himpunan terbuka; lewati nilai yang tidak dikenal alih-alih gagal.
+Field `source` pada baris setiap anggota memberi tahu Anda dari tingkat mana batas pengeluaran mereka diresolusi: `user` (override per pengguna), `seat_tier`, `rbac_group`, atau `organization`. Perlakukan tipe cakupan sebagai himpunan terbuka; lewati nilai yang tidak dikenal alih-alih gagal.
 
 ### Periode
 
@@ -68,13 +68,13 @@ Field `source` pada setiap baris anggota memberi tahu Anda dari tingkat mana bat
 
 Semua nilai moneter adalah string dalam **unit minor dari mata uang penagihan organisasi** (sen, untuk USD). Misalnya, `"50000"` mewakili 500,00 USD. Parse sebagai desimal dan bagi dengan 100 untuk menampilkan dolar; hindari floating-point biner untuk nilai besar.
 
-`amount` bersifat **nullable**. Pada baris efektif seorang anggota, `null` berarti **tanpa batas** (tidak ada batas pengeluaran) dan `"0"` berarti anggota tidak dapat menggunakan Claude di luar penggunaan yang termasuk dalam paket mereka. Pada baris batas pengeluaran yang dikonfigurasi (seperti yang dikembalikan oleh `GET /v1/organizations/spend_limits/{id}`), `null` hanya berarti tidak ada batas pengeluaran numerik yang ditetapkan; baca baris efektif anggota untuk membedakan antara tanpa batas dan hanya-penggunaan-yang-termasuk.
+`amount` bersifat **nullable**. Pada baris efektif anggota, `null` berarti **tanpa batas** (tidak ada batas pengeluaran) dan `"0"` berarti anggota tidak dapat menggunakan Claude di luar penggunaan yang termasuk dalam paket mereka. Pada baris batas pengeluaran yang dikonfigurasi (seperti yang dikembalikan oleh `GET /v1/organizations/spend_limits/{id}`), `null` hanya berarti tidak ada batas pengeluaran numerik yang ditetapkan; baca baris efektif anggota untuk membedakan antara tanpa batas dan hanya-penggunaan-yang-termasuk.
 
-`period_to_date_spend` adalah pengeluaran anggota yang terakumulasi sejak awal `period` saat ini, dalam format unit minor yang sama; nilai ini dapat menyertakan bagian pecahan (misalnya, `"41280.125"`). Nilai ini dapat terbaca sebagai `"0"` jika pembacaan pengeluaran sementara tidak tersedia; perlakukan sebagai informasi, bukan transaksional.
+`period_to_date_spend` adalah pengeluaran anggota yang terakumulasi sejak awal `period` saat ini, dalam format unit minor yang sama; nilai ini dapat mencakup bagian pecahan (misalnya, `"41280.125"`). Nilai ini dapat terbaca sebagai `"0"` jika pembacaan pengeluaran untuk sementara tidak tersedia; perlakukan sebagai informasi, bukan transaksional.
 
 ### Siklus hidup permintaan peningkatan
 
-Sebuah **permintaan peningkatan batas pengeluaran** dibuat ketika seorang anggota mengklik **Request more usage** di claude.ai. Permintaan tidak dibuat melalui API ini. `status` sebuah permintaan adalah salah satu dari:
+Sebuah **permintaan peningkatan batas pengeluaran** dibuat ketika anggota mengklik **Request more usage** di claude.ai. Permintaan tidak dibuat melalui API ini. `status` permintaan adalah salah satu dari:
 
 | Status     | Arti                                                                                                                                                                                                                                                                           |
 | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -84,7 +84,7 @@ Sebuah **permintaan peningkatan batas pengeluaran** dibuat ketika seorang anggot
 
 Baik `approved` maupun `denied` bersifat terminal. Seorang anggota memiliki paling banyak satu permintaan `pending` pada satu waktu.
 
-Menyetujui dengan `POST /v1/organizations/spend_limit_increase_requests/{id}/approve` menulis baris batas pengeluaran per pengguna yang sama dengan yang ditulis oleh `POST /v1/organizations/spend_limits`. Menetapkan batas pengeluaran secara langsung **tidak** mengubah status permintaan yang tertunda; gunakan endpoint approve untuk menyelesaikan permintaan.
+Menyetujui dengan `POST /v1/organizations/spend_limit_increase_requests/{id}/approve` menulis baris batas pengeluaran per pengguna yang sama dengan yang ditulis oleh `POST /v1/organizations/spend_limits`. Menetapkan batas pengeluaran secara langsung **tidak** mengubah status permintaan yang pending; gunakan endpoint approve untuk menyelesaikan permintaan.
 
 Secara default, Anthropic mengirim email kepada anggota ketika permintaan mereka disetujui atau ditolak. Sertakan `suppress_notification: true` pada approve atau deny untuk menekan email tersebut (misalnya, ketika sistem Anda sendiri yang memberi tahu anggota).
 
@@ -94,9 +94,9 @@ Kedelapan endpoint berbagi satu batas per organisasi sebesar **60 permintaan per
 
 ## Paginasi
 
-`GET /v1/organizations/spend_limits/effective` dan `GET /v1/organizations/spend_limit_increase_requests` dipaginasi dengan **kursor opaque**. Permintaan pertama mengembalikan hingga `limit` baris ditambah kursor `next_page`; teruskan kursor tersebut tanpa perubahan sebagai parameter `page` pada permintaan berikutnya, dan ulangi hingga `next_page` bernilai `null`.
+`GET /v1/organizations/spend_limits/effective` dan `GET /v1/organizations/spend_limit_increase_requests` dipaginasi dengan **kursor opaque**. Permintaan pertama mengembalikan hingga `limit` baris ditambah kursor `next_page`; sertakan kursor tersebut tanpa perubahan sebagai parameter `page` pada permintaan berikutnya, dan ulangi hingga `next_page` bernilai `null`.
 
-**Jangan mengubah parameter kueri di tengah urutan.** Kursor terikat pada filter yang menghasilkannya. Jika Anda mengubah `user_ids[]`, `period[]`, `status[]`, atau `actor_ids[]` dan meneruskan kursor lama, Anda akan mendapatkan 400 dengan *"cursor does not match current query parameters"*. Mulai urutan baru dari halaman pertama sebagai gantinya.
+**Jangan mengubah parameter kueri di tengah urutan.** Kursor terikat pada filter yang menghasilkannya. Jika Anda mengubah `user_ids[]`, `period[]`, `status[]`, atau `actor_ids[]` dan menyertakan kursor lama, Anda akan mendapatkan 400 dengan *"cursor does not match current query parameters"*. Mulai urutan baru dari halaman pertama sebagai gantinya.
 
 ## Serialisasi parameter daftar
 
@@ -149,7 +149,7 @@ curl "https://api.anthropic.com/v1/organizations/spend_limits/effective?limit=20
 
 ### Mendapatkan satu batas pengeluaran
 
-`GET /v1/organizations/spend_limits/{spend_limit_id}` mengembalikan satu batas pengeluaran yang dikonfigurasi berdasarkan ID. Gunakan untuk memeriksa baris yang dirujuk oleh field `spend_limit_id`. Memerlukan cakupan `read:spend_limits`.
+`GET /v1/organizations/spend_limits/{spend_limit_id}` mengembalikan satu batas pengeluaran yang dikonfigurasi berdasarkan ID. Gunakan untuk memeriksa baris yang direferensikan oleh field `spend_limit_id`. Memerlukan cakupan `read:spend_limits`.
 
 Untuk detail parameter lengkap dan skema respons, lihat [Retrieve a spend limit](/docs/id/api/admin/spend_limits/retrieve) di referensi API.
 
@@ -208,7 +208,7 @@ curl "https://api.anthropic.com/v1/organizations/spend_limit_increase_requests?s
   --header "x-api-key: $ANTHROPIC_ADMIN_KEY"
 ```
 
-Setiap permintaan yang tertunda membawa `spend_summary` langsung yang menunjukkan batas pengeluaran efektif pemohon saat ini dan pengeluaran periode-hingga-saat-ini, cukup untuk memutuskan tanpa pencarian terpisah.
+Setiap permintaan pending membawa `spend_summary` langsung yang menunjukkan batas pengeluaran efektif pemohon saat ini dan pengeluaran periode-hingga-saat-ini, cukup untuk memutuskan tanpa pencarian terpisah.
 
 ### Mendapatkan satu permintaan peningkatan
 
@@ -223,7 +223,7 @@ curl "https://api.anthropic.com/v1/organizations/spend_limit_increase_requests/s
 
 ### Menyetujui permintaan peningkatan
 
-`POST /v1/organizations/spend_limit_increase_requests/{id}/approve` menyetujui permintaan yang tertunda: endpoint ini menulis batas pengeluaran per pengguna pada `amount` yang disediakan admin untuk pemohon dan mengubah status permintaan menjadi `approved`. Permintaan tidak membawa jumlah yang diminta; Anda menyediakan batas pengeluaran baru saat persetujuan. Memerlukan cakupan `write:spend_limits`.
+`POST /v1/organizations/spend_limit_increase_requests/{id}/approve` menyetujui permintaan pending: endpoint ini menulis batas pengeluaran per pengguna pada `amount` yang disediakan admin untuk pemohon dan mengubah status permintaan menjadi `approved`. Permintaan tidak membawa jumlah yang diminta; Anda menyediakan batas pengeluaran baru saat persetujuan. Memerlukan cakupan `write:spend_limits`.
 
 Untuk detail parameter lengkap dan skema respons, lihat [Approve a spend limit increase request](/docs/id/api/admin/spend_limits/increase_requests/approve) di referensi API.
 
@@ -236,7 +236,7 @@ curl --request POST "https://api.anthropic.com/v1/organizations/spend_limit_incr
 
 ### Menolak permintaan peningkatan
 
-`POST /v1/organizations/spend_limit_increase_requests/{id}/deny` menolak permintaan yang tertunda. Idempoten pada `denied`: menolak permintaan yang sudah ditolak mengembalikan 200 dengan resource yang ada. Endpoint menolak upaya untuk menolak permintaan yang sudah disetujui sehingga otomatisasi dapat membedakan antara percobaan ulang dan keputusan yang bertentangan. Memerlukan cakupan `write:spend_limits`.
+`POST /v1/organizations/spend_limit_increase_requests/{id}/deny` menolak permintaan pending. Idempoten pada `denied`: menolak permintaan yang sudah ditolak mengembalikan 200 dengan resource yang ada. Endpoint menolak upaya untuk menolak permintaan yang sudah disetujui sehingga otomatisasi dapat membedakan percobaan ulang dari keputusan yang bertentangan. Memerlukan cakupan `write:spend_limits`.
 
 Untuk detail parameter lengkap dan skema respons, lihat [Deny a spend limit increase request](/docs/id/api/admin/spend_limits/increase_requests/deny) di referensi API.
 
@@ -247,11 +247,86 @@ curl --request POST "https://api.anthropic.com/v1/organizations/spend_limit_incr
   --data '{"suppress_notification": true}'
 ```
 
+## Contoh alur kerja
+
+Alur kerja ini menggabungkan Spend Limits API dengan endpoint biaya [Analytics API](/docs/id/manage-claude/analytics-api). Endpoint biaya Analytics dirancang untuk pelaporan pengeluaran seluruh organisasi di seluruh rentang tanggal. `GET /spend_limits/effective` mengembalikan batas yang saat ini berlaku untuk setiap anggota. Mulai penyisiran dengan Analytics untuk menemukan anggota mana yang perlu dilihat, lalu baca batas mereka saat ini dengan `/effective`.
+
+Endpoint Spend Limits memerlukan cakupan `spend_limits` dan endpoint biaya Analytics memerlukan `read:analytics`; lihat [Analytics API](/docs/id/manage-claude/analytics-api) untuk cara menyediakan akses. Semua nilai moneter pada keduanya adalah string desimal dalam unit minor (sen). Kedua API dipaginasi dengan kursor opaque. Tetapkan `limit` eksplisit dan lakukan paginasi melalui `next_page` hingga bernilai `null` untuk mencakup seluruh organisasi.
+
+### Mengotomatiskan alur peninjauan permintaan peningkatan
+
+Jalankan tugas terjadwal yang mengambil permintaan pending, menerapkan kebijakan persetujuan organisasi Anda, dan menyelesaikan masing-masing.
+
+1. Cantumkan permintaan pending:
+
+   ```bash cURL
+   curl "https://api.anthropic.com/v1/organizations/spend_limit_increase_requests?status[]=pending&limit=100" \
+     --header "x-api-key: $ANTHROPIC_ADMIN_KEY"
+   ```
+
+   Setiap permintaan membawa `actor.user_id` pemohon dan `spend_summary` langsung dengan `amount` efektif mereka saat ini dan `period_to_date_spend`, cukup untuk memutuskan tanpa pencarian terpisah.
+
+2. Terapkan kebijakan Anda. Misalnya, setujui otomatis ketika `amount` anggota saat ini di bawah ambang batas, dan arahkan batas yang lebih besar untuk peninjauan manual.
+
+3. Selesaikan setiap permintaan. Untuk menyetujui, sediakan batas baru:
+
+   ```bash cURL
+   curl --request POST "https://api.anthropic.com/v1/organizations/spend_limit_increase_requests/{id}/approve" \
+     --header "content-type: application/json" \
+     --header "x-api-key: $ANTHROPIC_ADMIN_KEY" \
+     --data '{"amount": "75000", "suppress_notification": true}'
+   ```
+
+   Untuk menolak, lakukan `POST` ke `.../{id}/deny` sebagai gantinya. Sertakan `suppress_notification: true` ketika sistem Anda sendiri yang memberi tahu pemohon.
+
+### Mengidentifikasi anggota yang mendekati batas pengeluaran mereka
+
+Temukan anggota yang mendekati batas mereka sehingga Anda dapat menaikkannya sebelum mereka diblokir.
+
+1. Ambil pengeluaran bulan-hingga-saat-ini setiap anggota dari Analytics API (satu baris per anggota, pengeluaran tertinggi lebih dulu secara default):
+
+   ```bash cURL
+   curl "https://api.anthropic.com/v1/organizations/analytics/user_cost_report?starting_at=2026-06-01T00:00:00Z&limit=1000" \
+     --header "x-api-key: $ANALYTICS_API_KEY"
+   ```
+
+   Setiap baris membawa `actor.user_id`, `actor.email`, dan `amount` (pengeluaran anggota dalam sen). Lakukan paginasi melalui `next_page` untuk mencakup seluruh organisasi.
+
+2. Untuk pembelanja teratas (atau semua orang di atas ambang batas dolar), ambil batas efektif dalam batch:
+
+   ```bash cURL
+   curl "https://api.anthropic.com/v1/organizations/spend_limits/effective?user_ids[]=user_01Ab...&user_ids[]=user_01Cd...&limit=100" \
+     --header "x-api-key: $ANTHROPIC_ADMIN_KEY"
+   ```
+
+   Setiap baris mengembalikan batas sebagai `amount` (`null` = tanpa batas, `"0"` = hanya penggunaan yang termasuk) bersama dengan `period_to_date_spend`.
+
+3. Untuk setiap anggota dengan batas positif, hitung `period_to_date_spend / amount` dan tandai mereka yang berada pada atau di atas ambang batas Anda (misalnya, 80 persen). Perlakukan batas `"0"` sebagai sudah mencapai batas. Tidak ada filter sisi server untuk rasio ini.
+
+4. Tindak lanjuti anggota yang ditandai: naikkan batas dengan `POST /v1/organizations/spend_limits`, setujui permintaan peningkatan pending jika ada, atau hubungi anggota tersebut.
+
+### Menemukan anggota dengan penggunaan yang berubah cepat
+
+Tampilkan anggota yang pengeluarannya melonjak dari minggu ke minggu.
+
+1. Ambil biaya harian per anggota untuk dua minggu terakhir dari Analytics API:
+
+   ```bash cURL
+   curl "https://api.anthropic.com/v1/organizations/analytics/user_cost_report?starting_at=2026-06-09T00:00:00Z&ending_at=2026-06-23T00:00:00Z&bucket_width=1d&limit=1000" \
+     --header "x-api-key: $ANALYTICS_API_KEY"
+   ```
+
+   Dengan `bucket_width` ditetapkan, setiap anggota mencakup satu baris per hari dengan penggunaan; lakukan paginasi melalui `next_page` untuk mengumpulkan seri lengkap setiap anggota.
+
+2. Kelompokkan baris berdasarkan `actor.user_id`. Untuk setiap anggota, jumlahkan tujuh hari terakhir dan tujuh hari sebelumnya. Tandai anggota yang minggu terakhirnya melebihi minggu sebelumnya dengan kelipatan yang Anda pilih (misalnya, tiga). Biaya hari terakhir bersifat sementara dan dapat direvisi ke atas; untuk perbandingan yang dapat diulang, tetapkan `ending_at` pada atau sebelum `data_refreshed_at` yang dikembalikan sebelumnya (lihat [Ketersediaan dan kesegaran data](/docs/id/manage-claude/analytics-api#data-availability-and-freshness)).
+
+3. Tindak lanjuti anggota yang ditandai: sesuaikan batas dengan `POST /v1/organizations/spend_limits`, atau hubungi mereka.
+
 ## Pertanyaan yang sering diajukan
 
-### Apakah menetapkan batas pengeluaran secara langsung menyelesaikan permintaan peningkatan anggota yang tertunda?
+### Apakah menetapkan batas pengeluaran secara langsung menyelesaikan permintaan peningkatan pending anggota?
 
-Tidak. `POST /v1/organizations/spend_limits` menulis override tetapi membiarkan permintaan yang tertunda tidak tersentuh. Gunakan `POST /v1/organizations/spend_limit_increase_requests/{id}/approve` untuk menyelesaikan permintaan dan menulis override dalam satu panggilan.
+Tidak. `POST /v1/organizations/spend_limits` menulis override tetapi membiarkan permintaan pending tidak tersentuh. Gunakan `POST /v1/organizations/spend_limit_increase_requests/{id}/approve` untuk menyelesaikan permintaan dan menulis override dalam satu panggilan.
 
 ### Apa yang terjadi ketika saya menghapus override per pengguna?
 
@@ -263,7 +338,7 @@ Tidak. Hanya override per pengguna yang dapat ditulis melalui API ini. Default t
 
 ### Mengapa `period_to_date_spend` terkadang terbaca sebagai `"0"` untuk anggota yang aktif?
 
-Pembacaan pengeluaran dapat sementara tidak tersedia, dalam hal ini field tersebut terbaca `"0"` alih-alih menghasilkan error. Perlakukan sebagai informasi.
+Pembacaan pengeluaran dapat untuk sementara tidak tersedia, dalam hal ini field terbaca `"0"` alih-alih menghasilkan error. Perlakukan sebagai informasi.
 
 ## Lihat juga
 

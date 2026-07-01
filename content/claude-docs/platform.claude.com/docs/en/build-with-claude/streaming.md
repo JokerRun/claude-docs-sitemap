@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/streaming
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 213609bab3e8f77023c3fc0ac528ccd22c1962be26acd21dccf12ca263637808
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 42a385503b7a87a7b03c5e818de55cad352574b0502337cf033cf23633ec61e3
 ---
 
 # Streaming messages
@@ -23,11 +23,7 @@ The [Python](https://github.com/anthropics/anthropic-sdk-python) and [TypeScript
     --model claude-opus-4-8 \
     --max-tokens 1024 \
     --message '{role: user, content: "Hello"}' \
-    | while IFS= read -r event; do
-        [[ $event == *'"text_delta"'* ]] || continue
-        text=${event#*'"text":"'}
-        printf '%b' "${text%\"*}"
-      done
+    | jq -rj 'select(.delta.type? == "text_delta") | .delta.text'
   ```
 
   ```python Python

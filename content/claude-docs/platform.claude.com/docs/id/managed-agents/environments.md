@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/environments
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 2a3c82a62bf727b70a7d4120414adb4787262429b710ec2bae82c784f936b533
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: ffb3ad842e684f0d6834964904b58db04dab790eeebccfb142c053ca3e763be3
 ---
 
 # Penyiapan lingkungan cloud
@@ -11,9 +11,9 @@ Sesuaikan sandbox cloud untuk sesi Anda.
 
 ---
 
-Lingkungan (environment) mendefinisikan konfigurasi sandbox tempat agen Anda berjalan. Anda membuat lingkungan satu kali, lalu mereferensikan ID-nya setiap kali Anda memulai sesi. Beberapa sesi dapat berbagi lingkungan yang sama, tetapi setiap sesi mendapatkan sandbox terisolasinya sendiri (kontainer Linux yang baru).
+Lingkungan mendefinisikan konfigurasi sandbox tempat agen Anda berjalan. Anda membuat lingkungan satu kali, lalu mereferensikan ID-nya setiap kali Anda memulai sesi. Beberapa sesi dapat berbagi lingkungan yang sama, tetapi setiap sesi mendapatkan sandbox terisolasinya sendiri (kontainer Linux yang baru).
 
-Halaman ini membahas lingkungan dengan `type: cloud`. Untuk menjalankan sandbox pada infrastruktur Anda sendiri, lihat [Sandbox yang di-host sendiri](/docs/id/managed-agents/self-hosted-sandboxes).
+Halaman ini membahas lingkungan `type: cloud`. Untuk menjalankan sandbox pada infrastruktur Anda sendiri, lihat [Sandbox yang di-host sendiri](/docs/id/managed-agents/self-hosted-sandboxes).
 
 <Note>
   Semua permintaan Managed Agents API memerlukan beta header `managed-agents-2026-04-01`. SDK menetapkan beta header tersebut secara otomatis.
@@ -135,13 +135,13 @@ Halaman ini membahas lingkungan dengan `type: cloud`. Untuk menjalankan sandbox 
   ```
 </CodeGroup>
 
-`name` harus unik dalam organisasi dan workspace Anda.
+Gunakan `name` yang unik dan deskriptif agar Anda dapat membedakan antar lingkungan.
 
 ## Menggunakan lingkungan dalam sesi
 
-Berikan ID lingkungan sebagai string saat [membuat sesi](/docs/id/managed-agents/sessions).
+Teruskan ID lingkungan sebagai string saat [membuat sesi](/docs/id/managed-agents/sessions).
 
-<CodeGroup>
+<CodeGroup defaultLanguage="CLI">
   ```bash curl
   session=$(curl -fsS https://api.anthropic.com/v1/sessions \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -155,6 +155,12 @@ Berikan ID lingkungan sebagai string saat [membuat sesi](/docs/id/managed-agents
   }
   EOF
   )
+  ```
+
+  ```bash CLI
+  ant beta:sessions create \
+    --agent "$AGENT_ID" \
+    --environment-id "$ENVIRONMENT_ID"
   ```
 
   ```python Python
@@ -217,7 +223,7 @@ Berikan ID lingkungan sebagai string saat [membuat sesi](/docs/id/managed-agents
 
 ### Paket
 
-Field `packages` melakukan pra-instalasi paket ke dalam sandbox sebelum agen dimulai. Paket diinstal oleh package manager masing-masing dan di-cache di seluruh sesi yang berbagi lingkungan yang sama. Ketika beberapa package manager ditentukan, mereka dijalankan dalam urutan alfabetis (apt, cargo, gem, go, npm, pip). Anda dapat secara opsional menyematkan versi tertentu; default-nya adalah versi terbaru.
+Field `packages` melakukan pra-instalasi paket ke dalam sandbox sebelum agen dimulai. Paket diinstal oleh package manager masing-masing dan di-cache di seluruh sesi yang berbagi lingkungan yang sama. Ketika beberapa package manager ditentukan, mereka dijalankan dalam urutan alfabetis (apt, cargo, gem, go, npm, pip). Anda dapat secara opsional menyematkan versi tertentu. Paket yang tidak disematkan akan menginstal versi terbaru.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash curl
@@ -379,129 +385,176 @@ Package manager yang didukung:
 
 ### Jaringan
 
-Field `networking` mengontrol akses jaringan keluar dari sandbox. Ini tidak memengaruhi domain yang diizinkan untuk alat `web_search` atau `web_fetch`.
+Field `networking` mengontrol akses jaringan keluar dari sandbox. Field ini tidak memengaruhi domain yang diizinkan untuk alat `web_search` atau `web_fetch`.
 
-| Mode           | Deskripsi                                                                                                                                                |
-| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `unrestricted` | Akses jaringan keluar penuh, kecuali untuk daftar blokir keamanan umum. Ini adalah default.                                                              |
-| `limited`      | Membatasi akses jaringan sandbox ke daftar `allowed_hosts`. Akses lebih lanjut diaktifkan melalui bool `allow_package_managers` dan `allow_mcp_servers`. |
+| Mode           | Deskripsi                                                                                                                                                               |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `unrestricted` | Akses jaringan keluar penuh, kecuali untuk daftar blokir keamanan umum. Ini adalah default.                                                                             |
+| `limited`      | Membatasi akses jaringan sandbox ke host yang ada di `allowed_hosts`. Atur `allow_package_managers` dan `allow_mcp_servers` ke `true` untuk mengizinkan akses tambahan. |
 
-<CodeGroup>
+Contoh berikut membuat lingkungan dengan jaringan `limited`:
+
+<CodeGroup defaultLanguage="CLI">
   ```bash curl
-  config=$(cat <<'EOF'
-  {
-    "type": "cloud",
-    "networking": {
-      "type": "limited",
-      "allowed_hosts": ["api.example.com"],
-      "allow_mcp_servers": true,
-      "allow_package_managers": true
-    }
-  }
-  EOF
-  )
+  curl -fsS https://api.anthropic.com/v1/environments \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-beta: managed-agents-2026-04-01" \
+    -H "content-type: application/json" \
+    -d '{
+      "name": "api-access",
+      "config": {
+        "type": "cloud",
+        "networking": {
+          "type": "limited",
+          "allowed_hosts": ["api.example.com"],
+          "allow_mcp_servers": true,
+          "allow_package_managers": true
+        }
+      }
+    }'
+  ```
+
+  ```bash CLI
+  ant beta:environments create <<'YAML'
+  name: api-access
+  config:
+    type: cloud
+    networking:
+      type: limited
+      allowed_hosts:
+        - api.example.com
+      allow_mcp_servers: true
+      allow_package_managers: true
+  YAML
   ```
 
   ```python Python
-  config = {
-      "type": "cloud",
-      "networking": {
-          "type": "limited",
-          "allowed_hosts": ["api.example.com"],
-          "allow_mcp_servers": True,
-          "allow_package_managers": True,
+  environment = client.beta.environments.create(
+      name="api-access",
+      config={
+          "type": "cloud",
+          "networking": {
+              "type": "limited",
+              "allowed_hosts": ["api.example.com"],
+              "allow_mcp_servers": True,
+              "allow_package_managers": True,
+          },
       },
-  }
+  )
   ```
 
   ```typescript TypeScript
-  const config = {
-    type: "cloud",
-    networking: {
-      type: "limited",
-      allowed_hosts: ["api.example.com"],
-      allow_mcp_servers: true,
-      allow_package_managers: true
+  const environment = await client.beta.environments.create({
+    name: "api-access",
+    config: {
+      type: "cloud",
+      networking: {
+        type: "limited",
+        allowed_hosts: ["api.example.com"],
+        allow_mcp_servers: true,
+        allow_package_managers: true
+      }
     }
-  };
+  });
   ```
 
   ```csharp C#
-  var config = new BetaCloudConfigParams
+  var environment = await client.Beta.Environments.Create(new()
   {
-      Networking = new BetaLimitedNetworkParams
+      Name = "api-access",
+      Config = new BetaCloudConfigParams
       {
-          AllowedHosts = ["api.example.com"],
-          AllowMcpServers = true,
-          AllowPackageManagers = true,
+          Networking = new BetaLimitedNetworkParams
+          {
+              AllowedHosts = ["api.example.com"],
+              AllowMcpServers = true,
+              AllowPackageManagers = true,
+          },
       },
-  };
+  });
   ```
 
   ```go Go
-  config := anthropic.BetaCloudConfigParams{
-  	Networking: anthropic.BetaCloudConfigParamsNetworkingUnion{
-  		OfLimited: &anthropic.BetaLimitedNetworkParams{
-  			AllowedHosts:         []string{"api.example.com"},
-  			AllowMCPServers:      anthropic.Bool(true),
-  			AllowPackageManagers: anthropic.Bool(true),
+  environment, err := client.Beta.Environments.New(ctx, anthropic.BetaEnvironmentNewParams{
+  	Name: "api-access",
+  	Config: anthropic.BetaEnvironmentNewParamsConfigUnion{
+  		OfCloud: &anthropic.BetaCloudConfigParams{
+  			Networking: anthropic.BetaCloudConfigParamsNetworkingUnion{
+  				OfLimited: &anthropic.BetaLimitedNetworkParams{
+  					AllowedHosts:         []string{"api.example.com"},
+  					AllowMCPServers:      anthropic.Bool(true),
+  					AllowPackageManagers: anthropic.Bool(true),
+  				},
+  			},
   		},
   	},
+  })
+  if err != nil {
+  	panic(err)
   }
-  _ = config
+  _ = environment
   ```
 
   ```java Java
-  var config = BetaCloudConfigParams.builder()
-      .networking(BetaLimitedNetworkParams.builder()
-          .allowedHosts(List.of("api.example.com"))
-          .allowMcpServers(true)
-          .allowPackageManagers(true)
+  var environment = client.beta().environments().create(EnvironmentCreateParams.builder()
+      .name("api-access")
+      .config(BetaCloudConfigParams.builder()
+          .networking(BetaLimitedNetworkParams.builder()
+              .allowedHosts(List.of("api.example.com"))
+              .allowMcpServers(true)
+              .allowPackageManagers(true)
+              .build())
           .build())
-      .build();
+      .build());
   ```
 
   ```php PHP
-  $config = [
-      'type' => 'cloud',
-      'networking' => [
-          'type' => 'limited',
-          'allowed_hosts' => ['api.example.com'],
-          'allow_mcp_servers' => true,
-          'allow_package_managers' => true,
+  $environment = $client->beta->environments->create(
+      name: 'api-access',
+      config: [
+          'type' => 'cloud',
+          'networking' => [
+              'type' => 'limited',
+              'allowed_hosts' => ['api.example.com'],
+              'allow_mcp_servers' => true,
+              'allow_package_managers' => true,
+          ],
       ],
-  ];
+  );
   ```
 
   ```ruby Ruby
-  config = {
-    type: "cloud",
-    networking: {
-      type: "limited",
-      allowed_hosts: %w[api.example.com],
-      allow_mcp_servers: true,
-      allow_package_managers: true
+  environment = client.beta.environments.create(
+    name: "api-access",
+    config: {
+      type: "cloud",
+      networking: {
+        type: "limited",
+        allowed_hosts: %w[api.example.com],
+        allow_mcp_servers: true,
+        allow_package_managers: true
+      }
     }
-  }
+  )
   ```
 </CodeGroup>
 
 <Info>
-  Untuk deployment produksi, gunakan jaringan `limited` dengan daftar `allowed_hosts` yang eksplisit. Ikuti prinsip hak istimewa minimum (least privilege) dengan hanya memberikan akses jaringan minimum yang dibutuhkan agen Anda, dan audit domain yang diizinkan secara berkala.
+  Untuk deployment produksi, gunakan jaringan `limited` dengan daftar `allowed_hosts` yang eksplisit. Ikuti prinsip hak istimewa paling rendah (least privilege) dengan hanya memberikan akses jaringan minimum yang dibutuhkan agen Anda, dan audit domain yang diizinkan secara berkala.
 </Info>
 
 Saat menggunakan jaringan `limited`:
 
-* `allowed_hosts` menentukan domain yang dapat dijangkau oleh sandbox. Tentukan hostname biasa atau pola wildcard (seperti `*.example.com`); jangan sertakan skema URL.
+* `allowed_hosts` menentukan domain yang dapat dijangkau oleh sandbox. Tentukan hostname biasa atau pola wildcard (seperti `*.example.com`). Jangan sertakan skema URL, port, atau path.
 * `allow_mcp_servers` mengizinkan akses keluar ke endpoint server MCP yang dikonfigurasi pada agen, di luar yang tercantum dalam array `allowed_hosts`. Default-nya adalah `false`.
 * `allow_package_managers` mengizinkan akses keluar ke registri paket publik (seperti PyPI dan npm) di luar yang tercantum dalam array `allowed_hosts`. Default-nya adalah `false`.
 
 ## Siklus hidup lingkungan
 
 * Lingkungan tetap ada hingga diarsipkan atau dihapus secara eksplisit.
-* Beberapa sesi dapat mereferensikan lingkungan yang sama.
-* Setiap sesi mendapatkan instance sandbox-nya sendiri. Sesi tidak berbagi state sistem file.
-* Lingkungan tidak memiliki versi. Jika Anda sering memperbarui lingkungan Anda, Anda mungkin ingin mencatat pembaruan ini di sisi Anda, untuk memetakan state lingkungan dengan sesi.
+* Setiap sesi mendapatkan instance sandbox-nya sendiri, bahkan ketika beberapa sesi mereferensikan lingkungan yang sama. Sesi tidak berbagi state filesystem.
+* Lingkungan tidak memiliki versi. Jika Anda sering memperbarui lingkungan, simpan catatan perubahan Anda sendiri agar Anda dapat mengetahui konfigurasi mana yang digunakan setiap sesi.
 
 ## Mengelola lingkungan
 
@@ -533,16 +586,16 @@ Saat menggunakan jaringan `limited`:
   ```
 
   ```bash CLI
-  # List environments
+  # Daftar environment
   ant beta:environments list
 
-  # Retrieve a specific environment
+  # Ambil environment tertentu
   ant beta:environments retrieve --environment-id "$ENVIRONMENT_ID"
 
-  # Archive an environment (read-only, existing sessions continue)
+  # Arsipkan environment (hanya-baca, sesi yang ada tetap berjalan)
   ant beta:environments archive --environment-id "$ENVIRONMENT_ID"
 
-  # Delete an environment (only if no sessions reference it)
+  # Hapus environment (hanya jika tidak ada sesi yang mereferensikannya)
   ant beta:environments delete --environment-id "$ENVIRONMENT_ID"
   ```
 
@@ -591,16 +644,16 @@ Saat menggunakan jaringan `limited`:
   ```go Go
   // Daftar environment
   environments, err := client.Beta.Environments.List(ctx, anthropic.BetaEnvironmentListParams{})
-  if err != nil {
-  	panic(err)
-  }
+  // ...
 
   // Ambil environment tertentu
   env, err := client.Beta.Environments.Get(ctx, environment.ID, anthropic.BetaEnvironmentGetParams{})
   // ...
+
   // Arsipkan environment (hanya-baca, sesi yang ada tetap berjalan)
   _, err = client.Beta.Environments.Archive(ctx, environment.ID, anthropic.BetaEnvironmentArchiveParams{})
   // ...
+
   // Hapus environment (hanya jika tidak ada sesi yang mereferensikannya)
   _, err = client.Beta.Environments.Delete(ctx, environment.ID, anthropic.BetaEnvironmentDeleteParams{})
   ```
@@ -628,20 +681,32 @@ Saat menggunakan jaringan `limited`:
   ```
 
   ```ruby Ruby
-  # List environments
+  # Daftar environment
   environments = client.beta.environments.list
 
-  # Retrieve a specific environment
+  # Ambil environment tertentu
   env = client.beta.environments.retrieve(environment.id)
 
-  # Archive an environment (read-only, existing sessions continue)
+  # Arsipkan environment (hanya-baca, sesi yang ada tetap berjalan)
   client.beta.environments.archive(environment.id)
 
-  # Delete an environment (only if no sessions reference it)
+  # Hapus environment (hanya jika tidak ada sesi yang mereferensikannya)
   client.beta.environments.delete(environment.id)
   ```
 </CodeGroup>
 
 ## Runtime yang sudah terinstal
 
-Sandbox cloud menyertakan runtime umum secara bawaan. Lihat [Referensi sandbox](/docs/id/managed-agents/cloud-sandboxes-reference) untuk daftar lengkap bahasa, database, dan utilitas yang sudah terinstal.
+Sandbox cloud menyertakan runtime umum secara bawaan. Lihat [Referensi sandbox cloud](/docs/id/managed-agents/cloud-sandboxes-reference) untuk daftar lengkap bahasa, database, dan utilitas yang sudah terinstal.
+
+## Langkah selanjutnya
+
+<CardGroup cols={2}>
+  <Card title="Referensi sandbox cloud" icon="book" href="/docs/id/managed-agents/cloud-sandboxes-reference">
+    Paket, database, dan utilitas yang sudah terinstal dan tersedia di sandbox cloud.
+  </Card>
+
+  <Card title="Memulai sesi" icon="play" href="/docs/id/managed-agents/sessions">
+    Buat sesi untuk menjalankan agen Anda dan mulai menjalankan tugas.
+  </Card>
+</CardGroup>

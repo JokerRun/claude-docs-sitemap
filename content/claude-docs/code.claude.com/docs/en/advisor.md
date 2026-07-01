@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/advisor
-fetched_at: 2026-06-25T03:15:21.128912Z
-sha256: 412b356fda2bf52b0b9eec035548f4c683bf3c272c1c480b67bb442ce7c7c5d7
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 68a77f022c71f10519b63ae4f745e04f361e8b122f1e7af46df94f781d7d86ba
 ---
 
 > ## Documentation Index
@@ -83,6 +83,7 @@ The advisor must be at least as capable as the main model. The accepted advisors
 | ----------------------------------------------- | ------------------------------------------------ | ----------------------------------------------------- |
 | Haiku 4.5                                       | Fable, Opus, Sonnet                              | Haiku can call the advisor but cannot act as one      |
 | Sonnet 4.6                                      | Fable, Opus, Sonnet                              |                                                       |
+| Sonnet 5                                        | Fable, Opus, Sonnet 5                            | A Sonnet 4.6 advisor is rejected                      |
 | Opus 4.6 or later                               | Fable, Opus at or above the main model's version | An Opus 4.7 main with an Opus 4.6 advisor is rejected |
 | Fable 5 ({/* min-version: 2.1.170 */}v2.1.170+) | Fable                                            | An Opus or Sonnet advisor is rejected                 |
 
@@ -144,7 +145,7 @@ The advisor tool requires all of the following:
 
 * **Claude Code v2.1.98 or later**: run `claude update` to upgrade.
 * **Anthropic API only**: the advisor is a server-executed tool. It is not available on Amazon Bedrock, Google Vertex AI, or Microsoft Foundry. Through an [LLM gateway](/en/llm-gateway) configured with `ANTHROPIC_BASE_URL`, availability depends on whether the gateway forwards the request intact to the Anthropic API.
-* **Supported main model**: Opus 4.6 or later, Sonnet 4.6, or Haiku 4.5. {/* min-version: 2.1.170 */}Fable 5 also qualifies on Claude Code v2.1.170 or later.
+* **Supported main model**: Opus 4.6 or later, Sonnet 4.6 or later, or Haiku 4.5. {/* min-version: 2.1.170 */}Fable 5 also qualifies on Claude Code v2.1.170 or later.
 
 ## Turn the advisor off
 

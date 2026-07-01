@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/claude-code-analytics-api
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 66aaf17268c59e8ae58e3ac5b89547c04b7a06e1502c77bde9fed63a856eae94
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 1b25f27e85678be1a259c9fd793310ff11aabc2ec2bdbed59912607aa215dd71
 ---
 
 # Claude Code Analytics API
@@ -22,7 +22,7 @@ API ini memungkinkan Anda untuk memantau, menganalisis, dan mengoptimalkan adops
 * **Analisis produktivitas developer:** Lacak sesi, baris kode yang ditambahkan/dihapus, commit, dan pull request yang dibuat menggunakan Claude Code
 * **Metrik penggunaan alat:** Pantau tingkat penerimaan dan penolakan untuk berbagai alat Claude Code (Edit, MultiEdit, Write, NotebookEdit)
 * **Analisis biaya:** Lihat estimasi biaya dan penggunaan token yang dirinci berdasarkan model Claude
-* **Pelaporan kustom:** Ekspor data untuk membangun dashboard eksekutif dan laporan untuk tim manajemen
+* **Pelaporan kustom:** Ekspor data untuk membangun dashboard eksekutif dan laporan bagi tim manajemen
 * **Justifikasi penggunaan:** Sediakan metrik untuk menjustifikasi dan memperluas adopsi Claude Code secara internal
 
 <Check>
@@ -30,7 +30,7 @@ API ini memungkinkan Anda untuk memantau, menganalisis, dan mengoptimalkan adops
 </Check>
 
 <Note>
-  **Claude Platform di AWS:** Claude Code Analytics API saat ini tidak tersedia. Lihat penggunaan Claude Code di halaman **Usage** pada Claude Console sebagai gantinya.
+  **Claude Platform di AWS:** Claude Code Analytics API saat ini belum tersedia. Lihat penggunaan Claude Code di halaman **Usage** pada Claude Console sebagai gantinya.
 </Note>
 
 <Note>
@@ -69,7 +69,7 @@ Lacak penggunaan Claude Code, metrik produktivitas, dan aktivitas developer di s
 * **Data tingkat pengguna**: Setiap record mewakili aktivitas satu pengguna untuk hari yang ditentukan
 * **Metrik produktivitas**: Lacak sesi, baris kode, commit, pull request, dan penggunaan alat
 * **Data token dan biaya**: Pantau penggunaan dan estimasi biaya yang dirinci berdasarkan model Claude
-* **Paginasi berbasis kursor**: Tangani dataset besar dengan paginasi yang stabil menggunakan kursor opaque
+* **Paginasi berbasis cursor**: Tangani dataset besar dengan paginasi yang stabil menggunakan cursor opaque
 * **Kesegaran data**: Metrik tersedia dengan penundaan hingga 1 jam untuk konsistensi
 
 Untuk detail parameter lengkap dan skema respons, lihat [referensi Claude Code Analytics API](/docs/id/api/admin/usage_report/retrieve_claude_code).
@@ -95,7 +95,7 @@ limit=20" \
   --header "anthropic-version: 2023-06-01" \
   --header "x-api-key: $ADMIN_API_KEY"
 
-# Permintaan berikutnya menggunakan kursor dari respons
+# Permintaan berikutnya menggunakan cursor dari respons
 curl "https://api.anthropic.com/v1/organizations/usage_report/claude_code?\
 starting_at=2025-09-08&\
 page=page_MjAyNS0wNS0xNFQwMDowMDowMFo=" \
@@ -109,7 +109,7 @@ page=page_MjAyNS0wNS0xNFQwMDowMDowMFo=" \
 | ------------- | ------- | ----- | ----------------------------------------------------------------------------------- |
 | `starting_at` | string  | Ya    | Tanggal UTC dalam format YYYY-MM-DD; mengembalikan metrik hanya untuk satu hari ini |
 | `limit`       | integer | Tidak | Jumlah record per halaman (default: 20, maks: 1000)                                 |
-| `page`        | string  | Tidak | Token kursor opaque dari field `next_page` pada respons sebelumnya                  |
+| `page`        | string  | Tidak | Token cursor opaque dari field `next_page` pada respons sebelumnya                  |
 
 ### Metrik yang tersedia
 
@@ -118,14 +118,14 @@ Setiap record respons berisi metrik berikut untuk satu pengguna pada satu hari:
 #### Dimensi
 
 * **date**: Tanggal dalam format RFC 3339 (timestamp UTC)
-* **actor**: Pengguna atau kunci API yang melakukan tindakan Claude Code (baik `user_actor` dengan `email_address` atau `api_actor` dengan `api_key_name`)
+* **actor**: Pengguna atau kunci API yang melakukan tindakan Claude Code (berupa `user_actor` dengan `email_address` atau `api_actor` dengan `api_key_name`)
 * **organization\_id**: UUID organisasi
 * **customer\_type**: Jenis akun pelanggan (`api` untuk pelanggan API, `subscription` untuk pelanggan Pro/Team)
 * **terminal\_type**: Jenis terminal atau lingkungan tempat Claude Code digunakan (misalnya, `vscode`, `iTerm.app`, `tmux`)
 
 #### Metrik inti
 
-* **num\_sessions**: Jumlah sesi Claude Code berbeda yang diinisiasi oleh aktor ini
+* **num\_sessions**: Jumlah sesi Claude Code berbeda yang diinisiasi oleh actor ini
 * **lines\_of\_code.added**: Total jumlah baris kode yang ditambahkan di semua file oleh Claude Code
 * **lines\_of\_code.removed**: Total jumlah baris kode yang dihapus di semua file oleh Claude Code
 * **commits\_by\_claude\_code**: Jumlah git commit yang dibuat melalui fungsionalitas commit Claude Code
@@ -217,13 +217,13 @@ API mengembalikan data dalam format berikut:
 
 ## Paginasi
 
-API mendukung paginasi berbasis kursor untuk organisasi dengan jumlah pengguna yang besar:
+API mendukung paginasi berbasis cursor untuk organisasi dengan jumlah pengguna yang besar:
 
 1. Buat permintaan awal Anda dengan parameter `limit` opsional
 2. Jika `has_more` bernilai `true` dalam respons, gunakan nilai `next_page` dalam permintaan Anda berikutnya
 3. Lanjutkan hingga `has_more` bernilai `false`
 
-Kursor mengenkode posisi record terakhir dan memastikan paginasi yang stabil bahkan saat data baru masuk. Setiap sesi paginasi mempertahankan batas data yang konsisten untuk memastikan Anda tidak melewatkan atau menduplikasi record.
+Cursor mengenkode posisi record terakhir dan memastikan paginasi yang stabil bahkan saat data baru masuk. Setiap sesi paginasi mempertahankan batas data yang konsisten untuk memastikan Anda tidak melewatkan atau menduplikasi record.
 
 ## Kasus penggunaan umum
 
@@ -259,7 +259,7 @@ Data analitik Claude Code historis disimpan dan dapat diakses melalui API. Tidak
 
 ### Deployment Claude Code mana yang didukung?
 
-API ini hanya melacak penggunaan Claude Code pada Claude API. Penggunaan melalui [Claude Platform di AWS](/docs/id/build-with-claude/claude-platform-on-aws), [Claude di Microsoft Foundry](/docs/id/build-with-claude/claude-in-microsoft-foundry), [Claude di Amazon Bedrock](/docs/id/build-with-claude/claude-in-amazon-bedrock), atau [Claude di Vertex AI](/docs/id/build-with-claude/claude-on-vertex-ai) tidak disertakan.
+API ini hanya melacak penggunaan Claude Code pada Claude API. Penggunaan melalui [Claude Platform di AWS](/docs/id/build-with-claude/claude-platform-on-aws), [Claude di Microsoft Foundry](/docs/id/build-with-claude/claude-in-microsoft-foundry), [Claude di Amazon Bedrock](/docs/id/build-with-claude/claude-in-amazon-bedrock), atau [Claude di Google Cloud](/docs/id/build-with-claude/claude-on-vertex-ai) tidak disertakan.
 
 ### Berapa biaya untuk menggunakan API ini?
 
@@ -271,7 +271,7 @@ Tingkat penerimaan alat = `accepted / (accepted + rejected)` untuk setiap jenis 
 
 ### Zona waktu apa yang digunakan untuk parameter tanggal?
 
-Semua tanggal dalam UTC. Parameter `starting_at` harus dalam format YYYY-MM-DD dan mewakili tengah malam UTC untuk hari tersebut.
+Semua tanggal menggunakan UTC. Parameter `starting_at` harus dalam format YYYY-MM-DD dan mewakili tengah malam UTC untuk hari tersebut.
 
 ## Lihat juga
 

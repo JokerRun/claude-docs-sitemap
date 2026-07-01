@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/dreams
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 6f4e2c158601814fe4e456f60a8e473e351dab20ff61460b9612a6b78d0b7e11
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 7980744a2ab1597faac07e63a3fc52160dbe5a523d91b0db27843cc8994aba1c
 ---
 
 # Dreams
@@ -171,7 +171,7 @@ Dream menghasilkan **memory store output** lain, yang terpisah dari input. ID st
   ```
 </CodeGroup>
 
-Input dreaming mencakup memory store yang sudah ada dan sebuah array sesi. Model yang dipilih akan menjalankan pipeline dreaming; selama pratinjau riset, `claude-opus-4-8`, `claude-opus-4-7`, dan `claude-sonnet-4-6` didukung. Anda dapat secara opsional meneruskan `instructions` untuk mengarahkan proses dreaming; lihat [Mengarahkan dengan instruksi](#mengarahkan-dengan-instruksi).
+Input dreaming mencakup memory store yang sudah ada dan sebuah array sesi. Model yang dipilih akan menjalankan pipeline dreaming; selama pratinjau riset, `claude-opus-4-8`, `claude-opus-4-7`, dan `claude-sonnet-4-6` didukung. Anda dapat secara opsional meneruskan `instructions` untuk mengarahkan proses dreaming; lihat [Mengarahkan dengan instruksi](#steer-with-instructions).
 
 Responsnya adalah resource `dream` lengkap dengan `status: "pending"`:
 

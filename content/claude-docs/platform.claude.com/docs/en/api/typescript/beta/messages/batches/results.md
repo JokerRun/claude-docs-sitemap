@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/messages/batches/results
-fetched_at: 2026-06-26T03:16:19.812719Z
-sha256: a6fe60e4f140ec89a6066137c1336a4faae144ef647bb55475fab5a995873cb1
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 7e1d3ca588046533933feff4693624632476ca559f4693d0f01ad38ac0be5653
 ---
 
 ## Retrieve Message Batch results
@@ -15,7 +15,7 @@ Streams the results of a Message Batch as a `.jsonl` file.
 
 Each line in the file is a JSON object containing the result of a single request in the Message Batch. Results are not guaranteed to be in the same order as requests. Use the `custom_id` field to match results to requests.
 
-Learn more about the Message Batches API in our [user guide](https://docs.claude.com/en/docs/build-with-claude/batch-processing)
+Learn more about the Message Batches API in our [user guide](https://platform.claude.com/docs/en/build-with-claude/batch-processing)
 
 ### Parameters
 
@@ -1030,7 +1030,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
               What caused the `from` model to hand over at this hop.
 
-              - `category: "cyber" | "bio" | "frontier_llm" | "reasoning_extraction" | null`
+              - `category: "cyber" | "bio" | "frontier_llm" | 2 more | null`
 
                 The policy category that triggered a refusal.
 
@@ -1041,6 +1041,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
                 - `"frontier_llm"`
 
                 - `"reasoning_extraction"`
+
+                - `"military_weapons"`
 
               - `type: "refusal"`
 
@@ -1171,7 +1173,7 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
           Structured information about a refusal.
 
-          - `category: "cyber" | "bio" | "frontier_llm" | "reasoning_extraction" | null`
+          - `category: "cyber" | "bio" | "frontier_llm" | 2 more | null`
 
             The policy category that triggered a refusal.
 
@@ -1182,6 +1184,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `"frontier_llm"`
 
             - `"reasoning_extraction"`
+
+            - `"military_weapons"`
 
           - `explanation: string | null`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/programmatic-tool-calling
-fetched_at: 2026-06-30T03:15:27.286427Z
-sha256: ad29e0eb72d5c25f1059e079cf2268bb93554c1fe150ce923aa23433e99f5d9d
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: ee29b21b24db04a33a2ae2300428862f79be82820d2ee282edf20b91367596c9
 ---
 
 # Programmatic tool calling
@@ -38,6 +38,7 @@ Programmatic tool calling requires `code_execution_20260120` or later, which is 
 | Claude Opus 4.8 (claude-opus-4-8)              |
 | Claude Opus 4.7 (claude-opus-4-7)              |
 | Claude Opus 4.6 (claude-opus-4-6)              |
+| Claude Sonnet 5 (claude-sonnet-5)              |
 | Claude Sonnet 4.6 (claude-sonnet-4-6)          |
 | Claude Opus 4.5 (claude-opus-4-5-20251101)     |
 | Claude Sonnet 4.5 (claude-sonnet-4-5-20250929) |

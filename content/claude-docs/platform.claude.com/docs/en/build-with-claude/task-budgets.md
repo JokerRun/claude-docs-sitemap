@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/task-budgets
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 1d07232de2ee13f7ec511e8c3bc2991a71bf7e758d78906560d89e410a24ecf5
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 3c8273178e64f0d2bc94232825a171ac19ff4d0d861487a98e00041511fc4a5f
 ---
 
 # Task budgets
@@ -532,6 +532,7 @@ The minimum accepted `task_budget.total` is **20,000 tokens**; values below the 
 | ----------------- | ------------------------------------------- |
 | Claude Fable 5    | Beta (set `task-budgets-2026-03-13` header) |
 | Claude Mythos 5   | Beta (set `task-budgets-2026-03-13` header) |
+| Claude Sonnet 5   | Not supported                               |
 | Claude Opus 4.8   | Beta (set `task-budgets-2026-03-13` header) |
 | Claude Opus 4.7   | Beta (set `task-budgets-2026-03-13` header) |
 | Claude Opus 4.6   | Not supported                               |

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: d780c16de8602c9d890d7eadca1e9d0df212cb27a9adaae3cdc14b337455d51f
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: a1a5a7c08341918f4fe282e2ca1e3ba45c33e1e9bfac89f7b1b266ae44a5cf22
 ---
 
 # Alat eksekusi kode
@@ -13,9 +13,9 @@ Jalankan kode Python dan bash dalam kontainer sandbox untuk menganalisis data, m
 
 Claude dapat menganalisis data, membuat visualisasi, melakukan perhitungan kompleks, menjalankan perintah sistem, membuat dan mengedit file, serta memproses file yang diunggah secara langsung dalam percakapan API. Alat eksekusi kode memungkinkan Claude menjalankan perintah Bash dan memanipulasi file, termasuk menulis kode, dalam lingkungan sandbox yang aman.
 
-**Eksekusi kode gratis jika digunakan bersama web search atau web fetch.** Ketika `web_search_20260209` (atau yang lebih baru) atau `web_fetch_20260209` (atau yang lebih baru) disertakan dalam permintaan Anda, tidak ada biaya tambahan untuk panggilan alat eksekusi kode di luar biaya token input dan output standar. Biaya eksekusi kode standar berlaku jika alat-alat tersebut tidak disertakan.
+**Eksekusi kode gratis ketika digunakan bersama web search atau web fetch.** Ketika `web_search_20260209` (atau yang lebih baru) atau `web_fetch_20260209` (atau yang lebih baru) disertakan dalam permintaan Anda, tidak ada biaya tambahan untuk panggilan alat eksekusi kode di luar biaya token input dan output standar. Biaya eksekusi kode standar berlaku ketika alat-alat ini tidak disertakan.
 
-Eksekusi kode adalah primitif inti untuk membangun agen berkinerja tinggi. Fitur ini memungkinkan pemfilteran dinamis pada alat web search dan web fetch, sehingga Claude dapat memproses hasil sebelum masuk ke jendela konteks, meningkatkan akurasi sekaligus mengurangi konsumsi token.
+Eksekusi kode adalah primitif inti untuk membangun agen berkinerja tinggi. Ini memungkinkan pemfilteran dinamis pada alat web search dan web fetch, sehingga Claude dapat memproses hasil sebelum mencapai jendela konteks, meningkatkan akurasi sekaligus mengurangi konsumsi token.
 
 <Note>
   Hubungi kami melalui [formulir umpan balik](https://forms.gle/LTAU6Xn2puCJMi1n6) untuk membagikan masukan Anda tentang fitur ini.
@@ -33,6 +33,7 @@ Alat eksekusi kode tersedia pada model-model berikut:
 | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
 | Claude Fable 5 (claude-fable-5)                                                                               | `code_execution_20250825`, `code_execution_20260120`, `code_execution_20260521` |
 | Claude Mythos 5 (claude-mythos-5)                                                                             | `code_execution_20250825`, `code_execution_20260120`, `code_execution_20260521` |
+| Claude Sonnet 5 (claude-sonnet-5)                                                                             | `code_execution_20250825`, `code_execution_20260120`, `code_execution_20260521` |
 | Claude Opus 4.8 (claude-opus-4-8)                                                                             | `code_execution_20250825`, `code_execution_20260120`, `code_execution_20260521` |
 | Claude Opus 4.7 (claude-opus-4-7)                                                                             | `code_execution_20250825`, `code_execution_20260120`, `code_execution_20260521` |
 | Claude Opus 4.6 (claude-opus-4-6)                                                                             | `code_execution_20250825`, `code_execution_20260120`, `code_execution_20260521` |
@@ -56,17 +57,17 @@ Eksekusi kode tersedia di:
 
 * **Claude API** (Anthropic)
 * **[Claude Platform on AWS](/docs/id/build-with-claude/claude-platform-on-aws)**
-* **[Microsoft Foundry](/docs/id/build-with-claude/claude-in-microsoft-foundry)**
+* **[Microsoft Foundry](/docs/id/build-with-claude/claude-in-microsoft-foundry)** (memerlukan [deployment Hosted on Anthropic](/docs/id/build-with-claude/claude-in-microsoft-foundry#additional-features-not-supported-when-hosted-on-azure))
 
-Eksekusi kode saat ini tidak tersedia di Amazon Bedrock atau Vertex AI.
+Eksekusi kode saat ini tidak tersedia di Amazon Bedrock atau Google Cloud.
 
 <Note>
-  Untuk [Claude Mythos Preview](https://anthropic.com/glasswing), eksekusi kode hanya didukung di Claude API dan Microsoft Foundry. Fitur ini tidak tersedia untuk Mythos Preview di Amazon Bedrock, Vertex AI, atau Claude Platform on AWS.
+  Untuk [Claude Mythos Preview](https://anthropic.com/glasswing), eksekusi kode hanya didukung di Claude API dan Microsoft Foundry. Fitur ini tidak tersedia untuk Mythos Preview di Amazon Bedrock, Google Cloud, atau Claude Platform on AWS.
 </Note>
 
 ## Mulai cepat
 
-Berikut adalah contoh sederhana yang meminta Claude melakukan perhitungan:
+Berikut adalah contoh sederhana yang meminta Claude untuk melakukan perhitungan:
 
 <CodeGroup>
   ```bash cURL
@@ -262,15 +263,15 @@ Claude menjalankan kode ketika permintaan mendapat manfaat dari komputasi atau p
 * Matematika non-trivial (angka besar, banyak langkah, hasil yang sensitif terhadap presisi)
 * Analisis data, parsing file, atau visualisasi
 * Eksekusi algoritma atau simulasi
-* Permintaan eksplisit untuk "menjalankan", "menghitung", atau "mengeksekusi"
+* Permintaan eksplisit untuk "jalankan", "hitung", atau "eksekusi"
 
 Claude menjawab langsung tanpa menjalankan kode untuk:
 
-* Aritmetika sederhana dan fakta matematika yang sudah umum diketahui
+* Aritmetika sederhana dan fakta matematika yang sudah dikenal luas
 * Permintaan faktual, percakapan, atau kreatif
-* Konversi satuan atau terjemahan sederhana
+* Konversi unit atau terjemahan sederhana
 
-Jika Anda ingin Claude menjalankan kode untuk permintaan yang berada di batas antara keduanya, minta secara eksplisit (misalnya, "jalankan kode untuk memverifikasi ini").
+Jika Anda ingin Claude menjalankan kode untuk permintaan yang berada di batas, minta secara eksplisit (misalnya, "jalankan kode untuk memverifikasi ini").
 
 ## Menggunakan eksekusi kode dengan alat eksekusi lainnya
 
@@ -399,7 +400,7 @@ Lingkungan Python dapat memproses berbagai jenis file yang diunggah melalui File
 
   ```typescript TypeScript
   import Anthropic, { toFile } from "@anthropic-ai/sdk";
-  import { createReadStream } from "fs";
+  import { createReadStream } from "node:fs";
 
   const client = new Anthropic();
   // ...
@@ -683,7 +684,7 @@ Ketika Claude membuat file selama eksekusi kode, Anda dapat mengambil file-file 
       return file_ids
 
 
-  # Unduh file yang telah dibuat
+  # Unduh file yang dibuat
   for file_id in extract_file_ids(response):
       file_metadata = client.beta.files.retrieve_metadata(file_id)
       file_content = client.beta.files.download(file_id)
@@ -693,7 +694,7 @@ Ketika Claude membuat file selama eksekusi kode, Anda dapat mengambil file-file 
 
   ```typescript TypeScript
   import Anthropic from "@anthropic-ai/sdk";
-  import { writeFile } from "fs/promises";
+  import { writeFile } from "node:fs/promises";
 
   const client = new Anthropic();
   // ...
@@ -884,13 +885,13 @@ Ketika Claude membuat file selama eksekusi kode, Anda dapat mengambil file-file 
   // ...
   List<String> extractFileIds(BetaMessage response) {
       List<String> fileIds = new ArrayList<>();
-      // .ifPresent() adalah penjaga diskriminator (tidak bertipe konkret; pemindai tidak dapat melihat penjaga lambda)
+      // .ifPresent() adalah guard diskriminator (tidak bertipe konkret; scanner tidak bisa melihat guard lambda)
       for (BetaContentBlock item : response.content()) {
           item.bashCodeExecutionToolResult().ifPresent(toolResult -> {
               if (toolResult.content().isBetaBashCodeExecutionResultBlock()) {
                   BetaBashCodeExecutionResultBlock result =
                       toolResult.content().asBetaBashCodeExecutionResultBlock();
-                  // daftar bertipe konkret: BetaBashCodeExecutionOutputBlock
+                  // list bertipe konkret: BetaBashCodeExecutionOutputBlock
                   for (BetaBashCodeExecutionOutputBlock output : result.content()) {
                       fileIds.add(output.fileId());
                   }
@@ -1170,7 +1171,7 @@ Setiap jenis alat dapat mengembalikan error tertentu:
 
 #### Stop reason `pause_turn`
 
-Respons dapat menyertakan stop reason `pause_turn`, yang menunjukkan bahwa API menjeda giliran yang berjalan lama. Anda dapat memberikan respons tersebut apa adanya dalam permintaan berikutnya agar Claude melanjutkan gilirannya, atau memodifikasi konten jika Anda ingin menginterupsi percakapan.
+Respons dapat menyertakan stop reason `pause_turn`, yang menunjukkan bahwa API menjeda giliran yang berjalan lama. Anda dapat memberikan respons kembali apa adanya dalam permintaan berikutnya agar Claude melanjutkan gilirannya, atau memodifikasi konten jika Anda ingin menginterupsi percakapan.
 
 ## Kontainer
 
@@ -1209,7 +1210,7 @@ Lingkungan Python sandbox mencakup library yang umum digunakan berikut:
 
 ## Penggunaan ulang kontainer
 
-Anda dapat menggunakan kembali kontainer yang sudah ada di beberapa permintaan API dengan memberikan ID kontainer dari respons sebelumnya. Ini memungkinkan Anda mempertahankan file yang dibuat di antara permintaan.
+Anda dapat menggunakan kembali kontainer yang ada di beberapa permintaan API dengan memberikan ID kontainer dari respons sebelumnya. Ini memungkinkan Anda mempertahankan file yang dibuat di antara permintaan.
 
 ### Contoh
 
@@ -1533,7 +1534,7 @@ data: {"type": "content_block_start", "index": 2, "content_block": {"type": "cod
 
 ## Permintaan batch
 
-Anda dapat menyertakan alat eksekusi kode dalam [Messages Batches API](/docs/id/build-with-claude/batch-processing). Panggilan alat eksekusi kode melalui Messages Batches API dikenakan harga yang sama dengan permintaan Messages API biasa.
+Anda dapat menyertakan alat eksekusi kode dalam [Messages Batches API](/docs/id/build-with-claude/batch-processing). Panggilan alat eksekusi kode melalui Messages Batches API dikenakan harga yang sama dengan permintaan Messages API reguler.
 
 ## Penggunaan dan harga
 
@@ -1575,8 +1576,8 @@ Dengan melakukan upgrade ke `code-execution-2025-08-25`, Anda mendapatkan akses 
 
 ### Kompatibilitas mundur
 
-* Semua eksekusi kode Python yang sudah ada tetap berfungsi persis seperti sebelumnya
-* Tidak ada perubahan yang diperlukan pada alur kerja yang hanya menggunakan Python
+* Semua eksekusi kode Python yang ada terus berfungsi persis seperti sebelumnya
+* Tidak ada perubahan yang diperlukan untuk alur kerja yang hanya menggunakan Python
 
 ### Langkah-langkah upgrade
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/messages/batches/retrieve
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 06a2fc587d1abe3cc7c39f6061d8859bd8f94423e5fef9d8370bdf0d285d2dc4
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: ed5665c7c5e2f9c661050b18905953ea0711b82d4106330801aa341c0e57568b
 ---
 
 ## Retrieve a Message Batch
@@ -13,7 +13,7 @@ sha256: 06a2fc587d1abe3cc7c39f6061d8859bd8f94423e5fef9d8370bdf0d285d2dc4
 
 This endpoint is idempotent and can be used to poll for Message Batch completion. To access the results of a Message Batch, make a request to the `results_url` field in the response.
 
-Learn more about the Message Batches API in our [user guide](https://docs.claude.com/en/docs/build-with-claude/batch-processing)
+Learn more about the Message Batches API in our [user guide](https://platform.claude.com/docs/en/build-with-claude/batch-processing)
 
 ### Parameters
 

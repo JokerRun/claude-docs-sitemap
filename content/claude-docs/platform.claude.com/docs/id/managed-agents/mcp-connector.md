@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/mcp-connector
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: b34dc979c0603f267225916f06cbfedbd3b89b51da423151efdf1fe551f12ae5
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 7919cc499b934d8dd6050db9b84640777eed908fa997421a71b05c1c169033bc
 ---
 
 # Konektor MCP
@@ -15,10 +15,10 @@ Claude Managed Agents mendukung penghubungan server [Model Context Protocol (MCP
 
 Konfigurasi MCP dibagi menjadi dua langkah:
 
-1. **Pembuatan agen** mendeklarasikan server MCP mana yang terhubung ke agen, berdasarkan nama dan URL.
+1. **Pembuatan agen** mendeklarasikan server MCP mana yang terhubung dengan agen, berdasarkan nama dan URL.
 2. **Pembuatan sesi** menyediakan autentikasi untuk server tersebut dengan mereferensikan [vault](/docs/id/managed-agents/vaults) yang telah didaftarkan sebelumnya.
 
-Pemisahan ini menjaga rahasia tetap di luar definisi agen yang dapat digunakan kembali, sekaligus memungkinkan setiap sesi melakukan autentikasi dengan kredensialnya sendiri.
+Pemisahan ini menjaga agar rahasia tidak tersimpan dalam definisi agen yang dapat digunakan kembali, sekaligus memungkinkan setiap sesi melakukan autentikasi dengan kredensialnya sendiri.
 
 <Note>
   Semua permintaan Managed Agents API memerlukan beta header `managed-agents-2026-04-01`. SDK menetapkan beta header tersebut secara otomatis.
@@ -26,9 +26,9 @@ Pemisahan ini menjaga rahasia tetap di luar definisi agen yang dapat digunakan k
 
 ## Mendeklarasikan server MCP pada agen
 
-Tentukan server MCP dalam array `mcp_servers` saat membuat agen. Setiap server memerlukan `type`, `name` yang unik, dan `url`. Tidak ada token autentikasi yang disediakan pada tahap ini.
+Tentukan server MCP dalam array `mcp_servers` saat membuat agen. Setiap server memerlukan `type`, `name` yang unik, dan `url`. Tidak ada token autentikasi yang diberikan pada tahap ini.
 
-`name` yang Anda tetapkan dalam array server MCP digunakan untuk mereferensikan entri `mcp_toolset` dalam array tools.
+Setiap server yang dideklarasikan juga memerlukan entri `mcp_toolset` yang sesuai dalam array `tools`. Nilai `mcp_server_name` pada toolset harus cocok dengan `name` server.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash curl
@@ -235,16 +235,16 @@ Setiap entri dalam array `mcp_servers` mendefinisikan satu koneksi.
 | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `type` | Wajib. Harus bernilai `"url"`.                                                                                                                                                                                                   |
 | `name` | Wajib. Nama unik untuk server ini dalam agen (1–255 karakter). Digunakan sebagai `mcp_server_name` dalam array `tools` dan ditampilkan pada event alat MCP di [stream event sesi](/docs/id/managed-agents/events-and-streaming). |
-| `url`  | Wajib. Endpoint dari server MCP jarak jauh (hingga 2048 karakter).                                                                                                                                                               |
+| `url`  | Wajib. Endpoint dari server MCP jarak jauh (hingga 2048 karakter). Lihat [Jenis server MCP yang didukung](/docs/id/managed-agents/reference#supported-mcp-server-types) untuk persyaratan transport.                             |
 
 Batasan:
 
 * Sebuah agen dapat mendeklarasikan hingga 20 server MCP. Nama server harus unik dalam array.
-* Setiap entri `mcp_servers` harus direferensikan oleh sebuah `mcp_toolset` dalam array `tools`, dan setiap `mcp_toolset` harus mereferensikan server yang telah dideklarasikan. API akan menolak definisi agen dengan server yang tidak direferensikan atau toolset yang menggantung.
+* Setiap entri `mcp_servers` harus direferensikan oleh sebuah `mcp_toolset` dalam array `tools`, dan setiap `mcp_toolset` harus mereferensikan server yang telah dideklarasikan. API akan menolak definisi agen yang memiliki server tanpa referensi atau toolset yang menggantung.
 
 ## Mengonfigurasi alat MCP mana yang tersedia
 
-Entri `mcp_toolset` mendukung bentuk `default_config` dan `configs` yang sama seperti toolset agen bawaan, yang diterapkan pada alat yang diekspos oleh server MCP. `name` dalam setiap entri `configs` adalah nama alat murni seperti yang dilaporkan oleh server.
+Entri `mcp_toolset` mendukung bentuk `default_config` dan `configs` yang sama seperti toolset agen bawaan, yang diterapkan pada alat yang diekspos oleh server MCP. Nilai `name` di setiap entri `configs` adalah nama alat polos seperti yang dilaporkan oleh server.
 
 Secara default, semua alat yang diekspos oleh server MCP diaktifkan. Untuk mengaktifkan hanya alat tertentu, atur `default_config.enabled` ke `false` dan aktifkan secara eksplisit alat yang Anda inginkan:
 
@@ -261,7 +261,7 @@ Secara default, semua alat yang diekspos oleh server MCP diaktifkan. Untuk menga
 }
 ```
 
-Pola ini berguna ketika server mengekspos banyak alat tetapi agen hanya membutuhkan beberapa, atau ketika Anda ingin alat yang ditambahkan oleh operator server tetap nonaktif sampai Anda meninjaunya.
+Pola ini berguna ketika sebuah server mengekspos banyak alat tetapi agen hanya membutuhkan beberapa, atau ketika Anda ingin alat yang ditambahkan oleh operator server tetap nonaktif sampai Anda meninjaunya.
 
 Untuk menonaktifkan alat tertentu sambil tetap mengaktifkan sisanya, hilangkan `default_config` dan atur `enabled: false` pada entri individual:
 
@@ -277,7 +277,7 @@ Lihat [mengonfigurasi toolset](/docs/id/managed-agents/tools#configuring-the-too
 
 ### Penanganan output alat MCP
 
-Ketika output alat MCP melebihi 100.000 token, output tersebut secara otomatis ditulis ke file dalam sandbox. Model menerima pratinjau yang dipotong beserta path file dan dapat membaca konten lengkapnya dari sana.
+Ketika output alat MCP melebihi 100.000 token, output tersebut secara otomatis ditulis ke sebuah file di sandbox. Model menerima pratinjau yang dipotong beserta path file dan dapat membaca konten lengkapnya dari sana.
 
 ## Menyediakan autentikasi saat pembuatan sesi
 
@@ -372,17 +372,31 @@ Saat memulai sesi, berikan `vault_ids` untuk menyediakan kredensial bagi server 
   ```
 </CodeGroup>
 
-Kredensial dicocokkan berdasarkan URL, sehingga vault harus berisi kredensial yang `mcp_server_url`-nya persis cocok dengan `url` yang dideklarasikan dalam `mcp_servers`; jika tidak ada yang cocok, koneksi akan dicoba tanpa autentikasi. Lihat [Menambahkan kredensial](/docs/id/managed-agents/vaults#add-a-credential) untuk tipe kredensial `static_bearer` dan `mcp_oauth`.
+Kredensial dicocokkan berdasarkan URL, sehingga vault harus berisi kredensial yang `mcp_server_url`-nya persis cocok dengan `url` yang dideklarasikan di `mcp_servers`. Jika tidak ada yang cocok, koneksi akan dicoba tanpa autentikasi. Lihat [Menambahkan kredensial](/docs/id/managed-agents/vaults#add-a-credential) untuk jenis kredensial `static_bearer` dan `mcp_oauth`.
 
 ### Menangani kegagalan koneksi dan autentikasi
 
-Pembuatan sesi tidak memvalidasi konektivitas atau kredensial MCP. Jika server MCP tidak dapat dijangkau atau menolak kredensial yang diberikan, sesi tetap dimulai dan interaksi tetap dimungkinkan. Event `session.error` akan dipancarkan dengan `mcp_server_name` dari server yang terpengaruh dan sebuah `retry_status`:
+Pembuatan sesi tidak memvalidasi konektivitas atau kredensial MCP. Jika server MCP tidak dapat dijangkau atau menolak kredensial yang diberikan, sesi tetap dimulai dan interaksi tetap dimungkinkan. Sebuah event [`session.error`](/docs/id/managed-agents/events-and-streaming) akan dipancarkan dengan `mcp_server_name` dari server yang terpengaruh dan sebuah `retry_status`:
 
-| Tipe error                        | Arti                                                                                             |
+| Jenis error                       | Arti                                                                                             |
 | --------------------------------- | ------------------------------------------------------------------------------------------------ |
 | `mcp_connection_failed_error`     | Server MCP tidak dapat dijangkau (error jaringan, timeout, atau kegagalan HTTP non-autentikasi). |
-| `mcp_authentication_failed_error` | Server MCP dapat dijangkau tetapi menolak kredensial dari vault yang dilampirkan.                |
+| `mcp_authentication_failed_error` | Server MCP berhasil dijangkau tetapi menolak kredensial dari vault yang dilampirkan.             |
 
-Anda dapat memutuskan apakah akan memblokir interaksi lebih lanjut pada error ini, memicu rotasi kredensial, atau membiarkan sesi berlanjut tanpa alat dari server yang terpengaruh. Koneksi akan dicoba ulang pada transisi berikutnya dari `session.status_idle` ke `session.status_running`. Lihat [Stream event sesi](/docs/id/managed-agents/events-and-streaming) untuk detail tentang mengonsumsi `session.error` dan event lainnya.
+Anda dapat memutuskan apakah akan memblokir interaksi lebih lanjut karena error ini, memicu rotasi kredensial, atau membiarkan sesi berlanjut tanpa alat dari server yang terpengaruh. Koneksi akan dicoba ulang pada transisi berikutnya dari `session.status_idle` ke `session.status_running`.
 
-Lihat [Tipe server MCP yang didukung](/docs/id/managed-agents/reference#supported-mcp-server-types) dalam referensi untuk persyaratan transport.
+## Langkah selanjutnya
+
+<CardGroup cols={2}>
+  <Card title="Kebijakan izin" icon="check" href="/docs/id/managed-agents/permission-policies">
+    Kontrol kapan alat agen dan MCP dijalankan.
+  </Card>
+
+  <Card title="Stream event sesi" icon="lightning" href="/docs/id/managed-agents/events-and-streaming">
+    Kirim event, stream respons, dan interupsi atau arahkan ulang sesi Anda di tengah eksekusi.
+  </Card>
+
+  <Card title="Jenis server MCP yang didukung" icon="book" href="/docs/id/managed-agents/reference#supported-mcp-server-types">
+    Persyaratan transport untuk server MCP jarak jauh.
+  </Card>
+</CardGroup>

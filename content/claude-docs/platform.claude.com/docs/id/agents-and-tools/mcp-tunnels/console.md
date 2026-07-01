@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 0c4494bf5c13a9b7b0fa3ae1303f07e1d61e49534b314d649d2da6f5ca09b63c
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 33b249563fa3533f851271c9ed02f6f98290936170278a8ab27e86906f0e4f3b
 ---
 
 # Mengelola tunnel di Console
@@ -25,8 +25,8 @@ Halaman ini membahas sisi Console dari deployment MCP tunnels: membuat tunnel, m
 
 * **Cara bagi stack Anda untuk mengautentikasi ke Tunnels API.** Pilih salah satu:
 
-  * **[Akses terprogram](/docs/id/agents-and-tools/mcp-tunnels/concepts#credential-provisioning) (direkomendasikan).** Siapkan [Workload Identity Federation](/docs/id/manage-claude/workload-identity-federation) selama pembuatan tunnel sehingga stack Anda menghasilkan token API berumur pendek dari penyedia identitas Anda, mengambil token tunnel, serta membuat dan mendaftarkan sertifikat CA secara otomatis. Memerlukan izin untuk mengelola aturan federasi, penerbit OIDC yang terdaftar, dan aturan federasi dengan scope `org:manage_tunnels`.
-  * **[Manual](/docs/id/agents-and-tools/mcp-tunnels/concepts#credential-provisioning).** Lewati akses terprogram. Setelah membuat tunnel, [dapatkan token tunnel](#get-the-connection-details), buat dan [daftarkan sertifikat CA](#add-a-ca-certificate) sendiri, lalu berikan token dan sertifikat server Anda ke tunnel stack sebagai secret.
+  * **[Akses terprogram](/docs/id/agents-and-tools/mcp-tunnels/concepts#credential-provisioning) (direkomendasikan).** Siapkan [Workload Identity Federation](/docs/id/manage-claude/workload-identity-federation) selama pembuatan tunnel sehingga stack Anda menghasilkan token API berumur pendek dari penyedia identitas Anda, mengambil token tunnel, serta membuat dan mendaftarkan sertifikat CA secara otomatis. Memerlukan izin untuk mengelola aturan federasi, issuer OIDC yang terdaftar, dan aturan federasi dengan scope `workspace:manage_tunnels`.
+  * **[Manual](/docs/id/agents-and-tools/mcp-tunnels/concepts#credential-provisioning).** Lewati akses terprogram. Setelah membuat tunnel, [ambil token tunnel](#get-the-connection-details), buat dan [daftarkan sertifikat CA](#add-a-ca-certificate) sendiri, lalu berikan token dan sertifikat server Anda ke tunnel stack sebagai secret.
 
 ## Membuat tunnel
 
@@ -36,23 +36,23 @@ Halaman ini membahas sisi Console dari deployment MCP tunnels: membuat tunnel, m
   </Step>
 
   <Step title="Beri nama tunnel">
-    Klik **New tunnel** dan masukkan nama di dialog **Create tunnel**. Nama wajib diisi dan mengidentifikasi tunnel dalam daftar, di halaman detail, dan di pemilih server MCP agen. Domain dengan format `abcd1234.tunnel.anthropic.com` ditetapkan secara otomatis.
+    Klik **New tunnel** dan masukkan nama di dialog **Create tunnel**. Nama ini wajib diisi dan mengidentifikasi tunnel dalam daftar, di halaman detail, dan di pemilih server MCP agen. Domain dengan format `abcd1234.tunnel.anthropic.com` ditetapkan secara otomatis.
   </Step>
 
   <Step title="Opsional: siapkan akses terprogram">
     Jika peran Anda dapat mengelola aturan federasi, toggle **Set up programmatic access** akan muncul (nonaktif secara default). Jika tidak, Console menampilkan pemberitahuan sebagai gantinya dan tunnel stack Anda menggunakan alur manual. Sisa alur pembuatan tetap sama dalam kedua kasus.
 
-    Akses terprogram bergantung pada [Workload Identity Federation](/docs/id/manage-claude/workload-identity-federation); baca halaman tersebut terlebih dahulu jika Anda belum familier dengan penerbit federasi, aturan, dan akun layanan. Untuk mengaktifkan toggle, Anda memerlukan:
+    Akses terprogram bergantung pada [Workload Identity Federation](/docs/id/manage-claude/workload-identity-federation); baca halaman tersebut terlebih dahulu jika Anda belum familier dengan issuer federasi, aturan, dan akun layanan. Untuk mengaktifkan toggle ini, Anda memerlukan:
 
-    1. **Penerbit OIDC yang terdaftar** untuk penyedia identitas tempat stack Anda menyajikan token (seperti klaster Kubernetes, AWS IAM, Google Cloud, atau GitHub Actions). Daftarkan satu di **Settings > Workload identity > Issuers** jika organisasi Anda belum memilikinya.
-    2. **Aturan federasi dengan scope `org:manage_tunnels`.** Mengaktifkan toggle akan menampilkan pemilih **Federation rule**. Pilih aturan yang sudah ada dengan scope tersebut, atau klik **Create federation rule** untuk membuatnya secara inline.
-    3. **Akun layanan aturan tersebut ditambahkan ke workspace ini.** Tunnels API mengotorisasi berdasarkan keanggotaan workspace akun layanan. Jika Anda membuat tunnel di workspace selain default organisasi, tambahkan akun layanan di **Settings > Workspaces** dan berikan ID workspace saat deploy (`api.wif.workspaceId` untuk Helm, `ANTHROPIC_WORKSPACE_ID` untuk Compose).
+    1. **Issuer OIDC yang terdaftar** untuk penyedia identitas tempat stack Anda menyajikan token (seperti klaster Kubernetes, AWS IAM, Google Cloud, atau GitHub Actions). Daftarkan satu di **Settings > Workload identity > Issuers** jika organisasi Anda belum memilikinya.
+    2. **Aturan federasi dengan scope `workspace:manage_tunnels`.** Mengaktifkan toggle akan menampilkan pemilih **Federation rule**. Pilih aturan yang sudah ada dengan scope tersebut, atau klik **Create federation rule** untuk membuatnya secara inline.
+    3. **Akun layanan dari aturan tersebut ditambahkan ke workspace ini.** Tunnels API mengotorisasi berdasarkan keanggotaan workspace akun layanan. Jika Anda membuat tunnel di workspace selain workspace default organisasi, tambahkan akun layanan di **Settings > Workspaces** dan berikan ID workspace saat deploy (`api.wif.workspaceId` untuk Helm, `ANTHROPIC_WORKSPACE_ID` untuk Compose).
 
     Melewati langkah ini sepenuhnya didukung; kedua panduan deploy memiliki tab **Without programmatic access**.
   </Step>
 
   <Step title="Buat tunnel">
-    Klik **Create tunnel**. Console menyediakan tunnel dan membuka halaman detail.
+    Klik **Create tunnel**. Console akan menyediakan tunnel dan membuka halaman detail.
   </Step>
 
   <Step title="Catat pengidentifikasi deployment">
@@ -89,7 +89,7 @@ Buka tunnel. Halaman detail menampilkan bagian **Connection** dengan domain dan 
 
 ## Menambahkan sertifikat CA
 
-Anthropic memverifikasi [inner TLS](/docs/id/agents-and-tools/mcp-tunnels/concepts#components) ke [proxy](/docs/id/agents-and-tools/mcp-tunnels/concepts#components) Anda terhadap sertifikat CA yang Anda daftarkan pada tunnel. Tunnel tanpa sertifikat aktif tidak dapat menerima koneksi, dan tidak muncul di pemilih server MCP agen hingga satu sertifikat terdaftar.
+Anthropic memverifikasi [inner TLS](/docs/id/agents-and-tools/mcp-tunnels/concepts#components) ke [proxy](/docs/id/agents-and-tools/mcp-tunnels/concepts#components) Anda terhadap sertifikat CA yang Anda daftarkan pada tunnel. Tunnel tanpa sertifikat aktif tidak dapat menerima koneksi, dan tidak muncul di pemilih server MCP agen sampai ada satu yang terdaftar.
 
 <Steps>
   <Step title="Temukan bagian Certificates">
@@ -97,7 +97,7 @@ Anthropic memverifikasi [inner TLS](/docs/id/agents-and-tools/mcp-tunnels/concep
   </Step>
 
   <Step title="Sediakan sertifikat">
-    Klik **Choose file** untuk memilih file `.pem`, `.crt`, atau `.cer`, seret file ke area teks, atau tempel blok PEM secara langsung. Modal menolak materi kunci privat dan konten yang bukan blok `-----BEGIN CERTIFICATE-----`. File harus berukuran 8 kB atau lebih kecil.
+    Klik **Choose file** untuk memilih file `.pem`, `.crt`, atau `.cer`, seret file ke area teks, atau tempel blok PEM secara langsung. Modal akan menolak materi kunci privat dan konten yang bukan blok `-----BEGIN CERTIFICATE-----`. File harus berukuran 8 kB atau lebih kecil.
   </Step>
 
   <Step title="Tambahkan sertifikat">
@@ -109,7 +109,7 @@ Sebuah tunnel menampung hingga dua sertifikat aktif sehingga Anda dapat merotasi
 
 ## Deploy tunnel stack
 
-Tunnel sudah ada di Console, tetapi tidak ada lalu lintas yang mengalir hingga tunnel stack berjalan di dalam jaringan Anda dan terhubung dengan token tunnel. Ikuti salah satu panduan deploy:
+Tunnel sudah ada di Console, tetapi tidak ada lalu lintas yang mengalir sampai tunnel stack berjalan di dalam jaringan Anda dan terhubung dengan token tunnel. Ikuti salah satu panduan deploy:
 
 <CardGroup cols={2}>
   <Card title="Deploy dengan Docker Compose" icon="cube" href="/docs/id/agents-and-tools/mcp-tunnels/deploy-compose">
@@ -165,6 +165,6 @@ Di daftar **MCP tunnels**, buka menu baris untuk tunnel tersebut dan pilih **Arc
   </Card>
 
   <Card title="Keamanan" icon="lock" href="/docs/id/agents-and-tools/mcp-tunnels/security">
-    Panduan pengerasan keamanan, rotasi kredensial, dan respons pelanggaran.
+    Panduan pengerasan keamanan, rotasi kredensial, dan respons terhadap pelanggaran.
   </Card>
 </CardGroup>

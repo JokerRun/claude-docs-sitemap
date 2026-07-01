@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/messages/batches/retrieve
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: cfbdddb1ca202b979ad1db2bf907b875f94c19f09c4a8763b1e2f5c81570ff27
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: eaffe15c9c1ff7a72950b0a50b53af19c07bc8e47e445bd9b7f5c2fa2c85e4f7
 ---
 
 ## Retrieve a Message Batch
@@ -13,7 +13,7 @@ sha256: cfbdddb1ca202b979ad1db2bf907b875f94c19f09c4a8763b1e2f5c81570ff27
 
 This endpoint is idempotent and can be used to poll for Message Batch completion. To access the results of a Message Batch, make a request to the `results_url` field in the response.
 
-Learn more about the Message Batches API in our [user guide](https://docs.claude.com/en/docs/build-with-claude/batch-processing)
+Learn more about the Message Batches API in our [user guide](https://platform.claude.com/docs/en/build-with-claude/batch-processing)
 
 ### Parameters
 

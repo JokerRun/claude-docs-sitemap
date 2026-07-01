@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/messages/batches/results
-fetched_at: 2026-06-26T03:16:19.812719Z
-sha256: da6fe5214488a296f0f1d2b24b37babd4a90eef4d09aa2a042288027a71bffcd
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: f793892a503c99695f8e27ae2c8d719efbd596e0ef3e8da6205619ba1e6181f3
 ---
 
 ## Retrieve Message Batch results
@@ -15,7 +15,7 @@ Streams the results of a Message Batch as a `.jsonl` file.
 
 Each line in the file is a JSON object containing the result of a single request in the Message Batch. Results are not guaranteed to be in the same order as requests. Use the `custom_id` field to match results to requests.
 
-Learn more about the Message Batches API in our [user guide](https://docs.claude.com/en/docs/build-with-claude/batch-processing)
+Learn more about the Message Batches API in our [user guide](https://platform.claude.com/docs/en/build-with-claude/batch-processing)
 
 ### Parameters
 
@@ -727,6 +727,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `"frontier_llm"FrontierLlm`
 
             - `"reasoning_extraction"ReasoningExtraction`
+
+            - `"military_weapons"MilitaryWeapons`
 
           - `required string? Explanation`
 

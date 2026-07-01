@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/security
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: c5da8f724e3153c2fcb5e17b7d76a3ca6623de2033b01d4d8d727b9cc99ecca3
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: e370b78ce019a4d63e50025c306a92f96790ee231891fa897a7f39d7f182a261
 ---
 
-# Keamanan MCP tunnels
+# Keamanan tunnel MCP
 
-Panduan penguatan keamanan, rotasi kredensial, respons terhadap pelanggaran, dan pembongkaran untuk deployment MCP tunnel.
+Panduan penguatan keamanan, rotasi kredensial, respons terhadap pelanggaran, dan pembongkaran untuk deployment tunnel MCP.
 
 ---
 
@@ -15,16 +15,16 @@ Panduan penguatan keamanan, rotasi kredensial, respons terhadap pelanggaran, dan
   Tunnel MCP sedang dalam pratinjau riset. [Minta akses](https://claude.com/form/claude-managed-agents) untuk mencobanya.
 </Note>
 
-Arsitektur tunnel menyediakan pengaturan default yang kuat (konektivitas hanya keluar, enkripsi end-to-end, dan validasi IP), tetapi keamanan keseluruhan dari [tunnel stack](/docs/id/agents-and-tools/mcp-tunnels/concepts#components) Anda juga bergantung pada cara Anda mengonfigurasi dan mengoperasikannya. Halaman ini membahas rekomendasi penguatan keamanan, respons terhadap pelanggaran, dan cara menonaktifkan tunnel.
+Arsitektur tunnel menyediakan pengaturan default yang kuat (konektivitas hanya keluar, enkripsi end-to-end, dan validasi IP), tetapi keamanan keseluruhan dari [tunnel stack](/docs/id/agents-and-tools/mcp-tunnels/concepts#components) Anda juga bergantung pada cara Anda mengonfigurasi dan mengoperasikannya. Halaman ini membahas penguatan keamanan yang direkomendasikan, respons terhadap pelanggaran, dan cara menonaktifkan tunnel.
 
 ## Praktik terbaik
 
-* **Wajibkan OAuth pada setiap server MCP.** Konfigurasikan setiap [server MCP upstream](/docs/id/agents-and-tools/mcp-tunnels/concepts#components) untuk mewajibkan OAuth seperti yang dijelaskan dalam [spesifikasi otorisasi MCP](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization). OAuth menyediakan pertahanan berlapis di atas autentikasi transport tunnel dan memungkinkan otorisasi tingkat pengguna pada lapisan data.
+* **Wajibkan OAuth pada setiap server MCP.** Konfigurasikan setiap [server MCP upstream](/docs/id/agents-and-tools/mcp-tunnels/concepts#components) untuk mewajibkan OAuth seperti yang dijelaskan dalam [spesifikasi otorisasi MCP](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization). OAuth memberikan pertahanan berlapis di atas autentikasi transport tunnel dan memungkinkan otorisasi tingkat pengguna pada lapisan data.
 * **Aktifkan SSO untuk organisasi Anda.** Tunnel, aturan federasi, dan akun layanan dikelola di Claude Console. SSO menerapkan kontrol sesi dari penyedia identitas Anda pada admin yang dapat mengubahnya.
 * **Batasi `upstream.allowed_ips`.** Gunakan rentang CIDR terkecil yang mencakup server MCP Anda. Ini adalah pertahanan SSRF utama dari [proxy](/docs/id/agents-and-tools/mcp-tunnels/concepts#components).
 * **Pantau log.** Buat peringatan untuk warning, error, dan pola lalu lintas yang tidak biasa dari tunnel stack.
 * **Rotasi kredensial.** Lakukan rotasi sertifikat server dan token tunnel secara berkala, dan segera lakukan jika Anda mencurigai adanya kompromi.
-* **Selalu perbarui image.** Pantau rilis proxy baru dan pin image berdasarkan digest SHA-256.
+* **Jaga image tetap diperbarui.** Pantau rilis proxy baru dan pin image berdasarkan digest SHA-256.
 * **Batasi jangkauan jaringan.** Proxy dan [cloudflared](/docs/id/agents-and-tools/mcp-tunnels/concepts#components) seharusnya hanya dapat menjangkau tujuan yang tercantum dalam [persyaratan jaringan](/docs/id/agents-and-tools/mcp-tunnels/overview#network-requirements). Gunakan NetworkPolicy (Kubernetes) atau aturan firewall host (Compose).
 * **Batasi cakupan server MCP.** Setiap server seharusnya hanya mengekspos alat dan data yang diperlukan untuk tujuannya.
 * **Lindungi kredensial saat disimpan.** Terapkan praktik manajemen rahasia organisasi Anda pada kunci privat dan token tunnel.
@@ -55,7 +55,7 @@ Jika Anda yakin token tunnel, kunci TLS, atau host proxy Anda telah dikompromika
   </Step>
 
   <Step title="Arsipkan tunnel">
-    Pengarsipan akan membatalkan token tunnel dan melepaskan domain. Di Console, [arsipkan tunnel](/docs/id/agents-and-tools/mcp-tunnels/console#archive-a-tunnel) dari daftar **MCP tunnels**. Untuk mengarsipkan melalui API, lihat [Archive a tunnel](/docs/id/api/admin/mcp_tunnels/archive).
+    Pengarsipan akan membatalkan token tunnel dan melepaskan domain. Di Console, [arsipkan tunnel](/docs/id/agents-and-tools/mcp-tunnels/console#archive-a-tunnel) dari daftar **MCP tunnels**. Untuk mengarsipkan melalui API, lihat [Archive a tunnel](/docs/id/api/beta/tunnels/archive).
   </Step>
 
   <Step title="Hubungi Anthropic">
@@ -99,7 +99,7 @@ Ikuti langkah-langkah berikut untuk menonaktifkan tunnel dan menghapus semua kre
   <Step title="Hapus kredensial yang tersimpan">
     <Tabs>
       <Tab title="Helm">
-        Dengan akses terprogram, komponen setup membuat satu Secret yang dinamai sesuai dengan release. Tanpa akses terprogram, Anda membuat `mcp-tunnel-token` dan `mcp-tunnel-cert` sendiri. Hapus mana pun yang berlaku:
+        Dengan akses terprogram, komponen setup membuat satu Secret yang dinamai sesuai release. Tanpa akses terprogram, Anda membuat `mcp-tunnel-token` dan `mcp-tunnel-cert` sendiri. Hapus mana pun yang berlaku:
 
         ```bash
         kubectl -n mcp-tunnel delete secret \
@@ -109,7 +109,7 @@ Ikuti langkah-langkah berikut untuk menonaktifkan tunnel dan menghapus semua kre
       </Tab>
 
       <Tab title="Docker Compose">
-        Kunci privat dan sertifikat berada di `data/`. Token tunnel berada di `data/tunnel-token` (alur terprogram) atau di environment shell Anda (alur manual). Direktori `config/` dan `docker-compose.yaml` tidak berisi rahasia apa pun; simpan jika Anda berencana untuk menyediakan ulang, atau hapus juga.
+        Kunci privat dan sertifikat berada di `data/`. Token tunnel berada di `data/tunnel-token` (alur terprogram) atau di environment shell Anda (alur manual). Direktori `config/` dan `docker-compose.yaml` tidak berisi rahasia; simpan jika Anda berencana untuk menyediakan ulang, atau hapus juga.
 
         ```bash
         sudo rm -rf data

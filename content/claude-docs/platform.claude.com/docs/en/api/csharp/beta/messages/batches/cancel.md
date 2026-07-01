@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/messages/batches/cancel
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 926a917de8ff2d32f8769ecae94dcf19cd0067194d42bd6012e32bd4e71b56b5
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: 541523868f1f912b9cb41c59ad71fa6e29e91b924390869450c6c20bb386d6c3
 ---
 
 ## Cancel a Message Batch
@@ -15,7 +15,7 @@ Batches may be canceled any time before processing ends. Once cancellation is in
 
 The number of canceled requests is specified in `request_counts`. To determine which requests were canceled, check the individual results within the batch. Note that cancellation may not result in any canceled requests if they were non-interruptible.
 
-Learn more about the Message Batches API in our [user guide](https://docs.claude.com/en/docs/build-with-claude/batch-processing)
+Learn more about the Message Batches API in our [user guide](https://platform.claude.com/docs/en/build-with-claude/batch-processing)
 
 ### Parameters
 

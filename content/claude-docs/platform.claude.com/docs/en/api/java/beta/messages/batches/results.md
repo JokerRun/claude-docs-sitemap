@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/messages/batches/results
-fetched_at: 2026-06-26T03:16:19.812719Z
-sha256: 975f29f814838f2fff9c0972e685be5a06861524673ceed902eee70bbe4aef4b
+fetched_at: 2026-07-01T03:16:45.163402Z
+sha256: eb7dbc4ee06325354950d265b85fcb6d1f0f2264d0fc072ea66f367bacbdb459
 ---
 
 ## Retrieve Message Batch results
@@ -15,7 +15,7 @@ Streams the results of a Message Batch as a `.jsonl` file.
 
 Each line in the file is a JSON object containing the result of a single request in the Message Batch. Results are not guaranteed to be in the same order as requests. Use the `custom_id` field to match results to requests.
 
-Learn more about the Message Batches API in our [user guide](https://docs.claude.com/en/docs/build-with-claude/batch-processing)
+Learn more about the Message Batches API in our [user guide](https://platform.claude.com/docs/en/build-with-claude/batch-processing)
 
 ### Parameters
 
@@ -1034,6 +1034,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
 
                 - `REASONING_EXTRACTION("reasoning_extraction")`
 
+                - `MILITARY_WEAPONS("military_weapons")`
+
               - `JsonValue; type "refusal"constant`
 
                 - `REFUSAL("refusal")`
@@ -1174,6 +1176,8 @@ Learn more about the Message Batches API in our [user guide](https://docs.claude
             - `FRONTIER_LLM("frontier_llm")`
 
             - `REASONING_EXTRACTION("reasoning_extraction")`
+
+            - `MILITARY_WEAPONS("military_weapons")`
 
           - `Optional<String> explanation`
 
