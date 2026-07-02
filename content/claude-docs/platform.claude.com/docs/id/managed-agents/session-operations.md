@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/session-operations
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: aff9755d9c08cad6e6c7c4d027ad36650bdc21352e7a7e076a0beee8a55c609b
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 204617b0946de1cc0878dbec46e9344f7cc96dfefc5c0ff09e619ccfd14fd150
 ---
 
 # Operasi sesi
@@ -11,7 +11,7 @@ Mengambil, membuat daftar, memperbarui, mengarsipkan, dan menghapus sesi Claude 
 
 ---
 
-Setelah sesi dibuat, gunakan operasi ini untuk membaca, memperbarui, mengarsipkan, atau menghapusnya. Lihat [Memulai sesi](/docs/id/managed-agents/sessions) untuk membuat sesi dan mengirimkan pekerjaan kepadanya.
+Setelah sebuah sesi ada, gunakan operasi-operasi ini untuk membaca, memperbarui, mengarsipkan, atau menghapusnya. Lihat [Memulai sesi](/docs/id/managed-agents/sessions) untuk membuat sesi dan mengirimkan pekerjaan kepadanya.
 
 <Note>
   Semua permintaan Managed Agents API memerlukan beta header `managed-agents-2026-04-01`. SDK menetapkan beta header tersebut secara otomatis.
@@ -30,9 +30,11 @@ Sesi berjalan melalui status-status berikut. Lihat [Memulai sesi](/docs/id/manag
 
 ## Memperbarui konfigurasi agen
 
-Anda dapat memperbarui `agent.tools` dan `agent.mcp_servers` milik sesi, termasuk kebijakan izin, di tengah sesi tanpa membuat versi agen baru. Pembaruan bersifat lokal untuk sesi dan tidak disebarkan kembali ke agen yang mendasarinya.
+Anda dapat memperbarui `agent.tools` dan `agent.mcp_servers` milik sebuah sesi, termasuk kebijakan izin, di tengah sesi tanpa membuat versi agen baru. Pembaruan bersifat lokal untuk sesi tersebut dan tidak disebarkan kembali ke agen yang mendasarinya.
 
-Semantik pembaruan adalah penggantian penuh: array yang diberikan menjadi nilai baru. Untuk mempertahankan entri yang sudah ada, lakukan `GET` pada sesi, modifikasi array-nya, lalu kirim kembali dengan `POST`.
+Hanya `tools` dan `mcp_servers` milik agen yang dapat diubah setelah sesi dibuat. Untuk menjalankan sesi dengan nilai `model`, `system`, atau `skills` yang berbeda dari milik agen, gunakan [override konfigurasi agen](/docs/id/managed-agents/sessions#override-agent-configuration-for-a-session) saat Anda membuat sesi. Field `system` yang dikonfigurasi pada agen bersifat tetap selama masa hidup sesi. Pada model yang mendukungnya, Anda tetap dapat mengganti prompt sistem efektif di antara giliran dengan mengirimkan [event `system.message`](/docs/id/managed-agents/events-and-streaming#sending-system-messages).
+
+Semantik pembaruan `tools` atau `mcp_servers` adalah penggantian penuh: array yang diberikan menjadi nilai baru. Untuk mempertahankan entri yang sudah ada, lakukan `GET` pada sesi, modifikasi array-nya, lalu `POST` kembali.
 
 Sesi harus dalam status `idle` untuk memperbarui agen. [Interupsi](/docs/id/managed-agents/events-and-streaming#integrating-events) sesi jika Anda perlu memperbarui agen saat sesi sedang berjalan.
 
@@ -272,6 +274,12 @@ Sesi harus dalam status `idle` untuk memperbarui agen. [Interupsi](/docs/id/mana
 
 ## Membuat daftar sesi
 
+Hasil dari `GET /v1/sessions` dipaginasi. Gunakan parameter kueri `limit` untuk mengontrol ukuran halaman. Setiap respons menyertakan kursor `next_page`; teruskan sebagai parameter `page` pada permintaan berikutnya untuk mengambil halaman selanjutnya. `next_page` bernilai `null` ketika tidak ada hasil lagi.
+
+Untuk kembali satu halaman, teruskan `prev_page` sebagai parameter `page`. `prev_page` bernilai `null` ketika Anda berada di halaman pertama.
+
+Kursor `page` bersifat opaque dan mengenkode `order` dari permintaan yang menghasilkannya. Parameter kueri `order` menetapkan arah pengurutan hasil, `asc` atau `desc` berdasarkan waktu pembuatan; default-nya adalah `desc` (terbaru lebih dulu). Menggunakan kembali kursor dengan `order` yang berbeda akan mengembalikan error 400; parameter kueri lainnya, termasuk filter dan `limit`, dapat berubah di antara permintaan yang dipaginasi. Untuk field paginasi yang digunakan bersama di seluruh endpoint daftar, lihat [Paginasi](/docs/id/api/overview#pagination).
+
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
   first_page=$(curl -sS --fail-with-body \
@@ -298,8 +306,8 @@ Sesi harus dalam status `idle` untuk memperbarui agen. [Interupsi](/docs/id/mana
   ```
 
   ```bash CLI
-  # --format raw returns one page envelope with its prev_page and next_page
-  # cursors; the default output auto-paginates and emits only the sessions.
+  # --format raw mengembalikan satu envelope halaman dengan kursor prev_page dan next_page
+  # miliknya; output default melakukan auto-paginasi dan hanya mengeluarkan sesi-sesinya.
   cursors=$(ant beta:sessions list \
     --agent-id "$AGENT_ID" \
     --limit 1 \
@@ -307,7 +315,7 @@ Sesi harus dalam status `idle` untuk memperbarui agen. [Interupsi](/docs/id/mana
     --transform '{prev_page,next_page}')
   printf '%s\n' "$cursors"
 
-  # Pass the next_page cursor back as --page to fetch the next page.
+  # Kirim kembali kursor next_page sebagai --page untuk mengambil halaman berikutnya.
   NEXT_PAGE=$(jq -r '.next_page' <<< "$cursors")
   ant beta:sessions list \
     --agent-id "$AGENT_ID" \
@@ -315,39 +323,39 @@ Sesi harus dalam status `idle` untuk memperbarui agen. [Interupsi](/docs/id/mana
     --page "$NEXT_PAGE" \
     --format raw \
     --transform '{prev_page,next_page}'
-  # Pass that response's prev_page as --page to go back the same way.
+  # Kirim prev_page dari respons itu sebagai --page untuk kembali dengan cara yang sama.
   ```
 
   ```python Python
-  # Set `limit` low so the results span more than one page.
+  # Atur `limit` rendah agar hasilnya mencakup lebih dari satu halaman.
   first_page = client.beta.sessions.list(limit=1, agent_id=agent.id)
-  # `prev_page` is None on the first page; `next_page` is None on the last.
+  # `prev_page` bernilai None di halaman pertama; `next_page` None di halaman terakhir.
   print(f"prev_page: {first_page.prev_page}")
   print(f"next_page: {first_page.next_page}")
 
-  # Pass `next_page` back as `page` to fetch the next page.
+  # Oper kembali `next_page` sebagai `page` untuk mengambil halaman berikutnya.
   second_page = client.beta.sessions.list(
       limit=1, agent_id=agent.id, page=first_page.next_page
   )
   for listed_session in second_page.data:
       print(f"{listed_session.id}: {listed_session.status}")
 
-  # Pass `prev_page` back as `page` to return to the previous page.
+  # Oper kembali `prev_page` sebagai `page` untuk kembali ke halaman sebelumnya.
   previous_page = client.beta.sessions.list(
       limit=1, agent_id=agent.id, page=second_page.prev_page
   )
   for listed_session in previous_page.data:
       print(f"{listed_session.id}: {listed_session.status}")
-  # For forward-only iteration, the page object is also directly iterable.
+  # Untuk iterasi maju saja, objek halaman juga dapat diiterasi secara langsung.
   ```
 
   ```typescript TypeScript
   const firstPage = await client.beta.sessions.list({ limit: 1, agent_id: agent.id });
-  // prev_page is null on the first page; next_page is set when more sessions exist.
+  // prev_page bernilai null di halaman pertama; next_page terisi jika masih ada sesi lain.
   console.log(`prev_page: ${firstPage.prev_page}`);
   console.log(`next_page: ${firstPage.next_page}`);
 
-  // Pass next_page as the `page` cursor to fetch the second page.
+  // Teruskan next_page sebagai kursor `page` untuk mengambil halaman kedua.
   const secondPage = await client.beta.sessions.list({
     limit: 1,
     agent_id: agent.id,
@@ -357,7 +365,7 @@ Sesi harus dalam status `idle` untuk memperbarui agen. [Interupsi](/docs/id/mana
     console.log(`Page 2 has ${listedSession.id}: ${listedSession.status}`);
   }
 
-  // Pass the second page's prev_page cursor to step back to the first page.
+  // Teruskan kursor prev_page dari halaman kedua untuk kembali ke halaman pertama.
   const previousPage = await client.beta.sessions.list({
     limit: 1,
     agent_id: agent.id,
@@ -366,13 +374,13 @@ Sesi harus dalam status `idle` untuk memperbarui agen. [Interupsi](/docs/id/mana
   for (const listedSession of previousPage.data) {
     console.log(`Back on page 1: ${listedSession.id} is ${listedSession.status}`);
   }
-  // For forward-only iteration, the page object is also directly iterable.
+  // Untuk iterasi maju-saja, objek halaman juga dapat diiterasi secara langsung.
   ```
 
   ```csharp C#
-  // The SessionListPage that `List` returns exposes the items but not the
-  // pagination cursors. To read `prev_page` / `next_page`, deserialize the raw
-  // response into SessionListPageResponse instead.
+  // SessionListPage yang dikembalikan `List` mengekspos item tetapi bukan
+  // kursor paginasi. Untuk membaca `prev_page` / `next_page`, deserialisasi respons
+  // mentah menjadi SessionListPageResponse sebagai gantinya.
   using var page1Response = await client.Beta.Sessions.WithRawResponse.List(
       new SessionListParams { Limit = 1, AgentID = agent.ID }
   );
@@ -380,7 +388,7 @@ Sesi harus dalam status `idle` untuk memperbarui agen. [Interupsi](/docs/id/mana
   Console.WriteLine($"prev_page: {page1.PrevPage ?? "null"}");
   Console.WriteLine($"next_page: {page1.NextPage ?? "null"}");
 
-  // Advance: pass `next_page` from page 1 as the `page` cursor.
+  // Maju: oper `next_page` dari halaman 1 sebagai kursor `page`.
   using var page2Response = await client.Beta.Sessions.WithRawResponse.List(
       new SessionListParams { Limit = 1, AgentID = agent.ID, Page = page1.NextPage }
   );
@@ -390,7 +398,7 @@ Sesi harus dalam status `idle` untuk memperbarui agen. [Interupsi](/docs/id/mana
       Console.WriteLine($"Page 2: {listedSession.ID}: {listedSession.Status.Raw()}");
   }
 
-  // Go back: pass `prev_page` from page 2 as the same `page` cursor.
+  // Mundur: oper `prev_page` dari halaman 2 sebagai kursor `page` yang sama.
   using var previousPageResponse = await client.Beta.Sessions.WithRawResponse.List(
       new SessionListParams { Limit = 1, AgentID = agent.ID, Page = page2.PrevPage }
   );
@@ -399,11 +407,11 @@ Sesi harus dalam status `idle` untuk memperbarui agen. [Interupsi](/docs/id/mana
   {
       Console.WriteLine($"Back to page 1: {listedSession.ID}: {listedSession.Status.Raw()}");
   }
-  // For forward-only iteration, (await client.Beta.Sessions.List(...)).Paginate() returns an IAsyncEnumerable that auto-follows next_page.
+  // Untuk iterasi maju-saja, (await client.Beta.Sessions.List(...)).Paginate() mengembalikan IAsyncEnumerable yang otomatis mengikuti next_page.
   ```
 
   ```go Go
-  // Page 1: prev_page is empty because nothing precedes the first page.
+  // Halaman 1: prev_page kosong karena tidak ada yang mendahului halaman pertama.
   firstPage, err := client.Beta.Sessions.List(ctx, anthropic.BetaSessionListParams{
   	AgentID: anthropic.String(agent.ID),
   	Limit:   anthropic.Int(1),
@@ -414,7 +422,7 @@ Sesi harus dalam status `idle` untuk memperbarui agen. [Interupsi](/docs/id/mana
   fmt.Printf("Page 1 prev_page: %q\n", firstPage.PrevPage)
   fmt.Printf("Page 1 next_page: %q\n", firstPage.NextPage)
 
-  // Advance: pass next_page as the Page cursor to fetch page 2.
+  // Maju: berikan next_page sebagai kursor Page untuk mengambil halaman 2.
   secondPage, err := client.Beta.Sessions.List(ctx, anthropic.BetaSessionListParams{
   	AgentID: anthropic.String(agent.ID),
   	Limit:   anthropic.Int(1),
@@ -427,7 +435,7 @@ Sesi harus dalam status `idle` untuk memperbarui agen. [Interupsi](/docs/id/mana
   	fmt.Printf("Page 2: %s: %s\n", listedSession.ID, listedSession.Status)
   }
 
-  // Go back: page 2's prev_page is the cursor for the page before it.
+  // Mundur: prev_page halaman 2 adalah kursor untuk halaman sebelumnya.
   previousPage, err := client.Beta.Sessions.List(ctx, anthropic.BetaSessionListParams{
   	AgentID: anthropic.String(agent.ID),
   	Limit:   anthropic.Int(1),
@@ -439,7 +447,7 @@ Sesi harus dalam status `idle` untuk memperbarui agen. [Interupsi](/docs/id/mana
   for _, listedSession := range previousPage.Data {
   	fmt.Printf("Back to page 1: %s: %s\n", listedSession.ID, listedSession.Status)
   }
-  // For forward-only iteration, use ListAutoPaging to auto-follow next_page.
+  // Untuk iterasi maju saja, gunakan ListAutoPaging untuk auto-ikuti next_page.
   ```
 
   ```java Java
@@ -451,29 +459,29 @@ Sesi harus dalam status `idle` untuk memperbarui agen. [Interupsi](/docs/id/mana
   for (var listedSession : firstPage.data()) {
       IO.println(listedSession.id() + ": " + listedSession.status());
   }
-  // prev_page is an empty Optional on the first page; next_page points to page 2.
+  // prev_page adalah Optional kosong di halaman pertama; next_page menunjuk ke halaman 2.
   IO.println("prev_page: " + firstPage.response().prevPage());
   IO.println("next_page: " + firstPage.response().nextPage());
 
-  // Advance by passing next_page as the page cursor.
+  // Maju dengan meneruskan next_page sebagai kursor halaman.
   var nextCursor = firstPage.response().nextPage().orElseThrow();
   var secondPage = client.beta().sessions().list(params.toBuilder().page(nextCursor).build());
 
-  // Go back by passing prev_page as the same page cursor.
+  // Mundur dengan meneruskan prev_page sebagai kursor halaman yang sama.
   var prevCursor = secondPage.response().prevPage().orElseThrow();
   var previousPage = client.beta().sessions().list(params.toBuilder().page(prevCursor).build());
-  // Back on the first page, so prev_page is empty again.
+  // Kembali di halaman pertama, jadi prev_page kosong lagi.
   IO.println("prev_page: " + previousPage.response().prevPage());
-  // For forward-only iteration, page.autoPager() returns an Iterable that auto-follows next_page.
+  // Untuk iterasi maju saja, page.autoPager() mengembalikan Iterable yang otomatis mengikuti next_page.
   ```
 
   ```php PHP
-  // Page 1: prevPage is null because nothing precedes the first page.
+  // Halaman 1: prevPage bernilai null karena tidak ada yang mendahului halaman pertama.
   $firstPage = $client->beta->sessions->list(agentID: $agent->id, limit: 1);
   echo 'Page 1 prev_page: ' . ($firstPage->prevPage ?? 'null') . "\n";
   echo 'Page 1 next_page: ' . ($firstPage->nextPage ?? 'null') . "\n";
 
-  // Advance: pass nextPage back as the `page` cursor to fetch page 2.
+  // Maju: oper kembali nextPage sebagai kursor `page` untuk mengambil halaman 2.
   $secondPage = $client->beta->sessions->list(
       agentID: $agent->id,
       limit: 1,
@@ -483,7 +491,7 @@ Sesi harus dalam status `idle` untuk memperbarui agen. [Interupsi](/docs/id/mana
       echo "Page 2: {$listedSession->id}: {$listedSession->status}\n";
   }
 
-  // Go back: page 2's prevPage is the cursor for the page before it.
+  // Mundur: prevPage halaman 2 adalah kursor untuk halaman sebelumnya.
   $previousPage = $client->beta->sessions->list(
       agentID: $agent->id,
       limit: 1,
@@ -492,7 +500,7 @@ Sesi harus dalam status `idle` untuk memperbarui agen. [Interupsi](/docs/id/mana
   foreach ($previousPage->getItems() as $listedSession) {
       echo "Back to page 1: {$listedSession->id}: {$listedSession->status}\n";
   }
-  // For forward-only iteration, $page->pagingEachItem() yields every session across pages.
+  // Untuk iterasi maju saja, $page->pagingEachItem() menghasilkan setiap sesi di semua halaman.
   ```
 
   ```ruby Ruby
@@ -501,13 +509,13 @@ Sesi harus dalam status `idle` untuk memperbarui agen. [Interupsi](/docs/id/mana
     puts "#{listed_session.id}: #{listed_session.status}"
   end
 
-  # `prev_page` is nil on the first page. The next-page cursor is exposed as
-  # `next_page_` (trailing underscore) because plain `next_page` is the helper
-  # method that fetches the next page object for you.
+  # `prev_page` bernilai nil pada halaman pertama. Kursor halaman-berikutnya diekspos sebagai
+  # `next_page_` (underscore di akhir) karena `next_page` biasa adalah method helper
+  # yang mengambilkan objek halaman berikutnya untuk Anda.
   puts "prev_page: #{first_page.prev_page.inspect}"
   puts "next_page: #{first_page.next_page_.inspect}"
 
-  # Pass either cursor back as `page` to move through the list in both directions.
+  # Kirim salah satu kursor kembali sebagai `page` untuk menelusuri daftar di kedua arah.
   second_page = client.beta.sessions.list(
     agent_id: agent.id,
     limit: 1,
@@ -521,13 +529,13 @@ Sesi harus dalam status `idle` untuk memperbarui agen. [Interupsi](/docs/id/mana
   back_to_first.data.each do |listed_session|
     puts "#{listed_session.id}: #{listed_session.status}"
   end
-  # For forward-only iteration, page.auto_paging_each auto-follows next_page.
+  # Untuk iterasi maju-saja, page.auto_paging_each otomatis mengikuti next_page.
   ```
 </CodeGroup>
 
 ## Mengarsipkan sesi
 
-Arsipkan sesi untuk mencegah event baru dikirim sambil tetap mempertahankan riwayatnya. Sesi dengan status `running` tidak dapat diarsipkan; kirim [event interupsi](/docs/id/managed-agents/events-and-streaming#integrating-events) jika Anda perlu segera mengarsipkannya.
+Arsipkan sesi untuk mencegah event baru dikirim sambil tetap mempertahankan riwayatnya. Sesi dengan status `running` tidak dapat diarsipkan; kirim [event interupsi](/docs/id/managed-agents/events-and-streaming#integrating-events) jika Anda perlu mengarsipkannya segera.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -576,7 +584,7 @@ Arsipkan sesi untuk mencegah event baru dikirim sambil tetap mempertahankan riwa
 
 ## Menghapus sesi
 
-Hapus sesi untuk menghapus secara permanen catatannya, event-nya, dan sandbox yang terkait. Sesi dengan status `running` tidak dapat dihapus; kirim [event interupsi](/docs/id/managed-agents/events-and-streaming#integrating-events) jika Anda perlu segera menghapusnya.
+Hapus sesi untuk menghapus secara permanen catatannya, event-nya, dan sandbox yang terkait. Sesi dengan status `running` tidak dapat dihapus; kirim [event interupsi](/docs/id/managed-agents/events-and-streaming#integrating-events) jika Anda perlu menghapusnya segera.
 
 File, memory store, vault, skill, environment, dan agen adalah sumber daya independen dan tidak terpengaruh oleh penghapusan sesi.
 

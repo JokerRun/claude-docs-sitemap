@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/environments/work/update
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: a67fe8a3691b3a9241a22d8d728cb353fd1d5f343649b36de6f5eb2fac72beac
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: bd9d01ab2d3f4483869067866093de5548faca9a5cced16a38c4a6ead0b93751
 ---
 
 ## Update Work Item
@@ -137,6 +137,10 @@ Update work item metadata with merge semantics.
 
     User-provided metadata key-value pairs associated with this work item
 
+  - `secret: String`
+
+    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
+
   - `started_at: String`
 
     RFC 3339 timestamp when work execution started
@@ -201,6 +205,7 @@ puts(beta_self_hosted_work)
   "metadata": {
     "foo": "string"
   },
+  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",

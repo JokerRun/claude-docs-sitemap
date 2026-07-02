@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/sessions/events/list
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 22e0b3a3711031f1afe3e35153488826b0c25b6ceee7deadcb0f355ef6c3d480
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: da9479a2ff1a9722f7c08627f0913ee34ebc2626cc1f7267f5f6a18b909e9fb6
 ---
 
 ## List Events
@@ -1579,11 +1579,15 @@ List Events
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-          - `BetaManagedAgentsModel = :"claude-fable-5" | :"claude-opus-4-8" | :"claude-opus-4-7" | 8 more`
+          - `BetaManagedAgentsModel = :"claude-sonnet-5" | :"claude-fable-5" | :"claude-opus-4-8" | 9 more`
 
             The model that will power your agent.
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `:"claude-sonnet-5"`
+
+              High-performance model for coding and agents
 
             - `:"claude-fable-5"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/sessions/retrieve
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: be289334431398a05d3dbb122bb0e818a8258483a85bc83323edd11497f83791
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 69c7b8787b6729b5d7fddfcdd6b148d230cdde01a1bedec14d1fbe124599d2b7
 ---
 
 ## Get Session
@@ -117,11 +117,15 @@ Get Session
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-        - `BetaManagedAgentsModel = :"claude-fable-5" | :"claude-opus-4-8" | :"claude-opus-4-7" | 8 more`
+        - `BetaManagedAgentsModel = :"claude-sonnet-5" | :"claude-fable-5" | :"claude-opus-4-8" | 9 more`
 
           The model that will power your agent.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `:"claude-sonnet-5"`
+
+            High-performance model for coding and agents
 
           - `:"claude-fable-5"`
 

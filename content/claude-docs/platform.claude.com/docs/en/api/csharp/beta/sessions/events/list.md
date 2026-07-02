@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/sessions/events/list
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 037f2a3f8a49a2f4578b3f134bdd8282e88c1f7517ccb6517c88c0353bd54276
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 9867e6b826dbfd30e2f4f5a4fabfff8ed2079935d805e93ba126ca097f50e08e
 ---
 
 ## List Events
@@ -1582,6 +1582,10 @@ List Events
             The model that will power your agent.
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `"claude-sonnet-5"ClaudeSonnet5`
+
+              High-performance model for coding and agents
 
             - `"claude-fable-5"ClaudeFable5`
 

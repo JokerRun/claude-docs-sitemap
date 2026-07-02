@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/vaults/credentials/list
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 775bf08fe37fc33c214b7607e0b4a371f5db74e6f0692b0ad37c0224506605b0
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: ef7e73394c22d6daaafea7583158ce7fbf137a178c3dadc155176429ca13396f
 ---
 
 ## List Credentials
@@ -192,6 +192,18 @@ List Credentials
     - `type BetaManagedAgentsEnvironmentVariableAuthResponse struct{…}`
 
       Environment variable credential details. The secret value is never returned.
+
+      - `InjectionLocation BetaManagedAgentsInjectionLocationResponse`
+
+        Where in the outbound request the secret value is substituted.
+
+        - `Body bool`
+
+          Whether the placeholder is substituted in the request body.
+
+        - `Header bool`
+
+          Whether the placeholder is substituted in request header values.
 
       - `Networking BetaManagedAgentsEnvironmentVariableAuthResponseNetworkingUnion`
 

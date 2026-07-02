@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/archive
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 24fd4deea71ddc89bf711f65027ba4a2ecd6217513baa9a141f7406d16577569
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 9714aab2300d456457e525a768c8af44675f9d6a9b93c47aa97f19c634a9615c
 ---
 
 ## Archive Session
@@ -117,11 +117,15 @@ Archive Session
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-        - `"claude-fable-5" or "claude-opus-4-8" or "claude-opus-4-7" or 8 more`
+        - `"claude-sonnet-5" or "claude-fable-5" or "claude-opus-4-8" or 9 more`
 
           The model that will power your agent.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `"claude-sonnet-5"`
+
+            High-performance model for coding and agents
 
           - `"claude-fable-5"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/sessions/archive
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 982ebc2dcee47bcd1c04ad08efcd15fa680a8f8ec4deaa256ce92a70a3cc0b98
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: d2f2c352384def20e5461986d1fd5068a5ea0fd37c10a30208a5b91c86608a43
 ---
 
 ## Archive Session
@@ -124,6 +124,10 @@ Archive Session
           The model that will power your agent.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `const BetaManagedAgentsModelClaudeSonnet5 BetaManagedAgentsModel = "claude-sonnet-5"`
+
+            High-performance model for coding and agents
 
           - `const BetaManagedAgentsModelClaudeFable5 BetaManagedAgentsModel = "claude-fable-5"`
 

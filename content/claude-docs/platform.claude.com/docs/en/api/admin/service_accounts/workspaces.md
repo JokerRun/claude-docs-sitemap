@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/service_accounts/workspaces
-fetched_at: 2026-06-17T03:17:04.158711Z
-sha256: a64e9106c7197e21159d2c920b94a23448205d071ed5d6f40ef441c8474e619f
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 1d2a2b8e0e70e86036d6f88a272044d9fffbda51d885cd288b065c854407e903
 ---
 
 # Workspaces
@@ -41,17 +41,17 @@ are not accepted.
 
   Tagged workspace ID to add the service account to.
 
-- `workspace_role: "workspace_user" or "workspace_developer" or "workspace_restricted_developer" or "workspace_admin"`
+- `workspace_role: "workspace_admin" or "workspace_developer" or "workspace_restricted_developer" or "workspace_user"`
 
   Role to assign to the service account in this workspace.
 
-  - `"workspace_user"`
+  - `"workspace_admin"`
 
   - `"workspace_developer"`
 
   - `"workspace_restricted_developer"`
 
-  - `"workspace_admin"`
+  - `"workspace_user"`
 
 ### Returns
 
@@ -75,19 +75,19 @@ are not accepted.
 
   Tagged workspace ID (`wrkspc_...`).
 
-- `workspace_role: "workspace_user" or "workspace_developer" or "workspace_restricted_developer" or 2 more`
+- `workspace_role: "workspace_admin" or "workspace_billing" or "workspace_developer" or 2 more`
 
   Role of the service account in this workspace. Service accounts cannot hold the `workspace_billing` role.
 
-  - `"workspace_user"`
+  - `"workspace_admin"`
+
+  - `"workspace_billing"`
 
   - `"workspace_developer"`
 
   - `"workspace_restricted_developer"`
 
-  - `"workspace_admin"`
-
-  - `"workspace_billing"`
+  - `"workspace_user"`
 
 ### Example
 
@@ -98,7 +98,7 @@ curl https://api.anthropic.com/v1/organizations/service_accounts/$SERVICE_ACCOUN
     -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN" \
     -d '{
           "workspace_id": "workspace_id",
-          "workspace_role": "workspace_user"
+          "workspace_role": "workspace_admin"
         }'
 ```
 
@@ -111,7 +111,7 @@ curl https://api.anthropic.com/v1/organizations/service_accounts/$SERVICE_ACCOUN
   "service_account_id": "service_account_id",
   "type": "service_account_workspace_member",
   "workspace_id": "workspace_id",
-  "workspace_role": "workspace_user"
+  "workspace_role": "workspace_admin"
 }
 ```
 
@@ -179,19 +179,19 @@ empty list.
 
     Tagged workspace ID (`wrkspc_...`).
 
-  - `workspace_role: "workspace_user" or "workspace_developer" or "workspace_restricted_developer" or 2 more`
+  - `workspace_role: "workspace_admin" or "workspace_billing" or "workspace_developer" or 2 more`
 
     Role of the service account in this workspace. Service accounts cannot hold the `workspace_billing` role.
 
-    - `"workspace_user"`
+    - `"workspace_admin"`
+
+    - `"workspace_billing"`
 
     - `"workspace_developer"`
 
     - `"workspace_restricted_developer"`
 
-    - `"workspace_admin"`
-
-    - `"workspace_billing"`
+    - `"workspace_user"`
 
 - `next_page: string`
 
@@ -216,7 +216,7 @@ curl https://api.anthropic.com/v1/organizations/service_accounts/$SERVICE_ACCOUN
       "service_account_id": "service_account_id",
       "type": "service_account_workspace_member",
       "workspace_id": "workspace_id",
-      "workspace_role": "workspace_user"
+      "workspace_role": "workspace_admin"
     }
   ],
   "next_page": "next_page"
@@ -315,19 +315,19 @@ curl https://api.anthropic.com/v1/organizations/service_accounts/$SERVICE_ACCOUN
 
     Tagged workspace ID (`wrkspc_...`).
 
-  - `workspace_role: "workspace_user" or "workspace_developer" or "workspace_restricted_developer" or 2 more`
+  - `workspace_role: "workspace_admin" or "workspace_billing" or "workspace_developer" or 2 more`
 
     Role of the service account in this workspace. Service accounts cannot hold the `workspace_billing` role.
 
-    - `"workspace_user"`
+    - `"workspace_admin"`
+
+    - `"workspace_billing"`
 
     - `"workspace_developer"`
 
     - `"workspace_restricted_developer"`
 
-    - `"workspace_admin"`
-
-    - `"workspace_billing"`
+    - `"workspace_user"`
 
 ### Workspace List Response
 
@@ -353,19 +353,19 @@ curl https://api.anthropic.com/v1/organizations/service_accounts/$SERVICE_ACCOUN
 
     Tagged workspace ID (`wrkspc_...`).
 
-  - `workspace_role: "workspace_user" or "workspace_developer" or "workspace_restricted_developer" or 2 more`
+  - `workspace_role: "workspace_admin" or "workspace_billing" or "workspace_developer" or 2 more`
 
     Role of the service account in this workspace. Service accounts cannot hold the `workspace_billing` role.
 
-    - `"workspace_user"`
+    - `"workspace_admin"`
+
+    - `"workspace_billing"`
 
     - `"workspace_developer"`
 
     - `"workspace_restricted_developer"`
 
-    - `"workspace_admin"`
-
-    - `"workspace_billing"`
+    - `"workspace_user"`
 
 ### Workspace Delete Response
 

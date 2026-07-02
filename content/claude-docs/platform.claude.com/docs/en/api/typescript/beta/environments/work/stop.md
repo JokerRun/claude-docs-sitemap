@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/environments/work/stop
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: b0c9c2b889c198d54cbaea466503d51684c12ca55c67a7ee3814c7df7eb7d05e
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 005daa3c53e3c8a8b51cfbf727d16fbd33ee9352bb853750a46165a806a6a286
 ---
 
 ## Stop Work
@@ -141,6 +141,10 @@ Stop a work item, initiating graceful or forced shutdown.
 
     User-provided metadata key-value pairs associated with this work item
 
+  - `secret: string | null`
+
+    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
+
   - `started_at: string | null`
 
     RFC 3339 timestamp when work execution started
@@ -205,6 +209,7 @@ console.log(betaSelfHostedWork.id);
   "metadata": {
     "foo": "string"
   },
+  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",

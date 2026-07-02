@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/sessions/update
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 091ca26669f5442affea007f9871953eb893235b849b470e8abcaa5cc1561f76
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: dcaefa7aed34cd5a9acc36d9aba94d82334aa723e6d43edb122ecff6754e82bb
 ---
 
 ## Update Session
@@ -315,7 +315,11 @@ Update Session
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-        - `"claude-fable-5" | "claude-opus-4-8" | "claude-opus-4-7" | 8 more`
+        - `"claude-sonnet-5" | "claude-fable-5" | "claude-opus-4-8" | 9 more`
+
+          - `"claude-sonnet-5"`
+
+            High-performance model for coding and agents
 
           - `"claude-fable-5"`
 

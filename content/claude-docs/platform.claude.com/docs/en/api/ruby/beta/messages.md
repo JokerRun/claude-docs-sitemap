@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/messages
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: e40eddc83e3b9cbe14609e4bd3d29d9d6f4eefeb005d48bf7b73aa63b8c7e070
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 5a3e4a4c8fc2a919cd1916cd4a621e2b7b9a11e4a3a6608a2b7e0f63fa1c56b6
 ---
 
 # Messages
@@ -1115,11 +1115,15 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-            - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 12 more`
+            - `Model = :"claude-sonnet-5" | :"claude-fable-5" | :"claude-mythos-5" | 13 more`
 
               The model that will complete your prompt.
 
               See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+              - `:"claude-sonnet-5"`
+
+                High-performance model for coding and agents
 
               - `:"claude-fable-5"`
 
@@ -3901,11 +3905,15 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-          - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 12 more`
+          - `Model = :"claude-sonnet-5" | :"claude-fable-5" | :"claude-mythos-5" | 13 more`
 
             The model that will complete your prompt.
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `:"claude-sonnet-5"`
+
+              High-performance model for coding and agents
 
             - `:"claude-fable-5"`
 
@@ -3977,7 +3985,7 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
         What caused the `from` model to hand over at this hop.
 
-        - `category: :cyber | :bio | :frontier_llm | 2 more`
+        - `category: :cyber | :bio | :frontier_llm | :reasoning_extraction`
 
           The policy category that triggered a refusal.
 
@@ -3988,8 +3996,6 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
           - `:frontier_llm`
 
           - `:reasoning_extraction`
-
-          - `:military_weapons`
 
         - `type: :refusal`
 
@@ -4120,7 +4126,7 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
     Structured information about a refusal.
 
-    - `category: :cyber | :bio | :frontier_llm | 2 more`
+    - `category: :cyber | :bio | :frontier_llm | :reasoning_extraction`
 
       The policy category that triggered a refusal.
 
@@ -4131,8 +4137,6 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
       - `:frontier_llm`
 
       - `:reasoning_extraction`
-
-      - `:military_weapons`
 
     - `explanation: String`
 
@@ -4580,7 +4584,7 @@ puts(beta_message)
         "cache_creation_input_tokens": 0,
         "cache_read_input_tokens": 0,
         "input_tokens": 0,
-        "model": "claude-fable-5",
+        "model": "claude-sonnet-5",
         "output_tokens": 0,
         "type": "message"
       }
@@ -5697,11 +5701,15 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-            - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 12 more`
+            - `Model = :"claude-sonnet-5" | :"claude-fable-5" | :"claude-mythos-5" | 13 more`
 
               The model that will complete your prompt.
 
               See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+              - `:"claude-sonnet-5"`
+
+                High-performance model for coding and agents
 
               - `:"claude-fable-5"`
 
@@ -7556,11 +7564,15 @@ puts(beta_message_tokens_count)
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 12 more`
+    - `Model = :"claude-sonnet-5" | :"claude-fable-5" | :"claude-mythos-5" | 13 more`
 
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `:"claude-sonnet-5"`
+
+        High-performance model for coding and agents
 
       - `:"claude-fable-5"`
 
@@ -7700,11 +7712,15 @@ puts(beta_message_tokens_count)
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 12 more`
+    - `Model = :"claude-sonnet-5" | :"claude-fable-5" | :"claude-mythos-5" | 13 more`
 
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `:"claude-sonnet-5"`
+
+        High-performance model for coding and agents
 
       - `:"claude-fable-5"`
 
@@ -10560,11 +10576,15 @@ puts(beta_message_tokens_count)
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-        - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 12 more`
+        - `Model = :"claude-sonnet-5" | :"claude-fable-5" | :"claude-mythos-5" | 13 more`
 
           The model that will complete your prompt.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `:"claude-sonnet-5"`
+
+            High-performance model for coding and agents
 
           - `:"claude-fable-5"`
 
@@ -10636,7 +10656,7 @@ puts(beta_message_tokens_count)
 
       What caused the `from` model to hand over at this hop.
 
-      - `category: :cyber | :bio | :frontier_llm | 2 more`
+      - `category: :cyber | :bio | :frontier_llm | :reasoning_extraction`
 
         The policy category that triggered a refusal.
 
@@ -10647,8 +10667,6 @@ puts(beta_message_tokens_count)
         - `:frontier_llm`
 
         - `:reasoning_extraction`
-
-        - `:military_weapons`
 
       - `type: :refusal`
 
@@ -11691,11 +11709,15 @@ puts(beta_message_tokens_count)
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-        - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 12 more`
+        - `Model = :"claude-sonnet-5" | :"claude-fable-5" | :"claude-mythos-5" | 13 more`
 
           The model that will complete your prompt.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `:"claude-sonnet-5"`
+
+            High-performance model for coding and agents
 
           - `:"claude-fable-5"`
 
@@ -12519,11 +12541,15 @@ puts(beta_message_tokens_count)
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 12 more`
+      - `Model = :"claude-sonnet-5" | :"claude-fable-5" | :"claude-mythos-5" | 13 more`
 
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `:"claude-sonnet-5"`
+
+          High-performance model for coding and agents
 
         - `:"claude-fable-5"`
 
@@ -12595,7 +12621,7 @@ puts(beta_message_tokens_count)
 
     What caused the `from` model to hand over at this hop.
 
-    - `category: :cyber | :bio | :frontier_llm | 2 more`
+    - `category: :cyber | :bio | :frontier_llm | :reasoning_extraction`
 
       The policy category that triggered a refusal.
 
@@ -12606,8 +12632,6 @@ puts(beta_message_tokens_count)
       - `:frontier_llm`
 
       - `:reasoning_extraction`
-
-      - `:military_weapons`
 
     - `type: :refusal`
 
@@ -12645,11 +12669,15 @@ puts(beta_message_tokens_count)
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 12 more`
+      - `Model = :"claude-sonnet-5" | :"claude-fable-5" | :"claude-mythos-5" | 13 more`
 
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `:"claude-sonnet-5"`
+
+          High-performance model for coding and agents
 
         - `:"claude-fable-5"`
 
@@ -12737,11 +12765,15 @@ puts(beta_message_tokens_count)
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 12 more`
+    - `Model = :"claude-sonnet-5" | :"claude-fable-5" | :"claude-mythos-5" | 13 more`
 
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `:"claude-sonnet-5"`
+
+        High-performance model for coding and agents
 
       - `:"claude-fable-5"`
 
@@ -12817,11 +12849,15 @@ puts(beta_message_tokens_count)
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 12 more`
+    - `Model = :"claude-sonnet-5" | :"claude-fable-5" | :"claude-mythos-5" | 13 more`
 
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `:"claude-sonnet-5"`
+
+        High-performance model for coding and agents
 
       - `:"claude-fable-5"`
 
@@ -12926,11 +12962,15 @@ puts(beta_message_tokens_count)
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 12 more`
+    - `Model = :"claude-sonnet-5" | :"claude-fable-5" | :"claude-mythos-5" | 13 more`
 
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `:"claude-sonnet-5"`
+
+        High-performance model for coding and agents
 
       - `:"claude-fable-5"`
 
@@ -13021,11 +13061,15 @@ puts(beta_message_tokens_count)
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 12 more`
+    - `Model = :"claude-sonnet-5" | :"claude-fable-5" | :"claude-mythos-5" | 13 more`
 
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `:"claude-sonnet-5"`
+
+        High-performance model for coding and agents
 
       - `:"claude-fable-5"`
 
@@ -13193,7 +13237,7 @@ puts(beta_message_tokens_count)
 
   The `from` model declined for policy reasons.
 
-  - `category: :cyber | :bio | :frontier_llm | 2 more`
+  - `category: :cyber | :bio | :frontier_llm | :reasoning_extraction`
 
     The policy category that triggered a refusal.
 
@@ -13204,8 +13248,6 @@ puts(beta_message_tokens_count)
     - `:frontier_llm`
 
     - `:reasoning_extraction`
-
-    - `:military_weapons`
 
   - `type: :refusal`
 
@@ -13374,11 +13416,15 @@ puts(beta_message_tokens_count)
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 12 more`
+      - `Model = :"claude-sonnet-5" | :"claude-fable-5" | :"claude-mythos-5" | 13 more`
 
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `:"claude-sonnet-5"`
+
+          High-performance model for coding and agents
 
         - `:"claude-fable-5"`
 
@@ -14974,11 +15020,15 @@ puts(beta_message_tokens_count)
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-          - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 12 more`
+          - `Model = :"claude-sonnet-5" | :"claude-fable-5" | :"claude-mythos-5" | 13 more`
 
             The model that will complete your prompt.
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `:"claude-sonnet-5"`
+
+              High-performance model for coding and agents
 
             - `:"claude-fable-5"`
 
@@ -15050,7 +15100,7 @@ puts(beta_message_tokens_count)
 
         What caused the `from` model to hand over at this hop.
 
-        - `category: :cyber | :bio | :frontier_llm | 2 more`
+        - `category: :cyber | :bio | :frontier_llm | :reasoning_extraction`
 
           The policy category that triggered a refusal.
 
@@ -15061,8 +15111,6 @@ puts(beta_message_tokens_count)
           - `:frontier_llm`
 
           - `:reasoning_extraction`
-
-          - `:military_weapons`
 
         - `type: :refusal`
 
@@ -15193,7 +15241,7 @@ puts(beta_message_tokens_count)
 
     Structured information about a refusal.
 
-    - `category: :cyber | :bio | :frontier_llm | 2 more`
+    - `category: :cyber | :bio | :frontier_llm | :reasoning_extraction`
 
       The policy category that triggered a refusal.
 
@@ -15204,8 +15252,6 @@ puts(beta_message_tokens_count)
       - `:frontier_llm`
 
       - `:reasoning_extraction`
-
-      - `:military_weapons`
 
     - `explanation: String`
 
@@ -15618,11 +15664,15 @@ puts(beta_message_tokens_count)
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-        - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 12 more`
+        - `Model = :"claude-sonnet-5" | :"claude-fable-5" | :"claude-mythos-5" | 13 more`
 
           The model that will complete your prompt.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `:"claude-sonnet-5"`
+
+            High-performance model for coding and agents
 
           - `:"claude-fable-5"`
 
@@ -15875,11 +15925,15 @@ puts(beta_message_tokens_count)
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 12 more`
+    - `Model = :"claude-sonnet-5" | :"claude-fable-5" | :"claude-mythos-5" | 13 more`
 
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `:"claude-sonnet-5"`
+
+        High-performance model for coding and agents
 
       - `:"claude-fable-5"`
 
@@ -16990,11 +17044,15 @@ puts(beta_message_tokens_count)
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-            - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 12 more`
+            - `Model = :"claude-sonnet-5" | :"claude-fable-5" | :"claude-mythos-5" | 13 more`
 
               The model that will complete your prompt.
 
               See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+              - `:"claude-sonnet-5"`
+
+                High-performance model for coding and agents
 
               - `:"claude-fable-5"`
 
@@ -18473,11 +18531,15 @@ puts(beta_message_tokens_count)
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-          - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 12 more`
+          - `Model = :"claude-sonnet-5" | :"claude-fable-5" | :"claude-mythos-5" | 13 more`
 
             The model that will complete your prompt.
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `:"claude-sonnet-5"`
+
+              High-performance model for coding and agents
 
             - `:"claude-fable-5"`
 
@@ -18549,7 +18611,7 @@ puts(beta_message_tokens_count)
 
         What caused the `from` model to hand over at this hop.
 
-        - `category: :cyber | :bio | :frontier_llm | 2 more`
+        - `category: :cyber | :bio | :frontier_llm | :reasoning_extraction`
 
           The policy category that triggered a refusal.
 
@@ -18560,8 +18622,6 @@ puts(beta_message_tokens_count)
           - `:frontier_llm`
 
           - `:reasoning_extraction`
-
-          - `:military_weapons`
 
         - `type: :refusal`
 
@@ -18669,7 +18729,7 @@ puts(beta_message_tokens_count)
 
       Structured information about a refusal.
 
-      - `category: :cyber | :bio | :frontier_llm | 2 more`
+      - `category: :cyber | :bio | :frontier_llm | :reasoning_extraction`
 
         The policy category that triggered a refusal.
 
@@ -18680,8 +18740,6 @@ puts(beta_message_tokens_count)
         - `:frontier_llm`
 
         - `:reasoning_extraction`
-
-        - `:military_weapons`
 
       - `explanation: String`
 
@@ -18834,11 +18892,15 @@ puts(beta_message_tokens_count)
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-          - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 12 more`
+          - `Model = :"claude-sonnet-5" | :"claude-fable-5" | :"claude-mythos-5" | 13 more`
 
             The model that will complete your prompt.
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `:"claude-sonnet-5"`
+
+              High-performance model for coding and agents
 
             - `:"claude-fable-5"`
 
@@ -19908,11 +19970,15 @@ puts(beta_message_tokens_count)
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-            - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 12 more`
+            - `Model = :"claude-sonnet-5" | :"claude-fable-5" | :"claude-mythos-5" | 13 more`
 
               The model that will complete your prompt.
 
               See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+              - `:"claude-sonnet-5"`
+
+                High-performance model for coding and agents
 
               - `:"claude-fable-5"`
 
@@ -19984,7 +20050,7 @@ puts(beta_message_tokens_count)
 
           What caused the `from` model to hand over at this hop.
 
-          - `category: :cyber | :bio | :frontier_llm | 2 more`
+          - `category: :cyber | :bio | :frontier_llm | :reasoning_extraction`
 
             The policy category that triggered a refusal.
 
@@ -19995,8 +20061,6 @@ puts(beta_message_tokens_count)
             - `:frontier_llm`
 
             - `:reasoning_extraction`
-
-            - `:military_weapons`
 
           - `type: :refusal`
 
@@ -20127,7 +20191,7 @@ puts(beta_message_tokens_count)
 
       Structured information about a refusal.
 
-      - `category: :cyber | :bio | :frontier_llm | 2 more`
+      - `category: :cyber | :bio | :frontier_llm | :reasoning_extraction`
 
         The policy category that triggered a refusal.
 
@@ -20138,8 +20202,6 @@ puts(beta_message_tokens_count)
         - `:frontier_llm`
 
         - `:reasoning_extraction`
-
-        - `:military_weapons`
 
       - `explanation: String`
 
@@ -21359,11 +21421,15 @@ puts(beta_message_tokens_count)
 
               See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-              - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 12 more`
+              - `Model = :"claude-sonnet-5" | :"claude-fable-5" | :"claude-mythos-5" | 13 more`
 
                 The model that will complete your prompt.
 
                 See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+                - `:"claude-sonnet-5"`
+
+                  High-performance model for coding and agents
 
                 - `:"claude-fable-5"`
 
@@ -21435,7 +21501,7 @@ puts(beta_message_tokens_count)
 
             What caused the `from` model to hand over at this hop.
 
-            - `category: :cyber | :bio | :frontier_llm | 2 more`
+            - `category: :cyber | :bio | :frontier_llm | :reasoning_extraction`
 
               The policy category that triggered a refusal.
 
@@ -21446,8 +21512,6 @@ puts(beta_message_tokens_count)
               - `:frontier_llm`
 
               - `:reasoning_extraction`
-
-              - `:military_weapons`
 
             - `type: :refusal`
 
@@ -21578,7 +21642,7 @@ puts(beta_message_tokens_count)
 
         Structured information about a refusal.
 
-        - `category: :cyber | :bio | :frontier_llm | 2 more`
+        - `category: :cyber | :bio | :frontier_llm | :reasoning_extraction`
 
           The policy category that triggered a refusal.
 
@@ -21589,8 +21653,6 @@ puts(beta_message_tokens_count)
           - `:frontier_llm`
 
           - `:reasoning_extraction`
-
-          - `:military_weapons`
 
         - `explanation: String`
 
@@ -22204,7 +22266,7 @@ puts(beta_message_tokens_count)
 
   Structured information about a refusal.
 
-  - `category: :cyber | :bio | :frontier_llm | 2 more`
+  - `category: :cyber | :bio | :frontier_llm | :reasoning_extraction`
 
     The policy category that triggered a refusal.
 
@@ -22215,8 +22277,6 @@ puts(beta_message_tokens_count)
     - `:frontier_llm`
 
     - `:reasoning_extraction`
-
-    - `:military_weapons`
 
   - `explanation: String`
 
@@ -26686,11 +26746,15 @@ puts(beta_message_tokens_count)
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 12 more`
+      - `Model = :"claude-sonnet-5" | :"claude-fable-5" | :"claude-mythos-5" | 13 more`
 
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `:"claude-sonnet-5"`
+
+          High-performance model for coding and agents
 
         - `:"claude-fable-5"`
 
@@ -27130,11 +27194,15 @@ puts(beta_message_tokens_count)
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-        - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 12 more`
+        - `Model = :"claude-sonnet-5" | :"claude-fable-5" | :"claude-mythos-5" | 13 more`
 
           The model that will complete your prompt.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `:"claude-sonnet-5"`
+
+            High-performance model for coding and agents
 
           - `:"claude-fable-5"`
 
@@ -30355,11 +30423,15 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
                 See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-                - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 12 more`
+                - `Model = :"claude-sonnet-5" | :"claude-fable-5" | :"claude-mythos-5" | 13 more`
 
                   The model that will complete your prompt.
 
                   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+                  - `:"claude-sonnet-5"`
+
+                    High-performance model for coding and agents
 
                   - `:"claude-fable-5"`
 
@@ -34126,11 +34198,15 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
                 See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-                - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 12 more`
+                - `Model = :"claude-sonnet-5" | :"claude-fable-5" | :"claude-mythos-5" | 13 more`
 
                   The model that will complete your prompt.
 
                   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+                  - `:"claude-sonnet-5"`
+
+                    High-performance model for coding and agents
 
                   - `:"claude-fable-5"`
 
@@ -34202,7 +34278,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
               What caused the `from` model to hand over at this hop.
 
-              - `category: :cyber | :bio | :frontier_llm | 2 more`
+              - `category: :cyber | :bio | :frontier_llm | :reasoning_extraction`
 
                 The policy category that triggered a refusal.
 
@@ -34213,8 +34289,6 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
                 - `:frontier_llm`
 
                 - `:reasoning_extraction`
-
-                - `:military_weapons`
 
               - `type: :refusal`
 
@@ -34345,7 +34419,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
           Structured information about a refusal.
 
-          - `category: :cyber | :bio | :frontier_llm | 2 more`
+          - `category: :cyber | :bio | :frontier_llm | :reasoning_extraction`
 
             The policy category that triggered a refusal.
 
@@ -34356,8 +34430,6 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
             - `:frontier_llm`
 
             - `:reasoning_extraction`
-
-            - `:military_weapons`
 
           - `explanation: String`
 
@@ -35909,11 +35981,15 @@ puts(beta_message_batch_individual_response)
 
                 See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-                - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 12 more`
+                - `Model = :"claude-sonnet-5" | :"claude-fable-5" | :"claude-mythos-5" | 13 more`
 
                   The model that will complete your prompt.
 
                   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+                  - `:"claude-sonnet-5"`
+
+                    High-performance model for coding and agents
 
                   - `:"claude-fable-5"`
 
@@ -35985,7 +36061,7 @@ puts(beta_message_batch_individual_response)
 
               What caused the `from` model to hand over at this hop.
 
-              - `category: :cyber | :bio | :frontier_llm | 2 more`
+              - `category: :cyber | :bio | :frontier_llm | :reasoning_extraction`
 
                 The policy category that triggered a refusal.
 
@@ -35996,8 +36072,6 @@ puts(beta_message_batch_individual_response)
                 - `:frontier_llm`
 
                 - `:reasoning_extraction`
-
-                - `:military_weapons`
 
               - `type: :refusal`
 
@@ -36128,7 +36202,7 @@ puts(beta_message_batch_individual_response)
 
           Structured information about a refusal.
 
-          - `category: :cyber | :bio | :frontier_llm | 2 more`
+          - `category: :cyber | :bio | :frontier_llm | :reasoning_extraction`
 
             The policy category that triggered a refusal.
 
@@ -36139,8 +36213,6 @@ puts(beta_message_batch_individual_response)
             - `:frontier_llm`
 
             - `:reasoning_extraction`
-
-            - `:military_weapons`
 
           - `explanation: String`
 
@@ -37488,11 +37560,15 @@ puts(beta_message_batch_individual_response)
 
               See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-              - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 12 more`
+              - `Model = :"claude-sonnet-5" | :"claude-fable-5" | :"claude-mythos-5" | 13 more`
 
                 The model that will complete your prompt.
 
                 See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+                - `:"claude-sonnet-5"`
+
+                  High-performance model for coding and agents
 
                 - `:"claude-fable-5"`
 
@@ -37564,7 +37640,7 @@ puts(beta_message_batch_individual_response)
 
             What caused the `from` model to hand over at this hop.
 
-            - `category: :cyber | :bio | :frontier_llm | 2 more`
+            - `category: :cyber | :bio | :frontier_llm | :reasoning_extraction`
 
               The policy category that triggered a refusal.
 
@@ -37575,8 +37651,6 @@ puts(beta_message_batch_individual_response)
               - `:frontier_llm`
 
               - `:reasoning_extraction`
-
-              - `:military_weapons`
 
             - `type: :refusal`
 
@@ -37707,7 +37781,7 @@ puts(beta_message_batch_individual_response)
 
         Structured information about a refusal.
 
-        - `category: :cyber | :bio | :frontier_llm | 2 more`
+        - `category: :cyber | :bio | :frontier_llm | :reasoning_extraction`
 
           The policy category that triggered a refusal.
 
@@ -37718,8 +37792,6 @@ puts(beta_message_batch_individual_response)
           - `:frontier_llm`
 
           - `:reasoning_extraction`
-
-          - `:military_weapons`
 
         - `explanation: String`
 
@@ -39029,11 +39101,15 @@ puts(beta_message_batch_individual_response)
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-            - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 12 more`
+            - `Model = :"claude-sonnet-5" | :"claude-fable-5" | :"claude-mythos-5" | 13 more`
 
               The model that will complete your prompt.
 
               See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+              - `:"claude-sonnet-5"`
+
+                High-performance model for coding and agents
 
               - `:"claude-fable-5"`
 
@@ -39105,7 +39181,7 @@ puts(beta_message_batch_individual_response)
 
           What caused the `from` model to hand over at this hop.
 
-          - `category: :cyber | :bio | :frontier_llm | 2 more`
+          - `category: :cyber | :bio | :frontier_llm | :reasoning_extraction`
 
             The policy category that triggered a refusal.
 
@@ -39116,8 +39192,6 @@ puts(beta_message_batch_individual_response)
             - `:frontier_llm`
 
             - `:reasoning_extraction`
-
-            - `:military_weapons`
 
           - `type: :refusal`
 
@@ -39248,7 +39322,7 @@ puts(beta_message_batch_individual_response)
 
       Structured information about a refusal.
 
-      - `category: :cyber | :bio | :frontier_llm | 2 more`
+      - `category: :cyber | :bio | :frontier_llm | :reasoning_extraction`
 
         The policy category that triggered a refusal.
 
@@ -39259,8 +39333,6 @@ puts(beta_message_batch_individual_response)
         - `:frontier_llm`
 
         - `:reasoning_extraction`
-
-        - `:military_weapons`
 
       - `explanation: String`
 

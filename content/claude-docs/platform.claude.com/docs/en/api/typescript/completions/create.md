@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/completions/create
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 5547918a2bd3ea8319fc5d072805034d52373ea8bbc1e58d7167ab51f5ca0d69
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: e3d34d49c10d80e9aee5f33d2ab3ac20d870065036455cb2891c1dc89303993d
 ---
 
 ## Create a Text Completion
@@ -35,7 +35,11 @@ Future models and features will not be compatible with Text Completions. See our
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `"claude-fable-5" | "claude-mythos-5" | "claude-opus-4-8" | 12 more`
+      - `"claude-sonnet-5" | "claude-fable-5" | "claude-mythos-5" | 13 more`
+
+        - `"claude-sonnet-5"`
+
+          High-performance model for coding and agents
 
         - `"claude-fable-5"`
 
@@ -271,7 +275,11 @@ Future models and features will not be compatible with Text Completions. See our
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `"claude-fable-5" | "claude-mythos-5" | "claude-opus-4-8" | 12 more`
+    - `"claude-sonnet-5" | "claude-fable-5" | "claude-mythos-5" | 13 more`
+
+      - `"claude-sonnet-5"`
+
+        High-performance model for coding and agents
 
       - `"claude-fable-5"`
 

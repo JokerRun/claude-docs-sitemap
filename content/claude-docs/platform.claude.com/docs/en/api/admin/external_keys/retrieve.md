@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/external_keys/retrieve
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 47fefe5a82c305e01ffe95f49e4cbeb3330d5c5af0c3535243caa849ff1379fb
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 04f9c2500345fd4848da73cb3aff2ffb5ca48817aedd84b6be4c65715ba74dde
 ---
 
 ## Get External Key
@@ -27,7 +27,7 @@ Retrieve a single external key config in the caller's organization by ID.
 
 - `display_name: string`
 
-  Human-friendly display name.
+  Human-friendly display name. Null if none was set.
 
 - `geo: string`
 

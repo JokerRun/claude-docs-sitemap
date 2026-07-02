@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/threads/archive
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: d54316cbe31c216601484ee69cf34d4b5a8992929b814fdf947173b2b61d01d3
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: ed1899a5c5339f6c0ceb17af7181415a2fdadebd0bf7739850b74f6cf07d34a3
 ---
 
 ## Archive Session Thread
@@ -118,6 +118,10 @@ Archive Session Thread
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `CLAUDE_SONNET_5("claude-sonnet-5")`
+
+          High-performance model for coding and agents
 
         - `CLAUDE_FABLE_5("claude-fable-5")`
 

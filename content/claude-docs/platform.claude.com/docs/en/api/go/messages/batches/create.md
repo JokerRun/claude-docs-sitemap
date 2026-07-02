@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/messages/batches/create
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 3d1fe0ea975a2db936614ea5eedcb7d41decae73c9e9be9449e9eb334fd47f81
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: e283739d5bf05f2ef9132185d0354294014eb765ce9e8aafdd869c4824ce0d12
 ---
 
 ## Create a Message Batch
@@ -968,6 +968,10 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
           The model that will complete your prompt.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `const ModelClaudeSonnet5 Model = "claude-sonnet-5"`
+
+            High-performance model for coding and agents
 
           - `const ModelClaudeFable5 Model = "claude-fable-5"`
 

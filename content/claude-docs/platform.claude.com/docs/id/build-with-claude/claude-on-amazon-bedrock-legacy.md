@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: fa5c5419bbdf4a5d74175e27bb536fb940ddd5a44150e7330dab14e0a9d8e9ef
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 8393dd44ad2be1bdb50e8d7ab354dc2b435e73a427606e67f8d17e07d6f1201c
 ---
 
 # Claude di Amazon Bedrock (legacy)
@@ -19,7 +19,7 @@ Memanggil Claude melalui Bedrock sedikit berbeda dari cara Anda memanggil Claude
 
 Perhatikan bahwa panduan ini mengasumsikan Anda telah mendaftar [akun AWS](https://portal.aws.amazon.com/billing/signup) dan mengonfigurasi akses terprogram.
 
-## Menginstal dan mengonfigurasi AWS CLI
+## Instal dan konfigurasi AWS CLI
 
 1. [Instal versi AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html) pada atau lebih baru dari versi `2.13.23`
 2. Konfigurasikan kredensial AWS Anda menggunakan perintah AWS configure (lihat [Configure the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html)) atau temukan kredensial Anda dengan menavigasi ke "Command line or programmatic access" di dalam dashboard AWS Anda dan mengikuti petunjuk di modal popup.
@@ -29,7 +29,7 @@ Perhatikan bahwa panduan ini mengasumsikan Anda telah mendaftar [akun AWS](https
 aws sts get-caller-identity
 ```
 
-## Menginstal SDK untuk mengakses Bedrock
+## Instal SDK untuk mengakses Bedrock
 
 [Client SDK](/docs/id/cli-sdks-libraries/overview) Anthropic mendukung Bedrock. Anda juga dapat menggunakan AWS SDK seperti `boto3` secara langsung.
 
@@ -61,14 +61,14 @@ aws sts get-caller-identity
   <Tab title="Java">
     <CodeGroup>
       ```groovy Gradle
-      implementation("com.anthropic:anthropic-java-bedrock:2.40.0")
+      implementation("com.anthropic:anthropic-java-bedrock:2.47.0")
       ```
 
       ```xml Maven
       <dependency>
           <groupId>com.anthropic</groupId>
           <artifactId>anthropic-java-bedrock</artifactId>
-          <version>2.40.0</version>
+          <version>2.47.0</version>
       </dependency>
       ```
 
@@ -133,7 +133,7 @@ Buka [AWS Console > Bedrock > Model Access](https://console.aws.amazon.com/bedro
   Claude Sonnet 5 tidak tersedia di permukaan ini; gunakan [Claude di Amazon Bedrock](/docs/id/build-with-claude/claude-in-amazon-bedrock) atau [Claude Platform di AWS](/docs/id/build-with-claude/claude-platform-on-aws).
 </Note>
 
-Istilah siklus hidup (Deprecated, Retired) didefinisikan di [Deprekasi model](/docs/id/about-claude/model-deprecations). Tanggal siklus hidup pada platform yang dioperasikan mitra ditetapkan oleh mitra dan dapat berbeda dari jadwal Claude API. Untuk tanggal penghentian terkini dari model apa pun di Amazon Bedrock, lihat [halaman siklus hidup model Amazon Bedrock](https://docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle.html).
+Istilah siklus hidup (Deprecated, Retired) didefinisikan di [Penghentian model](/docs/id/about-claude/model-deprecations). Tanggal siklus hidup pada platform yang dioperasikan mitra ditetapkan oleh mitra dan dapat berbeda dari jadwal Claude API. Untuk tanggal penghentian terkini dari model apa pun di Amazon Bedrock, lihat [halaman siklus hidup model Amazon Bedrock](https://docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle.html).
 
 | Model                        | ID model Bedrock dasar                    | `global` | `us`  | `eu`  | `jp`  | `apac` |
 | ---------------------------- | ----------------------------------------- | -------- | ----- | ----- | ----- | ------ |
@@ -150,7 +150,7 @@ Istilah siklus hidup (Deprecated, Retired) didefinisikan di [Deprekasi model](/d
 
 Untuk informasi lebih lanjut tentang ID model regional vs global, lihat bagian [Endpoint global vs regional](#global-vs-regional-endpoints).
 
-### Menampilkan daftar model yang tersedia
+### Daftar model yang tersedia
 
 Contoh berikut menunjukkan cara mencetak daftar semua model Claude yang tersedia melalui Bedrock:
 
@@ -348,8 +348,8 @@ Contoh berikut menunjukkan cara menghasilkan teks dari Claude di Bedrock:
     // Baca selengkapnya di https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp.html.
     awsSessionToken: "<session_token>",
 
-    // awsRegion mengubah region aws yang menjadi tujuan
-    // permintaan. Secara default, SDK membaca AWS_REGION, dan jika
+    // awsRegion mengubah region AWS tujuan permintaan
+    // dikirim. Secara default, SDK membaca AWS_REGION, dan jika
     // tidak ada, default-nya adalah us-east-1. Perhatikan bahwa
     // SDK tidak membaca ~/.aws/config untuk region.
     awsRegion: "us-west-2"
@@ -502,9 +502,9 @@ Lihat [client SDK](/docs/id/cli-sdks-libraries/overview) untuk detail lebih lanj
 
 ### Autentikasi bearer token
 
-Anda dapat mengautentikasi dengan Bedrock menggunakan bearer token alih-alih kredensial AWS. Ini berguna di lingkungan korporat di mana tim memerlukan akses ke Bedrock tanpa mengelola kredensial AWS, peran IAM, atau izin tingkat akun.
+Anda dapat melakukan autentikasi dengan Bedrock menggunakan bearer token alih-alih kredensial AWS. Ini berguna di lingkungan korporat di mana tim memerlukan akses ke Bedrock tanpa mengelola kredensial AWS, peran IAM, atau izin tingkat akun.
 
-Pendekatan paling sederhana adalah mengatur variabel lingkungan `AWS_BEARER_TOKEN_BEDROCK`, yang dideteksi secara otomatis oleh setiap SDK saat me-resolve kredensial dari lingkungan.
+Pendekatan paling sederhana adalah mengatur variabel lingkungan `AWS_BEARER_TOKEN_BEDROCK`, yang dideteksi secara otomatis oleh setiap SDK saat menyelesaikan kredensial dari lingkungan.
 
 Untuk menyediakan token secara terprogram:
 
@@ -689,7 +689,7 @@ Untuk daftar fitur lengkap dengan ketersediaan Amazon Bedrock, lihat [Ikhtisar f
 
 ### Dukungan PDF di Bedrock
 
-Dukungan PDF tersedia di Bedrock melalui Converse API dan InvokeModel API. Untuk informasi terperinci tentang kemampuan dan batasan pemrosesan PDF, lihat [Dukungan PDF Amazon Bedrock](/docs/id/build-with-claude/pdf-support#amazon-bedrock-pdf-support).
+Dukungan PDF tersedia di Bedrock melalui Converse API dan InvokeModel API. Untuk informasi detail tentang kemampuan dan batasan pemrosesan PDF, lihat [Dukungan PDF Amazon Bedrock](/docs/id/build-with-claude/pdf-support#amazon-bedrock-pdf-support).
 
 **Pertimbangan penting untuk pengguna Converse API:**
 
@@ -722,8 +722,8 @@ Endpoint regional menyertakan premium harga 10% dibandingkan endpoint global.
 
 * Menyediakan ketersediaan dan uptime maksimum
 * Secara dinamis merutekan permintaan ke region dengan kapasitas yang tersedia
-* Tidak ada premium harga
-* Terbaik untuk aplikasi di mana residensi data bersifat fleksibel
+* Tanpa premium harga
+* Terbaik untuk aplikasi di mana residensi data fleksibel
 
 **Endpoint regional (CRIS):**
 
@@ -773,7 +773,7 @@ ID model untuk Claude Opus 4.6, Sonnet 4.6, dan Sonnet 4.5 sudah menyertakan pre
   using Anthropic.Bedrock;
   using Anthropic.Models.Messages;
 
-  // Klien Bedrock C# menggunakan ID model dengan prefiks region untuk perutean global
+  // Klien Bedrock C# menggunakan ID model dengan prefiks region untuk routing global
   AnthropicBedrockClient client = new(
       await AnthropicBedrockCredentialsHelper.FromEnv()
       ?? throw new InvalidOperationException("AWS credentials not configured.")
@@ -893,7 +893,7 @@ Untuk menggunakan endpoint regional, ganti prefiks `global.` dengan prefiks regi
     awsRegion: "us-west-2"
   });
 
-  // Menggunakan endpoint regional AS (CRIS)
+  // Using US regional endpoint (CRIS)
   const message = await client.messages.create({
     model: "us.anthropic.claude-opus-4-6-v1", // Regional prefix
     max_tokens: 256,

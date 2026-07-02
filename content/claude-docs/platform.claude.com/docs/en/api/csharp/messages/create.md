@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/messages/create
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 56cd82360bab5f38c6ebc5fd482944dca8ce9a3576f21c6c9772292f139de3d2
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 81178c31173d0cfc4b8ab3e4507140db5fadf481e01c404e14167c45479d2c38
 ---
 
 ## Create a Message
@@ -2444,6 +2444,10 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+    - `"claude-sonnet-5"ClaudeSonnet5`
+
+      High-performance model for coding and agents
+
     - `"claude-fable-5"ClaudeFable5`
 
       Next generation of intelligence for the hardest knowledge work and coding problems
@@ -2525,8 +2529,6 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
       - `"frontier_llm"FrontierLlm`
 
       - `"reasoning_extraction"ReasoningExtraction`
-
-      - `"military_weapons"MilitaryWeapons`
 
     - `required string? Explanation`
 

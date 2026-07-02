@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/php/beta/agents
-fetched_at: 2026-06-26T03:16:19.812719Z
-sha256: b0eb4a171c2b2d6dae6b883849522750f219e75b42f8801a6d075502ed1bdc00
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 0f6b24a9d77ecd5e3033a5ac65ec536740d19b8264bea4002999ba120d93145f
 ---
 
 # Agents
@@ -1358,6 +1358,10 @@ var_dump($betaManagedAgentsAgent);
 ### Beta Managed Agents Model
 
 - `BetaManagedAgentsModel`
+
+  - `"claude-sonnet-5"`
+
+    High-performance model for coding and agents
 
   - `"claude-fable-5"`
 

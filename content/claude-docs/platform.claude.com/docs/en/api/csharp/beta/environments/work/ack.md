@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/environments/work/ack
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 9881f36bccfbc0438e590d37dbd5e8e837ca9d0239e2b3e962a888dd6eae3a2a
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 4566dabe5c8292eef34ea9ed38f763a65d601fa42921c6678bb263256fa205b2
 ---
 
 ## Acknowledge Work
@@ -133,6 +133,10 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
 
     User-provided metadata key-value pairs associated with this work item
 
+  - `required string? Secret`
+
+    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
+
   - `required string? StartedAt`
 
     RFC 3339 timestamp when work execution started
@@ -193,6 +197,7 @@ Console.WriteLine(betaSelfHostedWork);
   "metadata": {
     "foo": "string"
   },
+  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",

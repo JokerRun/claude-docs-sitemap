@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/vaults/credentials
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: d8e6cf164d04db0c3939813abb39a6b8b6d3a2cc49057ce9a577038056ccee4d
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 07b2ec61a56fc41908ab3aae6b71021274fa77ad7ff93f7a86eaa41b96580fa1
 ---
 
 # Credentials
@@ -162,6 +162,18 @@ Create Credential
       - `required Type Type`
 
         - `"environment_variable"EnvironmentVariable`
+
+      - `BetaManagedAgentsInjectionLocationParams InjectionLocation`
+
+        Where in the outbound request the secret value may be substituted.
+
+        - `Boolean Body`
+
+          Substitute when the placeholder appears in the request body.
+
+        - `Boolean Header`
+
+          Substitute when the placeholder appears in a request header value.
 
   - `string? displayName`
 
@@ -328,6 +340,18 @@ Create Credential
     - `class BetaManagedAgentsEnvironmentVariableAuthResponse:`
 
       Environment variable credential details. The secret value is never returned.
+
+      - `required BetaManagedAgentsInjectionLocationResponse InjectionLocation`
+
+        Where in the outbound request the secret value is substituted.
+
+        - `required Boolean Body`
+
+          Whether the placeholder is substituted in the request body.
+
+        - `required Boolean Header`
+
+          Whether the placeholder is substituted in request header values.
 
       - `required Networking Networking`
 
@@ -615,6 +639,18 @@ List Credentials
 
         Environment variable credential details. The secret value is never returned.
 
+        - `required BetaManagedAgentsInjectionLocationResponse InjectionLocation`
+
+          Where in the outbound request the secret value is substituted.
+
+          - `required Boolean Body`
+
+            Whether the placeholder is substituted in the request body.
+
+          - `required Boolean Header`
+
+            Whether the placeholder is substituted in request header values.
+
         - `required Networking Networking`
 
           Outbound hosts the secret value is substituted on.
@@ -894,6 +930,18 @@ Get Credential
 
       Environment variable credential details. The secret value is never returned.
 
+      - `required BetaManagedAgentsInjectionLocationResponse InjectionLocation`
+
+        Where in the outbound request the secret value is substituted.
+
+        - `required Boolean Body`
+
+          Whether the placeholder is substituted in the request body.
+
+        - `required Boolean Header`
+
+          Whether the placeholder is substituted in request header values.
+
       - `required Networking Networking`
 
         Outbound hosts the secret value is substituted on.
@@ -1084,6 +1132,18 @@ Update Credential
       - `required Type Type`
 
         - `"environment_variable"EnvironmentVariable`
+
+      - `BetaManagedAgentsInjectionLocationUpdateParams InjectionLocation`
+
+        Updated injection location.
+
+        - `Boolean Body`
+
+          Substitute when the placeholder appears in the request body.
+
+        - `Boolean Header`
+
+          Substitute when the placeholder appears in a request header value.
 
       - `BetaManagedAgentsCredentialNetworkingParams? Networking`
 
@@ -1278,6 +1338,18 @@ Update Credential
     - `class BetaManagedAgentsEnvironmentVariableAuthResponse:`
 
       Environment variable credential details. The secret value is never returned.
+
+      - `required BetaManagedAgentsInjectionLocationResponse InjectionLocation`
+
+        Where in the outbound request the secret value is substituted.
+
+        - `required Boolean Body`
+
+          Whether the placeholder is substituted in the request body.
+
+        - `required Boolean Header`
+
+          Whether the placeholder is substituted in request header values.
 
       - `required Networking Networking`
 
@@ -1664,6 +1736,18 @@ Archive Credential
     - `class BetaManagedAgentsEnvironmentVariableAuthResponse:`
 
       Environment variable credential details. The secret value is never returned.
+
+      - `required BetaManagedAgentsInjectionLocationResponse InjectionLocation`
+
+        Where in the outbound request the secret value is substituted.
+
+        - `required Boolean Body`
+
+          Whether the placeholder is substituted in the request body.
+
+        - `required Boolean Header`
+
+          Whether the placeholder is substituted in request header values.
 
       - `required Networking Networking`
 
@@ -2065,6 +2149,18 @@ Console.WriteLine(betaManagedAgentsCredentialValidation);
 
       Environment variable credential details. The secret value is never returned.
 
+      - `required BetaManagedAgentsInjectionLocationResponse InjectionLocation`
+
+        Where in the outbound request the secret value is substituted.
+
+        - `required Boolean Body`
+
+          Whether the placeholder is substituted in the request body.
+
+        - `required Boolean Header`
+
+          Whether the placeholder is substituted in request header values.
+
       - `required Networking Networking`
 
         Outbound hosts the secret value is substituted on.
@@ -2263,6 +2359,18 @@ Console.WriteLine(betaManagedAgentsCredentialValidation);
 
   Environment variable credential details. The secret value is never returned.
 
+  - `required BetaManagedAgentsInjectionLocationResponse InjectionLocation`
+
+    Where in the outbound request the secret value is substituted.
+
+    - `required Boolean Body`
+
+      Whether the placeholder is substituted in the request body.
+
+    - `required Boolean Header`
+
+      Whether the placeholder is substituted in request header values.
+
   - `required Networking Networking`
 
     Outbound hosts the secret value is substituted on.
@@ -2337,6 +2445,18 @@ Console.WriteLine(betaManagedAgentsCredentialValidation);
 
     - `"environment_variable"EnvironmentVariable`
 
+  - `BetaManagedAgentsInjectionLocationParams InjectionLocation`
+
+    Where in the outbound request the secret value may be substituted.
+
+    - `Boolean Body`
+
+      Substitute when the placeholder appears in the request body.
+
+    - `Boolean Header`
+
+      Substitute when the placeholder appears in a request header value.
+
 ### Beta Managed Agents Environment Variable Update Params
 
 - `class BetaManagedAgentsEnvironmentVariableUpdateParams:`
@@ -2346,6 +2466,18 @@ Console.WriteLine(betaManagedAgentsCredentialValidation);
   - `required Type Type`
 
     - `"environment_variable"EnvironmentVariable`
+
+  - `BetaManagedAgentsInjectionLocationUpdateParams InjectionLocation`
+
+    Updated injection location.
+
+    - `Boolean Body`
+
+      Substitute when the placeholder appears in the request body.
+
+    - `Boolean Header`
+
+      Substitute when the placeholder appears in a request header value.
 
   - `BetaManagedAgentsCredentialNetworkingParams? Networking`
 
@@ -2374,6 +2506,48 @@ Console.WriteLine(betaManagedAgentsCredentialValidation);
   - `string? SecretValue`
 
     Updated secret value.
+
+### Beta Managed Agents Injection Location Params
+
+- `class BetaManagedAgentsInjectionLocationParams:`
+
+  Where in the outbound request the secret value may be substituted.
+
+  - `Boolean Body`
+
+    Substitute when the placeholder appears in the request body.
+
+  - `Boolean Header`
+
+    Substitute when the placeholder appears in a request header value.
+
+### Beta Managed Agents Injection Location Response
+
+- `class BetaManagedAgentsInjectionLocationResponse:`
+
+  Where in the outbound request the secret value is substituted.
+
+  - `required Boolean Body`
+
+    Whether the placeholder is substituted in the request body.
+
+  - `required Boolean Header`
+
+    Whether the placeholder is substituted in request header values.
+
+### Beta Managed Agents Injection Location Update Params
+
+- `class BetaManagedAgentsInjectionLocationUpdateParams:`
+
+  Updated injection location.
+
+  - `Boolean Body`
+
+    Substitute when the placeholder appears in the request body.
+
+  - `Boolean Header`
+
+    Substitute when the placeholder appears in a request header value.
 
 ### Beta Managed Agents Limited Credential Networking Params
 

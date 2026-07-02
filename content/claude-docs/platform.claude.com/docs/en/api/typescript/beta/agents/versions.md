@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/agents/versions
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: c852263c96ec0ed218c6e8802d4b47f68ea5b0e3be368bd30af8da9b2692124e
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: d42c957b05bf2d36c53646d2f578dccde53c56dc314ae9e9825dc5297b491cfa
 ---
 
 # Versions
@@ -133,7 +133,11 @@ List Agent Versions
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `"claude-fable-5" | "claude-opus-4-8" | "claude-opus-4-7" | 8 more`
+      - `"claude-sonnet-5" | "claude-fable-5" | "claude-opus-4-8" | 9 more`
+
+        - `"claude-sonnet-5"`
+
+          High-performance model for coding and agents
 
         - `"claude-fable-5"`
 

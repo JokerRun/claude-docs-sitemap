@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/php/beta/messages/batches
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: eee07463edf598444b60749f40a29d76c263be6c9b759d4a2a52366b30fc0c99
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 8639d0af93b368f0ddc82d11d5667697debeabb36b0b33e97335e974a22c5765
 ---
 
 # Batches
@@ -127,7 +127,7 @@ $betaMessageBatch = $client->beta->messages->batches->create(
         'fallbackCreditToken' => 'x',
         'fallbacks' => [
           [
-            'model' => 'claude-fable-5',
+            'model' => 'claude-sonnet-5',
             'maxTokens' => 0,
             'outputConfig' => [
               'effort' => 'low',

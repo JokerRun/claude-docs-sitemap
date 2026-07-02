@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/cache-diagnostics
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: ac370ece2f6fd701357e3215157fd96c6cfc6d6f619d03120f9bf2abc2b69ff7
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: d5bd1297976e8d6a984476de95fa61b6fcc22a88d06068b08162b95bc18c29a6
 ---
 
 # Diagnostik cache
@@ -27,11 +27,11 @@ Diagnostik cache menutup celah tersebut. Berikan `id` dari respons Anda sebelumn
 
 ## Cara kerja diagnostik cache
 
-Ketika beta header disertakan, API menyimpan fingerprint ringan dari setiap permintaan, yang dikunci berdasarkan `id` respons. Pada permintaan Anda berikutnya, sertakan `id` tersebut sebagai `diagnostics.previous_message_id`. API membangun ulang fingerprint untuk permintaan baru, membandingkannya dengan yang tersimpan, dan melampirkan objek `diagnostics` ke respons yang menjelaskan titik divergensi pertama.
+Ketika beta header disertakan, API menyimpan fingerprint ringan dari setiap permintaan, yang dikunci berdasarkan `id` respons. Pada permintaan berikutnya, sertakan `id` tersebut sebagai `diagnostics.previous_message_id`. API membangun ulang fingerprint untuk permintaan baru, membandingkannya dengan yang tersimpan, dan melampirkan objek `diagnostics` ke respons yang menjelaskan titik divergensi pertama.
 
-Perbandingan ini berkaitan dengan struktur permintaan, terlepas dari apakah cache benar-benar hit. Lihat [Membaca diagnostik bersama usage](#reading-diagnostics-alongside-usage) untuk cara menggabungkan hasil `diagnostics` dengan `usage.cache_read_input_tokens`.
+Perbandingan ini berkaitan dengan struktur permintaan, terlepas dari apakah cache benar-benar hit. Lihat [Membaca diagnostik bersama usage](#membaca-diagnostik-bersama-usage) untuk cara menggabungkan hasil `diagnostics` dengan `usage.cache_read_input_tokens`.
 
-Fingerprint hanya berisi hash dan estimasi jumlah token (tidak pernah berisi konten prompt mentah), disimpan untuk waktu terbatas, dibatasi cakupannya pada organisasi dan workspace Anda, dan tidak digunakan untuk tujuan lain apa pun.
+Fingerprint hanya berisi hash dan estimasi jumlah token (tidak pernah konten prompt mentah), disimpan untuk waktu terbatas, dibatasi cakupannya pada organisasi dan workspace Anda, dan tidak digunakan untuk tujuan lain apa pun.
 
 ## Penggunaan dasar
 
@@ -442,7 +442,7 @@ Dalam respons streaming, `diagnostics` muncul pada event `message_start`.
     --header "anthropic-version: 2023-06-01" \
     --header "anthropic-beta: cache-diagnosis-2026-04-07" \
     --header "content-type: application/json" \
-    --data @- <<EOF | sed -n 's/^data: //p' | jq -s '.[] | select(.type == "message_start") | .message.diagnostics'
+    --data @- <<EOF | jq -R 'select(startswith("data: ")) | ltrimstr("data: ") | fromjson | select(.type == "message_start") | .message.diagnostics'
   {
     "model": "claude-opus-4-8",
     "max_tokens": 1024,
@@ -547,7 +547,7 @@ Dalam respons streaming, `diagnostics` muncul pada event `message_start`.
   ```
 
   ```csharp C#
-  // Giliran 2: lakukan streaming, merujuk ke id respons sebelumnya
+  // Giliran 2: stream, merujuk ke id respons sebelumnya
   BetaDiagnostics? diagnostics = null;
 
   var stream = client.Beta.Messages.CreateStreaming(
@@ -595,7 +595,7 @@ Dalam respons streaming, `diagnostics` muncul pada event `message_start`.
   ```
 
   ```go Go
-  // Giliran 2: stream, merujuk ke id respons sebelumnya
+  // Giliran 2: stream, mereferensikan id respons sebelumnya
   stream := client.Beta.Messages.NewStreaming(ctx, anthropic.BetaMessageNewParams{
   	Model:        anthropic.ModelClaudeOpus4_8,
   	MaxTokens:    1024,
@@ -658,7 +658,7 @@ Dalam respons streaming, `diagnostics` muncul pada event `message_start`.
       IO.println("");
   }
 
-  // diagnostics tiba pada message_start dan diteruskan ke pesan yang terakumulasi
+  // diagnostics tiba pada message_start dan diteruskan hingga ke pesan yang terakumulasi
   var diagnostics = accumulator.message().diagnostics();
   if (diagnostics.isEmpty()) {
       IO.println("No divergence detected.");
@@ -674,7 +674,7 @@ Dalam respons streaming, `diagnostics` muncul pada event `message_start`.
   ```
 
   ```php PHP
-  // Giliran 2: lakukan streaming, merujuk ke id respons sebelumnya
+  // Giliran 2: stream, merujuk ke id respons sebelumnya
   $stream = $client->beta->messages->createStream(
       model: Model::CLAUDE_OPUS_4_8,
       maxTokens: 1024,
@@ -742,7 +742,7 @@ Dalam respons streaming, `diagnostics` muncul pada event `message_start`.
   ```
 </CodeGroup>
 
-Event `message_start` membawa field `diagnostics` lengkap; lihat [Format respons](#response-format) untuk nilai-nilai yang mungkin.
+Event `message_start` membawa field `diagnostics` lengkap; lihat [Format respons](#format-respons) untuk nilai-nilai yang mungkin.
 
 ## Merangkai diagnostik melalui loop percakapan
 
@@ -751,13 +751,13 @@ Dalam percakapan multi-giliran, teruskan `id` respons terbaru sebagai `previous_
 <Tabs>
   <Tab title="cURL">
     <Info>
-      Alur kerja ini tidak dapat diterjemahkan dengan baik ke perintah shell sekali jalan. Lihat tab SDK untuk pola loop; permintaan HTTP per giliran identik dengan [Penggunaan dasar](#basic-usage).
+      Alur kerja ini tidak dapat diterjemahkan dengan baik ke perintah shell sekali jalan. Lihat tab SDK untuk pola loop; permintaan HTTP per giliran identik dengan [Penggunaan dasar](#penggunaan-dasar).
     </Info>
   </Tab>
 
   <Tab title="CLI">
     <Info>
-      Alur kerja ini tidak dapat diterjemahkan dengan baik ke perintah shell sekali jalan. Lihat tab SDK untuk pola loop; pemanggilan CLI per giliran identik dengan [Penggunaan dasar](#basic-usage).
+      Alur kerja ini tidak dapat diterjemahkan dengan baik ke perintah shell sekali jalan. Lihat tab SDK untuk pola loop; pemanggilan CLI per giliran identik dengan [Penggunaan dasar](#penggunaan-dasar).
     </Info>
   </Tab>
 
@@ -945,7 +945,7 @@ Dalam percakapan multi-giliran, teruskan `id` respons terbaru sebagai `previous_
 
         if (r.diagnostics().isPresent() && r.diagnostics().get().cacheMissReason().isPresent()) {
             var reason = r.diagnostics().get().cacheMissReason().get();
-            // CacheMissReason tidak menyediakan accessor .type() bertipe; baca dari JSON mentahnya.
+            // CacheMissReason tidak mengekspos accessor .type() bertipe; baca dari JSON mentah.
             @SuppressWarnings("unchecked")
             var json = (Map<String, JsonValue>) reason._json().orElseThrow().asObject().orElseThrow();
             IO.println("Turn " + (turn + 1) + " cache_miss_reason: " + json.get("type").asStringOrThrow());
@@ -1061,7 +1061,7 @@ Ketika `cache_miss_reason` bukan null, bentuknya seperti ini:
 
 `cache_miss_reason` adalah discriminated union berdasarkan `type`. Respons hanya melaporkan divergensi paling awal, jadi perbaiki itu terlebih dahulu; divergensi selanjutnya mungkin tersembunyi di belakangnya.
 
-| Tipe                         | Artinya                                                                                                                                                                                                                                                                                                                                                                                                                                                                | Apa yang harus diubah                                                                                                                                                                                                                                                                                        |
+| Tipe                         | Artinya                                                                                                                                                                                                                                                                                                                                                                                                                                                                | Yang perlu diubah                                                                                                                                                                                                                                                                                            |
 | ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `model_changed`              | `model` berbeda dari permintaan sebelumnya (misalnya, router, A/B test, atau fallback memilih model yang berbeda). Cache bersifat per-model.                                                                                                                                                                                                                                                                                                                           | Pertahankan model tetap konstan dalam percakapan yang di-cache.                                                                                                                                                                                                                                              |
 | `system_changed`             | Parameter `system` berbeda. Biasanya timestamp, request ID, atau nilai per-permintaan lainnya diinterpolasi ke dalam prompt sistem.                                                                                                                                                                                                                                                                                                                                    | Jadikan prompt sistem sebagai konstanta yang stabil secara byte dan pindahkan data dinamis ke pesan `user` pertama setelah breakpoint cache Anda.                                                                                                                                                            |
@@ -1080,12 +1080,12 @@ Ketika `cache_miss_reason` bukan null, bentuknya seperti ini:
 
 Matriks ini berlaku untuk giliran di mana Anda memberikan `previous_message_id` yang sebenarnya. Pada giliran pertama (`previous_message_id: null`), `diagnostics` selalu `null` dan `cache_read_input_tokens` biasanya nol karena cache sedang ditulis, bukan dibaca; tidak diperlukan pemecahan masalah. Matriks ini juga tidak berlaku ketika `cache_miss_reason` bernilai `null` (perbandingan masih tertunda; periksa giliran berikutnya) atau ketika `type`-nya adalah `previous_message_not_found` atau `unavailable` (tidak ada perbandingan yang dihasilkan).
 
-| Hasil diagnostik                            | Token cache read | Interpretasi                                                                                                                                                                                                            |
-| ------------------------------------------- | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `null`                                      | tinggi           | Bekerja sesuai harapan. Prefiks Anda stabil dan cache hit.                                                                                                                                                              |
-| `null`                                      | rendah atau nol  | Permintaan Anda cocok tetapi entri cache tidak lagi tersedia. Pertimbangkan untuk mempersingkat jeda antar giliran atau menggunakan [TTL cache 1 jam](/docs/id/build-with-claude/prompt-caching#1-hour-cache-duration). |
-| `cache_miss_reason` adalah tipe `*_changed` | rendah atau nol  | Bug Anda. Permintaan berubah; perbaiki penyebab yang ditunjukkan oleh `type`.                                                                                                                                           |
-| `cache_miss_reason` adalah tipe `*_changed` | tinggi           | Jarang. Perubahan terjadi di bagian akhir prompt tetapi breakpoint `cache_control` sebelumnya masih hit. Layak diperbaiki, tetapi dampaknya rendah.                                                                     |
+| Hasil diagnostik                            | Token cache read | Interpretasi                                                                                                                                                                                                           |
+| ------------------------------------------- | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `null`                                      | tinggi           | Bekerja sesuai harapan. Prefiks Anda stabil dan cache hit.                                                                                                                                                             |
+| `null`                                      | rendah atau nol  | Permintaan Anda cocok tetapi entri cache tidak lagi tersedia. Pertimbangkan untuk memperpendek jeda antar giliran atau menggunakan [TTL cache 1 jam](/docs/id/build-with-claude/prompt-caching#1-hour-cache-duration). |
+| `cache_miss_reason` adalah tipe `*_changed` | rendah atau nol  | Bug Anda. Permintaan berubah; perbaiki penyebab yang ditunjukkan oleh `type`.                                                                                                                                          |
+| `cache_miss_reason` adalah tipe `*_changed` | tinggi           | Jarang terjadi. Perubahan terjadi di bagian akhir prompt tetapi breakpoint `cache_control` sebelumnya masih hit. Layak diperbaiki, tetapi dampaknya rendah.                                                            |
 
 ## Batasan
 

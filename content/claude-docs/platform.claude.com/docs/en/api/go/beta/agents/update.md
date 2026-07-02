@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/agents/update
-fetched_at: 2026-06-26T03:16:19.812719Z
-sha256: 0f60b27be8160b7c76879fb67be97f161cfd85ec1429b0f83795be3c814039c1
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: a8ad7f320307a351c9ef81fbd97f1b4da9a8b603c41d1a6aadeb4d7402c3a86d
 ---
 
 ## Update Agent
@@ -66,6 +66,10 @@ Update Agent
           The model that will power your agent.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `const BetaManagedAgentsModelClaudeSonnet5 BetaManagedAgentsModel = "claude-sonnet-5"`
+
+            High-performance model for coding and agents
 
           - `const BetaManagedAgentsModelClaudeFable5 BetaManagedAgentsModel = "claude-fable-5"`
 
@@ -442,6 +446,10 @@ Update Agent
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `const BetaManagedAgentsModelClaudeSonnet5 BetaManagedAgentsModel = "claude-sonnet-5"`
+
+          High-performance model for coding and agents
 
         - `const BetaManagedAgentsModelClaudeFable5 BetaManagedAgentsModel = "claude-fable-5"`
 

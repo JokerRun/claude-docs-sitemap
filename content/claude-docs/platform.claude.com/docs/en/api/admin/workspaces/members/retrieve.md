@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/members/retrieve
-fetched_at: 2026-06-12T03:17:40.104094Z
-sha256: ba202b721288c30c37804cfb20f9d8bd6b99d19487fae730132387ad209b6223
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 043feeaf8762cf8a3f51fe956e1781bbbaa6b210bbd8eef768ef9bdb3f336c84
 ---
 
 ## Get Workspace Member
@@ -41,19 +41,19 @@ Get Workspace Member
 
     ID of the Workspace.
 
-  - `workspace_role: "workspace_user" or "workspace_developer" or "workspace_restricted_developer" or 2 more`
+  - `workspace_role: "workspace_admin" or "workspace_billing" or "workspace_developer" or 2 more`
 
     Role of the Workspace Member.
 
-    - `"workspace_user"`
+    - `"workspace_admin"`
+
+    - `"workspace_billing"`
 
     - `"workspace_developer"`
 
     - `"workspace_restricted_developer"`
 
-    - `"workspace_admin"`
-
-    - `"workspace_billing"`
+    - `"workspace_user"`
 
 ### Example
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/agents/archive
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: c71189171c0be214c5bd105633acf321c794e95f0989b6fa2382403fed4c3ec4
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: ec3572b6515a5800b8f4430bf7b6e084ef824a0d274bc9c857e7771c4d5a2865
 ---
 
 ## Archive Agent
@@ -121,11 +121,15 @@ Archive Agent
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `BetaManagedAgentsModel = :"claude-fable-5" | :"claude-opus-4-8" | :"claude-opus-4-7" | 8 more`
+      - `BetaManagedAgentsModel = :"claude-sonnet-5" | :"claude-fable-5" | :"claude-opus-4-8" | 9 more`
 
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `:"claude-sonnet-5"`
+
+          High-performance model for coding and agents
 
         - `:"claude-fable-5"`
 

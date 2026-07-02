@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/completions
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 4f4daaa3508b4a37ce9e0d1c19d4034c6aff1e14efdadd90306292d6343a32b4
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: be20487a476adfa7a7b4d28334f184a37c22bed5229aba8e73cdfac9f5a8333c
 ---
 
 # Completions
@@ -171,6 +171,10 @@ Future models and features will not be compatible with Text Completions. See our
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+    - `CLAUDE_SONNET_5("claude-sonnet-5")`
+
+      High-performance model for coding and agents
+
     - `CLAUDE_FABLE_5("claude-fable-5")`
 
       Next generation of intelligence for the hardest knowledge work and coding problems
@@ -267,7 +271,7 @@ public final class Main {
 
         CompletionCreateParams params = CompletionCreateParams.builder()
             .maxTokensToSample(256L)
-            .model(Model.CLAUDE_FABLE_5)
+            .model(Model.CLAUDE_SONNET_5)
             .prompt("\n\nHuman: Hello, world!\n\nAssistant:")
             .build();
         Completion completion = client.completions().create(params);
@@ -308,6 +312,10 @@ public final class Main {
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+    - `CLAUDE_SONNET_5("claude-sonnet-5")`
+
+      High-performance model for coding and agents
 
     - `CLAUDE_FABLE_5("claude-fable-5")`
 

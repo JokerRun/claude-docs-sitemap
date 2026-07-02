@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/environments/work/poll
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 222ddfb7e841ad2d9fe2c2533cedc28e742f9ac0be618eb664e30715240f88aa
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 3aab51d156354b9ed8556ff27963977da971a57e049df0635e2a5121f4ead4ba
 ---
 
 ## Poll for Work
@@ -141,6 +141,10 @@ Long poll for work items in the queue.
 
     User-provided metadata key-value pairs associated with this work item
 
+  - `Optional<String> secret`
+
+    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
+
   - `Optional<String> startedAt`
 
     RFC 3339 timestamp when work execution started
@@ -211,6 +215,7 @@ public final class Main {
   "metadata": {
     "foo": "string"
   },
+  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",

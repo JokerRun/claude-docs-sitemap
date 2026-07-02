@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/vaults/credentials/archive
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 9cc80519134353d2a4601d1c2524fc01efcff2443f5b8861b35b3553cf84ffd8
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: c749bb181441ab688d07e6561199405ca204dde4f0fe7f71058835fa8ed7740a
 ---
 
 ## Archive Credential
@@ -121,9 +121,21 @@ Archive Credential
 
         - `"static_bearer"`
 
-    - `beta_managed_agents_environment_variable_auth_response: object { networking, secret_name, type }`
+    - `beta_managed_agents_environment_variable_auth_response: object { injection_location, networking, secret_name, type }`
 
       Environment variable credential details. The secret value is never returned.
+
+      - `injection_location: object { body, header }`
+
+        Where in the outbound request the secret value is substituted.
+
+        - `body: boolean`
+
+          Whether the placeholder is substituted in the request body.
+
+        - `header: boolean`
+
+          Whether the placeholder is substituted in request header values.
 
       - `networking: BetaManagedAgentsUnrestrictedCredentialNetworkingResponse or BetaManagedAgentsLimitedCredentialNetworkingResponse`
 

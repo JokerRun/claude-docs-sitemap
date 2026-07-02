@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/credentials/list
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: dbf0fcedd211fe4cb44ac116fb174813c12e01b7aecd7620cd929bae8a82fe15
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: e25e916999e8c141aa39caf7892c28007ae8d166437c8ef27a442af83200c120
 ---
 
 ## List Credentials
@@ -188,6 +188,18 @@ List Credentials
     - `class BetaManagedAgentsEnvironmentVariableAuthResponse:`
 
       Environment variable credential details. The secret value is never returned.
+
+      - `BetaManagedAgentsInjectionLocationResponse injectionLocation`
+
+        Where in the outbound request the secret value is substituted.
+
+        - `boolean body`
+
+          Whether the placeholder is substituted in the request body.
+
+        - `boolean header`
+
+          Whether the placeholder is substituted in request header values.
 
       - `Networking networking`
 

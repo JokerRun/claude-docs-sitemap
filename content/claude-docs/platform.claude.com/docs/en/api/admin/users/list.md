@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/users/list
-fetched_at: 2026-06-12T03:17:40.104094Z
-sha256: 98e22be1c472cfee6cf8c8f28c6f7979437014181179584c37d2f4f76f80352f
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 0cf48f69ff3129e051b812326618d2ff3117f83af15a852d04b381c096d1efde
 ---
 
 ## List Users
@@ -51,19 +51,19 @@ List Users
 
     Name of the User.
 
-  - `role: "user" or "developer" or "billing" or 2 more`
+  - `role: "admin" or "billing" or "claude_code_user" or 2 more`
 
     Organization role of the User.
 
-    - `"user"`
-
-    - `"developer"`
+    - `"admin"`
 
     - `"billing"`
 
-    - `"admin"`
-
     - `"claude_code_user"`
+
+    - `"developer"`
+
+    - `"user"`
 
   - `type: "user"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/environments/work/stop
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: b10f9d15bda70bd8a3f5c22ee5c8ec27f117a68bf5ed49c760e88318404138fc
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 3a8a392f7552245028f5f2202610548f29d2d0f70f1ef1191dcdf92164454aef
 ---
 
 ## Stop Work
@@ -141,6 +141,10 @@ Stop a work item, initiating graceful or forced shutdown.
 
     User-provided metadata key-value pairs associated with this work item
 
+  - `Secret string`
+
+    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
+
   - `StartedAt string`
 
     RFC 3339 timestamp when work execution started
@@ -223,6 +227,7 @@ func main() {
   "metadata": {
     "foo": "string"
   },
+  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",

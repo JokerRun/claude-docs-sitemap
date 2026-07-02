@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/environments/work/ack
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 944dc742955f0120a196fccdc5565170ab6f0ce45df9f7ef633b419e4d278ccd
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 7d4bee80b56ad9fca550abef665e76d5193a4ad1f3e056c84724124be8ac785c
 ---
 
 ## Acknowledge Work
@@ -133,6 +133,10 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
 
     User-provided metadata key-value pairs associated with this work item
 
+  - `secret: String`
+
+    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
+
   - `started_at: String`
 
     RFC 3339 timestamp when work execution started
@@ -193,6 +197,7 @@ puts(beta_self_hosted_work)
   "metadata": {
     "foo": "string"
   },
+  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",

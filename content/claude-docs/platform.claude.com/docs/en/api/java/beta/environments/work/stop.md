@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/environments/work/stop
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: d6660b832aa115fbc78289ceade1745301339615f6780e1a5a53a7c5287f90a2
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: f409c544ed76da3a532eb7fdb6c3f0c413cd4ebdbc227b4e8165d226c54317b5
 ---
 
 ## Stop Work
@@ -135,6 +135,10 @@ Stop a work item, initiating graceful or forced shutdown.
 
     User-provided metadata key-value pairs associated with this work item
 
+  - `Optional<String> secret`
+
+    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
+
   - `Optional<String> startedAt`
 
     RFC 3339 timestamp when work execution started
@@ -210,6 +214,7 @@ public final class Main {
   "metadata": {
     "foo": "string"
   },
+  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",

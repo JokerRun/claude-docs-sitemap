@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/messages/create
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: f44d431d6a49d6e6d0c9fe76ecaa8dab85ab4cc0b4bd4468810f1a845cbd0572
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 457cb866992b690415eb1abef1582d331d5fd2d8ab0795348e81a69f512ba465
 ---
 
 ## Create a Message
@@ -80,7 +80,7 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
   There is a limit of 100,000 messages in a single request.
 
-- `--model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+- `--model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
   Body param: The model that will complete your prompt.
 
@@ -827,11 +827,15 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
       - `type: "container_upload"`
 
-  - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+  - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+    - `"claude-sonnet-5"`
+
+      High-performance model for coding and agents
 
     - `"claude-fable-5"`
 
@@ -903,7 +907,7 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
     Structured information about a refusal.
 
-    - `category: "cyber" or "bio" or "frontier_llm" or 2 more`
+    - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
 
       The policy category that triggered a refusal.
 
@@ -914,8 +918,6 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
       - `"frontier_llm"`
 
       - `"reasoning_extraction"`
-
-      - `"military_weapons"`
 
     - `explanation: string`
 

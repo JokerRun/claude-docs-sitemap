@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/azure
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: fe7dc1cb98b38f8d4616aee8d2d2ebfd5fb05ed2a18b4e8d1511dacbdc684bdb
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 905d910cfa95a6074dd2223c9827e43b09d0c433f95b7c17107697d33c7b4ed2
 ---
 
 # Menggunakan WIF dengan Microsoft Entra ID
@@ -11,30 +11,24 @@ Federasikan managed identity Azure dan Entra Workload Identity dengan Claude API
 
 ---
 
-Workload Azure melakukan autentikasi ke Claude API dengan menyajikan "JSON Web Token" (token web JSON), atau JWT, yang diterbitkan oleh Microsoft Entra ID, lalu menukarnya dengan access token Anthropic berumur pendek. Ada dua cara umum untuk memperoleh token yang diterbitkan Entra:
+Workload Azure melakukan autentikasi ke Claude API dengan menyajikan "JSON Web Token" (Token Web JSON), atau JWT, yang diterbitkan oleh Microsoft Entra ID, lalu menukarnya dengan access token Anthropic berumur pendek. Penyiapannya mengikuti pola yang sama di setiap platform Azure:
 
-* **Managed identity (VM, App Service, Functions, Container Apps):** Workload meminta JWT untuk identitas yang ditetapkan padanya dari endpoint token lokal platform: Azure Instance Metadata Service (IMDS) di `http://169.254.169.254/metadata/identity/oauth2/token` pada VM dan VM Scale Sets, atau endpoint dalam variabel lingkungan `IDENTITY_ENDPOINT` pada App Service, Functions, dan Container Apps.
-* **Entra Workload Identity (pod AKS):** Kubernetes memproyeksikan token service account (ditandatangani oleh OIDC issuer klaster AKS) ke dalam pod pada path yang ada di `AZURE_FEDERATED_TOKEN_FILE`. Workload menukar token tersebut di Entra untuk mendapatkan access token yang diterbitkan Entra.
+1. **Daftarkan audience token:** Buat satu app registration di tenant Microsoft Entra Anda untuk merepresentasikan audience Claude API. Setiap workload di tenant tersebut meminta token Entra untuk audience ini.
+2. **Siapkan identitas untuk platform Anda:** Managed identity pada VM, VM Scale Sets, App Service, Functions, dan Container Apps, atau Entra Workload Identity pada AKS.
+3. **Konfigurasikan Anthropic:** Daftarkan issuer Entra tenant Anda, buat service account, dan tulis federation rule yang cocok dengan klaim token.
+4. **Tukarkan saat runtime:** Workload Anda menukar token yang diterbitkan Entra di `POST /v1/oauth/token` dengan access token Anthropic `sk-ant-oat01-...` dan memanggil Claude dengannya.
 
-Dalam kedua kasus tersebut, token yang diterbitkan Entra yang Anda sajikan ke Anthropic membawa issuer Entra khusus tenant (langkah [Mengonfigurasi Anthropic](#configure-anthropic) menunjukkan URL persis yang harus didaftarkan) dan object ID managed identity dalam klaim `sub` dan `oid`. Anda mendaftarkan issuer tersebut ke Anthropic satu kali, menulis aturan federasi yang cocok dengan klaim yang diharapkan, dan workload Anda menukar token Entra-nya dengan access token `sk-ant-oat01-...` saat runtime.
-
-<Tip>
-  Pod AKS dapat secara alternatif melewati pertukaran Entra dan menyajikan token service account yang diproyeksikan Kubernetes langsung ke Anthropic. Jalur tersebut mendaftarkan OIDC issuer klaster AKS Anda ke Anthropic alih-alih tenant Entra Anda. Lihat [Menggunakan WIF dengan Kubernetes](/docs/id/manage-claude/wif-providers/kubernetes) untuk alur tersebut.
-</Tip>
+Pada kedua jalur tersebut, token yang Anda sajikan ke Anthropic membawa issuer Entra spesifik tenant Anda dan object ID dari managed identity dalam klaim `sub` dan `oid`; yang berbeda hanyalah cara workload memperoleh token tersebut. Pilih bagian sesuai tempat workload Anda berjalan: [Menggunakan managed identity](#menggunakan-managed-identity) untuk VM, VM Scale Sets, App Service, Functions, atau Container Apps; [Menggunakan Entra Workload Identity pada AKS](#menggunakan-entra-workload-identity-pada-aks) untuk AKS.
 
 ## Prasyarat
 
-* Pemahaman tentang [konsep WIF](/docs/id/manage-claude/workload-identity-federation#concepts): service account, federation issuer, dan aturan federasi.
+* Pemahaman tentang [konsep WIF](/docs/id/manage-claude/workload-identity-federation#concepts): service account, federation issuer, dan federation rule.
 * Langganan Azure dengan izin untuk menetapkan managed identity (atau mengonfigurasi Entra Workload Identity pada AKS).
-* Izin untuk membuat app registration dan service principal di tenant Microsoft Entra Anda. Entra hanya menerbitkan token untuk audience yang ada di tenant, sehingga langkah [Mendaftarkan audience token](#register-the-token-audience) diperlukan sebelum permintaan token apa pun berhasil.
+* Izin untuk membuat satu app registration dan service principal di tenant Microsoft Entra Anda (audience Claude API bersama). Entra hanya menerbitkan token untuk audience yang ada di tenant, sehingga langkah [Mendaftarkan audience token](#mendaftarkan-audience-token) wajib dilakukan sebelum permintaan token apa pun berhasil.
 * Tenant ID Microsoft Entra Anda. Temukan di portal Azure pada **Microsoft Entra ID → Overview → Tenant ID**.
-* Izin untuk membuat service account, federation issuer, dan aturan federasi di Claude Console untuk organisasi Anthropic Anda.
+* Izin untuk membuat service account, federation issuer, dan federation rule di Claude Console untuk organisasi Anthropic Anda.
 
-## Mengonfigurasi Azure
-
-Pertama daftarkan audience yang akan menjadi target penerbitan token Entra, lalu siapkan identitas yang memintanya.
-
-### Mendaftarkan audience token
+## Mendaftarkan audience token
 
 Microsoft Entra ID hanya menerbitkan token ketika audience yang diminta ada di tenant Anda sebagai app registration dengan service principal. Buat satu app registration untuk merepresentasikan audience Claude API; setiap workload di tenant dapat meminta token untuknya. Tanpa registrasi ini, permintaan token gagal dengan error "resource not found in tenant" (`AADSTS50001` dari endpoint managed identity, `AADSTS500011` dari endpoint token Entra).
 
@@ -52,65 +46,65 @@ az ad sp create --id "$APP_ID"
 ```
 
 <Note>
-  Gunakan format identifier URI `api://<APP_ID>`. Entra membatasi identifier URI `https://` hanya untuk domain terverifikasi milik tenant Anda sendiri, sehingga URI seperti `https://api.anthropic.com` tidak dapat didaftarkan di sebagian besar tenant; `api://<APP_ID>` diterima di mana saja. Dengan `requestedAccessTokenVersion: 2`, token untuk audience ini adalah v2.0: klaim `iss` adalah `https://login.microsoftonline.com/<TENANT_ID>/v2.0` dan klaim `aud` adalah client ID registrasi (`<APP_ID>`). Panduan ini mengasumsikan token v2.0; jika Anda menggunakan kembali registrasi yang sudah ada yang menghasilkan token v1.0, lihat Catatan di bawah [Mengonfigurasi Anthropic](#configure-anthropic).
+  Gunakan format identifier URI `api://<APP_ID>`. Entra membatasi identifier URI `https://` hanya untuk domain terverifikasi milik tenant Anda sendiri, sehingga URI seperti `https://api.anthropic.com` tidak dapat didaftarkan di sebagian besar tenant; `api://<APP_ID>` diterima di mana saja. Dengan `requestedAccessTokenVersion: 2`, token untuk audience ini adalah v2.0, yang diasumsikan oleh panduan ini. Jika Anda menggunakan kembali registrasi yang sudah ada yang menerbitkan token v1.0, lihat [Jika token Anda adalah v1.0](#jika-token-anda-adalah-v1-0).
 </Note>
 
-### Menyiapkan workload identity
+## Menggunakan managed identity
 
-Pilih jalur yang sesuai dengan tempat workload Anda berjalan.
+Gunakan jalur ini ketika workload Anda berjalan pada VM, VM Scale Set, App Service, Functions, atau Container Apps. Workload meminta JWT yang diterbitkan Entra untuk managed identity yang ditetapkan padanya dari endpoint token lokal platform, lalu menukar JWT tersebut dengan Anthropic.
 
-<Tabs>
-  <Tab title="VM, App Service, Functions, Container Apps">
+### Mengonfigurasi managed identity
+
+<Steps>
+  <Step title="Lampirkan managed identity">
     Aktifkan managed identity system-assigned atau user-assigned pada resource Azure Anda. Di portal Azure, buka resource tersebut, masuk ke **Identity**, dan aktifkan **System assigned** (atau lampirkan identitas user-assigned).
 
-    Setelah identitas dibuat, catat **Object (principal) ID**-nya. GUID ini muncul sebagai klaim `sub` dan `oid` dalam token yang diterbitkan, dan aturan federasi Anthropic Anda akan mencocokkannya. Anda dapat menemukannya di halaman **Identity** resource; untuk identitas user-assigned, ini adalah **Object (principal) ID** di halaman **Overview** resource managed identity. (Managed identity hanya memiliki service principal di Microsoft Entra ID, bukan app registration.)
+    Setelah identitas dibuat, catat **Object (principal) ID**-nya. GUID ini muncul sebagai klaim `sub` dan `oid` dalam token yang diterbitkan, dan federation rule Anthropic Anda akan mencocokkannya. Anda dapat menemukannya di halaman **Identity** resource; untuk identitas user-assigned, nilainya adalah **Object (principal) ID** di halaman **Overview** resource managed identity. (Managed identity hanya memiliki service principal di Microsoft Entra ID, bukan app registration.)
+  </Step>
 
+  <Step title="Temukan endpoint token platform">
     Platform mengekspos endpoint token lokal setelah identitas dilampirkan:
 
     * **VM dan VM Scale Sets:** IMDS di `http://169.254.169.254/metadata/identity/oauth2/token` dengan header `Metadata: true` dan `api-version=2018-02-01`.
-    * **App Service, Functions, dan Container Apps:** URL dalam variabel lingkungan `IDENTITY_ENDPOINT` dengan header `X-IDENTITY-HEADER` yang diatur ke nilai `IDENTITY_HEADER`, dan `api-version=2019-08-01`. IMDS tidak dapat dijangkau pada platform ini.
+    * **App Service, Functions, dan Container Apps:** URL dalam variabel lingkungan `IDENTITY_ENDPOINT` dengan header `X-IDENTITY-HEADER` diatur ke nilai `IDENTITY_HEADER`, dan `api-version=2019-08-01`. IMDS tidak dapat dijangkau pada platform ini.
 
-    Jika resource memiliki lebih dari satu managed identity user-assigned, tambahkan `client_id=<IDENTITY_CLIENT_ID>` ke permintaan token untuk memilih salah satunya. Azure merekomendasikan untuk selalu menentukannya: tanpa itu, permintaan akan gagal segera setelah identitas kedua dilampirkan, atau kembali ke identitas system-assigned dan kemudian gagal pada pencocokan `oid` aturan federasi Anda.
-  </Tab>
+    Jika resource memiliki lebih dari satu managed identity user-assigned, tambahkan `client_id=<IDENTITY_CLIENT_ID>` ke permintaan token untuk memilih salah satunya. Azure merekomendasikan untuk selalu menentukannya. Tanpa itu, hasilnya bergantung pada apakah resource juga memiliki identitas system-assigned yang diaktifkan: jika ya, permintaan diam-diam beralih ke identitas tersebut dan kemudian gagal pada pencocokan `oid` federation rule Anda; jika tidak, permintaan langsung gagal begitu identitas user-assigned kedua dilampirkan.
+  </Step>
 
-  <Tab title="Entra Workload Identity (AKS)">
-    Entra Workload Identity memfederasikan service account Kubernetes dengan aplikasi Entra sehingga pod dapat menukar token service account yang diterbitkan klaster mereka dengan access token yang diterbitkan Entra.
+  <Step title="Dekode token sampel">
+    Minta token dari endpoint dan dekode payload-nya untuk mengonfirmasi klaim yang perlu dicocokkan oleh federation rule Anda. (Untuk perintah dekode, lihat [Memecahkan masalah pertukaran yang gagal](/docs/id/manage-claude/wif-reference#troubleshoot-a-failed-exchange).) Token v2.0 untuk managed identity membawa klaim berikut:
 
-    1. Aktifkan OIDC issuer dan workload identity pada klaster AKS Anda (`az aks update --enable-oidc-issuer --enable-workload-identity ...`). Mengaktifkan workload identity akan menginstal mutating webhook `azure-workload-identity` untuk Anda; deploy secara manual hanya pada klaster non-AKS.
-    2. Buat managed identity user-assigned. Catat **Client ID**-nya (digunakan dalam anotasi service account) dan **Object (principal) ID**-nya, yang ditampilkan di halaman **Overview** managed identity; aturan federasi Anthropic Anda akan mencocokkan Object ID dalam klaim `oid`. Kemudian buat service account Kubernetes yang dianotasi dengan `azure.workload.identity/client-id: <IDENTITY_CLIENT_ID>`. Webhook membaca anotasi ini untuk menyuntikkan `AZURE_CLIENT_ID` ke dalam pod, yang dibaca oleh sampel di [Pada AKS dengan Entra Workload Identity](#on-aks-with-entra-workload-identity) dari lingkungan.
-    3. Buat federated credential pada managed identity yang memercayai OIDC issuer klaster untuk service account tersebut.
-    4. Beri label spesifikasi pod Anda dengan `azure.workload.identity/use: "true"` dan atur `serviceAccountName` ke service account tersebut.
+    ```json
+    {
+      "iss": "https://login.microsoftonline.com/<TENANT_ID>/v2.0",
+      "sub": "9f8e7d6c-1a2b-3c4d-5e6f-...",
+      "aud": "<APP_ID>",
+      "oid": "9f8e7d6c-1a2b-3c4d-5e6f-...",
+      "tid": "<TENANT_ID>",
+      "azp": "<IDENTITY_CLIENT_ID>",
+      "ver": "2.0",
+      "exp": 1775527120
+    }
+    ```
 
-    Webhook menyuntikkan `AZURE_FEDERATED_TOKEN_FILE`, `AZURE_CLIENT_ID`, dan `AZURE_TENANT_ID` ke dalam pod. File di `AZURE_FEDERATED_TOKEN_FILE` berisi token service account yang diproyeksikan Kubernetes, ditandatangani oleh OIDC issuer klaster AKS.
-  </Tab>
-</Tabs>
+    | Klaim | Nilai                                                                                                                       | Cocokkan ini ketika                                                                                                                                                     |
+    | ----- | --------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+    | `oid` | Object ID dari managed identity, identik dengan `sub`                                                                       | Anda ingin mengotorisasi satu managed identity tertentu. Ini adalah default; rule di [Mengonfigurasi Anthropic](#mengonfigurasi-anthropic) mencocokkannya.              |
+    | `azp` | Client ID dari identitas pemanggil                                                                                          | Anda ingin mengotorisasi setiap workload yang berbagi satu app registration. Untuk managed identity, `azp` unik untuk identitas tersebut, sehingga setara dengan `oid`. |
+    | `aud` | Client ID dari app registration audience (GUID `<APP_ID>` dari [Mendaftarkan audience token](#mendaftarkan-audience-token)) | Selalu. Field `audience` pada rule harus sama persis dengan nilai `aud` token.                                                                                          |
+    | `tid` | Tenant ID Anda                                                                                                              | Anda menginginkan pertahanan berlapis. URL issuer sudah mengunci tenant.                                                                                                |
 
-### Klaim token
+    Jika klaim `ver` pada token yang didekode adalah `1.0`, nama dan nilai klaim berbeda. Lihat [Jika token Anda adalah v1.0](#jika-token-anda-adalah-v1-0) sebelum melanjutkan.
+  </Step>
+</Steps>
 
-Token yang diterbitkan Entra untuk managed identity membawa klaim berikut (token v2.0 ditampilkan; lihat Catatan di bawah [Mengonfigurasi Anthropic](#configure-anthropic) untuk perbedaan token v1.0):
+### Mengonfigurasi Anthropic
 
-```json
-{
-  "iss": "https://login.microsoftonline.com/<TENANT_ID>/v2.0",
-  "sub": "9f8e7d6c-1a2b-3c4d-5e6f-...",
-  "aud": "<APP_ID>",
-  "oid": "9f8e7d6c-1a2b-3c4d-5e6f-...",
-  "tid": "<TENANT_ID>",
-  "azp": "<IDENTITY_CLIENT_ID>",
-  "ver": "2.0",
-  "exp": 1775527120
-}
-```
-
-`sub` dan `oid` identik (object ID managed identity). Client ID identitas pemanggil muncul di `azp` pada token v2.0 dan di `appid` pada token v1.0; kedua klaim tersebut tidak pernah muncul dalam token yang sama, jadi periksa `ver` sebelum menulis aturan terhadap salah satunya. Klaim `aud` juga bergantung pada versi token: token v2.0 membawa client ID app registration audience (GUID `<APP_ID>` dari [Mendaftarkan audience token](#register-the-token-audience)); token v1.0 membawa identifier URI yang Anda berikan sebagai `resource` (misalnya, `api://<APP_ID>`). Cocokkan pada `oid` untuk mengotorisasi satu managed identity tertentu. Klaim client ID (`azp` pada token v2.0, `appid` pada token v1.0) adalah alternatif ketika Anda ingin mengotorisasi setiap workload yang berbagi satu app registration alih-alih satu object ID; untuk managed identity, klaim ini unik untuk identitas tersebut, sehingga mencocokkannya setara dengan mencocokkan `oid`. Klaim `tid` mengulangi tenant ID Anda; mencocokkannya adalah pertahanan berlapis, karena URL issuer sudah mengunci tenant.
-
-## Mengonfigurasi Anthropic
-
-Di Claude Console, buka **Settings → Workload identity**, klik **Connect workload**, dan pilih tile **Microsoft Entra**. Wizard akan memandu Anda mendaftarkan issuer, membuat service account, dan membuat aturan federasi.
+Di Claude Console, buka **Settings → Workload identity**, klik **Connect workload**, dan pilih tile **Microsoft Entra**. Wizard akan memandu Anda mendaftarkan issuer, membuat service account, dan membuat federation rule.
 
 Wizard ini membuat sumber daya tersebut untuk Anda. Gunakan nilai-nilai berikut baik saat Anda memasukkannya di wizard maupun saat mengirimkannya ke [Admin API](/docs/id/manage-claude/wif-admin-api):
 
-**Federation issuer:** Entra memublikasikan dokumen OIDC discovery di URL issuer per-tenant, jadi gunakan mode discovery. Setiap tenant Microsoft Entra yang Anda federasikan memerlukan record issuer-nya sendiri. Selector **Token issuer** pada wizard secara default adalah **v1 (sts.windows.net)**; pilih **v2.0 (login.microsoftonline.com)** agar cocok dengan token v2.0 yang dikonfigurasi panduan ini, dan pilih v1 hanya jika Anda menggunakan kembali registrasi yang menghasilkan token v1.0.
+**Federation issuer:** Pilih **v2.0 (login.microsoftonline.com)** di selector **Token issuer** pada wizard. (Selector default-nya adalah v1; default tersebut ada untuk tenant yang menggunakan kembali registrasi lama yang masih menerbitkan token v1.0.) Entra memublikasikan dokumen OIDC discovery di URL issuer per-tenant, jadi gunakan mode discovery. Setiap tenant Microsoft Entra yang Anda federasikan memerlukan record issuer-nya sendiri.
 
 ```json
 {
@@ -122,14 +116,12 @@ Wizard ini membuat sumber daya tersebut untuk Anda. Gunakan nilai-nilai berikut 
 ```
 
 <Warning>
-  Token Entra bertahan lebih lama dari masa hidup JWT maksimum default 1 jam, jadi atur `max_jwt_lifetime_seconds` pada issuer atau pertukaran akan gagal dengan `invalid_grant`. Token managed identity diterbitkan dengan jarak hingga 24 jam antara `iat` dan `exp` dan di-cache oleh Azure tanpa cara untuk memaksa refresh lebih awal, sehingga workload managed identity memerlukan `86400`. Token Entra Workload Identity (`client_credentials`) secara default memiliki masa hidup acak 60 hingga 90 menit; tile Microsoft Entra pada wizard Connect workload mengisi awal `7500` (sedikit lebih dari 2 jam), yang mencakup jalur tersebut tetapi tidak untuk token managed identity. Masa hidup yang diterima lebih lama berarti token Entra yang bocor tetap dapat ditukar lebih lama, jadi jaga kondisi pencocokan aturan tetap ketat, seperti dijelaskan di [Membatasi cakupan aturan Anda](#scope-your-rule).
+  Workload managed identity memerlukan `max_jwt_lifetime_seconds: 86400`. Azure menerbitkan token managed identity dengan jarak hingga 24 jam antara `iat` dan `exp` karena Azure meng-cache token setiap resource untuk jendela waktu tersebut dan tidak menyediakan cara untuk memaksa refresh lebih awal, dan default 1 jam pada issuer menolak token tersebut dengan `invalid_grant`. Tile Microsoft Entra pada wizard Connect workload membuat issuer dengan `max_jwt_lifetime_seconds` diatur ke `7500` dan tidak menyediakan field untuk mengubahnya selama pembuatan, jadi selesaikan wizard, lalu buka **Settings → Workload identity → Issuers**, edit issuer, dan naikkan nilainya ke `86400`. Anda juga dapat memperbarui issuer melalui Admin API.
 </Warning>
 
-<Note>
-  Jika klaim `ver` pada token Anda yang telah di-decode adalah `1.0` (app registration audience membiarkan `api.requestedAccessTokenVersion` tidak diatur), maka `iss` adalah `https://sts.windows.net/<TENANT_ID>/`, dan `aud` adalah identifier URI yang Anda minta (misalnya, `api://<APP_ID>`). Daftarkan nilai `iss` persis yang dibawa token Anda dan atur `audience` aturan federasi ke nilai `aud` persis. Kedua URL issuer berbagi JWKS yang sama, sehingga mode discovery berfungsi untuk keduanya.
-</Note>
+Masa berlaku yang diterima lebih lama berarti token Entra yang bocor tetap dapat ditukar lebih lama. Jika token bocor, tuas pengendalinya adalah menonaktifkan federation rule; pencocokan `oid` yang ketat membatasi identitas mana yang dapat menukar token sejak awal, seperti dijelaskan di [Membatasi cakupan rule Anda](#membatasi-cakupan-rule-anda).
 
-**Aturan federasi:** Cocokkan pada object ID managed identity dan tenant ID Anda. Untuk token v2.0, nilai `audience` adalah client ID app registration audience (GUID `<APP_ID>` dari [Mendaftarkan audience token](#register-the-token-audience)); untuk token v1.0, nilainya adalah identifier URI (`api://<APP_ID>`). Gunakan nilai `aud` persis dari token Anda yang telah di-decode.
+**Federation rule:** Cocokkan pada object ID managed identity dan tenant ID Anda. Untuk token v2.0 yang dikonfigurasi panduan ini, nilai `audience` adalah client ID dari app registration audience (GUID `<APP_ID>` dari [Mendaftarkan audience token](#mendaftarkan-audience-token)). Gunakan nilai `aud` persis dari token yang Anda dekode.
 
 ```json
 {
@@ -152,33 +144,35 @@ Wizard ini membuat sumber daya tersebut untuk Anda. Gunakan nilai-nilai berikut 
 }
 ```
 
-## Memperoleh dan menggunakan token
+`token_lifetime_seconds` adalah masa berlaku access token Anthropic yang dikembalikan oleh pertukaran, bukan masa berlaku token Entra; SDK me-refresh-nya untuk Anda.
 
-Saat runtime, workload Anda mengambil token Entra-nya, menukarnya di `POST /v1/oauth/token`, dan menggunakan bearer token yang dikembalikan untuk memanggil Claude. Setiap SDK Anthropic menangani loop pertukaran dan refresh ketika Anda menyediakan callable penyedia token, seperti yang ditunjukkan dalam contoh berikut. Tab cURL menunjukkan alur mentahnya.
+### Memperoleh dan menggunakan token
 
-Sampel mengambil token managed identity dari endpoint token platform: IMDS pada VM dan VM Scale Sets, atau layanan `IDENTITY_ENDPOINT` pada App Service, Functions, dan Container Apps. Ganti `api://<APP_ID>` dengan identifier URI dari [Mendaftarkan audience token](#register-the-token-audience).
+Saat runtime, workload Anda mengambil token Entra-nya, menukarnya di `POST /v1/oauth/token`, dan menggunakan bearer token yang dikembalikan untuk memanggil Claude. Setiap SDK Anthropic menangani pertukaran dan loop refresh ketika Anda menyediakan callable token-provider, seperti ditunjukkan dalam contoh berikut. Tab cURL menunjukkan alur mentahnya.
+
+Sampel mengambil token managed identity dari endpoint token platform: IMDS pada VM dan VM Scale Sets, atau layanan `IDENTITY_ENDPOINT` pada App Service, Functions, dan Container Apps. Ganti `<APP_ID>` dalam nilai resource `api://<APP_ID>` dengan client ID app registration audience dari [Mendaftarkan audience token](#mendaftarkan-audience-token).
 
 <Tip>
-  Jika workload Anda sudah menggunakan pustaka klien Azure Identity, berikan akuisisi tokennya (`DefaultAzureCredential` dengan scope `api://<APP_ID>/.default`) sebagai penyedia token identitas alih-alih memanggil endpoint token secara langsung. Pustaka tersebut memilih endpoint yang benar pada setiap platform Azure, termasuk AKS dengan Entra Workload Identity.
+  Jika workload Anda sudah menggunakan library klien Azure Identity, teruskan akuisisi tokennya (`DefaultAzureCredential` dengan scope `api://<APP_ID>/.default`) sebagai identity token provider alih-alih memanggil endpoint token secara langsung. Library tersebut memilih endpoint yang benar di setiap platform Azure, termasuk AKS dengan Entra Workload Identity.
 </Tip>
 
 <CodeGroup>
   ```bash cURL
   # 1. Ambil token yang diterbitkan Entra (managed identity).
-  #    Pada VM atau VM Scale Set, gunakan IMDS. Jika ada beberapa identitas
-  #    user-assigned, tambahkan &client_id=<IDENTITY_CLIENT_ID>.
+  #    Pada VM atau VM Scale Set, gunakan IMDS. Jika ada beberapa user-assigned
+  #    identity, tambahkan &client_id=<IDENTITY_CLIENT_ID>.
   ENTRA_TOKEN=$(curl -sS -H "Metadata: true" \
     "http://169.254.169.254/metadata/identity/oauth2/token?api-version=2018-02-01&resource=api://<APP_ID>" \
     | jq -r .access_token)
 
-  #    Pada App Service, Functions, atau Container Apps, gunakan layanan
-  #    token lokal (IMDS tidak dapat dijangkau di sana):
+  #    Pada App Service, Functions, atau Container Apps, gunakan layanan token
+  #    lokal sebagai gantinya (IMDS tidak dapat dijangkau di sana):
   # ENTRA_TOKEN=$(curl -sS -H "X-IDENTITY-HEADER: $IDENTITY_HEADER" \
   #   "$IDENTITY_ENDPOINT?api-version=2019-08-01&resource=api://<APP_ID>" \
   #   | jq -r .access_token)
 
-  #    Untuk AKS dengan Entra Workload Identity, gunakan pertukaran dua langkah
-  #    di bagian "On AKS with Entra Workload Identity" sebagai gantinya.
+  #    Untuk AKS dengan Entra Workload Identity, gunakan pertukaran dua langkah di
+  #    bagian "Use Entra Workload Identity on AKS" sebagai gantinya.
 
   # 2. Tukarkan token tersebut dengan token akses Anthropic.
   RESPONSE=$(curl -sS https://api.anthropic.com/v1/oauth/token \
@@ -266,7 +260,7 @@ Sampel mengambil token managed identity dari endpoint token platform: IMDS pada 
   import Anthropic from "@anthropic-ai/sdk";
   import { oidcFederationProvider } from "@anthropic-ai/sdk/lib/credentials/oidc-federation";
 
-  // URI pengidentifikasi dari pendaftaran aplikasi audiens (lihat Mendaftarkan audiens token).
+  // URI pengidentifikasi dari pendaftaran aplikasi audiens (lihat Register the token audience).
   const AUDIENCE = "api://<APP_ID>";
 
   async function fetchEntraToken(): Promise<string> {
@@ -330,7 +324,7 @@ Sampel mengambil token managed identity dari endpoint token platform: IMDS pada 
   // platform: IMDS pada VM dan VM Scale Sets, atau layanan IDENTITY_ENDPOINT
   // pada App Service, Functions, dan Container Apps.
   func fetchEntraToken(ctx context.Context) (string, error) {
-  	// Jika ada beberapa user-assigned identity, tambahkan &client_id=<IDENTITY_CLIENT_ID>.
+  	// Dengan beberapa user-assigned identity, tambahkan &client_id=<IDENTITY_CLIENT_ID>.
   	tokenURL := "http://169.254.169.254/metadata/identity/oauth2/token" +
   		"?api-version=2018-02-01&resource=" + audience
   	header, value := "Metadata", "true"
@@ -531,7 +525,7 @@ Sampel mengambil token managed identity dari endpoint token platform: IMDS pada 
   require "json"
   require "net/http"
 
-  # URI pengidentifikasi dari pendaftaran aplikasi audiens (lihat Mendaftarkan audiens token).
+  # URI pengidentifikasi dari pendaftaran aplikasi audiens (lihat Register the token audience).
   AUDIENCE = "api://<APP_ID>"
 
   def fetch_entra_token
@@ -573,6 +567,7 @@ Sampel mengambil token managed identity dari endpoint token platform: IMDS pada 
   # dengan -H "X-IDENTITY-HEADER: $IDENTITY_HEADER" sebagai gantinya.
   # Jika ada beberapa user-assigned identity, tambahkan &client_id=<IDENTITY_CLIENT_ID>.
   ANTHROPIC_IDENTITY_TOKEN_FILE=$(mktemp)
+  trap 'rm -f "$ANTHROPIC_IDENTITY_TOKEN_FILE"' EXIT
   curl -sS -H "Metadata: true" \
     "http://169.254.169.254/metadata/identity/oauth2/token?api-version=2018-02-01&resource=api://<APP_ID>" \
     | jq -r .access_token > "$ANTHROPIC_IDENTITY_TOKEN_FILE"
@@ -587,9 +582,190 @@ Sampel mengambil token managed identity dari endpoint token platform: IMDS pada 
   ```
 </CodeGroup>
 
-### Pada AKS dengan Entra Workload Identity
+### Memverifikasi penyiapan
 
-Pada AKS, file di `AZURE_FEDERATED_TOKEN_FILE` adalah token service account yang diproyeksikan Kubernetes yang ditandatangani oleh OIDC issuer klaster Anda, bukan token yang diterbitkan Entra. Untuk tetap pada jalur yang dimediasi Entra yang dijelaskan di halaman ini, tukar token tersebut di `https://login.microsoftonline.com/<TENANT_ID>/oauth2/v2.0/token` (grant `client_credentials` federasi) terlebih dahulu, lalu berikan access token Entra yang dihasilkan ke SDK Anthropic sebagai token identitas.
+Dari resource Azure Anda, jalankan pertukaran cURL yang ditunjukkan di [Memperoleh dan menggunakan token](#memperoleh-dan-menggunakan-token) dan konfirmasikan bahwa `POST /v1/oauth/token` mengembalikan `200` dengan `access_token` yang diawali `sk-ant-oat01-` dan nilai `expires_in` dalam detik. Pada `400 invalid_grant`, dekode token Entra (lihat [Memecahkan masalah pertukaran yang gagal](/docs/id/manage-claude/wif-reference#troubleshoot-a-failed-exchange) untuk perintahnya) dan periksa penyebab paling umum di sisi Azure:
+
+* **Ketidakcocokan issuer:** `issuer_url` yang terdaftar harus cocok persis dengan klaim `iss` token. Token v2.0 membawa `https://login.microsoftonline.com/<TENANT_ID>/v2.0`; jika klaim `ver` yang didekode adalah `1.0`, lihat [Jika token Anda adalah v1.0](#jika-token-anda-adalah-v1-0).
+* **Masa berlaku token:** Token managed identity membawa jarak hingga 24 jam antara `iat` dan `exp`. Jika issuer masih memiliki nilai `7500` dari wizard (atau default 1 jam), naikkan `max_jwt_lifetime_seconds` ke `86400` seperti dijelaskan di [Mengonfigurasi Anthropic](#mengonfigurasi-anthropic).
+* **Ketidakcocokan audience:** `audience` pada rule harus sama persis dengan `aud` token: client ID app registration audience untuk token v2.0 yang dikonfigurasi panduan ini.
+* **Ketidakcocokan nama klaim:** Rule yang mencocokkan pada klaim yang tidak dibawa token tidak akan pernah lolos. Token v1.0 membawa client ID di `appid`, bukan `azp`; lihat [Jika token Anda adalah v1.0](#jika-token-anda-adalah-v1-0).
+
+## Menggunakan Entra Workload Identity pada AKS
+
+Gunakan jalur ini ketika workload Anda berjalan di pod AKS. Entra Workload Identity memfederasikan service account Kubernetes dengan managed identity user-assigned: Kubernetes memproyeksikan token service account (ditandatangani oleh OIDC issuer cluster AKS) ke dalam pod di path yang ada di `AZURE_FEDERATED_TOKEN_FILE`. Token yang diproyeksikan tersebut bukan token yang diterbitkan Entra, jadi untuk tetap pada jalur yang dimediasi Entra seperti dijelaskan di halaman ini, workload melakukan pertukaran dua langkah: pertama menukarkan token yang diproyeksikan di `https://login.microsoftonline.com/<TENANT_ID>/oauth2/v2.0/token` (grant `client_credentials` terfederasi) untuk access token yang diterbitkan Entra, lalu meneruskan token Entra tersebut ke SDK Anthropic sebagai identity token.
+
+<Tip>
+  Pod AKS dapat secara alternatif melewati pertukaran Entra dan menyajikan token service account yang diproyeksikan Kubernetes langsung ke Anthropic. Jalur tersebut mendaftarkan OIDC issuer cluster AKS Anda ke Anthropic alih-alih tenant Entra Anda. Lihat [Menggunakan WIF dengan Kubernetes](/docs/id/manage-claude/wif-providers/kubernetes) untuk alur tersebut.
+</Tip>
+
+### Mengonfigurasi Entra Workload Identity
+
+<Steps>
+  <Step title="Aktifkan OIDC issuer dan workload identity pada cluster Anda">
+    Mengaktifkan workload identity akan menginstal mutating webhook `azure-workload-identity` untuk Anda; deploy secara manual hanya pada cluster non-AKS. Catat URL OIDC issuer cluster untuk federated credential yang Anda buat di langkah selanjutnya.
+
+    ```bash
+    az aks update \
+      --resource-group <RESOURCE_GROUP> \
+      --name <CLUSTER_NAME> \
+      --enable-oidc-issuer \
+      --enable-workload-identity
+
+    AKS_OIDC_ISSUER=$(az aks show \
+      --resource-group <RESOURCE_GROUP> \
+      --name <CLUSTER_NAME> \
+      --query oidcIssuerProfile.issuerUrl -o tsv)
+    ```
+  </Step>
+
+  <Step title="Buat managed identity user-assigned">
+    Catat dua nilai dari identitas tersebut: **Client ID** masuk ke anotasi service account (dan diinjeksikan ke pod sebagai `AZURE_CLIENT_ID`), dan **Object (principal) ID** muncul sebagai klaim `oid` yang dicocokkan oleh federation rule Anthropic Anda.
+
+    ```bash
+    az identity create \
+      --resource-group <RESOURCE_GROUP> \
+      --name claude-inference-identity \
+      --location <LOCATION>
+
+    # Masuk ke anotasi service account; disuntikkan ke pod sebagai AZURE_CLIENT_ID.
+    IDENTITY_CLIENT_ID=$(az identity show \
+      --resource-group <RESOURCE_GROUP> \
+      --name claude-inference-identity \
+      --query clientId -o tsv)
+
+    # Muncul sebagai klaim oid yang dicocokkan oleh aturan federasi Anda.
+    IDENTITY_OBJECT_ID=$(az identity show \
+      --resource-group <RESOURCE_GROUP> \
+      --name claude-inference-identity \
+      --query principalId -o tsv)
+    ```
+  </Step>
+
+  <Step title="Buat service account Kubernetes yang dianotasi">
+    Webhook `azure-workload-identity` membaca anotasi `azure.workload.identity/client-id` untuk menginjeksikan `AZURE_CLIENT_ID` ke dalam pod, yang dibaca oleh sampel di [Memperoleh dan menggunakan token](#memperoleh-dan-menggunakan-token-2) dari lingkungan.
+
+    ```yaml
+    apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      name: claude-inference
+      namespace: inference
+      annotations:
+        azure.workload.identity/client-id: <IDENTITY_CLIENT_ID>
+    ```
+  </Step>
+
+  <Step title="Buat federated credential pada managed identity">
+    Federated credential memercayai OIDC issuer cluster Anda untuk service account spesifik tersebut. Nilai `--audience api://AzureADTokenExchange` adalah audience tetap Entra untuk token service account Kubernetes yang masuk; ini tidak terkait dengan audience Claude API yang Anda daftarkan sebelumnya.
+
+    ```bash
+    az identity federated-credential create \
+      --resource-group <RESOURCE_GROUP> \
+      --identity-name claude-inference-identity \
+      --name claude-inference-aks \
+      --issuer "$AKS_OIDC_ISSUER" \
+      --subject system:serviceaccount:inference:claude-inference \
+      --audience api://AzureADTokenExchange
+    ```
+  </Step>
+
+  <Step title="Beri label pada pod dan atur service account-nya">
+    Pod harus membawa label `azure.workload.identity/use: "true"` dan berjalan sebagai service account yang dianotasi. Webhook kemudian menginjeksikan `AZURE_FEDERATED_TOKEN_FILE`, `AZURE_CLIENT_ID`, dan `AZURE_TENANT_ID` ke dalam pod. File di `AZURE_FEDERATED_TOKEN_FILE` berisi token service account yang diproyeksikan Kubernetes, ditandatangani oleh OIDC issuer cluster AKS.
+
+    ```yaml
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: inference-worker
+      namespace: inference
+      labels:
+        azure.workload.identity/use: "true"
+    spec:
+      serviceAccountName: claude-inference
+      containers:
+        - name: app
+          image: your-registry/inference-worker:latest
+    ```
+  </Step>
+
+  <Step title="Dekode token sampel">
+    Token yang dilihat oleh federation rule Anthropic Anda bukanlah file yang diproyeksikan; melainkan token yang diterbitkan Entra yang dikembalikan oleh pertukaran `client_credentials`. Dari dalam pod yang diberi label, jalankan langkah 1 dari sampel cURL di [Memperoleh dan menggunakan token](#memperoleh-dan-menggunakan-token-2) dan dekode hasilnya. Token tersebut membawa bentuk klaim yang sama dengan jalur managed identity:
+
+    ```json
+    {
+      "iss": "https://login.microsoftonline.com/<TENANT_ID>/v2.0",
+      "sub": "9f8e7d6c-1a2b-3c4d-5e6f-...",
+      "aud": "<APP_ID>",
+      "oid": "9f8e7d6c-1a2b-3c4d-5e6f-...",
+      "tid": "<TENANT_ID>",
+      "azp": "<IDENTITY_CLIENT_ID>",
+      "ver": "2.0",
+      "exp": 1775527120
+    }
+    ```
+
+    `sub` dan `oid` adalah object ID managed identity, `aud` adalah client ID app registration audience, dan `azp` adalah client ID managed identity (nilai dari `AZURE_CLIENT_ID`). Masa berlakunya berbeda dari jalur managed identity: token `client_credentials` secara default memiliki jendela acak 60 hingga 90 menit antara `iat` dan `exp`, bukan 24 jam.
+  </Step>
+</Steps>
+
+### Mengonfigurasi Anthropic
+
+Di Claude Console, buka **Settings → Workload identity**, klik **Connect workload**, dan pilih tile **Microsoft Entra**. Wizard akan memandu Anda mendaftarkan issuer, membuat service account, dan membuat federation rule.
+
+Wizard ini membuat sumber daya tersebut untuk Anda. Gunakan nilai-nilai berikut baik saat Anda memasukkannya di wizard maupun saat mengirimkannya ke [Admin API](/docs/id/manage-claude/wif-admin-api):
+
+**Federation issuer:** Pilih **v2.0 (login.microsoftonline.com)** di selector **Token issuer** pada wizard. (Selector default-nya adalah v1; default tersebut ada untuk tenant yang menggunakan kembali registrasi lama yang masih menerbitkan token v1.0.) Entra memublikasikan dokumen OIDC discovery di URL issuer per-tenant, jadi gunakan mode discovery. Setiap tenant Microsoft Entra yang Anda federasikan memerlukan record issuer-nya sendiri.
+
+```json
+{
+  "name": "azure-prod-tenant",
+  "issuer_url": "https://login.microsoftonline.com/<TENANT_ID>/v2.0",
+  "jwks": { "type": "discovery" },
+  "max_jwt_lifetime_seconds": 7500
+}
+```
+
+<Warning>
+  Tile Microsoft Entra pada wizard Connect workload membuat issuer dengan `max_jwt_lifetime_seconds` diatur ke `7500` (sedikit lebih dari 2 jam), yang mencakup masa berlaku default 60 hingga 90 menit dari token `client_credentials`. Kebijakan token-lifetime tenant atau Continuous Access Evaluation (CAE) dapat memperpanjang masa berlaku tersebut. Jika `exp` dikurangi `iat` pada token yang Anda dekode melebihi 7500 detik, edit issuer di **Settings → Workload identity → Issuers** dan naikkan `max_jwt_lifetime_seconds` agar sesuai, atau pertukaran akan gagal dengan `invalid_grant`. Jika tenant Anda juga menjalankan workload managed-identity dari [Menggunakan managed identity](#menggunakan-managed-identity), gunakan nilai `86400` dari bagian tersebut, yang mencakup kedua jalur.
+</Warning>
+
+Masa berlaku yang diterima lebih lama berarti token Entra yang bocor tetap dapat ditukar lebih lama. Jika token bocor, tuas pengendalinya adalah menonaktifkan federation rule; pencocokan `oid` yang ketat membatasi identitas mana yang dapat menukar token sejak awal, seperti dijelaskan di [Membatasi cakupan rule Anda](#membatasi-cakupan-rule-anda).
+
+**Federation rule:** Cocokkan pada object ID managed identity dan tenant ID Anda. Untuk token v2.0 yang dikonfigurasi panduan ini, nilai `audience` adalah client ID dari app registration audience (GUID `<APP_ID>` dari [Mendaftarkan audience token](#mendaftarkan-audience-token)). Gunakan nilai `aud` persis dari token yang Anda dekode.
+
+```json
+{
+  "name": "azure-inference-worker",
+  "issuer_id": "fdis_...",
+  "match": {
+    "audience": "<APP_ID>",
+    "claims": {
+      "oid": "9f8e7d6c-1a2b-3c4d-5e6f-...",
+      "tid": "<TENANT_ID>"
+    }
+  },
+  "target": {
+    "type": "service_account",
+    "service_account_id": "svac_..."
+  },
+  "workspace_id": "wrkspc_...",
+  "oauth_scope": "workspace:developer",
+  "token_lifetime_seconds": 600
+}
+```
+
+`token_lifetime_seconds` adalah masa berlaku access token Anthropic yang dikembalikan oleh pertukaran, bukan masa berlaku token Entra; SDK me-refresh-nya untuk Anda.
+
+### Memperoleh dan menggunakan token
+
+Saat runtime, pod melakukan pertukaran dua langkah: mengirim token yang diproyeksikan Kubernetes (file di `AZURE_FEDERATED_TOKEN_FILE`) ke endpoint token Entra sebagai assertion `client_credentials` terfederasi, lalu menukar access token Entra yang dihasilkan di `POST /v1/oauth/token`. Setiap SDK Anthropic menangani pertukaran kedua dan loop refresh ketika Anda menyediakan pengambilan Entra sebagai callable token-provider, seperti ditunjukkan dalam contoh berikut. Tab cURL menunjukkan alur mentahnya.
+
+Dua client ID berbeda muncul dalam sampel. `<APP_ID>` adalah client ID app registration audience dari [Mendaftarkan audience token](#mendaftarkan-audience-token); scope `api://<APP_ID>/.default` meminta Entra untuk token yang ditujukan ke audience tersebut. `$AZURE_CLIENT_ID` adalah client ID managed identity, diinjeksikan oleh webhook, dan mengidentifikasi pemanggil. Jangan menukar satu dengan yang lain.
+
+<Tip>
+  Jika workload Anda sudah menggunakan library klien Azure Identity, teruskan akuisisi tokennya (`DefaultAzureCredential` dengan scope `api://<APP_ID>/.default`) sebagai identity token provider alih-alih melakukan pertukaran dua langkah sendiri. Library tersebut membaca variabel lingkungan `AZURE_FEDERATED_TOKEN_FILE`, `AZURE_CLIENT_ID`, dan `AZURE_TENANT_ID` yang sama dan menangani pertukaran Entra.
+</Tip>
 
 <CodeGroup>
   ```bash cURL
@@ -969,6 +1145,7 @@ Pada AKS, file di `AZURE_FEDERATED_TOKEN_FILE` adalah token service account yang
   # 1. Tukarkan token yang diproyeksikan Kubernetes dengan access token yang diterbitkan Entra
   # dan tulis ke file sementara yang dapat dibaca oleh CLI.
   ANTHROPIC_IDENTITY_TOKEN_FILE=$(mktemp)
+  trap 'rm -f "$ANTHROPIC_IDENTITY_TOKEN_FILE"' EXIT
   curl -sS "https://login.microsoftonline.com/$AZURE_TENANT_ID/oauth2/v2.0/token" \
     -d client_id="$AZURE_CLIENT_ID" \
     -d grant_type=client_credentials \
@@ -988,32 +1165,43 @@ Pada AKS, file di `AZURE_FEDERATED_TOKEN_FILE` adalah token service account yang
   ```
 </CodeGroup>
 
-Sebagai alternatif, daftarkan OIDC issuer klaster AKS Anda ke Anthropic secara langsung dan lewati langkah Entra. Lihat [Menggunakan WIF dengan Kubernetes](/docs/id/manage-claude/wif-providers/kubernetes) untuk pola tersebut.
+### Memverifikasi penyiapan
 
-## Memverifikasi pengaturan
+Dari dalam pod yang diberi label, jalankan pertukaran cURL yang ditunjukkan di [Memperoleh dan menggunakan token](#memperoleh-dan-menggunakan-token-2) dan konfirmasikan bahwa `POST /v1/oauth/token` mengembalikan `200` dengan `access_token` yang diawali `sk-ant-oat01-` dan nilai `expires_in` dalam detik. Pada `400 invalid_grant`, dekode token yang diterbitkan Entra dari langkah 1 (lihat [Memecahkan masalah pertukaran yang gagal](/docs/id/manage-claude/wif-reference#troubleshoot-a-failed-exchange) untuk perintahnya) dan periksa penyebab paling umum di sisi Azure:
 
-Dari resource Azure Anda, jalankan pertukaran cURL yang ditunjukkan sebelumnya dan konfirmasi bahwa `POST /v1/oauth/token` mengembalikan `200` dengan `access_token` yang dimulai dengan `sk-ant-oat01-` dan nilai `expires_in` dalam detik. Pada `400 invalid_grant`, decode token Entra (lihat [Memecahkan masalah pertukaran yang gagal](/docs/id/manage-claude/wif-reference#troubleshoot-a-failed-exchange) untuk perintahnya) dan periksa penyebab paling umum di sisi Azure:
+* **Ketidakcocokan issuer:** `issuer_url` yang terdaftar harus cocok persis dengan klaim `iss` token. Token v2.0 membawa `https://login.microsoftonline.com/<TENANT_ID>/v2.0`; jika klaim `ver` yang didekode adalah `1.0`, lihat [Jika token Anda adalah v1.0](#jika-token-anda-adalah-v1-0).
+* **Masa berlaku token:** Jika kebijakan token-lifetime tenant atau CAE memperpanjang token `client_credentials` melebihi 7500 detik, naikkan `max_jwt_lifetime_seconds` issuer seperti dijelaskan di [Mengonfigurasi Anthropic](#mengonfigurasi-anthropic-2).
+* **Ketidakcocokan audience:** `audience` pada rule harus sama persis dengan `aud` token: client ID app registration audience untuk token v2.0 yang dikonfigurasi panduan ini.
+* **Ketidakcocokan nama klaim:** Rule yang mencocokkan pada klaim yang tidak dibawa token tidak akan pernah lolos. Token v1.0 membawa client ID di `appid`, bukan `azp`; lihat [Jika token Anda adalah v1.0](#jika-token-anda-adalah-v1-0).
 
-* **Ketidakcocokan issuer:** `issuer_url` yang terdaftar harus cocok persis dengan klaim `iss` token. Periksa klaim `ver`: token v2.0 membawa `https://login.microsoftonline.com/<TENANT_ID>/v2.0`, token v1.0 membawa `https://sts.windows.net/<TENANT_ID>/`.
-* **Masa hidup token:** Token managed identity membawa jarak hingga 24 jam antara `iat` dan `exp`, yang melebihi maksimum default 1 jam pada issuer. Atur `max_jwt_lifetime_seconds` seperti dijelaskan di [Mengonfigurasi Anthropic](#configure-anthropic).
-* **Ketidakcocokan audience:** `audience` aturan harus sama persis dengan `aud` token: client ID app registration audience untuk token v2.0, atau identifier URI `api://` untuk token v1.0.
-* **Ketidakcocokan nama klaim:** Token v1.0 membawa client ID di `appid`, bukan `azp`. Aturan yang mencocokkan pada klaim yang tidak dibawa token tidak akan pernah lolos.
+## Jika token Anda adalah v1.0
 
-## Membatasi cakupan aturan Anda
+Panduan ini mengonfigurasi app registration audience dengan `api.requestedAccessTokenVersion: 2`, sehingga setiap token yang ditampilkan adalah v2.0. Jika Anda menggunakan kembali registrasi yang sudah ada yang membiarkan `requestedAccessTokenVersion` tidak diatur, Entra menerbitkan token v1.0 sebagai gantinya. Dekode token sampel dan periksa klaim `ver`-nya; jika nilainya `1.0`, empat hal berubah:
+
+* **Issuer:** Klaim `iss` adalah `https://sts.windows.net/<TENANT_ID>/` alih-alih `https://login.microsoftonline.com/<TENANT_ID>/v2.0`. Daftarkan URL issuer persis seperti yang dibawa klaim `iss` token Anda. Kedua URL berbagi JWKS yang sama, sehingga mode discovery berfungsi untuk keduanya.
+* **Selector wizard:** Pilih **v1 (sts.windows.net)** di selector **Token issuer** pada wizard Connect workload alih-alih **v2.0 (login.microsoftonline.com)**.
+* **Audience:** Klaim `aud` adalah identifier URI yang Anda teruskan sebagai `resource` (misalnya, `api://<APP_ID>`), bukan client ID registrasi. Atur `audience` pada federation rule ke nilai `aud` persis dari token yang Anda dekode.
+* **Klaim client ID:** Client ID identitas pemanggil muncul di `appid`, bukan `azp`. Kedua klaim tidak pernah muncul dalam token yang sama, sehingga rule yang mencocokkan pada `azp` tidak akan pernah lolos terhadap token v1.0.
+
+Klaim `oid`, `sub`, dan `tid` membawa nilai yang sama di kedua versi, sehingga sisa panduan ini berlaku tanpa perubahan.
+
+## Membatasi cakupan rule Anda
+
+Federation rule dapat mencocokkan subject token dengan `subject_prefix` sebagai tambahan (atau pengganti) map `claims`; lihat [Semantik pencocokan rule](/docs/id/manage-claude/wif-reference#rule-matching-semantics) untuk cara field-field tersebut dikombinasikan. Nilai `sub` Entra untuk identitas ini adalah GUID kanonis dengan panjang tetap, sehingga `subject_prefix` yang berisi object ID 36 karakter lengkap hanya cocok dengan subject tersebut; ini adalah properti dari format subject Entra, bukan dari `subject_prefix` secara umum.
 
 <Warning>
-  Setiap identitas di tenant Anda dapat meminta token untuk audience yang terdaftar, sehingga `audience` dan `tid` saja tidak mengidentifikasi workload tertentu. Aturan yang menghilangkan pencocokan `oid` (atau `azp`/`appid`), atau yang menggunakan `subject_prefix` wildcard atau GUID parsial, mengotorisasi setiap managed identity dan service principal di tenant.
+  Setiap identitas di tenant Anda dapat meminta token untuk audience yang terdaftar, sehingga `audience` dan `tid` saja tidak mengidentifikasi workload tertentu. Rule yang menghilangkan pencocokan `oid` (atau `azp`/`appid`), atau yang menggunakan `subject_prefix` wildcard atau GUID parsial, mengotorisasi setiap managed identity dan service principal di tenant.
 </Warning>
 
-Kunci blok `match` aturan ke cakupan tersempit yang sesuai dengan kasus penggunaan Anda:
+Kunci blok `match` pada rule ke cakupan tersempit yang sesuai dengan kasus penggunaan Anda:
 
 * **Cocokkan `oid` sebagai nilai persis:** Atur `claims.oid` ke object ID lengkap managed identity. `subject_prefix` yang diatur ke object ID lengkap tersebut adalah setara (wizard Console mengatur keduanya); jangan pernah menggunakan `subject_prefix` wildcard atau GUID parsial, yang mencocokkan lebih banyak identitas dari yang Anda maksudkan.
 * **Kunci `tid` sebagai pertahanan berlapis:** URL issuer sudah mengunci tenant Anda, tetapi menambahkan `claims.tid` melindungi dari pergeseran konfigurasi jika record issuer diedit di kemudian hari.
-* **Kunci audience:** Atur `audience` ke nilai `aud` persis dari token Anda yang telah di-decode sehingga token yang dibuat untuk aplikasi lain ditolak.
-* **Gunakan aturan terpisah untuk setiap managed identity:** Buat satu aturan untuk setiap identitas alih-alih satu aturan yang mengotorisasi beberapa identitas, sehingga Anda dapat mencabut akses satu workload tanpa memengaruhi yang lain.
+* **Kunci audience:** Atur `audience` ke nilai `aud` persis dari token yang Anda dekode sehingga token yang dibuat untuk aplikasi lain ditolak.
+* **Gunakan rule terpisah untuk setiap managed identity:** Buat satu rule untuk setiap identitas alih-alih satu rule yang mengotorisasi beberapa, sehingga Anda dapat mencabut akses satu workload tanpa memengaruhi yang lain.
 
 ## Langkah selanjutnya
 
 * Tinjau model konfigurasi lengkap di [Workload Identity Federation](/docs/id/manage-claude/workload-identity-federation).
-* Lihat [panduan penyedia](/docs/id/manage-claude/workload-identity-federation#identity-providers) untuk AWS, Google Cloud, GitHub Actions, dan Kubernetes.
-* Untuk variabel lingkungan, file profil, dan urutan prioritas kredensial, lihat [referensi WIF](/docs/id/manage-claude/wif-reference).
+* Lihat [panduan provider](/docs/id/manage-claude/workload-identity-federation#identity-providers) untuk AWS, Google Cloud, GitHub Actions, dan Kubernetes.
+* Untuk variabel lingkungan, file profil, dan prioritas kredensial, lihat [referensi WIF](/docs/id/manage-claude/wif-reference).

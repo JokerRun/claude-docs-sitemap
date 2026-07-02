@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/external_keys/create
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 4123b3dd55f2deb6ab8447dbf7e3c9ac773c513fb9c80ab377497f563f863c1d
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: c9c9eaded06b27e38c692df07439209435d283084c40dfdc287b7b4cab9f7f39
 ---
 
 ## Create External Key
@@ -12,10 +12,6 @@ sha256: 4123b3dd55f2deb6ab8447dbf7e3c9ac773c513fb9c80ab377497f563f863c1d
 Create an external key config owned by the caller's organization.
 
 ### Body Parameters
-
-- `display_name: string`
-
-  Human-friendly display name.
 
 - `provider_config: object { kms_arn, type, region, role_arn }  or object { key_name, type }  or object { key_name, tenant_id, type, 2 more }`
 
@@ -71,6 +67,10 @@ Create an external key config owned by the caller's organization.
 
       Azure AD application (client) ID. Omit to use Anthropic's multi-tenant app. Provide only if using a single-tenant app registration in the customer's directory.
 
+- `display_name: optional string`
+
+  Human-friendly display name.
+
 - `geo: optional "us"`
 
   Data residency geo. Only `us` is supported.
@@ -87,7 +87,7 @@ Create an external key config owned by the caller's organization.
 
 - `display_name: string`
 
-  Human-friendly display name.
+  Human-friendly display name. Null if none was set.
 
 - `geo: string`
 
@@ -161,7 +161,6 @@ curl https://api.anthropic.com/v1/organizations/external_keys \
     -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN" \
     -d '{
-          "display_name": "x",
           "provider_config": {
             "kms_arn": "arn:aws:kms:us-east-1:111122223333:key/abcd1234-5678-90ab-cdef-000011112222",
             "type": "aws"

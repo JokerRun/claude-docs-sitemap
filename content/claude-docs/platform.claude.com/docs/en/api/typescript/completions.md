@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/completions
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: d55cb0a7029e3f0e5a5fffd215ae8508c6622d53507845b3b814eda6b29a812e
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 3659a2a5d66c79eb8fffbf8c6732e1b24756c17f82e3d09fa74d0d23f373c64e
 ---
 
 # Completions
@@ -37,7 +37,11 @@ Future models and features will not be compatible with Text Completions. See our
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `"claude-fable-5" | "claude-mythos-5" | "claude-opus-4-8" | 12 more`
+      - `"claude-sonnet-5" | "claude-fable-5" | "claude-mythos-5" | 13 more`
+
+        - `"claude-sonnet-5"`
+
+          High-performance model for coding and agents
 
         - `"claude-fable-5"`
 
@@ -273,7 +277,11 @@ Future models and features will not be compatible with Text Completions. See our
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `"claude-fable-5" | "claude-mythos-5" | "claude-opus-4-8" | 12 more`
+    - `"claude-sonnet-5" | "claude-fable-5" | "claude-mythos-5" | 13 more`
+
+      - `"claude-sonnet-5"`
+
+        High-performance model for coding and agents
 
       - `"claude-fable-5"`
 
@@ -406,7 +414,11 @@ console.log(completion.id);
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `"claude-fable-5" | "claude-mythos-5" | "claude-opus-4-8" | 12 more`
+    - `"claude-sonnet-5" | "claude-fable-5" | "claude-mythos-5" | 13 more`
+
+      - `"claude-sonnet-5"`
+
+        High-performance model for coding and agents
 
       - `"claude-fable-5"`
 

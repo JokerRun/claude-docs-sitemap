@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/environments/work/list
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 1360fd1e4c022c42251fb54f972895c807e6203ccbdd441659a8a798b27f9c8b
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 5d47611813a2aa6d2c466b1e51ad5cb0b17f519f9226e314c9fc1886cb05236b
 ---
 
 ## List Work Items
@@ -79,6 +79,10 @@ List work items in an environment.
 
       User-provided metadata key-value pairs associated with this work item
 
+    - `secret: string`
+
+      Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
+
     - `started_at: string`
 
       RFC 3339 timestamp when work execution started
@@ -139,6 +143,7 @@ ant beta:environments:work list \
       "metadata": {
         "foo": "string"
       },
+      "secret": "secret",
       "started_at": "started_at",
       "state": "queued",
       "stop_requested_at": "stop_requested_at",

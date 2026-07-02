@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/agents/retrieve
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: a06fd15baa9d496c892012145955f142d4c75baa8714e9e42d152ea79e9085b7
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 141fa744be9d1399ff78a49ee203530e65638cf5a4788b489586080bf2211677
 ---
 
 ## Get Agent
@@ -125,11 +125,15 @@ Get Agent
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `BetaManagedAgentsModel = :"claude-fable-5" | :"claude-opus-4-8" | :"claude-opus-4-7" | 8 more`
+      - `BetaManagedAgentsModel = :"claude-sonnet-5" | :"claude-fable-5" | :"claude-opus-4-8" | 9 more`
 
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `:"claude-sonnet-5"`
+
+          High-performance model for coding and agents
 
         - `:"claude-fable-5"`
 

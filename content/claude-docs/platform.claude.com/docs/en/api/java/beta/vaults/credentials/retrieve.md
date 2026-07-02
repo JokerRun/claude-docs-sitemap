@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/credentials/retrieve
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 3f07bd5537532a45c7d293eaf65a21bd07deb6c5eeb8fced7573aa2ab3ff31fe
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: c632abe49d639b8429a83c5e175d4ff7f61c75b59ee8f1cf91f1e34e68bfe3ff
 ---
 
 ## Get Credential
@@ -178,6 +178,18 @@ Get Credential
     - `class BetaManagedAgentsEnvironmentVariableAuthResponse:`
 
       Environment variable credential details. The secret value is never returned.
+
+      - `BetaManagedAgentsInjectionLocationResponse injectionLocation`
+
+        Where in the outbound request the secret value is substituted.
+
+        - `boolean body`
+
+          Whether the placeholder is substituted in the request body.
+
+        - `boolean header`
+
+          Whether the placeholder is substituted in request header values.
 
       - `Networking networking`
 

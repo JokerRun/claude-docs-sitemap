@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/environments/work/update
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 57039278eb46d90a154cc6f089243a29d165d9faa648c2a36faec0b281eaa631
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 8936b0bd269114236b507b5bc5b57149f3af99ba5153d3ef6eec0cc433a9e4a2
 ---
 
 ## Update Work Item
@@ -137,6 +137,10 @@ Update work item metadata with merge semantics.
 
     User-provided metadata key-value pairs associated with this work item
 
+  - `required string? Secret`
+
+    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
+
   - `required string? StartedAt`
 
     RFC 3339 timestamp when work execution started
@@ -198,6 +202,7 @@ Console.WriteLine(betaSelfHostedWork);
   "metadata": {
     "foo": "string"
   },
+  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/messages/batches
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 9d67625efaa823cba2bdd1e2488c31741fc9873525301776d892d82882a33fcc
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 4f6abf7ffc602719e03a64bf45b74d70c00ccf5fe6ee4a41f7a464c7dea4420d
 ---
 
 # Batches
@@ -864,6 +864,10 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-sonnet-5"ClaudeSonnet5`
+
+          High-performance model for coding and agents
 
         - `"claude-fable-5"ClaudeFable5`
 
@@ -3418,6 +3422,10 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `"claude-sonnet-5"ClaudeSonnet5`
+
+            High-performance model for coding and agents
+
           - `"claude-fable-5"ClaudeFable5`
 
             Next generation of intelligence for the hardest knowledge work and coding problems
@@ -3499,8 +3507,6 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
             - `"frontier_llm"FrontierLlm`
 
             - `"reasoning_extraction"ReasoningExtraction`
-
-            - `"military_weapons"MilitaryWeapons`
 
           - `required string? Explanation`
 
@@ -4527,6 +4533,10 @@ await foreach (var messageBatchIndividualResponse in client.Messages.Batches.Res
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `"claude-sonnet-5"ClaudeSonnet5`
+
+            High-performance model for coding and agents
+
           - `"claude-fable-5"ClaudeFable5`
 
             Next generation of intelligence for the hardest knowledge work and coding problems
@@ -4608,8 +4618,6 @@ await foreach (var messageBatchIndividualResponse in client.Messages.Batches.Res
             - `"frontier_llm"FrontierLlm`
 
             - `"reasoning_extraction"ReasoningExtraction`
-
-            - `"military_weapons"MilitaryWeapons`
 
           - `required string? Explanation`
 
@@ -5463,6 +5471,10 @@ await foreach (var messageBatchIndividualResponse in client.Messages.Batches.Res
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+        - `"claude-sonnet-5"ClaudeSonnet5`
+
+          High-performance model for coding and agents
+
         - `"claude-fable-5"ClaudeFable5`
 
           Next generation of intelligence for the hardest knowledge work and coding problems
@@ -5544,8 +5556,6 @@ await foreach (var messageBatchIndividualResponse in client.Messages.Batches.Res
           - `"frontier_llm"FrontierLlm`
 
           - `"reasoning_extraction"ReasoningExtraction`
-
-          - `"military_weapons"MilitaryWeapons`
 
         - `required string? Explanation`
 
@@ -6361,6 +6371,10 @@ await foreach (var messageBatchIndividualResponse in client.Messages.Batches.Res
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+      - `"claude-sonnet-5"ClaudeSonnet5`
+
+        High-performance model for coding and agents
+
       - `"claude-fable-5"ClaudeFable5`
 
         Next generation of intelligence for the hardest knowledge work and coding problems
@@ -6442,8 +6456,6 @@ await foreach (var messageBatchIndividualResponse in client.Messages.Batches.Res
         - `"frontier_llm"FrontierLlm`
 
         - `"reasoning_extraction"ReasoningExtraction`
-
-        - `"military_weapons"MilitaryWeapons`
 
       - `required string? Explanation`
 

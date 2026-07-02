@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/vaults/credentials/retrieve
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: e5ac8af63742d90fb2c3a55c2f11a0774854730667c47a002876793ed2785f2a
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: ee703c486378411f53da6bb1626cb4679671cb53b4911b589d839792b2b95720
 ---
 
 ## Get Credential
@@ -184,6 +184,18 @@ Get Credential
     - `BetaManagedAgentsEnvironmentVariableAuthResponse`
 
       Environment variable credential details. The secret value is never returned.
+
+      - `injection_location: BetaManagedAgentsInjectionLocationResponse`
+
+        Where in the outbound request the secret value is substituted.
+
+        - `body: boolean`
+
+          Whether the placeholder is substituted in the request body.
+
+        - `header: boolean`
+
+          Whether the placeholder is substituted in request header values.
 
       - `networking: BetaManagedAgentsUnrestrictedCredentialNetworkingResponse | BetaManagedAgentsLimitedCredentialNetworkingResponse`
 

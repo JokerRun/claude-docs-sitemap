@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/spend_limits/list_effective
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 0689d6b1028200ab6612b0072b1be2bb88e2b2bf00273adbaed28679621f6bbc
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 4f046699fd52db621af04a1f4542fd2c929db9e6ae216eb56c15c0b60b89ee26
 ---
 
 ## List Effective Spend Limits
@@ -51,11 +51,11 @@ Paginates by member, so a member's periods never split across pages.
 
   - `currency: string`
 
-  - `period: "monthly" or "daily" or "weekly"`
-
-    - `"monthly"`
+  - `period: "daily" or "monthly" or "weekly"`
 
     - `"daily"`
+
+    - `"monthly"`
 
     - `"weekly"`
 

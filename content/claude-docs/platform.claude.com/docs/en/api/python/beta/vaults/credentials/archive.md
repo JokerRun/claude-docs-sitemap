@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/vaults/credentials/archive
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 04550f732d720e18924fd6bca9758ccf1c20ef05a78a21b2b74d27d2fe106974
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 269930ac586be22403778768fe539307f54d9216bd5f5e3a85c724f8e46253f0
 ---
 
 ## Archive Credential
@@ -180,6 +180,18 @@ Archive Credential
     - `class BetaManagedAgentsEnvironmentVariableAuthResponse: …`
 
       Environment variable credential details. The secret value is never returned.
+
+      - `injection_location: BetaManagedAgentsInjectionLocationResponse`
+
+        Where in the outbound request the secret value is substituted.
+
+        - `body: bool`
+
+          Whether the placeholder is substituted in the request body.
+
+        - `header: bool`
+
+          Whether the placeholder is substituted in request header values.
 
       - `networking: Networking`
 

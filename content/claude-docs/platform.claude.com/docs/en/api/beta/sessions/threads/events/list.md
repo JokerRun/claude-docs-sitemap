@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/threads/events/list
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 45f5991abc5646e94f6576dc4b875299d10705d20ef0436b95c9c145dfd4e5e9
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 3b066b721f36c263000eeac014c69631351f6052f2394908432d6cae3f8b3f9d
 ---
 
 ## List Session Thread Events
@@ -1555,11 +1555,15 @@ List Session Thread Events
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-          - `"claude-fable-5" or "claude-opus-4-8" or "claude-opus-4-7" or 8 more`
+          - `"claude-sonnet-5" or "claude-fable-5" or "claude-opus-4-8" or 9 more`
 
             The model that will power your agent.
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `"claude-sonnet-5"`
+
+              High-performance model for coding and agents
 
             - `"claude-fable-5"`
 

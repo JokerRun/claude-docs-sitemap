@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/retrieve
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: caf8bc0e8cc1d329b749eb0826b3cec8836955dc7e462af412b1dab97a4ee2b4
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: ff84ddda5f7540e4c59fa73a4820e84e18325daca78a2f8b0497770d3f5733e1
 ---
 
 ## Get Work Item
@@ -87,7 +87,7 @@ Retrieve detailed information about a specific work item.
 
 ### Returns
 
-- `BetaSelfHostedWork object { id, acknowledged_at, created_at, 9 more }`
+- `BetaSelfHostedWork object { id, acknowledged_at, created_at, 10 more }`
 
   Work resource representing a unit of work in a self-hosted environment.
 
@@ -132,6 +132,10 @@ Retrieve detailed information about a specific work item.
   - `metadata: map[string]`
 
     User-provided metadata key-value pairs associated with this work item
+
+  - `secret: string`
+
+    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
   - `started_at: string`
 
@@ -190,6 +194,7 @@ curl https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID/work/$WORK_ID \
   "metadata": {
     "foo": "string"
   },
+  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",

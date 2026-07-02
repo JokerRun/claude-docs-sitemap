@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/sessions/list
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 704c8c67c051b4c5c54d65c9b2992fe5489344c352a4c31e136990e65dc7f7af
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: c843c0a86be914eaaf6ff62f8755a8c7f54394f1ccde55b112bea5e07c3fbc53
 ---
 
 ## List Sessions
@@ -180,6 +180,10 @@ List Sessions
           The model that will power your agent.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `"claude-sonnet-5"ClaudeSonnet5`
+
+            High-performance model for coding and agents
 
           - `"claude-fable-5"ClaudeFable5`
 
@@ -681,6 +685,10 @@ List Sessions
 
     Opaque cursor for the next page. Null when no more results.
 
+  - `string? PrevPage`
+
+    Opaque cursor for the previous page. Null when on the first page. Pass as the `page` parameter to navigate backward.
+
 ### Example
 
 ```csharp
@@ -862,6 +870,7 @@ await foreach (var item in page.Paginate())
       "deployment_id": "deployment_id"
     }
   ],
-  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="
+  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo=",
+  "prev_page": "page_MjAyNS0wNS0xM1QwMDowMDowMFo="
 }
 ```

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/agents/update
-fetched_at: 2026-06-26T03:16:19.812719Z
-sha256: 41a7920bc4ba5899cee8bf3992b5bf784a9c4bbd820cd59d463eb41f96c3017f
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: fa04eef016cff544eb61144558f20dd9c7a857495b0e3c861792938b060aa2b7
 ---
 
 ## Update Agent
@@ -97,11 +97,15 @@ Update Agent
 
     Model identifier and configuration.
 
-    - `id: "claude-fable-5" or "claude-opus-4-8" or "claude-opus-4-7" or 8 more or string`
+    - `id: "claude-sonnet-5" or "claude-fable-5" or "claude-opus-4-8" or 9 more or string`
 
       The model that will power your agent.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `"claude-sonnet-5"`
+
+        High-performance model for coding and agents
 
       - `"claude-fable-5"`
 

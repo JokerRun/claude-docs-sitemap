@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/messages/batches
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: b2e51fe56e7f5d701491ef2b48bfbb49a1ea5a064b8e3bc51cc69e4dd79dcd20
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: d3eb378e084f239d70d05fe439ffb7f6a39a35be48d960b3db9d4c043a28bc91
 ---
 
 # Batches
@@ -972,6 +972,10 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `CLAUDE_SONNET_5("claude-sonnet-5")`
+
+          High-performance model for coding and agents
 
         - `CLAUDE_FABLE_5("claude-fable-5")`
 
@@ -3642,6 +3646,10 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `CLAUDE_SONNET_5("claude-sonnet-5")`
+
+            High-performance model for coding and agents
+
           - `CLAUDE_FABLE_5("claude-fable-5")`
 
             Next generation of intelligence for the hardest knowledge work and coding problems
@@ -3725,8 +3733,6 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
             - `FRONTIER_LLM("frontier_llm")`
 
             - `REASONING_EXTRACTION("reasoning_extraction")`
-
-            - `MILITARY_WEAPONS("military_weapons")`
 
           - `Optional<String> explanation`
 
@@ -4912,6 +4918,10 @@ public final class Main {
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `CLAUDE_SONNET_5("claude-sonnet-5")`
+
+            High-performance model for coding and agents
+
           - `CLAUDE_FABLE_5("claude-fable-5")`
 
             Next generation of intelligence for the hardest knowledge work and coding problems
@@ -4995,8 +5005,6 @@ public final class Main {
             - `FRONTIER_LLM("frontier_llm")`
 
             - `REASONING_EXTRACTION("reasoning_extraction")`
-
-            - `MILITARY_WEAPONS("military_weapons")`
 
           - `Optional<String> explanation`
 
@@ -5968,6 +5976,10 @@ public final class Main {
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+        - `CLAUDE_SONNET_5("claude-sonnet-5")`
+
+          High-performance model for coding and agents
+
         - `CLAUDE_FABLE_5("claude-fable-5")`
 
           Next generation of intelligence for the hardest knowledge work and coding problems
@@ -6051,8 +6063,6 @@ public final class Main {
           - `FRONTIER_LLM("frontier_llm")`
 
           - `REASONING_EXTRACTION("reasoning_extraction")`
-
-          - `MILITARY_WEAPONS("military_weapons")`
 
         - `Optional<String> explanation`
 
@@ -6986,6 +6996,10 @@ public final class Main {
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+      - `CLAUDE_SONNET_5("claude-sonnet-5")`
+
+        High-performance model for coding and agents
+
       - `CLAUDE_FABLE_5("claude-fable-5")`
 
         Next generation of intelligence for the hardest knowledge work and coding problems
@@ -7069,8 +7083,6 @@ public final class Main {
         - `FRONTIER_LLM("frontier_llm")`
 
         - `REASONING_EXTRACTION("reasoning_extraction")`
-
-        - `MILITARY_WEAPONS("military_weapons")`
 
       - `Optional<String> explanation`
 

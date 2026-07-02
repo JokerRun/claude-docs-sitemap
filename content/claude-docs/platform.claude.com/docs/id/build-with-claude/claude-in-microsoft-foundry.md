@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 554ca31449c2f56eacebb8cb4d26024942334f4451764d52b808e5fc76115fc9
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: c470c35f49ebd2fec48841fed095a059b61517cea6afa0848b174132b565244a
 ---
 
 # Claude di Microsoft Foundry
@@ -69,7 +69,7 @@ Sebelum memulai, pastikan Anda memiliki:
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java-foundry:2.40.0")
+        implementation("com.anthropic:anthropic-java-foundry:2.47.0")
         ```
       </Tab>
 
@@ -78,7 +78,7 @@ Sebelum memulai, pastikan Anda memiliki:
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-foundry</artifactId>
-            <version>2.40.0</version>
+            <version>2.47.0</version>
         </dependency>
         ```
       </Tab>
@@ -94,7 +94,7 @@ Sebelum memulai, pastikan Anda memiliki:
 
 ## Provisioning
 
-Foundry menggunakan hierarki dua tingkat: **resource** berisi konfigurasi keamanan dan penagihan Anda, sedangkan **deployment** adalah instance model yang Anda panggil melalui API. Anda akan terlebih dahulu membuat resource Foundry, lalu membuat satu atau lebih deployment Claude di dalamnya.
+Foundry menggunakan hierarki dua tingkat: **resource** berisi konfigurasi keamanan dan penagihan Anda, sedangkan **deployment** adalah instance model yang Anda panggil melalui API. Anda akan terlebih dahulu membuat resource Foundry, lalu membuat satu atau beberapa deployment Claude di dalamnya.
 
 ### Melakukan provisioning resource Foundry
 
@@ -144,7 +144,7 @@ Claude di Microsoft Foundry mendukung dua metode autentikasi: kunci API dan toke
 
 ### Autentikasi kunci API
 
-Setelah melakukan provisioning resource Foundry Claude Anda, Anda dapat memperoleh kunci API dari portal Foundry:
+Setelah melakukan provisioning resource Claude Foundry Anda, Anda dapat memperoleh kunci API dari portal Foundry:
 
 1. Di portal Foundry, pilih **Build** di navigasi kanan atas, lalu **Models** di panel kiri.
 2. Buka deployment Claude Anda dan pilih tab **Details**.
@@ -182,7 +182,7 @@ SDK Foundry memerlukan kunci API dan nama resource atau base URL. SDK C#, Java, 
 
   <Tab title="CLI">
     ```bash CLI
-    # ant membaca ANTHROPIC_API_KEY dan mengirimnya sebagai x-api-key, yang diterima oleh Foundry
+    # ant membaca ANTHROPIC_API_KEY dan mengirimkannya sebagai x-api-key, yang diterima oleh Foundry
     export ANTHROPIC_API_KEY="YOUR_AZURE_API_KEY"
 
     ant messages create \
@@ -502,7 +502,7 @@ Untuk keamanan yang lebih baik dan manajemen akses terpusat, Anda dapat mengguna
 
 ## ID permintaan korelasi
 
-Foundry menyertakan pengidentifikasi permintaan di header respons HTTP untuk debugging dan pelacakan. Saat menghubungi dukungan, berikan nilai `request-id` dan `apim-request-id` untuk membantu tim dengan cepat menemukan dan menyelidiki permintaan Anda di seluruh sistem Anthropic dan Azure.
+Foundry menyertakan pengidentifikasi permintaan di header respons HTTP untuk debugging dan pelacakan. Saat menghubungi dukungan, berikan nilai `request-id` dan `apim-request-id` untuk membantu tim menemukan dan menyelidiki permintaan Anda dengan cepat di seluruh sistem Anthropic dan Azure.
 
 ## Dukungan fitur
 
@@ -537,7 +537,7 @@ Permintaan yang menggunakan fitur-fitur ini terhadap deployment yang di-host di 
 
 ## Respons API
 
-Respons API dari Claude di Microsoft Foundry mengikuti [format respons Claude API](/docs/id/api/messages/create) standar. Ini termasuk objek `usage` di body respons, yang menyediakan informasi konsumsi token terperinci untuk permintaan Anda. Objek `usage` konsisten di semua platform (Claude API, Foundry, Claude Platform di AWS, Amazon Bedrock, dan Google Cloud).
+Respons API dari Claude di Microsoft Foundry mengikuti [format respons Claude API](/docs/id/api/messages/create) standar. Ini mencakup objek `usage` di body respons, yang menyediakan informasi konsumsi token terperinci untuk permintaan Anda. Objek `usage` konsisten di semua platform (Claude API, Foundry, Claude Platform di AWS, Amazon Bedrock, dan Google Cloud).
 
 Untuk detail tentang header respons khusus Foundry, lihat [ID permintaan korelasi](#correlation-request-ids).
 
@@ -547,18 +547,18 @@ Istilah siklus hidup (Deprecated, Retired) didefinisikan di [Deprekasi model](/d
 
 Model Claude berikut tersedia melalui Foundry:
 
-| Model                                                       | Nama deployment default | Hosted on Azure | Hosted on Anthropic |
-| ----------------------------------------------------------- | ----------------------- | --------------- | ------------------- |
-| Claude Fable 5                                              | claude-fable-5          |                 | ✓                   |
-| Claude Opus 4.8                                             | claude-opus-4-8         | ✓               | ✓                   |
-| Claude Opus 4.7                                             | claude-opus-4-7         |                 | ✓                   |
-| Claude Opus 4.6                                             | claude-opus-4-6         |                 | ✓                   |
-| Claude Opus 4.5                                             | claude-opus-4-5         |                 | ✓                   |
-| Claude Opus 4.1 Deprecated. Dihentikan pada 5 Agustus 2026. | claude-opus-4-1         |                 | ✓                   |
-| Claude Sonnet 5 (preview)                                   | `claude-sonnet-5`       |                 | ✓                   |
-| Claude Sonnet 4.6                                           | claude-sonnet-4-6       |                 | ✓                   |
-| Claude Sonnet 4.5                                           | claude-sonnet-4-5       |                 | ✓                   |
-| Claude Haiku 4.5                                            | claude-haiku-4-5        | ✓               | ✓                   |
+| Model                                                            | Nama deployment default | Hosted on Azure | Hosted on Anthropic |
+| ---------------------------------------------------------------- | ----------------------- | --------------- | ------------------- |
+| Claude Fable 5                                                   | claude-fable-5          |                 | ✓                   |
+| Claude Opus 4.8                                                  | claude-opus-4-8         | ✓               | ✓                   |
+| Claude Opus 4.7                                                  | claude-opus-4-7         |                 | ✓                   |
+| Claude Opus 4.6                                                  | claude-opus-4-6         |                 | ✓                   |
+| Claude Opus 4.5                                                  | claude-opus-4-5         |                 | ✓                   |
+| Claude Opus 4.1 Tidak digunakan lagi. Dihentikan 5 Agustus 2026. | claude-opus-4-1         |                 | ✓                   |
+| Claude Sonnet 5 (pratinjau)                                      | `claude-sonnet-5`       |                 | ✓                   |
+| Claude Sonnet 4.6                                                | claude-sonnet-4-6       |                 | ✓                   |
+| Claude Sonnet 4.5                                                | claude-sonnet-4-5       |                 | ✓                   |
+| Claude Haiku 4.5                                                 | claude-haiku-4-5        | ✓               | ✓                   |
 
 Secara default, nama deployment cocok dengan ID model yang ditampilkan di tabel sebelumnya. Namun, Anda dapat membuat deployment kustom dengan nama berbeda di portal Foundry untuk mengelola konfigurasi, versi, atau batas laju yang berbeda. Gunakan nama deployment (tidak harus ID model) dalam permintaan API Anda.
 
@@ -568,11 +568,11 @@ Secara default, nama deployment cocok dengan ID model yang ditampilkan di tabel 
 
 ## Penagihan
 
-Claude di Microsoft Foundry menagih melalui [Azure Marketplace](https://azuremarketplace.microsoft.com/). Penggunaan dinyatakan dalam Claude Consumption Units (CCU), diukur per jam, dan ditagih bulanan secara arrears pada tagihan Azure Anda. CCU bukan kredit prabayar; tidak ada saldo atau komitmen CCU.
+Claude di Microsoft Foundry menagih melalui [Azure Marketplace](https://azuremarketplace.microsoft.com/). Penggunaan dinyatakan dalam Claude Consumption Units (CCU), diukur per jam, dan ditagih bulanan di belakang pada tagihan Azure Anda. CCU bukan kredit prabayar; tidak ada saldo atau komitmen CCU.
 
 Untuk harga CCU, mekanisme konversi, dan tarif token per model, lihat [Harga Claude di Microsoft Foundry](/docs/id/about-claude/pricing#claude-in-microsoft-foundry-pricing).
 
-## Bermigrasi antar opsi hosting
+## Migrasi antar opsi hosting
 
 Untuk memindahkan deployment yang ada dari satu opsi hosting ke opsi lainnya:
 
@@ -580,7 +580,7 @@ Untuk memindahkan deployment yang ada dari satu opsi hosting ke opsi lainnya:
 2. Perbarui aplikasi Anda untuk meneruskan nama deployment baru di parameter `model`.
 3. Hapus deployment lama setelah lalu lintas dipindahkan.
 
-Jika deployment baru berada di resource Foundry yang sama, URL endpoint dan autentikasi Anda tidak berubah. Jika Anda membuat resource baru, perbarui endpoint dan kredensial aplikasi Anda agar mengarah ke resource tersebut.
+Jika deployment baru berada di resource Foundry yang sama, URL endpoint dan autentikasi Anda tidak berubah. Jika Anda membuat resource baru, perbarui endpoint dan kredensial aplikasi Anda agar mengarah ke sana.
 
 ## Pemantauan dan logging
 
@@ -590,7 +590,7 @@ Azure menyediakan kemampuan pemantauan dan logging yang komprehensif untuk pengg
 * **Azure Log Analytics:** Kueri dan analisis log permintaan/respons
 * **Cost Management:** Pantau dan perkirakan biaya yang terkait dengan penggunaan Claude
 
-Anthropic merekomendasikan untuk mencatat aktivitas Anda setidaknya secara bergulir 30 hari untuk memahami pola penggunaan dan menyelidiki potensi masalah apa pun.
+Anthropic merekomendasikan untuk mencatat aktivitas Anda setidaknya secara bergulir 30 hari untuk memahami pola penggunaan dan menyelidiki potensi masalah.
 
 <Note>
   Layanan logging Azure dikonfigurasi dalam langganan Azure Anda. Mengaktifkan logging tidak memberikan Microsoft atau Anthropic akses ke konten Anda di luar yang diperlukan untuk penagihan dan operasi layanan.

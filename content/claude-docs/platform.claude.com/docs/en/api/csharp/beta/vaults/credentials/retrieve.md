@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/vaults/credentials/retrieve
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: fff6e43a974525a1f6b729018aaabc1c2f751ce0dd85ce119ff5d67da01d6c60
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 54e938a08de49589e0d80192051bee403c8f69c46c399c1627483731ed957595
 ---
 
 ## Get Credential
@@ -182,6 +182,18 @@ Get Credential
     - `class BetaManagedAgentsEnvironmentVariableAuthResponse:`
 
       Environment variable credential details. The secret value is never returned.
+
+      - `required BetaManagedAgentsInjectionLocationResponse InjectionLocation`
+
+        Where in the outbound request the secret value is substituted.
+
+        - `required Boolean Body`
+
+          Whether the placeholder is substituted in the request body.
+
+        - `required Boolean Header`
+
+          Whether the placeholder is substituted in request header values.
 
       - `required Networking Networking`
 

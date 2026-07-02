@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/agents/list
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 6ed3b6de481a301457802489d46874d2abc8e8ff79adcc254046f0c77cd49d04
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: a82b417654ccfbb92d44c0e5c2da113e92e0b382e23fb36b945efc82f7f56401
 ---
 
 ## List Agents
@@ -141,7 +141,11 @@ List Agents
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `"claude-fable-5" | "claude-opus-4-8" | "claude-opus-4-7" | 8 more`
+      - `"claude-sonnet-5" | "claude-fable-5" | "claude-opus-4-8" | 9 more`
+
+        - `"claude-sonnet-5"`
+
+          High-performance model for coding and agents
 
         - `"claude-fable-5"`
 

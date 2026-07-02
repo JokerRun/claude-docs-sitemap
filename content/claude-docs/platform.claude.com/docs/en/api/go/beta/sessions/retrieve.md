@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/sessions/retrieve
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: aaf187f1c4c9333d0897e14c141a25cacae012a2446c8f2d738f1e6a45582bf1
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 8ea18bc81dc4f01d3c1074c2cc6e24f8a2f0cd7519a2635afb69dc2aaee665fa
 ---
 
 ## Get Session
@@ -124,6 +124,10 @@ Get Session
           The model that will power your agent.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `const BetaManagedAgentsModelClaudeSonnet5 BetaManagedAgentsModel = "claude-sonnet-5"`
+
+            High-performance model for coding and agents
 
           - `const BetaManagedAgentsModelClaudeFable5 BetaManagedAgentsModel = "claude-fable-5"`
 

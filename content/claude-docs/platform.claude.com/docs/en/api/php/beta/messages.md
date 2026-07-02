@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/php/beta/messages
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: d92fd05a3a398085b952bafe1480f6e0058f4bdd03d138ddafa53e7df254a94b
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 150c33d8560404ead5ae7a0205b34595419ed2aff1866c20638347e1cd8dc1a3
 ---
 
 # Messages
@@ -439,7 +439,7 @@ $betaMessage = $client->beta->messages->create(
   fallbackCreditToken: 'x',
   fallbacks: [
     [
-      'model' => 'claude-fable-5',
+      'model' => 'claude-sonnet-5',
       'maxTokens' => 0,
       'outputConfig' => [
         'effort' => 'low',
@@ -598,7 +598,7 @@ var_dump($betaMessage);
         "cache_creation_input_tokens": 0,
         "cache_read_input_tokens": 0,
         "input_tokens": 0,
-        "model": "claude-fable-5",
+        "model": "claude-sonnet-5",
         "output_tokens": 0,
         "type": "message"
       }
@@ -6698,7 +6698,7 @@ $betaMessageBatch = $client->beta->messages->batches->create(
         'fallbackCreditToken' => 'x',
         'fallbacks' => [
           [
-            'model' => 'claude-fable-5',
+            'model' => 'claude-sonnet-5',
             'maxTokens' => 0,
             'outputConfig' => [
               'effort' => 'low',

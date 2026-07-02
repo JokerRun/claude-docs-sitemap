@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/vaults/credentials/list
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 17adaf5e642bfb79a3293b39a5fee5ac436537d43e219e97da58b2521b621f95
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 4013cbd04401b41654d62eb4cf92d8334148fc7c5d5252e8f1c44573c2eab066
 ---
 
 ## List Credentials
@@ -190,6 +190,18 @@ List Credentials
     - `class BetaManagedAgentsEnvironmentVariableAuthResponse`
 
       Environment variable credential details. The secret value is never returned.
+
+      - `injection_location: BetaManagedAgentsInjectionLocationResponse`
+
+        Where in the outbound request the secret value is substituted.
+
+        - `body: bool`
+
+          Whether the placeholder is substituted in the request body.
+
+        - `header: bool`
+
+          Whether the placeholder is substituted in request header values.
 
       - `networking: BetaManagedAgentsUnrestrictedCredentialNetworkingResponse | BetaManagedAgentsLimitedCredentialNetworkingResponse`
 

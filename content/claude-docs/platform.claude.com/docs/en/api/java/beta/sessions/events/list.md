@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/events/list
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: ea32f9ae22f5f95036c73e3db2441abfe425e7fa1ac3ce74de28b4b8cbe6b2b1
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: e3b49ea9af71970b056acbf2ce31d1894d201e475475aa7037608c058db76abf
 ---
 
 ## List Events
@@ -1576,6 +1576,10 @@ List Events
           The model that will power your agent.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `CLAUDE_SONNET_5("claude-sonnet-5")`
+
+            High-performance model for coding and agents
 
           - `CLAUDE_FABLE_5("claude-fable-5")`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/agents/versions/list
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: b1714cfff8aec7bed570a8cfa2f09f0a4b619800ee7c26febc12befaf44255b6
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 532b0b366baa42d96d5ef6c8f0caeb042bdf82eec0cfaf8547faff219d729fc5
 ---
 
 ## List Agent Versions
@@ -136,6 +136,10 @@ List Agent Versions
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `const BetaManagedAgentsModelClaudeSonnet5 BetaManagedAgentsModel = "claude-sonnet-5"`
+
+          High-performance model for coding and agents
 
         - `const BetaManagedAgentsModelClaudeFable5 BetaManagedAgentsModel = "claude-fable-5"`
 

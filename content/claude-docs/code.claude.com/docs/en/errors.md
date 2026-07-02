@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/errors
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 0b4768ea0d1a96ca69c720b15b950e20ceb6a3c0c21c02b8ca97b249d6acbff7
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 79de16d665d609ffd14a6a51e9132e4d7cb2f42d4e2a56142bfb2caffb83ced9
 ---
 
 > ## Documentation Index
@@ -670,7 +670,7 @@ Claude Opus is not available with the Claude Pro plan · Select a different mode
 
 ### Model is restricted by your organization's settings
 
-Your organization admin has disabled this model in the Claude Console, or it is excluded by an [`availableModels`](/en/model-config#restrict-model-selection) allowlist in managed settings. When the restricted model was set with `--model`, `ANTHROPIC_MODEL`, or the `model` setting, Claude Code substitutes an allowed model and continues. Typing `/model <name>` for a restricted model is rejected with `Run /model to choose a different model.` and the session keeps its current model.
+Your organization admin has disabled this model in the claude.ai admin console, or it is excluded by an [`availableModels`](/en/model-config#restrict-model-selection) allowlist in managed settings. When the restricted model was set with `--model`, `ANTHROPIC_MODEL`, or the `model` setting, Claude Code substitutes an allowed model and continues. Typing `/model <name>` for a restricted model is rejected with `Run /model to choose a different model.` and the session keeps its current model.
 
 ```text theme={null}
 Model "claude-opus-4-8" is restricted by your organization's settings. Using claude-sonnet-4-6 instead.

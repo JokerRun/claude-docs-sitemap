@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/environments/work/poll
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: f103ed48e94c2bc3333a9808783057b446f5103996944d4fc5b6384ad78ae07b
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 97f9348995f059bd5453b7024482fb090e3fdc4cfaae51700088f122d6f500c5
 ---
 
 ## Poll for Work
@@ -139,6 +139,10 @@ Long poll for work items in the queue.
 
     User-provided metadata key-value pairs associated with this work item
 
+  - `secret: string | null`
+
+    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
+
   - `started_at: string | null`
 
     RFC 3339 timestamp when work execution started
@@ -201,6 +205,7 @@ console.log(betaSelfHostedWork.id);
   "metadata": {
     "foo": "string"
   },
+  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/messages/count_tokens
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 6a52a9f6a9ee422458c90dd1042826fe9acb42355b7a1610812550a9b9d8e5f2
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: bcf512c8a75d21be368e0d4d9437f3afeb2088aee6b6703f52de6c4ceda2ae50
 ---
 
 ## Count tokens in a Message
@@ -939,12 +939,13 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
 
   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-  - `Literal["claude-fable-5", "claude-mythos-5", "claude-opus-4-8", 12 more]`
+  - `Literal["claude-sonnet-5", "claude-fable-5", "claude-mythos-5", 13 more]`
 
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+    - `claude-sonnet-5` - High-performance model for coding and agents
     - `claude-fable-5` - Next generation of intelligence for the hardest knowledge work and coding problems
     - `claude-mythos-5` - Most capable model for cybersecurity and biology research
     - `claude-opus-4-8` - Frontier intelligence for long-running agents and coding
@@ -960,6 +961,10 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
     - `claude-sonnet-4-5-20250929` - High-performance model for agents and coding
     - `claude-opus-4-1` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
     - `claude-opus-4-1-20250805` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+
+    - `"claude-sonnet-5"`
+
+      High-performance model for coding and agents
 
     - `"claude-fable-5"`
 

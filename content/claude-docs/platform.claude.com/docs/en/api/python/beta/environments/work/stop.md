@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/environments/work/stop
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 5b66eda926fd98ed49536ae0731104df096ecc5345f52fc1b7666e3bd80cf9f8
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 7545799dba613cc0da818878bf5611e3e03519376ce8134492d9be21c725b921
 ---
 
 ## Stop Work
@@ -137,6 +137,10 @@ Stop a work item, initiating graceful or forced shutdown.
 
     User-provided metadata key-value pairs associated with this work item
 
+  - `secret: Optional[str]`
+
+    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
+
   - `started_at: Optional[str]`
 
     RFC 3339 timestamp when work execution started
@@ -201,6 +205,7 @@ print(beta_self_hosted_work.id)
   "metadata": {
     "foo": "string"
   },
+  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/sessions/threads/events/list
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 197092fdfc5b99d669413c8fa442e0f6dad4f38400b5255ef488efc671421691
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: f4550f75b5afcfbedcaddbefb9b847e2b0b9cba80d8b9e22cec5a6ce36cb6524
 ---
 
 ## List Session Thread Events
@@ -1557,7 +1557,11 @@ List Session Thread Events
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-          - `"claude-fable-5" | "claude-opus-4-8" | "claude-opus-4-7" | 8 more`
+          - `"claude-sonnet-5" | "claude-fable-5" | "claude-opus-4-8" | 9 more`
+
+            - `"claude-sonnet-5"`
+
+              High-performance model for coding and agents
 
             - `"claude-fable-5"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/service_accounts/list
-fetched_at: 2026-06-17T03:17:04.158711Z
-sha256: 70b9e67327f7c1e45628b52353fc5df8a5602d0692713199003cea65f20b48ce
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 9cdc4c5309e5ef33ff7b4065de3ab06a3ae2b20d3c6e1f7b4900df0cb50b51ac
 ---
 
 ## List Service Account Workspace Members
@@ -66,19 +66,19 @@ omitted from the results.
 
     Tagged workspace ID (`wrkspc_...`).
 
-  - `workspace_role: "workspace_user" or "workspace_developer" or "workspace_restricted_developer" or 2 more`
+  - `workspace_role: "workspace_admin" or "workspace_billing" or "workspace_developer" or 2 more`
 
     Role of the service account in this workspace. Service accounts cannot hold the `workspace_billing` role.
 
-    - `"workspace_user"`
+    - `"workspace_admin"`
+
+    - `"workspace_billing"`
 
     - `"workspace_developer"`
 
     - `"workspace_restricted_developer"`
 
-    - `"workspace_admin"`
-
-    - `"workspace_billing"`
+    - `"workspace_user"`
 
 - `next_page: string`
 
@@ -103,7 +103,7 @@ curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/service
       "service_account_id": "service_account_id",
       "type": "service_account_workspace_member",
       "workspace_id": "workspace_id",
-      "workspace_role": "workspace_user"
+      "workspace_role": "workspace_admin"
     }
   ],
   "next_page": "next_page"

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/messages
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 0df4e91c1cfb387f13859e9c7b48799cf6bea4df740dc8d5f5fab8e89f1a1546
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: dd693e0acef3f3d3812e29931f3da878147b198c797e41cf7faeb8a47a994540
 ---
 
 # Messages
@@ -1115,12 +1115,13 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-            - `Literal["claude-fable-5", "claude-mythos-5", "claude-opus-4-8", 12 more]`
+            - `Literal["claude-sonnet-5", "claude-fable-5", "claude-mythos-5", 13 more]`
 
               The model that will complete your prompt.
 
               See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+              - `claude-sonnet-5` - High-performance model for coding and agents
               - `claude-fable-5` - Next generation of intelligence for the hardest knowledge work and coding problems
               - `claude-mythos-5` - Most capable model for cybersecurity and biology research
               - `claude-opus-4-8` - Frontier intelligence for long-running agents and coding
@@ -1136,6 +1137,10 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
               - `claude-sonnet-4-5-20250929` - High-performance model for agents and coding
               - `claude-opus-4-1` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
               - `claude-opus-4-1-20250805` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+
+              - `"claude-sonnet-5"`
+
+                High-performance model for coding and agents
 
               - `"claude-fable-5"`
 
@@ -3919,12 +3924,13 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-          - `Literal["claude-fable-5", "claude-mythos-5", "claude-opus-4-8", 12 more]`
+          - `Literal["claude-sonnet-5", "claude-fable-5", "claude-mythos-5", 13 more]`
 
             The model that will complete your prompt.
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+            - `claude-sonnet-5` - High-performance model for coding and agents
             - `claude-fable-5` - Next generation of intelligence for the hardest knowledge work and coding problems
             - `claude-mythos-5` - Most capable model for cybersecurity and biology research
             - `claude-opus-4-8` - Frontier intelligence for long-running agents and coding
@@ -3940,6 +3946,10 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
             - `claude-sonnet-4-5-20250929` - High-performance model for agents and coding
             - `claude-opus-4-1` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
             - `claude-opus-4-1-20250805` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+
+            - `"claude-sonnet-5"`
+
+              High-performance model for coding and agents
 
             - `"claude-fable-5"`
 
@@ -4011,7 +4021,7 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
         What caused the `from` model to hand over at this hop.
 
-        - `category: Optional[Literal["cyber", "bio", "frontier_llm", 2 more]]`
+        - `category: Optional[Literal["cyber", "bio", "frontier_llm", "reasoning_extraction"]]`
 
           The policy category that triggered a refusal.
 
@@ -4022,8 +4032,6 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
           - `"frontier_llm"`
 
           - `"reasoning_extraction"`
-
-          - `"military_weapons"`
 
         - `type: Literal["refusal"]`
 
@@ -4154,7 +4162,7 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
     Structured information about a refusal.
 
-    - `category: Optional[Literal["cyber", "bio", "frontier_llm", 2 more]]`
+    - `category: Optional[Literal["cyber", "bio", "frontier_llm", "reasoning_extraction"]]`
 
       The policy category that triggered a refusal.
 
@@ -4165,8 +4173,6 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
       - `"frontier_llm"`
 
       - `"reasoning_extraction"`
-
-      - `"military_weapons"`
 
     - `explanation: Optional[str]`
 
@@ -4618,7 +4624,7 @@ for message in client.beta.messages.create(
         "cache_creation_input_tokens": 0,
         "cache_read_input_tokens": 0,
         "input_tokens": 0,
-        "model": "claude-fable-5",
+        "model": "claude-sonnet-5",
         "output_tokens": 0,
         "type": "message"
       }
@@ -5735,12 +5741,13 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-            - `Literal["claude-fable-5", "claude-mythos-5", "claude-opus-4-8", 12 more]`
+            - `Literal["claude-sonnet-5", "claude-fable-5", "claude-mythos-5", 13 more]`
 
               The model that will complete your prompt.
 
               See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+              - `claude-sonnet-5` - High-performance model for coding and agents
               - `claude-fable-5` - Next generation of intelligence for the hardest knowledge work and coding problems
               - `claude-mythos-5` - Most capable model for cybersecurity and biology research
               - `claude-opus-4-8` - Frontier intelligence for long-running agents and coding
@@ -5756,6 +5763,10 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
               - `claude-sonnet-4-5-20250929` - High-performance model for agents and coding
               - `claude-opus-4-1` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
               - `claude-opus-4-1-20250805` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+
+              - `"claude-sonnet-5"`
+
+                High-performance model for coding and agents
 
               - `"claude-fable-5"`
 
@@ -7614,12 +7625,13 @@ print(beta_message_tokens_count.context_management)
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `Literal["claude-fable-5", "claude-mythos-5", "claude-opus-4-8", 12 more]`
+    - `Literal["claude-sonnet-5", "claude-fable-5", "claude-mythos-5", 13 more]`
 
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+      - `claude-sonnet-5` - High-performance model for coding and agents
       - `claude-fable-5` - Next generation of intelligence for the hardest knowledge work and coding problems
       - `claude-mythos-5` - Most capable model for cybersecurity and biology research
       - `claude-opus-4-8` - Frontier intelligence for long-running agents and coding
@@ -7635,6 +7647,10 @@ print(beta_message_tokens_count.context_management)
       - `claude-sonnet-4-5-20250929` - High-performance model for agents and coding
       - `claude-opus-4-1` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
       - `claude-opus-4-1-20250805` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+
+      - `"claude-sonnet-5"`
+
+        High-performance model for coding and agents
 
       - `"claude-fable-5"`
 
@@ -7774,12 +7790,13 @@ print(beta_message_tokens_count.context_management)
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `Literal["claude-fable-5", "claude-mythos-5", "claude-opus-4-8", 12 more]`
+    - `Literal["claude-sonnet-5", "claude-fable-5", "claude-mythos-5", 13 more]`
 
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+      - `claude-sonnet-5` - High-performance model for coding and agents
       - `claude-fable-5` - Next generation of intelligence for the hardest knowledge work and coding problems
       - `claude-mythos-5` - Most capable model for cybersecurity and biology research
       - `claude-opus-4-8` - Frontier intelligence for long-running agents and coding
@@ -7795,6 +7812,10 @@ print(beta_message_tokens_count.context_management)
       - `claude-sonnet-4-5-20250929` - High-performance model for agents and coding
       - `claude-opus-4-1` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
       - `claude-opus-4-1-20250805` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+
+      - `"claude-sonnet-5"`
+
+        High-performance model for coding and agents
 
       - `"claude-fable-5"`
 
@@ -10650,12 +10671,13 @@ print(beta_message_tokens_count.context_management)
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-        - `Literal["claude-fable-5", "claude-mythos-5", "claude-opus-4-8", 12 more]`
+        - `Literal["claude-sonnet-5", "claude-fable-5", "claude-mythos-5", 13 more]`
 
           The model that will complete your prompt.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `claude-sonnet-5` - High-performance model for coding and agents
           - `claude-fable-5` - Next generation of intelligence for the hardest knowledge work and coding problems
           - `claude-mythos-5` - Most capable model for cybersecurity and biology research
           - `claude-opus-4-8` - Frontier intelligence for long-running agents and coding
@@ -10671,6 +10693,10 @@ print(beta_message_tokens_count.context_management)
           - `claude-sonnet-4-5-20250929` - High-performance model for agents and coding
           - `claude-opus-4-1` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
           - `claude-opus-4-1-20250805` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+
+          - `"claude-sonnet-5"`
+
+            High-performance model for coding and agents
 
           - `"claude-fable-5"`
 
@@ -10742,7 +10768,7 @@ print(beta_message_tokens_count.context_management)
 
       What caused the `from` model to hand over at this hop.
 
-      - `category: Optional[Literal["cyber", "bio", "frontier_llm", 2 more]]`
+      - `category: Optional[Literal["cyber", "bio", "frontier_llm", "reasoning_extraction"]]`
 
         The policy category that triggered a refusal.
 
@@ -10753,8 +10779,6 @@ print(beta_message_tokens_count.context_management)
         - `"frontier_llm"`
 
         - `"reasoning_extraction"`
-
-        - `"military_weapons"`
 
       - `type: Literal["refusal"]`
 
@@ -11797,12 +11821,13 @@ print(beta_message_tokens_count.context_management)
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-        - `Literal["claude-fable-5", "claude-mythos-5", "claude-opus-4-8", 12 more]`
+        - `Literal["claude-sonnet-5", "claude-fable-5", "claude-mythos-5", 13 more]`
 
           The model that will complete your prompt.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `claude-sonnet-5` - High-performance model for coding and agents
           - `claude-fable-5` - Next generation of intelligence for the hardest knowledge work and coding problems
           - `claude-mythos-5` - Most capable model for cybersecurity and biology research
           - `claude-opus-4-8` - Frontier intelligence for long-running agents and coding
@@ -11818,6 +11843,10 @@ print(beta_message_tokens_count.context_management)
           - `claude-sonnet-4-5-20250929` - High-performance model for agents and coding
           - `claude-opus-4-1` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
           - `claude-opus-4-1-20250805` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+
+          - `"claude-sonnet-5"`
+
+            High-performance model for coding and agents
 
           - `"claude-fable-5"`
 
@@ -12641,12 +12670,13 @@ print(beta_message_tokens_count.context_management)
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `Literal["claude-fable-5", "claude-mythos-5", "claude-opus-4-8", 12 more]`
+      - `Literal["claude-sonnet-5", "claude-fable-5", "claude-mythos-5", 13 more]`
 
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+        - `claude-sonnet-5` - High-performance model for coding and agents
         - `claude-fable-5` - Next generation of intelligence for the hardest knowledge work and coding problems
         - `claude-mythos-5` - Most capable model for cybersecurity and biology research
         - `claude-opus-4-8` - Frontier intelligence for long-running agents and coding
@@ -12662,6 +12692,10 @@ print(beta_message_tokens_count.context_management)
         - `claude-sonnet-4-5-20250929` - High-performance model for agents and coding
         - `claude-opus-4-1` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
         - `claude-opus-4-1-20250805` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+
+        - `"claude-sonnet-5"`
+
+          High-performance model for coding and agents
 
         - `"claude-fable-5"`
 
@@ -12733,7 +12767,7 @@ print(beta_message_tokens_count.context_management)
 
     What caused the `from` model to hand over at this hop.
 
-    - `category: Optional[Literal["cyber", "bio", "frontier_llm", 2 more]]`
+    - `category: Optional[Literal["cyber", "bio", "frontier_llm", "reasoning_extraction"]]`
 
       The policy category that triggered a refusal.
 
@@ -12744,8 +12778,6 @@ print(beta_message_tokens_count.context_management)
       - `"frontier_llm"`
 
       - `"reasoning_extraction"`
-
-      - `"military_weapons"`
 
     - `type: Literal["refusal"]`
 
@@ -12783,12 +12815,13 @@ print(beta_message_tokens_count.context_management)
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `Literal["claude-fable-5", "claude-mythos-5", "claude-opus-4-8", 12 more]`
+      - `Literal["claude-sonnet-5", "claude-fable-5", "claude-mythos-5", 13 more]`
 
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+        - `claude-sonnet-5` - High-performance model for coding and agents
         - `claude-fable-5` - Next generation of intelligence for the hardest knowledge work and coding problems
         - `claude-mythos-5` - Most capable model for cybersecurity and biology research
         - `claude-opus-4-8` - Frontier intelligence for long-running agents and coding
@@ -12804,6 +12837,10 @@ print(beta_message_tokens_count.context_management)
         - `claude-sonnet-4-5-20250929` - High-performance model for agents and coding
         - `claude-opus-4-1` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
         - `claude-opus-4-1-20250805` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+
+        - `"claude-sonnet-5"`
+
+          High-performance model for coding and agents
 
         - `"claude-fable-5"`
 
@@ -12891,12 +12928,13 @@ print(beta_message_tokens_count.context_management)
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `Literal["claude-fable-5", "claude-mythos-5", "claude-opus-4-8", 12 more]`
+    - `Literal["claude-sonnet-5", "claude-fable-5", "claude-mythos-5", 13 more]`
 
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+      - `claude-sonnet-5` - High-performance model for coding and agents
       - `claude-fable-5` - Next generation of intelligence for the hardest knowledge work and coding problems
       - `claude-mythos-5` - Most capable model for cybersecurity and biology research
       - `claude-opus-4-8` - Frontier intelligence for long-running agents and coding
@@ -12912,6 +12950,10 @@ print(beta_message_tokens_count.context_management)
       - `claude-sonnet-4-5-20250929` - High-performance model for agents and coding
       - `claude-opus-4-1` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
       - `claude-opus-4-1-20250805` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+
+      - `"claude-sonnet-5"`
+
+        High-performance model for coding and agents
 
       - `"claude-fable-5"`
 
@@ -12987,12 +13029,13 @@ print(beta_message_tokens_count.context_management)
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `Literal["claude-fable-5", "claude-mythos-5", "claude-opus-4-8", 12 more]`
+    - `Literal["claude-sonnet-5", "claude-fable-5", "claude-mythos-5", 13 more]`
 
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+      - `claude-sonnet-5` - High-performance model for coding and agents
       - `claude-fable-5` - Next generation of intelligence for the hardest knowledge work and coding problems
       - `claude-mythos-5` - Most capable model for cybersecurity and biology research
       - `claude-opus-4-8` - Frontier intelligence for long-running agents and coding
@@ -13008,6 +13051,10 @@ print(beta_message_tokens_count.context_management)
       - `claude-sonnet-4-5-20250929` - High-performance model for agents and coding
       - `claude-opus-4-1` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
       - `claude-opus-4-1-20250805` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+
+      - `"claude-sonnet-5"`
+
+        High-performance model for coding and agents
 
       - `"claude-fable-5"`
 
@@ -13112,12 +13159,13 @@ print(beta_message_tokens_count.context_management)
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `Literal["claude-fable-5", "claude-mythos-5", "claude-opus-4-8", 12 more]`
+    - `Literal["claude-sonnet-5", "claude-fable-5", "claude-mythos-5", 13 more]`
 
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+      - `claude-sonnet-5` - High-performance model for coding and agents
       - `claude-fable-5` - Next generation of intelligence for the hardest knowledge work and coding problems
       - `claude-mythos-5` - Most capable model for cybersecurity and biology research
       - `claude-opus-4-8` - Frontier intelligence for long-running agents and coding
@@ -13133,6 +13181,10 @@ print(beta_message_tokens_count.context_management)
       - `claude-sonnet-4-5-20250929` - High-performance model for agents and coding
       - `claude-opus-4-1` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
       - `claude-opus-4-1-20250805` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+
+      - `"claude-sonnet-5"`
+
+        High-performance model for coding and agents
 
       - `"claude-fable-5"`
 
@@ -13223,12 +13275,13 @@ print(beta_message_tokens_count.context_management)
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `Literal["claude-fable-5", "claude-mythos-5", "claude-opus-4-8", 12 more]`
+    - `Literal["claude-sonnet-5", "claude-fable-5", "claude-mythos-5", 13 more]`
 
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+      - `claude-sonnet-5` - High-performance model for coding and agents
       - `claude-fable-5` - Next generation of intelligence for the hardest knowledge work and coding problems
       - `claude-mythos-5` - Most capable model for cybersecurity and biology research
       - `claude-opus-4-8` - Frontier intelligence for long-running agents and coding
@@ -13244,6 +13297,10 @@ print(beta_message_tokens_count.context_management)
       - `claude-sonnet-4-5-20250929` - High-performance model for agents and coding
       - `claude-opus-4-1` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
       - `claude-opus-4-1-20250805` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+
+      - `"claude-sonnet-5"`
+
+        High-performance model for coding and agents
 
       - `"claude-fable-5"`
 
@@ -13411,7 +13468,7 @@ print(beta_message_tokens_count.context_management)
 
   The `from` model declined for policy reasons.
 
-  - `category: Optional[Literal["cyber", "bio", "frontier_llm", 2 more]]`
+  - `category: Optional[Literal["cyber", "bio", "frontier_llm", "reasoning_extraction"]]`
 
     The policy category that triggered a refusal.
 
@@ -13422,8 +13479,6 @@ print(beta_message_tokens_count.context_management)
     - `"frontier_llm"`
 
     - `"reasoning_extraction"`
-
-    - `"military_weapons"`
 
   - `type: Literal["refusal"]`
 
@@ -13592,12 +13647,13 @@ print(beta_message_tokens_count.context_management)
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `Literal["claude-fable-5", "claude-mythos-5", "claude-opus-4-8", 12 more]`
+      - `Literal["claude-sonnet-5", "claude-fable-5", "claude-mythos-5", 13 more]`
 
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+        - `claude-sonnet-5` - High-performance model for coding and agents
         - `claude-fable-5` - Next generation of intelligence for the hardest knowledge work and coding problems
         - `claude-mythos-5` - Most capable model for cybersecurity and biology research
         - `claude-opus-4-8` - Frontier intelligence for long-running agents and coding
@@ -13613,6 +13669,10 @@ print(beta_message_tokens_count.context_management)
         - `claude-sonnet-4-5-20250929` - High-performance model for agents and coding
         - `claude-opus-4-1` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
         - `claude-opus-4-1-20250805` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+
+        - `"claude-sonnet-5"`
+
+          High-performance model for coding and agents
 
         - `"claude-fable-5"`
 
@@ -15208,12 +15268,13 @@ print(beta_message_tokens_count.context_management)
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-          - `Literal["claude-fable-5", "claude-mythos-5", "claude-opus-4-8", 12 more]`
+          - `Literal["claude-sonnet-5", "claude-fable-5", "claude-mythos-5", 13 more]`
 
             The model that will complete your prompt.
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+            - `claude-sonnet-5` - High-performance model for coding and agents
             - `claude-fable-5` - Next generation of intelligence for the hardest knowledge work and coding problems
             - `claude-mythos-5` - Most capable model for cybersecurity and biology research
             - `claude-opus-4-8` - Frontier intelligence for long-running agents and coding
@@ -15229,6 +15290,10 @@ print(beta_message_tokens_count.context_management)
             - `claude-sonnet-4-5-20250929` - High-performance model for agents and coding
             - `claude-opus-4-1` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
             - `claude-opus-4-1-20250805` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+
+            - `"claude-sonnet-5"`
+
+              High-performance model for coding and agents
 
             - `"claude-fable-5"`
 
@@ -15300,7 +15365,7 @@ print(beta_message_tokens_count.context_management)
 
         What caused the `from` model to hand over at this hop.
 
-        - `category: Optional[Literal["cyber", "bio", "frontier_llm", 2 more]]`
+        - `category: Optional[Literal["cyber", "bio", "frontier_llm", "reasoning_extraction"]]`
 
           The policy category that triggered a refusal.
 
@@ -15311,8 +15376,6 @@ print(beta_message_tokens_count.context_management)
           - `"frontier_llm"`
 
           - `"reasoning_extraction"`
-
-          - `"military_weapons"`
 
         - `type: Literal["refusal"]`
 
@@ -15443,7 +15506,7 @@ print(beta_message_tokens_count.context_management)
 
     Structured information about a refusal.
 
-    - `category: Optional[Literal["cyber", "bio", "frontier_llm", 2 more]]`
+    - `category: Optional[Literal["cyber", "bio", "frontier_llm", "reasoning_extraction"]]`
 
       The policy category that triggered a refusal.
 
@@ -15454,8 +15517,6 @@ print(beta_message_tokens_count.context_management)
       - `"frontier_llm"`
 
       - `"reasoning_extraction"`
-
-      - `"military_weapons"`
 
     - `explanation: Optional[str]`
 
@@ -15868,12 +15929,13 @@ print(beta_message_tokens_count.context_management)
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-        - `Literal["claude-fable-5", "claude-mythos-5", "claude-opus-4-8", 12 more]`
+        - `Literal["claude-sonnet-5", "claude-fable-5", "claude-mythos-5", 13 more]`
 
           The model that will complete your prompt.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `claude-sonnet-5` - High-performance model for coding and agents
           - `claude-fable-5` - Next generation of intelligence for the hardest knowledge work and coding problems
           - `claude-mythos-5` - Most capable model for cybersecurity and biology research
           - `claude-opus-4-8` - Frontier intelligence for long-running agents and coding
@@ -15889,6 +15951,10 @@ print(beta_message_tokens_count.context_management)
           - `claude-sonnet-4-5-20250929` - High-performance model for agents and coding
           - `claude-opus-4-1` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
           - `claude-opus-4-1-20250805` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+
+          - `"claude-sonnet-5"`
+
+            High-performance model for coding and agents
 
           - `"claude-fable-5"`
 
@@ -16141,12 +16207,13 @@ print(beta_message_tokens_count.context_management)
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `Literal["claude-fable-5", "claude-mythos-5", "claude-opus-4-8", 12 more]`
+    - `Literal["claude-sonnet-5", "claude-fable-5", "claude-mythos-5", 13 more]`
 
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+      - `claude-sonnet-5` - High-performance model for coding and agents
       - `claude-fable-5` - Next generation of intelligence for the hardest knowledge work and coding problems
       - `claude-mythos-5` - Most capable model for cybersecurity and biology research
       - `claude-opus-4-8` - Frontier intelligence for long-running agents and coding
@@ -16162,6 +16229,10 @@ print(beta_message_tokens_count.context_management)
       - `claude-sonnet-4-5-20250929` - High-performance model for agents and coding
       - `claude-opus-4-1` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
       - `claude-opus-4-1-20250805` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+
+      - `"claude-sonnet-5"`
+
+        High-performance model for coding and agents
 
       - `"claude-fable-5"`
 
@@ -17272,12 +17343,13 @@ print(beta_message_tokens_count.context_management)
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-            - `Literal["claude-fable-5", "claude-mythos-5", "claude-opus-4-8", 12 more]`
+            - `Literal["claude-sonnet-5", "claude-fable-5", "claude-mythos-5", 13 more]`
 
               The model that will complete your prompt.
 
               See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+              - `claude-sonnet-5` - High-performance model for coding and agents
               - `claude-fable-5` - Next generation of intelligence for the hardest knowledge work and coding problems
               - `claude-mythos-5` - Most capable model for cybersecurity and biology research
               - `claude-opus-4-8` - Frontier intelligence for long-running agents and coding
@@ -17293,6 +17365,10 @@ print(beta_message_tokens_count.context_management)
               - `claude-sonnet-4-5-20250929` - High-performance model for agents and coding
               - `claude-opus-4-1` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
               - `claude-opus-4-1-20250805` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+
+              - `"claude-sonnet-5"`
+
+                High-performance model for coding and agents
 
               - `"claude-fable-5"`
 
@@ -18771,12 +18847,13 @@ print(beta_message_tokens_count.context_management)
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-          - `Literal["claude-fable-5", "claude-mythos-5", "claude-opus-4-8", 12 more]`
+          - `Literal["claude-sonnet-5", "claude-fable-5", "claude-mythos-5", 13 more]`
 
             The model that will complete your prompt.
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+            - `claude-sonnet-5` - High-performance model for coding and agents
             - `claude-fable-5` - Next generation of intelligence for the hardest knowledge work and coding problems
             - `claude-mythos-5` - Most capable model for cybersecurity and biology research
             - `claude-opus-4-8` - Frontier intelligence for long-running agents and coding
@@ -18792,6 +18869,10 @@ print(beta_message_tokens_count.context_management)
             - `claude-sonnet-4-5-20250929` - High-performance model for agents and coding
             - `claude-opus-4-1` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
             - `claude-opus-4-1-20250805` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+
+            - `"claude-sonnet-5"`
+
+              High-performance model for coding and agents
 
             - `"claude-fable-5"`
 
@@ -18863,7 +18944,7 @@ print(beta_message_tokens_count.context_management)
 
         What caused the `from` model to hand over at this hop.
 
-        - `category: Optional[Literal["cyber", "bio", "frontier_llm", 2 more]]`
+        - `category: Optional[Literal["cyber", "bio", "frontier_llm", "reasoning_extraction"]]`
 
           The policy category that triggered a refusal.
 
@@ -18874,8 +18955,6 @@ print(beta_message_tokens_count.context_management)
           - `"frontier_llm"`
 
           - `"reasoning_extraction"`
-
-          - `"military_weapons"`
 
         - `type: Literal["refusal"]`
 
@@ -18983,7 +19062,7 @@ print(beta_message_tokens_count.context_management)
 
       Structured information about a refusal.
 
-      - `category: Optional[Literal["cyber", "bio", "frontier_llm", 2 more]]`
+      - `category: Optional[Literal["cyber", "bio", "frontier_llm", "reasoning_extraction"]]`
 
         The policy category that triggered a refusal.
 
@@ -18994,8 +19073,6 @@ print(beta_message_tokens_count.context_management)
         - `"frontier_llm"`
 
         - `"reasoning_extraction"`
-
-        - `"military_weapons"`
 
       - `explanation: Optional[str]`
 
@@ -19148,12 +19225,13 @@ print(beta_message_tokens_count.context_management)
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-          - `Literal["claude-fable-5", "claude-mythos-5", "claude-opus-4-8", 12 more]`
+          - `Literal["claude-sonnet-5", "claude-fable-5", "claude-mythos-5", 13 more]`
 
             The model that will complete your prompt.
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+            - `claude-sonnet-5` - High-performance model for coding and agents
             - `claude-fable-5` - Next generation of intelligence for the hardest knowledge work and coding problems
             - `claude-mythos-5` - Most capable model for cybersecurity and biology research
             - `claude-opus-4-8` - Frontier intelligence for long-running agents and coding
@@ -19169,6 +19247,10 @@ print(beta_message_tokens_count.context_management)
             - `claude-sonnet-4-5-20250929` - High-performance model for agents and coding
             - `claude-opus-4-1` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
             - `claude-opus-4-1-20250805` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+
+            - `"claude-sonnet-5"`
+
+              High-performance model for coding and agents
 
             - `"claude-fable-5"`
 
@@ -20238,12 +20320,13 @@ print(beta_message_tokens_count.context_management)
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-            - `Literal["claude-fable-5", "claude-mythos-5", "claude-opus-4-8", 12 more]`
+            - `Literal["claude-sonnet-5", "claude-fable-5", "claude-mythos-5", 13 more]`
 
               The model that will complete your prompt.
 
               See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+              - `claude-sonnet-5` - High-performance model for coding and agents
               - `claude-fable-5` - Next generation of intelligence for the hardest knowledge work and coding problems
               - `claude-mythos-5` - Most capable model for cybersecurity and biology research
               - `claude-opus-4-8` - Frontier intelligence for long-running agents and coding
@@ -20259,6 +20342,10 @@ print(beta_message_tokens_count.context_management)
               - `claude-sonnet-4-5-20250929` - High-performance model for agents and coding
               - `claude-opus-4-1` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
               - `claude-opus-4-1-20250805` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+
+              - `"claude-sonnet-5"`
+
+                High-performance model for coding and agents
 
               - `"claude-fable-5"`
 
@@ -20330,7 +20417,7 @@ print(beta_message_tokens_count.context_management)
 
           What caused the `from` model to hand over at this hop.
 
-          - `category: Optional[Literal["cyber", "bio", "frontier_llm", 2 more]]`
+          - `category: Optional[Literal["cyber", "bio", "frontier_llm", "reasoning_extraction"]]`
 
             The policy category that triggered a refusal.
 
@@ -20341,8 +20428,6 @@ print(beta_message_tokens_count.context_management)
             - `"frontier_llm"`
 
             - `"reasoning_extraction"`
-
-            - `"military_weapons"`
 
           - `type: Literal["refusal"]`
 
@@ -20473,7 +20558,7 @@ print(beta_message_tokens_count.context_management)
 
       Structured information about a refusal.
 
-      - `category: Optional[Literal["cyber", "bio", "frontier_llm", 2 more]]`
+      - `category: Optional[Literal["cyber", "bio", "frontier_llm", "reasoning_extraction"]]`
 
         The policy category that triggered a refusal.
 
@@ -20484,8 +20569,6 @@ print(beta_message_tokens_count.context_management)
         - `"frontier_llm"`
 
         - `"reasoning_extraction"`
-
-        - `"military_weapons"`
 
       - `explanation: Optional[str]`
 
@@ -21705,12 +21788,13 @@ print(beta_message_tokens_count.context_management)
 
               See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-              - `Literal["claude-fable-5", "claude-mythos-5", "claude-opus-4-8", 12 more]`
+              - `Literal["claude-sonnet-5", "claude-fable-5", "claude-mythos-5", 13 more]`
 
                 The model that will complete your prompt.
 
                 See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+                - `claude-sonnet-5` - High-performance model for coding and agents
                 - `claude-fable-5` - Next generation of intelligence for the hardest knowledge work and coding problems
                 - `claude-mythos-5` - Most capable model for cybersecurity and biology research
                 - `claude-opus-4-8` - Frontier intelligence for long-running agents and coding
@@ -21726,6 +21810,10 @@ print(beta_message_tokens_count.context_management)
                 - `claude-sonnet-4-5-20250929` - High-performance model for agents and coding
                 - `claude-opus-4-1` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
                 - `claude-opus-4-1-20250805` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+
+                - `"claude-sonnet-5"`
+
+                  High-performance model for coding and agents
 
                 - `"claude-fable-5"`
 
@@ -21797,7 +21885,7 @@ print(beta_message_tokens_count.context_management)
 
             What caused the `from` model to hand over at this hop.
 
-            - `category: Optional[Literal["cyber", "bio", "frontier_llm", 2 more]]`
+            - `category: Optional[Literal["cyber", "bio", "frontier_llm", "reasoning_extraction"]]`
 
               The policy category that triggered a refusal.
 
@@ -21808,8 +21896,6 @@ print(beta_message_tokens_count.context_management)
               - `"frontier_llm"`
 
               - `"reasoning_extraction"`
-
-              - `"military_weapons"`
 
             - `type: Literal["refusal"]`
 
@@ -21940,7 +22026,7 @@ print(beta_message_tokens_count.context_management)
 
         Structured information about a refusal.
 
-        - `category: Optional[Literal["cyber", "bio", "frontier_llm", 2 more]]`
+        - `category: Optional[Literal["cyber", "bio", "frontier_llm", "reasoning_extraction"]]`
 
           The policy category that triggered a refusal.
 
@@ -21951,8 +22037,6 @@ print(beta_message_tokens_count.context_management)
           - `"frontier_llm"`
 
           - `"reasoning_extraction"`
-
-          - `"military_weapons"`
 
         - `explanation: Optional[str]`
 
@@ -22566,7 +22650,7 @@ print(beta_message_tokens_count.context_management)
 
   Structured information about a refusal.
 
-  - `category: Optional[Literal["cyber", "bio", "frontier_llm", 2 more]]`
+  - `category: Optional[Literal["cyber", "bio", "frontier_llm", "reasoning_extraction"]]`
 
     The policy category that triggered a refusal.
 
@@ -22577,8 +22661,6 @@ print(beta_message_tokens_count.context_management)
     - `"frontier_llm"`
 
     - `"reasoning_extraction"`
-
-    - `"military_weapons"`
 
   - `explanation: Optional[str]`
 
@@ -27048,12 +27130,13 @@ print(beta_message_tokens_count.context_management)
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `Literal["claude-fable-5", "claude-mythos-5", "claude-opus-4-8", 12 more]`
+      - `Literal["claude-sonnet-5", "claude-fable-5", "claude-mythos-5", 13 more]`
 
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+        - `claude-sonnet-5` - High-performance model for coding and agents
         - `claude-fable-5` - Next generation of intelligence for the hardest knowledge work and coding problems
         - `claude-mythos-5` - Most capable model for cybersecurity and biology research
         - `claude-opus-4-8` - Frontier intelligence for long-running agents and coding
@@ -27069,6 +27152,10 @@ print(beta_message_tokens_count.context_management)
         - `claude-sonnet-4-5-20250929` - High-performance model for agents and coding
         - `claude-opus-4-1` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
         - `claude-opus-4-1-20250805` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+
+        - `"claude-sonnet-5"`
+
+          High-performance model for coding and agents
 
         - `"claude-fable-5"`
 
@@ -27508,12 +27595,13 @@ print(beta_message_tokens_count.context_management)
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-        - `Literal["claude-fable-5", "claude-mythos-5", "claude-opus-4-8", 12 more]`
+        - `Literal["claude-sonnet-5", "claude-fable-5", "claude-mythos-5", 13 more]`
 
           The model that will complete your prompt.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `claude-sonnet-5` - High-performance model for coding and agents
           - `claude-fable-5` - Next generation of intelligence for the hardest knowledge work and coding problems
           - `claude-mythos-5` - Most capable model for cybersecurity and biology research
           - `claude-opus-4-8` - Frontier intelligence for long-running agents and coding
@@ -27529,6 +27617,10 @@ print(beta_message_tokens_count.context_management)
           - `claude-sonnet-4-5-20250929` - High-performance model for agents and coding
           - `claude-opus-4-1` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
           - `claude-opus-4-1-20250805` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+
+          - `"claude-sonnet-5"`
+
+            High-performance model for coding and agents
 
           - `"claude-fable-5"`
 
@@ -30749,12 +30841,13 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
                 See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-                - `Literal["claude-fable-5", "claude-mythos-5", "claude-opus-4-8", 12 more]`
+                - `Literal["claude-sonnet-5", "claude-fable-5", "claude-mythos-5", 13 more]`
 
                   The model that will complete your prompt.
 
                   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+                  - `claude-sonnet-5` - High-performance model for coding and agents
                   - `claude-fable-5` - Next generation of intelligence for the hardest knowledge work and coding problems
                   - `claude-mythos-5` - Most capable model for cybersecurity and biology research
                   - `claude-opus-4-8` - Frontier intelligence for long-running agents and coding
@@ -30770,6 +30863,10 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
                   - `claude-sonnet-4-5-20250929` - High-performance model for agents and coding
                   - `claude-opus-4-1` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
                   - `claude-opus-4-1-20250805` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+
+                  - `"claude-sonnet-5"`
+
+                    High-performance model for coding and agents
 
                   - `"claude-fable-5"`
 
@@ -34553,12 +34650,13 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
                 See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-                - `Literal["claude-fable-5", "claude-mythos-5", "claude-opus-4-8", 12 more]`
+                - `Literal["claude-sonnet-5", "claude-fable-5", "claude-mythos-5", 13 more]`
 
                   The model that will complete your prompt.
 
                   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+                  - `claude-sonnet-5` - High-performance model for coding and agents
                   - `claude-fable-5` - Next generation of intelligence for the hardest knowledge work and coding problems
                   - `claude-mythos-5` - Most capable model for cybersecurity and biology research
                   - `claude-opus-4-8` - Frontier intelligence for long-running agents and coding
@@ -34574,6 +34672,10 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
                   - `claude-sonnet-4-5-20250929` - High-performance model for agents and coding
                   - `claude-opus-4-1` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
                   - `claude-opus-4-1-20250805` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+
+                  - `"claude-sonnet-5"`
+
+                    High-performance model for coding and agents
 
                   - `"claude-fable-5"`
 
@@ -34645,7 +34747,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
               What caused the `from` model to hand over at this hop.
 
-              - `category: Optional[Literal["cyber", "bio", "frontier_llm", 2 more]]`
+              - `category: Optional[Literal["cyber", "bio", "frontier_llm", "reasoning_extraction"]]`
 
                 The policy category that triggered a refusal.
 
@@ -34656,8 +34758,6 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
                 - `"frontier_llm"`
 
                 - `"reasoning_extraction"`
-
-                - `"military_weapons"`
 
               - `type: Literal["refusal"]`
 
@@ -34788,7 +34888,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
           Structured information about a refusal.
 
-          - `category: Optional[Literal["cyber", "bio", "frontier_llm", 2 more]]`
+          - `category: Optional[Literal["cyber", "bio", "frontier_llm", "reasoning_extraction"]]`
 
             The policy category that triggered a refusal.
 
@@ -34799,8 +34899,6 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
             - `"frontier_llm"`
 
             - `"reasoning_extraction"`
-
-            - `"military_weapons"`
 
           - `explanation: Optional[str]`
 
@@ -36355,12 +36453,13 @@ for batch in client.beta.messages.batches.results(
 
                 See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-                - `Literal["claude-fable-5", "claude-mythos-5", "claude-opus-4-8", 12 more]`
+                - `Literal["claude-sonnet-5", "claude-fable-5", "claude-mythos-5", 13 more]`
 
                   The model that will complete your prompt.
 
                   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+                  - `claude-sonnet-5` - High-performance model for coding and agents
                   - `claude-fable-5` - Next generation of intelligence for the hardest knowledge work and coding problems
                   - `claude-mythos-5` - Most capable model for cybersecurity and biology research
                   - `claude-opus-4-8` - Frontier intelligence for long-running agents and coding
@@ -36376,6 +36475,10 @@ for batch in client.beta.messages.batches.results(
                   - `claude-sonnet-4-5-20250929` - High-performance model for agents and coding
                   - `claude-opus-4-1` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
                   - `claude-opus-4-1-20250805` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+
+                  - `"claude-sonnet-5"`
+
+                    High-performance model for coding and agents
 
                   - `"claude-fable-5"`
 
@@ -36447,7 +36550,7 @@ for batch in client.beta.messages.batches.results(
 
               What caused the `from` model to hand over at this hop.
 
-              - `category: Optional[Literal["cyber", "bio", "frontier_llm", 2 more]]`
+              - `category: Optional[Literal["cyber", "bio", "frontier_llm", "reasoning_extraction"]]`
 
                 The policy category that triggered a refusal.
 
@@ -36458,8 +36561,6 @@ for batch in client.beta.messages.batches.results(
                 - `"frontier_llm"`
 
                 - `"reasoning_extraction"`
-
-                - `"military_weapons"`
 
               - `type: Literal["refusal"]`
 
@@ -36590,7 +36691,7 @@ for batch in client.beta.messages.batches.results(
 
           Structured information about a refusal.
 
-          - `category: Optional[Literal["cyber", "bio", "frontier_llm", 2 more]]`
+          - `category: Optional[Literal["cyber", "bio", "frontier_llm", "reasoning_extraction"]]`
 
             The policy category that triggered a refusal.
 
@@ -36601,8 +36702,6 @@ for batch in client.beta.messages.batches.results(
             - `"frontier_llm"`
 
             - `"reasoning_extraction"`
-
-            - `"military_weapons"`
 
           - `explanation: Optional[str]`
 
@@ -37950,12 +38049,13 @@ for batch in client.beta.messages.batches.results(
 
               See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-              - `Literal["claude-fable-5", "claude-mythos-5", "claude-opus-4-8", 12 more]`
+              - `Literal["claude-sonnet-5", "claude-fable-5", "claude-mythos-5", 13 more]`
 
                 The model that will complete your prompt.
 
                 See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+                - `claude-sonnet-5` - High-performance model for coding and agents
                 - `claude-fable-5` - Next generation of intelligence for the hardest knowledge work and coding problems
                 - `claude-mythos-5` - Most capable model for cybersecurity and biology research
                 - `claude-opus-4-8` - Frontier intelligence for long-running agents and coding
@@ -37971,6 +38071,10 @@ for batch in client.beta.messages.batches.results(
                 - `claude-sonnet-4-5-20250929` - High-performance model for agents and coding
                 - `claude-opus-4-1` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
                 - `claude-opus-4-1-20250805` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+
+                - `"claude-sonnet-5"`
+
+                  High-performance model for coding and agents
 
                 - `"claude-fable-5"`
 
@@ -38042,7 +38146,7 @@ for batch in client.beta.messages.batches.results(
 
             What caused the `from` model to hand over at this hop.
 
-            - `category: Optional[Literal["cyber", "bio", "frontier_llm", 2 more]]`
+            - `category: Optional[Literal["cyber", "bio", "frontier_llm", "reasoning_extraction"]]`
 
               The policy category that triggered a refusal.
 
@@ -38053,8 +38157,6 @@ for batch in client.beta.messages.batches.results(
               - `"frontier_llm"`
 
               - `"reasoning_extraction"`
-
-              - `"military_weapons"`
 
             - `type: Literal["refusal"]`
 
@@ -38185,7 +38287,7 @@ for batch in client.beta.messages.batches.results(
 
         Structured information about a refusal.
 
-        - `category: Optional[Literal["cyber", "bio", "frontier_llm", 2 more]]`
+        - `category: Optional[Literal["cyber", "bio", "frontier_llm", "reasoning_extraction"]]`
 
           The policy category that triggered a refusal.
 
@@ -38196,8 +38298,6 @@ for batch in client.beta.messages.batches.results(
           - `"frontier_llm"`
 
           - `"reasoning_extraction"`
-
-          - `"military_weapons"`
 
         - `explanation: Optional[str]`
 
@@ -39507,12 +39607,13 @@ for batch in client.beta.messages.batches.results(
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-            - `Literal["claude-fable-5", "claude-mythos-5", "claude-opus-4-8", 12 more]`
+            - `Literal["claude-sonnet-5", "claude-fable-5", "claude-mythos-5", 13 more]`
 
               The model that will complete your prompt.
 
               See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+              - `claude-sonnet-5` - High-performance model for coding and agents
               - `claude-fable-5` - Next generation of intelligence for the hardest knowledge work and coding problems
               - `claude-mythos-5` - Most capable model for cybersecurity and biology research
               - `claude-opus-4-8` - Frontier intelligence for long-running agents and coding
@@ -39528,6 +39629,10 @@ for batch in client.beta.messages.batches.results(
               - `claude-sonnet-4-5-20250929` - High-performance model for agents and coding
               - `claude-opus-4-1` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
               - `claude-opus-4-1-20250805` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+
+              - `"claude-sonnet-5"`
+
+                High-performance model for coding and agents
 
               - `"claude-fable-5"`
 
@@ -39599,7 +39704,7 @@ for batch in client.beta.messages.batches.results(
 
           What caused the `from` model to hand over at this hop.
 
-          - `category: Optional[Literal["cyber", "bio", "frontier_llm", 2 more]]`
+          - `category: Optional[Literal["cyber", "bio", "frontier_llm", "reasoning_extraction"]]`
 
             The policy category that triggered a refusal.
 
@@ -39610,8 +39715,6 @@ for batch in client.beta.messages.batches.results(
             - `"frontier_llm"`
 
             - `"reasoning_extraction"`
-
-            - `"military_weapons"`
 
           - `type: Literal["refusal"]`
 
@@ -39742,7 +39845,7 @@ for batch in client.beta.messages.batches.results(
 
       Structured information about a refusal.
 
-      - `category: Optional[Literal["cyber", "bio", "frontier_llm", 2 more]]`
+      - `category: Optional[Literal["cyber", "bio", "frontier_llm", "reasoning_extraction"]]`
 
         The policy category that triggered a refusal.
 
@@ -39753,8 +39856,6 @@ for batch in client.beta.messages.batches.results(
         - `"frontier_llm"`
 
         - `"reasoning_extraction"`
-
-        - `"military_weapons"`
 
       - `explanation: Optional[str]`
 

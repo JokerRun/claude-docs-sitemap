@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/messages/create
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 757ecfda9854700d1c6967d3f0bedb8eb7b897e3c8bbfd10b38528a164e52163
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 99d42dc3e6a1c9546c1a3963d973e017b1f526597be98b148088bb20257d94cc
 ---
 
 ## Create a Message
@@ -949,11 +949,15 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-  - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 12 more`
+  - `Model = :"claude-sonnet-5" | :"claude-fable-5" | :"claude-mythos-5" | 13 more`
 
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+    - `:"claude-sonnet-5"`
+
+      High-performance model for coding and agents
 
     - `:"claude-fable-5"`
 
@@ -2906,11 +2910,15 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 12 more`
+    - `Model = :"claude-sonnet-5" | :"claude-fable-5" | :"claude-mythos-5" | 13 more`
 
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `:"claude-sonnet-5"`
+
+        High-performance model for coding and agents
 
       - `:"claude-fable-5"`
 
@@ -2986,7 +2994,7 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
     Structured information about a refusal.
 
-    - `category: :cyber | :bio | :frontier_llm | 2 more`
+    - `category: :cyber | :bio | :frontier_llm | :reasoning_extraction`
 
       The policy category that triggered a refusal.
 
@@ -2997,8 +3005,6 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
       - `:frontier_llm`
 
       - `:reasoning_extraction`
-
-      - `:military_weapons`
 
     - `explanation: String`
 

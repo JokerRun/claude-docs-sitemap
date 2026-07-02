@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/vaults/credentials/create
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 7d4fe1c6af2ddcae345e6db8af4680e541883406533b8d043ff77e8a70a38efb
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 75f522849c410cccdd8e590e11c75b678c008f9b0bd3bb367b7af44abb179520
 ---
 
 ## Create Credential
@@ -158,6 +158,18 @@ Create Credential
       - `type: "environment_variable"`
 
         - `"environment_variable"`
+
+      - `injection_location?: BetaManagedAgentsInjectionLocationParams`
+
+        Where in the outbound request the secret value may be substituted.
+
+        - `body?: boolean`
+
+          Substitute when the placeholder appears in the request body.
+
+        - `header?: boolean`
+
+          Substitute when the placeholder appears in a request header value.
 
   - `display_name?: string | null`
 
@@ -328,6 +340,18 @@ Create Credential
     - `BetaManagedAgentsEnvironmentVariableAuthResponse`
 
       Environment variable credential details. The secret value is never returned.
+
+      - `injection_location: BetaManagedAgentsInjectionLocationResponse`
+
+        Where in the outbound request the secret value is substituted.
+
+        - `body: boolean`
+
+          Whether the placeholder is substituted in the request body.
+
+        - `header: boolean`
+
+          Whether the placeholder is substituted in request header values.
 
       - `networking: BetaManagedAgentsUnrestrictedCredentialNetworkingResponse | BetaManagedAgentsLimitedCredentialNetworkingResponse`
 

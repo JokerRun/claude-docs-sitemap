@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/messages/create
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 4516f30fc1513c41230d75797971f7be4452df618eee9541eed92a93d13e5df4
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 54fbd675a61604283ca33e4516f88633855f05d31d0da9d0903ff20264cdbd6e
 ---
 
 ## Create a Message
@@ -1113,11 +1113,15 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-            - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 12 more`
+            - `Model = :"claude-sonnet-5" | :"claude-fable-5" | :"claude-mythos-5" | 13 more`
 
               The model that will complete your prompt.
 
               See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+              - `:"claude-sonnet-5"`
+
+                High-performance model for coding and agents
 
               - `:"claude-fable-5"`
 
@@ -3899,11 +3903,15 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-          - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 12 more`
+          - `Model = :"claude-sonnet-5" | :"claude-fable-5" | :"claude-mythos-5" | 13 more`
 
             The model that will complete your prompt.
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `:"claude-sonnet-5"`
+
+              High-performance model for coding and agents
 
             - `:"claude-fable-5"`
 
@@ -3975,7 +3983,7 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
         What caused the `from` model to hand over at this hop.
 
-        - `category: :cyber | :bio | :frontier_llm | 2 more`
+        - `category: :cyber | :bio | :frontier_llm | :reasoning_extraction`
 
           The policy category that triggered a refusal.
 
@@ -3986,8 +3994,6 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
           - `:frontier_llm`
 
           - `:reasoning_extraction`
-
-          - `:military_weapons`
 
         - `type: :refusal`
 
@@ -4118,7 +4124,7 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
     Structured information about a refusal.
 
-    - `category: :cyber | :bio | :frontier_llm | 2 more`
+    - `category: :cyber | :bio | :frontier_llm | :reasoning_extraction`
 
       The policy category that triggered a refusal.
 
@@ -4129,8 +4135,6 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
       - `:frontier_llm`
 
       - `:reasoning_extraction`
-
-      - `:military_weapons`
 
     - `explanation: String`
 
@@ -4578,7 +4582,7 @@ puts(beta_message)
         "cache_creation_input_tokens": 0,
         "cache_read_input_tokens": 0,
         "input_tokens": 0,
-        "model": "claude-fable-5",
+        "model": "claude-sonnet-5",
         "output_tokens": 0,
         "type": "message"
       }

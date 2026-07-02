@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/update
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 8ea0f88dc758015e6754fc454650becd374ad1aa6916939eb349049db6773823
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 9807a3b998aacbd3439d33a03b50334f2d55a5af370b71f9badc95c90b19468a
 ---
 
 ## Update Session
@@ -315,11 +315,15 @@ Update Session
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-        - `"claude-fable-5" or "claude-opus-4-8" or "claude-opus-4-7" or 8 more`
+        - `"claude-sonnet-5" or "claude-fable-5" or "claude-opus-4-8" or 9 more`
 
           The model that will power your agent.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `"claude-sonnet-5"`
+
+            High-performance model for coding and agents
 
           - `"claude-fable-5"`
 

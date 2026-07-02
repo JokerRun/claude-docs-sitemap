@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/api_keys
-fetched_at: 2026-06-12T03:17:40.104094Z
-sha256: a54ed5a65630c7ff9977501f9333f2e3d1ffadb512d792cd08651166f0cef48d
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 5a1d77d1495487f2aefbf8c337eee4b37ddf4638bdb13e9ac1c3d9eee07969ec
 ---
 
 # API Keys
@@ -55,17 +55,17 @@ Get API Key
 
     Partially redacted hint for the API key.
 
-  - `status: "active" or "inactive" or "archived" or "expired"`
+  - `status: "active" or "archived" or "expired" or "inactive"`
 
     Status of the API key.
 
     - `"active"`
 
-    - `"inactive"`
-
     - `"archived"`
 
     - `"expired"`
+
+    - `"inactive"`
 
   - `type: "api_key"`
 
@@ -132,17 +132,17 @@ List API Keys
 
   Defaults to `20`. Ranges from `1` to `1000`.
 
-- `status: optional "active" or "inactive" or "archived" or "expired"`
+- `status: optional "active" or "archived" or "expired" or "inactive"`
 
   Filter by API key status.
 
   - `"active"`
 
-  - `"inactive"`
-
   - `"archived"`
 
   - `"expired"`
+
+  - `"inactive"`
 
 - `workspace_id: optional string`
 
@@ -184,17 +184,17 @@ List API Keys
 
     Partially redacted hint for the API key.
 
-  - `status: "active" or "inactive" or "archived" or "expired"`
+  - `status: "active" or "archived" or "expired" or "inactive"`
 
     Status of the API key.
 
     - `"active"`
 
-    - `"inactive"`
-
     - `"archived"`
 
     - `"expired"`
+
+    - `"inactive"`
 
   - `type: "api_key"`
 
@@ -272,15 +272,15 @@ Update API Key
 
   Name of the API key.
 
-- `status: optional "active" or "inactive" or "archived"`
+- `status: optional "active" or "archived" or "inactive"`
 
   Status of the API key.
 
   - `"active"`
 
-  - `"inactive"`
-
   - `"archived"`
+
+  - `"inactive"`
 
 ### Returns
 
@@ -318,17 +318,17 @@ Update API Key
 
     Partially redacted hint for the API key.
 
-  - `status: "active" or "inactive" or "archived" or "expired"`
+  - `status: "active" or "archived" or "expired" or "inactive"`
 
     Status of the API key.
 
     - `"active"`
 
-    - `"inactive"`
-
     - `"archived"`
 
     - `"expired"`
+
+    - `"inactive"`
 
   - `type: "api_key"`
 

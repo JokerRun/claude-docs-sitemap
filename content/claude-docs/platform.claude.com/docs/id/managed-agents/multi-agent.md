@@ -1,17 +1,17 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/multi-agent
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 604ce124eab5a9d3aafb415a68fc822d839aebbde102b5ee8913a9db8db7bcb7
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 6ec8708bb2d1f3b89b02cbdcd376a712e67e0f8efd733793939d4685d03dafa1
 ---
 
-# Sesi multiagen
+# Sesi multi-agen
 
 Koordinasikan beberapa agen dalam satu sesi.
 
 ---
 
-Orkestrasi multiagen memungkinkan satu agen berkoordinasi dengan agen lain untuk menyelesaikan pekerjaan yang kompleks. Agen dapat bertindak secara paralel dengan konteks terisolasi masing-masing, yang membantu meningkatkan kualitas output dan juga dapat mempercepat waktu penyelesaian.
+Orkestrasi multi-agen memungkinkan satu agen berkoordinasi dengan agen lain untuk menyelesaikan pekerjaan yang kompleks. Agen dapat bertindak secara paralel dengan konteks terisolasi masing-masing, yang membantu meningkatkan kualitas output dan juga dapat mempercepat waktu penyelesaian.
 
 <Note>
   Semua permintaan Managed Agents API memerlukan beta header `managed-agents-2026-04-01`. SDK menetapkan beta header tersebut secara otomatis.
@@ -21,17 +21,17 @@ Orkestrasi multiagen memungkinkan satu agen berkoordinasi dengan agen lain untuk
 
 Semua agen berbagi sandbox, filesystem, dan [kredensial vault](/docs/id/managed-agents/vaults) yang sama, tetapi setiap agen berjalan di **session thread** (utas sesi) miliknya sendiri, yaitu aliran event dengan konteks terisolasi yang memiliki riwayat percakapan sendiri. Koordinator melaporkan aktivitas di **primary thread** (utas utama), yang sama dengan [aliran event](/docs/id/managed-agents/events-and-streaming) tingkat sesi; thread tambahan dibuat saat runtime ketika koordinator mendelegasikan pekerjaan.
 
-Thread bersifat persisten: koordinator dapat mengirim tindak lanjut ke agen yang telah dipanggil sebelumnya, dan agen tersebut tetap menyimpan semua hal dari giliran sebelumnya.
+Thread bersifat persisten: koordinator dapat mengirim tindak lanjut ke agen yang telah dipanggil sebelumnya, dan agen tersebut mempertahankan semua hal dari giliran sebelumnya.
 
-Setiap agen menggunakan konfigurasinya sendiri (model, prompt sistem, alat, server MCP, dan skill) sebagaimana didefinisikan saat agen tersebut dibuat. Alat, server MCP, dan konteks tidak dibagikan antar agen.
+Setiap agen menggunakan konfigurasinya sendiri: model, prompt sistem, alat, server MCP, dan skill. [Override konfigurasi agen](/docs/id/managed-agents/sessions#override-agent-configuration-for-a-session) tingkat sesi adalah pengecualian; override tersebut berlaku untuk koordinator dan salinan `self`-nya. Alat, server MCP, dan konteks tidak dibagikan.
 
 ### Apa yang sebaiknya didelegasikan
 
-Koordinasi multiagen paling cocok untuk tugas kompleks yang memerlukan pekerjaan di berbagai permukaan, atau ketika beberapa tugas dengan cakupan yang jelas berkontribusi pada satu tujuan keseluruhan.
+Koordinasi multi-agen paling cocok untuk tugas kompleks yang memerlukan pekerjaan di berbagai permukaan, atau ketika beberapa tugas dengan cakupan yang jelas berkontribusi pada tujuan keseluruhan.
 
 Pola yang bekerja dengan baik:
 
-* **Paralelisasi:** Sebarkan subtugas independen secara bersamaan (mencari di beberapa sumber, menganalisis file terpisah) dan biarkan koordinator menyintesis hasilnya.
+* **Paralelisasi:** Sebarkan subtugas independen secara bersamaan (mencari di beberapa sumber, menganalisis file terpisah) dan minta koordinator menyintesis hasilnya.
 * **Spesialisasi:** Arahkan ke agen dengan prompt sistem dan alat yang berfokus pada domain tertentu, seperti agen keamanan atau agen dokumentasi, alih-alih membebani satu agen dengan semua kemampuan.
 * **Eskalasi:** Konsultasikan dengan agen atau model yang lebih mumpuni untuk sebagian subtugas yang kompleks.
 
@@ -229,13 +229,13 @@ Saat [mendefinisikan agen Anda](/docs/id/managed-agents/agent-setup), atur `mult
 
 `multiagent.agents` dapat menerima salah satu dari berikut ini:
 
-* `{"type": "agent", "id": agent.id}` mereferensikan `agent` yang telah dibuat sebelumnya berdasarkan ID. Jika `version` tidak ditentukan, referensi dipatok ke versi terbaru agen tersebut pada saat koordinator dibuat.
-* `{"type": "agent", "id": agent.id, "version": agent.version}` mematok versi agen tertentu.
-* `{"type": "self"}` memungkinkan koordinator membuat salinan dirinya sendiri.
+* `{"type": "agent", "id": agent.id}` mereferensikan `agent` yang telah dibuat sebelumnya berdasarkan ID. Jika `version` tidak ditentukan, referensi akan disematkan ke versi terbaru agen tersebut pada saat koordinator dibuat.
+* `{"type": "agent", "id": agent.id, "version": agent.version}` menyematkan versi agen tertentu.
+* `{"type": "self"}` memungkinkan koordinator membuat salinan dirinya sendiri. Jika sesi dibuat dengan [override konfigurasi agen](/docs/id/managed-agents/sessions#override-agent-configuration-for-a-session), override tersebut juga berlaku untuk salinan ini; entri daftar yang direferensikan berdasarkan ID tidak terpengaruh.
 
-Konfigurasi koordinator, termasuk daftar `multiagent.agents`-nya, di-snapshot saat koordinator dibuat atau diperbarui. Agen yang direferensikan tetap dipatok ke versi yang di-resolve pada saat itu dan tidak secara otomatis mengambil pembaruan selanjutnya pada definisinya. Untuk mendelegasikan ke versi yang lebih baru dari agen yang direferensikan, [perbarui koordinator](/docs/id/managed-agents/agent-setup#update-an-agent) agar daftarnya mereferensikan versi tersebut.
+Konfigurasi koordinator, termasuk daftar `multiagent.agents`-nya, di-snapshot saat koordinator dibuat atau diperbarui. Agen yang direferensikan tetap disematkan ke versi yang di-resolve pada saat itu dan tidak secara otomatis mengambil pembaruan selanjutnya pada definisinya. Untuk mendelegasikan ke versi yang lebih baru dari agen yang direferensikan, [perbarui koordinator](/docs/id/managed-agents/agent-setup#update-an-agent) agar daftarnya mereferensikan versi tersebut.
 
-Koordinator hanya dapat mendelegasikan ke satu tingkat agen; kedalaman > 1 diabaikan. Maksimal 20 agen unik dapat dicantumkan di `multiagent.agents`, tetapi koordinator dapat memanggil beberapa salinan dari setiap agen.
+Koordinator hanya dapat mendelegasikan ke satu tingkat agen; kedalaman > 1 akan diabaikan. Maksimal 20 agen unik dapat dicantumkan dalam `multiagent.agents`, tetapi koordinator dapat memanggil beberapa salinan dari setiap agen.
 
 ## Membuat sesi
 
@@ -324,8 +324,10 @@ Buat sesi yang mereferensikan koordinator. Koordinator mendelegasikan ke agen da
 
 Server MCP memiliki cakupan per agen (setiap definisi agen mendeklarasikan server dan alatnya sendiri), sedangkan kredensial vault memiliki cakupan per sesi (`vault_ids` yang diteruskan saat pembuatan sesi berlaku untuk setiap thread). Dua implikasi untuk integrasi Anda:
 
-* Untuk mengautentikasi server MCP, sertakan kredensial vault untuk setiap server MCP yang digunakan di seluruh agen.
-* Untuk membatasi akses agen, deklarasikan hanya server yang dibutuhkan dalam definisi agen tersebut.
+* Untuk mengautentikasi server MCP, sertakan kredensial vault untuk setiap server MCP yang digunakan di semua agen.
+* Untuk membatasi akses agen, deklarasikan hanya server yang dibutuhkan dalam definisi agennya.
+
+[Override konfigurasi agen](/docs/id/managed-agents/sessions#override-agent-configuration-for-a-session) saat pembuatan sesi dapat menggantikan server MCP koordinator dan server MCP salinan `self`-nya.
 
 <CodeGroup>
   ```bash curl
@@ -686,9 +688,9 @@ Dalam contoh ini, hanya researcher yang mendeklarasikan server MCP GitHub, sehin
 
 ## Thread
 
-**Aliran event tingkat sesi** (`/v1/sessions/:id/events/stream`) dianggap sebagai **primary thread** (utas utama), yang berisi tampilan ringkas dari semua aktivitas di seluruh thread. Anda tidak melihat aktivitas lengkap dari subagen, tetapi Anda melihat awal dan akhir pekerjaan mereka, serta event yang memblokir seperti permintaan izin alat.
+**Aliran event tingkat sesi** (`/v1/sessions/:id/events/stream`) dianggap sebagai **primary thread**, yang berisi tampilan ringkas dari semua aktivitas di seluruh thread. Anda tidak melihat aktivitas lengkap dari subagen, tetapi Anda melihat awal dan akhir pekerjaan mereka, serta event yang memblokir seperti permintaan izin alat.
 
-**Session thread** (utas sesi) adalah tempat Anda menelusuri aktivitas agen tertentu secara mendalam.
+**Session thread** adalah tempat Anda menelusuri aktivitas agen tertentu secara mendalam.
 
 `status` sesi adalah agregasi dari semua aktivitas agen; jika setidaknya satu thread berstatus `running`, maka status sesi keseluruhan juga `running`.
 
@@ -851,7 +853,7 @@ Dalam contoh ini, hanya researcher yang mendeklarasikan server MCP GitHub, sehin
       ```
     </CodeGroup>
 
-    Terhadap thread anak yang diblokir pada `requires_action`, interupsi menandai setiap panggilan alat yang tertunda sebagai ditolak dan langsung mengirim ulang `session.thread_status_idle` dengan `stop_reason: end_turn`; model tidak di-sample. Terhadap thread yang sudah berstatus `idle`, interupsi tidak melakukan apa-apa (no-op).
+    Terhadap thread anak yang diblokir pada `requires_action`, interupsi menandai setiap panggilan alat yang tertunda sebagai ditolak dan langsung mengeluarkan kembali `session.thread_status_idle` dengan `stop_reason: end_turn`; model tidak di-sample. Terhadap thread yang sudah berstatus `idle`, interupsi tidak melakukan apa-apa (no-op).
   </Tab>
 
   <Tab title="Mengarsipkan session thread">
@@ -1043,20 +1045,20 @@ Dalam contoh ini, hanya researcher yang mendeklarasikan server MCP GitHub, sehin
 
 ### Event primary thread
 
-Event berikut menampilkan aktivitas multiagen pada primary thread di `/v1/sessions/:id/events/stream`.
+Event berikut menampilkan aktivitas multi-agen pada primary thread di `/v1/sessions/:id/events/stream`.
 
-| Tipe                               | Deskripsi                                                                                                                |
-| ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| `session.thread_created`           | Sebuah thread telah dibuat. Menyertakan `session_thread_id` dan `agent_name`.                                            |
-| `session.thread_status_running`    | Sebuah thread memulai aktivitas.                                                                                         |
-| `session.thread_status_idle`       | Agen yang terkait dengan thread sedang menunggu input. Menyertakan `stop_reason` yang menunjukkan mengapa agen berhenti. |
-| `session.thread_status_terminated` | Sebuah thread diarsipkan atau mengalami error terminal.                                                                  |
-| `agent.thread_message_received`    | Sebuah agen mengirimkan hasilnya ke koordinator. Menyertakan `from_session_thread_id`, `from_agent_name`, dan `content`. |
-| `agent.thread_message_sent`        | Koordinator mengirim tindak lanjut ke agen lain. Menyertakan `to_session_thread_id`, `to_agent_name`, dan `content`.     |
+| Tipe                               | Deskripsi                                                                                                             |
+| ---------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| `session.thread_created`           | Sebuah thread telah dibuat. Mencakup `session_thread_id` dan `agent_name`.                                            |
+| `session.thread_status_running`    | Sebuah thread memulai aktivitas.                                                                                      |
+| `session.thread_status_idle`       | Agen yang terkait dengan thread sedang menunggu input. Mencakup `stop_reason` yang menunjukkan mengapa agen berhenti. |
+| `session.thread_status_terminated` | Sebuah thread diarsipkan atau mengalami error terminal.                                                               |
+| `agent.thread_message_received`    | Sebuah agen mengirimkan hasilnya ke koordinator. Mencakup `from_session_thread_id`, `from_agent_name`, dan `content`. |
+| `agent.thread_message_sent`        | Koordinator mengirim tindak lanjut ke agen lain. Mencakup `to_session_thread_id`, `to_agent_name`, dan `content`.     |
 
 ### Event session thread
 
-Event penting diproksikan ke primary thread. Namun, Anda mungkin tetap ingin menyelidiki penalaran dan panggilan alat dari agen tertentu. Untuk melakukannya, lakukan streaming atau cantumkan event dari session thread yang terkait.
+Event penting diproksikan ke primary thread. Namun, Anda mungkin tetap ingin menyelidiki penalaran dan panggilan alat dari agen tertentu. Untuk melakukannya, lakukan streaming atau cantumkan event dari session thread terkait.
 
 <Tabs>
   <Tab title="Streaming event session thread">

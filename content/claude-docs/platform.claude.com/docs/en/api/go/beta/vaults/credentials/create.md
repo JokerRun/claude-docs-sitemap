@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/vaults/credentials/create
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: de5968466322936cc314ccfb3052ddea8dda3099e0bb1fa88e6798182e229a4b
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: e31a4ad99a256717612b31bb25fcd169870cff891ec69d6afb296ea7fe1757c4
 ---
 
 ## Create Credential
@@ -158,6 +158,18 @@ Create Credential
       - `Type BetaManagedAgentsEnvironmentVariableCreateParamsType`
 
         - `const BetaManagedAgentsEnvironmentVariableCreateParamsTypeEnvironmentVariable BetaManagedAgentsEnvironmentVariableCreateParamsType = "environment_variable"`
+
+      - `InjectionLocation BetaManagedAgentsInjectionLocationParamsResp`
+
+        Where in the outbound request the secret value may be substituted.
+
+        - `Body bool`
+
+          Substitute when the placeholder appears in the request body.
+
+        - `Header bool`
+
+          Substitute when the placeholder appears in a request header value.
 
   - `DisplayName param.Field[string]`
 
@@ -328,6 +340,18 @@ Create Credential
     - `type BetaManagedAgentsEnvironmentVariableAuthResponse struct{…}`
 
       Environment variable credential details. The secret value is never returned.
+
+      - `InjectionLocation BetaManagedAgentsInjectionLocationResponse`
+
+        Where in the outbound request the secret value is substituted.
+
+        - `Body bool`
+
+          Whether the placeholder is substituted in the request body.
+
+        - `Header bool`
+
+          Whether the placeholder is substituted in request header values.
 
       - `Networking BetaManagedAgentsEnvironmentVariableAuthResponseNetworkingUnion`
 

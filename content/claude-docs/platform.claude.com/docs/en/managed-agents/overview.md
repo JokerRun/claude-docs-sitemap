@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/overview
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: ab9e1e125e7f1955e6d4431c095f6a6d047b76e5eaf5b5812deb691c9b7edf6a
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 9a14b19b7f3beac7077d5265e12e5e5aa0edf14bea8c3cb74bfd9fed26d2d5fa
 ---
 
 # Claude Managed Agents overview
@@ -83,6 +83,7 @@ Claude Managed Agents is best for workloads that need:
 * **Self-hosted execution:** Sandboxes on infrastructure you control for compliance or data-residency requirements
 * **Minimal infrastructure:** No need to build your own agent loop, sandbox, or tool execution layer
 * **Stateful sessions:** Persistent filesystems and conversation history across multiple interactions
+* **Scheduled execution:** Recurring agent runs on a cron schedule through [scheduled deployments](/docs/en/managed-agents/scheduled-deployments)
 
 ## Supported tools
 

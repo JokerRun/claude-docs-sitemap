@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/poll
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: a55dd39cb9d8bfd8c43a9c8e026613d43b3141c3fc1c9e9adb99117e830a377a
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 358ca1b0261871e46b69a997fd33f94261b519d4d91799226c3256254ea63727
 ---
 
 ## Poll for Work
@@ -99,7 +99,7 @@ Long poll for work items in the queue.
 
 ### Returns
 
-- `BetaSelfHostedWork object { id, acknowledged_at, created_at, 9 more }`
+- `BetaSelfHostedWork object { id, acknowledged_at, created_at, 10 more }`
 
   Work resource representing a unit of work in a self-hosted environment.
 
@@ -144,6 +144,10 @@ Long poll for work items in the queue.
   - `metadata: map[string]`
 
     User-provided metadata key-value pairs associated with this work item
+
+  - `secret: string`
+
+    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
   - `started_at: string`
 
@@ -202,6 +206,7 @@ curl https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID/work/poll \
   "metadata": {
     "foo": "string"
   },
+  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",

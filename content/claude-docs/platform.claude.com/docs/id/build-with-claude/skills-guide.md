@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/skills-guide
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 73f3e74ba8b4ddf7ba68cc0073f4a6ce508aa3000bbd175493b381dd8f59b134
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 686fe0e19a714bcaa48d470c83e8637913f7faddc7c6110bcbcb2755dba4a400
 ---
 
 # Menggunakan Agent Skills dengan API
@@ -14,7 +14,7 @@ Pelajari cara menggunakan Agent Skills untuk memperluas kemampuan Claude melalui
 Agent Skills memperluas kemampuan Claude melalui folder terorganisir yang berisi instruksi, skrip, dan sumber daya. Panduan ini menunjukkan cara menggunakan Skill bawaan maupun Skill kustom dengan Claude API.
 
 <Note>
-  Untuk referensi API lengkap termasuk skema permintaan/respons dan semua parameter, lihat:
+  Untuk referensi API lengkap termasuk skema request/response dan semua parameter, lihat:
 
   * [Referensi API Manajemen Skill](/docs/id/api/skills/list-skills) - Operasi CRUD untuk Skill
   * [Referensi API Versi Skill](/docs/id/api/skills/list-skill-versions) - Manajemen versi
@@ -27,7 +27,7 @@ Agent Skills memperluas kemampuan Claude melalui folder terorganisir yang berisi
 ## Tautan cepat
 
 <CardGroup cols={2}>
-  <Card title="Memulai dengan Agent Skills" icon="rocket" href="/docs/id/agents-and-tools/agent-skills/quickstart">
+  <Card title="Mulai dengan Agent Skills" icon="rocket" href="/docs/id/agents-and-tools/agent-skills/quickstart">
     Buat Skill pertama Anda
   </Card>
 
@@ -42,11 +42,11 @@ Agent Skills memperluas kemampuan Claude melalui folder terorganisir yang berisi
   Untuk pembahasan mendalam tentang arsitektur dan penerapan Agent Skills di dunia nyata, baca postingan blog engineering: [Equipping agents for the real world with Agent Skills](https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills).
 </Note>
 
-Skill terintegrasi dengan Messages API melalui [code execution tool](/docs/id/agents-and-tools/tool-use/code-execution-tool). Baik menggunakan Skill bawaan yang dikelola oleh Anthropic maupun Skill kustom yang telah Anda unggah, bentuk integrasinya identik: keduanya memerlukan eksekusi kode dan menggunakan struktur `container` yang sama.
+Skill terintegrasi dengan Messages API melalui [code execution tool](/docs/id/agents-and-tools/tool-use/code-execution-tool) (alat eksekusi kode). Baik menggunakan Skill bawaan yang dikelola oleh Anthropic maupun Skill kustom yang telah Anda unggah, bentuk integrasinya identik: keduanya memerlukan eksekusi kode dan menggunakan struktur `container` yang sama.
 
 ### Menggunakan Skill
 
-Skill terintegrasi secara identik dalam Messages API terlepas dari sumbernya. Anda menentukan Skill dalam parameter `container` dengan `skill_id`, `type`, dan `version` opsional, dan Skill tersebut dieksekusi di lingkungan eksekusi kode.
+Skill terintegrasi secara identik di Messages API terlepas dari sumbernya. Anda menentukan Skill dalam parameter `container` dengan `skill_id`, `type`, dan `version` opsional, dan Skill tersebut dieksekusi di lingkungan eksekusi kode.
 
 **Anda dapat menggunakan Skill dari dua sumber:**
 
@@ -58,7 +58,7 @@ Skill terintegrasi secara identik dalam Messages API terlepas dari sumbernya. An
 | **Pengelolaan**  | Dibuat dan dikelola oleh Anthropic         | Unggah dan kelola melalui [Skills API](/docs/id/api/skills/create-skill) |
 | **Ketersediaan** | Tersedia untuk semua pengguna              | Privat untuk workspace Anda                                              |
 
-Kedua sumber skill dikembalikan oleh [endpoint List Skills](/docs/id/api/skills/list-skills) (gunakan parameter `source` untuk memfilter). Bentuk integrasi dan lingkungan eksekusinya identik. Satu-satunya perbedaan adalah dari mana Skill berasal dan bagaimana Skill tersebut dikelola.
+Kedua sumber Skill dikembalikan oleh [endpoint List Skills](/docs/id/api/skills/list-skills) (gunakan parameter `source` untuk memfilter). Bentuk integrasi dan lingkungan eksekusinya identik. Satu-satunya perbedaan adalah dari mana Skill berasal dan bagaimana Skill tersebut dikelola.
 
 ### Prasyarat
 
@@ -72,7 +72,7 @@ Untuk menggunakan Skill, Anda memerlukan:
    * `skills-2025-10-02` - Mengaktifkan Skills API
    * `files-api-2025-04-14` - Untuk mengunggah/mengunduh file ke/dari container
 
-3. **[Code execution tool](/docs/id/agents-and-tools/tool-use/code-execution-tool)** diaktifkan dalam permintaan Anda
+3. **[Code execution tool](/docs/id/agents-and-tools/tool-use/code-execution-tool)** diaktifkan dalam request Anda
 
 ***
 
@@ -80,9 +80,9 @@ Untuk menggunakan Skill, Anda memerlukan:
 
 ### Parameter container
 
-Skill ditentukan menggunakan parameter `container` dalam Messages API. Anda dapat menyertakan hingga 8 Skill per permintaan.
+Skill ditentukan menggunakan parameter `container` di Messages API. Anda dapat menyertakan hingga 8 Skill per request.
 
-Strukturnya identik untuk Skill Anthropic maupun kustom. Tentukan `type` dan `skill_id` yang diperlukan, dan secara opsional sertakan `version` untuk mengunci ke versi tertentu:
+Strukturnya identik untuk Skill Anthropic maupun Skill kustom. Tentukan `type` dan `skill_id` yang diperlukan, dan secara opsional sertakan `version` untuk mengunci ke versi tertentu:
 
 <CodeGroup>
   ```bash cURL
@@ -352,7 +352,7 @@ Strukturnya identik untuk Skill Anthropic maupun kustom. Tentukan `type` dan `sk
 
 ### Mengunduh file yang dihasilkan
 
-Ketika Skill membuat dokumen (Excel, PowerPoint, PDF, Word), Skill tersebut mengembalikan atribut `file_id` dalam respons. Anda harus menggunakan Files API untuk mengunduh file-file ini.
+Ketika Skill membuat dokumen (Excel, PowerPoint, PDF, Word), Skill mengembalikan atribut `file_id` dalam respons. Anda harus menggunakan Files API untuk mengunduh file-file ini.
 
 **Cara kerjanya:**
 
@@ -880,16 +880,11 @@ Ketika Skill membuat dokumen (Excel, PowerPoint, PDF, Word), Skill tersebut meng
   ```bash CLI
   # Dapatkan metadata file
   ant beta:files retrieve-metadata --file-id "$FILE_ID" \
-    --transform '{filename,size_bytes}' --format yaml \
-    | { read -r _ name; read -r _ size
-        printf 'Filename: %s, Size: %s bytes\n' "$name" "$size"; }
+    --transform '{filename,size_bytes}' --format yaml
 
   # Daftar semua file
   ant beta:files list \
-    --transform '{filename,created_at}' --format yaml \
-    | while read -r _ name && read -r _ date; do
-        printf '%s - %s\n' "$name" "${date//\"/}"
-      done
+    --transform '{filename,created_at}' --format yaml
 
   # Hapus file
   ant beta:files delete --file-id "$FILE_ID" >/dev/null
@@ -1471,37 +1466,33 @@ Skill mungkin melakukan operasi yang memerlukan beberapa turn. Tangani stop reas
       }]
     }')
 
-  # Periksa stop_reason dan tangani pause_turn dalam loop
+  # Jika stop_reason adalah "pause_turn", lanjutkan dalam kontainer yang sama.
+  # Ulangi permintaan lanjutan ini hingga stop_reason berubah.
   STOP_REASON=$(echo "$RESPONSE" | jq -r '.stop_reason')
   CONTAINER_ID=$(echo "$RESPONSE" | jq -r '.container.id')
 
-  while [ "$STOP_REASON" = "pause_turn" ]; do
-    # Lanjutkan dengan container yang sama
-    RESPONSE=$(curl https://api.anthropic.com/v1/messages \
-      -H "x-api-key: $ANTHROPIC_API_KEY" \
-      -H "anthropic-version: 2023-06-01" \
-      -H "anthropic-beta: code-execution-2025-08-25,skills-2025-10-02" \
-      -H "content-type: application/json" \
-      -d "{
-        \"model\": \"claude-opus-4-8\",
-        \"max_tokens\": 4096,
-        \"container\": {
-          \"id\": \"$CONTAINER_ID\",
-          \"skills\": [{
-            \"type\": \"custom\",
-            \"skill_id\": \"skill_01AbCdEfGhIjKlMnOpQrStUv\",
-            \"version\": \"latest\"
-          }]
-        },
-        \"messages\": [/* include conversation history */],
-        \"tools\": [{
-          \"type\": \"code_execution_20250825\",
-          \"name\": \"code_execution\"
+  RESPONSE=$(curl https://api.anthropic.com/v1/messages \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-beta: code-execution-2025-08-25,skills-2025-10-02" \
+    -H "content-type: application/json" \
+    -d "{
+      \"model\": \"claude-opus-4-8\",
+      \"max_tokens\": 4096,
+      \"container\": {
+        \"id\": \"$CONTAINER_ID\",
+        \"skills\": [{
+          \"type\": \"custom\",
+          \"skill_id\": \"skill_01AbCdEfGhIjKlMnOpQrStUv\",
+          \"version\": \"latest\"
         }]
-      }")
-
-    STOP_REASON=$(echo "$RESPONSE" | jq -r '.stop_reason')
-  done
+      },
+      \"messages\": [/* include conversation history */],
+      \"tools\": [{
+        \"type\": \"code_execution_20250825\",
+        \"name\": \"code_execution\"
+      }]
+    }")
   ```
 
   ```bash CLI
@@ -1527,17 +1518,14 @@ Skill mungkin melakukan operasi yang memerlukan beberapa turn. Tangani stop reas
       name: code_execution
   YAML
 
-  # Tangani pause_turn untuk operasi panjang (hingga 10 iterasi)
-  for _ in {1..10}; do
-    [[ $(jq -r '.stop_reason' "$RESP") == pause_turn ]] || break
+  # Jika stop_reason adalah "pause_turn", lanjutkan di kontainer yang sama,
+  # dengan menambahkan array content dari respons sebelumnya ke messages sebagai
+  # giliran assistant. Ulangi hingga stop_reason bukan lagi "pause_turn".
+  CONTAINER_ID=$(jq -r '.container.id' "$RESP")
 
-    CONTAINER_ID=$(jq -r '.container.id' "$RESP")
-
-    # Lanjutkan di kontainer yang sama, tambahkan array content dari
-    # respons sebelumnya ke messages sebagai giliran asisten.
-    ant beta:messages create \
-      --beta code-execution-2025-08-25 \
-      --beta skills-2025-10-02 \
+  ant beta:messages create \
+    --beta code-execution-2025-08-25 \
+    --beta skills-2025-10-02 \
    > "$RESP" <<YAML
   model: claude-opus-4-8
   max_tokens: 4096
@@ -1548,12 +1536,11 @@ Skill mungkin melakukan operasi yang memerlukan beberapa turn. Tangani stop reas
         skill_id: skill_01AbCdEfGhIjKlMnOpQrStUv
         version: latest
   messages:
-    # ... riwayat percakapan dengan konten asisten sebelumnya ditambahkan
+    # ... riwayat percakapan dengan konten assistant sebelumnya ditambahkan
   tools:
     - type: code_execution_20250825
       name: code_execution
   YAML
-  done
   ```
 
   ```python Python
@@ -1936,12 +1923,12 @@ Skill mungkin melakukan operasi yang memerlukan beberapa turn. Tangani stop reas
 </CodeGroup>
 
 <Note>
-  Respons mungkin menyertakan stop reason `pause_turn`, yang menunjukkan bahwa API menjeda operasi Skill yang berjalan lama. Anda dapat memberikan respons tersebut apa adanya dalam permintaan berikutnya agar Claude melanjutkan turn-nya, atau memodifikasi konten jika Anda ingin menginterupsi percakapan dan memberikan panduan tambahan.
+  Respons mungkin menyertakan stop reason `pause_turn`, yang menunjukkan bahwa API menjeda operasi Skill yang berjalan lama. Anda dapat mengirimkan kembali respons tersebut apa adanya dalam request berikutnya agar Claude melanjutkan turn-nya, atau memodifikasi konten jika Anda ingin menginterupsi percakapan dan memberikan panduan tambahan.
 </Note>
 
 ### Menggunakan Beberapa Skill
 
-Gabungkan beberapa Skill dalam satu permintaan untuk menangani alur kerja yang kompleks:
+Gabungkan beberapa Skill dalam satu request untuk menangani alur kerja yang kompleks:
 
 <CodeGroup>
   ```bash cURL
@@ -2299,7 +2286,7 @@ Gabungkan beberapa Skill dalam satu permintaan untuk menangani alur kerja yang k
 
 ### Membuat Skill
 
-Bundle Skill adalah direktori yang berisi file `SKILL.md` di tingkat teratas dengan frontmatter YAML `name` dan `description`, ditambah skrip atau sumber daya pendukung apa pun. Lihat [Memulai dengan Agent Skills di API](/docs/id/agents-and-tools/agent-skills/quickstart) untuk membuatnya, dan daftar **Persyaratan** setelah contoh-contoh berikut untuk batasan lengkapnya.
+Bundle Skill adalah direktori yang berisi file `SKILL.md` di tingkat teratas dengan frontmatter YAML `name` dan `description`, ditambah skrip atau sumber daya pendukung lainnya. Lihat [Mulai dengan Agent Skills di API](/docs/id/agents-and-tools/agent-skills/quickstart) untuk membuatnya, dan daftar **Persyaratan** setelah contoh-contoh berikut untuk batasan lengkapnya.
 
 Unggah Skill kustom Anda agar tersedia di workspace Anda. Anda dapat mengunggah arsip zip atau objek file individual; SDK Python juga menyediakan helper `files_from_dir` yang menerima path direktori.
 
@@ -2571,11 +2558,11 @@ Unggah Skill kustom Anda agar tersedia di workspace Anda. Anda dapat mengunggah 
   * `name`: Maksimum 64 karakter, hanya huruf kecil/angka/tanda hubung, tanpa tag XML, tanpa kata yang dicadangkan ("anthropic", "claude")
   * `description`: Maksimum 1024 karakter, tidak boleh kosong, tanpa tag XML
 
-Untuk skema permintaan/respons lengkap, lihat [referensi API Create Skill](/docs/id/api/skills/create-skill).
+Untuk skema request/response lengkap, lihat [referensi API Create Skill](/docs/id/api/skills/create-skill).
 
 ### Menampilkan daftar Skill
 
-Ambil semua Skill yang tersedia untuk workspace Anda, termasuk Skill bawaan Anthropic dan Skill kustom Anda. Gunakan parameter `source` untuk memfilter berdasarkan jenis skill:
+Ambil semua Skill yang tersedia untuk workspace Anda, termasuk Skill bawaan Anthropic dan Skill kustom Anda. Gunakan parameter `source` untuk memfilter berdasarkan jenis Skill:
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -2854,15 +2841,15 @@ Untuk menghapus Skill, Anda harus terlebih dahulu menghapus semua versinya:
   ```
 
   ```bash CLI
-  # Langkah 1: Hapus semua versi
+  # Langkah 1: Daftarkan versi-versinya, lalu hapus masing-masing
   ant beta:skills:versions list \
     --skill-id skill_01AbCdEfGhIjKlMnOpQrStUv \
-    --transform version --raw-output \
-    | while read -r VERSION; do
-        ant beta:skills:versions delete \
-          --skill-id skill_01AbCdEfGhIjKlMnOpQrStUv \
-          --version "$VERSION" >/dev/null
-      done
+    --transform version --raw-output
+
+  # Ulangi untuk setiap id versi yang dikembalikan oleh daftar
+  ant beta:skills:versions delete \
+    --skill-id skill_01AbCdEfGhIjKlMnOpQrStUv \
+    --version 20260115.120000 >/dev/null
 
   # Langkah 2: Hapus Skill
   ant beta:skills delete \
@@ -3028,7 +3015,7 @@ Skill mendukung versioning untuk mengelola pembaruan dengan aman:
 **Skill Anthropic:**
 
 * Versi menggunakan format tanggal: `20251013`
-* Versi baru dirilis saat pembaruan dibuat
+* Versi baru dirilis seiring pembaruan dilakukan
 * Tentukan versi yang tepat untuk stabilitas
 
 **Skill Kustom:**
@@ -3549,7 +3536,7 @@ Lihat [referensi API Create Skill Version](/docs/id/api/skills/create-skill-vers
 
 ***
 
-## Cara Skill dimuat
+## Bagaimana Skill dimuat
 
 Ketika Anda menentukan Skill dalam container:
 
@@ -3558,7 +3545,7 @@ Ketika Anda menentukan Skill dalam container:
 3. **Penggunaan Otomatis:** Claude secara otomatis memuat dan menggunakan Skill ketika relevan dengan permintaan Anda
 4. **Komposisi:** Beberapa Skill dapat dikomposisikan bersama untuk alur kerja yang kompleks
 
-Arsitektur "progressive disclosure" (pengungkapan bertahap) memastikan penggunaan konteks yang efisien: Claude hanya memuat instruksi Skill lengkap saat diperlukan.
+Arsitektur "progressive disclosure" (pengungkapan bertahap) memastikan penggunaan konteks yang efisien: Claude hanya memuat instruksi Skill lengkap ketika diperlukan.
 
 ***
 
@@ -3568,20 +3555,20 @@ Arsitektur "progressive disclosure" (pengungkapan bertahap) memastikan penggunaa
 
 **Merek & Komunikasi**
 
-* Menerapkan pemformatan khusus perusahaan (warna, font, tata letak) pada dokumen
+* Menerapkan format spesifik perusahaan (warna, font, tata letak) ke dokumen
 * Menghasilkan komunikasi yang mengikuti template organisasi
 * Memastikan pedoman merek yang konsisten di semua output
 
 **Manajemen Proyek**
 
-* Menyusun catatan dengan format khusus perusahaan (OKR, log keputusan)
+* Menyusun catatan dengan format spesifik perusahaan (OKR, log keputusan)
 * Menghasilkan tugas yang mengikuti konvensi tim
 * Membuat rekap rapat dan pembaruan status yang terstandar
 
 **Operasi Bisnis**
 
 * Membuat laporan, proposal, dan analisis standar perusahaan
-* Menjalankan prosedur analitis khusus perusahaan
+* Menjalankan prosedur analitis spesifik perusahaan
 * Menghasilkan model keuangan yang mengikuti template organisasi
 
 ### Skill Personal
@@ -3589,7 +3576,7 @@ Arsitektur "progressive disclosure" (pengungkapan bertahap) memastikan penggunaa
 **Pembuatan Konten**
 
 * Template dokumen kustom
-* Pemformatan dan gaya khusus
+* Format dan gaya khusus
 * Pembuatan konten spesifik domain
 
 **Analisis Data**
@@ -3863,7 +3850,7 @@ Gabungkan Skill Excel dan Skill analisis DCF kustom:
           // Skill analisis DCF kustom (ID diperoleh dari respons create Skills API)
           String dcfSkillId = "skill_01AbCdEfGhIjKlMnOpQrStUv";
 
-          // Gunakan dengan Excel Skill untuk membuat model keuangan
+          // Gunakan dengan Skill Excel untuk membuat model keuangan
           MessageCreateParams params = MessageCreateParams.builder()
               .model("claude-opus-4-8")
               .maxTokens(4096L)
@@ -3953,11 +3940,11 @@ Gabungkan Skill Excel dan Skill analisis DCF kustom:
 
 ## Batasan dan kendala
 
-### Batasan permintaan
+### Batasan request
 
-* **Maksimum Skill per permintaan:** 8
+* **Maksimum Skill per request:** 8
 
-* **Ukuran maksimum unggahan Skill:** 30 MB (semua file digabungkan)
+* **Ukuran maksimum unggahan Skill:** 30 MB (gabungan semua file)
 
 * **Persyaratan frontmatter YAML:**
 
@@ -4026,7 +4013,7 @@ container = {
 
 ### Pertimbangan caching prompt
 
-Saat menggunakan caching prompt, perhatikan bahwa mengubah daftar Skill dalam container Anda akan membatalkan cache:
+Saat menggunakan caching prompt, perhatikan bahwa mengubah daftar Skill di container Anda akan membatalkan cache:
 
 <CodeGroup>
   ```bash cURL
@@ -4130,7 +4117,7 @@ Saat menggunakan caching prompt, perhatikan bahwa mengubah daftar Skill dalam co
       tools=[{"type": "code_execution_20250825", "name": "code_execution"}],
   )
 
-  # Menambah/menghapus Skill akan merusak cache
+  # Menambah/menghapus Skill merusak cache
   response2 = client.beta.messages.create(
       model="claude-opus-4-8",
       max_tokens=4096,
@@ -4449,7 +4436,7 @@ Saat menggunakan caching prompt, perhatikan bahwa mengubah daftar Skill dalam co
   ```
 </CodeGroup>
 
-Untuk performa caching terbaik, jaga agar daftar Skill Anda konsisten di seluruh permintaan.
+Untuk performa caching terbaik, jaga agar daftar Skill Anda konsisten di seluruh request.
 
 ### Penanganan error
 

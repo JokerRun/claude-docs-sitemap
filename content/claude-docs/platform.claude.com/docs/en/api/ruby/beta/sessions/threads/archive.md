@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/sessions/threads/archive
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: b42dcf42415586902c202d6b767ab680dc521b7daa1477930eef9d31d577aa2c
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 68069d5b6835572f14feeb11e1b1cfa31150942e2ddd235573c94ac6b834a5b6
 ---
 
 ## Archive Session Thread
@@ -121,11 +121,15 @@ Archive Session Thread
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-        - `BetaManagedAgentsModel = :"claude-fable-5" | :"claude-opus-4-8" | :"claude-opus-4-7" | 8 more`
+        - `BetaManagedAgentsModel = :"claude-sonnet-5" | :"claude-fable-5" | :"claude-opus-4-8" | 9 more`
 
           The model that will power your agent.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `:"claude-sonnet-5"`
+
+            High-performance model for coding and agents
 
           - `:"claude-fable-5"`
 

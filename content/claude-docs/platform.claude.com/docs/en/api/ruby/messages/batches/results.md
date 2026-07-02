@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/messages/batches/results
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: cea39855a21cc7af2f0c1ed7272d91247d21e3449802f14fd8adb90661fc82e8
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 993be8639af9aa25532e160fd17401786e1e3a1a22fbf40adb9b91da43dd392f
 ---
 
 ## Retrieve Message Batch results
@@ -730,11 +730,15 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-          - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 12 more`
+          - `Model = :"claude-sonnet-5" | :"claude-fable-5" | :"claude-mythos-5" | 13 more`
 
             The model that will complete your prompt.
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `:"claude-sonnet-5"`
+
+              High-performance model for coding and agents
 
             - `:"claude-fable-5"`
 
@@ -810,7 +814,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
           Structured information about a refusal.
 
-          - `category: :cyber | :bio | :frontier_llm | 2 more`
+          - `category: :cyber | :bio | :frontier_llm | :reasoning_extraction`
 
             The policy category that triggered a refusal.
 
@@ -821,8 +825,6 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
             - `:frontier_llm`
 
             - `:reasoning_extraction`
-
-            - `:military_weapons`
 
           - `explanation: String`
 

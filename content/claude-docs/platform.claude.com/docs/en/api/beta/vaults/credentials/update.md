@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/update
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: f10c45f555f344aabfd8bb24417eac2b39b132c68c1839aa5470eea900776218
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: fdf57ae79d4f4097395798cd797b63dfafe2a8768e29f5b4a406b180109cba00
 ---
 
 ## Update Credential
@@ -157,13 +157,25 @@ Update Credential
 
       Updated static bearer token value.
 
-  - `BetaManagedAgentsEnvironmentVariableUpdateParams object { type, networking, secret_value }`
+  - `BetaManagedAgentsEnvironmentVariableUpdateParams object { type, injection_location, networking, secret_value }`
 
     Parameters for updating an environment variable credential. `secret_name` is immutable.
 
     - `type: "environment_variable"`
 
       - `"environment_variable"`
+
+    - `injection_location: optional BetaManagedAgentsInjectionLocationUpdateParams`
+
+      Updated injection location.
+
+      - `body: optional boolean`
+
+        Substitute when the placeholder appears in the request body.
+
+      - `header: optional boolean`
+
+        Substitute when the placeholder appears in a request header value.
 
     - `networking: optional BetaManagedAgentsCredentialNetworkingParams`
 
@@ -295,9 +307,21 @@ Update Credential
 
         - `"static_bearer"`
 
-    - `BetaManagedAgentsEnvironmentVariableAuthResponse object { networking, secret_name, type }`
+    - `BetaManagedAgentsEnvironmentVariableAuthResponse object { injection_location, networking, secret_name, type }`
 
       Environment variable credential details. The secret value is never returned.
+
+      - `injection_location: BetaManagedAgentsInjectionLocationResponse`
+
+        Where in the outbound request the secret value is substituted.
+
+        - `body: boolean`
+
+          Whether the placeholder is substituted in the request body.
+
+        - `header: boolean`
+
+          Whether the placeholder is substituted in request header values.
 
       - `networking: BetaManagedAgentsUnrestrictedCredentialNetworkingResponse or BetaManagedAgentsLimitedCredentialNetworkingResponse`
 

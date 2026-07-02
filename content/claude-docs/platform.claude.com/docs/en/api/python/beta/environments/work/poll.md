@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/environments/work/poll
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 842c4c79009397fed5742e1543b9899228c07e37fd11f98017e5f5801114979f
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 04058a66c954313ae873053013ddae30774ab59f5100c7335f1d647eed264036
 ---
 
 ## Poll for Work
@@ -143,6 +143,10 @@ Long poll for work items in the queue.
 
     User-provided metadata key-value pairs associated with this work item
 
+  - `secret: Optional[str]`
+
+    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
+
   - `started_at: Optional[str]`
 
     RFC 3339 timestamp when work execution started
@@ -206,6 +210,7 @@ print(beta_self_hosted_work.id)
   "metadata": {
     "foo": "string"
   },
+  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",

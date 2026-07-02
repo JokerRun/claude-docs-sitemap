@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/rate_limits/list
-fetched_at: 2026-06-12T03:17:40.104094Z
-sha256: a058325880ce7c5aa484fc540d7dd55d2721a9ebe57c9923ce591d69be46da0b
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 6b60869ec81b34ed66780912805fc3bfa35ec851733c75391b2e37ced105eb94
 ---
 
 ## List Workspace Rate Limits
@@ -23,19 +23,19 @@ are not listed; use `GET /v1/organizations/rate_limits` to see those.
 
 ### Query Parameters
 
-- `group_type: optional "model_group" or "batch" or "token_count" or 3 more`
+- `group_type: optional "batch" or "files" or "model_group" or 3 more`
 
   Filter by group type.
 
-  - `"model_group"`
-
   - `"batch"`
-
-  - `"token_count"`
 
   - `"files"`
 
+  - `"model_group"`
+
   - `"skills"`
+
+  - `"token_count"`
 
   - `"web_search"`
 
@@ -49,19 +49,19 @@ are not listed; use `GET /v1/organizations/rate_limits` to see those.
 
   Rate-limit entries for the workspace, one per group that has at least one override.
 
-  - `group_type: "model_group" or "batch" or "token_count" or 3 more`
+  - `group_type: "batch" or "files" or "model_group" or 3 more`
 
     The kind of rate-limit group this entry represents. `model_group` entries apply to a family of models (listed in `models`); other values apply to an API-surface category and have `models` set to `null`.
 
-    - `"model_group"`
-
     - `"batch"`
-
-    - `"token_count"`
 
     - `"files"`
 
+    - `"model_group"`
+
     - `"skills"`
+
+    - `"token_count"`
 
     - `"web_search"`
 
@@ -109,7 +109,7 @@ curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/rate_li
 {
   "data": [
     {
-      "group_type": "model_group",
+      "group_type": "batch",
       "limits": [
         {
           "org_limit": 0,

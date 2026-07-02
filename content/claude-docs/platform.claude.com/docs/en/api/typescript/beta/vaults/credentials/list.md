@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/vaults/credentials/list
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 7be7d98d3a386447e152a5c5e20cd1166fb9f42954bb381eaee80008ca761e1d
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 7819f11d1ad611c2f57b990f7b2fed7ff0331ed378d2094c8ac0fe9584b13a91
 ---
 
 ## List Credentials
@@ -192,6 +192,18 @@ List Credentials
     - `BetaManagedAgentsEnvironmentVariableAuthResponse`
 
       Environment variable credential details. The secret value is never returned.
+
+      - `injection_location: BetaManagedAgentsInjectionLocationResponse`
+
+        Where in the outbound request the secret value is substituted.
+
+        - `body: boolean`
+
+          Whether the placeholder is substituted in the request body.
+
+        - `header: boolean`
+
+          Whether the placeholder is substituted in request header values.
 
       - `networking: BetaManagedAgentsUnrestrictedCredentialNetworkingResponse | BetaManagedAgentsLimitedCredentialNetworkingResponse`
 

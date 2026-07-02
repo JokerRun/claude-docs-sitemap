@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/sessions/threads/retrieve
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 8a8033fa665aa0fdff0198529b31a51698f2e6f0ebf5cb8a7e7c6ea67eb0936a
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: c1f4c84e48e76971d368f2184abf5d924cdbacf7f3a31042e9b92ea84b079d53
 ---
 
 ## Get Session Thread
@@ -130,6 +130,10 @@ Get Session Thread
           The model that will power your agent.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `const BetaManagedAgentsModelClaudeSonnet5 BetaManagedAgentsModel = "claude-sonnet-5"`
+
+            High-performance model for coding and agents
 
           - `const BetaManagedAgentsModelClaudeFable5 BetaManagedAgentsModel = "claude-fable-5"`
 

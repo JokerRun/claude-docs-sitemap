@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/spend_limits/increase_requests/retrieve
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 70018720861d788194f028e09ad1c94786b3177e4d6e72c70e7cfb3e59bb5886
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 536895e1fbb112d0e64c158d2e09bc360b53480eeb974f61dba2cebbeb9356e3
 ---
 
 ## Get Spend Limit Increase Request
@@ -46,11 +46,11 @@ requester at the request's period.
 
   - `created_at: string`
 
-  - `period: "monthly" or "daily" or "weekly"`
-
-    - `"monthly"`
+  - `period: "daily" or "monthly" or "weekly"`
 
     - `"daily"`
+
+    - `"monthly"`
 
     - `"weekly"`
 
@@ -116,11 +116,11 @@ requester at the request's period.
 
     - `currency: string`
 
-    - `period: "monthly" or "daily" or "weekly"`
-
-      - `"monthly"`
+    - `period: "daily" or "monthly" or "weekly"`
 
       - `"daily"`
+
+      - `"monthly"`
 
       - `"weekly"`
 
@@ -176,13 +176,13 @@ requester at the request's period.
 
     - `spend_limit_id: string`
 
-  - `status: "pending" or "approved" or "denied"`
-
-    - `"pending"`
+  - `status: "approved" or "denied" or "pending"`
 
     - `"approved"`
 
     - `"denied"`
+
+    - `"pending"`
 
   - `type: "spend_limit_increase_request"`
 
@@ -240,7 +240,7 @@ curl https://api.anthropic.com/v1/organizations/spend_limit_increase_requests/$S
     },
     "spend_limit_id": "spend_limit_id"
   },
-  "status": "pending",
+  "status": "approved",
   "type": "spend_limit_increase_request"
 }
 ```

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/agents
-fetched_at: 2026-06-26T03:16:19.812719Z
-sha256: b1a37711947c95e9a572553c9cc08e0aeb7c6cc20ec50668f2504807e8a8bb54
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 6d59d8f9e76544d8956fc403830923634ed0979ae61d41e295f9198d97d737ad
 ---
 
 # Agents
@@ -88,6 +88,10 @@ Create Agent
       The model that will power your agent.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `CLAUDE_SONNET_5("claude-sonnet-5")`
+
+        High-performance model for coding and agents
 
       - `CLAUDE_FABLE_5("claude-fable-5")`
 
@@ -426,6 +430,10 @@ Create Agent
       The model that will power your agent.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `CLAUDE_SONNET_5("claude-sonnet-5")`
+
+        High-performance model for coding and agents
 
       - `CLAUDE_FABLE_5("claude-fable-5")`
 
@@ -909,6 +917,10 @@ List Agents
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+      - `CLAUDE_SONNET_5("claude-sonnet-5")`
+
+        High-performance model for coding and agents
+
       - `CLAUDE_FABLE_5("claude-fable-5")`
 
         Next generation of intelligence for the hardest knowledge work and coding problems
@@ -1377,6 +1389,10 @@ Get Agent
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+      - `CLAUDE_SONNET_5("claude-sonnet-5")`
+
+        High-performance model for coding and agents
+
       - `CLAUDE_FABLE_5("claude-fable-5")`
 
         Next generation of intelligence for the hardest knowledge work and coding problems
@@ -1834,6 +1850,10 @@ Update Agent
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+      - `CLAUDE_SONNET_5("claude-sonnet-5")`
+
+        High-performance model for coding and agents
+
       - `CLAUDE_FABLE_5("claude-fable-5")`
 
         Next generation of intelligence for the hardest knowledge work and coding problems
@@ -2147,6 +2167,10 @@ Update Agent
       The model that will power your agent.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `CLAUDE_SONNET_5("claude-sonnet-5")`
+
+        High-performance model for coding and agents
 
       - `CLAUDE_FABLE_5("claude-fable-5")`
 
@@ -2611,6 +2635,10 @@ Archive Agent
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+      - `CLAUDE_SONNET_5("claude-sonnet-5")`
+
+        High-performance model for coding and agents
+
       - `CLAUDE_FABLE_5("claude-fable-5")`
 
         Next generation of intelligence for the hardest knowledge work and coding problems
@@ -2997,6 +3025,10 @@ public final class Main {
       The model that will power your agent.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `CLAUDE_SONNET_5("claude-sonnet-5")`
+
+        High-performance model for coding and agents
 
       - `CLAUDE_FABLE_5("claude-fable-5")`
 
@@ -4102,6 +4134,10 @@ public final class Main {
 
   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+  - `CLAUDE_SONNET_5("claude-sonnet-5")`
+
+    High-performance model for coding and agents
+
   - `CLAUDE_FABLE_5("claude-fable-5")`
 
     Next generation of intelligence for the hardest knowledge work and coding problems
@@ -4157,6 +4193,10 @@ public final class Main {
     The model that will power your agent.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+    - `CLAUDE_SONNET_5("claude-sonnet-5")`
+
+      High-performance model for coding and agents
 
     - `CLAUDE_FABLE_5("claude-fable-5")`
 
@@ -4221,6 +4261,10 @@ public final class Main {
     The model that will power your agent.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+    - `CLAUDE_SONNET_5("claude-sonnet-5")`
+
+      High-performance model for coding and agents
 
     - `CLAUDE_FABLE_5("claude-fable-5")`
 
@@ -4375,6 +4419,10 @@ public final class Main {
       The model that will power your agent.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `CLAUDE_SONNET_5("claude-sonnet-5")`
+
+        High-performance model for coding and agents
 
       - `CLAUDE_FABLE_5("claude-fable-5")`
 
@@ -4781,6 +4829,10 @@ List Agent Versions
       The model that will power your agent.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `CLAUDE_SONNET_5("claude-sonnet-5")`
+
+        High-performance model for coding and agents
 
       - `CLAUDE_FABLE_5("claude-fable-5")`
 

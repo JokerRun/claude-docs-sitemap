@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/vaults/credentials/list
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: eec2c11e40377e4f691bbd50fda3d149fedc145806247c302f884298aecd024b
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: e86cb712cf758a4419466a43a4954aa73cebf673410e4d05290735155ed14189
 ---
 
 ## List Credentials
@@ -190,6 +190,18 @@ List Credentials
     - `class BetaManagedAgentsEnvironmentVariableAuthResponse: …`
 
       Environment variable credential details. The secret value is never returned.
+
+      - `injection_location: BetaManagedAgentsInjectionLocationResponse`
+
+        Where in the outbound request the secret value is substituted.
+
+        - `body: bool`
+
+          Whether the placeholder is substituted in the request body.
+
+        - `header: bool`
+
+          Whether the placeholder is substituted in request header values.
 
       - `networking: Networking`
 

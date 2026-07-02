@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/get-started
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 9e98e6b5d0f3ca2dc768ae5b9dafd2ab34375200df8bffea85623e6d814a9494
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: a74363ef8247a9056f495b7d4a4c39f8a016efbc63e1ea205ce6016d3878b9ca
 ---
 
 # Memulai dengan Claude
@@ -13,8 +13,8 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
 
 ## Prasyarat
 
-* Akun [Console](/) Anthropic
-* [Kunci API](/settings/keys)
+* Sebuah [akun Console](/) Anthropic
+* Sebuah [kunci API](/settings/keys)
 
 ## Memanggil API
 
@@ -49,7 +49,7 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
           }'
         ```
 
-        Claude mengembalikan respons JSON yang berisi pesan asisten:
+        Claude mengembalikan respons JSON yang berisi pesan dari asisten:
 
         ```json Output
         {
@@ -77,7 +77,7 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
   <Tab title="CLI">
     <Steps>
       <Step title="Instal CLI">
-        Instal Anthropic CLI dengan Homebrew:
+        Instal CLI Anthropic dengan Homebrew:
 
         ```bash
         brew install anthropics/tap/ant
@@ -99,7 +99,7 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
         ant auth status
         ```
 
-        Pada host jarak jauh tanpa browser, berikan `--no-browser` untuk mendapatkan URL yang dapat Anda buka di perangkat lain, lalu tempelkan kode yang dikembalikan ke terminal. Jika `ANTHROPIC_API_KEY` diatur di lingkungan Anda, variabel tersebut akan diutamakan daripada kredensial login. Untuk lingkungan non-interaktif seperti CI, lihat [opsi autentikasi CLI](/docs/id/cli-sdks-libraries/cli/authentication).
+        Pada host jarak jauh tanpa browser, tambahkan `--no-browser` untuk mendapatkan URL yang dapat Anda buka di perangkat lain, lalu tempelkan kode yang dikembalikan ke terminal. Jika `ANTHROPIC_API_KEY` diatur di lingkungan Anda, variabel tersebut akan diutamakan daripada kredensial login. Untuk lingkungan non-interaktif seperti CI, lihat [opsi autentikasi CLI](/docs/id/cli-sdks-libraries/cli/authentication).
       </Step>
 
       <Step title="Lakukan panggilan API pertama Anda">
@@ -327,7 +327,7 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
       </Step>
 
       <Step title="Buat proyek dan instal SDK">
-        Buat modul baru dan tambahkan Anthropic SDK:
+        Buat modul baru dan tambahkan SDK Anthropic:
 
         ```bash
         mkdir claude-quickstart && cd claude-quickstart
@@ -420,7 +420,7 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
             }
 
             dependencies {
-                implementation("com.anthropic:anthropic-java:2.40.0")
+                implementation("com.anthropic:anthropic-java:2.47.0")
             }
 
             application {
@@ -446,7 +446,7 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
                 <dependency>
                   <groupId>com.anthropic</groupId>
                   <artifactId>anthropic-java</artifactId>
-                  <version>2.40.0</version>
+                  <version>2.47.0</version>
                 </dependency>
               </dependencies>
             </project>

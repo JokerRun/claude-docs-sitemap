@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/vaults/credentials/archive
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: cde2a30b6019d390e20e3a3f616aa078222d093861a1d0508d142b0258ea3668
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: f30b089b2e1e64442e9331a6096983025878b94d40ccdbbd26bedbe2a0d761a5
 ---
 
 ## Archive Credential
@@ -180,6 +180,18 @@ Archive Credential
     - `class BetaManagedAgentsEnvironmentVariableAuthResponse`
 
       Environment variable credential details. The secret value is never returned.
+
+      - `injection_location: BetaManagedAgentsInjectionLocationResponse`
+
+        Where in the outbound request the secret value is substituted.
+
+        - `body: bool`
+
+          Whether the placeholder is substituted in the request body.
+
+        - `header: bool`
+
+          Whether the placeholder is substituted in request header values.
 
       - `networking: BetaManagedAgentsUnrestrictedCredentialNetworkingResponse | BetaManagedAgentsLimitedCredentialNetworkingResponse`
 

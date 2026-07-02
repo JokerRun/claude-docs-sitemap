@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/quickstart
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 33f423a856592b203522ea8361c2d91c5ed5c202b8301c645856e99e4ab2bd05
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: d73b5c150a1ab3371d5cf7ebacf614f35899f7cd006b84d2d2de76d023c1bf0d
 ---
 
 # Get started with Claude Managed Agents
@@ -44,7 +44,7 @@ This guide walks you through creating an agent, setting up an environment, start
     For Linux environments, download the release binary directly.
 
     ```bash
-    VERSION=1.12.0
+    VERSION=1.14.0
     OS=$(uname -s | tr '[:upper:]' '[:lower:]')
     case $(uname -m) in
       x86_64) ARCH=amd64 ;;
@@ -95,7 +95,7 @@ ant --version
 
   <Tab title="Java">
     ```groovy Gradle
-    implementation("com.anthropic:anthropic-java:2.40.0")
+    implementation("com.anthropic:anthropic-java:2.47.0")
     ```
   </Tab>
 
@@ -892,5 +892,9 @@ When you send a user event, Claude Managed Agents:
 
   <Card title="Session event stream" icon="lightning" href="/docs/en/managed-agents/events-and-streaming">
     Handle events and steer the agent mid-execution
+  </Card>
+
+  <Card title="Scheduled deployments" icon="arrows-clockwise" href="/docs/en/managed-agents/scheduled-deployments">
+    Run your agent on a recurring cron schedule
   </Card>
 </CardGroup>

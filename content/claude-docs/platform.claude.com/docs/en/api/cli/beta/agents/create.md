@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/agents/create
-fetched_at: 2026-06-26T03:16:19.812719Z
-sha256: b2c1cdb8d87385eb17b709487283c42f9e570d2a56cfad0df628754a6d6d8406
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 4cee3dd9803c60c242402364c8536e58ab25d7552eacaa7ba07243faf50c10b1
 ---
 
 ## Create Agent
@@ -89,11 +89,15 @@ Create Agent
 
     Model identifier and configuration.
 
-    - `id: "claude-fable-5" or "claude-opus-4-8" or "claude-opus-4-7" or 8 more or string`
+    - `id: "claude-sonnet-5" or "claude-fable-5" or "claude-opus-4-8" or 9 more or string`
 
       The model that will power your agent.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `"claude-sonnet-5"`
+
+        High-performance model for coding and agents
 
       - `"claude-fable-5"`
 

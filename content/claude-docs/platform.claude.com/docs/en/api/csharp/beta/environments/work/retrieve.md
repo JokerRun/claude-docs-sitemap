@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/environments/work/retrieve
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 658806c34eaedef6c87c43ea8bef18b587d43ade8249121fdde1ccabf945ea77
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: b6dd9513510878539ca69e2e439280a283940bd55f7622179895a4107baac382
 ---
 
 ## Get Work Item
@@ -133,6 +133,10 @@ Retrieve detailed information about a specific work item.
 
     User-provided metadata key-value pairs associated with this work item
 
+  - `required string? Secret`
+
+    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
+
   - `required string? StartedAt`
 
     RFC 3339 timestamp when work execution started
@@ -193,6 +197,7 @@ Console.WriteLine(betaSelfHostedWork);
   "metadata": {
     "foo": "string"
   },
+  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",

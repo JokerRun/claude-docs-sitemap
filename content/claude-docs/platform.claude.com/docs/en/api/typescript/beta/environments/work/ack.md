@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/environments/work/ack
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 405224fc2e9f44529f705819c68bc836392e408a827bbce160447441b8a88eb1
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 83f3ebce7b02b016a77e1bd02fe8c4b990302f167db8a2a882948c72a9d11e9e
 ---
 
 ## Acknowledge Work
@@ -137,6 +137,10 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
 
     User-provided metadata key-value pairs associated with this work item
 
+  - `secret: string | null`
+
+    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
+
   - `started_at: string | null`
 
     RFC 3339 timestamp when work execution started
@@ -201,6 +205,7 @@ console.log(betaSelfHostedWork.id);
   "metadata": {
     "foo": "string"
   },
+  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",

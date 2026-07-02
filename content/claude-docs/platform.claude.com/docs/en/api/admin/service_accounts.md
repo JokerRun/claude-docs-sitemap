@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/service_accounts
-fetched_at: 2026-06-17T03:17:04.158711Z
-sha256: a5a3a6de2a876482fe101ffe97cb0e28f4dfb72a5e841e441e0a09095f1fadd8
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 2be6e6bd73bc4fc4c56d3e78dd93cfe097b9d6425669fc2bd996800e2ef60d15
 ---
 
 # Service Accounts
@@ -40,13 +40,13 @@ workload may only create `developer`-role service accounts.
 
   Optional free-text description.
 
-- `organization_role: optional "developer" or "admin"`
+- `organization_role: optional "admin" or "developer"`
 
   Org-level role. Defaults to `developer`.
 
-  - `"developer"`
-
   - `"admin"`
+
+  - `"developer"`
 
 ### Returns
 
@@ -85,13 +85,13 @@ workload may only create `developer`-role service accounts.
 
     Admin-chosen slug identifier.
 
-  - `organization_role: "developer" or "admin"`
+  - `organization_role: "admin" or "developer"`
 
     Org-level role. A federation rule may only be created or retargeted to grant `org:admin` scope when this is `admin`. A rule granting `org:admin` whose target is later demoted to `developer` is rejected at token exchange. Rules granting `org:admin` are managed in the Console.
 
-    - `"developer"`
-
     - `"admin"`
+
+    - `"developer"`
 
   - `type: "service_account"`
 
@@ -128,7 +128,7 @@ curl https://api.anthropic.com/v1/organizations/service_accounts \
   "created_by_actor_id": "created_by_actor_id",
   "description": "description",
   "name": "ci-deploy-bot",
-  "organization_role": "developer",
+  "organization_role": "admin",
   "type": "service_account",
   "updated_at": "2024-10-30T23:58:27.427722Z",
   "updated_by_actor_id": "updated_by_actor_id"
@@ -192,13 +192,13 @@ Retrieve a service account by its ID (`svac_...`).
 
     Admin-chosen slug identifier.
 
-  - `organization_role: "developer" or "admin"`
+  - `organization_role: "admin" or "developer"`
 
     Org-level role. A federation rule may only be created or retargeted to grant `org:admin` scope when this is `admin`. A rule granting `org:admin` whose target is later demoted to `developer` is rejected at token exchange. Rules granting `org:admin` are managed in the Console.
 
-    - `"developer"`
-
     - `"admin"`
+
+    - `"developer"`
 
   - `type: "service_account"`
 
@@ -231,7 +231,7 @@ curl https://api.anthropic.com/v1/organizations/service_accounts/$SERVICE_ACCOUN
   "created_by_actor_id": "created_by_actor_id",
   "description": "description",
   "name": "ci-deploy-bot",
-  "organization_role": "developer",
+  "organization_role": "admin",
   "type": "service_account",
   "updated_at": "2024-10-30T23:58:27.427722Z",
   "updated_by_actor_id": "updated_by_actor_id"
@@ -302,13 +302,13 @@ archived service accounts.
 
     Admin-chosen slug identifier.
 
-  - `organization_role: "developer" or "admin"`
+  - `organization_role: "admin" or "developer"`
 
     Org-level role. A federation rule may only be created or retargeted to grant `org:admin` scope when this is `admin`. A rule granting `org:admin` whose target is later demoted to `developer` is rejected at token exchange. Rules granting `org:admin` are managed in the Console.
 
-    - `"developer"`
-
     - `"admin"`
+
+    - `"developer"`
 
   - `type: "service_account"`
 
@@ -347,7 +347,7 @@ curl https://api.anthropic.com/v1/organizations/service_accounts \
       "created_by_actor_id": "created_by_actor_id",
       "description": "description",
       "name": "ci-deploy-bot",
-      "organization_role": "developer",
+      "organization_role": "admin",
       "type": "service_account",
       "updated_at": "2024-10-30T23:58:27.427722Z",
       "updated_by_actor_id": "updated_by_actor_id"
@@ -389,13 +389,13 @@ API keys are not accepted.
 
   Replaces the description. Omit to leave unchanged; send `null` to clear (the field is stored as an empty string).
 
-- `organization_role: optional "developer" or "admin"`
+- `organization_role: optional "admin" or "developer"`
 
   Replaces the org-level role. Omit or send `null` to leave unchanged.
 
-  - `"developer"`
-
   - `"admin"`
+
+  - `"developer"`
 
 ### Returns
 
@@ -434,13 +434,13 @@ API keys are not accepted.
 
     Admin-chosen slug identifier.
 
-  - `organization_role: "developer" or "admin"`
+  - `organization_role: "admin" or "developer"`
 
     Org-level role. A federation rule may only be created or retargeted to grant `org:admin` scope when this is `admin`. A rule granting `org:admin` whose target is later demoted to `developer` is rejected at token exchange. Rules granting `org:admin` are managed in the Console.
 
-    - `"developer"`
-
     - `"admin"`
+
+    - `"developer"`
 
   - `type: "service_account"`
 
@@ -475,7 +475,7 @@ curl https://api.anthropic.com/v1/organizations/service_accounts/$SERVICE_ACCOUN
   "created_by_actor_id": "created_by_actor_id",
   "description": "description",
   "name": "ci-deploy-bot",
-  "organization_role": "developer",
+  "organization_role": "admin",
   "type": "service_account",
   "updated_at": "2024-10-30T23:58:27.427722Z",
   "updated_by_actor_id": "updated_by_actor_id"
@@ -547,13 +547,13 @@ accepted.
 
     Admin-chosen slug identifier.
 
-  - `organization_role: "developer" or "admin"`
+  - `organization_role: "admin" or "developer"`
 
     Org-level role. A federation rule may only be created or retargeted to grant `org:admin` scope when this is `admin`. A rule granting `org:admin` whose target is later demoted to `developer` is rejected at token exchange. Rules granting `org:admin` are managed in the Console.
 
-    - `"developer"`
-
     - `"admin"`
+
+    - `"developer"`
 
   - `type: "service_account"`
 
@@ -587,7 +587,7 @@ curl https://api.anthropic.com/v1/organizations/service_accounts/$SERVICE_ACCOUN
   "created_by_actor_id": "created_by_actor_id",
   "description": "description",
   "name": "ci-deploy-bot",
-  "organization_role": "developer",
+  "organization_role": "admin",
   "type": "service_account",
   "updated_at": "2024-10-30T23:58:27.427722Z",
   "updated_by_actor_id": "updated_by_actor_id"
@@ -633,13 +633,13 @@ curl https://api.anthropic.com/v1/organizations/service_accounts/$SERVICE_ACCOUN
 
     Admin-chosen slug identifier.
 
-  - `organization_role: "developer" or "admin"`
+  - `organization_role: "admin" or "developer"`
 
     Org-level role. A federation rule may only be created or retargeted to grant `org:admin` scope when this is `admin`. A rule granting `org:admin` whose target is later demoted to `developer` is rejected at token exchange. Rules granting `org:admin` are managed in the Console.
 
-    - `"developer"`
-
     - `"admin"`
+
+    - `"developer"`
 
   - `type: "service_account"`
 
@@ -689,17 +689,17 @@ are not accepted.
 
   Tagged workspace ID to add the service account to.
 
-- `workspace_role: "workspace_user" or "workspace_developer" or "workspace_restricted_developer" or "workspace_admin"`
+- `workspace_role: "workspace_admin" or "workspace_developer" or "workspace_restricted_developer" or "workspace_user"`
 
   Role to assign to the service account in this workspace.
 
-  - `"workspace_user"`
+  - `"workspace_admin"`
 
   - `"workspace_developer"`
 
   - `"workspace_restricted_developer"`
 
-  - `"workspace_admin"`
+  - `"workspace_user"`
 
 ### Returns
 
@@ -723,19 +723,19 @@ are not accepted.
 
   Tagged workspace ID (`wrkspc_...`).
 
-- `workspace_role: "workspace_user" or "workspace_developer" or "workspace_restricted_developer" or 2 more`
+- `workspace_role: "workspace_admin" or "workspace_billing" or "workspace_developer" or 2 more`
 
   Role of the service account in this workspace. Service accounts cannot hold the `workspace_billing` role.
 
-  - `"workspace_user"`
+  - `"workspace_admin"`
+
+  - `"workspace_billing"`
 
   - `"workspace_developer"`
 
   - `"workspace_restricted_developer"`
 
-  - `"workspace_admin"`
-
-  - `"workspace_billing"`
+  - `"workspace_user"`
 
 ### Example
 
@@ -746,7 +746,7 @@ curl https://api.anthropic.com/v1/organizations/service_accounts/$SERVICE_ACCOUN
     -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN" \
     -d '{
           "workspace_id": "workspace_id",
-          "workspace_role": "workspace_user"
+          "workspace_role": "workspace_admin"
         }'
 ```
 
@@ -759,7 +759,7 @@ curl https://api.anthropic.com/v1/organizations/service_accounts/$SERVICE_ACCOUN
   "service_account_id": "service_account_id",
   "type": "service_account_workspace_member",
   "workspace_id": "workspace_id",
-  "workspace_role": "workspace_user"
+  "workspace_role": "workspace_admin"
 }
 ```
 
@@ -827,19 +827,19 @@ empty list.
 
     Tagged workspace ID (`wrkspc_...`).
 
-  - `workspace_role: "workspace_user" or "workspace_developer" or "workspace_restricted_developer" or 2 more`
+  - `workspace_role: "workspace_admin" or "workspace_billing" or "workspace_developer" or 2 more`
 
     Role of the service account in this workspace. Service accounts cannot hold the `workspace_billing` role.
 
-    - `"workspace_user"`
+    - `"workspace_admin"`
+
+    - `"workspace_billing"`
 
     - `"workspace_developer"`
 
     - `"workspace_restricted_developer"`
 
-    - `"workspace_admin"`
-
-    - `"workspace_billing"`
+    - `"workspace_user"`
 
 - `next_page: string`
 
@@ -864,7 +864,7 @@ curl https://api.anthropic.com/v1/organizations/service_accounts/$SERVICE_ACCOUN
       "service_account_id": "service_account_id",
       "type": "service_account_workspace_member",
       "workspace_id": "workspace_id",
-      "workspace_role": "workspace_user"
+      "workspace_role": "workspace_admin"
     }
   ],
   "next_page": "next_page"
@@ -963,19 +963,19 @@ curl https://api.anthropic.com/v1/organizations/service_accounts/$SERVICE_ACCOUN
 
     Tagged workspace ID (`wrkspc_...`).
 
-  - `workspace_role: "workspace_user" or "workspace_developer" or "workspace_restricted_developer" or 2 more`
+  - `workspace_role: "workspace_admin" or "workspace_billing" or "workspace_developer" or 2 more`
 
     Role of the service account in this workspace. Service accounts cannot hold the `workspace_billing` role.
 
-    - `"workspace_user"`
+    - `"workspace_admin"`
+
+    - `"workspace_billing"`
 
     - `"workspace_developer"`
 
     - `"workspace_restricted_developer"`
 
-    - `"workspace_admin"`
-
-    - `"workspace_billing"`
+    - `"workspace_user"`
 
 ### Workspace List Response
 
@@ -1001,19 +1001,19 @@ curl https://api.anthropic.com/v1/organizations/service_accounts/$SERVICE_ACCOUN
 
     Tagged workspace ID (`wrkspc_...`).
 
-  - `workspace_role: "workspace_user" or "workspace_developer" or "workspace_restricted_developer" or 2 more`
+  - `workspace_role: "workspace_admin" or "workspace_billing" or "workspace_developer" or 2 more`
 
     Role of the service account in this workspace. Service accounts cannot hold the `workspace_billing` role.
 
-    - `"workspace_user"`
+    - `"workspace_admin"`
+
+    - `"workspace_billing"`
 
     - `"workspace_developer"`
 
     - `"workspace_restricted_developer"`
 
-    - `"workspace_admin"`
-
-    - `"workspace_billing"`
+    - `"workspace_user"`
 
 ### Workspace Delete Response
 

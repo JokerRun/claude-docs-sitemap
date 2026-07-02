@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/agents/update
-fetched_at: 2026-06-26T03:16:19.812719Z
-sha256: 655842152737aac844dd5f0cdedf496c0a866787947a1c15ed2ebc7c450c7c9a
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: da931471aa90bcd5c2eef5a61dc63f411cf68fb9b686ea6333613b5826c98999
 ---
 
 ## Update Agent
@@ -59,6 +59,10 @@ Update Agent
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+      - `"claude-sonnet-5"ClaudeSonnet5`
+
+        High-performance model for coding and agents
+
       - `"claude-fable-5"ClaudeFable5`
 
         Next generation of intelligence for the hardest knowledge work and coding problems
@@ -112,6 +116,10 @@ Update Agent
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-sonnet-5"ClaudeSonnet5`
+
+          High-performance model for coding and agents
 
         - `"claude-fable-5"ClaudeFable5`
 
@@ -474,6 +482,10 @@ Update Agent
       The model that will power your agent.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `"claude-sonnet-5"ClaudeSonnet5`
+
+        High-performance model for coding and agents
 
       - `"claude-fable-5"ClaudeFable5`
 

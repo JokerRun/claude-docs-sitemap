@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/messages
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 6e0c0e293ae810880ef207181794b3b9967d27e73f43249e37319cf930af2ea7
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 97ee6c7e65e0167dcb601506bff3f544222e9523c9678be44f074510dbf42b20
 ---
 
 # Messages
@@ -82,7 +82,7 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
   There is a limit of 100,000 messages in a single request.
 
-- `--model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+- `--model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
   Body param: The model that will complete your prompt.
 
@@ -1033,11 +1033,15 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
         The model whose output ends at this point — the model that declined at this hop. When the declining hop is the requested model, its `model` echoes the top-level `model` string the caller sent (alias or canonical); when the declining hop is a fallback model, its `model` is that model's canonical id.
 
-        - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+        - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
           The model that will complete your prompt.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `"claude-sonnet-5"`
+
+            High-performance model for coding and agents
 
           - `"claude-fable-5"`
 
@@ -1103,7 +1107,7 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
         The fallback model producing the content that follows this block. Its `model` is always the canonical id.
 
-        - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+        - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
           The model that will complete your prompt.
 
@@ -1113,7 +1117,7 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
         What caused the `from` model to hand over at this hop.
 
-        - `category: "cyber" or "bio" or "frontier_llm" or 2 more`
+        - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
 
           The policy category that triggered a refusal.
 
@@ -1124,8 +1128,6 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
           - `"frontier_llm"`
 
           - `"reasoning_extraction"`
-
-          - `"military_weapons"`
 
         - `type: "refusal"`
 
@@ -1218,11 +1220,15 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
         - `type: "unavailable"`
 
-  - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+  - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+    - `"claude-sonnet-5"`
+
+      High-performance model for coding and agents
 
     - `"claude-fable-5"`
 
@@ -1294,7 +1300,7 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
     Structured information about a refusal.
 
-    - `category: "cyber" or "bio" or "frontier_llm" or 2 more`
+    - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
 
       The policy category that triggered a refusal.
 
@@ -1305,8 +1311,6 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
       - `"frontier_llm"`
 
       - `"reasoning_extraction"`
-
-      - `"military_weapons"`
 
     - `explanation: string`
 
@@ -1486,11 +1490,15 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
           The number of input tokens which were used.
 
-        - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+        - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
           The model that will complete your prompt.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `"claude-sonnet-5"`
+
+            High-performance model for coding and agents
 
           - `"claude-fable-5"`
 
@@ -1624,11 +1632,15 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
           The number of input tokens which were used.
 
-        - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+        - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
           The model that will complete your prompt.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `"claude-sonnet-5"`
+
+            High-performance model for coding and agents
 
           - `"claude-fable-5"`
 
@@ -1731,11 +1743,15 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
           The number of input tokens which were used.
 
-        - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+        - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
           The model that will complete your prompt.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `"claude-sonnet-5"`
+
+            High-performance model for coding and agents
 
           - `"claude-fable-5"`
 
@@ -1948,7 +1964,7 @@ ant beta:messages create \
         "cache_creation_input_tokens": 0,
         "cache_read_input_tokens": 0,
         "input_tokens": 0,
-        "model": "claude-fable-5",
+        "model": "claude-sonnet-5",
         "output_tokens": 0,
         "type": "message"
       }
@@ -2032,7 +2048,7 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
 
   There is a limit of 100,000 messages in a single request.
 
-- `--model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+- `--model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
   Body param: The model that will complete your prompt.
 
@@ -2224,11 +2240,15 @@ ant beta:messages count-tokens \
 
     The number of input tokens which were used.
 
-  - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+  - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+    - `"claude-sonnet-5"`
+
+      High-performance model for coding and agents
 
     - `"claude-fable-5"`
 
@@ -2350,11 +2370,15 @@ ant beta:messages count-tokens \
 
 - `beta_advisor_tool_20260301: object { model, name, type, 7 more }`
 
-  - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+  - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+    - `"claude-sonnet-5"`
+
+      High-performance model for coding and agents
 
     - `"claude-fable-5"`
 
@@ -4879,11 +4903,15 @@ ant beta:messages count-tokens \
 
       The model whose output ends at this point — the model that declined at this hop. When the declining hop is the requested model, its `model` echoes the top-level `model` string the caller sent (alias or canonical); when the declining hop is a fallback model, its `model` is that model's canonical id.
 
-      - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+      - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-sonnet-5"`
+
+          High-performance model for coding and agents
 
         - `"claude-fable-5"`
 
@@ -4949,7 +4977,7 @@ ant beta:messages count-tokens \
 
       The fallback model producing the content that follows this block. Its `model` is always the canonical id.
 
-      - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+      - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
         The model that will complete your prompt.
 
@@ -4959,7 +4987,7 @@ ant beta:messages count-tokens \
 
       What caused the `from` model to hand over at this hop.
 
-      - `category: "cyber" or "bio" or "frontier_llm" or 2 more`
+      - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
 
         The policy category that triggered a refusal.
 
@@ -4970,8 +4998,6 @@ ant beta:messages count-tokens \
         - `"frontier_llm"`
 
         - `"reasoning_extraction"`
-
-        - `"military_weapons"`
 
       - `type: "refusal"`
 
@@ -6205,11 +6231,15 @@ ant beta:messages count-tokens \
 
       Identifies one hop of a fallback transition.
 
-      - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+      - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-sonnet-5"`
+
+          High-performance model for coding and agents
 
         - `"claude-fable-5"`
 
@@ -6275,7 +6305,7 @@ ant beta:messages count-tokens \
 
       Identifies one hop of a fallback transition.
 
-      - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+      - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
         The model that will complete your prompt.
 
@@ -6957,11 +6987,15 @@ ant beta:messages count-tokens \
 
     The model whose output ends at this point — the model that declined at this hop. When the declining hop is the requested model, its `model` echoes the top-level `model` string the caller sent (alias or canonical); when the declining hop is a fallback model, its `model` is that model's canonical id.
 
-    - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+    - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `"claude-sonnet-5"`
+
+        High-performance model for coding and agents
 
       - `"claude-fable-5"`
 
@@ -7027,7 +7061,7 @@ ant beta:messages count-tokens \
 
     The fallback model producing the content that follows this block. Its `model` is always the canonical id.
 
-    - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+    - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
       The model that will complete your prompt.
 
@@ -7037,7 +7071,7 @@ ant beta:messages count-tokens \
 
     What caused the `from` model to hand over at this hop.
 
-    - `category: "cyber" or "bio" or "frontier_llm" or 2 more`
+    - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
 
       The policy category that triggered a refusal.
 
@@ -7048,8 +7082,6 @@ ant beta:messages count-tokens \
       - `"frontier_llm"`
 
       - `"reasoning_extraction"`
-
-      - `"military_weapons"`
 
     - `type: "refusal"`
 
@@ -7077,11 +7109,15 @@ ant beta:messages count-tokens \
 
     Identifies one hop of a fallback transition.
 
-    - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+    - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `"claude-sonnet-5"`
+
+        High-performance model for coding and agents
 
       - `"claude-fable-5"`
 
@@ -7147,7 +7183,7 @@ ant beta:messages count-tokens \
 
     Identifies one hop of a fallback transition.
 
-    - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+    - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
       The model that will complete your prompt.
 
@@ -7165,11 +7201,15 @@ ant beta:messages count-tokens \
 
   Identifies one hop of a fallback transition.
 
-  - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+  - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+    - `"claude-sonnet-5"`
+
+      High-performance model for coding and agents
 
     - `"claude-fable-5"`
 
@@ -7237,11 +7277,15 @@ ant beta:messages count-tokens \
 
   Identifies one hop of a fallback transition.
 
-  - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+  - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+    - `"claude-sonnet-5"`
+
+      High-performance model for coding and agents
 
     - `"claude-fable-5"`
 
@@ -7338,11 +7382,15 @@ ant beta:messages count-tokens \
 
     The number of input tokens which were used.
 
-  - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+  - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+    - `"claude-sonnet-5"`
+
+      High-performance model for coding and agents
 
     - `"claude-fable-5"`
 
@@ -7423,11 +7471,15 @@ ant beta:messages count-tokens \
   for this attempt only and are validated as if the request were made to
   `model`. Any other key is rejected at parse time.
 
-  - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+  - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+    - `"claude-sonnet-5"`
+
+      High-performance model for coding and agents
 
     - `"claude-fable-5"`
 
@@ -7583,7 +7635,7 @@ ant beta:messages count-tokens \
 
   The `from` model declined for policy reasons.
 
-  - `category: "cyber" or "bio" or "frontier_llm" or 2 more`
+  - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
 
     The policy category that triggered a refusal.
 
@@ -7594,8 +7646,6 @@ ant beta:messages count-tokens \
     - `"frontier_llm"`
 
     - `"reasoning_extraction"`
-
-    - `"military_weapons"`
 
   - `type: "refusal"`
 
@@ -7736,11 +7786,15 @@ ant beta:messages count-tokens \
 
       The number of input tokens which were used.
 
-    - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+    - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `"claude-sonnet-5"`
+
+        High-performance model for coding and agents
 
       - `"claude-fable-5"`
 
@@ -7874,11 +7928,15 @@ ant beta:messages count-tokens \
 
       The number of input tokens which were used.
 
-    - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+    - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `"claude-sonnet-5"`
+
+        High-performance model for coding and agents
 
       - `"claude-fable-5"`
 
@@ -7981,11 +8039,15 @@ ant beta:messages count-tokens \
 
       The number of input tokens which were used.
 
-    - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+    - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `"claude-sonnet-5"`
+
+        High-performance model for coding and agents
 
       - `"claude-fable-5"`
 
@@ -9308,11 +9370,15 @@ ant beta:messages count-tokens \
 
         The model whose output ends at this point — the model that declined at this hop. When the declining hop is the requested model, its `model` echoes the top-level `model` string the caller sent (alias or canonical); when the declining hop is a fallback model, its `model` is that model's canonical id.
 
-        - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+        - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
           The model that will complete your prompt.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `"claude-sonnet-5"`
+
+            High-performance model for coding and agents
 
           - `"claude-fable-5"`
 
@@ -9378,7 +9444,7 @@ ant beta:messages count-tokens \
 
         The fallback model producing the content that follows this block. Its `model` is always the canonical id.
 
-        - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+        - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
           The model that will complete your prompt.
 
@@ -9388,7 +9454,7 @@ ant beta:messages count-tokens \
 
         What caused the `from` model to hand over at this hop.
 
-        - `category: "cyber" or "bio" or "frontier_llm" or 2 more`
+        - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
 
           The policy category that triggered a refusal.
 
@@ -9399,8 +9465,6 @@ ant beta:messages count-tokens \
           - `"frontier_llm"`
 
           - `"reasoning_extraction"`
-
-          - `"military_weapons"`
 
         - `type: "refusal"`
 
@@ -9493,11 +9557,15 @@ ant beta:messages count-tokens \
 
         - `type: "unavailable"`
 
-  - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+  - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+    - `"claude-sonnet-5"`
+
+      High-performance model for coding and agents
 
     - `"claude-fable-5"`
 
@@ -9569,7 +9637,7 @@ ant beta:messages count-tokens \
 
     Structured information about a refusal.
 
-    - `category: "cyber" or "bio" or "frontier_llm" or 2 more`
+    - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
 
       The policy category that triggered a refusal.
 
@@ -9580,8 +9648,6 @@ ant beta:messages count-tokens \
       - `"frontier_llm"`
 
       - `"reasoning_extraction"`
-
-      - `"military_weapons"`
 
     - `explanation: string`
 
@@ -9761,11 +9827,15 @@ ant beta:messages count-tokens \
 
           The number of input tokens which were used.
 
-        - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+        - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
           The model that will complete your prompt.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `"claude-sonnet-5"`
+
+            High-performance model for coding and agents
 
           - `"claude-fable-5"`
 
@@ -9899,11 +9969,15 @@ ant beta:messages count-tokens \
 
           The number of input tokens which were used.
 
-        - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+        - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
           The model that will complete your prompt.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `"claude-sonnet-5"`
+
+            High-performance model for coding and agents
 
           - `"claude-fable-5"`
 
@@ -10006,11 +10080,15 @@ ant beta:messages count-tokens \
 
           The number of input tokens which were used.
 
-        - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+        - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
           The model that will complete your prompt.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `"claude-sonnet-5"`
+
+            High-performance model for coding and agents
 
           - `"claude-fable-5"`
 
@@ -10188,11 +10266,15 @@ ant beta:messages count-tokens \
 
         The number of input tokens which were used.
 
-      - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+      - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-sonnet-5"`
+
+          High-performance model for coding and agents
 
         - `"claude-fable-5"`
 
@@ -10326,11 +10408,15 @@ ant beta:messages count-tokens \
 
         The number of input tokens which were used.
 
-      - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+      - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-sonnet-5"`
+
+          High-performance model for coding and agents
 
         - `"claude-fable-5"`
 
@@ -10433,11 +10519,15 @@ ant beta:messages count-tokens \
 
         The number of input tokens which were used.
 
-      - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+      - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-sonnet-5"`
+
+          High-performance model for coding and agents
 
         - `"claude-fable-5"`
 
@@ -10573,11 +10663,15 @@ ant beta:messages count-tokens \
 
     The number of input tokens which were used.
 
-  - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+  - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+    - `"claude-sonnet-5"`
+
+      High-performance model for coding and agents
 
     - `"claude-fable-5"`
 
@@ -11875,11 +11969,15 @@ ant beta:messages count-tokens \
 
         Identifies one hop of a fallback transition.
 
-        - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+        - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
           The model that will complete your prompt.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `"claude-sonnet-5"`
+
+            High-performance model for coding and agents
 
           - `"claude-fable-5"`
 
@@ -11945,7 +12043,7 @@ ant beta:messages count-tokens \
 
         Identifies one hop of a fallback transition.
 
-        - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+        - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
           The model that will complete your prompt.
 
@@ -13197,11 +13295,15 @@ ant beta:messages count-tokens \
 
         The model whose output ends at this point — the model that declined at this hop. When the declining hop is the requested model, its `model` echoes the top-level `model` string the caller sent (alias or canonical); when the declining hop is a fallback model, its `model` is that model's canonical id.
 
-        - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+        - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
           The model that will complete your prompt.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `"claude-sonnet-5"`
+
+            High-performance model for coding and agents
 
           - `"claude-fable-5"`
 
@@ -13267,7 +13369,7 @@ ant beta:messages count-tokens \
 
         The fallback model producing the content that follows this block. Its `model` is always the canonical id.
 
-        - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+        - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
           The model that will complete your prompt.
 
@@ -13277,7 +13379,7 @@ ant beta:messages count-tokens \
 
         What caused the `from` model to hand over at this hop.
 
-        - `category: "cyber" or "bio" or "frontier_llm" or 2 more`
+        - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
 
           The policy category that triggered a refusal.
 
@@ -13288,8 +13390,6 @@ ant beta:messages count-tokens \
           - `"frontier_llm"`
 
           - `"reasoning_extraction"`
-
-          - `"military_weapons"`
 
         - `type: "refusal"`
 
@@ -13385,7 +13485,7 @@ ant beta:messages count-tokens \
 
       Structured information about a refusal.
 
-      - `category: "cyber" or "bio" or "frontier_llm" or 2 more`
+      - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
 
         The policy category that triggered a refusal.
 
@@ -13396,8 +13496,6 @@ ant beta:messages count-tokens \
         - `"frontier_llm"`
 
         - `"reasoning_extraction"`
-
-        - `"military_weapons"`
 
       - `explanation: string`
 
@@ -13540,11 +13638,15 @@ ant beta:messages count-tokens \
 
           The number of input tokens which were used.
 
-        - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+        - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
           The model that will complete your prompt.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `"claude-sonnet-5"`
+
+            High-performance model for coding and agents
 
           - `"claude-fable-5"`
 
@@ -13678,11 +13780,15 @@ ant beta:messages count-tokens \
 
           The number of input tokens which were used.
 
-        - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+        - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
           The model that will complete your prompt.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `"claude-sonnet-5"`
+
+            High-performance model for coding and agents
 
           - `"claude-fable-5"`
 
@@ -13785,11 +13891,15 @@ ant beta:messages count-tokens \
 
           The number of input tokens which were used.
 
-        - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+        - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
           The model that will complete your prompt.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `"claude-sonnet-5"`
+
+            High-performance model for coding and agents
 
           - `"claude-fable-5"`
 
@@ -14642,11 +14752,15 @@ ant beta:messages count-tokens \
 
           The model whose output ends at this point — the model that declined at this hop. When the declining hop is the requested model, its `model` echoes the top-level `model` string the caller sent (alias or canonical); when the declining hop is a fallback model, its `model` is that model's canonical id.
 
-          - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+          - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
             The model that will complete your prompt.
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `"claude-sonnet-5"`
+
+              High-performance model for coding and agents
 
             - `"claude-fable-5"`
 
@@ -14712,7 +14826,7 @@ ant beta:messages count-tokens \
 
           The fallback model producing the content that follows this block. Its `model` is always the canonical id.
 
-          - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+          - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
             The model that will complete your prompt.
 
@@ -14722,7 +14836,7 @@ ant beta:messages count-tokens \
 
           What caused the `from` model to hand over at this hop.
 
-          - `category: "cyber" or "bio" or "frontier_llm" or 2 more`
+          - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
 
             The policy category that triggered a refusal.
 
@@ -14733,8 +14847,6 @@ ant beta:messages count-tokens \
             - `"frontier_llm"`
 
             - `"reasoning_extraction"`
-
-            - `"military_weapons"`
 
           - `type: "refusal"`
 
@@ -14827,11 +14939,15 @@ ant beta:messages count-tokens \
 
           - `type: "unavailable"`
 
-    - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+    - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `"claude-sonnet-5"`
+
+        High-performance model for coding and agents
 
       - `"claude-fable-5"`
 
@@ -14903,7 +15019,7 @@ ant beta:messages count-tokens \
 
       Structured information about a refusal.
 
-      - `category: "cyber" or "bio" or "frontier_llm" or 2 more`
+      - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
 
         The policy category that triggered a refusal.
 
@@ -14914,8 +15030,6 @@ ant beta:messages count-tokens \
         - `"frontier_llm"`
 
         - `"reasoning_extraction"`
-
-        - `"military_weapons"`
 
       - `explanation: string`
 
@@ -15095,11 +15209,15 @@ ant beta:messages count-tokens \
 
             The number of input tokens which were used.
 
-          - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+          - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
             The model that will complete your prompt.
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `"claude-sonnet-5"`
+
+              High-performance model for coding and agents
 
             - `"claude-fable-5"`
 
@@ -15233,11 +15351,15 @@ ant beta:messages count-tokens \
 
             The number of input tokens which were used.
 
-          - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+          - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
             The model that will complete your prompt.
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `"claude-sonnet-5"`
+
+              High-performance model for coding and agents
 
             - `"claude-fable-5"`
 
@@ -15340,11 +15462,15 @@ ant beta:messages count-tokens \
 
             The number of input tokens which were used.
 
-          - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+          - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
             The model that will complete your prompt.
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `"claude-sonnet-5"`
+
+              High-performance model for coding and agents
 
             - `"claude-fable-5"`
 
@@ -16225,11 +16351,15 @@ ant beta:messages count-tokens \
 
             The model whose output ends at this point — the model that declined at this hop. When the declining hop is the requested model, its `model` echoes the top-level `model` string the caller sent (alias or canonical); when the declining hop is a fallback model, its `model` is that model's canonical id.
 
-            - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+            - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
               The model that will complete your prompt.
 
               See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+              - `"claude-sonnet-5"`
+
+                High-performance model for coding and agents
 
               - `"claude-fable-5"`
 
@@ -16295,7 +16425,7 @@ ant beta:messages count-tokens \
 
             The fallback model producing the content that follows this block. Its `model` is always the canonical id.
 
-            - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+            - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
               The model that will complete your prompt.
 
@@ -16305,7 +16435,7 @@ ant beta:messages count-tokens \
 
             What caused the `from` model to hand over at this hop.
 
-            - `category: "cyber" or "bio" or "frontier_llm" or 2 more`
+            - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
 
               The policy category that triggered a refusal.
 
@@ -16316,8 +16446,6 @@ ant beta:messages count-tokens \
               - `"frontier_llm"`
 
               - `"reasoning_extraction"`
-
-              - `"military_weapons"`
 
             - `type: "refusal"`
 
@@ -16410,11 +16538,15 @@ ant beta:messages count-tokens \
 
             - `type: "unavailable"`
 
-      - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+      - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-sonnet-5"`
+
+          High-performance model for coding and agents
 
         - `"claude-fable-5"`
 
@@ -16486,7 +16618,7 @@ ant beta:messages count-tokens \
 
         Structured information about a refusal.
 
-        - `category: "cyber" or "bio" or "frontier_llm" or 2 more`
+        - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
 
           The policy category that triggered a refusal.
 
@@ -16497,8 +16629,6 @@ ant beta:messages count-tokens \
           - `"frontier_llm"`
 
           - `"reasoning_extraction"`
-
-          - `"military_weapons"`
 
         - `explanation: string`
 
@@ -16678,11 +16808,15 @@ ant beta:messages count-tokens \
 
               The number of input tokens which were used.
 
-            - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+            - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
               The model that will complete your prompt.
 
               See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+              - `"claude-sonnet-5"`
+
+                High-performance model for coding and agents
 
               - `"claude-fable-5"`
 
@@ -16816,11 +16950,15 @@ ant beta:messages count-tokens \
 
               The number of input tokens which were used.
 
-            - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+            - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
               The model that will complete your prompt.
 
               See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+              - `"claude-sonnet-5"`
+
+                High-performance model for coding and agents
 
               - `"claude-fable-5"`
 
@@ -16923,11 +17061,15 @@ ant beta:messages count-tokens \
 
               The number of input tokens which were used.
 
-            - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+            - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
               The model that will complete your prompt.
 
               See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+              - `"claude-sonnet-5"`
+
+                High-performance model for coding and agents
 
               - `"claude-fable-5"`
 
@@ -17085,7 +17227,7 @@ ant beta:messages count-tokens \
 
         Structured information about a refusal.
 
-        - `category: "cyber" or "bio" or "frontier_llm" or 2 more`
+        - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
 
           The policy category that triggered a refusal.
 
@@ -17653,7 +17795,7 @@ ant beta:messages count-tokens \
 
   Structured information about a refusal.
 
-  - `category: "cyber" or "bio" or "frontier_llm" or 2 more`
+  - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
 
     The policy category that triggered a refusal.
 
@@ -17664,8 +17806,6 @@ ant beta:messages count-tokens \
     - `"frontier_llm"`
 
     - `"reasoning_extraction"`
-
-    - `"military_weapons"`
 
   - `explanation: string`
 
@@ -22130,11 +22270,15 @@ ant beta:messages count-tokens \
 
   - `beta_advisor_tool_20260301: object { model, name, type, 7 more }`
 
-    - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+    - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `"claude-sonnet-5"`
+
+        High-performance model for coding and agents
 
       - `"claude-fable-5"`
 
@@ -22603,11 +22747,15 @@ ant beta:messages count-tokens \
 
         The number of input tokens which were used.
 
-      - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+      - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-sonnet-5"`
+
+          High-performance model for coding and agents
 
         - `"claude-fable-5"`
 
@@ -22741,11 +22889,15 @@ ant beta:messages count-tokens \
 
         The number of input tokens which were used.
 
-      - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+      - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-sonnet-5"`
+
+          High-performance model for coding and agents
 
         - `"claude-fable-5"`
 
@@ -22848,11 +23000,15 @@ ant beta:messages count-tokens \
 
         The number of input tokens which were used.
 
-      - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+      - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-sonnet-5"`
+
+          High-performance model for coding and agents
 
         - `"claude-fable-5"`
 
@@ -26115,11 +26271,15 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
               The model whose output ends at this point — the model that declined at this hop. When the declining hop is the requested model, its `model` echoes the top-level `model` string the caller sent (alias or canonical); when the declining hop is a fallback model, its `model` is that model's canonical id.
 
-              - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+              - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
                 The model that will complete your prompt.
 
                 See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+                - `"claude-sonnet-5"`
+
+                  High-performance model for coding and agents
 
                 - `"claude-fable-5"`
 
@@ -26185,7 +26345,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
               The fallback model producing the content that follows this block. Its `model` is always the canonical id.
 
-              - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+              - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
                 The model that will complete your prompt.
 
@@ -26195,7 +26355,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
               What caused the `from` model to hand over at this hop.
 
-              - `category: "cyber" or "bio" or "frontier_llm" or 2 more`
+              - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
 
                 The policy category that triggered a refusal.
 
@@ -26206,8 +26366,6 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
                 - `"frontier_llm"`
 
                 - `"reasoning_extraction"`
-
-                - `"military_weapons"`
 
               - `type: "refusal"`
 
@@ -26300,11 +26458,15 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
               - `type: "unavailable"`
 
-        - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+        - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
           The model that will complete your prompt.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `"claude-sonnet-5"`
+
+            High-performance model for coding and agents
 
           - `"claude-fable-5"`
 
@@ -26376,7 +26538,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
           Structured information about a refusal.
 
-          - `category: "cyber" or "bio" or "frontier_llm" or 2 more`
+          - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
 
             The policy category that triggered a refusal.
 
@@ -26387,8 +26549,6 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
             - `"frontier_llm"`
 
             - `"reasoning_extraction"`
-
-            - `"military_weapons"`
 
           - `explanation: string`
 
@@ -26568,11 +26728,15 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
                 The number of input tokens which were used.
 
-              - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+              - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
                 The model that will complete your prompt.
 
                 See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+                - `"claude-sonnet-5"`
+
+                  High-performance model for coding and agents
 
                 - `"claude-fable-5"`
 
@@ -26706,11 +26870,15 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
                 The number of input tokens which were used.
 
-              - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+              - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
                 The model that will complete your prompt.
 
                 See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+                - `"claude-sonnet-5"`
+
+                  High-performance model for coding and agents
 
                 - `"claude-fable-5"`
 
@@ -26813,11 +26981,15 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
                 The number of input tokens which were used.
 
-              - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+              - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
                 The model that will complete your prompt.
 
                 See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+                - `"claude-sonnet-5"`
+
+                  High-performance model for coding and agents
 
                 - `"claude-fable-5"`
 
@@ -27972,11 +28144,15 @@ ant beta:messages:batches results \
 
               The model whose output ends at this point — the model that declined at this hop. When the declining hop is the requested model, its `model` echoes the top-level `model` string the caller sent (alias or canonical); when the declining hop is a fallback model, its `model` is that model's canonical id.
 
-              - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+              - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
                 The model that will complete your prompt.
 
                 See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+                - `"claude-sonnet-5"`
+
+                  High-performance model for coding and agents
 
                 - `"claude-fable-5"`
 
@@ -28042,7 +28218,7 @@ ant beta:messages:batches results \
 
               The fallback model producing the content that follows this block. Its `model` is always the canonical id.
 
-              - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+              - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
                 The model that will complete your prompt.
 
@@ -28052,7 +28228,7 @@ ant beta:messages:batches results \
 
               What caused the `from` model to hand over at this hop.
 
-              - `category: "cyber" or "bio" or "frontier_llm" or 2 more`
+              - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
 
                 The policy category that triggered a refusal.
 
@@ -28063,8 +28239,6 @@ ant beta:messages:batches results \
                 - `"frontier_llm"`
 
                 - `"reasoning_extraction"`
-
-                - `"military_weapons"`
 
               - `type: "refusal"`
 
@@ -28157,11 +28331,15 @@ ant beta:messages:batches results \
 
               - `type: "unavailable"`
 
-        - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+        - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
           The model that will complete your prompt.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `"claude-sonnet-5"`
+
+            High-performance model for coding and agents
 
           - `"claude-fable-5"`
 
@@ -28233,7 +28411,7 @@ ant beta:messages:batches results \
 
           Structured information about a refusal.
 
-          - `category: "cyber" or "bio" or "frontier_llm" or 2 more`
+          - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
 
             The policy category that triggered a refusal.
 
@@ -28244,8 +28422,6 @@ ant beta:messages:batches results \
             - `"frontier_llm"`
 
             - `"reasoning_extraction"`
-
-            - `"military_weapons"`
 
           - `explanation: string`
 
@@ -28425,11 +28601,15 @@ ant beta:messages:batches results \
 
                 The number of input tokens which were used.
 
-              - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+              - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
                 The model that will complete your prompt.
 
                 See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+                - `"claude-sonnet-5"`
+
+                  High-performance model for coding and agents
 
                 - `"claude-fable-5"`
 
@@ -28563,11 +28743,15 @@ ant beta:messages:batches results \
 
                 The number of input tokens which were used.
 
-              - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+              - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
                 The model that will complete your prompt.
 
                 See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+                - `"claude-sonnet-5"`
+
+                  High-performance model for coding and agents
 
                 - `"claude-fable-5"`
 
@@ -28670,11 +28854,15 @@ ant beta:messages:batches results \
 
                 The number of input tokens which were used.
 
-              - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+              - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
                 The model that will complete your prompt.
 
                 See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+                - `"claude-sonnet-5"`
+
+                  High-performance model for coding and agents
 
                 - `"claude-fable-5"`
 
@@ -29659,11 +29847,15 @@ ant beta:messages:batches results \
 
             The model whose output ends at this point — the model that declined at this hop. When the declining hop is the requested model, its `model` echoes the top-level `model` string the caller sent (alias or canonical); when the declining hop is a fallback model, its `model` is that model's canonical id.
 
-            - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+            - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
               The model that will complete your prompt.
 
               See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+              - `"claude-sonnet-5"`
+
+                High-performance model for coding and agents
 
               - `"claude-fable-5"`
 
@@ -29729,7 +29921,7 @@ ant beta:messages:batches results \
 
             The fallback model producing the content that follows this block. Its `model` is always the canonical id.
 
-            - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+            - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
               The model that will complete your prompt.
 
@@ -29739,7 +29931,7 @@ ant beta:messages:batches results \
 
             What caused the `from` model to hand over at this hop.
 
-            - `category: "cyber" or "bio" or "frontier_llm" or 2 more`
+            - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
 
               The policy category that triggered a refusal.
 
@@ -29750,8 +29942,6 @@ ant beta:messages:batches results \
               - `"frontier_llm"`
 
               - `"reasoning_extraction"`
-
-              - `"military_weapons"`
 
             - `type: "refusal"`
 
@@ -29844,11 +30034,15 @@ ant beta:messages:batches results \
 
             - `type: "unavailable"`
 
-      - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+      - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-sonnet-5"`
+
+          High-performance model for coding and agents
 
         - `"claude-fable-5"`
 
@@ -29920,7 +30114,7 @@ ant beta:messages:batches results \
 
         Structured information about a refusal.
 
-        - `category: "cyber" or "bio" or "frontier_llm" or 2 more`
+        - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
 
           The policy category that triggered a refusal.
 
@@ -29931,8 +30125,6 @@ ant beta:messages:batches results \
           - `"frontier_llm"`
 
           - `"reasoning_extraction"`
-
-          - `"military_weapons"`
 
         - `explanation: string`
 
@@ -30112,11 +30304,15 @@ ant beta:messages:batches results \
 
               The number of input tokens which were used.
 
-            - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+            - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
               The model that will complete your prompt.
 
               See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+              - `"claude-sonnet-5"`
+
+                High-performance model for coding and agents
 
               - `"claude-fable-5"`
 
@@ -30250,11 +30446,15 @@ ant beta:messages:batches results \
 
               The number of input tokens which were used.
 
-            - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+            - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
               The model that will complete your prompt.
 
               See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+              - `"claude-sonnet-5"`
+
+                High-performance model for coding and agents
 
               - `"claude-fable-5"`
 
@@ -30357,11 +30557,15 @@ ant beta:messages:batches results \
 
               The number of input tokens which were used.
 
-            - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+            - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
               The model that will complete your prompt.
 
               See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+              - `"claude-sonnet-5"`
+
+                High-performance model for coding and agents
 
               - `"claude-fable-5"`
 
@@ -31308,11 +31512,15 @@ ant beta:messages:batches results \
 
           The model whose output ends at this point — the model that declined at this hop. When the declining hop is the requested model, its `model` echoes the top-level `model` string the caller sent (alias or canonical); when the declining hop is a fallback model, its `model` is that model's canonical id.
 
-          - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+          - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
             The model that will complete your prompt.
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `"claude-sonnet-5"`
+
+              High-performance model for coding and agents
 
             - `"claude-fable-5"`
 
@@ -31378,7 +31586,7 @@ ant beta:messages:batches results \
 
           The fallback model producing the content that follows this block. Its `model` is always the canonical id.
 
-          - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+          - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
             The model that will complete your prompt.
 
@@ -31388,7 +31596,7 @@ ant beta:messages:batches results \
 
           What caused the `from` model to hand over at this hop.
 
-          - `category: "cyber" or "bio" or "frontier_llm" or 2 more`
+          - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
 
             The policy category that triggered a refusal.
 
@@ -31399,8 +31607,6 @@ ant beta:messages:batches results \
             - `"frontier_llm"`
 
             - `"reasoning_extraction"`
-
-            - `"military_weapons"`
 
           - `type: "refusal"`
 
@@ -31493,11 +31699,15 @@ ant beta:messages:batches results \
 
           - `type: "unavailable"`
 
-    - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+    - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `"claude-sonnet-5"`
+
+        High-performance model for coding and agents
 
       - `"claude-fable-5"`
 
@@ -31569,7 +31779,7 @@ ant beta:messages:batches results \
 
       Structured information about a refusal.
 
-      - `category: "cyber" or "bio" or "frontier_llm" or 2 more`
+      - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
 
         The policy category that triggered a refusal.
 
@@ -31580,8 +31790,6 @@ ant beta:messages:batches results \
         - `"frontier_llm"`
 
         - `"reasoning_extraction"`
-
-        - `"military_weapons"`
 
       - `explanation: string`
 
@@ -31761,11 +31969,15 @@ ant beta:messages:batches results \
 
             The number of input tokens which were used.
 
-          - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+          - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
             The model that will complete your prompt.
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `"claude-sonnet-5"`
+
+              High-performance model for coding and agents
 
             - `"claude-fable-5"`
 
@@ -31899,11 +32111,15 @@ ant beta:messages:batches results \
 
             The number of input tokens which were used.
 
-          - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+          - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
             The model that will complete your prompt.
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `"claude-sonnet-5"`
+
+              High-performance model for coding and agents
 
             - `"claude-fable-5"`
 
@@ -32006,11 +32222,15 @@ ant beta:messages:batches results \
 
             The number of input tokens which were used.
 
-          - `model: "claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more or string`
+          - `model: "claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more or string`
 
             The model that will complete your prompt.
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `"claude-sonnet-5"`
+
+              High-performance model for coding and agents
 
             - `"claude-fable-5"`
 

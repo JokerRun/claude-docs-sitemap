@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/environments/work
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: dd08faac648abd3ea90e58a46eec3e99a71549776b4e2c8df9dd35bc08dea5a8
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: a807cac0c83cf2e81ddcb4ccb8eabf9e206f134df871f3b658e1571d75c60875
 ---
 
 # Work
@@ -33,7 +33,7 @@ Retrieve detailed information about a specific work item.
 
 ### Returns
 
-- `beta_self_hosted_work: object { id, acknowledged_at, created_at, 9 more }`
+- `beta_self_hosted_work: object { id, acknowledged_at, created_at, 10 more }`
 
   Work resource representing a unit of work in a self-hosted environment.
 
@@ -76,6 +76,10 @@ Retrieve detailed information about a specific work item.
   - `metadata: map[string]`
 
     User-provided metadata key-value pairs associated with this work item
+
+  - `secret: string`
+
+    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
   - `started_at: string`
 
@@ -132,6 +136,7 @@ ant beta:environments:work retrieve \
   "metadata": {
     "foo": "string"
   },
+  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",
@@ -174,7 +179,7 @@ Long poll for work items in the queue.
 
 ### Returns
 
-- `beta_self_hosted_work: object { id, acknowledged_at, created_at, 9 more }`
+- `beta_self_hosted_work: object { id, acknowledged_at, created_at, 10 more }`
 
   Work resource representing a unit of work in a self-hosted environment.
 
@@ -217,6 +222,10 @@ Long poll for work items in the queue.
   - `metadata: map[string]`
 
     User-provided metadata key-value pairs associated with this work item
+
+  - `secret: string`
+
+    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
   - `started_at: string`
 
@@ -272,6 +281,7 @@ ant beta:environments:work poll \
   "metadata": {
     "foo": "string"
   },
+  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",
@@ -306,7 +316,7 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
 
 ### Returns
 
-- `beta_self_hosted_work: object { id, acknowledged_at, created_at, 9 more }`
+- `beta_self_hosted_work: object { id, acknowledged_at, created_at, 10 more }`
 
   Work resource representing a unit of work in a self-hosted environment.
 
@@ -349,6 +359,10 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
   - `metadata: map[string]`
 
     User-provided metadata key-value pairs associated with this work item
+
+  - `secret: string`
+
+    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
   - `started_at: string`
 
@@ -405,6 +419,7 @@ ant beta:environments:work ack \
   "metadata": {
     "foo": "string"
   },
+  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",
@@ -532,7 +547,7 @@ Stop a work item, initiating graceful or forced shutdown.
 
 ### Returns
 
-- `beta_self_hosted_work: object { id, acknowledged_at, created_at, 9 more }`
+- `beta_self_hosted_work: object { id, acknowledged_at, created_at, 10 more }`
 
   Work resource representing a unit of work in a self-hosted environment.
 
@@ -575,6 +590,10 @@ Stop a work item, initiating graceful or forced shutdown.
   - `metadata: map[string]`
 
     User-provided metadata key-value pairs associated with this work item
+
+  - `secret: string`
+
+    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
   - `started_at: string`
 
@@ -631,6 +650,7 @@ ant beta:environments:work stop \
   "metadata": {
     "foo": "string"
   },
+  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",
@@ -713,6 +733,10 @@ List work items in an environment.
 
       User-provided metadata key-value pairs associated with this work item
 
+    - `secret: string`
+
+      Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
+
     - `started_at: string`
 
       RFC 3339 timestamp when work execution started
@@ -773,6 +797,7 @@ ant beta:environments:work list \
       "metadata": {
         "foo": "string"
       },
+      "secret": "secret",
       "started_at": "started_at",
       "state": "queued",
       "stop_requested_at": "stop_requested_at",
@@ -814,7 +839,7 @@ Update work item metadata with merge semantics.
 
 ### Returns
 
-- `beta_self_hosted_work: object { id, acknowledged_at, created_at, 9 more }`
+- `beta_self_hosted_work: object { id, acknowledged_at, created_at, 10 more }`
 
   Work resource representing a unit of work in a self-hosted environment.
 
@@ -857,6 +882,10 @@ Update work item metadata with merge semantics.
   - `metadata: map[string]`
 
     User-provided metadata key-value pairs associated with this work item
+
+  - `secret: string`
+
+    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
   - `started_at: string`
 
@@ -914,6 +943,7 @@ ant beta:environments:work update \
   "metadata": {
     "foo": "string"
   },
+  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",
@@ -990,7 +1020,7 @@ ant beta:environments:work stats \
 
 ### Beta Self Hosted Work
 
-- `beta_self_hosted_work: object { id, acknowledged_at, created_at, 9 more }`
+- `beta_self_hosted_work: object { id, acknowledged_at, created_at, 10 more }`
 
   Work resource representing a unit of work in a self-hosted environment.
 
@@ -1033,6 +1063,10 @@ ant beta:environments:work stats \
   - `metadata: map[string]`
 
     User-provided metadata key-value pairs associated with this work item
+
+  - `secret: string`
+
+    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
   - `started_at: string`
 
@@ -1145,6 +1179,10 @@ ant beta:environments:work stats \
     - `metadata: map[string]`
 
       User-provided metadata key-value pairs associated with this work item
+
+    - `secret: string`
+
+      Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
     - `started_at: string`
 

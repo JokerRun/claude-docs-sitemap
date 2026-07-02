@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/environments/work/update
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: df267c26357cc628110fdc3f0e40496464463554b0cc92a8bbe0d248af9f989b
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 51b7e45465ed75f1e17947c41f5929c9487dd2f7277bdd020e02afb2fc009431
 ---
 
 ## Update Work Item
@@ -135,6 +135,10 @@ Update work item metadata with merge semantics.
 
     User-provided metadata key-value pairs associated with this work item
 
+  - `Optional<String> secret`
+
+    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
+
   - `Optional<String> startedAt`
 
     RFC 3339 timestamp when work execution started
@@ -215,6 +219,7 @@ public final class Main {
   "metadata": {
     "foo": "string"
   },
+  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",

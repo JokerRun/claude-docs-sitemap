@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/stop
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: b431bb94498d54c765a96688d1198a72ba55c77535e934667cde33ecd3192e10
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: ad7c2998b5804b06689d2237f9bcf2bf3c7af3a7d2c15959b381465433b54a90
 ---
 
 ## Stop Work
@@ -93,7 +93,7 @@ Stop a work item, initiating graceful or forced shutdown.
 
 ### Returns
 
-- `BetaSelfHostedWork object { id, acknowledged_at, created_at, 9 more }`
+- `BetaSelfHostedWork object { id, acknowledged_at, created_at, 10 more }`
 
   Work resource representing a unit of work in a self-hosted environment.
 
@@ -138,6 +138,10 @@ Stop a work item, initiating graceful or forced shutdown.
   - `metadata: map[string]`
 
     User-provided metadata key-value pairs associated with this work item
+
+  - `secret: string`
+
+    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
   - `started_at: string`
 
@@ -198,6 +202,7 @@ curl https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID/work/$WORK_ID/sto
   "metadata": {
     "foo": "string"
   },
+  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",

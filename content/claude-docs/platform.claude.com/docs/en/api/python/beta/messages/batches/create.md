@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/messages/batches/create
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 282fc8d9455b8fb58afab7cc6a94d27d8848918830b4f1c6dacb935fea5f7ee0
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 1d4f10b9b47037227a7e48b8538a085e8a1be1ca8ad4f9d646ce1837b56e523a
 ---
 
 ## Create a Message Batch
@@ -1129,12 +1129,13 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
                 See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-                - `Literal["claude-fable-5", "claude-mythos-5", "claude-opus-4-8", 12 more]`
+                - `Literal["claude-sonnet-5", "claude-fable-5", "claude-mythos-5", 13 more]`
 
                   The model that will complete your prompt.
 
                   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+                  - `claude-sonnet-5` - High-performance model for coding and agents
                   - `claude-fable-5` - Next generation of intelligence for the hardest knowledge work and coding problems
                   - `claude-mythos-5` - Most capable model for cybersecurity and biology research
                   - `claude-opus-4-8` - Frontier intelligence for long-running agents and coding
@@ -1150,6 +1151,10 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
                   - `claude-sonnet-4-5-20250929` - High-performance model for agents and coding
                   - `claude-opus-4-1` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
                   - `claude-opus-4-1-20250805` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+
+                  - `"claude-sonnet-5"`
+
+                    High-performance model for coding and agents
 
                   - `"claude-fable-5"`
 

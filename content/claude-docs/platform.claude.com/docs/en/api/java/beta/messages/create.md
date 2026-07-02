@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/messages/create
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 8a44ad57466d9f09e20f3ad4f5e57dad3552ee31f1d10e1406f3412b72c01e0e
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 6c3a88f30e0610f292934df480c24e15d32772b6b57bc12a5815b6fba9b8d3a2
 ---
 
 ## Create a Message
@@ -1178,6 +1178,10 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
               The model that will complete your prompt.
 
               See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+              - `CLAUDE_SONNET_5("claude-sonnet-5")`
+
+                High-performance model for coding and agents
 
               - `CLAUDE_FABLE_5("claude-fable-5")`
 
@@ -3703,6 +3707,10 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `CLAUDE_SONNET_5("claude-sonnet-5")`
+
+            High-performance model for coding and agents
+
           - `CLAUDE_FABLE_5("claude-fable-5")`
 
             Next generation of intelligence for the hardest knowledge work and coding problems
@@ -3782,8 +3790,6 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
           - `FRONTIER_LLM("frontier_llm")`
 
           - `REASONING_EXTRACTION("reasoning_extraction")`
-
-          - `MILITARY_WEAPONS("military_weapons")`
 
         - `JsonValue; type "refusal"constant`
 
@@ -3925,8 +3931,6 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
       - `FRONTIER_LLM("frontier_llm")`
 
       - `REASONING_EXTRACTION("reasoning_extraction")`
-
-      - `MILITARY_WEAPONS("military_weapons")`
 
     - `Optional<String> explanation`
 
@@ -4385,7 +4389,7 @@ public final class Main {
         "cache_creation_input_tokens": 0,
         "cache_read_input_tokens": 0,
         "input_tokens": 0,
-        "model": "claude-fable-5",
+        "model": "claude-sonnet-5",
         "output_tokens": 0,
         "type": "message"
       }

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/sessions/threads/list
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 17c9186a485979f43759293be9a903ee729cba7cec3ed6f2a6baa95125ad52ea
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 4629905a033a55f86d5502fca120bfce4ff0d336fb84163fa37352decdd26ad9
 ---
 
 ## List Session Threads
@@ -130,6 +130,10 @@ List Session Threads
           The model that will power your agent.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `"claude-sonnet-5"ClaudeSonnet5`
+
+            High-performance model for coding and agents
 
           - `"claude-fable-5"ClaudeFable5`
 

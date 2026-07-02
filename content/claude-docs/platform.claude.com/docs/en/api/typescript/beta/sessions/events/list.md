@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/sessions/events/list
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 7a23c5530fd97b2d28d92ca6dbfd7aae66f56adbd5c015fd8a46037b899596ef
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 77f5b8e4b26aee78d80b34829c4f6397ebdebd3c215740ca81c9476ca9922ff4
 ---
 
 ## List Events
@@ -1581,7 +1581,11 @@ List Events
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-          - `"claude-fable-5" | "claude-opus-4-8" | "claude-opus-4-7" | 8 more`
+          - `"claude-sonnet-5" | "claude-fable-5" | "claude-opus-4-8" | 9 more`
+
+            - `"claude-sonnet-5"`
+
+              High-performance model for coding and agents
 
             - `"claude-fable-5"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/agents/create
-fetched_at: 2026-06-26T03:16:19.812719Z
-sha256: 6e62d4addcb79de61c337f5cc0cc5f0cf2946174300efe8ad709a69f83e6c886
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 0cd8c723ea79635b6dde016d01f5732a642df133c87a2e6a6b5f2fcfe1f859fc
 ---
 
 ## Create Agent
@@ -36,6 +36,10 @@ Create Agent
           The model that will power your agent.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `const BetaManagedAgentsModelClaudeSonnet5 BetaManagedAgentsModel = "claude-sonnet-5"`
+
+            High-performance model for coding and agents
 
           - `const BetaManagedAgentsModelClaudeFable5 BetaManagedAgentsModel = "claude-fable-5"`
 
@@ -436,6 +440,10 @@ Create Agent
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `const BetaManagedAgentsModelClaudeSonnet5 BetaManagedAgentsModel = "claude-sonnet-5"`
+
+          High-performance model for coding and agents
 
         - `const BetaManagedAgentsModelClaudeFable5 BetaManagedAgentsModel = "claude-fable-5"`
 

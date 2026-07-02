@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/sessions
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 9f2ba0199a2baaab6d1bd1f645cb7848dd960b5587d0b9133a8a6c4f81428841
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: d90c556d393c653a2834aceafa94815a2838967a92eeb64936b7829fe5f49938
 ---
 
 # Start a session
@@ -492,3 +492,5 @@ Creating a session provisions the environment's sandbox but does not start any w
 See [Session event stream](/docs/en/managed-agents/events-and-streaming) for how to stream the agent's responses and handle tool confirmations.
 
 See [Session statuses](/docs/en/managed-agents/session-operations#session-statuses) for the statuses a session moves through, and [Session operations](/docs/en/managed-agents/session-operations) for retrieving, listing, updating, archiving, and deleting sessions.
+
+To create sessions automatically on a recurring schedule, see [Scheduled deployments](/docs/en/managed-agents/scheduled-deployments).

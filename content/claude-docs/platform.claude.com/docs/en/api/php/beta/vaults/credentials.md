@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/php/beta/vaults/credentials
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 36cb53d833eeeceadcd23479f33099493af23896d2561721e1d9c945bf92d97a
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 0a291fa6d849e644a7465d0e93577ec77473203c3c473572d4b48f8339ea0710
 ---
 
 # Credentials
@@ -819,6 +819,10 @@ var_dump($betaManagedAgentsCredentialValidation);
 
 - `ManagedAgentsEnvironmentVariableAuthResponse`
 
+  - `ManagedAgentsInjectionLocationResponse injectionLocation`
+
+    Where in the outbound request the secret value is substituted.
+
   - `Networking networking`
 
     Outbound hosts the secret value is substituted on.
@@ -847,11 +851,19 @@ var_dump($betaManagedAgentsCredentialValidation);
 
   - `Type type`
 
+  - `?ManagedAgentsInjectionLocationParams injectionLocation`
+
+    Where in the outbound request the secret value may be substituted.
+
 ### Beta Managed Agents Environment Variable Update Params
 
 - `ManagedAgentsEnvironmentVariableUpdateParams`
 
   - `Type type`
+
+  - `?ManagedAgentsInjectionLocationUpdateParams injectionLocation`
+
+    Updated injection location.
 
   - `?ManagedAgentsCredentialNetworkingParams networking`
 
@@ -860,6 +872,42 @@ var_dump($betaManagedAgentsCredentialValidation);
   - `?string secretValue`
 
     Updated secret value.
+
+### Beta Managed Agents Injection Location Params
+
+- `ManagedAgentsInjectionLocationParams`
+
+  - `?bool body`
+
+    Substitute when the placeholder appears in the request body.
+
+  - `?bool header`
+
+    Substitute when the placeholder appears in a request header value.
+
+### Beta Managed Agents Injection Location Response
+
+- `ManagedAgentsInjectionLocationResponse`
+
+  - `bool body`
+
+    Whether the placeholder is substituted in the request body.
+
+  - `bool header`
+
+    Whether the placeholder is substituted in request header values.
+
+### Beta Managed Agents Injection Location Update Params
+
+- `ManagedAgentsInjectionLocationUpdateParams`
+
+  - `?bool body`
+
+    Substitute when the placeholder appears in the request body.
+
+  - `?bool header`
+
+    Substitute when the placeholder appears in a request header value.
 
 ### Beta Managed Agents Limited Credential Networking Params
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/environments/work/retrieve
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: f8146f243778ca930430321e8ef2ad698424f46c15ecbdbf10ea55401cf84128
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: e15da77d51a6ae6a413d28c82c4a351bbaeb403b63c5b0c1679c12595984178e
 ---
 
 ## Get Work Item
@@ -137,6 +137,10 @@ Retrieve detailed information about a specific work item.
 
     User-provided metadata key-value pairs associated with this work item
 
+  - `secret: string | null`
+
+    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
+
   - `started_at: string | null`
 
     RFC 3339 timestamp when work execution started
@@ -201,6 +205,7 @@ console.log(betaSelfHostedWork.id);
   "metadata": {
     "foo": "string"
   },
+  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",

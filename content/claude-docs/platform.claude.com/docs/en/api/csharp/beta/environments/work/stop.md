@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/environments/work/stop
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: a71f9ece8f74ee0d1cd0b95d37f64617a03b2c54ccc4ebd4b2d0ab441bdac144
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: d24699c6f57636dae38edc672264681f57fdfb16933aecdc8a079ab2fadfa8d6
 ---
 
 ## Stop Work
@@ -137,6 +137,10 @@ Stop a work item, initiating graceful or forced shutdown.
 
     User-provided metadata key-value pairs associated with this work item
 
+  - `required string? Secret`
+
+    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
+
   - `required string? StartedAt`
 
     RFC 3339 timestamp when work execution started
@@ -197,6 +201,7 @@ Console.WriteLine(betaSelfHostedWork);
   "metadata": {
     "foo": "string"
   },
+  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",

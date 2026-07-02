@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/credentials/archive
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 4f631a0875d4f572da2a736b9a134f02eba4ad18c49585144f0d82571eeb0409
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: b9b10e0b1c2fba2335cb96681753a520f48a114670f9df123c4ca10312ad5255
 ---
 
 ## Archive Credential
@@ -178,6 +178,18 @@ Archive Credential
     - `class BetaManagedAgentsEnvironmentVariableAuthResponse:`
 
       Environment variable credential details. The secret value is never returned.
+
+      - `BetaManagedAgentsInjectionLocationResponse injectionLocation`
+
+        Where in the outbound request the secret value is substituted.
+
+        - `boolean body`
+
+          Whether the placeholder is substituted in the request body.
+
+        - `boolean header`
+
+          Whether the placeholder is substituted in request header values.
 
       - `Networking networking`
 

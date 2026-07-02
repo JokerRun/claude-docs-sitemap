@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/vaults/credentials/update
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 6fce84f55649cda436ae35d390f68c5324df6a9fd14969a73955da28ea8af2f1
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 0926d871fbcedf4d9a233529a200e28a2fc1f40bdff6514521d9f4bd9f49a952
 ---
 
 ## Update Credential
@@ -98,6 +98,18 @@ Update Credential
     - `type: :environment_variable`
 
       - `:environment_variable`
+
+    - `injection_location: BetaManagedAgentsInjectionLocationUpdateParams`
+
+      Updated injection location.
+
+      - `body: bool`
+
+        Substitute when the placeholder appears in the request body.
+
+      - `header: bool`
+
+        Substitute when the placeholder appears in a request header value.
 
     - `networking: BetaManagedAgentsCredentialNetworkingParams`
 
@@ -296,6 +308,18 @@ Update Credential
     - `class BetaManagedAgentsEnvironmentVariableAuthResponse`
 
       Environment variable credential details. The secret value is never returned.
+
+      - `injection_location: BetaManagedAgentsInjectionLocationResponse`
+
+        Where in the outbound request the secret value is substituted.
+
+        - `body: bool`
+
+          Whether the placeholder is substituted in the request body.
+
+        - `header: bool`
+
+          Whether the placeholder is substituted in request header values.
 
       - `networking: BetaManagedAgentsUnrestrictedCredentialNetworkingResponse | BetaManagedAgentsLimitedCredentialNetworkingResponse`
 

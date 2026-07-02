@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/environments/work/ack
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 19e2e6efb13bb89c1c87c324e68671659d16b4bb026ea3ba2f2f28ae0b42ec98
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: c77b4b3141c50b5d0e52dd90b0339027c1d975972a24d543bc0a2c8f28d06a2e
 ---
 
 ## Acknowledge Work
@@ -133,6 +133,10 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
 
     User-provided metadata key-value pairs associated with this work item
 
+  - `secret: Optional[str]`
+
+    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
+
   - `started_at: Optional[str]`
 
     RFC 3339 timestamp when work execution started
@@ -197,6 +201,7 @@ print(beta_self_hosted_work.id)
   "metadata": {
     "foo": "string"
   },
+  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",

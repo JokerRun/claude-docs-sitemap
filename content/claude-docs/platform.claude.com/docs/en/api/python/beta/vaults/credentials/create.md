@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/vaults/credentials/create
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 735746cabe375765b096ae76ebd99ffd461d4689088b1c3b2bf02b814d7817f3
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: a6b7572e962024102868abd372600760553798f67d502c2f86e38dedf6269cc4
 ---
 
 ## Create Credential
@@ -156,6 +156,18 @@ Create Credential
     - `type: Literal["environment_variable"]`
 
       - `"environment_variable"`
+
+    - `injection_location: Optional[BetaManagedAgentsInjectionLocationParams]`
+
+      Where in the outbound request the secret value may be substituted.
+
+      - `body: Optional[bool]`
+
+        Substitute when the placeholder appears in the request body.
+
+      - `header: Optional[bool]`
+
+        Substitute when the placeholder appears in a request header value.
 
 - `display_name: Optional[str]`
 
@@ -326,6 +338,18 @@ Create Credential
     - `class BetaManagedAgentsEnvironmentVariableAuthResponse: …`
 
       Environment variable credential details. The secret value is never returned.
+
+      - `injection_location: BetaManagedAgentsInjectionLocationResponse`
+
+        Where in the outbound request the secret value is substituted.
+
+        - `body: bool`
+
+          Whether the placeholder is substituted in the request body.
+
+        - `header: bool`
+
+          Whether the placeholder is substituted in request header values.
 
       - `networking: Networking`
 

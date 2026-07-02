@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/intro
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 09e734c8cbc5f48f5474c1699c60712f552c2d862cbb4bcaf9d6f60a22f9aa18
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 6c9866e1b2fa7e8916fe5c5da5bc68afd17c9561cb4e0de8ae0abf3e4de2b264
 ---
 
 # Intro to Claude
@@ -14,11 +14,11 @@ Claude is a highly performant, trustworthy, and intelligent AI platform built by
 <Tip>
   The latest generation of Claude models:
 
-  **Claude Fable 5** - Anthropic's most capable widely released model for the most demanding reasoning and long-horizon agentic work. Read the [Claude Fable 5 announcement](https://www.anthropic.com/news/claude-fable-5-mythos-5).
+  **Claude Fable 5** - Next-generation intelligence for long-running agents. Read the [Claude Fable 5 and Claude Mythos 5 announcement](https://www.anthropic.com/news/claude-fable-5-mythos-5).
 
   **Claude Mythos 5** - Shares Claude Fable 5's capabilities without the safety classifiers. Available in limited release through [Project Glasswing](https://anthropic.com/glasswing).
 
-  **Claude Opus 4.8** - Anthropic's most capable Opus-tier model for complex reasoning and agentic coding. Read the [Claude Opus 4.8 announcement](https://www.anthropic.com/news/claude-opus-4-8).
+  **Claude Opus 4.8** - For complex agentic coding and enterprise work. Read the [Claude Opus 4.8 announcement](https://www.anthropic.com/news/claude-opus-4-8).
 
   **Claude Sonnet 5** - Frontier intelligence at scale, built for coding, agents, and enterprise workflows. Read the [Claude Sonnet 5 announcement](https://www.anthropic.com/news/claude-sonnet-5).
 

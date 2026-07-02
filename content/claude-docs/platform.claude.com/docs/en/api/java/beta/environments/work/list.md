@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/environments/work/list
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 6c91bea76fbe4d3eab853165b2524bc4e429fb45276857d99438fe07d1802965
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 3a3d5258aec4fba85defe96cd6609fb526cd0da02a4da15fdfdcfa2114c4a02d
 ---
 
 ## List Work Items
@@ -137,6 +137,10 @@ List work items in an environment.
 
     User-provided metadata key-value pairs associated with this work item
 
+  - `Optional<String> secret`
+
+    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
+
   - `Optional<String> startedAt`
 
     RFC 3339 timestamp when work execution started
@@ -208,6 +212,7 @@ public final class Main {
       "metadata": {
         "foo": "string"
       },
+      "secret": "secret",
       "started_at": "started_at",
       "state": "queued",
       "stop_requested_at": "stop_requested_at",

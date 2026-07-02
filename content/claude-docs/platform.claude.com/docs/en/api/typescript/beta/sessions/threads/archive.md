@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/sessions/threads/archive
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 3e3c2fb0892fb197873fb112d64a0479fb72326c88cbd66777f9b6d9cf391741
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: d5f2b56ff55c3816adf517e43e7093eb27fc4476d17ba0312edd65abad8a9c1f
 ---
 
 ## Archive Session Thread
@@ -125,7 +125,11 @@ Archive Session Thread
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-        - `"claude-fable-5" | "claude-opus-4-8" | "claude-opus-4-7" | 8 more`
+        - `"claude-sonnet-5" | "claude-fable-5" | "claude-opus-4-8" | 9 more`
+
+          - `"claude-sonnet-5"`
+
+            High-performance model for coding and agents
 
           - `"claude-fable-5"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/agents/update
-fetched_at: 2026-06-26T03:16:19.812719Z
-sha256: c5266d2f0682fde8eea05be0c7633b53356a248da2b8f5be93610eb8d88e8390
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: b3da0746978f1aef4ce1a22f566ca363455007a309f804afe039336783bca4a7
 ---
 
 ## Update Agent
@@ -116,6 +116,10 @@ Update Agent
       The model that will power your agent.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `CLAUDE_SONNET_5("claude-sonnet-5")`
+
+        High-performance model for coding and agents
 
       - `CLAUDE_FABLE_5("claude-fable-5")`
 
@@ -430,6 +434,10 @@ Update Agent
       The model that will power your agent.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `CLAUDE_SONNET_5("claude-sonnet-5")`
+
+        High-performance model for coding and agents
 
       - `CLAUDE_FABLE_5("claude-fable-5")`
 

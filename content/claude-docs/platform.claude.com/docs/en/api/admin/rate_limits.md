@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/rate_limits
-fetched_at: 2026-06-12T03:17:40.104094Z
-sha256: c8aeb9e1ddc47859ac327279c09b9f478892123b7936e597ded52c3ae866aab1
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 5637511ab6247500f1c1527a178c2fc8a5a3c76b9811f4f9ed1c3f9d89338a4c
 ---
 
 # Rate Limits
@@ -19,19 +19,19 @@ and contains the set of limiter values that apply to it.
 
 ### Query Parameters
 
-- `group_type: optional "model_group" or "batch" or "token_count" or 3 more`
+- `group_type: optional "batch" or "files" or "model_group" or 3 more`
 
   Filter by group type.
 
-  - `"model_group"`
-
   - `"batch"`
-
-  - `"token_count"`
 
   - `"files"`
 
+  - `"model_group"`
+
   - `"skills"`
+
+  - `"token_count"`
 
   - `"web_search"`
 
@@ -49,19 +49,19 @@ and contains the set of limiter values that apply to it.
 
   Rate-limit entries for the organization, one per group.
 
-  - `group_type: "model_group" or "batch" or "token_count" or 3 more`
+  - `group_type: "batch" or "files" or "model_group" or 3 more`
 
     The kind of rate-limit group this entry represents. `model_group` entries apply to a family of models (listed in `models`); other values apply to an API-surface category and have `models` set to `null`.
 
-    - `"model_group"`
-
     - `"batch"`
-
-    - `"token_count"`
 
     - `"files"`
 
+    - `"model_group"`
+
     - `"skills"`
+
+    - `"token_count"`
 
     - `"web_search"`
 
@@ -105,7 +105,7 @@ curl https://api.anthropic.com/v1/organizations/rate_limits \
 {
   "data": [
     {
-      "group_type": "model_group",
+      "group_type": "batch",
       "limits": [
         {
           "type": "type",
@@ -132,19 +132,19 @@ curl https://api.anthropic.com/v1/organizations/rate_limits \
 
     Rate-limit entries for the organization, one per group.
 
-    - `group_type: "model_group" or "batch" or "token_count" or 3 more`
+    - `group_type: "batch" or "files" or "model_group" or 3 more`
 
       The kind of rate-limit group this entry represents. `model_group` entries apply to a family of models (listed in `models`); other values apply to an API-surface category and have `models` set to `null`.
 
-      - `"model_group"`
-
       - `"batch"`
-
-      - `"token_count"`
 
       - `"files"`
 
+      - `"model_group"`
+
       - `"skills"`
+
+      - `"token_count"`
 
       - `"web_search"`
 

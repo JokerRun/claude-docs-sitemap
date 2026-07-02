@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/update
-fetched_at: 2026-06-26T03:16:19.812719Z
-sha256: a00e4ade682b1b96499818e3850b7a7579977560b102f73bf1c28106bf7defaa
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: fae3ebfcb5a14ffd7dbc654fbc7a36db135dd8ce022daf2518f91b09c3653918
 ---
 
 ## Update Agent
@@ -115,17 +115,21 @@ Update Agent
 
   Model identifier. Accepts the [model string](https://platform.claude.com/docs/en/about-claude/models/overview#latest-models-comparison), e.g. `claude-opus-4-6`, or a `model_config` object for additional configuration control. Omit to preserve. Cannot be cleared.
 
-  - `BetaManagedAgentsModel = "claude-fable-5" or "claude-opus-4-8" or "claude-opus-4-7" or 8 more or string`
+  - `BetaManagedAgentsModel = "claude-sonnet-5" or "claude-fable-5" or "claude-opus-4-8" or 9 more or string`
 
     The model that will power your agent.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `"claude-fable-5" or "claude-opus-4-8" or "claude-opus-4-7" or 8 more`
+    - `"claude-sonnet-5" or "claude-fable-5" or "claude-opus-4-8" or 9 more`
 
       The model that will power your agent.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `"claude-sonnet-5"`
+
+        High-performance model for coding and agents
 
       - `"claude-fable-5"`
 
@@ -477,11 +481,15 @@ Update Agent
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `"claude-fable-5" or "claude-opus-4-8" or "claude-opus-4-7" or 8 more`
+      - `"claude-sonnet-5" or "claude-fable-5" or "claude-opus-4-8" or 9 more`
 
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-sonnet-5"`
+
+          High-performance model for coding and agents
 
         - `"claude-fable-5"`
 

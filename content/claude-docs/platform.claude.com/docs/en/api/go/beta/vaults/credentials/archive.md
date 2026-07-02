@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/vaults/credentials/archive
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: adbc2869f0da940bc40ef86f43051588a30b5ed07290f4dd676ca0e02871b32a
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: bfaad9dcd717c0de00971489fe713cae9a299ce2c938fcac045b44254c235351
 ---
 
 ## Archive Credential
@@ -184,6 +184,18 @@ Archive Credential
     - `type BetaManagedAgentsEnvironmentVariableAuthResponse struct{…}`
 
       Environment variable credential details. The secret value is never returned.
+
+      - `InjectionLocation BetaManagedAgentsInjectionLocationResponse`
+
+        Where in the outbound request the secret value is substituted.
+
+        - `Body bool`
+
+          Whether the placeholder is substituted in the request body.
+
+        - `Header bool`
+
+          Whether the placeholder is substituted in request header values.
 
       - `Networking BetaManagedAgentsEnvironmentVariableAuthResponseNetworkingUnion`
 

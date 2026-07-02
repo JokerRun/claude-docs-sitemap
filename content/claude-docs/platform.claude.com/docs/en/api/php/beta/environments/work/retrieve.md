@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/php/beta/environments/work/retrieve
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 558146518e7a9704118d2a10f939bc22533a345478db4d18c418bf3e063a467f
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: a0fdc5179af201a13427b70fd73e0b7ad5afd408e72ead20ee7f4852a6099f9b
 ---
 
 ## Get Work Item
@@ -56,6 +56,10 @@ Retrieve detailed information about a specific work item.
   - `array<string,string> metadata`
 
     User-provided metadata key-value pairs associated with this work item
+
+  - `?string secret`
+
+    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
   - `?string startedAt`
 
@@ -111,6 +115,7 @@ var_dump($betaSelfHostedWork);
   "metadata": {
     "foo": "string"
   },
+  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",

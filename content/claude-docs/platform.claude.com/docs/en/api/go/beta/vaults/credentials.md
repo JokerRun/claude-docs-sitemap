@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/vaults/credentials
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 0b932070a4249f18642d556cf3efd000a67605c7795530d431e14627ed0ebdc1
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: babf93ccdb8c859386bf96e3e0b8b2ff688120510abeec01b1b3db22c961e775
 ---
 
 # Credentials
@@ -160,6 +160,18 @@ Create Credential
       - `Type BetaManagedAgentsEnvironmentVariableCreateParamsType`
 
         - `const BetaManagedAgentsEnvironmentVariableCreateParamsTypeEnvironmentVariable BetaManagedAgentsEnvironmentVariableCreateParamsType = "environment_variable"`
+
+      - `InjectionLocation BetaManagedAgentsInjectionLocationParamsResp`
+
+        Where in the outbound request the secret value may be substituted.
+
+        - `Body bool`
+
+          Substitute when the placeholder appears in the request body.
+
+        - `Header bool`
+
+          Substitute when the placeholder appears in a request header value.
 
   - `DisplayName param.Field[string]`
 
@@ -330,6 +342,18 @@ Create Credential
     - `type BetaManagedAgentsEnvironmentVariableAuthResponse struct{…}`
 
       Environment variable credential details. The secret value is never returned.
+
+      - `InjectionLocation BetaManagedAgentsInjectionLocationResponse`
+
+        Where in the outbound request the secret value is substituted.
+
+        - `Body bool`
+
+          Whether the placeholder is substituted in the request body.
+
+        - `Header bool`
+
+          Whether the placeholder is substituted in request header values.
 
       - `Networking BetaManagedAgentsEnvironmentVariableAuthResponseNetworkingUnion`
 
@@ -633,6 +657,18 @@ List Credentials
 
       Environment variable credential details. The secret value is never returned.
 
+      - `InjectionLocation BetaManagedAgentsInjectionLocationResponse`
+
+        Where in the outbound request the secret value is substituted.
+
+        - `Body bool`
+
+          Whether the placeholder is substituted in the request body.
+
+        - `Header bool`
+
+          Whether the placeholder is substituted in request header values.
+
       - `Networking BetaManagedAgentsEnvironmentVariableAuthResponseNetworkingUnion`
 
         Outbound hosts the secret value is substituted on.
@@ -926,6 +962,18 @@ Get Credential
 
       Environment variable credential details. The secret value is never returned.
 
+      - `InjectionLocation BetaManagedAgentsInjectionLocationResponse`
+
+        Where in the outbound request the secret value is substituted.
+
+        - `Body bool`
+
+          Whether the placeholder is substituted in the request body.
+
+        - `Header bool`
+
+          Whether the placeholder is substituted in request header values.
+
       - `Networking BetaManagedAgentsEnvironmentVariableAuthResponseNetworkingUnion`
 
         Outbound hosts the secret value is substituted on.
@@ -1132,6 +1180,18 @@ Update Credential
 
         - `const BetaManagedAgentsEnvironmentVariableUpdateParamsTypeEnvironmentVariable BetaManagedAgentsEnvironmentVariableUpdateParamsType = "environment_variable"`
 
+      - `InjectionLocation BetaManagedAgentsInjectionLocationUpdateParamsResp`
+
+        Updated injection location.
+
+        - `Body bool`
+
+          Substitute when the placeholder appears in the request body.
+
+        - `Header bool`
+
+          Substitute when the placeholder appears in a request header value.
+
       - `Networking BetaManagedAgentsCredentialNetworkingParamsUnionResp`
 
         Updated networking scope. Full replacement.
@@ -1329,6 +1389,18 @@ Update Credential
     - `type BetaManagedAgentsEnvironmentVariableAuthResponse struct{…}`
 
       Environment variable credential details. The secret value is never returned.
+
+      - `InjectionLocation BetaManagedAgentsInjectionLocationResponse`
+
+        Where in the outbound request the secret value is substituted.
+
+        - `Body bool`
+
+          Whether the placeholder is substituted in the request body.
+
+        - `Header bool`
+
+          Whether the placeholder is substituted in request header values.
 
       - `Networking BetaManagedAgentsEnvironmentVariableAuthResponseNetworkingUnion`
 
@@ -1753,6 +1825,18 @@ Archive Credential
     - `type BetaManagedAgentsEnvironmentVariableAuthResponse struct{…}`
 
       Environment variable credential details. The secret value is never returned.
+
+      - `InjectionLocation BetaManagedAgentsInjectionLocationResponse`
+
+        Where in the outbound request the secret value is substituted.
+
+        - `Body bool`
+
+          Whether the placeholder is substituted in the request body.
+
+        - `Header bool`
+
+          Whether the placeholder is substituted in request header values.
 
       - `Networking BetaManagedAgentsEnvironmentVariableAuthResponseNetworkingUnion`
 
@@ -2190,6 +2274,18 @@ func main() {
 
       Environment variable credential details. The secret value is never returned.
 
+      - `InjectionLocation BetaManagedAgentsInjectionLocationResponse`
+
+        Where in the outbound request the secret value is substituted.
+
+        - `Body bool`
+
+          Whether the placeholder is substituted in the request body.
+
+        - `Header bool`
+
+          Whether the placeholder is substituted in request header values.
+
       - `Networking BetaManagedAgentsEnvironmentVariableAuthResponseNetworkingUnion`
 
         Outbound hosts the secret value is substituted on.
@@ -2388,6 +2484,18 @@ func main() {
 
   Environment variable credential details. The secret value is never returned.
 
+  - `InjectionLocation BetaManagedAgentsInjectionLocationResponse`
+
+    Where in the outbound request the secret value is substituted.
+
+    - `Body bool`
+
+      Whether the placeholder is substituted in the request body.
+
+    - `Header bool`
+
+      Whether the placeholder is substituted in request header values.
+
   - `Networking BetaManagedAgentsEnvironmentVariableAuthResponseNetworkingUnion`
 
     Outbound hosts the secret value is substituted on.
@@ -2462,6 +2570,18 @@ func main() {
 
     - `const BetaManagedAgentsEnvironmentVariableCreateParamsTypeEnvironmentVariable BetaManagedAgentsEnvironmentVariableCreateParamsType = "environment_variable"`
 
+  - `InjectionLocation BetaManagedAgentsInjectionLocationParamsResp`
+
+    Where in the outbound request the secret value may be substituted.
+
+    - `Body bool`
+
+      Substitute when the placeholder appears in the request body.
+
+    - `Header bool`
+
+      Substitute when the placeholder appears in a request header value.
+
 ### Beta Managed Agents Environment Variable Update Params
 
 - `type BetaManagedAgentsEnvironmentVariableUpdateParamsResp struct{…}`
@@ -2471,6 +2591,18 @@ func main() {
   - `Type BetaManagedAgentsEnvironmentVariableUpdateParamsType`
 
     - `const BetaManagedAgentsEnvironmentVariableUpdateParamsTypeEnvironmentVariable BetaManagedAgentsEnvironmentVariableUpdateParamsType = "environment_variable"`
+
+  - `InjectionLocation BetaManagedAgentsInjectionLocationUpdateParamsResp`
+
+    Updated injection location.
+
+    - `Body bool`
+
+      Substitute when the placeholder appears in the request body.
+
+    - `Header bool`
+
+      Substitute when the placeholder appears in a request header value.
 
   - `Networking BetaManagedAgentsCredentialNetworkingParamsUnionResp`
 
@@ -2499,6 +2631,48 @@ func main() {
   - `SecretValue string`
 
     Updated secret value.
+
+### Beta Managed Agents Injection Location Params
+
+- `type BetaManagedAgentsInjectionLocationParamsResp struct{…}`
+
+  Where in the outbound request the secret value may be substituted.
+
+  - `Body bool`
+
+    Substitute when the placeholder appears in the request body.
+
+  - `Header bool`
+
+    Substitute when the placeholder appears in a request header value.
+
+### Beta Managed Agents Injection Location Response
+
+- `type BetaManagedAgentsInjectionLocationResponse struct{…}`
+
+  Where in the outbound request the secret value is substituted.
+
+  - `Body bool`
+
+    Whether the placeholder is substituted in the request body.
+
+  - `Header bool`
+
+    Whether the placeholder is substituted in request header values.
+
+### Beta Managed Agents Injection Location Update Params
+
+- `type BetaManagedAgentsInjectionLocationUpdateParamsResp struct{…}`
+
+  Updated injection location.
+
+  - `Body bool`
+
+    Substitute when the placeholder appears in the request body.
+
+  - `Header bool`
+
+    Substitute when the placeholder appears in a request header value.
 
 ### Beta Managed Agents Limited Credential Networking Params
 

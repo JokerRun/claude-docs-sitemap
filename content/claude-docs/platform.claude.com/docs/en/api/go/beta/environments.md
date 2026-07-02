@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/environments
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 03aa10d5b8df5dbc41db7dc9c61a9cdc7eb6aea4dd29a414d924f2416f930240
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: e4fcf50bced2e7630c46dd7e4bdfc6dd6d6792bfd5adb2363c8c2eef62e18efe
 ---
 
 # Environments
@@ -2517,6 +2517,10 @@ Retrieve detailed information about a specific work item.
 
     User-provided metadata key-value pairs associated with this work item
 
+  - `Secret string`
+
+    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
+
   - `StartedAt string`
 
     RFC 3339 timestamp when work execution started
@@ -2596,6 +2600,7 @@ func main() {
   "metadata": {
     "foo": "string"
   },
+  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",
@@ -2744,6 +2749,10 @@ Long poll for work items in the queue.
 
     User-provided metadata key-value pairs associated with this work item
 
+  - `Secret string`
+
+    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
+
   - `StartedAt string`
 
     RFC 3339 timestamp when work execution started
@@ -2823,6 +2832,7 @@ func main() {
   "metadata": {
     "foo": "string"
   },
+  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",
@@ -2963,6 +2973,10 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
 
     User-provided metadata key-value pairs associated with this work item
 
+  - `Secret string`
+
+    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
+
   - `StartedAt string`
 
     RFC 3339 timestamp when work execution started
@@ -3042,6 +3056,7 @@ func main() {
   "metadata": {
     "foo": "string"
   },
+  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",
@@ -3359,6 +3374,10 @@ Stop a work item, initiating graceful or forced shutdown.
 
     User-provided metadata key-value pairs associated with this work item
 
+  - `Secret string`
+
+    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
+
   - `StartedAt string`
 
     RFC 3339 timestamp when work execution started
@@ -3441,6 +3460,7 @@ func main() {
   "metadata": {
     "foo": "string"
   },
+  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",
@@ -3585,6 +3605,10 @@ List work items in an environment.
 
     User-provided metadata key-value pairs associated with this work item
 
+  - `Secret string`
+
+    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
+
   - `StartedAt string`
 
     RFC 3339 timestamp when work execution started
@@ -3666,6 +3690,7 @@ func main() {
       "metadata": {
         "foo": "string"
       },
+      "secret": "secret",
       "started_at": "started_at",
       "state": "queued",
       "stop_requested_at": "stop_requested_at",
@@ -3813,6 +3838,10 @@ Update work item metadata with merge semantics.
 
     User-provided metadata key-value pairs associated with this work item
 
+  - `Secret string`
+
+    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
+
   - `StartedAt string`
 
     RFC 3339 timestamp when work execution started
@@ -3897,6 +3926,7 @@ func main() {
   "metadata": {
     "foo": "string"
   },
+  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",
@@ -4106,6 +4136,10 @@ func main() {
 
     User-provided metadata key-value pairs associated with this work item
 
+  - `Secret string`
+
+    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
+
   - `StartedAt string`
 
     RFC 3339 timestamp when work execution started
@@ -4223,6 +4257,10 @@ func main() {
     - `Metadata map[string, string]`
 
       User-provided metadata key-value pairs associated with this work item
+
+    - `Secret string`
+
+      Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
     - `StartedAt string`
 

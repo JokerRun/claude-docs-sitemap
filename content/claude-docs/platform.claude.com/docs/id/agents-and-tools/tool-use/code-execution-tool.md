@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: a1a5a7c08341918f4fe282e2ca1e3ba45c33e1e9bfac89f7b1b266ae44a5cf22
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 57407e4b81990ab1395dc77ddf8c0471654dc515af2b9c85c7e3ee9561654e3a
 ---
 
 # Alat eksekusi kode
@@ -44,7 +44,7 @@ Alat eksekusi kode tersedia pada model-model berikut:
 | Claude Opus 4.1 (claude-opus-4-1-20250805) ([tidak digunakan lagi](/docs/id/about-claude/model-deprecations)) | `code_execution_20250825`                                                       |
 
 <Note>
-  `code_execution_20250825` mendukung perintah Bash dan operasi file, serta tersedia pada setiap model dalam tabel. `code_execution_20260120` menambahkan persistensi state REPL dan [pemanggilan alat secara programatik](/docs/id/agents-and-tools/tool-use/programmatic-tool-calling) dari dalam sandbox, dan hanya tersedia pada Claude Fable 5, Claude Mythos 5, Opus 4.5+, dan Sonnet 4.5+. `code_execution_20260521` adalah runtime yang sama dengan `_20260120` dengan batas waktu eksekusi per sel yang diungkapkan dalam deskripsi alat, sehingga Claude dapat mengatur anggaran waktu untuk sel yang berjalan lama. Setiap sel memiliki batas waktu wall-clock 90 detik; kode yang melebihinya akan mengembalikan hasil `detection_timeout`. Jika Anda masih menggunakan `code_execution_20250522` lama (hanya Python), lihat [Upgrade ke versi alat terbaru](#upgrade-to-latest-tool-version) untuk bermigrasi darinya.
+  `code_execution_20250825` mendukung perintah Bash dan operasi file, serta tersedia pada setiap model dalam tabel. `code_execution_20260120` menambahkan persistensi state REPL dan [pemanggilan alat secara terprogram](/docs/id/agents-and-tools/tool-use/programmatic-tool-calling) dari dalam sandbox, dan hanya tersedia pada Claude Fable 5, Claude Mythos 5, Opus 4.5+, dan Sonnet 4.5+. `code_execution_20260521` adalah runtime yang sama dengan `_20260120` dengan batas waktu eksekusi per sel yang diungkapkan dalam deskripsi alat, sehingga Claude dapat mengatur anggaran untuk sel yang berjalan lama dengan tepat. Setiap sel memiliki batas waktu wall-clock 90 detik; kode yang melebihinya akan mengembalikan hasil `detection_timeout`. Jika Anda masih menggunakan `code_execution_20250522` lama (hanya Python), lihat [Upgrade ke versi alat terbaru](#upgrade-ke-versi-alat-terbaru) untuk bermigrasi darinya.
 </Note>
 
 <Warning>
@@ -67,7 +67,7 @@ Eksekusi kode saat ini tidak tersedia di Amazon Bedrock atau Google Cloud.
 
 ## Mulai cepat
 
-Berikut adalah contoh sederhana yang meminta Claude untuk melakukan perhitungan:
+Berikut adalah contoh sederhana yang meminta Claude melakukan perhitungan:
 
 <CodeGroup>
   ```bash cURL
@@ -263,7 +263,7 @@ Claude menjalankan kode ketika permintaan mendapat manfaat dari komputasi atau p
 * Matematika non-trivial (angka besar, banyak langkah, hasil yang sensitif terhadap presisi)
 * Analisis data, parsing file, atau visualisasi
 * Eksekusi algoritma atau simulasi
-* Permintaan eksplisit untuk "jalankan", "hitung", atau "eksekusi"
+* Permintaan eksplisit untuk "menjalankan", "menghitung", atau "mengeksekusi"
 
 Claude menjawab langsung tanpa menjalankan kode untuk:
 
@@ -316,7 +316,7 @@ Lingkungan Python dapat memproses berbagai jenis file yang diunggah melalui File
 
 <CodeGroup>
   ```bash cURL
-  # Pertama, unggah sebuah file
+  # Pertama, unggah file
   curl https://api.anthropic.com/v1/files \
       --header "x-api-key: $ANTHROPIC_API_KEY" \
       --header "anthropic-version: 2023-06-01" \
@@ -773,7 +773,7 @@ Ketika Claude membuat file selama eksekusi kode, Anda dapat mengambil file-file 
               var contentItem = item.Content;
               if (contentItem.Type == "bash_code_execution_result")
               {
-                  // daftar bertipe konkret: BetaBashCodeExecutionOutputBlock
+                  // list bertipe konkret: BetaBashCodeExecutionOutputBlock
                   foreach (var file in contentItem.Content)
                   {
                       if (file.FileId != null)
@@ -1130,7 +1130,7 @@ Alat eksekusi kode dapat mengembalikan dua jenis hasil tergantung pada operasiny
 Semua hasil eksekusi mencakup:
 
 * `stdout`: Output dari eksekusi yang berhasil
-* `stderr`: Pesan error jika eksekusi gagal
+* `stderr`: Pesan kesalahan jika eksekusi gagal
 * `return_code`: 0 untuk berhasil, bukan nol untuk gagal
 
 Field tambahan untuk operasi file:
@@ -1139,11 +1139,11 @@ Field tambahan untuk operasi file:
 * **Create**: `is_file_update` (apakah file sudah ada sebelumnya)
 * **Edit**: `oldStart`, `oldLines`, `newStart`, `newLines`, `lines` (format diff)
 
-### Error
+### Kesalahan
 
-Setiap jenis alat dapat mengembalikan error tertentu:
+Setiap jenis alat dapat mengembalikan kesalahan tertentu:
 
-**Error umum (semua alat):**
+**Kesalahan umum (semua alat):**
 
 ```json Output
 {
@@ -1156,9 +1156,9 @@ Setiap jenis alat dapat mengembalikan error tertentu:
 }
 ```
 
-**Kode error berdasarkan jenis alat:**
+**Kode kesalahan berdasarkan jenis alat:**
 
-| Alat         | Kode Error                | Deskripsi                                                 |
+| Alat         | Kode Kesalahan            | Deskripsi                                                 |
 | ------------ | ------------------------- | --------------------------------------------------------- |
 | Semua alat   | `unavailable`             | Alat sementara tidak tersedia                             |
 | Semua alat   | `execution_time_exceeded` | Eksekusi melebihi batas waktu maksimum                    |
@@ -1171,7 +1171,7 @@ Setiap jenis alat dapat mengembalikan error tertentu:
 
 #### Stop reason `pause_turn`
 
-Respons dapat menyertakan stop reason `pause_turn`, yang menunjukkan bahwa API menjeda giliran yang berjalan lama. Anda dapat memberikan respons kembali apa adanya dalam permintaan berikutnya agar Claude melanjutkan gilirannya, atau memodifikasi konten jika Anda ingin menginterupsi percakapan.
+Respons dapat menyertakan stop reason `pause_turn`, yang menunjukkan bahwa API menjeda giliran yang berjalan lama. Anda dapat memberikan respons tersebut apa adanya dalam permintaan berikutnya agar Claude melanjutkan gilirannya, atau memodifikasi konten jika Anda ingin menginterupsi percakapan.
 
 ## Kontainer
 
@@ -1186,21 +1186,21 @@ Alat eksekusi kode berjalan dalam lingkungan terkontainerisasi yang aman, diranc
 ### Batas sumber daya
 
 * **Memori**: 5GiB RAM
-* **Ruang disk**: 5GiB penyimpanan workspace
+* **Ruang disk**: Penyimpanan workspace 5GiB
 * **CPU**: 1 CPU
 
 ### Jaringan dan keamanan
 
-* **Akses internet**: Sepenuhnya dinonaktifkan demi keamanan
+* **Akses internet**: Dinonaktifkan sepenuhnya demi keamanan
 * **Koneksi eksternal**: Tidak ada permintaan jaringan keluar yang diizinkan
 * **Isolasi sandbox**: Isolasi penuh dari sistem host dan kontainer lainnya
 * **Akses file**: Terbatas hanya pada direktori workspace
 * **Cakupan workspace**: Seperti [Files](/docs/id/build-with-claude/files), kontainer dicakup ke workspace dari kunci API
-* **Kedaluwarsa**: Kontainer kedaluwarsa 30 hari setelah dibuat
+* **Kedaluwarsa**: Kontainer kedaluwarsa 30 hari setelah pembuatan
 
-### Library yang sudah terinstal
+### Pustaka yang sudah terpasang
 
-Lingkungan Python sandbox mencakup library yang umum digunakan berikut:
+Lingkungan Python sandbox mencakup pustaka yang umum digunakan berikut:
 
 * **Data Science**: pandas, numpy, scipy, scikit-learn, statsmodels
 * **Visualisasi**: matplotlib, seaborn
@@ -1210,7 +1210,7 @@ Lingkungan Python sandbox mencakup library yang umum digunakan berikut:
 
 ## Penggunaan ulang kontainer
 
-Anda dapat menggunakan kembali kontainer yang ada di beberapa permintaan API dengan memberikan ID kontainer dari respons sebelumnya. Ini memungkinkan Anda mempertahankan file yang dibuat di antara permintaan.
+Anda dapat menggunakan kembali kontainer yang sudah ada di beberapa permintaan API dengan memberikan ID kontainer dari respons sebelumnya. Ini memungkinkan Anda mempertahankan file yang dibuat di antara permintaan.
 
 ### Contoh
 
@@ -1577,7 +1577,7 @@ Dengan melakukan upgrade ke `code-execution-2025-08-25`, Anda mendapatkan akses 
 ### Kompatibilitas mundur
 
 * Semua eksekusi kode Python yang ada terus berfungsi persis seperti sebelumnya
-* Tidak ada perubahan yang diperlukan untuk alur kerja yang hanya menggunakan Python
+* Tidak ada perubahan yang diperlukan pada alur kerja khusus Python yang sudah ada
 
 ### Langkah-langkah upgrade
 
@@ -1588,14 +1588,14 @@ Untuk melakukan upgrade, perbarui tipe alat dalam permintaan API Anda:
 + "type": "code_execution_20250825"
 ```
 
-**Tinjau penanganan respons** (jika mem-parsing respons secara programatik):
+**Tinjau penanganan respons** (jika mem-parsing respons secara terprogram):
 
 * Blok sebelumnya untuk respons eksekusi Python tidak akan lagi dikirim
 * Sebagai gantinya, tipe respons baru untuk Bash dan operasi file akan dikirim (lihat bagian Format Respons)
 
-## Pemanggilan alat secara programatik
+## Pemanggilan alat secara terprogram
 
-Untuk menjalankan alat di dalam kontainer eksekusi kode, lihat [Pemanggilan alat secara programatik](/docs/id/agents-and-tools/tool-use/programmatic-tool-calling).
+Untuk menjalankan alat di dalam kontainer eksekusi kode, lihat [Pemanggilan alat secara terprogram](/docs/id/agents-and-tools/tool-use/programmatic-tool-calling).
 
 ## Retensi data
 

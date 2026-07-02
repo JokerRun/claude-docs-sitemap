@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/service_accounts/retrieve
-fetched_at: 2026-06-17T03:17:04.158711Z
-sha256: 9778d92612c1f8d279addcc140588f1375d8833988110f488ffbebf51515e9ac
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: b10e5b965e31954b1563733da752f68559e9e7b692752a310e25cdb22e54f66d
 ---
 
 ## Get Service Account
@@ -62,13 +62,13 @@ Retrieve a service account by its ID (`svac_...`).
 
     Admin-chosen slug identifier.
 
-  - `organization_role: "developer" or "admin"`
+  - `organization_role: "admin" or "developer"`
 
     Org-level role. A federation rule may only be created or retargeted to grant `org:admin` scope when this is `admin`. A rule granting `org:admin` whose target is later demoted to `developer` is rejected at token exchange. Rules granting `org:admin` are managed in the Console.
 
-    - `"developer"`
-
     - `"admin"`
+
+    - `"developer"`
 
   - `type: "service_account"`
 
@@ -101,7 +101,7 @@ curl https://api.anthropic.com/v1/organizations/service_accounts/$SERVICE_ACCOUN
   "created_by_actor_id": "created_by_actor_id",
   "description": "description",
   "name": "ci-deploy-bot",
-  "organization_role": "developer",
+  "organization_role": "admin",
   "type": "service_account",
   "updated_at": "2024-10-30T23:58:27.427722Z",
   "updated_by_actor_id": "updated_by_actor_id"

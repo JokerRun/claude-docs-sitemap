@@ -1,24 +1,24 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 09e878c2193b06e6f4cd0db01c75821a859b77d693cb10a4405ea87f8623f2ec
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 40a02b637886ec4fe76d8ef24978cf8e758703a1eba62937540a0b6e11f09620
 ---
 
 # Claude di Google Cloud
 
-Model Claude dari Anthropic tersedia melalui [Agent Platform dari Google Cloud](https://cloud.google.com/vertex-ai).
+Model Claude dari Anthropic tersedia melalui [Google Cloud's Agent Platform](https://cloud.google.com/vertex-ai).
 
 ---
 
-API untuk mengakses Claude di Agent Platform dari Google Cloud hampir identik dengan [Messages API](/docs/id/api/messages/create), dengan dua perbedaan utama dalam format permintaan:
+API untuk mengakses Claude di Google Cloud's Agent Platform hampir identik dengan [Messages API](/docs/id/api/messages/create), dengan dua perbedaan utama dalam format permintaan:
 
 * Di Agent Platform, `model` tidak dikirimkan dalam body permintaan. Sebagai gantinya, model ditentukan dalam URL endpoint Google Cloud.
 * Di Agent Platform, `anthropic_version` dikirimkan dalam body permintaan (bukan sebagai header), dan harus diatur ke nilai `vertex-2023-10-16`.
 
 Agent Platform juga didukung oleh [client SDK](/docs/id/cli-sdks-libraries/overview) resmi Anthropic. Panduan ini memandu Anda membuat permintaan ke Claude di Agent Platform menggunakan salah satu client SDK Anthropic.
 
-Perhatikan bahwa panduan ini mengasumsikan Anda sudah memiliki proyek Google Cloud yang dapat menggunakan Agent Platform. Lihat [Model Claude dari Anthropic di Agent Platform](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/claude) untuk informasi lebih lanjut tentang penyiapan yang diperlukan dan panduan lengkapnya.
+Perhatikan bahwa panduan ini mengasumsikan Anda sudah memiliki proyek Google Cloud yang dapat menggunakan Agent Platform. Lihat [Model Anthropic Claude di Agent Platform](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/claude) untuk informasi lebih lanjut tentang penyiapan yang diperlukan dan panduan lengkapnya.
 
 ## Menginstal SDK untuk mengakses Agent Platform
 
@@ -52,14 +52,14 @@ Pertama, instal [client SDK](/docs/id/cli-sdks-libraries/overview) Anthropic unt
   <Tab title="Java">
     <CodeGroup>
       ```groovy Gradle
-      implementation("com.anthropic:anthropic-java-vertex:2.40.0")
+      implementation("com.anthropic:anthropic-java-vertex:2.47.0")
       ```
 
       ```xml Maven
       <dependency>
           <groupId>com.anthropic</groupId>
           <artifactId>anthropic-java-vertex</artifactId>
-          <version>2.40.0</version>
+          <version>2.47.0</version>
       </dependency>
       ```
 
@@ -108,11 +108,11 @@ Pertama, instal [client SDK](/docs/id/cli-sdks-libraries/overview) Anthropic unt
 
 ### Ketersediaan model
 
-Perhatikan bahwa ketersediaan model Anthropic bervariasi berdasarkan region. Cari "Claude" di [Model Garden](https://cloud.google.com/model-garden) atau kunjungi [Model Claude dari Anthropic](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/claude) untuk informasi terbaru.
+Perhatikan bahwa ketersediaan model Anthropic bervariasi berdasarkan region. Cari "Claude" di [Model Garden](https://cloud.google.com/model-garden) atau kunjungi [Model Anthropic Claude](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/claude) untuk informasi terbaru.
 
 #### ID model API
 
-Istilah siklus hidup (Deprecated, Retired) didefinisikan di [Deprekasi model](/docs/id/about-claude/model-deprecations). Tanggal siklus hidup pada platform yang dioperasikan mitra ditetapkan oleh mitra dan dapat berbeda dari jadwal API Claude. Untuk tanggal penghentian terkini dari model apa pun di Agent Platform, lihat [dokumentasi Google Cloud untuk model Claude di Agent Platform](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/claude).
+Istilah siklus hidup (Deprecated, Retired) didefinisikan dalam [Penghentian model](/docs/id/about-claude/model-deprecations). Tanggal siklus hidup pada platform yang dioperasikan mitra ditetapkan oleh mitra dan dapat berbeda dari jadwal Claude API. Untuk tanggal penghentian terkini dari model apa pun di Agent Platform, lihat [dokumentasi Google Cloud untuk model Claude di Agent Platform](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/claude).
 
 | Model                        | ID model API Agent Platform |
 | ---------------------------- | --------------------------- |
@@ -336,11 +336,11 @@ Claude juga tersedia melalui [Amazon Bedrock](/docs/id/build-with-claude/claude-
 
 ## Retensi data
 
-Penanganan data untuk penawaran ini diatur oleh Google Cloud. Untuk detailnya, lihat [Agent Platform dan retensi data nol](https://cloud.google.com/vertex-ai/generative-ai/docs/data-governance).
+Penanganan data untuk penawaran ini diatur oleh Google Cloud. Untuk detailnya, lihat [Agent Platform dan zero data retention](https://cloud.google.com/vertex-ai/generative-ai/docs/data-governance).
 
 ## Pencatatan aktivitas
 
-Agent Platform menyediakan [layanan pencatatan permintaan-respons](https://cloud.google.com/vertex-ai/generative-ai/docs/multimodal/request-response-logging) yang memungkinkan pelanggan mencatat prompt dan completion yang terkait dengan penggunaan Anda.
+Agent Platform menyediakan [layanan pencatatan request-response](https://cloud.google.com/vertex-ai/generative-ai/docs/multimodal/request-response-logging) yang memungkinkan pelanggan mencatat prompt dan completion yang terkait dengan penggunaan Anda.
 
 Anthropic merekomendasikan agar Anda mencatat aktivitas Anda setidaknya secara bergulir selama 30 hari untuk memahami aktivitas Anda dan menyelidiki potensi penyalahgunaan.
 
@@ -385,10 +385,10 @@ Agent Platform menawarkan tiga jenis endpoint:
 * **Endpoint multi-region:** Routing dinamis dalam area geografis (misalnya, Amerika Serikat atau Uni Eropa) untuk residensi data dengan ketersediaan tinggi
 * **Endpoint regional:** Routing data yang dijamin melalui region geografis tertentu
 
-Endpoint regional dan multi-region menyertakan premium harga 10% di atas endpoint global.
+Endpoint regional dan multi-region menyertakan premium harga 10% dibandingkan endpoint global.
 
 <Note>
-  Ini berlaku untuk Claude Sonnet 4.5 dan model yang lebih baru saja. Model yang lebih lama (Claude Sonnet 4 (deprecated), Opus 4 (deprecated), dan sebelumnya) mempertahankan struktur harga yang sudah ada.
+  Ini berlaku untuk Claude Sonnet 4.5 dan model-model selanjutnya saja. Model yang lebih lama (Claude Sonnet 4 (deprecated), Opus 4 (deprecated), dan sebelumnya) mempertahankan struktur harga yang sudah ada.
 </Note>
 
 ### Kapan menggunakan setiap opsi
@@ -396,21 +396,21 @@ Endpoint regional dan multi-region menyertakan premium harga 10% di atas endpoin
 **Endpoint global (direkomendasikan):**
 
 * Menyediakan ketersediaan dan uptime maksimum
-* Merutekan permintaan secara dinamis ke region dengan kapasitas yang tersedia
-* Tanpa premium harga
+* Secara dinamis merutekan permintaan ke region dengan kapasitas yang tersedia
+* Tidak ada premium harga
 * Terbaik untuk aplikasi di mana residensi data bersifat fleksibel
-* Hanya mendukung trafik pay-as-you-go (provisioned throughput memerlukan endpoint regional)
+* Hanya mendukung lalu lintas pay-as-you-go (provisioned throughput memerlukan endpoint regional)
 
 **Endpoint multi-region:**
 
-* Merutekan permintaan secara dinamis di seluruh region dalam area geografis (saat ini `us` dan `eu`)
+* Secara dinamis merutekan permintaan di seluruh region dalam area geografis (saat ini `us` dan `eu`)
 * Berguna ketika Anda membutuhkan residensi data dalam geografi yang luas tetapi menginginkan ketersediaan yang lebih tinggi daripada satu region
-* Premium harga 10% di atas endpoint global
-* Hanya mendukung trafik pay-as-you-go (provisioned throughput memerlukan endpoint regional)
+* Premium harga 10% dibandingkan endpoint global
+* Hanya mendukung lalu lintas pay-as-you-go (provisioned throughput memerlukan endpoint regional)
 
 **Endpoint regional:**
 
-* Merutekan trafik melalui region geografis tertentu
+* Merutekan lalu lintas melalui region geografis tertentu
 * Diperlukan untuk residensi data satu region, mandat kepatuhan yang ketat, atau provisioned throughput
 * Mendukung pay-as-you-go dan provisioned throughput
 * Premium harga 10% mencerminkan biaya infrastruktur untuk kapasitas regional khusus
@@ -589,7 +589,7 @@ Atur parameter `region` ke `"global"` saat menginisialisasi klien:
 
 **Menggunakan endpoint multi-region:**
 
-Atur parameter `region` ke pengidentifikasi multi-region: `"us"` untuk Amerika Serikat atau `"eu"` untuk Uni Eropa. SDK merutekan permintaan ke endpoint multi-region yang sesuai (`https://aiplatform.us.rep.googleapis.com` atau `https://aiplatform.eu.rep.googleapis.com`), yang secara dinamis menyeimbangkan trafik di seluruh region dalam geografi tersebut.
+Atur parameter `region` ke pengidentifikasi multi-region: `"us"` untuk Amerika Serikat atau `"eu"` untuk Uni Eropa. SDK merutekan permintaan ke endpoint multi-region yang sesuai (`https://aiplatform.us.rep.googleapis.com` atau `https://aiplatform.eu.rep.googleapis.com`), yang secara dinamis menyeimbangkan lalu lintas di seluruh region dalam geografi tersebut.
 
 <CodeGroup>
   ```bash CLI

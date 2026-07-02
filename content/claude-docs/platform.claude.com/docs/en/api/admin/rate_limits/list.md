@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/rate_limits/list
-fetched_at: 2026-06-12T03:17:40.104094Z
-sha256: 0a8357ba66986d871b6e7b0029f1d203bd6637f4b931573d9992f68210bafa34
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 73d3e2f907808d26289a975f045f61d273efefc27f6734bc83711ea0bc842334
 ---
 
 ## List Organization Rate Limits
@@ -17,19 +17,19 @@ and contains the set of limiter values that apply to it.
 
 ### Query Parameters
 
-- `group_type: optional "model_group" or "batch" or "token_count" or 3 more`
+- `group_type: optional "batch" or "files" or "model_group" or 3 more`
 
   Filter by group type.
 
-  - `"model_group"`
-
   - `"batch"`
-
-  - `"token_count"`
 
   - `"files"`
 
+  - `"model_group"`
+
   - `"skills"`
+
+  - `"token_count"`
 
   - `"web_search"`
 
@@ -47,19 +47,19 @@ and contains the set of limiter values that apply to it.
 
   Rate-limit entries for the organization, one per group.
 
-  - `group_type: "model_group" or "batch" or "token_count" or 3 more`
+  - `group_type: "batch" or "files" or "model_group" or 3 more`
 
     The kind of rate-limit group this entry represents. `model_group` entries apply to a family of models (listed in `models`); other values apply to an API-surface category and have `models` set to `null`.
 
-    - `"model_group"`
-
     - `"batch"`
-
-    - `"token_count"`
 
     - `"files"`
 
+    - `"model_group"`
+
     - `"skills"`
+
+    - `"token_count"`
 
     - `"web_search"`
 
@@ -103,7 +103,7 @@ curl https://api.anthropic.com/v1/organizations/rate_limits \
 {
   "data": [
     {
-      "group_type": "model_group",
+      "group_type": "batch",
       "limits": [
         {
           "type": "type",

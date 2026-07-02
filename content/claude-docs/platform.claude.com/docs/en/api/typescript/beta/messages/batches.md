@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/messages/batches
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: bf3fc807d557afdb1638846ea7b3a34dd793c92176296822be69f3a4a3fa6876
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 0fdc4f97e9c7db208aaa8e69bcf5331a724a86c8a579c2d8edf8664b4c5df750
 ---
 
 # Batches
@@ -1133,7 +1133,11 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
                   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-                  - `"claude-fable-5" | "claude-mythos-5" | "claude-opus-4-8" | 12 more`
+                  - `"claude-sonnet-5" | "claude-fable-5" | "claude-mythos-5" | 13 more`
+
+                    - `"claude-sonnet-5"`
+
+                      High-performance model for coding and agents
 
                     - `"claude-fable-5"`
 
@@ -4925,7 +4929,11 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
                 See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-                - `"claude-fable-5" | "claude-mythos-5" | "claude-opus-4-8" | 12 more`
+                - `"claude-sonnet-5" | "claude-fable-5" | "claude-mythos-5" | 13 more`
+
+                  - `"claude-sonnet-5"`
+
+                    High-performance model for coding and agents
 
                   - `"claude-fable-5"`
 
@@ -4997,7 +5005,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
               What caused the `from` model to hand over at this hop.
 
-              - `category: "cyber" | "bio" | "frontier_llm" | 2 more | null`
+              - `category: "cyber" | "bio" | "frontier_llm" | "reasoning_extraction" | null`
 
                 The policy category that triggered a refusal.
 
@@ -5008,8 +5016,6 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
                 - `"frontier_llm"`
 
                 - `"reasoning_extraction"`
-
-                - `"military_weapons"`
 
               - `type: "refusal"`
 
@@ -5140,7 +5146,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
           Structured information about a refusal.
 
-          - `category: "cyber" | "bio" | "frontier_llm" | 2 more | null`
+          - `category: "cyber" | "bio" | "frontier_llm" | "reasoning_extraction" | null`
 
             The policy category that triggered a refusal.
 
@@ -5151,8 +5157,6 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
             - `"frontier_llm"`
 
             - `"reasoning_extraction"`
-
-            - `"military_weapons"`
 
           - `explanation: string | null`
 
@@ -6708,7 +6712,11 @@ console.log(betaMessageBatchIndividualResponse.custom_id);
 
                 See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-                - `"claude-fable-5" | "claude-mythos-5" | "claude-opus-4-8" | 12 more`
+                - `"claude-sonnet-5" | "claude-fable-5" | "claude-mythos-5" | 13 more`
+
+                  - `"claude-sonnet-5"`
+
+                    High-performance model for coding and agents
 
                   - `"claude-fable-5"`
 
@@ -6780,7 +6788,7 @@ console.log(betaMessageBatchIndividualResponse.custom_id);
 
               What caused the `from` model to hand over at this hop.
 
-              - `category: "cyber" | "bio" | "frontier_llm" | 2 more | null`
+              - `category: "cyber" | "bio" | "frontier_llm" | "reasoning_extraction" | null`
 
                 The policy category that triggered a refusal.
 
@@ -6791,8 +6799,6 @@ console.log(betaMessageBatchIndividualResponse.custom_id);
                 - `"frontier_llm"`
 
                 - `"reasoning_extraction"`
-
-                - `"military_weapons"`
 
               - `type: "refusal"`
 
@@ -6923,7 +6929,7 @@ console.log(betaMessageBatchIndividualResponse.custom_id);
 
           Structured information about a refusal.
 
-          - `category: "cyber" | "bio" | "frontier_llm" | 2 more | null`
+          - `category: "cyber" | "bio" | "frontier_llm" | "reasoning_extraction" | null`
 
             The policy category that triggered a refusal.
 
@@ -6934,8 +6940,6 @@ console.log(betaMessageBatchIndividualResponse.custom_id);
             - `"frontier_llm"`
 
             - `"reasoning_extraction"`
-
-            - `"military_weapons"`
 
           - `explanation: string | null`
 
@@ -8283,7 +8287,11 @@ console.log(betaMessageBatchIndividualResponse.custom_id);
 
               See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-              - `"claude-fable-5" | "claude-mythos-5" | "claude-opus-4-8" | 12 more`
+              - `"claude-sonnet-5" | "claude-fable-5" | "claude-mythos-5" | 13 more`
+
+                - `"claude-sonnet-5"`
+
+                  High-performance model for coding and agents
 
                 - `"claude-fable-5"`
 
@@ -8355,7 +8363,7 @@ console.log(betaMessageBatchIndividualResponse.custom_id);
 
             What caused the `from` model to hand over at this hop.
 
-            - `category: "cyber" | "bio" | "frontier_llm" | 2 more | null`
+            - `category: "cyber" | "bio" | "frontier_llm" | "reasoning_extraction" | null`
 
               The policy category that triggered a refusal.
 
@@ -8366,8 +8374,6 @@ console.log(betaMessageBatchIndividualResponse.custom_id);
               - `"frontier_llm"`
 
               - `"reasoning_extraction"`
-
-              - `"military_weapons"`
 
             - `type: "refusal"`
 
@@ -8498,7 +8504,7 @@ console.log(betaMessageBatchIndividualResponse.custom_id);
 
         Structured information about a refusal.
 
-        - `category: "cyber" | "bio" | "frontier_llm" | 2 more | null`
+        - `category: "cyber" | "bio" | "frontier_llm" | "reasoning_extraction" | null`
 
           The policy category that triggered a refusal.
 
@@ -8509,8 +8515,6 @@ console.log(betaMessageBatchIndividualResponse.custom_id);
           - `"frontier_llm"`
 
           - `"reasoning_extraction"`
-
-          - `"military_weapons"`
 
         - `explanation: string | null`
 
@@ -9820,7 +9824,11 @@ console.log(betaMessageBatchIndividualResponse.custom_id);
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-            - `"claude-fable-5" | "claude-mythos-5" | "claude-opus-4-8" | 12 more`
+            - `"claude-sonnet-5" | "claude-fable-5" | "claude-mythos-5" | 13 more`
+
+              - `"claude-sonnet-5"`
+
+                High-performance model for coding and agents
 
               - `"claude-fable-5"`
 
@@ -9892,7 +9900,7 @@ console.log(betaMessageBatchIndividualResponse.custom_id);
 
           What caused the `from` model to hand over at this hop.
 
-          - `category: "cyber" | "bio" | "frontier_llm" | 2 more | null`
+          - `category: "cyber" | "bio" | "frontier_llm" | "reasoning_extraction" | null`
 
             The policy category that triggered a refusal.
 
@@ -9903,8 +9911,6 @@ console.log(betaMessageBatchIndividualResponse.custom_id);
             - `"frontier_llm"`
 
             - `"reasoning_extraction"`
-
-            - `"military_weapons"`
 
           - `type: "refusal"`
 
@@ -10035,7 +10041,7 @@ console.log(betaMessageBatchIndividualResponse.custom_id);
 
       Structured information about a refusal.
 
-      - `category: "cyber" | "bio" | "frontier_llm" | 2 more | null`
+      - `category: "cyber" | "bio" | "frontier_llm" | "reasoning_extraction" | null`
 
         The policy category that triggered a refusal.
 
@@ -10046,8 +10052,6 @@ console.log(betaMessageBatchIndividualResponse.custom_id);
         - `"frontier_llm"`
 
         - `"reasoning_extraction"`
-
-        - `"military_weapons"`
 
       - `explanation: string | null`
 

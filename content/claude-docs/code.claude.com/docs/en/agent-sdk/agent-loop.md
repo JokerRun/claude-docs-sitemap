@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/agent-loop
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 0a34eb538c67c74ac0a77379404c7cf2da2ac77defde6084470f4fd07fbf63d8
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: b117db701d2850ae2fc3696a3571f6feb9c9a7912738f040f9ee0b34da525645
 ---
 
 > ## Documentation Index
@@ -174,13 +174,13 @@ When either limit is hit, the SDK returns a `ResultMessage` with a corresponding
 
 The `effort` option controls how much reasoning Claude applies. Lower effort levels use fewer tokens per turn and reduce cost. Not all models support the effort parameter. See [Effort](https://platform.claude.com/docs/en/build-with-claude/effort) for which models support it.
 
-| Level      | Behavior                          | Good for                                                       |
-| :--------- | :-------------------------------- | :------------------------------------------------------------- |
-| `"low"`    | Minimal reasoning, fast responses | File lookups, listing directories                              |
-| `"medium"` | Balanced reasoning                | Routine edits, standard tasks                                  |
-| `"high"`   | Thorough analysis                 | Refactors, debugging                                           |
-| `"xhigh"`  | Extended reasoning depth          | Coding and agentic tasks; recommended on Fable 5 and Opus 4.7+ |
-| `"max"`    | Maximum reasoning depth           | Multi-step problems requiring deep analysis                    |
+| Level      | Behavior                          | Good for                                                                  |
+| :--------- | :-------------------------------- | :------------------------------------------------------------------------ |
+| `"low"`    | Minimal reasoning, fast responses | File lookups, listing directories                                         |
+| `"medium"` | Balanced reasoning                | Routine edits, standard tasks                                             |
+| `"high"`   | Thorough analysis                 | Refactors, debugging                                                      |
+| `"xhigh"`  | Extended reasoning depth          | Coding and agentic tasks; recommended on Fable 5, Opus 4.7+, and Sonnet 5 |
+| `"max"`    | Maximum reasoning depth           | Multi-step problems requiring deep analysis                               |
 
 If you don't set `effort`, both SDKs leave the parameter unset and defer to the model's default behavior.
 

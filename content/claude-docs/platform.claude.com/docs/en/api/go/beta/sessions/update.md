@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/sessions/update
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: a0255ac97c740e687163f994449cbeb760adb611e427114a3e24229a1a9b2fa2
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: fcdf652e1ecff56915f8e28a0dcafc89b3a4eef20e1072ff85305dc6f5fabe44
 ---
 
 ## Update Session
@@ -140,6 +140,10 @@ Update Session
           The model that will power your agent.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `const BetaManagedAgentsModelClaudeSonnet5 BetaManagedAgentsModel = "claude-sonnet-5"`
+
+            High-performance model for coding and agents
 
           - `const BetaManagedAgentsModelClaudeFable5 BetaManagedAgentsModel = "claude-fable-5"`
 

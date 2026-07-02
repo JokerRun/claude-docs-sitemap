@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/invites/list
-fetched_at: 2026-06-12T03:17:40.104094Z
-sha256: 9a6294462a4b5afb29ee03986aef717a681c036ac37161f79bc9825bca9389fb
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: dd5b094068b9ef6f57bdcd7398e8714d1bbdae08e6acd559890c9ccd82890310
 ---
 
 ## List Invites
@@ -47,29 +47,29 @@ List Invites
 
     RFC 3339 datetime string indicating when the Invite was created.
 
-  - `role: "user" or "developer" or "billing" or 2 more`
+  - `role: "admin" or "billing" or "claude_code_user" or 2 more`
 
     Organization role of the User.
 
-    - `"user"`
-
-    - `"developer"`
+    - `"admin"`
 
     - `"billing"`
 
-    - `"admin"`
-
     - `"claude_code_user"`
 
-  - `status: "accepted" or "expired" or "deleted" or "pending"`
+    - `"developer"`
+
+    - `"user"`
+
+  - `status: "accepted" or "deleted" or "expired" or "pending"`
 
     Status of the Invite.
 
     - `"accepted"`
 
-    - `"expired"`
-
     - `"deleted"`
+
+    - `"expired"`
 
     - `"pending"`
 

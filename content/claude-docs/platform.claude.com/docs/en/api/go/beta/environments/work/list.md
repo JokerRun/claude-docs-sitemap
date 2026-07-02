@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/environments/work/list
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: d78b2d33ca9b764704cdcd0c9e87272148b780145eaa34f1163eaf2f8e7f065c
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 6b9fc7a12f9826a3f74deee0ee169abe5bc83589e300d5e7d235cad5bc40b0c1
 ---
 
 ## List Work Items
@@ -141,6 +141,10 @@ List work items in an environment.
 
     User-provided metadata key-value pairs associated with this work item
 
+  - `Secret string`
+
+    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
+
   - `StartedAt string`
 
     RFC 3339 timestamp when work execution started
@@ -222,6 +226,7 @@ func main() {
       "metadata": {
         "foo": "string"
       },
+      "secret": "secret",
       "started_at": "started_at",
       "state": "queued",
       "stop_requested_at": "stop_requested_at",

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/spend_limits/retrieve
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: c9beca98b6664445c79e0859b9931f02c8f34264e7b2fd0486490a4ce8925506
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 958ce23e3863ac8ea0d540ca80db32c708034b07e5d5e10fab58c3e2b497e13b
 ---
 
 ## Get Spend Limit
@@ -29,11 +29,11 @@ Retrieve a spend limit by ID.
 
   - `currency: string`
 
-  - `period: "monthly" or "daily" or "weekly"`
-
-    - `"monthly"`
+  - `period: "daily" or "monthly" or "weekly"`
 
     - `"daily"`
+
+    - `"monthly"`
 
     - `"weekly"`
 

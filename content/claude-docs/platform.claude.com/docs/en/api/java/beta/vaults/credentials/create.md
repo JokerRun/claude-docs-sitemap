@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/credentials/create
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: beb14b5c49ba1a4395282e93d4662f0fb98ff2ca1d79bd853b3432d399d57743
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 4173986e7490267e689013f8be7e2f484d88dead10d161fe00126485410d11ec
 ---
 
 ## Create Credential
@@ -219,6 +219,18 @@ Create Credential
 
         - `ENVIRONMENT_VARIABLE("environment_variable")`
 
+      - `Optional<BetaManagedAgentsInjectionLocationParams> injectionLocation`
+
+        Where in the outbound request the secret value may be substituted.
+
+        - `Optional<Boolean> body`
+
+          Substitute when the placeholder appears in the request body.
+
+        - `Optional<Boolean> header`
+
+          Substitute when the placeholder appears in a request header value.
+
   - `Optional<String> displayName`
 
     Human-readable name for the credential. Up to 255 characters.
@@ -324,6 +336,18 @@ Create Credential
     - `class BetaManagedAgentsEnvironmentVariableAuthResponse:`
 
       Environment variable credential details. The secret value is never returned.
+
+      - `BetaManagedAgentsInjectionLocationResponse injectionLocation`
+
+        Where in the outbound request the secret value is substituted.
+
+        - `boolean body`
+
+          Whether the placeholder is substituted in the request body.
+
+        - `boolean header`
+
+          Whether the placeholder is substituted in request header values.
 
       - `Networking networking`
 

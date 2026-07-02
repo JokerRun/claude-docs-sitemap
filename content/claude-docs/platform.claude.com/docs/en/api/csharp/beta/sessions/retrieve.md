@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/sessions/retrieve
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 68fd3472c6c8a6a9495333f9a2a2f47409715dc5ea55283d35776ff8815bb159
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: e9904846d58e17c0fcde29215cb3fad9758d3f08f840b2ce300a5274aeaf6b02
 ---
 
 ## Get Session
@@ -116,6 +116,10 @@ Get Session
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-sonnet-5"ClaudeSonnet5`
+
+          High-performance model for coding and agents
 
         - `"claude-fable-5"ClaudeFable5`
 

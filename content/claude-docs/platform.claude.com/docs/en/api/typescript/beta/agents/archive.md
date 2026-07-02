@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/agents/archive
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 015eeffc213d5230a929f66f9b66f3c4e0e180f513e1b3f60616a4a05098ba67
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: c86efe472b4c24e49edc5f84f53e24c29728b30bc22487deb1e8e2042c845d47
 ---
 
 ## Archive Agent
@@ -123,7 +123,11 @@ Archive Agent
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `"claude-fable-5" | "claude-opus-4-8" | "claude-opus-4-7" | 8 more`
+      - `"claude-sonnet-5" | "claude-fable-5" | "claude-opus-4-8" | 9 more`
+
+        - `"claude-sonnet-5"`
+
+          High-performance model for coding and agents
 
         - `"claude-fable-5"`
 

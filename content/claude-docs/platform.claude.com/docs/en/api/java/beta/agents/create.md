@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/agents/create
-fetched_at: 2026-06-26T03:16:19.812719Z
-sha256: 6cffe24e29be95506efa54de30dc08da2cf8a458506548f57c7a09eccbe66193
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 605f04151769cc08d0893332c6aaf39a90f9278e9cf4127cc346917ce7a2d075
 ---
 
 ## Create Agent
@@ -86,6 +86,10 @@ Create Agent
       The model that will power your agent.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `CLAUDE_SONNET_5("claude-sonnet-5")`
+
+        High-performance model for coding and agents
 
       - `CLAUDE_FABLE_5("claude-fable-5")`
 
@@ -424,6 +428,10 @@ Create Agent
       The model that will power your agent.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `CLAUDE_SONNET_5("claude-sonnet-5")`
+
+        High-performance model for coding and agents
 
       - `CLAUDE_FABLE_5("claude-fable-5")`
 

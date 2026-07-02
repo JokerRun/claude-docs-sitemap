@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/quickstart
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: d2e29e4601a8fac7446e28ef8fb6aa34a012e77d9221817c7159f9ebec1e6be3
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 75607690cc352a620c01df74a12364eb80f775cd9a987a3f954dad88adb013a1
 ---
 
 # Memulai dengan Claude Managed Agents
@@ -11,7 +11,7 @@ Buat agen otonom pertama Anda.
 
 ---
 
-Panduan ini memandu Anda dalam membuat agen, menyiapkan environment (lingkungan), memulai sesi, dan melakukan streaming respons agen.
+Panduan ini memandu Anda dalam membuat agen, menyiapkan environment, memulai sesi, dan melakukan streaming respons agen.
 
 <Tip>
   **Lebih suka panduan interaktif?** Jalankan `/claude-api managed-agents-onboard` di versi terbaru [Claude Code](https://claude.com/product/claude-code) untuk penyiapan terpandu dan tanya jawab interaktif.
@@ -44,9 +44,12 @@ Panduan ini memandu Anda dalam membuat agen, menyiapkan environment (lingkungan)
     Untuk lingkungan Linux, unduh binary rilis secara langsung.
 
     ```bash
-    VERSION=1.12.0
+    VERSION=1.14.0
     OS=$(uname -s | tr '[:upper:]' '[:lower:]')
-    ARCH=$(uname -m | sed -e 's/x86_64/amd64/' -e 's/aarch64/arm64/')
+    case $(uname -m) in
+      x86_64) ARCH=amd64 ;;
+      aarch64) ARCH=arm64 ;;
+    esac
     curl -fsSL "https://github.com/anthropics/anthropic-cli/releases/download/v${VERSION}/ant_${VERSION}_${OS}_${ARCH}.tar.gz" \
       | sudo tar -xz -C /usr/local/bin ant
     ```
@@ -92,7 +95,7 @@ ant --version
 
   <Tab title="Java">
     ```groovy Gradle
-    implementation("com.anthropic:anthropic-java:2.40.0")
+    implementation("com.anthropic:anthropic-java:2.47.0")
     ```
   </Tab>
 
@@ -889,5 +892,9 @@ Saat Anda mengirim event pengguna, Claude Managed Agents:
 
   <Card title="Stream event sesi" icon="lightning" href="/docs/id/managed-agents/events-and-streaming">
     Tangani event dan arahkan agen di tengah eksekusi
+  </Card>
+
+  <Card title="Deployment terjadwal" icon="arrows-clockwise" href="/docs/id/managed-agents/scheduled-deployments">
+    Jalankan agen Anda pada jadwal cron berulang
   </Card>
 </CardGroup>

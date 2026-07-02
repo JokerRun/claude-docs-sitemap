@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/messages/batches/create
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: c70e609e7b9723c075b84c625ad04f7652386681a6225adb2ef40b101f72bd82
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 015aaba33caa57766c3b59b30022dffecea4d37bbb166495308f82770ce0ad19
 ---
 
 ## Create a Message Batch
@@ -1131,7 +1131,11 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
                   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-                  - `"claude-fable-5" | "claude-mythos-5" | "claude-opus-4-8" | 12 more`
+                  - `"claude-sonnet-5" | "claude-fable-5" | "claude-mythos-5" | 13 more`
+
+                    - `"claude-sonnet-5"`
+
+                      High-performance model for coding and agents
 
                     - `"claude-fable-5"`
 

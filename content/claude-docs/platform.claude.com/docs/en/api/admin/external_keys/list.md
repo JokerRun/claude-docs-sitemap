@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/external_keys/list
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: def058956f83efe0c65ec2569a73146e16c411d51cdca7d57477c644deff6b16
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 09a3d93f31fe58ccbbc91fdefc463c031138adfe2f05cd67d35c17407adf8fcf
 ---
 
 ## List External Keys
@@ -36,7 +36,7 @@ Results are ordered by creation time (newest first). Use the
 
   - `display_name: string`
 
-    Human-friendly display name.
+    Human-friendly display name. Null if none was set.
 
   - `geo: string`
 

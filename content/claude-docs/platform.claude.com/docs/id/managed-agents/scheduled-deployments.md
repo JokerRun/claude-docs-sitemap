@@ -1,29 +1,29 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/scheduled-deployments
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: aa1eb85766ea2dc26d6f4b39d2fe9c199000e62e54773ba31c9df51caccf0389
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 5526a6febf84f1d1d5656306d5ab0bd51bcc364222812b34d88f19308a6cc1e8
 ---
 
 # Deployment terjadwal
 
-Jalankan agen pada jadwal cron berulang dan periksa riwayat eksekusinya.
+Buat dan kelola deployment dengan Claude API: jalankan agen pada jadwal cron berulang dan periksa riwayat eksekusinya.
 
 ---
 
-Sebuah **scheduled deployment** (deployment terjadwal) memungkinkan sebuah [agen](/docs/id/managed-agents/agent-setup) untuk memulai [sesi](/docs/id/managed-agents/sessions) secara otonom, memungkinkan penyelesaian tugas dengan irama yang dapat diprediksi.
+Sebuah **scheduled deployment** (deployment terjadwal) memungkinkan sebuah [agen](/docs/id/managed-agents/agent-setup) untuk memulai [sesi](/docs/id/managed-agents/sessions) secara otonom, sehingga memungkinkan penyelesaian tugas dengan kadens yang dapat diprediksi. Anda membuat dan mengelola deployment dengan Deployments API, bagian dari Claude API.
 
 <Note>
-  Semua permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`. SDK mengatur header beta secara otomatis.
+  Semua permintaan Managed Agents API memerlukan header beta `managed-agents-2026-04-01`. SDK mengatur header beta ini secara otomatis.
 </Note>
 
-## Membuat scheduled deployment
+## Membuat deployment terjadwal
 
 Saat membuat deployment, Anda meneruskan [konfigurasi sesi](/docs/id/managed-agents/sessions) yang diperlukan untuk eksekusi, selain sebuah `schedule`.
 
-* Deployment memerlukan [konfigurasi agen](/docs/id/managed-agents/agent-setup) dan [konfigurasi lingkungan](/docs/id/managed-agents/environments), dan secara opsional menerima [file](/docs/id/managed-agents/files), [GitHub](/docs/id/managed-agents/github), [memory store](/docs/id/managed-agents/memory), dan [vault](/docs/id/managed-agents/vaults).
+* Deployment memerlukan [konfigurasi agen](/docs/id/managed-agents/agent-setup) dan [konfigurasi environment](/docs/id/managed-agents/environments), dan secara opsional menerima [file](/docs/id/managed-agents/files), [GitHub](/docs/id/managed-agents/github), [memory store](/docs/id/managed-agents/memory), dan [vault](/docs/id/managed-agents/vaults).
 * Deployment juga memerlukan event `user.message` awal yang memulai pekerjaan sesi.
-* Dalam `schedule`, Anda mendefinisikan sebuah `expression` cron dan sebuah `timezone`. Granularitas maksimum yang didukung adalah pada tingkat menit.
+* Dalam `schedule`, Anda mendefinisikan `expression` cron dan `timezone`. Granularitas maksimum yang didukung adalah pada tingkat menit.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash curl
@@ -226,7 +226,7 @@ Saat membuat deployment, Anda meneruskan [konfigurasi sesi](/docs/id/managed-age
   ```
 </CodeGroup>
 
-Respons menyertakan objek deployment dengan `schedule.upcoming_runs_at` yang terisi dengan waktu pemicuan mendatang berikutnya, untuk mengonfirmasi bahwa jadwal Anda telah diatur dengan benar.
+Respons mencakup objek deployment dengan `schedule.upcoming_runs_at` yang terisi dengan waktu eksekusi berikutnya yang akan datang, untuk mengonfirmasi bahwa jadwal Anda telah diatur dengan benar.
 
 ```json
 {
@@ -247,25 +247,27 @@ Respons menyertakan objek deployment dengan `schedule.upcoming_runs_at` yang ter
 }
 ```
 
-Timestamp eksekusi mendatang didasarkan pada jadwal persis yang dikonfigurasi. Namun, untuk mendistribusikan beban, deployment dapat menerapkan jitter hingga 10 detik.
+Timestamp eksekusi yang akan datang didasarkan pada jadwal persis yang dikonfigurasi. Namun, untuk mendistribusikan beban, deployment dapat menerapkan jitter hingga 10 detik.
 
-Maksimum **1.000 scheduled deployment** didukung per organisasi. Hubungi dukungan Anthropic jika Anda membutuhkan lebih banyak.
+Maksimum **1.000 deployment terjadwal** didukung per organisasi. Hubungi dukungan Anthropic jika Anda membutuhkan lebih banyak.
 
-### Semantik cron dan timezone
+Lihat [referensi Create Deployment](/docs/id/api/beta/deployments/create) untuk parameter lengkap dan skema respons.
 
-* **Expression:** Cron POSIX standar (`minute hour day-of-month month day-of-week`). Anda dapat menghasilkan dan memvalidasi ekspresi cron ini di [Claude Console](https://platform.claude.com/workspaces/default/deployments).
-* **Timezone:** Pengidentifikasi timezone IANA (misalnya, `"America/Los_Angeles"`).
-* **DST:** Jadwal cron menggunakan pencocokan waktu jam dinding secara literal, sehingga `"0 20 * * *"` di `America/New_York` terpicu pada pukul 8malam waktu setempat terlepas dari apakah EST atau EDT sedang berlaku.
+### Semantik cron dan zona waktu
+
+* **Expression:** Cron POSIX standar (`minute hour day-of-month month day-of-week`). Anda dapat membuat dan memvalidasi ekspresi cron ini di [Claude Console](https://platform.claude.com/workspaces/default/deployments).
+* **Timezone:** Pengidentifikasi zona waktu IANA (misalnya, `"America/Los_Angeles"`).
+* **DST:** Jadwal cron menggunakan pencocokan waktu jam dinding secara literal, sehingga `"0 20 * * *"` di `America/New_York` dijalankan pada pukul 8PM waktu lokal terlepas dari apakah EST atau EDT sedang berlaku.
 
 <Note>
-  Waktu jam dinding yang tidak ada pada hari spring-forward (seperti pukul 2 pagi) tidak dipicu. Waktu jam dinding yang terjadi dua kali pada hari fall-back terpicu dua kali. Jadwalkan di luar jendela pukul 1–3 pagi waktu setempat, atau gunakan UTC, ketika eksekusi yang terlewat atau duplikat tidak dapat diterima.
+  Waktu jam dinding yang tidak ada pada hari spring-forward (seperti pukul 2 AM) tidak dipicu. Waktu jam dinding yang terjadi dua kali pada hari fall-back dijalankan dua kali. Jadwalkan di luar jendela 1–3 AM waktu lokal, atau gunakan UTC, jika eksekusi yang terlewat atau duplikat tidak dapat diterima.
 </Note>
 
 ## Deployment run
 
-Deployment dapat gagal terpicu karena berbagai alasan: misalnya, jika sumber daya `environment` telah diarsipkan, atau jika pembuatan sesi dibatasi oleh batas laju. Setiap upaya mengeksekusi deployment menghasilkan catatan **deployment run**, memungkinkan Anda melacak keberhasilan dan kegagalan secara independen dari siklus hidup sesi.
+Deployment dapat gagal dipicu karena berbagai alasan: misalnya, jika sumber daya `environment` telah diarsipkan, atau jika pembuatan sesi terkena batas laju. Setiap upaya mengeksekusi deployment menghasilkan catatan **deployment run**, yang memungkinkan Anda melacak keberhasilan dan kegagalan secara independen dari siklus hidup sesi.
 
-Deployment yang berhasil menghasilkan sesi aktif, dan deployment run yang berhasil berisi `session_id` terkait. Untuk mengikuti siklus hidup sesi, lacak event sesi melalui [event stream](/docs/id/managed-agents/events-and-streaming) atau [webhooks](/docs/id/managed-agents/webhooks).
+Deployment yang berhasil menghasilkan sesi aktif, dan deployment run yang berhasil berisi `session_id` terkait. Untuk mengikuti siklus hidup sesi, lacak event sesi melalui [event stream](/docs/id/managed-agents/events-and-streaming) atau [webhook](/docs/id/managed-agents/webhooks). Perubahan siklus hidup deployment dan hasil dari setiap eksekusi terjadwal juga dikirimkan sebagai event webhook, yang tercantum di tab Deployment events dan Deployment run events pada [Tipe event yang didukung](/docs/id/managed-agents/webhooks#supported-event-types).
 
 Daftarkan semua deployment run untuk sebuah deployment sebagai berikut:
 
@@ -442,7 +444,7 @@ Anda juga dapat memfilter deployment run yang memiliki error:
   ```
 </CodeGroup>
 
-Run yang gagal menyertakan `error` dengan `type` yang menjelaskan mengapa pembuatan sesi ditolak (misalnya, `environment_archived_error`, `agent_archived_error`, atau `session_rate_limited_error`).
+Run yang gagal mencakup `error` dengan `type` yang menjelaskan mengapa pembuatan sesi ditolak (misalnya, `environment_archived_error`, `agent_archived_error`, atau `session_rate_limited_error`). Lihat [referensi List Deployment Runs](/docs/id/api/beta/deployment_runs/list) untuk semua parameter filter dan skema respons.
 
 ```json
 {
@@ -460,9 +462,13 @@ Run yang gagal menyertakan `error` dengan `type` yang menjelaskan mengapa pembua
 }
 ```
 
+Untuk mengambil satu run berdasarkan ID, panggil [`GET /v1/deployment_runs/{deployment_run_id}`](/docs/id/api/beta/deployment_runs/retrieve). Sebuah [event webhook `deployment_run`](/docs/id/managed-agents/webhooks#supported-event-types) membawa ID run sebagai `data.id`-nya.
+
 ## Mengelola siklus hidup deployment
 
-**Pause** menekan pemicu terjadwal ke depannya; sesi yang sedang berjalan dari deployment run sebelumnya terus dieksekusi. Run manual melalui endpoint `run` masih diizinkan saat dijeda. Menjeda mengatur `paused_reason` menjadi `{"type": "manual"}`; membatalkan jeda menghapusnya.
+Setiap perubahan siklus hidup memancarkan [event webhook](/docs/id/managed-agents/webhooks#supported-event-types), sehingga Anda dapat bereaksi terhadap deployment yang dijeda, dilanjutkan, atau diarsipkan tanpa polling; lihat tab Deployment events.
+
+**Pause** menekan pemicu terjadwal untuk ke depannya; sesi yang sedang berjalan dari deployment run sebelumnya tetap dieksekusi. Run manual melalui endpoint `run` tetap diizinkan saat dijeda. Menjeda akan mengatur `paused_reason` menjadi `{"type": "manual"}`; melanjutkan akan menghapusnya.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash curl
@@ -507,7 +513,7 @@ Run yang gagal menyertakan `error` dengan `type` yang menjelaskan mengapa pembua
   ```
 </CodeGroup>
 
-**Unpause** melanjutkan jadwal dari kemunculan terjadwal berikutnya. Pemicu yang terlewat tidak dijalankan ulang.
+**Unpause** melanjutkan jadwal dari kemunculan terjadwal berikutnya. Pemicu yang terlewat tidak diisi ulang (backfill).
 
 <CodeGroup defaultLanguage="CLI">
   ```bash curl
@@ -552,7 +558,7 @@ Run yang gagal menyertakan `error` dengan `type` yang menjelaskan mengapa pembua
   ```
 </CodeGroup>
 
-**Archive**, tidak seperti **pause**, bersifat terminal: jadwal berakhir dan deployment tidak dapat dimodifikasi.
+**Archive**, tidak seperti **pause**, bersifat terminal: jadwal dihentikan dan deployment tidak dapat dimodifikasi.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash curl
@@ -599,13 +605,13 @@ Run yang gagal menyertakan `error` dengan `type` yang menjelaskan mengapa pembua
 
 ### Perilaku kegagalan
 
-Respons batas laju pembuatan sesi dicatat segera sebagai run `session_rate_limited_error` tanpa percobaan ulang; jadwal mencoba lagi pada kemunculan terjadwal berikutnya. Batas laju pada panggilan API yang mendasari dalam sebuah sesi ditangani oleh sesi itu sendiri.
+Respons batas laju pada pembuatan sesi langsung dicatat sebagai run `session_rate_limited_error` tanpa percobaan ulang; jadwal akan mencoba lagi pada kemunculan terjadwal berikutnya. Batas laju pada panggilan API yang mendasari di dalam sesi ditangani oleh sesi itu sendiri.
 
-Jika agen dari sebuah deployment telah diarsipkan atau dihapus, deployment tersebut secara otomatis diarsipkan dalam operasi yang sama; tidak ada deployment run yang dicatat. Jika subagen yang direferensikan oleh agen telah diarsipkan, pemicu berikutnya mencatat run yang gagal dengan `error.type: "agent_archived_error"` dan deployment secara otomatis dijeda sehingga Anda dapat memperbarui agen dan melanjutkan.
+Jika agen dari sebuah deployment telah diarsipkan atau dihapus, deployment tersebut secara otomatis diarsipkan dalam operasi yang sama; tidak ada deployment run yang dicatat. Jika subagen yang direferensikan oleh agen telah diarsipkan, pemicu berikutnya mencatat run yang gagal dengan `error.type: "agent_archived_error"` dan deployment secara otomatis dijeda sehingga Anda dapat memperbarui agen dan melanjutkan. Error pembuatan sesi lain yang tidak dapat dipulihkan, seperti environment atau vault yang diarsipkan, berperilaku dengan cara yang sama: pemicu mencatat run yang gagal dan deployment secara otomatis dijeda. `paused_reason.error.type` pada deployment mencerminkan `error.type` dari run yang gagal.
 
 ## Memicu run manual
 
-Untuk menjalankan deployment di luar jadwalnya, panggil endpoint `run`. Ini membuat sesi segera dan menulis deployment run dengan `trigger_context.type: "manual"`. Ini memungkinkan Anda menguji deployment sebelum berkomitmen pada jadwal.
+Untuk menjalankan deployment di luar jadwalnya, panggil [endpoint `run`](/docs/id/api/beta/deployments/run). Ini akan langsung membuat sesi dan menulis deployment run dengan `trigger_context.type: "manual"`. Ini memungkinkan Anda menguji deployment sebelum berkomitmen pada jadwal.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash curl

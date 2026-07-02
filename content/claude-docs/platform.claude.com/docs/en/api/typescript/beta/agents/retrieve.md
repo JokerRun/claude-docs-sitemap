@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/agents/retrieve
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: e507f5586fc29565cd64fef5f703033acedb18f26fb6e8a31907168fcc46fe85
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: f6757ca1a1fa2a6184693e8c3089e0951c6dcbf205e445a7d3e8f7e35e1ffe82
 ---
 
 ## Get Agent
@@ -127,7 +127,11 @@ Get Agent
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `"claude-fable-5" | "claude-opus-4-8" | "claude-opus-4-7" | 8 more`
+      - `"claude-sonnet-5" | "claude-fable-5" | "claude-opus-4-8" | 9 more`
+
+        - `"claude-sonnet-5"`
+
+          High-performance model for coding and agents
 
         - `"claude-fable-5"`
 

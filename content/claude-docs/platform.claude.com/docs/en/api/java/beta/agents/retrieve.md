@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/agents/retrieve
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 0e4b0cbe19880fc5a84c170236079102e8989355ece2539d09e001793260679b
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 469fd24dd2992f897943aa350d28f51a04c9c4c69a51944349f48db7727328ff
 ---
 
 ## Get Agent
@@ -122,6 +122,10 @@ Get Agent
       The model that will power your agent.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `CLAUDE_SONNET_5("claude-sonnet-5")`
+
+        High-performance model for coding and agents
 
       - `CLAUDE_FABLE_5("claude-fable-5")`
 

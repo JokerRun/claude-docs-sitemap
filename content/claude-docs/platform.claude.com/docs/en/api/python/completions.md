@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/completions
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 0da62363db4070a8d8e90cf1769c723d94ce578a1d6b4608103686e5afcfdb9a
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: d115d922f9be6710d818dddf19a964ad523e5d5cabfc4be9da1b212e647302f7
 ---
 
 # Completions
@@ -33,12 +33,13 @@ Future models and features will not be compatible with Text Completions. See our
 
   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-  - `Literal["claude-fable-5", "claude-mythos-5", "claude-opus-4-8", 12 more]`
+  - `Literal["claude-sonnet-5", "claude-fable-5", "claude-mythos-5", 13 more]`
 
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+    - `claude-sonnet-5` - High-performance model for coding and agents
     - `claude-fable-5` - Next generation of intelligence for the hardest knowledge work and coding problems
     - `claude-mythos-5` - Most capable model for cybersecurity and biology research
     - `claude-opus-4-8` - Frontier intelligence for long-running agents and coding
@@ -54,6 +55,10 @@ Future models and features will not be compatible with Text Completions. See our
     - `claude-sonnet-4-5-20250929` - High-performance model for agents and coding
     - `claude-opus-4-1` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
     - `claude-opus-4-1-20250805` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+
+    - `"claude-sonnet-5"`
+
+      High-performance model for coding and agents
 
     - `"claude-fable-5"`
 
@@ -271,12 +276,13 @@ Future models and features will not be compatible with Text Completions. See our
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `Literal["claude-fable-5", "claude-mythos-5", "claude-opus-4-8", 12 more]`
+    - `Literal["claude-sonnet-5", "claude-fable-5", "claude-mythos-5", 13 more]`
 
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+      - `claude-sonnet-5` - High-performance model for coding and agents
       - `claude-fable-5` - Next generation of intelligence for the hardest knowledge work and coding problems
       - `claude-mythos-5` - Most capable model for cybersecurity and biology research
       - `claude-opus-4-8` - Frontier intelligence for long-running agents and coding
@@ -292,6 +298,10 @@ Future models and features will not be compatible with Text Completions. See our
       - `claude-sonnet-4-5-20250929` - High-performance model for agents and coding
       - `claude-opus-4-1` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
       - `claude-opus-4-1-20250805` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+
+      - `"claude-sonnet-5"`
+
+        High-performance model for coding and agents
 
       - `"claude-fable-5"`
 
@@ -423,12 +433,13 @@ for completion in client.completions.create(
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `Literal["claude-fable-5", "claude-mythos-5", "claude-opus-4-8", 12 more]`
+    - `Literal["claude-sonnet-5", "claude-fable-5", "claude-mythos-5", 13 more]`
 
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+      - `claude-sonnet-5` - High-performance model for coding and agents
       - `claude-fable-5` - Next generation of intelligence for the hardest knowledge work and coding problems
       - `claude-mythos-5` - Most capable model for cybersecurity and biology research
       - `claude-opus-4-8` - Frontier intelligence for long-running agents and coding
@@ -444,6 +455,10 @@ for completion in client.completions.create(
       - `claude-sonnet-4-5-20250929` - High-performance model for agents and coding
       - `claude-opus-4-1` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
       - `claude-opus-4-1-20250805` - Deprecated: Will reach end-of-life on August 5, 2026. Please migrate to a newer model. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+
+      - `"claude-sonnet-5"`
+
+        High-performance model for coding and agents
 
       - `"claude-fable-5"`
 

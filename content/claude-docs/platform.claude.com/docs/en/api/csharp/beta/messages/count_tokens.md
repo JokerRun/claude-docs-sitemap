@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/messages/count_tokens
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: f51c66ff48180a655c4616cfc02734845c9c2c0a0c59b0f74f01f847e72547ff
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: d136860b4aaf134587630cc185e78d7d483c3c7f8c19260cf11651251ec683e8
 ---
 
 ## Count tokens in a Message
@@ -982,6 +982,10 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
               The model that will complete your prompt.
 
               See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+              - `"claude-sonnet-5"ClaudeSonnet5`
+
+                High-performance model for coding and agents
 
               - `"claude-fable-5"ClaudeFable5`
 

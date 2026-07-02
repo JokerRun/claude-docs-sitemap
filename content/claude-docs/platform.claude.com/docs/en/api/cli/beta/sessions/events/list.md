@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/sessions/events/list
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 3f41f4275ce079460ffa190235fc73d5c7b045473ea8d515d7e0f3f989d197a3
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 9f870a50beb6a542bea2da5caa9b1c21a824fbec05a4b8011e6ddbb1452bfd75
 ---
 
 ## List Events
@@ -1535,11 +1535,15 @@ List Events
 
           Model identifier and configuration.
 
-          - `id: "claude-fable-5" or "claude-opus-4-8" or "claude-opus-4-7" or 8 more or string`
+          - `id: "claude-sonnet-5" or "claude-fable-5" or "claude-opus-4-8" or 9 more or string`
 
             The model that will power your agent.
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `"claude-sonnet-5"`
+
+              High-performance model for coding and agents
 
             - `"claude-fable-5"`
 
@@ -1617,7 +1621,7 @@ List Events
 
               Model identifier and configuration.
 
-              - `id: "claude-fable-5" or "claude-opus-4-8" or "claude-opus-4-7" or 8 more or string`
+              - `id: "claude-sonnet-5" or "claude-fable-5" or "claude-opus-4-8" or 9 more or string`
 
                 The model that will power your agent.
 

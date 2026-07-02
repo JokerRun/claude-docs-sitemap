@@ -1,17 +1,17 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/skills
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 3cb9f35dff0e679392278c5131a28ff9bd5dcda8b6ba23012edbdc476b616d5d
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: b5ac61d90057cd201c10fada41402a3c19a70f5183dd90bded6b858b8b995eba
 ---
 
 # Skills
 
-Lampirkan keahlian berbasis filesystem yang dapat digunakan kembali ke agen Anda untuk alur kerja spesifik domain.
+Lampirkan keahlian berbasis sistem file yang dapat digunakan kembali ke agen Anda untuk alur kerja spesifik domain.
 
 ---
 
-Skills adalah sumber daya berbasis filesystem yang dapat digunakan kembali yang memberikan agen Anda keahlian spesifik domain: alur kerja, konteks, dan praktik terbaik yang mengubah agen serbaguna menjadi spesialis. Tidak seperti prompt (instruksi tingkat percakapan untuk tugas sekali pakai), skills dimuat sesuai permintaan, hanya memengaruhi "context window" (jendela konteks) saat diperlukan.
+Skills adalah sumber daya berbasis sistem file yang dapat digunakan kembali yang memberikan keahlian spesifik domain kepada agen Anda: alur kerja, konteks, dan praktik terbaik yang mengubah agen serbaguna menjadi spesialis. Tidak seperti prompt (instruksi tingkat percakapan untuk tugas satu kali), skills dimuat sesuai permintaan, hanya memengaruhi "context window" (jendela konteks) saat diperlukan.
 
 Anda dapat melampirkan dua jenis skill. Keduanya bekerja dengan cara yang sama: agen Anda memanggilnya secara otomatis ketika relevan dengan tugas.
 
@@ -30,7 +30,7 @@ Skill kustom adalah direktori yang berisi file `SKILL.md` beserta file pendukung
 
 Saat Anda memanggil Skills API secara langsung dengan cURL atau CLI, sertakan header `anthropic-beta: skills-2025-10-02` secara eksplisit. SDK mengirimkannya secara otomatis.
 
-Contoh-contoh ini menghilangkan field opsional `display_title`, sehingga judul skill diambil dari `SKILL.md`. `display_title` yang diberikan secara eksplisit harus unik di antara skill kustom dalam workspace Anda.
+Contoh-contoh ini menghilangkan field opsional `display_title`, sehingga judul skill diturunkan dari `SKILL.md`. `display_title` yang diteruskan secara eksplisit harus unik di antara skill kustom dalam workspace Anda.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -200,15 +200,15 @@ Untuk membuat daftar, mengambil, menghapus, dan membuat versi skill kustom, liha
 
 ## Melampirkan skill ke agen
 
-Lampirkan skill saat membuat agen. Setiap [sesi](/docs/id/managed-agents/sessions) mendukung hingga 20 skill secara total, dihitung di seluruh agen dalam sesi tersebut (lihat [Sesi multiagen](/docs/id/managed-agents/multi-agent)).
+Lampirkan skill saat membuat agen. Setiap [sesi](/docs/id/managed-agents/sessions) mendukung hingga 20 skill secara total, dihitung di seluruh agen dalam sesi tersebut (lihat [Sesi multi-agen](/docs/id/managed-agents/multi-agent)).
 
 Setiap entri dalam array `skills` menggunakan field berikut:
 
 | Field      | Deskripsi                                                                                                                                                                                                                |
 | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `type`     | Bisa berupa `anthropic` untuk skill bawaan atau `custom` untuk skill yang dibuat di workspace.                                                                                                                           |
+| `type`     | Bernilai `anthropic` untuk skill bawaan atau `custom` untuk skill yang dibuat di workspace.                                                                                                                              |
 | `skill_id` | Pengidentifikasi skill. Untuk skill Anthropic, gunakan nama pendek (misalnya, `xlsx`). Untuk skill kustom, gunakan ID `skill_*` yang dikembalikan saat pembuatan (lihat [Membuat skill kustom](#create-a-custom-skill)). |
-| `version`  | Hanya untuk skill kustom. Tetapkan ke versi tertentu atau gunakan `latest`. Opsional. Default-nya adalah `latest` jika dihilangkan.                                                                                      |
+| `version`  | Hanya untuk skill kustom. Sematkan ke versi tertentu atau gunakan `latest`. Opsional. Default-nya adalah `latest` jika dihilangkan.                                                                                      |
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL

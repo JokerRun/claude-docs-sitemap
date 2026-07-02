@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/environments/work/poll
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 59e4f2bac19dc3b73503af5208a7bbf09d638d0365fd8f073151bb03f282564f
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 6b35357e75eb986192353c04a9b961761779743b34ba89c5ab7bb76ba4fbfe9a
 ---
 
 ## Poll for Work
@@ -145,6 +145,10 @@ Long poll for work items in the queue.
 
     User-provided metadata key-value pairs associated with this work item
 
+  - `Secret string`
+
+    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
+
   - `StartedAt string`
 
     RFC 3339 timestamp when work execution started
@@ -224,6 +228,7 @@ func main() {
   "metadata": {
     "foo": "string"
   },
+  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/messages/batches/results
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 7e1d3ca588046533933feff4693624632476ca559f4693d0f01ad38ac0be5653
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 18c6f87d524801fcb5b9d230af0d28e46cbf441e9e2e128f14cf29e2c84e27eb
 ---
 
 ## Retrieve Message Batch results
@@ -958,7 +958,11 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
                 See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-                - `"claude-fable-5" | "claude-mythos-5" | "claude-opus-4-8" | 12 more`
+                - `"claude-sonnet-5" | "claude-fable-5" | "claude-mythos-5" | 13 more`
+
+                  - `"claude-sonnet-5"`
+
+                    High-performance model for coding and agents
 
                   - `"claude-fable-5"`
 
@@ -1030,7 +1034,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
               What caused the `from` model to hand over at this hop.
 
-              - `category: "cyber" | "bio" | "frontier_llm" | 2 more | null`
+              - `category: "cyber" | "bio" | "frontier_llm" | "reasoning_extraction" | null`
 
                 The policy category that triggered a refusal.
 
@@ -1041,8 +1045,6 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
                 - `"frontier_llm"`
 
                 - `"reasoning_extraction"`
-
-                - `"military_weapons"`
 
               - `type: "refusal"`
 
@@ -1173,7 +1175,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
           Structured information about a refusal.
 
-          - `category: "cyber" | "bio" | "frontier_llm" | 2 more | null`
+          - `category: "cyber" | "bio" | "frontier_llm" | "reasoning_extraction" | null`
 
             The policy category that triggered a refusal.
 
@@ -1184,8 +1186,6 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
             - `"frontier_llm"`
 
             - `"reasoning_extraction"`
-
-            - `"military_weapons"`
 
           - `explanation: string | null`
 

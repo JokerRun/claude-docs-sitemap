@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/environments/work/update
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 475f561623cbb5e1e07d20ed84d26fff51366ad6b5566f02dec4dc083e6648ee
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 569ef1c725b1d3dec59be5b769193f9a5f715dff0dc3d070a68fd48a40063ae4
 ---
 
 ## Update Work Item
@@ -35,7 +35,7 @@ Update work item metadata with merge semantics.
 
 ### Returns
 
-- `beta_self_hosted_work: object { id, acknowledged_at, created_at, 9 more }`
+- `beta_self_hosted_work: object { id, acknowledged_at, created_at, 10 more }`
 
   Work resource representing a unit of work in a self-hosted environment.
 
@@ -78,6 +78,10 @@ Update work item metadata with merge semantics.
   - `metadata: map[string]`
 
     User-provided metadata key-value pairs associated with this work item
+
+  - `secret: string`
+
+    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
   - `started_at: string`
 
@@ -135,6 +139,7 @@ ant beta:environments:work update \
   "metadata": {
     "foo": "string"
   },
+  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",

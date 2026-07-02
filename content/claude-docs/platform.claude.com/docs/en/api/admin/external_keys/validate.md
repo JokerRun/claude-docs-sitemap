@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/external_keys/validate
-fetched_at: 2026-06-12T03:17:40.104094Z
-sha256: 988e3847c2d5479d0f08fd0e4d86aa2d1510ec4d9c5fbc86a209eecb768e7c6e
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 0a572c6798d59efaea7b248ad64cb1af2abf46d8b4bb13e0c52c6ec5b7db02e5
 ---
 
 ## Validate External Key
@@ -28,13 +28,13 @@ message if it failed or timed out.
 
   Error message when status is `failure`. Null otherwise.
 
-- `status: "success" or "failure"`
+- `status: "failure" or "success"`
 
   `success` — encrypt/decrypt roundtrip succeeded. `failure` — the roundtrip failed or timed out; see `error`.
 
-  - `"success"`
-
   - `"failure"`
+
+  - `"success"`
 
 - `type: "external_key_validation"`
 

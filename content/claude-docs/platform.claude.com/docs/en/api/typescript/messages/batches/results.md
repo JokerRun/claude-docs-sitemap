@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/messages/batches/results
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 7e74724f98b24d76862889b0ba3ec6743ba19236bb89ff64584a6934c4e08ed2
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 0868647abb1a9a0f1edf89b67f33e99de34a1d48805c8a4aac847a4a0f5d7a4e
 ---
 
 ## Retrieve Message Batch results
@@ -730,7 +730,11 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-          - `"claude-fable-5" | "claude-mythos-5" | "claude-opus-4-8" | 12 more`
+          - `"claude-sonnet-5" | "claude-fable-5" | "claude-mythos-5" | 13 more`
+
+            - `"claude-sonnet-5"`
+
+              High-performance model for coding and agents
 
             - `"claude-fable-5"`
 
@@ -806,7 +810,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
           Structured information about a refusal.
 
-          - `category: "cyber" | "bio" | "frontier_llm" | 2 more | null`
+          - `category: "cyber" | "bio" | "frontier_llm" | "reasoning_extraction" | null`
 
             The policy category that triggered a refusal.
 
@@ -817,8 +821,6 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
             - `"frontier_llm"`
 
             - `"reasoning_extraction"`
-
-            - `"military_weapons"`
 
           - `explanation: string | null`
 

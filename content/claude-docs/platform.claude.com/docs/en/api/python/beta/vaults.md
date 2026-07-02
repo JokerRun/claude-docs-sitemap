@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/vaults
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 64b1812534dfae3e69471a349101775484952ef52ee51b1e3780e2726ed48b03
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 2eb03b9f9b8fa350133188e82db69521eaf4ec95e8a035432a7bc611c3007747
 ---
 
 # Vaults
@@ -1058,6 +1058,18 @@ Create Credential
 
       - `"environment_variable"`
 
+    - `injection_location: Optional[BetaManagedAgentsInjectionLocationParams]`
+
+      Where in the outbound request the secret value may be substituted.
+
+      - `body: Optional[bool]`
+
+        Substitute when the placeholder appears in the request body.
+
+      - `header: Optional[bool]`
+
+        Substitute when the placeholder appears in a request header value.
+
 - `display_name: Optional[str]`
 
   Human-readable name for the credential. Up to 255 characters.
@@ -1227,6 +1239,18 @@ Create Credential
     - `class BetaManagedAgentsEnvironmentVariableAuthResponse: …`
 
       Environment variable credential details. The secret value is never returned.
+
+      - `injection_location: BetaManagedAgentsInjectionLocationResponse`
+
+        Where in the outbound request the secret value is substituted.
+
+        - `body: bool`
+
+          Whether the placeholder is substituted in the request body.
+
+        - `header: bool`
+
+          Whether the placeholder is substituted in request header values.
 
       - `networking: Networking`
 
@@ -1511,6 +1535,18 @@ List Credentials
 
       Environment variable credential details. The secret value is never returned.
 
+      - `injection_location: BetaManagedAgentsInjectionLocationResponse`
+
+        Where in the outbound request the secret value is substituted.
+
+        - `body: bool`
+
+          Whether the placeholder is substituted in the request body.
+
+        - `header: bool`
+
+          Whether the placeholder is substituted in request header values.
+
       - `networking: Networking`
 
         Outbound hosts the secret value is substituted on.
@@ -1785,6 +1821,18 @@ Get Credential
 
       Environment variable credential details. The secret value is never returned.
 
+      - `injection_location: BetaManagedAgentsInjectionLocationResponse`
+
+        Where in the outbound request the secret value is substituted.
+
+        - `body: bool`
+
+          Whether the placeholder is substituted in the request body.
+
+        - `header: bool`
+
+          Whether the placeholder is substituted in request header values.
+
       - `networking: Networking`
 
         Outbound hosts the secret value is substituted on.
@@ -1971,6 +2019,18 @@ Update Credential
     - `type: Literal["environment_variable"]`
 
       - `"environment_variable"`
+
+    - `injection_location: Optional[BetaManagedAgentsInjectionLocationUpdateParams]`
+
+      Updated injection location.
+
+      - `body: Optional[bool]`
+
+        Substitute when the placeholder appears in the request body.
+
+      - `header: Optional[bool]`
+
+        Substitute when the placeholder appears in a request header value.
 
     - `networking: Optional[BetaManagedAgentsCredentialNetworkingParams]`
 
@@ -2169,6 +2229,18 @@ Update Credential
     - `class BetaManagedAgentsEnvironmentVariableAuthResponse: …`
 
       Environment variable credential details. The secret value is never returned.
+
+      - `injection_location: BetaManagedAgentsInjectionLocationResponse`
+
+        Where in the outbound request the secret value is substituted.
+
+        - `body: bool`
+
+          Whether the placeholder is substituted in the request body.
+
+        - `header: bool`
+
+          Whether the placeholder is substituted in request header values.
 
       - `networking: Networking`
 
@@ -2555,6 +2627,18 @@ Archive Credential
     - `class BetaManagedAgentsEnvironmentVariableAuthResponse: …`
 
       Environment variable credential details. The secret value is never returned.
+
+      - `injection_location: BetaManagedAgentsInjectionLocationResponse`
+
+        Where in the outbound request the secret value is substituted.
+
+        - `body: bool`
+
+          Whether the placeholder is substituted in the request body.
+
+        - `header: bool`
+
+          Whether the placeholder is substituted in request header values.
 
       - `networking: Networking`
 
@@ -2958,6 +3042,18 @@ print(beta_managed_agents_credential_validation.credential_id)
 
       Environment variable credential details. The secret value is never returned.
 
+      - `injection_location: BetaManagedAgentsInjectionLocationResponse`
+
+        Where in the outbound request the secret value is substituted.
+
+        - `body: bool`
+
+          Whether the placeholder is substituted in the request body.
+
+        - `header: bool`
+
+          Whether the placeholder is substituted in request header values.
+
       - `networking: Networking`
 
         Outbound hosts the secret value is substituted on.
@@ -3156,6 +3252,18 @@ print(beta_managed_agents_credential_validation.credential_id)
 
   Environment variable credential details. The secret value is never returned.
 
+  - `injection_location: BetaManagedAgentsInjectionLocationResponse`
+
+    Where in the outbound request the secret value is substituted.
+
+    - `body: bool`
+
+      Whether the placeholder is substituted in the request body.
+
+    - `header: bool`
+
+      Whether the placeholder is substituted in request header values.
+
   - `networking: Networking`
 
     Outbound hosts the secret value is substituted on.
@@ -3230,6 +3338,18 @@ print(beta_managed_agents_credential_validation.credential_id)
 
     - `"environment_variable"`
 
+  - `injection_location: Optional[BetaManagedAgentsInjectionLocationParams]`
+
+    Where in the outbound request the secret value may be substituted.
+
+    - `body: Optional[bool]`
+
+      Substitute when the placeholder appears in the request body.
+
+    - `header: Optional[bool]`
+
+      Substitute when the placeholder appears in a request header value.
+
 ### Beta Managed Agents Environment Variable Update Params
 
 - `class BetaManagedAgentsEnvironmentVariableUpdateParams: …`
@@ -3239,6 +3359,18 @@ print(beta_managed_agents_credential_validation.credential_id)
   - `type: Literal["environment_variable"]`
 
     - `"environment_variable"`
+
+  - `injection_location: Optional[BetaManagedAgentsInjectionLocationUpdateParams]`
+
+    Updated injection location.
+
+    - `body: Optional[bool]`
+
+      Substitute when the placeholder appears in the request body.
+
+    - `header: Optional[bool]`
+
+      Substitute when the placeholder appears in a request header value.
 
   - `networking: Optional[BetaManagedAgentsCredentialNetworkingParams]`
 
@@ -3267,6 +3399,48 @@ print(beta_managed_agents_credential_validation.credential_id)
   - `secret_value: Optional[str]`
 
     Updated secret value.
+
+### Beta Managed Agents Injection Location Params
+
+- `class BetaManagedAgentsInjectionLocationParams: …`
+
+  Where in the outbound request the secret value may be substituted.
+
+  - `body: Optional[bool]`
+
+    Substitute when the placeholder appears in the request body.
+
+  - `header: Optional[bool]`
+
+    Substitute when the placeholder appears in a request header value.
+
+### Beta Managed Agents Injection Location Response
+
+- `class BetaManagedAgentsInjectionLocationResponse: …`
+
+  Where in the outbound request the secret value is substituted.
+
+  - `body: bool`
+
+    Whether the placeholder is substituted in the request body.
+
+  - `header: bool`
+
+    Whether the placeholder is substituted in request header values.
+
+### Beta Managed Agents Injection Location Update Params
+
+- `class BetaManagedAgentsInjectionLocationUpdateParams: …`
+
+  Updated injection location.
+
+  - `body: Optional[bool]`
+
+    Substitute when the placeholder appears in the request body.
+
+  - `header: Optional[bool]`
+
+    Substitute when the placeholder appears in a request header value.
 
 ### Beta Managed Agents Limited Credential Networking Params
 

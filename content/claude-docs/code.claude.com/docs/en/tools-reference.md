@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/tools-reference
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 16e90f2e5a84842dfeec3f2eedd12bc0d79c922949c92d94585fb1465f81e3a0
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: a2681c3a3491c2a04b54999a3c5ef41565c9da6fdc99b862d7481511cb582307
 ---
 
 > ## Documentation Index
@@ -334,7 +334,7 @@ The search backend is not configurable. To search with a different provider, add
 WebSearch permission rules take no specifier. A bare `WebSearch` entry in `allow` or `deny` is the only form.
 
 <Note>
-  WebSearch is available on the Claude API and Microsoft Foundry. On Google Cloud Vertex AI it works with Claude 4 models, including Opus, Sonnet, and Haiku. Amazon Bedrock does not expose the server-side web search tool.
+  WebSearch is available on the Claude API and Microsoft Foundry. On Google Cloud Vertex AI it works with Claude 4 and later models, including Opus, Sonnet, and Haiku. Amazon Bedrock does not expose the server-side web search tool.
 </Note>
 
 ## Write tool behavior

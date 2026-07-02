@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/vaults/credentials/create
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 5925e9ac2026a1c8f42ab06bfc1e2ba2231ca577b700e5f2401fd2500e6d9a12
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 23aaa1e79fd2b749d8201d8376642569f2afb39906e76cceeb6c7421fa01a76d
 ---
 
 ## Create Credential
@@ -160,6 +160,18 @@ Create Credential
       - `required Type Type`
 
         - `"environment_variable"EnvironmentVariable`
+
+      - `BetaManagedAgentsInjectionLocationParams InjectionLocation`
+
+        Where in the outbound request the secret value may be substituted.
+
+        - `Boolean Body`
+
+          Substitute when the placeholder appears in the request body.
+
+        - `Boolean Header`
+
+          Substitute when the placeholder appears in a request header value.
 
   - `string? displayName`
 
@@ -326,6 +338,18 @@ Create Credential
     - `class BetaManagedAgentsEnvironmentVariableAuthResponse:`
 
       Environment variable credential details. The secret value is never returned.
+
+      - `required BetaManagedAgentsInjectionLocationResponse InjectionLocation`
+
+        Where in the outbound request the secret value is substituted.
+
+        - `required Boolean Body`
+
+          Whether the placeholder is substituted in the request body.
+
+        - `required Boolean Header`
+
+          Whether the placeholder is substituted in request header values.
 
       - `required Networking Networking`
 

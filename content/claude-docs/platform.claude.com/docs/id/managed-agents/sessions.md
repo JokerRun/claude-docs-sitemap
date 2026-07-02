@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/sessions
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 2a5ba7e0a6b148f45bc06d6220c36ca73c1a95e22933d80f1be250ba6509bd09
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 0de64b650a6ffaa310dad3afbca6c52a626e34ca95105756893ab29c2cac6c56
 ---
 
 # Memulai sesi
@@ -11,7 +11,7 @@ Buat sesi untuk menjalankan agen Anda dan mulai mengeksekusi tugas.
 
 ---
 
-Sesi adalah instans agen di dalam sebuah lingkungan. Setiap sesi mereferensikan sebuah [agen](/docs/id/managed-agents/agent-setup) dan sebuah [lingkungan](/docs/id/managed-agents/environments) (keduanya dibuat secara terpisah), serta mempertahankan riwayat percakapan di sepanjang beberapa interaksi. Sesi mengikuti siklus hidup dua langkah: pertama [buat sesi](#creating-a-session) untuk menyediakan sandbox-nya, lalu [kirim user event](#starting-the-session) untuk memulai pekerjaan.
+Sesi adalah instans agen di dalam sebuah lingkungan. Setiap sesi mereferensikan sebuah [agen](/docs/id/managed-agents/agent-setup) dan sebuah [lingkungan](/docs/id/managed-agents/environments) (keduanya dibuat secara terpisah), dan mempertahankan riwayat percakapan di sepanjang beberapa interaksi. Sesi mengikuti siklus hidup dua langkah: pertama [buat sesi](#creating-a-session) untuk menyediakan sandbox-nya, lalu [kirim user event](#starting-the-session) untuk memulai pekerjaan.
 
 <Note>
   Semua permintaan Managed Agents API memerlukan beta header `managed-agents-2026-04-01`. SDK menetapkan beta header tersebut secara otomatis.
@@ -198,6 +198,65 @@ Untuk menyematkan sesi ke versi agen tertentu, teruskan sebuah objek. Ini memung
   ```
 </CodeGroup>
 
+### Menimpa konfigurasi agen untuk sebuah sesi
+
+Anda dapat meneruskan `agent` dalam tiga bentuk: string ID agen, objek versi tersemat (`type: "agent"`), atau objek overrides. Bentuk overrides mengubah sebagian konfigurasi agen untuk satu sesi saja. Gunakan ini untuk mencoba model yang berbeda atau memberikan alat tambahan dalam satu sesi tanpa membuat versi baru pada agen. Untuk bentuk overrides, atur `type` ke `agent_with_overrides` dan teruskan `id` agen serta secara opsional `version` (hilangkan `version` untuk menggunakan versi terbaru agen). Kemudian sertakan salah satu dari `model`, `system`, `tools`, `mcp_servers`, atau `skills` dengan nilai yang harus digunakan sesi.
+
+Setiap field yang dapat ditimpa mengikuti tiga aturan yang sama:
+
+* **Hilangkan field:** Sesi mewarisi nilai dari versi agen yang direferensikannya.
+
+* **Atur field ke `null`, atau ke array kosong untuk field berupa daftar:** Sesi berjalan dengan field tersebut dikosongkan. Aturan ini berlaku sepenuhnya untuk `system`, `mcp_servers`, dan `skills`. Ada dua pengecualian:
+
+  * `model` tidak pernah dapat dikosongkan. Sebuah sesi selalu membutuhkan model, sehingga `model: null` mengembalikan error 400 `agent_model_required`.
+  * Mengosongkan `tools` mengembalikan error 400 ketika `skills` efektif pada sesi tidak kosong, karena skills memerlukan alat `read`. Jika tidak, `tools: null` dan `tools: []` akan mengosongkan field tersebut.
+
+* **Atur field ke sebuah nilai:** Nilai tersebut menggantikan nilai agen secara penuh. Overrides tidak pernah digabungkan dengan konfigurasi agen, sehingga override `tools` harus mencantumkan setiap alat yang harus dimiliki sesi.
+
+Overrides hanya berlaku untuk sesi yang Anda buat. Overrides tidak memodifikasi sumber daya agen atau membuat versi agen baru, sehingga sesi lain yang mereferensikan agen yang sama tidak terpengaruh.
+
+Dalam respons, objek `agent` mencerminkan konfigurasi yang dijalankan sesi setelah overrides diterapkan. `id` dan `version`-nya tetap mengidentifikasi agen dan versi tempat overrides diterapkan. Ini memungkinkan Anda melacak sesi kembali ke agen dasarnya.
+
+<CodeGroup defaultLanguage="CLI">
+  ```bash cURL
+  override_session=$(curl -fsSL https://api.anthropic.com/v1/sessions \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-beta: managed-agents-2026-04-01" \
+    -H "content-type: application/json" \
+    -d @- <<EOF
+  {
+    "agent": {
+      "type": "agent_with_overrides",
+      "id": "$AGENT_ID",
+      "model": {"id": "claude-sonnet-5"},
+      "system": null
+    },
+    "environment_id": "$ENVIRONMENT_ID"
+  }
+  EOF
+  )
+  jq '.agent | {id, version, model, system}' <<< "$override_session"
+  OVERRIDE_SESSION_ID=$(jq -r '.id' <<< "$override_session")
+  ```
+
+  ```bash CLI
+  # `agent` pada respons adalah snapshot yang telah di-resolve: setiap override mengganti field
+  # itu hanya untuk sesi ini, dan resource agent mempertahankan id serta versinya.
+  ant beta:sessions create \
+    --transform 'agent.{id,version,model,system}' \
+    --format json <<YAML
+  agent:
+    type: agent_with_overrides
+    id: $AGENT_ID
+    model:
+      id: claude-sonnet-5
+    system: null
+  environment_id: $ENVIRONMENT_ID
+  YAML
+  ```
+</CodeGroup>
+
 <Tip>
   Agen mendefinisikan bagaimana Claude berperilaku di dalam sesi, termasuk model, prompt sistem, alat, dan server MCP. Lihat [Mendefinisikan agen Anda](/docs/id/managed-agents/agent-setup) untuk detailnya.
 </Tip>
@@ -298,7 +357,7 @@ Jika agen Anda menggunakan alat MCP yang memerlukan autentikasi, teruskan `vault
 
 ## Memulai sesi
 
-Membuat sesi akan menyediakan sandbox lingkungan tetapi tidak memulai pekerjaan apa pun. Untuk mendelegasikan tugas, kirim event ke sesi menggunakan [user event](/docs/id/managed-agents/reference#event-types). Sesi bertindak sebagai "state machine" (mesin status) yang melacak progres sementara event menggerakkan eksekusi sebenarnya.
+Membuat sesi akan menyediakan sandbox lingkungan tetapi tidak memulai pekerjaan apa pun. Untuk mendelegasikan tugas, kirim event ke sesi menggunakan [user event](/docs/id/managed-agents/reference#event-types). Sesi bertindak sebagai "state machine" (mesin status) yang melacak kemajuan sementara event menggerakkan eksekusi sebenarnya.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -432,4 +491,6 @@ Membuat sesi akan menyediakan sandbox lingkungan tetapi tidak memulai pekerjaan 
 
 Lihat [Aliran event sesi](/docs/id/managed-agents/events-and-streaming) untuk cara melakukan streaming respons agen dan menangani konfirmasi alat.
 
-Lihat [Status sesi](/docs/id/managed-agents/session-operations#session-statuses) untuk status-status yang dilalui sebuah sesi, dan [Operasi sesi](/docs/id/managed-agents/session-operations) untuk mengambil, membuat daftar, memperbarui, mengarsipkan, dan menghapus sesi.
+Lihat [Status sesi](/docs/id/managed-agents/session-operations#session-statuses) untuk status-status yang dilalui sebuah sesi, dan [Operasi sesi](/docs/id/managed-agents/session-operations) untuk mengambil, mencantumkan, memperbarui, mengarsipkan, dan menghapus sesi.
+
+Untuk membuat sesi secara otomatis pada jadwal berulang, lihat [Deployment terjadwal](/docs/id/managed-agents/scheduled-deployments).

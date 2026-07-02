@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/completions/create
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 91cb7dd7e630783e35820129e669056ac759f524544c821e25a4161f75ddcdea
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: ba4f38c295aeabc9b87fa99c8009307a75c855bb70897f294e84436766dcd68d
 ---
 
 ## Create a Text Completion
@@ -95,11 +95,15 @@ Future models and features will not be compatible with Text Completions. See our
 
   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-  - `"claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more`
+  - `"claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more`
 
     The model that will complete your prompt.
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+    - `"claude-sonnet-5"`
+
+      High-performance model for coding and agents
 
     - `"claude-fable-5"`
 
@@ -251,11 +255,15 @@ Future models and features will not be compatible with Text Completions. See our
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-    - `"claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more`
+    - `"claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more`
 
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `"claude-sonnet-5"`
+
+        High-performance model for coding and agents
 
       - `"claude-fable-5"`
 

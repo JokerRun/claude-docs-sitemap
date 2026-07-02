@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/agents/retrieve
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: d0fee5f1ee7eb267da657e39610b1bfe6620f0b8c10e756a23b37628ec4669b1
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 5b966ea24c2b1dcb024e24b43259cc3f02c01abe8c729a6eb36be42f85ff84e7
 ---
 
 ## Get Agent
@@ -124,6 +124,10 @@ Get Agent
       The model that will power your agent.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `"claude-sonnet-5"ClaudeSonnet5`
+
+        High-performance model for coding and agents
 
       - `"claude-fable-5"ClaudeFable5`
 

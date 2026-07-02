@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/vaults/credentials/create
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 2be6fd772e505ba64a34d559dd909f7a60f3eba3f7e2d7fb65b42856ded415e3
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: c8f9a204232fc87e8d6ced7524c4d96464adde66f92be9598fb6f88f305d3dd7
 ---
 
 ## Create Credential
@@ -129,9 +129,21 @@ Create Credential
 
         - `"static_bearer"`
 
-    - `beta_managed_agents_environment_variable_auth_response: object { networking, secret_name, type }`
+    - `beta_managed_agents_environment_variable_auth_response: object { injection_location, networking, secret_name, type }`
 
       Environment variable credential details. The secret value is never returned.
+
+      - `injection_location: object { body, header }`
+
+        Where in the outbound request the secret value is substituted.
+
+        - `body: boolean`
+
+          Whether the placeholder is substituted in the request body.
+
+        - `header: boolean`
+
+          Whether the placeholder is substituted in request header values.
 
       - `networking: BetaManagedAgentsUnrestrictedCredentialNetworkingResponse or BetaManagedAgentsLimitedCredentialNetworkingResponse`
 

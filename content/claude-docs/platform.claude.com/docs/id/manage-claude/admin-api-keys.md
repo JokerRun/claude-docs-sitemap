@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/admin-api-keys
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 340a70d351a57c0afa70d9d8f890b169e6d999a821a8abbc5861d1e4bb724be4
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 8b2623101781246c8b3b9a2003bd31aa2ff935edb0e4be1c0ec5ec6c91cf3585
 ---
 
 # Membuat kunci Admin API
@@ -11,7 +11,7 @@ Buat kunci Admin API untuk organisasi Claude Console atau Claude Enterprise Anda
 
 ---
 
-Setiap API di bagian **Admin** dari panduan ini ([Admin API](/docs/id/manage-claude/admin-api), [Analytics API](/docs/id/manage-claude/analytics-api), [Compliance API](/docs/id/manage-claude/compliance-api), [Spend Limits API](/docs/id/manage-claude/spend-limits-api), [Usage and Cost API](/docs/id/manage-claude/usage-cost-api), dan [Rate Limits API](/docs/id/manage-claude/rate-limits-api)) diautentikasi dengan kunci Admin API. Anda tidak memerlukan kunci terpisah untuk setiap API.
+Setiap API di bagian **Admin** dalam panduan ini ([Admin API](/docs/id/manage-claude/admin-api), [Analytics API](/docs/id/manage-claude/analytics-api), [Compliance API](/docs/id/manage-claude/compliance-api), [Spend Limits API](/docs/id/manage-claude/spend-limits-api), [Usage and Cost API](/docs/id/manage-claude/usage-cost-api), dan [Rate Limits API](/docs/id/manage-claude/rate-limits-api)) diautentikasi dengan kunci Admin API. Anda tidak memerlukan kunci terpisah untuk setiap API.
 
 Tempat Anda membuat kunci bergantung pada produk Claude yang digunakan organisasi Anda.
 
@@ -36,7 +36,7 @@ Kunci yang dibuat di satu organisasi tidak dapat digunakan untuk mengelola organ
   </Step>
 
   <Step title="Buat kunci">
-    Klik **Create key**, beri nama, lalu klik **Create**. Kunci Claude Console tidak memiliki scope yang dapat dipilih; setiap kunci memiliki akses Admin API penuh.
+    Klik **Create key**, beri nama, lalu klik **Create**. Kunci Claude Console tidak memiliki scope yang dapat dipilih; setiap kunci memiliki akses penuh ke Admin API.
   </Step>
 
   <Step title="Salin dan simpan secret">
@@ -68,15 +68,15 @@ Kunci yang dibuat di satu organisasi tidak dapat digunakan untuk mengelola organ
 
 Saat Anda membuat kunci Claude Enterprise, pilih setiap scope yang diperlukan oleh API yang akan Anda panggil. Scope bersifat tetap saat pembuatan; untuk menambahkan scope di kemudian hari, buat kunci baru.
 
-| Untuk memanggil...                                                                                                                                                  | Pilih scope ini                                            |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
-| [Spend Limits API](/docs/id/manage-claude/spend-limits-api): membaca batas pengeluaran efektif anggota dan permintaan peningkatan                                   | `read:spend_limits`                                        |
-| [Spend Limits API](/docs/id/manage-claude/spend-limits-api): mengatur atau menghapus batas pengeluaran per pengguna; menyetujui atau menolak permintaan peningkatan | `write:spend_limits`                                       |
-| [Claude Enterprise Analytics API](/docs/id/manage-claude/analytics-api): laporan keterlibatan, adopsi, biaya, dan penggunaan                                        | `read:analytics`                                           |
-| [Compliance API Activity Feed](/docs/id/manage-claude/compliance-activity-feed): peristiwa aktivitas di seluruh organisasi                                          | `read:compliance_activities`                               |
-| [Endpoint konten Compliance API](/docs/id/manage-claude/compliance-content-data): membaca obrolan, file, proyek, dan pengguna                                       | `read:compliance_user_data`                                |
-| [Endpoint konten Compliance API](/docs/id/manage-claude/compliance-content-data): menghapus obrolan, file, dan proyek                                               | `delete:compliance_user_data`                              |
-| [Endpoint organisasi Compliance API](/docs/id/manage-claude/compliance-org-data): membaca metadata dan pengaturan organisasi                                        | `read:compliance_org_data`, `read:compliance_org_settings` |
+| Untuk memanggil...                                                                                                                                                    | Pilih scope ini               |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
+| [Spend Limits API](/docs/id/manage-claude/spend-limits-api): membaca batas pengeluaran efektif anggota dan permintaan peningkatan                                     | `read:spend_limits`           |
+| [Spend Limits API](/docs/id/manage-claude/spend-limits-api): menetapkan atau menghapus batas pengeluaran per pengguna; menyetujui atau menolak permintaan peningkatan | `write:spend_limits`          |
+| [Claude Enterprise Analytics API](/docs/id/manage-claude/analytics-api): laporan keterlibatan, adopsi, biaya, dan penggunaan                                          | `read:analytics`              |
+| [Compliance API Activity Feed](/docs/id/manage-claude/compliance-activity-feed): peristiwa aktivitas di seluruh organisasi                                            | `read:compliance_activities`  |
+| [Endpoint konten Compliance API](/docs/id/manage-claude/compliance-content-data): membaca obrolan, file, proyek, dan pengguna                                         | `read:compliance_user_data`   |
+| [Endpoint konten Compliance API](/docs/id/manage-claude/compliance-content-data): menghapus obrolan, file, dan proyek                                                 | `delete:compliance_user_data` |
+| [Endpoint organisasi Compliance API](/docs/id/manage-claude/compliance-org-data): membaca metadata organisasi dan pengaturan efektif                                  | `read:compliance_org_data`    |
 
 Compliance API dan Analytics API harus diaktifkan untuk organisasi Anda sebelum kunci dengan scope tersebut dapat digunakan. Lihat [Mendapatkan akses ke Compliance API](/docs/id/manage-claude/compliance-api-access#request-compliance-api-access) dan [Analytics API](/docs/id/manage-claude/analytics-api#get-access-to-the-claude-enterprise-analytics-api).
 
@@ -94,7 +94,7 @@ Panggilan yang melebihi scope kunci akan mengembalikan `403 Forbidden` dengan pe
   </Card>
 
   <Card title="Spend Limits API" href="/docs/id/manage-claude/spend-limits-api">
-    Atur batas pengeluaran per anggota dan tinjau permintaan peningkatan untuk organisasi Claude Enterprise Anda.
+    Tetapkan batas pengeluaran per anggota dan tinjau permintaan peningkatan untuk organisasi Claude Enterprise Anda.
   </Card>
 
   <Card title="Analytics API" href="/docs/id/manage-claude/analytics-api">

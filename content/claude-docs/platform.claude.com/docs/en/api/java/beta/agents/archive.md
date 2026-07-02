@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/agents/archive
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 60ff83e5c4a6969d0c518a63bdbffb8110c9073f65d8e3b728086a7856ea191f
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 851bac7589a3ee0283d2ff23e1bf95288a75a9953cd6feaa0081322e74c8bfb9
 ---
 
 ## Archive Agent
@@ -118,6 +118,10 @@ Archive Agent
       The model that will power your agent.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `CLAUDE_SONNET_5("claude-sonnet-5")`
+
+        High-performance model for coding and agents
 
       - `CLAUDE_FABLE_5("claude-fable-5")`
 

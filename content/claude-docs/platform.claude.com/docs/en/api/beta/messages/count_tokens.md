@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/count_tokens
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 3feb76f0108fd41f9a243bd6de2f2061f830bc131d836c516c30737c845f9de3
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: aa65ace0d588e035884e4573cfea922e17ebf2036312df4addac59dcbf3649d1
 ---
 
 ## Count tokens in a Message
@@ -1171,11 +1171,15 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-            - `"claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more`
+            - `"claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more`
 
               The model that will complete your prompt.
 
               See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+              - `"claude-sonnet-5"`
+
+                High-performance model for coding and agents
 
               - `"claude-fable-5"`
 

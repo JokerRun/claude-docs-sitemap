@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/external_keys/update
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 88644fcd7a885b40e97b3e1ade663bdf8e0537309c36137e51b825e4b03690ab
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: f6eeb15f5ce1593205b2d66db7025c667daa06b82cc76ec73e810daeca3d6505
 ---
 
 ## Update External Key
@@ -97,7 +97,7 @@ encrypted data requires the original key identity to decrypt.
 
 - `display_name: string`
 
-  Human-friendly display name.
+  Human-friendly display name. Null if none was set.
 
 - `geo: string`
 

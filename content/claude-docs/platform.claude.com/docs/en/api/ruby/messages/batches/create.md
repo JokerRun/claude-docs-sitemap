@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/messages/batches/create
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 45a93f397e4842d7ca610ee6373e7f23f0244e254602cc9537a919f94c8f0f19
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 4a2e8592ebc74cccbffaf60ad3af48e30b6ff5333b65d3ff23d3ae69d4234a50
 ---
 
 ## Create a Message Batch
@@ -965,11 +965,15 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-      - `Model = :"claude-fable-5" | :"claude-mythos-5" | :"claude-opus-4-8" | 12 more`
+      - `Model = :"claude-sonnet-5" | :"claude-fable-5" | :"claude-mythos-5" | 13 more`
 
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `:"claude-sonnet-5"`
+
+          High-performance model for coding and agents
 
         - `:"claude-fable-5"`
 

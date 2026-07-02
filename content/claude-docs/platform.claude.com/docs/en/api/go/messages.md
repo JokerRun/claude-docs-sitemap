@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/messages
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 3a18ff85fdcd068fbfbf0cf55e2e9eb3e502b9038ad1a7b4ecf057b4df24a0e7
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 32e15abe9afdf3d65840828a1059a1a260b9fbcf97fa9faf4b12967287a62ec1
 ---
 
 # Messages
@@ -2710,6 +2710,10 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+      - `const ModelClaudeSonnet5 Model = "claude-sonnet-5"`
+
+        High-performance model for coding and agents
+
       - `const ModelClaudeFable5 Model = "claude-fable-5"`
 
         Next generation of intelligence for the hardest knowledge work and coding problems
@@ -2795,8 +2799,6 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
       - `const RefusalStopDetailsCategoryFrontierLLM RefusalStopDetailsCategory = "frontier_llm"`
 
       - `const RefusalStopDetailsCategoryReasoningExtraction RefusalStopDetailsCategory = "reasoning_extraction"`
-
-      - `const RefusalStopDetailsCategoryMilitaryWeapons RefusalStopDetailsCategory = "military_weapons"`
 
     - `Explanation string`
 
@@ -9432,6 +9434,10 @@ func main() {
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+      - `const ModelClaudeSonnet5 Model = "claude-sonnet-5"`
+
+        High-performance model for coding and agents
+
       - `const ModelClaudeFable5 Model = "claude-fable-5"`
 
         Next generation of intelligence for the hardest knowledge work and coding problems
@@ -9517,8 +9523,6 @@ func main() {
       - `const RefusalStopDetailsCategoryFrontierLLM RefusalStopDetailsCategory = "frontier_llm"`
 
       - `const RefusalStopDetailsCategoryReasoningExtraction RefusalStopDetailsCategory = "reasoning_extraction"`
-
-      - `const RefusalStopDetailsCategoryMilitaryWeapons RefusalStopDetailsCategory = "military_weapons"`
 
     - `Explanation string`
 
@@ -11691,6 +11695,10 @@ func main() {
 
     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+    - `const ModelClaudeSonnet5 Model = "claude-sonnet-5"`
+
+      High-performance model for coding and agents
+
     - `const ModelClaudeFable5 Model = "claude-fable-5"`
 
       Next generation of intelligence for the hardest knowledge work and coding problems
@@ -12818,8 +12826,6 @@ func main() {
 
         - `const RefusalStopDetailsCategoryReasoningExtraction RefusalStopDetailsCategory = "reasoning_extraction"`
 
-        - `const RefusalStopDetailsCategoryMilitaryWeapons RefusalStopDetailsCategory = "military_weapons"`
-
       - `Explanation string`
 
         Human-readable explanation of the refusal.
@@ -13607,6 +13613,10 @@ func main() {
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+        - `const ModelClaudeSonnet5 Model = "claude-sonnet-5"`
+
+          High-performance model for coding and agents
+
         - `const ModelClaudeFable5 Model = "claude-fable-5"`
 
           Next generation of intelligence for the hardest knowledge work and coding problems
@@ -13692,8 +13702,6 @@ func main() {
         - `const RefusalStopDetailsCategoryFrontierLLM RefusalStopDetailsCategory = "frontier_llm"`
 
         - `const RefusalStopDetailsCategoryReasoningExtraction RefusalStopDetailsCategory = "reasoning_extraction"`
-
-        - `const RefusalStopDetailsCategoryMilitaryWeapons RefusalStopDetailsCategory = "military_weapons"`
 
       - `Explanation string`
 
@@ -14543,6 +14551,10 @@ func main() {
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `const ModelClaudeSonnet5 Model = "claude-sonnet-5"`
+
+            High-performance model for coding and agents
+
           - `const ModelClaudeFable5 Model = "claude-fable-5"`
 
             Next generation of intelligence for the hardest knowledge work and coding problems
@@ -14628,8 +14640,6 @@ func main() {
           - `const RefusalStopDetailsCategoryFrontierLLM RefusalStopDetailsCategory = "frontier_llm"`
 
           - `const RefusalStopDetailsCategoryReasoningExtraction RefusalStopDetailsCategory = "reasoning_extraction"`
-
-          - `const RefusalStopDetailsCategoryMilitaryWeapons RefusalStopDetailsCategory = "military_weapons"`
 
         - `Explanation string`
 
@@ -14982,8 +14992,6 @@ func main() {
     - `const RefusalStopDetailsCategoryFrontierLLM RefusalStopDetailsCategory = "frontier_llm"`
 
     - `const RefusalStopDetailsCategoryReasoningExtraction RefusalStopDetailsCategory = "reasoning_extraction"`
-
-    - `const RefusalStopDetailsCategoryMilitaryWeapons RefusalStopDetailsCategory = "military_weapons"`
 
   - `Explanation string`
 
@@ -21390,6 +21398,10 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `const ModelClaudeSonnet5 Model = "claude-sonnet-5"`
+
+            High-performance model for coding and agents
+
           - `const ModelClaudeFable5 Model = "claude-fable-5"`
 
             Next generation of intelligence for the hardest knowledge work and coding problems
@@ -24088,6 +24100,10 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+            - `const ModelClaudeSonnet5 Model = "claude-sonnet-5"`
+
+              High-performance model for coding and agents
+
             - `const ModelClaudeFable5 Model = "claude-fable-5"`
 
               Next generation of intelligence for the hardest knowledge work and coding problems
@@ -24173,8 +24189,6 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
             - `const RefusalStopDetailsCategoryFrontierLLM RefusalStopDetailsCategory = "frontier_llm"`
 
             - `const RefusalStopDetailsCategoryReasoningExtraction RefusalStopDetailsCategory = "reasoning_extraction"`
-
-            - `const RefusalStopDetailsCategoryMilitaryWeapons RefusalStopDetailsCategory = "military_weapons"`
 
           - `Explanation string`
 
@@ -25372,6 +25386,10 @@ func main() {
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+            - `const ModelClaudeSonnet5 Model = "claude-sonnet-5"`
+
+              High-performance model for coding and agents
+
             - `const ModelClaudeFable5 Model = "claude-fable-5"`
 
               Next generation of intelligence for the hardest knowledge work and coding problems
@@ -25457,8 +25475,6 @@ func main() {
             - `const RefusalStopDetailsCategoryFrontierLLM RefusalStopDetailsCategory = "frontier_llm"`
 
             - `const RefusalStopDetailsCategoryReasoningExtraction RefusalStopDetailsCategory = "reasoning_extraction"`
-
-            - `const RefusalStopDetailsCategoryMilitaryWeapons RefusalStopDetailsCategory = "military_weapons"`
 
           - `Explanation string`
 
@@ -26436,6 +26452,10 @@ func main() {
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `const ModelClaudeSonnet5 Model = "claude-sonnet-5"`
+
+            High-performance model for coding and agents
+
           - `const ModelClaudeFable5 Model = "claude-fable-5"`
 
             Next generation of intelligence for the hardest knowledge work and coding problems
@@ -26521,8 +26541,6 @@ func main() {
           - `const RefusalStopDetailsCategoryFrontierLLM RefusalStopDetailsCategory = "frontier_llm"`
 
           - `const RefusalStopDetailsCategoryReasoningExtraction RefusalStopDetailsCategory = "reasoning_extraction"`
-
-          - `const RefusalStopDetailsCategoryMilitaryWeapons RefusalStopDetailsCategory = "military_weapons"`
 
         - `Explanation string`
 
@@ -27462,6 +27480,10 @@ func main() {
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+        - `const ModelClaudeSonnet5 Model = "claude-sonnet-5"`
+
+          High-performance model for coding and agents
+
         - `const ModelClaudeFable5 Model = "claude-fable-5"`
 
           Next generation of intelligence for the hardest knowledge work and coding problems
@@ -27547,8 +27569,6 @@ func main() {
         - `const RefusalStopDetailsCategoryFrontierLLM RefusalStopDetailsCategory = "frontier_llm"`
 
         - `const RefusalStopDetailsCategoryReasoningExtraction RefusalStopDetailsCategory = "reasoning_extraction"`
-
-        - `const RefusalStopDetailsCategoryMilitaryWeapons RefusalStopDetailsCategory = "military_weapons"`
 
       - `Explanation string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/sessions/retrieve
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 368cedd0bf3480b68dc5dc6f54726294a24d8abd2af30b2ed3b86bc9603e1144
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: bdaf919c844310ed270b108081d0ba0b6701196d6a8276fd97a5c0f5e9af5b01
 ---
 
 ## Get Session
@@ -117,12 +117,13 @@ Get Session
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-        - `Literal["claude-fable-5", "claude-opus-4-8", "claude-opus-4-7", 8 more]`
+        - `Literal["claude-sonnet-5", "claude-fable-5", "claude-opus-4-8", 9 more]`
 
           The model that will power your agent.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `claude-sonnet-5` - High-performance model for coding and agents
           - `claude-fable-5` - Next generation of intelligence for the hardest knowledge work and coding problems
           - `claude-opus-4-8` - Frontier intelligence for long-running agents and coding
           - `claude-opus-4-7` - Frontier intelligence for long-running agents and coding
@@ -134,6 +135,10 @@ Get Session
           - `claude-opus-4-5-20251101` - Premium model combining maximum intelligence with practical performance
           - `claude-sonnet-4-5` - High-performance model for agents and coding
           - `claude-sonnet-4-5-20250929` - High-performance model for agents and coding
+
+          - `"claude-sonnet-5"`
+
+            High-performance model for coding and agents
 
           - `"claude-fable-5"`
 

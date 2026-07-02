@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/vaults/credentials/update
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: e0360a354a0ea38d804f599e10d38991943a7ebce783ea7790e2164a69f7c28b
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: f581bcf4ebd750b07534107f584f334f8433a9dc3531920cff5d963409c0e9a7
 ---
 
 ## Update Credential
@@ -98,6 +98,18 @@ Update Credential
     - `type: Literal["environment_variable"]`
 
       - `"environment_variable"`
+
+    - `injection_location: Optional[BetaManagedAgentsInjectionLocationUpdateParams]`
+
+      Updated injection location.
+
+      - `body: Optional[bool]`
+
+        Substitute when the placeholder appears in the request body.
+
+      - `header: Optional[bool]`
+
+        Substitute when the placeholder appears in a request header value.
 
     - `networking: Optional[BetaManagedAgentsCredentialNetworkingParams]`
 
@@ -296,6 +308,18 @@ Update Credential
     - `class BetaManagedAgentsEnvironmentVariableAuthResponse: …`
 
       Environment variable credential details. The secret value is never returned.
+
+      - `injection_location: BetaManagedAgentsInjectionLocationResponse`
+
+        Where in the outbound request the secret value is substituted.
+
+        - `body: bool`
+
+          Whether the placeholder is substituted in the request body.
+
+        - `header: bool`
+
+          Whether the placeholder is substituted in request header values.
 
       - `networking: Networking`
 

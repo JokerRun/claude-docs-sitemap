@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/vs-code
-fetched_at: 2026-06-13T03:15:40.418428Z
-sha256: d67afe7e1c5b30eccc7d605b86a600c91da140deee50826d6d2bfbf784b31d75
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: cfe9fdf37b152f2f5fc7132b13bdbebf7a9a355404a4ae9965f327003f7223b1
 ---
 
 > ## Documentation Index
@@ -526,6 +526,8 @@ To uninstall the Claude Code extension:
 1. Open the Extensions view (`Cmd+Shift+X` on Mac or `Ctrl+Shift+X` on Windows/Linux)
 2. Search for "Claude Code"
 3. Click **Uninstall**
+
+Running `claude` in a VS Code integrated terminal reinstalls the extension automatically. To keep it uninstalled, turn off **Auto-install IDE extension** in `/config`, or set [`autoInstallIdeExtension`](/en/settings#global-config-settings) to `false`. You can also set the [`CLAUDE_CODE_IDE_SKIP_AUTO_INSTALL`](/en/env-vars) environment variable to `1`.
 
 To also remove extension data and reset all settings, delete the extension's storage directory for your platform.
 

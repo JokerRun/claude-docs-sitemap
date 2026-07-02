@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/sessions/list
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: ffa8813cdd7bfa1031ca5064ea181ebe9310a19208a171c4c13ee1693f053097
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 5268b65d34bfce62ae2d6052f67e4b584c4285e760874b625954944184549dbc
 ---
 
 ## List Sessions
 
-`beta.sessions.list(SessionListParams**kwargs)  -> SyncPageCursor[BetaManagedAgentsSession]`
+`beta.sessions.list(SessionListParams**kwargs)  -> SyncBidirectionalPageCursor[BetaManagedAgentsSession]`
 
 **get** `/v1/sessions`
 
@@ -179,12 +179,13 @@ List Sessions
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-        - `Literal["claude-fable-5", "claude-opus-4-8", "claude-opus-4-7", 8 more]`
+        - `Literal["claude-sonnet-5", "claude-fable-5", "claude-opus-4-8", 9 more]`
 
           The model that will power your agent.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `claude-sonnet-5` - High-performance model for coding and agents
           - `claude-fable-5` - Next generation of intelligence for the hardest knowledge work and coding problems
           - `claude-opus-4-8` - Frontier intelligence for long-running agents and coding
           - `claude-opus-4-7` - Frontier intelligence for long-running agents and coding
@@ -196,6 +197,10 @@ List Sessions
           - `claude-opus-4-5-20251101` - Premium model combining maximum intelligence with practical performance
           - `claude-sonnet-4-5` - High-performance model for agents and coding
           - `claude-sonnet-4-5-20250929` - High-performance model for agents and coding
+
+          - `"claude-sonnet-5"`
+
+            High-performance model for coding and agents
 
           - `"claude-fable-5"`
 
@@ -880,6 +885,7 @@ print(page.id)
       "deployment_id": "deployment_id"
     }
   ],
-  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="
+  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo=",
+  "prev_page": "page_MjAyNS0wNS0xM1QwMDowMDowMFo="
 }
 ```

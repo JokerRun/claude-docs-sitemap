@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/service_accounts/create
-fetched_at: 2026-06-17T03:17:04.158711Z
-sha256: 6adacf109d12a3b0a6fce3a39e9be01e75af474c25e4f072db09545d09695618
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 0eaa948cba0277c2e475712e11f2ad92a029cb40b35b7fbb5e524bcea2a6f79f
 ---
 
 ## Create Service Account
@@ -38,13 +38,13 @@ workload may only create `developer`-role service accounts.
 
   Optional free-text description.
 
-- `organization_role: optional "developer" or "admin"`
+- `organization_role: optional "admin" or "developer"`
 
   Org-level role. Defaults to `developer`.
 
-  - `"developer"`
-
   - `"admin"`
+
+  - `"developer"`
 
 ### Returns
 
@@ -83,13 +83,13 @@ workload may only create `developer`-role service accounts.
 
     Admin-chosen slug identifier.
 
-  - `organization_role: "developer" or "admin"`
+  - `organization_role: "admin" or "developer"`
 
     Org-level role. A federation rule may only be created or retargeted to grant `org:admin` scope when this is `admin`. A rule granting `org:admin` whose target is later demoted to `developer` is rejected at token exchange. Rules granting `org:admin` are managed in the Console.
 
-    - `"developer"`
-
     - `"admin"`
+
+    - `"developer"`
 
   - `type: "service_account"`
 
@@ -126,7 +126,7 @@ curl https://api.anthropic.com/v1/organizations/service_accounts \
   "created_by_actor_id": "created_by_actor_id",
   "description": "description",
   "name": "ci-deploy-bot",
-  "organization_role": "developer",
+  "organization_role": "admin",
   "type": "service_account",
   "updated_at": "2024-10-30T23:58:27.427722Z",
   "updated_by_actor_id": "updated_by_actor_id"

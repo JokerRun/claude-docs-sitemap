@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/streaming
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 04cfe6300960632b791e78780d4436a37f1a8f5e4e9fc1d801453aa6eef7993d
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 598fdeb72b7158f958310c8008e94ea7590cf59df6b88040cfae8075d13aef2a
 ---
 
 # Streaming pesan
@@ -23,11 +23,7 @@ SDK [Python](https://github.com/anthropics/anthropic-sdk-python) dan [TypeScript
     --model claude-opus-4-8 \
     --max-tokens 1024 \
     --message '{role: user, content: "Hello"}' \
-    | while IFS= read -r event; do
-        [[ $event == *'"text_delta"'* ]] || continue
-        text=${event#*'"text":"'}
-        printf '%b' "${text%\"*}"
-      done
+    | jq -rj 'select(.delta.type? == "text_delta") | .delta.text'
   ```
 
   ```python Python
@@ -158,12 +154,12 @@ SDK [Python](https://github.com/anthropics/anthropic-sdk-python) dan [TypeScript
 
 ## Mendapatkan pesan akhir tanpa menangani event
 
-Jika Anda tidak perlu memproses teks saat teks tersebut tiba, SDK menyediakan cara untuk menggunakan streaming di balik layar sambil mengembalikan objek `Message` lengkap, identik dengan yang dikembalikan oleh `.create()`. Ini sangat berguna untuk permintaan dengan nilai `max_tokens` yang besar, di mana SDK memerlukan streaming untuk menghindari timeout HTTP.
+Jika Anda tidak perlu memproses teks saat teks tersebut tiba, SDK menyediakan cara untuk menggunakan streaming di balik layar sambil mengembalikan objek `Message` lengkap, identik dengan yang dikembalikan oleh `.create()`. Ini sangat berguna untuk permintaan dengan nilai `max_tokens` yang besar, di mana SDK mengharuskan streaming untuk menghindari timeout HTTP.
 
 <CodeGroup>
   ```bash CLI
   # Flag --stream pada CLI ant mengeluarkan satu event per baris dan tidak
-  # mengakumulasikannya menjadi Message akhir. Untuk generasi panjang, stream
+  # mengakumulasikannya menjadi Message akhir. Untuk generasi panjang, lakukan streaming
   # event mentahnya:
   ant messages create --stream --format jsonl <<'YAML'
   model: claude-opus-4-8
@@ -321,12 +317,12 @@ Setiap server-sent event menyertakan tipe event bernama dan data JSON terkait. S
 Setiap stream menggunakan alur event berikut:
 
 1. `message_start`: berisi objek `Message` dengan `content` kosong.
-2. Serangkaian blok konten, yang masing-masing memiliki `content_block_start`, satu atau lebih event `content_block_delta`, dan event `content_block_stop`. Setiap blok konten memiliki `index` yang sesuai dengan indeksnya dalam array `content` Message akhir. Satu pengecualian: selama respons [fallback sisi server](/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback), blok konten `fallback` tiba di setiap batas model sebagai pasangan `content_block_start` dan `content_block_stop` tanpa delta di antaranya.
+2. Serangkaian content block, yang masing-masing memiliki `content_block_start`, satu atau lebih event `content_block_delta`, dan event `content_block_stop`. Setiap content block memiliki `index` yang sesuai dengan indeksnya dalam array `content` Message akhir. Satu pengecualian: selama respons [server-side fallback](/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback), content block `fallback` tiba di setiap batas model sebagai pasangan `content_block_start` dan `content_block_stop` tanpa delta di antaranya.
 3. Satu atau lebih event `message_delta`, yang menunjukkan perubahan tingkat atas pada objek `Message` akhir.
 4. Event `message_stop` terakhir.
 
 <Warning>
-  Jumlah token yang ditampilkan di field `usage` pada event `message_delta` bersifat *kumulatif*.
+  Jumlah token yang ditampilkan di field `usage` dari event `message_delta` bersifat *kumulatif*.
 </Warning>
 
 ### Event ping
@@ -346,37 +342,37 @@ data: {"type": "error", "error": {"type": "overloaded_error", "message": "Overlo
 
 Sesuai dengan [kebijakan versioning](/docs/id/api/versioning), tipe event baru dapat ditambahkan, dan kode Anda harus menangani tipe event yang tidak dikenal dengan baik.
 
-## Tipe delta blok konten
+## Tipe delta content block
 
 Setiap event `content_block_delta` berisi `delta` dari suatu tipe yang memperbarui blok `content` pada `index` tertentu.
 
 ### Delta teks
 
-Delta blok konten `text` terlihat seperti:
+Delta content block `text` terlihat seperti:
 
 ```sse Text delta
 event: content_block_delta
 data: {"type": "content_block_delta","index": 0,"delta": {"type": "text_delta", "text": "ello frien"}}
 ```
 
-### Delta JSON input
+### Delta input JSON
 
-Delta untuk blok konten `tool_use` sesuai dengan pembaruan untuk field `input` dari blok tersebut. Untuk mendukung granularitas maksimum, delta tersebut berupa *string JSON parsial*, sedangkan `tool_use.input` akhir selalu berupa *objek*.
+Delta untuk content block `tool_use` sesuai dengan pembaruan untuk field `input` dari blok tersebut. Untuk mendukung granularitas maksimum, delta adalah *string JSON parsial*, sedangkan `tool_use.input` akhir selalu berupa *objek*.
 
-Anda dapat mengakumulasi delta string dan mem-parse JSON setelah Anda menerima event `content_block_stop`, dengan menggunakan pustaka seperti [Pydantic](https://docs.pydantic.dev/latest/concepts/json/#partial-json-parsing) untuk melakukan parsing JSON parsial, atau dengan menggunakan [SDK](/docs/id/cli-sdks-libraries/overview), yang menyediakan helper untuk mengakses nilai inkremental yang telah di-parse.
+Anda dapat mengakumulasi delta string dan mem-parse JSON setelah Anda menerima event `content_block_stop`, dengan menggunakan library seperti [Pydantic](https://docs.pydantic.dev/latest/concepts/json/#partial-json-parsing) untuk melakukan parsing JSON parsial, atau dengan menggunakan [SDK](/docs/id/cli-sdks-libraries/overview), yang menyediakan helper untuk mengakses nilai inkremental yang telah di-parse.
 
-Delta blok konten `tool_use` terlihat seperti:
+Delta content block `tool_use` terlihat seperti:
 
 ```sse Input JSON delta
 event: content_block_delta
 data: {"type": "content_block_delta","index": 1,"delta": {"type": "input_json_delta","partial_json": "{\"location\": \"San Fra"}}}
 ```
 
-Catatan: Model saat ini hanya mendukung pengeluaran satu properti key dan value lengkap dari `input` dalam satu waktu. Oleh karena itu, saat menggunakan alat, mungkin ada jeda antara event streaming saat model sedang bekerja. Setelah key dan value `input` terakumulasi, keduanya dikeluarkan sebagai beberapa event `content_block_delta` dengan JSON parsial yang dipecah-pecah sehingga format tersebut dapat secara otomatis mendukung granularitas yang lebih halus pada model mendatang.
+Catatan: Model saat ini hanya mendukung pengiriman satu properti key dan value lengkap dari `input` pada satu waktu. Oleh karena itu, saat menggunakan alat, mungkin ada jeda antara event streaming saat model sedang bekerja. Setelah key dan value `input` terakumulasi, keduanya dikirim sebagai beberapa event `content_block_delta` dengan JSON parsial yang dipecah sehingga format tersebut dapat secara otomatis mendukung granularitas yang lebih halus di model mendatang.
 
 ### Delta thinking
 
-Saat menggunakan [pemikiran diperpanjang](/docs/id/build-with-claude/extended-thinking#streaming-thinking) dengan streaming diaktifkan, Anda akan menerima konten thinking melalui event `thinking_delta`. Delta ini sesuai dengan field `thinking` dari blok konten `thinking`.
+Saat menggunakan [pemikiran diperpanjang](/docs/id/build-with-claude/extended-thinking#streaming-thinking) dengan streaming diaktifkan, Anda akan menerima konten thinking melalui event `thinking_delta`. Delta ini sesuai dengan field `thinking` dari content block `thinking`.
 
 Untuk konten thinking, event `signature_delta` khusus dikirim tepat sebelum event `content_block_stop`. Signature ini digunakan untuk memverifikasi integritas blok thinking.
 
@@ -404,7 +400,7 @@ Respons stream terdiri dari:
 
 1. Event `message_start`
 
-2. Kemungkinan beberapa blok konten, yang masing-masing berisi:
+2. Kemungkinan beberapa content block, yang masing-masing berisi:
 
    * Event `content_block_start`
    * Kemungkinan beberapa event `content_block_delta`
@@ -1538,29 +1534,29 @@ Untuk model Claude 4.5 dan sebelumnya, Anda dapat memulihkan permintaan streamin
 Strategi pemulihan dasar meliputi:
 
 1. **Tangkap respons parsial:** Simpan semua konten yang berhasil diterima sebelum error terjadi
-2. **Buat permintaan lanjutan:** Buat permintaan API baru yang menyertakan respons asisten parsial sebagai awal dari pesan asisten baru
-3. **Lanjutkan streaming:** Lanjutkan menerima sisa respons dari titik di mana respons terputus
+2. **Susun permintaan lanjutan:** Buat permintaan API baru yang menyertakan respons asisten parsial sebagai awal dari pesan asisten baru
+3. **Lanjutkan streaming:** Lanjutkan menerima sisa respons dari titik di mana stream terputus
 
 ### Claude 4.6 dan setelahnya
 
 Untuk model Claude 4.6 dan setelahnya, strategi tangkap-dan-lanjutkan yang sama berlaku, tetapi langkah 2 berubah: alih-alih menempatkan respons parsial dalam pesan asisten, tambahkan pesan pengguna yang menginstruksikan model untuk melanjutkan dari titik terakhirnya.
 
 1. **Tangkap respons parsial:** Simpan semua konten yang berhasil diterima sebelum error terjadi
-2. **Buat permintaan lanjutan:** Buat permintaan API baru dengan pesan pengguna yang berisi respons parsial dan instruksi untuk melanjutkan, misalnya:
+2. **Susun permintaan lanjutan:** Buat permintaan API baru dengan pesan pengguna yang berisi respons parsial dan instruksi untuk melanjutkan, misalnya:
    ```text Sample prompt wrap
    Your previous response was interrupted and ended with [previous_response]. Continue from where you left off.
    ```
-3. **Lanjutkan streaming:** Lanjutkan menerima sisa respons dari titik di mana respons terputus
+3. **Lanjutkan streaming:** Lanjutkan menerima sisa respons dari titik di mana stream terputus
 
 ### Praktik terbaik pemulihan error
 
 1. **Gunakan fitur SDK:** Manfaatkan kemampuan akumulasi pesan dan penanganan error bawaan SDK
-2. **Tangani tipe konten:** Perhatikan bahwa pesan dapat berisi beberapa blok konten (`text`, `tool_use`, `thinking`). Blok penggunaan alat dan pemikiran diperpanjang tidak dapat dipulihkan secara parsial. Anda dapat melanjutkan streaming dari blok teks terbaru.
+2. **Tangani tipe konten:** Perhatikan bahwa pesan dapat berisi beberapa content block (`text`, `tool_use`, `thinking`). Blok penggunaan alat dan pemikiran diperpanjang tidak dapat dipulihkan secara parsial. Anda dapat melanjutkan streaming dari blok teks terbaru.
 
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
-  <Card title="Alasan berhenti dan fallback" icon="list" href="/docs/id/build-with-claude/handling-stop-reasons">
+  <Card title="Stop reason dan fallback" icon="list" href="/docs/id/build-with-claude/handling-stop-reasons">
     Tangani setiap nilai `stop_reason` setelah stream selesai.
   </Card>
 

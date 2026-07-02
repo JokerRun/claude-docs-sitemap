@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/completions/create
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 8def28906cd029ccffff50075b0d632f47a89b7bc66d820584751f20b52c8dd6
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: c529f026348ed4ed800566ff8056e1d31694972c16e8df0d4229e018f4b80d61
 ---
 
 ## Create a Text Completion
@@ -181,6 +181,10 @@ Future models and features will not be compatible with Text Completions. See our
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+      - `const ModelClaudeSonnet5 Model = "claude-sonnet-5"`
+
+        High-performance model for coding and agents
+
       - `const ModelClaudeFable5 Model = "claude-fable-5"`
 
         Next generation of intelligence for the hardest knowledge work and coding problems
@@ -279,7 +283,7 @@ func main() {
   )
   completion, err := client.Completions.New(context.TODO(), anthropic.CompletionNewParams{
     MaxTokensToSample: 256,
-    Model: anthropic.ModelClaudeFable5,
+    Model: anthropic.ModelClaudeSonnet5,
     Prompt: "\n\nHuman: Hello, world!\n\nAssistant:",
   })
   if err != nil {

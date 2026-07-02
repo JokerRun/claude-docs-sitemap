@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/spend_limits/create
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: b71352ab4b209c4cd3b0c099ecb6c9fb7ce0cd0a3dbfc67ea3cff75c98e829e0
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: ec74a011a784c2393af1d654d1f8592fee16137ca094aa165aa3adf16d3441f6
 ---
 
 ## Set Spend Limit
@@ -27,11 +27,11 @@ group, and organization-level defaults are configured in claude.ai.
 
   - `user_id: string`
 
-- `period: optional "monthly" or "daily" or "weekly"`
-
-  - `"monthly"`
+- `period: optional "daily" or "monthly" or "weekly"`
 
   - `"daily"`
+
+  - `"monthly"`
 
   - `"weekly"`
 
@@ -47,11 +47,11 @@ group, and organization-level defaults are configured in claude.ai.
 
   - `currency: string`
 
-  - `period: "monthly" or "daily" or "weekly"`
-
-    - `"monthly"`
+  - `period: "daily" or "monthly" or "weekly"`
 
     - `"daily"`
+
+    - `"monthly"`
 
     - `"weekly"`
 
@@ -113,7 +113,8 @@ curl https://api.anthropic.com/v1/organizations/spend_limits \
           "scope": {
             "type": "user",
             "user_id": "user_id"
-          }
+          },
+          "period": "monthly"
         }'
 ```
 

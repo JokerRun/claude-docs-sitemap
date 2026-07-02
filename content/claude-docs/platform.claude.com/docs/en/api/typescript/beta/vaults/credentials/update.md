@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/vaults/credentials/update
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 73d1fcbb92f6c2d35b9fc0cf9d3a6d749bb82a79eae5b43f86dc5b1731e11df8
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 10006647650eb2fa8a8b875d827e8d0b9bdbcea7ccb98e67e679b8deea74de3e
 ---
 
 ## Update Credential
@@ -102,6 +102,18 @@ Update Credential
       - `type: "environment_variable"`
 
         - `"environment_variable"`
+
+      - `injection_location?: BetaManagedAgentsInjectionLocationUpdateParams`
+
+        Updated injection location.
+
+        - `body?: boolean`
+
+          Substitute when the placeholder appears in the request body.
+
+        - `header?: boolean`
+
+          Substitute when the placeholder appears in a request header value.
 
       - `networking?: BetaManagedAgentsCredentialNetworkingParams | null`
 
@@ -300,6 +312,18 @@ Update Credential
     - `BetaManagedAgentsEnvironmentVariableAuthResponse`
 
       Environment variable credential details. The secret value is never returned.
+
+      - `injection_location: BetaManagedAgentsInjectionLocationResponse`
+
+        Where in the outbound request the secret value is substituted.
+
+        - `body: boolean`
+
+          Whether the placeholder is substituted in the request body.
+
+        - `header: boolean`
+
+          Whether the placeholder is substituted in request header values.
 
       - `networking: BetaManagedAgentsUnrestrictedCredentialNetworkingResponse | BetaManagedAgentsLimitedCredentialNetworkingResponse`
 

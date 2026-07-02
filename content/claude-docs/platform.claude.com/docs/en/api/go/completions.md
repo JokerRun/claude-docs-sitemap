@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/completions
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 20f4d9fd894fec7c533eb85cf699b5f5b185e0fa1e1d8615c41ecf0dcde48130
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 92256ffac0833f1695e038a381653504e21317e7022545fbf7778bb6a627acc0
 ---
 
 # Completions
@@ -183,6 +183,10 @@ Future models and features will not be compatible with Text Completions. See our
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+      - `const ModelClaudeSonnet5 Model = "claude-sonnet-5"`
+
+        High-performance model for coding and agents
+
       - `const ModelClaudeFable5 Model = "claude-fable-5"`
 
         Next generation of intelligence for the hardest knowledge work and coding problems
@@ -281,7 +285,7 @@ func main() {
   )
   completion, err := client.Completions.New(context.TODO(), anthropic.CompletionNewParams{
     MaxTokensToSample: 256,
-    Model: anthropic.ModelClaudeFable5,
+    Model: anthropic.ModelClaudeSonnet5,
     Prompt: "\n\nHuman: Hello, world!\n\nAssistant:",
   })
   if err != nil {
@@ -330,6 +334,10 @@ func main() {
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `const ModelClaudeSonnet5 Model = "claude-sonnet-5"`
+
+        High-performance model for coding and agents
 
       - `const ModelClaudeFable5 Model = "claude-fable-5"`
 

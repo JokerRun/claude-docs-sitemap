@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/spend_limits/increase_requests/approve
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 5bb97a4499951e799eeb18b6f5cf19dca5c1156f19dec5e03bc3e4d49c16605f
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 2ce6a579d6c3d7d98d54444780686bf330d7d57e9bb84bdc2de2445632528f95
 ---
 
 ## Approve Spend Limit Increase Request
@@ -28,11 +28,11 @@ the member was blocked on. Anthropic emails the requester unless
 
   New per-user spend limit as a non-negative integer decimal string (minor units).
 
-- `period: optional "monthly" or "daily" or "weekly"`
-
-  - `"monthly"`
+- `period: optional "daily" or "monthly" or "weekly"`
 
   - `"daily"`
+
+  - `"monthly"`
 
   - `"weekly"`
 
@@ -62,11 +62,11 @@ the member was blocked on. Anthropic emails the requester unless
 
 - `created_at: string`
 
-- `period: "monthly" or "daily" or "weekly"`
-
-  - `"monthly"`
+- `period: "daily" or "monthly" or "weekly"`
 
   - `"daily"`
+
+  - `"monthly"`
 
   - `"weekly"`
 
@@ -116,11 +116,11 @@ the member was blocked on. Anthropic emails the requester unless
 
   - `currency: string`
 
-  - `period: "monthly" or "daily" or "weekly"`
-
-    - `"monthly"`
+  - `period: "daily" or "monthly" or "weekly"`
 
     - `"daily"`
+
+    - `"monthly"`
 
     - `"weekly"`
 
@@ -196,11 +196,11 @@ the member was blocked on. Anthropic emails the requester unless
 
   - `currency: string`
 
-  - `period: "monthly" or "daily" or "weekly"`
-
-    - `"monthly"`
+  - `period: "daily" or "monthly" or "weekly"`
 
     - `"daily"`
+
+    - `"monthly"`
 
     - `"weekly"`
 
@@ -256,13 +256,13 @@ the member was blocked on. Anthropic emails the requester unless
 
   - `spend_limit_id: string`
 
-- `status: "pending" or "approved" or "denied"`
-
-  - `"pending"`
+- `status: "approved" or "denied" or "pending"`
 
   - `"approved"`
 
   - `"denied"`
+
+  - `"pending"`
 
 - `type: "spend_limit_increase_request"`
 
@@ -276,7 +276,8 @@ curl https://api.anthropic.com/v1/organizations/spend_limit_increase_requests/$S
     -H 'anthropic-version: 2023-06-01' \
     -H "Authorization: Bearer $ANTHROPIC_OAUTH_TOKEN" \
     -d '{
-          "amount": "50000"
+          "amount": "50000",
+          "period": "monthly"
         }'
 ```
 

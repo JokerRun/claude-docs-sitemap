@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/batches/results
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 105e6af1fe2aef417cd74054a2bea3bb124b68c00ddbe7515beb47390568509f
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 518b31a9c804aab2ea39b8064e35c96fb5a1642da0e51cf0686cccaa82188085
 ---
 
 ## Retrieve Message Batch results
@@ -956,11 +956,15 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
                 See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
-                - `"claude-fable-5" or "claude-mythos-5" or "claude-opus-4-8" or 12 more`
+                - `"claude-sonnet-5" or "claude-fable-5" or "claude-mythos-5" or 13 more`
 
                   The model that will complete your prompt.
 
                   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+                  - `"claude-sonnet-5"`
+
+                    High-performance model for coding and agents
 
                   - `"claude-fable-5"`
 
@@ -1032,7 +1036,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
               What caused the `from` model to hand over at this hop.
 
-              - `category: "cyber" or "bio" or "frontier_llm" or 2 more`
+              - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
 
                 The policy category that triggered a refusal.
 
@@ -1043,8 +1047,6 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
                 - `"frontier_llm"`
 
                 - `"reasoning_extraction"`
-
-                - `"military_weapons"`
 
               - `type: "refusal"`
 
@@ -1175,7 +1177,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
           Structured information about a refusal.
 
-          - `category: "cyber" or "bio" or "frontier_llm" or 2 more`
+          - `category: "cyber" or "bio" or "frontier_llm" or "reasoning_extraction"`
 
             The policy category that triggered a refusal.
 
@@ -1186,8 +1188,6 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
             - `"frontier_llm"`
 
             - `"reasoning_extraction"`
-
-            - `"military_weapons"`
 
           - `explanation: string`
 

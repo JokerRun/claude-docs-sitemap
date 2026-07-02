@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/messages/batches/results
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 716bbbda0635cd9f8727cba40f0e14bde618eb3adb792e7f61c5b2396e88d46b
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 994cba2f38f4512e4f769468b5c0e98abdf1f3f54a82e48ded1a489af42f59b3
 ---
 
 ## Retrieve Message Batch results
@@ -736,6 +736,10 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+            - `const ModelClaudeSonnet5 Model = "claude-sonnet-5"`
+
+              High-performance model for coding and agents
+
             - `const ModelClaudeFable5 Model = "claude-fable-5"`
 
               Next generation of intelligence for the hardest knowledge work and coding problems
@@ -821,8 +825,6 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
             - `const RefusalStopDetailsCategoryFrontierLLM RefusalStopDetailsCategory = "frontier_llm"`
 
             - `const RefusalStopDetailsCategoryReasoningExtraction RefusalStopDetailsCategory = "reasoning_extraction"`
-
-            - `const RefusalStopDetailsCategoryMilitaryWeapons RefusalStopDetailsCategory = "military_weapons"`
 
           - `Explanation string`
 

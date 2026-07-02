@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/list
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: c2894e819442f16e38f75408ed6206088d0c79d8d3b68d2433231ffbf60c621c
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 18d33c3f18a4b1174955570057c81fd4317b61c2408090686abb4f3852b806b1
 ---
 
 ## List Sessions
@@ -176,6 +176,10 @@ List Sessions
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `CLAUDE_SONNET_5("claude-sonnet-5")`
+
+          High-performance model for coding and agents
 
         - `CLAUDE_FABLE_5("claude-fable-5")`
 
@@ -865,6 +869,7 @@ public final class Main {
       "deployment_id": "deployment_id"
     }
   ],
-  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="
+  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo=",
+  "prev_page": "page_MjAyNS0wNS0xM1QwMDowMDowMFo="
 }
 ```

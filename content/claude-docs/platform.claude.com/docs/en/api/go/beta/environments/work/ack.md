@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/environments/work/ack
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: b5c2b9914c8b23a6d1bc889e5be3e00b6f66c02e8fac95a18deb7f919dbc283f
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 285f9c1311bfad56ff589266824428f606fe724e9420e1b653fe498261668bfe
 ---
 
 ## Acknowledge Work
@@ -137,6 +137,10 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
 
     User-provided metadata key-value pairs associated with this work item
 
+  - `Secret string`
+
+    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
+
   - `StartedAt string`
 
     RFC 3339 timestamp when work execution started
@@ -216,6 +220,7 @@ func main() {
   "metadata": {
     "foo": "string"
   },
+  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",

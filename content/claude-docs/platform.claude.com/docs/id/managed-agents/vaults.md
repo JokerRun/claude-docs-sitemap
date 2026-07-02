@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/vaults
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 698b8c45af77d4a9a1004a2d116605bf28aef00b385890758e99943747fe07d9
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 8d63f1a464801599e59f3376207015c44ea81b7e5b6c6273b4cf2f3f431f90d6
 ---
 
 # Autentikasi dengan vault
@@ -11,9 +11,9 @@ Daftarkan kredensial per pengguna saat membuat sesi.
 
 ---
 
-Vault dan kredensial adalah primitif autentikasi yang memungkinkan Anda mendaftarkan kredensial untuk layanan pihak ketiga satu kali dan mereferensikannya berdasarkan ID saat pembuatan sesi. Ini berarti Anda tidak perlu menjalankan penyimpanan rahasia sendiri, mengirimkan token pada setiap panggilan, atau kehilangan jejak pengguna akhir mana yang diwakili oleh agen saat bertindak.
+Vault dan kredensial adalah primitif autentikasi yang memungkinkan Anda mendaftarkan kredensial untuk layanan pihak ketiga satu kali dan mereferensikannya berdasarkan ID saat pembuatan sesi. Ini berarti Anda tidak perlu menjalankan penyimpanan rahasia Anda sendiri, mengirimkan token pada setiap panggilan, atau kehilangan jejak pengguna akhir mana yang diwakili oleh agen saat bertindak.
 
-Referensi vault adalah parameter per sesi, sehingga Anda dapat mengelola produk Anda pada tingkat granularitas resource `agent` dan pengguna Anda pada tingkat granularitas resource `session`.
+Referensi vault adalah parameter per sesi, sehingga Anda dapat mengelola produk Anda pada tingkat granularitas sumber daya `agent` dan pengguna Anda pada tingkat granularitas sumber daya `session`.
 
 <Note>
   Semua permintaan Managed Agents API memerlukan beta header `managed-agents-2026-04-01`. SDK menetapkan beta header tersebut secara otomatis.
@@ -25,7 +25,7 @@ Referensi vault adalah parameter per sesi, sehingga Anda dapat mengelola produk 
   Vault dan kredensial memiliki cakupan workspace, yang berarti siapa pun dengan kunci API untuk workspace yang sama dapat mereferensikannya saat membuat sesi. Untuk mencabut akses, hapus vault atau kredensial tersebut.
 </Warning>
 
-Vault adalah kumpulan `credentials` yang terkait dengan pengguna akhir. Berikan `display_name` dan secara opsional tandai dengan `metadata` agar Anda dapat memetakannya kembali ke catatan pengguna Anda sendiri.
+Vault adalah kumpulan `credentials` yang terkait dengan pengguna akhir. Berikan `display_name` dan secara opsional tandai dengan `metadata` sehingga Anda dapat memetakannya kembali ke catatan pengguna Anda sendiri.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash curl
@@ -134,7 +134,7 @@ Responsnya adalah catatan vault lengkap:
 Dua kategori kredensial didukung:
 
 * **Kredensial MCP** (`mcp_oauth`, `static_bearer`): setiap kredensial dikunci oleh `mcp_server_url`. Ketika agen terhubung ke server pada URL tersebut saat runtime sesi, token disuntikkan secara otomatis.
-* **Variabel lingkungan** (`environment_variable`): setiap kredensial dikunci oleh `secret_name` (nama variabel lingkungan) dan disimpan di sandbox sebagai placeholder opaque. Ketika agen memulai permintaan keluar, placeholder opaque tersebut disubstitusi dengan rahasia asli saat egress. Agen tidak pernah melihat nilai rahasia. Gunakan ini untuk layanan apa pun yang mengautentikasi melalui variabel lingkungan, seperti CLI, SDK, atau panggilan API langsung.
+* **Variabel lingkungan** (`environment_variable`): setiap kredensial dikunci oleh `secret_name` (nama variabel lingkungan) dan disimpan di sandbox sebagai placeholder buram. Ketika agen memulai permintaan keluar, placeholder buram tersebut disubstitusi dengan rahasia sebenarnya saat egress. Agen tidak pernah melihat nilai rahasia tersebut. Gunakan ini untuk layanan apa pun yang mengautentikasi melalui variabel lingkungan, seperti CLI, SDK, atau panggilan API langsung.
 
 Nilai kredensial aktual yang Anda berikan (`token`, `access_token`, `refresh_token`, `client_secret`, `secret_value`) diperlakukan sebagai field sensitif yang hanya dapat ditulis dan tidak pernah dikembalikan dalam respons API.
 
@@ -148,9 +148,9 @@ Nilai kredensial aktual yang Anda berikan (`token`, `access_token`, `refresh_tok
 
     Field `refresh.token_endpoint_auth.type` menunjukkan cara mengautentikasi panggilan refresh:
 
-    * `none`: public client
+    * `none`: klien publik
     * `client_secret_basic`: autentikasi HTTP Basic dengan client secret
-    * `client_secret_post`: client secret di dalam body POST
+    * `client_secret_post`: client secret dalam body POST
 
     <CodeGroup defaultLanguage="CLI">
       ```bash curl
@@ -491,15 +491,17 @@ Nilai kredensial aktual yang Anda berikan (`token`, `access_token`, `refresh_tok
   </Tab>
 
   <Tab title="Variabel lingkungan">
-    Gunakan `environment_variable` untuk mengautentikasi ke layanan eksternal melalui variabel lingkungan, seperti CLI, SDK, atau panggilan API langsung.
+    Gunakan `environment_variable` untuk mengautentikasi ke layanan eksternal melalui variabel lingkungan, seperti CLI, SDK, atau panggilan API langsung. Kredensial variabel lingkungan berfungsi untuk klien yang mengirim nilai rahasia secara verbatim dalam permintaan keluar, jadi periksa kriteria kelayakan klien di tab ini sebelum mengonfigurasinya.
 
     Array `networking.allowed_hosts` mengontrol host keluar mana yang dapat disubstitusi dengan rahasia tersebut. Gunakan `"type": "limited"` dengan daftar spesifik, atau `"type": "unrestricted"` jika pemanggil menjangkau domain yang tidak dapat Anda enumerasi sebelumnya.
 
-    Membatasi domain sangat disarankan untuk tujuan keamanan, dan mencegah kunci Anda dibagikan ke host yang tidak diotorisasi.
+    Membatasi domain sangat disarankan untuk tujuan keamanan, dan mencegah kunci Anda dibagikan dengan host yang tidak sah.
 
     <Note>
-      `networking.allowed_hosts` pada kredensial vault mengontrol permintaan mana yang menggunakan rahasia tersebut, bukan permintaan mana yang diizinkan. Agar agen benar-benar dapat menjangkau suatu domain, domain tersebut juga harus diizinkan pada [tingkat environment](/docs/id/managed-agents/environments). Kedua tingkat harus menyertakan domain tersebut (baik melalui networking `unrestricted` atau dengan secara eksplisit mencantumkan domain di `allowed_hosts`) agar permintaan yang disubstitusi rahasia dapat berhasil.
+      `networking.allowed_hosts` pada kredensial vault mengontrol permintaan mana yang menggunakan rahasia tersebut, bukan permintaan mana yang diizinkan. Agar agen benar-benar dapat menjangkau suatu domain, domain tersebut juga harus diizinkan di [tingkat environment](/docs/id/managed-agents/environments). Kedua tingkat harus menyertakan domain tersebut (baik melalui networking `unrestricted` atau dengan secara eksplisit mencantumkan domain di `allowed_hosts`) agar permintaan yang disubstitusi rahasia berhasil.
     </Note>
+
+    Field opsional `injection_location` membatasi cakupan di mana rahasia disubstitusi; semantik lengkapnya dijelaskan setelah contoh.
 
     <CodeGroup defaultLanguage="CLI">
       ```bash curl
@@ -698,27 +700,42 @@ Nilai kredensial aktual yang Anda berikan (`token`, `access_token`, `refresh_tok
       ```
     </CodeGroup>
 
-    Substitusi terjadi saat egress, bukan di dalam sandbox. Apa pun yang memproses kredensial secara lokal akan melihat placeholder opaque, bukan nilai aslinya: klien yang memvalidasi format kredensial saat startup mungkin menolaknya, dan klien yang menghitung signature permintaan dari rahasia tersebut (misalnya, AWS SigV4) akan menghasilkan signature yang tidak valid. Kredensial variabel lingkungan berfungsi untuk klien yang mengirim nilai rahasia secara verbatim dalam permintaan keluar.
+    Payload permintaan sering kali disusun dari konten yang sedang dikerjakan agen, sehingga body permintaan adalah permukaan eksposur yang lebih luas. Sebagian besar layanan membaca kunci API dari header permintaan, jadi mengaktifkan hanya `header` adalah konfigurasi yang lebih sempit. Ini membatasi substitusi hanya pada nilai header permintaan untuk kredensial tersebut.
 
-    Substitusi hanya berlaku untuk arah keluar. Jika klien menggunakan rahasia yang tersimpan untuk mengambil session token (misalnya, OAuth client-credentials grant), token yang dikembalikan tiba di sandbox tanpa diredaksi. Untuk alur berbasis pertukaran, lakukan pertukaran tersebut sendiri dan simpan token yang dihasilkan di vault sebagai gantinya.
+    `injection_location` pada kredensial mengontrol bagian mana dari permintaan keluar yang disubstitusi dengan rahasia. Ini adalah objek opsional, sejajar dengan `networking`, dengan dua field Boolean: `header` (header permintaan) dan `body` (body permintaan). `injection_location` bersifat independen dari `networking.allowed_hosts`: `allowed_hosts` membatasi host mana yang disubstitusi dengan rahasia, dan `injection_location` membatasi bagian permintaan mana yang disubstitusi.
+
+    `injection_location` berperilaku berbeda saat create dan saat update:
+
+    | Operasi           | Perilaku `injection_location`                                                                                                                                                                                             |
+    | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+    | Create kredensial | Jika Anda menyediakan objek tersebut, field apa pun yang Anda hilangkan di dalamnya akan default ke `false`: `{"header": true}` membuat kredensial khusus header. Hilangkan objek sepenuhnya dan kedua lokasi diaktifkan. |
+    | Update kredensial | Field digabungkan secara individual: `{"body": false}` menonaktifkan substitusi body dan membiarkan `header` tidak berubah.                                                                                               |
+
+    Sebuah kredensial harus memiliki setidaknya satu lokasi yang diaktifkan, sehingga create atau update yang akan menonaktifkan kedua lokasi mengembalikan error 400. Meneruskan `null` eksplisit untuk objek `injection_location` atau untuk salah satu field juga mengembalikan error 400 ("omit the field instead"). Respons selalu mengembalikan kedua field dengan nilai yang telah diselesaikan.
+
+    Placeholder di lokasi yang dinonaktifkan tidak disubstitusi maupun dihapus. Permintaan dikirim ke pihak ketiga dengan string placeholder buram literal di lokasi tersebut. Jika permintaan tiba di pihak ketiga berisi string placeholder literal, berarti lokasi tersebut dinonaktifkan untuk kredensial itu atau host tujuan tidak tercakup oleh `networking.allowed_hosts` kredensial tersebut.
+
+    Substitusi terjadi saat egress, bukan di dalam sandbox. Apa pun yang memproses kredensial secara lokal melihat placeholder buram, bukan nilai sebenarnya: klien yang memvalidasi format kredensial saat startup mungkin menolaknya, dan klien yang menghitung tanda tangan permintaan dari rahasia tersebut (misalnya, AWS SigV4) menghasilkan tanda tangan yang tidak valid. Kredensial variabel lingkungan berfungsi untuk klien yang mengirim nilai rahasia secara verbatim dalam permintaan keluar, di lokasi yang diaktifkan oleh `injection_location` kredensial tersebut.
+
+    Substitusi hanya berlaku untuk arah keluar. Jika klien menggunakan rahasia yang disimpan untuk mengambil session token (misalnya, OAuth client-credentials grant), token yang dikembalikan tiba di sandbox tanpa diredaksi. Untuk alur berbasis pertukaran, lakukan pertukaran sendiri dan simpan token yang dihasilkan di vault sebagai gantinya.
 
     <Tip>
-      Batasi cakupan kunci API hanya pada izin yang dibutuhkan agen. Agen dapat melakukan apa pun yang diizinkan oleh kunci tersebut, sehingga kunci dengan izin yang lebih luas dari yang diperlukan akan meningkatkan radius dampak jika agen berperilaku tidak terduga.
+      Batasi cakupan kunci API hanya pada izin yang dibutuhkan agen. Agen dapat melakukan apa pun yang diizinkan oleh kunci tersebut, sehingga kunci dengan izin yang lebih luas dari yang diperlukan meningkatkan radius dampak jika agen berperilaku tidak terduga.
     </Tip>
   </Tab>
 </Tabs>
 
-Kredensial disimpan sebagaimana diberikan dan tidak divalidasi hingga runtime sesi. Kredensial yang tidak valid akan muncul sebagai error autentikasi atau error downstream selama sesi, yang dipancarkan tetapi tidak menghalangi sesi untuk terus berjalan.
+Kredensial disimpan sebagaimana diberikan dan tidak divalidasi hingga runtime sesi. Kredensial yang tidak valid muncul sebagai error autentikasi atau error downstream selama sesi, yang dipancarkan tetapi tidak memblokir sesi untuk melanjutkan.
 
 Batasan:
 
-* **Kunci unik per vault.** `mcp_server_url` (kredensial MCP) dan `secret_name` (kredensial variabel lingkungan) harus unik di antara kredensial aktif dalam sebuah vault. Membuat duplikat akan mengembalikan 409.
+* **Kunci unik per vault.** `mcp_server_url` (kredensial MCP) dan `secret_name` (kredensial variabel lingkungan) harus unik di antara kredensial aktif dalam sebuah vault. Membuat duplikat mengembalikan 409.
 * **Kunci bersifat immutable.** Untuk mengubah `mcp_server_url` atau `secret_name`, arsipkan kredensial dan buat yang baru.
 * **Maksimum 20 kredensial per vault.**
 
 ## Mereferensikan vault saat pembuatan sesi
 
-Berikan `vault_ids` saat membuat sesi:
+Teruskan `vault_ids` saat membuat sesi:
 
 <CodeGroup defaultLanguage="CLI">
   ```bash curl
@@ -819,13 +836,13 @@ Berikan `vault_ids` saat membuat sesi:
 
 Perilaku runtime:
 
-* Ketika tidak ada kredensial MCP yang cocok berdasarkan `mcp_server_url`, koneksi dicoba tanpa autentikasi dan akan menghasilkan error jika server memerlukan autentikasi.
+* Ketika tidak ada kredensial MCP yang cocok berdasarkan `mcp_server_url`, koneksi dicoba tanpa autentikasi dan akan error jika server memerlukan autentikasi.
 * Ketika beberapa vault berisi kredensial yang cocok, vault pertama dengan kecocokan yang menang.
 * Dalam [sesi multi-agen](/docs/id/managed-agents/multi-agent), kredensial vault berlaku untuk setiap thread. Agen yang definisinya sendiri mendeklarasikan server MCP yang cocok akan mengautentikasi dengan kredensial ini. Lihat [Menghubungkan agen ke server MCP](/docs/id/managed-agents/multi-agent#connect-agents-to-mcp-servers).
 
 ## Merotasi kredensial
 
-Nilai rahasia dan `display_name` dapat diperbarui. Field struktural (`mcp_server_url`, `secret_name`, `token_endpoint`, `client_id`) dikunci setelah pembuatan. Untuk mengubahnya, arsipkan kredensial dan buat yang baru.
+Nilai rahasia, `display_name`, dan (pada kredensial variabel lingkungan) `injection_location` dapat diperbarui. Pembaruan `injection_location` digabungkan per field, seperti yang dijelaskan di tab Variabel lingkungan pada [Menambahkan kredensial](#add-a-credential). Untuk sesi yang sedang berjalan, pembaruan `injection_location` dipropagasi dengan cara yang sama seperti rotasi rahasia: kredensial sesi diselesaikan ulang tanpa restart, seperti yang dijelaskan di [Siklus hidup kredensial](#credential-lifecycle), dan lokasi yang diperbarui berlaku untuk permintaan keluar sesi berikutnya. Field struktural (`mcp_server_url`, `secret_name`, `token_endpoint`, `client_id`) dikunci setelah pembuatan. Untuk mengubahnya, arsipkan kredensial dan buat yang baru.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash curl
@@ -964,7 +981,7 @@ Nilai rahasia dan `display_name` dapat diperbarui. Field struktural (`mcp_server
 
 ## Siklus hidup kredensial
 
-Kredensial di-resolve ulang secara berkala, baik selama sesi maupun selama siklus hidup vault. Ini memastikan bahwa rotasi, pengarsipan, atau penghapusan kredensial terpropagasi ke sesi yang sedang berjalan tanpa perlu restart.
+Kredensial diselesaikan ulang secara berkala, baik selama sesi maupun selama siklus hidup vault. Ini memastikan bahwa rotasi, pengarsipan, atau penghapusan kredensial dipropagasi ke sesi yang sedang berjalan tanpa restart.
 
 Untuk mendapatkan notifikasi jika kredensial diarsipkan, dihapus, atau gagal di-refresh, Anda dapat berlangganan [webhook](/docs/id/managed-agents/webhooks) vault dan kredensial yang terkait dengan perubahan siklus hidup tersebut.
 
@@ -972,15 +989,15 @@ Untuk mendapatkan notifikasi jika kredensial diarsipkan, dihapus, atau gagal di-
 | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
 | `vault.archived`                  | Vault diarsipkan. Event `vault_credential.archived` juga dipancarkan untuk setiap kredensial yang mendasarinya.                      |
 | `vault.deleted`                   | Vault dihapus. Event `vault_credential.deleted` juga dipancarkan untuk setiap kredensial yang mendasarinya.                          |
-| `vault_credential.archived`       | Kredensial diarsipkan, baik secara langsung maupun sebagai akibat dari pengarsipan vault.                                            |
-| `vault_credential.deleted`        | Kredensial dihapus, baik secara langsung maupun sebagai akibat dari penghapusan vault.                                               |
+| `vault_credential.archived`       | Kredensial diarsipkan, baik secara langsung atau sebagai akibat dari pengarsipan vault.                                              |
+| `vault_credential.deleted`        | Kredensial dihapus, baik secara langsung atau sebagai akibat dari penghapusan vault.                                                 |
 | `vault_credential.refresh_failed` | Kredensial `mcp_oauth` tidak dapat di-refresh (refresh token tidak valid, atau error yang tidak dapat dipulihkan dari server OAuth). |
 
 <Note>
   Ini adalah daftar webhook yang tidak lengkap; lihat [Berlangganan webhook](/docs/id/managed-agents/webhooks) untuk daftar lengkapnya.
 </Note>
 
-Untuk kredensial `mcp_oauth`, resolusi ulang juga me-refresh access token jika telah kedaluwarsa. Jika refresh gagal, event `vault_credential.refresh_failed` akan dipancarkan.
+Untuk kredensial `mcp_oauth`, penyelesaian ulang juga me-refresh access token jika telah kedaluwarsa. Jika refresh gagal, event `vault_credential.refresh_failed` dipancarkan.
 
 ### Mendiagnosis kegagalan refresh OAuth
 
@@ -1095,7 +1112,7 @@ Responsnya adalah objek `vault_credential_validation`. `mcp_probe` menyertakan l
 
 ## Operasi lainnya
 
-* **Mendaftar vault atau kredensial:** Dipaginasi, terbaru lebih dulu. Catatan yang diarsipkan dikecualikan secara default (berikan `include_archived=true` untuk menyertakannya).
-* **Mengarsipkan vault:** `POST /v1/vaults/{id}/archive`. Berlaku secara kaskade ke semua kredensial. Rahasia dihapus; catatan dipertahankan untuk audit. Sesi mendatang yang mereferensikan vault ini akan gagal; sesi yang sedang berjalan tetap berlanjut.
-* **Mengarsipkan kredensial:** `POST /v1/vaults/{id}/credentials/{cred_id}/archive`. Menghapus payload rahasia; kunci kredensial (`mcp_server_url` atau `secret_name`) tetap terlihat dan dibebaskan untuk kredensial pengganti.
+* **Mencantumkan vault atau kredensial:** Dipaginasi, terbaru lebih dulu. Catatan yang diarsipkan dikecualikan secara default (teruskan `include_archived=true` untuk menyertakannya).
+* **Mengarsipkan vault:** `POST /v1/vaults/{id}/archive`. Berlaku secara kaskade ke semua kredensial. Rahasia dibersihkan; catatan dipertahankan untuk audit. Sesi mendatang yang mereferensikan vault ini gagal; sesi yang sedang berjalan tetap berlanjut.
+* **Mengarsipkan kredensial:** `POST /v1/vaults/{id}/credentials/{cred_id}/archive`. Membersihkan payload rahasia; kunci kredensial (`mcp_server_url` atau `secret_name`) tetap terlihat dan dibebaskan untuk kredensial pengganti.
 * **Menghapus vault atau kredensial:** Hard delete. Catatan tidak dipertahankan. Gunakan arsip jika Anda memerlukan jejak audit.

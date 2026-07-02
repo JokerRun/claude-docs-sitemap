@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/api_keys/update
-fetched_at: 2026-06-12T03:17:40.104094Z
-sha256: 04c5f773720cbf84ef03cab1b666cdc0bf99de7167740e2dcde0771a55cb5b09
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 06ecc697dd600b5658f056ae571f6ade5ccb483ceb337002811842df0db0d961
 ---
 
 ## Update API Key
@@ -23,15 +23,15 @@ Update API Key
 
   Name of the API key.
 
-- `status: optional "active" or "inactive" or "archived"`
+- `status: optional "active" or "archived" or "inactive"`
 
   Status of the API key.
 
   - `"active"`
 
-  - `"inactive"`
-
   - `"archived"`
+
+  - `"inactive"`
 
 ### Returns
 
@@ -69,17 +69,17 @@ Update API Key
 
     Partially redacted hint for the API key.
 
-  - `status: "active" or "inactive" or "archived" or "expired"`
+  - `status: "active" or "archived" or "expired" or "inactive"`
 
     Status of the API key.
 
     - `"active"`
 
-    - `"inactive"`
-
     - `"archived"`
 
     - `"expired"`
+
+    - `"inactive"`
 
   - `type: "api_key"`
 

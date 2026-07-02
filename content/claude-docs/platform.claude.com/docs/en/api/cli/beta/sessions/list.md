@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/sessions/list
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: ceeae1966f876dc6054e3a5274af6d2f8be22ffcd8485d0d96d5d46baafce6f3
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: ea224d07a6140691c9733438f41d8c3eee1b978e8f2b88e1904a1f723943a96f
 ---
 
 ## List Sessions
@@ -73,7 +73,7 @@ List Sessions
 
 ### Returns
 
-- `BetaManagedAgentsListSessions: object { data, next_page }`
+- `BetaManagedAgentsListSessions: object { data, next_page, prev_page }`
 
   Paginated list of sessions.
 
@@ -105,11 +105,15 @@ List Sessions
 
         Model identifier and configuration.
 
-        - `id: "claude-fable-5" or "claude-opus-4-8" or "claude-opus-4-7" or 8 more or string`
+        - `id: "claude-sonnet-5" or "claude-fable-5" or "claude-opus-4-8" or 9 more or string`
 
           The model that will power your agent.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `"claude-sonnet-5"`
+
+            High-performance model for coding and agents
 
           - `"claude-fable-5"`
 
@@ -187,7 +191,7 @@ List Sessions
 
             Model identifier and configuration.
 
-            - `id: "claude-fable-5" or "claude-opus-4-8" or "claude-opus-4-7" or 8 more or string`
+            - `id: "claude-sonnet-5" or "claude-fable-5" or "claude-opus-4-8" or 9 more or string`
 
               The model that will power your agent.
 
@@ -621,6 +625,10 @@ List Sessions
 
     Opaque cursor for the next page. Null when no more results.
 
+  - `prev_page: optional string`
+
+    Opaque cursor for the previous page. Null when on the first page. Pass as the `page` parameter to navigate backward.
+
 ### Example
 
 ```cli
@@ -797,6 +805,7 @@ ant beta:sessions list \
       "deployment_id": "deployment_id"
     }
   ],
-  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo="
+  "next_page": "page_MjAyNS0wNS0xNFQwMDowMDowMFo=",
+  "prev_page": "page_MjAyNS0wNS0xM1QwMDowMDowMFo="
 }
 ```

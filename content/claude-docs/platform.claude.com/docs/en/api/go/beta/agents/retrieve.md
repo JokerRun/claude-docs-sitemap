@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/agents/retrieve
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 2200e4023810d177a306351a6e1eee6de1d6cb641dfa7d4fb1b790c6e6283993
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 93f7a721b5c5000812bded932ba315aa9991d68c8c282ee2a5c76f75c7097343
 ---
 
 ## Get Agent
@@ -132,6 +132,10 @@ Get Agent
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `const BetaManagedAgentsModelClaudeSonnet5 BetaManagedAgentsModel = "claude-sonnet-5"`
+
+          High-performance model for coding and agents
 
         - `const BetaManagedAgentsModelClaudeFable5 BetaManagedAgentsModel = "claude-fable-5"`
 

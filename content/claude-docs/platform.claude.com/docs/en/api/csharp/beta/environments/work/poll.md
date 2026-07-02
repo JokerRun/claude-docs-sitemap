@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/environments/work/poll
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: eb32f70e0cb319cd4b851139ea5deabea80afbac7479fc2b0b83dcc3dbf4871b
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 1d7213ff6a4dc2b2d525c5d6b817ac62486abb31e3fe3b7a0152ec7e8f1364d0
 ---
 
 ## Poll for Work
@@ -141,6 +141,10 @@ Long poll for work items in the queue.
 
     User-provided metadata key-value pairs associated with this work item
 
+  - `required string? Secret`
+
+    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
+
   - `required string? StartedAt`
 
     RFC 3339 timestamp when work execution started
@@ -200,6 +204,7 @@ Console.WriteLine(betaSelfHostedWork);
   "metadata": {
     "foo": "string"
   },
+  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",

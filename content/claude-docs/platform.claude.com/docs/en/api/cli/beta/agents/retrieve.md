@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/agents/retrieve
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: df3d1cb66f778b774fa8af67d306db69f1b3fe904f714f1740cebc7b9522f13c
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 7d44ab911519499d90644db8f0e2ee5334013b454cb9fdac47f9f754f53b81a2
 ---
 
 ## Get Agent
@@ -61,11 +61,15 @@ Get Agent
 
     Model identifier and configuration.
 
-    - `id: "claude-fable-5" or "claude-opus-4-8" or "claude-opus-4-7" or 8 more or string`
+    - `id: "claude-sonnet-5" or "claude-fable-5" or "claude-opus-4-8" or 9 more or string`
 
       The model that will power your agent.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `"claude-sonnet-5"`
+
+        High-performance model for coding and agents
 
       - `"claude-fable-5"`
 

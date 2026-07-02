@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/api_keys/retrieve
-fetched_at: 2026-06-12T03:17:40.104094Z
-sha256: dddd101074a4cc0ebed846d768b53578b9f620815fe9e4d40a8949731173270c
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 30635b634b13ad2a96b00058bbed07d5f7dc07daf41c888b42629e9734a96a58
 ---
 
 ## Get API Key
@@ -53,17 +53,17 @@ Get API Key
 
     Partially redacted hint for the API key.
 
-  - `status: "active" or "inactive" or "archived" or "expired"`
+  - `status: "active" or "archived" or "expired" or "inactive"`
 
     Status of the API key.
 
     - `"active"`
 
-    - `"inactive"`
-
     - `"archived"`
 
     - `"expired"`
+
+    - `"inactive"`
 
   - `type: "api_key"`
 

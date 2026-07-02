@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/messages/batches/results
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 999f11646a1ae7e39cb6174953c130ae8b9461f801d1e79c4246acbd8cb9d1cd
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 37804c4b507a385c199efed9c92e049e020bc6dcebb0a549f22685f4c5a0d076
 ---
 
 ## Retrieve Message Batch results
@@ -964,6 +964,10 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
                   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+                  - `const ModelClaudeSonnet5 Model = "claude-sonnet-5"`
+
+                    High-performance model for coding and agents
+
                   - `const ModelClaudeFable5 Model = "claude-fable-5"`
 
                     Next generation of intelligence for the hardest knowledge work and coding problems
@@ -1045,8 +1049,6 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
                 - `const BetaFallbackRefusalTriggerCategoryFrontierLLM BetaFallbackRefusalTriggerCategory = "frontier_llm"`
 
                 - `const BetaFallbackRefusalTriggerCategoryReasoningExtraction BetaFallbackRefusalTriggerCategory = "reasoning_extraction"`
-
-                - `const BetaFallbackRefusalTriggerCategoryMilitaryWeapons BetaFallbackRefusalTriggerCategory = "military_weapons"`
 
               - `Type Refusal`
 
@@ -1188,8 +1190,6 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
             - `const BetaRefusalStopDetailsCategoryFrontierLLM BetaRefusalStopDetailsCategory = "frontier_llm"`
 
             - `const BetaRefusalStopDetailsCategoryReasoningExtraction BetaRefusalStopDetailsCategory = "reasoning_extraction"`
-
-            - `const BetaRefusalStopDetailsCategoryMilitaryWeapons BetaRefusalStopDetailsCategory = "military_weapons"`
 
           - `Explanation string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: cb029cd6c6c06a1afe7a3cf04af366d5f99d9b10145f92dee8acc21bf34c611c
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: f1f6653817d2833111de102ff2c78ceca23a2748584e25ed7fbef5f22e1984d9
 ---
 
 # Claude Platform on AWS
@@ -284,14 +284,14 @@ Anthropic's [client SDKs](/docs/en/cli-sdks-libraries/overview) support Claude P
 
   <Tab title="Java">
     ```kotlin Gradle
-    implementation("com.anthropic:anthropic-java-aws:2.40.0")
+    implementation("com.anthropic:anthropic-java-aws:2.47.0")
     ```
 
     ```xml Maven
     <dependency>
       <groupId>com.anthropic</groupId>
       <artifactId>anthropic-java-aws</artifactId>
-      <version>2.40.0</version>
+      <version>2.47.0</version>
     </dependency>
     ```
   </Tab>

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/php/messages
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 40f68476c1dfda508947dfb455608154ef890bff6f33794660c5cc9c4dcd51e9
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: f7dc13b89d3749823a4b3e8e10b51cffa8b9dafbfc8644c87b33ed6f2ba13726
 ---
 
 # Messages
@@ -2709,6 +2709,10 @@ var_dump($messageTokensCount);
 ### Model
 
 - `Model`
+
+  - `"claude-sonnet-5"`
+
+    High-performance model for coding and agents
 
   - `"claude-fable-5"`
 

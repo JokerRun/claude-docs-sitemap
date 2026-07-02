@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/messages/batches/create
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 22da67d1e4e2ff9daa949438cfedc213a099aa191d4a40521dd0236177245139
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 3efaf0c92fc874c3a0937ff95d2732c3c4ca86aa3b55ebd5f775bffe4d0aa056
 ---
 
 ## Create a Message Batch
@@ -862,6 +862,10 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-sonnet-5"ClaudeSonnet5`
+
+          High-performance model for coding and agents
 
         - `"claude-fable-5"ClaudeFable5`
 

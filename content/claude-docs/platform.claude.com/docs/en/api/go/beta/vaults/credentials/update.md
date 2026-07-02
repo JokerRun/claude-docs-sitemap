@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/vaults/credentials/update
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 14f880c0e5c41eee54a3f98329838b6b485fd64411e46fc0253625de4a23bf20
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 7fd64598496e8c12ffdea4a0b5e786fa4319aa4827120e6313c58e81ebecd32c
 ---
 
 ## Update Credential
@@ -102,6 +102,18 @@ Update Credential
       - `Type BetaManagedAgentsEnvironmentVariableUpdateParamsType`
 
         - `const BetaManagedAgentsEnvironmentVariableUpdateParamsTypeEnvironmentVariable BetaManagedAgentsEnvironmentVariableUpdateParamsType = "environment_variable"`
+
+      - `InjectionLocation BetaManagedAgentsInjectionLocationUpdateParamsResp`
+
+        Updated injection location.
+
+        - `Body bool`
+
+          Substitute when the placeholder appears in the request body.
+
+        - `Header bool`
+
+          Substitute when the placeholder appears in a request header value.
 
       - `Networking BetaManagedAgentsCredentialNetworkingParamsUnionResp`
 
@@ -300,6 +312,18 @@ Update Credential
     - `type BetaManagedAgentsEnvironmentVariableAuthResponse struct{…}`
 
       Environment variable credential details. The secret value is never returned.
+
+      - `InjectionLocation BetaManagedAgentsInjectionLocationResponse`
+
+        Where in the outbound request the secret value is substituted.
+
+        - `Body bool`
+
+          Whether the placeholder is substituted in the request body.
+
+        - `Header bool`
+
+          Whether the placeholder is substituted in request header values.
 
       - `Networking BetaManagedAgentsEnvironmentVariableAuthResponseNetworkingUnion`
 

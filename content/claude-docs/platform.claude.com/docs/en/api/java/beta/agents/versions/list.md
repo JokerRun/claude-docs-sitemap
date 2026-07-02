@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/agents/versions/list
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 45c944c9c4f8bdb0689f09ccb59ce085142cec8f6a1a305ae561d2b2f0772d45
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: ffec2ffb5e84150d8b715b6575baaac6013530af90caa5fe5457b53e5e201e6d
 ---
 
 ## List Agent Versions
@@ -126,6 +126,10 @@ List Agent Versions
       The model that will power your agent.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `CLAUDE_SONNET_5("claude-sonnet-5")`
+
+        High-performance model for coding and agents
 
       - `CLAUDE_FABLE_5("claude-fable-5")`
 

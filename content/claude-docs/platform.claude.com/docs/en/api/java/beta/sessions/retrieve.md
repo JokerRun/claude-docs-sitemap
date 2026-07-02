@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/retrieve
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 1433ccd30ca78807dbd4bcdff39814fcb166c32e9647cf49a62d39b239c96177
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: cb1ec1baf94a758da6a79902fb26507796d3797f4d2fd0d2772403f5d44553d2
 ---
 
 ## Get Session
@@ -114,6 +114,10 @@ Get Session
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `CLAUDE_SONNET_5("claude-sonnet-5")`
+
+          High-performance model for coding and agents
 
         - `CLAUDE_FABLE_5("claude-fable-5")`
 

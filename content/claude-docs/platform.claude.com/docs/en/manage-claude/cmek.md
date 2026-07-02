@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/cmek
-fetched_at: 2026-06-30T03:15:27.286427Z
-sha256: 1a0df6045633290c1b569e854c2cda1443a44b9442b48ec94547daeddfeedbd4
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 6ca44e68d48499c8b87edc956c9c97326acd87ab4c618d7e1d71dd8abdbf509a
 ---
 
 # Customer-managed encryption keys
@@ -37,8 +37,13 @@ Anthropic calls your key management service from its standard public IP range. I
 ## Prerequisites
 
 * Cloud Admin access in the account, project, or subscription that will host the encryption key.
+
 * An admin role in your Anthropic organization: an Organization Admin role in the Claude Console on Claude Platform, or an Owner or Primary Owner role on Claude Enterprise.
-* [Zero data retention (ZDR)](/docs/en/manage-claude/api-and-data-retention) turned off for your organization.
+
+* The data retention configuration required for your product:
+
+  * **Claude Platform:** [Zero data retention (ZDR)](/docs/en/manage-claude/api-and-data-retention) turned off for your organization. Organizations with a ZDR arrangement can instead turn on 30-day data retention for at least one workspace; see [Model-specific data retention requirements](/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements). You can attach a key only to a workspace with data retention enabled.
+  * **Claude Enterprise:** ZDR turned off for your organization.
 
 ## Availability and regions
 
@@ -139,7 +144,7 @@ Outside of [CSAM screening](https://support.claude.com/en/articles/9020328-csam-
 
 ## Limitations
 
-* **Irreversible action:** Once a key is attached to a workspace, it cannot be detached or swapped. Rotating the key material within the same key (for example, AWS KMS automatic rotation, a Cloud KMS rotation schedule, or an Azure Key Vault rotation policy) is supported transparently and requires no change in Anthropic. Switching to a *different* key requires creating a new workspace with the new key and migrating your data. Revoking or disabling the key makes all CMEK-protected data in that workspace permanently inaccessible, with no backout path.
+* **Irreversible action:** Once a key is attached to a workspace, it cannot be detached or swapped. On Claude Platform, attaching a key also locks the workspace's data retention setting: you cannot turn off 30-day data retention for that workspace, and returning to zero data retention requires creating a new workspace and moving your traffic to it. Rotating the key material within the same key (for example, AWS KMS automatic rotation, a Cloud KMS rotation schedule, or an Azure Key Vault rotation policy) is supported transparently and requires no change in Anthropic. Switching to a *different* key requires creating a new workspace with the new key and migrating your data. Revoking or disabling the key makes all CMEK-protected data in that workspace permanently inaccessible, with no backout path.
 * **No retroactive encryption:** CMEK only protects data written after the key is enabled.
 * **Latency:** Operations that wrap or unwrap data keys make a round-trip to your key management service, which can add a small amount of latency to actions that read or write data at rest.
 * **Revocation delay:** Key revocation can take up to one hour (the cache TTL). Requests already in flight during that window may continue to succeed.

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/sessions/create
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 2a7861279403e0f5f27a10695e3d30e5fb35c1d9e5e67700c1a7595c2da3f948
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: bf6e19412b797e647e1bca959d374537cc50e5d25acd5f337f5a068e0fdfeca0
 ---
 
 ## Create Session
@@ -15,7 +15,7 @@ Create Session
 
 ### Parameters
 
-- `--agent: string or BetaManagedAgentsAgentParams`
+- `--agent: string or BetaManagedAgentsAgentParams or BetaManagedAgentsAgentWithOverridesParams`
 
   Body param: Agent identifier. Accepts the `agent` ID string, which pins the latest version for the session, or an `agent` object with both id and version specified.
 
@@ -73,11 +73,15 @@ Create Session
 
       Model identifier and configuration.
 
-      - `id: "claude-fable-5" or "claude-opus-4-8" or "claude-opus-4-7" or 8 more or string`
+      - `id: "claude-sonnet-5" or "claude-fable-5" or "claude-opus-4-8" or 9 more or string`
 
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-sonnet-5"`
+
+          High-performance model for coding and agents
 
         - `"claude-fable-5"`
 
@@ -155,7 +159,7 @@ Create Session
 
           Model identifier and configuration.
 
-          - `id: "claude-fable-5" or "claude-opus-4-8" or "claude-opus-4-7" or 8 more or string`
+          - `id: "claude-sonnet-5" or "claude-fable-5" or "claude-opus-4-8" or 9 more or string`
 
             The model that will power your agent.
 

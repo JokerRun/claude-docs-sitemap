@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/vaults/credentials/list
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 8ea5a71c1f17a0f2e2135e92d3add0fe43f36735e40034e9e6aaca385c385264
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 5b24119f88e246e31bf76defc5b2ed9f281132c9016723b96c901506c64da435
 ---
 
 ## List Credentials
@@ -133,9 +133,21 @@ List Credentials
 
           - `"static_bearer"`
 
-      - `beta_managed_agents_environment_variable_auth_response: object { networking, secret_name, type }`
+      - `beta_managed_agents_environment_variable_auth_response: object { injection_location, networking, secret_name, type }`
 
         Environment variable credential details. The secret value is never returned.
+
+        - `injection_location: object { body, header }`
+
+          Where in the outbound request the secret value is substituted.
+
+          - `body: boolean`
+
+            Whether the placeholder is substituted in the request body.
+
+          - `header: boolean`
+
+            Whether the placeholder is substituted in request header values.
 
         - `networking: BetaManagedAgentsUnrestrictedCredentialNetworkingResponse or BetaManagedAgentsLimitedCredentialNetworkingResponse`
 

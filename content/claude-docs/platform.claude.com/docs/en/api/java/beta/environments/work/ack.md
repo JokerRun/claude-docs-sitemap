@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/environments/work/ack
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 0d9ef43b573bcc1c525edf2a2a0012e5fc6fb7b9d24e1332c3bff20a6ae886c8
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 3c4635a61c2e3373b6848b670a9ae7de4ea5a865303b96d322a0961daf057782
 ---
 
 ## Acknowledge Work
@@ -131,6 +131,10 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
 
     User-provided metadata key-value pairs associated with this work item
 
+  - `Optional<String> secret`
+
+    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
+
   - `Optional<String> startedAt`
 
     RFC 3339 timestamp when work execution started
@@ -204,6 +208,7 @@ public final class Main {
   "metadata": {
     "foo": "string"
   },
+  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",

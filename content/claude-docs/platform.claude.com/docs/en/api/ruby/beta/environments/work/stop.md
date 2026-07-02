@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/environments/work/stop
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 28e7c7519cacb1fdfa02c95e4765658f2192011e997a2e0701459e77e738d9a5
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 67255ded244b06c1d84ca1afc4584aab870f89beb8c88eddd27ddca7f197b5f9
 ---
 
 ## Stop Work
@@ -137,6 +137,10 @@ Stop a work item, initiating graceful or forced shutdown.
 
     User-provided metadata key-value pairs associated with this work item
 
+  - `secret: String`
+
+    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
+
   - `started_at: String`
 
     RFC 3339 timestamp when work execution started
@@ -197,6 +201,7 @@ puts(beta_self_hosted_work)
   "metadata": {
     "foo": "string"
   },
+  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",

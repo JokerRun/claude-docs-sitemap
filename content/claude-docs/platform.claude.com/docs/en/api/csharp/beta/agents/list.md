@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/agents/list
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 77c6aa3bdce5f16760853d6292f0ab7df41e72285a5bd7c67763e148069bcbc5
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 7986c96a43b15d8957b56d8c001b969b4175b26252894f41ae12b54f8527bc52
 ---
 
 ## List Agents
@@ -140,6 +140,10 @@ List Agents
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-sonnet-5"ClaudeSonnet5`
+
+          High-performance model for coding and agents
 
         - `"claude-fable-5"ClaudeFable5`
 

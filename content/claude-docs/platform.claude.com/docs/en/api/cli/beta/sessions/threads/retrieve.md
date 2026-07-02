@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/sessions/threads/retrieve
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 6d5ab95f62fa2381ec382f3c63cb55a8801cf876021d3b02ebf83d3363fdbd32
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: b8f5fbf75ef85283843e6de8360ad3b3ddebb7fce1c0b674369cf9286770849e
 ---
 
 ## Get Session Thread
@@ -59,11 +59,15 @@ Get Session Thread
 
       Model identifier and configuration.
 
-      - `id: "claude-fable-5" or "claude-opus-4-8" or "claude-opus-4-7" or 8 more or string`
+      - `id: "claude-sonnet-5" or "claude-fable-5" or "claude-opus-4-8" or 9 more or string`
 
         The model that will power your agent.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `"claude-sonnet-5"`
+
+          High-performance model for coding and agents
 
         - `"claude-fable-5"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/webhooks
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: b0fd411c9bd6c97101c6d2a16aaee24ad76b71ac652bbd1525228de026cdf405
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: a9f2f13c5fd78d71bd719747b4794efb9cb60f0ab436f4bec6b1df578203667d
 ---
 
 # Berlangganan webhook
@@ -19,30 +19,60 @@ Peristiwa webhook mengembalikan `type` dan `id` peristiwa, bukan objek lengkapny
 
 <Tabs>
   <Tab title="Peristiwa sesi">
-    | Peristiwa                          | Pemicu                                                                                                                                                       |
-    | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-    | `session.status_run_started`       | Eksekusi agen dimulai. Ini dipicu pada setiap transisi status sesi ke `running`.                                                                             |
-    | `session.status_idled`             | Agen menunggu input, misalnya persetujuan izin alat atau pesan pengguna baru.                                                                                |
-    | `session.status_rescheduled`       | Terjadi kesalahan sementara dan sesi mencoba ulang secara otomatis.                                                                                          |
-    | `session.status_terminated`        | Sesi mengalami kesalahan terminal.                                                                                                                           |
-    | `session.thread_created`           | [Thread multiagen](/docs/id/managed-agents/multi-agent) baru dibuka, yang berarti agen tambahan yang dipanggil oleh koordinator mulai menjalankan pekerjaan. |
-    | `session.thread_idled`             | Sebuah agen dalam [interaksi multiagen](/docs/id/managed-agents/multi-agent) sedang menunggu input.                                                          |
-    | `session.thread_terminated`        | Sebuah [thread multiagen](/docs/id/managed-agents/multi-agent) diarsipkan.                                                                                   |
-    | `session.outcome_evaluation_ended` | [Evaluasi hasil](/docs/id/managed-agents/define-outcomes) untuk satu iterasi telah selesai.                                                                  |
-    | `session.updated`                  | Properti sesi berubah, misalnya nama atau konfigurasinya diperbarui.                                                                                         |
-    | `session.deleted`                  | Sesi dihapus secara permanen. Tidak seperti peristiwa lainnya, tidak ada objek yang tersisa untuk diambil. Perlakukan peristiwa itu sendiri sebagai final.   |
+    | Peristiwa                          | Pemicu                                                                                                                                          |
+    | ---------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+    | `session.status_run_started`       | Eksekusi agen dimulai. Ini dipicu pada setiap transisi status sesi ke `running`.                                                                |
+    | `session.status_idled`             | Agen menunggu input, misalnya persetujuan izin alat atau pesan pengguna baru.                                                                   |
+    | `session.status_rescheduled`       | Terjadi kesalahan sementara dan sesi mencoba ulang secara otomatis.                                                                             |
+    | `session.status_terminated`        | Sesi mengalami kesalahan terminal.                                                                                                              |
+    | `session.thread_created`           | [Thread multi-agen](/docs/id/managed-agents/multi-agent) baru dibuka, yang berarti agen tambahan yang dipanggil oleh koordinator mulai bekerja. |
+    | `session.thread_idled`             | Sebuah agen dalam [interaksi multi-agen](/docs/id/managed-agents/multi-agent) sedang menunggu input.                                            |
+    | `session.thread_terminated`        | Sebuah [thread multi-agen](/docs/id/managed-agents/multi-agent) diarsipkan.                                                                     |
+    | `session.outcome_evaluation_ended` | [Evaluasi hasil](/docs/id/managed-agents/define-outcomes) untuk satu iterasi selesai.                                                           |
+    | `session.updated`                  | Properti sesi berubah (misalnya, nama atau konfigurasinya diperbarui).                                                                          |
+    | `session.deleted`                  | Sesi dihapus secara permanen. Tidak ada objek yang tersisa untuk diambil, jadi perlakukan peristiwa itu sendiri sebagai final.                  |
   </Tab>
 
   <Tab title="Peristiwa vault">
     | Peristiwa                         | Pemicu                                                                                                                                   |
     | --------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-    | `vault.created`                   | Vault berhasil dibuat.                                                                                                                   |
-    | `vault.archived`                  | Vault diarsipkan. Peristiwa `vault_credential.archived` juga dikirimkan untuk setiap kredensial yang mendasarinya.                       |
-    | `vault.deleted`                   | Vault dihapus. Peristiwa `vault_credential.deleted` juga dikirimkan untuk setiap kredensial yang mendasarinya.                           |
-    | `vault_credential.created`        | Kredensial berhasil dibuat.                                                                                                              |
+    | `vault.created`                   | Vault dibuat.                                                                                                                            |
+    | `vault.archived`                  | Vault diarsipkan. Peristiwa `vault_credential.archived` juga dikirim untuk setiap kredensial yang mendasarinya.                          |
+    | `vault.deleted`                   | Vault dihapus. Peristiwa `vault_credential.deleted` juga dikirim untuk setiap kredensial yang mendasarinya.                              |
+    | `vault_credential.created`        | Kredensial dibuat.                                                                                                                       |
     | `vault_credential.archived`       | Kredensial diarsipkan, baik secara langsung maupun sebagai akibat dari pengarsipan vault.                                                |
     | `vault_credential.deleted`        | Kredensial dihapus, baik secara langsung maupun sebagai akibat dari penghapusan vault.                                                   |
     | `vault_credential.refresh_failed` | Kredensial `mcp_oauth` tidak dapat di-refresh (refresh token tidak valid, atau kesalahan yang tidak dapat dipulihkan dari server OAuth). |
+  </Tab>
+
+  <Tab title="Peristiwa agen">
+    Peristiwa ini melacak siklus hidup sumber daya agen di workspace Anda, dan berbeda dari peristiwa agen yang dikirimkan pada aliran peristiwa sesi.
+
+    | Peristiwa        | Pemicu                                                                                                                                                     |
+    | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+    | `agent.created`  | Agen dibuat.                                                                                                                                               |
+    | `agent.updated`  | [Versi baru agen](/docs/id/managed-agents/agent-setup#update-an-agent) dipublikasikan. Pembaruan yang tidak membuat versi baru tidak memicu peristiwa ini. |
+    | `agent.archived` | Agen diarsipkan.                                                                                                                                           |
+    | `agent.deleted`  | Agen dihapus secara permanen. Tidak ada objek yang tersisa untuk diambil, jadi perlakukan peristiwa itu sendiri sebagai final.                             |
+  </Tab>
+
+  <Tab title="Peristiwa deployment">
+    | Peristiwa             | Pemicu                                                                                                                                                                                                                                                                                                                                                                                     |
+    | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+    | `deployment.created`  | [Deployment terjadwal](/docs/id/managed-agents/scheduled-deployments) dibuat.                                                                                                                                                                                                                                                                                                              |
+    | `deployment.updated`  | Properti deployment berubah (misalnya, jadwalnya diperbarui).                                                                                                                                                                                                                                                                                                                              |
+    | `deployment.paused`   | Deployment dijeda, baik atas permintaan maupun secara otomatis ketika eksekusi terjadwal gagal dengan kesalahan yang tidak dapat dipulihkan, seperti subagen yang diarsipkan atau environment yang diarsipkan. Kegagalan yang dapat dipulihkan, termasuk batas laju, tidak menjeda deployment. Lihat [Perilaku kegagalan](/docs/id/managed-agents/scheduled-deployments#failure-behavior). |
+    | `deployment.unpaused` | Deployment dilanjutkan kembali, melanjutkan jadwalnya.                                                                                                                                                                                                                                                                                                                                     |
+    | `deployment.archived` | Deployment diarsipkan, baik secara langsung maupun sebagai akibat dari pengarsipan atau penghapusan agen.                                                                                                                                                                                                                                                                                  |
+    | `deployment.deleted`  | Deployment dihapus secara permanen. Tidak ada objek yang tersisa untuk diambil, jadi perlakukan peristiwa itu sendiri sebagai final.                                                                                                                                                                                                                                                       |
+  </Tab>
+
+  <Tab title="Peristiwa eksekusi deployment">
+    | Peristiwa                  | Pemicu                                                                                                                                                                                                                                                                                                                                                                                          |
+    | -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+    | `deployment_run.started`   | Eksekusi terjadwal dimulai. Hanya eksekusi terjadwal yang mengirimkan peristiwa `deployment_run`; [eksekusi manual](/docs/id/managed-agents/scheduled-deployments#trigger-a-manual-run) tidak.                                                                                                                                                                                                  |
+    | `deployment_run.succeeded` | Eksekusi terjadwal berhasil membuat sesinya. Peristiwa ini membawa `data.id` yang sama (ID eksekusi) dengan peristiwa `deployment_run.started` dari eksekusi tersebut. Untuk mengikuti pekerjaan sesi, berlangganan peristiwa sesinya (tab Peristiwa sesi), atau ambil [eksekusi deployment](/docs/id/managed-agents/scheduled-deployments#deployment-runs) untuk mendapatkan `session_id`-nya. |
+    | `deployment_run.failed`    | Eksekusi terjadwal tidak berhasil membuat sesi. Peristiwa ini membawa `data.id` yang sama dengan peristiwa `deployment_run.started` dari eksekusi tersebut. Ambil [eksekusi deployment](/docs/id/managed-agents/scheduled-deployments#deployment-runs) untuk detail kesalahannya.                                                                                                               |
   </Tab>
 </Tabs>
 
@@ -56,11 +86,11 @@ Endpoint webhook terdiri dari:
 * **Jenis peristiwa:** Daftar nilai `data.type` yang diterima endpoint ini. Sebuah endpoint hanya menerima peristiwa yang dilanggannya, ditambah peristiwa uji (lihat [Perilaku pengiriman](#delivery-behavior)).
 * **Signing secret:** Secret 32-byte dengan prefiks `whsec_` yang dihasilkan saat pembuatan. Secret ini hanya ditampilkan sekali, jadi simpan dengan aman untuk memverifikasi pengiriman webhook.
 
-## Memverifikasi tanda tangan
+## Memverifikasi signature
 
-Setiap pengiriman membawa header `X-Webhook-Signature`. Gunakan helper `unwrap()` dari SDK untuk memverifikasi tanda tangan dan mem-parse peristiwa dalam satu langkah. Helper ini akan melempar error jika tanda tangan tidak valid atau payload berusia lebih dari lima menit.
+Setiap pengiriman membawa header `X-Webhook-Signature`. Gunakan helper `unwrap()` dari SDK untuk memverifikasi signature dan mem-parse peristiwa dalam satu langkah. Helper ini akan melempar error jika signature tidak valid atau payload berusia lebih dari lima menit.
 
-Atur `ANTHROPIC_WEBHOOK_SIGNING_KEY` ke secret berprefiks `whsec_` yang ditampilkan saat pembuatan endpoint.
+Atur `ANTHROPIC_WEBHOOK_SIGNING_KEY` ke secret dengan prefiks `whsec_` yang ditampilkan saat pembuatan endpoint.
 
 <CodeGroup>
   ```python Python
@@ -74,7 +104,7 @@ Atur `ANTHROPIC_WEBHOOK_SIGNING_KEY` ke secret berprefiks `whsec_` yang ditampil
   @app.route("/webhook", methods=["POST"])
   def webhook():
       try:
-          # unwrap() memunculkan error jika tanda tangan tidak valid atau payload sudah kedaluwarsa
+          # unwrap() memunculkan error jika signature tidak valid atau payload sudah kedaluwarsa
           event = client.beta.webhooks.unwrap(
               request.get_data(as_text=True),
               headers=dict(request.headers),
@@ -287,9 +317,9 @@ Atur `ANTHROPIC_WEBHOOK_SIGNING_KEY` ke secret berprefiks `whsec_` yang ditampil
 
 ## Menangani peristiwa
 
-Parse body, lakukan switch pada `data.type`, dan ambil resource berdasarkan ID. Kembalikan `2xx` apa pun untuk mengonfirmasi. Apa pun selain itu (termasuk `3xx`) dihitung sebagai kegagalan dan memicu percobaan ulang.
+Parse body, lakukan switch pada `data.type`, dan ambil sumber daya berdasarkan ID. Kembalikan `2xx` apa pun untuk mengonfirmasi. Apa pun selain itu (termasuk `3xx`) dihitung sebagai kegagalan dan memicu percobaan ulang.
 
-Setiap payload peristiwa memiliki struktur yang sama, termasuk jenis peristiwa, pengidentifikasi, dan timestamp kapan objek dibuat.
+Setiap payload peristiwa memiliki struktur yang sama, termasuk jenis peristiwa, identifier, dan timestamp kapan objek dibuat.
 
 ```json
 {
@@ -373,4 +403,4 @@ Setiap payload peristiwa memiliki struktur yang sama, termasuk jenis peristiwa, 
 * **Urutan tidak dijamin.** `session.status_idled` mungkin tiba sebelum `session.outcome_evaluation_ended` meskipun hasil diproduksi lebih dulu. Gunakan timestamp `created_at` untuk mengurutkan jika urutan penting.
 * **Percobaan ulang:** Anthropic mencoba ulang setidaknya sekali. Percobaan ulang mengirimkan `event.id` yang sama.
 * **Redirect tidak diikuti.** `3xx` diperlakukan sebagai kegagalan. Jika endpoint Anda berpindah, perbarui URL di Console.
-* **Penonaktifan otomatis:** Sebuah endpoint secara otomatis diatur ke `disabled` dengan `disabled_reason` yang dapat dibaca mesin setelah sekitar 20 pengiriman gagal berturut-turut, atau segera jika hostname di-resolve ke IP privat atau endpoint mengembalikan redirect. Aktifkan kembali secara manual di Console setelah menyelesaikan masalah.
+* **Penonaktifan otomatis:** Sebuah endpoint secara otomatis diatur ke `disabled` dengan `disabled_reason` yang dapat dibaca mesin setelah sekitar 20 pengiriman gagal berturut-turut, atau segera jika hostname me-resolve ke IP privat atau endpoint mengembalikan redirect. Aktifkan kembali secara manual di Console setelah menyelesaikan masalahnya.

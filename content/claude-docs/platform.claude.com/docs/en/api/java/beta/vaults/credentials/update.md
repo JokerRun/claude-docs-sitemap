@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/credentials/update
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 26b7276a96f872b07ebf36079253067e48cf4264d8c3c3cc915e79d4b37ddc1c
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 522d8ea1cbe7ad8a5e1ee34b3cf4f1a4c7ff65cd237f773fbeea71692ff6eb5d
 ---
 
 ## Update Credential
@@ -161,6 +161,18 @@ Update Credential
 
         - `ENVIRONMENT_VARIABLE("environment_variable")`
 
+      - `Optional<BetaManagedAgentsInjectionLocationUpdateParams> injectionLocation`
+
+        Updated injection location.
+
+        - `Optional<Boolean> body`
+
+          Substitute when the placeholder appears in the request body.
+
+        - `Optional<Boolean> header`
+
+          Substitute when the placeholder appears in a request header value.
+
       - `Optional<BetaManagedAgentsCredentialNetworkingParams> networking`
 
         Updated networking scope. Full replacement.
@@ -294,6 +306,18 @@ Update Credential
     - `class BetaManagedAgentsEnvironmentVariableAuthResponse:`
 
       Environment variable credential details. The secret value is never returned.
+
+      - `BetaManagedAgentsInjectionLocationResponse injectionLocation`
+
+        Where in the outbound request the secret value is substituted.
+
+        - `boolean body`
+
+          Whether the placeholder is substituted in the request body.
+
+        - `boolean header`
+
+          Whether the placeholder is substituted in request header values.
 
       - `Networking networking`
 

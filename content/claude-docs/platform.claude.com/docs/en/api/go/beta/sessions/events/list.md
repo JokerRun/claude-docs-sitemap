@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/sessions/events/list
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 1d37815bac55c63ef857e71bdace67c5e52e3fd763b5b3c22af2b2c37d132e56
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: efbf7ecfb7735fd45e79c2e07d0253ba99b4d2cad75e40503249f47ba3ffd43c
 ---
 
 ## List Events
@@ -1586,6 +1586,10 @@ List Events
             The model that will power your agent.
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `const BetaManagedAgentsModelClaudeSonnet5 BetaManagedAgentsModel = "claude-sonnet-5"`
+
+              High-performance model for coding and agents
 
             - `const BetaManagedAgentsModelClaudeFable5 BetaManagedAgentsModel = "claude-fable-5"`
 

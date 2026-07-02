@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/settings
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 62a394c4a1235f5658f1af4c0bfdc12e73e4e5ceea5cbbba84fd009be15f191e
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 13ba47d0d2dc3466ae9d3a629b508f8b4eb02d427ad85c418987f8ec69585b6b
 ---
 
 > ## Documentation Index
@@ -333,7 +333,7 @@ These settings are stored in `~/.claude.json` rather than `settings.json`. Addin
 | Key                       | Description                                                                                                                                                                                                                                                                                                                               | Example    |
 | :------------------------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------- |
 | `autoConnectIde`          | **Default**: `false`. Automatically connect to a running IDE when Claude Code starts from an external terminal. Appears in `/config` as **Auto-connect to IDE (external terminal)** when running outside a VS Code or JetBrains terminal. The [`CLAUDE_CODE_AUTO_CONNECT_IDE`](/en/env-vars) environment variable overrides this when set | `true`     |
-| `autoInstallIdeExtension` | **Default**: `true`. Automatically install the Claude Code IDE extension when running from a VS Code terminal. Appears in `/config` as **Auto-install IDE extension** when running inside a VS Code or JetBrains terminal. You can also set the [`CLAUDE_CODE_IDE_SKIP_AUTO_INSTALL`](/en/env-vars) environment variable                  | `false`    |
+| `autoInstallIdeExtension` | **Default**: `true`. Automatically install the Claude Code IDE extension when running from a VS Code terminal. Appears in `/config` as **Auto-install IDE extension** when running inside a VS Code or JetBrains terminal. You can also set the [`CLAUDE_CODE_IDE_SKIP_AUTO_INSTALL`](/en/env-vars) environment variable to `1`           | `false`    |
 | `externalEditorContext`   | **Default**: `false`. Prepend Claude's previous response as `#`-commented context when you open the external editor with `Ctrl+G`. Appears in `/config` as **Show last response in external editor**                                                                                                                                      | `true`     |
 | `teammateDefaultModel`    | Default model for [agent team](/en/agent-teams) teammates when the spawn prompt doesn't specify one. Set to a model alias such as `"sonnet"`, or `null` to inherit the lead's current `/model` selection. Appears in `/config` as **Default teammate model**                                                                              | `"sonnet"` |
 

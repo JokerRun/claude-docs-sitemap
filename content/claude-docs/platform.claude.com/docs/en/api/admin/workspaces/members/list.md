@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/members/list
-fetched_at: 2026-06-12T03:17:40.104094Z
-sha256: 8fcd9fc66bed98489fb0ec4a76759881276cb0276cf173a9c121cf841ba970af
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 04a3dfa4dd77a530010ace82e0a16f9222590ef8aaca875a3b41b554b1f92942
 ---
 
 ## List Workspace Members
@@ -53,19 +53,19 @@ List Workspace Members
 
     ID of the Workspace.
 
-  - `workspace_role: "workspace_user" or "workspace_developer" or "workspace_restricted_developer" or 2 more`
+  - `workspace_role: "workspace_admin" or "workspace_billing" or "workspace_developer" or 2 more`
 
     Role of the Workspace Member.
 
-    - `"workspace_user"`
+    - `"workspace_admin"`
+
+    - `"workspace_billing"`
 
     - `"workspace_developer"`
 
     - `"workspace_restricted_developer"`
 
-    - `"workspace_admin"`
-
-    - `"workspace_billing"`
+    - `"workspace_user"`
 
 - `first_id: string`
 

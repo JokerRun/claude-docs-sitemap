@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/skills
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 7aaca90961b7e45b0402599a017ee9afcbbf1c1851d1d26cead3f05b2883970e
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 100e947d5b77ee7b0510488c9f4d908e351d7c464a0db24958a02ff533b9ff25
 ---
 
 > ## Documentation Index
@@ -125,6 +125,8 @@ If a nested skill shares a name with another skill, both stay available. For exa
 * Claude picks the variant that matches the files it is working on.
 
 Typing `/deploy` runs the project-root skill. Type the qualified name `/apps/web:deploy` to run the nested variant explicitly.
+
+A `<skill-name>` entry in the enterprise, personal, or project locations can be a symlink to a directory elsewhere on disk. Claude Code follows the symlink and reads `SKILL.md` from the target directory, and if the same target is reachable from more than one location, Claude Code loads the skill once. Plugin skills handle symlinks differently; see [Share files within a marketplace with symlinks](/en/plugins-reference#share-files-within-a-marketplace-with-symlinks).
 
 <Note>
   Add a `.claude-plugin/plugin.json` to a skill folder and it loads as a [plugin](/en/plugins-reference#skills-directory-plugins) named `<name>@skills-dir`, so it can bundle agents, hooks, and MCP servers. In a project's `.claude/skills/`, this requires accepting the workspace trust dialog first.

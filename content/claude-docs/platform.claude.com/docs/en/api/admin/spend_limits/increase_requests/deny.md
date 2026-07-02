@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/spend_limits/increase_requests/deny
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 47c3f6baf37f0c128adbb821c7c224a5e64545e60044bd5943d16b79f7fb4c70
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: efb149bf51222d6f2f7a852cbad85228d3e7dbc68128eb030a65a9ef8401bc7b
 ---
 
 ## Deny Spend Limit Increase Request
@@ -50,11 +50,11 @@ Idempotent on `denied`; denying an already-`approved` request returns
 
   - `created_at: string`
 
-  - `period: "monthly" or "daily" or "weekly"`
-
-    - `"monthly"`
+  - `period: "daily" or "monthly" or "weekly"`
 
     - `"daily"`
+
+    - `"monthly"`
 
     - `"weekly"`
 
@@ -120,11 +120,11 @@ Idempotent on `denied`; denying an already-`approved` request returns
 
     - `currency: string`
 
-    - `period: "monthly" or "daily" or "weekly"`
-
-      - `"monthly"`
+    - `period: "daily" or "monthly" or "weekly"`
 
       - `"daily"`
+
+      - `"monthly"`
 
       - `"weekly"`
 
@@ -180,13 +180,13 @@ Idempotent on `denied`; denying an already-`approved` request returns
 
     - `spend_limit_id: string`
 
-  - `status: "pending" or "approved" or "denied"`
-
-    - `"pending"`
+  - `status: "approved" or "denied" or "pending"`
 
     - `"approved"`
 
     - `"denied"`
+
+    - `"pending"`
 
   - `type: "spend_limit_increase_request"`
 
@@ -246,7 +246,7 @@ curl https://api.anthropic.com/v1/organizations/spend_limit_increase_requests/$S
     },
     "spend_limit_id": "spend_limit_id"
   },
-  "status": "pending",
+  "status": "approved",
   "type": "spend_limit_increase_request"
 }
 ```

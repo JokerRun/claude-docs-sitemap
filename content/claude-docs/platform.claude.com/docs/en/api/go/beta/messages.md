@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/messages
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 922c5557140b7c1c2fff0315aff1c1b277126806102317a081b75ce9b5f1de36
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: fe52d68351eb726e0089f36fd0540ec4ec2567f790620027f4b5b37955b98f57
 ---
 
 # Messages
@@ -1118,6 +1118,10 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
                 The model that will complete your prompt.
 
                 See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+                - `const ModelClaudeSonnet5 Model = "claude-sonnet-5"`
+
+                  High-performance model for coding and agents
 
                 - `const ModelClaudeFable5 Model = "claude-fable-5"`
 
@@ -3719,6 +3723,10 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+            - `const ModelClaudeSonnet5 Model = "claude-sonnet-5"`
+
+              High-performance model for coding and agents
+
             - `const ModelClaudeFable5 Model = "claude-fable-5"`
 
               Next generation of intelligence for the hardest knowledge work and coding problems
@@ -3800,8 +3808,6 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
           - `const BetaFallbackRefusalTriggerCategoryFrontierLLM BetaFallbackRefusalTriggerCategory = "frontier_llm"`
 
           - `const BetaFallbackRefusalTriggerCategoryReasoningExtraction BetaFallbackRefusalTriggerCategory = "reasoning_extraction"`
-
-          - `const BetaFallbackRefusalTriggerCategoryMilitaryWeapons BetaFallbackRefusalTriggerCategory = "military_weapons"`
 
         - `Type Refusal`
 
@@ -3943,8 +3949,6 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
       - `const BetaRefusalStopDetailsCategoryFrontierLLM BetaRefusalStopDetailsCategory = "frontier_llm"`
 
       - `const BetaRefusalStopDetailsCategoryReasoningExtraction BetaRefusalStopDetailsCategory = "reasoning_extraction"`
-
-      - `const BetaRefusalStopDetailsCategoryMilitaryWeapons BetaRefusalStopDetailsCategory = "military_weapons"`
 
     - `Explanation string`
 
@@ -4412,7 +4416,7 @@ func main() {
         "cache_creation_input_tokens": 0,
         "cache_read_input_tokens": 0,
         "input_tokens": 0,
-        "model": "claude-fable-5",
+        "model": "claude-sonnet-5",
         "output_tokens": 0,
         "type": "message"
       }
@@ -5532,6 +5536,10 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
                 The model that will complete your prompt.
 
                 See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+                - `const ModelClaudeSonnet5 Model = "claude-sonnet-5"`
+
+                  High-performance model for coding and agents
 
                 - `const ModelClaudeFable5 Model = "claude-fable-5"`
 
@@ -7162,6 +7170,10 @@ func main() {
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+      - `const ModelClaudeSonnet5 Model = "claude-sonnet-5"`
+
+        High-performance model for coding and agents
+
       - `const ModelClaudeFable5 Model = "claude-fable-5"`
 
         Next generation of intelligence for the hardest knowledge work and coding problems
@@ -7305,6 +7317,10 @@ func main() {
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `const ModelClaudeSonnet5 Model = "claude-sonnet-5"`
+
+        High-performance model for coding and agents
 
       - `const ModelClaudeFable5 Model = "claude-fable-5"`
 
@@ -10166,6 +10182,10 @@ func main() {
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `const ModelClaudeSonnet5 Model = "claude-sonnet-5"`
+
+            High-performance model for coding and agents
+
           - `const ModelClaudeFable5 Model = "claude-fable-5"`
 
             Next generation of intelligence for the hardest knowledge work and coding problems
@@ -10247,8 +10267,6 @@ func main() {
         - `const BetaFallbackRefusalTriggerCategoryFrontierLLM BetaFallbackRefusalTriggerCategory = "frontier_llm"`
 
         - `const BetaFallbackRefusalTriggerCategoryReasoningExtraction BetaFallbackRefusalTriggerCategory = "reasoning_extraction"`
-
-        - `const BetaFallbackRefusalTriggerCategoryMilitaryWeapons BetaFallbackRefusalTriggerCategory = "military_weapons"`
 
       - `Type Refusal`
 
@@ -11295,6 +11313,10 @@ func main() {
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `const ModelClaudeSonnet5 Model = "claude-sonnet-5"`
+
+            High-performance model for coding and agents
+
           - `const ModelClaudeFable5 Model = "claude-fable-5"`
 
             Next generation of intelligence for the hardest knowledge work and coding problems
@@ -12123,6 +12145,10 @@ func main() {
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+        - `const ModelClaudeSonnet5 Model = "claude-sonnet-5"`
+
+          High-performance model for coding and agents
+
         - `const ModelClaudeFable5 Model = "claude-fable-5"`
 
           Next generation of intelligence for the hardest knowledge work and coding problems
@@ -12205,8 +12231,6 @@ func main() {
 
       - `const BetaFallbackRefusalTriggerCategoryReasoningExtraction BetaFallbackRefusalTriggerCategory = "reasoning_extraction"`
 
-      - `const BetaFallbackRefusalTriggerCategoryMilitaryWeapons BetaFallbackRefusalTriggerCategory = "military_weapons"`
-
     - `Type Refusal`
 
       - `const RefusalRefusal Refusal = "refusal"`
@@ -12248,6 +12272,10 @@ func main() {
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `const ModelClaudeSonnet5 Model = "claude-sonnet-5"`
+
+          High-performance model for coding and agents
 
         - `const ModelClaudeFable5 Model = "claude-fable-5"`
 
@@ -12341,6 +12369,10 @@ func main() {
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+      - `const ModelClaudeSonnet5 Model = "claude-sonnet-5"`
+
+        High-performance model for coding and agents
+
       - `const ModelClaudeFable5 Model = "claude-fable-5"`
 
         Next generation of intelligence for the hardest knowledge work and coding problems
@@ -12420,6 +12452,10 @@ func main() {
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `const ModelClaudeSonnet5 Model = "claude-sonnet-5"`
+
+        High-performance model for coding and agents
 
       - `const ModelClaudeFable5 Model = "claude-fable-5"`
 
@@ -12530,6 +12566,10 @@ func main() {
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+      - `const ModelClaudeSonnet5 Model = "claude-sonnet-5"`
+
+        High-performance model for coding and agents
+
       - `const ModelClaudeFable5 Model = "claude-fable-5"`
 
         Next generation of intelligence for the hardest knowledge work and coding problems
@@ -12624,6 +12664,10 @@ func main() {
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `const ModelClaudeSonnet5 Model = "claude-sonnet-5"`
+
+        High-performance model for coding and agents
 
       - `const ModelClaudeFable5 Model = "claude-fable-5"`
 
@@ -12803,8 +12847,6 @@ func main() {
 
     - `const BetaFallbackRefusalTriggerCategoryReasoningExtraction BetaFallbackRefusalTriggerCategory = "reasoning_extraction"`
 
-    - `const BetaFallbackRefusalTriggerCategoryMilitaryWeapons BetaFallbackRefusalTriggerCategory = "military_weapons"`
-
   - `Type Refusal`
 
     - `const RefusalRefusal Refusal = "refusal"`
@@ -12977,6 +13019,10 @@ func main() {
         The model that will complete your prompt.
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+        - `const ModelClaudeSonnet5 Model = "claude-sonnet-5"`
+
+          High-performance model for coding and agents
 
         - `const ModelClaudeFable5 Model = "claude-fable-5"`
 
@@ -14578,6 +14624,10 @@ func main() {
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+            - `const ModelClaudeSonnet5 Model = "claude-sonnet-5"`
+
+              High-performance model for coding and agents
+
             - `const ModelClaudeFable5 Model = "claude-fable-5"`
 
               Next generation of intelligence for the hardest knowledge work and coding problems
@@ -14659,8 +14709,6 @@ func main() {
           - `const BetaFallbackRefusalTriggerCategoryFrontierLLM BetaFallbackRefusalTriggerCategory = "frontier_llm"`
 
           - `const BetaFallbackRefusalTriggerCategoryReasoningExtraction BetaFallbackRefusalTriggerCategory = "reasoning_extraction"`
-
-          - `const BetaFallbackRefusalTriggerCategoryMilitaryWeapons BetaFallbackRefusalTriggerCategory = "military_weapons"`
 
         - `Type Refusal`
 
@@ -14802,8 +14850,6 @@ func main() {
       - `const BetaRefusalStopDetailsCategoryFrontierLLM BetaRefusalStopDetailsCategory = "frontier_llm"`
 
       - `const BetaRefusalStopDetailsCategoryReasoningExtraction BetaRefusalStopDetailsCategory = "reasoning_extraction"`
-
-      - `const BetaRefusalStopDetailsCategoryMilitaryWeapons BetaRefusalStopDetailsCategory = "military_weapons"`
 
     - `Explanation string`
 
@@ -15222,6 +15268,10 @@ func main() {
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+          - `const ModelClaudeSonnet5 Model = "claude-sonnet-5"`
+
+            High-performance model for coding and agents
+
           - `const ModelClaudeFable5 Model = "claude-fable-5"`
 
             Next generation of intelligence for the hardest knowledge work and coding problems
@@ -15478,6 +15528,10 @@ func main() {
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+      - `const ModelClaudeSonnet5 Model = "claude-sonnet-5"`
+
+        High-performance model for coding and agents
 
       - `const ModelClaudeFable5 Model = "claude-fable-5"`
 
@@ -16589,6 +16643,10 @@ func main() {
               The model that will complete your prompt.
 
               See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+              - `const ModelClaudeSonnet5 Model = "claude-sonnet-5"`
+
+                High-performance model for coding and agents
 
               - `const ModelClaudeFable5 Model = "claude-fable-5"`
 
@@ -18073,6 +18131,10 @@ func main() {
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+            - `const ModelClaudeSonnet5 Model = "claude-sonnet-5"`
+
+              High-performance model for coding and agents
+
             - `const ModelClaudeFable5 Model = "claude-fable-5"`
 
               Next generation of intelligence for the hardest knowledge work and coding problems
@@ -18154,8 +18216,6 @@ func main() {
           - `const BetaFallbackRefusalTriggerCategoryFrontierLLM BetaFallbackRefusalTriggerCategory = "frontier_llm"`
 
           - `const BetaFallbackRefusalTriggerCategoryReasoningExtraction BetaFallbackRefusalTriggerCategory = "reasoning_extraction"`
-
-          - `const BetaFallbackRefusalTriggerCategoryMilitaryWeapons BetaFallbackRefusalTriggerCategory = "military_weapons"`
 
         - `Type Refusal`
 
@@ -18274,8 +18334,6 @@ func main() {
         - `const BetaRefusalStopDetailsCategoryFrontierLLM BetaRefusalStopDetailsCategory = "frontier_llm"`
 
         - `const BetaRefusalStopDetailsCategoryReasoningExtraction BetaRefusalStopDetailsCategory = "reasoning_extraction"`
-
-        - `const BetaRefusalStopDetailsCategoryMilitaryWeapons BetaRefusalStopDetailsCategory = "military_weapons"`
 
       - `Explanation string`
 
@@ -18433,6 +18491,10 @@ func main() {
             The model that will complete your prompt.
 
             See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+            - `const ModelClaudeSonnet5 Model = "claude-sonnet-5"`
+
+              High-performance model for coding and agents
 
             - `const ModelClaudeFable5 Model = "claude-fable-5"`
 
@@ -19508,6 +19570,10 @@ func main() {
 
               See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+              - `const ModelClaudeSonnet5 Model = "claude-sonnet-5"`
+
+                High-performance model for coding and agents
+
               - `const ModelClaudeFable5 Model = "claude-fable-5"`
 
                 Next generation of intelligence for the hardest knowledge work and coding problems
@@ -19589,8 +19655,6 @@ func main() {
             - `const BetaFallbackRefusalTriggerCategoryFrontierLLM BetaFallbackRefusalTriggerCategory = "frontier_llm"`
 
             - `const BetaFallbackRefusalTriggerCategoryReasoningExtraction BetaFallbackRefusalTriggerCategory = "reasoning_extraction"`
-
-            - `const BetaFallbackRefusalTriggerCategoryMilitaryWeapons BetaFallbackRefusalTriggerCategory = "military_weapons"`
 
           - `Type Refusal`
 
@@ -19732,8 +19796,6 @@ func main() {
         - `const BetaRefusalStopDetailsCategoryFrontierLLM BetaRefusalStopDetailsCategory = "frontier_llm"`
 
         - `const BetaRefusalStopDetailsCategoryReasoningExtraction BetaRefusalStopDetailsCategory = "reasoning_extraction"`
-
-        - `const BetaRefusalStopDetailsCategoryMilitaryWeapons BetaRefusalStopDetailsCategory = "military_weapons"`
 
       - `Explanation string`
 
@@ -20959,6 +21021,10 @@ func main() {
 
                 See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+                - `const ModelClaudeSonnet5 Model = "claude-sonnet-5"`
+
+                  High-performance model for coding and agents
+
                 - `const ModelClaudeFable5 Model = "claude-fable-5"`
 
                   Next generation of intelligence for the hardest knowledge work and coding problems
@@ -21040,8 +21106,6 @@ func main() {
               - `const BetaFallbackRefusalTriggerCategoryFrontierLLM BetaFallbackRefusalTriggerCategory = "frontier_llm"`
 
               - `const BetaFallbackRefusalTriggerCategoryReasoningExtraction BetaFallbackRefusalTriggerCategory = "reasoning_extraction"`
-
-              - `const BetaFallbackRefusalTriggerCategoryMilitaryWeapons BetaFallbackRefusalTriggerCategory = "military_weapons"`
 
             - `Type Refusal`
 
@@ -21183,8 +21247,6 @@ func main() {
           - `const BetaRefusalStopDetailsCategoryFrontierLLM BetaRefusalStopDetailsCategory = "frontier_llm"`
 
           - `const BetaRefusalStopDetailsCategoryReasoningExtraction BetaRefusalStopDetailsCategory = "reasoning_extraction"`
-
-          - `const BetaRefusalStopDetailsCategoryMilitaryWeapons BetaRefusalStopDetailsCategory = "military_weapons"`
 
         - `Explanation string`
 
@@ -21809,8 +21871,6 @@ func main() {
     - `const BetaRefusalStopDetailsCategoryFrontierLLM BetaRefusalStopDetailsCategory = "frontier_llm"`
 
     - `const BetaRefusalStopDetailsCategoryReasoningExtraction BetaRefusalStopDetailsCategory = "reasoning_extraction"`
-
-    - `const BetaRefusalStopDetailsCategoryMilitaryWeapons BetaRefusalStopDetailsCategory = "military_weapons"`
 
   - `Explanation string`
 
@@ -26284,6 +26344,10 @@ func main() {
 
         See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+        - `const ModelClaudeSonnet5 Model = "claude-sonnet-5"`
+
+          High-performance model for coding and agents
+
         - `const ModelClaudeFable5 Model = "claude-fable-5"`
 
           Next generation of intelligence for the hardest knowledge work and coding problems
@@ -26727,6 +26791,10 @@ func main() {
           The model that will complete your prompt.
 
           See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+          - `const ModelClaudeSonnet5 Model = "claude-sonnet-5"`
+
+            High-performance model for coding and agents
 
           - `const ModelClaudeFable5 Model = "claude-fable-5"`
 
@@ -29950,6 +30018,10 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
                     The model that will complete your prompt.
 
                     See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+                    - `const ModelClaudeSonnet5 Model = "claude-sonnet-5"`
+
+                      High-performance model for coding and agents
 
                     - `const ModelClaudeFable5 Model = "claude-fable-5"`
 
@@ -33824,6 +33896,10 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
                   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+                  - `const ModelClaudeSonnet5 Model = "claude-sonnet-5"`
+
+                    High-performance model for coding and agents
+
                   - `const ModelClaudeFable5 Model = "claude-fable-5"`
 
                     Next generation of intelligence for the hardest knowledge work and coding problems
@@ -33905,8 +33981,6 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
                 - `const BetaFallbackRefusalTriggerCategoryFrontierLLM BetaFallbackRefusalTriggerCategory = "frontier_llm"`
 
                 - `const BetaFallbackRefusalTriggerCategoryReasoningExtraction BetaFallbackRefusalTriggerCategory = "reasoning_extraction"`
-
-                - `const BetaFallbackRefusalTriggerCategoryMilitaryWeapons BetaFallbackRefusalTriggerCategory = "military_weapons"`
 
               - `Type Refusal`
 
@@ -34048,8 +34122,6 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
             - `const BetaRefusalStopDetailsCategoryFrontierLLM BetaRefusalStopDetailsCategory = "frontier_llm"`
 
             - `const BetaRefusalStopDetailsCategoryReasoningExtraction BetaRefusalStopDetailsCategory = "reasoning_extraction"`
-
-            - `const BetaRefusalStopDetailsCategoryMilitaryWeapons BetaRefusalStopDetailsCategory = "military_weapons"`
 
           - `Explanation string`
 
@@ -35629,6 +35701,10 @@ func main() {
 
                   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+                  - `const ModelClaudeSonnet5 Model = "claude-sonnet-5"`
+
+                    High-performance model for coding and agents
+
                   - `const ModelClaudeFable5 Model = "claude-fable-5"`
 
                     Next generation of intelligence for the hardest knowledge work and coding problems
@@ -35710,8 +35786,6 @@ func main() {
                 - `const BetaFallbackRefusalTriggerCategoryFrontierLLM BetaFallbackRefusalTriggerCategory = "frontier_llm"`
 
                 - `const BetaFallbackRefusalTriggerCategoryReasoningExtraction BetaFallbackRefusalTriggerCategory = "reasoning_extraction"`
-
-                - `const BetaFallbackRefusalTriggerCategoryMilitaryWeapons BetaFallbackRefusalTriggerCategory = "military_weapons"`
 
               - `Type Refusal`
 
@@ -35853,8 +35927,6 @@ func main() {
             - `const BetaRefusalStopDetailsCategoryFrontierLLM BetaRefusalStopDetailsCategory = "frontier_llm"`
 
             - `const BetaRefusalStopDetailsCategoryReasoningExtraction BetaRefusalStopDetailsCategory = "reasoning_extraction"`
-
-            - `const BetaRefusalStopDetailsCategoryMilitaryWeapons BetaRefusalStopDetailsCategory = "military_weapons"`
 
           - `Explanation string`
 
@@ -37208,6 +37280,10 @@ func main() {
 
                 See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+                - `const ModelClaudeSonnet5 Model = "claude-sonnet-5"`
+
+                  High-performance model for coding and agents
+
                 - `const ModelClaudeFable5 Model = "claude-fable-5"`
 
                   Next generation of intelligence for the hardest knowledge work and coding problems
@@ -37289,8 +37365,6 @@ func main() {
               - `const BetaFallbackRefusalTriggerCategoryFrontierLLM BetaFallbackRefusalTriggerCategory = "frontier_llm"`
 
               - `const BetaFallbackRefusalTriggerCategoryReasoningExtraction BetaFallbackRefusalTriggerCategory = "reasoning_extraction"`
-
-              - `const BetaFallbackRefusalTriggerCategoryMilitaryWeapons BetaFallbackRefusalTriggerCategory = "military_weapons"`
 
             - `Type Refusal`
 
@@ -37432,8 +37506,6 @@ func main() {
           - `const BetaRefusalStopDetailsCategoryFrontierLLM BetaRefusalStopDetailsCategory = "frontier_llm"`
 
           - `const BetaRefusalStopDetailsCategoryReasoningExtraction BetaRefusalStopDetailsCategory = "reasoning_extraction"`
-
-          - `const BetaRefusalStopDetailsCategoryMilitaryWeapons BetaRefusalStopDetailsCategory = "military_weapons"`
 
         - `Explanation string`
 
@@ -38749,6 +38821,10 @@ func main() {
 
               See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+              - `const ModelClaudeSonnet5 Model = "claude-sonnet-5"`
+
+                High-performance model for coding and agents
+
               - `const ModelClaudeFable5 Model = "claude-fable-5"`
 
                 Next generation of intelligence for the hardest knowledge work and coding problems
@@ -38830,8 +38906,6 @@ func main() {
             - `const BetaFallbackRefusalTriggerCategoryFrontierLLM BetaFallbackRefusalTriggerCategory = "frontier_llm"`
 
             - `const BetaFallbackRefusalTriggerCategoryReasoningExtraction BetaFallbackRefusalTriggerCategory = "reasoning_extraction"`
-
-            - `const BetaFallbackRefusalTriggerCategoryMilitaryWeapons BetaFallbackRefusalTriggerCategory = "military_weapons"`
 
           - `Type Refusal`
 
@@ -38973,8 +39047,6 @@ func main() {
         - `const BetaRefusalStopDetailsCategoryFrontierLLM BetaRefusalStopDetailsCategory = "frontier_llm"`
 
         - `const BetaRefusalStopDetailsCategoryReasoningExtraction BetaRefusalStopDetailsCategory = "reasoning_extraction"`
-
-        - `const BetaRefusalStopDetailsCategoryMilitaryWeapons BetaRefusalStopDetailsCategory = "military_weapons"`
 
       - `Explanation string`
 

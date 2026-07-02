@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/api_keys/list
-fetched_at: 2026-06-12T03:17:40.104094Z
-sha256: 218690873db34b4db517f46c599140fc13d29f56e662884f98a1ae928897ddd1
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: 66a76b80771f9c39ffc386b5305aba0ff627a611cc0c9fb324149e5791c0d0d5
 ---
 
 ## List API Keys
@@ -31,17 +31,17 @@ List API Keys
 
   Defaults to `20`. Ranges from `1` to `1000`.
 
-- `status: optional "active" or "inactive" or "archived" or "expired"`
+- `status: optional "active" or "archived" or "expired" or "inactive"`
 
   Filter by API key status.
 
   - `"active"`
 
-  - `"inactive"`
-
   - `"archived"`
 
   - `"expired"`
+
+  - `"inactive"`
 
 - `workspace_id: optional string`
 
@@ -83,17 +83,17 @@ List API Keys
 
     Partially redacted hint for the API key.
 
-  - `status: "active" or "inactive" or "archived" or "expired"`
+  - `status: "active" or "archived" or "expired" or "inactive"`
 
     Status of the API key.
 
     - `"active"`
 
-    - `"inactive"`
-
     - `"archived"`
 
     - `"expired"`
+
+    - `"inactive"`
 
   - `type: "api_key"`
 

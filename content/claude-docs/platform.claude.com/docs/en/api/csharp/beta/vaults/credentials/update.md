@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/vaults/credentials/update
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 45086675eb81552da66ba7fa3769f95c8ac76717239d06ab8a72560f606e3d6b
+fetched_at: 2026-07-02T03:13:49.360020Z
+sha256: c388848438566ac05f6c9c472de9c25f6a3d447d3b5f6694695e9de964e143b3
 ---
 
 ## Update Credential
@@ -104,6 +104,18 @@ Update Credential
       - `required Type Type`
 
         - `"environment_variable"EnvironmentVariable`
+
+      - `BetaManagedAgentsInjectionLocationUpdateParams InjectionLocation`
+
+        Updated injection location.
+
+        - `Boolean Body`
+
+          Substitute when the placeholder appears in the request body.
+
+        - `Boolean Header`
+
+          Substitute when the placeholder appears in a request header value.
 
       - `BetaManagedAgentsCredentialNetworkingParams? Networking`
 
@@ -298,6 +310,18 @@ Update Credential
     - `class BetaManagedAgentsEnvironmentVariableAuthResponse:`
 
       Environment variable credential details. The secret value is never returned.
+
+      - `required BetaManagedAgentsInjectionLocationResponse InjectionLocation`
+
+        Where in the outbound request the secret value is substituted.
+
+        - `required Boolean Body`
+
+          Whether the placeholder is substituted in the request body.
+
+        - `required Boolean Header`
+
+          Whether the placeholder is substituted in request header values.
 
       - `required Networking Networking`
 
