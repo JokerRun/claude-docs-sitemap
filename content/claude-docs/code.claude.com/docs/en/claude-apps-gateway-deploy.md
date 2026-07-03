@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-apps-gateway-deploy
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 6423a17382346ff265bf5aa8a46fafb0186e56a6491efb659a9b187011df1c22
+fetched_at: 2026-07-03T03:11:00.926352Z
+sha256: f669ae9d89000268ae232818b1d4cfd76b215427073729e7ad52584ae83be182
 ---
 
 > ## Documentation Index
@@ -96,7 +96,7 @@ Run the gateway as a Deployment, like any stateless service:
 <Note>
   **Workload identity**
 
-  Prefer the platform's workload identity over static keys: IRSA on EKS for Bedrock, Workload Identity on GKE for Agent Platform, and workload identity on AKS for Foundry. Set `auth: {}` in the upstream block, or `use_azure_ad: true` for Foundry, and the gateway picks up the pod's identity through that provider's default credential chain. For a cross-cloud pairing, such as a Bedrock upstream on GKE, set explicit credentials in the upstream's `auth` block instead. The [`upstreams` reference](/en/claude-apps-gateway-config#upstreams) has per-platform setup details.
+  Prefer the platform's workload identity over static keys: IRSA on EKS for Bedrock and for Claude Platform on AWS, Workload Identity on GKE for Agent Platform, and workload identity on AKS for Foundry. Set `auth: {}` in the upstream block, or `use_azure_ad: true` for Foundry, and the gateway picks up the pod's identity through that provider's default credential chain. For a cross-cloud pairing, such as a Bedrock upstream on GKE, set explicit credentials in the upstream's `auth` block instead. The [`upstreams` reference](/en/claude-apps-gateway-config#upstreams) has per-platform setup details.
 </Note>
 
 ### Cloud Run

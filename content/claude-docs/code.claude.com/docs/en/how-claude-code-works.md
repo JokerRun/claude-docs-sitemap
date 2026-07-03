@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/how-claude-code-works
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 0534aba3e89c0ea3f7aed24676aa63ad49f3fb637688a31dca1c3d050a856008
+fetched_at: 2026-07-03T03:11:00.926352Z
+sha256: 16bc98d8cd7b95632771146a5dea64272e970577304713339e418fab2ac36e0f
 ---
 
 > ## Documentation Index
@@ -181,7 +181,6 @@ Claude Code can teach you how to use it. Ask questions like "how do I set up hoo
 Built-in commands also guide you through setup:
 
 * `/init` walks you through creating a CLAUDE.md for your project
-* `/agents` helps you configure custom subagents
 * `/doctor` diagnoses common issues with your installation
 
 ### It's a conversation

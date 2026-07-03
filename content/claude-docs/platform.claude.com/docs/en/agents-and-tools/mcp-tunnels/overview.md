@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/overview
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: ac5561ac973aecf3a41eb2451cfe24071c73010f0ea7144c68938c2722da2a65
+fetched_at: 2026-07-03T03:11:00.926352Z
+sha256: 746dd82d87140bb5ebf3bfff6736a5f2eec43d2935c11782353fee0e09c27460
 ---
 
 # MCP tunnels
@@ -14,7 +14,7 @@ Securely connect Claude to MCP servers running in your private network without o
 MCP tunnels let you connect Claude to Model Context Protocol (MCP) servers that run inside your private network. Traffic flows over an outbound-only connection, so you don't need to open inbound firewall ports, expose services to the public internet, or allowlist Anthropic's IP ranges on your origin.
 
 <Note>
-  MCP tunnels are in beta (research preview). [Request access](https://claude.com/form/claude-managed-agents) to try them. They are provided "as-is" without any uptime, support, or continuity commitment, and they depend on a third-party network provider (Cloudflare) that makes no availability commitment for the underlying transport. Anthropic may modify or discontinue MCP tunnels at any time.
+  MCP tunnels are in research preview. [Request access](https://claude.com/form/claude-managed-agents) to try them. They are provided "as-is" without any uptime, support, or continuity commitment, and they depend on a third-party network provider (Cloudflare) that makes no availability commitment for the underlying transport. Anthropic may modify or discontinue MCP tunnels at any time.
 </Note>
 
 For Zero Data Retention and HIPAA BAA eligibility, see [API and data retention](/docs/en/manage-claude/api-and-data-retention#feature-eligibility).

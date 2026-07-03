@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sessions
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: c4b8d5d962a90862ff6282f2136f3a9bb6fc6b93a02380c7f3ab70bb578880c1
+fetched_at: 2026-07-03T03:11:00.926352Z
+sha256: 9c3d8fcf25854f820a0660c81283c229d1fe64a8289175ae8e975385354fcbc5
 ---
 
 > ## Documentation Index
@@ -93,6 +93,8 @@ From inside a session, run `/branch` with an optional name:
 ```text theme={null}
 /branch try-streaming-approach
 ```
+
+If you omit the name, Claude Code names the new branch after the first prompt in the conversation. As of v2.1.198 this also applies after [compaction](/en/how-claude-code-works#when-context-fills-up); earlier versions fell back to the literal name `Branched conversation` instead of looking past the compaction summary to the original first prompt.
 
 From the command line, combine `--continue` or `--resume` with `--fork-session`:
 

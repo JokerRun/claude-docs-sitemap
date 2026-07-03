@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: a566822f91bf2b6421f92eba45fe5cb28a6d4baa85cb735924e4c739ded246a8
+fetched_at: 2026-07-03T03:11:00.926352Z
+sha256: d0a5108273fd32236a146e7888960c69870dc6cd74fe171c71c86d6a83aaea5b
 ---
 
 # Claude in Microsoft Foundry
@@ -22,7 +22,7 @@ Claude models in Microsoft Foundry are available in two hosting options. You cho
 |                      | Hosted on Azure                                            | Hosted on Anthropic                                                                                             |
 | -------------------- | ---------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
 | Where inference runs | Anthropic-operated service running on Azure infrastructure | Anthropic-operated service running on Anthropic infrastructure                                                  |
-| Model availability   | The latest models in the Opus and Haiku families           | All Claude models available on Microsoft Foundry                                                                |
+| Model availability   | The latest models in the Opus, Sonnet, and Haiku families  | All Claude models available on Microsoft Foundry                                                                |
 | Deployment types     | Global Standard, US Data Zone Standard                     | Global Standard                                                                                                 |
 | Recommended for      | Most workloads                                             | [Access to features or models not yet hosted on Azure](#additional-features-not-supported-when-hosted-on-azure) |
 
@@ -69,7 +69,7 @@ Anthropic's [client SDKs](/docs/en/cli-sdks-libraries/overview) support Foundry 
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java-foundry:2.47.0")
+        implementation("com.anthropic:anthropic-java-foundry:2.47.1")
         ```
       </Tab>
 
@@ -78,7 +78,7 @@ Anthropic's [client SDKs](/docs/en/cli-sdks-libraries/overview) support Foundry 
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-foundry</artifactId>
-            <version>2.47.0</version>
+            <version>2.47.1</version>
         </dependency>
         ```
       </Tab>
@@ -555,7 +555,7 @@ The following Claude models are available through Foundry:
 | Claude Opus 4.6                                      | claude-opus-4-6         |                 | ✓                   |
 | Claude Opus 4.5                                      | claude-opus-4-5         |                 | ✓                   |
 | Claude Opus 4.1 Deprecated. Retiring August 5, 2026. | claude-opus-4-1         |                 | ✓                   |
-| Claude Sonnet 5 (preview)                            | `claude-sonnet-5`       |                 | ✓                   |
+| Claude Sonnet 5                                      | claude-sonnet-5         | ✓               | ✓                   |
 | Claude Sonnet 4.6                                    | claude-sonnet-4-6       |                 | ✓                   |
 | Claude Sonnet 4.5                                    | claude-sonnet-4-5       |                 | ✓                   |
 | Claude Haiku 4.5                                     | claude-haiku-4-5        | ✓               | ✓                   |

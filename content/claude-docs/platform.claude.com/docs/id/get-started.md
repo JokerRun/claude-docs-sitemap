@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/get-started
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: a74363ef8247a9056f495b7d4a4c39f8a016efbc63e1ea205ce6016d3878b9ca
+fetched_at: 2026-07-03T03:11:00.926352Z
+sha256: 90ef3c083b126e12ff5a4cb929ca7c6ee90b42263b1cead9518eea0f5b16da2a
 ---
 
 # Memulai dengan Claude
@@ -13,7 +13,7 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
 
 ## Prasyarat
 
-* Sebuah [akun Console](/) Anthropic
+* Akun [Console](/) Anthropic
 * Sebuah [kunci API](/settings/keys)
 
 ## Memanggil API
@@ -173,7 +173,10 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
                 }
             ],
         )
-        print(message.content)
+
+        for block in message.content:
+            if block.type == "text":
+                print(block.text)
         ```
       </Step>
 
@@ -183,7 +186,11 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
         ```
 
         ```text Output wrap
-        [TextBlock(citations=None, text='Here are some effective search strategies to find the latest developments in renewable energy:\n\n## General Search Terms\n- "Renewable energy news 2025"\n- ...', type='text')]
+        Here are some effective search strategies to find the latest developments in renewable energy:
+
+        ## General Search Terms
+        - "Renewable energy news 2025"
+        - ...
         ```
       </Step>
     </Steps>
@@ -226,7 +233,12 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
             }
           ]
         });
-        console.log(message.content);
+
+        for (const block of message.content) {
+          if (block.type === "text") {
+            console.log(block.text);
+          }
+        }
         ```
       </Step>
 
@@ -236,16 +248,11 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
         ```
 
         ```text Output wrap
-        [
-          {
-            type: 'text',
-            text: 'Here are some effective search strategies to find the latest developments in renewable energy:\n' +
-              '\n' +
-              '## General Search Terms\n' +
-              '- "Renewable energy news 2025"\n' +
-              '- ...'
-          }
-        ]
+        Here are some effective search strategies to find the latest developments in renewable energy:
+
+        ## General Search Terms
+        - "Renewable energy news 2025"
+        - ...
         ```
       </Step>
     </Steps>
@@ -262,7 +269,7 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
       </Step>
 
       <Step title="Buat proyek dan instal SDK">
-        Buat proyek konsol baru dan tambahkan paket Anthropic:
+        Buat proyek console baru dan tambahkan paket Anthropic:
 
         ```bash
         dotnet new console -n ClaudeQuickstart
@@ -296,7 +303,10 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
 
         foreach (var block in message.Content)
         {
-            Console.WriteLine(block);
+            if (block.TryPickText(out var textBlock))
+            {
+                Console.WriteLine(textBlock.Text);
+            }
         }
         ```
       </Step>
@@ -307,10 +317,11 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
         ```
 
         ```text Output wrap
-        {
-          "type": "text",
-          "text": "Here are some effective search strategies to find the latest developments in renewable energy:\n\n## General Search Terms\n- \"Renewable energy news 2025\"\n- ..."
-        }
+        Here are some effective search strategies to find the latest developments in renewable energy:
+
+        ## General Search Terms
+        - "Renewable energy news 2025"
+        - ...
         ```
       </Step>
     </Steps>
@@ -364,7 +375,11 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
         		log.Fatal(err)
         	}
 
-        	fmt.Println(message.JSON.Content.Raw())
+        	for _, block := range message.Content {
+        		if textBlock, ok := block.AsAny().(anthropic.TextBlock); ok {
+        			fmt.Println(textBlock.Text)
+        		}
+        	}
         }
         ```
       </Step>
@@ -375,7 +390,11 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
         ```
 
         ```text Output wrap
-        [{"type":"text","text":"Here are some effective search strategies to find the latest developments in renewable energy:\n\n## General Search Terms\n- \"Renewable energy news 2025\"\n- ..."}]
+        Here are some effective search strategies to find the latest developments in renewable energy:
+
+        ## General Search Terms
+        - "Renewable energy news 2025"
+        - ...
         ```
       </Step>
     </Steps>
@@ -392,7 +411,7 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
       </Step>
 
       <Step title="Siapkan proyek Anda">
-        Anda memerlukan JDK (25 atau lebih baru) dan [Gradle](https://gradle.org/install/) atau [Maven](https://maven.apache.org/install.html) pada `PATH` Anda. Buat direktori untuk proyek Anda dengan direktori sumber Java di dalamnya:
+        Anda memerlukan JDK (versi 25 atau lebih baru) dan [Gradle](https://gradle.org/install/) atau [Maven](https://maven.apache.org/install.html) di `PATH` Anda. Buat direktori untuk proyek Anda dengan direktori sumber Java di dalamnya:
 
         ```bash
         mkdir -p claude-quickstart/src/main/java && cd claude-quickstart
@@ -476,7 +495,9 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
                 .build();
 
             Message message = client.messages().create(params);
-            IO.println(message.content());
+            for (var block : message.content()) {
+                block.text().ifPresent(textBlock -> IO.println(textBlock.text()));
+            }
         }
         ```
       </Step>
@@ -497,11 +518,11 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
         </Tabs>
 
         ```text Output wrap
-        [ContentBlock{text=TextBlock{citations=, text=Here are some effective search strategies to find the latest developments in renewable energy:
+        Here are some effective search strategies to find the latest developments in renewable energy:
 
         ## General Search Terms
         - "Renewable energy news 2025"
-        - ..., type=text, additionalProperties={}}}]
+        - ...
         ```
       </Step>
     </Steps>
@@ -533,6 +554,7 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
 
         use Anthropic\Client;
         use Anthropic\Messages\Model;
+        use Anthropic\Messages\TextBlock;
 
         $client = new Client();
 
@@ -547,7 +569,11 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
             ],
         );
 
-        print_r($message->content);
+        foreach ($message->content as $block) {
+            if ($block instanceof TextBlock) {
+                echo $block->text . PHP_EOL;
+            }
+        }
         ```
       </Step>
 
@@ -557,20 +583,11 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
         ```
 
         ```text Output wrap
-        Array
-        (
-            [0] => Anthropic\Messages\TextBlock Object
-                (
-                    [type] => text
-                    [citations] =>
-                    [text] => Here are some effective search strategies to find the latest developments in renewable energy:
+        Here are some effective search strategies to find the latest developments in renewable energy:
 
         ## General Search Terms
         - "Renewable energy news 2025"
         - ...
-                )
-
-        )
         ```
       </Step>
     </Steps>
@@ -613,7 +630,9 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
           ]
         )
 
-        pp message.content
+        message.content.each do |block|
+          puts block.text if block.type == :text
+        end
         ```
       </Step>
 
@@ -623,7 +642,11 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
         ```
 
         ```text Output wrap
-        [#<Anthropic::Models::TextBlock:0xc8 {text: "Here are some effective search strategies to find the latest developments in renewable energy:\n\n## General Search Terms\n- \"Renewable energy news 2025\"\n- ...", type: :text}>]
+        Here are some effective search strategies to find the latest developments in renewable energy:
+
+        ## General Search Terms
+        - "Renewable energy news 2025"
+        - ...
         ```
       </Step>
     </Steps>
@@ -638,7 +661,7 @@ Anda telah melakukan panggilan API pertama Anda. Selanjutnya, pelajari pola Mess
   Pelajari percakapan multi-giliran, prompt sistem, alasan berhenti, dan pola inti lainnya.
 </Card>
 
-Setelah Anda terbiasa dengan dasar-dasarnya, jelajahi lebih lanjut:
+Setelah Anda merasa nyaman dengan dasar-dasarnya, jelajahi lebih lanjut:
 
 <CardGroup cols={3}>
   <Card title="Ikhtisar model" icon="brain" href="/docs/id/about-claude/models/overview">

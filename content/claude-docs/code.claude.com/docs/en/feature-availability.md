@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/feature-availability
-fetched_at: 2026-06-26T03:16:19.812719Z
-sha256: 176b6f1d7774a6e0be953dac62fe271808f9f8839394075fe3240d5ff71e20bb
+fetched_at: 2026-07-03T03:11:00.926352Z
+sha256: 3d5b7d50116e03629d871e4a2555d2179516a0ff2ad2a4b72f7ffabf717b46a4
 ---
 
 > ## Documentation Index
@@ -51,7 +51,7 @@ These require signing in with a claude.ai account and are not reachable with an 
 * [Remote Control](/en/remote-control)
 * [Chrome extension](/en/chrome)
 * [Computer use](/en/computer-use): Pro and Max plans
-* [Artifacts](/en/artifacts): Team and Enterprise plans
+* [Artifacts](/en/artifacts): Pro, Max, Team, and Enterprise plans
 * [Voice dictation](/en/voice-dictation)
 
 Desktop is the partial exception: Enterprise deployments can route Desktop to Vertex AI or a gateway provider via [managed settings](https://support.claude.com/en/articles/12622667-enterprise-configuration), and the [Cowork on 3P research preview](https://claude.com/docs/cowork/3p/overview) runs the Code tab on Bedrock, Vertex AI, Foundry, or a self-hosted LLM gateway. For per-plan availability of these features, see [Availability by subscription plan](#availability-by-subscription-plan).
@@ -279,7 +279,7 @@ If you authenticate through Bedrock, Vertex AI, Foundry, or an Anthropic Console
 | [Computer use](/en/computer-use)                                                        | ✓   | ✓   | ✗             | ✗                                 |
 | Dispatch ([Desktop](/en/desktop#sessions-from-dispatch))                                | ✓   | ✓   | ✗             | ✗                                 |
 | [Code Review](/en/code-review)                                                          | ✗   | ✗   | ✓             | ✓                                 |
-| [Artifacts](/en/artifacts)                                                              | ✗   | ✗   | ✓             | Admin-enabled                     |
+| [Artifacts](/en/artifacts)                                                              | ✓   | ✓   | ✓             | Admin-enabled                     |
 | [Analytics dashboard, API, and contribution metrics](/en/analytics)                     | ✗   | ✗   | ✓             | ✓                                 |
 | [Server-managed settings](/en/server-managed-settings)                                  | ✗   | ✗   | ✓             | ✓                                 |
 | [SSO](https://support.claude.com/en/articles/9266767-what-is-the-team-plan)             | ✗   | ✗   | ✓             | ✓                                 |

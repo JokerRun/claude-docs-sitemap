@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-fetch-tool
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 2e20c52e3219ea01015fe0531800fafd6c6de5f397c7734d778988c39e476606
+fetched_at: 2026-07-03T03:11:00.926352Z
+sha256: cb141cc30a0102cf31ed4c045b43b062acfee3598aaec78ddacafe6835b3e910
 ---
 
 # Web fetch tool
@@ -80,7 +80,7 @@ This dynamic filtering is particularly useful for:
   Dynamic filtering runs on the [code execution tool](/docs/en/agents-and-tools/tool-use/code-execution-tool), which the API enables automatically for the request. You don't need to add the code execution tool to the `tools` array.
 </Note>
 
-To enable dynamic filtering, use `web_fetch_20260209` or any later version. The following examples use `web_fetch_20260209`:
+To enable dynamic filtering, use `web_fetch_20260209` or any later version. The following examples use `web_fetch_20260318`:
 
 <CodeGroup>
   ```bash cURL
@@ -98,7 +98,7 @@ To enable dynamic filtering, use `web_fetch_20260209` or any later version. The 
               }
           ],
           "tools": [{
-              "type": "web_fetch_20260209",
+              "type": "web_fetch_20260318",
               "name": "web_fetch"
           }]
       }'
@@ -114,7 +114,7 @@ To enable dynamic filtering, use `web_fetch_20260209` or any later version. The 
         Fetch the content at https://example.com/research-paper
         and extract the key findings.
   tools:
-    - type: web_fetch_20260209
+    - type: web_fetch_20260318
       name: web_fetch
   YAML
   ```
@@ -131,7 +131,7 @@ To enable dynamic filtering, use `web_fetch_20260209` or any later version. The 
               "content": "Fetch the content at https://example.com/research-paper and extract the key findings.",
           }
       ],
-      tools=[{"type": "web_fetch_20260209", "name": "web_fetch"}],
+      tools=[{"type": "web_fetch_20260318", "name": "web_fetch"}],
   )
   print(response)
   ```
@@ -149,7 +149,7 @@ To enable dynamic filtering, use `web_fetch_20260209` or any later version. The 
           "Fetch the content at https://example.com/research-paper and extract the key findings."
       }
     ],
-    tools: [{ type: "web_fetch_20260209", name: "web_fetch" }]
+    tools: [{ type: "web_fetch_20260318", name: "web_fetch" }]
   });
 
   console.log(response);
@@ -163,7 +163,7 @@ To enable dynamic filtering, use `web_fetch_20260209` or any later version. The 
       Model = Model.ClaudeOpus4_8,
       MaxTokens = 4096,
       Messages = [new() { Role = Role.User, Content = "Fetch the content at https://example.com/research-paper and extract the key findings." }],
-      Tools = [new ToolUnion(new WebFetchTool20260209())]
+      Tools = [new ToolUnion(new WebFetchTool20260318())]
   };
 
   var message = await client.Messages.Create(parameters);
@@ -180,7 +180,7 @@ To enable dynamic filtering, use `web_fetch_20260209` or any later version. The 
   		anthropic.NewUserMessage(anthropic.NewTextBlock("Fetch the content at https://example.com/research-paper and extract the key findings.")),
   	},
   	Tools: []anthropic.ToolUnionParam{
-  		{OfWebFetchTool20260209: &anthropic.WebFetchTool20260209Param{}},
+  		{OfWebFetchTool20260318: &anthropic.WebFetchTool20260318Param{}},
   	},
   })
   if err != nil {
@@ -190,7 +190,7 @@ To enable dynamic filtering, use `web_fetch_20260209` or any later version. The 
   ```
 
   ```java Java
-  import com.anthropic.models.messages.WebFetchTool20260209;
+  import com.anthropic.models.messages.WebFetchTool20260318;
 
   void main() {
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
@@ -199,7 +199,7 @@ To enable dynamic filtering, use `web_fetch_20260209` or any later version. The 
           .model(Model.CLAUDE_OPUS_4_8)
           .maxTokens(4096L)
           .addUserMessage("Fetch the content at https://example.com/research-paper and extract the key findings.")
-          .addTool(WebFetchTool20260209.builder().build())
+          .addTool(WebFetchTool20260318.builder().build())
           .build();
 
       Message response = client.messages().create(params);
@@ -217,7 +217,7 @@ To enable dynamic filtering, use `web_fetch_20260209` or any later version. The 
       ],
       model: 'claude-opus-4-8',
       tools: [[
-          'type' => 'web_fetch_20260209',
+          'type' => 'web_fetch_20260318',
           'name' => 'web_fetch',
       ]],
   );
@@ -234,7 +234,7 @@ To enable dynamic filtering, use `web_fetch_20260209` or any later version. The 
       { role: "user", content: "Fetch the content at https://example.com/research-paper and extract the key findings." }
     ],
     tools: [{
-      type: "web_fetch_20260209",
+      type: "web_fetch_20260318",
       name: "web_fetch"
     }]
   )

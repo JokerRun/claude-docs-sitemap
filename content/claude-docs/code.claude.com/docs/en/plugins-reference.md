@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins-reference
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 72099a2abb47caf51e34da30cec9dd97c42c89947d7d8e2e6deba2ab931b9950
+fetched_at: 2026-07-03T03:11:00.926352Z
+sha256: 931b787ea4627bbaa9bd6a5ff9792683e25b2085087ca8047822dc8d80df96f3
 ---
 
 > ## Documentation Index
@@ -80,7 +80,7 @@ Plugin agents support `name`, `description`, `model`, `effort`, `maxTurns`, `too
 
 **Integration points**:
 
-* Agents appear in the `/agents` interface
+* Agents appear in the [@-mention typeahead](/en/sub-agents#invoke-subagents-explicitly) under their scoped name, such as `my-plugin:code-reviewer`, once the plugin is enabled
 * Claude can invoke agents automatically based on task context
 * Agents can be invoked manually by users
 * Plugin agents work alongside built-in Claude agents

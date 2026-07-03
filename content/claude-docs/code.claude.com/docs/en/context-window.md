@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/context-window
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: e58e94938d9c8dd7fb8791daf6ac18ab000d36ca122a27aece66b8f3c45a1418
+fetched_at: 2026-07-03T03:11:00.926352Z
+sha256: a6d66f6299ab4a8cf97b8bcd696d0d59754c7f8cec9146b2ddf18c5f7ea6f6bd
 ---
 
 > ## Documentation Index
@@ -1590,7 +1590,7 @@ The session walks through a realistic flow with representative token counts:
 
 ## What survives compaction
 
-When a long session compacts, Claude Code summarizes the conversation history to fit the context window. What happens to your instructions depends on how they were loaded:
+When a long session compacts, Claude Code summarizes the conversation history to fit the context window. {/* min-version: 2.1.198 */}As of v2.1.198, the summarization request inherits your session's [extended thinking](/en/model-config#extended-thinking) configuration, so it reasons with thinking enabled when your session has it enabled and stays off otherwise. Thinking affects only how the summary is produced; your session settings are unchanged afterward. What happens to your instructions depends on how they were loaded:
 
 | Mechanism                                 | After compaction                                                                            |
 | :---------------------------------------- | :------------------------------------------------------------------------------------------ |

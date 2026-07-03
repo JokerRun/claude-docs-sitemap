@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/debug-your-config
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 7f471174459b243fb64512e25f70b15a261ed246d9477ff75b3522cb565ec842
+fetched_at: 2026-07-03T03:11:00.926352Z
+sha256: 55103c080892275bbd11cbe3797ff5af1ea07cd23a1877e316d7f54efafe268f
 ---
 
 > ## Documentation Index
@@ -19,7 +19,7 @@ For installation, authentication, and connectivity problems, see [Troubleshoot i
 
 ## See what loaded into context
 
-The `/context` command shows everything occupying the context window for the current session, broken down by category: system prompt, memory files, skills, MCP tools, and conversation messages. Run it first to confirm whether your `CLAUDE.md`, rules, or skill descriptions are present at all.
+The `/context` command shows everything occupying the context window for the current session, broken down by category: system prompt, memory files, skills, custom subagents with the source each loaded from, MCP tools, and conversation messages. Run it first to confirm whether your `CLAUDE.md`, rules, or skill descriptions are present at all.
 
 For detail on a specific category, follow up with the dedicated command:
 
@@ -27,7 +27,6 @@ For detail on a specific category, follow up with the dedicated command:
 | :--------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `/memory`        | Which `CLAUDE.md` and rules files loaded, plus auto-memory entries                                                                                                                                                                       |
 | `/skills`        | Available skills from project, user, and plugin sources                                                                                                                                                                                  |
-| `/agents`        | Configured subagents and their settings                                                                                                                                                                                                  |
 | `/hooks`         | Active hook configurations                                                                                                                                                                                                               |
 | `/mcp`           | Connected MCP servers and their status                                                                                                                                                                                                   |
 | `/permissions`   | Resolved allow and deny rules currently in effect                                                                                                                                                                                        |

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/amazon-bedrock
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: ecfcddc4e09e4b867d2aea434a275d536872aa5948b6fbed0560ca88d9a47c0f
+fetched_at: 2026-07-03T03:11:00.926352Z
+sha256: fd9c2b6239f0feaabe7cb1b52f296c09346ad5d4a8c4e450d3e4f05d1bf38256
 ---
 
 > ## Documentation Index
@@ -179,7 +179,7 @@ Claude Code supports automatic credential refresh for AWS SSO and corporate iden
 
 These two settings have different trigger conditions:
 
-* **`awsAuthRefresh`**: runs only when Claude Code detects that your AWS credentials are expired, either locally based on their timestamp or when Bedrock returns a credential error, then retries the request with refreshed credentials.
+* **`awsAuthRefresh`**: runs only when Claude Code detects that your AWS credentials are expired, either locally based on their timestamp or when the API returns a credential error, then retries the request with refreshed credentials.
 * **`awsCredentialExport`**: runs at session start and on each credential reload, even when the credentials in your AWS default credential provider chain are still valid. Use this when your Bedrock account requires cross-account credentials that differ from the ones the default provider chain would resolve.
 
 ##### Example configuration

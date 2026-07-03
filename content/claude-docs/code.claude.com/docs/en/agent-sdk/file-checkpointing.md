@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/file-checkpointing
-fetched_at: 2026-04-15T03:11:27.437490Z
-sha256: 1f8256a7ac59bfec971e6f67e3166437b63a8df006eb8406221280b2ae9798a4
+fetched_at: 2026-07-03T03:11:00.926352Z
+sha256: 34a44342c0bdf4934f34189f886361b8a6336f3dfceac90b95fe5b06e3b84c3f
 ---
 
 > ## Documentation Index
@@ -53,7 +53,7 @@ When you rewind to a checkpoint, created files are deleted and modified files ar
 
 To use file checkpointing, enable it in your options, capture checkpoint UUIDs from the response stream, then call `rewindFiles()` (TypeScript) or `rewind_files()` (Python) when you need to restore.
 
-The following example shows the complete flow: enable checkpointing, capture the checkpoint UUID and session ID from the response stream, then resume the session later to rewind files. Each step is explained in detail below.
+The following example shows the complete flow: enable checkpointing, capture the checkpoint UUID and session ID from the response stream, then resume the session later to rewind files. Each step is explained in detail below. The examples in this section use the prompt "Refactor the authentication module". Run them in a project that contains an authentication module, or change the prompt to name files that exist in your project, so you can watch files change and see the rewind restore them.
 
 <CodeGroup>
   ```python Python theme={null}
@@ -253,7 +253,7 @@ The following example shows the complete flow: enable checkpointing, capture the
       ```
     </CodeGroup>
 
-    If you capture the session ID and checkpoint ID, you can also rewind from the CLI:
+    If you capture the session ID and checkpoint ID, you can also rewind from the CLI. This command requires the `claude` executable, which comes from [installing Claude Code](/en/setup) and is not installed by the SDK package:
 
     ```bash theme={null}
     claude -p --resume <session-id> --rewind-files <checkpoint-uuid>

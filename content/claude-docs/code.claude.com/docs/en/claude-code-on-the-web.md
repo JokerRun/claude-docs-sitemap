@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-code-on-the-web
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 8d8ebd8549402c92d711d28aa71761f31a3a2e120527f7af3c1907568f82a44d
+fetched_at: 2026-07-03T03:11:00.926352Z
+sha256: 25dc3f1eff4f7b20723134ce2cb090ecf374d45ae4c40c7a6f808bdb7405cac8
 ---
 
 > ## Documentation Index
@@ -679,12 +679,12 @@ When you teleport a session, Claude verifies you're in the correct repository, f
 
 Teleport checks these requirements before resuming a session. If any requirement isn't met, you'll see an error or be prompted to resolve the issue.
 
-| Requirement        | Details                                                                                                                  |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| Clean git state    | Your working directory must have no uncommitted changes. Teleport prompts you to stash changes if needed.                |
-| Correct repository | You must run `--teleport` from a checkout of the same repository, not a fork.                                            |
-| Branch available   | The branch from the cloud session must have been pushed to the remote. Teleport automatically fetches and checks it out. |
-| Same account       | You must be authenticated to the same claude.ai account used in the cloud session.                                       |
+| Requirement        | Details                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Clean git state    | Your working directory must have no uncommitted changes. Teleport prompts you to stash changes if needed.                                                                                                                                                                                                                                                                                                                                 |
+| Correct repository | You must run `--teleport` from a checkout of the same repository, not a fork. {/* min-version: 2.1.199 */}As of v2.1.199, Claude Code accepts a checkout even when it can't parse the remote into a hostname, such as an SSH host alias like `git@work:owner/repo.git` or an `insteadOf`-rewritten short form. It shows a confirmation prompt first, and only when the remote's owner and repository name match the session's repository. |
+| Branch available   | The branch from the cloud session must have been pushed to the remote. Teleport automatically fetches and checks it out.                                                                                                                                                                                                                                                                                                                  |
+| Same account       | You must be authenticated to the same claude.ai account used in the cloud session.                                                                                                                                                                                                                                                                                                                                                        |
 
 #### `--teleport` is unavailable
 

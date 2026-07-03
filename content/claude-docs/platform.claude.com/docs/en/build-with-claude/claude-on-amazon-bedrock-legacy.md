@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 5c84e911b4a86990042e4771d15c54c03ef1c730a07927549c89e2fdb442bd5e
+fetched_at: 2026-07-03T03:11:00.926352Z
+sha256: 51f3a84b7312142394249dfd73d6ab8f0aba671b897e217e989d00672635a351
 ---
 
 # Claude on Amazon Bedrock (legacy)
@@ -61,14 +61,14 @@ Anthropic's [client SDKs](/docs/en/cli-sdks-libraries/overview) support Bedrock.
   <Tab title="Java">
     <CodeGroup>
       ```groovy Gradle
-      implementation("com.anthropic:anthropic-java-bedrock:2.47.0")
+      implementation("com.anthropic:anthropic-java-bedrock:2.47.1")
       ```
 
       ```xml Maven
       <dependency>
           <groupId>com.anthropic</groupId>
           <artifactId>anthropic-java-bedrock</artifactId>
-          <version>2.47.0</version>
+          <version>2.47.1</version>
       </dependency>
       ```
 

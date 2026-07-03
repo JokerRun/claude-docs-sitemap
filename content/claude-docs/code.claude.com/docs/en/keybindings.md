@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/keybindings
-fetched_at: 2026-06-20T03:15:34.737281Z
-sha256: 3ae85f7ddea406396b7c6a7d81dc93da0c76aeeed1bfe061de1222caff306f3d
+fetched_at: 2026-07-03T03:11:00.926352Z
+sha256: e904585626ebb27f1809d890a00b715e052086f56c7455384aece6e3c758dd42
 ---
 
 > ## Documentation Index
@@ -84,13 +84,13 @@ Actions follow a `namespace:action` format, such as `chat:submit` to send a mess
 
 Actions available in the `Global` context:
 
-| Action                 | Default   | Description                 |
-| :--------------------- | :-------- | :-------------------------- |
-| `app:interrupt`        | Ctrl+C    | Cancel current operation    |
-| `app:exit`             | Ctrl+D    | Exit Claude Code            |
-| `app:redraw`           | (unbound) | Force terminal redraw       |
-| `app:toggleTodos`      | Ctrl+T    | Toggle task list visibility |
-| `app:toggleTranscript` | Ctrl+O    | Toggle verbose transcript   |
+| Action                 | Default   | Description                                                                                                  |
+| :--------------------- | :-------- | :----------------------------------------------------------------------------------------------------------- |
+| `app:interrupt`        | Ctrl+C    | Cancel current operation                                                                                     |
+| `app:exit`             | Ctrl+D    | Exit Claude Code                                                                                             |
+| `app:redraw`           | (unbound) | Force terminal redraw                                                                                        |
+| `app:toggleTodos`      | Ctrl+T    | Toggle visibility of Claude's to-do checklist. This is not the [`/tasks`](/en/commands) background-task view |
+| `app:toggleTranscript` | Ctrl+O    | Toggle verbose transcript                                                                                    |
 
 ### History actions
 

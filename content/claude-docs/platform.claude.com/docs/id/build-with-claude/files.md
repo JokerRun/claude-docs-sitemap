@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/files
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 487da06e9c97195b12368fb9975ac13fc0ef9d47d45dfca8a28ea76f54b6fb5a
+fetched_at: 2026-07-03T03:11:00.926352Z
+sha256: 1605b601ef0fc5dcded0bbe758c886403944eda06e9f33f470699793d071ef38
 ---
 
 # Files API
@@ -265,7 +265,7 @@ Setelah diunggah, referensikan file menggunakan `file_id`-nya:
   var response = await client.Beta.Messages.Create(
       new MessageCreateParams
       {
-          Model = Messages::Model.ClaudeOpus4_6,
+          Model = Messages::Model.ClaudeOpus4_8,
           MaxTokens = 1024,
           Betas = [AnthropicBeta.FilesApi2025_04_14],
           Messages =
@@ -291,7 +291,7 @@ Setelah diunggah, referensikan file menggunakan `file_id`-nya:
   ```go Go
   msg, err := client.Beta.Messages.New(context.Background(),
   	anthropic.BetaMessageNewParams{
-  		Model:     anthropic.ModelClaudeOpus4_6,
+  		Model:     anthropic.ModelClaudeOpus4_8,
   		MaxTokens: 1024,
   		Betas:     []anthropic.AnthropicBeta{anthropic.AnthropicBetaFilesAPI2025_04_14},
   		Messages: []anthropic.BetaMessageParam{

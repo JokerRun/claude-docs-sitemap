@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/programmatic-tool-calling
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: ee29b21b24db04a33a2ae2300428862f79be82820d2ee282edf20b91367596c9
+fetched_at: 2026-07-03T03:11:00.926352Z
+sha256: e1bff7c9c37165f824b5cde1f9dbbbdd5f126d8d16fca699a3218b7abc50f963
 ---
 
 # Programmatic tool calling
@@ -1358,6 +1358,15 @@ Claude's code receives this error and can handle it appropriately.
 * **Structured outputs:** Tools with `strict: true` are not supported with programmatic calling
 * **Tool choice:** You cannot force programmatic calling of a specific tool through `tool_choice`
 * **Parallel tool use:** `disable_parallel_tool_use: true` is not supported with programmatic calling
+
+### Input schema limitations
+
+Custom tools whose `input_schema` contains a recursive `$ref` (a reference cycle, such as a schema that refers to itself) cannot be enabled for programmatic calling. Including a code execution tool version in `allowed_callers` for such a tool causes the request to fail with a `400 invalid_request_error` whose message contains `Circular $ref detected`. The same schema is accepted for direct tool calling.
+
+To work around this, do one of the following:
+
+* Keep the tool direct-only by omitting `allowed_callers` (or setting it to `["direct"]`). Other tools in the same request can still use programmatic calling.
+* Remove the cycle from the schema. For example, unroll the recursion to a fixed depth and describe any deeper nesting in the `description` of the innermost level, or replace the recursive property with a plain `{"type": "object"}` whose `description` explains the expected shape.
 
 ### Tool restrictions
 
