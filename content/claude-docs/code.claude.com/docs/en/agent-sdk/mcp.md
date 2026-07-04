@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/mcp
-fetched_at: 2026-06-26T03:16:19.812719Z
-sha256: 0dc68a49103ff08bf8b8e79b6b26def1495b1e4d6e1b638428d82f85cbb760eb
+fetched_at: 2026-07-04T03:09:59.852291Z
+sha256: 7b566ab6d0d14d906e8f57938fdc8cacd174d18caeb53fb039cbe869cff577c3
 ---
 
 > ## Documentation Index
@@ -780,7 +780,7 @@ const _ = {
 
 ### Connection timeouts
 
-The MCP SDK has a default timeout of 60 seconds for server connections. If your server takes longer to start, the connection will fail. For servers that need more startup time, consider:
+MCP server connections time out after 30 seconds by default. If your server takes longer to start, the connection fails. Raise the limit with the [`MCP_TIMEOUT`](/en/env-vars) environment variable, in milliseconds. For servers that need more startup time, also consider:
 
 * Using a lighter-weight server if available
 * Pre-warming the server before starting your agent

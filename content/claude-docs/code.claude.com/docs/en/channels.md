@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/channels
-fetched_at: 2026-06-27T03:14:28.973816Z
-sha256: ec54588fdffa90afb2abe8d9a173433aff859c69c70a09808ea60d644433869d
+fetched_at: 2026-07-04T03:09:59.852291Z
+sha256: 240bf02a97a1626d1679d8ef8f0beaa87352494343bd7fed209de31c61876c6c
 ---
 
 > ## Documentation Index
@@ -14,7 +14,7 @@ sha256: ec54588fdffa90afb2abe8d9a173433aff859c69c70a09808ea60d644433869d
 > Use channels to push messages, alerts, and webhooks into your Claude Code session from an MCP server. Forward CI results, chat messages, and monitoring events so Claude can react while you're away.
 
 <Note>
-  Channels are in [research preview](#research-preview) and require Claude Code v2.1.80 or later. They require Anthropic authentication through claude.ai or a Console API key, and are not available on Amazon Bedrock, Google Vertex AI, or Microsoft Foundry. Team and Enterprise organizations must [explicitly enable them](#enterprise-controls).
+  Channels are in [research preview](#research-preview) and require Claude Code v2.1.80 or later. They require Anthropic authentication through claude.ai or a Console API key, and are not available on Amazon Bedrock, Google Cloud's Agent Platform, or Microsoft Foundry. Team and Enterprise organizations must [explicitly enable them](#enterprise-controls).
 </Note>
 
 A channel is an MCP server that pushes events into your running Claude Code session, so Claude can react to things that happen while you're not at the terminal. Channels can be two-way: Claude reads the event and replies back through the same channel, like a chat bridge. Events only arrive while the session is open, so for an always-on setup you run Claude in a background process or persistent terminal.

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/quickstart
-fetched_at: 2026-06-27T03:14:28.973816Z
-sha256: 0cfcbf2098ffa6c0d9ffd4ca9d93cfe21c29d4333a78b0f43e0838cbf5dda7a8
+fetched_at: 2026-07-04T03:09:59.852291Z
+sha256: 50ed4b6023e858b71b9c0a2f3ec3d479a928769bf6a397c3f14f72da688bf8e6
 ---
 
 > ## Documentation Index
@@ -124,10 +124,10 @@ Use the Agent SDK to build an AI agent that reads your code, finds bugs, and fix
 
     * **Amazon Bedrock**: set `CLAUDE_CODE_USE_BEDROCK=1` environment variable and configure AWS credentials
     * **Claude Platform on AWS**: set `CLAUDE_CODE_USE_ANTHROPIC_AWS=1` and `ANTHROPIC_AWS_WORKSPACE_ID`, then configure AWS credentials
-    * **Google Vertex AI**: set `CLAUDE_CODE_USE_VERTEX=1` environment variable and configure Google Cloud credentials
+    * **Google Cloud's Agent Platform**: set `CLAUDE_CODE_USE_VERTEX=1` environment variable and configure Google Cloud credentials
     * **Microsoft Azure**: set `CLAUDE_CODE_USE_FOUNDRY=1` environment variable and configure Azure credentials
 
-    See the setup guides for [Bedrock](/en/amazon-bedrock), [Claude Platform on AWS](/en/claude-platform-on-aws), [Vertex AI](/en/google-vertex-ai), or [Azure AI Foundry](/en/microsoft-foundry) for details.
+    See the setup guides for [Amazon Bedrock](/en/amazon-bedrock), [Claude Platform on AWS](/en/claude-platform-on-aws), [Google Cloud's Agent Platform](/en/google-vertex-ai), or [Microsoft Foundry](/en/microsoft-foundry) for details.
 
     <Note>
       Unless previously approved, Anthropic does not allow third party developers to offer claude.ai login or rate limits for their products, including agents built on the Claude Agent SDK. Please use the API key authentication methods described in this document instead.

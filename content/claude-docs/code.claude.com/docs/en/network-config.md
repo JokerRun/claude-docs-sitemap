@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/network-config
-fetched_at: 2026-06-30T03:15:27.286427Z
-sha256: 805045a6386a158d90b07a321535b174b2867cc9426256187a25f14f2b5f930a
+fetched_at: 2026-07-04T03:09:59.852291Z
+sha256: 7e600fc7740a1d60ce1a630635f64815610c072e5804174d6650908da2061bd4
 ---
 
 > ## Documentation Index
@@ -124,7 +124,7 @@ If you install Claude Code through npm or manage your own binary distribution, e
 
 Claude Code also sends optional operational telemetry by default, which you can disable with environment variables. See [Telemetry services](/en/data-usage#telemetry-services) for how to disable it before finalizing your allowlist.
 
-When using [Amazon Bedrock](/en/amazon-bedrock), [Google Vertex AI](/en/google-vertex-ai), [Microsoft Foundry](/en/microsoft-foundry), or a signed-in [Claude apps gateway](/en/claude-apps-gateway) session, model traffic and authentication go to your provider or gateway instead of `api.anthropic.com`, `claude.ai`, or `platform.claude.com`. The WebFetch tool still calls `api.anthropic.com` for its [domain safety check](/en/data-usage#webfetch-domain-safety-check) unless you set `skipWebFetchPreflight: true` in [settings](/en/settings).
+When using [Amazon Bedrock](/en/amazon-bedrock), [Google Cloud's Agent Platform](/en/google-vertex-ai), [Microsoft Foundry](/en/microsoft-foundry), or a signed-in [Claude apps gateway](/en/claude-apps-gateway) session, model traffic and authentication go to your provider or gateway instead of `api.anthropic.com`, `claude.ai`, or `platform.claude.com`. The WebFetch tool still calls `api.anthropic.com` for its [domain safety check](/en/data-usage#webfetch-domain-safety-check) unless you set `skipWebFetchPreflight: true` in [settings](/en/settings).
 
 [Claude Code on the web](/en/claude-code-on-the-web) and [Code Review](/en/code-review) connect to your repositories from Anthropic-managed infrastructure. If your GitHub Enterprise Cloud organization restricts access by IP address, enable [IP allow list inheritance for installed GitHub Apps](https://docs.github.com/en/enterprise-cloud@latest/organizations/keeping-your-organization-secure/managing-security-settings-for-your-organization/managing-allowed-ip-addresses-for-your-organization#allowing-access-by-github-apps). The Claude GitHub App registers its IP ranges, so enabling this setting allows access without manual configuration. To [add the ranges to your allow list manually](https://docs.github.com/en/enterprise-cloud@latest/organizations/keeping-your-organization-secure/managing-security-settings-for-your-organization/managing-allowed-ip-addresses-for-your-organization#adding-an-allowed-ip-address) instead, or to configure other firewalls, see the [Anthropic API IP addresses](https://platform.claude.com/docs/en/api/ip-addresses).
 

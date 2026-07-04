@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/whats-new
-fetched_at: 2026-06-27T03:14:28.973816Z
-sha256: 7a133201c8530c4cfa4c58520f0eee7bb78fadc7d4bcef69bc3bafe7914451b1
+fetched_at: 2026-07-04T03:09:59.852291Z
+sha256: 8d9fd1e412d0659d644a9ade50d07555d53f733e4509ca515b7e5fe4c0734135
 ---
 
 > ## Documentation Index
@@ -40,7 +40,7 @@ The weekly dev digest highlights the features most likely to change how you work
 </Update>
 
 <Update label="Week 23" description="June 1–5, 2026" tags={["v2.1.158–v2.1.165"]}>
-  **Auto mode on Bedrock, Vertex, and Foundry**: auto mode is now available on third-party providers for Opus 4.7 and Opus 4.8, replacing permission prompts with background safety checks.
+  **Auto mode on Amazon Bedrock, Google Cloud's Agent Platform, and Microsoft Foundry**: auto mode is now available on third-party providers for Opus 4.7 and Opus 4.8, replacing permission prompts with background safety checks.
 
   Also this week: **safer automatic edits** prompt before writing files that can run code in `acceptEdits` mode; **`/plugin list`** prints your installed plugins inline; and **version requirements** let managed deployments require an approved Claude Code version range.
 

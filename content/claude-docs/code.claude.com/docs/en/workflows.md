@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/workflows
-fetched_at: 2026-07-03T03:11:00.926352Z
-sha256: fdef1ad94227ae3f0ce797452d590a308573d08bd6d01e265e34063b61c5e312
+fetched_at: 2026-07-04T03:09:59.852291Z
+sha256: 24fdbab78353443a218238ba7c7919e3b3c4fe8e3aa07a57931aaad7c5ceb495
 ---
 
 > ## Documentation Index
@@ -16,7 +16,7 @@ sha256: fdef1ad94227ae3f0ce797452d590a308573d08bd6d01e265e34063b61c5e312
 {/* plan-availability: feature=workflows plans=pro,max,team,enterprise providers=all */}
 
 <Note>
-  Dynamic workflows require Claude Code v2.1.154 or later and are available on all paid plans, with Anthropic API access, and on Amazon Bedrock, Google Cloud Vertex AI, and Microsoft Foundry. On Pro, turn them on from the Dynamic workflows row in `/config`.
+  Dynamic workflows require Claude Code v2.1.154 or later and are available on all paid plans, with Anthropic API access, and on Amazon Bedrock, Google Cloud's Agent Platform, and Microsoft Foundry. On Pro, turn them on from the Dynamic workflows row in `/config`.
 </Note>
 
 A dynamic workflow is a JavaScript script that orchestrates [subagents](/en/sub-agents) at scale. Claude writes the script for the task you describe, and a runtime executes it in the background while your session stays responsive.

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/zero-data-retention
-fetched_at: 2026-06-19T03:18:02.201222Z
-sha256: 6b45d155006f3a70258fb278445d516d1f177f07116326571b8cef470ff58918
+fetched_at: 2026-07-04T03:09:59.852291Z
+sha256: b6a95ab8026c72365dd892f33a313624e3989d05f6bf85c3a91ee9d2eea04056
 ---
 
 > ## Documentation Index
@@ -26,7 +26,7 @@ ZDR on Claude for Enterprise gives enterprise customers the ability to use Claud
 * [Server-managed settings](/en/server-managed-settings)
 * Audit logs
 
-ZDR for Claude Code on Claude for Enterprise applies only to Anthropic's direct platform. For Claude deployments on Amazon Bedrock, Google Vertex AI, or Microsoft Foundry, refer to those platforms' data retention policies.
+ZDR for Claude Code on Claude for Enterprise applies only to Anthropic's direct platform. For Claude deployments on Amazon Bedrock, Google Cloud's Agent Platform, or Microsoft Foundry, refer to those platforms' data retention policies.
 
 ## ZDR scope
 

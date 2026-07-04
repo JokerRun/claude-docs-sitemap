@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/llm-gateway
-fetched_at: 2026-06-30T03:15:27.286427Z
-sha256: 9fe75405b326c05402107f84b8257b049c1c6f67b25a94be5f21e1d5d0d172e0
+fetched_at: 2026-07-04T03:09:59.852291Z
+sha256: 899d5ef807239e660ef54ca238433388467de2a8b1ddcf3d44988179dc1799b8
 ---
 
 > ## Documentation Index
@@ -50,7 +50,7 @@ When you're ready to roll out an LLM gateway to your organization, the sequence 
 
 ## Subscriptions and gateways
 
-While a [gateway credential variable](/en/llm-gateway-connect#set-the-credential-variable) or `apiKeyHelper` is active, a developer's claude.ai subscription isn't used: the credential replaces the subscription login for that session, and the subscription's usage limits don't apply. That traffic is billed per token to whoever owns the credential the gateway forwards, such as your organization's Anthropic Console account, or your Bedrock, Agent Platform, or Foundry account when the gateway routes there.
+While a [gateway credential variable](/en/llm-gateway-connect#set-the-credential-variable) or `apiKeyHelper` is active, a developer's claude.ai subscription isn't used: the credential replaces the subscription login for that session, and the subscription's usage limits don't apply. That traffic is billed per token to whoever owns the credential the gateway forwards, such as your organization's Anthropic Console account, or your Amazon Bedrock, Google Cloud's Agent Platform, or Microsoft Foundry account when the gateway routes there.
 
 [`ANTHROPIC_BASE_URL`](/en/llm-gateway-connect#set-the-base-url-and-credential) is the variable that points Claude Code at the gateway. Setting only that variable, without a gateway credential, doesn't replace the subscription. Requests still route through the gateway, but a saved claude.ai login remains the active credential, so its usage limits and billing apply. Gateways that pass this traffic on to Anthropic must forward the OAuth capability in `anthropic-beta`; see the [request headers reference](/en/llm-gateway-protocol#request-headers).
 

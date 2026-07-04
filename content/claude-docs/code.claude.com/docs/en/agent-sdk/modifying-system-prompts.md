@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/modifying-system-prompts
-fetched_at: 2026-05-20T03:15:44.945478Z
-sha256: b08c10581e193c9ef18ad5c1ca46997529c82de82c26012a229279372521798d
+fetched_at: 2026-07-04T03:09:59.852291Z
+sha256: 6a6232cfa38771700c82718cd03d573288abe70d1b12b706b7b66d3c9848a5c0
 ---
 
 > ## Documentation Index
@@ -143,7 +143,11 @@ Once created, activate output styles via:
 
 * **CLI**: run `/config` and select an output style
 * **Settings**: set `outputStyle` in `.claude/settings.local.json`
-* **TypeScript SDK**: set `outputStyle` inside the inline `settings` object passed to `query()`, or point `settings` at a settings file that sets it. `outputStyle` is not a top-level `Options` field
+* **TypeScript SDK**: set `outputStyle` inside the inline `settings` object passed to `query()`, or point `settings` at a settings file that sets it. `outputStyle` is not a top-level `Options` field:
+
+  ```typescript theme={null}
+  const options = { settings: { outputStyle: "Explanatory" } };
+  ```
 
 The Python SDK does not have an option to select an output style programmatically. For code-only deployments where you can't write to `.claude/settings.local.json`, use `append` or a custom prompt string instead.
 

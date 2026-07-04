@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/keybindings
-fetched_at: 2026-07-03T03:11:00.926352Z
-sha256: e904585626ebb27f1809d890a00b715e052086f56c7455384aece6e3c758dd42
+fetched_at: 2026-07-04T03:09:59.852291Z
+sha256: 4cd635fa59612a9a941147a36b633e48e6fbdb49fd230babdd56242fb888a768
 ---
 
 > ## Documentation Index
@@ -420,11 +420,19 @@ Set an action to `null` to unbind a default shortcut:
 }
 ```
 
-This also works for chord bindings. Unbinding every chord that shares a prefix frees that prefix for use as a single-key binding:
+This also works for chord bindings. Unbinding every chord that shares a prefix frees that prefix for use as a single-key binding. A chord in any active context keeps its prefix reserved, so you must unbind each chord in the context that defines it.
+
+The default `Ctrl+X` family spans two contexts: `ctrl+x ctrl+k` and `ctrl+x ctrl+e` in `Chat`, and `ctrl+x ctrl+b` in `Task`. To reclaim `ctrl+x` itself as a single-key binding, unbind all of them:
 
 ```json theme={null}
 {
   "bindings": [
+    {
+      "context": "Task",
+      "bindings": {
+        "ctrl+x ctrl+b": null
+      }
+    },
     {
       "context": "Chat",
       "bindings": {

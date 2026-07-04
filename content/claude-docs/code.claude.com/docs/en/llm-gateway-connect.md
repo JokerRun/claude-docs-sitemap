@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/llm-gateway-connect
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 76c961c64c94498f89f627d69cc57f617feb0e0e09ee86a3bbf2fdd58b2b6a08
+fetched_at: 2026-07-04T03:09:59.852291Z
+sha256: 9cf9984e2835a909b7cbe1e2e8d93020d18be1c6b400f0bf29497ce3ab4dad50
 ---
 
 > ## Documentation Index
@@ -358,11 +358,11 @@ The helper's value is sent in both the `Authorization` and `x-api-key` headers, 
 
 ### Route to a cloud provider through a gateway
 
-These configurations point Claude Code at a gateway through a provider-specific base URL variable in place of `ANTHROPIC_BASE_URL`. Bedrock and Agent Platform gateways accept those providers' native request formats; Foundry and Claude Platform on AWS gateways accept the Anthropic Messages format and differ only in which base URL variable reaches them.
+These configurations point Claude Code at a gateway through a provider-specific base URL variable in place of `ANTHROPIC_BASE_URL`. Amazon Bedrock and Google Cloud's Agent Platform gateways accept those providers' native request formats; Microsoft Foundry and Claude Platform on AWS gateways accept the Anthropic Messages format and differ only in which base URL variable reaches them.
 
-Use one only if your gateway team specifically named Bedrock, Agent Platform, Foundry, or the Claude Platform on AWS. If the [verification request](#verify-the-connection) above returned JSON, you can skip this section.
+Use one only if your gateway team specifically named Amazon Bedrock, Google Cloud's Agent Platform, Microsoft Foundry, or the Claude Platform on AWS. If the [verification request](#verify-the-connection) above returned JSON, you can skip this section.
 
-Set the block for the provider your gateway team named. The skip-auth variables tell Claude Code not to sign requests with provider credentials, since the gateway holds those. If the gateway needs its own token, add `ANTHROPIC_AUTH_TOKEN` after the block, except for Foundry, which uses `ANTHROPIC_FOUNDRY_API_KEY` as shown.
+Set the block for the provider your gateway team named. The skip-auth variables tell Claude Code not to sign requests with provider credentials, since the gateway holds those. If the gateway needs its own token, add `ANTHROPIC_AUTH_TOKEN` after the block, except for Microsoft Foundry, which uses `ANTHROPIC_FOUNDRY_API_KEY` as shown.
 
 #### Amazon Bedrock
 
@@ -410,7 +410,7 @@ Set the block for the provider your gateway team named. The skip-auth variables 
 
 #### Microsoft Foundry
 
-Put the gateway's credential in `ANTHROPIC_FOUNDRY_API_KEY`; it is sent to the gateway as the `x-api-key` header. `CLAUDE_CODE_SKIP_FOUNDRY_AUTH` doesn't apply here: without an API key, the Foundry client fails every request before it leaves the machine.
+Put the gateway's credential in `ANTHROPIC_FOUNDRY_API_KEY`; it is sent to the gateway as the `x-api-key` header. `CLAUDE_CODE_SKIP_FOUNDRY_AUTH` doesn't apply here: without an API key, the Microsoft Foundry client fails every request before it leaves the machine.
 
 <Tabs>
   <Tab title="Bash or Zsh">

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/hosting
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: db074eebefe2ba6b2e4a94ebf23602b53d3abf7a09c67c35b1a73869fea19d59
+fetched_at: 2026-07-04T03:09:59.852291Z
+sha256: 999613d9688e9b4c93e2c6ff071eb59244089a19b7ebc8968cc5c9a01f0f591d
 ---
 
 > ## Documentation Index
@@ -172,7 +172,7 @@ The bundled binary is pinned to the SDK package version, so updating the SDK is 
 
 ### Network
 
-The SDK needs outbound HTTPS to `api.anthropic.com`, or to your provider's regional endpoint when running on Bedrock or Vertex. If your agents use [MCP servers](/en/agent-sdk/mcp) or external tools, they need outbound access to those endpoints as well. For production, route outbound traffic through an egress proxy that enforces domain allowlists, injects credentials, and logs requests. See [Secure Deployment](/en/agent-sdk/secure-deployment) for the full pattern.
+The SDK needs outbound HTTPS to `api.anthropic.com`, or to your provider's regional endpoint when running on Amazon Bedrock or Google Cloud's Agent Platform. If your agents use [MCP servers](/en/agent-sdk/mcp) or external tools, they need outbound access to those endpoints as well. For production, route outbound traffic through an egress proxy that enforces domain allowlists, injects credentials, and logs requests. See [Secure Deployment](/en/agent-sdk/secure-deployment) for the full pattern.
 
 For inbound traffic, expose an HTTP or WebSocket port on the container. Your application handles client requests on that port and calls the SDK internally; the subprocess itself does not listen on the network.
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/computer-use
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: e260a8956de67a5681450ac6e2124b8c524a39104529fc1a4d508d93f60a821d
+fetched_at: 2026-07-04T03:09:59.852291Z
+sha256: f99ebf6d1c09f2d43641ef7926ab523f877ce928e776c428504f2c8e5a4ed372
 ---
 
 > ## Documentation Index
@@ -209,7 +209,7 @@ The server only appears on eligible setups. Check that:
 * You're on macOS. Computer use in the CLI is not available on Linux or Windows. On Windows, use [computer use in Desktop](/en/desktop#let-claude-use-your-computer) instead.
 * You're running Claude Code v2.1.85 or later. Run `claude --version` to check.
 * You're on a Pro or Max plan. Run `/status` to confirm your subscription.
-* You're authenticated through claude.ai. Computer use is not available with third-party providers like Amazon Bedrock, Google Cloud Vertex AI, or Microsoft Foundry. If you access Claude exclusively through a third-party provider, you need a separate claude.ai account to use this feature.
+* You're authenticated through claude.ai. Computer use is not available with third-party providers like Amazon Bedrock, Google Cloud's Agent Platform, or Microsoft Foundry. If you access Claude exclusively through a third-party provider, you need a separate claude.ai account to use this feature.
 * You're in an interactive session. Computer use is not available in non-interactive mode with the `-p` flag.
 
 ## See also

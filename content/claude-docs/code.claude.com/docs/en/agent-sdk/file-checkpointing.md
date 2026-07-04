@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/file-checkpointing
-fetched_at: 2026-07-03T03:11:00.926352Z
-sha256: 34a44342c0bdf4934f34189f886361b8a6336f3dfceac90b95fe5b06e3b84c3f
+fetched_at: 2026-07-04T03:09:59.852291Z
+sha256: eeed695ccb8a5112c26ec3f6fa8ac9fdb11ef1cd8b55fa565752c39150d3257f
 ---
 
 > ## Documentation Index
@@ -200,8 +200,8 @@ The following example shows the complete flow: enable checkpointing, capture the
       session_id = None
 
       async for message in client.receive_response():
-          # Update checkpoint on each user message (keeps the latest)
-          if isinstance(message, UserMessage) and message.uuid:
+          # Capture the first user message UUID as the checkpoint
+          if isinstance(message, UserMessage) and message.uuid and checkpoint_id is None:
               checkpoint_id = message.uuid
           # Capture session ID from the result message
           if isinstance(message, ResultMessage):
@@ -213,8 +213,8 @@ The following example shows the complete flow: enable checkpointing, capture the
       let sessionId: string | undefined;
 
       for await (const message of response) {
-        // Update checkpoint on each user message (keeps the latest)
-        if (message.type === "user" && message.uuid) {
+        // Capture the first user message UUID as the checkpoint
+        if (message.type === "user" && message.uuid && !checkpointId) {
           checkpointId = message.uuid;
         }
         // Capture session ID from any message that has it
@@ -253,11 +253,13 @@ The following example shows the complete flow: enable checkpointing, capture the
       ```
     </CodeGroup>
 
-    If you capture the session ID and checkpoint ID, you can also rewind from the CLI. This command requires the `claude` executable, which comes from [installing Claude Code](/en/setup) and is not installed by the SDK package:
+    If you capture the session ID and checkpoint ID, you can also rewind from the CLI. This command requires the `claude` executable, which comes from [installing Claude Code](/en/setup) and is not installed by the SDK package. The SDK enables checkpointing for you, but when you run `claude -p` directly you must set the `CLAUDE_CODE_ENABLE_SDK_FILE_CHECKPOINTING` environment variable:
 
     ```bash theme={null}
-    claude -p --resume <session-id> --rewind-files <checkpoint-uuid>
+    CLAUDE_CODE_ENABLE_SDK_FILE_CHECKPOINTING=true claude -p --resume <session-id> --rewind-files <checkpoint-uuid>
     ```
+
+    The `--rewind-files` flag does not appear in `claude --help` output, but the CLI accepts it as shown.
   </Step>
 </Steps>
 
@@ -268,6 +270,8 @@ These patterns show different ways to capture and use checkpoint UUIDs depending
 ### Checkpoint before risky operations
 
 This pattern keeps only the most recent checkpoint UUID, updating it before each agent turn. If something goes wrong during processing, you can immediately rewind to the last safe state and break out of the loop.
+
+Before running this example, replace `your_revert_condition` (Python) or `yourRevertCondition` (TypeScript) with your own check, such as error detection or a validation failure; the placeholder is not defined in the example.
 
 <CodeGroup>
   ```python Python theme={null}
@@ -736,6 +740,18 @@ This error occurs when the checkpoint data doesn't exist for the specified user 
 * The session wasn't properly completed before attempting to resume and rewind
 
 **Solution**: Ensure `enable_file_checkpointing=True` (Python) or `enableFileCheckpointing: true` (TypeScript) was set on the original session, then use the pattern shown in the examples: capture the first user message UUID, complete the session fully, then resume with an empty prompt and call `rewindFiles()` once.
+
+### "File rewinding is not enabled" error
+
+This error occurs when you attempt a non-interactive rewind without checkpointing enabled: running bare `claude -p` with `--rewind-files`, or running an SDK session, including a resumed one, whose options don't enable checkpointing. The SDK sets the `CLAUDE_CODE_ENABLE_SDK_FILE_CHECKPOINTING` environment variable internally only when `enable_file_checkpointing` (Python) or `enableFileCheckpointing` (TypeScript) is enabled on the session performing the rewind; the bare CLI never sets it.
+
+**Solution**: For the bare CLI, set the environment variable when running the command:
+
+```bash theme={null}
+CLAUDE_CODE_ENABLE_SDK_FILE_CHECKPOINTING=true claude -p --resume <session-id> --rewind-files <checkpoint-uuid>
+```
+
+For the SDK, set `enable_file_checkpointing=True` (Python) or `enableFileCheckpointing: true` (TypeScript) on the resumed session, as the examples on this page do.
 
 ### "ProcessTransport is not ready for writing" error
 

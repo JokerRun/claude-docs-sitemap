@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/chrome
-fetched_at: 2026-07-03T03:11:00.926352Z
-sha256: 2d33dbbee9a145b21f16d02e864527a8777c9734912fa84aa9230e84ca96b057
+fetched_at: 2026-07-04T03:09:59.852291Z
+sha256: fd2f541181b31f1286424cef3b7b9edd58e391a4267537536157d0e624adc4a6
 ---
 
 > ## Documentation Index
@@ -43,7 +43,7 @@ Before using Claude Code with Chrome, you need:
 * A direct Anthropic plan (Pro, Max, Team, or Enterprise)
 
 <Note>
-  Chrome integration is not available through third-party providers like Amazon Bedrock, Google Cloud Vertex AI, or Microsoft Foundry. If you access Claude exclusively through a third-party provider, you need a separate claude.ai account to use this feature.
+  Chrome integration is not available through third-party providers like Amazon Bedrock, Google Cloud's Agent Platform, or Microsoft Foundry. If you access Claude exclusively through a third-party provider, you need a separate claude.ai account to use this feature.
 </Note>
 
 ## Get started in the CLI

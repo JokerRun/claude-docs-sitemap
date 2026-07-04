@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/setup
-fetched_at: 2026-07-03T03:11:00.926352Z
-sha256: bc20800fae76f35bdd936aeae64cd499f78dc865ece81aa19ba70a6eb141b234
+fetched_at: 2026-07-04T03:09:59.852291Z
+sha256: d1bf46079eb333010aad1ece02a402e643ceeeabfdeaca08a58a9ea30d606943
 ---
 
 > ## Documentation Index
@@ -48,19 +48,19 @@ To install Claude Code, use one of the following methods:
   <Tab title="Native Install (Recommended)">
     **macOS, Linux, WSL:**
 
-    ```bash theme={null} theme={null} theme={null}
+    ```bash theme={null}
     curl -fsSL https://claude.ai/install.sh | bash
     ```
 
     **Windows PowerShell:**
 
-    ```powershell theme={null} theme={null} theme={null}
+    ```powershell theme={null}
     irm https://claude.ai/install.ps1 | iex
     ```
 
     **Windows CMD:**
 
-    ```batch theme={null} theme={null} theme={null}
+    ```batch theme={null}
     curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd
     ```
 
@@ -76,7 +76,7 @@ To install Claude Code, use one of the following methods:
   </Tab>
 
   <Tab title="Homebrew">
-    ```bash theme={null} theme={null} theme={null}
+    ```bash theme={null}
     brew install --cask claude-code
     ```
 
@@ -88,7 +88,7 @@ To install Claude Code, use one of the following methods:
   </Tab>
 
   <Tab title="WinGet">
-    ```powershell theme={null} theme={null} theme={null}
+    ```powershell theme={null}
     winget install Anthropic.ClaudeCode
     ```
 
@@ -181,7 +181,7 @@ claude doctor
 
 ## Authenticate
 
-Claude Code requires a Pro, Max, Team, Enterprise, or Console account. The free Claude.ai plan does not include Claude Code access. You can also use Claude Code with a third-party API provider like [Amazon Bedrock](/en/amazon-bedrock), [Google Vertex AI](/en/google-vertex-ai), or [Microsoft Foundry](/en/microsoft-foundry).
+Claude Code requires a Pro, Max, Team, Enterprise, or Console account. The free Claude.ai plan does not include Claude Code access. You can also use Claude Code with a third-party API provider like [Amazon Bedrock](/en/amazon-bedrock), [Google Cloud's Agent Platform](/en/google-vertex-ai), or [Microsoft Foundry](/en/microsoft-foundry).
 
 After installing, log in by running `claude` and following the browser prompts. See [Authentication](/en/authentication) for all account types and team setup options.
 
@@ -495,7 +495,7 @@ Steps 1-3 require a POSIX shell with `gpg` and `curl`. On Windows, run them in G
   </Step>
 
   <Step title="Check the binary against the manifest">
-    Compare the SHA256 checksum of your downloaded binary with the value listed under `platforms.<platform>.checksum` in `manifest.json`.
+    Compare the SHA256 checksum of the binary with the value listed under `platforms.<platform>.checksum` in `manifest.json`. The commands below assume a `claude` binary in the current directory. To verify an installed native binary instead, run the command against `~/.local/share/claude/versions/VERSION`, replacing VERSION with the release you set in Step 2.
 
     <Tabs>
       <Tab title="Linux">

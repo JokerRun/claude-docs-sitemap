@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/common-workflows
-fetched_at: 2026-05-27T03:17:07.219627Z
-sha256: c5375cc0f8d983fe2da468d638d105e2b9213eceb5cb2c131aae59f32e25acc1
+fetched_at: 2026-07-04T03:09:59.852291Z
+sha256: 2fd07bca5e8b0aceabeeb93d47bd358afc28ee4f116b5451089f1995e14cd8a9
 ---
 
 > ## Documentation Index
@@ -246,7 +246,7 @@ You can create pull requests by asking Claude directly ("create a pr for my chan
   </Step>
 </Steps>
 
-When you create a PR using `gh pr create`, the session is automatically linked to that PR. To return to it later, run `claude --from-pr <number>` or paste the PR URL into the [`/resume` picker](/en/sessions#use-the-session-picker) search.
+When you create a PR using `gh pr create`, the session is automatically linked to that PR. To return to it later, run `claude --from-pr 123`, replacing 123 with the PR number, or paste the PR URL into the [`/resume` picker](/en/sessions#use-the-session-picker) search.
 
 <Tip>
   Review Claude's generated PR before submitting and ask Claude to highlight potential risks or considerations.

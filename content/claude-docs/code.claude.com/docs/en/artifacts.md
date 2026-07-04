@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/artifacts
-fetched_at: 2026-07-03T03:11:00.926352Z
-sha256: 0d80ba82549ef05465127314da923ddf42fc9f2e514081353e9878c858be20e8
+fetched_at: 2026-07-04T03:09:59.852291Z
+sha256: 730fbf846e0ae4543c687e976061f8b885837851a07ff1c37e41d28c703af21f
 ---
 
 > ## Documentation Index
@@ -171,7 +171,7 @@ Artifacts require every condition below. When one is not met, Claude writes a lo
 | :------------------ | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Plan                | Pro, Max, Team, or Enterprise. On Pro and Max plans, artifacts are private to you, and no admin management applies. On Team plans, artifacts are on by default. On Enterprise plans, an Owner [enables them](#manage-artifacts-for-your-organization) in claude.ai admin settings. |
 | Authentication      | Signed in to claude.ai with `/login`. Sessions using an API key, [gateway token](/en/llm-gateway), or cloud-provider credential cannot publish.                                                                                                                                    |
-| Model provider      | Anthropic API. Not available on [Amazon Bedrock](/en/amazon-bedrock), [Google Cloud Vertex AI](/en/google-vertex-ai), or [Microsoft Foundry](/en/microsoft-foundry).                                                                                                               |
+| Model provider      | Anthropic API. Not available on [Amazon Bedrock](/en/amazon-bedrock), [Google Cloud's Agent Platform](/en/google-vertex-ai), or [Microsoft Foundry](/en/microsoft-foundry).                                                                                                        |
 | Organization policy | Customer-managed encryption keys (CMEK), HIPAA, and [Zero Data Retention](/en/zero-data-retention) are not enabled for the organization.                                                                                                                                           |
 | Surface             | Claude Code CLI, or the Claude desktop app version 1.13576.0 or later. Off by default in [Agent SDK](/en/agent-sdk/overview), GitHub Action, and MCP-server contexts, and when [`CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC`](/en/env-vars) is set.                                  |
 

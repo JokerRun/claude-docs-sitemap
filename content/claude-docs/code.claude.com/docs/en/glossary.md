@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/glossary
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 2a164a6c5738078134617840d98e4d5db9b3fef2fda2e6ff35c29d75248f42dc
+fetched_at: 2026-07-04T03:09:59.852291Z
+sha256: ff42daf04ec3f4f82c545d841c0af8fcbeeefbce6cc26664647df6a9e0b25e9c
 ---
 
 > ## Documentation Index
@@ -197,6 +197,8 @@ Learn more: [Output styles](/en/output-styles)
 
 The baseline approval behavior for the session. Cycle with `Shift+Tab` in the CLI or use the mode selector in VS Code, Desktop, and claude.ai. Available modes are `default`, `acceptEdits`, `plan`, `auto`, `dontAsk`, and `bypassPermissions`.
 
+The `default` mode is labeled Manual in the CLI and in the VS Code and JetBrains extensions, and Claude Code accepts `manual` as an alias for the value.
+
 Learn more: [Choose a permission mode](/en/permission-modes)
 
 ### Permission rule
@@ -289,7 +291,7 @@ Learn more: [Platforms and integrations](/en/platforms)
 
 ### Teleport
 
-A command, `/teleport`, that pulls a cloud Claude Code session into your local terminal. Claude fetches the branch, loads the conversation history, and resumes from the web session's last state. The reverse direction is `--remote`, which sends a local task to run on the web.
+A command, `/teleport`, that pulls a cloud Claude Code session into your local terminal. Claude fetches the branch, loads the conversation history, and resumes from the web session's last state. The reverse direction is `--cloud`, which sends a local task to run on the web.
 
 Learn more: [From web to terminal](/en/claude-code-on-the-web#from-web-to-terminal)
 

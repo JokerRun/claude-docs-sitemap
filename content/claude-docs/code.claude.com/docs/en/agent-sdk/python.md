@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/python
-fetched_at: 2026-07-03T03:11:00.926352Z
-sha256: d6f499368f705226301a03b2eec9ba73242abdb1d04b654ff8207fdac945c9ab
+fetched_at: 2026-07-04T03:09:59.852291Z
+sha256: 8802f15fc46e3249ed136ec47b86fd48d12f565c818b140bbeb3ad4a993a1b58
 ---
 
 > ## Documentation Index
@@ -1587,12 +1587,12 @@ class StreamEvent:
     parent_tool_use_id: str | None = None
 ```
 
-| Field                | Type             | Description                                         |
-| :------------------- | :--------------- | :-------------------------------------------------- |
-| `uuid`               | `str`            | Unique identifier for this event                    |
-| `session_id`         | `str`            | Session identifier                                  |
-| `event`              | `dict[str, Any]` | The raw Claude API stream event data                |
-| `parent_tool_use_id` | `str \| None`    | Parent tool use ID if this event is from a subagent |
+| Field                | Type             | Description                                                                                                                                                         |
+| :------------------- | :--------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `uuid`               | `str`            | Unique identifier for this event                                                                                                                                    |
+| `session_id`         | `str`            | Session identifier                                                                                                                                                  |
+| `event`              | `dict[str, Any]` | The raw Claude API stream event data                                                                                                                                |
+| `parent_tool_use_id` | `str \| None`    | Always `None`. Stream events are emitted for the main session only. For subagent attribution, use complete messages such as [`AssistantMessage`](#assistantmessage) |
 
 ### `RateLimitEvent`
 

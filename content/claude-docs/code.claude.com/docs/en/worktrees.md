@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/worktrees
-fetched_at: 2026-07-03T03:11:00.926352Z
-sha256: 0746950584eea87308593cbee42bd26d57fd7a5fc23e192544ed77190c6b06a3
+fetched_at: 2026-07-04T03:09:59.852291Z
+sha256: e02490ba1e92928c38841b353070dd4069c166e453197f2929c7e6e83714d888
 ---
 
 > ## Documentation Index
@@ -44,6 +44,8 @@ You can also ask Claude to "work in a worktree" during a session, and it will cr
 {/* min-version: 2.1.198 */}As of v2.1.198, entering or exiting a worktree also relocates the session transcript to that directory's project storage, the same way [`/cd`](/en/commands) does, so `/desktop` and `--resume` find the session there afterward. Worktrees created by a [`WorktreeCreate` hook](#non-git-version-control) are excluded and keep the transcript at the launch directory.
 
 Before using `--worktree` interactively in a directory for the first time, accept the workspace trust dialog by running `claude` once in that directory. If trust has not yet been accepted, `--worktree` exits with an error and prompts you to run `claude` in the directory first. Non-interactive runs with `-p` skip the [trust check](/en/security), so `claude -p --worktree` proceeds without it.
+
+{/* min-version: 2.1.200 */}Plugins installed at [project scope](/en/plugins-reference#plugin-installation-scopes) from the main checkout also load in worktrees of the same repository, so you don't need to reinstall them per worktree. This applies whether you create the worktree with `--worktree` or with `git worktree add`. Requires Claude Code v2.1.200 or later.
 
 <Tip>
   Add `.claude/worktrees/` to your `.gitignore` so worktree contents don't appear as untracked files in your main checkout.

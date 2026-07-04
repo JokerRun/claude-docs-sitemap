@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-platform-on-aws
-fetched_at: 2026-07-03T03:11:00.926352Z
-sha256: a2fbdc697162907125d233f28e3d774ecb54b89e8052f601ba75a781c2949da9
+fetched_at: 2026-07-04T03:09:59.852291Z
+sha256: a9b930e6dc8bc5ee2570f40fff2685a730f1c50f1750fd779a7bd3f831b19fde
 ---
 
 > ## Documentation Index
@@ -269,7 +269,7 @@ export AWS_REGION=us-east-1
 
 `ANTHROPIC_AWS_WORKSPACE_ID` is required and is sent on every request as the `anthropic-workspace-id` header. The base URL is computed from `AWS_REGION` as `https://aws-external-anthropic.{region}.api.aws`. To override the URL directly, set `ANTHROPIC_AWS_BASE_URL`.
 
-Claude Platform on AWS is opt-in even when AWS credentials are present in your environment. Bedrock and Foundry take precedence in provider routing, so unset `CLAUDE_CODE_USE_BEDROCK` and `CLAUDE_CODE_USE_FOUNDRY` if they're set.
+Claude Platform on AWS is opt-in even when AWS credentials are present in your environment. Amazon Bedrock and Microsoft Foundry take precedence in provider routing, so unset `CLAUDE_CODE_USE_BEDROCK` and `CLAUDE_CODE_USE_FOUNDRY` if they're set.
 
 ### 3. Pin model versions
 
