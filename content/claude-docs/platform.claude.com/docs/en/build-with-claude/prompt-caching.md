@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-caching
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 75e94cd9009e89bfb32ba8e531c9f8a692e2b59fcf4ffbcc3eb53e81fc1adf22
+fetched_at: 2026-07-07T03:11:34.034287Z
+sha256: cba565206511fdaa0c86dc2abdcc97a87431bd107fad3248a9be45b16afd3ed6
 ---
 
 # Prompt caching
@@ -510,7 +510,7 @@ Automatic caching uses the same underlying caching infrastructure. Pricing, mini
 * If the last block is not eligible as an automatic cache breakpoint target, the system silently walks backwards to find the nearest eligible block. If none is found, caching is skipped.
 
 <Note>
-  Automatic caching is available on the Claude API, [Claude Platform on AWS](/docs/en/build-with-claude/claude-platform-on-aws), and [Microsoft Foundry](/docs/en/build-with-claude/claude-in-microsoft-foundry). Bedrock and Google Cloud do not support automatic caching.
+  Automatic caching is available on the Claude API, [Claude Platform on AWS](/docs/en/build-with-claude/claude-platform-on-aws), [Google Cloud](/docs/en/build-with-claude/claude-on-vertex-ai), and [Microsoft Foundry](/docs/en/build-with-claude/claude-in-microsoft-foundry). Bedrock does not support automatic caching.
 </Note>
 
 ***

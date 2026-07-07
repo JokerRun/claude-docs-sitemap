@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/skills
-fetched_at: 2026-07-03T03:11:00.926352Z
-sha256: c070b34a20a7410285d6f2b8907cedb138de3baf2aaea4a87821fbc1a37381e2
+fetched_at: 2026-07-07T03:11:34.034287Z
+sha256: d4c62b9bf4594de1b2fbe8aec8a8a56dc95326681180330fb50b5120c17c3996
 ---
 
 > ## Documentation Index
@@ -364,6 +364,8 @@ Here's how the two fields affect invocation and context loading:
 ### Skill content lifecycle
 
 When you or Claude invoke a skill, the rendered `SKILL.md` content enters the conversation as a single message and stays there for the rest of the session. Claude Code does not re-read the skill file on later turns, so write guidance that should apply throughout a task as standing instructions rather than one-time steps.
+
+When Claude re-invokes a skill whose rendered content is identical to the copy already in context, Claude Code adds a short note that the skill is already loaded rather than a second copy of the content. When the rendered content differs, because the arguments changed or a [dynamic context](#inject-dynamic-context) command produced new output, Claude Code appends the full content again. Before v2.1.202, every re-invocation appended another full copy of the skill's instructions.
 
 [Auto-compaction](/en/how-claude-code-works#when-context-fills-up) carries invoked skills forward within a token budget. When the conversation is summarized to free context, Claude Code re-attaches the most recent invocation of each skill after the summary, keeping the first 5,000 tokens of each. Re-attached skills share a combined budget of 25,000 tokens. Claude Code fills this budget starting from the most recently invoked skill, so older skills can be dropped entirely after compaction if you have invoked many in one session.
 

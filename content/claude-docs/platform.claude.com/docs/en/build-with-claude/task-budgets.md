@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/task-budgets
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 3c8273178e64f0d2bc94232825a171ac19ff4d0d861487a98e00041511fc4a5f
+fetched_at: 2026-07-07T03:11:34.034287Z
+sha256: f24273b1d08c6b035e2c03bc4860ef77cab8faf02cea57a1283b6fcd08673d59
 ---
 
 # Task budgets
@@ -539,4 +539,4 @@ The minimum accepted `task_budget.total` is **20,000 tokens**; values below the 
 | Claude Sonnet 4.6 | Not supported                               |
 | Claude Haiku 4.5  | Not supported                               |
 
-Task budgets are not supported on [Claude Code](https://docs.claude.com/en/docs/claude-code) or Cowork surfaces. Use task budgets directly via the Messages API on a [supported model](#feature-support).
+Task budgets are not supported on [Claude Code](https://code.claude.com/docs/en/overview) or Cowork surfaces. Use task budgets directly through the Messages API on a [supported model](#feature-support).

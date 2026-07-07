@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/hooks
-fetched_at: 2026-07-04T03:09:59.852291Z
-sha256: 8a3c8c70e598964885777d13c39cad8e41f0055ab4c8d27d163d42d00a759eb0
+fetched_at: 2026-07-07T03:11:34.034287Z
+sha256: 867a217b7315b73d5a62f5f272804d35a82dc9c79a4631344ad24e8567f18418
 ---
 
 > ## Documentation Index
@@ -2967,6 +2967,8 @@ The `timeout` field sets the maximum time in seconds for the background process.
 When an async hook fires, Claude Code starts the hook process and immediately continues without waiting for it to finish. The hook receives the same JSON input via stdin as a synchronous hook.
 
 After the background process exits, if the hook produced a JSON response with an `additionalContext` field, that content is delivered to Claude as context on the next conversation turn. A `systemMessage` field is shown to you, not to Claude.
+
+Claude Code validates that JSON response against the same [output schema](#json-output) as synchronous hooks, and drops any field whose value has the wrong type, such as a `systemMessage` that isn't a string, instead of delivering it. Run with `--debug` to see a warning naming each dropped field. Before v2.1.202, malformed JSON output from an async hook could crash the session, and the crash recurred each time the session was resumed.
 
 Async hook completion notifications are suppressed by default. To see them, enable verbose mode with `Ctrl+O` or start Claude Code with `--verbose`.
 

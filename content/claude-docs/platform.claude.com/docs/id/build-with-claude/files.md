@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/files
-fetched_at: 2026-07-03T03:11:00.926352Z
-sha256: 1605b601ef0fc5dcded0bbe758c886403944eda06e9f33f470699793d071ef38
+fetched_at: 2026-07-07T03:11:34.034287Z
+sha256: 7a37abbb49fde59a10db34268281d9240c9afc132c23879b9430b30074673dc2
 ---
 
 # Files API
@@ -46,23 +46,28 @@ Unggah file untuk direferensikan dalam panggilan API berikutnya:
 
 <CodeGroup>
   ```bash cURL
-  curl -X POST https://api.anthropic.com/v1/files \
+  FILE_ID=$(curl -X POST https://api.anthropic.com/v1/files \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
     -H "anthropic-beta: files-api-2025-04-14" \
-    -F "file=@/path/to/document.pdf"
+    -F "file=@/path/to/document.pdf" | jq -r '.id')
+  echo "$FILE_ID"
   ```
 
   ```bash CLI
   FILE_ID=$(ant beta:files upload \
     --file /path/to/document.pdf \
-    --transform id --raw-output)
+    --transform id \
+    --raw-output)
+  echo "$FILE_ID"
   ```
 
   ```python Python
   uploaded = client.beta.files.upload(
       file=("document.pdf", open("/path/to/document.pdf", "rb"), "application/pdf"),
   )
+  file_id = uploaded.id
+  print(file_id)
   ```
 
   ```typescript TypeScript
@@ -73,6 +78,7 @@ Unggah file untuk direferensikan dalam panggilan API berikutnya:
       { type: "application/pdf" },
     ),
   });
+  console.log(uploaded.id);
   ```
 
   ```csharp C#
@@ -87,7 +93,8 @@ Unggah file untuk direferensikan dalam panggilan API berikutnya:
           }
       });
 
-  Console.WriteLine(uploaded.ID);
+  var fileId = uploaded.ID;
+  Console.WriteLine(fileId);
   ```
 
   ```go Go
@@ -105,7 +112,8 @@ Unggah file untuk direferensikan dalam panggilan API berikutnya:
   	log.Fatal(err)
   }
 
-  fmt.Println(response.ID)
+  fileID := response.ID
+  fmt.Println(fileID)
   ```
 
   ```java Java
@@ -119,7 +127,8 @@ Unggah file untuk direferensikan dalam panggilan API berikutnya:
           .build()
   );
 
-  System.out.println(file.id());
+  String fileId = file.id();
+  System.out.println(fileId);
   ```
 
   ```php PHP
@@ -127,7 +136,8 @@ Unggah file untuk direferensikan dalam panggilan API berikutnya:
       FileParam::fromResource(fopen('/path/to/document.pdf', 'rb'), contentType: 'application/pdf'),
   );
 
-  echo $file->id;
+  $fileId = $file->id;
+  echo $fileId;
   ```
 
   ```ruby Ruby
@@ -138,7 +148,8 @@ Unggah file untuk direferensikan dalam panggilan API berikutnya:
     )
   )
 
-  puts file.id
+  file_id = file.id
+  puts file_id
   ```
 </CodeGroup>
 
@@ -779,10 +790,12 @@ Ambil informasi tentang file tertentu:
 
   ```python Python
   file = client.beta.files.retrieve_metadata(file_id)
+  print(file)
   ```
 
   ```typescript TypeScript
   const file = await client.beta.files.retrieveMetadata(uploaded.id);
+  console.log(file);
   ```
 
   ```csharp C#
@@ -838,7 +851,7 @@ Hapus file dari workspace Anda:
   ```
 
   ```python Python
-  result = client.beta.files.delete(file_id)
+  client.beta.files.delete(file_id)
   ```
 
   ```typescript TypeScript
@@ -865,11 +878,11 @@ Hapus file dari workspace Anda:
   ```
 
   ```php PHP
-  $result = $client->beta->files->delete($fileId);
+  $client->beta->files->delete($fileId);
   ```
 
   ```ruby Ruby
-  result = client.beta.files.delete(file_id)
+  client.beta.files.delete(file_id)
   ```
 </CodeGroup>
 
@@ -895,7 +908,6 @@ Unduh file yang telah dibuat oleh skills atau code execution tool:
   ```python Python
   file_content = client.beta.files.download(file_id)
 
-  # Simpan ke file
   file_content.write_to_file("downloaded_file.txt")
   ```
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/setup
-fetched_at: 2026-07-04T03:09:59.852291Z
-sha256: d1bf46079eb333010aad1ece02a402e643ceeeabfdeaca08a58a9ea30d606943
+fetched_at: 2026-07-07T03:11:34.034287Z
+sha256: 5eae7c9c4d8d878db74629125cf749a0430eec439da1ccce9c305ef4c1cbdc1b
 ---
 
 > ## Documentation Index
@@ -48,19 +48,19 @@ To install Claude Code, use one of the following methods:
   <Tab title="Native Install (Recommended)">
     **macOS, Linux, WSL:**
 
-    ```bash theme={null}
+    ```bash theme={null} theme={null} theme={null} theme={null} theme={null}
     curl -fsSL https://claude.ai/install.sh | bash
     ```
 
     **Windows PowerShell:**
 
-    ```powershell theme={null}
+    ```powershell theme={null} theme={null} theme={null} theme={null} theme={null}
     irm https://claude.ai/install.ps1 | iex
     ```
 
     **Windows CMD:**
 
-    ```batch theme={null}
+    ```batch theme={null} theme={null} theme={null} theme={null} theme={null}
     curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd
     ```
 
@@ -76,7 +76,7 @@ To install Claude Code, use one of the following methods:
   </Tab>
 
   <Tab title="Homebrew">
-    ```bash theme={null}
+    ```bash theme={null} theme={null} theme={null} theme={null} theme={null}
     brew install --cask claude-code
     ```
 
@@ -88,7 +88,7 @@ To install Claude Code, use one of the following methods:
   </Tab>
 
   <Tab title="WinGet">
-    ```powershell theme={null}
+    ```powershell theme={null} theme={null} theme={null} theme={null} theme={null}
     winget install Anthropic.ClaudeCode
     ```
 
@@ -351,7 +351,13 @@ All repositories are signed with the [Claude Code release signing key](#binary-i
 
 <Tabs>
   <Tab title="apt">
-    For Debian and Ubuntu. The following commands configure the `stable` channel:
+    For Debian and Ubuntu. The install commands below download the signing key with `curl`, which fresh Debian and Ubuntu installations may not include. If the download fails with `sudo: curl: command not found`, install curl first:
+
+    ```bash theme={null}
+    sudo apt install curl
+    ```
+
+    The following commands configure the `stable` channel:
 
     ```bash theme={null}
     sudo install -d -m 0755 /etc/apt/keyrings

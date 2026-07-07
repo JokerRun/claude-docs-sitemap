@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/typescript
-fetched_at: 2026-07-04T03:09:59.852291Z
-sha256: 83e1d308cabc17cdab0968b835e801fcabed53309bb8996bd8c8099ffff930d7
+fetched_at: 2026-07-07T03:11:34.034287Z
+sha256: 3b4a2675a9edc31d95848c4c5ab0ffe9694e011466e54aa45c2933e516f80f1e
 ---
 
 > ## Documentation Index
@@ -258,13 +258,14 @@ function getSessionMessages(
 
 #### Return type: `SessionMessage`
 
-| Property             | Type                    | Description                                                                                                                     |
-| :------------------- | :---------------------- | :------------------------------------------------------------------------------------------------------------------------------ |
-| `type`               | `"user" \| "assistant"` | Message role                                                                                                                    |
-| `uuid`               | `string`                | Unique message identifier                                                                                                       |
-| `session_id`         | `string`                | Session this message belongs to                                                                                                 |
-| `message`            | `unknown`               | Raw message payload from the transcript                                                                                         |
-| `parent_tool_use_id` | `string \| null`        | For subagent messages, the `tool_use_id` of the spawning `Agent` tool call. `null` for main-session messages and older sessions |
+| Property             | Type                    | Description                                                                                                                                                                                                                                                                              |
+| :------------------- | :---------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `type`               | `"user" \| "assistant"` | Message role                                                                                                                                                                                                                                                                             |
+| `uuid`               | `string`                | Unique message identifier                                                                                                                                                                                                                                                                |
+| `session_id`         | `string`                | Session this message belongs to                                                                                                                                                                                                                                                          |
+| `message`            | `unknown`               | Raw message payload from the transcript                                                                                                                                                                                                                                                  |
+| `parent_tool_use_id` | `string \| null`        | For subagent messages, the `tool_use_id` of the spawning `Agent` tool call. `null` for main-session messages and older sessions                                                                                                                                                          |
+| `parent_agent_id`    | `string \| null`        | For messages from a [nested subagent](/en/sub-agents#spawn-nested-subagents), the `agentId` of the subagent that spawned it. `null` for main-session messages, messages from top-level subagents, and older sessions. {/* min-version: 2.1.202 */}Requires Claude Code v2.1.202 or later |
 
 #### Example
 

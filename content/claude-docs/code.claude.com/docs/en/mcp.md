@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/mcp
-fetched_at: 2026-07-04T03:09:59.852291Z
-sha256: d0e2f5992cef801b2aa6dfef964fae6bb39a6e405b63d3c1dea2bda6309a8774
+fetched_at: 2026-07-07T03:11:34.034287Z
+sha256: 7d463c33ae9c467bf31f528a5c6a6f57bd99ae017618a9dc3389e1196c752292
 ---
 
 > ## Documentation Index
@@ -83,6 +83,8 @@ claude mcp add --transport http secure-api https://api.example.com/mcp \
 ```
 
 When configuring MCP servers via JSON in `.mcp.json`, `~/.claude.json`, or `claude mcp add-json`, the `type` field accepts `streamable-http` as an alias for `http`. The MCP specification uses the name `streamable-http` for this transport, so configurations copied from server documentation work without modification.
+
+A JSON entry that has a `url` but no `type` is a configuration error, because Claude Code reads an entry with no `type` as a stdio server. Claude Code skips that server and reports `MCP server "<name>" has a "url" but no "type"; add "type": "http" (or "sse" / "ws") to this entry`. Before v2.1.202, Claude Code reported this misconfiguration as `command: expected string, received undefined`.
 
 ### Option 2: Add a remote SSE server
 

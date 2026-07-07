@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/citations
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 16851e15d2f16f02f388f3736d0dca203b2ef6c1cc8215b8e97e7f96bff13d4b
+fetched_at: 2026-07-07T03:11:34.034287Z
+sha256: f5f1128bf5a95d23ac9d3453b175605218bb90d99e44d03b4e4b8c957cff42d5
 ---
 
 # Citations
@@ -719,7 +719,7 @@ Three document types are supported for citations. Documents can be provided dire
 | Custom content | Lists, transcripts, special formatting, more granular citations | No additional chunking | Block indices (0-indexed)     |
 
 <Note>
-  .csv, .xlsx, .docx, .md, and .txt files are not supported as document blocks. Convert these to plain text and include directly in message content. See [Working with other file formats](/docs/en/build-with-claude/files#working-with-other-file-formats).
+  For file types that the `document` block doesn't support (for example, .docx and .xlsx), convert the files to plain text and include the content directly in message content. Files that are already plain text, such as .csv and .md files, can also be uploaded with an explicit `text/plain` content type. See [Working with other file formats](/docs/en/build-with-claude/files#working-with-other-file-formats).
 </Note>
 
 ### Plain text documents

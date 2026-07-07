@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/remote-control
-fetched_at: 2026-07-04T03:09:59.852291Z
-sha256: 57faa5aa2653124e4a26304f400dd3dc88bf24c46e57d7227340696295715600
+fetched_at: 2026-07-07T03:11:34.034287Z
+sha256: fdb9a35afdfb1660461f209b45e1d9c2bbe76698101120ca273e67336ab06d0f
 ---
 
 > ## Documentation Index
@@ -23,6 +23,7 @@ When you start a Remote Control session on your machine, Claude keeps running lo
 
 * **Use your full local environment remotely**: your filesystem, [MCP servers](/en/mcp), tools, and project configuration all stay available, and typing `@` autocompletes file paths from your local project
 * **Work from both surfaces at once**: the conversation stays in sync across all connected devices, so you can send messages from your terminal, browser, and phone interchangeably
+* **Send images and files from your phone or browser**: when you add an attachment in the Claude app or at claude.ai/code, Claude Code downloads it to your machine and passes it to Claude as an `@` file reference, with or without a caption. {/* min-version: 2.1.202 */}Before v2.1.202, Claude Code could drop an attachment sent without a caption before it reached the session.
 * **Survive interruptions**: if your laptop sleeps or your network drops, the session reconnects automatically when your machine comes back online
 
 Unlike [Claude Code on the web](/en/claude-code-on-the-web), which runs on cloud infrastructure, Remote Control sessions run directly on your machine and interact with your local filesystem. The web and mobile interfaces are just a window into that local session.

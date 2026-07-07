@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/troubleshooting
-fetched_at: 2026-07-04T03:09:59.852291Z
-sha256: 56d710fc809b3aa7764a84acbe66846677c5ce424e00fd98e15c5b45b1ccc0e8
+fetched_at: 2026-07-07T03:11:34.034287Z
+sha256: 1b12b3898771b806a1a07c2ccdcd894c3c253d17c45b6297f27a64f95f1d7e09
 ---
 
 > ## Documentation Index
@@ -18,6 +18,7 @@ This page covers performance, stability, and search problems once Claude Code is
 | Symptom                                                                                                                                              | Go to                                                                                    |
 | :--------------------------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------- |
 | `command not found`, install fails, PATH issues, `EACCES`, TLS errors                                                                                | [Troubleshoot installation and login](/en/troubleshoot-install)                          |
+| Update or install download fails with `The connection dropped while downloading the update` or `aborted`                                             | [Error reference](/en/errors#the-connection-dropped-while-downloading-the-update)        |
 | Login loops, OAuth errors, `403 Forbidden`, "organization disabled", Amazon Bedrock, Google Cloud's Agent Platform, or Microsoft Foundry credentials | [Troubleshoot installation and login](/en/troubleshoot-install#login-and-authentication) |
 | Settings not applying, hooks not firing, MCP servers not loading                                                                                     | [Debug your configuration](/en/debug-your-config)                                        |
 | `API Error: 5xx`, `529 Overloaded`, `429`, request validation errors                                                                                 | [Error reference](/en/errors)                                                            |

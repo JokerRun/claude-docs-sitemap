@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/desktop-linux
-fetched_at: 2026-07-03T03:11:00.926352Z
-sha256: a3bbbd9211e5c40edf780cafd3f2eabc32cceb747cc02fd6595060963f23e6fd
+fetched_at: 2026-07-07T03:11:34.034287Z
+sha256: 686132e59cf116bcdb9ed5b2cf5df20128bada3c2adc9b0a980517bc0b3b96d3
 ---
 
 > ## Documentation Index
@@ -32,6 +32,12 @@ Install from Anthropic's apt repository so that updates arrive through your syst
 
 <Steps>
   <Step title="Add Anthropic's apt repository">
+    This step downloads the signing key with `curl`, which fresh Debian and Ubuntu installations may not include. If the download command fails with `sudo: curl: command not found`, install curl first:
+
+    ```bash theme={null}
+    sudo apt install curl
+    ```
+
     Download Anthropic's signing key:
 
     ```bash theme={null}
@@ -70,11 +76,13 @@ Install from Anthropic's apt repository so that updates arrive through your syst
 
 ### Install from a downloaded file
 
-If you can't use the apt repository, download the `.deb` package for your architecture (x64 or arm64) from [claude.com/download](https://claude.com/download), then either open it with your software installer or run from your download directory:
+If you can't use the apt repository, first download the `.deb` package for your architecture, x64 or arm64, from [claude.com/download](https://claude.com/download). Then open the downloaded file with your software installer, or install it with apt from the directory that contains the downloaded file:
 
 ```bash theme={null}
 sudo apt install ./claude-desktop_*.deb
 ```
+
+If apt reports `E: Unsupported file ./claude-desktop_*.deb given on commandline`, the pattern didn't match a `.deb` file in the current directory. Confirm the download completed, then run the command again from the directory that contains the file.
 
 A `.deb` installed this way doesn't receive updates. To get updates through apt, add the repository as shown above, or uncomment the `deb` line in the placeholder entry the package writes to `/etc/apt/sources.list.d/claude-desktop.list`.
 
