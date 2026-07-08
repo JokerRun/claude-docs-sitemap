@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/code/artifacts/delete
-fetched_at: 2026-06-12T03:17:40.104094Z
-sha256: 1b20def26af64e4fcd905c1e7214edd2724ef1a615b2d1c11f77181a48b5d0e0
+fetched_at: 2026-07-08T03:08:53.943475Z
+sha256: 4203dd2d89a5521dc985deab1f64c1bfa6d1dd29c1300f7d1569dfb020e10a09
 ---
 
 ## Delete Code Artifact
 
-**delete** `/v1/compliance/code/artifacts/{artifact_id}`
+**delete** `/v1/compliance/apps/code/artifacts/{artifact_id}`
 
 Permanently deletes a Code Artifact and all its versions. This is a
 destructive operation that cannot be undone. A 200 response means the
@@ -23,12 +23,6 @@ Artifact.
 - `artifact_id: string`
 
   The Artifact ID (tagged ID, e.g., cart_abc123)
-
-### Query Parameters
-
-- `organization_uuid: optional string`
-
-  The Artifact's owning organization UUID, from the list response. Strongly recommended — without it the route scans across child organizations and, for parents with many children, returns 400 rather than scanning further.
 
 ### Header Parameters
 
@@ -49,7 +43,7 @@ Artifact.
 ### Example
 
 ```http
-curl https://api.anthropic.com/v1/compliance/code/artifacts/$ARTIFACT_ID \
+curl https://api.anthropic.com/v1/compliance/apps/code/artifacts/$ARTIFACT_ID \
     -X DELETE \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/hooks
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 26dac584511b6ce22fe160c48a93726a20fb27fc9498af2b89cd51a7e62b3831
+fetched_at: 2026-07-08T03:08:53.943475Z
+sha256: 063f95cd0f68d5c001301aa588a9da3db21b798f34dd3611b444f7d528112c3e
 ---
 
 > ## Documentation Index
@@ -245,7 +245,7 @@ Every hook callback receives three arguments:
 
 * **Input data:** a typed object containing event details. Each hook type has its own input shape. For example, `PreToolUseHookInput` includes `tool_name` and `tool_input`, while `NotificationHookInput` includes `message`. See the full type definitions in the [TypeScript](/en/agent-sdk/typescript#hookinput) and [Python](/en/agent-sdk/python#hookinput) SDK references.
   * All hook inputs share `session_id`, `cwd`, and `hook_event_name`.
-  * `agent_id` and `agent_type` are populated when the hook fires inside a subagent. In TypeScript, these are on the base hook input and available to all hook types. In Python, they are on `PreToolUse`, `PostToolUse`, and `PostToolUseFailure` only.
+  * `agent_id` and `agent_type` are populated when the hook fires inside a subagent. In TypeScript, these are on the base hook input and available to all hook types. In Python, they are optional fields on `PreToolUse`, `PostToolUse`, `PostToolUseFailure`, and `PermissionRequest`, and required fields on `SubagentStart` and `SubagentStop`.
 * **Tool use ID** (`str | None` / `string | undefined`): correlates `PreToolUse` and `PostToolUse` events for the same tool call.
 * **Context:** in TypeScript, contains a `signal` property (`AbortSignal`) for cancellation. In Python, this argument is reserved for future use.
 

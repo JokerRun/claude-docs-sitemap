@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/setup
-fetched_at: 2026-07-07T03:11:34.034287Z
-sha256: 5eae7c9c4d8d878db74629125cf749a0430eec439da1ccce9c305ef4c1cbdc1b
+fetched_at: 2026-07-08T03:08:53.943475Z
+sha256: 8e47b38638ff49eec0a99d949d14961a6224f47b8eb1946dab93a8d1c29848c0
 ---
 
 > ## Documentation Index
@@ -48,19 +48,19 @@ To install Claude Code, use one of the following methods:
   <Tab title="Native Install (Recommended)">
     **macOS, Linux, WSL:**
 
-    ```bash theme={null} theme={null} theme={null} theme={null} theme={null}
+    ```bash theme={null}
     curl -fsSL https://claude.ai/install.sh | bash
     ```
 
     **Windows PowerShell:**
 
-    ```powershell theme={null} theme={null} theme={null} theme={null} theme={null}
+    ```powershell theme={null}
     irm https://claude.ai/install.ps1 | iex
     ```
 
     **Windows CMD:**
 
-    ```batch theme={null} theme={null} theme={null} theme={null} theme={null}
+    ```batch theme={null}
     curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd
     ```
 
@@ -76,7 +76,7 @@ To install Claude Code, use one of the following methods:
   </Tab>
 
   <Tab title="Homebrew">
-    ```bash theme={null} theme={null} theme={null} theme={null} theme={null}
+    ```bash theme={null}
     brew install --cask claude-code
     ```
 
@@ -88,7 +88,7 @@ To install Claude Code, use one of the following methods:
   </Tab>
 
   <Tab title="WinGet">
-    ```powershell theme={null} theme={null} theme={null} theme={null} theme={null}
+    ```powershell theme={null}
     winget install Anthropic.ClaudeCode
     ```
 

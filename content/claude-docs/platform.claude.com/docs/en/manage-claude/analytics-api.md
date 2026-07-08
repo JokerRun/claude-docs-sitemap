@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/analytics-api
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: f9a381e4835bf03a8b4a02950a26cb03a8dbe3ec3e1f771447c085eedba471ff
+fetched_at: 2026-07-08T03:08:53.943475Z
+sha256: 55930cf123da0820dc89f4df4ebf040eb5fb657cc35908f58a5ea640c2cd3972
 ---
 
 # Analytics APIs
@@ -133,7 +133,7 @@ If your organization uses Claude Code through Amazon Bedrock, the Claude Enterpr
     Endpoint reference for engagement, adoption, and cost data.
   </Card>
 
-  <Card title="Get access to the Compliance API" href="/docs/en/manage-claude/compliance-api-access">
+  <Card title="Set up the Compliance API" href="/docs/en/manage-claude/compliance-api-access">
     Audit and compliance data uses its own key types.
   </Card>
 </CardGroup>

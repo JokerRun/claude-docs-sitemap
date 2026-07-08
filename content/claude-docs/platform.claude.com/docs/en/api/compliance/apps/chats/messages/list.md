@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats/messages/list
-fetched_at: 2026-06-27T03:14:28.973816Z
-sha256: 4c9561151b158593e30c35ec9f5f2929c4a66e76b7c6ce343b15d42d80e9e34c
+fetched_at: 2026-07-08T03:08:53.943475Z
+sha256: 1d584fb7e2394a9d114bb612abff23af6c578408c8242734a7a9ba5186cac240
 ---
 
 ## Get chat messages
@@ -135,7 +135,7 @@ Retrieves message history and file metadata for a specific chat.
 
       - `truncated: boolean`
 
-        True when `text` was shortened by the server's fixed per-string bound (1 MiB) on the remote-sessions messages endpoint. Always false on chat text blocks.
+        True when `text` was shortened by the server's fixed per-string bound (1 MiB). Always false on chat text blocks.
 
       - `type: "text"`
 
@@ -167,7 +167,7 @@ Retrieves message history and file metadata for a specific chat.
 
       - `truncated: boolean`
 
-        True when `input` was shortened. Pass tool_use_input_max_chars=-1 to disable the limit
+        True when `input` was shortened. Pass the endpoint's tool-use input max parameter as -1 to request full content, subject to any server-side maximum the endpoint enforces.
 
       - `type: "tool_use"`
 
@@ -211,7 +211,7 @@ Retrieves message history and file metadata for a specific chat.
 
       - `truncated: boolean`
 
-        True when one or more text items in `content` were shortened. Pass tool_result_max_chars=-1 to retrieve full content.
+        True when one or more text items in `content` were shortened. Pass the endpoint's tool-result max parameter as -1 to request full content, subject to any server-side maximum the endpoint enforces.
 
       - `type: "tool_result"`
 

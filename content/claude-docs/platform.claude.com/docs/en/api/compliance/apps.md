@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps
-fetched_at: 2026-06-27T03:14:28.973816Z
-sha256: 3be71862849bf2b10b7d0f33c2e796ec39115a0f438fe4b52a7bf8acc7495391
+fetched_at: 2026-07-08T03:08:53.943475Z
+sha256: 5a670f73fe637e2bc344e7c53f6d3263aa15f6fdb038a35f1d466b7a70529824
 ---
 
 # Apps
@@ -15,7 +15,7 @@ sha256: 3be71862849bf2b10b7d0f33c2e796ec39115a0f438fe4b52a7bf8acc7495391
 
 Lists chat metadata with filtering capabilities for targeted
 compliance review. Results are sorted chronologically (time ascending)
-by created_at, with ties broken by id.
+by the `order_by` key, with ties broken by id.
 
 ### Query Parameters
 
@@ -49,6 +49,14 @@ by created_at, with ties broken by id.
 
   Maximum results (default: 100, max: 1000)
 
+- `order_by: optional "created_at" or "updated_at"`
+
+  Sort key for results. `created_at` (default) sorts by chat creation time. `updated_at` sorts by last update time and is only supported for org-wide queries (omit user_ids[]). For org-wide queries, any time filter must match the sort key: `created_at.*` filters require `order_by=created_at`, and `updated_at.*` filters require `order_by=updated_at`.
+
+  - `"created_at"`
+
+  - `"updated_at"`
+
 - `organization_ids: optional array of string`
 
   Filter by organization IDs (accepts `org_...` or organization UUID). Enumerate IDs via `GET /v1/compliance/organizations`.
@@ -61,19 +69,19 @@ by created_at, with ties broken by id.
 
   - `gt: optional string`
 
-    Filter chats updated after this time (RFC 3339 format). Requires user_ids[]; not supported for org-wide queries.
+    Filter chats updated after this time (RFC 3339 format)
 
   - `gte: optional string`
 
-    Filter chats updated at or after this time (RFC 3339 format). Requires user_ids[]; not supported for org-wide queries.
+    Filter chats updated at or after this time (RFC 3339 format)
 
   - `lt: optional string`
 
-    Filter chats updated before this time (RFC 3339 format). Requires user_ids[]; not supported for org-wide queries.
+    Filter chats updated before this time (RFC 3339 format)
 
   - `lte: optional string`
 
-    Filter chats updated at or before this time (RFC 3339 format). Requires user_ids[]; not supported for org-wide queries.
+    Filter chats updated at or before this time (RFC 3339 format)
 
 - `user_ids: optional array of string`
 
@@ -87,7 +95,7 @@ by created_at, with ties broken by id.
 
 - `data: array of object { id, created_at, deleted_at, 8 more }`
 
-  List of chat metadata sorted chronologically by created_at, tie break by id
+  List of chat metadata sorted chronologically by the request's `order_by` key (default `created_at`), tie break by id
 
   - `id: string`
 
@@ -143,7 +151,7 @@ by created_at, with ties broken by id.
 
 - `first_id: string`
 
-  Opaque pagination cursor for the first chat in the current result set. Pass as `before_id` on the next request to page backwards. Clients should treat this value as an opaque string and not attempt to parse or interpret its contents, as the format may change without notice.
+  Opaque pagination cursor for the first chat in the current result set. Pass as `before_id` on the next request to page backwards. Backward pagination is only supported for per-user queries (`user_ids[]` set); org-wide queries do not accept `before_id`. Clients should treat this value as an opaque string and not attempt to parse or interpret its contents, as the format may change without notice.
 
 - `has_more: boolean`
 
@@ -441,7 +449,7 @@ Retrieves message history and file metadata for a specific chat.
 
       - `truncated: boolean`
 
-        True when `text` was shortened by the server's fixed per-string bound (1 MiB) on the remote-sessions messages endpoint. Always false on chat text blocks.
+        True when `text` was shortened by the server's fixed per-string bound (1 MiB). Always false on chat text blocks.
 
       - `type: "text"`
 
@@ -473,7 +481,7 @@ Retrieves message history and file metadata for a specific chat.
 
       - `truncated: boolean`
 
-        True when `input` was shortened. Pass tool_use_input_max_chars=-1 to disable the limit
+        True when `input` was shortened. Pass the endpoint's tool-use input max parameter as -1 to request full content, subject to any server-side maximum the endpoint enforces.
 
       - `type: "tool_use"`
 
@@ -517,7 +525,7 @@ Retrieves message history and file metadata for a specific chat.
 
       - `truncated: boolean`
 
-        True when one or more text items in `content` were shortened. Pass tool_result_max_chars=-1 to retrieve full content.
+        True when one or more text items in `content` were shortened. Pass the endpoint's tool-result max parameter as -1 to request full content, subject to any server-side maximum the endpoint enforces.
 
       - `type: "tool_result"`
 
@@ -765,7 +773,7 @@ curl https://api.anthropic.com/v1/compliance/apps/chats/$CLAUDE_CHAT_ID/messages
 
       - `truncated: boolean`
 
-        True when `text` was shortened by the server's fixed per-string bound (1 MiB) on the remote-sessions messages endpoint. Always false on chat text blocks.
+        True when `text` was shortened by the server's fixed per-string bound (1 MiB). Always false on chat text blocks.
 
       - `type: "text"`
 
@@ -797,7 +805,7 @@ curl https://api.anthropic.com/v1/compliance/apps/chats/$CLAUDE_CHAT_ID/messages
 
       - `truncated: boolean`
 
-        True when `input` was shortened. Pass tool_use_input_max_chars=-1 to disable the limit
+        True when `input` was shortened. Pass the endpoint's tool-use input max parameter as -1 to request full content, subject to any server-side maximum the endpoint enforces.
 
       - `type: "tool_use"`
 
@@ -841,7 +849,7 @@ curl https://api.anthropic.com/v1/compliance/apps/chats/$CLAUDE_CHAT_ID/messages
 
       - `truncated: boolean`
 
-        True when one or more text items in `content` were shortened. Pass tool_result_max_chars=-1 to retrieve full content.
+        True when one or more text items in `content` were shortened. Pass the endpoint's tool-result max parameter as -1 to request full content, subject to any server-side maximum the endpoint enforces.
 
       - `type: "tool_result"`
 

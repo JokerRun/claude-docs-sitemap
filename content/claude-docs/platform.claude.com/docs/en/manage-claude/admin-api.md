@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/admin-api
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: f6f9ec42ebb8e341dd40cbed7175788c28061ebab06740e96c3338a10b9f9883
+fetched_at: 2026-07-08T03:08:53.943475Z
+sha256: dd5db9d4cfcb02bf58652b5a23a607950295f30a87d0bcc7a996bce50db7d91b
 ---
 
 # Admin API
@@ -250,7 +250,7 @@ Read the rate limits configured for your organization and its workspaces with th
 
 ## Compliance API
 
-Retrieve audit and activity data for your organization with the [Compliance API](/docs/en/manage-claude/compliance-api). Admin API keys can read the Activity Feed only; for full access, see [Get access to the Compliance API](/docs/en/manage-claude/compliance-api-access).
+Retrieve audit and activity data for your organization with the [Compliance API](/docs/en/manage-claude/compliance-api). Admin API keys can read the Activity Feed only; for full access, see [Set up the Compliance API](/docs/en/manage-claude/compliance-api-access).
 
 ## Best practices
 

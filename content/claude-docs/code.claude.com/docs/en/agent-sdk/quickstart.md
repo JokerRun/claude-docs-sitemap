@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/quickstart
-fetched_at: 2026-07-04T03:09:59.852291Z
-sha256: 50ed4b6023e858b71b9c0a2f3ec3d479a928769bf6a397c3f14f72da688bf8e6
+fetched_at: 2026-07-08T03:08:53.943475Z
+sha256: 7495996634d626c5e0e70a1184b65c3f973fc6af9467e86cee4ef166812f0ba2
 ---
 
 > ## Documentation Index
@@ -358,14 +358,14 @@ With `Bash` enabled, try: `"Write unit tests for utils.py, run them, and fix any
 
 **Permission modes** control how much human oversight you want:
 
-| Mode                     | Behavior                                                                                                                            | Use case                                  |
-| ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
-| `acceptEdits`            | Auto-approves file edits and common filesystem commands, asks for other actions                                                     | Trusted development workflows             |
-| `plan`                   | Runs read-only tools; file edits are never auto-approved and reach your `canUseTool` callback                                       | Scoping a task before approving execution |
-| `dontAsk`                | Denies anything not in `allowedTools`                                                                                               | Locked-down headless agents               |
-| `auto` (TypeScript only) | A model classifier approves or denies each tool call                                                                                | Autonomous agents with safety guardrails  |
-| `bypassPermissions`      | Runs every tool without prompting, unless an explicit [`ask` rule](/en/agent-sdk/permissions#how-permissions-are-evaluated) matches | Sandboxed CI, fully trusted environments  |
-| `default`                | Requires a `canUseTool` callback to handle approval                                                                                 | Custom approval flows                     |
+| Mode                | Behavior                                                                                                                            | Use case                                  |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
+| `acceptEdits`       | Auto-approves file edits and common filesystem commands, asks for other actions                                                     | Trusted development workflows             |
+| `plan`              | Runs read-only tools; file edits are never auto-approved and reach your `canUseTool` callback                                       | Scoping a task before approving execution |
+| `dontAsk`           | Denies anything not in `allowedTools`                                                                                               | Locked-down headless agents               |
+| `auto`              | A model classifier approves or denies each tool call                                                                                | Autonomous agents with safety guardrails  |
+| `bypassPermissions` | Runs every tool without prompting, unless an explicit [`ask` rule](/en/agent-sdk/permissions#how-permissions-are-evaluated) matches | Sandboxed CI, fully trusted environments  |
+| `default`           | Requires a `canUseTool` callback to handle approval                                                                                 | Custom approval flows                     |
 
 The example above uses `acceptEdits` mode, which auto-approves file operations so the agent can run without interactive prompts. If you want to prompt users for approval, use `default` mode and provide a [`canUseTool` callback](/en/agent-sdk/user-input) that collects user input. For more control, see [Permissions](/en/agent-sdk/permissions).
 

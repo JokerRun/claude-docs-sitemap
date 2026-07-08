@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/chats/messages
-fetched_at: 2026-06-27T03:14:28.973816Z
-sha256: 0b36128876e1098b2f7b735b8eb7b49b9194ecba2a782c3ad1d10afa860d3381
+fetched_at: 2026-07-08T03:08:53.943475Z
+sha256: 36796299681b121a5367b76f954c570cde15e596e0897ffa65e6fca09eef1c0a
 ---
 
 # Messages
@@ -137,7 +137,7 @@ Retrieves message history and file metadata for a specific chat.
 
       - `truncated: boolean`
 
-        True when `text` was shortened by the server's fixed per-string bound (1 MiB) on the remote-sessions messages endpoint. Always false on chat text blocks.
+        True when `text` was shortened by the server's fixed per-string bound (1 MiB). Always false on chat text blocks.
 
       - `type: "text"`
 
@@ -169,7 +169,7 @@ Retrieves message history and file metadata for a specific chat.
 
       - `truncated: boolean`
 
-        True when `input` was shortened. Pass tool_use_input_max_chars=-1 to disable the limit
+        True when `input` was shortened. Pass the endpoint's tool-use input max parameter as -1 to request full content, subject to any server-side maximum the endpoint enforces.
 
       - `type: "tool_use"`
 
@@ -213,7 +213,7 @@ Retrieves message history and file metadata for a specific chat.
 
       - `truncated: boolean`
 
-        True when one or more text items in `content` were shortened. Pass tool_result_max_chars=-1 to retrieve full content.
+        True when one or more text items in `content` were shortened. Pass the endpoint's tool-result max parameter as -1 to request full content, subject to any server-side maximum the endpoint enforces.
 
       - `type: "tool_result"`
 
@@ -461,7 +461,7 @@ curl https://api.anthropic.com/v1/compliance/apps/chats/$CLAUDE_CHAT_ID/messages
 
       - `truncated: boolean`
 
-        True when `text` was shortened by the server's fixed per-string bound (1 MiB) on the remote-sessions messages endpoint. Always false on chat text blocks.
+        True when `text` was shortened by the server's fixed per-string bound (1 MiB). Always false on chat text blocks.
 
       - `type: "text"`
 
@@ -493,7 +493,7 @@ curl https://api.anthropic.com/v1/compliance/apps/chats/$CLAUDE_CHAT_ID/messages
 
       - `truncated: boolean`
 
-        True when `input` was shortened. Pass tool_use_input_max_chars=-1 to disable the limit
+        True when `input` was shortened. Pass the endpoint's tool-use input max parameter as -1 to request full content, subject to any server-side maximum the endpoint enforces.
 
       - `type: "tool_use"`
 
@@ -537,7 +537,7 @@ curl https://api.anthropic.com/v1/compliance/apps/chats/$CLAUDE_CHAT_ID/messages
 
       - `truncated: boolean`
 
-        True when one or more text items in `content` were shortened. Pass tool_result_max_chars=-1 to retrieve full content.
+        True when one or more text items in `content` were shortened. Pass the endpoint's tool-result max parameter as -1 to request full content, subject to any server-side maximum the endpoint enforces.
 
       - `type: "tool_result"`
 

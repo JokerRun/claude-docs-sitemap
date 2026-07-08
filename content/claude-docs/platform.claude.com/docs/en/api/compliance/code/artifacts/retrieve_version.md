@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/code/artifacts/retrieve_version
-fetched_at: 2026-06-12T03:17:40.104094Z
-sha256: 8e1ba6dd49dd2c0484a62e6eae370c1e89499994f684a5aa088c870fa9627c4a
+fetched_at: 2026-07-08T03:08:53.943475Z
+sha256: 41689fcb4dcdbb19906ba1900d4f98daa9db6e0770b228981730b60f7b2ec080
 ---
 
 ## Download Code Artifact Version Content
 
-**get** `/v1/compliance/code/artifacts/{artifact_id}/versions/{version_id}`
+**get** `/v1/compliance/apps/code/artifacts/{artifact_id}/versions/{version_id}`
 
 Streams the content of one version of a Claude Code Artifact as the
 response body.
@@ -32,12 +32,6 @@ only for identity-stored content; validate against it when present.
 
   Opaque version identifier from the Artifact's `versions` list
 
-### Query Parameters
-
-- `organization_uuid: optional string`
-
-  The Artifact's owning organization UUID, from the list response. Strongly recommended — without it the route scans across child organizations and, for parents with many children, returns 400 rather than scanning further.
-
 ### Header Parameters
 
 - `"x-api-key": optional string`
@@ -45,6 +39,6 @@ only for identity-stored content; validate against it when present.
 ### Example
 
 ```http
-curl https://api.anthropic.com/v1/compliance/code/artifacts/$ARTIFACT_ID/versions/$VERSION_ID \
+curl https://api.anthropic.com/v1/compliance/apps/code/artifacts/$ARTIFACT_ID/versions/$VERSION_ID \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```

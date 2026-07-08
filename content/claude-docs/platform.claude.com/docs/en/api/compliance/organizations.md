@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/organizations
-fetched_at: 2026-06-27T03:14:28.973816Z
-sha256: af6225cc0557a0073d6993304281415da3eef4a9bdfb8404073468555e4f380a
+fetched_at: 2026-07-08T03:08:53.943475Z
+sha256: fa1a18c0225736649b5bb399ffac8435e65e3c65cfb4dcf3be22891fa96ecfb6
 ---
 
 # Organizations
@@ -583,7 +583,7 @@ unknown organizations and organizations outside the hierarchy return 404.
 
 ### Returns
 
-- `api_keys: array of object { id, created_at, created_by_id, 4 more }`
+- `api_keys: array of object { id, created_at, created_by_id, 5 more }`
 
   Compliance API keys configured for the organization hierarchy, ordered by creation time ascending. Key secret values are never included.
 
@@ -611,19 +611,23 @@ unknown organizations and organizations outside the hierarchy return 404.
 
     The permission scopes granted to the key.
 
+  - `expires_at: optional string`
+
+    When the key will stop authenticating, or null when the key does not expire.
+
   - `type: optional "compliance_api_key"`
 
     - `"compliance_api_key"`
 
 - `organization_id: string`
 
-- `settings: array of object { name, value, type }  or object { name, value, type }  or object { name, value, type }  or 2 more`
+- `settings: array of object { name, value, type }  or object { name, value, type }  or object { name, value, type }  or 3 more`
 
   - `Boolean object { name, value, type }`
 
     A setting whose enforced value is a single true/false flag.
 
-    - `name: "ai_powered_artifacts_enabled" or "api_workbench_feedback_collection_enabled" or "artifact_connectors_enabled" or 31 more`
+    - `name: "ai_powered_artifacts_enabled" or "api_workbench_feedback_collection_enabled" or "artifact_connectors_enabled" or 43 more`
 
       - `"ai_powered_artifacts_enabled"`
 
@@ -633,13 +637,23 @@ unknown organizations and organizations outside the hierarchy return 404.
 
       - `"ask_your_org_enabled"`
 
+      - `"chat_enabled"`
+
+      - `"claude_ai_chat_sharing_enabled"`
+
       - `"claude_ai_feedback_collection_enabled"`
+
+      - `"claude_ai_integration_sharing_enabled"`
 
       - `"claude_code_desktop_auto_permissions_enabled"`
 
       - `"claude_code_desktop_bypass_permissions_enabled"`
 
+      - `"claude_code_desktop_enabled"`
+
       - `"claude_code_fast_mode_enabled"`
+
+      - `"claude_code_metrics_logging_enabled"`
 
       - `"claude_code_remote_control_enabled"`
 
@@ -647,7 +661,15 @@ unknown organizations and organizations outside the hierarchy return 404.
 
       - `"claude_code_routines_enabled"`
 
+      - `"claude_code_security_enabled"`
+
       - `"claude_code_trusted_devices_required"`
+
+      - `"claude_code_web_enabled"`
+
+      - `"claude_code_workflows_enabled"`
+
+      - `"claude_design_enabled"`
 
       - `"claude_in_slack_enabled"`
 
@@ -667,9 +689,13 @@ unknown organizations and organizations outside the hierarchy return 404.
 
       - `"hipaa_compliance_enabled"`
 
+      - `"inline_visualizations_enabled"`
+
       - `"ip_allowlist_enabled"`
 
       - `"location_metadata_enabled"`
+
+      - `"member_usage_dashboard_visible"`
 
       - `"memory_enabled"`
 
@@ -693,6 +719,8 @@ unknown organizations and organizations outside the hierarchy return 404.
 
       - `"web_search_enabled"`
 
+      - `"work_across_apps_enabled"`
+
     - `value: boolean`
 
     - `type: optional "boolean"`
@@ -714,13 +742,32 @@ unknown organizations and organizations outside the hierarchy return 404.
 
       - `"integer"`
 
+  - `String object { name, value, type }`
+
+    A setting whose enforced value is a single string; null means no value
+    is configured.
+
+    - `name: "claude_code_default_worker_environment_id" or "claude_code_default_worker_pool_id"`
+
+      - `"claude_code_default_worker_environment_id"`
+
+      - `"claude_code_default_worker_pool_id"`
+
+    - `value: string`
+
+    - `type: optional "string"`
+
+      - `"string"`
+
   - `StringList object { name, value, type }`
 
     A setting whose enforced value is a list of strings.
 
-    - `name: "allowed_invite_domains" or "ip_allowlist_ip_ranges"`
+    - `name: "allowed_invite_domains" or "disabled_admin_request_types" or "ip_allowlist_ip_ranges"`
 
       - `"allowed_invite_domains"`
+
+      - `"disabled_admin_request_types"`
 
       - `"ip_allowlist_ip_ranges"`
 
@@ -830,6 +877,7 @@ curl https://api.anthropic.com/v1/compliance/organizations/$ORGANIZATION_ID/sett
       "scopes": [
         "string"
       ],
+      "expires_at": "2019-12-27T18:11:19.117Z",
       "type": "compliance_api_key"
     }
   ],
@@ -858,7 +906,7 @@ curl https://api.anthropic.com/v1/compliance/organizations/$ORGANIZATION_ID/sett
   cannot change — for example, one controlled by Anthropic policy or not
   available to the organization — is omitted from the list.
 
-  - `api_keys: array of object { id, created_at, created_by_id, 4 more }`
+  - `api_keys: array of object { id, created_at, created_by_id, 5 more }`
 
     Compliance API keys configured for the organization hierarchy, ordered by creation time ascending. Key secret values are never included.
 
@@ -886,19 +934,23 @@ curl https://api.anthropic.com/v1/compliance/organizations/$ORGANIZATION_ID/sett
 
       The permission scopes granted to the key.
 
+    - `expires_at: optional string`
+
+      When the key will stop authenticating, or null when the key does not expire.
+
     - `type: optional "compliance_api_key"`
 
       - `"compliance_api_key"`
 
   - `organization_id: string`
 
-  - `settings: array of object { name, value, type }  or object { name, value, type }  or object { name, value, type }  or 2 more`
+  - `settings: array of object { name, value, type }  or object { name, value, type }  or object { name, value, type }  or 3 more`
 
     - `Boolean object { name, value, type }`
 
       A setting whose enforced value is a single true/false flag.
 
-      - `name: "ai_powered_artifacts_enabled" or "api_workbench_feedback_collection_enabled" or "artifact_connectors_enabled" or 31 more`
+      - `name: "ai_powered_artifacts_enabled" or "api_workbench_feedback_collection_enabled" or "artifact_connectors_enabled" or 43 more`
 
         - `"ai_powered_artifacts_enabled"`
 
@@ -908,13 +960,23 @@ curl https://api.anthropic.com/v1/compliance/organizations/$ORGANIZATION_ID/sett
 
         - `"ask_your_org_enabled"`
 
+        - `"chat_enabled"`
+
+        - `"claude_ai_chat_sharing_enabled"`
+
         - `"claude_ai_feedback_collection_enabled"`
+
+        - `"claude_ai_integration_sharing_enabled"`
 
         - `"claude_code_desktop_auto_permissions_enabled"`
 
         - `"claude_code_desktop_bypass_permissions_enabled"`
 
+        - `"claude_code_desktop_enabled"`
+
         - `"claude_code_fast_mode_enabled"`
+
+        - `"claude_code_metrics_logging_enabled"`
 
         - `"claude_code_remote_control_enabled"`
 
@@ -922,7 +984,15 @@ curl https://api.anthropic.com/v1/compliance/organizations/$ORGANIZATION_ID/sett
 
         - `"claude_code_routines_enabled"`
 
+        - `"claude_code_security_enabled"`
+
         - `"claude_code_trusted_devices_required"`
+
+        - `"claude_code_web_enabled"`
+
+        - `"claude_code_workflows_enabled"`
+
+        - `"claude_design_enabled"`
 
         - `"claude_in_slack_enabled"`
 
@@ -942,9 +1012,13 @@ curl https://api.anthropic.com/v1/compliance/organizations/$ORGANIZATION_ID/sett
 
         - `"hipaa_compliance_enabled"`
 
+        - `"inline_visualizations_enabled"`
+
         - `"ip_allowlist_enabled"`
 
         - `"location_metadata_enabled"`
+
+        - `"member_usage_dashboard_visible"`
 
         - `"memory_enabled"`
 
@@ -968,6 +1042,8 @@ curl https://api.anthropic.com/v1/compliance/organizations/$ORGANIZATION_ID/sett
 
         - `"web_search_enabled"`
 
+        - `"work_across_apps_enabled"`
+
       - `value: boolean`
 
       - `type: optional "boolean"`
@@ -989,13 +1065,32 @@ curl https://api.anthropic.com/v1/compliance/organizations/$ORGANIZATION_ID/sett
 
         - `"integer"`
 
+    - `String object { name, value, type }`
+
+      A setting whose enforced value is a single string; null means no value
+      is configured.
+
+      - `name: "claude_code_default_worker_environment_id" or "claude_code_default_worker_pool_id"`
+
+        - `"claude_code_default_worker_environment_id"`
+
+        - `"claude_code_default_worker_pool_id"`
+
+      - `value: string`
+
+      - `type: optional "string"`
+
+        - `"string"`
+
     - `StringList object { name, value, type }`
 
       A setting whose enforced value is a list of strings.
 
-      - `name: "allowed_invite_domains" or "ip_allowlist_ip_ranges"`
+      - `name: "allowed_invite_domains" or "disabled_admin_request_types" or "ip_allowlist_ip_ranges"`
 
         - `"allowed_invite_domains"`
+
+        - `"disabled_admin_request_types"`
 
         - `"ip_allowlist_ip_ranges"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/compliance-integration-patterns
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: ffb97569b95d22e747624edd6da125b33f29917a2bd4d5a0ffc5dadacaa5324d
+fetched_at: 2026-07-08T03:08:53.943475Z
+sha256: f37d0582bb41ec23dd5bde486f1c0ee801a1f162c0b12da4dc7137839f0201f0
 ---
 
 # Design your compliance integration
@@ -12,7 +12,7 @@ Choose between polling and cursor-driven Activity Feed consumption, correlate Co
 ---
 
 <Note>
-  To enable the Compliance API, see [Get access to the Compliance API](/docs/en/manage-claude/compliance-api-access).
+  To enable the Compliance API, see [Set up the Compliance API](/docs/en/manage-claude/compliance-api-access).
 </Note>
 
 <Check>

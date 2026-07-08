@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/compliance-activity-feed
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 6af8639339eed445acb906d75fec42b8d23b9a14cb32ffa498ba8e43d75b2fd4
+fetched_at: 2026-07-08T03:08:53.943475Z
+sha256: 3d8acc4d34c0c61fde9a99c437694e00aa06a6b1411e13cf6c7a3b77d904a2cd
 ---
 
 # Query the Activity Feed
@@ -12,13 +12,13 @@ Retrieve, filter, and paginate your organization's Compliance API Activity Feed.
 ---
 
 <Note>
-  To enable the Compliance API, see [Get access to the Compliance API](/docs/en/manage-claude/compliance-api-access).
+  To enable the Compliance API, see [Set up the Compliance API](/docs/en/manage-claude/compliance-api-access).
 </Note>
 
 <Check>
   **Required scope:** `read:compliance_activities` on the Compliance Access Key or Admin API key.
 
-  Both Compliance Access Keys (`sk-ant-api01-...`) carrying this scope and Admin API keys (`sk-ant-admin01-...`) can call the Activity Feed. See [Get access to the Compliance API](/docs/en/manage-claude/compliance-api-access) for the conditions under which each key type carries the scope.
+  Both Compliance Access Keys (`sk-ant-api01-...`) carrying this scope and Admin API keys (`sk-ant-admin01-...`) can call the Activity Feed. See [Set up the Compliance API](/docs/en/manage-claude/compliance-api-access) for the conditions under which each key type carries the scope.
 </Check>
 
 The Activity Feed records every authentication, chat, file, project, administrative, and platform action that occurs in your organization, in reverse chronological order. Activities are queryable within 1 minute of occurring and are retained for 6 years.

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/deploy-compose
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: e98e0bda792636f73980fdb8d419c7d44a337684185e92dccca4c5c0887770de
+fetched_at: 2026-07-08T03:08:53.943475Z
+sha256: db0772e180af20ec316e0534171272a3507bb681e8d1407562af4fe0f823c69e
 ---
 
 # Deploy MCP tunnels with Docker Compose
@@ -87,7 +87,7 @@ This guide provides one reference approach using Docker Compose. You are respons
         cat > docker-compose.yaml <<'EOF'
         services:
           setup:
-            image: us-docker.pkg.dev/anthropic-public-registry/images/mcp-proxy@sha256:dab8c3f6ac44c15d91b1580af23a7da6e579865d5852e9ad31e35b6940daf436
+            image: us-docker.pkg.dev/anthropic-public-registry/images/mcp-proxy@sha256:9d4c80593b559fc3ca3814866418744fa94858b02a4d4a4cc52d423e732ccc81
             entrypoint: ["/setup"]
             command:
               - init
@@ -131,7 +131,7 @@ This guide provides one reference approach using Docker Compose. You are respons
                 max-file: "3"
 
           mcp-proxy:
-            image: us-docker.pkg.dev/anthropic-public-registry/images/mcp-proxy@sha256:dab8c3f6ac44c15d91b1580af23a7da6e579865d5852e9ad31e35b6940daf436
+            image: us-docker.pkg.dev/anthropic-public-registry/images/mcp-proxy@sha256:9d4c80593b559fc3ca3814866418744fa94858b02a4d4a4cc52d423e732ccc81
             volumes:
               - ./config/mcp-proxy.yaml:/etc/mcp-gateway/config.yaml:ro
               - ./data:/data:ro
@@ -346,7 +346,7 @@ This guide provides one reference approach using Docker Compose. You are respons
                 max-file: "3"
 
           mcp-proxy:
-            image: us-docker.pkg.dev/anthropic-public-registry/images/mcp-proxy@sha256:dab8c3f6ac44c15d91b1580af23a7da6e579865d5852e9ad31e35b6940daf436
+            image: us-docker.pkg.dev/anthropic-public-registry/images/mcp-proxy@sha256:9d4c80593b559fc3ca3814866418744fa94858b02a4d4a4cc52d423e732ccc81
             volumes:
               - ./config/mcp-proxy.yaml:/etc/mcp-gateway/config.yaml:ro
               - ./data:/data:ro

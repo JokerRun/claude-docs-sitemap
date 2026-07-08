@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/deploy-helm
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 12cd8f7b34a60c503de1183c890b07c76a74cfd793f0cd5eadfe689cac513f22
+fetched_at: 2026-07-08T03:08:53.943475Z
+sha256: 4ef634bad108414efb55fe35d0002031301241cce2fd6e1744b3da67fc118d41
 ---
 
 # Deploy MCP tunnels with Helm
@@ -131,7 +131,7 @@ The Install steps that follow note where to add the corresponding route.
         ```bash
         helm show values \
           oci://us-docker.pkg.dev/anthropic-public-registry/charts/mcp-tunnel \
-          --version 2.0.0 > values.yaml
+          --version 2.0.1 > values.yaml
         ```
       </Step>
 
@@ -175,7 +175,7 @@ The Install steps that follow note where to add the corresponding route.
         ```bash
         helm template mcp-tunnel \
           oci://us-docker.pkg.dev/anthropic-public-registry/charts/mcp-tunnel \
-          --version 2.0.0 \
+          --version 2.0.1 \
           -n mcp-tunnel \
           -f values.yaml > rendered.yaml
         ```
@@ -185,7 +185,7 @@ The Install steps that follow note where to add the corresponding route.
         ```bash
         helm install mcp-tunnel \
           oci://us-docker.pkg.dev/anthropic-public-registry/charts/mcp-tunnel \
-          --version 2.0.0 \
+          --version 2.0.1 \
           --namespace mcp-tunnel --create-namespace \
           -f values.yaml
         ```
@@ -276,7 +276,7 @@ The Install steps that follow note where to add the corresponding route.
         ```bash
         helm show values \
           oci://us-docker.pkg.dev/anthropic-public-registry/charts/mcp-tunnel \
-          --version 2.0.0 > values.yaml
+          --version 2.0.1 > values.yaml
         ```
       </Step>
 
@@ -314,7 +314,7 @@ The Install steps that follow note where to add the corresponding route.
         ```bash
         helm template mcp-tunnel \
           oci://us-docker.pkg.dev/anthropic-public-registry/charts/mcp-tunnel \
-          --version 2.0.0 \
+          --version 2.0.1 \
           -n mcp-tunnel \
           -f values.yaml > rendered.yaml
         ```
@@ -324,7 +324,7 @@ The Install steps that follow note where to add the corresponding route.
         ```bash
         helm install mcp-tunnel \
           oci://us-docker.pkg.dev/anthropic-public-registry/charts/mcp-tunnel \
-          --version 2.0.0 \
+          --version 2.0.1 \
           --namespace mcp-tunnel --create-namespace \
           -f values.yaml
         ```
@@ -368,7 +368,7 @@ For routine changes such as routes, replica count, or NetworkPolicy:
 ```bash
 helm upgrade mcp-tunnel \
   oci://us-docker.pkg.dev/anthropic-public-registry/charts/mcp-tunnel \
-  --version 2.0.0 \
+  --version 2.0.1 \
   -n mcp-tunnel \
   -f values.yaml
 ```
@@ -384,7 +384,7 @@ With programmatic access, increment `tunnel.tokenVersion` in `values.yaml` and u
 ```bash
 helm upgrade mcp-tunnel \
   oci://us-docker.pkg.dev/anthropic-public-registry/charts/mcp-tunnel \
-  --version 2.0.0 \
+  --version 2.0.1 \
   -n mcp-tunnel \
   -f values.yaml \
   --set setup.force=true

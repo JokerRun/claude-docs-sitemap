@@ -1,24 +1,23 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/code/artifacts/list
-fetched_at: 2026-06-27T03:14:28.973816Z
-sha256: 63caf646fc688d353c249b11c9665cb39adeaaaedb211ffdee9fda0c4a27d4a9
+fetched_at: 2026-07-08T03:08:53.943475Z
+sha256: c02b328da949f5702e0ab4175b56a6c907c1c161dd55c317839041be6380423d
 ---
 
 ## List Code Artifacts
 
-**get** `/v1/compliance/code/artifacts`
+**get** `/v1/compliance/apps/code/artifacts`
 
 List Claude Code Artifacts owned by organizations under the parent
 organization.
 
-Results are sorted by Artifact identifier within each batch of child
-organizations. Pages may be short or empty while `next_page` is still
-set — continue until `next_page` is absent. Artifacts are sorted by
-identifier (not creation time): an
-Artifact published during an export may land before the cursor and be
-omitted, so for a point-in-time-complete export re-enumerate after
-publishing quiesces.
+Results are sorted by Artifact identifier. Pages may be short or empty
+while `next_page` is still set — continue until `next_page` is absent.
+Artifacts are sorted by identifier (not creation time): an Artifact
+published during an export may land before the cursor and be omitted, so
+for a point-in-time-complete export re-enumerate after publishing
+quiesces.
 
 Artifacts owned by a since-deleted child organization are not
 returned.
@@ -65,17 +64,13 @@ returned.
 
 ### Returns
 
-- `data: array of object { id, organization_id, organization_uuid, 6 more }`
+- `data: array of object { id, organization_uuid, owner_user_id, 5 more }`
 
   Page of Artifacts
 
   - `id: string`
 
     Artifact identifier (tagged ID)
-
-  - `organization_id: string`
-
-    Organization identifier (tagged ID)
 
   - `organization_uuid: string`
 
@@ -121,7 +116,7 @@ returned.
 
   - `versions: array of object { id, created_at, name }`
 
-    Up to roughly 20 most-recently-published versions of this Artifact (older versions are not retained). Metadata only — use `GET /v1/compliance/code/artifacts/{artifact_id}/versions/{version_id}` to download a version's content.
+    Up to roughly 20 most-recently-published versions of this Artifact (older versions are not retained). Metadata only — use `GET /v1/compliance/apps/code/artifacts/{artifact_id}/versions/{version_id}` to download a version's content.
 
     - `id: string`
 
@@ -137,7 +132,7 @@ returned.
 
 - `has_more: boolean`
 
-  Whether `next_page` is set. When enumeration spans multiple organization batches this may be true for a page whose next page is empty — continue until `next_page` is absent.
+  Whether `next_page` is set. May be true for a page whose next page is empty — continue until `next_page` is absent.
 
 - `next_page: string`
 
@@ -146,7 +141,7 @@ returned.
 ### Example
 
 ```http
-curl https://api.anthropic.com/v1/compliance/code/artifacts \
+curl https://api.anthropic.com/v1/compliance/apps/code/artifacts \
     -H "Authorization: Bearer $ANTHROPIC_COMPLIANCE_API_KEY"
 ```
 
@@ -157,7 +152,6 @@ curl https://api.anthropic.com/v1/compliance/code/artifacts \
   "data": [
     {
       "id": "cart_01Tu9VwXyZaBcDeFgHiJkLmN",
-      "organization_id": "org_015eofRkKpogX7uDKUyvBTph",
       "organization_uuid": "a1b2c3d4-e5f6-4789-a012-3456789abcde",
       "owner_user_id": "user_01WCz1FkmYMm4gnmykNKUu3Q",
       "published_version_id": "1741803761-9f3a",

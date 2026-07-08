@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-combinations
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: d60dd5d57dd4aa9d880c2d5e9153897f0c0d16951e2562ab4c2ae95aa4f0ced7
+fetched_at: 2026-07-08T03:08:53.943475Z
+sha256: 422885ec61b36429d7e442b3fcf34a18a511c30b9d978c62e10a66eac4880bee
 ---
 
 # Tool combinations
@@ -23,7 +23,7 @@ Search finds sources; code execution analyzes and synthesizes. Claude searches f
 {
   "tools": [
     { "type": "web_search_20260209", "name": "web_search" },
-    { "type": "code_execution_20250825", "name": "code_execution" }
+    { "type": "code_execution_20260521", "name": "code_execution" }
   ]
 }
 ```

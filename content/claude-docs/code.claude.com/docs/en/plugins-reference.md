@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins-reference
-fetched_at: 2026-07-03T03:11:00.926352Z
-sha256: 931b787ea4627bbaa9bd6a5ff9792683e25b2085087ca8047822dc8d80df96f3
+fetched_at: 2026-07-08T03:08:53.943475Z
+sha256: 601640ac3e31acd6f3e100bdc71418e73a1cd1c8d9de467090e87d4ca302049b
 ---
 
 > ## Documentation Index
@@ -157,6 +157,8 @@ Plugin hooks respond to the same lifecycle events as [user-defined hooks](/en/ho
 * `mcp_tool`: call a tool on a configured [MCP server](/en/mcp)
 * `prompt`: evaluate a prompt with an LLM (uses `$ARGUMENTS` placeholder for context)
 * `agent`: run an agentic verifier with tools for complex verification tasks
+
+Hooks that target the plugin's own [bundled MCP server](#mcp-servers) must use its scoped names. Tool matchers and `if` fields take the scoped tool name `mcp__plugin_<plugin-name>_<server-name>__<tool>`, and an `mcp_tool` hook's `server` field takes `plugin:<plugin-name>:<server-name>`. A matcher written against the bare server key never fires. See [Match MCP tools](/en/hooks#match-mcp-tools) and [Plugin-provided MCP servers](/en/mcp#plugin-provided-mcp-servers).
 
 ### MCP servers
 
