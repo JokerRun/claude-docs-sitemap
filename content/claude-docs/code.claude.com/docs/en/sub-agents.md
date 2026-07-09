@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sub-agents
-fetched_at: 2026-07-04T03:09:59.852291Z
-sha256: 504eb9c31bfa496c04b19577cd3503182ffc37572813da4326c7d59af56e49d4
+fetched_at: 2026-07-09T03:11:03.913066Z
+sha256: a7419da436ee6b8e78fdc6e282cb8f4debe440a07b4f634dce67b35b35da5fa9
 ---
 
 > ## Documentation Index
@@ -266,6 +266,8 @@ specific, actionable feedback on quality, security, and best practices.
 The frontmatter defines the subagent's metadata and configuration. The body becomes the system prompt that guides the subagent's behavior. Subagents receive only this system prompt plus basic environment details like the working directory, not the full Claude Code system prompt.
 
 A subagent starts in the main conversation's current working directory. Within a subagent, `cd` commands don't persist between Bash or PowerShell tool calls and don't affect the main conversation's working directory. To give the subagent an isolated copy of the repository instead, set [`isolation: worktree`](#supported-frontmatter-fields).
+
+{/* min-version: 2.1.203 */}A subagent with `isolation: worktree` runs its Bash and PowerShell commands inside its worktree. A command whose working directory resolves to your main checkout instead, for example because the worktree directory was removed while the subagent was running, fails with an error. Before v2.1.203, such a command could run in the main checkout.
 
 #### Supported frontmatter fields
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/files
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 45a3fad0486f7e5d9af0d70c8ce9f71b0966d4845a0f11a663b5a7a70b88d3f4
+fetched_at: 2026-07-09T03:11:03.913066Z
+sha256: 1fa03beb722fcb419857dd7075ce0040a84f6fb56ff43244f057c2cb15f19861
 ---
 
 # Adding files
@@ -554,8 +554,7 @@ Use the [Files API](/docs/en/build-with-claude/files) to list files scoped to a 
   ```bash CLI
   # List files associated with a session
   ant beta:files list --scope-id sesn_abc123 \
-    --beta files-api-2025-04-14 \
-    --beta managed-agents-2026-04-01
+    --beta files-api-2025-04-14,managed-agents-2026-04-01
 
   # Download a file
   ant beta:files download --file-id "$FILE_ID" --output output.txt

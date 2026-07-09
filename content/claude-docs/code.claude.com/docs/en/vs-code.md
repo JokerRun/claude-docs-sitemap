@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/vs-code
-fetched_at: 2026-07-04T03:09:59.852291Z
-sha256: 49b5aee4819c547d15aa1298f86838b2bdd8658de817306a3b302428aa7fa2f6
+fetched_at: 2026-07-09T03:11:03.913066Z
+sha256: 989b31723f561d3de5ecaeede5dc78ca2444d3ea5ca3cb3abab8a3441a6fa133
 ---
 
 > ## Documentation Index
@@ -106,6 +106,7 @@ The prompt box supports several features:
   * **Plan mode**: Claude describes what it will do and waits for approval before making changes. VS Code automatically opens the plan as a full markdown document where you can add inline comments to give feedback before Claude begins.
   * **Edit automatically**: Claude makes edits without asking.
 * **Command menu**: click `/` or type `/` to open the command menu. Options include attaching files, switching models, toggling extended thinking, viewing plan usage (`/usage`), and starting a [Remote Control](/en/remote-control) session (`/remote-control`). The Customize section provides access to MCP servers, hooks, memory, permissions, and plugins. Items with a terminal icon open in the integrated terminal.
+  * {/* min-version: 2.1.203 */}The Settings section includes **Enable Remote Control for all sessions**, which sets [`remoteControlAtStartup`](/en/settings#available-settings) so [every new interactive session connects to Remote Control automatically](/en/remote-control#enable-remote-control-for-all-sessions). Requires Claude Code v2.1.203 or later.
 * **Context indicator**: the prompt box shows how much of Claude's context window you're using. Claude automatically compacts when needed, or you can run `/compact` manually.
 * **Extended thinking**: lets Claude spend more time reasoning through complex problems. Toggle it on via the command menu (`/`). Claude's reasoning appears in the conversation as collapsed blocks: click a block to read it, or press `Ctrl+O` to expand or collapse every thinking block in the session. See [Extended thinking](/en/model-config#extended-thinking) for details.
 * **Multi-line input**: press `Shift+Enter` to add a new line without sending. This also works in the "Other" free-text input of question dialogs.
