@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws
-fetched_at: 2026-07-08T03:08:53.943475Z
-sha256: ced86790a75f061aa814c60c18264f4c30af4f02021c2664cf40259a2b5b0ce4
+fetched_at: 2026-07-10T03:11:05.177659Z
+sha256: 07d0d131de9f342c17b87b389487d348ce5b7403d501546c805dc088cb992fce
 ---
 
 # Claude Platform on AWS
@@ -933,7 +933,7 @@ The migration delta depends on which Bedrock integration you're coming from. The
 | ----------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
 | **Base URL**            | `bedrock-mantle.{region}.api.aws`                                                                       | `bedrock-runtime.{region}.amazonaws.com`                                                                | `aws-external-anthropic.{region}.api.aws`                                                     |
 | **API format**          | Messages API at `/anthropic/v1/messages`                                                                | Bedrock Converse / InvokeModel                                                                          | Claude API (`/v1/{endpoint}`)                                                                 |
-| **Model IDs**           | `anthropic.claude-haiku-4-5`                                                                            | `anthropic.claude-haiku-4-5-20251001-v1:0` (with optional `us.`/`global.` prefix)                       | `claude-haiku-4-5`                                                                            |
+| **Model IDs**           | `anthropic.claude-haiku-4-5`                                                                            | `anthropic.claude-haiku-4-5-20251001-v1:0` (with a `us.` or `global.` inference profile prefix)         | `claude-haiku-4-5`                                                                            |
 | **SDK client**          | `AnthropicBedrockMantle`                                                                                | `AnthropicBedrock` / Bedrock SDK                                                                        | Platform-specific client (see [Install an SDK](#install-an-sdk)), in beta                     |
 | **SDK package**         | `anthropic[bedrock]`, `@anthropic-ai/bedrock-sdk`, and others                                           | `anthropic[bedrock]`, `@anthropic-ai/bedrock-sdk`, or AWS SDK                                           | `anthropic[aws]`, `@anthropic-ai/aws-sdk`, and others (see [Install an SDK](#install-an-sdk)) |
 | **SigV4 service name**  | `bedrock-mantle`                                                                                        | `bedrock`                                                                                               | `aws-external-anthropic`                                                                      |

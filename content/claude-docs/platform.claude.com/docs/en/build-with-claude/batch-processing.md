@@ -1,11 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/batch-processing
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 0bcfed05c4e3e1df89f44d393997581417d4171167f284ff35927e3c7eae20b7
+fetched_at: 2026-07-10T03:11:05.177659Z
+sha256: 4294851478aa851c8f25c00811b9514660fd8e42de3bcead3db6a64012f84b01
 ---
 
 # Batch processing
+
+Process large volumes of Messages requests asynchronously with the Message Batches API, cutting costs by 50% and increasing throughput.
 
 ---
 

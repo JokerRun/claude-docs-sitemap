@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/events-and-streaming
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: c60a1c849911c4f0bd7009f081ae235d0d93e9eb6047f79ac49b505bb6cade77
+fetched_at: 2026-07-10T03:11:05.177659Z
+sha256: b178f9d8a95c2387817be00b52e08cb820b01d2033cdec85ec62e02f90be4895
 ---
 
 # Session event stream
@@ -14,7 +14,7 @@ Send events, stream responses, and interrupt or redirect your session mid-execut
 Communication with Claude Managed Agents is event-based. You send user events to the agent, and receive agent and session events back to track status.
 
 <Note>
-  All Managed Agents API requests require the `managed-agents-2026-04-01` beta header. The SDK sets the beta header automatically.
+  Managed Agents API requests require the `managed-agents-2026-04-01` beta header, except memory store endpoints, which use `agent-memory-2026-07-22` instead. The SDK sets the correct beta header automatically. See [Beta headers](/docs/en/api/beta-headers#endpoint-specific-headers).
 </Note>
 
 ## Event types

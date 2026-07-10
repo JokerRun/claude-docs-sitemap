@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/admin-api-keys
-fetched_at: 2026-07-08T03:08:53.943475Z
-sha256: 552ec6805553eb50764c60f799630c78dca3feb575a9c86bbda2e4535cb5c452
+fetched_at: 2026-07-10T03:11:05.177659Z
+sha256: e30fe6a934fceff35a2747636c376d3a7a8fa87b8981a9fe1ea4b5ecc491d924
 ---
 
 # Create an Admin API key
@@ -36,7 +36,7 @@ A key created in one organization cannot be used to manage a different organizat
   </Step>
 
   <Step title="Create the key">
-    Click **Create key**, give it a name, and click **Create**. Claude Console keys do not have selectable scopes; every key carries full Admin API access.
+    Click **Create key**, give it a name, choose an [expiration](/docs/en/manage-claude/authentication#key-expiration), and click **Create**. Claude Console keys do not have selectable scopes; every key carries full Admin API access.
   </Step>
 
   <Step title="Copy and store the secret">

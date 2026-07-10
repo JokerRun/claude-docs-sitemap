@@ -25,7 +25,7 @@ Automated daily English sitemap collection from Claude documentation sources.
 |--------|--------|--------|--------|
 | code | https://code.claude.com/docs/en/admin-setup | 2026-07-04 |  |
 | code | https://code.claude.com/docs/en/advisor | 2026-07-04 |  |
-| code | https://code.claude.com/docs/en/agent-sdk/agent-loop | 2026-07-07 |  |
+| code | https://code.claude.com/docs/en/agent-sdk/agent-loop | 2026-07-09 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/claude-cod... | 2026-07-02 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/cost-tracking | 2026-07-04 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/custom-tools | 2026-07-07 |  |

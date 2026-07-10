@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/vaults
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: ea48badd00dfa4f9dd360fd5be1b02162578d828cd1d4ca2652bbb5023b366b1
+fetched_at: 2026-07-10T03:11:05.177659Z
+sha256: 2e5130d364baa0e8f028c9630f586dbc17f38008019a9cc9307903c5b72a84f9
 ---
 
 # Authenticate with vaults
@@ -16,7 +16,7 @@ Vaults and credentials are authentication primitives that let you register crede
 The vault reference is a per-session parameter, so you can manage your product at the `agent` resource granularity and your users at the `session` resource granularity.
 
 <Note>
-  All Managed Agents API requests require the `managed-agents-2026-04-01` beta header. The SDK sets the beta header automatically.
+  Managed Agents API requests require the `managed-agents-2026-04-01` beta header, except memory store endpoints, which use `agent-memory-2026-07-22` instead. The SDK sets the correct beta header automatically. See [Beta headers](/docs/en/api/beta-headers#endpoint-specific-headers).
 </Note>
 
 ## Create a vault

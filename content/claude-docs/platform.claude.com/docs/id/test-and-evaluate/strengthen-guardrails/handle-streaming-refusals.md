@@ -1,17 +1,17 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/handle-streaming-refusals
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 2b81d85a89a259b9ec71edf5487f230997ad470c2c7fef8c8d12c644d1d8f1e9
+fetched_at: 2026-07-10T03:11:05.177659Z
+sha256: fc2da31055bbc4bd16d40e31c8b47ed47dfd8d4126163242d7800e396aef1089
 ---
 
 # Penolakan streaming
 
-Deteksi dan tangani stop reason penolakan dalam respons streaming, dan coba ulang permintaan yang ditolak pada model cadangan.
+Deteksi dan tangani stop reason penolakan dalam respons streaming, dan coba ulang permintaan yang ditolak pada model fallback.
 
 ---
 
-Mulai dari model Claude 4, respons streaming dari API Claude mengembalikan **`stop_reason`: `"refusal"`** ketika pengklasifikasi streaming melakukan intervensi untuk menangani potensi pelanggaran kebijakan. Fitur keamanan ini membantu menjaga kepatuhan konten selama streaming real-time.
+Mulai dari model Claude 4, respons streaming dari API Claude mengembalikan **`stop_reason`: `"refusal"`** ketika classifier streaming melakukan intervensi untuk menangani potensi pelanggaran kebijakan. Fitur keamanan ini membantu menjaga kepatuhan konten selama streaming real-time.
 
 <Tip>
   Halaman ini membahas bagaimana penolakan muncul dalam respons streaming. Untuk setiap nilai `stop_reason` dan cara menanganinya, lihat [Stop reason dan fallback](/docs/id/build-with-claude/handling-stop-reasons). Untuk mencoba ulang permintaan yang ditolak pada model Claude lain, lihat [Penolakan dan fallback](/docs/id/build-with-claude/refusals-and-fallback).
@@ -19,7 +19,7 @@ Mulai dari model Claude 4, respons streaming dari API Claude mengembalikan **`st
 
 ## Format respons API
 
-Ketika pengklasifikasi streaming mendeteksi konten yang melanggar kebijakan Anthropic, API mengembalikan respons ini:
+Ketika classifier streaming mendeteksi konten yang melanggar kebijakan Anthropic, API mengembalikan respons ini:
 
 ```json
 {
@@ -30,17 +30,26 @@ Ketika pengklasifikasi streaming mendeteksi konten yang melanggar kebijakan Anth
       "text": "Hello.."
     }
   ],
-  "stop_reason": "refusal"
+  "stop_reason": "refusal",
+  "stop_details": {
+    "type": "refusal",
+    "category": "cyber",
+    "explanation": "This request was declined because it could enable cyber harm."
+  }
 }
 ```
 
-<Warning>
-  Tidak ada pesan penolakan tambahan yang disertakan. Anda harus menangani respons tersebut dan menyediakan pesan yang sesuai untuk ditampilkan kepada pengguna.
-</Warning>
+Dalam event stream, `stop_details` tiba pada event `message_delta` bersama dengan `stop_reason`.
+
+<Note>
+  Respons `refusal` dari classifier streaming dapat menyertakan objek `stop_details` dengan `category` dan `explanation` yang dapat dibaca manusia yang dapat Anda tampilkan kepada pengguna. Lihat [Penolakan dan fallback](/docs/id/build-with-claude/refusals-and-fallback#refusal-response) untuk bentuk respons lengkap dan kategori yang tersedia.
+
+  `stop_details` (dan `category` / `explanation`-nya) dapat bernilai `null`, misalnya ketika penolakan tidak terpetakan ke kategori bernama mana pun, atau pada model yang lebih lama. Lakukan percabangan pada `stop_reason` alih-alih mengasumsikan `stop_details` terisi, dan sediakan pesan Anda sendiri untuk pengguna ketika nilainya `null`.
+</Note>
 
 ## Reset konteks setelah penolakan
 
-Ketika Anda menerima **`stop_reason`: `refusal`**, Anda harus mereset konteks percakapan sebelum melanjutkan. Anda dapat menghapus atau menyusun ulang giliran yang memicu penolakan, atau menghapus seluruh riwayat percakapan. Mencoba melanjutkan tanpa mereset akan menghasilkan penolakan yang berkelanjutan.
+Ketika Anda menerima **`stop_reason`: `refusal`**, Anda harus mereset konteks percakapan sebelum melanjutkan. Anda dapat menghapus atau menyusun ulang giliran yang memicu penolakan, atau menghapus riwayat percakapan sepenuhnya. Mencoba melanjutkan tanpa mereset akan mengakibatkan penolakan yang berkelanjutan.
 
 <Note>
   Metrik penggunaan tetap disediakan dalam respons, bahkan ketika respons ditolak.
@@ -49,7 +58,7 @@ Ketika Anda menerima **`stop_reason`: `refusal`**, Anda harus mereset konteks pe
 </Note>
 
 <Tip>
-  Mereset konteks bukan satu-satunya cara untuk memulihkan. Anda juga dapat mencoba ulang permintaan yang ditolak pada model Claude yang berbeda, dan halaman [Penolakan dan fallback](/docs/id/build-with-claude/refusals-and-fallback) menunjukkan cara menyiapkannya dengan fallback sisi server, middleware SDK, atau percobaan ulang manual.
+  Mereset konteks bukan satu-satunya cara untuk pulih. Anda juga dapat mencoba ulang permintaan yang ditolak pada model Claude yang berbeda, dan halaman [Penolakan dan fallback](/docs/id/build-with-claude/refusals-and-fallback) menunjukkan cara mengaturnya dengan fallback sisi server, middleware SDK, atau percobaan ulang manual.
 </Tip>
 
 ## Panduan implementasi
@@ -58,7 +67,7 @@ Berikut cara mendeteksi dan menangani penolakan streaming dalam aplikasi Anda:
 
 <CodeGroup>
   ```bash cURL
-  # Lakukan streaming permintaan dan periksa penolakan
+  # Lakukan streaming permintaan dan periksa adanya penolakan
   response=$(curl -N https://api.anthropic.com/v1/messages \
     --header "anthropic-version: 2023-06-01" \
     --header "content-type: application/json" \
@@ -70,10 +79,10 @@ Berikut cara mendeteksi dan menangani penolakan streaming dalam aplikasi Anda:
       "stream": true
     }')
 
-  # Periksa penolakan dalam stream
+  # Periksa adanya penolakan dalam stream
   if echo "$response" | grep -q '"stop_reason":"refusal"'; then
     echo "Response refused - resetting conversation context"
-    # Atur ulang status percakapan Anda di sini
+    # Reset status percakapan Anda di sini
   fi
   ```
 
@@ -123,7 +132,7 @@ Berikut cara mendeteksi dan menangani penolakan streaming dalam aplikasi Anda:
     });
 
     for await (const event of stream) {
-      // Periksa penolakan di delta pesan
+      // Periksa penolakan dalam delta pesan
       if (event.type === "message_delta" && event.delta.stop_reason === "refusal") {
         resetConversation();
         break;
@@ -317,11 +326,11 @@ Berikut cara mendeteksi dan menangani penolakan streaming dalam aplikasi Anda:
 
 API saat ini menangani penolakan dengan tiga cara berbeda:
 
-| Jenis Penolakan                     | Format Respons               | Kapan Terjadi                                      |
-| ----------------------------------- | ---------------------------- | -------------------------------------------------- |
-| Penolakan pengklasifikasi streaming | **`stop_reason`: `refusal`** | Selama streaming ketika konten melanggar kebijakan |
-| Validasi input API dan hak cipta    | Kode error 400               | Ketika input gagal dalam pemeriksaan validasi      |
-| Penolakan yang dihasilkan model     | Respons teks standar         | Ketika model itu sendiri memutuskan untuk menolak  |
+| Jenis Penolakan                  | Format Respons               | Kapan Terjadi                                      |
+| -------------------------------- | ---------------------------- | -------------------------------------------------- |
+| Penolakan classifier streaming   | **`stop_reason`: `refusal`** | Selama streaming ketika konten melanggar kebijakan |
+| Validasi input API dan hak cipta | Kode error 400               | Ketika input gagal dalam pemeriksaan validasi      |
+| Penolakan yang dihasilkan model  | Respons teks standar         | Ketika model itu sendiri memutuskan untuk menolak  |
 
 <Note>
   Versi API mendatang akan memperluas pola **`stop_reason`: `refusal`** untuk menyatukan penanganan penolakan di semua jenis.
@@ -331,8 +340,8 @@ API saat ini menangani penolakan dengan tiga cara berbeda:
 
 * **Pantau penolakan:** Sertakan pemeriksaan **`stop_reason`: `refusal`** dalam penanganan error Anda
 * **Reset secara otomatis:** Implementasikan reset konteks otomatis ketika penolakan terdeteksi
-* **Beralih ke model lain:** Konfigurasikan [fallback sisi server atau middleware SDK](/docs/id/build-with-claude/refusals-and-fallback) sehingga permintaan yang ditolak dicoba ulang pada model Claude lain alih-alih menampilkan penolakan kepada pengguna
-* **Tukarkan kredit fallback pada percobaan ulang manual:** Jika Anda membangun percobaan ulang sendiri, teruskan token [kredit fallback](/docs/id/build-with-claude/fallback-credit) dari penolakan tersebut sehingga percobaan ulang tidak membayar biaya cache prompt dua kali
+* **Fallback ke model lain:** Konfigurasikan [fallback sisi server atau middleware SDK](/docs/id/build-with-claude/refusals-and-fallback) sehingga permintaan yang ditolak dicoba ulang pada model Claude lain alih-alih menampilkan penolakan kepada pengguna
+* **Tukarkan fallback credit pada percobaan ulang manual:** Jika Anda membangun percobaan ulang sendiri, teruskan token [fallback credit](/docs/id/build-with-claude/fallback-credit) dari penolakan sehingga percobaan ulang tidak membayar biaya prompt-cache dua kali
 * **Sediakan pesan kustom:** Buat pesan yang ramah pengguna untuk UX yang lebih baik ketika penolakan terjadi
 * **Lacak pola penolakan:** Pantau frekuensi penolakan untuk mengidentifikasi potensi masalah dengan prompt Anda
 
@@ -341,10 +350,10 @@ API saat ini menangani penolakan dengan tiga cara berbeda:
 Jika Anda membangun penanganan penolakan ketika fitur ini pertama kali dirilis, atau Anda menambahkannya ke integrasi yang sudah ada, periksa hal-hal berikut:
 
 * **Penolakan adalah respons, bukan error.** Penolakan tiba sebagai respons HTTP 200 yang berhasil dengan `stop_reason`: `"refusal"`, sehingga pemantauan yang hanya dibangun berdasarkan tingkat error tidak akan menampilkannya. Lacak penolakan sebagai sinyal tersendiri.
-* **Model yang lebih baru mengembalikan lebih banyak detail.** Pada Claude Fable 5, penolakan juga menyertakan objek `stop_details` yang mengidentifikasi kategori kebijakan di balik penolakan tersebut. Lihat [Penolakan dan fallback](/docs/id/build-with-claude/refusals-and-fallback#refusal-response) untuk bentuk respons lengkapnya.
-* **Coba ulang pada model yang berbeda.** Mengirim ulang permintaan yang ditolak ke model yang sama biasanya menghasilkan penolakan lagi. Alih-alih hanya mereset konteks, coba ulang pada model cadangan dengan [fallback sisi server, middleware SDK, atau percobaan ulang manual](/docs/id/build-with-claude/refusals-and-fallback), dan tukarkan [kredit fallback](/docs/id/build-with-claude/fallback-credit) ketika Anda membangun percobaan ulang sendiri.
+* **Model yang lebih baru mengembalikan detail lebih banyak.** Pada Claude Fable 5, penolakan juga menyertakan objek `stop_details` yang mengidentifikasi kategori kebijakan di balik penolakan tersebut. Lihat [Penolakan dan fallback](/docs/id/build-with-claude/refusals-and-fallback#refusal-response) untuk bentuk respons lengkap.
+* **Coba ulang pada model yang berbeda.** Mengirim ulang permintaan yang ditolak ke model yang sama biasanya menghasilkan penolakan lain. Alih-alih hanya mereset konteks, coba ulang pada model fallback dengan [fallback sisi server, middleware SDK, atau percobaan ulang manual](/docs/id/build-with-claude/refusals-and-fallback), dan tukarkan [fallback credit](/docs/id/build-with-claude/fallback-credit) ketika Anda membangun percobaan ulang sendiri.
 * **Periksa hasil batch untuk penolakan.** Permintaan yang ditolak dalam [Message Batch](/docs/id/build-with-claude/batch-processing) dikembalikan sebagai hasil yang berhasil dengan `stop_reason`: `"refusal"`, bukan sebagai hasil yang error.
-* **Pusatkan penanganan pada `stop_reason`.** API terus mengonsolidasikan penanganan penolakan di sekitar `stop_reason`: `"refusal"`, jadi lakukan percabangan berdasarkan stop reason daripada berdasarkan perilaku spesifik model.
+* **Pusatkan penanganan pada `stop_reason`.** API terus mengonsolidasikan penanganan penolakan di sekitar `stop_reason`: `"refusal"`, jadi lakukan percabangan pada stop reason alih-alih pada perilaku spesifik model.
 
 ## Langkah selanjutnya
 
@@ -357,11 +366,11 @@ Jika Anda membangun penanganan penolakan ketika fitur ini pertama kali dirilis, 
     Setiap nilai `stop_reason` dan cara menanganinya.
   </Card>
 
-  <Card title="Pesan streaming" icon="lightning" href="/docs/id/build-with-claude/streaming">
-    Stream respons dan baca `stop_reason` dari event `message_delta` saat tiba.
+  <Card title="Streaming pesan" icon="lightning" href="/docs/id/build-with-claude/streaming">
+    Lakukan streaming respons dan baca `stop_reason` dari event `message_delta` saat tiba.
   </Card>
 
   <Card title="Dukungan multibahasa" icon="text-aa" href="/docs/id/build-with-claude/multilingual-support">
-    Layani pengguna di berbagai bahasa dengan kemampuan lintas bahasa Claude.
+    Layani pengguna lintas bahasa dengan kemampuan lintas bahasa Claude.
   </Card>
 </CardGroup>

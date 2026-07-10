@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/text-editor-tool
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: a4732291ae623cf0a66b1600283d393affa8a9df41c118c29062c72ba3c8b298
+fetched_at: 2026-07-10T03:11:05.177659Z
+sha256: 7a1aab9be7c4664f0395906c502cd60bc6aa266fee5570fff4dbc9b6fe32671a
 ---
 
-# Alat editor teks
+# Alat text editor
 
 ---
 
@@ -13,27 +13,27 @@ sha256: a4732291ae623cf0a66b1600283d393affa8a9df41c118c29062c72ba3c8b298
   Fitur ini memenuhi syarat untuk [Zero Data Retention (ZDR)](/docs/id/build-with-claude/api-and-data-retention). Ketika organisasi Anda memiliki pengaturan ZDR, data yang dikirim melalui fitur ini tidak disimpan setelah respons API dikembalikan.
 </Note>
 
-Claude dapat menggunakan alat editor teks dengan skema Anthropic untuk melihat dan memodifikasi file teks, membantu Anda melakukan debug, memperbaiki, dan meningkatkan kode atau dokumen teks lainnya. Ini memungkinkan Claude untuk berinteraksi langsung dengan file Anda, memberikan bantuan langsung alih-alih hanya menyarankan perubahan.
+Claude dapat menggunakan alat text editor berskema Anthropic untuk melihat dan memodifikasi file teks, membantu Anda melakukan debug, memperbaiki, dan meningkatkan kode atau dokumen teks lainnya. Ini memungkinkan Claude untuk berinteraksi langsung dengan file Anda, memberikan bantuan langsung alih-alih hanya menyarankan perubahan.
 
 Untuk dukungan model, lihat [Referensi alat](/docs/id/agents-and-tools/tool-use/tool-reference).
 
-## Kapan menggunakan alat editor teks
+## Kapan menggunakan alat text editor
 
-Beberapa contoh kapan menggunakan alat editor teks adalah:
+Beberapa contoh kapan menggunakan alat text editor adalah:
 
-* **Debugging kode:** Minta Claude mengidentifikasi dan memperbaiki bug dalam kode Anda, mulai dari kesalahan sintaks hingga masalah logika.
-* **Refactoring kode:** Biarkan Claude meningkatkan struktur, keterbacaan, dan performa kode Anda melalui pengeditan yang ditargetkan.
+* **Debugging kode:** Minta Claude mengidentifikasi dan memperbaiki bug dalam kode Anda, dari kesalahan sintaks hingga masalah logika.
+* **Refactoring kode:** Biarkan Claude meningkatkan struktur, keterbacaan, dan kinerja kode Anda melalui pengeditan yang terarah.
 * **Pembuatan dokumentasi:** Minta Claude menambahkan docstring, komentar, atau file README ke basis kode Anda.
 * **Pembuatan pengujian:** Minta Claude membuat unit test untuk kode Anda berdasarkan pemahamannya terhadap implementasi.
 
-## Menggunakan alat editor teks
+## Menggunakan alat text editor
 
-Sediakan alat editor teks (bernama `str_replace_based_edit_tool`) kepada Claude menggunakan Messages API.
+Sediakan alat text editor (bernama `str_replace_based_edit_tool`) kepada Claude menggunakan Messages API.
 
 Anda dapat secara opsional menentukan parameter `max_characters` untuk mengontrol pemotongan saat melihat file berukuran besar.
 
 <Note>
-  `max_characters` hanya kompatibel dengan `text_editor_20250728` dan versi alat editor teks yang lebih baru.
+  `max_characters` hanya kompatibel dengan `text_editor_20250728` dan versi alat text editor yang lebih baru.
 </Note>
 
 <CodeGroup>
@@ -225,24 +225,24 @@ Anda dapat secara opsional menentukan parameter `max_characters` untuk mengontro
   ```
 </CodeGroup>
 
-Alat editor teks dapat digunakan dengan cara berikut:
+Alat text editor dapat digunakan dengan cara berikut:
 
 <Steps>
-  <Step title="Sediakan alat editor teks dan prompt pengguna kepada Claude">
-    * Sertakan alat editor teks dalam permintaan API Anda
-    * Sediakan prompt pengguna yang mungkin memerlukan pemeriksaan atau modifikasi file, seperti "Bisakah Anda memperbaiki kesalahan sintaks dalam kode saya?"
+  <Step title="Sediakan alat text editor dan prompt pengguna kepada Claude">
+    * Sertakan alat text editor dalam permintaan API Anda
+    * Berikan prompt pengguna yang mungkin memerlukan pemeriksaan atau modifikasi file, seperti "Bisakah Anda memperbaiki kesalahan sintaks dalam kode saya?"
   </Step>
 
   <Step title="Claude menggunakan alat untuk memeriksa file atau direktori">
-    * Claude menilai apa yang perlu dilihatnya dan menggunakan perintah `view` untuk memeriksa isi file atau menampilkan daftar isi direktori
+    * Claude menilai apa yang perlu dilihatnya dan menggunakan perintah `view` untuk memeriksa isi file atau mendaftar isi direktori
     * Respons API akan berisi blok konten `tool_use` dengan perintah `view`
   </Step>
 
   <Step title="Jalankan perintah view dan kembalikan hasilnya">
-    * Ekstrak path file atau direktori dari permintaan penggunaan alat Claude
-    * Baca isi file atau tampilkan daftar isi direktori
+    * Ekstrak jalur file atau direktori dari permintaan penggunaan alat Claude
+    * Baca isi file atau daftar isi direktori
     * Jika parameter `max_characters` ditentukan dalam konfigurasi alat, potong isi file hingga panjang tersebut
-    * Kembalikan hasilnya kepada Claude dengan melanjutkan percakapan menggunakan pesan `user` baru yang berisi blok konten `tool_result`
+    * Kembalikan hasilnya ke Claude dengan melanjutkan percakapan menggunakan pesan `user` baru yang berisi blok konten `tool_result`
   </Step>
 
   <Step title="Claude menggunakan alat untuk memodifikasi file">
@@ -251,9 +251,9 @@ Alat editor teks dapat digunakan dengan cara berikut:
   </Step>
 
   <Step title="Jalankan pengeditan dan kembalikan hasilnya">
-    * Ekstrak path file, teks lama, dan teks baru dari permintaan penggunaan alat Claude
+    * Ekstrak jalur file, teks lama, dan teks baru dari permintaan penggunaan alat Claude
     * Lakukan penggantian teks dalam file
-    * Kembalikan hasilnya kepada Claude
+    * Kembalikan hasilnya ke Claude
   </Step>
 
   <Step title="Claude memberikan analisis dan penjelasannya">
@@ -261,18 +261,18 @@ Alat editor teks dapat digunakan dengan cara berikut:
   </Step>
 </Steps>
 
-### Perintah alat editor teks
+### Perintah alat text editor
 
-Alat editor teks mendukung beberapa perintah untuk melihat dan memodifikasi file:
+Alat text editor mendukung beberapa perintah untuk melihat dan memodifikasi file:
 
 #### view
 
-Perintah `view` memungkinkan Claude memeriksa isi file atau menampilkan daftar isi direktori. Perintah ini dapat membaca seluruh file atau rentang baris tertentu.
+Perintah `view` memungkinkan Claude memeriksa isi file atau mendaftar isi direktori. Perintah ini dapat membaca seluruh file atau rentang baris tertentu.
 
 Parameter:
 
-* `command`: Harus bernilai "view"
-* `path`: Path ke file atau direktori yang akan dilihat
+* `command`: Harus "view"
+* `path`: Jalur ke file atau direktori yang akan dilihat
 * `view_range` (opsional): Array berisi dua bilangan bulat yang menentukan nomor baris awal dan akhir yang akan dilihat. Nomor baris dimulai dari 1, dan -1 untuk baris akhir berarti membaca hingga akhir file. Parameter ini hanya berlaku saat melihat file, bukan direktori.
 
 <Accordion title="Contoh perintah view">
@@ -311,8 +311,8 @@ Perintah `str_replace` memungkinkan Claude mengganti string tertentu dalam file 
 
 Parameter:
 
-* `command`: Harus bernilai "str\_replace"
-* `path`: Path ke file yang akan dimodifikasi
+* `command`: Harus "str\_replace"
+* `path`: Jalur ke file yang akan dimodifikasi
 * `old_str`: Teks yang akan diganti (harus cocok persis, termasuk spasi dan indentasi)
 * `new_str`: Teks baru yang akan disisipkan menggantikan teks lama
 
@@ -338,8 +338,8 @@ Perintah `create` memungkinkan Claude membuat file baru dengan konten yang diten
 
 Parameter:
 
-* `command`: Harus bernilai "create"
-* `path`: Path tempat file baru akan dibuat
+* `command`: Harus "create"
+* `path`: Jalur tempat file baru harus dibuat
 * `file_text`: Konten yang akan ditulis ke file baru
 
 <Accordion title="Contoh perintah create">
@@ -359,13 +359,13 @@ Parameter:
 
 #### insert
 
-Perintah `insert` memungkinkan Claude menyisipkan teks pada lokasi tertentu dalam file.
+Perintah `insert` memungkinkan Claude menyisipkan teks di lokasi tertentu dalam file.
 
 Parameter:
 
-* `command`: Harus bernilai "insert"
-* `path`: Path ke file yang akan dimodifikasi
-* `insert_line`: Nomor baris setelahnya teks akan disisipkan (0 untuk awal file)
+* `command`: Harus "insert"
+* `path`: Jalur ke file yang akan dimodifikasi
+* `insert_line`: Nomor baris setelah mana teks akan disisipkan (0 untuk awal file)
 * `insert_text`: Teks yang akan disisipkan
 
 <Accordion title="Contoh perintah insert">
@@ -384,11 +384,11 @@ Parameter:
   ```
 </Accordion>
 
-### Contoh: Memperbaiki kesalahan sintaks dengan alat editor teks
+### Contoh: Memperbaiki kesalahan sintaks dengan alat text editor
 
-Contoh ini mendemonstrasikan bagaimana Claude menggunakan alat editor teks untuk memperbaiki kesalahan sintaks dalam file Python.
+Contoh ini menunjukkan bagaimana Claude menggunakan alat text editor untuk memperbaiki kesalahan sintaks dalam file Python.
 
-Pertama, aplikasi Anda menyediakan alat editor teks dan prompt untuk memperbaiki kesalahan sintaks kepada Claude:
+Pertama, aplikasi Anda menyediakan alat text editor dan prompt kepada Claude untuk memperbaiki kesalahan sintaks:
 
 <CodeGroup>
   ```bash cURL
@@ -561,7 +561,7 @@ Pertama, aplikasi Anda menyediakan alat editor teks dan prompt untuk memperbaiki
   ```
 </CodeGroup>
 
-Claude menggunakan alat editor teks terlebih dahulu untuk melihat file:
+Claude menggunakan alat text editor terlebih dahulu untuk melihat file:
 
 ```json Output
 {
@@ -587,7 +587,7 @@ Claude menggunakan alat editor teks terlebih dahulu untuk melihat file:
 }
 ```
 
-Aplikasi Anda kemudian harus membaca file dan mengembalikan isinya kepada Claude:
+Aplikasi Anda kemudian harus membaca file dan mengembalikan isinya ke Claude:
 
 <CodeGroup>
   ```bash cURL
@@ -1024,7 +1024,7 @@ Aplikasi Anda kemudian harus membaca file dan mengembalikan isinya kepada Claude
 <Tip>
   **Nomor baris**
 
-  Dalam contoh di atas, hasil alat `view` menyertakan isi file dengan nomor baris yang ditambahkan di awal setiap baris (misalnya, "1: def is\_prime(n):"). Nomor baris tidak wajib, tetapi sangat penting untuk berhasil menggunakan parameter `view_range` guna memeriksa bagian tertentu dari file dan parameter `insert_line` untuk menambahkan konten pada lokasi yang tepat.
+  Dalam contoh di atas, hasil alat `view` menyertakan isi file dengan nomor baris yang ditambahkan di awal setiap baris (misalnya, "1: def is\_prime(n):"). Nomor baris tidak wajib, tetapi sangat penting untuk berhasil menggunakan parameter `view_range` untuk memeriksa bagian tertentu dari file dan parameter `insert_line` untuk menambahkan konten di lokasi yang tepat.
 </Tip>
 
 Claude mengidentifikasi kesalahan sintaks dan menggunakan perintah `str_replace` untuk memperbaikinya:
@@ -1471,7 +1471,7 @@ Aplikasi Anda kemudian harus melakukan pengeditan dan mengembalikan hasilnya:
   ```
 </CodeGroup>
 
-Terakhir, Claude memberikan penjelasan lengkap tentang perbaikan tersebut:
+Terakhir, Claude memberikan penjelasan lengkap tentang perbaikannya:
 
 ````json Output
 {
@@ -1488,11 +1488,11 @@ Terakhir, Claude memberikan penjelasan lengkap tentang perbaikan tersebut:
 }
 ````
 
-## Mengimplementasikan alat editor teks
+## Mengimplementasikan alat text editor
 
-Alat editor teks diimplementasikan sebagai alat tanpa skema. Saat menggunakan alat ini, Anda tidak perlu menyediakan skema input seperti pada alat lainnya; skema sudah terpasang dalam model Claude dan tidak dapat dimodifikasi.
+Alat text editor diimplementasikan sebagai alat tanpa skema. Saat menggunakan alat ini, Anda tidak perlu menyediakan skema input seperti pada alat lainnya; skema sudah terpasang di dalam model Claude dan tidak dapat dimodifikasi.
 
-Tipe alat adalah `type: "text_editor_20250728"` untuk model Claude 4.
+Tipe alatnya adalah `type: "text_editor_20250728"` untuk model Claude 4.
 
 <Steps>
   <Step title="Inisialisasi implementasi editor Anda">
@@ -1510,16 +1510,16 @@ Tipe alat adalah `type: "text_editor_20250728"` untuk model Claude 4.
           file_path = input_params.get("path", "")
 
           if command == "view":
-              # Baca dan kembalikan isi file
+              # Membaca dan mengembalikan isi file
               pass
           elif command == "str_replace":
-              # Ganti teks dalam file
+              # Mengganti teks dalam file
               pass
           elif command == "create":
-              # Buat file baru
+              # Membuat file baru
               pass
           elif command == "insert":
-              # Sisipkan teks di lokasi
+              # Menyisipkan teks di lokasi tertentu
               pass
       ```
 
@@ -1595,13 +1595,13 @@ Tipe alat adalah `type: "text_editor_20250728"` untuk model Claude 4.
         var filePath = (String) input.getOrDefault("path", "");
 
         if (command.equals("view")) {
-          // Baca dan kembalikan isi file
+          // Membaca dan mengembalikan isi file
         } else if (command.equals("str_replace")) {
-          // Ganti teks dalam file
+          // Mengganti teks dalam file
         } else if (command.equals("create")) {
-          // Buat file baru
+          // Membuat file baru
         } else if (command.equals("insert")) {
-          // Sisipkan teks di lokasi
+          // Menyisipkan teks di lokasi tertentu
         }
       }
       ```
@@ -1613,13 +1613,13 @@ Tipe alat adalah `type: "text_editor_20250728"` untuk model Claude 4.
           $filePath = $input['path'] ?? '';
 
           if ($command === 'view') {
-              // Baca dan kembalikan isi file
+              // Membaca dan mengembalikan isi file
           } elseif ($command === 'str_replace') {
-              // Ganti teks dalam file
+              // Mengganti teks dalam file
           } elseif ($command === 'create') {
-              // Buat file baru
+              // Membuat file baru
           } elseif ($command === 'insert') {
-              // Sisipkan teks di lokasi
+              // Menyisipkan teks di lokasi tertentu
           }
           return '';
       }
@@ -1632,13 +1632,13 @@ Tipe alat adalah `type: "text_editor_20250728"` untuk model Claude 4.
 
         case command
         when "view"
-          # Baca dan kembalikan isi file
+          # Membaca dan mengembalikan isi file
         when "str_replace"
-          # Ganti teks dalam file
+          # Mengganti teks dalam file
         when "create"
-          # Buat file baru
+          # Membuat file baru
         when "insert"
-          # Sisipkan teks di lokasi
+          # Menyisipkan teks di lokasi tertentu
         end
       end
       ```
@@ -1648,7 +1648,7 @@ Tipe alat adalah `type: "text_editor_20250728"` untuk model Claude 4.
   <Step title="Implementasikan langkah-langkah keamanan">
     Tambahkan validasi dan pemeriksaan keamanan:
 
-    * Validasi path file untuk mencegah directory traversal
+    * Validasi jalur file untuk mencegah directory traversal
     * Buat cadangan sebelum membuat perubahan
     * Tangani kesalahan dengan baik
     * Implementasikan pemeriksaan izin
@@ -1659,13 +1659,13 @@ Tipe alat adalah `type: "text_editor_20250728"` untuk model Claude 4.
 
     <CodeGroup>
       ```python Python
-      # Proses penggunaan alat dalam respons Claude
+      # Memproses penggunaan alat dalam respons Claude
       for content in response.content:
           if content.type == "tool_use":
-              # Jalankan alat berdasarkan perintah
+              # Menjalankan alat berdasarkan perintah
               result = handle_editor_tool(content)
 
-              # Kembalikan hasil ke Claude
+              # Mengembalikan hasil ke Claude
               tool_result = {
                   "type": "tool_result",
                   "tool_use_id": content.id,
@@ -1674,13 +1674,13 @@ Tipe alat adalah `type: "text_editor_20250728"` untuk model Claude 4.
       ```
 
       ```typescript TypeScript
-      // Proses penggunaan alat dalam respons Claude
+      // Memproses penggunaan alat dalam respons Claude
       for (const block of response.content) {
         if (block.type === "tool_use") {
-          // Jalankan alat berdasarkan perintah
+          // Menjalankan alat berdasarkan perintah
           const result = handleEditorTool(block);
 
-          // Kembalikan hasil ke Claude
+          // Mengembalikan hasil ke Claude
           const toolResult = {
             type: "tool_result",
             tool_use_id: block.id,
@@ -1691,7 +1691,7 @@ Tipe alat adalah `type: "text_editor_20250728"` untuk model Claude 4.
       ```
 
       ```csharp C#
-      // Proses penggunaan alat dalam respons Claude
+      // Memproses penggunaan alat dalam respons Claude
       foreach (var block in response.Content)
       {
           if (block.TryPickToolUse(out var toolUse))
@@ -1723,13 +1723,13 @@ Tipe alat adalah `type: "text_editor_20250728"` untuk model Claude 4.
       ```
 
       ```java Java
-      // Proses penggunaan alat dalam respons Claude
+      // Memproses penggunaan alat dalam respons Claude
       for (var block : response.content()) {
         if (block.type().equals("tool_use")) {
-          // Jalankan alat berdasarkan perintah
+          // Menjalankan alat berdasarkan perintah
           var result = handleEditorTool(block);
 
-          // Kembalikan hasil ke Claude
+          // Mengembalikan hasil ke Claude
           var toolResult = Map.of(
             "type", "tool_result",
             "tool_use_id", block.id(),
@@ -1740,13 +1740,13 @@ Tipe alat adalah `type: "text_editor_20250728"` untuk model Claude 4.
       ```
 
       ```php PHP
-      // Proses penggunaan alat dalam respons Claude
+      // Memproses penggunaan alat dalam respons Claude
       foreach ($response->content as $block) {
           if ($block->type === 'tool_use') {
-              // Jalankan alat berdasarkan perintah
+              // Menjalankan alat berdasarkan perintah
               $result = handle_editor_tool($block->input);
 
-              // Kembalikan hasil ke Claude
+              // Mengembalikan hasil ke Claude
               $toolResult = [
                   'type' => 'tool_result',
                   'tool_use_id' => $block->id,
@@ -1769,7 +1769,7 @@ Tipe alat adalah `type: "text_editor_20250728"` untuk model Claude 4.
 </Steps>
 
 <Warning>
-  Saat mengimplementasikan alat editor teks, perhatikan hal-hal berikut:
+  Saat mengimplementasikan alat text editor, perhatikan hal-hal berikut:
 
   1. **Keamanan:** Alat ini memiliki akses ke sistem file lokal Anda, jadi implementasikan langkah-langkah keamanan yang tepat.
   2. **Cadangan:** Selalu buat cadangan sebelum mengizinkan pengeditan pada file penting.
@@ -1779,7 +1779,7 @@ Tipe alat adalah `type: "text_editor_20250728"` untuk model Claude 4.
 
 ### Menangani kesalahan
 
-Saat menggunakan alat editor teks, berbagai kesalahan dapat terjadi. Berikut adalah panduan tentang cara menanganinya:
+Saat menggunakan alat text editor, berbagai kesalahan dapat terjadi. Berikut panduan tentang cara menanganinya:
 
 <AccordionGroup>
   <Accordion title="File tidak ditemukan">
@@ -1859,19 +1859,19 @@ Saat menggunakan alat editor teks, berbagai kesalahan dapat terjadi. Berikut ada
 
 <AccordionGroup>
   <Accordion title="Berikan konteks yang jelas">
-    Saat meminta Claude untuk memperbaiki atau memodifikasi kode, jelaskan secara spesifik file apa yang perlu diperiksa atau masalah apa yang perlu diatasi. Konteks yang jelas membantu Claude mengidentifikasi file yang tepat dan membuat perubahan yang sesuai.
+    Saat meminta Claude memperbaiki atau memodifikasi kode, jelaskan secara spesifik file mana yang perlu diperiksa atau masalah apa yang perlu ditangani. Konteks yang jelas membantu Claude mengidentifikasi file yang tepat dan membuat perubahan yang sesuai.
 
     **Prompt yang kurang membantu**: "Bisakah Anda memperbaiki kode saya?"
 
     **Prompt yang lebih baik**: "Ada kesalahan sintaks di file primes.py saya yang mencegahnya berjalan. Bisakah Anda memperbaikinya?"
   </Accordion>
 
-  <Accordion title="Jelaskan path file secara eksplisit">
-    Tentukan path file dengan jelas saat diperlukan, terutama jika Anda bekerja dengan beberapa file atau file di direktori yang berbeda.
+  <Accordion title="Jelaskan jalur file secara eksplisit">
+    Tentukan jalur file dengan jelas saat diperlukan, terutama jika Anda bekerja dengan beberapa file atau file di direktori yang berbeda.
 
     **Prompt yang kurang membantu**: "Tinjau file helper saya"
 
-    **Prompt yang lebih baik**: "Bisakah Anda memeriksa file utils/helpers.py saya untuk masalah performa?"
+    **Prompt yang lebih baik**: "Bisakah Anda memeriksa file utils/helpers.py saya untuk masalah kinerja?"
   </Accordion>
 
   <Accordion title="Buat cadangan sebelum mengedit">
@@ -2241,11 +2241,11 @@ Selain token dasar, token input tambahan berikut diperlukan untuk alat editor te
 | ----------------------------------- | -------------------- |
 | `text_editor_20250429` (Claude 4.x) | 700 token            |
 
-Untuk informasi lebih detail tentang harga alat, lihat [Harga penggunaan alat](/docs/id/agents-and-tools/tool-use/overview#pricing).
+Untuk informasi lebih rinci tentang harga alat, lihat [Harga penggunaan alat](/docs/id/agents-and-tools/tool-use/overview#pricing).
 
-## Mengintegrasikan alat editor teks dengan alat lain
+## Mengintegrasikan alat text editor dengan alat lain
 
-Alat editor teks dapat digunakan bersama alat Claude lainnya. Saat menggabungkan alat, pastikan Anda:
+Alat text editor dapat digunakan bersama alat Claude lainnya. Saat menggabungkan alat, pastikan Anda:
 
 * Mencocokkan versi alat dengan model yang Anda gunakan
 * Memperhitungkan penggunaan token tambahan untuk semua alat yang disertakan dalam permintaan Anda
@@ -2254,29 +2254,29 @@ Alat editor teks dapat digunakan bersama alat Claude lainnya. Saat menggabungkan
 
 | Tanggal         | Versi                  | Perubahan                                                                                                                                                                                                                                                   |
 | --------------- | ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 28 Juli 2025    | `text_editor_20250728` | Rilis alat editor teks yang diperbarui yang memperbaiki beberapa masalah dan menambahkan parameter opsional `max_characters`. Selain itu, identik dengan `text_editor_20250429`.                                                                            |
-| 29 April 2025   | `text_editor_20250429` | Rilis alat editor teks untuk Claude 4. Versi ini menghapus perintah `undo_edit` tetapi mempertahankan semua kemampuan lainnya. Nama alat telah diperbarui untuk mencerminkan arsitektur berbasis str\_replace.                                              |
-| 13 Maret 2025   | `text_editor_20250124` | Pengenalan dokumentasi alat editor teks mandiri. Versi ini dioptimalkan untuk Claude Sonnet 3.7 tetapi memiliki kemampuan yang identik dengan versi sebelumnya.                                                                                             |
-| 22 Oktober 2024 | `text_editor_20241022` | Rilis awal alat editor teks dengan Claude Sonnet 3.5 ([dihentikan](/docs/id/about-claude/model-deprecations)). Menyediakan kemampuan untuk melihat, membuat, dan mengedit file melalui perintah `view`, `create`, `str_replace`, `insert`, dan `undo_edit`. |
+| 28 Juli 2025    | `text_editor_20250728` | Rilis alat text editor yang diperbarui yang memperbaiki beberapa masalah dan menambahkan parameter opsional `max_characters`. Selain itu identik dengan `text_editor_20250429`.                                                                             |
+| 29 April 2025   | `text_editor_20250429` | Rilis alat text editor untuk Claude 4. Versi ini menghapus perintah `undo_edit` tetapi mempertahankan semua kemampuan lainnya. Nama alat telah diperbarui untuk mencerminkan arsitekturnya yang berbasis str\_replace.                                      |
+| 13 Maret 2025   | `text_editor_20250124` | Pengenalan dokumentasi alat text editor mandiri. Versi ini dioptimalkan untuk Claude Sonnet 3.7 tetapi memiliki kemampuan yang identik dengan versi sebelumnya.                                                                                             |
+| 22 Oktober 2024 | `text_editor_20241022` | Rilis awal alat text editor dengan Claude Sonnet 3.5 ([dihentikan](/docs/id/about-claude/model-deprecations)). Menyediakan kemampuan untuk melihat, membuat, dan mengedit file melalui perintah `view`, `create`, `str_replace`, `insert`, dan `undo_edit`. |
 
 ## Langkah selanjutnya
 
-Berikut adalah beberapa ide tentang cara menggunakan alat editor teks dengan cara yang lebih praktis dan canggih:
+Berikut beberapa ide tentang cara menggunakan alat text editor dengan cara yang lebih praktis dan lebih kuat:
 
-* **Integrasikan dengan alur kerja pengembangan Anda**: Bangun alat editor teks ke dalam alat pengembangan atau IDE Anda
+* **Integrasikan dengan alur kerja pengembangan Anda**: Bangun alat text editor ke dalam alat pengembangan atau IDE Anda
 * **Buat sistem tinjauan kode**: Minta Claude meninjau kode Anda dan membuat perbaikan
 * **Bangun asisten debugging**: Buat sistem di mana Claude dapat membantu Anda mendiagnosis dan memperbaiki masalah dalam kode Anda
-* **Implementasikan konversi format file**: Biarkan Claude membantu Anda mengonversi file dari satu format ke format lain
-* **Otomatisasi dokumentasi**: Siapkan alur kerja agar Claude secara otomatis mendokumentasikan kode Anda
+* **Implementasikan konversi format file**: Biarkan Claude membantu Anda mengonversi file dari satu format ke format lainnya
+* **Otomatiskan dokumentasi**: Siapkan alur kerja agar Claude secara otomatis mendokumentasikan kode Anda
 
-Alat editor teks memungkinkan Claude bekerja langsung dengan basis kode Anda, mendukung alur kerja mulai dari debugging hingga dokumentasi otomatis.
+Alat text editor memungkinkan Claude bekerja langsung dengan basis kode Anda, mendukung alur kerja mulai dari debugging hingga dokumentasi otomatis.
 
 <CardGroup cols={3}>
   <Card title="Ikhtisar penggunaan alat" icon="wrench" href="/docs/id/agents-and-tools/tool-use/overview">
     Pelajari cara mengimplementasikan alur kerja alat untuk digunakan dengan Claude.
   </Card>
 
-  <Card title="Alat Bash" icon="terminal" href="/docs/id/agents-and-tools/tool-use/bash-tool">
+  <Card title="Alat bash" icon="terminal" href="/docs/id/agents-and-tools/tool-use/bash-tool">
     Jalankan perintah shell dengan Claude.
   </Card>
 </CardGroup>

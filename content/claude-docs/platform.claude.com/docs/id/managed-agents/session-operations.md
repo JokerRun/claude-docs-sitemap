@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/session-operations
-fetched_at: 2026-07-07T03:11:34.034287Z
-sha256: 6bb0009b86056c8106fa35cf844abccbce951cf12e4d3be5599cf4083e3de4fc
+fetched_at: 2026-07-10T03:11:05.177659Z
+sha256: 98da7acf6ec2ad61d68790149d38654c67a5aac0642d26c180b9c5068fad6cbb
 ---
 
 # Operasi sesi
@@ -327,35 +327,35 @@ Kursor `page` bersifat opaque dan mengenkode `order` dari permintaan yang mengha
   ```
 
   ```python Python
-  # Set `limit` low so the results span more than one page.
+  # Setel `limit` rendah agar hasil mencakup lebih dari satu halaman.
   first_page = client.beta.sessions.list(limit=1, agent_id=agent.id)
-  # `prev_page` is None on the first page; `next_page` is None on the last.
+  # `prev_page` bernilai None di halaman pertama; `next_page` bernilai None di halaman terakhir.
   print(f"prev_page: {first_page.prev_page}")
   print(f"next_page: {first_page.next_page}")
 
-  # Pass `next_page` back as `page` to fetch the next page.
+  # Teruskan kembali `next_page` sebagai `page` untuk mengambil halaman berikutnya.
   second_page = client.beta.sessions.list(
       limit=1, agent_id=agent.id, page=first_page.next_page
   )
   for listed_session in second_page.data:
       print(f"{listed_session.id}: {listed_session.status}")
 
-  # Pass `prev_page` back as `page` to return to the previous page.
+  # Teruskan kembali `prev_page` sebagai `page` untuk kembali ke halaman sebelumnya.
   previous_page = client.beta.sessions.list(
       limit=1, agent_id=agent.id, page=second_page.prev_page
   )
   for listed_session in previous_page.data:
       print(f"{listed_session.id}: {listed_session.status}")
-  # For forward-only iteration, the page object is also directly iterable.
+  # Untuk iterasi maju saja, objek halaman juga dapat diiterasi secara langsung.
   ```
 
   ```typescript TypeScript
   const firstPage = await client.beta.sessions.list({ limit: 1, agent_id: agent.id });
-  // prev_page is null on the first page; next_page is set when more sessions exist.
+  // prev_page bernilai null pada halaman pertama; next_page terisi jika masih ada sesi lain.
   console.log(`prev_page: ${firstPage.prev_page}`);
   console.log(`next_page: ${firstPage.next_page}`);
 
-  // Pass next_page as the `page` cursor to fetch the second page.
+  // Teruskan next_page sebagai kursor `page` untuk mengambil halaman kedua.
   const secondPage = await client.beta.sessions.list({
     limit: 1,
     agent_id: agent.id,
@@ -365,7 +365,7 @@ Kursor `page` bersifat opaque dan mengenkode `order` dari permintaan yang mengha
     console.log(`Page 2 has ${listedSession.id}: ${listedSession.status}`);
   }
 
-  // Pass the second page's prev_page cursor to step back to the first page.
+  // Teruskan kursor prev_page dari halaman kedua untuk kembali ke halaman pertama.
   const previousPage = await client.beta.sessions.list({
     limit: 1,
     agent_id: agent.id,
@@ -374,13 +374,13 @@ Kursor `page` bersifat opaque dan mengenkode `order` dari permintaan yang mengha
   for (const listedSession of previousPage.data) {
     console.log(`Back on page 1: ${listedSession.id} is ${listedSession.status}`);
   }
-  // For forward-only iteration, the page object is also directly iterable.
+  // Untuk iterasi maju saja, objek page juga dapat diiterasi secara langsung.
   ```
 
   ```csharp C#
-  // The SessionListPage that `List` returns exposes the items but not the
-  // pagination cursors. To read `prev_page` / `next_page`, deserialize the raw
-  // response into SessionListPageResponse instead.
+  // SessionListPage yang dikembalikan `List` mengekspos item tetapi tidak
+  // kursor paginasinya. Untuk membaca `prev_page` / `next_page`, deserialisasi respons mentah
+  // ke SessionListPageResponse sebagai gantinya.
   using var page1Response = await client.Beta.Sessions.WithRawResponse.List(
       new SessionListParams { Limit = 1, AgentID = agent.ID }
   );
@@ -388,7 +388,7 @@ Kursor `page` bersifat opaque dan mengenkode `order` dari permintaan yang mengha
   Console.WriteLine($"prev_page: {page1.PrevPage ?? "null"}");
   Console.WriteLine($"next_page: {page1.NextPage ?? "null"}");
 
-  // Advance: pass `next_page` from page 1 as the `page` cursor.
+  // Maju: berikan `next_page` dari halaman 1 sebagai kursor `page`.
   using var page2Response = await client.Beta.Sessions.WithRawResponse.List(
       new SessionListParams { Limit = 1, AgentID = agent.ID, Page = page1.NextPage }
   );
@@ -398,7 +398,7 @@ Kursor `page` bersifat opaque dan mengenkode `order` dari permintaan yang mengha
       Console.WriteLine($"Page 2: {listedSession.ID}: {listedSession.Status.Raw()}");
   }
 
-  // Go back: pass `prev_page` from page 2 as the same `page` cursor.
+  // Kembali: berikan `prev_page` dari halaman 2 sebagai kursor `page` yang sama.
   using var previousPageResponse = await client.Beta.Sessions.WithRawResponse.List(
       new SessionListParams { Limit = 1, AgentID = agent.ID, Page = page2.PrevPage }
   );
@@ -407,11 +407,11 @@ Kursor `page` bersifat opaque dan mengenkode `order` dari permintaan yang mengha
   {
       Console.WriteLine($"Back to page 1: {listedSession.ID}: {listedSession.Status.Raw()}");
   }
-  // For forward-only iteration, (await client.Beta.Sessions.List(...)).Paginate() returns an IAsyncEnumerable that auto-follows next_page.
+  // Untuk iterasi maju saja, (await client.Beta.Sessions.List(...)).Paginate() mengembalikan IAsyncEnumerable yang otomatis mengikuti next_page.
   ```
 
   ```go Go
-  // Page 1: prev_page is empty because nothing precedes the first page.
+  // Halaman 1: prev_page kosong karena tidak ada yang mendahului halaman pertama.
   firstPage, err := client.Beta.Sessions.List(ctx, anthropic.BetaSessionListParams{
   	AgentID: anthropic.String(agent.ID),
   	Limit:   anthropic.Int(1),
@@ -422,7 +422,7 @@ Kursor `page` bersifat opaque dan mengenkode `order` dari permintaan yang mengha
   fmt.Printf("Page 1 prev_page: %q\n", firstPage.PrevPage)
   fmt.Printf("Page 1 next_page: %q\n", firstPage.NextPage)
 
-  // Advance: pass next_page as the Page cursor to fetch page 2.
+  // Maju: berikan next_page sebagai kursor Page untuk mengambil halaman 2.
   secondPage, err := client.Beta.Sessions.List(ctx, anthropic.BetaSessionListParams{
   	AgentID: anthropic.String(agent.ID),
   	Limit:   anthropic.Int(1),
@@ -435,7 +435,7 @@ Kursor `page` bersifat opaque dan mengenkode `order` dari permintaan yang mengha
   	fmt.Printf("Page 2: %s: %s\n", listedSession.ID, listedSession.Status)
   }
 
-  // Go back: page 2's prev_page is the cursor for the page before it.
+  // Kembali: prev_page halaman 2 adalah kursor untuk halaman sebelumnya.
   previousPage, err := client.Beta.Sessions.List(ctx, anthropic.BetaSessionListParams{
   	AgentID: anthropic.String(agent.ID),
   	Limit:   anthropic.Int(1),
@@ -447,7 +447,7 @@ Kursor `page` bersifat opaque dan mengenkode `order` dari permintaan yang mengha
   for _, listedSession := range previousPage.Data {
   	fmt.Printf("Back to page 1: %s: %s\n", listedSession.ID, listedSession.Status)
   }
-  // For forward-only iteration, use ListAutoPaging to auto-follow next_page.
+  // Untuk iterasi maju saja, gunakan ListAutoPaging agar next_page diikuti otomatis.
   ```
 
   ```java Java
@@ -459,29 +459,29 @@ Kursor `page` bersifat opaque dan mengenkode `order` dari permintaan yang mengha
   for (var listedSession : firstPage.data()) {
       IO.println(listedSession.id() + ": " + listedSession.status());
   }
-  // prev_page is an empty Optional on the first page; next_page points to page 2.
+  // prev_page adalah Optional kosong di halaman pertama; next_page menunjuk ke halaman 2.
   IO.println("prev_page: " + firstPage.response().prevPage());
   IO.println("next_page: " + firstPage.response().nextPage());
 
-  // Advance by passing next_page as the page cursor.
+  // Maju dengan meneruskan next_page sebagai kursor halaman.
   var nextCursor = firstPage.response().nextPage().orElseThrow();
   var secondPage = client.beta().sessions().list(params.toBuilder().page(nextCursor).build());
 
-  // Go back by passing prev_page as the same page cursor.
+  // Kembali dengan meneruskan prev_page sebagai kursor halaman yang sama.
   var prevCursor = secondPage.response().prevPage().orElseThrow();
   var previousPage = client.beta().sessions().list(params.toBuilder().page(prevCursor).build());
-  // Back on the first page, so prev_page is empty again.
+  // Kembali ke halaman pertama, sehingga prev_page kosong lagi.
   IO.println("prev_page: " + previousPage.response().prevPage());
-  // For forward-only iteration, page.autoPager() returns an Iterable that auto-follows next_page.
+  // Untuk iterasi maju saja, page.autoPager() mengembalikan Iterable yang otomatis mengikuti next_page.
   ```
 
   ```php PHP
-  // Page 1: prevPage is null because nothing precedes the first page.
+  // Halaman 1: prevPage bernilai null karena tidak ada yang mendahului halaman pertama.
   $firstPage = $client->beta->sessions->list(agentID: $agent->id, limit: 1);
   echo 'Page 1 prev_page: ' . ($firstPage->prevPage ?? 'null') . "\n";
   echo 'Page 1 next_page: ' . ($firstPage->nextPage ?? 'null') . "\n";
 
-  // Advance: pass nextPage back as the `page` cursor to fetch page 2.
+  // Maju: kirim kembali nextPage sebagai kursor `page` untuk mengambil halaman 2.
   $secondPage = $client->beta->sessions->list(
       agentID: $agent->id,
       limit: 1,
@@ -491,7 +491,7 @@ Kursor `page` bersifat opaque dan mengenkode `order` dari permintaan yang mengha
       echo "Page 2: {$listedSession->id}: {$listedSession->status}\n";
   }
 
-  // Go back: page 2's prevPage is the cursor for the page before it.
+  // Mundur: prevPage halaman 2 adalah kursor untuk halaman sebelumnya.
   $previousPage = $client->beta->sessions->list(
       agentID: $agent->id,
       limit: 1,
@@ -500,7 +500,7 @@ Kursor `page` bersifat opaque dan mengenkode `order` dari permintaan yang mengha
   foreach ($previousPage->getItems() as $listedSession) {
       echo "Back to page 1: {$listedSession->id}: {$listedSession->status}\n";
   }
-  // For forward-only iteration, $page->pagingEachItem() yields every session across pages.
+  // Untuk iterasi maju saja, $page->pagingEachItem() menghasilkan setiap sesi di semua halaman.
   ```
 
   ```ruby Ruby
@@ -509,13 +509,13 @@ Kursor `page` bersifat opaque dan mengenkode `order` dari permintaan yang mengha
     puts "#{listed_session.id}: #{listed_session.status}"
   end
 
-  # `prev_page` is nil on the first page. The next-page cursor is exposed as
-  # `next_page_` (trailing underscore) because plain `next_page` is the helper
-  # method that fetches the next page object for you.
+  # `prev_page` bernilai nil pada halaman pertama. Kursor halaman berikutnya diekspos sebagai
+  # `next_page_` (dengan underscore di akhir) karena `next_page` biasa adalah metode helper
+  # yang mengambil objek halaman berikutnya untuk Anda.
   puts "prev_page: #{first_page.prev_page.inspect}"
   puts "next_page: #{first_page.next_page_.inspect}"
 
-  # Pass either cursor back as `page` to move through the list in both directions.
+  # Kirimkan salah satu kursor kembali sebagai `page` untuk menelusuri daftar di kedua arah.
   second_page = client.beta.sessions.list(
     agent_id: agent.id,
     limit: 1,
@@ -529,7 +529,7 @@ Kursor `page` bersifat opaque dan mengenkode `order` dari permintaan yang mengha
   back_to_first.data.each do |listed_session|
     puts "#{listed_session.id}: #{listed_session.status}"
   end
-  # For forward-only iteration, page.auto_paging_each auto-follows next_page.
+  # Untuk iterasi maju saja, page.auto_paging_each otomatis mengikuti next_page.
   ```
 </CodeGroup>
 

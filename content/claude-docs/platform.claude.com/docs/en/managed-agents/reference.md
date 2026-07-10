@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/reference
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 2b99c425dff1d806f688606aecd41931b71cc07c6e3ccd3db663a52c25977442
+fetched_at: 2026-07-10T03:11:05.177659Z
+sha256: c5f913e1a6c95ae5b93c9b086b25e62735a3cd5f473cdaa3dc8f9b92af98c7d1
 ---
 
 # Reference
@@ -14,7 +14,7 @@ Event types, self-hosted worker CLI flags, supported MCP server types, rate limi
 This page collects reference material for Claude Managed Agents. For task-oriented guides, follow the links in each section. For the operations on the session resource, see [Session operations](/docs/en/managed-agents/session-operations).
 
 <Note>
-  All Managed Agents API requests require the `managed-agents-2026-04-01` beta header. The SDK sets the beta header automatically.
+  Managed Agents API requests require the `managed-agents-2026-04-01` beta header, except memory store endpoints, which use `agent-memory-2026-07-22` instead. The SDK sets the correct beta header automatically. See [Beta headers](/docs/en/api/beta-headers#endpoint-specific-headers).
 </Note>
 
 ## Event types

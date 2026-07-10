@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/quickstart
-fetched_at: 2026-07-08T03:08:53.943475Z
-sha256: 42315891498028f9bfcdbfb97090848f260f67aaac1a699ac44a611497cdfc6a
+fetched_at: 2026-07-10T03:11:05.177659Z
+sha256: e3083725183674422d313ea2e7ed9422a192dd90bca1a0876a6f831c6bf1a6de
 ---
 
 # Memulai dengan Agent Skills di API
@@ -19,7 +19,7 @@ Tutorial ini menunjukkan cara menggunakan Agent Skills untuk membuat presentasi 
 * Python 3.7+ atau curl terinstal
 * Pemahaman dasar tentang cara membuat permintaan API
 
-## Gambaran umum Agent Skills
+## Ikhtisar Agent Skills
 
 Agent Skills bawaan memperluas kemampuan Claude dengan keahlian khusus untuk tugas-tugas seperti membuat dokumen, menganalisis data, dan memproses file. Anthropic menyediakan Agent Skills bawaan berikut di API:
 
@@ -32,13 +32,13 @@ Agent Skills bawaan memperluas kemampuan Claude dengan keahlian khusus untuk tug
   **Ingin membuat Skills kustom?** Lihat [Agent Skills Cookbook](https://platform.claude.com/cookbook/skills-notebooks-01-skills-introduction) untuk contoh membangun Skills Anda sendiri dengan keahlian spesifik domain.
 </Note>
 
-## Langkah 1: Menampilkan daftar Skills yang tersedia
+## Langkah 1: Daftar Skills yang tersedia
 
-Pertama, periksa Skills apa saja yang tersedia. Gunakan Skills API untuk menampilkan daftar semua Skills yang dikelola Anthropic:
+Pertama, periksa Skills apa saja yang tersedia. Gunakan Skills API untuk mendaftar semua Skills yang dikelola Anthropic:
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
-  # List Anthropic-managed Skills
+  # Daftar Skills yang dikelola Anthropic
   curl --fail-with-body -sS "https://api.anthropic.com/v1/skills?source=anthropic" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -47,12 +47,12 @@ Pertama, periksa Skills apa saja yang tersedia. Gunakan Skills API untuk menampi
   ```
 
   ```bash CLI
-  # List Anthropic-managed Skills
+  # Menampilkan daftar Skill yang dikelola Anthropic
   ant beta:skills list --source anthropic
   ```
 
   ```python Python
-  # List Anthropic-managed Skills
+  # Daftar Skills yang dikelola Anthropic
   skills = client.beta.skills.list(source="anthropic")
 
   for skill in skills.data:
@@ -60,7 +60,7 @@ Pertama, periksa Skills apa saja yang tersedia. Gunakan Skills API untuk menampi
   ```
 
   ```typescript TypeScript
-  // List Anthropic-managed Skills
+  // Daftar Skills yang dikelola Anthropic
   const skills = await client.beta.skills.list({ source: "anthropic" });
 
   for (const skill of skills.data) {
@@ -69,7 +69,7 @@ Pertama, periksa Skills apa saja yang tersedia. Gunakan Skills API untuk menampi
   ```
 
   ```csharp C#
-  // List Anthropic-managed Skills
+  // Daftar Skills yang dikelola Anthropic
   var skills = await client.Beta.Skills.List(new SkillListParams { Source = "anthropic" });
 
   foreach (var skill in skills.Items)
@@ -79,7 +79,7 @@ Pertama, periksa Skills apa saja yang tersedia. Gunakan Skills API untuk menampi
   ```
 
   ```go Go
-  // List Anthropic-managed Skills
+  // Menampilkan daftar Skill yang dikelola Anthropic
   skills, err := client.Beta.Skills.List(ctx, anthropic.BetaSkillListParams{
   	Source: anthropic.String("anthropic"),
   })
@@ -93,7 +93,7 @@ Pertama, periksa Skills apa saja yang tersedia. Gunakan Skills API untuk menampi
   ```
 
   ```java Java
-  // List Anthropic-managed Skills
+  // Menampilkan daftar Skill yang dikelola Anthropic
   SkillListPage skills = client.beta().skills().list(
       SkillListParams.builder().source("anthropic").build()
   );
@@ -104,7 +104,7 @@ Pertama, periksa Skills apa saja yang tersedia. Gunakan Skills API untuk menampi
   ```
 
   ```php PHP
-  // List Anthropic-managed Skills
+  // Daftar Skills yang dikelola Anthropic
   $skills = $client->beta->skills->list(source: 'anthropic');
 
   foreach ($skills->data as $skill) {
@@ -113,7 +113,7 @@ Pertama, periksa Skills apa saja yang tersedia. Gunakan Skills API untuk menampi
   ```
 
   ```ruby Ruby
-  # List Anthropic-managed Skills
+  # Daftar Skill yang dikelola Anthropic
   skills = client.beta.skills.list(source: "anthropic")
 
   skills.data.each do |skill|
@@ -124,15 +124,15 @@ Pertama, periksa Skills apa saja yang tersedia. Gunakan Skills API untuk menampi
 
 Anda akan melihat Skills berikut: `pptx`, `xlsx`, `docx`, dan `pdf`.
 
-API ini mengembalikan metadata setiap Skill: nama dan deskripsinya. Claude memuat metadata ini saat startup untuk mengetahui Skills apa saja yang tersedia. Ini adalah tingkat pertama dari **"progressive disclosure"** (pengungkapan progresif), di mana Claude menemukan Skills tanpa memuat instruksi lengkapnya terlebih dahulu.
+API ini mengembalikan metadata setiap Skill: nama dan deskripsinya. Claude memuat metadata ini saat startup untuk mengetahui Skills apa saja yang tersedia. Ini adalah tingkat pertama dari **progressive disclosure** (pengungkapan bertahap), di mana Claude menemukan Skills tanpa memuat instruksi lengkapnya terlebih dahulu.
 
-## Langkah 2: Membuat presentasi
+## Langkah 2: Buat presentasi
 
-Sekarang gunakan PowerPoint Skill untuk membuat presentasi tentang energi terbarukan. Tentukan Skills menggunakan parameter `container` di Messages API:
+Sekarang gunakan Skill PowerPoint untuk membuat presentasi tentang energi terbarukan. Tentukan Skills menggunakan parameter `container` di Messages API:
 
 <CodeGroup>
   ```bash cURL
-  # Create a message with the PowerPoint Skill
+  # Buat pesan dengan Skill PowerPoint
   response=$(
     curl --fail-with-body -sS https://api.anthropic.com/v1/messages \
       -H "content-type: application/json" \
@@ -157,7 +157,7 @@ Sekarang gunakan PowerPoint Skill untuk membuat presentasi tentang energi terbar
   ```
 
   ```bash CLI
-  # Create a message with the PowerPoint Skill
+  # Membuat pesan dengan Skill PowerPoint
   response=$(ant beta:messages create --format json \
     --beta skills-2025-10-02 <<'YAML'
   model: claude-opus-4-8
@@ -180,7 +180,7 @@ Sekarang gunakan PowerPoint Skill untuk membuat presentasi tentang energi terbar
   ```
 
   ```python Python
-  # Create a message with the PowerPoint Skill
+  # Buat pesan dengan Skill PowerPoint
   response = client.beta.messages.create(
       model="claude-opus-4-8",
       max_tokens=16000,
@@ -201,7 +201,7 @@ Sekarang gunakan PowerPoint Skill untuk membuat presentasi tentang energi terbar
   ```
 
   ```typescript TypeScript
-  // Create a message with the PowerPoint Skill
+  // Buat pesan dengan Skill PowerPoint
   const response = await client.beta.messages.create({
     model: "claude-opus-4-8",
     max_tokens: 16000,
@@ -224,7 +224,7 @@ Sekarang gunakan PowerPoint Skill untuk membuat presentasi tentang energi terbar
   ```
 
   ```csharp C#
-  // Create a message with the PowerPoint Skill
+  // Buat pesan dengan Skill PowerPoint
   var response = await client.Beta.Messages.Create(new MessageCreateParams
   {
       Model = Model.ClaudeOpus4_8,
@@ -257,7 +257,7 @@ Sekarang gunakan PowerPoint Skill untuk membuat presentasi tentang energi terbar
   ```
 
   ```go Go
-  // Create a message with the PowerPoint Skill
+  // Membuat pesan dengan Skill PowerPoint
   response, err := client.Beta.Messages.New(ctx, anthropic.BetaMessageNewParams{
   	Model:     anthropic.ModelClaudeOpus4_8,
   	MaxTokens: 16000,
@@ -292,7 +292,7 @@ Sekarang gunakan PowerPoint Skill untuk membuat presentasi tentang energi terbar
   ```
 
   ```java Java
-  // Create a message with the PowerPoint Skill
+  // Membuat pesan dengan Skill PowerPoint
   BetaMessage response = client.beta().messages().create(
       MessageCreateParams.builder()
           .model(Model.CLAUDE_OPUS_4_8)
@@ -321,7 +321,7 @@ Sekarang gunakan PowerPoint Skill untuk membuat presentasi tentang energi terbar
   ```
 
   ```php PHP
-  // Create a message with the PowerPoint Skill
+  // Buat pesan dengan Skill PowerPoint
   $response = $client->beta->messages->create(
       model: 'claude-opus-4-8',
       maxTokens: 16000,
@@ -342,7 +342,7 @@ Sekarang gunakan PowerPoint Skill untuk membuat presentasi tentang energi terbar
   ```
 
   ```ruby Ruby
-  # Create a message with the PowerPoint Skill
+  # Buat pesan dengan Skill PowerPoint
   response = client.beta.messages.create(
     model: "claude-opus-4-8",
     max_tokens: 16_000,
@@ -367,26 +367,26 @@ Mari kita uraikan fungsi setiap bagian:
 
 * **`container.skills`:** Menentukan Skills mana yang dapat digunakan Claude
 * **`type: "anthropic"`:** Menunjukkan bahwa ini adalah Skill yang dikelola Anthropic
-* **`skill_id: "pptx"`:** Pengidentifikasi PowerPoint Skill
-* **`version: "latest"`:** Versi Skill yang diatur ke versi terbaru yang dipublikasikan
+* **`skill_id: "pptx"`:** Pengidentifikasi Skill PowerPoint
+* **`version: "latest"`:** Versi Skill yang diatur ke versi yang paling baru dipublikasikan
 * **`tools`:** Mengaktifkan eksekusi kode (diperlukan untuk Skills)
-* **Header beta:** `code-execution-2025-08-25` dan `skills-2025-10-02`
+* **Header beta:** `skills-2025-10-02`
 
 <Note>
-  Contoh di sini menggunakan versi alat `code_execution_20250825` dengan header beta `code-execution-2025-08-25` yang sesuai. Skills juga berfungsi dengan revisi [alat eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool) yang lebih baru (`code_execution_20260120` dan setelahnya); versi alat eksekusi kode mana pun memenuhi persyaratan Skills. Versi mana pun yang Anda gunakan, pastikan `type` alat dan header beta-nya konsisten dengan halaman alat eksekusi kode, dan selalu sertakan `skills-2025-10-02`.
+  Contoh di sini menggunakan versi alat `code_execution_20260521`, yang tersedia secara umum dan tidak memerlukan header beta eksekusi kode. Skills juga berfungsi dengan versi [alat eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool) yang lebih lama (seperti `code_execution_20250825`); versi alat eksekusi kode apa pun memenuhi persyaratan Skills. Versi mana pun yang Anda gunakan, pastikan `type` alat dan header beta apa pun konsisten dengan halaman alat eksekusi kode, dan selalu sertakan `skills-2025-10-02`.
 </Note>
 
-Saat Anda membuat permintaan ini, Claude secara otomatis mencocokkan tugas Anda dengan Skill yang relevan. Karena Anda meminta presentasi, Claude menentukan bahwa PowerPoint Skill relevan dan memuat instruksi lengkapnya: tingkat kedua dari progressive disclosure. Kemudian Claude mengeksekusi kode Skill tersebut untuk membuat presentasi Anda.
+Saat Anda membuat permintaan ini, Claude secara otomatis mencocokkan tugas Anda dengan Skill yang relevan. Karena Anda meminta presentasi, Claude menentukan bahwa Skill PowerPoint relevan dan memuat instruksi lengkapnya: tingkat kedua dari progressive disclosure. Kemudian Claude mengeksekusi kode Skill tersebut untuk membuat presentasi Anda.
 
-## Langkah 3: Mengunduh file yang dibuat
+## Langkah 3: Unduh file yang dibuat
 
-Presentasi dibuat di dalam container eksekusi kode dan disimpan sebagai file. Respons menyertakan referensi file dengan ID file. Ekstrak ID file tersebut dan unduh menggunakan Files API:
+Presentasi dibuat di dalam container eksekusi kode dan disimpan sebagai file. Respons menyertakan referensi file dengan ID file. Ekstrak ID file dan unduh menggunakan Files API:
 
 <CodeGroup>
   ```bash cURL
-  # Extract file ID from the code-execution tool result. The Skill might run
-  # its work through either the Python or bash code-execution tool, so check
-  # both result types.
+  # Ekstrak ID file dari hasil alat code-execution. Skill mungkin menjalankan
+  # pekerjaannya melalui alat code-execution Python atau bash, jadi periksa
+  # kedua jenis hasil tersebut.
   file_id=$(jq -r '
     last(
       .content[]
@@ -398,7 +398,7 @@ Presentasi dibuat di dalam container eksekusi kode dan disimpan sebagai file. Re
   ' <<<"$response")
 
   if [[ -n "$file_id" ]]; then
-    # Download the file and save it
+    # Unduh file dan simpan
     output_path="${TMPDIR:-/tmp}/renewable_energy.pptx"
     curl --fail-with-body -sS "https://api.anthropic.com/v1/files/$file_id/content" \
       -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -410,9 +410,9 @@ Presentasi dibuat di dalam container eksekusi kode dan disimpan sebagai file. Re
   ```
 
   ```bash CLI
-  # Extract file ID from the code-execution tool result. The Skill might run
-  # its work through either the Python or bash code-execution tool, so check
-  # both result types.
+  # Ekstrak ID file dari hasil alat code-execution. Skill mungkin menjalankan
+  # pekerjaannya melalui alat code-execution Python atau bash, jadi periksa
+  # kedua tipe hasil tersebut.
   file_id=$(jq -r '
     last(
       .content[]
@@ -426,7 +426,7 @@ Presentasi dibuat di dalam container eksekusi kode dan disimpan sebagai file. Re
   ' <<<"$response")
 
   if [[ -n "$file_id" ]]; then
-    # Download the file and save it
+    # Unduh file dan simpan
     output_path="${TMPDIR:-/tmp}/renewable_energy.pptx"
     ant beta:files download --file-id "$file_id" --output "$output_path"
     echo "Presentation saved to $output_path"
@@ -434,9 +434,9 @@ Presentasi dibuat di dalam container eksekusi kode dan disimpan sebagai file. Re
   ```
 
   ```python Python
-  # Extract file ID from the code-execution tool result. The Skill might run
-  # its work through either the Python or bash code-execution tool, so check
-  # both result types.
+  # Ekstrak ID file dari hasil alat code-execution. Skill mungkin menjalankan
+  # pekerjaannya melalui alat code-execution Python atau bash, jadi periksa
+  # kedua jenis hasil tersebut.
   file_id = None
   for block in response.content:
       if block.type == "code_execution_tool_result":
@@ -449,7 +449,7 @@ Presentasi dibuat di dalam container eksekusi kode dan disimpan sebagai file. Re
                   file_id = output.file_id
 
   if file_id:
-      # Download the file and save it
+      # Unduh file dan simpan
       output_path = Path(tempfile.gettempdir()) / "renewable_energy.pptx"
       file_content = client.beta.files.download(file_id=file_id)
       file_content.write_to_file(output_path)
@@ -457,9 +457,9 @@ Presentasi dibuat di dalam container eksekusi kode dan disimpan sebagai file. Re
   ```
 
   ```typescript TypeScript
-  // Extract file ID from the code-execution tool result. The Skill might run
-  // its work through either the Python or bash code-execution tool, so check
-  // both result types.
+  // Ekstrak ID file dari hasil alat code-execution. Skill mungkin menjalankan
+  // pekerjaannya melalui alat code-execution Python atau bash, jadi periksa
+  // kedua tipe hasil tersebut.
   let fileId: string | undefined;
   for (const block of response.content) {
     if (block.type === "code_execution_tool_result") {
@@ -478,7 +478,7 @@ Presentasi dibuat di dalam container eksekusi kode dan disimpan sebagai file. Re
   }
 
   if (fileId) {
-    // Download the file and stream it to disk
+    // Unduh file dan streaming ke disk
     const outputPath = path.join(os.tmpdir(), "renewable_energy.pptx");
     const fileContent = await client.beta.files.download(fileId);
     await fs.writeFile(outputPath, fileContent.body!);
@@ -487,9 +487,9 @@ Presentasi dibuat di dalam container eksekusi kode dan disimpan sebagai file. Re
   ```
 
   ```csharp C#
-  // Extract the file ID from the code-execution tool result. The Skill might
-  // run its work through either the Python or bash code-execution tool, so
-  // check both result types.
+  // Ekstrak ID file dari hasil alat code-execution. Skill mungkin
+  // menjalankan pekerjaannya melalui alat code-execution Python atau bash, jadi
+  // periksa kedua jenis hasil.
   string? fileId = null;
   foreach (var block in response.Content)
   {
@@ -513,7 +513,7 @@ Presentasi dibuat di dalam container eksekusi kode dan disimpan sebagai file. Re
 
   if (fileId is not null)
   {
-      // Download the file and save it
+      // Unduh file dan simpan
       var outputPath = Path.Combine(Path.GetTempPath(), "renewable_energy.pptx");
       using var download = await client.Beta.Files.Download(fileId);
       await using var source = await download.ReadAsStream();
@@ -524,9 +524,9 @@ Presentasi dibuat di dalam container eksekusi kode dan disimpan sebagai file. Re
   ```
 
   ```go Go
-  // Extract file ID from the code-execution tool result. The Skill might run
-  // its work through either the Python or bash code-execution tool, so check
-  // both result types.
+  // Ekstrak ID file dari hasil alat code-execution. Skill mungkin menjalankan
+  // pekerjaannya melalui alat code-execution Python atau bash, jadi periksa
+  // kedua tipe hasil tersebut.
   var fileID string
   for _, block := range response.Content {
   	switch result := block.AsAny().(type) {
@@ -546,7 +546,7 @@ Presentasi dibuat di dalam container eksekusi kode dan disimpan sebagai file. Re
   }
 
   if fileID != "" {
-  	// Download the file and save it
+  	// Unduh file dan simpan
   	outputPath := filepath.Join(os.TempDir(), "renewable_energy.pptx")
   	fileContent, err := client.Beta.Files.Download(ctx, fileID, anthropic.BetaFileDownloadParams{})
   	if err != nil {
@@ -566,9 +566,9 @@ Presentasi dibuat di dalam container eksekusi kode dan disimpan sebagai file. Re
   ```
 
   ```java Java
-  // Extract file ID from the code-execution tool result. The Skill might run
-  // its work through either the Python or bash code-execution tool, so check
-  // both result types.
+  // Ekstrak ID file dari hasil alat code-execution. Skill mungkin menjalankan
+  // pekerjaannya melalui alat code-execution Python atau bash, jadi periksa
+  // kedua tipe hasil tersebut.
   String fileId = null;
   for (BetaContentBlock block : response.content()) {
       if (block.isCodeExecutionToolResult()) {
@@ -589,7 +589,7 @@ Presentasi dibuat di dalam container eksekusi kode dan disimpan sebagai file. Re
   }
 
   if (fileId != null) {
-      // Download the file and save it
+      // Unduh file dan simpan
       Path outputPath = Files.createTempFile("renewable_energy", ".pptx");
       try (HttpResponse fileContent = client.beta().files().download(fileId)) {
           Files.copy(fileContent.body(), outputPath, StandardCopyOption.REPLACE_EXISTING);
@@ -599,9 +599,9 @@ Presentasi dibuat di dalam container eksekusi kode dan disimpan sebagai file. Re
   ```
 
   ```php PHP
-  // Extract file ID from the code-execution tool result. The Skill might run
-  // its work through either the Python or bash code-execution tool, so check
-  // both result types.
+  // Ekstrak ID file dari hasil alat code-execution. Skill mungkin menjalankan
+  // pekerjaannya melalui alat code-execution Python atau bash, jadi periksa
+  // kedua tipe hasil.
   $fileId = null;
   foreach ($response->content as $block) {
       if ($block instanceof BetaCodeExecutionToolResultBlock) {
@@ -620,7 +620,7 @@ Presentasi dibuat di dalam container eksekusi kode dan disimpan sebagai file. Re
   }
 
   if ($fileId !== null) {
-      // Download the file and save it
+      // Unduh file dan simpan
       $outputPath = sys_get_temp_dir() . '/renewable_energy.pptx';
       $fileContent = $client->beta->files->download($fileId);
       file_put_contents($outputPath, $fileContent);
@@ -629,9 +629,9 @@ Presentasi dibuat di dalam container eksekusi kode dan disimpan sebagai file. Re
   ```
 
   ```ruby Ruby
-  # Extract file ID from the code-execution tool result. The Skill might run
-  # its work through either the Python or bash code-execution tool, so check
-  # both result types.
+  # Ekstrak ID file dari hasil alat code-execution. Skill mungkin menjalankan
+  # pekerjaannya melalui alat code-execution Python atau bash, jadi periksa
+  # kedua jenis hasil tersebut.
   file_id = nil
   response.content.each do |block|
     case block.type
@@ -647,7 +647,7 @@ Presentasi dibuat di dalam container eksekusi kode dan disimpan sebagai file. Re
   end
 
   if file_id
-    # Download the file and save it
+    # Unduh file dan simpan
     output_path = File.join(Dir.tmpdir, "renewable_energy.pptx")
     file_content = client.beta.files.download(file_id)
     File.binwrite(output_path, file_content.read)
@@ -660,11 +660,11 @@ Presentasi dibuat di dalam container eksekusi kode dan disimpan sebagai file. Re
   Untuk detail lengkap tentang bekerja dengan file yang dihasilkan, lihat [dokumentasi alat eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool#retrieve-generated-files).
 </Note>
 
-## Coba contoh lainnya
+## Coba lebih banyak contoh
 
-Sekarang setelah Anda membuat dokumen pertama dengan Skills, coba variasi berikut:
+Sekarang setelah Anda membuat dokumen pertama Anda dengan Skills, coba variasi berikut:
 
-### Membuat spreadsheet
+### Buat spreadsheet
 
 <CodeGroup>
   ```bash cURL
@@ -672,7 +672,7 @@ Sekarang setelah Anda membuat dokumen pertama dengan Skills, coba variasi beriku
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: code-execution-2025-08-25,skills-2025-10-02" \
+    -H "anthropic-beta: skills-2025-10-02" \
     -d '{
       "model": "claude-opus-4-8",
       "max_tokens": 16000,
@@ -682,13 +682,12 @@ Sekarang setelah Anda membuat dokumen pertama dengan Skills, coba variasi beriku
       "messages": [
         {"role": "user", "content": "Create a quarterly sales tracking spreadsheet with sample data"}
       ],
-      "tools": [{"type": "code_execution_20250825", "name": "code_execution"}]
+      "tools": [{"type": "code_execution_20260521", "name": "code_execution"}]
     }' | jq -r '"stop_reason=\(.stop_reason)"'
   ```
 
   ```bash CLI
   ant beta:messages create --format json \
-    --beta code-execution-2025-08-25 \
     --beta skills-2025-10-02 <<'YAML' | jq -r '"stop_reason=\(.stop_reason)"'
   model: claude-opus-4-8
   max_tokens: 16000
@@ -701,7 +700,7 @@ Sekarang setelah Anda membuat dokumen pertama dengan Skills, coba variasi beriku
     - role: user
       content: Create a quarterly sales tracking spreadsheet with sample data
   tools:
-    - type: code_execution_20250825
+    - type: code_execution_20260521
       name: code_execution
   YAML
   ```
@@ -710,7 +709,7 @@ Sekarang setelah Anda membuat dokumen pertama dengan Skills, coba variasi beriku
   response = client.beta.messages.create(
       model="claude-opus-4-8",
       max_tokens=16000,
-      betas=["code-execution-2025-08-25", "skills-2025-10-02"],
+      betas=["skills-2025-10-02"],
       container={
           "skills": [{"type": "anthropic", "skill_id": "xlsx", "version": "latest"}]
       },
@@ -720,7 +719,7 @@ Sekarang setelah Anda membuat dokumen pertama dengan Skills, coba variasi beriku
               "content": "Create a quarterly sales tracking spreadsheet with sample data",
           }
       ],
-      tools=[{"type": "code_execution_20250825", "name": "code_execution"}],
+      tools=[{"type": "code_execution_20260521", "name": "code_execution"}],
   )
   ```
 
@@ -728,7 +727,7 @@ Sekarang setelah Anda membuat dokumen pertama dengan Skills, coba variasi beriku
   const response = await client.beta.messages.create({
     model: "claude-opus-4-8",
     max_tokens: 16000,
-    betas: ["code-execution-2025-08-25", "skills-2025-10-02"],
+    betas: ["skills-2025-10-02"],
     container: {
       skills: [{ type: "anthropic", skill_id: "xlsx", version: "latest" }]
     },
@@ -738,7 +737,7 @@ Sekarang setelah Anda membuat dokumen pertama dengan Skills, coba variasi beriku
         content: "Create a quarterly sales tracking spreadsheet with sample data"
       }
     ],
-    tools: [{ type: "code_execution_20250825", name: "code_execution" }]
+    tools: [{ type: "code_execution_20260521", name: "code_execution" }]
   });
   ```
 
@@ -748,7 +747,7 @@ Sekarang setelah Anda membuat dokumen pertama dengan Skills, coba variasi beriku
       {
           Model = Model.ClaudeOpus4_8,
           MaxTokens = 16000,
-          Betas = ["code-execution-2025-08-25", "skills-2025-10-02"],
+          Betas = ["skills-2025-10-02"],
           Container = new BetaContainerParams
           {
               Skills =
@@ -769,7 +768,7 @@ Sekarang setelah Anda membuat dokumen pertama dengan Skills, coba variasi beriku
                   Content = "Create a quarterly sales tracking spreadsheet with sample data",
               },
           ],
-          Tools = [new BetaCodeExecutionTool20250825()],
+          Tools = [new BetaCodeExecutionTool20260521()],
       }
   );
   ```
@@ -779,7 +778,6 @@ Sekarang setelah Anda membuat dokumen pertama dengan Skills, coba variasi beriku
   	Model:     anthropic.ModelClaudeOpus4_8,
   	MaxTokens: 16000,
   	Betas: []anthropic.AnthropicBeta{
-  		"code-execution-2025-08-25",
   		anthropic.AnthropicBetaSkills2025_10_02,
   	},
   	Container: anthropic.BetaMessageNewParamsContainerUnion{
@@ -798,7 +796,7 @@ Sekarang setelah Anda membuat dokumen pertama dengan Skills, coba variasi beriku
   	},
   	Tools: []anthropic.BetaToolUnionParam{
   		{
-  			OfCodeExecutionTool20250825: &anthropic.BetaCodeExecutionTool20250825Param{},
+  			OfCodeExecutionTool20260521: &anthropic.BetaCodeExecutionTool20260521Param{},
   		},
   	},
   })
@@ -813,7 +811,6 @@ Sekarang setelah Anda membuat dokumen pertama dengan Skills, coba variasi beriku
           MessageCreateParams.builder()
               .model(CLAUDE_OPUS_4_8)
               .maxTokens(16000)
-              .addBeta("code-execution-2025-08-25")
               .addBeta(AnthropicBeta.SKILLS_2025_10_02)
               .container(
                   BetaContainerParams.builder()
@@ -827,7 +824,7 @@ Sekarang setelah Anda membuat dokumen pertama dengan Skills, coba variasi beriku
                       .build()
               )
               .addUserMessage("Create a quarterly sales tracking spreadsheet with sample data")
-              .addTool(BetaCodeExecutionTool20250825.builder().build())
+              .addTool(BetaCodeExecutionTool20260521.builder().build())
               .build()
       );
 
@@ -837,7 +834,7 @@ Sekarang setelah Anda membuat dokumen pertama dengan Skills, coba variasi beriku
   $response = $client->beta->messages->create(
       model: 'claude-opus-4-8',
       maxTokens: 16000,
-      betas: ['code-execution-2025-08-25', 'skills-2025-10-02'],
+      betas: ['skills-2025-10-02'],
       container: [
           'skills' => [
               ['type' => 'anthropic', 'skillID' => 'xlsx', 'version' => 'latest'],
@@ -849,7 +846,7 @@ Sekarang setelah Anda membuat dokumen pertama dengan Skills, coba variasi beriku
               'content' => 'Create a quarterly sales tracking spreadsheet with sample data',
           ],
       ],
-      tools: [new BetaCodeExecutionTool20250825()],
+      tools: [new BetaCodeExecutionTool20260521()],
   );
   ```
 
@@ -857,7 +854,7 @@ Sekarang setelah Anda membuat dokumen pertama dengan Skills, coba variasi beriku
   response = client.beta.messages.create(
     model: "claude-opus-4-8",
     max_tokens: 16_000,
-    betas: ["code-execution-2025-08-25", "skills-2025-10-02"],
+    betas: ["skills-2025-10-02"],
     container: {
       skills: [{type: "anthropic", skill_id: "xlsx", version: "latest"}]
     },
@@ -867,12 +864,12 @@ Sekarang setelah Anda membuat dokumen pertama dengan Skills, coba variasi beriku
         content: "Create a quarterly sales tracking spreadsheet with sample data"
       }
     ],
-    tools: [{type: "code_execution_20250825", name: "code_execution"}]
+    tools: [{type: "code_execution_20260521", name: "code_execution"}]
   )
   ```
 </CodeGroup>
 
-### Membuat dokumen Word
+### Buat dokumen Word
 
 <CodeGroup>
   ```bash cURL
@@ -880,7 +877,7 @@ Sekarang setelah Anda membuat dokumen pertama dengan Skills, coba variasi beriku
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: code-execution-2025-08-25,skills-2025-10-02" \
+    -H "anthropic-beta: skills-2025-10-02" \
     -d '{
       "model": "claude-opus-4-8",
       "max_tokens": 16000,
@@ -890,13 +887,12 @@ Sekarang setelah Anda membuat dokumen pertama dengan Skills, coba variasi beriku
       "messages": [
         {"role": "user", "content": "Write a 2-page report on the benefits of renewable energy"}
       ],
-      "tools": [{"type": "code_execution_20250825", "name": "code_execution"}]
+      "tools": [{"type": "code_execution_20260521", "name": "code_execution"}]
     }' | jq -r '"stop_reason=\(.stop_reason)"'
   ```
 
   ```bash CLI
   ant beta:messages create --format json \
-    --beta code-execution-2025-08-25 \
     --beta skills-2025-10-02 <<'YAML' | jq -r '"stop_reason=\(.stop_reason)"'
   model: claude-opus-4-8
   max_tokens: 16000
@@ -909,7 +905,7 @@ Sekarang setelah Anda membuat dokumen pertama dengan Skills, coba variasi beriku
     - role: user
       content: Write a 2-page report on the benefits of renewable energy
   tools:
-    - type: code_execution_20250825
+    - type: code_execution_20260521
       name: code_execution
   YAML
   ```
@@ -918,7 +914,7 @@ Sekarang setelah Anda membuat dokumen pertama dengan Skills, coba variasi beriku
   response = client.beta.messages.create(
       model="claude-opus-4-8",
       max_tokens=16000,
-      betas=["code-execution-2025-08-25", "skills-2025-10-02"],
+      betas=["skills-2025-10-02"],
       container={
           "skills": [{"type": "anthropic", "skill_id": "docx", "version": "latest"}]
       },
@@ -928,7 +924,7 @@ Sekarang setelah Anda membuat dokumen pertama dengan Skills, coba variasi beriku
               "content": "Write a 2-page report on the benefits of renewable energy",
           }
       ],
-      tools=[{"type": "code_execution_20250825", "name": "code_execution"}],
+      tools=[{"type": "code_execution_20260521", "name": "code_execution"}],
   )
   ```
 
@@ -936,7 +932,7 @@ Sekarang setelah Anda membuat dokumen pertama dengan Skills, coba variasi beriku
   const response = await client.beta.messages.create({
     model: "claude-opus-4-8",
     max_tokens: 16000,
-    betas: ["code-execution-2025-08-25", "skills-2025-10-02"],
+    betas: ["skills-2025-10-02"],
     container: {
       skills: [{ type: "anthropic", skill_id: "docx", version: "latest" }]
     },
@@ -946,7 +942,7 @@ Sekarang setelah Anda membuat dokumen pertama dengan Skills, coba variasi beriku
         content: "Write a 2-page report on the benefits of renewable energy"
       }
     ],
-    tools: [{ type: "code_execution_20250825", name: "code_execution" }]
+    tools: [{ type: "code_execution_20260521", name: "code_execution" }]
   });
   ```
 
@@ -956,7 +952,7 @@ Sekarang setelah Anda membuat dokumen pertama dengan Skills, coba variasi beriku
       {
           Model = Model.ClaudeOpus4_8,
           MaxTokens = 16000,
-          Betas = ["code-execution-2025-08-25", "skills-2025-10-02"],
+          Betas = ["skills-2025-10-02"],
           Container = new BetaContainerParams
           {
               Skills =
@@ -977,7 +973,7 @@ Sekarang setelah Anda membuat dokumen pertama dengan Skills, coba variasi beriku
                   Content = "Write a 2-page report on the benefits of renewable energy",
               },
           ],
-          Tools = [new BetaCodeExecutionTool20250825()],
+          Tools = [new BetaCodeExecutionTool20260521()],
       }
   );
   ```
@@ -987,7 +983,6 @@ Sekarang setelah Anda membuat dokumen pertama dengan Skills, coba variasi beriku
   	Model:     anthropic.ModelClaudeOpus4_8,
   	MaxTokens: 16000,
   	Betas: []anthropic.AnthropicBeta{
-  		"code-execution-2025-08-25",
   		anthropic.AnthropicBetaSkills2025_10_02,
   	},
   	Container: anthropic.BetaMessageNewParamsContainerUnion{
@@ -1006,7 +1001,7 @@ Sekarang setelah Anda membuat dokumen pertama dengan Skills, coba variasi beriku
   	},
   	Tools: []anthropic.BetaToolUnionParam{
   		{
-  			OfCodeExecutionTool20250825: &anthropic.BetaCodeExecutionTool20250825Param{},
+  			OfCodeExecutionTool20260521: &anthropic.BetaCodeExecutionTool20260521Param{},
   		},
   	},
   })
@@ -1021,7 +1016,6 @@ Sekarang setelah Anda membuat dokumen pertama dengan Skills, coba variasi beriku
           MessageCreateParams.builder()
               .model(CLAUDE_OPUS_4_8)
               .maxTokens(16000)
-              .addBeta("code-execution-2025-08-25")
               .addBeta(AnthropicBeta.SKILLS_2025_10_02)
               .container(
                   BetaContainerParams.builder()
@@ -1035,7 +1029,7 @@ Sekarang setelah Anda membuat dokumen pertama dengan Skills, coba variasi beriku
                       .build()
               )
               .addUserMessage("Write a 2-page report on the benefits of renewable energy")
-              .addTool(BetaCodeExecutionTool20250825.builder().build())
+              .addTool(BetaCodeExecutionTool20260521.builder().build())
               .build()
       );
 
@@ -1045,7 +1039,7 @@ Sekarang setelah Anda membuat dokumen pertama dengan Skills, coba variasi beriku
   $response = $client->beta->messages->create(
       model: 'claude-opus-4-8',
       maxTokens: 16000,
-      betas: ['code-execution-2025-08-25', 'skills-2025-10-02'],
+      betas: ['skills-2025-10-02'],
       container: [
           'skills' => [
               ['type' => 'anthropic', 'skillID' => 'docx', 'version' => 'latest'],
@@ -1057,7 +1051,7 @@ Sekarang setelah Anda membuat dokumen pertama dengan Skills, coba variasi beriku
               'content' => 'Write a 2-page report on the benefits of renewable energy',
           ],
       ],
-      tools: [new BetaCodeExecutionTool20250825()],
+      tools: [new BetaCodeExecutionTool20260521()],
   );
   ```
 
@@ -1065,7 +1059,7 @@ Sekarang setelah Anda membuat dokumen pertama dengan Skills, coba variasi beriku
   response = client.beta.messages.create(
     model: "claude-opus-4-8",
     max_tokens: 16_000,
-    betas: ["code-execution-2025-08-25", "skills-2025-10-02"],
+    betas: ["skills-2025-10-02"],
     container: {
       skills: [{type: "anthropic", skill_id: "docx", version: "latest"}]
     },
@@ -1075,12 +1069,12 @@ Sekarang setelah Anda membuat dokumen pertama dengan Skills, coba variasi beriku
         content: "Write a 2-page report on the benefits of renewable energy"
       }
     ],
-    tools: [{type: "code_execution_20250825", name: "code_execution"}]
+    tools: [{type: "code_execution_20260521", name: "code_execution"}]
   )
   ```
 </CodeGroup>
 
-### Menghasilkan PDF
+### Hasilkan PDF
 
 <CodeGroup>
   ```bash cURL
@@ -1088,7 +1082,7 @@ Sekarang setelah Anda membuat dokumen pertama dengan Skills, coba variasi beriku
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: code-execution-2025-08-25,skills-2025-10-02" \
+    -H "anthropic-beta: skills-2025-10-02" \
     -d '{
       "model": "claude-opus-4-8",
       "max_tokens": 16000,
@@ -1098,13 +1092,12 @@ Sekarang setelah Anda membuat dokumen pertama dengan Skills, coba variasi beriku
       "messages": [
         {"role": "user", "content": "Generate a PDF invoice template"}
       ],
-      "tools": [{"type": "code_execution_20250825", "name": "code_execution"}]
+      "tools": [{"type": "code_execution_20260521", "name": "code_execution"}]
     }' | jq -r '"stop_reason=\(.stop_reason)"'
   ```
 
   ```bash CLI
   ant beta:messages create --format json \
-    --beta code-execution-2025-08-25 \
     --beta skills-2025-10-02 <<'YAML' | jq -r '"stop_reason=\(.stop_reason)"'
   model: claude-opus-4-8
   max_tokens: 16000
@@ -1117,7 +1110,7 @@ Sekarang setelah Anda membuat dokumen pertama dengan Skills, coba variasi beriku
     - role: user
       content: Generate a PDF invoice template
   tools:
-    - type: code_execution_20250825
+    - type: code_execution_20260521
       name: code_execution
   YAML
   ```
@@ -1126,7 +1119,7 @@ Sekarang setelah Anda membuat dokumen pertama dengan Skills, coba variasi beriku
   response = client.beta.messages.create(
       model="claude-opus-4-8",
       max_tokens=16000,
-      betas=["code-execution-2025-08-25", "skills-2025-10-02"],
+      betas=["skills-2025-10-02"],
       container={
           "skills": [{"type": "anthropic", "skill_id": "pdf", "version": "latest"}]
       },
@@ -1136,7 +1129,7 @@ Sekarang setelah Anda membuat dokumen pertama dengan Skills, coba variasi beriku
               "content": "Generate a PDF invoice template",
           }
       ],
-      tools=[{"type": "code_execution_20250825", "name": "code_execution"}],
+      tools=[{"type": "code_execution_20260521", "name": "code_execution"}],
   )
   ```
 
@@ -1144,7 +1137,7 @@ Sekarang setelah Anda membuat dokumen pertama dengan Skills, coba variasi beriku
   const response = await client.beta.messages.create({
     model: "claude-opus-4-8",
     max_tokens: 16000,
-    betas: ["code-execution-2025-08-25", "skills-2025-10-02"],
+    betas: ["skills-2025-10-02"],
     container: {
       skills: [{ type: "anthropic", skill_id: "pdf", version: "latest" }]
     },
@@ -1154,7 +1147,7 @@ Sekarang setelah Anda membuat dokumen pertama dengan Skills, coba variasi beriku
         content: "Generate a PDF invoice template"
       }
     ],
-    tools: [{ type: "code_execution_20250825", name: "code_execution" }]
+    tools: [{ type: "code_execution_20260521", name: "code_execution" }]
   });
   ```
 
@@ -1164,7 +1157,7 @@ Sekarang setelah Anda membuat dokumen pertama dengan Skills, coba variasi beriku
       {
           Model = Model.ClaudeOpus4_8,
           MaxTokens = 16000,
-          Betas = ["code-execution-2025-08-25", "skills-2025-10-02"],
+          Betas = ["skills-2025-10-02"],
           Container = new BetaContainerParams
           {
               Skills =
@@ -1185,7 +1178,7 @@ Sekarang setelah Anda membuat dokumen pertama dengan Skills, coba variasi beriku
                   Content = "Generate a PDF invoice template",
               },
           ],
-          Tools = [new BetaCodeExecutionTool20250825()],
+          Tools = [new BetaCodeExecutionTool20260521()],
       }
   );
   ```
@@ -1195,7 +1188,6 @@ Sekarang setelah Anda membuat dokumen pertama dengan Skills, coba variasi beriku
   	Model:     anthropic.ModelClaudeOpus4_8,
   	MaxTokens: 16000,
   	Betas: []anthropic.AnthropicBeta{
-  		"code-execution-2025-08-25",
   		anthropic.AnthropicBetaSkills2025_10_02,
   	},
   	Container: anthropic.BetaMessageNewParamsContainerUnion{
@@ -1214,7 +1206,7 @@ Sekarang setelah Anda membuat dokumen pertama dengan Skills, coba variasi beriku
   	},
   	Tools: []anthropic.BetaToolUnionParam{
   		{
-  			OfCodeExecutionTool20250825: &anthropic.BetaCodeExecutionTool20250825Param{},
+  			OfCodeExecutionTool20260521: &anthropic.BetaCodeExecutionTool20260521Param{},
   		},
   	},
   })
@@ -1229,7 +1221,6 @@ Sekarang setelah Anda membuat dokumen pertama dengan Skills, coba variasi beriku
           MessageCreateParams.builder()
               .model(CLAUDE_OPUS_4_8)
               .maxTokens(16000)
-              .addBeta("code-execution-2025-08-25")
               .addBeta(AnthropicBeta.SKILLS_2025_10_02)
               .container(
                   BetaContainerParams.builder()
@@ -1243,7 +1234,7 @@ Sekarang setelah Anda membuat dokumen pertama dengan Skills, coba variasi beriku
                       .build()
               )
               .addUserMessage("Generate a PDF invoice template")
-              .addTool(BetaCodeExecutionTool20250825.builder().build())
+              .addTool(BetaCodeExecutionTool20260521.builder().build())
               .build()
       );
 
@@ -1253,7 +1244,7 @@ Sekarang setelah Anda membuat dokumen pertama dengan Skills, coba variasi beriku
   $response = $client->beta->messages->create(
       model: 'claude-opus-4-8',
       maxTokens: 16000,
-      betas: ['code-execution-2025-08-25', 'skills-2025-10-02'],
+      betas: ['skills-2025-10-02'],
       container: [
           'skills' => [
               ['type' => 'anthropic', 'skillID' => 'pdf', 'version' => 'latest'],
@@ -1265,7 +1256,7 @@ Sekarang setelah Anda membuat dokumen pertama dengan Skills, coba variasi beriku
               'content' => 'Generate a PDF invoice template',
           ],
       ],
-      tools: [new BetaCodeExecutionTool20250825()],
+      tools: [new BetaCodeExecutionTool20260521()],
   );
   ```
 
@@ -1273,7 +1264,7 @@ Sekarang setelah Anda membuat dokumen pertama dengan Skills, coba variasi beriku
   response = client.beta.messages.create(
     model: "claude-opus-4-8",
     max_tokens: 16_000,
-    betas: ["code-execution-2025-08-25", "skills-2025-10-02"],
+    betas: ["skills-2025-10-02"],
     container: {
       skills: [{type: "anthropic", skill_id: "pdf", version: "latest"}]
     },
@@ -1283,7 +1274,7 @@ Sekarang setelah Anda membuat dokumen pertama dengan Skills, coba variasi beriku
         content: "Generate a PDF invoice template"
       }
     ],
-    tools: [{type: "code_execution_20250825", name: "code_execution"}]
+    tools: [{type: "code_execution_20260521", name: "code_execution"}]
   )
   ```
 </CodeGroup>
@@ -1297,7 +1288,7 @@ Sekarang setelah Anda menggunakan Agent Skills bawaan, Anda dapat:
     Gunakan Skills dengan Claude API
   </Card>
 
-  <Card title="Membuat Skills Kustom" icon="code" href="/docs/id/api/skills/create-skill">
+  <Card title="Buat Skills Kustom" icon="code" href="/docs/id/api/skills/create-skill">
     Unggah Skills Anda sendiri untuk tugas-tugas khusus
   </Card>
 
@@ -1305,7 +1296,7 @@ Sekarang setelah Anda menggunakan Agent Skills bawaan, Anda dapat:
     Pelajari praktik terbaik untuk menulis Skills yang efektif
   </Card>
 
-  <Card title="Gunakan Skills di Claude Code" icon="terminal" href="https://code.claude.com/docs/en/skills">
+  <Card title="Gunakan Skills di Claude Code" icon="terminal" href="https://code.claude.com/docs/id/skills">
     Pelajari tentang Skills di Claude Code
   </Card>
 

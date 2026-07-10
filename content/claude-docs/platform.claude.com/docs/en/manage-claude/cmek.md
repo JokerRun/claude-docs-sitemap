@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/cmek
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 6ca44e68d48499c8b87edc956c9c97326acd87ab4c618d7e1d71dd8abdbf509a
+fetched_at: 2026-07-10T03:11:05.177659Z
+sha256: 2221890e75f24304463dd6d56d951d0abef731f2c39dfc51a6f5655709ab959b
 ---
 
 # Customer-managed encryption keys
@@ -37,13 +37,8 @@ Anthropic calls your key management service from its standard public IP range. I
 ## Prerequisites
 
 * Cloud Admin access in the account, project, or subscription that will host the encryption key.
-
 * An admin role in your Anthropic organization: an Organization Admin role in the Claude Console on Claude Platform, or an Owner or Primary Owner role on Claude Enterprise.
-
-* The data retention configuration required for your product:
-
-  * **Claude Platform:** [Zero data retention (ZDR)](/docs/en/manage-claude/api-and-data-retention) turned off for your organization. Organizations with a ZDR arrangement can instead turn on 30-day data retention for at least one workspace; see [Model-specific data retention requirements](/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements). You can attach a key only to a workspace with data retention enabled.
-  * **Claude Enterprise:** ZDR turned off for your organization.
+* Data retention configuration: CMEK is allowed with [Zero data retention (ZDR)](/docs/en/manage-claude/api-and-data-retention) for both Claude Platform and Claude Enterprise.
 
 ## Availability and regions
 

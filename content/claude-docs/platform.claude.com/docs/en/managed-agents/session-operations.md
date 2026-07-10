@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/session-operations
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: d1609baf67de902dfe290d4943e36b03f0a5b28281d0504a3dfba5401b375097
+fetched_at: 2026-07-10T03:11:05.177659Z
+sha256: a00cc3fbc83ea99a9f4924f36771e9c856ca048dca4b8966f01c3635227efae5
 ---
 
 # Session operations
@@ -14,7 +14,7 @@ Retrieve, list, update, archive, and delete Claude Managed Agents sessions.
 Once a session exists, use these operations to read, update, archive, or delete it. See [Start a session](/docs/en/managed-agents/sessions) for creating a session and sending it work.
 
 <Note>
-  All Managed Agents API requests require the `managed-agents-2026-04-01` beta header. The SDK sets the beta header automatically.
+  Managed Agents API requests require the `managed-agents-2026-04-01` beta header, except memory store endpoints, which use `agent-memory-2026-07-22` instead. The SDK sets the correct beta header automatically. See [Beta headers](/docs/en/api/beta-headers#endpoint-specific-headers).
 </Note>
 
 ## Session statuses

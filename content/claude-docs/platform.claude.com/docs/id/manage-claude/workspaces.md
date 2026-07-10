@@ -1,42 +1,42 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/workspaces
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: e463f32cb3e4a73bef385a9b476349b732dc3e8cf36349c19d1c6a9a7d8cda15
+fetched_at: 2026-07-10T03:11:05.177659Z
+sha256: 28eb337574ea569f64a0ca8c0f53a9b8d82d59cf48a7224771cc36eb9bf0d736
 ---
 
-# Workspace
+# Workspaces
 
 Atur kunci API, kelola akses tim, dan kendalikan biaya dengan workspace.
 
 ---
 
-Workspace menyediakan cara untuk mengatur penggunaan API Anda dalam sebuah organisasi. Gunakan workspace untuk memisahkan proyek, lingkungan, atau tim yang berbeda sambil tetap mempertahankan penagihan dan administrasi terpusat.
+Workspace menyediakan cara untuk mengatur penggunaan API Anda dalam sebuah organisasi. Gunakan workspace untuk memisahkan berbagai proyek, lingkungan, atau tim sambil mempertahankan penagihan dan administrasi terpusat.
 
 ## Cara kerja workspace
 
-Setiap organisasi memiliki **Default Workspace** yang tidak dapat diganti namanya, diarsipkan, atau dihapus. Saat Anda membuat workspace tambahan, Anda dapat menetapkan kunci API, anggota, dan batas sumber daya ke masing-masing workspace.
+Setiap organisasi memiliki **Default Workspace** yang tidak dapat diganti namanya, diarsipkan, atau dihapus. Saat Anda membuat workspace tambahan, Anda dapat menetapkan kunci API, anggota, dan batas sumber daya untuk masing-masing workspace.
 
 Karakteristik utama:
 
-* **Pengidentifikasi workspace** menggunakan prefiks `wrkspc_` (misalnya, `wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ`)
+* **Pengidentifikasi workspace** menggunakan awalan `wrkspc_` (misalnya, `wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ`)
 * **Maksimum 100 workspace** per organisasi (workspace yang diarsipkan tidak dihitung)
 * **Default Workspace** tidak memiliki ID dan tidak muncul di endpoint daftar
 * **Kunci API** dibatasi cakupannya pada satu workspace dan hanya dapat mengakses sumber daya dalam workspace tersebut
 
 ### Workspace Claude Code
 
-Ketika anggota organisasi Anda pertama kali masuk ke [Claude Code](https://docs.claude.com/id/docs/claude-code/overview) dengan akun Claude Console mereka, Anthropic secara otomatis membuat workspace **Claude Code** di organisasi tersebut dan menambahkan anggota itu ke dalamnya. Setiap anggota berikutnya yang masuk ke Claude Code ditambahkan dengan cara yang sama.
+Ketika anggota organisasi Anda pertama kali masuk ke [Claude Code](https://code.claude.com/docs/en/overview) dengan akun Claude Console mereka, Anthropic secara otomatis membuat workspace **Claude Code** di organisasi tersebut dan menambahkan anggota itu ke dalamnya. Setiap anggota berikutnya yang masuk ke Claude Code ditambahkan dengan cara yang sama.
 
-Workspace Claude Code memisahkan lalu lintas Claude Code dari beban kerja API Anda yang lain:
+Workspace Claude Code menjaga lalu lintas Claude Code tetap terpisah dari beban kerja API Anda yang lain:
 
 * Claude Code membuat kunci API per pengguna di workspace ini saat masuk. Anda tidak dapat membuat kunci di dalamnya secara manual dari Console.
 * Kunci Claude Code berhenti berfungsi jika pemiliknya dihapus dari workspace atau organisasi, tidak seperti kunci workspace standar.
-* Penggunaan Claude Code dibatasi lajunya secara terpisah, dan admin dapat membatasi bagiannya dari batas organisasi di [Settings > Workspaces](/settings/workspaces).
+* Penggunaan Claude Code dibatasi lajunya secara terpisah, dan admin dapat membatasi porsinya dari batas organisasi di bawah [Settings > Workspaces](/settings/workspaces).
 * Ini adalah satu-satunya workspace yang mendukung batas pengeluaran bulanan per pengguna.
 
 <Warning>
-  Mengarsipkan workspace Claude Code akan menonaktifkan proses masuk Claude Code melalui penagihan Console untuk seluruh organisasi.
+  Mengarsipkan workspace Claude Code menonaktifkan masuk ke Claude Code melalui penagihan Console untuk seluruh organisasi.
 </Warning>
 
 ## Peran dan izin workspace
@@ -109,12 +109,12 @@ Untuk mengubah nama atau warna workspace:
 
 #### Menambahkan anggota ke workspace
 
-1. Buka tab **Members** pada workspace
+1. Navigasikan ke tab **Members** pada workspace
 2. Klik **Add to Workspace**
 3. Pilih anggota organisasi dan tetapkan [peran workspace](#workspace-roles-and-permissions) kepada mereka
-4. Konfirmasi penambahan
+4. Konfirmasikan penambahan
 
-Untuk menghapus anggota, klik ikon tempat sampah di samping nama mereka.
+Untuk menghapus anggota, klik ikon tempat sampah di sebelah nama mereka.
 
 <Note>
   Admin organisasi dan anggota penagihan tidak dapat dihapus dari workspace selama mereka memegang peran organisasi tersebut.
@@ -124,8 +124,8 @@ Untuk menghapus anggota, klik ikon tempat sampah di samping nama mereka.
 
 Di tab **Limits**, Anda dapat mengonfigurasi:
 
-* **Batas laju:** Tetapkan batas per tingkat model untuk permintaan per menit, token input, atau token output
-* **Notifikasi pengeluaran:** Konfigurasikan peringatan saat pengeluaran mencapai ambang batas tertentu
+* **Batas laju:** Atur batas per tingkat model untuk permintaan per menit, token input, atau token output
+* **Notifikasi pengeluaran:** Konfigurasikan peringatan ketika pengeluaran mencapai ambang batas tertentu
 
 #### Mengarsipkan workspace
 
@@ -136,7 +136,7 @@ Untuk mengarsipkan workspace, klik menu elipsis (**...**) dan pilih **Archive**.
 * Tidak dapat dibatalkan
 
 <Warning>
-  Mengarsipkan workspace akan segera mencabut semua kunci API di workspace tersebut. Tindakan ini tidak dapat dibatalkan. Jika Anda mengarsipkan [workspace Claude Code](#claude-code-workspace), anggota organisasi Anda tidak dapat lagi masuk ke Claude Code melalui penagihan Console.
+  Mengarsipkan workspace segera mencabut semua kunci API di workspace tersebut. Tindakan ini tidak dapat dibatalkan. Jika Anda mengarsipkan [workspace Claude Code](#claude-code-workspace), anggota organisasi Anda tidak dapat lagi masuk ke Claude Code melalui penagihan Console.
 </Warning>
 
 ### Menggunakan Admin API
@@ -172,7 +172,7 @@ Untuk detail parameter lengkap dan skema respons, lihat [referensi Workspaces AP
 Tambahkan, perbarui, atau hapus anggota dari workspace:
 
 ```bash cURL
-# Tambahkan anggota ke workspace
+# Menambahkan anggota ke workspace
 curl --request POST "https://api.anthropic.com/v1/organizations/workspaces/{workspace_id}/members" \
   --header "anthropic-version: 2023-06-01" \
   --header "x-api-key: $ANTHROPIC_ADMIN_KEY" \
@@ -181,13 +181,13 @@ curl --request POST "https://api.anthropic.com/v1/organizations/workspaces/{work
     "workspace_role": "workspace_developer"
   }'
 
-# Perbarui peran anggota
+# Memperbarui peran anggota
 curl --request POST "https://api.anthropic.com/v1/organizations/workspaces/{workspace_id}/members/{user_id}" \
   --header "anthropic-version: 2023-06-01" \
   --header "x-api-key: $ANTHROPIC_ADMIN_KEY" \
   --data '{"workspace_role": "workspace_admin"}'
 
-# Hapus anggota dari workspace
+# Menghapus anggota dari workspace
 curl --request DELETE "https://api.anthropic.com/v1/organizations/workspaces/{workspace_id}/members/{user_id}" \
   --header "anthropic-version: 2023-06-01" \
   --header "x-api-key: $ANTHROPIC_ADMIN_KEY"
@@ -195,19 +195,19 @@ curl --request DELETE "https://api.anthropic.com/v1/organizations/workspaces/{wo
 
 Untuk detail parameter lengkap, lihat [referensi Workspace Members API](/docs/id/api/admin-api/workspace_members/get-workspace-member).
 
-## Kunci API dan cakupan sumber daya
+## Kunci API dan pembatasan cakupan sumber daya
 
 Kunci API dibatasi cakupannya pada workspace tertentu. Saat Anda membuat kunci API di sebuah workspace, kunci tersebut hanya dapat mengakses sumber daya dalam workspace itu.
 
 Sumber daya yang dibatasi cakupannya pada workspace meliputi:
 
 * **File** yang dibuat melalui [Files API](/docs/id/build-with-claude/files)
-* **Message Batch** yang dibuat melalui [Batch API](/docs/id/build-with-claude/batch-processing)
-* **Skill** yang dibuat melalui [Skills API](/docs/id/build-with-claude/skills-guide)
+* **Message Batches** yang dibuat melalui [Batch API](/docs/id/build-with-claude/batch-processing)
+* **Skills** yang dibuat melalui [Skills API](/docs/id/build-with-claude/skills-guide)
 
 Beberapa sumber daya tidak dapat dikelola dengan kunci API workspace:
 
-* **[MCP tunnel](/docs/id/agents-and-tools/mcp-tunnels/overview)** dikelola dengan token OAuth `workspace:manage_tunnels` yang diperoleh melalui [Workload Identity Federation](/docs/id/manage-claude/workload-identity-federation), bukan kunci API workspace. Tunnel dibuat dalam sebuah workspace, dan daftar **MCP tunnels** di Console serta pemilih server Managed Agent hanya menampilkan tunnel di workspace saat ini; batas 10 tunnel aktif berlaku di seluruh organisasi. Pengelolaan tunnel memerlukan peran dengan izin pengelolaan tunnel; developer organisasi dapat melihat tetapi tidak dapat mengubahnya.
+* **[MCP tunnels](/docs/id/agents-and-tools/mcp-tunnels/overview)** dikelola dengan token OAuth `workspace:manage_tunnels` yang diperoleh melalui [Workload Identity Federation](/docs/id/manage-claude/workload-identity-federation), bukan kunci API workspace. Tunnel dibuat di sebuah workspace, dan daftar **MCP tunnels** di Console serta pemilih server Managed Agent hanya menampilkan tunnel di workspace saat ini; batas 10 tunnel aktif berlaku di seluruh organisasi. Pengelolaan tunnel memerlukan peran dengan izin pengelolaan tunnel; developer organisasi dapat melihat tetapi tidak dapat mengubahnya.
 * **Workspace** itu sendiri dan **anggota organisasi** dikelola di tingkat organisasi melalui [Admin API](/docs/id/manage-claude/admin-api), yang memerlukan kunci Admin API.
 
 <Note>
@@ -220,19 +220,19 @@ Beberapa sumber daya tidak dapat dikelola dengan kunci API workspace:
 
 ## Batas workspace
 
-Anda dapat menetapkan batas pengeluaran dan batas laju kustom untuk setiap workspace guna melindungi dari penggunaan berlebihan dan memastikan distribusi sumber daya yang adil.
+Anda dapat mengatur batas pengeluaran dan batas laju khusus untuk setiap workspace guna melindungi dari penggunaan berlebihan dan memastikan distribusi sumber daya yang adil.
 
-### Menetapkan batas workspace
+### Mengatur batas workspace
 
-Batas workspace dapat ditetapkan lebih rendah dari (tetapi tidak lebih tinggi dari) batas organisasi Anda:
+Batas workspace dapat diatur lebih rendah dari (tetapi tidak lebih tinggi dari) batas organisasi Anda:
 
-* **Batas pengeluaran:** Membatasi pengeluaran bulanan untuk sebuah workspace
-* **Batas laju:** Membatasi permintaan per menit, token input per menit, atau token output per menit
+* **Batas pengeluaran:** Batasi pengeluaran bulanan untuk sebuah workspace
+* **Batas laju:** Batasi permintaan per menit, token input per menit, atau token output per menit
 
 <Note>
-  - Anda tidak dapat menetapkan batas pada Default Workspace
-  - Jika tidak ditetapkan, batas workspace mengikuti batas organisasi
-  - Batas di seluruh organisasi selalu berlaku, meskipun jumlah batas workspace melebihinya
+  - Anda tidak dapat mengatur batas pada Default Workspace
+  - Jika tidak diatur, batas workspace sama dengan batas organisasi
+  - Batas di seluruh organisasi selalu berlaku, bahkan jika jumlah batas workspace melebihinya
 </Note>
 
 Untuk informasi terperinci tentang batas laju dan cara kerjanya, lihat [Batas laju](/docs/id/api/rate-limits). Anda juga dapat membaca batas laju organisasi dan workspace Anda saat ini secara terprogram dengan [Rate Limits API](/docs/id/manage-claude/rate-limits-api).
@@ -258,12 +258,12 @@ Penggunaan dan biaya yang diatribusikan ke Default Workspace memiliki nilai `nul
 
 ### Pemisahan lingkungan
 
-Buat workspace terpisah untuk development, staging, dan production:
+Buat workspace terpisah untuk pengembangan, staging, dan produksi:
 
 | Workspace   | Tujuan                                                       |
 | ----------- | ------------------------------------------------------------ |
 | Development | Pengujian dan eksperimen dengan batas laju yang lebih rendah |
-| Staging     | Pengujian pra-produksi dengan batas yang menyerupai produksi |
+| Staging     | Pengujian pra-produksi dengan batas yang mirip produksi      |
 | Production  | Lalu lintas langsung dengan batas laju penuh dan pemantauan  |
 
 ### Isolasi tim atau departemen
@@ -274,7 +274,7 @@ Tetapkan workspace ke tim yang berbeda untuk alokasi biaya dan kontrol akses:
 * **Tim data science** dengan kunci API mereka sendiri
 * **Tim support** dengan akses terbatas untuk alat pelanggan
 
-### Pengorganisasian berbasis proyek
+### Organisasi berbasis proyek
 
 Buat workspace untuk proyek atau produk tertentu guna melacak penggunaan dan biaya secara terpisah.
 
@@ -282,19 +282,19 @@ Buat workspace untuk proyek atau produk tertentu guna melacak penggunaan dan bia
 
 <Steps>
   <Step title="Rencanakan struktur workspace Anda">
-    Pertimbangkan bagaimana Anda akan mengatur workspace sebelum membuatnya. Pikirkan kebutuhan penagihan, kontrol akses, dan pelacakan penggunaan.
+    Pertimbangkan bagaimana Anda akan mengatur workspace sebelum membuatnya. Pikirkan tentang kebutuhan penagihan, kontrol akses, dan pelacakan penggunaan.
   </Step>
 
   <Step title="Gunakan nama yang bermakna">
     Beri nama workspace dengan jelas untuk menunjukkan tujuannya (misalnya, "Production - Customer Chatbot", "Dev - Internal Tools").
   </Step>
 
-  <Step title="Tetapkan batas yang sesuai">
+  <Step title="Atur batas yang sesuai">
     Konfigurasikan batas pengeluaran dan batas laju untuk mencegah biaya tak terduga dan memastikan distribusi sumber daya yang adil.
   </Step>
 
   <Step title="Audit akses secara berkala">
-    Tinjau keanggotaan workspace secara berkala untuk memastikan hanya pengguna yang tepat yang memiliki akses.
+    Tinjau keanggotaan workspace secara berkala untuk memastikan hanya pengguna yang sesuai yang memiliki akses.
   </Step>
 
   <Step title="Pantau penggunaan">
@@ -310,7 +310,7 @@ Buat workspace untuk proyek atau produk tertentu guna melacak penggunaan dan bia
   </Accordion>
 
   <Accordion title="Apa itu workspace Claude Code?">
-    Anthropic membuat workspace Claude Code secara otomatis saat pertama kali anggota organisasi Anda masuk ke Claude Code dengan akun Console mereka. Workspace ini mengisolasi kunci API, penggunaan, dan batas laju Claude Code dari beban kerja Anda yang lain. Lihat [Workspace Claude Code](#claude-code-workspace) untuk detailnya.
+    Anthropic membuat workspace Claude Code secara otomatis saat pertama kali anggota organisasi Anda masuk ke Claude Code dengan akun Console mereka. Workspace ini mengisolasi kunci API, penggunaan, dan batas laju Claude Code dari beban kerja Anda yang lain. Lihat [workspace Claude Code](#claude-code-workspace) untuk detailnya.
   </Accordion>
 
   <Accordion title="Apakah ada batasan pada workspace?">
@@ -322,19 +322,19 @@ Buat workspace untuk proyek atau produk tertentu guna melacak penggunaan dan bia
   </Accordion>
 
   <Accordion title="Peran apa saja yang dapat ditetapkan di workspace?">
-    Pengguna dan developer organisasi dapat diberi peran Workspace Admin, Workspace Developer, Workspace Limited Developer, atau Workspace User. Peran Workspace Billing tidak dapat ditetapkan secara manual; peran ini diwarisi dari kepemilikan peran `billing` organisasi.
+    Pengguna dan developer organisasi dapat ditetapkan peran Workspace Admin, Workspace Developer, Workspace Limited Developer, atau Workspace User. Peran Workspace Billing tidak dapat ditetapkan secara manual; peran ini diwarisi dari kepemilikan peran `billing` organisasi.
   </Accordion>
 
   <Accordion title="Apakah peran workspace admin organisasi atau anggota penagihan dapat diubah?">
     Admin organisasi dan anggota penagihan tidak dapat diubah peran workspace-nya atau dihapus dari workspace selama mereka memegang peran organisasi tersebut (dengan satu pengecualian: anggota penagihan dapat ditingkatkan ke peran Workspace Admin). Untuk semua orang lain yang tercakup dalam batasan ini, ubah peran organisasi mereka terlebih dahulu untuk mengubah akses workspace mereka.
   </Accordion>
 
-  <Accordion title="Apa yang terjadi pada akses workspace saat peran organisasi berubah?">
-    Jika admin organisasi atau anggota penagihan diturunkan menjadi pengguna atau developer, mereka kehilangan akses ke semua workspace kecuali yang perannya ditetapkan secara manual kepada mereka. Saat pengguna dipromosikan ke peran admin atau penagihan, mereka mendapatkan akses otomatis ke semua workspace.
+  <Accordion title="Apa yang terjadi pada akses workspace ketika peran organisasi berubah?">
+    Jika admin organisasi atau anggota penagihan diturunkan menjadi pengguna atau developer, mereka kehilangan akses ke semua workspace kecuali workspace di mana mereka ditetapkan peran secara manual. Ketika pengguna dipromosikan ke peran admin atau penagihan, mereka mendapatkan akses otomatis ke semua workspace.
   </Accordion>
 
-  <Accordion title="Apa yang terjadi pada kunci API saat pengguna dihapus dari workspace?">
-    Kunci API tetap dalam keadaan saat ini karena cakupannya adalah organisasi dan workspace, bukan pengguna individu. Pengecualiannya adalah [workspace Claude Code](#claude-code-workspace), di mana setiap kunci terikat pada anggota yang membuatnya dan berhenti berfungsi saat anggota tersebut dihapus.
+  <Accordion title="Apa yang terjadi pada kunci API ketika pengguna dihapus dari workspace?">
+    Kunci API tetap dalam keadaan saat ini karena cakupannya terikat pada organisasi dan workspace, bukan pada pengguna individu. Pengecualiannya adalah [workspace Claude Code](#claude-code-workspace), di mana setiap kunci terikat pada anggota yang membuatnya dan berhenti berfungsi ketika anggota tersebut dihapus.
   </Accordion>
 </AccordionGroup>
 

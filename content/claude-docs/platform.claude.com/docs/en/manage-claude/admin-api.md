@@ -1,11 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/admin-api
-fetched_at: 2026-07-08T03:08:53.943475Z
-sha256: dd5db9d4cfcb02bf58652b5a23a607950295f30a87d0bcc7a996bce50db7d91b
+fetched_at: 2026-07-10T03:11:05.177659Z
+sha256: 9f2936ec7ac4bdae9dd295716548b72b65b651a8bc2bc91a159090270cf6d3bd
 ---
 
 # Admin API
+
+Manage organization members, workspaces, invites, and API keys programmatically with the Admin API, using an Admin API key or an `org:admin` OAuth token.
 
 ---
 
@@ -179,7 +181,7 @@ Manage [user access to specific workspaces](/docs/en/api/admin-api/workspace_mem
 
 ### API keys
 
-Monitor and manage [API keys](/docs/en/api/admin-api/apikeys/get-api-key):
+Monitor and manage [API keys](/docs/en/api/admin/api_keys/list). Each key in the response includes its `expires_at` timestamp (`null` for keys without an [expiration](/docs/en/manage-claude/authentication#key-expiration)):
 
 <CodeGroup>
   ```bash cURL
@@ -260,7 +262,7 @@ To effectively use the Admin API:
 * Implement proper error handling for failed operations
 * Regularly audit member roles and permissions
 * Clean up unused workspaces and expired invites
-* Monitor API key usage and rotate keys periodically
+* Monitor API key usage, audit each key's [`expires_at`](/docs/en/manage-claude/authentication#key-expiration), and rotate keys periodically
 
 ## FAQ
 

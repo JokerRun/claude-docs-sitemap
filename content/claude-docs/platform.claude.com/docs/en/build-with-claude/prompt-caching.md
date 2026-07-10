@@ -1,11 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-caching
-fetched_at: 2026-07-07T03:11:34.034287Z
-sha256: cba565206511fdaa0c86dc2abdcc97a87431bd107fad3248a9be45b16afd3ed6
+fetched_at: 2026-07-10T03:11:05.177659Z
+sha256: 36075f72a830f9c3dbe07f4113177a379817b7ea713226d95c69a1889eda010f
 ---
 
 # Prompt caching
+
+Cache prompt prefixes with `cache_control` to cut costs and latency, using automatic caching or explicit breakpoints with 5-minute or 1-hour TTLs.
 
 ---
 

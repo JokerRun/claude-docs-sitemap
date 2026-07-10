@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/token-counting
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 908a2ab6f42da2b797f3a94dc482dad3b79ec4686a276bc7a0117ef71e17bb00
+fetched_at: 2026-07-10T03:11:05.177659Z
+sha256: 47d7e7659d9750891cf526d22c7929d1ef09eeb27b6f6a72aec62a37fd096d11
 ---
 
 # Penghitungan token
@@ -13,7 +13,7 @@ Hitung token dalam sebuah pesan sebelum Anda mengirimkannya ke Claude. Gunakan j
 
 Penghitungan token memungkinkan Anda menentukan jumlah token dalam sebuah pesan sebelum Anda mengirimkannya ke Claude. Ini membantu Anda membuat keputusan yang tepat tentang prompt dan penggunaan Anda. Dengan penghitungan token, Anda dapat:
 
-* Mengelola batas laju dan biaya secara proaktif
+* Mengelola "rate limit" (batas laju) dan biaya secara proaktif
 * Membuat keputusan perutean model yang cerdas
 * Mengoptimalkan prompt ke panjang tertentu
 
@@ -25,7 +25,7 @@ Penghitungan token memungkinkan Anda menentukan jumlah token dalam sebuah pesan 
 
 ## Cara menghitung token pesan
 
-Endpoint [penghitungan token](/docs/id/api/messages-count-tokens) menerima daftar input terstruktur yang sama seperti untuk membuat pesan, termasuk dukungan untuk prompt sistem, [alat](/docs/id/agents-and-tools/tool-use/overview), [gambar](/docs/id/build-with-claude/vision), dan [PDF](/docs/id/build-with-claude/pdf-support). Respons berisi jumlah total token input.
+Endpoint [penghitungan token](/docs/id/api/messages-count-tokens) menerima daftar input terstruktur yang sama untuk membuat pesan, termasuk dukungan untuk prompt sistem, [alat](/docs/id/agents-and-tools/tool-use/overview), [gambar](/docs/id/build-with-claude/vision), dan [PDF](/docs/id/build-with-claude/pdf-support). Respons berisi jumlah total token input.
 
 <Note>
   Jumlah token harus dianggap sebagai **estimasi**. Dalam beberapa kasus, jumlah token input aktual yang digunakan saat membuat pesan mungkin berbeda sedikit.
@@ -38,7 +38,7 @@ Endpoint [penghitungan token](/docs/id/api/messages-count-tokens) menerima dafta
 Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitungan token, termasuk Claude Sonnet 5.
 
 <Note>
-  Claude Opus 4.7 dan model Opus yang lebih baru, Claude Fable 5, Claude Mythos 5, Claude Mythos Preview, dan Claude Sonnet 5 menggunakan tokenizer yang lebih baru. Teks input yang sama menghasilkan sekitar 30% lebih banyak token dibandingkan model sebelumnya. Hitung ulang prompt terhadap model yang akan Anda gunakan, alih-alih menggunakan kembali jumlah yang diukur terhadap model sebelumnya.
+  Claude Opus 4.7 dan model Opus yang lebih baru, Claude Fable 5, Claude Mythos 5, Claude Mythos Preview, dan Claude Sonnet 5 menggunakan tokenizer yang lebih baru. Teks input yang sama menghasilkan sekitar 30% lebih banyak token dibandingkan model sebelumnya. Peningkatan pastinya bergantung pada konten dan bentuk beban kerja. Hitung ulang prompt terhadap model yang akan Anda gunakan daripada menggunakan kembali jumlah yang diukur terhadap model sebelumnya.
 </Note>
 
 ### Menghitung token dalam pesan dasar
@@ -795,8 +795,8 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
 <Note>
   Lihat [bagaimana jendela konteks dihitung dengan pemikiran diperpanjang](/docs/id/build-with-claude/extended-thinking#how-context-window-is-calculated-with-extended-thinking) untuk detail lebih lanjut
 
-  * Blok pemikiran dari giliran asisten **sebelumnya** diabaikan dan **tidak** dihitung terhadap token input Anda
-  * Pemikiran giliran asisten **saat ini** **dihitung** terhadap token input Anda
+  * Blok pemikiran dari giliran asisten **sebelumnya** diabaikan dan **tidak** dihitung dalam token input Anda
+  * Pemikiran giliran asisten **saat ini** **dihitung** dalam token input Anda
 </Note>
 
 <CodeGroup>
@@ -1423,10 +1423,10 @@ Semua [model aktif](/docs/id/about-claude/models/overview) mendukung penghitunga
 
 ## Jumlah token pada Claude Fable 5 dan Claude Mythos 5
 
-Claude Fable 5 dan Claude Mythos 5 menggunakan tokenizer yang diperkenalkan dengan Claude Opus 4.7, yang menghasilkan sekitar 30% lebih banyak token dibandingkan model sebelum Claude Opus 4.7 untuk teks yang sama. Endpoint penghitungan token mengembalikan jumlah berdasarkan tokenizer dari `model` yang Anda berikan, jadi untuk mengukur perbedaan pada beban kerja Anda, hitung permintaan yang sama dua kali: sekali dengan model Anda saat ini dan sekali dengan `model: "claude-fable-5"` (atau `"claude-mythos-5"`), lalu bandingkan kedua nilai `input_tokens`.
+Claude Fable 5 dan Claude Mythos 5 menggunakan tokenizer yang diperkenalkan dengan Claude Opus 4.7, yang menghasilkan sekitar 30% lebih banyak token dibandingkan model sebelum Claude Opus 4.7 untuk teks yang sama. Peningkatan pastinya bergantung pada konten dan bentuk beban kerja. Endpoint penghitungan token mengembalikan jumlah berdasarkan tokenizer dari `model` yang Anda berikan, jadi untuk mengukur perbedaan pada beban kerja Anda, hitung permintaan yang sama dua kali: sekali dengan model Anda saat ini dan sekali dengan `model: "claude-fable-5"` (atau `"claude-mythos-5"`), lalu bandingkan kedua nilai `input_tokens`.
 
 <Note>
-  **Penagihan dan migrasi:** Penggunaan dan penagihan pada Claude Fable 5 dan Claude Mythos 5 mencerminkan jumlah dari tokenizer ini. Jika Anda bermigrasi dari model sebelum Claude Opus 4.7, konten yang sama mengonsumsi sekitar 30% lebih banyak token. Saat memigrasikan beban kerja ke Claude Fable 5 dan Claude Mythos 5, jangan gunakan kembali jumlah token yang diukur pada model sebelum Claude Opus 4.7 untuk memperkirakan biaya atau kesesuaian jendela konteks. Hitung prompt Anda dengan `model: "claude-fable-5"` (atau `"claude-mythos-5"`).
+  **Penagihan dan migrasi:** Penggunaan dan penagihan pada Claude Fable 5 dan Claude Mythos 5 mencerminkan jumlah dari tokenizer ini. Jika Anda bermigrasi dari model sebelum Claude Opus 4.7, konten yang sama mengonsumsi sekitar 30% lebih banyak token. Peningkatan pastinya bergantung pada konten dan bentuk beban kerja. Saat memigrasikan beban kerja ke Claude Fable 5 dan Claude Mythos 5, jangan gunakan kembali jumlah token yang diukur pada model sebelum Claude Opus 4.7 untuk memperkirakan biaya atau kesesuaian jendela konteks. Hitung prompt Anda dengan `model: "claude-fable-5"` (atau `"claude-mythos-5"`).
 </Note>
 
 ***
@@ -1460,7 +1460,7 @@ Penghitungan token **gratis untuk digunakan** tetapi tunduk pada batas laju perm
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
-  <Card title="Menghitung token pesan" icon="code" href="/docs/id/api/messages-count-tokens">
+  <Card title="Hitung token pesan" icon="code" href="/docs/id/api/messages-count-tokens">
     Baca referensi API lengkap untuk endpoint penghitungan token.
   </Card>
 

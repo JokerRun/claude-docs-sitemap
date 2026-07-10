@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/github
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: a57317708f0ee1d2ded210325aea6a689d88b370c1e227c631019673b0e7b9e9
+fetched_at: 2026-07-10T03:11:05.177659Z
+sha256: 89e8c0816a9dcb7fcb252b53ec3ce9030171f5a474faff4920fa2dc7e45251cc
 ---
 
 # Accessing GitHub
@@ -16,7 +16,7 @@ You can mount a GitHub repository to your session sandbox and connect to the Git
 GitHub repositories are cached, so future sessions that use the same repository start faster.
 
 <Note>
-  All Managed Agents API requests require the `managed-agents-2026-04-01` beta header. The SDK sets the beta header automatically.
+  Managed Agents API requests require the `managed-agents-2026-04-01` beta header, except memory store endpoints, which use `agent-memory-2026-07-22` instead. The SDK sets the correct beta header automatically. See [Beta headers](/docs/en/api/beta-headers#endpoint-specific-headers).
 </Note>
 
 ## GitHub MCP and session resources

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/permissions
-fetched_at: 2026-07-07T03:11:34.034287Z
-sha256: 2d3e163c8653ed8c7ec9707ce980aa36220c76c3d89626b6e17dd71341795ac9
+fetched_at: 2026-07-10T03:11:05.177659Z
+sha256: 853015475e0f47525ad66a27cdf8676f2a004f5982f6b8ad9dfd44f57f6e30bb
 ---
 
 > ## Documentation Index
@@ -51,7 +51,7 @@ Claude Code supports several permission modes that control how it approves tool 
 | :------------------ | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `default`           | Standard behavior: prompts for permission on first use of each tool. {/* min-version: 2.1.200 */}Labeled Manual in the CLI and the VS Code and JetBrains extensions, and Claude Code accepts `manual` as an alias. The label and alias require Claude Code v2.1.200 or later |
 | `acceptEdits`       | Automatically accepts file edits and common filesystem commands such as `mkdir`, `touch`, `mv`, and `cp` for paths in the working directory or `additionalDirectories`                                                                                                       |
-| `plan`              | Plan Mode: Claude reads files and runs read-only shell commands to explore but doesn't edit your source files                                                                                                                                                                |
+| `plan`              | Claude reads files and runs read-only shell commands to explore but doesn't edit your source files. Labeled Plan in the CLI and the VS Code extension                                                                                                                        |
 | `auto`              | Auto-approves tool calls with background safety checks that verify actions align with your request. Currently a research preview                                                                                                                                             |
 | `dontAsk`           | Auto-denies tools unless pre-approved via `/permissions` or `permissions.allow` rules                                                                                                                                                                                        |
 | `bypassPermissions` | Skips permission prompts, except those forced by explicit `ask` rules. Root and home directory removals such as `rm -rf /` also still prompt as a circuit breaker                                                                                                            |

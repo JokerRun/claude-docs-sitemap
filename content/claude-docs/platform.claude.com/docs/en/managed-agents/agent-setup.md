@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/agent-setup
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: be5470cdaa19f06a6af574013d464c07f3c4a60cbcfdb6c2073817df03525d12
+fetched_at: 2026-07-10T03:11:05.177659Z
+sha256: 4b1dcc075e9143ce208d17c5043c9bde9ba5ce95e11c8390bd3f57407b08fb45
 ---
 
 # Define your agent
@@ -16,7 +16,7 @@ An agent is a reusable, versioned configuration that defines persona and capabil
 Create the agent once as a reusable resource and reference it by ID each time you [start a session](/docs/en/managed-agents/sessions). Agents are versioned and easier to manage across many sessions.
 
 <Note>
-  All Managed Agents API requests require the `managed-agents-2026-04-01` beta header. The SDK sets the beta header automatically.
+  Managed Agents API requests require the `managed-agents-2026-04-01` beta header, except memory store endpoints, which use `agent-memory-2026-07-22` instead. The SDK sets the correct beta header automatically. See [Beta headers](/docs/en/api/beta-headers#endpoint-specific-headers).
 </Note>
 
 ## Agent configuration fields

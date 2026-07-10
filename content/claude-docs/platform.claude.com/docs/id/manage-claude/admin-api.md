@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/admin-api
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: e9ed4ceb013102c88ac3f27e780837bd20acd3cfc2fb929a702bfe3b196218f2
+fetched_at: 2026-07-10T03:11:05.177659Z
+sha256: f716d05af04b19d8ab7720327a723ec7e19c319676f79faf2d070dddb37cb4a3
 ---
 
 # Admin API
@@ -18,18 +18,18 @@ sha256: e9ed4ceb013102c88ac3f27e780837bd20acd3cfc2fb929a702bfe3b196218f2
 <Check>
   **Admin API memerlukan akses khusus**
 
-  Admin API menerima dua kredensial: kunci Admin API (dimulai dengan `sk-ant-admin...`) yang dikirim dalam header `x-api-key` atau token bearer OAuth dengan scope `org:admin` yang dikirim dalam header `authorization: Bearer`. Hanya anggota organisasi dengan peran admin yang dapat menyediakan kunci Admin API, dan hanya anggota dengan peran admin, owner, atau primary owner yang dapat memperoleh token `org:admin`. Lihat [Membuat kunci Admin API](/docs/id/manage-claude/admin-api-keys).
+  Admin API menerima dua kredensial: kunci Admin API (dimulai dengan `sk-ant-admin...`) yang dikirim di header `x-api-key` atau token bearer OAuth dengan cakupan `org:admin` yang dikirim di header `authorization: Bearer`. Hanya anggota organisasi dengan peran admin yang dapat menyediakan kunci Admin API, dan hanya anggota dengan peran admin, owner, atau primary owner yang dapat memperoleh token `org:admin`. Lihat [Membuat kunci Admin API](/docs/id/manage-claude/admin-api-keys).
 </Check>
 
 <Note>
-  **Claude Platform di AWS:** Sebagian besar Admin API tidak tersedia di Claude Platform di AWS. Endpoint workspace (create, get, list, update, dan archive pada `/v1/organizations/workspaces`) tersedia. Endpoint lain termasuk anggota organisasi, anggota workspace, undangan, kunci API, laporan penggunaan, laporan biaya, dan laporan batas laju tidak tersedia. Lihat [Claude Platform di AWS](/docs/id/build-with-claude/claude-platform-on-aws) untuk detailnya.
+  **Claude Platform di AWS:** Sebagian besar Admin API tidak tersedia di Claude Platform di AWS. Endpoint workspace (create, get, list, update, dan archive pada `/v1/organizations/workspaces`) tersedia. Endpoint lainnya termasuk anggota organisasi, anggota workspace, undangan, kunci API, laporan penggunaan, laporan biaya, dan laporan batas laju tidak tersedia. Lihat [Claude Platform di AWS](/docs/id/build-with-claude/claude-platform-on-aws) untuk detailnya.
 </Note>
 
 ## Autentikasi
 
 Autentikasi dengan salah satu kredensial. Untuk membuat kunci Admin API untuk jenis organisasi Anda, lihat [Membuat kunci Admin API](/docs/id/manage-claude/admin-api-keys). Contoh berikut memanggil [endpoint info organisasi](#accessing-organization-info) dengan kedua cara:
 
-**OAuth bearer:**
+**Bearer OAuth:**
 
 ```bash cURL
 curl --fail-with-body -sS "https://api.anthropic.com/v1/organizations/me" \
@@ -53,7 +53,7 @@ Saat Anda menggunakan Admin API:
 
 1. Anda membuat permintaan menggunakan salah satu kredensial dari bagian [Autentikasi](#authentication)
 
-2. API memungkinkan Anda mengelola:
+2. API memungkinkan Anda untuk mengelola:
 
    * Anggota organisasi dan peran mereka
    * Undangan anggota organisasi
@@ -69,12 +69,12 @@ Ini berguna untuk:
 
 ## Peran dan izin organisasi
 
-Ada lima peran tingkat organisasi. Lihat detail lebih lanjut di artikel [Peran dan izin API Console](https://support.claude.com/en/articles/10186004-api-console-roles-and-permissions).
+Ada lima peran tingkat organisasi. Lihat detail lebih lanjut di artikel [API Console roles and permissions](https://support.claude.com/en/articles/10186004-api-console-roles-and-permissions).
 
 | Peran              | Izin                                                                                    |
 | ------------------ | --------------------------------------------------------------------------------------- |
 | user               | Dapat menggunakan Workbench                                                             |
-| claude\_code\_user | Dapat menggunakan Workbench dan [Claude Code](https://code.claude.com/docs/en/overview) |
+| claude\_code\_user | Dapat menggunakan Workbench dan [Claude Code](https://code.claude.com/docs/id/overview) |
 | developer          | Dapat menggunakan Workbench dan mengelola kunci API                                     |
 | billing            | Dapat menggunakan Workbench dan mengelola detail penagihan                              |
 | admin              | Dapat melakukan semua hal di atas, ditambah mengelola pengguna                          |
@@ -89,7 +89,7 @@ Anda dapat membuat daftar [anggota organisasi](/docs/id/api/admin-api/users/get-
 
 <CodeGroup>
   ```bash cURL
-  # Menampilkan daftar anggota organisasi
+  # Mendaftar anggota organisasi
   curl "https://api.anthropic.com/v1/organizations/users?limit=10" \
     --header "anthropic-version: 2023-06-01" \
     --header "x-api-key: $ANTHROPIC_ADMIN_KEY"
@@ -114,7 +114,7 @@ Anda dapat mengundang pengguna ke organisasi dan mengelola [undangan](/docs/id/a
 
 <CodeGroup>
   ```bash cURL
-  # Buat undangan
+  # Membuat undangan
   curl --request POST "https://api.anthropic.com/v1/organizations/invites" \
     --header "anthropic-version: 2023-06-01" \
     --header "content-type: application/json" \
@@ -124,12 +124,12 @@ Anda dapat mengundang pengguna ke organisasi dan mengelola [undangan](/docs/id/a
       "role": "developer"
     }'
 
-  # Daftar undangan
+  # Menampilkan daftar undangan
   curl "https://api.anthropic.com/v1/organizations/invites?limit=10" \
     --header "anthropic-version: 2023-06-01" \
     --header "x-api-key: $ANTHROPIC_ADMIN_KEY"
 
-  # Hapus undangan
+  # Menghapus undangan
   curl --request DELETE "https://api.anthropic.com/v1/organizations/invites/{invite_id}" \
     --header "anthropic-version: 2023-06-01" \
     --header "x-api-key: $ANTHROPIC_ADMIN_KEY"
@@ -146,7 +146,7 @@ Kelola [akses pengguna ke workspace tertentu](/docs/id/api/admin-api/workspace_m
 
 <CodeGroup>
   ```bash cURL
-  # Tambahkan anggota ke workspace
+  # Menambahkan anggota ke workspace
   curl --request POST "https://api.anthropic.com/v1/organizations/workspaces/{workspace_id}/members" \
     --header "anthropic-version: 2023-06-01" \
     --header "content-type: application/json" \
@@ -156,12 +156,12 @@ Kelola [akses pengguna ke workspace tertentu](/docs/id/api/admin-api/workspace_m
       "workspace_role": "workspace_developer"
     }'
 
-  # Daftar anggota workspace
+  # Menampilkan daftar anggota workspace
   curl "https://api.anthropic.com/v1/organizations/workspaces/{workspace_id}/members?limit=10" \
     --header "anthropic-version: 2023-06-01" \
     --header "x-api-key: $ANTHROPIC_ADMIN_KEY"
 
-  # Perbarui peran anggota
+  # Memperbarui peran anggota
   curl --request POST "https://api.anthropic.com/v1/organizations/workspaces/{workspace_id}/members/{user_id}" \
     --header "anthropic-version: 2023-06-01" \
     --header "content-type: application/json" \
@@ -170,7 +170,7 @@ Kelola [akses pengguna ke workspace tertentu](/docs/id/api/admin-api/workspace_m
       "workspace_role": "workspace_admin"
     }'
 
-  # Hapus anggota dari workspace
+  # Menghapus anggota dari workspace
   curl --request DELETE "https://api.anthropic.com/v1/organizations/workspaces/{workspace_id}/members/{user_id}" \
     --header "anthropic-version: 2023-06-01" \
     --header "x-api-key: $ANTHROPIC_ADMIN_KEY"
@@ -183,12 +183,12 @@ Pantau dan kelola [kunci API](/docs/id/api/admin-api/apikeys/get-api-key):
 
 <CodeGroup>
   ```bash cURL
-  # Daftar kunci API
+  # Mencantumkan kunci API
   curl "https://api.anthropic.com/v1/organizations/api_keys?limit=10&status=active&workspace_id=wrkspc_xxx" \
     --header "anthropic-version: 2023-06-01" \
     --header "x-api-key: $ANTHROPIC_ADMIN_KEY"
 
-  # Perbarui kunci API
+  # Memperbarui kunci API
   curl --request POST "https://api.anthropic.com/v1/organizations/api_keys/{api_key_id}" \
     --header "anthropic-version: 2023-06-01" \
     --header "content-type: application/json" \
@@ -206,11 +206,11 @@ Buat dan kelola service account (`svac_...`), identitas non-manusia yang diwakil
 
 ### Federation issuer
 
-Daftarkan penyedia identitas OIDC (`fdis_...`) yang tokennya dapat menyatakan identitas workload untuk organisasi Anda. Lihat [Mengelola WIF dengan Admin API](/docs/id/manage-claude/wif-admin-api#federation-issuers).
+Daftarkan penyedia identitas OIDC (`fdis_...`) yang tokennya dapat menegaskan identitas workload untuk organisasi Anda. Lihat [Mengelola WIF dengan Admin API](/docs/id/manage-claude/wif-admin-api#federation-issuers).
 
 ### Federation rule
 
-Kelola aturan (`fdrl_...`) yang memetakan token issuer ke service account dan scope. Lihat [Mengelola WIF dengan Admin API](/docs/id/manage-claude/wif-admin-api#federation-rules).
+Kelola aturan (`fdrl_...`) yang memetakan token issuer ke service account dan cakupan. Lihat [Mengelola WIF dengan Admin API](/docs/id/manage-claude/wif-admin-api#federation-rules).
 
 ## Mengakses info organisasi
 
@@ -232,9 +232,9 @@ curl "https://api.anthropic.com/v1/organizations/me" \
 }
 ```
 
-Endpoint ini berguna untuk menentukan secara terprogram organisasi mana yang terkait dengan kunci Admin API.
+Endpoint ini berguna untuk menentukan secara terprogram organisasi mana yang memiliki kunci Admin API tertentu.
 
-Untuk detail parameter lengkap dan skema respons, lihat [referensi API Info Organisasi](/docs/id/api/admin-api/organization/get-me).
+Untuk detail parameter lengkap dan skema respons, lihat [referensi Organization Info API](/docs/id/api/admin-api/organization/get-me).
 
 ## Laporan penggunaan dan biaya
 
@@ -246,11 +246,11 @@ Pantau produktivitas developer dan adopsi Claude Code dengan [Claude Code Analyt
 
 ## Batas laju
 
-Baca batas laju yang dikonfigurasi untuk organisasi Anda dan workspace-nya dengan [Rate Limits API](/docs/id/manage-claude/rate-limits-api).
+Baca "rate limit" (batas laju) yang dikonfigurasi untuk organisasi Anda dan workspace-nya dengan [Rate Limits API](/docs/id/manage-claude/rate-limits-api).
 
 ## Compliance API
 
-Ambil data audit dan aktivitas untuk organisasi Anda dengan [Compliance API](/docs/id/manage-claude/compliance-api). Kunci Admin API hanya dapat membaca Activity Feed; untuk akses penuh, lihat [Mendapatkan akses ke Compliance API](/docs/id/manage-claude/compliance-api-access).
+Ambil data audit dan aktivitas untuk organisasi Anda dengan [Compliance API](/docs/id/manage-claude/compliance-api). Kunci Admin API hanya dapat membaca Activity Feed; untuk akses penuh, lihat [Menyiapkan Compliance API](/docs/id/manage-claude/compliance-api-access).
 
 ## Praktik terbaik
 
@@ -266,7 +266,7 @@ Untuk menggunakan Admin API secara efektif:
 
 <AccordionGroup>
   <Accordion title="Izin apa yang diperlukan untuk menggunakan Admin API?">
-    Admin API menerima kunci Admin API (dimulai dengan `sk-ant-admin`) atau token bearer OAuth dengan scope `org:admin`. Hanya anggota organisasi dengan peran admin yang dapat menyediakan kunci Admin API, dan hanya anggota dengan peran admin, owner, atau primary owner yang dapat memperoleh token `org:admin`. Lihat [Autentikasi](#authentication).
+    Admin API menerima kunci Admin API (dimulai dengan `sk-ant-admin`) atau token bearer OAuth dengan cakupan `org:admin`. Hanya anggota organisasi dengan peran admin yang dapat menyediakan kunci Admin API, dan hanya anggota dengan peran admin, owner, atau primary owner yang dapat memperoleh token `org:admin`. Lihat [Autentikasi](#authentication).
   </Accordion>
 
   <Accordion title="Dapatkah saya membuat kunci API baru melalui Admin API?">
@@ -274,7 +274,7 @@ Untuk menggunakan Admin API secara efektif:
   </Accordion>
 
   <Accordion title="Apa yang terjadi pada kunci API saat menghapus pengguna?">
-    Kunci API tetap dalam keadaan saat ini karena kunci tersebut terikat pada Organisasi, bukan pada pengguna individu.
+    Kunci API tetap dalam keadaan saat ini karena cakupannya adalah Organisasi, bukan pengguna individual.
   </Accordion>
 
   <Accordion title="Dapatkah admin organisasi dihapus melalui API?">

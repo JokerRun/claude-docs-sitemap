@@ -1,11 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/text-editor-tool
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: be85acb423f5d9f983e1e0657ed8baaf347ab280b88d34d7b1a30bd6d8e8b35a
+fetched_at: 2026-07-10T03:11:05.177659Z
+sha256: 9211be055ea8554c7b9751d27ad256a438c2d52e686d033cb79a08fec8228277
 ---
 
 # Text editor tool
+
+Give Claude the Anthropic-defined text editor tool to view, create, and edit files, and handle its view, str_replace, create, and insert commands.
 
 ---
 

@@ -1,11 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/mcp-connector
-fetched_at: 2026-06-30T03:15:27.286427Z
-sha256: 5069457500ebb1b135dd68afcab34d6d0f8f90a3b9eeabf33ab4b580125449cc
+fetched_at: 2026-07-10T03:11:05.177659Z
+sha256: 661b4ab7cf7149603dc05759d57d90f207bad6d3f796581740d6b39c084db330
 ---
 
 # MCP connector
+
+Connect to remote MCP servers directly from the Messages API without an MCP client, and allowlist, denylist, or configure individual tools.
 
 ---
 

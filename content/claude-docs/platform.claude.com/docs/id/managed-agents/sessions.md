@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/sessions
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 0de64b650a6ffaa310dad3afbca6c52a626e34ca95105756893ab29c2cac6c56
+fetched_at: 2026-07-10T03:11:05.177659Z
+sha256: 987a9edbe4fc331ea2db501c729d3e223e9ca227e04a7f5a03a8d94a8df89165
 ---
 
 # Memulai sesi
@@ -11,7 +11,7 @@ Buat sesi untuk menjalankan agen Anda dan mulai mengeksekusi tugas.
 
 ---
 
-Sesi adalah instans agen di dalam sebuah lingkungan. Setiap sesi mereferensikan sebuah [agen](/docs/id/managed-agents/agent-setup) dan sebuah [lingkungan](/docs/id/managed-agents/environments) (keduanya dibuat secara terpisah), dan mempertahankan riwayat percakapan di sepanjang beberapa interaksi. Sesi mengikuti siklus hidup dua langkah: pertama [buat sesi](#creating-a-session) untuk menyediakan sandbox-nya, lalu [kirim user event](#starting-the-session) untuk memulai pekerjaan.
+Sesi adalah instans agen di dalam sebuah environment. Setiap sesi mereferensikan sebuah [agen](/docs/id/managed-agents/agent-setup) dan sebuah [environment](/docs/id/managed-agents/environments) (keduanya dibuat secara terpisah), dan mempertahankan riwayat percakapan di sepanjang beberapa interaksi. Sesi mengikuti siklus hidup dua langkah: pertama [buat sesi](#creating-a-session) untuk menyediakan sandbox-nya, lalu [kirim user event](#starting-the-session) untuk memulai pekerjaan.
 
 <Note>
   Semua permintaan Managed Agents API memerlukan beta header `managed-agents-2026-04-01`. SDK menetapkan beta header tersebut secara otomatis.
@@ -100,7 +100,7 @@ Sebuah sesi memerlukan ID `agent` dan ID `environment`. Agen adalah sumber daya 
   ```
 </CodeGroup>
 
-Untuk menyematkan sesi ke versi agen tertentu, teruskan sebuah objek. Ini memungkinkan Anda mengontrol secara tepat versi mana yang dijalankan dan mengatur peluncuran versi baru secara independen.
+Untuk menyematkan sesi ke versi agen tertentu, teruskan sebuah objek. Ini memungkinkan Anda mengontrol dengan tepat versi mana yang berjalan dan melakukan rollout bertahap untuk versi baru secara independen.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -200,22 +200,24 @@ Untuk menyematkan sesi ke versi agen tertentu, teruskan sebuah objek. Ini memung
 
 ### Menimpa konfigurasi agen untuk sebuah sesi
 
-Anda dapat meneruskan `agent` dalam tiga bentuk: string ID agen, objek versi tersemat (`type: "agent"`), atau objek overrides. Bentuk overrides mengubah sebagian konfigurasi agen untuk satu sesi saja. Gunakan ini untuk mencoba model yang berbeda atau memberikan alat tambahan dalam satu sesi tanpa membuat versi baru pada agen. Untuk bentuk overrides, atur `type` ke `agent_with_overrides` dan teruskan `id` agen serta secara opsional `version` (hilangkan `version` untuk menggunakan versi terbaru agen). Kemudian sertakan salah satu dari `model`, `system`, `tools`, `mcp_servers`, atau `skills` dengan nilai yang harus digunakan sesi.
+Anda dapat meneruskan `agent` dalam tiga bentuk: string ID agen, objek versi tersemat (`type: "agent"`), atau objek overrides. Bentuk overrides mengubah sebagian konfigurasi agen untuk satu sesi saja. Gunakan ini untuk mencoba model yang berbeda atau memberikan alat tambahan dalam satu sesi tanpa membuat versi baru agen. Untuk bentuk overrides, atur `type` ke `agent_with_overrides` dan teruskan `id` agen serta secara opsional `version` (hilangkan `version` untuk menggunakan versi terbaru agen). Kemudian sertakan salah satu dari `model`, `system`, `tools`, `mcp_servers`, atau `skills` dengan nilai yang harus digunakan oleh sesi.
 
 Setiap field yang dapat ditimpa mengikuti tiga aturan yang sama:
 
 * **Hilangkan field:** Sesi mewarisi nilai dari versi agen yang direferensikannya.
 
-* **Atur field ke `null`, atau ke array kosong untuk field berupa daftar:** Sesi berjalan dengan field tersebut dikosongkan. Aturan ini berlaku sepenuhnya untuk `system`, `mcp_servers`, dan `skills`. Ada dua pengecualian:
+* **Atur field ke `null`, atau ke array kosong untuk field berbentuk daftar:** Sesi berjalan dengan field tersebut dikosongkan. Aturan ini berlaku sepenuhnya untuk `system`, `mcp_servers`, dan `skills`. Ada dua pengecualian:
 
-  * `model` tidak pernah dapat dikosongkan. Sebuah sesi selalu membutuhkan model, sehingga `model: null` mengembalikan error 400 `agent_model_required`.
-  * Mengosongkan `tools` mengembalikan error 400 ketika `skills` efektif pada sesi tidak kosong, karena skills memerlukan alat `read`. Jika tidak, `tools: null` dan `tools: []` akan mengosongkan field tersebut.
+  * `model` tidak pernah dapat dikosongkan. Sesi selalu membutuhkan model, sehingga `model: null` mengembalikan error 400 `agent_model_required`.
+  * Mengosongkan `tools` mengembalikan error 400 ketika `skills` efektif sesi tidak kosong, karena skills memerlukan alat `read`. Jika tidak, `tools: null` dan `tools: []` akan mengosongkan field tersebut.
 
-* **Atur field ke sebuah nilai:** Nilai tersebut menggantikan nilai agen secara penuh. Overrides tidak pernah digabungkan dengan konfigurasi agen, sehingga override `tools` harus mencantumkan setiap alat yang harus dimiliki sesi.
+* **Atur field ke sebuah nilai:** Nilai tersebut menggantikan nilai agen sepenuhnya. Overrides tidak pernah digabungkan dengan konfigurasi agen, sehingga override `tools` harus mencantumkan setiap alat yang harus dimiliki sesi.
 
 Overrides hanya berlaku untuk sesi yang Anda buat. Overrides tidak memodifikasi sumber daya agen atau membuat versi agen baru, sehingga sesi lain yang mereferensikan agen yang sama tidak terpengaruh.
 
-Dalam respons, objek `agent` mencerminkan konfigurasi yang dijalankan sesi setelah overrides diterapkan. `id` dan `version`-nya tetap mengidentifikasi agen dan versi tempat overrides diterapkan. Ini memungkinkan Anda melacak sesi kembali ke agen dasarnya.
+Dalam respons, objek `agent` mencerminkan konfigurasi yang digunakan sesi setelah overrides diterapkan. `id` dan `version`-nya tetap mengidentifikasi agen dan versi tempat overrides diterapkan. Ini memungkinkan Anda melacak sesi kembali ke agen dasarnya.
+
+Contoh berikut memulai sesi yang menimpa model dan mengosongkan prompt sistem:
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -255,15 +257,141 @@ Dalam respons, objek `agent` mencerminkan konfigurasi yang dijalankan sesi setel
   environment_id: $ENVIRONMENT_ID
   YAML
   ```
+
+  ```python Python
+  override_session = client.beta.sessions.create(
+      agent={
+          "type": "agent_with_overrides",
+          "id": agent.id,
+          "model": {"id": "claude-sonnet-5"},
+          "system": None,  # clear the agent's system prompt for this session
+      },
+      environment_id=environment.id,
+  )
+  # Agen pada respons adalah snapshot terselesaikan dengan override yang diterapkan.
+  print(f"Model: {override_session.agent.model.id}")
+  print(f"System: {override_session.agent.system}")
+  ```
+
+  ```typescript TypeScript
+  const overrideSession = await client.beta.sessions.create({
+    agent: {
+      type: "agent_with_overrides",
+      id: agent.id,
+      model: { id: "claude-sonnet-5" },
+      system: null // clear the agent's system prompt for this session
+    },
+    environment_id: environment.id
+  });
+  // Agen pada respons adalah snapshot terselesaikan dengan override yang diterapkan.
+  console.log(`Model: ${overrideSession.agent.model.id}`);
+  console.log(`System: ${overrideSession.agent.system}`);
+  ```
+
+  ```csharp C#
+  var overrideSession = await client.Beta.Sessions.Create(new()
+  {
+      Agent = new BetaManagedAgentsAgentWithOverridesParams
+      {
+          Type = BetaManagedAgentsAgentWithOverridesParamsType.AgentWithOverrides,
+          ID = agent.ID,
+          Model = new BetaManagedAgentsModelConfigParams
+          {
+              ID = BetaManagedAgentsModel.ClaudeSonnet5,
+          },
+          System = null, // clear the agent's system prompt for this session
+      },
+      EnvironmentID = environment.ID,
+  });
+  // Agen pada respons adalah snapshot terselesaikan dengan override yang sudah diterapkan.
+  Console.WriteLine($"Model: {overrideSession.Agent.Model.ID.Raw()}");
+  Console.WriteLine($"System: {overrideSession.Agent.System ?? "null"}");
+  ```
+
+  ```go Go
+  overrideSession, err := client.Beta.Sessions.New(ctx, anthropic.BetaSessionNewParams{
+  	Agent: anthropic.BetaSessionNewParamsAgentUnion{
+  		OfBetaManagedAgentsAgentWithOverridess: &anthropic.BetaManagedAgentsAgentWithOverridesParams{
+  			Type: anthropic.BetaManagedAgentsAgentWithOverridesParamsTypeAgentWithOverrides,
+  			ID:   agent.ID,
+  			Model: anthropic.BetaManagedAgentsModelConfigParams{
+  				ID: anthropic.BetaManagedAgentsModelClaudeSonnet5,
+  			},
+  			// Hapus prompt sistem agen untuk sesi ini.
+  			System: param.Null[string](),
+  		},
+  	},
+  	EnvironmentID: environment.ID,
+  })
+  if err != nil {
+  	panic(err)
+  }
+  // Agen pada respons adalah snapshot hasil resolusi dengan override yang diterapkan.
+  fmt.Printf("Model: %s\n", overrideSession.Agent.Model.ID)
+  fmt.Printf("System: %q\n", overrideSession.Agent.System)
+  ```
+
+  ```java Java
+  var overrideSession = client.beta().sessions().create(SessionCreateParams.builder()
+      .agent(BetaManagedAgentsAgentWithOverridesParams.builder()
+          .type(BetaManagedAgentsAgentWithOverridesParams.Type.AGENT_WITH_OVERRIDES)
+          .id(agent.id())
+          .model(BetaManagedAgentsModelConfigParams.builder()
+              .id(BetaManagedAgentsModel.CLAUDE_SONNET_5)
+              .build())
+          .system((String) null) // clear the agent's system prompt for this session
+          .build())
+      .environmentId(environment.id())
+      .build());
+  // Agen pada respons adalah snapshot terresolusi dengan override yang diterapkan.
+  IO.println("Model: " + overrideSession.agent().model().id());
+  IO.println("System: " + overrideSession.agent().system().orElse("null"));
+  ```
+
+  ```php PHP
+  $overrides = BetaManagedAgentsAgentWithOverridesParams::with(
+      id: $agent->id,
+      type: 'agent_with_overrides',
+      model: ['id' => 'claude-sonnet-5'],
+  );
+  // Kosongkan prompt sistem untuk sesi ini. Akses array sangat penting di sini:
+  // create() membuang null dari array mentah dan ::with() memperlakukan argumen null sebagai dihilangkan.
+  $overrides['system'] = null;
+
+  $overrideSession = $client->beta->sessions->create(
+      agent: $overrides,
+      environmentID: $environment->id,
+  );
+  // Agen pada respons adalah snapshot terselesaikan dengan override yang diterapkan.
+  echo "Model: {$overrideSession->agent->model->id}\n";
+  echo 'System: ' . ($overrideSession->agent->system ?? 'null') . "\n";
+  ```
+
+  ```ruby Ruby
+  # Override prompt sistem adalah `system_` (dengan underscore di akhir) karena
+  # `system` biasa adalah Kernel#system milik Ruby. Menyetelnya ke nil menghapus prompt.
+  override_session = client.beta.sessions.create(
+    agent: Anthropic::Beta::BetaManagedAgentsAgentWithOverridesParams.new(
+      type: :agent_with_overrides,
+      id: agent.id,
+      model: {id: "claude-sonnet-5"},
+      system_: nil
+    ),
+    environment_id: environment.id
+  )
+  # Agen pada respons adalah snapshot terselesaikan dengan override yang sudah diterapkan.
+  puts "Model: #{override_session.agent.model.id}"
+  puts "System: #{override_session.agent.system_.inspect}"
+  ```
 </CodeGroup>
 
 <Tip>
-  Agen mendefinisikan bagaimana Claude berperilaku di dalam sesi, termasuk model, prompt sistem, alat, dan server MCP. Lihat [Mendefinisikan agen Anda](/docs/id/managed-agents/agent-setup) untuk detailnya.
+  Agen mendefinisikan bagaimana Claude berperilaku di dalam sesi, termasuk model, prompt sistem, alat, dan server MCP. Lihat [Definisikan agen Anda](/docs/id/managed-agents/agent-setup) untuk detailnya.
 </Tip>
 
 ## Autentikasi MCP melalui vault
 
-Jika agen Anda menggunakan alat MCP yang memerlukan autentikasi, teruskan `vault_ids` saat pembuatan sesi untuk mereferensikan vault yang berisi kredensial OAuth yang tersimpan. Anthropic mengelola penyegaran token atas nama Anda. Lihat [Autentikasi dengan vault](/docs/id/managed-agents/vaults) untuk cara membuat vault dan mendaftarkan kredensial.
+Jika agen Anda menggunakan alat MCP yang memerlukan autentikasi, teruskan `vault_ids` saat pembuatan sesi untuk mereferensikan vault yang berisi kredensial OAuth yang tersimpan. Anthropic mengelola pembaruan token atas nama Anda. Lihat [Autentikasi dengan vault](/docs/id/managed-agents/vaults) untuk cara membuat vault dan mendaftarkan kredensial.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -357,7 +485,7 @@ Jika agen Anda menggunakan alat MCP yang memerlukan autentikasi, teruskan `vault
 
 ## Memulai sesi
 
-Membuat sesi akan menyediakan sandbox lingkungan tetapi tidak memulai pekerjaan apa pun. Untuk mendelegasikan tugas, kirim event ke sesi menggunakan [user event](/docs/id/managed-agents/reference#event-types). Sesi bertindak sebagai "state machine" (mesin status) yang melacak kemajuan sementara event menggerakkan eksekusi sebenarnya.
+Membuat sesi akan menyediakan sandbox environment tetapi tidak memulai pekerjaan apa pun. Untuk mendelegasikan tugas, kirim event ke sesi menggunakan [user event](/docs/id/managed-agents/reference#event-types). Sesi bertindak sebagai state machine yang melacak kemajuan sementara event menggerakkan eksekusi yang sebenarnya.
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
@@ -491,6 +619,20 @@ Membuat sesi akan menyediakan sandbox lingkungan tetapi tidak memulai pekerjaan 
 
 Lihat [Aliran event sesi](/docs/id/managed-agents/events-and-streaming) untuk cara melakukan streaming respons agen dan menangani konfirmasi alat.
 
-Lihat [Status sesi](/docs/id/managed-agents/session-operations#session-statuses) untuk status-status yang dilalui sebuah sesi, dan [Operasi sesi](/docs/id/managed-agents/session-operations) untuk mengambil, mencantumkan, memperbarui, mengarsipkan, dan menghapus sesi.
+Lihat [Status sesi](/docs/id/managed-agents/session-operations#session-statuses) untuk status-status yang dilalui sebuah sesi.
 
-Untuk membuat sesi secara otomatis pada jadwal berulang, lihat [Deployment terjadwal](/docs/id/managed-agents/scheduled-deployments).
+## Langkah selanjutnya
+
+<CardGroup cols={3}>
+  <Card title="Operasi sesi" icon="settings" href="/docs/id/managed-agents/session-operations">
+    Ambil, daftar, perbarui, arsipkan, dan hapus sesi Claude Managed Agents.
+  </Card>
+
+  <Card title="Aliran event sesi" icon="lightning" href="/docs/id/managed-agents/events-and-streaming">
+    Kirim event, lakukan streaming respons, dan interupsi atau alihkan sesi Anda di tengah eksekusi.
+  </Card>
+
+  <Card title="Deployment terjadwal" icon="arrows-clockwise" href="/docs/id/managed-agents/scheduled-deployments">
+    Buat dan kelola deployment dengan Claude API: jalankan agen pada jadwal cron berulang dan periksa riwayat eksekusinya.
+  </Card>
+</CardGroup>

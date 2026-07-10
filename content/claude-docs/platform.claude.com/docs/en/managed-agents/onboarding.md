@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/onboarding
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 5bc06c846a09e64320b49809cf66c21231273c69d40e6c6a1eb6606d1080d057
+fetched_at: 2026-07-10T03:11:05.177659Z
+sha256: e316390c19b564ef432ac52ca0e72137248b64474235e156413f89431ba434b9
 ---
 
 # Prototype in Console
@@ -14,7 +14,7 @@ Create and test agents visually in Console without writing API calls.
 [Console](https://platform.claude.com/workspaces/default/agent-quickstart/) provides a visual interface for creating and configuring agents. It lets you iterate on configuration interactively before writing code.
 
 <Note>
-  All Managed Agents API requests require the `managed-agents-2026-04-01` beta header. The SDK sets the beta header automatically.
+  Managed Agents API requests require the `managed-agents-2026-04-01` beta header, except memory store endpoints, which use `agent-memory-2026-07-22` instead. The SDK sets the correct beta header automatically. See [Beta headers](/docs/en/api/beta-headers#endpoint-specific-headers).
 </Note>
 
 ## How to build an agent

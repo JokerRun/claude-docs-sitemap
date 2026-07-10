@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/monitoring-usage
-fetched_at: 2026-07-07T03:11:34.034287Z
-sha256: 622377b14f6e99395feb0faa7785b5cc9ee6128e733533c9f213a2c8634264ad
+fetched_at: 2026-07-10T03:11:05.177659Z
+sha256: 87fa95a3c30664aa2f0e5fb715481e498f2ae0f5507661cdf7a8e903962112ed
 ---
 
 > ## Documentation Index
@@ -296,7 +296,7 @@ echo "{\"Authorization\": \"Bearer $(get-token.sh)\", \"X-API-Key\": \"$(get-api
 
 If the helper fails or prints output that doesn't meet these requirements, Claude Code reports the error in:
 
-* `/doctor` output
+* `/status` output
 * The debug log, when running with [`--debug`](/en/cli-reference#cli-flags) or after running `/debug` in the session
 * stderr, in non-interactive sessions started with `-p`
 

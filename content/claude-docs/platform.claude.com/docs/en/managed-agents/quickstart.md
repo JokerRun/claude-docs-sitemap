@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/quickstart
-fetched_at: 2026-07-03T03:11:00.926352Z
-sha256: 55e1dc16ec0a0653333d4a679ffca2d1ecfac30b8c7df8f12ced70564736c2b6
+fetched_at: 2026-07-10T03:11:05.177659Z
+sha256: 120b81f257a9e8fcb68fbff9cfe92a3403f7e7fdc3dca294340c03825cd1129f
 ---
 
 # Get started with Claude Managed Agents
@@ -133,7 +133,7 @@ export ANTHROPIC_API_KEY="your-api-key-here"
 ## Create your first session
 
 <Note>
-  All Managed Agents API requests require the `managed-agents-2026-04-01` beta header. The SDK sets the beta header automatically.
+  Managed Agents API requests require the `managed-agents-2026-04-01` beta header, except memory store endpoints, which use `agent-memory-2026-07-22` instead. The SDK sets the correct beta header automatically. See [Beta headers](/docs/en/api/beta-headers#endpoint-specific-headers).
 </Note>
 
 <Steps>

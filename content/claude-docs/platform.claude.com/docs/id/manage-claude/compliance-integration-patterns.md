@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-integration-patterns
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 5e57e9bb4e3e9bfa0c18d5f4bdec35b48251c199a4583cd1a42d0ccfec5aa515
+fetched_at: 2026-07-10T03:11:05.177659Z
+sha256: f50b548542cd1252473deb4fa53ba823d4303870056fefcccb33fe1c9a8f2c10
 ---
 
 # Rancang integrasi kepatuhan Anda
@@ -12,7 +12,7 @@ Pilih antara polling dan konsumsi Activity Feed berbasis kursor, korelasikan per
 ---
 
 <Note>
-  Untuk mengaktifkan Compliance API, lihat [Mendapatkan akses ke Compliance API](/docs/id/manage-claude/compliance-api-access).
+  Untuk mengaktifkan Compliance API, lihat [Menyiapkan Compliance API](/docs/id/manage-claude/compliance-api-access).
 </Note>
 
 <Check>

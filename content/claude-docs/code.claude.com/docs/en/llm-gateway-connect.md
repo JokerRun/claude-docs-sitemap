@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/llm-gateway-connect
-fetched_at: 2026-07-09T03:11:03.913066Z
-sha256: 287f3bede10bcc0ac393d3651f621ecd4aa53a57f1f1e7bfb39f1fefb30ddab9
+fetched_at: 2026-07-10T03:11:05.177659Z
+sha256: f6790232bd422ddcf98fdbcd621899d405858160d6fbab74d158a218a6c1eb25
 ---
 
 > ## Documentation Index
@@ -190,7 +190,7 @@ Set the gateway variables for the [VS Code extension](/en/vs-code) in `claudeCod
 
 ### Desktop app
 
-The desktop app reads gateway routing from an [administrator-distributed configuration](https://claude.com/docs/cowork/3p/gateway), not from `ANTHROPIC_BASE_URL` or `settings.json`. If your organization has distributed it, the desktop app routes through the gateway with no setup on your part; if not, use the terminal CLI or VS Code extension for gateway sessions. Administrators distribute the configuration as described in the [organization rollout](/en/llm-gateway-rollout#distribute-through-managed-settings).
+The desktop app reads gateway routing from an [administrator-distributed configuration](https://claude.com/docs/third-party/claude-desktop/gateway), not from `ANTHROPIC_BASE_URL` or `settings.json`. If your organization has distributed it, the desktop app routes through the gateway with no setup on your part; if not, use the terminal CLI or VS Code extension for gateway sessions. Administrators distribute the configuration as described in the [organization rollout](/en/llm-gateway-rollout#distribute-through-managed-settings).
 
 If the desktop app shows `Gateway was unreachable`, the app couldn't reach the configured base URL at startup; check the URL and network path with the [curl test above](#verify-the-connection).
 
@@ -262,7 +262,7 @@ The [Agent SDK](/en/agent-sdk/overview) has no gateway-specific options; it pass
 
 [Remote Control](/en/remote-control) and [voice dictation](/en/voice-dictation) both rely on a claude.ai identity: Remote Control to pair a live session with your account, and voice dictation to reach the claude.ai transcription endpoint. They are unavailable while `ANTHROPIC_API_KEY`, `ANTHROPIC_AUTH_TOKEN`, or an `apiKeyHelper` is active. {/* min-version: 2.1.196 */}As of v2.1.196, Remote Control is also disabled while `ANTHROPIC_BASE_URL` points at a non-Anthropic host, so signing in with claude.ai isn't enough on its own.
 
-To restore either feature, log in with claude.ai and unset the gateway variables it checks. `/doctor` names the credential variable to unset.
+To restore either feature, log in with claude.ai and unset the gateway variables that feature checks. The Remote Control section of `claude doctor` names the credential variable to unset.
 
 * Voice dictation: unset the gateway credential
 * Remote Control: unset the gateway credential and `ANTHROPIC_BASE_URL`

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/memory
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 0bfa4ed410b545187462154833f9c29154c781ceb5b4741b06ff950c5defd0a6
+fetched_at: 2026-07-10T03:11:05.177659Z
+sha256: 48738296e6e2125aba61797c1bc7d7e18f4507b82efe491d881684e977e350bb
 ---
 
 # Menggunakan memori agen
@@ -34,7 +34,7 @@ Berikan store sebuah `name` dan `description`. Deskripsi tersebut diteruskan ke 
   store=$(curl -s https://api.anthropic.com/v1/memory_stores \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: managed-agents-2026-04-01" \
+    -H "anthropic-beta: agent-memory-2026-07-22" \
     -H "content-type: application/json" \
     -d '{"name": "User Preferences", "description": "Per-user preferences and project context."}')
   store_id=$(jq -r '.id' <<< "$store")
@@ -130,7 +130,7 @@ Muat store terlebih dahulu dengan materi referensi sebelum agen dijalankan:
   curl -s "https://api.anthropic.com/v1/memory_stores/$store_id/memories" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: managed-agents-2026-04-01" \
+    -H "anthropic-beta: agent-memory-2026-07-22" \
     -H "content-type: application/json" \
     -d '{"path": "/formatting_standards.md", "content": "All reports use GAAP formatting. Dates are ISO-8601..."}' > /dev/null
   ```
@@ -394,24 +394,22 @@ Buat daftar memory dalam sebuah store, secara opsional difilter dengan `path_pre
 
 <CodeGroup defaultLanguage="CLI">
   ```bash curl
-  curl -s "https://api.anthropic.com/v1/memory_stores/$store_id/memories?path_prefix=/&order_by=path&depth=2" \
+  curl -s "https://api.anthropic.com/v1/memory_stores/$store_id/memories?path_prefix=/" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: managed-agents-2026-04-01" | jq -r '.data[] | "\(.type)  \(.path)"'
+    -H "anthropic-beta: agent-memory-2026-07-22" | jq -r '.data[] | "\(.type)  \(.path)"'
   ```
 
   ```bash CLI
   ant beta:memory-stores:memories list \
     --memory-store-id "$store_id" \
-    --path-prefix "/" --order-by path --depth 2
+    --path-prefix "/"
   ```
 
   ```python Python
   page = client.beta.memory_stores.memories.list(
       store.id,
       path_prefix="/",
-      order_by="path",
-      depth=2,
   )
   for item in page.data:
       print(item.type, item.path)
@@ -419,9 +417,7 @@ Buat daftar memory dalam sebuah store, secara opsional difilter dengan `path_pre
 
   ```typescript TypeScript
   const page = await client.beta.memoryStores.memories.list(store.id, {
-    path_prefix: "/",
-    order_by: "path",
-    depth: 2
+    path_prefix: "/"
   });
   for (const item of page.data) {
     console.log(item.type, item.path);
@@ -432,8 +428,6 @@ Buat daftar memory dalam sebuah store, secara opsional difilter dengan `path_pre
   var page = await client.Beta.MemoryStores.Memories.List(store.ID, new()
   {
       PathPrefix = "/",
-      OrderBy = "path",
-      Depth = 2,
   });
   await foreach (var item in page.Paginate())
   {
@@ -445,8 +439,6 @@ Buat daftar memory dalam sebuah store, secara opsional difilter dengan `path_pre
   ```go Go
   page, err := client.Beta.MemoryStores.Memories.List(ctx, store.ID, anthropic.BetaMemoryStoreMemoryListParams{
   	PathPrefix: anthropic.String("/"),
-  	OrderBy:    anthropic.String("path"),
-  	Depth:      anthropic.Int(2),
   })
   if err != nil {
   	panic(err)
@@ -461,8 +453,6 @@ Buat daftar memory dalam sebuah store, secara opsional difilter dengan `path_pre
       store.id(),
       MemoryListParams.builder()
           .pathPrefix("/")
-          .orderBy("path")
-          .depth(2)
           .build()
   );
   for (var item : page.data()) {
@@ -475,8 +465,6 @@ Buat daftar memory dalam sebuah store, secara opsional difilter dengan `path_pre
   $page = $client->beta->memoryStores->memories->list(
       $store->id,
       pathPrefix: '/',
-      orderBy: 'path',
-      depth: 2,
   );
   foreach ($page->data as $item) {
       echo "{$item->type}  {$item->path}\n";
@@ -486,9 +474,7 @@ Buat daftar memory dalam sebuah store, secara opsional difilter dengan `path_pre
   ```ruby Ruby
   page = client.beta.memory_stores.memories.list(
     store.id,
-    path_prefix: "/",
-    order_by: "path",
-    depth: 2
+    path_prefix: "/"
   )
   page.data.each do |entry|
     puts "#{entry.type}  #{entry.path}"
@@ -507,7 +493,7 @@ Mengambil memory individual mengembalikan konten lengkap.
   curl -s "https://api.anthropic.com/v1/memory_stores/$store_id/memories/$mem_id" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: managed-agents-2026-04-01" | jq -r '.content'
+    -H "anthropic-beta: agent-memory-2026-07-22" | jq -r '.content'
   ```
 
   ```bash CLI
@@ -582,7 +568,7 @@ Lihat [referensi Retrieve a memory](/docs/id/api/beta/memory_stores/memories/ret
   mem=$(curl -s "https://api.anthropic.com/v1/memory_stores/$store_id/memories" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: managed-agents-2026-04-01" \
+    -H "anthropic-beta: agent-memory-2026-07-22" \
     -H "content-type: application/json" \
     -d '{"path": "/preferences/formatting.md", "content": "Always use tabs, not spaces."}')
   mem_id=$(jq -r '.id' <<< "$mem")
@@ -670,7 +656,7 @@ Lihat [referensi Create a memory](/docs/id/api/beta/memory_stores/memories/creat
   curl -s -X POST "https://api.anthropic.com/v1/memory_stores/$store_id/memories/$mem_id" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: managed-agents-2026-04-01" \
+    -H "anthropic-beta: agent-memory-2026-07-22" \
     -H "content-type: application/json" \
     -d '{"path": "/archive/2026_q1_formatting.md"}' > /dev/null
   ```
@@ -754,7 +740,7 @@ Untuk menghindari menimpa penulisan yang terjadi bersamaan, berikan prasyarat `c
   curl -s -X POST "https://api.anthropic.com/v1/memory_stores/$store_id/memories/$mem_id" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: managed-agents-2026-04-01" \
+    -H "anthropic-beta: agent-memory-2026-07-22" \
     -H "content-type: application/json" \
     --data @- > /dev/null <<EOF
   {
@@ -859,7 +845,7 @@ Untuk menghindari menimpa penulisan yang terjadi bersamaan, berikan prasyarat `c
   curl -s -X DELETE "https://api.anthropic.com/v1/memory_stores/$store_id/memories/$mem_id" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: managed-agents-2026-04-01" > /dev/null
+    -H "anthropic-beta: agent-memory-2026-07-22" > /dev/null
   ```
 
   ```bash CLI
@@ -938,7 +924,7 @@ Buat daftar riwayat version untuk sebuah store, yang terbaru lebih dulu. Contoh 
   versions=$(curl -s "https://api.anthropic.com/v1/memory_stores/$store_id/memory_versions?memory_id=$mem_id" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: managed-agents-2026-04-01")
+    -H "anthropic-beta: agent-memory-2026-07-22")
   jq -r '.data[] | "\(.id): \(.operation)"' <<< "$versions"
   version_id=$(jq -r '.data[1].id' <<< "$versions")
   ```
@@ -1058,7 +1044,7 @@ Mengambil version individual mengembalikan field yang sama seperti respons list 
   curl -s "https://api.anthropic.com/v1/memory_stores/$store_id/memory_versions/$version_id" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: managed-agents-2026-04-01"
+    -H "anthropic-beta: agent-memory-2026-07-22"
   ```
 
   ```bash CLI
@@ -1138,7 +1124,7 @@ Version yang merupakan head saat ini dari memory yang aktif tidak dapat diredaks
   curl -s -X POST "https://api.anthropic.com/v1/memory_stores/$store_id/memory_versions/$version_id/redact" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: managed-agents-2026-04-01" \
+    -H "anthropic-beta: agent-memory-2026-07-22" \
     -H "content-type: application/json" \
     -d '{}'
   ```
@@ -1215,7 +1201,7 @@ Buat daftar store dalam workspace. Store yang diarsipkan dikecualikan secara def
   curl -s "https://api.anthropic.com/v1/memory_stores?include_archived=true" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: managed-agents-2026-04-01" | jq '.data[] | {id, name, archived_at}'
+    -H "anthropic-beta: agent-memory-2026-07-22" | jq '.data[] | {id, name, archived_at}'
   ```
 
   ```bash CLI
@@ -1286,7 +1272,7 @@ Pengarsipan membuat store menjadi read-only dan mencegahnya dilampirkan ke sesi 
   curl -s -X POST "https://api.anthropic.com/v1/memory_stores/$store_id/archive" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: managed-agents-2026-04-01" > /dev/null
+    -H "anthropic-beta: agent-memory-2026-07-22" > /dev/null
   ```
 
   ```bash CLI

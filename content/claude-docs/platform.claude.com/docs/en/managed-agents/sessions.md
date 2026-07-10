@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/sessions
-fetched_at: 2026-07-07T03:11:34.034287Z
-sha256: f9db22f7256f96ba47e510164f2075ec299af4b0bbbdca2a8d10202a47cc7afe
+fetched_at: 2026-07-10T03:11:05.177659Z
+sha256: 7cb03431c422f4a85370ca9f42c13a5ef5b934f036659837b60dd7c5c97f7944
 ---
 
 # Start a session
@@ -14,7 +14,7 @@ Create a session to run your agent and begin executing tasks.
 A session is an agent instance within an environment. Each session references an [agent](/docs/en/managed-agents/agent-setup) and an [environment](/docs/en/managed-agents/environments) (both created separately), and maintains conversation history across multiple interactions. Sessions follow a two-step lifecycle: first [create the session](#creating-a-session) to provision its sandbox, then [send a user event](#starting-the-session) to start work.
 
 <Note>
-  All Managed Agents API requests require the `managed-agents-2026-04-01` beta header. The SDK sets the beta header automatically.
+  Managed Agents API requests require the `managed-agents-2026-04-01` beta header, except memory store endpoints, which use `agent-memory-2026-07-22` instead. The SDK sets the correct beta header automatically. See [Beta headers](/docs/en/api/beta-headers#endpoint-specific-headers).
 </Note>
 
 ## Creating a session

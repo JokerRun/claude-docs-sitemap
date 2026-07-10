@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/get-started
-fetched_at: 2026-07-03T03:11:00.926352Z
-sha256: 90ef3c083b126e12ff5a4cb929ca7c6ee90b42263b1cead9518eea0f5b16da2a
+fetched_at: 2026-07-10T03:11:05.177659Z
+sha256: 26e5e8dd50203d1a0e784e334fd096f7e46efddddd7984b5b236adf740c197af
 ---
 
 # Memulai dengan Claude
@@ -16,7 +16,7 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
 * Akun [Console](/) Anthropic
 * Sebuah [kunci API](/settings/keys)
 
-## Memanggil API
+## Panggil API
 
 <Tabs>
   <Tab title="cURL">
@@ -49,7 +49,7 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
           }'
         ```
 
-        Claude mengembalikan respons JSON yang berisi pesan dari asisten:
+        Claude mengembalikan respons JSON yang berisi pesan asisten:
 
         ```json Output
         {
@@ -83,7 +83,7 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
         brew install anthropics/tap/ant
         ```
 
-        Untuk metode instalasi lainnya, lihat [Instalasi](/docs/id/cli-sdks-libraries/cli/quickstart#installation) di panduan cepat CLI.
+        Untuk metode instalasi lainnya, lihat [Instalasi](/docs/id/cli-sdks-libraries/cli/quickstart#installation) di quickstart CLI.
       </Step>
 
       <Step title="Autentikasi">
@@ -93,13 +93,13 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
         ant auth login
         ```
 
-        Ini akan membuka alur OAuth berbasis browser. Setelah memberikan otorisasi, konfirmasi kredensial Anda dengan:
+        Ini akan membuka alur OAuth berbasis browser. Setelah memberikan otorisasi, konfirmasikan kredensial Anda dengan:
 
         ```bash
         ant auth status
         ```
 
-        Pada host jarak jauh tanpa browser, tambahkan `--no-browser` untuk mendapatkan URL yang dapat Anda buka di perangkat lain, lalu tempelkan kode yang dikembalikan ke terminal. Jika `ANTHROPIC_API_KEY` diatur di lingkungan Anda, variabel tersebut akan diutamakan daripada kredensial login. Untuk lingkungan non-interaktif seperti CI, lihat [opsi autentikasi CLI](/docs/id/cli-sdks-libraries/cli/authentication).
+        Pada host jarak jauh tanpa browser, gunakan `--no-browser` untuk mendapatkan URL yang dapat Anda buka di perangkat lain, lalu tempelkan kode yang dikembalikan ke terminal. Jika `ANTHROPIC_API_KEY` diatur di lingkungan Anda, variabel tersebut akan diprioritaskan di atas kredensial login. Untuk lingkungan non-interaktif seperti CI, lihat [opsi autentikasi CLI](/docs/id/cli-sdks-libraries/cli/authentication).
       </Step>
 
       <Step title="Lakukan panggilan API pertama Anda">
@@ -115,7 +115,7 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
           }'
         ```
 
-        CLI akan mencetak respons JSON:
+        CLI mencetak respons JSON:
 
         ```json Output
         {
@@ -269,7 +269,7 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
       </Step>
 
       <Step title="Buat proyek dan instal SDK">
-        Buat proyek console baru dan tambahkan paket Anthropic:
+        Buat proyek konsol baru dan tambahkan paket Anthropic:
 
         ```bash
         dotnet new console -n ClaudeQuickstart
@@ -411,7 +411,7 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
       </Step>
 
       <Step title="Siapkan proyek Anda">
-        Anda memerlukan JDK (versi 25 atau lebih baru) dan [Gradle](https://gradle.org/install/) atau [Maven](https://maven.apache.org/install.html) di `PATH` Anda. Buat direktori untuk proyek Anda dengan direktori sumber Java di dalamnya:
+        Anda memerlukan JDK (25 atau yang lebih baru) dan [Gradle](https://gradle.org/install/) atau [Maven](https://maven.apache.org/install.html) pada `PATH` Anda. Buat direktori untuk proyek Anda dengan direktori sumber Java di dalamnya:
 
         ```bash
         mkdir -p claude-quickstart/src/main/java && cd claude-quickstart
@@ -439,7 +439,7 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
             }
 
             dependencies {
-                implementation("com.anthropic:anthropic-java:2.47.0")
+                implementation("com.anthropic:anthropic-java:2.47.1")
             }
 
             application {
@@ -465,7 +465,7 @@ Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pencarian web se
                 <dependency>
                   <groupId>com.anthropic</groupId>
                   <artifactId>anthropic-java</artifactId>
-                  <version>2.47.0</version>
+                  <version>2.47.1</version>
                 </dependency>
               </dependencies>
             </project>
@@ -661,7 +661,7 @@ Anda telah melakukan panggilan API pertama Anda. Selanjutnya, pelajari pola Mess
   Pelajari percakapan multi-giliran, prompt sistem, alasan berhenti, dan pola inti lainnya.
 </Card>
 
-Setelah Anda merasa nyaman dengan dasar-dasarnya, jelajahi lebih lanjut:
+Setelah Anda nyaman dengan dasar-dasarnya, jelajahi lebih lanjut:
 
 <CardGroup cols={3}>
   <Card title="Ikhtisar model" icon="brain" href="/docs/id/about-claude/models/overview">
@@ -672,7 +672,7 @@ Setelah Anda merasa nyaman dengan dasar-dasarnya, jelajahi lebih lanjut:
     Jelajahi semua kemampuan Claude: alat, manajemen konteks, output terstruktur, dan lainnya.
   </Card>
 
-  <Card title="SDK Klien" icon="code-brackets" href="/docs/id/cli-sdks-libraries/overview">
+  <Card title="SDK klien" icon="code-brackets" href="/docs/id/cli-sdks-libraries/overview">
     Dokumentasi referensi untuk Python, TypeScript, C#, dan pustaka klien lainnya.
   </Card>
 </CardGroup>

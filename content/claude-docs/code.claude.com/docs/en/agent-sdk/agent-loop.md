@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/agent-loop
-fetched_at: 2026-07-08T03:08:53.943475Z
-sha256: f2215a7aac4f2d3236b7762fc6a244d9bbe76f23bc848123d82e01025bf530f1
+fetched_at: 2026-07-10T03:11:05.177659Z
+sha256: 1187e58f3e7fb4b6758ab722eb82819ca458c083b9dd8d83ed641ba8dd85ccc1
 ---
 
 > ## Documentation Index
@@ -188,6 +188,8 @@ You can limit how many turns the loop takes, how much it costs, how deeply Claud
 | Max budget (`max_budget_usd` / `maxBudgetUsd`) | Maximum cost before stopping | No limit |
 
 When either limit is hit, the SDK returns a `ResultMessage` with a corresponding error subtype (`error_max_turns` or `error_max_budget_usd`). See [Handle the result](#handle-the-result) for how to check these subtypes and [`ClaudeAgentOptions`](/en/agent-sdk/python#claudeagentoptions) / [`Options`](/en/agent-sdk/typescript#options) for syntax.
+
+With [streaming input](/en/agent-sdk/streaming-vs-single-mode), a message you send while a turn is still running stays queued when that turn ends at the max-turns limit, and it starts its own turn with its own max-turns limit. Before v2.1.205, a message that arrived on the turn's final iteration could be consumed into the ending turn and lost without ever reaching the model.
 
 ### Effort level
 

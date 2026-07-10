@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-on-vertex-ai
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 40a02b637886ec4fe76d8ef24978cf8e758703a1eba62937540a0b6e11f09620
+fetched_at: 2026-07-10T03:11:05.177659Z
+sha256: 203b02328cffe3b2939a0e429e573c650adc43211051ccd1e6417b72c3620589
 ---
 
 # Claude di Google Cloud
@@ -16,13 +16,13 @@ API untuk mengakses Claude di Google Cloud's Agent Platform hampir identik denga
 * Di Agent Platform, `model` tidak dikirimkan dalam body permintaan. Sebagai gantinya, model ditentukan dalam URL endpoint Google Cloud.
 * Di Agent Platform, `anthropic_version` dikirimkan dalam body permintaan (bukan sebagai header), dan harus diatur ke nilai `vertex-2023-10-16`.
 
-Agent Platform juga didukung oleh [client SDK](/docs/id/cli-sdks-libraries/overview) resmi Anthropic. Panduan ini memandu Anda membuat permintaan ke Claude di Agent Platform menggunakan salah satu client SDK Anthropic.
+Agent Platform juga didukung oleh [SDK klien](/docs/id/cli-sdks-libraries/overview) resmi Anthropic. Panduan ini memandu Anda dalam membuat permintaan ke Claude di Agent Platform menggunakan salah satu SDK klien Anthropic.
 
-Perhatikan bahwa panduan ini mengasumsikan Anda sudah memiliki proyek Google Cloud yang dapat menggunakan Agent Platform. Lihat [Model Anthropic Claude di Agent Platform](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/claude) untuk informasi lebih lanjut tentang penyiapan yang diperlukan dan panduan lengkapnya.
+Perhatikan bahwa panduan ini mengasumsikan Anda sudah memiliki proyek Google Cloud yang dapat menggunakan Agent Platform. Lihat [Model Anthropic Claude di Agent Platform](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/claude) untuk informasi lebih lanjut tentang pengaturan yang diperlukan dan panduan lengkapnya.
 
-## Menginstal SDK untuk mengakses Agent Platform
+## Instal SDK untuk mengakses Agent Platform
 
-Pertama, instal [client SDK](/docs/id/cli-sdks-libraries/overview) Anthropic untuk bahasa pilihan Anda.
+Pertama, instal [SDK klien](/docs/id/cli-sdks-libraries/overview) Anthropic untuk bahasa pilihan Anda.
 
 <Tabs>
   <Tab title="Python">
@@ -52,14 +52,14 @@ Pertama, instal [client SDK](/docs/id/cli-sdks-libraries/overview) Anthropic unt
   <Tab title="Java">
     <CodeGroup>
       ```groovy Gradle
-      implementation("com.anthropic:anthropic-java-vertex:2.47.0")
+      implementation("com.anthropic:anthropic-java-vertex:2.47.1")
       ```
 
       ```xml Maven
       <dependency>
           <groupId>com.anthropic</groupId>
           <artifactId>anthropic-java-vertex</artifactId>
-          <version>2.47.0</version>
+          <version>2.47.1</version>
       </dependency>
       ```
 
@@ -108,7 +108,7 @@ Pertama, instal [client SDK](/docs/id/cli-sdks-libraries/overview) Anthropic unt
 
 ### Ketersediaan model
 
-Perhatikan bahwa ketersediaan model Anthropic bervariasi berdasarkan region. Cari "Claude" di [Model Garden](https://cloud.google.com/model-garden) atau kunjungi [Model Anthropic Claude](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/claude) untuk informasi terbaru.
+Perhatikan bahwa ketersediaan model Anthropic bervariasi menurut wilayah. Cari "Claude" di [Model Garden](https://cloud.google.com/model-garden) atau kunjungi [Model Anthropic Claude](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/claude) untuk informasi terbaru.
 
 #### ID model API
 
@@ -330,17 +330,17 @@ Contoh berikut menunjukkan cara menghasilkan teks dari Claude di Agent Platform:
   ```
 </CodeGroup>
 
-Lihat [client SDK](/docs/id/cli-sdks-libraries/overview) dan [dokumentasi Agent Platform](https://cloud.google.com/vertex-ai/docs) resmi untuk detail lebih lanjut.
+Lihat [SDK klien](/docs/id/cli-sdks-libraries/overview) dan [dokumentasi Agent Platform](https://cloud.google.com/vertex-ai/docs) resmi untuk detail lebih lanjut.
 
 Claude juga tersedia melalui [Amazon Bedrock](/docs/id/build-with-claude/claude-in-amazon-bedrock), [Claude Platform di AWS](/docs/id/build-with-claude/claude-platform-on-aws), dan [Microsoft Foundry](/docs/id/build-with-claude/claude-in-microsoft-foundry).
 
 ## Retensi data
 
-Penanganan data untuk penawaran ini diatur oleh Google Cloud. Untuk detailnya, lihat [Agent Platform dan zero data retention](https://cloud.google.com/vertex-ai/generative-ai/docs/data-governance).
+Penanganan data untuk penawaran ini diatur oleh Google Cloud. Untuk detailnya, lihat [Agent Platform dan retensi data nol](https://cloud.google.com/vertex-ai/generative-ai/docs/data-governance).
 
 ## Pencatatan aktivitas
 
-Agent Platform menyediakan [layanan pencatatan request-response](https://cloud.google.com/vertex-ai/generative-ai/docs/multimodal/request-response-logging) yang memungkinkan pelanggan mencatat prompt dan completion yang terkait dengan penggunaan Anda.
+Agent Platform menyediakan [layanan pencatatan permintaan-respons](https://cloud.google.com/vertex-ai/generative-ai/docs/multimodal/request-response-logging) yang memungkinkan pelanggan mencatat prompt dan completion yang terkait dengan penggunaan Anda.
 
 Anthropic merekomendasikan agar Anda mencatat aktivitas Anda setidaknya secara bergulir selama 30 hari untuk memahami aktivitas Anda dan menyelidiki potensi penyalahgunaan.
 
@@ -350,23 +350,23 @@ Anthropic merekomendasikan agar Anda mencatat aktivitas Anda setidaknya secara b
 
 ## Dukungan fitur
 
-Untuk daftar fitur lengkap dengan ketersediaan Google Cloud, lihat [Ikhtisar fitur](/docs/id/build-with-claude/overview).
+Untuk daftar fitur lengkap dengan ketersediaan di Google Cloud, lihat [Ikhtisar fitur](/docs/id/build-with-claude/overview).
 
 ### Sorotan fitur yang didukung
 
 * [Messages API](/docs/id/api/messages/create)
 * [Caching prompt](/docs/id/build-with-claude/prompt-caching)
 * [Pemikiran diperpanjang](/docs/id/build-with-claude/extended-thinking)
-* [Penggunaan alat](/docs/id/agents-and-tools/tool-use/overview), termasuk [Bash tool](/docs/id/agents-and-tools/tool-use/bash-tool), [Computer use tool](/docs/id/agents-and-tools/tool-use/computer-use-tool), [Memory tool](/docs/id/agents-and-tools/tool-use/memory-tool), dan [Text editor tool](/docs/id/agents-and-tools/tool-use/text-editor-tool)
-* [Web search tool](/docs/id/agents-and-tools/tool-use/web-search-tool)
-* [Citations](/docs/id/build-with-claude/citations)
-* [Structured outputs](/docs/id/build-with-claude/structured-outputs)
+* [Penggunaan alat](/docs/id/agents-and-tools/tool-use/overview), termasuk [alat Bash](/docs/id/agents-and-tools/tool-use/bash-tool), [alat Computer use](/docs/id/agents-and-tools/tool-use/computer-use-tool), [alat Memory](/docs/id/agents-and-tools/tool-use/memory-tool), dan [alat Text editor](/docs/id/agents-and-tools/tool-use/text-editor-tool)
+* [Alat pencarian web](/docs/id/agents-and-tools/tool-use/web-search-tool)
+* [Sitasi](/docs/id/build-with-claude/citations)
+* [Output terstruktur](/docs/id/build-with-claude/structured-outputs)
 
 ### Fitur yang tidak didukung
 
 * Sumber input (sumber URL untuk gambar dan dokumen, Files API)
-* Alat sisi server (code execution, web fetch, advisor)
-* Infrastruktur agen (Agent Skills, MCP connector, programmatic tool calling)
+* Alat sisi server (eksekusi kode, web fetch, advisor)
+* Infrastruktur agen (Agent Skills, konektor MCP, pemanggilan alat terprogram)
 * Endpoint API (Message Batches, Models, Admin, Compliance, Usage and Cost)
 * Claude Managed Agents
 * Fallback sisi server ([parameter `fallbacks`](/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback); gunakan [pola fallback sisi klien](/docs/id/build-with-claude/refusals-and-fallback#client-side-fallback) sebagai gantinya)
@@ -375,45 +375,45 @@ Untuk daftar fitur lengkap dengan ketersediaan Google Cloud, lihat [Ikhtisar fit
 
 Claude Fable 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5, dan Claude Sonnet 4.6 memiliki [jendela konteks 1 juta token](/docs/id/build-with-claude/context-windows) di Agent Platform. Model Claude lainnya, termasuk Sonnet 4.5 dan Sonnet 4 (deprecated), memiliki jendela konteks 200 ribu token.
 
-Agent Platform membatasi payload permintaan hingga 30 MB. Saat mengirim dokumen besar atau banyak gambar, Anda mungkin mencapai batas ini sebelum mencapai batas token.
+Agent Platform membatasi payload permintaan hingga 30 MB. Saat mengirim dokumen besar atau banyak gambar, Anda mungkin mencapai batas ini sebelum batas token.
 
-## Endpoint global, multi-region, dan regional
+## Endpoint global, multi-wilayah, dan regional
 
 Agent Platform menawarkan tiga jenis endpoint:
 
-* **Endpoint global:** Routing dinamis untuk ketersediaan maksimum
-* **Endpoint multi-region:** Routing dinamis dalam area geografis (misalnya, Amerika Serikat atau Uni Eropa) untuk residensi data dengan ketersediaan tinggi
-* **Endpoint regional:** Routing data yang dijamin melalui region geografis tertentu
+* **Endpoint global:** Perutean dinamis untuk ketersediaan maksimum
+* **Endpoint multi-wilayah:** Perutean dinamis dalam suatu area geografis (misalnya, Amerika Serikat atau Uni Eropa) untuk residensi data dengan ketersediaan tinggi
+* **Endpoint regional:** Perutean data yang dijamin melalui wilayah geografis tertentu
 
-Endpoint regional dan multi-region menyertakan premium harga 10% dibandingkan endpoint global.
+Endpoint regional dan multi-wilayah menyertakan premi harga 10% dibandingkan endpoint global.
 
 <Note>
-  Ini berlaku untuk Claude Sonnet 4.5 dan model-model selanjutnya saja. Model yang lebih lama (Claude Sonnet 4 (deprecated), Opus 4 (deprecated), dan sebelumnya) mempertahankan struktur harga yang sudah ada.
+  Ini hanya berlaku untuk Claude Sonnet 4.5 dan model-model berikutnya. Model yang lebih lama (Claude Sonnet 4 (deprecated), Opus 4 (deprecated), dan sebelumnya) mempertahankan struktur harga yang sudah ada.
 </Note>
 
 ### Kapan menggunakan setiap opsi
 
 **Endpoint global (direkomendasikan):**
 
-* Menyediakan ketersediaan dan uptime maksimum
-* Secara dinamis merutekan permintaan ke region dengan kapasitas yang tersedia
-* Tidak ada premium harga
+* Memberikan ketersediaan dan waktu aktif maksimum
+* Merutekan permintaan secara dinamis ke wilayah dengan kapasitas yang tersedia
+* Tanpa premi harga
 * Terbaik untuk aplikasi di mana residensi data bersifat fleksibel
 * Hanya mendukung lalu lintas pay-as-you-go (provisioned throughput memerlukan endpoint regional)
 
-**Endpoint multi-region:**
+**Endpoint multi-wilayah:**
 
-* Secara dinamis merutekan permintaan di seluruh region dalam area geografis (saat ini `us` dan `eu`)
-* Berguna ketika Anda membutuhkan residensi data dalam geografi yang luas tetapi menginginkan ketersediaan yang lebih tinggi daripada satu region
-* Premium harga 10% dibandingkan endpoint global
+* Merutekan permintaan secara dinamis di seluruh wilayah dalam suatu area geografis (saat ini `us` dan `eu`)
+* Berguna ketika Anda memerlukan residensi data dalam geografi yang luas tetapi menginginkan ketersediaan yang lebih tinggi daripada satu wilayah
+* Premi harga 10% dibandingkan endpoint global
 * Hanya mendukung lalu lintas pay-as-you-go (provisioned throughput memerlukan endpoint regional)
 
 **Endpoint regional:**
 
-* Merutekan lalu lintas melalui region geografis tertentu
-* Diperlukan untuk residensi data satu region, mandat kepatuhan yang ketat, atau provisioned throughput
+* Merutekan lalu lintas melalui wilayah geografis tertentu
+* Diperlukan untuk residensi data satu wilayah, mandat kepatuhan yang ketat, atau provisioned throughput
 * Mendukung pay-as-you-go dan provisioned throughput
-* Premium harga 10% mencerminkan biaya infrastruktur untuk kapasitas regional khusus
+* Premi harga 10% mencerminkan biaya infrastruktur untuk kapasitas regional khusus
 
 ### Implementasi
 
@@ -587,9 +587,9 @@ Atur parameter `region` ke `"global"` saat menginisialisasi klien:
   ```
 </CodeGroup>
 
-**Menggunakan endpoint multi-region:**
+**Menggunakan endpoint multi-wilayah:**
 
-Atur parameter `region` ke pengidentifikasi multi-region: `"us"` untuk Amerika Serikat atau `"eu"` untuk Uni Eropa. SDK merutekan permintaan ke endpoint multi-region yang sesuai (`https://aiplatform.us.rep.googleapis.com` atau `https://aiplatform.eu.rep.googleapis.com`), yang secara dinamis menyeimbangkan lalu lintas di seluruh region dalam geografi tersebut.
+Atur parameter `region` ke pengidentifikasi multi-wilayah: `"us"` untuk Amerika Serikat atau `"eu"` untuk Uni Eropa. SDK merutekan permintaan ke endpoint multi-wilayah yang sesuai (`https://aiplatform.us.rep.googleapis.com` atau `https://aiplatform.eu.rep.googleapis.com`), yang secara dinamis menyeimbangkan lalu lintas di seluruh wilayah dalam geografi tersebut.
 
 <CodeGroup>
   ```bash CLI
@@ -758,7 +758,7 @@ Atur parameter `region` ke pengidentifikasi multi-region: `"us"` untuk Amerika S
 
 **Menggunakan endpoint regional:**
 
-Tentukan region spesifik seperti `"us-east1"` atau `"europe-west1"`:
+Tentukan wilayah spesifik seperti `"us-east1"` atau `"europe-west1"`:
 
 <CodeGroup>
   ```bash CLI
@@ -926,12 +926,12 @@ Tentukan region spesifik seperti `"us-east1"` atau `"europe-west1"`:
 </CodeGroup>
 
 <Note>
-  Claude Mythos Preview adalah pratinjau riset yang tersedia untuk pelanggan yang diundang di Agent Platform. Untuk informasi lebih lanjut, lihat [Project Glasswing](https://anthropic.com/glasswing).
+  Claude Mythos Preview adalah pratinjau riset yang tersedia bagi pelanggan yang diundang di Agent Platform. Untuk informasi lebih lanjut, lihat [Project Glasswing](https://anthropic.com/glasswing).
 </Note>
 
 ## Sumber daya tambahan
 
-* **Harga Agent Platform:** [Harga Generative AI di cloud.google.com](https://cloud.google.com/vertex-ai/generative-ai/pricing)
+* **Harga Agent Platform:** [Harga AI generatif di cloud.google.com](https://cloud.google.com/vertex-ai/generative-ai/pricing)
 * **Dokumentasi model Claude:** [Claude di Agent Platform](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/claude)
 * **Postingan blog Google:** [Endpoint global untuk model Claude](https://cloud.google.com/blog/products/ai-machine-learning/global-endpoint-for-claude-models-generally-available-on-vertex-ai)
 * **Detail harga Anthropic:** [Harga platform cloud](/docs/id/about-claude/pricing#cloud-platform-pricing)

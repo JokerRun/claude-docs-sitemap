@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/vs-code
-fetched_at: 2026-07-09T03:11:03.913066Z
-sha256: 989b31723f561d3de5ecaeede5dc78ca2444d3ea5ca3cb3abab8a3441a6fa133
+fetched_at: 2026-07-10T03:11:05.177659Z
+sha256: 7cf6d5197b49597bab4a6595757798d5c6a6248c37f5c7b4b93c5caea40442a7
 ---
 
 > ## Documentation Index
@@ -103,7 +103,7 @@ The prompt box supports several features:
 
 * **Permission modes**: click the mode indicator at the bottom of the prompt box to switch modes, or set the default in VS Code settings under `claudeCode.initialPermissionMode`. See [permission modes](/en/permission-modes#switch-permission-modes) for every mode the indicator offers.
   * **Manual**: Claude asks permission before each action.
-  * **Plan mode**: Claude describes what it will do and waits for approval before making changes. VS Code automatically opens the plan as a full markdown document where you can add inline comments to give feedback before Claude begins.
+  * **Plan**: Claude describes what it will do and waits for approval before making changes. VS Code automatically opens the plan as a full Markdown document where you can add inline comments to give feedback before Claude begins.
   * **Edit automatically**: Claude makes edits without asking.
 * **Command menu**: click `/` or type `/` to open the command menu. Options include attaching files, switching models, toggling extended thinking, viewing plan usage (`/usage`), and starting a [Remote Control](/en/remote-control) session (`/remote-control`). The Customize section provides access to MCP servers, hooks, memory, permissions, and plugins. Items with a terminal icon open in the integrated terminal.
   * {/* min-version: 2.1.203 */}The Settings section includes **Enable Remote Control for all sessions**, which sets [`remoteControlAtStartup`](/en/settings#available-settings) so [every new interactive session connects to Remote Control automatically](/en/remote-control#enable-remote-control-for-all-sessions). Requires Claude Code v2.1.203 or later.
