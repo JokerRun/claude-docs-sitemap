@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/vaults/credentials/archive
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: bb4a5520ceee7cc8a3ef3ad1abbaf6767356fe273f1af77470f9fcd5e724bd05
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 137872f74343b358f7bc0c5b82f48b017aecefdb749dfa7f796f1d8272b80b61
 ---
 
 ## Archive Credential
@@ -84,6 +84,8 @@ Archive Credential
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 

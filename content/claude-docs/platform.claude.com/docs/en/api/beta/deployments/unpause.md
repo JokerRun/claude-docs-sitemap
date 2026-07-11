@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployments/unpause
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 85f3b690ad58380d118413818c087c227418c6e15a293d201451adc5fdc188eb
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: d5e707a7f1ee403e2b083fe08c0ff685b1a02457e8eabdaefcc1b3223b7ae5e2
 ---
 
 ## Unpause Deployment
@@ -23,7 +23,7 @@ Unpause Deployment
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 25 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 26 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -80,6 +80,8 @@ Unpause Deployment
     - `"server-side-fallback-2026-06-01"`
 
     - `"fallback-credit-2026-06-01"`
+
+    - `"agent-memory-2026-07-22"`
 
 ### Returns
 

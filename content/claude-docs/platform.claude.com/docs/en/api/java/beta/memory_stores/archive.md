@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/memory_stores/archive
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: c7f1fd175beac23c44151e42331a4c97db747ee1df57a7ba7888713e1865c2ac
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 5aedb7d68a78dbf04bf5f725a29eec5e5064bb771f648a7a39da8af568589905
 ---
 
 ## Archive a memory store
@@ -78,6 +78,8 @@ Archive a memory store
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
 ### Returns
 

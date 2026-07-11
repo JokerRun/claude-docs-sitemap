@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/deployments/pause
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 3184484e3bf796d88e095baf5f559d067b89aef4cdf893541a958da51e78daae
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 84c8a537b52ff772b3458f39ba53b966f8c3618ac8d50bf28a8d4c5bdee085b8
 ---
 
 ## Pause Deployment
@@ -23,7 +23,7 @@ Pause Deployment
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 25 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 26 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -80,6 +80,8 @@ Pause Deployment
     - `"server-side-fallback-2026-06-01"`
 
     - `"fallback-credit-2026-06-01"`
+
+    - `"agent-memory-2026-07-22"`
 
 ### Returns
 

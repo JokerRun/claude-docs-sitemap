@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/messages
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 4504d609eb1f81c49fa913637e5b674a01049db7fea1a0c16f6f75d1d2e79213
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 7370909756ae8543d72583f9a8e882c894cbfb7e96eb69ab5b62403848f133f8
 ---
 
 # Messages
@@ -2994,7 +2994,7 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
       - `(string & {})`
 
-      - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
+      - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 26 more`
 
         - `"message-batches-2024-09-24"`
 
@@ -3051,6 +3051,8 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
         - `"server-side-fallback-2026-06-01"`
 
         - `"fallback-credit-2026-06-01"`
+
+        - `"agent-memory-2026-07-22"`
 
     - `user_profile_id?: string`
 
@@ -7438,7 +7440,7 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 26 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -7495,6 +7497,8 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
       - `"server-side-fallback-2026-06-01"`
 
       - `"fallback-credit-2026-06-01"`
+
+      - `"agent-memory-2026-07-22"`
 
   - `user_profile_id?: string`
 
@@ -32232,7 +32236,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 26 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -32289,6 +32293,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
       - `"server-side-fallback-2026-06-01"`
 
       - `"fallback-credit-2026-06-01"`
+
+      - `"agent-memory-2026-07-22"`
 
   - `user_profile_id?: string`
 
@@ -32456,7 +32462,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 26 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -32513,6 +32519,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
       - `"server-side-fallback-2026-06-01"`
 
       - `"fallback-credit-2026-06-01"`
+
+      - `"agent-memory-2026-07-22"`
 
 ### Returns
 
@@ -32675,7 +32683,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 26 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -32732,6 +32740,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
       - `"server-side-fallback-2026-06-01"`
 
       - `"fallback-credit-2026-06-01"`
+
+      - `"agent-memory-2026-07-22"`
 
 ### Returns
 
@@ -32894,7 +32904,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 26 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -32951,6 +32961,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
       - `"server-side-fallback-2026-06-01"`
 
       - `"fallback-credit-2026-06-01"`
+
+      - `"agent-memory-2026-07-22"`
 
 ### Returns
 
@@ -33105,7 +33117,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 26 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -33162,6 +33174,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
       - `"server-side-fallback-2026-06-01"`
 
       - `"fallback-credit-2026-06-01"`
+
+      - `"agent-memory-2026-07-22"`
 
 ### Returns
 
@@ -33228,7 +33242,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 26 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -33285,6 +33299,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
       - `"server-side-fallback-2026-06-01"`
 
       - `"fallback-credit-2026-06-01"`
+
+      - `"agent-memory-2026-07-22"`
 
 ### Returns
 

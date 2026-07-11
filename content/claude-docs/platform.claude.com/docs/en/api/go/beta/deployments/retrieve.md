@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/deployments/retrieve
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 426e28951c7169f760f70323878f3f91fc8919d1896a47ea503937dbc5502f8d
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 8668e75db0fb39b7df79b4177861153e3014d59a6bed55edee6971a29ebeb4a4
 ---
 
 ## Get Deployment
@@ -82,6 +82,8 @@ Get Deployment
       - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
 
       - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
+
+      - `const AnthropicBetaAgentMemory2026_07_22 AnthropicBeta = "agent-memory-2026-07-22"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/files/upload
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 901cee6be578aa1c3afeb480e34c8ac458023303d2f88d65ee5f6411c40afd90
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 97592c0a280943bc58de5d171f56352d5f7f3938fcfe2817a2433352fe1b4e5b
 ---
 
 ## Upload File
@@ -27,7 +27,7 @@ Upload File
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 26 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -84,6 +84,8 @@ Upload File
       - `"server-side-fallback-2026-06-01"`
 
       - `"fallback-credit-2026-06-01"`
+
+      - `"agent-memory-2026-07-22"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/sessions/threads
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: dcf74184d966a75419316486eb6260c68267cb627412435a0ba475137980b58b
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 098989637ea8b21f9b782876dc0d5ab03739498920fe76b0a60a9304f71fcbbd
 ---
 
 # Threads
@@ -90,6 +90,8 @@ List Session Threads
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -620,6 +622,8 @@ Get Session Thread
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class BetaManagedAgentsSessionThread:`
@@ -1134,6 +1138,8 @@ Archive Session Thread
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -3914,6 +3920,8 @@ List Session Thread Events
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class EventListPageResponse:`
@@ -5822,6 +5830,8 @@ Stream Session Thread Events
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/skills/versions/delete
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: a736f60cab3558d1f490f6c75ff0ed72683e0f0b23b6751ca163594912cd2cd9
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 6fcee8af30e37fa7aa76d7ec1165831cd94b00bb337fa5aaf38a3900a1be6d78
 ---
 
 ## Delete Skill Version
@@ -88,6 +88,8 @@ Delete Skill Version
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 

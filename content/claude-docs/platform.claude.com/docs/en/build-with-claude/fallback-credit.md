@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/fallback-credit
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 76f00d9f5ef6df828ea7b15e76ec2589be70891de9e79ff44f7112334ca1a8f1
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 5b69d877df1104cdd3e0b286cd8432dd6d377bcf90cbba83e5180e5fad99adb7
 ---
 
 # Fallback credit
@@ -13,7 +13,7 @@ Avoid paying the prompt-cache cost twice when you retry a refused Claude Fable 5
 
 Prompt caches are per-model. When Claude Fable 5 declines a request and you retry on another model, the conversation prefix that was already cached for Claude Fable 5 must be written into the new model's cache from scratch. Cache writes cost more than cache reads. Fallback credit removes that extra cost. The refusal carries a credit token, you echo the token on the retry, and the retry is billed as though the conversation had been on the new model all along.
 
-You need this page only when you build the retry yourself: on the Ruby or PHP SDK, over raw HTTP, or with custom retry logic. [Server-side fallback](/docs/en/build-with-claude/refusals-and-fallback#server-side-fallback) and the [SDK middleware](/docs/en/build-with-claude/refusals-and-fallback#client-side-fallback) apply fallback credit automatically. If you use either, skip this page.
+You need this page only when you build the retry yourself: over raw HTTP or with custom retry logic. [Server-side fallback](/docs/en/build-with-claude/refusals-and-fallback#server-side-fallback) and the [SDK middleware](/docs/en/build-with-claude/refusals-and-fallback#client-side-fallback) apply fallback credit automatically. If you use either, skip this page.
 
 [Refusals and fallback](/docs/en/build-with-claude/refusals-and-fallback) covers detecting refusals and choosing a fallback approach. [Prompt caching](/docs/en/build-with-claude/prompt-caching) explains cache reads and cache writes if those terms are new.
 
@@ -67,25 +67,26 @@ The following example makes a request that may be refused and redeems the credit
       "messages": [{"role": "user", "content": "Hello, Claude"}]
     }')
 
-  token=$(jq -r '.stop_details.fallback_credit_token // empty' <<<"$response")
+  # A refusal carries a one-time credit token in stop_details
+  token=$(jq -r '.stop_details.fallback_credit_token // empty' <<<"${response}")
 
-  if [[ -n "$token" ]]; then
+  if [[ -n "${token}" ]]; then
     # Retry on the fallback model with the credit token (same body)
     response=$(curl --fail-with-body -sS https://api.anthropic.com/v1/messages \
       -H "x-api-key: $ANTHROPIC_API_KEY" \
       -H "anthropic-version: 2023-06-01" \
       -H "anthropic-beta: fallback-credit-2026-06-01" \
       -H "content-type: application/json" \
-      -d "$(jq -n --arg t "$token" '{
+      -d "$(jq -n --arg token "${token}" '{
         model: "claude-opus-4-8",
         max_tokens: 1024,
         messages: [{"role": "user", "content": "Hello, Claude"}],
-        fallback_credit_token: $t
+        fallback_credit_token: $token
       }')")
   fi
 
   # See the SDK examples for the full rejection-handling ladder.
-  jq -c '{stop_reason, model}' <<<"$response"
+  jq -c '{stop_reason, model}' <<<"${response}"
   ```
 
   ```bash CLI
@@ -100,8 +101,8 @@ The following example makes a request that may be refused and redeems the credit
   # A refusal carries a one-time credit token in stop_details
   token=$(jq -r '.stop_details.fallback_credit_token // empty' <<<"${response}")
 
-  # Retry on the fallback model with the credit token
   if [[ -n "${token}" ]]; then
+    # Retry on the fallback model with the credit token
     response=$(ant beta:messages create \
       --model claude-opus-4-8 \
       --max-tokens 1024 \
@@ -111,8 +112,8 @@ The following example makes a request that may be refused and redeems the credit
       --format json)
   fi
 
-  jq -c '{stop_reason, model}' <<<"${response}"
   # See the SDK examples for the full rejection-handling ladder.
+  jq -c '{stop_reason, model}' <<<"${response}"
   ```
 
   ```python Python
@@ -124,7 +125,7 @@ The following example makes a request that may be refused and redeems the credit
   }
 
 
-  def send(model, body):
+  def send(model: str, body: dict[str, object]) -> BetaMessage:
       return client.beta.messages.create(
           model=model, betas=["fallback-credit-2026-06-01"], **body
       )
@@ -140,10 +141,6 @@ The following example makes a request that may be refused and redeems the credit
       exact_body = request | {"fallback_credit_token": token}
       # Prefer the continuation shape unless the claim is False
       if details.fallback_has_prefill_claim is not False:
-          # Echo the refusal's content, stripping trailing whitespace from a
-          # final text block (the prefill validator rejects it; the server-side
-          # match tolerates the edit). Tool-using requests also omit unpaired
-          # tool_use blocks, then re-strip whitespace after any omissions.
           echoed = [block.model_dump() for block in response.content]
           match echoed:
               case [*_, {"type": "text"} as final_block]:
@@ -160,13 +157,13 @@ The following example makes a request that may be refused and redeems the credit
       try:
           response = send("claude-opus-4-8", attempt)
       except BadRequestError as error:
-          if "redemption temporarily unavailable" in str(error):
+          if "redemption temporarily unavailable" in error.message:
               raise  # Transient: retry with the token within its five-minute window
           try:
               # Fall back to the unchanged body, still with the token
               response = send("claude-opus-4-8", exact_body)
-          except BadRequestError as error:
-              if "redemption temporarily unavailable" in str(error):
+          except BadRequestError as retry_error:
+              if "redemption temporarily unavailable" in retry_error.message:
                   raise  # Transient: retry with the token within its five-minute window
               # The token itself was rejected: forfeit it and retry without.
               response = send("claude-opus-4-8", request)
@@ -205,17 +202,14 @@ The following example makes a request that may be refused and redeems the credit
     // the token, and finally forfeiting the token.
     let attempt = exactRetry;
     if (fallback_has_prefill_claim !== false) {
-      // Echo the refusal's content as an assistant turn, stripping trailing
-      // whitespace from a final text block (the prefill validator rejects it;
-      // the server-side match tolerates the edit). Tool-using requests also
-      // omit unpaired tool_use blocks, then re-strip after any omissions.
-      const finalIndex = response.content.length - 1;
-      const echoed: Anthropic.Beta.BetaContentBlockParam[] = response.content.map(
-        (block, index) =>
-          block.type === "text" && index === finalIndex
-            ? { ...block, text: block.text.trimEnd() }
-            : block
-      );
+      const finalBlock = response.content.at(-1);
+      const echoed: Anthropic.Beta.BetaContentBlockParam[] =
+        finalBlock?.type === "text"
+          ? [
+              ...response.content.slice(0, -1),
+              { ...finalBlock, text: finalBlock.text.trimEnd() }
+            ]
+          : response.content;
       attempt = {
         ...exactRetry,
         messages: [...request.messages, { role: "assistant", content: echoed }]
@@ -253,9 +247,6 @@ The following example makes a request that may be refused and redeems the credit
   ```
 
   ```csharp C#
-  using Anthropic.Exceptions;
-  using Anthropic.Models.Beta.Messages;
-
   var client = new AnthropicClient();
   const string beta = "fallback-credit-2026-06-01";
 
@@ -282,14 +273,10 @@ The following example makes a request that may be refused and redeems the credit
       // Prefer the continuation shape unless the claim is false
       if (details.FallbackHasPrefillClaim is not false)
       {
-          // Echo the refusal's content, stripping trailing whitespace from a
-          // final text block (the prefill validator rejects it; the match
-          // tolerates the edit). Tool-using requests also omit unpaired
-          // tool_use blocks, then re-strip whitespace after any omissions.
-          var echoed = JsonNode.Parse(response.RawData["content"].GetRawText())!.AsArray();
+          var echoed = JsonArray.Create(response.RawData["content"])!;
           if (
               echoed is [.., JsonObject lastBlock]
-              && lastBlock["type"]?.GetValue<string>() == "text"
+              && lastBlock["type"]?.GetValue<string>() is "text"
               && lastBlock["text"]?.GetValue<string>() is string text
           )
           {
@@ -346,7 +333,7 @@ The following example makes a request that may be refused and redeems the credit
 
   request := anthropic.BetaMessageNewParams{
   	MaxTokens: 1024,
-  	Betas:     []anthropic.AnthropicBeta{"fallback-credit-2026-06-01"},
+  	Betas:     []anthropic.AnthropicBeta{anthropic.AnthropicBetaFallbackCredit2026_06_01},
   	Messages: []anthropic.BetaMessageParam{
   		anthropic.NewBetaUserMessage(anthropic.NewBetaTextBlock("Hello, Claude")),
   	},
@@ -379,10 +366,6 @@ The following example makes a request that may be refused and redeems the credit
   		attempt := exactBody
   		// Prefer the continuation shape unless the claim is false
   		if details.FallbackHasPrefillClaim || !details.JSON.FallbackHasPrefillClaim.Valid() {
-  			// Echo the refusal's content, stripping trailing whitespace from a
-  			// final text block (the prefill validator rejects it; the match
-  			// tolerates the edit). Tool-using requests also omit unpaired
-  			// tool_use blocks, then re-strip whitespace after any omissions.
   			echoed := response.ToParam()
   			if len(echoed.Content) > 0 {
   				if text := echoed.Content[len(echoed.Content)-1].OfText; text != nil {
@@ -423,15 +406,15 @@ The following example makes a request that may be refused and redeems the credit
       return MessageCreateParams.builder()
           .maxTokens(1024L)
           .addUserMessage("Hello, Claude")
-          .addBeta("fallback-credit-2026-06-01");
+          .addBeta(AnthropicBeta.FALLBACK_CREDIT_2026_06_01);
   }
 
-  BetaMessage send(String model, MessageCreateParams.Builder body) {
+  BetaMessage send(Model model, MessageCreateParams.Builder body) {
       return client.beta().messages().create(body.model(model).build());
   }
 
   void main() {
-      BetaMessage response = send("claude-fable-5", request());
+      BetaMessage response = send(Model.CLAUDE_FABLE_5, request());
 
       if (response.stopReason().map(BetaStopReason.REFUSAL::equals).orElse(false)
               && response.stopDetails().orElse(null) instanceof BetaRefusalStopDetails details
@@ -439,10 +422,6 @@ The following example makes a request that may be refused and redeems the credit
           MessageCreateParams.Builder attempt = request().fallbackCreditToken(creditToken);
           // Prefer the continuation shape unless the claim is false
           if (details.fallbackHasPrefillClaim().orElse(true)) {
-              // Echo the refusal's content, stripping trailing whitespace from a
-              // final text block (the prefill validator rejects it; the match
-              // tolerates the edit). Tool-using requests also omit unpaired
-              // tool_use blocks, then re-strip whitespace after any omissions.
               List<BetaContentBlockParam> echoed = new ArrayList<>(
                   response.content().stream().map(BetaContentBlock::toParam).toList());
               if (!echoed.isEmpty() && echoed.getLast().isText()) {
@@ -453,7 +432,7 @@ The following example makes a request that may be refused and redeems the credit
               attempt.addAssistantMessageOfBetaContentBlockParams(echoed);
           }
           try {
-              response = send("claude-opus-4-8", attempt);
+              response = send(Model.CLAUDE_OPUS_4_8, attempt);
           } catch (BadRequestException badRequest) {
               // Transient: retry with the token within its five-minute window
               if (badRequest.getMessage().contains("redemption temporarily unavailable")) {
@@ -461,18 +440,19 @@ The following example makes a request that may be refused and redeems the credit
               }
               try {
                   // Fall back to the unchanged body, still with the token
-                  response = send("claude-opus-4-8", request().fallbackCreditToken(creditToken));
+                  response = send(Model.CLAUDE_OPUS_4_8, request().fallbackCreditToken(creditToken));
               } catch (BadRequestException retryBadRequest) {
                   if (retryBadRequest.getMessage().contains("redemption temporarily unavailable")) {
                       throw retryBadRequest;
                   }
                   // The token itself was rejected: forfeit it and retry without.
-                  response = send("claude-opus-4-8", request());
+                  response = send(Model.CLAUDE_OPUS_4_8, request());
               }
           }
       }
 
-      IO.println("{\"stop_reason\": \"%s\", \"model\": \"%s\"}"
+      IO.println("""
+          {"stop_reason": "%s", "model": "%s"}"""
           .formatted(response.stopReason().orElseThrow(), response.model()));
   }
   ```
@@ -491,44 +471,41 @@ The following example makes a request that may be refused and redeems the credit
   );
   $response = $send('claude-fable-5', $messages);
 
-  if ($response->stopReason === 'refusal' && $response->stopDetails !== null) {
-      $token = $response->stopDetails->fallbackCreditToken;
-      if ($token !== null) {
-          $attemptMessages = $messages;
-          // Prefer the continuation shape unless the claim is false
-          if ($response->stopDetails->fallbackHasPrefillClaim !== false) {
-              // Echo the refusal's content, stripping trailing whitespace from a
-              // final text block (the prefill validator rejects it; the match
-              // tolerates the edit). Tool-using requests also omit unpaired
-              // tool_use blocks, then re-strip whitespace after any omissions.
-              $echoed = $response->content
-                  |> json_encode(...)
-                  |> (fn (string $json): array => json_decode($json, associative: true));
-              $lastIndex = array_key_last($echoed);
-              if ($lastIndex !== null && $echoed[$lastIndex]['type'] === 'text') {
-                  $echoed[$lastIndex]['text'] = rtrim($echoed[$lastIndex]['text']);
-              }
-              $attemptMessages[] = ['role' => 'assistant', 'content' => $echoed];
+  $token = $response->stopReason === 'refusal'
+      ? $response->stopDetails?->fallbackCreditToken
+      : null;
+
+  if ($token !== null) {
+      $attemptMessages = $messages;
+      // Prefer the continuation shape unless the claim is false
+      if ($response->stopDetails->fallbackHasPrefillClaim !== false) {
+          $echoed = $response->content
+              |> json_encode(...)
+              |> (fn (string $json): array => json_decode($json, associative: true));
+          $lastIndex = array_key_last($echoed);
+          if ($lastIndex !== null && $echoed[$lastIndex]['type'] === 'text') {
+              $echoed[$lastIndex]['text'] = rtrim($echoed[$lastIndex]['text']);
           }
-          // Transient: retry with the token within its five-minute window
-          $isTransientRedemption = fn (BadRequestException $error): bool =>
-              str_contains($error->getMessage(), 'redemption temporarily unavailable');
+          $attemptMessages[] = ['role' => 'assistant', 'content' => $echoed];
+      }
+      // Transient: retry with the token within its five-minute window
+      $isTransientRedemption = fn (BadRequestException $error): bool =>
+          str_contains($error->getMessage(), 'redemption temporarily unavailable');
+      try {
+          $response = $send('claude-opus-4-8', $attemptMessages, $token);
+      } catch (BadRequestException $error) {
+          if ($isTransientRedemption($error)) {
+              throw $error;
+          }
           try {
-              $response = $send('claude-opus-4-8', $attemptMessages, $token);
-          } catch (BadRequestException $error) {
-              if ($isTransientRedemption($error)) {
-                  throw $error;
+              // Fall back to the unchanged body, still with the token
+              $response = $send('claude-opus-4-8', $messages, $token);
+          } catch (BadRequestException $retryError) {
+              if ($isTransientRedemption($retryError)) {
+                  throw $retryError;
               }
-              try {
-                  // Fall back to the unchanged body, still with the token
-                  $response = $send('claude-opus-4-8', $messages, $token);
-              } catch (BadRequestException $retryError) {
-                  if ($isTransientRedemption($retryError)) {
-                      throw $retryError;
-                  }
-                  // The token itself was rejected: forfeit it and retry without.
-                  $response = $send('claude-opus-4-8', $messages);
-              }
+              // The token itself was rejected: forfeit it and retry without.
+              $response = $send('claude-opus-4-8', $messages);
           }
       }
   }
@@ -544,7 +521,7 @@ The following example makes a request that may be refused and redeems the credit
     messages: [{role: "user", content: "Hello, Claude"}]
   }
 
-  send_message = lambda do |model, body|
+  send_message = ->(model, body) do
     client.beta.messages.create(model:, betas: ["fallback-credit-2026-06-01"], **body)
   end
 
@@ -555,20 +532,16 @@ The following example makes a request that may be refused and redeems the credit
     exact_body = request.merge(fallback_credit_token: credit_token)
 
     # Prefer the continuation shape unless the claim is false
-    if details.fallback_has_prefill_claim != false
-      # Echo the refusal's content, stripping trailing whitespace from a final
-      # text block (the prefill validator rejects it; the match tolerates the
-      # edit). Tool-using requests also omit unpaired tool_use blocks, then
-      # re-strip whitespace after any omissions.
+    attempt = if details.fallback_has_prefill_claim != false
       echoed = response.content.map(&:to_h)
       if echoed.last in {type: :text, text: String => final_text}
-        echoed[-1] = echoed[-1].merge(text: final_text.rstrip)
+        echoed[-1] = echoed.last.merge(text: final_text.rstrip)
       end
-      attempt = exact_body.merge(
+      exact_body.merge(
         messages: [*request[:messages], {role: "assistant", content: echoed}]
       )
     else
-      attempt = exact_body
+      exact_body
     end
 
     begin

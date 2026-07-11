@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/files/upload
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 9bfd058e46f855d33c66ce28602ea90ba7105831b47786c5b8d28df8b42f237d
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 20e75f6832cccf316e4c01afddeefc26b538d6b37326293cab602abb0d016055
 ---
 
 ## Upload File
@@ -25,7 +25,7 @@ Upload File
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 25 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 26 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -82,6 +82,8 @@ Upload File
     - `"server-side-fallback-2026-06-01"`
 
     - `"fallback-credit-2026-06-01"`
+
+    - `"agent-memory-2026-07-22"`
 
 ### Returns
 

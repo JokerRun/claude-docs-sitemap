@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/vaults/credentials/list
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: b29d23b986d81ceb5df12d141f5e055d2c4f539560501763c9fe44245b0480ba
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 2806064caa61f341f7a8de63467a8143e3a5a1b39b7bad81957cb17cd0fa8176
 ---
 
 ## List Credentials
@@ -92,6 +92,8 @@ List Credentials
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 

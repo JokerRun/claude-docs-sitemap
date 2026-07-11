@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/environments/work/ack
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 7d4bee80b56ad9fca550abef665e76d5193a4ad1f3e056c84724124be8ac785c
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: fee75b907cf0b7607df4f90c48d263bdabd8ace0bbf28814dc3beb31912710db
 ---
 
 ## Acknowledge Work
@@ -27,7 +27,7 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 25 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 26 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -85,6 +85,8 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
 
     - `:"fallback-credit-2026-06-01"`
 
+    - `:"agent-memory-2026-07-22"`
+
 ### Returns
 
 - `class BetaSelfHostedWork`
@@ -132,10 +134,6 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
   - `metadata: Hash[Symbol, String]`
 
     User-provided metadata key-value pairs associated with this work item
-
-  - `secret: String`
-
-    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
   - `started_at: String`
 
@@ -197,7 +195,6 @@ puts(beta_self_hosted_work)
   "metadata": {
     "foo": "string"
   },
-  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/retrieve
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: bffc0f7dd70050b2b17904605506bc3c0ed76524b6d740a4e4ad3a3437e18bb7
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: b8c6365fbdb0e391a717f1c49d04fffed29fbb447f8195d14820a7524d097905
 ---
 
 ## Get Session
@@ -23,7 +23,7 @@ Get Session
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 25 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 26 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -80,6 +80,8 @@ Get Session
     - `"server-side-fallback-2026-06-01"`
 
     - `"fallback-credit-2026-06-01"`
+
+    - `"agent-memory-2026-07-22"`
 
 ### Returns
 

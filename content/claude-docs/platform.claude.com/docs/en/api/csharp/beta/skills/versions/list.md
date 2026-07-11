@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/skills/versions/list
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 57b5a3bd20e16fb1e6c28aa40c2d9409f1a8a975f3dd52e1c7db5ab72bb0620a
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: bc187879336654aa5e13f8490aefc25e6ae3de66b8cd8055e9e9962b77b213b8
 ---
 
 ## List Skill Versions
@@ -92,6 +92,8 @@ List Skill Versions
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 

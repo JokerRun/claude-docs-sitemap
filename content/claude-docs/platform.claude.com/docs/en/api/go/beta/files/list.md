@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/files/list
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: f1660f0cd65beb96a17cdc18f9afaa3c4f6f8374066139b9e7ea7e76cb7aa271
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 1e4407da65d3cbd863feb948abb9bc631e6bc47e806471e55b4caa2d796a160f
 ---
 
 ## List Files
@@ -98,6 +98,8 @@ List Files
       - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
 
       - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
+
+      - `const AnthropicBetaAgentMemory2026_07_22 AnthropicBeta = "agent-memory-2026-07-22"`
 
 ### Returns
 

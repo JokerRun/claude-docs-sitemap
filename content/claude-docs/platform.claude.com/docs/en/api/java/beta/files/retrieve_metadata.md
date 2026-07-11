@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/files/retrieve_metadata
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: e074238ecec991157e904f768421320cf2a3b6c7b600c7d98068b41fcf8c80cb
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: f4344cf1aaf692c9422ddc2d8fa586bea75dbc2b290b675fffe80457b4573747
 ---
 
 ## Get File Metadata
@@ -80,6 +80,8 @@ Get File Metadata
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
 ### Returns
 

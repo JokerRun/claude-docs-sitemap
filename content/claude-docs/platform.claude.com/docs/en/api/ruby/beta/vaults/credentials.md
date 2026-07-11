@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/vaults/credentials
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 0ca8a8e9b022dfaec387c48cb52f4593860d687be87c694d2b25efe354e4172d
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: d97c01991ad3e92d218d098f5147eda8ad9a902e3a4b487a80cdf8ff1d5ac2a7
 ---
 
 # Credentials
@@ -185,7 +185,7 @@ Create Credential
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 25 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 26 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -242,6 +242,8 @@ Create Credential
     - `:"server-side-fallback-2026-06-01"`
 
     - `:"fallback-credit-2026-06-01"`
+
+    - `:"agent-memory-2026-07-22"`
 
 ### Returns
 
@@ -479,7 +481,7 @@ List Credentials
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 25 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 26 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -536,6 +538,8 @@ List Credentials
     - `:"server-side-fallback-2026-06-01"`
 
     - `:"fallback-credit-2026-06-01"`
+
+    - `:"agent-memory-2026-07-22"`
 
 ### Returns
 
@@ -761,7 +765,7 @@ Get Credential
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 25 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 26 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -818,6 +822,8 @@ Get Credential
     - `:"server-side-fallback-2026-06-01"`
 
     - `:"fallback-credit-2026-06-01"`
+
+    - `:"agent-memory-2026-07-22"`
 
 ### Returns
 
@@ -1169,7 +1175,7 @@ Update Credential
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 25 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 26 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -1226,6 +1232,8 @@ Update Credential
     - `:"server-side-fallback-2026-06-01"`
 
     - `:"fallback-credit-2026-06-01"`
+
+    - `:"agent-memory-2026-07-22"`
 
 ### Returns
 
@@ -1449,7 +1457,7 @@ Delete Credential
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 25 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 26 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -1506,6 +1514,8 @@ Delete Credential
     - `:"server-side-fallback-2026-06-01"`
 
     - `:"fallback-credit-2026-06-01"`
+
+    - `:"agent-memory-2026-07-22"`
 
 ### Returns
 
@@ -1565,7 +1575,7 @@ Archive Credential
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 25 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 26 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -1622,6 +1632,8 @@ Archive Credential
     - `:"server-side-fallback-2026-06-01"`
 
     - `:"fallback-credit-2026-06-01"`
+
+    - `:"agent-memory-2026-07-22"`
 
 ### Returns
 
@@ -1845,7 +1857,7 @@ Validate Credential
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 25 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 26 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -1902,6 +1914,8 @@ Validate Credential
     - `:"server-side-fallback-2026-06-01"`
 
     - `:"fallback-credit-2026-06-01"`
+
+    - `:"agent-memory-2026-07-22"`
 
 ### Returns
 

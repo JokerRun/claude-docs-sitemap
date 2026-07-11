@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/memory_stores/list
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 4c2c1dc0ed2f5d0bf762b380ad747454fe6ebc53f15e9c00b1e9aa5f4bee87b5
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 270c233471b15cbd600e027ed4796db4191b13ac5c45d2861d6f8a566bf840a4
 ---
 
 ## List memory stores
@@ -96,6 +96,8 @@ List memory stores
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
 ### Returns
 

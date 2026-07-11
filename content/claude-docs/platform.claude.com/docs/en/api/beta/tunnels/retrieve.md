@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/retrieve
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: da6968e273203de1d5d9ea95d7f1ba1277d967d2072b4051d2c9f9ab6f77edc4
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 25642244fc41ac17675c08402cb798fd987eb7a453fa319185b3657930301029
 ---
 
 ## Get Tunnel
@@ -25,7 +25,7 @@ Fetches a tunnel by ID.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 25 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 26 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -82,6 +82,8 @@ Fetches a tunnel by ID.
     - `"server-side-fallback-2026-06-01"`
 
     - `"fallback-credit-2026-06-01"`
+
+    - `"agent-memory-2026-07-22"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/update
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 7ecdc2f6e4fabbf6ed28c0ebf3991b2bc5e4fb70330ac1aa11471d2161592b68
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 65f8a83ce96cc7264d311a6cf3840a039b2c066ff36b4657abf1a6f49a6dc86d
 ---
 
 ## Update Vault
@@ -78,6 +78,8 @@ Update Vault
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
   - `Optional<String> displayName`
 

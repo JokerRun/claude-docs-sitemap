@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/deployments/pause
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 9ae5a82ca4d7953a03167532e9843488531f2287648b5c129d81eb9c3040f690
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 73bb375df415d80d4457a45388ebc4f261960dbc18a019d2f39021f9eaa6c21e
 ---
 
 ## Pause Deployment
@@ -23,7 +23,7 @@ Pause Deployment
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 25 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 26 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -80,6 +80,8 @@ Pause Deployment
     - `:"server-side-fallback-2026-06-01"`
 
     - `:"fallback-credit-2026-06-01"`
+
+    - `:"agent-memory-2026-07-22"`
 
 ### Returns
 

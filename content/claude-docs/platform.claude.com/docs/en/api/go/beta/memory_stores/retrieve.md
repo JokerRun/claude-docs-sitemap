@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/memory_stores/retrieve
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 8f69f6cd2c2192fa5acd5ff72530982beb4dd8263561775a50daca0d22d2d11c
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 9b6ad05b798e38d039678ff3d9a48c9808d553fa50081da9de5e42c27f3616fc
 ---
 
 ## Retrieve a memory store
@@ -82,6 +82,8 @@ Retrieve a memory store
       - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
 
       - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
+
+      - `const AnthropicBetaAgentMemory2026_07_22 AnthropicBeta = "agent-memory-2026-07-22"`
 
 ### Returns
 

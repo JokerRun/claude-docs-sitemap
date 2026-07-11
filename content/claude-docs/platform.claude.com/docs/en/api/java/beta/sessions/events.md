@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/events
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 3e4318aaf1974f3e7ce4f6a56e4900f396cea376eccf00bfb57815c904c44d9d
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 9019eac410cd23fa6af47fb856b0072129279cf861fd685bd33f3e7fa9a1cae6
 ---
 
 # Events
@@ -116,6 +116,8 @@ List Events
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
 ### Returns
 
@@ -2030,6 +2032,8 @@ Send Events
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
 
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
+
   - `List<BetaManagedAgentsEventParams> events`
 
     Events to send to the `session`.
@@ -2964,6 +2968,8 @@ Stream Events
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/memory_stores/memory_versions/redact
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: a5b4023ec832cc6e225bc8e7848421b0a472b8946f668762a815f63376fe699d
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 63684b09b85194507cf0a8c1b3b961cf5bacf87fd12215cfcd4e9c9d79f1b98b
 ---
 
 ## Redact a memory version
@@ -80,6 +80,8 @@ Redact a memory version
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
 ### Returns
 

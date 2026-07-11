@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/environments/work/poll
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 686a2a92ddda5a1262fee16f370b3f14ef11c6aed015f3ab30be07b8ef92490c
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: f83375671694aaec869d02126b9fe841674257a816bb3ac790991bf8685af711
 ---
 
 ## Poll for Work
@@ -33,7 +33,7 @@ Long poll for work items in the queue.
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 25 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 26 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -91,6 +91,8 @@ Long poll for work items in the queue.
 
     - `:"fallback-credit-2026-06-01"`
 
+    - `:"agent-memory-2026-07-22"`
+
 - `anthropic_worker_id: String`
 
   Unique identifier for the specific worker polling, used to track aggregated environment-level work metrics in Console
@@ -142,10 +144,6 @@ Long poll for work items in the queue.
   - `metadata: Hash[Symbol, String]`
 
     User-provided metadata key-value pairs associated with this work item
-
-  - `secret: String`
-
-    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
   - `started_at: String`
 
@@ -207,7 +205,6 @@ puts(beta_self_hosted_work)
   "metadata": {
     "foo": "string"
   },
-  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",

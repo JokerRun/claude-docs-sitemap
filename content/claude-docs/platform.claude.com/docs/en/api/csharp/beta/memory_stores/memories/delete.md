@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/memory_stores/memories/delete
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 063a7222cb7f64fcc2fdd068116ab51725dd6a04e4c087f54c53defc30243f82
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 988a5d1c0de0ba58a10db0b4e2ff6637fe388871aa98a30cc719e8d48b2e6c96
 ---
 
 ## Delete a memory
@@ -88,6 +88,8 @@ Delete a memory
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 

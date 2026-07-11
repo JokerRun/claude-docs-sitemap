@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/environments/update
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 6baa1fa6b8afcb099d60fa6983904e18e239f7a5a0f27c30a60e59e50354cfec
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 3a3ddf5723c7c5a1481a1fa9d79542c8ca375fde56415d8aca6b175ad05aceec
 ---
 
 ## Update Environment
@@ -145,7 +145,7 @@ Update an existing environment's configuration.
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 25 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 26 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -202,6 +202,8 @@ Update an existing environment's configuration.
     - `"server-side-fallback-2026-06-01"`
 
     - `"fallback-credit-2026-06-01"`
+
+    - `"agent-memory-2026-07-22"`
 
 ### Returns
 

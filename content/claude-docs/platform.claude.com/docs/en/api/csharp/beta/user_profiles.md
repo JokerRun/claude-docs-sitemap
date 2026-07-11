@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/user_profiles
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: fb73237b86207987b335f2fdb4bf43e708034922cbd0b9b9e06b5925a1ef4621
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: a1390286035a45d9365ffb0faec910c53b59919caab700c4d416b8ab9590af36
 ---
 
 # User Profiles
@@ -100,6 +100,8 @@ Create User Profile
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -276,6 +278,8 @@ List User Profiles
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -455,6 +459,8 @@ Get User Profile
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -645,6 +651,8 @@ Update User Profile
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class BetaUserProfile:`
@@ -811,6 +819,8 @@ Create Enrollment URL
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 

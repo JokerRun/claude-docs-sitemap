@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/environments/update
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 82b5ec955fc38d341b4ac1488d7cdf8a083f102aab8f3c2b98dd301e6e20fd93
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 4e097cd7848b664e569eb9a4450f91625e66f3c7a2f55a84ba4c45fc3ad228a0
 ---
 
 ## Update Environment
@@ -78,6 +78,8 @@ Update an existing environment's configuration.
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
   - `Optional<Config> config`
 

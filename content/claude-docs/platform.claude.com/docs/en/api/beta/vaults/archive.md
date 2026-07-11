@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/archive
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 9635bfde3325b4abec2ab0937e2c1e2828450be9b295ae40eb2c12b193c5881d
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: afa865513c40c1839020bb5f481a030c51075ff5a000a469faf2308ba1d2ef1b
 ---
 
 ## Archive Vault
@@ -23,7 +23,7 @@ Archive Vault
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 25 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 26 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -80,6 +80,8 @@ Archive Vault
     - `"server-side-fallback-2026-06-01"`
 
     - `"fallback-credit-2026-06-01"`
+
+    - `"agent-memory-2026-07-22"`
 
 ### Returns
 

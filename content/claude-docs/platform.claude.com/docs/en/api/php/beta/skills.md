@@ -1,15 +1,15 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/php/beta/skills
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 628433ca9400f3794c9b5406ba911b1511ebc4312814e9b907aa788b1fd22c5b
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: e6084223cdec708078133a2657b73f7fe957509a0aabbdb072aa5be36c096eca
 ---
 
 # Skills
 
 ## Create Skill
 
-`$client->beta->skills->create(?string displayTitle, ?list<string> files, ?list<AnthropicBeta> betas): SkillNewResponse`
+`$client->beta->skills->create(list<string> files, ?string displayTitle, ?list<AnthropicBeta> betas): SkillNewResponse`
 
 **post** `/v1/skills`
 
@@ -17,17 +17,17 @@ Create Skill
 
 ### Parameters
 
+- `files: list<string>`
+
+  Files to upload for the skill.
+
+  All files must be in the same top-level directory and must include a SKILL.md file at the root of that directory.
+
 - `displayTitle?:optional string`
 
   Display title for the skill.
 
   This is a human-readable label that is not included in the prompt sent to the model.
-
-- `files?:optional list<string>`
-
-  Files to upload for the skill.
-
-  All files must be in the same top-level directory and must include a SKILL.md file at the root of that directory.
 
 - `betas?:optional list<AnthropicBeta>`
 
@@ -88,10 +88,10 @@ require_once dirname(__DIR__) . '/vendor/autoload.php';
 $client = new Client(apiKey: 'my-anthropic-api-key');
 
 $skill = $client->beta->skills->create(
-  displayTitle: 'display_title',
   files: [
     FileParam::fromString('Example data', filename: uniqid('file-upload-', true)),
   ],
+  displayTitle: 'display_title',
   betas: ['message-batches-2024-09-24'],
 );
 
@@ -391,7 +391,7 @@ var_dump($skill);
 
 ## Create Skill Version
 
-`$client->beta->skills->versions->create(string skillID, ?list<string> files, ?list<AnthropicBeta> betas): VersionNewResponse`
+`$client->beta->skills->versions->create(string skillID, list<string> files, ?list<AnthropicBeta> betas): VersionNewResponse`
 
 **post** `/v1/skills/{skill_id}/versions`
 
@@ -405,7 +405,7 @@ Create Skill Version
 
   The format and length of IDs may change over time.
 
-- `files?:optional list<string>`
+- `files: list<string>`
 
   Files to upload for the skill.
 

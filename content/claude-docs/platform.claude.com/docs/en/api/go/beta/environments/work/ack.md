@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/environments/work/ack
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 285f9c1311bfad56ff589266824428f606fe724e9420e1b653fe498261668bfe
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: e583de61bcfb678e79f04d7536b7cdc5367684cc1c8c6751efc6855eb60f20b1
 ---
 
 ## Acknowledge Work
@@ -89,6 +89,8 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
 
       - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
 
+      - `const AnthropicBetaAgentMemory2026_07_22 AnthropicBeta = "agent-memory-2026-07-22"`
+
 ### Returns
 
 - `type BetaSelfHostedWork struct{…}`
@@ -136,10 +138,6 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
   - `Metadata map[string, string]`
 
     User-provided metadata key-value pairs associated with this work item
-
-  - `Secret string`
-
-    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
   - `StartedAt string`
 
@@ -220,7 +218,6 @@ func main() {
   "metadata": {
     "foo": "string"
   },
-  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/vaults/archive
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 954144d021d0d17f5dd9068ca8a9ff2ce8a3e0b445ba32cbcbe1203d48ac74e3
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: e74a5b4df10c38c928be0330a3880e92d18a422722e50e61e27dd9d92d2e9e87
 ---
 
 ## Archive Vault
@@ -80,6 +80,8 @@ Archive Vault
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/create
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: aa22e3b6032fbb4aa7876252cdec4a36d1a731c324173dd1e4e7bbed055a96ab
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 704e271d7836bb4f2d906c32bc8e114d9d7f1d3118b24a93e92b33b293fb5453
 ---
 
 ## Create a Message
@@ -23,7 +23,7 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 25 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 26 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -80,6 +80,8 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
     - `"server-side-fallback-2026-06-01"`
 
     - `"fallback-credit-2026-06-01"`
+
+    - `"agent-memory-2026-07-22"`
 
 - `"anthropic-user-profile-id": optional string`
 

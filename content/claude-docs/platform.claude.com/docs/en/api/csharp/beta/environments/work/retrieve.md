@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/environments/work/retrieve
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: b6dd9513510878539ca69e2e439280a283940bd55f7622179895a4107baac382
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 8b3561e114a96c8df6f032242a25f0aa28426c672ac1c6fc5764133b4e2d0491
 ---
 
 ## Get Work Item
@@ -87,6 +87,8 @@ Retrieve detailed information about a specific work item.
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class BetaSelfHostedWork:`
@@ -132,10 +134,6 @@ Retrieve detailed information about a specific work item.
   - `required IReadOnlyDictionary<string, string> Metadata`
 
     User-provided metadata key-value pairs associated with this work item
-
-  - `required string? Secret`
-
-    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
   - `required string? StartedAt`
 
@@ -197,7 +195,6 @@ Console.WriteLine(betaSelfHostedWork);
   "metadata": {
     "foo": "string"
   },
-  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",

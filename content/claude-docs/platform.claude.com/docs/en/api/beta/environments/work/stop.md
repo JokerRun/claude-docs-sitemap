@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/stop
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: ad7c2998b5804b06689d2237f9bcf2bf3c7af3a7d2c15959b381465433b54a90
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: c7ec4940991f98ee54b66fc7eeef29003f81c0a924d8755c94dc35f8129f1cc5
 ---
 
 ## Stop Work
@@ -27,7 +27,7 @@ Stop a work item, initiating graceful or forced shutdown.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 25 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 26 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -85,6 +85,8 @@ Stop a work item, initiating graceful or forced shutdown.
 
     - `"fallback-credit-2026-06-01"`
 
+    - `"agent-memory-2026-07-22"`
+
 ### Body Parameters
 
 - `force: optional boolean`
@@ -93,7 +95,7 @@ Stop a work item, initiating graceful or forced shutdown.
 
 ### Returns
 
-- `BetaSelfHostedWork object { id, acknowledged_at, created_at, 10 more }`
+- `BetaSelfHostedWork object { id, acknowledged_at, created_at, 9 more }`
 
   Work resource representing a unit of work in a self-hosted environment.
 
@@ -138,10 +140,6 @@ Stop a work item, initiating graceful or forced shutdown.
   - `metadata: map[string]`
 
     User-provided metadata key-value pairs associated with this work item
-
-  - `secret: string`
-
-    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
   - `started_at: string`
 
@@ -202,7 +200,6 @@ curl https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID/work/$WORK_ID/sto
   "metadata": {
     "foo": "string"
   },
-  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",

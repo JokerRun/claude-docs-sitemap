@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/agents/update
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 22227d1441a8810f0ad7ce1ae41def273e8581cea0d0be1b325895e6b6bd23cd
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 8eb2a0d8240de25e5664cba9904621c0f081c6a1c9feba11efd6893b54d42c37
 ---
 
 ## Update Agent
@@ -383,7 +383,7 @@ Update Agent
 
     - `description: str`
 
-      Description of what the tool does, shown to the agent to help it decide when to use the tool. 1-1024 characters.
+      Description of what the tool does, shown to the agent to help it decide when to use the tool. 1-4096 characters.
 
     - `input_schema: BetaManagedAgentsCustomToolInputSchema`
 
@@ -411,7 +411,7 @@ Update Agent
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 25 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 26 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -468,6 +468,8 @@ Update Agent
     - `"server-side-fallback-2026-06-01"`
 
     - `"fallback-credit-2026-06-01"`
+
+    - `"agent-memory-2026-07-22"`
 
 ### Returns
 

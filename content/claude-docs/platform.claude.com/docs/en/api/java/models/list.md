@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/models/list
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 0c9645a5ea3c8a03b8d87530a5367c7cc8001a58c4c5b528d0cb1f86a52be9d7
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 669021eeb8368008cdd3ce418c6d4b7b9208101729ded216ccc4dbb2ec12c13d
 ---
 
 ## List Models
@@ -92,6 +92,8 @@ The Models API response can be used to determine which models are available for 
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/messages/create
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 6ef512c14cac0216a50ff99fbb34f3d69243c0080e92d95c6d26dc22d7c846d6
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: adf878bd223934fb7f03e48efc19c40cc15170f988343b252131d7ecc5fb8880
 ---
 
 ## Create a Message
@@ -3009,7 +3009,7 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 25 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 26 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -3066,6 +3066,8 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
     - `"server-side-fallback-2026-06-01"`
 
     - `"fallback-credit-2026-06-01"`
+
+    - `"agent-memory-2026-07-22"`
 
 - `user_profile_id: Optional[str]`
 

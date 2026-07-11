@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/sessions/threads/events
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: a193d6d002c25525a87eddfb909fb60d1de33c1372275ccfe4818a778a137b60
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 44d58c572faec3031a492905fee70db1dd45be589a4d9895d28f64d47e86bc48
 ---
 
 # Events
@@ -96,6 +96,8 @@ List Session Thread Events
       - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
 
       - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
+
+      - `const AnthropicBetaAgentMemory2026_07_22 AnthropicBeta = "agent-memory-2026-07-22"`
 
 ### Returns
 
@@ -2024,6 +2026,8 @@ Stream Session Thread Events
       - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
 
       - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
+
+      - `const AnthropicBetaAgentMemory2026_07_22 AnthropicBeta = "agent-memory-2026-07-22"`
 
 ### Returns
 

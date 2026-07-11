@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/environments/delete
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 2e5a3f0529ee73d55fd8e71393dae4a85d7d08e563341f6c58de554b0a5df274
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: a56dccbd4982b6eeeb6809f8c86244a004aa074502324b8f66828ccd0ae48091
 ---
 
 ## Delete Environment
@@ -78,6 +78,8 @@ Delete an environment by ID. Returns a confirmation of the deletion.
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
 ### Returns
 

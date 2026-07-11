@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/memory_stores/memories/delete
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: dbd806cc6c6098ddb848df4981021be17017e5bfa345dd3b77d57eb23e9f6c6b
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: bbb1c9caa13d21b456db6c7272bb49c43c9945480d070877e03ef46e1022e852
 ---
 
 ## Delete a memory
@@ -84,6 +84,8 @@ Delete a memory
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
 ### Returns
 

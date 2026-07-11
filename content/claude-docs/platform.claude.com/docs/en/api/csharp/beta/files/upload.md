@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/files/upload
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: f2eee9bee841ef1cca16a120a7c2c0d76b7d70b4dfaf0bc1d0e89bbca3d21799
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: b279acc6f12b69f94d550ba86ad90e7b817e55b7609c30ac0951e957f3ccd650
 ---
 
 ## Upload File
@@ -80,6 +80,8 @@ Upload File
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 

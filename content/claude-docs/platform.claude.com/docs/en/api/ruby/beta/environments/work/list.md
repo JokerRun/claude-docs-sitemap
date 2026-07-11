@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/environments/work/list
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 738b11a12aa8bf35fc6749459d31e370c5f9e864f2574d9b4aa3905831eba82e
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 83b6bd6ba297d04c063ef328adbeec433d0056fa11b00b41436015a7d234d267
 ---
 
 ## List Work Items
@@ -33,7 +33,7 @@ List work items in an environment.
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 25 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 26 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -91,6 +91,8 @@ List work items in an environment.
 
     - `:"fallback-credit-2026-06-01"`
 
+    - `:"agent-memory-2026-07-22"`
+
 ### Returns
 
 - `class BetaSelfHostedWork`
@@ -138,10 +140,6 @@ List work items in an environment.
   - `metadata: Hash[Symbol, String]`
 
     User-provided metadata key-value pairs associated with this work item
-
-  - `secret: String`
-
-    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
   - `started_at: String`
 
@@ -205,7 +203,6 @@ puts(page)
       "metadata": {
         "foo": "string"
       },
-      "secret": "secret",
       "started_at": "started_at",
       "state": "queued",
       "stop_requested_at": "stop_requested_at",

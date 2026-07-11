@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/deployment_runs/retrieve
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: b97e5748f45913fcb03fdd42ad97870fd9c691e1fa6f87c80aa4c278fbe3be3c
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 272ff9bb9e2e1ffcd7b122fde757d062c0e09d30284b94e4fdba30c91d7c4e6f
 ---
 
 ## Get Deployment Run
@@ -78,6 +78,8 @@ Get Deployment Run
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
 ### Returns
 

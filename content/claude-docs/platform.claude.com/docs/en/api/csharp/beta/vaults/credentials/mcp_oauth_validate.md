@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/vaults/credentials/mcp_oauth_validate
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 91b69ec8a1abfd88d54b525b74b44915ff5146933f41f5b554e8a7f290f42a13
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 0511bc507193fda4f38bb84f7a6e7e08846ca93198250f909b6705f224f35694
 ---
 
 ## Validate Credential
@@ -84,6 +84,8 @@ Validate Credential
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 

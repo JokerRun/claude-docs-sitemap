@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 62e5b261d204354335a23d34a5b2e3182e57aa6cf9fa2d28027dce273c61e010
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: c0f12773c61a4ee2d6f21d39b0c3ceaff035ec3bb76863a8bd67df38da60cdd2
 ---
 
 # Vaults
@@ -78,6 +78,8 @@ Create Vault
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
   - `String displayName`
 
@@ -245,6 +247,8 @@ List Vaults
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
 
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
+
 ### Returns
 
 - `class BetaManagedAgentsVault:`
@@ -395,6 +399,8 @@ Get Vault
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
 
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
+
 ### Returns
 
 - `class BetaManagedAgentsVault:`
@@ -539,6 +545,8 @@ Update Vault
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
   - `Optional<String> displayName`
 
@@ -693,6 +701,8 @@ Delete Vault
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
 
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
+
 ### Returns
 
 - `class BetaManagedAgentsDeletedVault:`
@@ -810,6 +820,8 @@ Archive Vault
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
 ### Returns
 
@@ -1007,6 +1019,8 @@ Create Credential
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
   - `Auth auth`
 
@@ -1471,6 +1485,8 @@ List Credentials
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
 
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
+
 ### Returns
 
 - `class BetaManagedAgentsCredential:`
@@ -1760,6 +1776,8 @@ Get Credential
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
 
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
+
 ### Returns
 
 - `class BetaManagedAgentsCredential:`
@@ -2047,6 +2065,8 @@ Update Credential
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
   - `Optional<Auth> auth`
 
@@ -2464,6 +2484,8 @@ Delete Credential
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
 
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
+
 ### Returns
 
 - `class BetaManagedAgentsDeletedCredential:`
@@ -2587,6 +2609,8 @@ Archive Credential
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
 ### Returns
 
@@ -2875,6 +2899,8 @@ Validate Credential
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
 ### Returns
 

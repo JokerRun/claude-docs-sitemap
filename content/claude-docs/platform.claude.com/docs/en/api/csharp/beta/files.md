@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/files
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 1290ad49e181daf99d342dcecc25a497ad055394f71ab073a7f1a0146bcf5485
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: dc1a0d87076065866405881162c09957b8c635e235f85406761b59f4de0aa15c
 ---
 
 # Files
@@ -82,6 +82,8 @@ Upload File
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -251,6 +253,8 @@ List Files
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -429,6 +433,8 @@ Download File
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Example
 
 ```csharp
@@ -514,6 +520,8 @@ Get File Metadata
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -666,6 +674,8 @@ Delete File
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 

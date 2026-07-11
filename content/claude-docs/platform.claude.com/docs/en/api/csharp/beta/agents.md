@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/agents
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: b79cc58baff8124d2ced72fc4ea25e5ea3b07046d86ef71f0f1cd0993dcdb8e1
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 42bace6946d18769779b2d421ade96b37481118074aba57e5143eecad8155281
 ---
 
 # Agents
@@ -357,7 +357,7 @@ Create Agent
 
       - `required string Description`
 
-        Description of what the tool does, shown to the agent to help it decide when to use the tool. 1-1024 characters.
+        Description of what the tool does, shown to the agent to help it decide when to use the tool. 1-4096 characters.
 
       - `required BetaManagedAgentsCustomToolInputSchema InputSchema`
 
@@ -436,6 +436,8 @@ Create Agent
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -909,6 +911,8 @@ List Agents
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class AgentListPageResponse:`
@@ -1379,6 +1383,8 @@ Get Agent
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -2117,7 +2123,7 @@ Update Agent
 
       - `required string Description`
 
-        Description of what the tool does, shown to the agent to help it decide when to use the tool. 1-1024 characters.
+        Description of what the tool does, shown to the agent to help it decide when to use the tool. 1-4096 characters.
 
       - `required BetaManagedAgentsCustomToolInputSchema InputSchema`
 
@@ -2196,6 +2202,8 @@ Update Agent
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -2652,6 +2660,8 @@ Archive Agent
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -3890,7 +3900,7 @@ Console.WriteLine(betaManagedAgentsAgent);
 
   - `required string Description`
 
-    Description of what the tool does, shown to the agent to help it decide when to use the tool. 1-1024 characters.
+    Description of what the tool does, shown to the agent to help it decide when to use the tool. 1-4096 characters.
 
   - `required BetaManagedAgentsCustomToolInputSchema InputSchema`
 
@@ -4773,6 +4783,8 @@ List Agent Versions
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 

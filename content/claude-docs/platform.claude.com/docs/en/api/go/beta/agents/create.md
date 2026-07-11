@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/agents/create
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 0cd8c723ea79635b6dde016d01f5732a642df133c87a2e6a6b5f2fcfe1f859fc
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 1df0c11c4225a50075f1843f4185aaa73ca6918bca700feb007145ac0e4effd2
 ---
 
 ## Create Agent
@@ -309,7 +309,7 @@ Create Agent
 
       - `Description string`
 
-        Description of what the tool does, shown to the agent to help it decide when to use the tool. 1-1024 characters.
+        Description of what the tool does, shown to the agent to help it decide when to use the tool. 1-4096 characters.
 
       - `InputSchema BetaManagedAgentsCustomToolInputSchema`
 
@@ -394,6 +394,8 @@ Create Agent
       - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
 
       - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
+
+      - `const AnthropicBetaAgentMemory2026_07_22 AnthropicBeta = "agent-memory-2026-07-22"`
 
 ### Returns
 

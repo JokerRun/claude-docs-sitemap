@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/create
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: de0725d2228db9c349e1a7e027df9287690c7f5ceac29a10d84de45fe919bef8
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: b255bb9326b1a26366f8a23fc0cc94ad7f4e1f1e407f466cc68689afe163bf7b
 ---
 
 ## Create Vault
@@ -76,6 +76,8 @@ Create Vault
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
   - `String displayName`
 

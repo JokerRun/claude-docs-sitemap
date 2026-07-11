@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/environments/work/stop
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 7545799dba613cc0da818878bf5611e3e03519376ce8134492d9be21c725b921
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: ddc2b8d990a89e2a9cda0d6a0bcdc4bdbcf1592505996fe2d3172253740bbdb6
 ---
 
 ## Stop Work
@@ -31,7 +31,7 @@ Stop a work item, initiating graceful or forced shutdown.
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 25 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 26 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -89,6 +89,8 @@ Stop a work item, initiating graceful or forced shutdown.
 
     - `"fallback-credit-2026-06-01"`
 
+    - `"agent-memory-2026-07-22"`
+
 ### Returns
 
 - `class BetaSelfHostedWork: …`
@@ -136,10 +138,6 @@ Stop a work item, initiating graceful or forced shutdown.
   - `metadata: Dict[str, str]`
 
     User-provided metadata key-value pairs associated with this work item
-
-  - `secret: Optional[str]`
-
-    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
   - `started_at: Optional[str]`
 
@@ -205,7 +203,6 @@ print(beta_self_hosted_work.id)
   "metadata": {
     "foo": "string"
   },
-  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",

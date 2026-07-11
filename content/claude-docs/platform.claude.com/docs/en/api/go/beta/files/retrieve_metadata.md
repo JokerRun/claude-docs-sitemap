@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/files/retrieve_metadata
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 401bd5ccaca7ac444d306164601b37a0755c95e8c9ba2a820ceed498b0ff1738
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 43d584ce9aad2edc359029e73f45fddada117a4a2dc78a65757b4b7405892df6
 ---
 
 ## Get File Metadata
@@ -84,6 +84,8 @@ Get File Metadata
       - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
 
       - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
+
+      - `const AnthropicBetaAgentMemory2026_07_22 AnthropicBeta = "agent-memory-2026-07-22"`
 
 ### Returns
 

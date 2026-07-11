@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/sessions/threads/list
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 4629905a033a55f86d5502fca120bfce4ff0d336fb84163fa37352decdd26ad9
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 4883391e10db7cdeab49410574a0c4d5c44d1ae608b7c4d3b7c3d7752cbd53ed
 ---
 
 ## List Session Threads
@@ -88,6 +88,8 @@ List Session Threads
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 

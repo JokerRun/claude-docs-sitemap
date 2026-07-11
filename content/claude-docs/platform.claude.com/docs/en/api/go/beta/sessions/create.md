@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/sessions/create
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: b6c6f72fc7ebe668fb05ee948ae675770ce37f0b81e62072801b00645782d9fb
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: a930471e2d6d934d0c3c79a799abd36d40e3887676a3daf7f3d80dfc44c32ce0
 ---
 
 ## Create Session
@@ -327,7 +327,7 @@ Create Session
 
           - `Description string`
 
-            Description of what the tool does, shown to the agent to help it decide when to use the tool. 1-1024 characters.
+            Description of what the tool does, shown to the agent to help it decide when to use the tool. 1-4096 characters.
 
           - `InputSchema BetaManagedAgentsCustomToolInputSchema`
 
@@ -520,6 +520,8 @@ Create Session
       - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
 
       - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
+
+      - `const AnthropicBetaAgentMemory2026_07_22 AnthropicBeta = "agent-memory-2026-07-22"`
 
 ### Returns
 

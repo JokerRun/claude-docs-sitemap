@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/environments/work/stats
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: f2528b1b4fff632cb7edcd78f0d90d4f6d22e9713e2d9f14bac8b05560575294
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: a822f25b93fd57dd2b757ba329241bfca87806c8d82b3523d726dcfa24fae21f
 ---
 
 ## Get Queue Statistics
@@ -78,6 +78,8 @@ Get statistics about the work queue for an environment.
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/environments/update
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: cb4135d462ff503798f278ea1a4be6be54ead1b22ecce646f87fea588ac20cca
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 13c8651f0e02922624d0458422c28c2070025348d12fbc152647aa0fbd5e83fb
 ---
 
 ## Update Environment
@@ -147,7 +147,7 @@ Update an existing environment's configuration.
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 26 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -204,6 +204,8 @@ Update an existing environment's configuration.
       - `"server-side-fallback-2026-06-01"`
 
       - `"fallback-credit-2026-06-01"`
+
+      - `"agent-memory-2026-07-22"`
 
 ### Returns
 

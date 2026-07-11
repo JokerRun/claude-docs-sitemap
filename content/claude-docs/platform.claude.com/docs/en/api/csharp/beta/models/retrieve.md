@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/models/retrieve
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: fa4d45766718bae411a8947613a8800d13df9664c8189390231fd80f9aac2ce0
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 06f0dd5e48951331c57c4e616f3395eac9c06ce48f2034ff0afb2689fffb66d5
 ---
 
 ## Get a Model
@@ -82,6 +82,8 @@ The Models API response can be used to determine information about a specific mo
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 

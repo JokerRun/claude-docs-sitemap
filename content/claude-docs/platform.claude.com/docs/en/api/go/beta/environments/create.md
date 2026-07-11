@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/environments/create
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: e2bfe734d4d5f80d64583b7ebb7a55e99663139307f165f383898aad96c7d1ff
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 27e85ab235a4e6746d0dd6be43eebfe569c1bbfed5a269845ce8e88342055e71
 ---
 
 ## Create Environment
@@ -202,6 +202,8 @@ Create a new environment with the specified configuration.
       - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
 
       - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
+
+      - `const AnthropicBetaAgentMemory2026_07_22 AnthropicBeta = "agent-memory-2026-07-22"`
 
 ### Returns
 

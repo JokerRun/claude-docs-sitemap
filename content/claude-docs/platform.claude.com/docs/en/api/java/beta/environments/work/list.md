@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/environments/work/list
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 3a3d5258aec4fba85defe96cd6609fb526cd0da02a4da15fdfdcfa2114c4a02d
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 8a3d4aea8adc706f8e276b77c40078c510b3a566b219fe490391e92c9c57e95d
 ---
 
 ## List Work Items
@@ -89,6 +89,8 @@ List work items in an environment.
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
 
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
+
 ### Returns
 
 - `class BetaSelfHostedWork:`
@@ -136,10 +138,6 @@ List work items in an environment.
   - `Metadata metadata`
 
     User-provided metadata key-value pairs associated with this work item
-
-  - `Optional<String> secret`
-
-    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
   - `Optional<String> startedAt`
 
@@ -212,7 +210,6 @@ public final class Main {
       "metadata": {
         "foo": "string"
       },
-      "secret": "secret",
       "started_at": "started_at",
       "state": "queued",
       "stop_requested_at": "stop_requested_at",

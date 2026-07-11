@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/webhooks
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 5c1ea90dabfae0ce51233d8231c00c22bb42fa89dcff608721ea340cb45f307b
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 01006d41dbe88e5a2c1fda368f33d392358b2795b92f7104809dc3ae056b62d1
 ---
 
 # Webhooks
@@ -191,70 +191,6 @@ sha256: 5c1ea90dabfae0ce51233d8231c00c22bb42fa89dcff608721ea340cb45f307b
 
   - `workspace_id: string`
 
-### Beta Webhook Environment Archived Event Data
-
-- `beta_webhook_environment_archived_event_data: object { id, organization_id, type, workspace_id }`
-
-  - `id: string`
-
-    ID of the environment that triggered the event.
-
-  - `organization_id: string`
-
-  - `type: "environment.archived"`
-
-  - `workspace_id: string`
-
-### Beta Webhook Environment Created Event Data
-
-- `beta_webhook_environment_created_event_data: object { id, organization_id, type, workspace_id }`
-
-  - `id: string`
-
-    ID of the environment that triggered the event.
-
-  - `organization_id: string`
-
-  - `type: "environment.created"`
-
-  - `workspace_id: string`
-
-### Beta Webhook Environment Deleted Event Data
-
-- `beta_webhook_environment_deleted_event_data: object { id, organization_id, type, workspace_id }`
-
-  - `id: string`
-
-    ID of the environment that triggered the event.
-
-  - `organization_id: string`
-
-  - `type: "environment.deleted"`
-
-    - `"environment.deleted"`
-
-  - `workspace_id: string`
-
-### Beta Webhook Environment Deleted Event Type
-
-- `beta_webhook_environment_deleted_event_type: "environment.deleted"`
-
-  - `"environment.deleted"`
-
-### Beta Webhook Environment Updated Event Data
-
-- `beta_webhook_environment_updated_event_data: object { id, organization_id, type, workspace_id }`
-
-  - `id: string`
-
-    ID of the environment that triggered the event.
-
-  - `organization_id: string`
-
-  - `type: "environment.updated"`
-
-  - `workspace_id: string`
-
 ### Beta Webhook Event
 
 - `beta_webhook_event: object { id, created_at, data, type }`
@@ -267,7 +203,7 @@ sha256: 5c1ea90dabfae0ce51233d8231c00c22bb42fa89dcff608721ea340cb45f307b
 
     RFC 3339 timestamp when the event occurred.
 
-  - `data: BetaWebhookSessionCreatedEventData or BetaWebhookSessionPendingEventData or BetaWebhookSessionRunningEventData or 40 more`
+  - `data: BetaWebhookSessionCreatedEventData or BetaWebhookSessionPendingEventData or BetaWebhookSessionRunningEventData or 33 more`
 
     - `beta_webhook_session_created_event_data: object { id, organization_id, type, workspace_id }`
 
@@ -729,99 +665,13 @@ sha256: 5c1ea90dabfae0ce51233d8231c00c22bb42fa89dcff608721ea340cb45f307b
 
       - `workspace_id: string`
 
-    - `beta_webhook_environment_created_event_data: object { id, organization_id, type, workspace_id }`
-
-      - `id: string`
-
-        ID of the environment that triggered the event.
-
-      - `organization_id: string`
-
-      - `type: "environment.created"`
-
-      - `workspace_id: string`
-
-    - `beta_webhook_environment_updated_event_data: object { id, organization_id, type, workspace_id }`
-
-      - `id: string`
-
-        ID of the environment that triggered the event.
-
-      - `organization_id: string`
-
-      - `type: "environment.updated"`
-
-      - `workspace_id: string`
-
-    - `beta_webhook_environment_archived_event_data: object { id, organization_id, type, workspace_id }`
-
-      - `id: string`
-
-        ID of the environment that triggered the event.
-
-      - `organization_id: string`
-
-      - `type: "environment.archived"`
-
-      - `workspace_id: string`
-
-    - `beta_webhook_environment_deleted_event_data: object { id, organization_id, type, workspace_id }`
-
-      - `id: string`
-
-        ID of the environment that triggered the event.
-
-      - `organization_id: string`
-
-      - `type: "environment.deleted"`
-
-        - `"environment.deleted"`
-
-      - `workspace_id: string`
-
-    - `beta_webhook_memory_store_created_event_data: object { id, organization_id, type, workspace_id }`
-
-      - `id: string`
-
-        ID of the memory store that triggered the event.
-
-      - `organization_id: string`
-
-      - `type: "memory_store.created"`
-
-      - `workspace_id: string`
-
-    - `beta_webhook_memory_store_archived_event_data: object { id, organization_id, type, workspace_id }`
-
-      - `id: string`
-
-        ID of the memory store that triggered the event.
-
-      - `organization_id: string`
-
-      - `type: "memory_store.archived"`
-
-      - `workspace_id: string`
-
-    - `beta_webhook_memory_store_deleted_event_data: object { id, organization_id, type, workspace_id }`
-
-      - `id: string`
-
-        ID of the memory store that triggered the event.
-
-      - `organization_id: string`
-
-      - `type: "memory_store.deleted"`
-
-      - `workspace_id: string`
-
   - `type: "event"`
 
     Object type. Always `event` for webhook payloads.
 
 ### Beta Webhook Event Data
 
-- `beta_webhook_event_data: BetaWebhookSessionCreatedEventData or BetaWebhookSessionPendingEventData or BetaWebhookSessionRunningEventData or 40 more`
+- `beta_webhook_event_data: BetaWebhookSessionCreatedEventData or BetaWebhookSessionPendingEventData or BetaWebhookSessionRunningEventData or 33 more`
 
   - `beta_webhook_session_created_event_data: object { id, organization_id, type, workspace_id }`
 
@@ -1283,134 +1133,6 @@ sha256: 5c1ea90dabfae0ce51233d8231c00c22bb42fa89dcff608721ea340cb45f307b
 
     - `workspace_id: string`
 
-  - `beta_webhook_environment_created_event_data: object { id, organization_id, type, workspace_id }`
-
-    - `id: string`
-
-      ID of the environment that triggered the event.
-
-    - `organization_id: string`
-
-    - `type: "environment.created"`
-
-    - `workspace_id: string`
-
-  - `beta_webhook_environment_updated_event_data: object { id, organization_id, type, workspace_id }`
-
-    - `id: string`
-
-      ID of the environment that triggered the event.
-
-    - `organization_id: string`
-
-    - `type: "environment.updated"`
-
-    - `workspace_id: string`
-
-  - `beta_webhook_environment_archived_event_data: object { id, organization_id, type, workspace_id }`
-
-    - `id: string`
-
-      ID of the environment that triggered the event.
-
-    - `organization_id: string`
-
-    - `type: "environment.archived"`
-
-    - `workspace_id: string`
-
-  - `beta_webhook_environment_deleted_event_data: object { id, organization_id, type, workspace_id }`
-
-    - `id: string`
-
-      ID of the environment that triggered the event.
-
-    - `organization_id: string`
-
-    - `type: "environment.deleted"`
-
-      - `"environment.deleted"`
-
-    - `workspace_id: string`
-
-  - `beta_webhook_memory_store_created_event_data: object { id, organization_id, type, workspace_id }`
-
-    - `id: string`
-
-      ID of the memory store that triggered the event.
-
-    - `organization_id: string`
-
-    - `type: "memory_store.created"`
-
-    - `workspace_id: string`
-
-  - `beta_webhook_memory_store_archived_event_data: object { id, organization_id, type, workspace_id }`
-
-    - `id: string`
-
-      ID of the memory store that triggered the event.
-
-    - `organization_id: string`
-
-    - `type: "memory_store.archived"`
-
-    - `workspace_id: string`
-
-  - `beta_webhook_memory_store_deleted_event_data: object { id, organization_id, type, workspace_id }`
-
-    - `id: string`
-
-      ID of the memory store that triggered the event.
-
-    - `organization_id: string`
-
-    - `type: "memory_store.deleted"`
-
-    - `workspace_id: string`
-
-### Beta Webhook Memory Store Archived Event Data
-
-- `beta_webhook_memory_store_archived_event_data: object { id, organization_id, type, workspace_id }`
-
-  - `id: string`
-
-    ID of the memory store that triggered the event.
-
-  - `organization_id: string`
-
-  - `type: "memory_store.archived"`
-
-  - `workspace_id: string`
-
-### Beta Webhook Memory Store Created Event Data
-
-- `beta_webhook_memory_store_created_event_data: object { id, organization_id, type, workspace_id }`
-
-  - `id: string`
-
-    ID of the memory store that triggered the event.
-
-  - `organization_id: string`
-
-  - `type: "memory_store.created"`
-
-  - `workspace_id: string`
-
-### Beta Webhook Memory Store Deleted Event Data
-
-- `beta_webhook_memory_store_deleted_event_data: object { id, organization_id, type, workspace_id }`
-
-  - `id: string`
-
-    ID of the memory store that triggered the event.
-
-  - `organization_id: string`
-
-  - `type: "memory_store.deleted"`
-
-  - `workspace_id: string`
-
 ### Beta Webhook Session Archived Event Data
 
 - `beta_webhook_session_archived_event_data: object { id, organization_id, type, workspace_id }`
@@ -1773,7 +1495,7 @@ sha256: 5c1ea90dabfae0ce51233d8231c00c22bb42fa89dcff608721ea340cb45f307b
 
     RFC 3339 timestamp when the event occurred.
 
-  - `data: BetaWebhookSessionCreatedEventData or BetaWebhookSessionPendingEventData or BetaWebhookSessionRunningEventData or 40 more`
+  - `data: BetaWebhookSessionCreatedEventData or BetaWebhookSessionPendingEventData or BetaWebhookSessionRunningEventData or 33 more`
 
     - `beta_webhook_session_created_event_data: object { id, organization_id, type, workspace_id }`
 
@@ -2232,92 +1954,6 @@ sha256: 5c1ea90dabfae0ce51233d8231c00c22bb42fa89dcff608721ea340cb45f307b
       - `organization_id: string`
 
       - `type: "deployment_run.succeeded"`
-
-      - `workspace_id: string`
-
-    - `beta_webhook_environment_created_event_data: object { id, organization_id, type, workspace_id }`
-
-      - `id: string`
-
-        ID of the environment that triggered the event.
-
-      - `organization_id: string`
-
-      - `type: "environment.created"`
-
-      - `workspace_id: string`
-
-    - `beta_webhook_environment_updated_event_data: object { id, organization_id, type, workspace_id }`
-
-      - `id: string`
-
-        ID of the environment that triggered the event.
-
-      - `organization_id: string`
-
-      - `type: "environment.updated"`
-
-      - `workspace_id: string`
-
-    - `beta_webhook_environment_archived_event_data: object { id, organization_id, type, workspace_id }`
-
-      - `id: string`
-
-        ID of the environment that triggered the event.
-
-      - `organization_id: string`
-
-      - `type: "environment.archived"`
-
-      - `workspace_id: string`
-
-    - `beta_webhook_environment_deleted_event_data: object { id, organization_id, type, workspace_id }`
-
-      - `id: string`
-
-        ID of the environment that triggered the event.
-
-      - `organization_id: string`
-
-      - `type: "environment.deleted"`
-
-        - `"environment.deleted"`
-
-      - `workspace_id: string`
-
-    - `beta_webhook_memory_store_created_event_data: object { id, organization_id, type, workspace_id }`
-
-      - `id: string`
-
-        ID of the memory store that triggered the event.
-
-      - `organization_id: string`
-
-      - `type: "memory_store.created"`
-
-      - `workspace_id: string`
-
-    - `beta_webhook_memory_store_archived_event_data: object { id, organization_id, type, workspace_id }`
-
-      - `id: string`
-
-        ID of the memory store that triggered the event.
-
-      - `organization_id: string`
-
-      - `type: "memory_store.archived"`
-
-      - `workspace_id: string`
-
-    - `beta_webhook_memory_store_deleted_event_data: object { id, organization_id, type, workspace_id }`
-
-      - `id: string`
-
-        ID of the memory store that triggered the event.
-
-      - `organization_id: string`
-
-      - `type: "memory_store.deleted"`
 
       - `workspace_id: string`
 

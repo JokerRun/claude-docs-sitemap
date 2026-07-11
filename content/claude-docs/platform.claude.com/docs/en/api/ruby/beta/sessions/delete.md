@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/sessions/delete
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 10da19d67ae22f9c17ccb930a77570e6abd45137ec351f04f2da8c83c971fa1e
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 5e51e99ce0ee8d1935427be4a9584f87d793ac0894223be1fcf4e96a6c309638
 ---
 
 ## Delete Session
@@ -23,7 +23,7 @@ Delete Session
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 25 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 26 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -80,6 +80,8 @@ Delete Session
     - `:"server-side-fallback-2026-06-01"`
 
     - `:"fallback-credit-2026-06-01"`
+
+    - `:"agent-memory-2026-07-22"`
 
 ### Returns
 

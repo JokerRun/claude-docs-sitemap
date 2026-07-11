@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/environments/work/poll
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 97f9348995f059bd5453b7024482fb090e3fdc4cfaae51700088f122d6f500c5
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 1ae062646f1f0322d0465fbc5d634387d6f42b0bacf8ca1c3ba3d0a8fa4659ee
 ---
 
 ## Poll for Work
@@ -35,7 +35,7 @@ Long poll for work items in the queue.
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 26 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -93,6 +93,8 @@ Long poll for work items in the queue.
 
       - `"fallback-credit-2026-06-01"`
 
+      - `"agent-memory-2026-07-22"`
+
   - `"Anthropic-Worker-ID"?: string`
 
     Header param: Unique identifier for the specific worker polling, used to track aggregated environment-level work metrics in Console
@@ -138,10 +140,6 @@ Long poll for work items in the queue.
   - `metadata: Record<string, string>`
 
     User-provided metadata key-value pairs associated with this work item
-
-  - `secret: string | null`
-
-    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
   - `started_at: string | null`
 
@@ -205,7 +203,6 @@ console.log(betaSelfHostedWork.id);
   "metadata": {
     "foo": "string"
   },
-  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/skills/versions
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 8836f73a1ba3fd2e7056dfd188b0921b2ad83e77d9b1ae0b0ed1ade4e1a93454
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: e0908d4f3773cadd2434469608f499c742a8b35fc876450687c0df6f0371be41
 ---
 
 # Versions
@@ -25,7 +25,7 @@ Create Skill Version
 
     The format and length of IDs may change over time.
 
-  - `IReadOnlyList<string>? files`
+  - `required IReadOnlyList<string> files`
 
     Body param: Files to upload for the skill.
 
@@ -91,6 +91,8 @@ Create Skill Version
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class VersionCreateResponse:`
@@ -142,7 +144,14 @@ Create Skill Version
 ### Example
 
 ```csharp
-VersionCreateParams parameters = new() { SkillID = "skill_id" };
+VersionCreateParams parameters = new()
+{
+    SkillID = "skill_id",
+    Files =
+    [
+        Encoding.UTF8.GetBytes("Example data")
+    ],
+};
 
 var version = await client.Beta.Skills.Versions.Create(parameters);
 
@@ -251,6 +260,8 @@ List Skill Versions
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -429,6 +440,8 @@ Download a skill version's content as a zip archive.
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Example
 
 ```csharp
@@ -526,6 +539,8 @@ Get Skill Version
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -687,6 +702,8 @@ Delete Skill Version
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 

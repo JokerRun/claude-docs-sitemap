@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/environments/create
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: da0b47bac4e571797e137c2ea54607acb4595a719ce9993b185150b8a53c6d90
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: fa539ffdc37f253c57cf8075c47324fc58d4e06dc6908a4752226dd9707ebf46
 ---
 
 ## Create Environment
@@ -190,6 +190,8 @@ Create a new environment with the specified configuration.
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 

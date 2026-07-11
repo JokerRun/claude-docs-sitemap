@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/sessions/threads/events/stream
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 6f9988a336198d170cf8066a2d23d714a4205129687e866820dd0ebe097f9c9b
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: aa23590ca450be6ee916a3f9ffa6b21044b92f151a6ce5284a6dbcafaf2d42eb
 ---
 
 ## Stream Session Thread Events
@@ -25,7 +25,7 @@ Stream Session Thread Events
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 25 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 26 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -82,6 +82,8 @@ Stream Session Thread Events
     - `:"server-side-fallback-2026-06-01"`
 
     - `:"fallback-credit-2026-06-01"`
+
+    - `:"agent-memory-2026-07-22"`
 
 ### Returns
 

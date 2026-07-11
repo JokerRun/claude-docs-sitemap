@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/messages/batches/create
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 1d4f10b9b47037227a7e48b8538a085e8a1be1ca8ad4f9d646ce1837b56e523a
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: b761934681e37ebf708bdc62197998b4676b03d6267f157ccf63a21353bbf5c7
 ---
 
 ## Create a Message Batch
@@ -3023,7 +3023,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 25 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 26 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -3080,6 +3080,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
     - `"server-side-fallback-2026-06-01"`
 
     - `"fallback-credit-2026-06-01"`
+
+    - `"agent-memory-2026-07-22"`
 
 - `user_profile_id: Optional[str]`
 

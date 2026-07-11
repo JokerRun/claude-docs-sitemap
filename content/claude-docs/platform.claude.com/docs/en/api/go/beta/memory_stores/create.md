@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/memory_stores/create
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 459361fb6f2a3ecc937a21a22607f560221cd5932f627e20c5c3a59c5ba8be3a
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 237fd594e125f41c151c89f02b84678ff4b9fa834e9ba8d743d5aaf43d60d393
 ---
 
 ## Create a memory store
@@ -92,6 +92,8 @@ Create a memory store
       - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
 
       - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
+
+      - `const AnthropicBetaAgentMemory2026_07_22 AnthropicBeta = "agent-memory-2026-07-22"`
 
 ### Returns
 

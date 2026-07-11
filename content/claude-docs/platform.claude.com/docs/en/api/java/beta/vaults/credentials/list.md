@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/credentials/list
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: e25e916999e8c141aa39caf7892c28007ae8d166437c8ef27a442af83200c120
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 15b05ebf58d5aa6c1f7767b8ba7342f6488139e0bbe568e3b1d69640a443f6eb
 ---
 
 ## List Credentials
@@ -90,6 +90,8 @@ List Credentials
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
 ### Returns
 

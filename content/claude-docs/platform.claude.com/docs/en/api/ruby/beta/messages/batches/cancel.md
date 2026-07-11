@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/messages/batches/cancel
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: a6413e62b8185b4b5540d31fdb5d71a989343cae5aea3df35ed36ad09c984355
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 2d28f7110431c775ab1c8124daae936232420bd34e4353a4c86349b90c4e9f9f
 ---
 
 ## Cancel a Message Batch
@@ -29,7 +29,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 25 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 26 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -86,6 +86,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
     - `:"server-side-fallback-2026-06-01"`
 
     - `:"fallback-credit-2026-06-01"`
+
+    - `:"agent-memory-2026-07-22"`
 
 ### Returns
 

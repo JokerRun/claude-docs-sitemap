@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/deployments/pause
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 7a7f65be20a8dd07cf963321914aa94b2d14a06344a930ad6b0041ff11ff677a
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: e0229eab607d466f6ac0910a8cdf928308b3390198df69b70a208d2bd34a9bf6
 ---
 
 ## Pause Deployment
@@ -80,6 +80,8 @@ Pause Deployment
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/skills/create
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: df81224e5e42332fbaf53fa54b746861614def77dc1acedfa3e4edc1315876c0
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 083e391f261527fe281aa7f48d9e7a88cdcb81c62f439bc22fa54e90c7dbac36
 ---
 
 ## Create Skill
@@ -15,17 +15,17 @@ Create Skill
 
 ### Parameters
 
+- `--file: array of string`
+
+  Body param: Files to upload for the skill.
+
+  All files must be in the same top-level directory and must include a SKILL.md file at the root of that directory.
+
 - `--display-title: optional string`
 
   Body param: Display title for the skill.
 
   This is a human-readable label that is not included in the prompt sent to the model.
-
-- `--file: optional array of string`
-
-  Body param: Files to upload for the skill.
-
-  All files must be in the same top-level directory and must include a SKILL.md file at the root of that directory.
 
 - `--beta: optional array of AnthropicBeta`
 
@@ -80,7 +80,8 @@ Create Skill
 
 ```cli
 ant beta:skills create \
-  --api-key my-anthropic-api-key
+  --api-key my-anthropic-api-key \
+  --file 'Example data'
 ```
 
 #### Response

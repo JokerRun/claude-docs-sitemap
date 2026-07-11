@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/environments/work/ack
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 3c4635a61c2e3373b6848b670a9ae7de4ea5a865303b96d322a0961daf057782
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 5e189fd4ce85d91607b91fb37f1ff7a0c6f01c4dc6e82567a2ddf89875b0b5f1
 ---
 
 ## Acknowledge Work
@@ -83,6 +83,8 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
 
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
+
 ### Returns
 
 - `class BetaSelfHostedWork:`
@@ -130,10 +132,6 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
   - `Metadata metadata`
 
     User-provided metadata key-value pairs associated with this work item
-
-  - `Optional<String> secret`
-
-    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
   - `Optional<String> startedAt`
 
@@ -208,7 +206,6 @@ public final class Main {
   "metadata": {
     "foo": "string"
   },
-  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",

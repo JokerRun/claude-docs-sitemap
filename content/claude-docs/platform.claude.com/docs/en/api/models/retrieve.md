@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/models/retrieve
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: b64acba37c7199f030a5f84bb438d96065c08920854b45f6a0d288caa7d5fa02
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: bfb5e6c45f6e09f436a6af91a4537c186dc5927c46d0c86c082fc363d1a2ac2e
 ---
 
 ## Get a Model
@@ -27,7 +27,7 @@ The Models API response can be used to determine information about a specific mo
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 25 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 26 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -84,6 +84,8 @@ The Models API response can be used to determine information about a specific mo
     - `"server-side-fallback-2026-06-01"`
 
     - `"fallback-credit-2026-06-01"`
+
+    - `"agent-memory-2026-07-22"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/files/download
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 63c048774b7d403a6fe577c00fb3f51e0593197601de2b1a4a41f4284554f77a
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: b5008ccdbfa9f5c51481d4f5010cea52759c12f9d1ed4967356ee13c070fad87
 ---
 
 ## Download File
@@ -80,6 +80,8 @@ Download File
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
 ### Example
 

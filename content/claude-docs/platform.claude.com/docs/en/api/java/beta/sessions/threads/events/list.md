@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/threads/events/list
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: a284750e7a2fcd2057310430bab1740da87d09558940693d0e5cae7f5f23268e
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 6097398992c9284ec59eef74057c92cbc607ebc64b1a771ca7992768ff86204a
 ---
 
 ## List Session Thread Events
@@ -88,6 +88,8 @@ List Session Thread Events
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
 ### Returns
 

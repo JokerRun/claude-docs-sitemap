@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/sessions/create
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: ab4363c581edad85ffc858fb1b1f8c3f5cc5a2ace2cedffb8cc11396829013e9
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 7d0457eaa278a637dd0f69bee8922d6e5408bdb65b0bc6ce1a3c2d77a60a11dd
 ---
 
 ## Create Session
@@ -329,7 +329,7 @@ Create Session
 
           - `description: string`
 
-            Description of what the tool does, shown to the agent to help it decide when to use the tool. 1-1024 characters.
+            Description of what the tool does, shown to the agent to help it decide when to use the tool. 1-4096 characters.
 
           - `input_schema: BetaManagedAgentsCustomToolInputSchema`
 
@@ -465,7 +465,7 @@ Create Session
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 26 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -522,6 +522,8 @@ Create Session
       - `"server-side-fallback-2026-06-01"`
 
       - `"fallback-credit-2026-06-01"`
+
+      - `"agent-memory-2026-07-22"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/agents/list
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 1186856121568d077ecae6d428aec7dca331d1ed240fec5825b6b98def352b57
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: e0b0b83a42b35caaeacfc904aa9b5185beae8e900fd1e8e77a39a945a63d2342
 ---
 
 ## List Agents
@@ -100,6 +100,8 @@ List Agents
       - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
 
       - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
+
+      - `const AnthropicBetaAgentMemory2026_07_22 AnthropicBeta = "agent-memory-2026-07-22"`
 
 ### Returns
 

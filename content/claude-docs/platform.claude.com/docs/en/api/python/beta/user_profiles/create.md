@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/user_profiles/create
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 35cbf2dd9423502a5eb780b6c2f1a40db42be2ed0eb598db85f3f4ff5b64f594
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 8b328133b4b1d52ff64caf9c3ff6742b9560e9d83208a3e410a652661e60bb2d
 ---
 
 ## Create User Profile
@@ -43,7 +43,7 @@ Create User Profile
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 25 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 26 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -100,6 +100,8 @@ Create User Profile
     - `"server-side-fallback-2026-06-01"`
 
     - `"fallback-credit-2026-06-01"`
+
+    - `"agent-memory-2026-07-22"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/sessions/events/stream
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 4e8cde0b4e5e6906289d26c4b0f2f0adc06c0c31c83d8e4773688b478dd5739e
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: f61034d845b4dd82f2d0a86c5fc448bdcdd655b0a1a644d82c00fa83d19501cd
 ---
 
 ## Stream Events
@@ -90,6 +90,8 @@ Stream Events
       - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
 
       - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
+
+      - `const AnthropicBetaAgentMemory2026_07_22 AnthropicBeta = "agent-memory-2026-07-22"`
 
 ### Returns
 

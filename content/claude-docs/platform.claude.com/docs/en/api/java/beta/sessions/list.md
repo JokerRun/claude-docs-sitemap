@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/list
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 18d33c3f18a4b1174955570057c81fd4317b61c2408090686abb4f3852b806b1
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 041aae9c008845ef23a6bc0ad5c5e67ed5741ba6cadbee79fcdd934cf4797bdd
 ---
 
 ## List Sessions
@@ -140,6 +140,8 @@ List Sessions
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
 ### Returns
 

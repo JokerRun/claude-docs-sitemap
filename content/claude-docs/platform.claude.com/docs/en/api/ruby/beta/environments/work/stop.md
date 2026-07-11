@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/environments/work/stop
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 67255ded244b06c1d84ca1afc4584aab870f89beb8c88eddd27ddca7f197b5f9
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: e007f4af09a43fa2406b8838a9999cb514701eea01d3ab7a61ec6c0db4255b88
 ---
 
 ## Stop Work
@@ -31,7 +31,7 @@ Stop a work item, initiating graceful or forced shutdown.
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 25 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 26 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -89,6 +89,8 @@ Stop a work item, initiating graceful or forced shutdown.
 
     - `:"fallback-credit-2026-06-01"`
 
+    - `:"agent-memory-2026-07-22"`
+
 ### Returns
 
 - `class BetaSelfHostedWork`
@@ -136,10 +138,6 @@ Stop a work item, initiating graceful or forced shutdown.
   - `metadata: Hash[Symbol, String]`
 
     User-provided metadata key-value pairs associated with this work item
-
-  - `secret: String`
-
-    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
   - `started_at: String`
 
@@ -201,7 +199,6 @@ puts(beta_self_hosted_work)
   "metadata": {
     "foo": "string"
   },
-  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/deployments/retrieve
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 5f13974bd1c9a68f9c9982ae40bdfd937c9cb96391b1176cd2940ec2da86c0db
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 9e9359a87ac22baeabe7cbee23196236dba0cfec0ede4c31ca23aebab5d32782
 ---
 
 ## Get Deployment
@@ -80,6 +80,8 @@ Get Deployment
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 

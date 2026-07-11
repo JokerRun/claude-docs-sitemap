@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/environments/work
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: a8fdae9fcc2f122df84b24a891d894e4c476cdb905081b900f669f69f57f88f7
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 553f701cb29b662b371a24e949c026269ca3a63319c70a5d352d089ee7dbf9c9
 ---
 
 # Work
@@ -89,6 +89,8 @@ Retrieve detailed information about a specific work item.
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class BetaSelfHostedWork:`
@@ -134,10 +136,6 @@ Retrieve detailed information about a specific work item.
   - `required IReadOnlyDictionary<string, string> Metadata`
 
     User-provided metadata key-value pairs associated with this work item
-
-  - `required string? Secret`
-
-    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
   - `required string? StartedAt`
 
@@ -199,7 +197,6 @@ Console.WriteLine(betaSelfHostedWork);
   "metadata": {
     "foo": "string"
   },
-  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",
@@ -294,6 +291,8 @@ Long poll for work items in the queue.
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
   - `string anthropicWorkerID`
 
     Header param: Unique identifier for the specific worker polling, used to track aggregated environment-level work metrics in Console
@@ -343,10 +342,6 @@ Long poll for work items in the queue.
   - `required IReadOnlyDictionary<string, string> Metadata`
 
     User-provided metadata key-value pairs associated with this work item
-
-  - `required string? Secret`
-
-    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
   - `required string? StartedAt`
 
@@ -407,7 +402,6 @@ Console.WriteLine(betaSelfHostedWork);
   "metadata": {
     "foo": "string"
   },
-  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",
@@ -498,6 +492,8 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class BetaSelfHostedWork:`
@@ -543,10 +539,6 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
   - `required IReadOnlyDictionary<string, string> Metadata`
 
     User-provided metadata key-value pairs associated with this work item
-
-  - `required string? Secret`
-
-    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
   - `required string? StartedAt`
 
@@ -608,7 +600,6 @@ Console.WriteLine(betaSelfHostedWork);
   "metadata": {
     "foo": "string"
   },
-  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",
@@ -706,6 +697,8 @@ Record a heartbeat for a work item to maintain the lease.
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -855,6 +848,8 @@ Stop a work item, initiating graceful or forced shutdown.
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class BetaSelfHostedWork:`
@@ -900,10 +895,6 @@ Stop a work item, initiating graceful or forced shutdown.
   - `required IReadOnlyDictionary<string, string> Metadata`
 
     User-provided metadata key-value pairs associated with this work item
-
-  - `required string? Secret`
-
-    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
   - `required string? StartedAt`
 
@@ -965,7 +956,6 @@ Console.WriteLine(betaSelfHostedWork);
   "metadata": {
     "foo": "string"
   },
-  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",
@@ -1060,6 +1050,8 @@ List work items in an environment.
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class BetaSelfHostedWorkListResponse:`
@@ -1105,10 +1097,6 @@ List work items in an environment.
     - `required IReadOnlyDictionary<string, string> Metadata`
 
       User-provided metadata key-value pairs associated with this work item
-
-    - `required string? Secret`
-
-      Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
     - `required string? StartedAt`
 
@@ -1177,7 +1165,6 @@ await foreach (var item in page.Paginate())
       "metadata": {
         "foo": "string"
       },
-      "secret": "secret",
       "started_at": "started_at",
       "state": "queued",
       "stop_requested_at": "stop_requested_at",
@@ -1275,6 +1262,8 @@ Update work item metadata with merge semantics.
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class BetaSelfHostedWork:`
@@ -1320,10 +1309,6 @@ Update work item metadata with merge semantics.
   - `required IReadOnlyDictionary<string, string> Metadata`
 
     User-provided metadata key-value pairs associated with this work item
-
-  - `required string? Secret`
-
-    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
   - `required string? StartedAt`
 
@@ -1386,7 +1371,6 @@ Console.WriteLine(betaSelfHostedWork);
   "metadata": {
     "foo": "string"
   },
-  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",
@@ -1468,6 +1452,8 @@ Get statistics about the work queue for an environment.
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -1569,10 +1555,6 @@ Console.WriteLine(betaSelfHostedWorkQueueStats);
   - `required IReadOnlyDictionary<string, string> Metadata`
 
     User-provided metadata key-value pairs associated with this work item
-
-  - `required string? Secret`
-
-    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
   - `required string? StartedAt`
 
@@ -1685,10 +1667,6 @@ Console.WriteLine(betaSelfHostedWorkQueueStats);
     - `required IReadOnlyDictionary<string, string> Metadata`
 
       User-provided metadata key-value pairs associated with this work item
-
-    - `required string? Secret`
-
-      Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
     - `required string? StartedAt`
 

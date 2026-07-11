@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/deployment_runs/list
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 0f84ed231807e8dac93bc740bc3c307926768275e9e1f5ca55ba49b43c8a606b
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 464554d0e86251363936954eb1114d63898bd190fee7d27b07e0f3f4d3209cd6
 ---
 
 ## List Deployment Runs
@@ -61,7 +61,7 @@ List Deployment Runs
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 25 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 26 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -118,6 +118,8 @@ List Deployment Runs
     - `"server-side-fallback-2026-06-01"`
 
     - `"fallback-credit-2026-06-01"`
+
+    - `"agent-memory-2026-07-22"`
 
 ### Returns
 

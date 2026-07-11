@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/user_profiles/create
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: b9e549a0f840c7f4b294fb7f0ed33b719326315c3e9afe9229bd13221406aa0b
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: c87e3910cd00efa6d922cf3bad3435ea5d396fc67e9e85c65e81d6e4565a12ce
 ---
 
 ## Create User Profile
@@ -98,6 +98,8 @@ Create User Profile
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 

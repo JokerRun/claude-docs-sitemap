@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/vaults/credentials/retrieve
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 03b41cbc582ef30fe04c934331a47082f77dac04c8197e1995c460e8cafd212a
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 044f072277a3f9ed424cb6e5da702a1ea99964730a7a65b0ccd47a14a04c5608
 ---
 
 ## Get Credential
@@ -25,7 +25,7 @@ Get Credential
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 25 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 26 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -82,6 +82,8 @@ Get Credential
     - `:"server-side-fallback-2026-06-01"`
 
     - `:"fallback-credit-2026-06-01"`
+
+    - `:"agent-memory-2026-07-22"`
 
 ### Returns
 

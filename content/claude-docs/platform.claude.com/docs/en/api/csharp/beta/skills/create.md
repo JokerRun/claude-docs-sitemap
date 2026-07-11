@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/skills/create
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: f1a398b660e7195a8071e5e7badf3b9703e26cbcc6c6673ab73cbebf0ae3f47c
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: cfbfd27ab7ceea06f464b451134ce1da9f6c8d849e84eb508026e9c75cd04ae3
 ---
 
 ## Create Skill
 
-`SkillCreateResponse Beta.Skills.Create(SkillCreateParams?parameters, CancellationTokencancellationToken = default)`
+`SkillCreateResponse Beta.Skills.Create(SkillCreateParamsparameters, CancellationTokencancellationToken = default)`
 
 **post** `/v1/skills`
 
@@ -17,17 +17,17 @@ Create Skill
 
 - `SkillCreateParams parameters`
 
+  - `required IReadOnlyList<string> files`
+
+    Body param: Files to upload for the skill.
+
+    All files must be in the same top-level directory and must include a SKILL.md file at the root of that directory.
+
   - `string? displayTitle`
 
     Body param: Display title for the skill.
 
     This is a human-readable label that is not included in the prompt sent to the model.
-
-  - `IReadOnlyList<string>? files`
-
-    Body param: Files to upload for the skill.
-
-    All files must be in the same top-level directory and must include a SKILL.md file at the root of that directory.
 
   - `IReadOnlyList<AnthropicBeta> betas`
 
@@ -89,6 +89,8 @@ Create Skill
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class SkillCreateResponse:`
@@ -137,7 +139,13 @@ Create Skill
 ### Example
 
 ```csharp
-SkillCreateParams parameters = new();
+SkillCreateParams parameters = new()
+{
+    Files =
+    [
+        Encoding.UTF8.GetBytes("Example data")
+    ],
+};
 
 var skill = await client.Beta.Skills.Create(parameters);
 

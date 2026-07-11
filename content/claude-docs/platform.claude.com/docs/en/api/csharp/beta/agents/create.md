@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/agents/create
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 0a8b528526ff17257e648dac2df6dca7ed244f7160c1ae20319ee48c02823643
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: f88c0af4445717be5733643f4643459d7d142d22a8c0386cb37e92fd0242a830
 ---
 
 ## Create Agent
@@ -355,7 +355,7 @@ Create Agent
 
       - `required string Description`
 
-        Description of what the tool does, shown to the agent to help it decide when to use the tool. 1-1024 characters.
+        Description of what the tool does, shown to the agent to help it decide when to use the tool. 1-4096 characters.
 
       - `required BetaManagedAgentsCustomToolInputSchema InputSchema`
 
@@ -434,6 +434,8 @@ Create Agent
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 

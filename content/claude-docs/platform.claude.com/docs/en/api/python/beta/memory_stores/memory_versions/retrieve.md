@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/memory_stores/memory_versions/retrieve
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 4d000d0c8ae30fdf2dc81c6c39f5b359666e0fd1e4b1c988c6ee23cfec001f29
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 8608de4f13cf71b1b5af21d96e0474d98a4e91151a8e72c29a556b92ba8bb4e2
 ---
 
 ## Retrieve a memory version
@@ -33,7 +33,7 @@ Retrieve a memory version
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 25 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 26 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -90,6 +90,8 @@ Retrieve a memory version
     - `"server-side-fallback-2026-06-01"`
 
     - `"fallback-credit-2026-06-01"`
+
+    - `"agent-memory-2026-07-22"`
 
 ### Returns
 

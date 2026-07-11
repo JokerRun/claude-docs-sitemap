@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/count_tokens
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: aa65ace0d588e035884e4573cfea922e17ebf2036312df4addac59dcbf3649d1
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 5cec31eb48e110e5b6b1b62632fc6b5634b626b9263968163cba047d071f6ba2
 ---
 
 ## Count tokens in a Message
@@ -23,7 +23,7 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 25 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 26 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -80,6 +80,8 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
     - `"server-side-fallback-2026-06-01"`
 
     - `"fallback-credit-2026-06-01"`
+
+    - `"agent-memory-2026-07-22"`
 
 - `"anthropic-user-profile-id": optional string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/credentials/delete
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: c6cd45107918fbd067e28f47dcc260e182e61e7a84d166f6b52076c653b6260e
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: f18c182098259e1c146845939223c10ba90279cf8f10b35e4976f307d629ae62
 ---
 
 ## Delete Credential
@@ -80,6 +80,8 @@ Delete Credential
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
 ### Returns
 

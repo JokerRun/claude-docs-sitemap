@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/skills/versions/create
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: fc8220c63449b159229d3050bdfd048b104a333fc9714137469798f747e68fdf
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 4f11a81b9eb7641235b83ae77533446eca7c272e00b97eecc68c3f222c87581e
 ---
 
 ## Create Skill Version
@@ -93,6 +93,8 @@ Create Skill Version
 
       - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
 
+      - `const AnthropicBetaAgentMemory2026_07_22 AnthropicBeta = "agent-memory-2026-07-22"`
+
 ### Returns
 
 - `type BetaSkillVersionNewResponse struct{…}`
@@ -147,8 +149,10 @@ Create Skill Version
 package main
 
 import (
+  "bytes"
   "context"
   "fmt"
+  "io"
 
   "github.com/anthropics/anthropic-sdk-go"
   "github.com/anthropics/anthropic-sdk-go/option"
@@ -162,7 +166,7 @@ func main() {
     context.TODO(),
     "skill_id",
     anthropic.BetaSkillVersionNewParams{
-
+      Files: []io.Reader{io.Reader(bytes.NewBuffer([]byte("Example data")))},
     },
   )
   if err != nil {

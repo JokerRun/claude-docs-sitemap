@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/skills/versions/download
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: b7ee81b0e797c16dde0e35cc3cd7b6761a6fed6f98c477701be71af34cfa4dc1
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 4b14b01fda7d792d7e05467ac70d9a71d98ae083ed391bec745065e1c410a09f
 ---
 
 ## Download Skill Version Content
@@ -88,6 +88,8 @@ Download a skill version's content as a zip archive.
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Example
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/vaults/credentials/update
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: c388848438566ac05f6c9c472de9c25f6a3d447d3b5f6694695e9de964e143b3
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 4369570e25f574ad708e35ef96c5d8ff41b22258a73ae5b46afaae35254b966f
 ---
 
 ## Update Credential
@@ -212,6 +212,8 @@ Update Credential
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 

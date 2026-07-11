@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/environments/create
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: ce2d9645deb5137ebe81d9a55c4edb31944a90afcb24feefb2f7ce70ec89e409
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: a0a0d8d5a81cbafb479bddd67e96c7773f0801f2b688b0cbdd1928a0d9ffa744
 ---
 
 ## Create Environment
@@ -145,7 +145,7 @@ Create a new environment with the specified configuration.
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 26 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -202,6 +202,8 @@ Create a new environment with the specified configuration.
       - `"server-side-fallback-2026-06-01"`
 
       - `"fallback-credit-2026-06-01"`
+
+      - `"agent-memory-2026-07-22"`
 
 ### Returns
 

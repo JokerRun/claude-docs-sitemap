@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/memory_stores/memory_versions/list
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: f37d0580973d6bb0b53b1e1775bf676f75e771873d6a80717bb8dd10c1f350dd
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 9226c430d1eb0ed91b870fb79b0d3fff36c7a1e837b606c25f169667cab49694
 ---
 
 ## List memory versions
@@ -116,6 +116,8 @@ List memory versions
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 

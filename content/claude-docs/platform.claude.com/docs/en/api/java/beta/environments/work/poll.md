@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/environments/work/poll
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 3aab51d156354b9ed8556ff27963977da971a57e049df0635e2a5121f4ead4ba
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 1a3c743065a18aa93f6e785998239b4ffd90483e7970609295040df88bdce8bf
 ---
 
 ## Poll for Work
@@ -89,6 +89,8 @@ Long poll for work items in the queue.
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
 
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
+
   - `Optional<String> anthropicWorkerId`
 
     Unique identifier for the specific worker polling, used to track aggregated environment-level work metrics in Console
@@ -140,10 +142,6 @@ Long poll for work items in the queue.
   - `Metadata metadata`
 
     User-provided metadata key-value pairs associated with this work item
-
-  - `Optional<String> secret`
-
-    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
   - `Optional<String> startedAt`
 
@@ -215,7 +213,6 @@ public final class Main {
   "metadata": {
     "foo": "string"
   },
-  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",

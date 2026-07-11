@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/models/list
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 50011184f2726b1e050fc3c4a5e5d4df175fcc068cca372370bf2d69d73f26e5
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 3497efe627e4f5433bfc992f04f2fef6da0c015928329b2f95f633df65d28d29
 ---
 
 ## List Models
@@ -39,7 +39,7 @@ The Models API response can be used to determine which models are available for 
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 26 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -96,6 +96,8 @@ The Models API response can be used to determine which models are available for 
       - `"server-side-fallback-2026-06-01"`
 
       - `"fallback-credit-2026-06-01"`
+
+      - `"agent-memory-2026-07-22"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/sessions/update
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: fcdf652e1ecff56915f8e28a0dcafc89b3a4eef20e1072ff85305dc6f5fabe44
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: acc3e58d923f63150eda39a442060c5a6dd606c81df203f49d896472e35a268c
 ---
 
 ## Update Session
@@ -98,6 +98,8 @@ Update Session
       - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
 
       - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
+
+      - `const AnthropicBetaAgentMemory2026_07_22 AnthropicBeta = "agent-memory-2026-07-22"`
 
 ### Returns
 

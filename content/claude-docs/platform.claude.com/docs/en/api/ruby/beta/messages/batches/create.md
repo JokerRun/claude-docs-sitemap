@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/messages/batches/create
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: bec34b8e1894be83e11390d8fbe4857ec4a9d8802b51d39b1b46184c762ea1f3
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 28514d6639010132467d2bbee2996a6b7113e17ebc2043bd330ad5baecd9049b
 ---
 
 ## Create a Message Batch
@@ -3006,7 +3006,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 25 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 26 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -3063,6 +3063,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
     - `:"server-side-fallback-2026-06-01"`
 
     - `:"fallback-credit-2026-06-01"`
+
+    - `:"agent-memory-2026-07-22"`
 
 - `user_profile_id: String`
 

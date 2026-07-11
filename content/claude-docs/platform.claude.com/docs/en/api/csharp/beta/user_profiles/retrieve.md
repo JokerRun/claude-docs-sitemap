@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/user_profiles/retrieve
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 3c4314481117b709292d0c128affd26c37039dcea1ed9beeb99ec45c583265ee
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 1944f8ec5c352da945eebcda6afcdfa9123293fa29284d756ff9a08684f5dd49
 ---
 
 ## Get User Profile
@@ -80,6 +80,8 @@ Get User Profile
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/messages/batches/retrieve
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 97a354d955ba175a202b5583f60fc41e47ba629629f940e52d7c60bfe4ed4112
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 07b25b9c0ef1382a8a19fc91fe83af625ffc0c6a31218373f324a9a6969b8c7a
 ---
 
 ## Retrieve a Message Batch
@@ -86,6 +86,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
       - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
 
       - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
+
+      - `const AnthropicBetaAgentMemory2026_07_22 AnthropicBeta = "agent-memory-2026-07-22"`
 
 ### Returns
 

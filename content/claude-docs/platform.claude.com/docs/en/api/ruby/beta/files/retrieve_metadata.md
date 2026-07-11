@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/files/retrieve_metadata
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: b5dac1e59d381576fbb260f4d975f517ee04c92dd4ae907405dd41d4eb55ea10
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: a579a7336e6c72ed94863e6eaf1d30e0b9c5c487de133d9e2e47c9f978099b5b
 ---
 
 ## Get File Metadata
@@ -25,7 +25,7 @@ Get File Metadata
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 25 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 26 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -82,6 +82,8 @@ Get File Metadata
     - `:"server-side-fallback-2026-06-01"`
 
     - `:"fallback-credit-2026-06-01"`
+
+    - `:"agent-memory-2026-07-22"`
 
 ### Returns
 

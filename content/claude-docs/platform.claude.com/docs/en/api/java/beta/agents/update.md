@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/agents/update
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: b3da0746978f1aef4ce1a22f566ca363455007a309f804afe039336783bca4a7
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: e3e327f65c00e9e68286dfb80e7aca31a96a1e6ced6f80734b44e10e53d2c797
 ---
 
 ## Update Agent
@@ -78,6 +78,8 @@ Update Agent
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
   - `long version`
 
@@ -373,7 +375,7 @@ Update Agent
 
       - `String description`
 
-        Description of what the tool does, shown to the agent to help it decide when to use the tool. 1-1024 characters.
+        Description of what the tool does, shown to the agent to help it decide when to use the tool. 1-4096 characters.
 
       - `BetaManagedAgentsCustomToolInputSchema inputSchema`
 

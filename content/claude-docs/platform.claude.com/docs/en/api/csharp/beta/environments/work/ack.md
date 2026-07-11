@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/environments/work/ack
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 4566dabe5c8292eef34ea9ed38f763a65d601fa42921c6678bb263256fa205b2
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: b1c4ead4cf5d959c891d5195f2aae4e7d098651b59deeadb8a62008918d06e63
 ---
 
 ## Acknowledge Work
@@ -87,6 +87,8 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class BetaSelfHostedWork:`
@@ -132,10 +134,6 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
   - `required IReadOnlyDictionary<string, string> Metadata`
 
     User-provided metadata key-value pairs associated with this work item
-
-  - `required string? Secret`
-
-    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
   - `required string? StartedAt`
 
@@ -197,7 +195,6 @@ Console.WriteLine(betaSelfHostedWork);
   "metadata": {
     "foo": "string"
   },
-  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",

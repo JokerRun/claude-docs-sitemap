@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/deployments/unpause
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 63c064b56e6c85a2d9ba22bdd83079389e664b047fd7590c91841f335a9dfe70
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: e0d08b00a53b592b9701c2eb295de2e40a494867711f8688460a549601ed9c75
 ---
 
 ## Unpause Deployment
@@ -23,7 +23,7 @@ Unpause Deployment
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 25 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 26 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -80,6 +80,8 @@ Unpause Deployment
     - `:"server-side-fallback-2026-06-01"`
 
     - `:"fallback-credit-2026-06-01"`
+
+    - `:"agent-memory-2026-07-22"`
 
 ### Returns
 

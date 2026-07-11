@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/events/stream
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: bdcb309efc6018f3f4b014f42bdb17b91e25105bbb3a2ffea007c599f7563999
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 74d40f7daa401812eff78a1b21a80e3d72f0fc1d4d072905996005eff86d0a89
 ---
 
 ## Stream Events
@@ -33,7 +33,7 @@ Stream Events
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 25 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 26 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -90,6 +90,8 @@ Stream Events
     - `"server-side-fallback-2026-06-01"`
 
     - `"fallback-credit-2026-06-01"`
+
+    - `"agent-memory-2026-07-22"`
 
 ### Returns
 

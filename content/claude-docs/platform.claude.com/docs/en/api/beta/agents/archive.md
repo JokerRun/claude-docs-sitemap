@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/archive
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: dc3ae4fea32d4f9ef561e96f4dd587792f4d8c82698bb52c20aaa93a9404b406
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 38c70fe9b837188bb4ac6b5b3a79ae46f1e808e9dae6bef038cbcc57a9c9ff3b
 ---
 
 ## Archive Agent
@@ -23,7 +23,7 @@ Archive Agent
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 25 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 26 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -80,6 +80,8 @@ Archive Agent
     - `"server-side-fallback-2026-06-01"`
 
     - `"fallback-credit-2026-06-01"`
+
+    - `"agent-memory-2026-07-22"`
 
 ### Returns
 

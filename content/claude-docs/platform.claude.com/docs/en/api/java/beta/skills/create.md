@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/skills/create
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: d1f73d2796a6164d830d3c871e7638378fdd174b5d879e4cd36b804280ca8363
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 5f6b17ec55e053f5f22627c106fe28eb8be8ea251a321a31e0bb0e71e7a90d35
 ---
 
 ## Create Skill
 
-`SkillCreateResponse beta().skills().create(SkillCreateParamsparams = SkillCreateParams.none(), RequestOptionsrequestOptions = RequestOptions.none())`
+`SkillCreateResponse beta().skills().create(SkillCreateParamsparams, RequestOptionsrequestOptions = RequestOptions.none())`
 
 **post** `/v1/skills`
 
@@ -77,17 +77,19 @@ Create Skill
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
 
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
+
+  - `List<String> files`
+
+    Files to upload for the skill.
+
+    All files must be in the same top-level directory and must include a SKILL.md file at the root of that directory.
+
   - `Optional<String> displayTitle`
 
     Display title for the skill.
 
     This is a human-readable label that is not included in the prompt sent to the model.
-
-  - `Optional<List<String>> files`
-
-    Files to upload for the skill.
-
-    All files must be in the same top-level directory and must include a SKILL.md file at the root of that directory.
 
 ### Returns
 
@@ -143,6 +145,7 @@ import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.beta.skills.SkillCreateParams;
 import com.anthropic.models.beta.skills.SkillCreateResponse;
+import java.io.ByteArrayInputStream;
 
 public final class Main {
     private Main() {}
@@ -150,7 +153,10 @@ public final class Main {
     public static void main(String[] args) {
         AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-        SkillCreateResponse skill = client.beta().skills().create();
+        SkillCreateParams params = SkillCreateParams.builder()
+            .addFile(new ByteArrayInputStream("Example data".getBytes()))
+            .build();
+        SkillCreateResponse skill = client.beta().skills().create(params);
     }
 }
 ```

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/skills/versions/list
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 772ed7c977ee47623879d90bd67dce748a321fe380b2b733b5756f6e5912a14c
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: e5187733f7c382d3a0f0860b52a0f289555e2d75160c845d1850ba253042338f
 ---
 
 ## List Skill Versions
@@ -37,7 +37,7 @@ List Skill Versions
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 25 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 26 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -94,6 +94,8 @@ List Skill Versions
     - `:"server-side-fallback-2026-06-01"`
 
     - `:"fallback-credit-2026-06-01"`
+
+    - `:"agent-memory-2026-07-22"`
 
 ### Returns
 

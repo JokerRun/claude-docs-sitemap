@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/sessions/retrieve
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 69c7b8787b6729b5d7fddfcdd6b148d230cdde01a1bedec14d1fbe124599d2b7
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 3427d40bcab04afc40dda36c1f39bb22b521fc3323a20a9f99aa6e96d539bd3e
 ---
 
 ## Get Session
@@ -23,7 +23,7 @@ Get Session
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 25 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 26 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -80,6 +80,8 @@ Get Session
     - `:"server-side-fallback-2026-06-01"`
 
     - `:"fallback-credit-2026-06-01"`
+
+    - `:"agent-memory-2026-07-22"`
 
 ### Returns
 

@@ -1,15 +1,15 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/skills
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: c62b6d8d5ca1f2ee31df79d5acc9af5526ef659e6958dcfee0cbc88bec7d7a66
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: d885ce04acfd2cb5b8d266426df0d0bf3b92953f2c832d08cd0048c0d7afd11e
 ---
 
 # Skills
 
 ## Create Skill
 
-`client.beta.skills.create(SkillCreateParamsparams?, RequestOptionsoptions?): SkillCreateResponse`
+`client.beta.skills.create(SkillCreateParamsparams, RequestOptionsoptions?): SkillCreateResponse`
 
 **post** `/v1/skills`
 
@@ -19,17 +19,17 @@ Create Skill
 
 - `params: SkillCreateParams`
 
+  - `files: Array<Uploadable>`
+
+    Body param: Files to upload for the skill.
+
+    All files must be in the same top-level directory and must include a SKILL.md file at the root of that directory.
+
   - `display_title?: string | null`
 
     Body param: Display title for the skill.
 
     This is a human-readable label that is not included in the prompt sent to the model.
-
-  - `files?: Array<Uploadable> | null`
-
-    Body param: Files to upload for the skill.
-
-    All files must be in the same top-level directory and must include a SKILL.md file at the root of that directory.
 
   - `betas?: Array<AnthropicBeta>`
 
@@ -37,7 +37,7 @@ Create Skill
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 26 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -95,6 +95,8 @@ Create Skill
 
       - `"fallback-credit-2026-06-01"`
 
+      - `"agent-memory-2026-07-22"`
+
 ### Returns
 
 - `SkillCreateResponse`
@@ -149,7 +151,7 @@ const client = new Anthropic({
   apiKey: process.env['ANTHROPIC_API_KEY'], // This is the default and can be omitted
 });
 
-const skill = await client.beta.skills.create();
+const skill = await client.beta.skills.create({ files: [fs.createReadStream('path/to/file')] });
 
 console.log(skill.id);
 ```
@@ -207,7 +209,7 @@ List Skills
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 26 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -264,6 +266,8 @@ List Skills
       - `"server-side-fallback-2026-06-01"`
 
       - `"fallback-credit-2026-06-01"`
+
+      - `"agent-memory-2026-07-22"`
 
 ### Returns
 
@@ -369,7 +373,7 @@ Get Skill
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 26 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -426,6 +430,8 @@ Get Skill
       - `"server-side-fallback-2026-06-01"`
 
       - `"fallback-credit-2026-06-01"`
+
+      - `"agent-memory-2026-07-22"`
 
 ### Returns
 
@@ -524,7 +530,7 @@ Delete Skill
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 26 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -581,6 +587,8 @@ Delete Skill
       - `"server-side-fallback-2026-06-01"`
 
       - `"fallback-credit-2026-06-01"`
+
+      - `"agent-memory-2026-07-22"`
 
 ### Returns
 
@@ -778,7 +786,7 @@ console.log(skill.id);
 
 ## Create Skill Version
 
-`client.beta.skills.versions.create(stringskillID, VersionCreateParamsparams?, RequestOptionsoptions?): VersionCreateResponse`
+`client.beta.skills.versions.create(stringskillID, VersionCreateParamsparams, RequestOptionsoptions?): VersionCreateResponse`
 
 **post** `/v1/skills/{skill_id}/versions`
 
@@ -794,7 +802,7 @@ Create Skill Version
 
 - `params: VersionCreateParams`
 
-  - `files?: Array<Uploadable> | null`
+  - `files: Array<Uploadable>`
 
     Body param: Files to upload for the skill.
 
@@ -806,7 +814,7 @@ Create Skill Version
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 26 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -863,6 +871,8 @@ Create Skill Version
       - `"server-side-fallback-2026-06-01"`
 
       - `"fallback-credit-2026-06-01"`
+
+      - `"agent-memory-2026-07-22"`
 
 ### Returns
 
@@ -921,7 +931,9 @@ const client = new Anthropic({
   apiKey: process.env['ANTHROPIC_API_KEY'], // This is the default and can be omitted
 });
 
-const version = await client.beta.skills.versions.create('skill_id');
+const version = await client.beta.skills.versions.create('skill_id', {
+  files: [fs.createReadStream('path/to/file')],
+});
 
 console.log(version.id);
 ```
@@ -975,7 +987,7 @@ List Skill Versions
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 26 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -1032,6 +1044,8 @@ List Skill Versions
       - `"server-side-fallback-2026-06-01"`
 
       - `"fallback-credit-2026-06-01"`
+
+      - `"agent-memory-2026-07-22"`
 
 ### Returns
 
@@ -1147,7 +1161,7 @@ Download a skill version's content as a zip archive.
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 26 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -1204,6 +1218,8 @@ Download a skill version's content as a zip archive.
       - `"server-side-fallback-2026-06-01"`
 
       - `"fallback-credit-2026-06-01"`
+
+      - `"agent-memory-2026-07-22"`
 
 ### Returns
 
@@ -1256,7 +1272,7 @@ Get Skill Version
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 26 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -1313,6 +1329,8 @@ Get Skill Version
       - `"server-side-fallback-2026-06-01"`
 
       - `"fallback-credit-2026-06-01"`
+
+      - `"agent-memory-2026-07-22"`
 
 ### Returns
 
@@ -1421,7 +1439,7 @@ Delete Skill Version
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 26 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -1478,6 +1496,8 @@ Delete Skill Version
       - `"server-side-fallback-2026-06-01"`
 
       - `"fallback-credit-2026-06-01"`
+
+      - `"agent-memory-2026-07-22"`
 
 ### Returns
 

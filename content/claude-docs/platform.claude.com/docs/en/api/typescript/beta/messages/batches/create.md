@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/messages/batches/create
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 015aaba33caa57766c3b59b30022dffecea4d37bbb166495308f82770ce0ad19
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 537e053c99c06cd6d611896b3e14ff3cdc332684ea9aa9948478ec97d16aaf3f
 ---
 
 ## Create a Message Batch
@@ -3004,7 +3004,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 26 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -3061,6 +3061,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
       - `"server-side-fallback-2026-06-01"`
 
       - `"fallback-credit-2026-06-01"`
+
+      - `"agent-memory-2026-07-22"`
 
   - `user_profile_id?: string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/skills/create
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 730b314f25a2f3ecfd8fb32a86e29dd842758a0c532e9a7c369f678189b50a1e
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 15ef000e72ff4e90cd34deb6f4fabc81eb0c2c6291a5fafb38f64941ea72ce7d
 ---
 
 ## Create Skill
@@ -17,17 +17,17 @@ Create Skill
 
 - `params BetaSkillNewParams`
 
-  - `DisplayTitle param.Field[string]`
-
-    Body param: Display title for the skill.
-
-    This is a human-readable label that is not included in the prompt sent to the model.
-
   - `Files param.Field[[]Reader]`
 
     Body param: Files to upload for the skill.
 
     All files must be in the same top-level directory and must include a SKILL.md file at the root of that directory.
+
+  - `DisplayTitle param.Field[string]`
+
+    Body param: Display title for the skill.
+
+    This is a human-readable label that is not included in the prompt sent to the model.
 
   - `Betas param.Field[[]AnthropicBeta]`
 
@@ -93,6 +93,8 @@ Create Skill
 
       - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
 
+      - `const AnthropicBetaAgentMemory2026_07_22 AnthropicBeta = "agent-memory-2026-07-22"`
+
 ### Returns
 
 - `type BetaSkillNewResponse struct{…}`
@@ -144,8 +146,10 @@ Create Skill
 package main
 
 import (
+  "bytes"
   "context"
   "fmt"
+  "io"
 
   "github.com/anthropics/anthropic-sdk-go"
   "github.com/anthropics/anthropic-sdk-go/option"
@@ -156,7 +160,7 @@ func main() {
     option.WithAPIKey("my-anthropic-api-key"),
   )
   skill, err := client.Beta.Skills.New(context.TODO(), anthropic.BetaSkillNewParams{
-
+    Files: []io.Reader{io.Reader(bytes.NewBuffer([]byte("Example data")))},
   })
   if err != nil {
     panic(err.Error())

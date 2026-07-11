@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/deployments/pause
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 1e2d45aa6dd260a8a3b3ea8489bf6635c72c995368a30362613dc7ada392ec83
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 5b0d8ab6b3e96e18d103a678cc7e6d989b27ea50d12b6c7ef75579f6931f7cb9
 ---
 
 ## Pause Deployment
@@ -25,7 +25,7 @@ Pause Deployment
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 26 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -82,6 +82,8 @@ Pause Deployment
       - `"server-side-fallback-2026-06-01"`
 
       - `"fallback-credit-2026-06-01"`
+
+      - `"agent-memory-2026-07-22"`
 
 ### Returns
 

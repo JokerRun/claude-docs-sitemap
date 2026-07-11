@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/skills/delete
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: b27c7adaa89a8c44d8c70ac84cceaee0c0d47ee23ca9a6e6880f2165c508cc13
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 81d492218e2ddce8f3256efda758f2555f21014e2d5df7c8019bccac7d3340f5
 ---
 
 ## Delete Skill
@@ -86,6 +86,8 @@ Delete Skill
       - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
 
       - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
+
+      - `const AnthropicBetaAgentMemory2026_07_22 AnthropicBeta = "agent-memory-2026-07-22"`
 
 ### Returns
 

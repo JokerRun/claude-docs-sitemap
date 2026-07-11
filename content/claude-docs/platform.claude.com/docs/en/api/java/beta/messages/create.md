@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/messages/create
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 6c3a88f30e0610f292934df480c24e15d32772b6b57bc12a5815b6fba9b8d3a2
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 0cd1f77fb064e5975205dcfc8f1b217361bd0a04035914e32b58b939e66ae3e9
 ---
 
 ## Create a Message
@@ -80,6 +80,8 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
   - `Optional<String> userProfileId`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/list
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: f3840fd631837f095826903fbc117fc1365795a5294feac929c39b01643a6b2d
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 4c3aa8b88927b9e2423dc77eccb72ce43680775a8226d7350e6fadf24b9e8cac
 ---
 
 ## List Work Items
@@ -35,7 +35,7 @@ List work items in an environment.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 25 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 26 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -93,6 +93,8 @@ List work items in an environment.
 
     - `"fallback-credit-2026-06-01"`
 
+    - `"agent-memory-2026-07-22"`
+
 ### Returns
 
 - `BetaSelfHostedWorkListResponse object { data, next_page }`
@@ -140,10 +142,6 @@ List work items in an environment.
     - `metadata: map[string]`
 
       User-provided metadata key-value pairs associated with this work item
-
-    - `secret: string`
-
-      Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
     - `started_at: string`
 
@@ -208,7 +206,6 @@ curl https://api.anthropic.com/v1/environments/$ENVIRONMENT_ID/work \
       "metadata": {
         "foo": "string"
       },
-      "secret": "secret",
       "started_at": "started_at",
       "state": "queued",
       "stop_requested_at": "stop_requested_at",

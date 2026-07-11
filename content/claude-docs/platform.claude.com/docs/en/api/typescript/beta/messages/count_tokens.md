@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/messages/count_tokens
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 3358294d89efdb128924128138d19b9923eb4c173607550084bd8b1cfa5e4205
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 2e3460176bdb0c6a15eb18902c0b79d0a4f463958ecf9e333d0f4f349393132f
 ---
 
 ## Count tokens in a Message
@@ -2822,7 +2822,7 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 26 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -2879,6 +2879,8 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
       - `"server-side-fallback-2026-06-01"`
 
       - `"fallback-credit-2026-06-01"`
+
+      - `"agent-memory-2026-07-22"`
 
   - `user_profile_id?: string`
 

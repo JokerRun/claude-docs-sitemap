@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/memory_stores/memories/create
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 31f0d983531986a45225a83058ce8683e8a19a874e23bf5fd748c86da5f5d12d
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 4677dfcc6bb8c2a2d781ccf5259c549377edf4ad746276f6002e162f8ddb18c9
 ---
 
 ## Create a memory
@@ -82,6 +82,8 @@ Create a memory
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
   - `Optional<String> content`
 

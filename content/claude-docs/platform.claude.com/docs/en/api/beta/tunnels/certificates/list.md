@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/certificates/list
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 775511c0137e2afce51520c818db98588dc9e8f359422e2203367e3416a1c710
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: edb31ad69db50c4e049693a222556ed773c46e1ce8f4271bd99a1b16f8cd510b
 ---
 
 ## List Tunnel Certificates
@@ -39,7 +39,7 @@ Lists the certificates registered on a tunnel. Archived certificates are exclude
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 25 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 26 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -96,6 +96,8 @@ Lists the certificates registered on a tunnel. Archived certificates are exclude
     - `"server-side-fallback-2026-06-01"`
 
     - `"fallback-credit-2026-06-01"`
+
+    - `"agent-memory-2026-07-22"`
 
 ### Returns
 

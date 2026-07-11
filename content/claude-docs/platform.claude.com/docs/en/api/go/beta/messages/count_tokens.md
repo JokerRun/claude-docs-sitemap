@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/messages/count_tokens
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 8f4cf919b6082886dbc03de83567a2cb8cc03ba345e6d047e8f0e4584bb2e14a
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: d4cba1e1ce3f0be37a3d5b86d00d050791ca7bc9caa4677054497f329223a462
 ---
 
 ## Count tokens in a Message
@@ -2629,6 +2629,8 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
       - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
 
       - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
+
+      - `const AnthropicBetaAgentMemory2026_07_22 AnthropicBeta = "agent-memory-2026-07-22"`
 
   - `UserProfileID param.Field[string]`
 

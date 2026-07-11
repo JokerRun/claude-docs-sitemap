@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/skills/versions/create
-fetched_at: 2026-05-23T03:13:35.851650Z
-sha256: 7371adcd125bb74bc2e6ae406d73d49e8fa0f2309ea27fcaf8bab2c9dd2e4692
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 3546a9f50101c109e9a4bfe8e62767021f5a42c95b9a547f454412abc2c1f3e0
 ---
 
 ## Create Skill Version
@@ -21,7 +21,7 @@ Create Skill Version
 
   The format and length of IDs may change over time.
 
-- `--file: optional array of string`
+- `--file: array of string`
 
   Body param: Files to upload for the skill.
 
@@ -84,7 +84,8 @@ Create Skill Version
 ```cli
 ant beta:skills:versions create \
   --api-key my-anthropic-api-key \
-  --skill-id skill_id
+  --skill-id skill_id \
+  --file 'Example data'
 ```
 
 #### Response

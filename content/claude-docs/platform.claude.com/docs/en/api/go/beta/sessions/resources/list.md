@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/sessions/resources/list
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 3d16d63c6ed7743cace081228ac388fc52a05b885f51b1df1937abe6818f581c
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: de02b6666e2fd753bd2b4b56dba4b8d0e81a3db04ab027a4394ef508a42346f7
 ---
 
 ## List Session Resources
@@ -90,6 +90,8 @@ List Session Resources
       - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
 
       - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
+
+      - `const AnthropicBetaAgentMemory2026_07_22 AnthropicBeta = "agent-memory-2026-07-22"`
 
 ### Returns
 

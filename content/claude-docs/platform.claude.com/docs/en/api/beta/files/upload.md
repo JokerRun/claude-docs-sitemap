@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/upload
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 30cd47e7966c8370b88602fff31f22eda8db609589e0dd5cec081e9fedc93198
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 5509ceffe55d4b29992547fa035687a6bbe12b56ec52a50f8c47b37a1a1abd99
 ---
 
 ## Upload File
@@ -19,7 +19,7 @@ Upload File
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 25 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 26 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -76,6 +76,8 @@ Upload File
     - `"server-side-fallback-2026-06-01"`
 
     - `"fallback-credit-2026-06-01"`
+
+    - `"agent-memory-2026-07-22"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/user_profiles/retrieve
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 856f94fa48d9de053d16c4fdf191e3563c146949cf7785bc985041be53bd8643
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: b4085e4d7f5a0bfb6329874a365bc42a46b2eea2e53aace24885086488158675
 ---
 
 ## Get User Profile
@@ -78,6 +78,8 @@ Get User Profile
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
 ### Returns
 

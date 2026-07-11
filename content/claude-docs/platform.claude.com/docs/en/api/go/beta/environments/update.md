@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/environments/update
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: f9238379bd80e5544f95b68d98ddf9f2ab987c4b835ad7dd7626b8e90bc99057
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: bbd45854cf9bf3a6de223ee3d1ce44260ecca91d8e308b6bed10d59883bcd41e
 ---
 
 ## Update Environment
@@ -204,6 +204,8 @@ Update an existing environment's configuration.
       - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
 
       - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
+
+      - `const AnthropicBetaAgentMemory2026_07_22 AnthropicBeta = "agent-memory-2026-07-22"`
 
 ### Returns
 

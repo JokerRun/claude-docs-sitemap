@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/user_profiles/create_enrollment_url
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: bd32a4ae766748ed75e906136f83e232f52f75d8aacb8018100cb8d5b04e2814
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 5c42ab0fdc4bd8b7bb7fc909705333e99bf73c4f143e41dcfc1efa32f66c7cc1
 ---
 
 ## Create Enrollment URL
@@ -23,7 +23,7 @@ Create Enrollment URL
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 25 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 26 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -80,6 +80,8 @@ Create Enrollment URL
     - `:"server-side-fallback-2026-06-01"`
 
     - `:"fallback-credit-2026-06-01"`
+
+    - `:"agent-memory-2026-07-22"`
 
 ### Returns
 

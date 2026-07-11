@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/messages/batches/cancel
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: fe507e56cb595aed05d82a28139058cb6cb1d36aefe8ace7f5af5f121f7ef739
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 031405d381cb37302d8198adb82c2888a36b6bbb26087af6d18077b7e5ba8d67
 ---
 
 ## Cancel a Message Batch
@@ -29,7 +29,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 25 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 26 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -86,6 +86,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
     - `"server-side-fallback-2026-06-01"`
 
     - `"fallback-credit-2026-06-01"`
+
+    - `"agent-memory-2026-07-22"`
 
 ### Returns
 

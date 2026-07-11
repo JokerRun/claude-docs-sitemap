@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memories/delete
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: b475693056d9c4908f56f97965ca6a5d0c82620e37bdb53c93c1e7cd08b677c8
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 25a16124f15800b88ba1a6230e4e63a6dd855e629665c2b4d0a83b49777c3a5d
 ---
 
 ## Delete a memory
@@ -31,7 +31,7 @@ Delete a memory
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 25 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 26 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -89,6 +89,8 @@ Delete a memory
 
     - `"fallback-credit-2026-06-01"`
 
+    - `"agent-memory-2026-07-22"`
+
 ### Returns
 
 - `BetaManagedAgentsDeletedMemory object { id, type }`
@@ -109,7 +111,7 @@ Delete a memory
 curl https://api.anthropic.com/v1/memory_stores/$MEMORY_STORE_ID/memories/$MEMORY_ID \
     -X DELETE \
     -H 'anthropic-version: 2023-06-01' \
-    -H 'anthropic-beta: managed-agents-2026-04-01' \
+    -H 'anthropic-beta: agent-memory-2026-07-22' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 

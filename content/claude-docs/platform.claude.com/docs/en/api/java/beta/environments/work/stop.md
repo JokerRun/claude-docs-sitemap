@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/environments/work/stop
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: f409c544ed76da3a532eb7fdb6c3f0c413cd4ebdbc227b4e8165d226c54317b5
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 2f0ab8dc419317e23276c7c201958fb5cc1ef67a76187f4c4797a494c84dc73b
 ---
 
 ## Stop Work
@@ -83,6 +83,8 @@ Stop a work item, initiating graceful or forced shutdown.
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
 
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
+
   - `BetaSelfHostedWorkStopRequest betaSelfHostedWorkStopRequest`
 
     Request to stop a work item.
@@ -134,10 +136,6 @@ Stop a work item, initiating graceful or forced shutdown.
   - `Metadata metadata`
 
     User-provided metadata key-value pairs associated with this work item
-
-  - `Optional<String> secret`
-
-    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
   - `Optional<String> startedAt`
 
@@ -214,7 +212,6 @@ public final class Main {
   "metadata": {
     "foo": "string"
   },
-  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",

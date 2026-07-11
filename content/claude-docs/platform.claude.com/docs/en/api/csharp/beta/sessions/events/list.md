@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/sessions/events/list
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 9867e6b826dbfd30e2f4f5a4fabfff8ed2079935d805e93ba126ca097f50e08e
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 75b49115f17a4bff3c32e77eb5e76054e2e7123f64d31f8cb699e49563288b1a
 ---
 
 ## List Events
@@ -116,6 +116,8 @@ List Events
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 

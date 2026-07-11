@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/vaults/credentials/delete
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 604b86670cea0f20fab5574795c44cddcc8c58e0c63ba3c1f6a06c70c4d171cc
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 861e9a342f40c41b1b0cbe987fe2eb6fca111b257a916354acfb140111112485
 ---
 
 ## Delete Credential
@@ -25,7 +25,7 @@ Delete Credential
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 25 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 26 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -82,6 +82,8 @@ Delete Credential
     - `"server-side-fallback-2026-06-01"`
 
     - `"fallback-credit-2026-06-01"`
+
+    - `"agent-memory-2026-07-22"`
 
 ### Returns
 

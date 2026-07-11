@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/environments/retrieve
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 1f3a8b405569f08a3dbab49352b56ae0ebbc865dd53e1c19fe2c3530ec85d24b
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 9848820b06971094154868ad11161fc889401e0b6f288bfb5041bfe1d435bcdb
 ---
 
 ## Get Environment
@@ -78,6 +78,8 @@ Retrieve a specific environment by ID.
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
 ### Returns
 

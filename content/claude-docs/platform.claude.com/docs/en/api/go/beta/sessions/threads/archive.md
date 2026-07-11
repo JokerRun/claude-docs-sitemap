@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/sessions/threads/archive
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: d53f0c545b3d74682174f42bb94d8be00c49d2cf18cc74dc88269a4cff0fd7f9
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 932c15c48aa38619425fe35d07a1008a635ea1638f481ca14190e504230a3c6b
 ---
 
 ## Archive Session Thread
@@ -86,6 +86,8 @@ Archive Session Thread
       - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
 
       - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
+
+      - `const AnthropicBetaAgentMemory2026_07_22 AnthropicBeta = "agent-memory-2026-07-22"`
 
 ### Returns
 

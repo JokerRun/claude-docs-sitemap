@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/create
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 625d9b33765d5e6da005b585cb5861e2476fbfdb247a7cc8438ba51b8e791bb2
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: c6aa26b89105ba266e4925f7aa6c856657d45c1e5f1d00d7c5ac83cbf61d854e
 ---
 
 ## Create Session
@@ -76,6 +76,8 @@ Create Session
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
   - `Agent agent`
 
@@ -385,7 +387,7 @@ Create Session
 
           - `String description`
 
-            Description of what the tool does, shown to the agent to help it decide when to use the tool. 1-1024 characters.
+            Description of what the tool does, shown to the agent to help it decide when to use the tool. 1-4096 characters.
 
           - `BetaManagedAgentsCustomToolInputSchema inputSchema`
 

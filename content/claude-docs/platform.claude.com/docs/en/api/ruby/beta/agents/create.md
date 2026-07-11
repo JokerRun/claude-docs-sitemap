@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/agents/create
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: f32712d215329334a4b056ac1734355ea54e74550a971596600764e4b728b43a
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 4a17f0ca9966e6c5b95ec5ca13471a9bc8b7f8d36d3ca0518b1f9a7899e9dbfd
 ---
 
 ## Create Agent
@@ -347,7 +347,7 @@ Create Agent
 
     - `description: String`
 
-      Description of what the tool does, shown to the agent to help it decide when to use the tool. 1-1024 characters.
+      Description of what the tool does, shown to the agent to help it decide when to use the tool. 1-4096 characters.
 
     - `input_schema: BetaManagedAgentsCustomToolInputSchema`
 
@@ -375,7 +375,7 @@ Create Agent
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 25 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 26 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -432,6 +432,8 @@ Create Agent
     - `:"server-side-fallback-2026-06-01"`
 
     - `:"fallback-credit-2026-06-01"`
+
+    - `:"agent-memory-2026-07-22"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/environments/work/stop
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: d24699c6f57636dae38edc672264681f57fdfb16933aecdc8a079ab2fadfa8d6
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 32b58cc1dc73ccd2b043de219ad6d95c9d96e17444c7cf8e48e82df117b97da9
 ---
 
 ## Stop Work
@@ -91,6 +91,8 @@ Stop a work item, initiating graceful or forced shutdown.
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class BetaSelfHostedWork:`
@@ -136,10 +138,6 @@ Stop a work item, initiating graceful or forced shutdown.
   - `required IReadOnlyDictionary<string, string> Metadata`
 
     User-provided metadata key-value pairs associated with this work item
-
-  - `required string? Secret`
-
-    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
   - `required string? StartedAt`
 
@@ -201,7 +199,6 @@ Console.WriteLine(betaSelfHostedWork);
   "metadata": {
     "foo": "string"
   },
-  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",

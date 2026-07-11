@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/sessions/threads/retrieve
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 9bfa885d2d7897a59c04178035aa8e321597d58c06aae56e683c35500bb2ddc7
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: dbc1fb67f47ef1b757c90fb0545d376987b890597a041fc8da33427d5784d01d
 ---
 
 ## Get Session Thread
@@ -29,7 +29,7 @@ Get Session Thread
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 26 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -86,6 +86,8 @@ Get Session Thread
       - `"server-side-fallback-2026-06-01"`
 
       - `"fallback-credit-2026-06-01"`
+
+      - `"agent-memory-2026-07-22"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/vaults/credentials/delete
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 691e1bc8c9c52482461a537123c23de8739f8752e62c59ce9d1d4b9477740328
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: ad7042e336c0326e411c33aeab10d5e9c79b4011661e3cba30b36ac7d7ee5891
 ---
 
 ## Delete Credential
@@ -84,6 +84,8 @@ Delete Credential
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/skills/versions/download
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: f594a36cb5067b33c5473883d14bf1b027cc3a9b276c9bddd29cb682946551d1
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 214315651108430b1f6b540b835d39182c7a64c65de1d597dd679df19779d78b
 ---
 
 ## Download Skill Version Content
@@ -33,7 +33,7 @@ Download a skill version's content as a zip archive.
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 25 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 26 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -90,6 +90,8 @@ Download a skill version's content as a zip archive.
     - `:"server-side-fallback-2026-06-01"`
 
     - `:"fallback-credit-2026-06-01"`
+
+    - `:"agent-memory-2026-07-22"`
 
 ### Returns
 

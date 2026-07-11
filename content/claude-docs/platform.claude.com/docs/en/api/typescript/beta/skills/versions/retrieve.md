@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/skills/versions/retrieve
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 6d78f358059f7f89a7006cfaa5be1392b6df032e0a1facd6cbf6bf733f7fb6b2
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 492918c4668eb20ea15660879668bf2014cf40a9c5f6d5570e423748b9894790
 ---
 
 ## Get Skill Version
@@ -35,7 +35,7 @@ Get Skill Version
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 26 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -92,6 +92,8 @@ Get Skill Version
       - `"server-side-fallback-2026-06-01"`
 
       - `"fallback-credit-2026-06-01"`
+
+      - `"agent-memory-2026-07-22"`
 
 ### Returns
 

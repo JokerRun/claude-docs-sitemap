@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/sessions/threads/events/stream
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 7b5bf6febd7f7ddfb44bd7c634be6d0bb10a0c63025e262076f9b83cdef60545
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: dcf9a7654bdea24c5f74b04876cdfd3c9026eac4a674af55241c73522532bffb
 ---
 
 ## Stream Session Thread Events
@@ -25,7 +25,7 @@ Stream Session Thread Events
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 25 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 26 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -82,6 +82,8 @@ Stream Session Thread Events
     - `"server-side-fallback-2026-06-01"`
 
     - `"fallback-credit-2026-06-01"`
+
+    - `"agent-memory-2026-07-22"`
 
 ### Returns
 

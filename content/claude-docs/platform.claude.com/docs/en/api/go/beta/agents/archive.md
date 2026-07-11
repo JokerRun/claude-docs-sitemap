@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/agents/archive
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 0c9fa9a1076d3d685e220ebfc8b2600cc1a595bee9b2eb390ea1bbf709ef361a
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: b5d017ab16ea6aef469c243bf4aabad3d08cee2ccede11b87cac3dfde8bdc3d2
 ---
 
 ## Archive Agent
@@ -82,6 +82,8 @@ Archive Agent
       - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
 
       - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
+
+      - `const AnthropicBetaAgentMemory2026_07_22 AnthropicBeta = "agent-memory-2026-07-22"`
 
 ### Returns
 

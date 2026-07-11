@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/php/beta
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: dd62bf17a58629cb7f4c2ff0976207650485728dab92bda1922f9aa931a340da
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 153868f4e89c78f1fca298caf4dd2840248438626dec798e3c4359e0850e1ce5
 ---
 
 # Beta
@@ -68,6 +68,8 @@ sha256: dd62bf17a58629cb7f4c2ff0976207650485728dab92bda1922f9aa931a340da
   - `"server-side-fallback-2026-06-01"`
 
   - `"fallback-credit-2026-06-01"`
+
+  - `"agent-memory-2026-07-22"`
 
 ### Beta API Error
 
@@ -9399,7 +9401,7 @@ var_dump($betaManagedAgentsAgent);
 
   - `string description`
 
-    Description of what the tool does, shown to the agent to help it decide when to use the tool. 1-1024 characters.
+    Description of what the tool does, shown to the agent to help it decide when to use the tool. 1-4096 characters.
 
   - `BetaManagedAgentsCustomToolInputSchema inputSchema`
 
@@ -10900,10 +10902,6 @@ Retrieve detailed information about a specific work item.
 
     User-provided metadata key-value pairs associated with this work item
 
-  - `?string secret`
-
-    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
-
   - `?string startedAt`
 
     RFC 3339 timestamp when work execution started
@@ -10958,7 +10956,6 @@ var_dump($betaSelfHostedWork);
   "metadata": {
     "foo": "string"
   },
-  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",
@@ -11029,10 +11026,6 @@ Long poll for work items in the queue.
 
     User-provided metadata key-value pairs associated with this work item
 
-  - `?string secret`
-
-    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
-
   - `?string startedAt`
 
     RFC 3339 timestamp when work execution started
@@ -11089,7 +11082,6 @@ var_dump($betaSelfHostedWork);
   "metadata": {
     "foo": "string"
   },
-  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",
@@ -11150,10 +11142,6 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
 
     User-provided metadata key-value pairs associated with this work item
 
-  - `?string secret`
-
-    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
-
   - `?string startedAt`
 
     RFC 3339 timestamp when work execution started
@@ -11208,7 +11196,6 @@ var_dump($betaSelfHostedWork);
   "metadata": {
     "foo": "string"
   },
-  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",
@@ -11361,10 +11348,6 @@ Stop a work item, initiating graceful or forced shutdown.
 
     User-provided metadata key-value pairs associated with this work item
 
-  - `?string secret`
-
-    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
-
   - `?string startedAt`
 
     RFC 3339 timestamp when work execution started
@@ -11420,7 +11403,6 @@ var_dump($betaSelfHostedWork);
   "metadata": {
     "foo": "string"
   },
-  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",
@@ -11487,10 +11469,6 @@ List work items in an environment.
 
     User-provided metadata key-value pairs associated with this work item
 
-  - `?string secret`
-
-    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
-
   - `?string startedAt`
 
     RFC 3339 timestamp when work execution started
@@ -11548,7 +11526,6 @@ var_dump($page);
       "metadata": {
         "foo": "string"
       },
-      "secret": "secret",
       "started_at": "started_at",
       "state": "queued",
       "stop_requested_at": "stop_requested_at",
@@ -11616,10 +11593,6 @@ Update work item metadata with merge semantics.
 
     User-provided metadata key-value pairs associated with this work item
 
-  - `?string secret`
-
-    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
-
   - `?string startedAt`
 
     RFC 3339 timestamp when work execution started
@@ -11675,7 +11648,6 @@ var_dump($betaSelfHostedWork);
   "metadata": {
     "foo": "string"
   },
-  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",
@@ -11785,10 +11757,6 @@ var_dump($betaSelfHostedWorkQueueStats);
   - `array<string,string> metadata`
 
     User-provided metadata key-value pairs associated with this work item
-
-  - `?string secret`
-
-    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
   - `?string startedAt`
 
@@ -26591,7 +26559,7 @@ var_dump($betaManagedAgentsMemory);
 
 ## List memories
 
-`$client->beta->memoryStores->memories->list(string memoryStoreID, ?int depth, ?int limit, ?Order order, ?string orderBy, ?string page, ?string pathPrefix, ?ManagedAgentsMemoryView view, ?list<AnthropicBeta> betas): PageCursor<ManagedAgentsMemoryListItem>`
+`$client->beta->memoryStores->memories->list(string memoryStoreID, ?int depth, ?int limit, ?string page, ?string pathPrefix, ?ManagedAgentsMemoryView view, ?list<AnthropicBeta> betas): PageCursor<ManagedAgentsMemoryListItem>`
 
 **get** `/v1/memory_stores/{memory_store_id}/memories`
 
@@ -26603,31 +26571,23 @@ List memories
 
 - `depth?:optional int`
 
-  Query parameter for depth
+  `0` (or omitted) returns all descendants below `path_prefix` (recursive). `1` returns immediate children only; deeper entries roll up as `memory_prefix` items. `depth=1` behaves like `ls`; omitting `depth` behaves like `find`.
 
 - `limit?:optional int`
 
-  Query parameter for limit
-
-- `order?:optional Order`
-
-  Query parameter for order
-
-- `orderBy?:optional string`
-
-  Query parameter for order_by
+  Maximum number of items to return per page. Must be between 1 and 100. Defaults to 20 when omitted. Capped at 20 when `view=full`. Both `memory` and `memory_prefix` items count toward the limit.
 
 - `page?:optional string`
 
-  Query parameter for page
+  Opaque pagination cursor (a `page_...` value). Pass the `next_page` value from a previous response to fetch the next page; omit for the first page.
 
 - `pathPrefix?:optional string`
 
-  Optional path prefix filter (raw string-prefix match; include a trailing slash for directory-scoped lists). This value appears in request URLs. Do not include secrets or personally identifiable information.
+  Optional path prefix filter. Must end with `/` (segment-aligned), e.g., `/notes/`. This value appears in request URLs. Do not include secrets or personally identifiable information.
 
 - `view?:optional ManagedAgentsMemoryView`
 
-  Query parameter for view
+  Which projection of each `memory` to return. Defaults to `basic` (content omitted). `full` populates `content` on each item and caps `limit` at 20; use this as the bulk-read path for export and sync.
 
 - `betas?:optional list<AnthropicBeta>`
 
@@ -26698,8 +26658,6 @@ $page = $client->beta->memoryStores->memories->list(
   'memory_store_id',
   depth: 0,
   limit: 0,
-  order: 'asc',
-  orderBy: 'order_by',
   page: 'page',
   pathPrefix: 'path_prefix',
   view: ManagedAgentsMemoryView::BASIC,
@@ -28265,7 +28223,7 @@ var_dump($deletedFile);
 
 ## Create Skill
 
-`$client->beta->skills->create(?string displayTitle, ?list<string> files, ?list<AnthropicBeta> betas): SkillNewResponse`
+`$client->beta->skills->create(list<string> files, ?string displayTitle, ?list<AnthropicBeta> betas): SkillNewResponse`
 
 **post** `/v1/skills`
 
@@ -28273,17 +28231,17 @@ Create Skill
 
 ### Parameters
 
+- `files: list<string>`
+
+  Files to upload for the skill.
+
+  All files must be in the same top-level directory and must include a SKILL.md file at the root of that directory.
+
 - `displayTitle?:optional string`
 
   Display title for the skill.
 
   This is a human-readable label that is not included in the prompt sent to the model.
-
-- `files?:optional list<string>`
-
-  Files to upload for the skill.
-
-  All files must be in the same top-level directory and must include a SKILL.md file at the root of that directory.
 
 - `betas?:optional list<AnthropicBeta>`
 
@@ -28344,10 +28302,10 @@ require_once dirname(__DIR__) . '/vendor/autoload.php';
 $client = new Client(apiKey: 'my-anthropic-api-key');
 
 $skill = $client->beta->skills->create(
-  displayTitle: 'display_title',
   files: [
     FileParam::fromString('Example data', filename: uniqid('file-upload-', true)),
   ],
+  displayTitle: 'display_title',
   betas: ['message-batches-2024-09-24'],
 );
 
@@ -28647,7 +28605,7 @@ var_dump($skill);
 
 ## Create Skill Version
 
-`$client->beta->skills->versions->create(string skillID, ?list<string> files, ?list<AnthropicBeta> betas): VersionNewResponse`
+`$client->beta->skills->versions->create(string skillID, list<string> files, ?list<AnthropicBeta> betas): VersionNewResponse`
 
 **post** `/v1/skills/{skill_id}/versions`
 
@@ -28661,7 +28619,7 @@ Create Skill Version
 
   The format and length of IDs may change over time.
 
-- `files?:optional list<string>`
+- `files: list<string>`
 
   Files to upload for the skill.
 
@@ -29828,68 +29786,6 @@ var_dump($betaUserProfileEnrollmentURL);
 
   - `string workspaceID`
 
-### Beta Webhook Environment Archived Event Data
-
-- `BetaWebhookEnvironmentArchivedEventData`
-
-  - `string id`
-
-    ID of the environment that triggered the event.
-
-  - `string organizationID`
-
-  - `"environment.archived" type`
-
-  - `string workspaceID`
-
-### Beta Webhook Environment Created Event Data
-
-- `BetaWebhookEnvironmentCreatedEventData`
-
-  - `string id`
-
-    ID of the environment that triggered the event.
-
-  - `string organizationID`
-
-  - `"environment.created" type`
-
-  - `string workspaceID`
-
-### Beta Webhook Environment Deleted Event Data
-
-- `BetaWebhookEnvironmentDeletedEventData`
-
-  - `string id`
-
-    ID of the environment that triggered the event.
-
-  - `string organizationID`
-
-  - `BetaWebhookEnvironmentDeletedEventType type`
-
-  - `string workspaceID`
-
-### Beta Webhook Environment Deleted Event Type
-
-- `BetaWebhookEnvironmentDeletedEventType`
-
-  - `"environment.deleted"`
-
-### Beta Webhook Environment Updated Event Data
-
-- `BetaWebhookEnvironmentUpdatedEventData`
-
-  - `string id`
-
-    ID of the environment that triggered the event.
-
-  - `string organizationID`
-
-  - `"environment.updated" type`
-
-  - `string workspaceID`
-
 ### Beta Webhook Event
 
 - `BetaWebhookEvent`
@@ -30371,132 +30267,6 @@ var_dump($betaUserProfileEnrollmentURL);
     - `"deployment_run.succeeded" type`
 
     - `string workspaceID`
-
-  - `BetaWebhookEnvironmentCreatedEventData`
-
-    - `string id`
-
-      ID of the environment that triggered the event.
-
-    - `string organizationID`
-
-    - `"environment.created" type`
-
-    - `string workspaceID`
-
-  - `BetaWebhookEnvironmentUpdatedEventData`
-
-    - `string id`
-
-      ID of the environment that triggered the event.
-
-    - `string organizationID`
-
-    - `"environment.updated" type`
-
-    - `string workspaceID`
-
-  - `BetaWebhookEnvironmentArchivedEventData`
-
-    - `string id`
-
-      ID of the environment that triggered the event.
-
-    - `string organizationID`
-
-    - `"environment.archived" type`
-
-    - `string workspaceID`
-
-  - `BetaWebhookEnvironmentDeletedEventData`
-
-    - `string id`
-
-      ID of the environment that triggered the event.
-
-    - `string organizationID`
-
-    - `BetaWebhookEnvironmentDeletedEventType type`
-
-    - `string workspaceID`
-
-  - `BetaWebhookMemoryStoreCreatedEventData`
-
-    - `string id`
-
-      ID of the memory store that triggered the event.
-
-    - `string organizationID`
-
-    - `"memory_store.created" type`
-
-    - `string workspaceID`
-
-  - `BetaWebhookMemoryStoreArchivedEventData`
-
-    - `string id`
-
-      ID of the memory store that triggered the event.
-
-    - `string organizationID`
-
-    - `"memory_store.archived" type`
-
-    - `string workspaceID`
-
-  - `BetaWebhookMemoryStoreDeletedEventData`
-
-    - `string id`
-
-      ID of the memory store that triggered the event.
-
-    - `string organizationID`
-
-    - `"memory_store.deleted" type`
-
-    - `string workspaceID`
-
-### Beta Webhook Memory Store Archived Event Data
-
-- `BetaWebhookMemoryStoreArchivedEventData`
-
-  - `string id`
-
-    ID of the memory store that triggered the event.
-
-  - `string organizationID`
-
-  - `"memory_store.archived" type`
-
-  - `string workspaceID`
-
-### Beta Webhook Memory Store Created Event Data
-
-- `BetaWebhookMemoryStoreCreatedEventData`
-
-  - `string id`
-
-    ID of the memory store that triggered the event.
-
-  - `string organizationID`
-
-  - `"memory_store.created" type`
-
-  - `string workspaceID`
-
-### Beta Webhook Memory Store Deleted Event Data
-
-- `BetaWebhookMemoryStoreDeletedEventData`
-
-  - `string id`
-
-    ID of the memory store that triggered the event.
-
-  - `string organizationID`
-
-  - `"memory_store.deleted" type`
-
-  - `string workspaceID`
 
 ### Beta Webhook Session Archived Event Data
 

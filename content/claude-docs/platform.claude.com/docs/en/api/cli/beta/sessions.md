@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/sessions
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 78c15cacf36cb4447d8c8c82fac415e0aa4f820de7f419a378c0bde4e1f2e958
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: a91a2c376df72a9e172ee6650caa5902f8bb2333d1c03a665b497c682c569faf
 ---
 
 # Sessions
@@ -4178,7 +4178,7 @@ ant beta:sessions archive \
 
       - `description: string`
 
-        Description of what the tool does, shown to the agent to help it decide when to use the tool. 1-1024 characters.
+        Description of what the tool does, shown to the agent to help it decide when to use the tool. 1-4096 characters.
 
       - `input_schema: object { type, properties, required }`
 
@@ -5578,7 +5578,7 @@ ant beta:sessions archive \
 
       - `description: string`
 
-        Description of what the tool does, shown to the agent to help it decide when to use the tool. 1-1024 characters.
+        Description of what the tool does, shown to the agent to help it decide when to use the tool. 1-4096 characters.
 
       - `input_schema: object { type, properties, required }`
 

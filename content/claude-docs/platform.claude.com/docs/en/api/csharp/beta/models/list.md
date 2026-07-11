@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/models/list
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 63b9b612cfed9eef6bc70a5830e36bffeaa7e340b31bd2aad6ff031436c41280
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: fb90cf8eee2024556fc7075f29585733107e08ede060503bce437eba4a2eccb3
 ---
 
 ## List Models
@@ -92,6 +92,8 @@ The Models API response can be used to determine which models are available for 
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 

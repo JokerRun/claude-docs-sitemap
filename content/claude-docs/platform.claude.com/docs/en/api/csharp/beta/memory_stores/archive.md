@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/memory_stores/archive
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: a1f35493bf41c899eb22c2d15a71a011bf6d3d4a30e4e0f418bd069d55a1ee4c
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: fd3a3cc7d2e7250eb1badf9391cbedb21df91709e7ceae0f7b3aa7cc35519a99
 ---
 
 ## Archive a memory store
@@ -80,6 +80,8 @@ Archive a memory store
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 

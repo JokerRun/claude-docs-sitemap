@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/environments/work/update
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: fdcae0fcc97713924222ff7d3e5e6e7dcb48b7604fc982eca92d39ff3c8d1493
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: f44d5a23730ccc5d082b98fb42d9f8020da4c2a98b4c2097d2b6ef232f260a80
 ---
 
 ## Update Work Item
@@ -93,6 +93,8 @@ Update work item metadata with merge semantics.
 
       - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
 
+      - `const AnthropicBetaAgentMemory2026_07_22 AnthropicBeta = "agent-memory-2026-07-22"`
+
 ### Returns
 
 - `type BetaSelfHostedWork struct{…}`
@@ -140,10 +142,6 @@ Update work item metadata with merge semantics.
   - `Metadata map[string, string]`
 
     User-provided metadata key-value pairs associated with this work item
-
-  - `Secret string`
-
-    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
   - `StartedAt string`
 
@@ -229,7 +227,6 @@ func main() {
   "metadata": {
     "foo": "string"
   },
-  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",

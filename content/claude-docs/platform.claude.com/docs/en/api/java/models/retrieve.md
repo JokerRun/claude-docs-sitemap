@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/models/retrieve
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 53c30efead85da40ee53c153a1564900a6b8708d4a242451a4f056bb2e35b73d
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 5536cbe4ba3b48bacd107c60e46ad19a3eb394d1668c634df99e719c7da93dc4
 ---
 
 ## Get a Model
@@ -82,6 +82,8 @@ The Models API response can be used to determine information about a specific mo
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
 ### Returns
 

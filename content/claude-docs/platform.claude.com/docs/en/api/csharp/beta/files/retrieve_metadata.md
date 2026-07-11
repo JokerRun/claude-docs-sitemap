@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/files/retrieve_metadata
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 0a46e1c93901392fc1d63b8a13884de69b4a5dd546c7c93f18a11ee5f9fb7f02
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 49aeb8aa24065925b260725ab46f8175c2fb85b53133285179ebc632cbd9e276
 ---
 
 ## Get File Metadata
@@ -80,6 +80,8 @@ Get File Metadata
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 

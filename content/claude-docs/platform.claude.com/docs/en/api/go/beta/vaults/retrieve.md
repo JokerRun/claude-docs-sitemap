@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/vaults/retrieve
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: b24283d24f1ce96baaa1b1fd5b7eae6d31ae3ce269379a6e5ab0d19dd1de6389
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: e96bb798dc45afe41e4c9e749b350348755a1275a8d60b72812705e148687b88
 ---
 
 ## Get Vault
@@ -82,6 +82,8 @@ Get Vault
       - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
 
       - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
+
+      - `const AnthropicBetaAgentMemory2026_07_22 AnthropicBeta = "agent-memory-2026-07-22"`
 
 ### Returns
 

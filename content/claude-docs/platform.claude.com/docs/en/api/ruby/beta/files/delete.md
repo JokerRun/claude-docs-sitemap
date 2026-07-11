@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/files/delete
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: d30541c83fd121626917548191dd5163df43a785f39e6ce2b2679d63c45356d1
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 18caff20d4be299867155b23b419f5e9a02b72456c9d0877325fbb34853c0157
 ---
 
 ## Delete File
@@ -25,7 +25,7 @@ Delete File
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 25 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 26 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -82,6 +82,8 @@ Delete File
     - `:"server-side-fallback-2026-06-01"`
 
     - `:"fallback-credit-2026-06-01"`
+
+    - `:"agent-memory-2026-07-22"`
 
 ### Returns
 

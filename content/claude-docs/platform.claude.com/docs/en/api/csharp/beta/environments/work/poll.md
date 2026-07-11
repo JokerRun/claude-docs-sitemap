@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/environments/work/poll
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 1d7213ff6a4dc2b2d525c5d6b817ac62486abb31e3fe3b7a0152ec7e8f1364d0
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 07f05564f4a689430415a64e6f945ef0f1a48b96cd555115fc35cf40d23599fd
 ---
 
 ## Poll for Work
@@ -91,6 +91,8 @@ Long poll for work items in the queue.
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
   - `string anthropicWorkerID`
 
     Header param: Unique identifier for the specific worker polling, used to track aggregated environment-level work metrics in Console
@@ -140,10 +142,6 @@ Long poll for work items in the queue.
   - `required IReadOnlyDictionary<string, string> Metadata`
 
     User-provided metadata key-value pairs associated with this work item
-
-  - `required string? Secret`
-
-    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
   - `required string? StartedAt`
 
@@ -204,7 +202,6 @@ Console.WriteLine(betaSelfHostedWork);
   "metadata": {
     "foo": "string"
   },
-  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",

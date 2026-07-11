@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/environments/create
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: ece6312d081470d439b7a33f23f8150d09847387999fe817f81144bf40f46922
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 941922f89087e085cafeb1eb31acd1b9e124eac4a62c2aefb0be7f8662920ca9
 ---
 
 ## Create Environment
@@ -76,6 +76,8 @@ Create a new environment with the specified configuration.
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
   - `String name`
 

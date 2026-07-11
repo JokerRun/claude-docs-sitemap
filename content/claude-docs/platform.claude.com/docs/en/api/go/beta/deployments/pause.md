@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/deployments/pause
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 45b7a55a756f7648b7983830bd7cfd5236b31ccfd91a32a1d67f55720b59d1ff
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: fc2ac015abb34dee6c7ed701ba70750dc62c6c8cad4b075266db059feac61f8b
 ---
 
 ## Pause Deployment
@@ -82,6 +82,8 @@ Pause Deployment
       - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
 
       - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
+
+      - `const AnthropicBetaAgentMemory2026_07_22 AnthropicBeta = "agent-memory-2026-07-22"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/agents/list
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 7986c96a43b15d8957b56d8c001b969b4175b26252894f41ae12b54f8527bc52
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: f1d7695694a0e865b557610e5cd5b11b93770e336fc07a09d07321753ae842ab
 ---
 
 ## List Agents
@@ -96,6 +96,8 @@ List Agents
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 

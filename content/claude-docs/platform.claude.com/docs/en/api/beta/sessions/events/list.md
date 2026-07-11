@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/events/list
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 04587591af53f1a56182b2e34fddc977859a260c53955347b351a50d04963ea2
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 4be84a4257d772ddf53a4a9d59eb2144eb66b7089fa5bbdda88dbc46c417cba5
 ---
 
 ## List Events
@@ -61,7 +61,7 @@ List Events
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 25 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 26 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -118,6 +118,8 @@ List Events
     - `"server-side-fallback-2026-06-01"`
 
     - `"fallback-credit-2026-06-01"`
+
+    - `"agent-memory-2026-07-22"`
 
 ### Returns
 

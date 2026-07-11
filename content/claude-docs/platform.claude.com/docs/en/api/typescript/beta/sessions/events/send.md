@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/sessions/events/send
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: d444d149e2c726c18c7c2848d9ed60fd8534f8aaf0768d4da66a1758fb016bd6
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: dc9d2be83a43e5692651954cab4e413ab3d71969fa407c9c0dc2e7b94ca16286
 ---
 
 ## Send Events
@@ -387,7 +387,7 @@ Send Events
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 26 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -444,6 +444,8 @@ Send Events
       - `"server-side-fallback-2026-06-01"`
 
       - `"fallback-credit-2026-06-01"`
+
+      - `"agent-memory-2026-07-22"`
 
 ### Returns
 

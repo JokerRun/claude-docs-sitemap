@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/retrieve
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 224427f4adf805de9ff26768cca44e49c98f60c78cdbddf3fad9c4fca7620e2f
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: ee7196cdba83ce9e4b6dd61def1816b2e77981dc3b0b908d81a305ec4d62ee7d
 ---
 
 ## Get Vault
@@ -78,6 +78,8 @@ Get Vault
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
 ### Returns
 

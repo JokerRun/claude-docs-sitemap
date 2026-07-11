@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/environments/work/poll
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 04058a66c954313ae873053013ddae30774ab59f5100c7335f1d647eed264036
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: e011784462e298fa7f9173ade7b3f3b4f8c218c7ff613c1916e761d841974f1a
 ---
 
 ## Poll for Work
@@ -33,7 +33,7 @@ Long poll for work items in the queue.
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 25 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 26 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -91,6 +91,8 @@ Long poll for work items in the queue.
 
     - `"fallback-credit-2026-06-01"`
 
+    - `"agent-memory-2026-07-22"`
+
 - `anthropic_worker_id: Optional[str]`
 
   Unique identifier for the specific worker polling, used to track aggregated environment-level work metrics in Console
@@ -142,10 +144,6 @@ Long poll for work items in the queue.
   - `metadata: Dict[str, str]`
 
     User-provided metadata key-value pairs associated with this work item
-
-  - `secret: Optional[str]`
-
-    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
   - `started_at: Optional[str]`
 
@@ -210,7 +208,6 @@ print(beta_self_hosted_work.id)
   "metadata": {
     "foo": "string"
   },
-  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",

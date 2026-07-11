@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/vaults/credentials/update
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 7fd64598496e8c12ffdea4a0b5e786fa4319aa4827120e6313c58e81ebecd32c
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: bc0dbee101c7cf54cb2cc4d0f1cd19580309659d5d40fa45245298596588b233
 ---
 
 ## Update Credential
@@ -214,6 +214,8 @@ Update Credential
       - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
 
       - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
+
+      - `const AnthropicBetaAgentMemory2026_07_22 AnthropicBeta = "agent-memory-2026-07-22"`
 
 ### Returns
 

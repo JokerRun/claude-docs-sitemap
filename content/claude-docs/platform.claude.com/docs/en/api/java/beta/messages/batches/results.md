@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/messages/batches/results
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: e7bcfaddbadb46d98b27a703de69d1ea40e6543726ff88ef895dfa8909ac1e47
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: a3a0e75f91254067fe67bfe68f0d8d192758fddec2ced629374334fc023e4670
 ---
 
 ## Retrieve Message Batch results
@@ -84,6 +84,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
 ### Returns
 

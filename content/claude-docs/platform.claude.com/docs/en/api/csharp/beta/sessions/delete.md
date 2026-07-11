@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/sessions/delete
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: c25edb01d0df37a9743328fb0ed971378c0655376dec26b7de8e75132c5fd606
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 6b85b7b0d9d26e36a7450c50a1536aed3152496162dcc4a8d1a50e2b7a687cd2
 ---
 
 ## Delete Session
@@ -80,6 +80,8 @@ Delete Session
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 

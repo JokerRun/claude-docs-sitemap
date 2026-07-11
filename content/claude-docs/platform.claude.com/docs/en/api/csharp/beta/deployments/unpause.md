@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/deployments/unpause
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: b082822a674e122cd1febfce641927c180fef2ea0e4fb67072b36fca4cf30b7e
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 25ea3c6910743caa491fcc16ffd4cb0af085ea698a4e18f739049b5cd2655e64
 ---
 
 ## Unpause Deployment
@@ -80,6 +80,8 @@ Unpause Deployment
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/sessions/create
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 9255c45b73790d1b458c5fbbbb3b9c7c8e42da6b386df234308d283f22a0e7ad
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 3669df83dd528916f5923ff1816e70c7ce832c67cb9a515164a27e8b5c469616
 ---
 
 ## Create Session
@@ -361,7 +361,7 @@ Create Session
 
         - `description: str`
 
-          Description of what the tool does, shown to the agent to help it decide when to use the tool. 1-1024 characters.
+          Description of what the tool does, shown to the agent to help it decide when to use the tool. 1-4096 characters.
 
         - `input_schema: BetaManagedAgentsCustomToolInputSchema`
 
@@ -497,7 +497,7 @@ Create Session
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 25 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 26 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -554,6 +554,8 @@ Create Session
     - `"server-side-fallback-2026-06-01"`
 
     - `"fallback-credit-2026-06-01"`
+
+    - `"agent-memory-2026-07-22"`
 
 ### Returns
 

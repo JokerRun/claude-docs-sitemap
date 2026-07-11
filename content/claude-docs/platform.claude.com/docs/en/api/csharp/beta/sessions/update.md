@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/sessions/update
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 28b9a143671b74a2ff8d81c4fa434cdc93f88affaffe2a8c22bfe388379231b3
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 2ce5d0242e5d05d83a77c18ed38ce3af0a4f2c6a57f26e8c8b70d4f80ad3c154
 ---
 
 ## Update Session
@@ -96,6 +96,8 @@ Update Session
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 

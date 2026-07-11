@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/vaults/credentials/mcp_oauth_validate
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: a81cfcd69088cb704f310bbc3bed80b3e3bf4e543582fe3b10bb466f1a2e429d
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 6d1c757539249f1b8728dfd60bb383fabb7465bce8a70adb54136ed802bd596f
 ---
 
 ## Validate Credential
@@ -25,7 +25,7 @@ Validate Credential
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 25 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 26 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -82,6 +82,8 @@ Validate Credential
     - `"server-side-fallback-2026-06-01"`
 
     - `"fallback-credit-2026-06-01"`
+
+    - `"agent-memory-2026-07-22"`
 
 ### Returns
 

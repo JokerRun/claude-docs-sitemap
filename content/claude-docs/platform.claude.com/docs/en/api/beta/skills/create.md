@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/create
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 6ed5fb82212350c472cb5d4a33028a899e70653bece4b01ac48f637a85e95ed0
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 9b0ad3c429d78753a25dbdeee6e8e5731509bfa9f9476edba9dc042682831b9d
 ---
 
 ## Create Skill
@@ -19,7 +19,7 @@ Create Skill
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 25 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 26 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -77,6 +77,8 @@ Create Skill
 
     - `"fallback-credit-2026-06-01"`
 
+    - `"agent-memory-2026-07-22"`
+
 ### Returns
 
 - `id: string`
@@ -124,10 +126,11 @@ Create Skill
 
 ```http
 curl https://api.anthropic.com/v1/skills \
-    -X POST \
+    -H 'Content-Type: multipart/form-data' \
     -H 'anthropic-version: 2023-06-01' \
     -H 'anthropic-beta: skills-2025-10-02' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -F files='["Example data"]'
 ```
 
 #### Response

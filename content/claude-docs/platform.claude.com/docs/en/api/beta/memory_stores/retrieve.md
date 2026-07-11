@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/retrieve
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: e4328d552ab218ce12973bc3e05ec8b6dd5421936b1d69728ac9f1d55d8b36ca
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 24f81960d8b839ec341be092b432c6e82fda4a391bde0066940900d63b1a64c1
 ---
 
 ## Retrieve a memory store
@@ -23,7 +23,7 @@ Retrieve a memory store
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 25 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 26 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -81,6 +81,8 @@ Retrieve a memory store
 
     - `"fallback-credit-2026-06-01"`
 
+    - `"agent-memory-2026-07-22"`
+
 ### Returns
 
 - `BetaManagedAgentsMemoryStore object { id, created_at, name, 5 more }`
@@ -124,7 +126,7 @@ Retrieve a memory store
 ```http
 curl https://api.anthropic.com/v1/memory_stores/$MEMORY_STORE_ID \
     -H 'anthropic-version: 2023-06-01' \
-    -H 'anthropic-beta: managed-agents-2026-04-01' \
+    -H 'anthropic-beta: agent-memory-2026-07-22' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 

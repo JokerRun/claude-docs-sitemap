@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/skills/versions/retrieve
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 385a881e0edca346cecbb6ecc151056a6f0a8da490df7f9d62c52a3d1385c969
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 3c8c4b0112f1a7b92736a9572dc80ebca74ccf04d87ce561deb19c59c3502a03
 ---
 
 ## Get Skill Version
@@ -88,6 +88,8 @@ Get Skill Version
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
 ### Returns
 

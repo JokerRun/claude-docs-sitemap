@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/create
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 4d6c22e5ce8c8ea1861edf17b7d834ddbad8fde8a6c7c1e1199ae21393ef9019
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 7ea67cf53b37358ede76d92e9a3f5701945f0d3f3795f4cf1d7ec269be5f578c
 ---
 
 ## Create Tunnel
@@ -21,7 +21,7 @@ Creates a tunnel. Creation allocates a fresh hostname and provisions the tunnel;
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 25 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 26 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -78,6 +78,8 @@ Creates a tunnel. Creation allocates a fresh hostname and provisions the tunnel;
     - `"server-side-fallback-2026-06-01"`
 
     - `"fallback-credit-2026-06-01"`
+
+    - `"agent-memory-2026-07-22"`
 
 ### Body Parameters
 

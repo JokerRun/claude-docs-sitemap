@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/memory_stores/update
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 397b13b074f823c8b8b745a65f7c1f27e29290f6a4bb4aeb7732a181e03aa92e
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 18d0f96bf40e9775bc2e79606a184ec89e0ca4bf931a18d2dd774d904177a5fe
 ---
 
 ## Update a memory store
@@ -78,6 +78,8 @@ Update a memory store
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
   - `Optional<String> description`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/agents/update
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: da931471aa90bcd5c2eef5a61dc63f411cf68fb9b686ea6333613b5826c98999
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 5f89926c6d0093253423d770336605f8d09a4ab7b30fe2a4dd513c10fc2f3efe
 ---
 
 ## Update Agent
@@ -363,7 +363,7 @@ Update Agent
 
       - `required string Description`
 
-        Description of what the tool does, shown to the agent to help it decide when to use the tool. 1-1024 characters.
+        Description of what the tool does, shown to the agent to help it decide when to use the tool. 1-4096 characters.
 
       - `required BetaManagedAgentsCustomToolInputSchema InputSchema`
 
@@ -442,6 +442,8 @@ Update Agent
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 

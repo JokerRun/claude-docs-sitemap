@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/skills/versions/download
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 21f4e4fc1da24e981a2dd8823954d95b168331ebbf05aa2ca7b49bda4c8f07ce
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: fb9bc49cd40154b6efc0ffb8feb92197bb15bcfc46f6fffe9ed874dced0f86f0
 ---
 
 ## Download Skill Version Content
@@ -35,7 +35,7 @@ Download a skill version's content as a zip archive.
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 26 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -92,6 +92,8 @@ Download a skill version's content as a zip archive.
       - `"server-side-fallback-2026-06-01"`
 
       - `"fallback-credit-2026-06-01"`
+
+      - `"agent-memory-2026-07-22"`
 
 ### Returns
 

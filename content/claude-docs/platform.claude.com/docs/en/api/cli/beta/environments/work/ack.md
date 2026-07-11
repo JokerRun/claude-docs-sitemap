@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/environments/work/ack
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: dc374cbf3626ce020745b29db98ddeb6813a598e912c387dfdd09c008a2dcf49
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 24d271d027265a13ca2233bd3f264e406738e642de7bb0c14e5ecbcbe11f7a58
 ---
 
 ## Acknowledge Work
@@ -31,7 +31,7 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
 
 ### Returns
 
-- `beta_self_hosted_work: object { id, acknowledged_at, created_at, 10 more }`
+- `beta_self_hosted_work: object { id, acknowledged_at, created_at, 9 more }`
 
   Work resource representing a unit of work in a self-hosted environment.
 
@@ -74,10 +74,6 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
   - `metadata: map[string]`
 
     User-provided metadata key-value pairs associated with this work item
-
-  - `secret: string`
-
-    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
   - `started_at: string`
 
@@ -134,7 +130,6 @@ ant beta:environments:work ack \
   "metadata": {
     "foo": "string"
   },
-  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",

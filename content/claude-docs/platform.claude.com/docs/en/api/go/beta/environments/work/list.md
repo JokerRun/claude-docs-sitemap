@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/environments/work/list
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 6b9fc7a12f9826a3f74deee0ee169abe5bc83589e300d5e7d235cad5bc40b0c1
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 346b10a62d27b7dc1152737d6ec691fcd3c91a8f84af27ffed6f5cde762c712e
 ---
 
 ## List Work Items
@@ -93,6 +93,8 @@ List work items in an environment.
 
       - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
 
+      - `const AnthropicBetaAgentMemory2026_07_22 AnthropicBeta = "agent-memory-2026-07-22"`
+
 ### Returns
 
 - `type BetaSelfHostedWork struct{…}`
@@ -140,10 +142,6 @@ List work items in an environment.
   - `Metadata map[string, string]`
 
     User-provided metadata key-value pairs associated with this work item
-
-  - `Secret string`
-
-    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
   - `StartedAt string`
 
@@ -226,7 +224,6 @@ func main() {
       "metadata": {
         "foo": "string"
       },
-      "secret": "secret",
       "started_at": "started_at",
       "state": "queued",
       "stop_requested_at": "stop_requested_at",

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/messages/count_tokens
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: d136860b4aaf134587630cc185e78d7d483c3c7f8c19260cf11651251ec683e8
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 001c5f3c639adcef734a8091797b5c05ed9758b18b35cdb2cf7d994c0a62fd6d
 ---
 
 ## Count tokens in a Message
@@ -2397,6 +2397,8 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
   - `string userProfileID`
 

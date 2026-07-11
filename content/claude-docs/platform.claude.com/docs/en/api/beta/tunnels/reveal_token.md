@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/reveal_token
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 16e86645800faa5d34d869d7252d05c1aecaaf184cad26f99054ee64fe56b037
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 27cb516fd9311336f142919432649c673ee7c01a827be4953e49fb2003448b7c
 ---
 
 ## Reveal Tunnel Token
@@ -25,7 +25,7 @@ Reveals a tunnel's connector token. The value is fetched live on each call; Anth
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 25 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 26 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -82,6 +82,8 @@ Reveals a tunnel's connector token. The value is fetched live on each call; Anth
     - `"server-side-fallback-2026-06-01"`
 
     - `"fallback-credit-2026-06-01"`
+
+    - `"agent-memory-2026-07-22"`
 
 ### Returns
 

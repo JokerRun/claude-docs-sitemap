@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/sessions/update
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: d180f98aa335f08f817aa9e33562c1358d5087261b7b2fa9d40d0e29c77f9db4
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 19469187d1eecec013f63b7d4afd06387eb30c2eae2ed99f7502cd9efb1e8fa0
 ---
 
 ## Update Session
@@ -179,7 +179,7 @@ Update Session
 
       - `description: str`
 
-        Description of what the tool does, shown to the agent to help it decide when to use the tool. 1-1024 characters.
+        Description of what the tool does, shown to the agent to help it decide when to use the tool. 1-4096 characters.
 
       - `input_schema: BetaManagedAgentsCustomToolInputSchema`
 
@@ -219,7 +219,7 @@ Update Session
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 25 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 26 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -276,6 +276,8 @@ Update Session
     - `"server-side-fallback-2026-06-01"`
 
     - `"fallback-credit-2026-06-01"`
+
+    - `"agent-memory-2026-07-22"`
 
 ### Returns
 

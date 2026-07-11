@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/user_profiles/create_enrollment_url
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 46373925b993c87d85f37f5991338724fab555a031cf6473c04c0ca8f79c58f8
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: ffdaad8de187795aef01dd0d6b00a403176501c5bce5d183cc9ead041061a306
 ---
 
 ## Create Enrollment URL
@@ -80,6 +80,8 @@ Create Enrollment URL
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 

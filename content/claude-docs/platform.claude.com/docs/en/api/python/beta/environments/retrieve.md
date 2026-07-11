@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/environments/retrieve
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 940d5544c411f1a8ddca793fa8107ee2ecb4b9004d899614e395feb1835c3d44
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 126716eabeb280a004959ac761cc14ffba3f448e55a0d215270b0346734ca510
 ---
 
 ## Get Environment
@@ -23,7 +23,7 @@ Retrieve a specific environment by ID.
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 25 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 26 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -80,6 +80,8 @@ Retrieve a specific environment by ID.
     - `"server-side-fallback-2026-06-01"`
 
     - `"fallback-credit-2026-06-01"`
+
+    - `"agent-memory-2026-07-22"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/completions/create
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: ba4f38c295aeabc9b87fa99c8009307a75c855bb70897f294e84436766dcd68d
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: b7f55f98785b7c61daa269609b7cbd53f178a54da4c6eb7add494ad2353fa506
 ---
 
 ## Create a Text Completion
@@ -23,7 +23,7 @@ Future models and features will not be compatible with Text Completions. See our
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 25 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 26 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -80,6 +80,8 @@ Future models and features will not be compatible with Text Completions. See our
     - `"server-side-fallback-2026-06-01"`
 
     - `"fallback-credit-2026-06-01"`
+
+    - `"agent-memory-2026-07-22"`
 
 ### Body Parameters
 

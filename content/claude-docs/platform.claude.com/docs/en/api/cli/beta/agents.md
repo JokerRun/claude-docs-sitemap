@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/agents
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: af382b29e7b2cc51863334f538fc77e06fe1d479eb0d4f9102ff4e824324dead
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 46c150df5ad85638150f72add9e0e014fdd642905156622e5632fd301f4aa5e4
 ---
 
 # Agents
@@ -2931,7 +2931,7 @@ ant beta:agents archive \
 
   - `description: string`
 
-    Description of what the tool does, shown to the agent to help it decide when to use the tool. 1-1024 characters.
+    Description of what the tool does, shown to the agent to help it decide when to use the tool. 1-4096 characters.
 
   - `input_schema: object { type, properties, required }`
 

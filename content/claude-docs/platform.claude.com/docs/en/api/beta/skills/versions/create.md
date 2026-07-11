@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/versions/create
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 95b4849206965a923f8a6fddb3939c57a6543e0e051c2b1430d2a30679e4746e
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 3a544332dd4e0d0b6e3fd80a3031a00c7488acfdf40ede026d19c0b8638f69c8
 ---
 
 ## Create Skill Version
@@ -27,7 +27,7 @@ Create Skill Version
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 25 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 26 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -85,6 +85,8 @@ Create Skill Version
 
     - `"fallback-credit-2026-06-01"`
 
+    - `"agent-memory-2026-07-22"`
+
 ### Returns
 
 - `id: string`
@@ -135,10 +137,11 @@ Create Skill Version
 
 ```http
 curl https://api.anthropic.com/v1/skills/$SKILL_ID/versions \
-    -X POST \
+    -H 'Content-Type: multipart/form-data' \
     -H 'anthropic-version: 2023-06-01' \
     -H 'anthropic-beta: skills-2025-10-02' \
-    -H "X-Api-Key: $ANTHROPIC_API_KEY"
+    -H "X-Api-Key: $ANTHROPIC_API_KEY" \
+    -F files='["Example data"]'
 ```
 
 #### Response

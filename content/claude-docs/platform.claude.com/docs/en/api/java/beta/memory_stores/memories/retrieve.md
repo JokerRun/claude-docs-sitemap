@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/memory_stores/memories/retrieve
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: e8cd5ae31f43523e9a5b7af37e4ddda4afcf181f81270729a08e9e128c9f49c0
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 27dcd243e82cd4e452e1c857c35a3c67f5ad4c3692da482bdfd7dccd29f00509
 ---
 
 ## Retrieve a memory
@@ -84,6 +84,8 @@ Retrieve a memory
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
 ### Returns
 

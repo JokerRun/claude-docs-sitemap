@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/events/stream
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 1457c458c6aa7c990aff98f114bd9c84f2730d76247070ee98a0703c396b55f6
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 4f375c978355090e250509616d1ea4f48059cbb6a28f4c80f86b94ae065ecdd4
 ---
 
 ## Stream Events
@@ -86,6 +86,8 @@ Stream Events
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
 ### Returns
 

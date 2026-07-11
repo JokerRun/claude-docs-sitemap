@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/environments/work/list
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: a803bb27998a6673a37e62c41ef5bea81241b28e3d332a743b5b6f43b80ae863
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 0ffd9927df29b886592c900a0ad3f3520b2145aaa64c3e08c41c9cb47151a05b
 ---
 
 ## List Work Items
@@ -35,7 +35,7 @@ List work items in an environment.
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 26 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -93,6 +93,8 @@ List work items in an environment.
 
       - `"fallback-credit-2026-06-01"`
 
+      - `"agent-memory-2026-07-22"`
+
 ### Returns
 
 - `BetaSelfHostedWork`
@@ -140,10 +142,6 @@ List work items in an environment.
   - `metadata: Record<string, string>`
 
     User-provided metadata key-value pairs associated with this work item
-
-  - `secret: string | null`
-
-    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
   - `started_at: string | null`
 
@@ -212,7 +210,6 @@ for await (const betaSelfHostedWork of client.beta.environments.work.list(
       "metadata": {
         "foo": "string"
       },
-      "secret": "secret",
       "started_at": "started_at",
       "state": "queued",
       "stop_requested_at": "stop_requested_at",

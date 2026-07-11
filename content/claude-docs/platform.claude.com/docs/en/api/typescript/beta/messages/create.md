@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/messages/create
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: cfb9939a3e12d86372c5b832e1ff62967d95ee27899ea88d31df3abd0aadc2d9
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 9d61d8c05ff6633b6e4df68c4354007caa4e590063e7d1e5dc66bcf2980d4b90
 ---
 
 ## Create a Message
@@ -2992,7 +2992,7 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
       - `(string & {})`
 
-      - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
+      - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 26 more`
 
         - `"message-batches-2024-09-24"`
 
@@ -3049,6 +3049,8 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
         - `"server-side-fallback-2026-06-01"`
 
         - `"fallback-credit-2026-06-01"`
+
+        - `"agent-memory-2026-07-22"`
 
     - `user_profile_id?: string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/deployment_runs/list
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: a565a79d600dfc957ff32b28751c5f69e04a8b01d8ba917a0015ddea0c7ecd9f
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: aa5394469d0b0f83bb536abe7afcf969e4cfa25f8c75f2a31977aeded32ac4f5
 ---
 
 ## List Deployment Runs
@@ -112,6 +112,8 @@ List Deployment Runs
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 

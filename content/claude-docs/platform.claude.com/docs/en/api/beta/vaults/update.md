@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/update
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 70c7dbef47e632628fe219a49239b656eb60aee4f618bb8104965e47bfa4882e
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: e8d8fe991544a9e4ecb8c573b1404387d7422d191f9365c9dceb971e000307a8
 ---
 
 ## Update Vault
@@ -23,7 +23,7 @@ Update Vault
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 25 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 26 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -80,6 +80,8 @@ Update Vault
     - `"server-side-fallback-2026-06-01"`
 
     - `"fallback-credit-2026-06-01"`
+
+    - `"agent-memory-2026-07-22"`
 
 ### Body Parameters
 

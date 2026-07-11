@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/vaults/create
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: ef5af8d9503fe8b44d37256d0a6da53cb2601e0abf6767535d460c6b45dca524
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 6fcf2a160a8168928f38641ab7ad0674f1831559806c34861d5df7a02e7baa57
 ---
 
 ## Create Vault
@@ -88,6 +88,8 @@ Create Vault
       - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
 
       - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
+
+      - `const AnthropicBetaAgentMemory2026_07_22 AnthropicBeta = "agent-memory-2026-07-22"`
 
 ### Returns
 

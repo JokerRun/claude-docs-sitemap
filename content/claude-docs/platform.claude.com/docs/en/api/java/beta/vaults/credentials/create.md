@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/credentials/create
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 4173986e7490267e689013f8be7e2f484d88dead10d161fe00126485410d11ec
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 24a0c386f8ceecda07dbb9a5b6d68b51bb7479cb2f0031084f008ab2a9a09c49
 ---
 
 ## Create Credential
@@ -78,6 +78,8 @@ Create Credential
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
   - `Auth auth`
 

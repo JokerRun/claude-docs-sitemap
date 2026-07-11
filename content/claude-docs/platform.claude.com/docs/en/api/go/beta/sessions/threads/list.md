@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/sessions/threads/list
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 15a797b71a942a98bae909888efa8159f152c4bad54c388d06763d33b8e321e4
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 5604a078d8c8ddfd48bce4e9b174a31274f76e2f1bcb1f131e370baed6823cf3
 ---
 
 ## List Session Threads
@@ -90,6 +90,8 @@ List Session Threads
       - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
 
       - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
+
+      - `const AnthropicBetaAgentMemory2026_07_22 AnthropicBeta = "agent-memory-2026-07-22"`
 
 ### Returns
 

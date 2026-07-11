@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/agents/archive
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 4380704e9f9387b487b5a8aac42cc80f12f5dabe3ed59fc23ed0669eaaf73c30
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: dcdd5bd037d11690f66b97456cfcfb1ea894500c6b11ab715edea37c807d9273
 ---
 
 ## Archive Agent
@@ -80,6 +80,8 @@ Archive Agent
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 

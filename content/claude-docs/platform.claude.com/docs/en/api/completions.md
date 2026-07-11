@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/completions
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 6286a78418d2d044ee591a4beaa9c5dc8c1473e8552ad3d353684bf658993b86
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 698f32f03a2b9e8d9dc3a64142efdb412f77589b482c8591ebe30e45191722c7
 ---
 
 # Completions
@@ -25,7 +25,7 @@ Future models and features will not be compatible with Text Completions. See our
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 25 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 26 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -82,6 +82,8 @@ Future models and features will not be compatible with Text Completions. See our
     - `"server-side-fallback-2026-06-01"`
 
     - `"fallback-credit-2026-06-01"`
+
+    - `"agent-memory-2026-07-22"`
 
 ### Body Parameters
 

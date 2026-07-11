@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/environments/work/update
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: db80dd2fca7af72523b57b2bfea7ee01abc0188a0d1aa67948c9ece20ab69b7a
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: fcc7fc23276efc73ad96ae812e27d6ab1618e29aa75025734eebf227ea4e5e81
 ---
 
 ## Update Work Item
@@ -31,7 +31,7 @@ Update work item metadata with merge semantics.
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 25 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 26 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -89,6 +89,8 @@ Update work item metadata with merge semantics.
 
     - `"fallback-credit-2026-06-01"`
 
+    - `"agent-memory-2026-07-22"`
+
 ### Returns
 
 - `class BetaSelfHostedWork: …`
@@ -136,10 +138,6 @@ Update work item metadata with merge semantics.
   - `metadata: Dict[str, str]`
 
     User-provided metadata key-value pairs associated with this work item
-
-  - `secret: Optional[str]`
-
-    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
   - `started_at: Optional[str]`
 
@@ -208,7 +206,6 @@ print(beta_self_hosted_work.id)
   "metadata": {
     "foo": "string"
   },
-  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",

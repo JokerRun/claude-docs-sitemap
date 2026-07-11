@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/vaults/credentials/retrieve
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 35bac2827bbea4472e69f16c372e98d750249801fc3dcca815195879bbd8887e
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: b8ab1240057178e2bb75f466a4027963faa51e3f07977ddba6f418177bc3dd45
 ---
 
 ## Get Credential
@@ -86,6 +86,8 @@ Get Credential
       - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
 
       - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
+
+      - `const AnthropicBetaAgentMemory2026_07_22 AnthropicBeta = "agent-memory-2026-07-22"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/memory_stores/list
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: e8c4a551a6d5975bd0fe7422f4c8536540d931aea1deff93661ea93a9eb6f123
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 78024c000bac00c89accd760cc865e50070380197580dade7465a293e9cdcfb2
 ---
 
 ## List memory stores
@@ -41,7 +41,7 @@ List memory stores
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 25 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 26 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -98,6 +98,8 @@ List memory stores
     - `"server-side-fallback-2026-06-01"`
 
     - `"fallback-credit-2026-06-01"`
+
+    - `"agent-memory-2026-07-22"`
 
 ### Returns
 

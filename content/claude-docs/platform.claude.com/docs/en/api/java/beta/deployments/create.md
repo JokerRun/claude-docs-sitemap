@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/deployments/create
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 3cf4546d57cdbd3298f8f05c2f914c230aeba6868ee0fd50b4fc68e567c9ad4f
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 1a040be9504d425fd38458245374954454c12a83c1f7eb159fbb7d7ee25850cd
 ---
 
 ## Create Deployment
@@ -76,6 +76,8 @@ Create Deployment
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
   - `Agent agent`
 

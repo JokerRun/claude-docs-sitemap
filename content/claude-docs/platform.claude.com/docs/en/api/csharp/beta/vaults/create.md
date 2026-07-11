@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/vaults/create
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 38bccab9c910255891c090f54bf4ea1e796be67448d44034b274b1fff2acd616
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 957d8a850bba22a678774d91a0000cd4a47c8ecb736e9698aebe93ff99ae9b6c
 ---
 
 ## Create Vault
@@ -84,6 +84,8 @@ Create Vault
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 

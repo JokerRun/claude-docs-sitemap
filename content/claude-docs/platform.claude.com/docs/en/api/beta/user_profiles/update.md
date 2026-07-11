@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/update
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 072be6324648f5281ddc234e2231834c6e1cefd5e9c60f35a25f796af735fc1c
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 975c1ef4aa71412bb979232e1d3cccce220e3d728f198d52f1bd951b5f5a5a2a
 ---
 
 ## Update User Profile
@@ -23,7 +23,7 @@ Update User Profile
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 25 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 26 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -80,6 +80,8 @@ Update User Profile
     - `"server-side-fallback-2026-06-01"`
 
     - `"fallback-credit-2026-06-01"`
+
+    - `"agent-memory-2026-07-22"`
 
 ### Body Parameters
 

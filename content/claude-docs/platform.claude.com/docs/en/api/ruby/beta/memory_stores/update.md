@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/memory_stores/update
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 1826654e71456c83e15d5d5b7b93cf7ad6780362f22d6ecb7d83ef760f354ce4
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: efa19eb3a799e6bf6fe4398aca46cd66431d6dc35345c136ccca5c5fe81653c1
 ---
 
 ## Update a memory store
@@ -35,7 +35,7 @@ Update a memory store
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 25 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 26 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -92,6 +92,8 @@ Update a memory store
     - `:"server-side-fallback-2026-06-01"`
 
     - `:"fallback-credit-2026-06-01"`
+
+    - `:"agent-memory-2026-07-22"`
 
 ### Returns
 

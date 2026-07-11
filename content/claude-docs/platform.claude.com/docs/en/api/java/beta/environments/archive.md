@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/environments/archive
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 11f32591419359bc5edc493053ec2dc121fcc06172794f8a28cfb07fee53adf6
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: a96606fca2f03d2ecadfa454abc3d55faa3fdb1143bd124e2dfbb22cb9752160
 ---
 
 ## Archive Environment
@@ -78,6 +78,8 @@ Archive an environment by ID. Archived environments cannot be used to create new
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
 ### Returns
 

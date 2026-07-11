@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/vaults/credentials/mcp_oauth_validate
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 1baae57f1b2bc4e3035f81cd594446f19ff920840b52d9f93989bc9378ee63d4
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 04625ed263dac59f5a943cacde445002aa08ca57ef91f30ef8e59439720f57ff
 ---
 
 ## Validate Credential
@@ -86,6 +86,8 @@ Validate Credential
       - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
 
       - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
+
+      - `const AnthropicBetaAgentMemory2026_07_22 AnthropicBeta = "agent-memory-2026-07-22"`
 
 ### Returns
 

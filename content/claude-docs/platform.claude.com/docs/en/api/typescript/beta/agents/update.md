@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/agents/update
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 2387bfcb484ce63c65543d00bbeda582659d83df131010884957a377751fc741
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: d22b6917358f5455679c08059410d473b76620f5bb7d23fefdf63bb0c20ba914
 ---
 
 ## Update Agent
@@ -351,7 +351,7 @@ Update Agent
 
       - `description: string`
 
-        Description of what the tool does, shown to the agent to help it decide when to use the tool. 1-1024 characters.
+        Description of what the tool does, shown to the agent to help it decide when to use the tool. 1-4096 characters.
 
       - `input_schema: BetaManagedAgentsCustomToolInputSchema`
 
@@ -379,7 +379,7 @@ Update Agent
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 26 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -436,6 +436,8 @@ Update Agent
       - `"server-side-fallback-2026-06-01"`
 
       - `"fallback-credit-2026-06-01"`
+
+      - `"agent-memory-2026-07-22"`
 
 ### Returns
 

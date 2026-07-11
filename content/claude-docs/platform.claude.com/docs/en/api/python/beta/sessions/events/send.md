@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/sessions/events/send
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: a8c78a838dab1000a047e1dce3ba40ded7e39112afb90587f02998c62fb81fc5
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 1b48e536b0ef129f044220eb74745080e0d8b3312a1e6a27edf5816946646091
 ---
 
 ## Send Events
@@ -385,7 +385,7 @@ Send Events
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 25 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 26 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -442,6 +442,8 @@ Send Events
     - `"server-side-fallback-2026-06-01"`
 
     - `"fallback-credit-2026-06-01"`
+
+    - `"agent-memory-2026-07-22"`
 
 ### Returns
 

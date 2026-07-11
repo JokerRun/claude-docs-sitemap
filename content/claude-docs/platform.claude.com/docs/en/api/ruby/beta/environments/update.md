@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/environments/update
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 157ae6ae34a828dc317448ed109549b3fa68376b25ddde79ab62070d19a34868
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 61a800ddeb2184d559bc01b734f0e5c62fdb076ca3c69e389aa5e93e425cbe01
 ---
 
 ## Update Environment
@@ -145,7 +145,7 @@ Update an existing environment's configuration.
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 25 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 26 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -202,6 +202,8 @@ Update an existing environment's configuration.
     - `:"server-side-fallback-2026-06-01"`
 
     - `:"fallback-credit-2026-06-01"`
+
+    - `:"agent-memory-2026-07-22"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/memory_stores/memories/update
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: fa7917235421b091ea07b6e939f9220973b26021ca241d40778753734b40e67d
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 023b01fa5c1af240983aee3c1849d10fce0d61f2e5df234e82d9be0973b4abf9
 ---
 
 ## Update a memory
@@ -100,6 +100,8 @@ Update a memory
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 

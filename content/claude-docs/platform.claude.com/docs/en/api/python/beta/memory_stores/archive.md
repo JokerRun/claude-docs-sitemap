@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/memory_stores/archive
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 715dabbce4a81790a5f19b31b82485d429cab090875ea899ba5a029c8d55883e
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: ea0c89f8c8b4dd5f6ad8db2eb8892a0c31df948d86f20694b13ac0166e585efd
 ---
 
 ## Archive a memory store
@@ -23,7 +23,7 @@ Archive a memory store
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 25 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 26 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -80,6 +80,8 @@ Archive a memory store
     - `"server-side-fallback-2026-06-01"`
 
     - `"fallback-credit-2026-06-01"`
+
+    - `"agent-memory-2026-07-22"`
 
 ### Returns
 

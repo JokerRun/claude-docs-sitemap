@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/environments/list
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: aea198859d66965bb082f1aa0c1789543e5486d7093960ec2f7d79bec7ab6eeb
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: a6e6b22ab4d5557012f3a37443b7e8e6af9b297df856aa7868885febc82fe9a0
 ---
 
 ## List Environments
@@ -88,6 +88,8 @@ List environments with pagination support.
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
 ### Returns
 

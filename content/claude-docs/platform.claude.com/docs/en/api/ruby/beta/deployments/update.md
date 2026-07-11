@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/deployments/update
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: ca1298ec84d5a80551463e14274891703c920fe0deb805076c3ff8318b661750
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 94de7603a810230424dce98140b9b1aeaa8cde98bdbcfb633e753a6cdc3d545a
 ---
 
 ## Update Deployment
@@ -391,7 +391,7 @@ Update Deployment
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 25 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 26 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -448,6 +448,8 @@ Update Deployment
     - `:"server-side-fallback-2026-06-01"`
 
     - `:"fallback-credit-2026-06-01"`
+
+    - `:"agent-memory-2026-07-22"`
 
 ### Returns
 

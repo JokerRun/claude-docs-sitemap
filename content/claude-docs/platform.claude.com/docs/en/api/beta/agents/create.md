@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/create
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: ba967852126df4ca0642e953d0ce09b0d61e1aea93248848539379639e72e0d5
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: c16dd5f5ab2306c350233035c9df6bfef7712e1d9e4638f9d0825e157db06cdd
 ---
 
 ## Create Agent
@@ -19,7 +19,7 @@ Create Agent
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 25 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 26 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -76,6 +76,8 @@ Create Agent
     - `"server-side-fallback-2026-06-01"`
 
     - `"fallback-credit-2026-06-01"`
+
+    - `"agent-memory-2026-07-22"`
 
 ### Body Parameters
 
@@ -411,7 +413,7 @@ Create Agent
 
     - `description: string`
 
-      Description of what the tool does, shown to the agent to help it decide when to use the tool. 1-1024 characters.
+      Description of what the tool does, shown to the agent to help it decide when to use the tool. 1-4096 characters.
 
     - `input_schema: BetaManagedAgentsCustomToolInputSchema`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/messages/batches/create
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 656fabb64840755bca27f0dff70c3b74980e1a812dceab5371c85b04361fa9ca
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 9b06392dbc8ef633686a1284885c5e05c3bbfe2fe98a1c61a6b2f7f068478eef
 ---
 
 ## Create a Message Batch
@@ -80,6 +80,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
   - `Optional<String> userProfileId`
 

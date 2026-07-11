@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/environments/retrieve
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: fdcb552f16ffd382349da8225280793028ace2463588e46566cfe7ebf7b3299b
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 8be7ef92eca972612c8f56d62ea09a73351c0695f123594998b7ca538ceaac92
 ---
 
 ## Get Environment
@@ -78,6 +78,8 @@ Retrieve a specific environment by ID.
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 

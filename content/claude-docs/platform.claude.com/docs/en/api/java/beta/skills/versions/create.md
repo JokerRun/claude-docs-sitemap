@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/skills/versions/create
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 7b76376505364cd8ffa9056aca0d8761c5398c8fdd232c4f40e6ec7bf9d5ae02
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 91afa3efdaefee9ef8301580e1323b0ec5a8f0f57f13ad1f6e6698c73fdaa9e2
 ---
 
 ## Create Skill Version
 
-`VersionCreateResponse beta().skills().versions().create(VersionCreateParamsparams = VersionCreateParams.none(), RequestOptionsrequestOptions = RequestOptions.none())`
+`VersionCreateResponse beta().skills().versions().create(VersionCreateParamsparams, RequestOptionsrequestOptions = RequestOptions.none())`
 
 **post** `/v1/skills/{skill_id}/versions`
 
@@ -83,7 +83,9 @@ Create Skill Version
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
 
-  - `Optional<List<String>> files`
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
+
+  - `List<String> files`
 
     Files to upload for the skill.
 
@@ -146,6 +148,7 @@ import com.anthropic.client.AnthropicClient;
 import com.anthropic.client.okhttp.AnthropicOkHttpClient;
 import com.anthropic.models.beta.skills.versions.VersionCreateParams;
 import com.anthropic.models.beta.skills.versions.VersionCreateResponse;
+import java.io.ByteArrayInputStream;
 
 public final class Main {
     private Main() {}
@@ -153,7 +156,11 @@ public final class Main {
     public static void main(String[] args) {
         AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-        VersionCreateResponse version = client.beta().skills().versions().create("skill_id");
+        VersionCreateParams params = VersionCreateParams.builder()
+            .skillId("skill_id")
+            .addFile(new ByteArrayInputStream("Example data".getBytes()))
+            .build();
+        VersionCreateResponse version = client.beta().skills().versions().create(params);
     }
 }
 ```

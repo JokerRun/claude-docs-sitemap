@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/credentials/update
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 522d8ea1cbe7ad8a5e1ee34b3cf4f1a4c7ff65cd237f773fbeea71692ff6eb5d
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 49a04b1830cc47fca2cc9293cb8c64a049b4c5a8618a294beb0663c28abcaac6
 ---
 
 ## Update Credential
@@ -80,6 +80,8 @@ Update Credential
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
   - `Optional<Auth> auth`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/threads/events/stream
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: cbab99fd292e97225fe41802036101cb332eb9977f021fd5983976cb9c7f3754
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: a262ca6a0ce81f5c4bb22e312b437eb17b5a668de73e6e879698e1bc239cc941
 ---
 
 ## Stream Session Thread Events
@@ -80,6 +80,8 @@ Stream Session Thread Events
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/agents/retrieve
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 141fa744be9d1399ff78a49ee203530e65638cf5a4788b489586080bf2211677
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 5ecaa6b6248f1a9fe21806ff16604198538a4fb94ed95c11ca5e3c0fb738579b
 ---
 
 ## Get Agent
@@ -27,7 +27,7 @@ Get Agent
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 25 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 26 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -84,6 +84,8 @@ Get Agent
     - `:"server-side-fallback-2026-06-01"`
 
     - `:"fallback-credit-2026-06-01"`
+
+    - `:"agent-memory-2026-07-22"`
 
 ### Returns
 

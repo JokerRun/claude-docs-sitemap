@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/skills/retrieve
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: e1032415987aa464f4f4fd28d54a6fe032bbb3484d9a9245a587aece701919be
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 1ca64bfc5a37cbc48471713d0680f4848953e5845540cd8166aa84a2bbc74044
 ---
 
 ## Get Skill
@@ -82,6 +82,8 @@ Get Skill
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 

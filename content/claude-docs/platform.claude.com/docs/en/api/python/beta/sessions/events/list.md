@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/sessions/events/list
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: e22b09d85e0402cc7588e3623c9ebfabd05cf3ae3ae8b234bb25442fcf7c4bc5
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 2a4b9cdda1db768c27f258b6acc2d957dc59c1c563ece38cae64bda150c538cb
 ---
 
 ## List Events
@@ -59,7 +59,7 @@ List Events
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 25 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 26 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -116,6 +116,8 @@ List Events
     - `"server-side-fallback-2026-06-01"`
 
     - `"fallback-credit-2026-06-01"`
+
+    - `"agent-memory-2026-07-22"`
 
 ### Returns
 

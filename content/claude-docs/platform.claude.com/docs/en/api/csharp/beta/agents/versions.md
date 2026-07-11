@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/agents/versions
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 6986a6a3547c12b3c5756605112937b2474c90d892dba2a8fcc5c5e6fdc82b6f
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 45302d078d99b6e428e1d72c2ff400471cf91f1b4d2c9c71ee9c08ba772e4f0e
 ---
 
 # Versions
@@ -90,6 +90,8 @@ List Agent Versions
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 

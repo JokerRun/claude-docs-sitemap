@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/messages/batches/create
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: b2c2b3832c52328cbee0c305563edca7f3aa3b973364bc61549d54d7b7165014
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: a9db1996f51ccde9fdd75aca111e622163f0cbed01bdb575b870410c7ded2430
 ---
 
 ## Create a Message Batch
@@ -3059,6 +3059,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
       - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
 
       - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
+
+      - `const AnthropicBetaAgentMemory2026_07_22 AnthropicBeta = "agent-memory-2026-07-22"`
 
   - `UserProfileID param.Field[string]`
 

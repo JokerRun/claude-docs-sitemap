@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/environments/work/ack
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 83f3ebce7b02b016a77e1bd02fe8c4b990302f167db8a2a882948c72a9d11e9e
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 1b75bb538a4f62cec08db9ef06b21a2e3a8c41c04bbc91ea8b84de3dee09deab
 ---
 
 ## Acknowledge Work
@@ -31,7 +31,7 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 26 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -89,6 +89,8 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
 
       - `"fallback-credit-2026-06-01"`
 
+      - `"agent-memory-2026-07-22"`
+
 ### Returns
 
 - `BetaSelfHostedWork`
@@ -136,10 +138,6 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
   - `metadata: Record<string, string>`
 
     User-provided metadata key-value pairs associated with this work item
-
-  - `secret: string | null`
-
-    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
   - `started_at: string | null`
 
@@ -205,7 +203,6 @@ console.log(betaSelfHostedWork.id);
   "metadata": {
     "foo": "string"
   },
-  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",

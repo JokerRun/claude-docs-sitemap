@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/agents/versions
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 4c7306ae04f9b51d15c685583a180aa8d1188208cb43ba42a1d14cb9fbfbae57
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 3643f8711d2a60b224e0aabdb6ee8fca582d70587ea181f5fcb8d8d79985d469
 ---
 
 # Versions
@@ -33,7 +33,7 @@ List Agent Versions
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 25 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 26 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -90,6 +90,8 @@ List Agent Versions
     - `:"server-side-fallback-2026-06-01"`
 
     - `:"fallback-credit-2026-06-01"`
+
+    - `:"agent-memory-2026-07-22"`
 
 ### Returns
 

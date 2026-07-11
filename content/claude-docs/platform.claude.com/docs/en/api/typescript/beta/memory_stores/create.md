@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/memory_stores/create
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 93fa1c8c3d437f1773ceb37e4822908c4d0fbeed00782d68665fc0848e422c8f
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 54925f1b4cee2dca96a917fcd0da3510784ca14ad9ca1ce0de21506e88ef5262
 ---
 
 ## Create a memory store
@@ -35,7 +35,7 @@ Create a memory store
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 26 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -92,6 +92,8 @@ Create a memory store
       - `"server-side-fallback-2026-06-01"`
 
       - `"fallback-credit-2026-06-01"`
+
+      - `"agent-memory-2026-07-22"`
 
 ### Returns
 

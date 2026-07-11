@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/cli/beta/environments/work/retrieve
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 490b500149fc2dad3858cd00d0b17bb1274cfed70873942df689828274805b47
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: bd078e8f8e2fdcbacb499eaf81d95dcecc80f850979e1931d49929f6be3b01a9
 ---
 
 ## Get Work Item
@@ -31,7 +31,7 @@ Retrieve detailed information about a specific work item.
 
 ### Returns
 
-- `beta_self_hosted_work: object { id, acknowledged_at, created_at, 10 more }`
+- `beta_self_hosted_work: object { id, acknowledged_at, created_at, 9 more }`
 
   Work resource representing a unit of work in a self-hosted environment.
 
@@ -74,10 +74,6 @@ Retrieve detailed information about a specific work item.
   - `metadata: map[string]`
 
     User-provided metadata key-value pairs associated with this work item
-
-  - `secret: string`
-
-    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
   - `started_at: string`
 
@@ -134,7 +130,6 @@ ant beta:environments:work retrieve \
   "metadata": {
     "foo": "string"
   },
-  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",

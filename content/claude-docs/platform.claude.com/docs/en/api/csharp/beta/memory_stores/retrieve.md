@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/memory_stores/retrieve
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 52fbe79b1c81293144cf4832b21f52113ba701f4a6d85c060e9d15f21f8c82fb
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 1e2144727a610bf3c87be5002cda34b5de77e19dfbd9d0a21fb0726a913533dc
 ---
 
 ## Retrieve a memory store
@@ -80,6 +80,8 @@ Retrieve a memory store
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 

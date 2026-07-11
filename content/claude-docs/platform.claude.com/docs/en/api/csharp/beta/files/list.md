@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/files/list
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: cc1f8a94c9b3522dfe5e170bccded4d5101bd57a488c7dd6cd66cbeb75b13478
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 855319f6bcd7a357f411994f57cad1bde3019a4713bc75b0d4f74f245b02605d
 ---
 
 ## List Files
@@ -94,6 +94,8 @@ List Files
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 

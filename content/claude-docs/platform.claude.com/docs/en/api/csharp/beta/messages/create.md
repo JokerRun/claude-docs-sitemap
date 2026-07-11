@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/messages/create
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 1e3940ca1e0ac359741e1abec29b745063e2a33b1742fc619f2680505b401ad3
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: ff59afdecfe12adc705e05b92af91028e6bc5aaf122d83abe63b56be4f35af82
 ---
 
 ## Create a Message
@@ -2617,6 +2617,8 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
   - `string userProfileID`
 

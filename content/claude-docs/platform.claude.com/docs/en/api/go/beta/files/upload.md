@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/files/upload
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 0f80512083ca5daa4055e54c133af8ed5742e97e2c061239df1e841e29e1ca9b
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: e83558888ce22aee9d7c2c86e73622ab928175f655becb38f382b03f74fbb4f8
 ---
 
 ## Upload File
@@ -84,6 +84,8 @@ Upload File
       - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
 
       - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
+
+      - `const AnthropicBetaAgentMemory2026_07_22 AnthropicBeta = "agent-memory-2026-07-22"`
 
 ### Returns
 

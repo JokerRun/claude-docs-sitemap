@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/models/retrieve
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: ce7c1d39444481a9445a59be3806b0dabad70b24516b0e31db11d809158875e5
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: c1fc5111b3e769ee2cc1900565ffb411b48482aa316b43610482fbdcb0c1b338
 ---
 
 ## Get a Model
@@ -27,7 +27,7 @@ The Models API response can be used to determine information about a specific mo
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 25 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 26 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -84,6 +84,8 @@ The Models API response can be used to determine information about a specific mo
     - `"server-side-fallback-2026-06-01"`
 
     - `"fallback-credit-2026-06-01"`
+
+    - `"agent-memory-2026-07-22"`
 
 ### Returns
 

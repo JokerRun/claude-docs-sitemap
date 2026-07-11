@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/completions/create
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: c529f026348ed4ed800566ff8056e1d31694972c16e8df0d4229e018f4b80d61
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 2f08ce977b0485cdaf89861aa4c4dc2ce40146c4f9cbb82b2e372538ca7449fd
 ---
 
 ## Create a Text Completion
@@ -154,6 +154,8 @@ Future models and features will not be compatible with Text Completions. See our
       - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
 
       - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
+
+      - `const AnthropicBetaAgentMemory2026_07_22 AnthropicBeta = "agent-memory-2026-07-22"`
 
 ### Returns
 

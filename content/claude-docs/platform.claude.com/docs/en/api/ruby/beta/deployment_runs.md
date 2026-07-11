@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/deployment_runs
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: a26704279486fe050ba9fc3d889931e78b7597840f244cf1fd4af9b1d655982e
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: f3caf182ed84096584bb205d9751667131e216de600d65e96baeebb1464491a7
 ---
 
 # Deployment Runs
@@ -63,7 +63,7 @@ List Deployment Runs
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 25 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 26 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -120,6 +120,8 @@ List Deployment Runs
     - `:"server-side-fallback-2026-06-01"`
 
     - `:"fallback-credit-2026-06-01"`
+
+    - `:"agent-memory-2026-07-22"`
 
 ### Returns
 
@@ -439,7 +441,7 @@ Get Deployment Run
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 25 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 26 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -496,6 +498,8 @@ Get Deployment Run
     - `:"server-side-fallback-2026-06-01"`
 
     - `:"fallback-credit-2026-06-01"`
+
+    - `:"agent-memory-2026-07-22"`
 
 ### Returns
 

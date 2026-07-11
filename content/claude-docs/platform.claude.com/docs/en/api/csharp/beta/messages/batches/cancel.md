@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/messages/batches/cancel
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 541523868f1f912b9cb41c59ad71fa6e29e91b924390869450c6c20bb386d6c3
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 47d55f05be06c502a3cc71f8d6b9d5f91d17a81ce3657b89780c0f0ce7c950cc
 ---
 
 ## Cancel a Message Batch
@@ -84,6 +84,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 

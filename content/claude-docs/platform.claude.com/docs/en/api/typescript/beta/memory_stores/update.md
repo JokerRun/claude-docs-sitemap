@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/memory_stores/update
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: e2fa382c0b4726348f128b16f2f2749bc68cf9371062706cf5fe1d5088948db4
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 5e7ae697198f7c61f64aa936ba98038a5d15fc8e953ebd5816254f7146ff347d
 ---
 
 ## Update a memory store
@@ -37,7 +37,7 @@ Update a memory store
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 26 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -94,6 +94,8 @@ Update a memory store
       - `"server-side-fallback-2026-06-01"`
 
       - `"fallback-credit-2026-06-01"`
+
+      - `"agent-memory-2026-07-22"`
 
 ### Returns
 

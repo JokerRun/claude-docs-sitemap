@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/messages/count_tokens
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 7664cd72dc220a51aeac086e72cc0adc862e91cf0709a895831ed56f8419b895
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: e36e9f4b66565b866c015d961daf9e6da798b0794d87ed29eb49f5ea1cea25cb
 ---
 
 ## Count tokens in a Message
@@ -2824,7 +2824,7 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 25 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 26 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -2881,6 +2881,8 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
     - `:"server-side-fallback-2026-06-01"`
 
     - `:"fallback-credit-2026-06-01"`
+
+    - `:"agent-memory-2026-07-22"`
 
 - `user_profile_id: String`
 

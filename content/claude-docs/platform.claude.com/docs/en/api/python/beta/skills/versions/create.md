@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/skills/versions/create
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 98ffd5725a34b86ba0e92c3df584cf5fbd70eef28d195267529dd555f79bc81e
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 3af7a13871bca5e7c9d222a0acfbb0d8051973066144ddfffd8bba8b1e8681e5
 ---
 
 ## Create Skill Version
@@ -21,7 +21,7 @@ Create Skill Version
 
   The format and length of IDs may change over time.
 
-- `files: Optional[Sequence[FileTypes]]`
+- `files: Sequence[FileTypes]`
 
   Files to upload for the skill.
 
@@ -33,7 +33,7 @@ Create Skill Version
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 25 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 26 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -90,6 +90,8 @@ Create Skill Version
     - `"server-side-fallback-2026-06-01"`
 
     - `"fallback-credit-2026-06-01"`
+
+    - `"agent-memory-2026-07-22"`
 
 ### Returns
 
@@ -150,6 +152,7 @@ client = Anthropic(
 )
 version = client.beta.skills.versions.create(
     skill_id="skill_id",
+    files=[b"Example data"],
 )
 print(version.id)
 ```

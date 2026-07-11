@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/heartbeat
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: d4aeabed3a9b16cb81f04ea34649d566d958a33962d4675e414a00559829ca54
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 9b2790f86bbfc378201e4a0fa568dddc50abaa8fae31857c1cc2aeff44bd4695
 ---
 
 ## Record Heartbeat
@@ -37,7 +37,7 @@ Record a heartbeat for a work item to maintain the lease.
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 25 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 26 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -94,6 +94,8 @@ Record a heartbeat for a work item to maintain the lease.
     - `"server-side-fallback-2026-06-01"`
 
     - `"fallback-credit-2026-06-01"`
+
+    - `"agent-memory-2026-07-22"`
 
 ### Returns
 

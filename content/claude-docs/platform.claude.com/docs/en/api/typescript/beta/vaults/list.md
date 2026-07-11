@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/vaults/list
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 1a650f1603b2e2086d1904fc776871dfe0b707911dd559749ca78c9208af4812
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: d0c45dbafbfc8d9342afc8f5a845556168859902c0bf5de856719a5ffd8ac2e0
 ---
 
 ## List Vaults
@@ -35,7 +35,7 @@ List Vaults
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 26 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -92,6 +92,8 @@ List Vaults
       - `"server-side-fallback-2026-06-01"`
 
       - `"fallback-credit-2026-06-01"`
+
+      - `"agent-memory-2026-07-22"`
 
 ### Returns
 

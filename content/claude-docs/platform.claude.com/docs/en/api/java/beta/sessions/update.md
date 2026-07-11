@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/update
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: e82dc2b8d793b630c8422e84f098c2a86b2ea255bdfb9ae8b36e0e93e16876fb
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: a0c0ae34928eaff785fc485ef4f38a5b6583cf172044465a25f35ca2037d2ff6
 ---
 
 ## Update Session
@@ -78,6 +78,8 @@ Update Session
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
   - `Optional<BetaManagedAgentsSessionAgentUpdate> agent`
 

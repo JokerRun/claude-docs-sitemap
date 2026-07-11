@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/environments/work/poll
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 6b35357e75eb986192353c04a9b961761779743b34ba89c5ab7bb76ba4fbfe9a
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 67decc9761a43d8e4865c8cd5d9c41c86c4555a810f42592b325a3365e7542cb
 ---
 
 ## Poll for Work
@@ -93,6 +93,8 @@ Long poll for work items in the queue.
 
       - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
 
+      - `const AnthropicBetaAgentMemory2026_07_22 AnthropicBeta = "agent-memory-2026-07-22"`
+
   - `AnthropicWorkerID param.Field[string]`
 
     Header param: Unique identifier for the specific worker polling, used to track aggregated environment-level work metrics in Console
@@ -144,10 +146,6 @@ Long poll for work items in the queue.
   - `Metadata map[string, string]`
 
     User-provided metadata key-value pairs associated with this work item
-
-  - `Secret string`
-
-    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
   - `StartedAt string`
 
@@ -228,7 +226,6 @@ func main() {
   "metadata": {
     "foo": "string"
   },
-  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",

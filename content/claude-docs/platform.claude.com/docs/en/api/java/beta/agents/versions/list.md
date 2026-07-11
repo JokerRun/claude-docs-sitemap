@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/agents/versions/list
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: ffec2ffb5e84150d8b715b6575baaac6013530af90caa5fe5457b53e5e201e6d
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 148e655f543bb2d290af19e28fa1d6785f30f0ead84e41272b83d8e164625c8f
 ---
 
 ## List Agent Versions
@@ -86,6 +86,8 @@ List Agent Versions
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
 ### Returns
 

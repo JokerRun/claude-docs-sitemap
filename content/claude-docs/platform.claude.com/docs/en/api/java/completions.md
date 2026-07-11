@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/completions
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: be20487a476adfa7a7b4d28334f184a37c22bed5229aba8e73cdfac9f5a8333c
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: ea87fcfc42f55cedb13d344d32802c3289be1ca18c5699c4aa5ceb89482af1d3
 ---
 
 # Completions
@@ -82,6 +82,8 @@ Future models and features will not be compatible with Text Completions. See our
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
   - `long maxTokensToSample`
 

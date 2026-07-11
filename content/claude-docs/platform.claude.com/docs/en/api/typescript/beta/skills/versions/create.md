@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/skills/versions/create
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: cc88243d57cf416021822fdb2552b1507acacba97c2f11c6f415bdbf0204bc8d
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 1ac735fb300aa328cf895cda4d3a1144a72e9736cdfd5083939c60bd56d6ecf0
 ---
 
 ## Create Skill Version
 
-`client.beta.skills.versions.create(stringskillID, VersionCreateParamsparams?, RequestOptionsoptions?): VersionCreateResponse`
+`client.beta.skills.versions.create(stringskillID, VersionCreateParamsparams, RequestOptionsoptions?): VersionCreateResponse`
 
 **post** `/v1/skills/{skill_id}/versions`
 
@@ -23,7 +23,7 @@ Create Skill Version
 
 - `params: VersionCreateParams`
 
-  - `files?: Array<Uploadable> | null`
+  - `files: Array<Uploadable>`
 
     Body param: Files to upload for the skill.
 
@@ -35,7 +35,7 @@ Create Skill Version
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 26 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -92,6 +92,8 @@ Create Skill Version
       - `"server-side-fallback-2026-06-01"`
 
       - `"fallback-credit-2026-06-01"`
+
+      - `"agent-memory-2026-07-22"`
 
 ### Returns
 
@@ -150,7 +152,9 @@ const client = new Anthropic({
   apiKey: process.env['ANTHROPIC_API_KEY'], // This is the default and can be omitted
 });
 
-const version = await client.beta.skills.versions.create('skill_id');
+const version = await client.beta.skills.versions.create('skill_id', {
+  files: [fs.createReadStream('path/to/file')],
+});
 
 console.log(version.id);
 ```

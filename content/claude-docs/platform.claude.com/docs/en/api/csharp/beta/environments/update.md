@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/environments/update
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 083949a8f327aaf9ca33c5fcd4c3ee9e6e7f29118b4314217bd01af99f0e5b04
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 8a8e1a89c2dd4a597bf3643c1dee2c41cc6208092959c1de9c01119cc63498a2
 ---
 
 ## Update Environment
@@ -194,6 +194,8 @@ Update an existing environment's configuration.
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 

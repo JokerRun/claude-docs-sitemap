@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/deployment_runs/list
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 150d348df0a59d47a6a8b17a4e6aca04735938c5c4790414ee2b6823497a92b5
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: ba7e66e7996cdb723789d65c1398b1d62855057f471528d7b16a59e42f6d4025
 ---
 
 ## List Deployment Runs
@@ -61,7 +61,7 @@ List Deployment Runs
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 25 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 26 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -118,6 +118,8 @@ List Deployment Runs
     - `:"server-side-fallback-2026-06-01"`
 
     - `:"fallback-credit-2026-06-01"`
+
+    - `:"agent-memory-2026-07-22"`
 
 ### Returns
 

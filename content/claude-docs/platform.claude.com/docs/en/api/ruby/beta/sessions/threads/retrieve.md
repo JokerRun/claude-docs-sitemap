@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/sessions/threads/retrieve
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 8f2afe0bf4ed3f7ab2611d5b7660230e3e57313b08e6fdfd7b9638abd6bcf00f
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: d738a833f0904782c0f4e2334b578b9900e412fc8d29d5dd99fafb947fe2a16d
 ---
 
 ## Get Session Thread
@@ -25,7 +25,7 @@ Get Session Thread
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 25 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 26 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -82,6 +82,8 @@ Get Session Thread
     - `:"server-side-fallback-2026-06-01"`
 
     - `:"fallback-credit-2026-06-01"`
+
+    - `:"agent-memory-2026-07-22"`
 
 ### Returns
 

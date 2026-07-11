@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/sessions/threads/events/stream
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 2fbd6e26a6c2cf39bc3510068ec5455ed96be8eacca148163d009b336570720d
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 6cb92469951f86d8eaa228e3322ac61d98cb869225cbee39a93733b01dd6880a
 ---
 
 ## Stream Session Thread Events
@@ -29,7 +29,7 @@ Stream Session Thread Events
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 26 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -86,6 +86,8 @@ Stream Session Thread Events
       - `"server-side-fallback-2026-06-01"`
 
       - `"fallback-credit-2026-06-01"`
+
+      - `"agent-memory-2026-07-22"`
 
 ### Returns
 

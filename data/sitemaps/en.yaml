@@ -49,7 +49,7 @@
   lastmod: '2026-06-01T23:00:07.291Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/python
-  lastmod: '2026-07-07T14:49:07.687Z'
+  lastmod: '2026-07-10T14:51:12.056Z'
 - source: code
   loc: https://code.claude.com/docs/en/agent-sdk/quickstart
   lastmod: '2026-07-07T14:47:01.084Z'
@@ -106,7 +106,7 @@
   lastmod: '2026-07-03T01:43:00.914Z'
 - source: code
   loc: https://code.claude.com/docs/en/amazon-bedrock
-  lastmod: '2026-07-04T02:33:59.411Z'
+  lastmod: '2026-07-11T01:09:26.780Z'
 - source: code
   loc: https://code.claude.com/docs/en/analytics
   lastmod: '2026-05-01T03:26:55.183Z'
@@ -127,7 +127,7 @@
   lastmod: '2026-04-28T15:54:10.733Z'
 - source: code
   loc: https://code.claude.com/docs/en/changelog
-  lastmod: '2026-07-09T23:51:07.798Z'
+  lastmod: '2026-07-11T01:01:31.750Z'
 - source: code
   loc: https://code.claude.com/docs/en/channels
   lastmod: '2026-07-04T02:33:59.427Z'
@@ -163,7 +163,7 @@
   lastmod: '2026-06-09T20:02:34.216Z'
 - source: code
   loc: https://code.claude.com/docs/en/claude-platform-on-aws
-  lastmod: '2026-07-04T02:33:59.458Z'
+  lastmod: '2026-07-11T01:09:26.783Z'
 - source: code
   loc: https://code.claude.com/docs/en/cli-reference
   lastmod: '2026-07-09T17:40:24.331Z'
@@ -199,10 +199,10 @@
   lastmod: '2026-06-30T06:02:31.335Z'
 - source: code
   loc: https://code.claude.com/docs/en/desktop
-  lastmod: '2026-07-09T23:20:10.532Z'
+  lastmod: '2026-07-11T01:09:26.784Z'
 - source: code
   loc: https://code.claude.com/docs/en/desktop-linux
-  lastmod: '2026-07-06T17:53:31.169Z'
+  lastmod: '2026-07-10T15:33:46.888Z'
 - source: code
   loc: https://code.claude.com/docs/en/desktop-quickstart
   lastmod: '2026-07-09T20:53:31.263Z'
@@ -220,7 +220,7 @@
   lastmod: '2026-07-09T17:40:27.322Z'
 - source: code
   loc: https://code.claude.com/docs/en/errors
-  lastmod: '2026-07-09T17:40:27.309Z'
+  lastmod: '2026-07-10T16:08:14.203Z'
 - source: code
   loc: https://code.claude.com/docs/en/fast-mode
   lastmod: '2026-07-09T17:40:27.298Z'
@@ -247,13 +247,13 @@
   lastmod: '2026-07-04T02:33:59.576Z'
 - source: code
   loc: https://code.claude.com/docs/en/glossary
-  lastmod: '2026-07-03T23:52:07.598Z'
+  lastmod: '2026-07-11T01:09:26.769Z'
 - source: code
   loc: https://code.claude.com/docs/en/goal
   lastmod: '2026-06-26T20:30:20.095Z'
 - source: code
   loc: https://code.claude.com/docs/en/google-vertex-ai
-  lastmod: '2026-07-04T02:33:59.604Z'
+  lastmod: '2026-07-11T01:09:26.770Z'
 - source: code
   loc: https://code.claude.com/docs/en/headless
   lastmod: '2026-07-09T17:40:27.304Z'
@@ -265,7 +265,7 @@
   lastmod: '2026-07-07T14:50:41.331Z'
 - source: code
   loc: https://code.claude.com/docs/en/how-claude-code-works
-  lastmod: '2026-07-09T17:40:27.302Z'
+  lastmod: '2026-07-11T01:09:26.770Z'
 - source: code
   loc: https://code.claude.com/docs/en/interactive-mode
   lastmod: '2026-07-06T23:29:17.091Z'
@@ -310,7 +310,7 @@
   lastmod: '2026-07-08T15:13:50.301Z'
 - source: code
   loc: https://code.claude.com/docs/en/model-config
-  lastmod: '2026-07-09T17:40:33.886Z'
+  lastmod: '2026-07-11T01:09:26.783Z'
 - source: code
   loc: https://code.claude.com/docs/en/monitoring-usage
   lastmod: '2026-07-09T17:40:33.895Z'
@@ -322,13 +322,13 @@
   lastmod: '2026-06-16T21:44:14.061Z'
 - source: code
   loc: https://code.claude.com/docs/en/overview
-  lastmod: '2026-06-25T19:06:02.069Z'
+  lastmod: '2026-07-10T16:07:06.629Z'
 - source: code
   loc: https://code.claude.com/docs/en/permission-modes
-  lastmod: '2026-07-09T17:40:33.891Z'
+  lastmod: '2026-07-11T01:09:26.782Z'
 - source: code
   loc: https://code.claude.com/docs/en/permissions
-  lastmod: '2026-07-09T17:40:33.893Z'
+  lastmod: '2026-07-11T01:09:26.768Z'
 - source: code
   loc: https://code.claude.com/docs/en/platforms
   lastmod: '2026-07-09T23:20:10.525Z'
@@ -418,7 +418,7 @@
   lastmod: '2026-07-09T17:40:33.914Z'
 - source: code
   loc: https://code.claude.com/docs/en/troubleshooting
-  lastmod: '2026-07-09T17:40:33.916Z'
+  lastmod: '2026-07-10T16:08:14.195Z'
 - source: code
   loc: https://code.claude.com/docs/en/ultraplan
   lastmod: '2026-07-04T02:33:59.805Z'

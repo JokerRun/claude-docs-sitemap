@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/files/delete
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 02c5604bb7043f841eb716b581cdf9dde528a0704fa5c19a2f30f414bf0ff561
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 6bf7eedcada6b9f6e187bd94a1c91d40f6b2099141e08770c6812cbe40965c3b
 ---
 
 ## Delete File
@@ -80,6 +80,8 @@ Delete File
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/deployments/unpause
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 78223a3b90615a56de67ae6aa13b20e52b9db00874c44a5a70eba814c8c17da7
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 8ebe7c6ff4344018ae0506cd08d014df39fe7a6ae8aa6cd7c60eea803ee276cb
 ---
 
 ## Unpause Deployment
@@ -78,6 +78,8 @@ Unpause Deployment
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
 ### Returns
 

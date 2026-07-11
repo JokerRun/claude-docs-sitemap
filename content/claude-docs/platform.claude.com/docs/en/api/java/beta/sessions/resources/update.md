@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/resources/update
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: ef90dd444d6c403be0cd4e8ee9b1678527ea305472c523ca240bec6c5cad458b
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: a4b69ac50a10997bc6daf1812d60005ab9acdbae43d55b32ba97035456cc39ae
 ---
 
 ## Update Session Resource
@@ -80,6 +80,8 @@ Update Session Resource
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
   - `String authorizationToken`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/sessions/resources/delete
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 4794d3a166b2bb44d58d3eaf4957469c136b57a2c20eeb97488d3550eea00e95
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 85c02ec703c3ee6abe6e58c954f7ad3d648130f0f3a7d2a99fe7c9b0f5c35f0d
 ---
 
 ## Delete Session Resource
@@ -84,6 +84,8 @@ Delete Session Resource
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 

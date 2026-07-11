@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/archive
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: ad37f393c3838e4e8ae48b2fe1b0ecf7089d6bfff7be095e2a0729798fe7914f
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 7baf79fd7273f1f86369a4389248c74a5b6554f4f12c91c2f2311284ce99304c
 ---
 
 ## Archive Environment
@@ -23,7 +23,7 @@ Archive an environment by ID. Archived environments cannot be used to create new
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 25 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 26 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -80,6 +80,8 @@ Archive an environment by ID. Archived environments cannot be used to create new
     - `"server-side-fallback-2026-06-01"`
 
     - `"fallback-credit-2026-06-01"`
+
+    - `"agent-memory-2026-07-22"`
 
 ### Returns
 

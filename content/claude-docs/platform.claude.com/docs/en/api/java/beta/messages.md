@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/messages
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: c17eef65f161486a267a6253aa9fd8a9e7184d7ce8ab4c52184c709227cb0c65
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 763e00af717de2f4cdefd9b1a3e86d81b44bfb0b6a835b61a2a2dfcf84ec4beb
 ---
 
 # Messages
@@ -82,6 +82,8 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
   - `Optional<String> userProfileId`
 
@@ -4485,6 +4487,8 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
   - `Optional<String> userProfileId`
 
@@ -28559,6 +28563,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
 
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
+
   - `Optional<String> userProfileId`
 
     The user profile ID to attribute the requests in this batch to. Use when acting on behalf of a party other than your organization. Requires the `user-profiles` beta header. Applies to every request in the batch; an individual request whose `user_profile_id` body field conflicts with this header is errored.
@@ -31759,6 +31765,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
 
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
+
 ### Returns
 
 - `class BetaMessageBatch:`
@@ -31981,6 +31989,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
 
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
+
 ### Returns
 
 - `class BetaMessageBatch:`
@@ -32202,6 +32212,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
 
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
+
 ### Returns
 
 - `class BetaMessageBatch:`
@@ -32416,6 +32428,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
 
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
+
 ### Returns
 
 - `class BetaDeletedMessageBatch:`
@@ -32541,6 +32555,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
 ### Returns
 

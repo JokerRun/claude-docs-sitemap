@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/environments/work/stop
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 3a8a392f7552245028f5f2202610548f29d2d0f70f1ef1191dcdf92164454aef
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 468444586d63177947bf158a8bfb1c9af9ef2e0a2466e380132dd2e4b2f49e82
 ---
 
 ## Stop Work
@@ -93,6 +93,8 @@ Stop a work item, initiating graceful or forced shutdown.
 
       - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
 
+      - `const AnthropicBetaAgentMemory2026_07_22 AnthropicBeta = "agent-memory-2026-07-22"`
+
 ### Returns
 
 - `type BetaSelfHostedWork struct{…}`
@@ -140,10 +142,6 @@ Stop a work item, initiating graceful or forced shutdown.
   - `Metadata map[string, string]`
 
     User-provided metadata key-value pairs associated with this work item
-
-  - `Secret string`
-
-    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
   - `StartedAt string`
 
@@ -227,7 +225,6 @@ func main() {
   "metadata": {
     "foo": "string"
   },
-  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",

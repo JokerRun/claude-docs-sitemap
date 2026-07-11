@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/messages/batches
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 458e3badeb8d2ceec6f02f2601ac7b36195bdb560844bf31dfede8193c738ace
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 4c392409a5ef06fdcc36982416d4f2df15721e02d3cf35089743269c9c0cc15d
 ---
 
 # Batches
@@ -82,6 +82,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
   - `Optional<String> userProfileId`
 
@@ -3283,6 +3285,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
 
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
+
 ### Returns
 
 - `class BetaMessageBatch:`
@@ -3505,6 +3509,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
 
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
+
 ### Returns
 
 - `class BetaMessageBatch:`
@@ -3726,6 +3732,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
 
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
+
 ### Returns
 
 - `class BetaMessageBatch:`
@@ -3940,6 +3948,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
 
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
+
 ### Returns
 
 - `class BetaDeletedMessageBatch:`
@@ -4065,6 +4075,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
 ### Returns
 

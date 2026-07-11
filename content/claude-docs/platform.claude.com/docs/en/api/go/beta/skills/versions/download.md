@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/skills/versions/download
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: dc6224d917c600a6f7c4ca71a2f7c1e4b5fb6b7896d5e5c5eb60bb375c7d0709
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 4d68d324e8c2dac0e235faa1a1a6404c1c781ad2fa4509af783cc997f4267f65
 ---
 
 ## Download Skill Version Content
@@ -92,6 +92,8 @@ Download a skill version's content as a zip archive.
       - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
 
       - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
+
+      - `const AnthropicBetaAgentMemory2026_07_22 AnthropicBeta = "agent-memory-2026-07-22"`
 
 ### Returns
 

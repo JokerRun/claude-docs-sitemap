@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/skills
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 55406af6cc9695d6d207b77e4cd2a7d3eb2ce0fb1d4d7fda199da8ffe268b6ab
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 043beb3ea2dcfd66153da68aba2de8256723e4e70e3b462424bcc1cdf624f809
 ---
 
 # Skills
@@ -19,17 +19,17 @@ Create Skill
 
 - `params BetaSkillNewParams`
 
-  - `DisplayTitle param.Field[string]`
-
-    Body param: Display title for the skill.
-
-    This is a human-readable label that is not included in the prompt sent to the model.
-
   - `Files param.Field[[]Reader]`
 
     Body param: Files to upload for the skill.
 
     All files must be in the same top-level directory and must include a SKILL.md file at the root of that directory.
+
+  - `DisplayTitle param.Field[string]`
+
+    Body param: Display title for the skill.
+
+    This is a human-readable label that is not included in the prompt sent to the model.
 
   - `Betas param.Field[[]AnthropicBeta]`
 
@@ -95,6 +95,8 @@ Create Skill
 
       - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
 
+      - `const AnthropicBetaAgentMemory2026_07_22 AnthropicBeta = "agent-memory-2026-07-22"`
+
 ### Returns
 
 - `type BetaSkillNewResponse struct{…}`
@@ -146,8 +148,10 @@ Create Skill
 package main
 
 import (
+  "bytes"
   "context"
   "fmt"
+  "io"
 
   "github.com/anthropics/anthropic-sdk-go"
   "github.com/anthropics/anthropic-sdk-go/option"
@@ -158,7 +162,7 @@ func main() {
     option.WithAPIKey("my-anthropic-api-key"),
   )
   skill, err := client.Beta.Skills.New(context.TODO(), anthropic.BetaSkillNewParams{
-
+    Files: []io.Reader{io.Reader(bytes.NewBuffer([]byte("Example data")))},
   })
   if err != nil {
     panic(err.Error())
@@ -277,6 +281,8 @@ List Skills
       - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
 
       - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
+
+      - `const AnthropicBetaAgentMemory2026_07_22 AnthropicBeta = "agent-memory-2026-07-22"`
 
 ### Returns
 
@@ -452,6 +458,8 @@ Get Skill
 
       - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
 
+      - `const AnthropicBetaAgentMemory2026_07_22 AnthropicBeta = "agent-memory-2026-07-22"`
+
 ### Returns
 
 - `type BetaSkillGetResponse struct{…}`
@@ -624,6 +632,8 @@ Delete Skill
 
       - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
 
+      - `const AnthropicBetaAgentMemory2026_07_22 AnthropicBeta = "agent-memory-2026-07-22"`
+
 ### Returns
 
 - `type BetaSkillDeleteResponse struct{…}`
@@ -770,6 +780,8 @@ Create Skill Version
 
       - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
 
+      - `const AnthropicBetaAgentMemory2026_07_22 AnthropicBeta = "agent-memory-2026-07-22"`
+
 ### Returns
 
 - `type BetaSkillVersionNewResponse struct{…}`
@@ -824,8 +836,10 @@ Create Skill Version
 package main
 
 import (
+  "bytes"
   "context"
   "fmt"
+  "io"
 
   "github.com/anthropics/anthropic-sdk-go"
   "github.com/anthropics/anthropic-sdk-go/option"
@@ -839,7 +853,7 @@ func main() {
     context.TODO(),
     "skill_id",
     anthropic.BetaSkillVersionNewParams{
-
+      Files: []io.Reader{io.Reader(bytes.NewBuffer([]byte("Example data")))},
     },
   )
   if err != nil {
@@ -955,6 +969,8 @@ List Skill Versions
       - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
 
       - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
+
+      - `const AnthropicBetaAgentMemory2026_07_22 AnthropicBeta = "agent-memory-2026-07-22"`
 
 ### Returns
 
@@ -1144,6 +1160,8 @@ Download a skill version's content as a zip archive.
 
       - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
 
+      - `const AnthropicBetaAgentMemory2026_07_22 AnthropicBeta = "agent-memory-2026-07-22"`
+
 ### Returns
 
 - `type BetaSkillVersionDownloadResponse interface{…}`
@@ -1266,6 +1284,8 @@ Get Skill Version
       - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
 
       - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
+
+      - `const AnthropicBetaAgentMemory2026_07_22 AnthropicBeta = "agent-memory-2026-07-22"`
 
 ### Returns
 
@@ -1448,6 +1468,8 @@ Delete Skill Version
       - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
 
       - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
+
+      - `const AnthropicBetaAgentMemory2026_07_22 AnthropicBeta = "agent-memory-2026-07-22"`
 
 ### Returns
 

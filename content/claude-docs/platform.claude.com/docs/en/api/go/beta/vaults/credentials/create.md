@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/vaults/credentials/create
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: e31a4ad99a256717612b31bb25fcd169870cff891ec69d6afb296ea7fe1757c4
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: d01ca3de7c70f39f2cef9da9a0899d939f952ef204967ab5f3c753d8de49867d
 ---
 
 ## Create Credential
@@ -242,6 +242,8 @@ Create Credential
       - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
 
       - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
+
+      - `const AnthropicBetaAgentMemory2026_07_22 AnthropicBeta = "agent-memory-2026-07-22"`
 
 ### Returns
 

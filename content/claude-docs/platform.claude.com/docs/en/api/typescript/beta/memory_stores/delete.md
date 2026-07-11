@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/memory_stores/delete
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 0fe861db1ab59c8052d1537d07c1df6f9e213c71ba0c192851848d43856e4f79
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 6a00337cbbdcfac38b07ed125aa96359f7a27b9dfad5d6731d1d09eac2a4bb76
 ---
 
 ## Delete a memory store
@@ -25,7 +25,7 @@ Delete a memory store
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 26 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -82,6 +82,8 @@ Delete a memory store
       - `"server-side-fallback-2026-06-01"`
 
       - `"fallback-credit-2026-06-01"`
+
+      - `"agent-memory-2026-07-22"`
 
 ### Returns
 

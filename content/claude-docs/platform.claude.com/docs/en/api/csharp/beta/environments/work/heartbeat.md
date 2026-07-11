@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/environments/work/heartbeat
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 2112be44f198f33d89838aa0df0235aa310ee29d9ee07e927457c3a5ef582445
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: d1a1a365fa43f28546654f126e49c4595e6960d833684662935c41e2f2d39c28
 ---
 
 ## Record Heartbeat
@@ -94,6 +94,8 @@ Record a heartbeat for a work item to maintain the lease.
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 

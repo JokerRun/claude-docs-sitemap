@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/deployment_runs
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: e519eac030fd657efb07c0c0a5c369d6870c088e44d2f8ddd7fd62764cf4fb69
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 68ef3747d13ac96e3fa1fe0b1c014c3254ed50205a617b23a094d6a0a344a27e
 ---
 
 # Deployment Runs
@@ -65,7 +65,7 @@ List Deployment Runs
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 26 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -122,6 +122,8 @@ List Deployment Runs
       - `"server-side-fallback-2026-06-01"`
 
       - `"fallback-credit-2026-06-01"`
+
+      - `"agent-memory-2026-07-22"`
 
 ### Returns
 
@@ -446,7 +448,7 @@ Get Deployment Run
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 26 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -503,6 +505,8 @@ Get Deployment Run
       - `"server-side-fallback-2026-06-01"`
 
       - `"fallback-credit-2026-06-01"`
+
+      - `"agent-memory-2026-07-22"`
 
 ### Returns
 

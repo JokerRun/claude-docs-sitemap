@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/environments/work/list
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 700bcd3fc97ce92f2a4bbfda442c79b9469b72e240c75663ad52f8bf19d727a4
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: ca415b59f4c34a59668702af5d60ed9819275c61170c2d2580a734c8a51db2f9
 ---
 
 ## List Work Items
@@ -33,7 +33,7 @@ List work items in an environment.
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 25 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 26 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -91,6 +91,8 @@ List work items in an environment.
 
     - `"fallback-credit-2026-06-01"`
 
+    - `"agent-memory-2026-07-22"`
+
 ### Returns
 
 - `class BetaSelfHostedWork: …`
@@ -138,10 +140,6 @@ List work items in an environment.
   - `metadata: Dict[str, str]`
 
     User-provided metadata key-value pairs associated with this work item
-
-  - `secret: Optional[str]`
-
-    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
   - `started_at: Optional[str]`
 
@@ -209,7 +207,6 @@ print(page.id)
       "metadata": {
         "foo": "string"
       },
-      "secret": "secret",
       "started_at": "started_at",
       "state": "queued",
       "stop_requested_at": "stop_requested_at",

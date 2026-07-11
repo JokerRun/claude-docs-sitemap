@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/permission-modes
-fetched_at: 2026-07-10T03:11:05.177659Z
-sha256: ffa9fc60f8fe4381b384f7f837746137bd0b34abd1e2aefa6ad3fdb86a5dd264
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 6679d8e5b8b31a977e6a2baef266bba7286b94d9476cffe3ab85e603ae188eaf
 ---
 
 > ## Documentation Index
@@ -184,7 +184,7 @@ Auto mode lets Claude execute without routine permission prompts. A separate cla
 Auto mode also nudges Claude to keep working without stopping for clarifying questions, though Claude still asks when your prompt or a skill explicitly relies on it. For stronger autonomous behavior while keeping permission prompts, set the [Proactive output style](/en/output-styles) instead.
 
 <Warning>
-  Auto mode is a research preview. It reduces permission prompts but does not guarantee safety. Use it for tasks where you trust the general direction, not as a replacement for review on sensitive operations.
+  Auto mode reduces permission prompts but does not guarantee safety. Use it for tasks where you trust the general direction, not as a replacement for review on sensitive operations.
 </Warning>
 
 Auto mode is available only when your account meets all of these requirements:

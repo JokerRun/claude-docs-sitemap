@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/vaults/credentials/archive
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: b9b10e0b1c2fba2335cb96681753a520f48a114670f9df123c4ca10312ad5255
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 3fea9bbbc79bd917a7415dbdd521afaeb879559c56d86cf3a9b0975a5004a64a
 ---
 
 ## Archive Credential
@@ -80,6 +80,8 @@ Archive Credential
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
 ### Returns
 

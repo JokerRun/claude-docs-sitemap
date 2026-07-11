@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/memory_stores/memory_versions/redact
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 5598c1334885ceb3cda907b5fc5b3bf7ce9b0dcac53f6bf77c254d9cea27fb91
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 0263c68cfe7b99bcc1f83b0a7163ae60723493bf3eeb952bc618caa0b2b68ed9
 ---
 
 ## Redact a memory version
@@ -84,6 +84,8 @@ Redact a memory version
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 

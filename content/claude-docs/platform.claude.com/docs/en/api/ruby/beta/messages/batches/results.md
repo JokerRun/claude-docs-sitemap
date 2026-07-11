@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/messages/batches/results
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 702709cb78713cb3300d0330771f86e735297379d2cb4a0c46ae87bd146afe5c
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 9c94f8ddf86fa91d3d64b0fce4fa4757387bfeb54204df789364eed4bba46644
 ---
 
 ## Retrieve Message Batch results
@@ -29,7 +29,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 25 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 26 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -86,6 +86,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
     - `:"server-side-fallback-2026-06-01"`
 
     - `:"fallback-credit-2026-06-01"`
+
+    - `:"agent-memory-2026-07-22"`
 
 ### Returns
 

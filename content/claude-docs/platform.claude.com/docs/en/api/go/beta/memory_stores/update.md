@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/memory_stores/update
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 1ec640b780da32f2756415944e6e9ed18c68e9ea2d52018d74ae1455fc5dbd06
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 043b563062abbc6a6f29e79634261e589fb0f443ba8169db944fc558a26b4809
 ---
 
 ## Update a memory store
@@ -94,6 +94,8 @@ Update a memory store
       - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
 
       - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
+
+      - `const AnthropicBetaAgentMemory2026_07_22 AnthropicBeta = "agent-memory-2026-07-22"`
 
 ### Returns
 

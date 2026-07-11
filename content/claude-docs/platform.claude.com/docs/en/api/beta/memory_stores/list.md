@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/list
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 23f4737ea09898217a12fac283788ff4e0215ee3382b0c87d187dfc296f73c84
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: d4c7374ab457030af599bd85f3dffce733eef25ae84e3e7c8f766bc4714de0e0
 ---
 
 ## List memory stores
@@ -41,7 +41,7 @@ List memory stores
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 25 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 26 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -99,6 +99,8 @@ List memory stores
 
     - `"fallback-credit-2026-06-01"`
 
+    - `"agent-memory-2026-07-22"`
+
 ### Returns
 
 - `data: optional array of BetaManagedAgentsMemoryStore`
@@ -146,7 +148,7 @@ List memory stores
 ```http
 curl https://api.anthropic.com/v1/memory_stores \
     -H 'anthropic-version: 2023-06-01' \
-    -H 'anthropic-beta: managed-agents-2026-04-01' \
+    -H 'anthropic-beta: agent-memory-2026-07-22' \
     -H "X-Api-Key: $ANTHROPIC_API_KEY"
 ```
 

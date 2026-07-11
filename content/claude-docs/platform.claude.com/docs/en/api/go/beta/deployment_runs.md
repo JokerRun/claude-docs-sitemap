@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/deployment_runs
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 8531fd89759aa1e5567f5f736bafc925efe0079e7658094063ee6836f0a4981d
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: d99855264575cde441488ef1d98c9a951814a0e5098bca14e717b840c77cee25
 ---
 
 # Deployment Runs
@@ -118,6 +118,8 @@ List Deployment Runs
       - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
 
       - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
+
+      - `const AnthropicBetaAgentMemory2026_07_22 AnthropicBeta = "agent-memory-2026-07-22"`
 
 ### Returns
 
@@ -511,6 +513,8 @@ Get Deployment Run
       - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
 
       - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
+
+      - `const AnthropicBetaAgentMemory2026_07_22 AnthropicBeta = "agent-memory-2026-07-22"`
 
 ### Returns
 

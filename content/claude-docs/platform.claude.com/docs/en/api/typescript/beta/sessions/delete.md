@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/sessions/delete
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: ed18797fdf91d9d2025ceac15242a21e8a328bf01d6e8f48e876b696e82965b7
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 3c1720e1292a350d39dacf705709bb767d868763c7794a23c0b7777788d06346
 ---
 
 ## Delete Session
@@ -25,7 +25,7 @@ Delete Session
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 26 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -82,6 +82,8 @@ Delete Session
       - `"server-side-fallback-2026-06-01"`
 
       - `"fallback-credit-2026-06-01"`
+
+      - `"agent-memory-2026-07-22"`
 
 ### Returns
 

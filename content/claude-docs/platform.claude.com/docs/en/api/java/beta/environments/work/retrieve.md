@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/environments/work/retrieve
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 59eee3f5b9f5a9a8984c894e656aed21574b3c779b3ddbbea439c09b81333124
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: bcb1b57cc1b4b29edfa03f64fa1a482077efb2c990916de6f2665b9206fcd2d5
 ---
 
 ## Get Work Item
@@ -83,6 +83,8 @@ Retrieve detailed information about a specific work item.
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
 
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
+
 ### Returns
 
 - `class BetaSelfHostedWork:`
@@ -130,10 +132,6 @@ Retrieve detailed information about a specific work item.
   - `Metadata metadata`
 
     User-provided metadata key-value pairs associated with this work item
-
-  - `Optional<String> secret`
-
-    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
   - `Optional<String> startedAt`
 
@@ -208,7 +206,6 @@ public final class Main {
   "metadata": {
     "foo": "string"
   },
-  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",

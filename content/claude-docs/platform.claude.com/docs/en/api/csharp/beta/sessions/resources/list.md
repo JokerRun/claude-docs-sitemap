@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/sessions/resources/list
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: fcd040f40bf19e08635ef7eb657a14c30bbf4863aca3ef9abfc1b04b9789f216
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: c72a4586483eed207cda27e152b2944e443a9f1d68b2eb77fef960231a89b93f
 ---
 
 ## List Session Resources
@@ -88,6 +88,8 @@ List Session Resources
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 

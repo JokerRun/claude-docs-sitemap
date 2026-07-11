@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/skills/create
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: e592557e5c8462c58e79bcd371f02a3cdc4ac4865328d4cb7079fc2e1509f94d
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 5cfdf40414feb7365af329121515e0ccdb9e5354453a462a94abf40312071920
 ---
 
 ## Create Skill
@@ -15,17 +15,17 @@ Create Skill
 
 ### Parameters
 
-- `display_title: String`
-
-  Display title for the skill.
-
-  This is a human-readable label that is not included in the prompt sent to the model.
-
 - `files: Array[String]`
 
   Files to upload for the skill.
 
   All files must be in the same top-level directory and must include a SKILL.md file at the root of that directory.
+
+- `display_title: String`
+
+  Display title for the skill.
+
+  This is a human-readable label that is not included in the prompt sent to the model.
 
 - `betas: Array[AnthropicBeta]`
 
@@ -33,7 +33,7 @@ Create Skill
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 25 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 26 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -91,6 +91,8 @@ Create Skill
 
     - `:"fallback-credit-2026-06-01"`
 
+    - `:"agent-memory-2026-07-22"`
+
 ### Returns
 
 - `class SkillCreateResponse`
@@ -143,7 +145,7 @@ require "anthropic"
 
 anthropic = Anthropic::Client.new(api_key: "my-anthropic-api-key")
 
-skill = anthropic.beta.skills.create
+skill = anthropic.beta.skills.create(files: [StringIO.new("Example data")])
 
 puts(skill)
 ```

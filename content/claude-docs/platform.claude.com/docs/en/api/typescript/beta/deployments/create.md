@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/deployments/create
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 1d69466a3947a387466aeb05b50ec10d56ae7f5dd20f9104fc00cf29c22438e9
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 6dce8ce0d7e1d6a18b2a3bfbe92b64f1fd0c1280245067aa02e05bc27b9e8efa
 ---
 
 ## Create Deployment
@@ -391,7 +391,7 @@ Create Deployment
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 26 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -448,6 +448,8 @@ Create Deployment
       - `"server-side-fallback-2026-06-01"`
 
       - `"fallback-credit-2026-06-01"`
+
+      - `"agent-memory-2026-07-22"`
 
 ### Returns
 

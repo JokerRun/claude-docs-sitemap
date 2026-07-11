@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/sessions/threads/events
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 167dca2ec543582f349f7a8d3b0dabb47c21c6d24c0282b4cbf2c0eee062ce18
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: ba89dafad837ea740a846f84011047e529018b13644ea82105b54ff469060f19
 ---
 
 # Events
@@ -94,6 +94,8 @@ List Session Thread Events
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -2003,6 +2005,8 @@ Stream Session Thread Events
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 

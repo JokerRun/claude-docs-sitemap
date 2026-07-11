@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/messages/batches/cancel
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: c37ff98c8758decdc07dbb1257577d18d0276da721e55fea8da80e2445d6f0a3
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: c2a732b9bdce64a1c95781182155659f867a8f06946fb6af2b20d14f345af51a
 ---
 
 ## Cancel a Message Batch
@@ -84,6 +84,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
 ### Returns
 

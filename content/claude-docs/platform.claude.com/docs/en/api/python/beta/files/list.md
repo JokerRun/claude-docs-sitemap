@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/files/list
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 1385109293b9cbe9781f3eb1dae30fc3b96ed032b359d93646c904b5ed834c86
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 48274d1c47fca1d126b4b787cdcce7017a0dee0f88dd44b0da8ee5e24e271b68
 ---
 
 ## List Files
@@ -39,7 +39,7 @@ List Files
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 25 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 26 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -96,6 +96,8 @@ List Files
     - `"server-side-fallback-2026-06-01"`
 
     - `"fallback-credit-2026-06-01"`
+
+    - `"agent-memory-2026-07-22"`
 
 ### Returns
 

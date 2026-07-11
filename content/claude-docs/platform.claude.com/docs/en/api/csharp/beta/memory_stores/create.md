@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/memory_stores/create
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: b8f1f9adbf10ff767f340cbf42e7e3be918ffc0156118ec324f72edaaf755c21
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 798f19a95633e7b97201eb0d2779fec3db525b1e06395bbc4528d90def15ad15
 ---
 
 ## Create a memory store
@@ -88,6 +88,8 @@ Create a memory store
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 

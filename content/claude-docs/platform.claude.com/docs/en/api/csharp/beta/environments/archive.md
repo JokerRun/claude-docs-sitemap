@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/environments/archive
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 999c7f5d5275f72a7b0f2677efb0c158bffff98cd319bec2c6973a2a56269eee
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 51507d7d020c721e13d02abf99c509d7d12846e961cd519eadfabde9e1ac6640
 ---
 
 ## Archive Environment
@@ -78,6 +78,8 @@ Archive an environment by ID. Archived environments cannot be used to create new
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 

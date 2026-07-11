@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/php/beta/agents
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 0f6b24a9d77ecd5e3033a5ac65ec536740d19b8264bea4002999ba120d93145f
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: a4f06d2b81309acbd20a35966f10b7437fef197a7aee61db39070811f8d8496d
 ---
 
 # Agents
@@ -1251,7 +1251,7 @@ var_dump($betaManagedAgentsAgent);
 
   - `string description`
 
-    Description of what the tool does, shown to the agent to help it decide when to use the tool. 1-1024 characters.
+    Description of what the tool does, shown to the agent to help it decide when to use the tool. 1-4096 characters.
 
   - `BetaManagedAgentsCustomToolInputSchema inputSchema`
 

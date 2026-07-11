@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/vaults/retrieve
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 35d3d6b97927cc32a00f33dcd5a01331c41916d1c6da1a0e3b17930218c0cf1e
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 144f759bfa7d11aa4e8387a10deab295a8b4353b59863ceb0d503ac34860f565
 ---
 
 ## Get Vault
@@ -23,7 +23,7 @@ Get Vault
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 25 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 26 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -80,6 +80,8 @@ Get Vault
     - `"server-side-fallback-2026-06-01"`
 
     - `"fallback-credit-2026-06-01"`
+
+    - `"agent-memory-2026-07-22"`
 
 ### Returns
 

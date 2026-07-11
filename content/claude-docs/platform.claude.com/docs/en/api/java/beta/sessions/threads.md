@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/threads
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 12e9210c79f34ea66ab630d7341cde29233c6b05cad09a5f5d33c2a403f09fd2
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 5aa266992e3d247a4a0fbb90a3f63b54f6d240aecfdea3bd661d40b88adcb563
 ---
 
 # Threads
@@ -88,6 +88,8 @@ List Session Threads
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
 ### Returns
 
@@ -614,6 +616,8 @@ Get Session Thread
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
 
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
+
 ### Returns
 
 - `class BetaManagedAgentsSessionThread:`
@@ -1137,6 +1141,8 @@ Archive Session Thread
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
 ### Returns
 
@@ -3930,6 +3936,8 @@ List Session Thread Events
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
 
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
+
 ### Returns
 
 - `class BetaManagedAgentsSessionEvent: A class that can be one of several variants.union`
@@ -5837,6 +5845,8 @@ Stream Session Thread Events
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
 ### Returns
 

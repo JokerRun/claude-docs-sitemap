@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/models
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 6a7afb6e27a0064a1ca0d195bd0d27f7347546598b7653af2184820e6a2b66c4
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 274297802a8ce4a3abf67ca287be3a389d490b6272b7505b1a84101b3a81074b
 ---
 
 # Models
@@ -98,6 +98,8 @@ The Models API response can be used to determine which models are available for 
       - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
 
       - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
+
+      - `const AnthropicBetaAgentMemory2026_07_22 AnthropicBeta = "agent-memory-2026-07-22"`
 
 ### Returns
 
@@ -427,6 +429,8 @@ The Models API response can be used to determine information about a specific mo
       - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
 
       - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
+
+      - `const AnthropicBetaAgentMemory2026_07_22 AnthropicBeta = "agent-memory-2026-07-22"`
 
 ### Returns
 

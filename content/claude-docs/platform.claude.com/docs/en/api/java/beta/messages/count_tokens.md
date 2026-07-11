@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/messages/count_tokens
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: d657321097116d0106eb5a0154c810e55f5cda5df4f9f8bf2d68ea8d70d5ad98
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 5b4d0a0c8cd1dca5ce3f659f0c0eedf82586a3b2d0494e817ea01be8ff6298d8
 ---
 
 ## Count tokens in a Message
@@ -80,6 +80,8 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
   - `Optional<String> userProfileId`
 

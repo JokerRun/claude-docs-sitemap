@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/php/beta/environments/work/list
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 5149865f84a682956222ff7e14504485dddc34294f9ed333c561e40b763fe462
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: a2c98e9864a53a14da8b19c1e8b205ae8976c80ff1e83e74e8c52338ffdaf4e3
 ---
 
 ## List Work Items
@@ -63,10 +63,6 @@ List work items in an environment.
 
     User-provided metadata key-value pairs associated with this work item
 
-  - `?string secret`
-
-    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
-
   - `?string startedAt`
 
     RFC 3339 timestamp when work execution started
@@ -124,7 +120,6 @@ var_dump($page);
       "metadata": {
         "foo": "string"
       },
-      "secret": "secret",
       "started_at": "started_at",
       "state": "queued",
       "stop_requested_at": "stop_requested_at",

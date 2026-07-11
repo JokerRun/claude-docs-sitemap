@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/deployments/pause
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: c3884534500c88bcc06384a2b66029606568c6da7542f04964b726f6b5a0e283
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 860b144ddb5557b8697198f6fe829f1d759d260373e97f7d59d724f17a9c7ba0
 ---
 
 ## Pause Deployment
@@ -78,6 +78,8 @@ Pause Deployment
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
 ### Returns
 

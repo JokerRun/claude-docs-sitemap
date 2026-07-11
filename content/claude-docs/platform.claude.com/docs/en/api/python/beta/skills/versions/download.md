@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/skills/versions/download
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: dd5438e267c53a41b1d67bb6ba1124ca6b0a6af11a429f4a45701b5da69cb955
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 7f9fb6d182cc15ba70c507e56cd6526e8c3a2ec32a939a22a08c539a5c6478b9
 ---
 
 ## Download Skill Version Content
@@ -33,7 +33,7 @@ Download a skill version's content as a zip archive.
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 25 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 26 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -90,6 +90,8 @@ Download a skill version's content as a zip archive.
     - `"server-side-fallback-2026-06-01"`
 
     - `"fallback-credit-2026-06-01"`
+
+    - `"agent-memory-2026-07-22"`
 
 ### Returns
 

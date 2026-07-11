@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/agents/update
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: a8ad7f320307a351c9ef81fbd97f1b4da9a8b603c41d1a6aadeb4d7402c3a86d
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 87a5f88ce34ba45135718d4101b270b5a22c4f199849adb4b5e0b83cf1bb99aa
 ---
 
 ## Update Agent
@@ -315,7 +315,7 @@ Update Agent
 
       - `Description string`
 
-        Description of what the tool does, shown to the agent to help it decide when to use the tool. 1-1024 characters.
+        Description of what the tool does, shown to the agent to help it decide when to use the tool. 1-4096 characters.
 
       - `InputSchema BetaManagedAgentsCustomToolInputSchema`
 
@@ -400,6 +400,8 @@ Update Agent
       - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
 
       - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
+
+      - `const AnthropicBetaAgentMemory2026_07_22 AnthropicBeta = "agent-memory-2026-07-22"`
 
 ### Returns
 

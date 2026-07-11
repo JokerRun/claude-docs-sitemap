@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/sessions/resources/update
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: f278b37d3676a81341ec6de568ceeb4bc62b2fbeed33b093a246165dbf49d964
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: e418bef3203287575be88a064f70d0bd859b6ee2525b040a5130f9cc067e5f36
 ---
 
 ## Update Session Resource
@@ -29,7 +29,7 @@ Update Session Resource
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 25 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 26 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -86,6 +86,8 @@ Update Session Resource
     - `:"server-side-fallback-2026-06-01"`
 
     - `:"fallback-credit-2026-06-01"`
+
+    - `:"agent-memory-2026-07-22"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/memory_stores/memory_versions/redact
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 0c61c3988c134fb4d632013c34a3cd596d5fd42197f77f5499137fc323ae8594
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 88224d73d2d505bf14e2f0e26a609dbbf057321dc0dc9212ca91fd9bcfdf0cdf
 ---
 
 ## Redact a memory version
@@ -25,7 +25,7 @@ Redact a memory version
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 25 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 26 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -82,6 +82,8 @@ Redact a memory version
     - `"server-side-fallback-2026-06-01"`
 
     - `"fallback-credit-2026-06-01"`
+
+    - `"agent-memory-2026-07-22"`
 
 ### Returns
 

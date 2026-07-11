@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/agents/update
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 3a4eb33a892de001eef114d110ba803b09c72c56f883742aeaec5b3a4741f507
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: c329e7b2ee0ddc53da2845431c234f2ad3e430be390c425ae618887149bba57f
 ---
 
 ## Update Agent
@@ -353,7 +353,7 @@ Update Agent
 
     - `description: String`
 
-      Description of what the tool does, shown to the agent to help it decide when to use the tool. 1-1024 characters.
+      Description of what the tool does, shown to the agent to help it decide when to use the tool. 1-4096 characters.
 
     - `input_schema: BetaManagedAgentsCustomToolInputSchema`
 
@@ -381,7 +381,7 @@ Update Agent
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 25 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 26 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -438,6 +438,8 @@ Update Agent
     - `:"server-side-fallback-2026-06-01"`
 
     - `:"fallback-credit-2026-06-01"`
+
+    - `:"agent-memory-2026-07-22"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/models/retrieve
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 6ad2df7dd0adaa11fde86ce052b2ca62f09056a2937dbe7dcbdfc81067bd04e0
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 3490fd85377d4b92209e4cde7faa5dd0efbf709ea5a7b8e77ccaacad63074c9d
 ---
 
 ## Get a Model
@@ -27,7 +27,7 @@ The Models API response can be used to determine information about a specific mo
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 25 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 26 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -84,6 +84,8 @@ The Models API response can be used to determine information about a specific mo
     - `:"server-side-fallback-2026-06-01"`
 
     - `:"fallback-credit-2026-06-01"`
+
+    - `:"agent-memory-2026-07-22"`
 
 ### Returns
 

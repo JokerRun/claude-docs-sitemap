@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/sessions/resources/add
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 8d90cd5c6db6643b38a08aa3b3825f003baddd380a773454a0012971b07e0a09
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: d477ebe4abcf069b91c75f0784960726466eea16295641b24ad32d63f11d32fa
 ---
 
 ## Add Session Resource
@@ -39,7 +39,7 @@ Add Session Resource
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 26 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -96,6 +96,8 @@ Add Session Resource
       - `"server-side-fallback-2026-06-01"`
 
       - `"fallback-credit-2026-06-01"`
+
+      - `"agent-memory-2026-07-22"`
 
 ### Returns
 

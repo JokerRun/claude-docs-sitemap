@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/python/beta/sessions/threads/list
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 89d380485b57554e06b8965384b647b59cb59f0aea92bf0b1832dc6da66dd066
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 11b700301232d17eb2709c2eaf9f2fcdf3dd8ce79f4f3973d1653779372cdb73
 ---
 
 ## List Session Threads
@@ -31,7 +31,7 @@ List Session Threads
 
   - `str`
 
-  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 25 more]`
+  - `Literal["message-batches-2024-09-24", "prompt-caching-2024-07-31", "computer-use-2024-10-22", 26 more]`
 
     - `"message-batches-2024-09-24"`
 
@@ -88,6 +88,8 @@ List Session Threads
     - `"server-side-fallback-2026-06-01"`
 
     - `"fallback-credit-2026-06-01"`
+
+    - `"agent-memory-2026-07-22"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/typescript/beta/messages/batches/list
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: b6ed0949be9f56d858730ead3a9c349e6e0417b8515ebfa6260a874a48b1ae10
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 1db794824cd0d1229bfa7ab8458da6a25474fd4558c6e89d80441a02ae3b15a1
 ---
 
 ## List Message Batches
@@ -39,7 +39,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
     - `(string & {})`
 
-    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 25 more`
+    - `"message-batches-2024-09-24" | "prompt-caching-2024-07-31" | "computer-use-2024-10-22" | 26 more`
 
       - `"message-batches-2024-09-24"`
 
@@ -96,6 +96,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
       - `"server-side-fallback-2026-06-01"`
 
       - `"fallback-credit-2026-06-01"`
+
+      - `"agent-memory-2026-07-22"`
 
 ### Returns
 

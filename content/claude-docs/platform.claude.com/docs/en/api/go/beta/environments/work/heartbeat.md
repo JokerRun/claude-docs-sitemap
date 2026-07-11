@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/environments/work/heartbeat
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 33241b51bb5a92fa715b2d2b151a9491ab9160e5f77e3531209354fdc90369b9
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 4a66a94a9ae0d0171a42ee3e4c7e638fac622eca9efc4aa75796573fe77b7fe2
 ---
 
 ## Record Heartbeat
@@ -96,6 +96,8 @@ Record a heartbeat for a work item to maintain the lease.
       - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
 
       - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
+
+      - `const AnthropicBetaAgentMemory2026_07_22 AnthropicBeta = "agent-memory-2026-07-22"`
 
 ### Returns
 

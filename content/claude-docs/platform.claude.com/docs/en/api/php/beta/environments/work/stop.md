@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/php/beta/environments/work/stop
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 2831749089a2d54f7c27d829b2a5eba2f559bfab9d3b6fc6389e9bf68b913a24
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 5df7860bac94b61e2edaefcf57d4ed8ab6de29707649305fe6bafaa5da61181f
 ---
 
 ## Stop Work
@@ -61,10 +61,6 @@ Stop a work item, initiating graceful or forced shutdown.
 
     User-provided metadata key-value pairs associated with this work item
 
-  - `?string secret`
-
-    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
-
   - `?string startedAt`
 
     RFC 3339 timestamp when work execution started
@@ -120,7 +116,6 @@ var_dump($betaSelfHostedWork);
   "metadata": {
     "foo": "string"
   },
-  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",

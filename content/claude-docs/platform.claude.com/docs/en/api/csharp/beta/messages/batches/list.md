@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/messages/batches/list
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 1d24a2310d22b355858283cf2f45faff79f3aa3cddc85ed9071807ee7c4f89d1
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 4d33564cbe7e9f50b7378d366b298975b60bde34e0293d7df3042e2c204776c0
 ---
 
 ## List Message Batches
@@ -92,6 +92,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 

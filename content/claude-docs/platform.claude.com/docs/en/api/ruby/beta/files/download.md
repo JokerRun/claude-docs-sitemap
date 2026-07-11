@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/ruby/beta/files/download
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 53bbc7554f354a8a521e9ec1c6e5de8bf54cfe5dd0b2ee33e8bccc4276872d7e
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: d3d78702176ff1ef1ac636326615160d9d3ce00d65ab6a65d86d5427300380d4
 ---
 
 ## Download File
@@ -25,7 +25,7 @@ Download File
 
   - `String = String`
 
-  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 25 more`
+  - `AnthropicBeta = :"message-batches-2024-09-24" | :"prompt-caching-2024-07-31" | :"computer-use-2024-10-22" | 26 more`
 
     - `:"message-batches-2024-09-24"`
 
@@ -82,6 +82,8 @@ Download File
     - `:"server-side-fallback-2026-06-01"`
 
     - `:"fallback-credit-2026-06-01"`
+
+    - `:"agent-memory-2026-07-22"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/resources/retrieve
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 590d0b94471ca3720999e32ffa5dbc15ee69da5bd49587047fc2ef86af6cc0da
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: e058fb56b0848bf0f34fdb5657a2c2be6da656c25d0df4afc4c27ea4bf1042ad
 ---
 
 ## Get Session Resource
@@ -80,6 +80,8 @@ Get Session Resource
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
 ### Returns
 

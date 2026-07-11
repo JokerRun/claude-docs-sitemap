@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/deployments/update
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 26ee1d3354aad5bf00768dd3f59a54cf68319e8f0485d295b234a52ca4961415
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 10f7ae268ea5c2d504f01c39c86edd96c26d9897bd3df45aa73a84093fcc94f2
 ---
 
 ## Update Deployment
@@ -78,6 +78,8 @@ Update Deployment
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
   - `Optional<Agent> agent`
 

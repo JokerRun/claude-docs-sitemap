@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/php/beta/environments/work/update
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: d91423ac3c159c9748018ea8d4b9c1cce7509dedc0fd70f4abad7d2bcd8b7098
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: b1dcf71b515813ff793bd34d0f36b150bca9be2375481c793074105e47d9e87a
 ---
 
 ## Update Work Item
@@ -61,10 +61,6 @@ Update work item metadata with merge semantics.
 
     User-provided metadata key-value pairs associated with this work item
 
-  - `?string secret`
-
-    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
-
   - `?string startedAt`
 
     RFC 3339 timestamp when work execution started
@@ -120,7 +116,6 @@ var_dump($betaSelfHostedWork);
   "metadata": {
     "foo": "string"
   },
-  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",

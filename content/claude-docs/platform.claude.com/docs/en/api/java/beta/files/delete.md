@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/files/delete
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: edc0d537a2485278c553b870e787431b6a908e8309efe66f112258f89e15d66e
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 8903f347a2b60127c6a4f25c99316c7b26c07b3680263c48fb99ea8f7c8c3365
 ---
 
 ## Delete File
@@ -80,6 +80,8 @@ Delete File
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
 ### Returns
 

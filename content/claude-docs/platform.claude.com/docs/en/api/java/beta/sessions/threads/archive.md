@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/java/beta/sessions/threads/archive
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: ed1899a5c5339f6c0ceb17af7181415a2fdadebd0bf7739850b74f6cf07d34a3
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: c66b3099c09ee0f6fd9f2dc8a6a1da62f8d50d74f41ecfd53e9949ac8da34196
 ---
 
 ## Archive Session Thread
@@ -80,6 +80,8 @@ Archive Session Thread
     - `SERVER_SIDE_FALLBACK_2026_06_01("server-side-fallback-2026-06-01")`
 
     - `FALLBACK_CREDIT_2026_06_01("fallback-credit-2026-06-01")`
+
+    - `AGENT_MEMORY_2026_07_22("agent-memory-2026-07-22")`
 
 ### Returns
 

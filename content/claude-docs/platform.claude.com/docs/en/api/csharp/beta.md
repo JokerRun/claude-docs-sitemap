@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 2e3c65340e614401566fe89bdc25e772b36f18f767d93d5038fd7266d06e5ab5
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 97d28d3acb949f80d14572800d4075d9dc3d06cd706851ef8612eddca46655b5
 ---
 
 # Beta
@@ -292,6 +292,8 @@ The Models API response can be used to determine which models are available for 
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -614,6 +616,8 @@ The Models API response can be used to determine information about a specific mo
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -3802,6 +3806,8 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
   - `string userProfileID`
 
@@ -7612,6 +7618,8 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
   - `string userProfileID`
 
@@ -29672,6 +29680,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
   - `string userProfileID`
 
     Header param: The user profile ID to attribute the requests in this batch to. Use when acting on behalf of a party other than your organization. Requires the `user-profiles` beta header. Applies to every request in the batch; an individual request whose `user_profile_id` body field conflicts with this header is errored.
@@ -30083,6 +30093,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class BetaMessageBatch:`
@@ -30291,6 +30303,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -30516,6 +30530,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class BetaMessageBatch:`
@@ -30717,6 +30733,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class BetaDeletedMessageBatch:`
@@ -30829,6 +30847,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -36857,7 +36877,7 @@ Create Agent
 
       - `required string Description`
 
-        Description of what the tool does, shown to the agent to help it decide when to use the tool. 1-1024 characters.
+        Description of what the tool does, shown to the agent to help it decide when to use the tool. 1-4096 characters.
 
       - `required BetaManagedAgentsCustomToolInputSchema InputSchema`
 
@@ -36936,6 +36956,8 @@ Create Agent
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -37409,6 +37431,8 @@ List Agents
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class AgentListPageResponse:`
@@ -37879,6 +37903,8 @@ Get Agent
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -38617,7 +38643,7 @@ Update Agent
 
       - `required string Description`
 
-        Description of what the tool does, shown to the agent to help it decide when to use the tool. 1-1024 characters.
+        Description of what the tool does, shown to the agent to help it decide when to use the tool. 1-4096 characters.
 
       - `required BetaManagedAgentsCustomToolInputSchema InputSchema`
 
@@ -38696,6 +38722,8 @@ Update Agent
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -39152,6 +39180,8 @@ Archive Agent
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -40390,7 +40420,7 @@ Console.WriteLine(betaManagedAgentsAgent);
 
   - `required string Description`
 
-    Description of what the tool does, shown to the agent to help it decide when to use the tool. 1-1024 characters.
+    Description of what the tool does, shown to the agent to help it decide when to use the tool. 1-4096 characters.
 
   - `required BetaManagedAgentsCustomToolInputSchema InputSchema`
 
@@ -41274,6 +41304,8 @@ List Agent Versions
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class VersionListPageResponse:`
@@ -41856,6 +41888,8 @@ Create a new environment with the specified configuration.
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class BetaEnvironment:`
@@ -42130,6 +42164,8 @@ List environments with pagination support.
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -42413,6 +42449,8 @@ Retrieve a specific environment by ID.
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -42798,6 +42836,8 @@ Update an existing environment's configuration.
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class BetaEnvironment:`
@@ -43066,6 +43106,8 @@ Delete an environment by ID. Returns a confirmation of the deletion.
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class BetaEnvironmentDeleteResponse:`
@@ -43175,6 +43217,8 @@ Archive an environment by ID. Archived environments cannot be used to create new
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -43913,6 +43957,8 @@ Retrieve detailed information about a specific work item.
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class BetaSelfHostedWork:`
@@ -43958,10 +44004,6 @@ Retrieve detailed information about a specific work item.
   - `required IReadOnlyDictionary<string, string> Metadata`
 
     User-provided metadata key-value pairs associated with this work item
-
-  - `required string? Secret`
-
-    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
   - `required string? StartedAt`
 
@@ -44023,7 +44065,6 @@ Console.WriteLine(betaSelfHostedWork);
   "metadata": {
     "foo": "string"
   },
-  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",
@@ -44118,6 +44159,8 @@ Long poll for work items in the queue.
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
   - `string anthropicWorkerID`
 
     Header param: Unique identifier for the specific worker polling, used to track aggregated environment-level work metrics in Console
@@ -44167,10 +44210,6 @@ Long poll for work items in the queue.
   - `required IReadOnlyDictionary<string, string> Metadata`
 
     User-provided metadata key-value pairs associated with this work item
-
-  - `required string? Secret`
-
-    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
   - `required string? StartedAt`
 
@@ -44231,7 +44270,6 @@ Console.WriteLine(betaSelfHostedWork);
   "metadata": {
     "foo": "string"
   },
-  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",
@@ -44322,6 +44360,8 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class BetaSelfHostedWork:`
@@ -44367,10 +44407,6 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
   - `required IReadOnlyDictionary<string, string> Metadata`
 
     User-provided metadata key-value pairs associated with this work item
-
-  - `required string? Secret`
-
-    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
   - `required string? StartedAt`
 
@@ -44432,7 +44468,6 @@ Console.WriteLine(betaSelfHostedWork);
   "metadata": {
     "foo": "string"
   },
-  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",
@@ -44530,6 +44565,8 @@ Record a heartbeat for a work item to maintain the lease.
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -44679,6 +44716,8 @@ Stop a work item, initiating graceful or forced shutdown.
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class BetaSelfHostedWork:`
@@ -44724,10 +44763,6 @@ Stop a work item, initiating graceful or forced shutdown.
   - `required IReadOnlyDictionary<string, string> Metadata`
 
     User-provided metadata key-value pairs associated with this work item
-
-  - `required string? Secret`
-
-    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
   - `required string? StartedAt`
 
@@ -44789,7 +44824,6 @@ Console.WriteLine(betaSelfHostedWork);
   "metadata": {
     "foo": "string"
   },
-  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",
@@ -44884,6 +44918,8 @@ List work items in an environment.
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class BetaSelfHostedWorkListResponse:`
@@ -44929,10 +44965,6 @@ List work items in an environment.
     - `required IReadOnlyDictionary<string, string> Metadata`
 
       User-provided metadata key-value pairs associated with this work item
-
-    - `required string? Secret`
-
-      Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
     - `required string? StartedAt`
 
@@ -45001,7 +45033,6 @@ await foreach (var item in page.Paginate())
       "metadata": {
         "foo": "string"
       },
-      "secret": "secret",
       "started_at": "started_at",
       "state": "queued",
       "stop_requested_at": "stop_requested_at",
@@ -45099,6 +45130,8 @@ Update work item metadata with merge semantics.
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class BetaSelfHostedWork:`
@@ -45144,10 +45177,6 @@ Update work item metadata with merge semantics.
   - `required IReadOnlyDictionary<string, string> Metadata`
 
     User-provided metadata key-value pairs associated with this work item
-
-  - `required string? Secret`
-
-    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
   - `required string? StartedAt`
 
@@ -45210,7 +45239,6 @@ Console.WriteLine(betaSelfHostedWork);
   "metadata": {
     "foo": "string"
   },
-  "secret": "secret",
   "started_at": "started_at",
   "state": "queued",
   "stop_requested_at": "stop_requested_at",
@@ -45292,6 +45320,8 @@ Get statistics about the work queue for an environment.
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -45393,10 +45423,6 @@ Console.WriteLine(betaSelfHostedWorkQueueStats);
   - `required IReadOnlyDictionary<string, string> Metadata`
 
     User-provided metadata key-value pairs associated with this work item
-
-  - `required string? Secret`
-
-    Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
   - `required string? StartedAt`
 
@@ -45509,10 +45535,6 @@ Console.WriteLine(betaSelfHostedWorkQueueStats);
     - `required IReadOnlyDictionary<string, string> Metadata`
 
       User-provided metadata key-value pairs associated with this work item
-
-    - `required string? Secret`
-
-      Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
     - `required string? StartedAt`
 
@@ -45983,7 +46005,7 @@ Create Session
 
           - `required string Description`
 
-            Description of what the tool does, shown to the agent to help it decide when to use the tool. 1-1024 characters.
+            Description of what the tool does, shown to the agent to help it decide when to use the tool. 1-4096 characters.
 
           - `required BetaManagedAgentsCustomToolInputSchema InputSchema`
 
@@ -46170,6 +46192,8 @@ Create Session
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -47025,6 +47049,8 @@ List Sessions
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class SessionListPageResponse:`
@@ -47835,6 +47861,8 @@ Get Session
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class BetaManagedAgentsSession:`
@@ -48644,6 +48672,8 @@ Update Session
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class BetaManagedAgentsSession:`
@@ -49437,6 +49467,8 @@ Delete Session
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class BetaManagedAgentsDeletedSession:`
@@ -49546,6 +49578,8 @@ Archive Session
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -50644,7 +50678,7 @@ Console.WriteLine(betaManagedAgentsSession);
 
       - `required string Description`
 
-        Description of what the tool does, shown to the agent to help it decide when to use the tool. 1-1024 characters.
+        Description of what the tool does, shown to the agent to help it decide when to use the tool. 1-4096 characters.
 
       - `required BetaManagedAgentsCustomToolInputSchema InputSchema`
 
@@ -52024,7 +52058,7 @@ Console.WriteLine(betaManagedAgentsSession);
 
       - `required string Description`
 
-        Description of what the tool does, shown to the agent to help it decide when to use the tool. 1-1024 characters.
+        Description of what the tool does, shown to the agent to help it decide when to use the tool. 1-4096 characters.
 
       - `required BetaManagedAgentsCustomToolInputSchema InputSchema`
 
@@ -53121,6 +53155,8 @@ List Events
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -55399,6 +55435,8 @@ Send Events
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class BetaManagedAgentsSendSessionEvents:`
@@ -55970,6 +56008,8 @@ Stream Events
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -66041,6 +66081,8 @@ Add Session Resource
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class BetaManagedAgentsFileResource:`
@@ -66174,6 +66216,8 @@ List Session Resources
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -66412,6 +66456,8 @@ Get Session Resource
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class ResourceRetrieveResponse: A class that can be one of several variants.union`
@@ -66631,6 +66677,8 @@ Update Session Resource
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class ResourceUpdateResponse: A class that can be one of several variants.union`
@@ -66846,6 +66894,8 @@ Delete Session Resource
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -67189,6 +67239,8 @@ List Session Threads
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -67719,6 +67771,8 @@ Get Session Thread
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class BetaManagedAgentsSessionThread:`
@@ -68233,6 +68287,8 @@ Archive Session Thread
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -71013,6 +71069,8 @@ List Session Thread Events
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class EventListPageResponse:`
@@ -72921,6 +72979,8 @@ Stream Session Thread Events
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -75227,6 +75287,8 @@ Create Deployment
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class BetaManagedAgentsDeployment:`
@@ -75949,6 +76011,8 @@ List Deployments
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class DeploymentListPageResponse:`
@@ -76641,6 +76705,8 @@ Get Deployment
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -77679,6 +77745,8 @@ Update Deployment
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class BetaManagedAgentsDeployment:`
@@ -78359,6 +78427,8 @@ Archive Deployment
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -79041,6 +79111,8 @@ Run Deployment Now
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class BetaManagedAgentsDeploymentRun:`
@@ -79412,6 +79484,8 @@ Pause Deployment
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -80093,6 +80167,8 @@ Unpause Deployment
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -82817,6 +82893,8 @@ List Deployment Runs
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class DeploymentRunListPageResponse:`
@@ -83200,6 +83278,8 @@ Get Deployment Run
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -84123,6 +84203,8 @@ Create Vault
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class BetaManagedAgentsVault:`
@@ -84266,6 +84348,8 @@ List Vaults
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -84418,6 +84502,8 @@ Get Vault
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class BetaManagedAgentsVault:`
@@ -84565,6 +84651,8 @@ Update Vault
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class BetaManagedAgentsVault:`
@@ -84704,6 +84792,8 @@ Delete Vault
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class BetaManagedAgentsDeletedVault:`
@@ -84815,6 +84905,8 @@ Archive Vault
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -85167,6 +85259,8 @@ Create Credential
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class BetaManagedAgentsCredential:`
@@ -85460,6 +85554,8 @@ List Credentials
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -85755,6 +85851,8 @@ Get Credential
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -86165,6 +86263,8 @@ Update Credential
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class BetaManagedAgentsCredential:`
@@ -86446,6 +86546,8 @@ Delete Credential
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class BetaManagedAgentsDeletedCredential:`
@@ -86562,6 +86664,8 @@ Archive Credential
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -86843,6 +86947,8 @@ Validate Credential
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -88199,6 +88305,8 @@ Create a memory store
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class BetaManagedAgentsMemoryStore:`
@@ -88356,6 +88464,8 @@ List memory stores
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class MemoryStoreListPageResponse:`
@@ -88511,6 +88621,8 @@ Retrieve a memory store
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -88668,6 +88780,8 @@ Update a memory store
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class BetaManagedAgentsMemoryStore:`
@@ -88812,6 +88926,8 @@ Delete a memory store
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class BetaManagedAgentsDeletedMemoryStore:`
@@ -88923,6 +89039,8 @@ Archive a memory store
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -89136,6 +89254,8 @@ Create a memory
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class BetaManagedAgentsMemory:`
@@ -89232,35 +89352,23 @@ List memories
 
   - `Int depth`
 
-    Query param: Query parameter for depth
+    Query param: `0` (or omitted) returns all descendants below `path_prefix` (recursive). `1` returns immediate children only; deeper entries roll up as `memory_prefix` items. `depth=1` behaves like `ls`; omitting `depth` behaves like `find`.
 
   - `Int limit`
 
-    Query param: Query parameter for limit
-
-  - `Order order`
-
-    Query param: Query parameter for order
-
-    - `"asc"Asc`
-
-    - `"desc"Desc`
-
-  - `string orderBy`
-
-    Query param: Query parameter for order_by
+    Query param: Maximum number of items to return per page. Must be between 1 and 100. Defaults to 20 when omitted. Capped at 20 when `view=full`. Both `memory` and `memory_prefix` items count toward the limit.
 
   - `string page`
 
-    Query param: Query parameter for page
+    Query param: Opaque pagination cursor (a `page_...` value). Pass the `next_page` value from a previous response to fetch the next page; omit for the first page.
 
   - `string pathPrefix`
 
-    Query param: Optional path prefix filter (raw string-prefix match; include a trailing slash for directory-scoped lists). This value appears in request URLs. Do not include secrets or personally identifiable information.
+    Query param: Optional path prefix filter. Must end with `/` (segment-aligned), e.g., `/notes/`. This value appears in request URLs. Do not include secrets or personally identifiable information.
 
   - `BetaManagedAgentsMemoryView view`
 
-    Query param: Query parameter for view
+    Query param: Which projection of each `memory` to return. Defaults to `basic` (content omitted). `full` populates `content` on each item and caps `limit` at 20; use this as the bulk-read path for export and sync.
 
   - `IReadOnlyList<AnthropicBeta> betas`
 
@@ -89322,6 +89430,8 @@ List memories
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class MemoryListPageResponse:`
@@ -89330,7 +89440,7 @@ List memories
 
   - `IReadOnlyList<BetaManagedAgentsMemoryListItem> Data`
 
-    One page of results. Each item is either a `memory` object or, when `depth` was set, a `memory_prefix` rollup marker. Items appear in the requested `order_by`/`order`.
+    One page of results. Each item is either a `memory` object or, when `depth` was set, a `memory_prefix` rollup marker. Items are returned in a stable, server-defined order.
 
     - `class BetaManagedAgentsMemory:`
 
@@ -89510,6 +89620,8 @@ Retrieve a memory
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class BetaManagedAgentsMemory:`
@@ -89683,6 +89795,8 @@ Update a memory
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class BetaManagedAgentsMemory:`
@@ -89843,6 +89957,8 @@ Delete a memory
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -90291,6 +90407,8 @@ List memory versions
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class MemoryVersionListPageResponse:`
@@ -90529,6 +90647,8 @@ Retrieve a memory version
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class BetaManagedAgentsMemoryVersion:`
@@ -90748,6 +90868,8 @@ Redact a memory version
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -91165,6 +91287,8 @@ Upload File
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class FileMetadata:`
@@ -91333,6 +91457,8 @@ List Files
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -91511,6 +91637,8 @@ Download File
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Example
 
 ```csharp
@@ -91596,6 +91724,8 @@ Get File Metadata
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -91749,6 +91879,8 @@ Delete File
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class DeletedFile:`
@@ -91866,7 +91998,7 @@ Console.WriteLine(deletedFile);
 
 ## Create Skill
 
-`SkillCreateResponse Beta.Skills.Create(SkillCreateParams?parameters, CancellationTokencancellationToken = default)`
+`SkillCreateResponse Beta.Skills.Create(SkillCreateParamsparameters, CancellationTokencancellationToken = default)`
 
 **post** `/v1/skills`
 
@@ -91876,17 +92008,17 @@ Create Skill
 
 - `SkillCreateParams parameters`
 
+  - `required IReadOnlyList<string> files`
+
+    Body param: Files to upload for the skill.
+
+    All files must be in the same top-level directory and must include a SKILL.md file at the root of that directory.
+
   - `string? displayTitle`
 
     Body param: Display title for the skill.
 
     This is a human-readable label that is not included in the prompt sent to the model.
-
-  - `IReadOnlyList<string>? files`
-
-    Body param: Files to upload for the skill.
-
-    All files must be in the same top-level directory and must include a SKILL.md file at the root of that directory.
 
   - `IReadOnlyList<AnthropicBeta> betas`
 
@@ -91948,6 +92080,8 @@ Create Skill
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class SkillCreateResponse:`
@@ -91996,7 +92130,13 @@ Create Skill
 ### Example
 
 ```csharp
-SkillCreateParams parameters = new();
+SkillCreateParams parameters = new()
+{
+    Files =
+    [
+        Encoding.UTF8.GetBytes("Example data")
+    ],
+};
 
 var skill = await client.Beta.Skills.Create(parameters);
 
@@ -92109,6 +92249,8 @@ List Skills
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -92281,6 +92423,8 @@ Get Skill
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class SkillRetrieveResponse:`
@@ -92428,6 +92572,8 @@ Delete Skill
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class SkillDeleteResponse:`
@@ -92483,7 +92629,7 @@ Create Skill Version
 
     The format and length of IDs may change over time.
 
-  - `IReadOnlyList<string>? files`
+  - `required IReadOnlyList<string> files`
 
     Body param: Files to upload for the skill.
 
@@ -92549,6 +92695,8 @@ Create Skill Version
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class VersionCreateResponse:`
@@ -92600,7 +92748,14 @@ Create Skill Version
 ### Example
 
 ```csharp
-VersionCreateParams parameters = new() { SkillID = "skill_id" };
+VersionCreateParams parameters = new()
+{
+    SkillID = "skill_id",
+    Files =
+    [
+        Encoding.UTF8.GetBytes("Example data")
+    ],
+};
 
 var version = await client.Beta.Skills.Versions.Create(parameters);
 
@@ -92709,6 +92864,8 @@ List Skill Versions
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -92887,6 +93044,8 @@ Download a skill version's content as a zip archive.
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Example
 
 ```csharp
@@ -92984,6 +93143,8 @@ Get Skill Version
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -93146,6 +93307,8 @@ Delete Skill Version
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class VersionDeleteResponse:`
@@ -93280,6 +93443,8 @@ Create User Profile
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -93456,6 +93621,8 @@ List User Profiles
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -93635,6 +93802,8 @@ Get User Profile
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -93825,6 +93994,8 @@ Update User Profile
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class BetaUserProfile:`
@@ -93991,6 +94162,8 @@ Create Enrollment URL
     - `"server-side-fallback-2026-06-01"ServerSideFallback2026_06_01`
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
+
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
 
 ### Returns
 
@@ -94312,70 +94485,6 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
   - `required string OrganizationID`
 
   - `JsonElement Type "deployment.updated"constant`
-
-  - `required string WorkspaceID`
-
-### Beta Webhook Environment Archived Event Data
-
-- `class BetaWebhookEnvironmentArchivedEventData:`
-
-  - `required string ID`
-
-    ID of the environment that triggered the event.
-
-  - `required string OrganizationID`
-
-  - `JsonElement Type "environment.archived"constant`
-
-  - `required string WorkspaceID`
-
-### Beta Webhook Environment Created Event Data
-
-- `class BetaWebhookEnvironmentCreatedEventData:`
-
-  - `required string ID`
-
-    ID of the environment that triggered the event.
-
-  - `required string OrganizationID`
-
-  - `JsonElement Type "environment.created"constant`
-
-  - `required string WorkspaceID`
-
-### Beta Webhook Environment Deleted Event Data
-
-- `class BetaWebhookEnvironmentDeletedEventData:`
-
-  - `required string ID`
-
-    ID of the environment that triggered the event.
-
-  - `required string OrganizationID`
-
-  - `required BetaWebhookEnvironmentDeletedEventType Type`
-
-    - `"environment.deleted"EnvironmentDeleted`
-
-  - `required string WorkspaceID`
-
-### Beta Webhook Environment Deleted Event Type
-
-- `enum BetaWebhookEnvironmentDeletedEventType:`
-
-  - `"environment.deleted"EnvironmentDeleted`
-
-### Beta Webhook Environment Updated Event Data
-
-- `class BetaWebhookEnvironmentUpdatedEventData:`
-
-  - `required string ID`
-
-    ID of the environment that triggered the event.
-
-  - `required string OrganizationID`
-
-  - `JsonElement Type "environment.updated"constant`
 
   - `required string WorkspaceID`
 
@@ -94853,92 +94962,6 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
 
       - `required string WorkspaceID`
 
-    - `class BetaWebhookEnvironmentCreatedEventData:`
-
-      - `required string ID`
-
-        ID of the environment that triggered the event.
-
-      - `required string OrganizationID`
-
-      - `JsonElement Type "environment.created"constant`
-
-      - `required string WorkspaceID`
-
-    - `class BetaWebhookEnvironmentUpdatedEventData:`
-
-      - `required string ID`
-
-        ID of the environment that triggered the event.
-
-      - `required string OrganizationID`
-
-      - `JsonElement Type "environment.updated"constant`
-
-      - `required string WorkspaceID`
-
-    - `class BetaWebhookEnvironmentArchivedEventData:`
-
-      - `required string ID`
-
-        ID of the environment that triggered the event.
-
-      - `required string OrganizationID`
-
-      - `JsonElement Type "environment.archived"constant`
-
-      - `required string WorkspaceID`
-
-    - `class BetaWebhookEnvironmentDeletedEventData:`
-
-      - `required string ID`
-
-        ID of the environment that triggered the event.
-
-      - `required string OrganizationID`
-
-      - `required BetaWebhookEnvironmentDeletedEventType Type`
-
-        - `"environment.deleted"EnvironmentDeleted`
-
-      - `required string WorkspaceID`
-
-    - `class BetaWebhookMemoryStoreCreatedEventData:`
-
-      - `required string ID`
-
-        ID of the memory store that triggered the event.
-
-      - `required string OrganizationID`
-
-      - `JsonElement Type "memory_store.created"constant`
-
-      - `required string WorkspaceID`
-
-    - `class BetaWebhookMemoryStoreArchivedEventData:`
-
-      - `required string ID`
-
-        ID of the memory store that triggered the event.
-
-      - `required string OrganizationID`
-
-      - `JsonElement Type "memory_store.archived"constant`
-
-      - `required string WorkspaceID`
-
-    - `class BetaWebhookMemoryStoreDeletedEventData:`
-
-      - `required string ID`
-
-        ID of the memory store that triggered the event.
-
-      - `required string OrganizationID`
-
-      - `JsonElement Type "memory_store.deleted"constant`
-
-      - `required string WorkspaceID`
-
   - `JsonElement Type "event"constant`
 
     Object type. Always `event` for webhook payloads.
@@ -95406,134 +95429,6 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
     - `JsonElement Type "deployment_run.succeeded"constant`
 
     - `required string WorkspaceID`
-
-  - `class BetaWebhookEnvironmentCreatedEventData:`
-
-    - `required string ID`
-
-      ID of the environment that triggered the event.
-
-    - `required string OrganizationID`
-
-    - `JsonElement Type "environment.created"constant`
-
-    - `required string WorkspaceID`
-
-  - `class BetaWebhookEnvironmentUpdatedEventData:`
-
-    - `required string ID`
-
-      ID of the environment that triggered the event.
-
-    - `required string OrganizationID`
-
-    - `JsonElement Type "environment.updated"constant`
-
-    - `required string WorkspaceID`
-
-  - `class BetaWebhookEnvironmentArchivedEventData:`
-
-    - `required string ID`
-
-      ID of the environment that triggered the event.
-
-    - `required string OrganizationID`
-
-    - `JsonElement Type "environment.archived"constant`
-
-    - `required string WorkspaceID`
-
-  - `class BetaWebhookEnvironmentDeletedEventData:`
-
-    - `required string ID`
-
-      ID of the environment that triggered the event.
-
-    - `required string OrganizationID`
-
-    - `required BetaWebhookEnvironmentDeletedEventType Type`
-
-      - `"environment.deleted"EnvironmentDeleted`
-
-    - `required string WorkspaceID`
-
-  - `class BetaWebhookMemoryStoreCreatedEventData:`
-
-    - `required string ID`
-
-      ID of the memory store that triggered the event.
-
-    - `required string OrganizationID`
-
-    - `JsonElement Type "memory_store.created"constant`
-
-    - `required string WorkspaceID`
-
-  - `class BetaWebhookMemoryStoreArchivedEventData:`
-
-    - `required string ID`
-
-      ID of the memory store that triggered the event.
-
-    - `required string OrganizationID`
-
-    - `JsonElement Type "memory_store.archived"constant`
-
-    - `required string WorkspaceID`
-
-  - `class BetaWebhookMemoryStoreDeletedEventData:`
-
-    - `required string ID`
-
-      ID of the memory store that triggered the event.
-
-    - `required string OrganizationID`
-
-    - `JsonElement Type "memory_store.deleted"constant`
-
-    - `required string WorkspaceID`
-
-### Beta Webhook Memory Store Archived Event Data
-
-- `class BetaWebhookMemoryStoreArchivedEventData:`
-
-  - `required string ID`
-
-    ID of the memory store that triggered the event.
-
-  - `required string OrganizationID`
-
-  - `JsonElement Type "memory_store.archived"constant`
-
-  - `required string WorkspaceID`
-
-### Beta Webhook Memory Store Created Event Data
-
-- `class BetaWebhookMemoryStoreCreatedEventData:`
-
-  - `required string ID`
-
-    ID of the memory store that triggered the event.
-
-  - `required string OrganizationID`
-
-  - `JsonElement Type "memory_store.created"constant`
-
-  - `required string WorkspaceID`
-
-### Beta Webhook Memory Store Deleted Event Data
-
-- `class BetaWebhookMemoryStoreDeletedEventData:`
-
-  - `required string ID`
-
-    ID of the memory store that triggered the event.
-
-  - `required string OrganizationID`
-
-  - `JsonElement Type "memory_store.deleted"constant`
-
-  - `required string WorkspaceID`
 
 ### Beta Webhook Session Archived Event Data
 
@@ -96356,92 +96251,6 @@ Console.WriteLine(betaUserProfileEnrollmentUrl);
       - `required string OrganizationID`
 
       - `JsonElement Type "deployment_run.succeeded"constant`
-
-      - `required string WorkspaceID`
-
-    - `class BetaWebhookEnvironmentCreatedEventData:`
-
-      - `required string ID`
-
-        ID of the environment that triggered the event.
-
-      - `required string OrganizationID`
-
-      - `JsonElement Type "environment.created"constant`
-
-      - `required string WorkspaceID`
-
-    - `class BetaWebhookEnvironmentUpdatedEventData:`
-
-      - `required string ID`
-
-        ID of the environment that triggered the event.
-
-      - `required string OrganizationID`
-
-      - `JsonElement Type "environment.updated"constant`
-
-      - `required string WorkspaceID`
-
-    - `class BetaWebhookEnvironmentArchivedEventData:`
-
-      - `required string ID`
-
-        ID of the environment that triggered the event.
-
-      - `required string OrganizationID`
-
-      - `JsonElement Type "environment.archived"constant`
-
-      - `required string WorkspaceID`
-
-    - `class BetaWebhookEnvironmentDeletedEventData:`
-
-      - `required string ID`
-
-        ID of the environment that triggered the event.
-
-      - `required string OrganizationID`
-
-      - `required BetaWebhookEnvironmentDeletedEventType Type`
-
-        - `"environment.deleted"EnvironmentDeleted`
-
-      - `required string WorkspaceID`
-
-    - `class BetaWebhookMemoryStoreCreatedEventData:`
-
-      - `required string ID`
-
-        ID of the memory store that triggered the event.
-
-      - `required string OrganizationID`
-
-      - `JsonElement Type "memory_store.created"constant`
-
-      - `required string WorkspaceID`
-
-    - `class BetaWebhookMemoryStoreArchivedEventData:`
-
-      - `required string ID`
-
-        ID of the memory store that triggered the event.
-
-      - `required string OrganizationID`
-
-      - `JsonElement Type "memory_store.archived"constant`
-
-      - `required string WorkspaceID`
-
-    - `class BetaWebhookMemoryStoreDeletedEventData:`
-
-      - `required string ID`
-
-        ID of the memory store that triggered the event.
-
-      - `required string OrganizationID`
-
-      - `JsonElement Type "memory_store.deleted"constant`
 
       - `required string WorkspaceID`
 

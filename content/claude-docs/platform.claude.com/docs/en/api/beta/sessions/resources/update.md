@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/resources/update
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: 8d71dbfc3444560981353c1608c3e380591af7d68668ea8fa25c149067b39e9f
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 879cfb730be435069ab373b42e309ae9e7c487977f347cf2fb7f947a9dc0d066
 ---
 
 ## Update Session Resource
@@ -25,7 +25,7 @@ Update Session Resource
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 25 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 26 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -82,6 +82,8 @@ Update Session Resource
     - `"server-side-fallback-2026-06-01"`
 
     - `"fallback-credit-2026-06-01"`
+
+    - `"agent-memory-2026-07-22"`
 
 ### Body Parameters
 

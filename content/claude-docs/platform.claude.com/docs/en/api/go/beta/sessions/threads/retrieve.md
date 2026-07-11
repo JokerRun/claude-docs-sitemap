@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/sessions/threads/retrieve
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: c1f4c84e48e76971d368f2184abf5d924cdbacf7f3a31042e9b92ea84b079d53
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: d725f24552369ea4147bb6c6ec3d9e6a710a73d66eef242b3d5fb6c43c3ccb83
 ---
 
 ## Get Session Thread
@@ -86,6 +86,8 @@ Get Session Thread
       - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
 
       - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
+
+      - `const AnthropicBetaAgentMemory2026_07_22 AnthropicBeta = "agent-memory-2026-07-22"`
 
 ### Returns
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/skills/versions/create
-fetched_at: 2026-06-10T03:15:54.339721Z
-sha256: ad33595cc907bbc5e09c2ef636feaee03c4be4643d02497ca3b89a948d1f5307
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: a48330785d61b50290a76e95874ddbe02394108b1396b29025ea8b6c63b7ff40
 ---
 
 ## Create Skill Version
@@ -23,7 +23,7 @@ Create Skill Version
 
     The format and length of IDs may change over time.
 
-  - `IReadOnlyList<string>? files`
+  - `required IReadOnlyList<string> files`
 
     Body param: Files to upload for the skill.
 
@@ -89,6 +89,8 @@ Create Skill Version
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class VersionCreateResponse:`
@@ -140,7 +142,14 @@ Create Skill Version
 ### Example
 
 ```csharp
-VersionCreateParams parameters = new() { SkillID = "skill_id" };
+VersionCreateParams parameters = new()
+{
+    SkillID = "skill_id",
+    Files =
+    [
+        Encoding.UTF8.GetBytes("Example data")
+    ],
+};
 
 var version = await client.Beta.Skills.Versions.Create(parameters);
 

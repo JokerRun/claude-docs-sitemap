@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/csharp/beta/environments/work/list
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 60e764464db9074fc49b57e031e57ba178280f51b44824818604a6a041bcb586
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: f2c491cd3fbaf816112c1756db553f38cc2ea9f35502887a2cf26eb98b81c475
 ---
 
 ## List Work Items
@@ -91,6 +91,8 @@ List work items in an environment.
 
     - `"fallback-credit-2026-06-01"FallbackCredit2026_06_01`
 
+    - `"agent-memory-2026-07-22"AgentMemory2026_07_22`
+
 ### Returns
 
 - `class BetaSelfHostedWorkListResponse:`
@@ -136,10 +138,6 @@ List work items in an environment.
     - `required IReadOnlyDictionary<string, string> Metadata`
 
       User-provided metadata key-value pairs associated with this work item
-
-    - `required string? Secret`
-
-      Credential payload used by the environment worker to execute this work item. May be populated when polling for work; null on all other retrieval paths.
 
     - `required string? StartedAt`
 
@@ -208,7 +206,6 @@ await foreach (var item in page.Paginate())
       "metadata": {
         "foo": "string"
       },
-      "secret": "secret",
       "started_at": "started_at",
       "state": "queued",
       "stop_requested_at": "stop_requested_at",

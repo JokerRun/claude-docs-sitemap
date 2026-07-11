@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/agents/versions
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: bf3eec90084069d9c0ac2467f39bc7881146f5010981965406d5824ed13a2ee3
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: f2fb20c42fba41121057d3402ee33137a19077c43297ff586126d7fe6073eedc
 ---
 
 # Versions
@@ -92,6 +92,8 @@ List Agent Versions
       - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
 
       - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
+
+      - `const AnthropicBetaAgentMemory2026_07_22 AnthropicBeta = "agent-memory-2026-07-22"`
 
 ### Returns
 

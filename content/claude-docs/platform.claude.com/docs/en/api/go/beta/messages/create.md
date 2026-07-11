@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/go/beta/messages/create
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 597214d8f34e37a7e81794b2c1212daed1aa0121c892d7e1d017c14e1edb4ffe
+fetched_at: 2026-07-11T03:08:19.250903Z
+sha256: 94471319e38f9f2152202f24dd0aeb0c2001ef1b83e6f19cfb8272ffe3dc6581
 ---
 
 ## Create a Message
@@ -2859,6 +2859,8 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
       - `const AnthropicBetaServerSideFallback2026_06_01 AnthropicBeta = "server-side-fallback-2026-06-01"`
 
       - `const AnthropicBetaFallbackCredit2026_06_01 AnthropicBeta = "fallback-credit-2026-06-01"`
+
+      - `const AnthropicBetaAgentMemory2026_07_22 AnthropicBeta = "agent-memory-2026-07-22"`
 
   - `UserProfileID param.Field[string]`
 
