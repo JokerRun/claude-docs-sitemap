@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/mcp
-fetched_at: 2026-07-04T03:09:59.852291Z
-sha256: 7b566ab6d0d14d906e8f57938fdc8cacd174d18caeb53fb039cbe869cff577c3
+fetched_at: 2026-07-12T03:09:28.991717Z
+sha256: b2560a26289640ed9611af69cdc65a624625b8d7ce9fe79b0c88e05fd03e7c25
 ---
 
 > ## Documentation Index
@@ -790,6 +790,7 @@ MCP server connections time out after 30 seconds by default. If your server take
 
 * **[Custom tools guide](/en/agent-sdk/custom-tools)**: Build your own MCP server that runs in-process with your SDK application
 * **[Permissions](/en/agent-sdk/permissions)**: Control which MCP tools your agent can use with `allowedTools` and `disallowedTools`
+* **[MCP output limits and warnings](/en/mcp#mcp-output-limits-and-warnings)**: How the SDK handles tool results that exceed `MAX_MCP_OUTPUT_TOKENS`, including the persist-to-disk fallback and the `anthropic/maxResultSizeChars` per-tool annotation
 * **[TypeScript SDK reference](/en/agent-sdk/typescript)**: Full API reference including MCP configuration options
 * **[Python SDK reference](/en/agent-sdk/python)**: Full API reference including MCP configuration options
 * **[MCP server directory](https://github.com/modelcontextprotocol/servers)**: Browse available MCP servers for databases, APIs, and more
