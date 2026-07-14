@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/files
-fetched_at: 2026-07-10T03:11:05.177659Z
-sha256: 4ec5ea542e3881df02cf980a84e8124eae6cf8fbc3d22c1d25253fd670f99319
+fetched_at: 2026-07-14T03:07:36.677443Z
+sha256: e93d3e9e18bfe1aeb5c9283e6e57b399ef8d5a4c4cdf8822157ac15eacf7966a
 ---
 
 # Files API
@@ -11,7 +11,7 @@ Unggah file sekali, referensikan dengan file_id dalam permintaan Messages, dan u
 
 ---
 
-Files API memungkinkan Anda mengunggah dan mengelola file untuk digunakan dengan Claude API tanpa mengunggah ulang konten pada setiap permintaan. Ini sangat berguna saat menggunakan [alat eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool) untuk menyediakan input (misalnya, dataset dan dokumen) dan kemudian mengunduh output (misalnya, grafik). Anda dapat [menjelajahi referensi API secara langsung](/docs/id/api/files-create), selain panduan ini.
+Files API memungkinkan Anda mengunggah dan mengelola file untuk digunakan dengan Claude API tanpa mengunggah ulang konten pada setiap permintaan. Ini sangat berguna saat menggunakan [alat eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool) untuk menyediakan input (misalnya, dataset dan dokumen) dan kemudian mengunduh output (misalnya, grafik). Anda dapat [menjelajahi referensi API secara langsung](/docs/id/api/beta/files/upload), selain panduan ini.
 
 <Note>
   Files API berada dalam tahap beta. Hubungi kami melalui [formulir umpan balik](https://forms.gle/tisHyierGwgN4DUE9) untuk berbagi pengalaman Anda dengan Files API.
@@ -683,7 +683,7 @@ Contoh berikut membaca file teks dan mengirim isinya sebagai teks biasa:
 
 #### Menampilkan daftar file
 
-Ambil daftar file yang telah Anda unggah. Endpoint ini dipaginasi: setiap permintaan mengembalikan hingga `limit` file (20 secara default), dan parameter `before_id` serta `after_id` mengambil halaman yang berdekatan. Lihat [referensi List Files API](/docs/id/api/files-list). SDK mengembalikan halaman pertama dan menyediakan helper paginasi otomatis. Contoh CLI membatasi total dengan `--max-items`:
+Ambil daftar file yang telah Anda unggah. Endpoint ini dipaginasi: setiap permintaan mengembalikan hingga `limit` file (20 secara default), dan parameter `before_id` serta `after_id` mengambil halaman yang berdekatan. Lihat [referensi List Files API](/docs/id/api/beta/files/list). SDK mengembalikan halaman pertama dan menyediakan helper paginasi otomatis. Contoh CLI membatasi total dengan `--max-items`:
 
 <CodeGroup>
   ```bash cURL

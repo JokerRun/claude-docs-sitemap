@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/skills-guide
-fetched_at: 2026-07-10T03:11:05.177659Z
-sha256: e3fd704f58399f0df7596174c7f2ff6f26afa1d1d8c3c470cc4ccafb0762688a
+fetched_at: 2026-07-14T03:07:36.677443Z
+sha256: 4868aa38243c4208e73bf77b2bbd9c917f7d851ba9e7379090e32e16192963d9
 ---
 
 # Menggunakan Agent Skills dengan API
@@ -968,7 +968,7 @@ Ketika Skills membuat dokumen (Excel, PowerPoint, PDF, Word), Skills mengembalik
 </CodeGroup>
 
 <Note>
-  Untuk detail lengkap tentang Files API, lihat [dokumentasi Files API](/docs/id/api/files-content).
+  Untuk detail lengkap tentang Files API, lihat [dokumentasi Files API](/docs/id/api/beta/files/download).
 </Note>
 
 ### Percakapan multi-giliran

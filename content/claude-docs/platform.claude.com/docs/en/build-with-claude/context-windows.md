@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/context-windows
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: c03d286a2270f1c166a1d71ca4f6ea8d13c550db85de59f680f7d59029ac8f6b
+fetched_at: 2026-07-14T03:07:36.677443Z
+sha256: 0ecc583947b2b9496eeb3419fad08ec1777aeffb671d5f53a454c3a8555827fd
 ---
 
 # Context windows
@@ -10,10 +10,6 @@ sha256: c03d286a2270f1c166a1d71ca4f6ea8d13c550db85de59f680f7d59029ac8f6b
 Understand how the context window works, how extended thinking and tool use count toward it, and how to manage context as conversations grow.
 
 ---
-
-<Note>
-  This feature is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/api-and-data-retention). When your organization has a ZDR arrangement, data sent through this feature is not stored after the API response is returned.
-</Note>
 
 As conversations grow, you'll eventually approach context window limits. For long-running conversations and agentic workflows, [server-side compaction](/docs/en/build-with-claude/compaction) is the primary strategy for context management.
 

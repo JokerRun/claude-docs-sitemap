@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/subagents
-fetched_at: 2026-07-04T03:09:59.852291Z
-sha256: 19c822723234fff2e9cd55322ec0a28d9af6f1c074c129b4f2a610057c24d9cc
+fetched_at: 2026-07-14T03:07:36.677443Z
+sha256: eaf799afedcdca6e922877ab7d7b4e022bd7be11b259801d310cbe29dff9cbe4
 ---
 
 > ## Documentation Index
@@ -207,7 +207,9 @@ You can also define subagents as markdown files in `.claude/agents/` directories
 
 ## What subagents inherit
 
-A subagent's context window starts fresh, with no parent conversation, but isn't empty. The only channel from parent to subagent is the Agent tool's prompt string, so include any file paths, error messages, or decisions the subagent needs directly in that prompt.
+A subagent's context window starts fresh, with no parent conversation, but isn't empty. The only content you pass from parent to subagent is the Agent tool's prompt string, so include any file paths, error messages, or decisions the subagent needs directly in that prompt.
+
+{/* min-version: 2.1.206 */}A subagent that has the [`SendMessage`](/en/tools-reference) tool starts with a list of the other named agents running in the session, so it knows which names it can send messages to. Claude Code adds the list to the subagent's first turn automatically. A [fork](/en/sub-agents#fork-the-current-conversation) doesn't get the list because it inherits the parent conversation instead. The list requires Claude Code v2.1.206 or later.
 
 | The subagent receives                                                                                                                 | The subagent doesn't receive                                       |
 | :------------------------------------------------------------------------------------------------------------------------------------ | :----------------------------------------------------------------- |

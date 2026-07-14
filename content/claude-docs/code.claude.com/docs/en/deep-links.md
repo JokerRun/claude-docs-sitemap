@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/deep-links
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 39f933c2b9116195c76ebb7fccb8e77775ee8b637da24052c7fe1157601387af
+fetched_at: 2026-07-14T03:07:36.677443Z
+sha256: 4f992ea129b4b9f7dd92cf922cd971a46f37bbd927c61a7e2ab525b0172da265
 ---
 
 > ## Documentation Index
@@ -25,10 +25,6 @@ Because a deep link is a URL, you can put one anywhere a link can go:
 * A CI failure notification that pre-fills the failing job's name
 
 This page covers how to [build a link](#build-a-link), [embed one in a runbook or trigger it from the shell](#examples), and [manage or disable handler registration](#registration-and-supported-platforms) on each platform.
-
-<Note>
-  Deep links require Claude Code v2.1.91 or later.
-</Note>
 
 ## How it works
 

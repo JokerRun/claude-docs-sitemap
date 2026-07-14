@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-directory
-fetched_at: 2026-06-12T03:17:40.104094Z
-sha256: 41c9ce35f1e8d0df7b739c7816e50b36f5aae6742c38658210baa0ca6de76885
+fetched_at: 2026-07-14T03:07:36.677443Z
+sha256: d78d694d206bdcd7bf0e704e820402da02c88287c51f3c0cf3816232d136e11b
 ---
 
 > ## Documentation Index
@@ -1525,21 +1525,21 @@ Beyond the config you author, `~/.claude` holds data Claude Code writes during s
 
 Files in the paths below are deleted on startup once they're older than [`cleanupPeriodDays`](/en/settings#available-settings). The default is 30 days.
 
-| Path under `~/.claude/`                      | Contents                                                                                                                  |
-| -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| `projects/<project>/<session>.jsonl`         | Full conversation transcript: every message, tool call, and tool result                                                   |
-| `projects/<project>/<session>/subagents/`    | [Subagent](/en/sub-agents) conversation transcripts, removed with the parent session transcript when it ages out          |
-| `projects/<project>/<session>/tool-results/` | Large tool outputs spilled to separate files                                                                              |
-| `file-history/<session>/`                    | Pre-edit snapshots of files Claude changed, used for [checkpoint restore](/en/checkpointing)                              |
-| `plans/`                                     | Plan files written during [plan mode](/en/permission-modes#analyze-before-you-edit-with-plan-mode)                        |
-| `debug/`                                     | Per-session debug logs, written only when you start with `--debug` or run `/debug`                                        |
-| `paste-cache/`, `image-cache/`               | Contents of large pastes and attached images                                                                              |
-| `session-env/`                               | Per-session environment metadata                                                                                          |
-| `tasks/`                                     | Per-session task lists written by the task tools                                                                          |
-| `shell-snapshots/`                           | Captured shell environment used by the Bash tool. Removed on clean exit. The sweep clears any left after a crash.         |
-| `backups/`                                   | Timestamped copies of `~/.claude.json` taken before config migrations                                                     |
-| `feedback-bundles/`                          | Redacted transcript archives written by `/feedback` on third-party providers, for sending to your Anthropic account team  |
-| `todos/`, `statsig/`, `logs/`                | Legacy directories from older versions. No longer written. The sweep removes their contents and then the empty directory. |
+| Path under `~/.claude/`                      | Contents                                                                                                                                                                 |
+| -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `projects/<project>/<session>.jsonl`         | Full conversation transcript: every message, tool call, and tool result                                                                                                  |
+| `projects/<project>/<session>/subagents/`    | [Subagent](/en/sub-agents) conversation transcripts, removed with the parent session transcript when it ages out                                                         |
+| `projects/<project>/<session>/tool-results/` | Large tool outputs spilled to separate files                                                                                                                             |
+| `file-history/<session>/`                    | Pre-edit snapshots of files Claude changed, used for [checkpoint restore](/en/checkpointing)                                                                             |
+| `plans/`                                     | Plan files written during [plan mode](/en/permission-modes#analyze-before-you-edit-with-plan-mode)                                                                       |
+| `debug/`                                     | Per-session debug logs, written only when you start with `--debug` or run `/debug`                                                                                       |
+| `paste-cache/`, `image-cache/`               | Contents of large pastes and attached images                                                                                                                             |
+| `session-env/`                               | Per-session environment metadata                                                                                                                                         |
+| `tasks/`                                     | Per-session task lists written by the task tools                                                                                                                         |
+| `shell-snapshots/`                           | Captured shell environment used by the Bash tool. Removed on clean exit. The sweep clears any left after a crash.                                                        |
+| `backups/`                                   | Timestamped copies of `~/.claude.json` taken before config migrations                                                                                                    |
+| `feedback-bundles/`                          | Redacted transcript archives written by `/feedback` on third-party providers or when no Anthropic credentials are configured, for sending to your Anthropic account team |
+| `todos/`, `statsig/`, `logs/`                | Legacy directories from older versions. No longer written. The sweep removes their contents and then the empty directory.                                                |
 
 ### Kept until you delete them
 

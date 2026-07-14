@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/api-and-data-retention
-fetched_at: 2026-07-10T03:11:05.177659Z
-sha256: 2f43955fd6d408b644385738d658165d66b090a984b3f46c51435caf7fca3ee1
+fetched_at: 2026-07-14T03:07:36.677443Z
+sha256: 7d682742dafc38a43668bb1a422c59f47f1493c7d9b76c5ee213265fd5c3d6e7
 ---
 
 # API dan retensi data
@@ -285,5 +285,5 @@ Bahkan dengan pengaturan ZDR atau HIPAA yang berlaku, Anthropic dapat menyimpan 
 * [Structured outputs](/docs/id/build-with-claude/structured-outputs)
 * [Caching prompt](/docs/id/build-with-claude/prompt-caching)
 * [Pemrosesan batch](/docs/id/build-with-claude/batch-processing)
-* [Files API](/docs/id/api/files-create)
+* [Files API](/docs/id/api/beta/files/upload)
 * [Trust Center](https://trust.anthropic.com/resources)

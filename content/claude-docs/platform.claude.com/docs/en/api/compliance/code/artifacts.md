@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/code/artifacts
-fetched_at: 2026-07-08T03:08:53.943475Z
-sha256: adb73d4be2dd960318bb3615db6a2c66db785a8117efdc9c779a170542ffcc30
+fetched_at: 2026-07-14T03:07:36.677443Z
+sha256: 105c7c4ce0eab25a4684e1eb1c2418debf213dae6fbb7cc2e978ee2394ae5fb1
 ---
 
 # Artifacts
@@ -86,13 +86,15 @@ returned.
 
     Identifier of the version a non-owner viewer would render when `read_mode` permits them — the version the owner has pinned for non-owner readers if one is pinned, otherwise the owner's latest. When `read_mode` is `owner` no non-owner renders any version; the field still reports which version would be served were read_mode widened.
 
-  - `read_mode: "org" or "owner" or "users"`
+  - `read_mode: "org" or "owner" or "public" or "users"`
 
-    Who can view this Artifact: only its owner, a named set of users, or every member of its organization
+    Who can view this Artifact: only its owner, a named set of users, every member of its organization, or anyone on the internet (`public`)
 
     - `"org"`
 
     - `"owner"`
+
+    - `"public"`
 
     - `"users"`
 
@@ -291,13 +293,15 @@ curl https://api.anthropic.com/v1/compliance/apps/code/artifacts/$ARTIFACT_ID \
 
     Identifier of the version a non-owner viewer would render when `read_mode` permits them — the version the owner has pinned for non-owner readers if one is pinned, otherwise the owner's latest. When `read_mode` is `owner` no non-owner renders any version; the field still reports which version would be served were read_mode widened.
 
-  - `read_mode: "org" or "owner" or "users"`
+  - `read_mode: "org" or "owner" or "public" or "users"`
 
-    Who can view this Artifact: only its owner, a named set of users, or every member of its organization
+    Who can view this Artifact: only its owner, a named set of users, every member of its organization, or anyone on the internet (`public`)
 
     - `"org"`
 
     - `"owner"`
+
+    - `"public"`
 
     - `"users"`
 

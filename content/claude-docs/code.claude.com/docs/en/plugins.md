@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins
-fetched_at: 2026-07-09T03:11:03.913066Z
-sha256: 9938e50ba2c6c86b9798d1fc39257ee14691e07957ca235690bd4ac0f83097e5
+fetched_at: 2026-07-14T03:07:36.677443Z
+sha256: 1e47c49339d2705edca706b78843b8ddad7ed1017e569a0a239ab8e326754c95
 ---
 
 > ## Documentation Index
@@ -489,7 +489,7 @@ If you already have skills or hooks in your `.claude/` directory, you can conver
 | Must manually copy to share   | Install with `/plugin install`   |
 
 <Note>
-  After migrating, remove the original files from `.claude/` to avoid duplicates. Project and user `.claude/agents/` definitions override same-named plugin agents, so the plugin version only takes effect once the originals are removed.
+  After migrating, remove the original files from `.claude/` to avoid duplicates. Project and user `.claude/agents/` definitions override same-named plugin agents, so the plugin version only takes effect once the originals are removed. Plugin skills are namespaced as `/plugin-name:skill-name`, so the original `/skill-name` and the plugin copy both remain available rather than one overriding the other.
 </Note>
 
 ## Next steps

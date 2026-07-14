@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/managed-mcp
-fetched_at: 2026-06-20T03:15:34.737281Z
-sha256: f1c58e1befce1069343d4ea449ed9923b002d3cd36be0ac59945cc6bedab531a
+fetched_at: 2026-07-14T03:07:36.677443Z
+sha256: 68332f8c6483e88a72bc523da723d6bd2fda29980a752e7c1d5d0a5fd7bd24ce
 ---
 
 > ## Documentation Index
@@ -175,9 +175,10 @@ Before loading a server, including one from `managed-mcp.json`, Claude Code runs
 | Remote (HTTP or SSE) | A `serverUrl` entry. A `serverName` match counts only when the allowlist contains no `serverUrl` entries         |
 | Stdio                | A `serverCommand` entry. A `serverName` match counts only when the allowlist contains no `serverCommand` entries |
 
-Two matching rules apply inside those checks:
+Three matching rules apply inside those checks:
 
 * **Commands match exactly.** Every argument, in order. `["npx", "-y", "server"]` does not match `["npx", "server"]` or `["npx", "-y", "server", "--flag"]`.
+* **`serverCommand` and `serverUrl` values expand before matching.** Both the policy entry and the server's configured value go through the same [`${VAR}` and `${VAR:-default}` expansion](/en/mcp#environment-variable-expansion-in-mcp-json) as `.mcp.json`, so an entry written as `["${HOME}/bin/server"]` matches a server config that uses either the same reference or the expanded path. On Windows, reference an environment variable that is set there, such as `${USERPROFILE}` instead of `${HOME}`. `serverName` values match literally and never expand.
 * **URLs support `*` wildcards** anywhere in the pattern, including the scheme. Hostname matching is case-insensitive and ignores a trailing FQDN dot, so `https://Mcp.Example.com/*` matches `https://mcp.example.com/api`. Paths stay case-sensitive.
 
 | Pattern                     | Allows                                                                 |
@@ -187,6 +188,8 @@ Two matching rules apply inside those checks:
 | `https://*.example.com/*`   | Any subdomain of `example.com`                                         |
 | `http://localhost:*/*`      | Any port on localhost                                                  |
 | `*://mcp.example.com/*`     | Any scheme to a specific domain                                        |
+
+Because `${VAR}` expansion reads Claude Code's own process environment, a `serverCommand` or `serverUrl` policy entry that references a variable expands to whatever value a user sets. Use literal URLs and commands for entries you rely on for enforcement.
 
 ### Example configuration
 

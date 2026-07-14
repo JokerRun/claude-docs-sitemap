@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/keybindings
-fetched_at: 2026-07-10T03:11:05.177659Z
-sha256: 8c29d7289a65a17c92eb63591d0997244e11299afbc433e4dae82a92b473b3cd
+fetched_at: 2026-07-14T03:07:36.677443Z
+sha256: 7f8fe469231b1897268b57cb43841c48495f181063934c8a7b3f13734312df57
 ---
 
 > ## Documentation Index
@@ -12,10 +12,6 @@ sha256: 8c29d7289a65a17c92eb63591d0997244e11299afbc433e4dae82a92b473b3cd
 # Customize keyboard shortcuts
 
 > Customize keyboard shortcuts in Claude Code with a keybindings configuration file.
-
-<Note>
-  Customizable keyboard shortcuts require Claude Code v2.1.18 or later. Check your version with `claude --version`.
-</Note>
 
 Claude Code supports customizable keyboard shortcuts. Run `/keybindings` to create or open your configuration file at `~/.claude/keybindings.json`.
 
@@ -141,17 +137,17 @@ Actions available in the `Autocomplete` context:
 
 Actions available in the `Confirmation` context:
 
-| Action                      | Default   | Description                   |
-| :-------------------------- | :-------- | :---------------------------- |
-| `confirm:yes`               | Y, Enter  | Confirm action                |
-| `confirm:no`                | N, Escape | Decline action                |
-| `confirm:previous`          | Up        | Previous option               |
-| `confirm:next`              | Down      | Next option                   |
-| `confirm:nextField`         | Tab       | Next field                    |
-| `confirm:previousField`     | (unbound) | Previous field                |
-| `confirm:toggle`            | Space     | Toggle selection              |
-| `confirm:cycleMode`         | Shift+Tab | Cycle permission modes        |
-| `confirm:toggleExplanation` | Ctrl+E    | Toggle permission explanation |
+| Action                      | Default   | Description                                                                                                                        |
+| :-------------------------- | :-------- | :--------------------------------------------------------------------------------------------------------------------------------- |
+| `confirm:yes`               | Y, Enter  | Confirm action                                                                                                                     |
+| `confirm:no`                | N, Escape | Decline action                                                                                                                     |
+| `confirm:previous`          | Up        | Previous option                                                                                                                    |
+| `confirm:next`              | Down      | Next option                                                                                                                        |
+| `confirm:nextField`         | Tab       | Next field                                                                                                                         |
+| `confirm:previousField`     | (unbound) | Previous field                                                                                                                     |
+| `confirm:toggle`            | Space     | Toggle selection                                                                                                                   |
+| `confirm:cycleMode`         | Shift+Tab | Cycle permission modes                                                                                                             |
+| `confirm:toggleExplanation` | Ctrl+E    | Toggle a model-generated [explanation of the command](/en/permissions#permission-system) on Bash and PowerShell permission prompts |
 
 ### Permission actions
 
@@ -255,15 +251,15 @@ Actions available in the `MessageSelector` context:
 
 Actions available in the `DiffDialog` context:
 
-| Action                | Default            | Description                                                           |
-| :-------------------- | :----------------- | :-------------------------------------------------------------------- |
-| `diff:dismiss`        | Escape             | Close diff viewer                                                     |
-| `diff:previousSource` | Left               | Previous diff source                                                  |
-| `diff:nextSource`     | Right              | Next diff source                                                      |
-| `diff:previousFile`   | Up, K              | Previous file in the file list; scroll up one line in the detail view |
-| `diff:nextFile`       | Down, J            | Next file in the file list; scroll down one line in the detail view   |
-| `diff:viewDetails`    | Enter              | View diff details                                                     |
-| `diff:back`           | (context-specific) | Go back in diff viewer                                                |
+| Action                | Default   | Description                                                                                                                                         |
+| :-------------------- | :-------- | :-------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `diff:dismiss`        | Escape    | Close diff viewer; from the detail view, returns to the file list instead                                                                           |
+| `diff:previousSource` | Left      | Previous diff source                                                                                                                                |
+| `diff:nextSource`     | Right     | Next diff source                                                                                                                                    |
+| `diff:previousFile`   | Up, K     | Previous file in the file list; scroll up one line in the detail view                                                                               |
+| `diff:nextFile`       | Down, J   | Next file in the file list; scroll down one line in the detail view                                                                                 |
+| `diff:viewDetails`    | Enter     | View diff details                                                                                                                                   |
+| `diff:back`           | (unbound) | Go back in diff viewer. Escape performs the back action via `diff:dismiss`. The previous default of Left in the detail view was removed in v2.1.203 |
 
 The diff detail view also binds pager-style keys to the standard [scroll actions](#scroll-actions). These bindings are part of the `DiffDialog` context and apply only in the detail view; the `Scroll` context defaults listed under [Scroll actions](#scroll-actions) are unchanged.
 

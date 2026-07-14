@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/quickstart
-fetched_at: 2026-07-10T03:11:05.177659Z
-sha256: e3083725183674422d313ea2e7ed9422a192dd90bca1a0876a6f831c6bf1a6de
+fetched_at: 2026-07-14T03:07:36.677443Z
+sha256: ee30aa4c580509503e71256a1147c34d2ce45e1475a001604378f76857966908
 ---
 
 # Memulai dengan Agent Skills di API
@@ -38,7 +38,7 @@ Pertama, periksa Skills apa saja yang tersedia. Gunakan Skills API untuk mendaft
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL
-  # Daftar Skills yang dikelola Anthropic
+  # List Anthropic-managed Skills
   curl --fail-with-body -sS "https://api.anthropic.com/v1/skills?source=anthropic" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -47,12 +47,12 @@ Pertama, periksa Skills apa saja yang tersedia. Gunakan Skills API untuk mendaft
   ```
 
   ```bash CLI
-  # Menampilkan daftar Skill yang dikelola Anthropic
+  # List Anthropic-managed Skills
   ant beta:skills list --source anthropic
   ```
 
   ```python Python
-  # Daftar Skills yang dikelola Anthropic
+  # List Anthropic-managed Skills
   skills = client.beta.skills.list(source="anthropic")
 
   for skill in skills.data:
@@ -60,7 +60,7 @@ Pertama, periksa Skills apa saja yang tersedia. Gunakan Skills API untuk mendaft
   ```
 
   ```typescript TypeScript
-  // Daftar Skills yang dikelola Anthropic
+  // List Anthropic-managed Skills
   const skills = await client.beta.skills.list({ source: "anthropic" });
 
   for (const skill of skills.data) {
@@ -69,7 +69,7 @@ Pertama, periksa Skills apa saja yang tersedia. Gunakan Skills API untuk mendaft
   ```
 
   ```csharp C#
-  // Daftar Skills yang dikelola Anthropic
+  // List Anthropic-managed Skills
   var skills = await client.Beta.Skills.List(new SkillListParams { Source = "anthropic" });
 
   foreach (var skill in skills.Items)
@@ -79,7 +79,7 @@ Pertama, periksa Skills apa saja yang tersedia. Gunakan Skills API untuk mendaft
   ```
 
   ```go Go
-  // Menampilkan daftar Skill yang dikelola Anthropic
+  // List Anthropic-managed Skills
   skills, err := client.Beta.Skills.List(ctx, anthropic.BetaSkillListParams{
   	Source: anthropic.String("anthropic"),
   })
@@ -93,7 +93,7 @@ Pertama, periksa Skills apa saja yang tersedia. Gunakan Skills API untuk mendaft
   ```
 
   ```java Java
-  // Menampilkan daftar Skill yang dikelola Anthropic
+  // List Anthropic-managed Skills
   SkillListPage skills = client.beta().skills().list(
       SkillListParams.builder().source("anthropic").build()
   );
@@ -104,7 +104,7 @@ Pertama, periksa Skills apa saja yang tersedia. Gunakan Skills API untuk mendaft
   ```
 
   ```php PHP
-  // Daftar Skills yang dikelola Anthropic
+  // List Anthropic-managed Skills
   $skills = $client->beta->skills->list(source: 'anthropic');
 
   foreach ($skills->data as $skill) {
@@ -113,7 +113,7 @@ Pertama, periksa Skills apa saja yang tersedia. Gunakan Skills API untuk mendaft
   ```
 
   ```ruby Ruby
-  # Daftar Skill yang dikelola Anthropic
+  # List Anthropic-managed Skills
   skills = client.beta.skills.list(source: "anthropic")
 
   skills.data.each do |skill|
@@ -132,7 +132,7 @@ Sekarang gunakan Skill PowerPoint untuk membuat presentasi tentang energi terbar
 
 <CodeGroup>
   ```bash cURL
-  # Buat pesan dengan Skill PowerPoint
+  # Create a message with the PowerPoint Skill
   response=$(
     curl --fail-with-body -sS https://api.anthropic.com/v1/messages \
       -H "content-type: application/json" \
@@ -157,7 +157,7 @@ Sekarang gunakan Skill PowerPoint untuk membuat presentasi tentang energi terbar
   ```
 
   ```bash CLI
-  # Membuat pesan dengan Skill PowerPoint
+  # Create a message with the PowerPoint Skill
   response=$(ant beta:messages create --format json \
     --beta skills-2025-10-02 <<'YAML'
   model: claude-opus-4-8
@@ -180,7 +180,7 @@ Sekarang gunakan Skill PowerPoint untuk membuat presentasi tentang energi terbar
   ```
 
   ```python Python
-  # Buat pesan dengan Skill PowerPoint
+  # Create a message with the PowerPoint Skill
   response = client.beta.messages.create(
       model="claude-opus-4-8",
       max_tokens=16000,
@@ -201,7 +201,7 @@ Sekarang gunakan Skill PowerPoint untuk membuat presentasi tentang energi terbar
   ```
 
   ```typescript TypeScript
-  // Buat pesan dengan Skill PowerPoint
+  // Create a message with the PowerPoint Skill
   const response = await client.beta.messages.create({
     model: "claude-opus-4-8",
     max_tokens: 16000,
@@ -224,7 +224,7 @@ Sekarang gunakan Skill PowerPoint untuk membuat presentasi tentang energi terbar
   ```
 
   ```csharp C#
-  // Buat pesan dengan Skill PowerPoint
+  // Create a message with the PowerPoint Skill
   var response = await client.Beta.Messages.Create(new MessageCreateParams
   {
       Model = Model.ClaudeOpus4_8,
@@ -257,7 +257,7 @@ Sekarang gunakan Skill PowerPoint untuk membuat presentasi tentang energi terbar
   ```
 
   ```go Go
-  // Membuat pesan dengan Skill PowerPoint
+  // Create a message with the PowerPoint Skill
   response, err := client.Beta.Messages.New(ctx, anthropic.BetaMessageNewParams{
   	Model:     anthropic.ModelClaudeOpus4_8,
   	MaxTokens: 16000,
@@ -292,7 +292,7 @@ Sekarang gunakan Skill PowerPoint untuk membuat presentasi tentang energi terbar
   ```
 
   ```java Java
-  // Membuat pesan dengan Skill PowerPoint
+  // Create a message with the PowerPoint Skill
   BetaMessage response = client.beta().messages().create(
       MessageCreateParams.builder()
           .model(Model.CLAUDE_OPUS_4_8)
@@ -321,7 +321,7 @@ Sekarang gunakan Skill PowerPoint untuk membuat presentasi tentang energi terbar
   ```
 
   ```php PHP
-  // Buat pesan dengan Skill PowerPoint
+  // Create a message with the PowerPoint Skill
   $response = $client->beta->messages->create(
       model: 'claude-opus-4-8',
       maxTokens: 16000,
@@ -342,7 +342,7 @@ Sekarang gunakan Skill PowerPoint untuk membuat presentasi tentang energi terbar
   ```
 
   ```ruby Ruby
-  # Buat pesan dengan Skill PowerPoint
+  # Create a message with the PowerPoint Skill
   response = client.beta.messages.create(
     model: "claude-opus-4-8",
     max_tokens: 16_000,
@@ -384,21 +384,21 @@ Presentasi dibuat di dalam container eksekusi kode dan disimpan sebagai file. Re
 
 <CodeGroup>
   ```bash cURL
-  # Ekstrak ID file dari hasil alat code-execution. Skill mungkin menjalankan
-  # pekerjaannya melalui alat code-execution Python atau bash, jadi periksa
-  # kedua jenis hasil tersebut.
+  # Extract the file ID. The code execution tool runs the Skill's code through
+  # its Bash sub-tool, and generated files appear as bash_code_execution_output
+  # items inside the bash_code_execution_tool_result block.
   file_id=$(jq -r '
     last(
       .content[]
-      | select(.type == "code_execution_tool_result" or .type == "bash_code_execution_tool_result")
+      | select(.type == "bash_code_execution_tool_result")
       | .content
-      | select(.type == "code_execution_result" or .type == "bash_code_execution_result")
+      | select(.type == "bash_code_execution_result")
       | .content[].file_id
     ) // empty
   ' <<<"$response")
 
   if [[ -n "$file_id" ]]; then
-    # Unduh file dan simpan
+    # Download the file and save it
     output_path="${TMPDIR:-/tmp}/renewable_energy.pptx"
     curl --fail-with-body -sS "https://api.anthropic.com/v1/files/$file_id/content" \
       -H "x-api-key: $ANTHROPIC_API_KEY" \
@@ -410,23 +410,21 @@ Presentasi dibuat di dalam container eksekusi kode dan disimpan sebagai file. Re
   ```
 
   ```bash CLI
-  # Ekstrak ID file dari hasil alat code-execution. Skill mungkin menjalankan
-  # pekerjaannya melalui alat code-execution Python atau bash, jadi periksa
-  # kedua tipe hasil tersebut.
+  # Extract the file ID. The code execution tool runs the Skill's code through
+  # its Bash sub-tool, and generated files appear as bash_code_execution_output
+  # items inside the bash_code_execution_tool_result block.
   file_id=$(jq -r '
     last(
       .content[]
-      | select(.type == "code_execution_tool_result"
-            or .type == "bash_code_execution_tool_result")
+      | select(.type == "bash_code_execution_tool_result")
       | .content
-      | select(.type == "code_execution_result"
-            or .type == "bash_code_execution_result")
+      | select(.type == "bash_code_execution_result")
       | .content[].file_id
     ) // empty
   ' <<<"$response")
 
   if [[ -n "$file_id" ]]; then
-    # Unduh file dan simpan
+    # Download the file and save it
     output_path="${TMPDIR:-/tmp}/renewable_energy.pptx"
     ant beta:files download --file-id "$file_id" --output "$output_path"
     echo "Presentation saved to $output_path"
@@ -434,22 +432,18 @@ Presentasi dibuat di dalam container eksekusi kode dan disimpan sebagai file. Re
   ```
 
   ```python Python
-  # Ekstrak ID file dari hasil alat code-execution. Skill mungkin menjalankan
-  # pekerjaannya melalui alat code-execution Python atau bash, jadi periksa
-  # kedua jenis hasil tersebut.
+  # Extract the file ID. The code execution tool runs the Skill's code through
+  # its Bash sub-tool, and generated files appear as bash_code_execution_output
+  # items inside the bash_code_execution_tool_result block.
   file_id = None
   for block in response.content:
-      if block.type == "code_execution_tool_result":
-          if block.content.type == "code_execution_result":
-              for output in block.content.content:
-                  file_id = output.file_id
-      elif block.type == "bash_code_execution_tool_result":
+      if block.type == "bash_code_execution_tool_result":
           if block.content.type == "bash_code_execution_result":
               for output in block.content.content:
                   file_id = output.file_id
 
   if file_id:
-      # Unduh file dan simpan
+      # Download the file and save it
       output_path = Path(tempfile.gettempdir()) / "renewable_energy.pptx"
       file_content = client.beta.files.download(file_id=file_id)
       file_content.write_to_file(output_path)
@@ -457,51 +451,38 @@ Presentasi dibuat di dalam container eksekusi kode dan disimpan sebagai file. Re
   ```
 
   ```typescript TypeScript
-  // Ekstrak ID file dari hasil alat code-execution. Skill mungkin menjalankan
-  // pekerjaannya melalui alat code-execution Python atau bash, jadi periksa
-  // kedua tipe hasil tersebut.
+  // Extract the file ID. The code execution tool runs the Skill's code through
+  // its Bash sub-tool, and generated files appear as bash_code_execution_output
+  // items inside the bash_code_execution_tool_result block.
   let fileId: string | undefined;
   for (const block of response.content) {
-    if (block.type === "code_execution_tool_result") {
-      if (block.content.type === "code_execution_result") {
-        for (const output of block.content.content) {
-          fileId = output.file_id;
-        }
-      }
-    } else if (block.type === "bash_code_execution_tool_result") {
-      if (block.content.type === "bash_code_execution_result") {
-        for (const output of block.content.content) {
-          fileId = output.file_id;
-        }
+    if (
+      block.type === "bash_code_execution_tool_result" &&
+      block.content.type === "bash_code_execution_result"
+    ) {
+      for (const output of block.content.content) {
+        fileId = output.file_id;
       }
     }
   }
 
   if (fileId) {
-    // Unduh file dan streaming ke disk
+    // Download the file and save it
     const outputPath = path.join(os.tmpdir(), "renewable_energy.pptx");
     const fileContent = await client.beta.files.download(fileId);
-    await fs.writeFile(outputPath, fileContent.body!);
+    await fs.writeFile(outputPath, Buffer.from(await fileContent.arrayBuffer()));
     console.log(`Presentation saved to ${outputPath}`);
   }
   ```
 
   ```csharp C#
-  // Ekstrak ID file dari hasil alat code-execution. Skill mungkin
-  // menjalankan pekerjaannya melalui alat code-execution Python atau bash, jadi
-  // periksa kedua jenis hasil.
+  // Extract the file ID. The code execution tool runs the Skill's code through
+  // its Bash sub-tool, and generated files appear as bash_code_execution_output
+  // items inside the bash_code_execution_tool_result block.
   string? fileId = null;
   foreach (var block in response.Content)
   {
-      if (block.TryPickCodeExecutionToolResult(out var codeResult)
-          && codeResult.Content.TryPickResultBlock(out var codeResultBlock))
-      {
-          foreach (var output in codeResultBlock.Content)
-          {
-              fileId = output.FileID;
-          }
-      }
-      else if (block.TryPickBashCodeExecutionToolResult(out var bashResult)
+      if (block.TryPickBashCodeExecutionToolResult(out var bashResult)
           && bashResult.Content.TryPickBetaBashCodeExecutionResultBlock(out var bashResultBlock))
       {
           foreach (var output in bashResultBlock.Content)
@@ -513,7 +494,7 @@ Presentasi dibuat di dalam container eksekusi kode dan disimpan sebagai file. Re
 
   if (fileId is not null)
   {
-      // Unduh file dan simpan
+      // Download the file and save it
       var outputPath = Path.Combine(Path.GetTempPath(), "renewable_energy.pptx");
       using var download = await client.Beta.Files.Download(fileId);
       await using var source = await download.ReadAsStream();
@@ -524,18 +505,12 @@ Presentasi dibuat di dalam container eksekusi kode dan disimpan sebagai file. Re
   ```
 
   ```go Go
-  // Ekstrak ID file dari hasil alat code-execution. Skill mungkin menjalankan
-  // pekerjaannya melalui alat code-execution Python atau bash, jadi periksa
-  // kedua tipe hasil tersebut.
+  // Extract the file ID. The code execution tool runs the Skill's code through
+  // its Bash sub-tool, and generated files appear as bash_code_execution_output
+  // items inside the bash_code_execution_tool_result block.
   var fileID string
   for _, block := range response.Content {
   	switch result := block.AsAny().(type) {
-  	case anthropic.BetaCodeExecutionToolResultBlock:
-  		if result.Content.Type == "code_execution_result" {
-  			for _, output := range result.Content.Content {
-  				fileID = output.FileID
-  			}
-  		}
   	case anthropic.BetaBashCodeExecutionToolResultBlock:
   		if result.Content.Type == "bash_code_execution_result" {
   			for _, output := range result.Content.Content {
@@ -546,7 +521,7 @@ Presentasi dibuat di dalam container eksekusi kode dan disimpan sebagai file. Re
   }
 
   if fileID != "" {
-  	// Unduh file dan simpan
+  	// Download the file and save it
   	outputPath := filepath.Join(os.TempDir(), "renewable_energy.pptx")
   	fileContent, err := client.Beta.Files.Download(ctx, fileID, anthropic.BetaFileDownloadParams{})
   	if err != nil {
@@ -566,19 +541,12 @@ Presentasi dibuat di dalam container eksekusi kode dan disimpan sebagai file. Re
   ```
 
   ```java Java
-  // Ekstrak ID file dari hasil alat code-execution. Skill mungkin menjalankan
-  // pekerjaannya melalui alat code-execution Python atau bash, jadi periksa
-  // kedua tipe hasil tersebut.
+  // Extract the file ID. The code execution tool runs the Skill's code through
+  // its Bash sub-tool, and generated files appear as bash_code_execution_output
+  // items inside the bash_code_execution_tool_result block.
   String fileId = null;
   for (BetaContentBlock block : response.content()) {
-      if (block.isCodeExecutionToolResult()) {
-          var content = block.asCodeExecutionToolResult().content();
-          if (content.isResultBlock()) {
-              for (var output : content.asResultBlock().content()) {
-                  fileId = output.fileId();
-              }
-          }
-      } else if (block.isBashCodeExecutionToolResult()) {
+      if (block.isBashCodeExecutionToolResult()) {
           var content = block.asBashCodeExecutionToolResult().content();
           if (content.isBetaBashCodeExecutionResultBlock()) {
               for (var output : content.asBetaBashCodeExecutionResultBlock().content()) {
@@ -589,7 +557,7 @@ Presentasi dibuat di dalam container eksekusi kode dan disimpan sebagai file. Re
   }
 
   if (fileId != null) {
-      // Unduh file dan simpan
+      // Download the file and save it
       Path outputPath = Files.createTempFile("renewable_energy", ".pptx");
       try (HttpResponse fileContent = client.beta().files().download(fileId)) {
           Files.copy(fileContent.body(), outputPath, StandardCopyOption.REPLACE_EXISTING);
@@ -599,28 +567,25 @@ Presentasi dibuat di dalam container eksekusi kode dan disimpan sebagai file. Re
   ```
 
   ```php PHP
-  // Ekstrak ID file dari hasil alat code-execution. Skill mungkin menjalankan
-  // pekerjaannya melalui alat code-execution Python atau bash, jadi periksa
-  // kedua tipe hasil.
+  // Extract the file ID. The code execution tool runs the Skill's code through
+  // its Bash sub-tool, and generated files appear as bash_code_execution_output
+  // items inside the bash_code_execution_tool_result block.
   $fileId = null;
   foreach ($response->content as $block) {
-      if ($block instanceof BetaCodeExecutionToolResultBlock) {
-          if ($block->content instanceof BetaCodeExecutionResultBlock) {
-              foreach ($block->content->content as $output) {
-                  $fileId = $output->fileID;
-              }
-          }
-      } elseif ($block instanceof BetaBashCodeExecutionToolResultBlock) {
-          if ($block->content instanceof BetaBashCodeExecutionResultBlock) {
-              foreach ($block->content->content as $output) {
-                  $fileId = $output->fileID;
-              }
-          }
+      if ($block->type !== 'bash_code_execution_tool_result') {
+          continue;
+      }
+      $resultBlock = $block->content;
+      if ($resultBlock->type !== 'bash_code_execution_result') {
+          continue;
+      }
+      foreach ($resultBlock->content as $output) {
+          $fileId = $output->fileID;
       }
   }
 
   if ($fileId !== null) {
-      // Unduh file dan simpan
+      // Download the file and save it
       $outputPath = sys_get_temp_dir() . '/renewable_energy.pptx';
       $fileContent = $client->beta->files->download($fileId);
       file_put_contents($outputPath, $fileContent);
@@ -629,25 +594,20 @@ Presentasi dibuat di dalam container eksekusi kode dan disimpan sebagai file. Re
   ```
 
   ```ruby Ruby
-  # Ekstrak ID file dari hasil alat code-execution. Skill mungkin menjalankan
-  # pekerjaannya melalui alat code-execution Python atau bash, jadi periksa
-  # kedua jenis hasil tersebut.
+  # Extract the file ID. The code execution tool runs the Skill's code through
+  # its Bash sub-tool, and generated files appear as bash_code_execution_output
+  # items inside the bash_code_execution_tool_result block.
   file_id = nil
   response.content.each do |block|
-    case block.type
-    when :code_execution_tool_result
-      if block.content[:type] == "code_execution_result"
-        block.content[:content].each { |output| file_id = output[:file_id] }
-      end
-    when :bash_code_execution_tool_result
-      if block.content[:type] == "bash_code_execution_result"
-        block.content[:content].each { |output| file_id = output[:file_id] }
-      end
+    next unless block.type == :bash_code_execution_tool_result
+
+    if block.content[:type].to_s == "bash_code_execution_result"
+      Array(block.content[:content]).each { |output| file_id = output[:file_id] }
     end
   end
 
   if file_id
-    # Unduh file dan simpan
+    # Download the file and save it
     output_path = File.join(Dir.tmpdir, "renewable_energy.pptx")
     file_content = client.beta.files.download(file_id)
     File.binwrite(output_path, file_content.read)

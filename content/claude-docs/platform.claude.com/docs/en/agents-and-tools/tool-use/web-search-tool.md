@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool
-fetched_at: 2026-07-03T03:11:00.926352Z
-sha256: 631f40d3a3ff8d8d178f33984ef9e715866d76ab9729dd501e06846ecae10c2f
+fetched_at: 2026-07-14T03:07:36.677443Z
+sha256: f53c357f73380981e590dc019c81db362305f591bf07bd8769b2e327e3ba63e6
 ---
 
 # Web search tool
@@ -10,6 +10,10 @@ sha256: 631f40d3a3ff8d8d178f33984ef9e715866d76ab9729dd501e06846ecae10c2f
 Give Claude access to current web content with cited sources, optional dynamic filtering, and domain controls.
 
 ---
+
+<Note>
+  This feature is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/api-and-data-retention). When your organization has a ZDR arrangement, data sent through this feature is not stored after the API response is returned.
+</Note>
 
 The web search tool gives Claude direct access to real-time web content, allowing it to answer questions with up-to-date information beyond its knowledge cutoff. The response includes citations for sources drawn from search results.
 

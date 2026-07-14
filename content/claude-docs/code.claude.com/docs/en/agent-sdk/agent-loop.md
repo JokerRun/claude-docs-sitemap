@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/agent-loop
-fetched_at: 2026-07-10T03:11:05.177659Z
-sha256: 1187e58f3e7fb4b6758ab722eb82819ca458c083b9dd8d83ed641ba8dd85ccc1
+fetched_at: 2026-07-14T03:07:36.677443Z
+sha256: b181ae7bfb8578b4fc77d418215ecf4cb5e911198db4fea72f26053c5ae6a5ca
 ---
 
 > ## Documentation Index
@@ -56,7 +56,7 @@ As the loop runs, the SDK yields a stream of messages. Each message carries a ty
 
 * **`SystemMessage`:** session lifecycle events. The `subtype` field distinguishes them:
 
-  * `"init"`: the first message with session metadata
+  * `"init"`: session metadata for the run. When a `SessionStart` or `Setup` hook runs during session startup, its [hook lifecycle messages](/en/agent-sdk/typescript#sdkhookstartedmessage) arrive before the `init` message
   * `"compact_boundary"`: fires after [compaction](#automatic-compaction)
   * `"informational"`: plain-text status banners from the loop
   * `"worker_shutting_down"`: the loop will end after the current turn because the host is exiting or Remote Control disconnected

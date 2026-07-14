@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/hooks-guide
-fetched_at: 2026-07-08T03:08:53.943475Z
-sha256: e1ac93b138a51c7f750decc994249876e0c3254e764ed537f00520c690e18a7c
+fetched_at: 2026-07-14T03:07:36.677443Z
+sha256: e59f347ea3511697437e70359e6b228d0af46775e0b828772dd94f6205a049c8
 ---
 
 > ## Documentation Index
@@ -719,10 +719,6 @@ The tabs below show a few more matchers on different event types.
 For full matcher syntax, see the [Hooks reference](/en/hooks#configuration).
 
 #### Filter by tool name and arguments with the `if` field
-
-<Note>
-  The `if` field requires Claude Code v2.1.85 or later. Earlier versions ignore it and run the hook on every matched call.
-</Note>
 
 The `if` field uses [permission rule syntax](/en/permissions) to filter hooks by tool name and arguments together, so the hook process only spawns when the tool call matches. This goes beyond `matcher`, which filters at the group level by tool name only.
 

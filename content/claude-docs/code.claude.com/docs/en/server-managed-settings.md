@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/server-managed-settings
-fetched_at: 2026-07-04T03:09:59.852291Z
-sha256: ef7157a107409cd5b2aa7b210ef8ae0b54efd2171211902170bf0195aa6f5753
+fetched_at: 2026-07-14T03:07:36.677443Z
+sha256: fd6c58b9dc8e6a5441bb087956c19180d505f835efa475e73be641bc1ce8252d
 ---
 
 > ## Documentation Index
@@ -27,7 +27,6 @@ To use server-managed settings, you need:
 
 * Claude for Teams or Claude for Enterprise plan
 * The Owner or Primary Owner role in your Claude organization, to view and edit the configuration
-* Claude Code version 2.1.38 or later for Claude for Teams, or version 2.1.30 or later for Claude for Enterprise
 * Network access to `api.anthropic.com`
 
 ## Choose between server-managed and endpoint-managed settings
@@ -224,7 +223,7 @@ Certain settings that could pose security risks require explicit user approval b
 When these settings are present, users see a security dialog explaining what is being configured. Users must approve to proceed. If a user rejects the settings, Claude Code exits.
 
 <Note>
-  In non-interactive mode with the `-p` flag, Claude Code skips security dialogs and applies settings without user approval.
+  A non-interactive run, such as `claude -p` or an Agent SDK session, can't show the dialog. When the delivered settings would require approval, Claude Code applies them for that run only: it doesn't record them as approved or write them to the [local cache](#fetch-and-caching-behavior), and the next interactive session shows the dialog. Until a user approves in an interactive session, each non-interactive run fetches the settings again at startup. Before v2.1.207, a non-interactive run saved the settings as approved, so later interactive sessions never showed the dialog for them.
 </Note>
 
 ## Platform availability

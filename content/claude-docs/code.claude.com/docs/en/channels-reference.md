@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/channels-reference
-fetched_at: 2026-07-08T03:08:53.943475Z
-sha256: 5b0aa144efe11248a25b8074a0bacedabccdbde7d9a723c945d57a4cbaa23850
+fetched_at: 2026-07-14T03:07:36.677443Z
+sha256: 821745930840d5674fcd5bbb9660c6493ad2d57f63e94f8c1123b29ba9fee729
 ---
 
 > ## Documentation Index
@@ -14,7 +14,7 @@ sha256: 5b0aa144efe11248a25b8074a0bacedabccdbde7d9a723c945d57a4cbaa23850
 > Build an MCP server that pushes webhooks, alerts, and chat messages into a Claude Code session. Reference for the channel contract: capability declaration, notification events, reply tools, sender gating, and permission relay.
 
 <Note>
-  Channels are in [research preview](/en/channels#research-preview) and require Claude Code v2.1.80 or later. Team and Enterprise organizations must [explicitly enable them](/en/channels#enterprise-controls).
+  Channels are in [research preview](/en/channels#research-preview). Team and Enterprise organizations must [explicitly enable them](/en/channels#enterprise-controls).
 </Note>
 
 A channel is an MCP server that pushes events into a Claude Code session so Claude can react to things happening outside the terminal.
@@ -441,10 +441,6 @@ Gate on the sender's identity, not the chat or room identity: `message.from.id` 
 The [Telegram](https://github.com/anthropics/claude-plugins-official/tree/main/external_plugins/telegram) and [Discord](https://github.com/anthropics/claude-plugins-official/tree/main/external_plugins/discord) channels gate on a sender allowlist the same way. They bootstrap the list by pairing: the user DMs the bot, the bot replies with a pairing code, the user approves it in their Claude Code session, and their platform ID is added. See either implementation for the full pairing flow. The [iMessage](https://github.com/anthropics/claude-plugins-official/tree/main/external_plugins/imessage) channel takes a different approach: it detects the user's own addresses from the Messages database at startup and lets them through automatically, with other senders added by handle.
 
 ## Relay permission prompts
-
-<Note>
-  Permission relay requires Claude Code v2.1.81 or later. Earlier versions ignore the `claude/channel/permission` capability.
-</Note>
 
 When Claude calls a tool that needs approval, the local terminal dialog opens and the session waits. A two-way channel can opt in to receive the same prompt in parallel and relay it to you on another device. Both stay live: you can answer in the terminal or on your phone, and Claude Code applies whichever answer arrives first and closes the other.
 

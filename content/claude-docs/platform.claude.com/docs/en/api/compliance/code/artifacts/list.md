@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/code/artifacts/list
-fetched_at: 2026-07-08T03:08:53.943475Z
-sha256: c02b328da949f5702e0ab4175b56a6c907c1c161dd55c317839041be6380423d
+fetched_at: 2026-07-14T03:07:36.677443Z
+sha256: 15bd402ed3f4e359029320c966a4ad33e709a17fbc167d86d1c1164b376a9004
 ---
 
 ## List Code Artifacts
@@ -84,13 +84,15 @@ returned.
 
     Identifier of the version a non-owner viewer would render when `read_mode` permits them — the version the owner has pinned for non-owner readers if one is pinned, otherwise the owner's latest. When `read_mode` is `owner` no non-owner renders any version; the field still reports which version would be served were read_mode widened.
 
-  - `read_mode: "org" or "owner" or "users"`
+  - `read_mode: "org" or "owner" or "public" or "users"`
 
-    Who can view this Artifact: only its owner, a named set of users, or every member of its organization
+    Who can view this Artifact: only its owner, a named set of users, every member of its organization, or anyone on the internet (`public`)
 
     - `"org"`
 
     - `"owner"`
+
+    - `"public"`
 
     - `"users"`
 

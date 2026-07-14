@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/batch-processing
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: f66d1689b367d225d264053fe4cf9f7987c6e29f410d759aef1c0c0853f8a066
+fetched_at: 2026-07-14T03:07:36.677443Z
+sha256: 6625c11e644cd1b8d67114c5a93db6969180f2168ade359d4c1aacc10084850a
 ---
 
 # Pemrosesan batch
@@ -26,7 +26,7 @@ Message Batches API adalah implementasi pertama Anthropic untuk pola ini.
 
 Message Batches API adalah cara yang ampuh dan hemat biaya untuk memproses permintaan [Messages](/docs/id/api/messages/create) dalam volume besar secara asinkron. Pendekatan ini sangat cocok untuk tugas yang tidak memerlukan respons langsung, dengan sebagian besar batch selesai dalam waktu kurang dari 1 jam sambil mengurangi biaya sebesar 50% dan meningkatkan throughput.
 
-Anda dapat [menjelajahi referensi API secara langsung](/docs/id/api/creating-message-batches), selain panduan ini.
+Anda dapat [menjelajahi referensi API secara langsung](/docs/id/api/messages/batches/create), selain panduan ini.
 
 ## Cara kerja Message Batches API
 
@@ -116,7 +116,7 @@ Sebuah Message Batch terdiri dari daftar permintaan untuk membuat Message. Bentu
 * `custom_id` unik untuk mengidentifikasi permintaan Messages. Harus terdiri dari 1 hingga 64 karakter dan hanya berisi karakter alfanumerik, tanda hubung, dan garis bawah (sesuai dengan `^[a-zA-Z0-9_-]{1,64}$`).
 * Objek `params` dengan parameter [Messages API](/docs/id/api/messages/create) standar
 
-Anda dapat [membuat batch](/docs/id/api/creating-message-batches) dengan meneruskan daftar ini ke parameter `requests`:
+Anda dapat [membuat batch](/docs/id/api/messages/batches/create) dengan meneruskan daftar ini ke parameter `requests`:
 
 <CodeGroup>
   ```bash cURL
@@ -722,7 +722,7 @@ Setelah pemrosesan batch selesai, setiap permintaan Messages dalam batch memilik
 
 Anda akan melihat ikhtisar hasil Anda dengan `request_counts` batch, yang menunjukkan berapa banyak permintaan yang mencapai masing-masing dari empat status ini.
 
-Hasil batch tersedia untuk diunduh di properti `results_url` pada Message Batch, dan jika izin organisasi memungkinkan, di Console. Karena ukuran hasil yang berpotensi besar, disarankan untuk [melakukan streaming hasil](/docs/id/api/retrieving-message-batch-results) daripada mengunduh semuanya sekaligus.
+Hasil batch tersedia untuk diunduh di properti `results_url` pada Message Batch, dan jika izin organisasi memungkinkan, di Console. Karena ukuran hasil yang berpotensi besar, disarankan untuk [melakukan streaming hasil](/docs/id/api/messages/batches/results) daripada mengunduh semuanya sekaligus.
 
 <CodeGroup>
   ```bash cURL
@@ -1860,7 +1860,7 @@ Untuk kelayakan ZDR di semua fitur, lihat [API dan retensi data](/docs/id/manage
   </Accordion>
 
   <Accordion title="Bagaimana cara menangani kesalahan dalam permintaan batch saya?">
-    Saat Anda mengambil hasil, setiap permintaan akan memiliki field `result` yang menunjukkan apakah permintaan tersebut `succeeded`, `errored`, `canceled`, atau `expired`. Untuk hasil `errored`, informasi kesalahan tambahan akan disediakan. Lihat objek respons kesalahan di [referensi API](/docs/id/api/creating-message-batches).
+    Saat Anda mengambil hasil, setiap permintaan akan memiliki field `result` yang menunjukkan apakah permintaan tersebut `succeeded`, `errored`, `canceled`, atau `expired`. Untuk hasil `errored`, informasi kesalahan tambahan akan disediakan. Lihat objek respons kesalahan di [referensi API](/docs/id/api/messages/batches/create).
   </Accordion>
 
   <Accordion title="Bagaimana Message Batches API menangani privasi dan pemisahan data?">

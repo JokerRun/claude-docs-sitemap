@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes
-fetched_at: 2026-07-10T03:11:05.177659Z
-sha256: f1cda3d32cac8fee13f6854c416e51ba8e9e1ac5376cdea14c89dd3ba943eac6
+fetched_at: 2026-07-14T03:07:36.677443Z
+sha256: e6d226370acfbca45f71ed485031aa970636ec1ea2703622be3884bc1239f499
 ---
 
 # Self-hosted sandboxes
 
-Run agent sessions in your own self-hosted sandbox environment.
+Run Claude Managed Agents sessions in self-hosted sandboxes, keeping tool execution, files, and network egress in your own infrastructure.
 
 ---
 

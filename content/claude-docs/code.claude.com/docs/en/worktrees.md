@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/worktrees
-fetched_at: 2026-07-10T03:11:05.177659Z
-sha256: 831baf869190a7ce10370f41d9389afe22c9e37147a92300a691126bbb5623ed
+fetched_at: 2026-07-14T03:07:36.677443Z
+sha256: d31c1f87ec54ad2d5c8234d1decf95d34045619c17af103ef85a4be5441ca4a7
 ---
 
 > ## Documentation Index
@@ -40,6 +40,8 @@ claude --worktree
 ```
 
 You can also ask Claude to "work in a worktree" during a session, and it will create one with the [`EnterWorktree`](/en/tools-reference) tool. Once in a worktree, Claude can switch directly to another one under `.claude/worktrees/` by calling `EnterWorktree` with the target path. The previous worktree stays on disk untouched.
+
+Entering a path outside the repository's `.claude/worktrees/` directory asks for your approval first, because it moves the session's working directory, write access, and project configuration such as `CLAUDE.md` and settings to that location. An `EnterWorktree` [permission rule](/en/permissions) or choosing "don't ask again" doesn't suppress this prompt; only `bypassPermissions` mode skips it. Before v2.1.206, Claude could enter any existing worktree path without asking.
 
 {/* min-version: 2.1.198 */}As of v2.1.198, entering or exiting a worktree also relocates the session transcript to that directory's project storage, the same way [`/cd`](/en/commands) does, so `/desktop` and `--resume` find the session there afterward. Worktrees created by a [`WorktreeCreate` hook](#non-git-version-control) are excluded and keep the transcript at the launch directory.
 

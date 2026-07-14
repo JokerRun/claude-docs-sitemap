@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/web-quickstart
-fetched_at: 2026-07-10T03:11:05.177659Z
-sha256: 0dbcc841b8135803d85524a35a8ea405eabf77c8d5a4e036f46396a340903e94
+fetched_at: 2026-07-14T03:07:36.677443Z
+sha256: c2661d58d09efb7c8dc328fc526802250dd454759bc260aff7ca1f83767dfd40
 ---
 
 > ## Documentation Index
@@ -197,7 +197,7 @@ Enterprise organizations may need an Owner to enable Claude Code on the web. Con
 
 `/web-setup` runs inside the Claude Code CLI, not your shell. Launch `claude` first, then type `/web-setup` at the prompt.
 
-If you typed it inside Claude Code and the command menu shows `No commands match "/web-setup"`, or submitting it returns `Unknown command: /web-setup`, the command is hidden because a requirement isn't met. The cause is usually that your CLI is older than v2.1.80 or you're authenticated with an API key or third-party provider instead of a claude.ai subscription. Run `claude update`, then `/login` to sign in with your claude.ai account.
+If you typed it inside Claude Code and the command menu shows `No commands match "/web-setup"`, or submitting it returns `Unknown command: /web-setup`, the command is hidden because a requirement isn't met. The cause is usually that you're authenticated with an API key or third-party provider instead of a claude.ai subscription. Run `/login` to sign in with your claude.ai account.
 
 ### "Could not create a cloud environment" or "No cloud environment available" when using `--cloud` or ultraplan
 

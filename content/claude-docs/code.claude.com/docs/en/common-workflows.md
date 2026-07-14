@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/common-workflows
-fetched_at: 2026-07-04T03:09:59.852291Z
-sha256: 2fd07bca5e8b0aceabeeb93d47bd358afc28ee4f116b5451089f1995e14cd8a9
+fetched_at: 2026-07-14T03:07:36.677443Z
+sha256: 99d6bf235279b2755a82da7b08887657a405405e0eb799e6956135463818dfbd
 ---
 
 > ## Documentation Index
@@ -309,7 +309,7 @@ Suppose you need to work with images in your codebase, and you want Claude's hel
     You can use any of these methods:
 
     1. Drag and drop an image into the Claude Code window
-    2. Copy an image and paste it into the CLI with ctrl+v (Do not use cmd+v)
+    2. Copy an image and paste it into the CLI with Ctrl+V. On macOS, Cmd+V also works in iTerm2.
     3. Provide an image path to Claude. E.g., "Analyze this image: /path/to/your/image.png"
   </Step>
 

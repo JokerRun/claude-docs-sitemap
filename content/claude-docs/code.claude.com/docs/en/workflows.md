@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/workflows
-fetched_at: 2026-07-09T03:11:03.913066Z
-sha256: 934d4877965125785ec1180c4849f82664e4bebad18485b1745b83cbec1a434f
+fetched_at: 2026-07-14T03:07:36.677443Z
+sha256: 356a3d0042131dabf6c18542a0a29be0e7f9b9120d0acac8d297a35626064aa1
 ---
 
 > ## Documentation Index
@@ -98,17 +98,17 @@ Workflows run in the background, so the session stays responsive while agents wo
 
 The progress view shows each phase with its agent counts, token totals, and elapsed time. The footer lists the key for each action:
 
-| Key            | Action                                                                                                  |
-| :------------- | :------------------------------------------------------------------------------------------------------ |
-| `↑` / `↓`      | Select a phase or agent                                                                                 |
-| `Enter` or `→` | Drill into the selected phase, then into an agent to read its prompt, recent tool calls, and result     |
-| `Esc`          | Back out one level                                                                                      |
-| `j` / `k`      | Scroll within the agent detail when it overflows                                                        |
-| `f`            | {/* min-version: 2.1.186 */}Filter the agent list in the selected phase by status. Press again to cycle |
-| `p`            | Pause or resume the run                                                                                 |
-| `x`            | Stop the selected agent, or stop the whole workflow when focus is on the run                            |
-| `r`            | Restart the selected running agent                                                                      |
-| `s`            | [Save](#save-the-workflow-for-reuse) the run's script as a command                                      |
+| Key            | Action                                                                                                                      |
+| :------------- | :-------------------------------------------------------------------------------------------------------------------------- |
+| `↑` / `↓`      | Select a phase or agent                                                                                                     |
+| `Enter` or `→` | Drill into the selected phase, then into an agent to read its prompt, recent tool calls, and result                         |
+| `Esc` or `←`   | Back out one level. In v2.1.203 through v2.1.205, `←` didn't step back out of a phase or agent; use `Esc` on those versions |
+| `j` / `k`      | Scroll within the agent detail when it overflows                                                                            |
+| `f`            | {/* min-version: 2.1.186 */}Filter the agent list in the selected phase by status. Press again to cycle                     |
+| `p`            | Pause or resume the run                                                                                                     |
+| `x`            | Stop the selected agent, or stop the whole workflow when focus is on the run                                                |
+| `r`            | Restart the selected running agent                                                                                          |
+| `s`            | [Save](#save-the-workflow-for-reuse) the run's script as a command                                                          |
 
 ## Have Claude write a workflow
 

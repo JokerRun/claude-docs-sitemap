@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/scheduled-tasks
-fetched_at: 2026-07-07T03:11:34.034287Z
-sha256: 11d9153e981d6486951108fa80448ce489bd2fae5bd27e8af44f65fb74439ccb
+fetched_at: 2026-07-14T03:07:36.677443Z
+sha256: 08ca5de6457886606c55b5eea656806aa7e9bc631cf175a47d3123f5f5f8afc9
 ---
 
 > ## Documentation Index
@@ -12,10 +12,6 @@ sha256: 11d9153e981d6486951108fa80448ce489bd2fae5bd27e8af44f65fb74439ccb
 # Run prompts on a schedule
 
 > Use /loop and the cron scheduling tools to run prompts repeatedly, poll for status, or set one-time reminders within a Claude Code session.
-
-<Note>
-  Scheduled tasks require Claude Code v2.1.72 or later. Check your version with `claude --version`.
-</Note>
 
 Scheduled tasks let Claude re-run a prompt automatically on an interval. Use them to poll a deployment, babysit a PR, check back on a long-running build, or remind yourself to do something later in the session. To react to events as they happen instead of polling, see [Channels](/en/channels): your CI can push the failure into the session directly. To keep the session working turn after turn until a condition is met rather than on an interval, see [`/goal`](/en/goal).
 

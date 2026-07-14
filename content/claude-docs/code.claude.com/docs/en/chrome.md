@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/chrome
-fetched_at: 2026-07-04T03:09:59.852291Z
-sha256: fd2f541181b31f1286424cef3b7b9edd58e391a4267537536157d0e624adc4a6
+fetched_at: 2026-07-14T03:07:36.677443Z
+sha256: a4930baf02be284279dc49efc744a55377e1e81cf393ab92fbae82e0c7ecc285
 ---
 
 > ## Documentation Index
@@ -39,7 +39,7 @@ Before using Claude Code with Chrome, you need:
 
 * [Google Chrome](https://www.google.com/chrome/) or [Microsoft Edge](https://www.microsoft.com/edge) browser
 * [Claude in Chrome extension](https://chromewebstore.google.com/detail/claude/fcoeoabgfenejglbffodgkkbkcdhcgfn) version 1.0.36 or higher, available in the Chrome Web Store for both browsers
-* [Claude Code](/en/quickstart#step-1-install-claude-code) version 2.0.73 or higher
+* [Claude Code](/en/quickstart#step-1-install-claude-code)
 * A direct Anthropic plan (Pro, Max, Team, or Enterprise)
 
 <Note>

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/overview
-fetched_at: 2026-07-04T03:09:59.852291Z
-sha256: 07c7364d169d09d0e8bb1b1ffddd52543071de1a5de6c6fbb88a186e4e831117
+fetched_at: 2026-07-14T03:07:36.677443Z
+sha256: 39343a3c2abcf88aecdec88153f835901000f8edabf83f99024b0993e0697010
 ---
 
 > ## Documentation Index
@@ -67,10 +67,35 @@ The Agent SDK includes built-in tools for reading files, running commands, and e
         ```
       </Tab>
 
-      <Tab title="Python">
+      <Tab title="Python (uv)">
+        [uv](https://docs.astral.sh/uv/) is a fast Python package manager that handles virtual environments automatically:
+
         ```bash theme={null}
+        uv init
+        uv add claude-agent-sdk
+        ```
+      </Tab>
+
+      <Tab title="Python (pip)">
+        Create and activate a virtual environment, then install the package. Installing into a virtual environment avoids the `error: externally-managed-environment` failure that system Python on recent Debian, Ubuntu, and Homebrew installs returns for `pip install` outside a venv.
+
+        On macOS or Linux:
+
+        ```bash theme={null}
+        python3 -m venv .venv
+        source .venv/bin/activate
         pip install claude-agent-sdk
         ```
+
+        On Windows:
+
+        ```powershell theme={null}
+        py -m venv .venv
+        .venv\Scripts\Activate.ps1
+        pip install claude-agent-sdk
+        ```
+
+        If PowerShell blocks `Activate.ps1` with an execution policy error, run `Set-ExecutionPolicy -Scope Process RemoteSigned` first.
 
         The Python package requires Python 3.10 or later. If pip reports `No matching distribution found for claude-agent-sdk`, your interpreter is older than 3.10. Run `python3 --version` on macOS or Linux, or `py --version` on Windows, to check.
       </Tab>
@@ -82,10 +107,18 @@ The Agent SDK includes built-in tools for reading files, running commands, and e
   </Step>
 
   <Step title="Set your API key">
-    Get an API key from the [Console](https://platform.claude.com/), then set it as an environment variable:
+    Get an API key from the [Console](https://platform.claude.com/), then set it as an environment variable.
+
+    On macOS or Linux:
 
     ```bash theme={null}
-    export ANTHROPIC_API_KEY=your-api-key
+    export ANTHROPIC_API_KEY=sk-ant-xxxxx
+    ```
+
+    On Windows PowerShell:
+
+    ```powershell theme={null}
+    $env:ANTHROPIC_API_KEY = "sk-ant-xxxxx"
     ```
 
     The SDK also supports authentication via third-party API providers:

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/mcp
-fetched_at: 2026-07-12T03:09:28.991717Z
-sha256: b2560a26289640ed9611af69cdc65a624625b8d7ce9fe79b0c88e05fd03e7c25
+fetched_at: 2026-07-14T03:07:36.677443Z
+sha256: fd02c74ea054c7db8015b46fbddc3521b4b15defc8c374daeb34eff018d587d5
 ---
 
 > ## Documentation Index
@@ -470,7 +470,9 @@ For HTTP and SSE servers, pass authentication headers directly in the server con
 
 ### OAuth2 authentication
 
-The [MCP specification supports OAuth 2.1](https://modelcontextprotocol.io/specification/2025-03-26/basic/authorization) for authorization. The SDK doesn't handle OAuth flows automatically, but you can pass access tokens via headers after completing the OAuth flow in your application:
+The [MCP specification supports OAuth 2.1](https://modelcontextprotocol.io/specification/2025-03-26/basic/authorization) for authorization. The SDK doesn't open a browser or run an interactive OAuth flow. When a configured server returns an authorization challenge and no stored token is available, the agent run continues without that server's tools, and the server is reported with status `needs-auth` in the `mcp_servers` array of the [system init message](/en/agent-sdk/typescript#sdksystemmessage). Check that array at startup if your agent depends on a specific server being connected.
+
+To supply credentials, complete the OAuth flow in your own application and pass the resulting access token in the server's `headers`:
 
 <CodeGroup>
   ```typescript TypeScript theme={null}

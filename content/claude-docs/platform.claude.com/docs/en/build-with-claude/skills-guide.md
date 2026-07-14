@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/skills-guide
-fetched_at: 2026-07-09T03:11:03.913066Z
-sha256: 390378758cc31226af8a7690d8f64a55db2077f1097875bc7996b03e1d33ff19
+fetched_at: 2026-07-14T03:07:36.677443Z
+sha256: b3def29b7b9f5891220453e6aad5e6c5297ca1eeef997856459650fb97693b36
 ---
 
 # Using Agent Skills with the API
@@ -968,7 +968,7 @@ When Skills create documents (Excel, PowerPoint, PDF, Word), they return `file_i
 </CodeGroup>
 
 <Note>
-  For complete details on the Files API, see the [Files API documentation](/docs/en/api/files-content).
+  For complete details on the Files API, see the [Files API documentation](/docs/en/api/beta/files/download).
 </Note>
 
 ### Multi-turn conversations

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/checkpointing
-fetched_at: 2026-06-26T03:16:19.812719Z
-sha256: db6a23ce44df637a83215ffbb6bf191296b61330b37df37d14e826230415c0d9
+fetched_at: 2026-07-14T03:07:36.677443Z
+sha256: 91b6ec6bed941cb5b0099fd0932f505ce2d034684fa17c1139472b2d2d32da01
 ---
 
 > ## Documentation Index
@@ -17,14 +17,14 @@ Claude Code automatically tracks Claude's file edits as you work, allowing you t
 
 ## How checkpoints work
 
-As you work with Claude, checkpointing automatically captures the state of your code before each edit. This safety net lets you pursue ambitious, wide-scale tasks knowing you can always return to a prior code state.
+As you work with Claude, checkpointing automatically captures the state of your code before each user prompt. This safety net lets you pursue ambitious, wide-scale tasks knowing you can always return to a prior code state.
 
 ### Automatic tracking
 
 Claude Code tracks all changes made by its file editing tools:
 
 * Every user prompt creates a new checkpoint
-* Checkpoints persist across sessions, so you can access them in resumed conversations
+* Checkpoints are saved with the conversation, so a resumed session can still `/rewind` to them
 * Automatically cleaned up along with sessions after 30 days (configurable)
 
 ### Rewind and summarize
