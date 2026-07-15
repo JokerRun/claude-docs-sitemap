@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/external_keys/validate
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 0a572c6798d59efaea7b248ad64cb1af2abf46d8b4bb13e0c52c6ec5b7db02e5
+fetched_at: 2026-07-15T03:08:15.897796Z
+sha256: 8da7661ad651f78e58bad8677eec9ee9bfae79a7462b9af7bd4879ccb684615f
 ---
 
 ## Validate External Key
@@ -20,7 +20,7 @@ message if it failed or timed out.
 
 - `external_key_id: string`
 
-  ID of the External Key to validate.
+  ID of the External Key.
 
 ### Returns
 

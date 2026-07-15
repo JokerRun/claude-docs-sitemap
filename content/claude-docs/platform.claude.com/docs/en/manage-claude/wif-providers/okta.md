@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/wif-providers/okta
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 71b5da1cc0a5962dfffe6a045a5c559b81a73a5703c31dce4636158cb3cd1f6b
+fetched_at: 2026-07-15T03:08:15.897796Z
+sha256: 7bc1a71fe269176a6ea8ff7b45206d495b67c1992d3d24661e5f0a85f8d9e671
 ---
 
 # Use WIF with Okta
@@ -113,7 +113,7 @@ Unlike platform-native providers (AWS, Google Cloud, Kubernetes), which make a t
     -H "authorization: Bearer $ACCESS_TOKEN" \
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
-    -d '{"model": "claude-sonnet-4-6", "max_tokens": 1024, "messages": [{"role": "user", "content": "Hello, Claude"}]}' \
+    -d '{"model": "claude-opus-4-8", "max_tokens": 1024, "messages": [{"role": "user", "content": "Hello, Claude"}]}' \
     | jq -r '.content[0].text'
   ```
 
@@ -150,7 +150,7 @@ Unlike platform-native providers (AWS, Google Cloud, Kubernetes), which make a t
   )
 
   message = client.messages.create(
-      model="claude-sonnet-4-6",
+      model="claude-opus-4-8",
       max_tokens=1024,
       messages=[{"role": "user", "content": "Hello, Claude"}],
   )
@@ -190,7 +190,7 @@ Unlike platform-native providers (AWS, Google Cloud, Kubernetes), which make a t
   });
 
   const message = await client.messages.create({
-    model: "claude-sonnet-4-6",
+    model: "claude-opus-4-8",
     max_tokens: 1024,
     messages: [{ role: "user", content: "Hello, Claude" }]
   });
@@ -255,7 +255,7 @@ Unlike platform-native providers (AWS, Google Cloud, Kubernetes), which make a t
   		}),
   	)
   	message, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  		Model:     anthropic.ModelClaudeSonnet4_6,
+  		Model:     anthropic.ModelClaudeOpus4_8,
   		MaxTokens: 1024,
   		Messages: []anthropic.MessageParam{
   			anthropic.NewUserMessage(anthropic.NewTextBlock("Hello, Claude")),
@@ -300,7 +300,7 @@ Unlike platform-native providers (AWS, Google Cloud, Kubernetes), which make a t
           .build();
 
   var message = client.messages().create(MessageCreateParams.builder()
-          .model(Model.CLAUDE_SONNET_4_6)
+          .model(Model.CLAUDE_OPUS_4_8)
           .maxTokens(1024)
           .addUserMessage("Hello, Claude")
           .build());
@@ -321,7 +321,7 @@ Unlike platform-native providers (AWS, Google Cloud, Kubernetes), which make a t
 
   var message = await client.Messages.Create(new()
   {
-      Model = Model.ClaudeSonnet4_6,
+      Model = Model.ClaudeOpus4_8,
       MaxTokens = 1024,
       Messages = [new() { Role = Role.User, Content = "Hello, Claude" }],
   });
@@ -372,7 +372,7 @@ Unlike platform-native providers (AWS, Google Cloud, Kubernetes), which make a t
   # ANTHROPIC_ORGANIZATION_ID, ANTHROPIC_SERVICE_ACCOUNT_ID, ANTHROPIC_WORKSPACE_ID, and
   # ANTHROPIC_IDENTITY_TOKEN_FILE and performs the exchange.
   ant messages create \
-    --model claude-sonnet-4-6 \
+    --model claude-opus-4-8 \
     --max-tokens 1024 \
     --message '{role: user, content: "Hello, Claude"}'
   ```
@@ -410,7 +410,7 @@ Unlike platform-native providers (AWS, Google Cloud, Kubernetes), which make a t
   );
 
   $message = $client->messages->create(
-      model: 'claude-sonnet-4-6',
+      model: 'claude-opus-4-8',
       maxTokens: 1024,
       messages: [['role' => 'user', 'content' => 'Hello, Claude']],
   );
@@ -446,7 +446,7 @@ Unlike platform-native providers (AWS, Google Cloud, Kubernetes), which make a t
   )
 
   message = client.messages.create(
-    model: "claude-sonnet-4-6",
+    model: "claude-opus-4-8",
     max_tokens: 1024,
     messages: [{role: "user", content: "Hello, Claude"}]
   )

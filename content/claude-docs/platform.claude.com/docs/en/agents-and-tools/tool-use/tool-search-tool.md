@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool
-fetched_at: 2026-06-30T03:15:27.286427Z
-sha256: 58ef7080b2aff3ff5e4bd879046bbceff126a8aa0fc26a41efe1135d1dc3f7da
+fetched_at: 2026-07-15T03:08:15.897796Z
+sha256: bff536f8c3e5abe199ce06e344c49805dffd7348969ce806d7d5881a22c72f74
 ---
 
 # Tool search tool
@@ -15,7 +15,7 @@ The tool search tool lets Claude work with hundreds or thousands of tools by dis
 
 Loading every tool definition up front causes two problems as a tool library grows:
 
-* **Context bloat:** A typical multi-server setup (GitHub, Slack, Sentry, Grafana, and Splunk) can consume \~55k tokens in definitions before Claude does any work. Tool search typically reduces this by over 85 percent, loading only the 3–5 tools Claude needs for a given request.
+* **Context bloat:** A typical multiserver setup (GitHub, Slack, Sentry, Grafana, and Splunk) can consume \~55k tokens in definitions before Claude does any work. Tool search typically reduces this by over 85 percent, loading only the 3–5 tools Claude needs for a given request.
 * **Tool selection accuracy:** Claude's ability to pick the right tool degrades once you exceed 30–50 available tools. Because tool search loads only a focused set of relevant tools on demand, selection accuracy stays high even across thousands of tools.
 
 Tool search is generally available on the Claude API. For supported models, see [Model compatibility](#model-compatibility).

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview
-fetched_at: 2026-07-14T03:07:36.677443Z
-sha256: f11a4f4eab89617ff64dbd190208609eed7b6f021ace93cfab6dc0d2f47bac77
+fetched_at: 2026-07-15T03:08:15.897796Z
+sha256: f30c9009189e8b2e9e7985abbe92c912e42ae567e6d5636ac2e3eb58ad2cc16f
 ---
 
 # Agent Skills
@@ -23,7 +23,7 @@ Skills are reusable, filesystem-based resources that give Claude domain-specific
 
 * **Specialize Claude:** Tailor capabilities for domain-specific tasks
 * **Reduce repetition:** Create once, use automatically
-* **Compose capabilities:** Combine Skills for complex, multi-step tasks
+* **Compose capabilities:** Combine Skills for complex, multistep tasks
 
 <Note>
   For more on the architecture and real-world applications of Agent Skills, see the engineering blog post [Equipping agents for the real world with Agent Skills](https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills).

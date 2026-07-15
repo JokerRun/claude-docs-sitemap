@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/fullscreen
-fetched_at: 2026-07-14T03:07:36.677443Z
-sha256: d0e6da2c00bfbcea1b4a832f75da4e94d4d61ee752cade1680e13473b4d7b1d9
+fetched_at: 2026-07-15T03:08:15.897796Z
+sha256: 3f0a631d33ea07a13e28bb8817cb1e09923a5f0722895430f8adf24b494f365b
 ---
 
 > ## Documentation Index
@@ -60,6 +60,7 @@ Fullscreen rendering captures mouse events and handles them inside Claude Code:
 * **Click in the prompt input** to position your cursor anywhere in the text you're typing.
 * **Click a suggestion in the `/` command or `@` file list** to accept it. Hovering highlights the row under your cursor.
 * **Click an option in a select menu** to choose it. This covers permission prompts, `/model`, `/config`, and other dialogs that show a list of options. Hovering shows a pointer on the row under your cursor. {/* min-version: 2.1.187 */}Requires Claude Code v2.1.187 or later.
+* **Click an option in a multi-select menu** to toggle it, and click the submit button to confirm your choices. Clicking a free-text row, such as the `Other` row in a multiple-choice question, focuses its input field so you can type an answer. {/* min-version: 2.1.208 */}Requires Claude Code v2.1.208 or later.
 * **Click a collapsed tool result** to expand it and see the full output. Click again to collapse. The tool call and its result expand together. Only messages that have more to show are clickable.
 * **Hold `Cmd` on macOS, or `Ctrl` on Linux and Windows, and click a URL or file path** to open it. File paths in tool output, like the ones printed after an Edit or Write, open in your default application. Plain `http://` and `https://` URLs open in your browser. {/* min-version: 2.1.181 */}As of v2.1.181, a plain click without holding `Cmd` or `Ctrl` no longer opens links, matching native terminal behavior. Some macOS terminals forward `Cmd`+click to the running app instead of opening the link themselves, and the terminal mouse protocol has no way to encode the `Cmd` key, so Claude Code receives it as a plain click. In Ghostty, and {/* min-version: 2.1.198 */}as of v2.1.198 in Warp on macOS, Claude Code detects this and lets a plain click on a link open it, and holding `Cmd` still works. In the VS Code integrated terminal and similar xterm.js-based terminals, Claude Code defers to the terminal's own link handler, which uses the same gesture.
 * **Click and drag** to select text anywhere in the conversation. Double-click selects a word, matching iTerm2's word boundaries so a file path selects as one unit. {/* min-version: 2.1.198 */}As of v2.1.198, double-clicking a URL selects the whole URL, including the scheme. Triple-click selects the line.

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/overview
-fetched_at: 2026-07-14T03:07:36.677443Z
-sha256: 39343a3c2abcf88aecdec88153f835901000f8edabf83f99024b0993e0697010
+fetched_at: 2026-07-15T03:08:15.897796Z
+sha256: c31a8b92a7e998170d9542ea5c0256d6b3f46eaeb3a3caa026be5d527d420ac6
 ---
 
 > ## Documentation Index
@@ -13,7 +13,7 @@ sha256: 39343a3c2abcf88aecdec88153f835901000f8edabf83f99024b0993e0697010
 
 > Build production AI agents with Claude Code as a library
 
-Build AI agents that autonomously read files, run commands, search the web, edit code, and more. The Agent SDK gives you the same tools, agent loop, and context management that power Claude Code, programmable in Python and TypeScript.
+Build AI agents that autonomously read files, run commands, search the web, edit code, and more. The Agent SDK gives you the same tools, agent loop, and context management that power Claude Code, programmable in Python and TypeScript. For the thinking behind agent harness design, see [A harness for every task: dynamic workflows in Claude Code](https://claude.com/blog/a-harness-for-every-task-dynamic-workflows-in-claude-code) on the blog.
 
 <CodeGroup>
   ```python Python theme={null}

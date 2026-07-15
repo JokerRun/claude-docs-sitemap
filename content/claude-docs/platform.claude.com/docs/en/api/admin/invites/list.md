@@ -1,15 +1,15 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/invites/list
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: dd5b094068b9ef6f57bdcd7398e8714d1bbdae08e6acd559890c9ccd82890310
+fetched_at: 2026-07-15T03:08:15.897796Z
+sha256: 3d8968c58e8b6c5a816c4102f58dc7b366f328cbb4da323b6eaee11d72bf50a2
 ---
 
 ## List Invites
 
 **get** `/v1/organizations/invites`
 
-List Invites
+For Claude Enterprise organizations, this endpoint's availability is in beta.
 
 ### Query Parameters
 
@@ -35,6 +35,10 @@ List Invites
 
     ID of the Invite.
 
+  - `accepted_at: string`
+
+    RFC 3339 datetime string indicating when the Invite was accepted, or null.
+
   - `email: string`
 
     Email of the User being invited.
@@ -47,7 +51,11 @@ List Invites
 
     RFC 3339 datetime string indicating when the Invite was created.
 
-  - `role: "admin" or "billing" or "claude_code_user" or 2 more`
+  - `rbac_group_ids: array of string`
+
+    RBAC group IDs recorded on the Invite (beta, Claude Enterprise organizations), to be assigned to the User when the Invite is accepted. `[]` when none.
+
+  - `role: "admin" or "billing" or "claude_code_user" or 6 more`
 
     Organization role of the User.
 
@@ -58,6 +66,14 @@ List Invites
     - `"claude_code_user"`
 
     - `"developer"`
+
+    - `"managed"`
+
+    - `"membership_admin"`
+
+    - `"owner"`
+
+    - `"primary_owner"`
 
     - `"user"`
 
@@ -108,9 +124,13 @@ curl https://api.anthropic.com/v1/organizations/invites \
   "data": [
     {
       "id": "invite_015gWxCN9Hfg2QhZwTK7Mdeu",
+      "accepted_at": "2019-12-27T18:11:19.117Z",
       "email": "user@emaildomain.com",
       "expires_at": "2024-11-20T23:58:27.427722Z",
       "invited_at": "2024-10-30T23:58:27.427722Z",
+      "rbac_group_ids": [
+        "string"
+      ],
       "role": "user",
       "status": "pending",
       "type": "invite"

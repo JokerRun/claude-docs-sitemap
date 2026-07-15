@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/analytics/usage/list_by_user
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 97ab240524e2fd08484db0718806923f1f81d490882f120a389d21c477b398b7
+fetched_at: 2026-07-15T03:08:15.897796Z
+sha256: 2395d42e9523b9f9afe04df3024b2a3030efbcf15d225ffc3c5b50aec8860a8f
 ---
 
 ## Get Per-User Token Usage
@@ -111,7 +111,7 @@ organizations on a Claude Enterprise plan. Requires an API key with the
 
 - `products: optional array of string`
 
-  Product surfaces to include. Defaults to all products. Values include "chat", "claude_code", "cowork", "office_agent", "claude_in_chrome", and "claude_design".
+  Product surfaces to include. Defaults to all products. Values include "chat", "claude_code", "cowork", "office_agent", "claude_in_chrome", "claude_design", and "claude-in-slack". "claude-in-slack" (with hyphens) is Claude Tag, the Claude product in Slack. A similarly spelled legacy value (underscores instead of hyphens) identifies the retiring v1 Slack chat bot and appears only for organizations that used it.
 
 - `rbac_group_ids: optional array of string`
 
@@ -193,7 +193,7 @@ organizations on a Claude Enterprise plan. Requires an API key with the
 
     - `product: string`
 
-      Product surface that produced the usage or cost. Null unless product is in group_by[]; it can also be null on grouped rows whose usage cannot be attributed to a known surface. Values include "chat", "claude_code", "cowork", "office_agent", "claude_in_chrome", and "claude_design". Some unattributed usage is reported as "other".
+      Product surface that produced the usage or cost. Null unless product is in group_by[]; it can also be null on grouped rows whose usage cannot be attributed to a known surface. Values include "chat", "claude_code", "cowork", "office_agent", "claude_in_chrome", "claude_design", and "claude-in-slack". "claude-in-slack" (with hyphens) is Claude Tag, the Claude product in Slack. A similarly spelled legacy value (underscores instead of hyphens) identifies the retiring v1 Slack chat bot and appears only for organizations that used it. Some unattributed usage is reported as "other".
 
     - `rbac_group_id: string`
 

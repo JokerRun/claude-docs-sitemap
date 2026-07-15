@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/checkpointing
-fetched_at: 2026-07-14T03:07:36.677443Z
-sha256: 91b6ec6bed941cb5b0099fd0932f505ce2d034684fa17c1139472b2d2d32da01
+fetched_at: 2026-07-15T03:08:15.897796Z
+sha256: 7a7dcaf42bd1bd6b92c271a7a1ec7235d253e3c2566bfb69ab63f7c0733a3bc7
 ---
 
 > ## Documentation Index
@@ -24,6 +24,7 @@ As you work with Claude, checkpointing automatically captures the state of your 
 Claude Code tracks all changes made by its file editing tools:
 
 * Every user prompt creates a new checkpoint
+* Claude Code keeps file snapshots for the 100 most recent checkpoints in a session. Discarding an older checkpoint deletes the snapshot files that no remaining checkpoint references, except each file's first snapshot, which the VS Code extension uses as the baseline for its session diffs. {/* min-version: 2.1.208 */}Before v2.1.208, those superseded snapshot files stayed on disk until the session was cleaned up.
 * Checkpoints are saved with the conversation, so a resumed session can still `/rewind` to them
 * Automatically cleaned up along with sessions after 30 days (configurable)
 

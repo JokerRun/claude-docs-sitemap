@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/context-editing
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: c1cff99f56f6f5d87cf5076f4623dd6ab6fc1bbe5c892aded13d18e61a706d44
+fetched_at: 2026-07-15T03:08:15.897796Z
+sha256: f0bf7a85610a4f8ee9387e7a78d70fef24c8256a0fe09440c117a2ae28a471d2
 ---
 
 # Context editing
@@ -3050,7 +3050,7 @@ Understanding when compaction triggers helps you tune thresholds and verify expe
 
 * Long-running agent tasks that process many files or data sources
 * Research workflows that accumulate large amounts of information
-* Multi-step tasks with clear, measurable progress
+* Multistep tasks with clear, measurable progress
 * Tasks that produce artifacts (files, reports) that persist outside the conversation
 
 **Less ideal use cases:**

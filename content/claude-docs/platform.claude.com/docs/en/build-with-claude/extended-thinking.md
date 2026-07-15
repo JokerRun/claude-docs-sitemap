@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/extended-thinking
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 3738b448d00cec39b300603ca7d5a8ab826c7dd78109af07f814c962557f858b
+fetched_at: 2026-07-15T03:08:15.897796Z
+sha256: d73c695e51ff59469a96e37453f8f363b3e991097a0943232b52806bdaab8e0e
 ---
 
 # Extended thinking
@@ -1986,7 +1986,7 @@ Here are some important considerations for interleaved thinking:
 [Prompt caching](/docs/en/build-with-claude/prompt-caching) with thinking has several important considerations:
 
 <Tip>
-  Extended thinking tasks often take longer than 5 minutes to complete. Consider using the [1-hour cache duration](/docs/en/build-with-claude/prompt-caching#1-hour-cache-duration) to maintain cache hits across longer thinking sessions and multi-step workflows.
+  Extended thinking tasks often take longer than 5 minutes to complete. Consider using the [1-hour cache duration](/docs/en/build-with-claude/prompt-caching#1-hour-cache-duration) to maintain cache hits across longer thinking sessions and multistep workflows.
 </Tip>
 
 **Thinking block context removal**
@@ -2154,7 +2154,7 @@ User: [Text response, cache=True]
 
           # Break into lines and remove leading and trailing space on each
           lines = (line.strip() for line in text.splitlines())
-          # Break multi-headlines into a line each
+          # Split double-space-separated phrases onto their own lines
           chunks = (phrase.strip() for line in lines for phrase in line.split("  "))
           # Drop blank lines
           text = "\n".join(chunk for chunk in chunks if chunk)
@@ -2699,7 +2699,7 @@ User: [Text response, cache=True]
 
           # Break into lines and remove leading and trailing space on each
           lines = (line.strip() for line in text.splitlines())
-          # Break multi-headlines into a line each
+          # Split double-space-separated phrases onto their own lines
           chunks = (phrase.strip() for line in lines for phrase in line.split("  "))
           # Drop blank lines
           text = "\n".join(chunk for chunk in chunks if chunk)
@@ -3538,7 +3538,7 @@ Whether thinking blocks from previous assistant turns are preserved in context b
 
 **Benefits of thinking block preservation:**
 
-* **Cache optimization**: When using tool use, preserved thinking blocks enable cache hits as they are passed back with tool results and cached incrementally across the assistant turn, resulting in token savings in multi-step workflows
+* **Cache optimization**: When using tool use, preserved thinking blocks enable cache hits as they are passed back with tool results and cached incrementally across the assistant turn, resulting in token savings in multistep workflows
 * **No intelligence impact**: Preserving thinking blocks has no negative effect on model performance
 
 **Important considerations:**

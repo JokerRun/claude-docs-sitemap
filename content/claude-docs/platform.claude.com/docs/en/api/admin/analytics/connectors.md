@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/analytics/connectors
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: a888e8ca68c44e89dced44926b1d5a5e5ccb98a18e0c075bad50433ab5bbbc5a
+fetched_at: 2026-07-15T03:08:15.897796Z
+sha256: 8cee691b75ed1aaecc21fa48798bd68c52aa4ea0e6f6985035d0978d512909a0
 ---
 
 # Connectors
@@ -51,7 +51,7 @@ Requires an API key with the `read:analytics` scope.
 
 - `order_by: optional string`
 
-  Sort field. Restricted to the endpoint's sort column, plus — in date-range mode (starting_date/ending_date) — the endpoint's rankable metrics (metrics default to descending).
+  Sort field. Restricted to the endpoint's sort column plus its rankable metrics (metrics default to descending; a few metrics rank in date-range mode only, per the endpoint's documented orderable set).
 
 - `page: optional string`
 

@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy
-fetched_at: 2026-07-10T03:11:05.177659Z
-sha256: a1f52157086cc1af4cdc0d22cc7d9251dbb3bb49feb31d267561a4e7056ebb49
+fetched_at: 2026-07-15T03:08:15.897796Z
+sha256: 54b4ac34f070a9ff782fed6cf9120c2d2c9f4c15b6e581d423f33cb177640eb2
 ---
 
-# Claude on Amazon Bedrock (legacy)
+# Claude on Amazon Bedrock (Opus 4.6 and earlier)
 
 The legacy Amazon Bedrock integration for Claude models, using InvokeModel and Converse APIs with ARN-versioned model identifiers.
 

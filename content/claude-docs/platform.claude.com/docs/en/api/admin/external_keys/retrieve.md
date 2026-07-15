@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/external_keys/retrieve
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 04f9c2500345fd4848da73cb3aff2ffb5ca48817aedd84b6be4c65715ba74dde
+fetched_at: 2026-07-15T03:08:15.897796Z
+sha256: d71dc133f118c9b446a12c443b87ca48cdd24f5f69c216a43cef3a21ff8fbe62
 ---
 
 ## Get External Key
@@ -21,7 +21,7 @@ Retrieve a single external key config in the caller's organization by ID.
 
 - `id: string`
 
-  Tagged ID of the external key config.
+  Identifier of the external key config. A tagged ID prefixed `ekey_`, or — for organizations on the Claude Platform on AWS — the AWS KMS key ARN.
 
 - `created_at: string`
 
@@ -81,11 +81,11 @@ Retrieve a single external key config in the caller's organization by ID.
 
     - `vault_uri: string`
 
-      Key Vault URI.
+      Key Vault data-plane URI — https://<vault-name>.vault.azure.net or https://<hsm-name>.managedhsm.azure.net.
 
     - `client_id: optional string`
 
-      Azure AD application (client) ID. Omit to use Anthropic's multi-tenant app. Provide only if using a single-tenant app registration in the customer's directory.
+      Azure AD application (client) ID. Omit to use Anthropic's multitenant app. Provide only if using a single-tenant app registration in the customer's directory.
 
 - `type: "external_key"`
 

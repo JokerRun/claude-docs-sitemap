@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/troubleshooting
-fetched_at: 2026-07-11T03:08:19.250903Z
-sha256: 34833c9d5717b770ebed6996e66605f0db4baef78dc9ae273266573063bae3ee
+fetched_at: 2026-07-15T03:08:15.897796Z
+sha256: 123ca3e00927ab552c1dab0a252f538e75674c780ef5161a3419becfdc81ea33
 ---
 
 > ## Documentation Index
@@ -45,6 +45,10 @@ Claude Code is designed to work with most development environments, but may cons
 If memory usage stays high after these steps, run `/heapdump` to write a JavaScript heap snapshot and a memory breakdown to `~/Desktop`. On Linux without a Desktop folder, the files are written to your home directory.
 
 The breakdown shows resident set size, JS heap, array buffers, and unaccounted native memory, which helps identify whether the growth is in JavaScript objects or in native code. To inspect retainers, open the `.heapsnapshot` file in Chrome DevTools under Memory → Load. Attach both files when reporting a memory issue on [GitHub](https://github.com/anthropics/claude-code/issues).
+
+### Large tables are cut off in the terminal
+
+A Markdown table with more than 200 rows renders its first 200 rows followed by a `… N more rows not shown` line. Only the display is capped: the full table stays in the conversation, and [`/copy`](/en/commands) copies every row. For a table too large to read in the terminal, ask Claude to write it to a file instead. Before v2.1.208, Claude Code rendered every row, so resuming a session that contained a very large table could stall while it re-rendered.
 
 ### Auto-compaction stops with a thrashing error
 

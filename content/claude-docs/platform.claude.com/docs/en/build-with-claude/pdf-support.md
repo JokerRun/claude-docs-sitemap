@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/pdf-support
-fetched_at: 2026-07-07T03:11:34.034287Z
-sha256: 4aa82d063068da8db9d8ec7347bc24eb981669c2875af9609a33626d96463d51
+fetched_at: 2026-07-15T03:08:15.897796Z
+sha256: f7cd9464a170382dbdd733d523b92408fce4089d751f6a3f990fb706226efd86
 ---
 
 # PDF support
@@ -48,7 +48,7 @@ PDF support is available on the Claude API, [Claude Platform on AWS](/docs/en/bu
 
 ### Amazon Bedrock PDF support
 
-When using PDF support through the Converse API, part of [Claude on Amazon Bedrock (legacy)](/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy), there are two distinct document processing modes:
+When using PDF support through the Converse API, part of [Claude on Amazon Bedrock (Opus 4.6 and earlier)](/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy), there are two distinct document processing modes:
 
 <Note>
   **Important:** To access Claude's full visual PDF understanding capabilities in the Converse API, you must enable citations. Without citations enabled, the API falls back to basic text extraction only. Learn more about [working with citations](/docs/en/build-with-claude/citations).

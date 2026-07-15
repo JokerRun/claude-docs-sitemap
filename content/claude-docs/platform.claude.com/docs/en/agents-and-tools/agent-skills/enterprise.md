@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/enterprise
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 284bb17651775b4ab6ba9cb5c2014edeebd73fc604b65152945142065393c20e
+fetched_at: 2026-07-15T03:08:15.897796Z
+sha256: c371c8b27c607f01171f4030d7e2b660d4f9a08a8a8d40b1ec6f8fb0fc0c8c7a
 ---
 
 # Skills for enterprise
@@ -120,7 +120,7 @@ Note that API requests support a maximum of 8 Skills per request (see [Using Ski
 
 ### Start specific, consolidate later
 
-Encourage teams to start with narrow, workflow-specific Skills rather than broad, multi-purpose ones. As patterns emerge across your organization, consolidate related Skills into role-based bundles.
+Encourage teams to start with narrow, workflow-specific Skills rather than broad, multipurpose ones. As patterns emerge across your organization, consolidate related Skills into role-based bundles.
 
 <Tip>
   Use evaluations to decide when to consolidate. Merge narrow Skills into a broader one only when the consolidated Skill's evaluations confirm equivalent performance to the individual Skills it replaces.

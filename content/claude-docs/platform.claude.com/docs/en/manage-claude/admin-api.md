@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/admin-api
-fetched_at: 2026-07-14T03:07:36.677443Z
-sha256: fbc60d179b6c14eedd83bdf64943c70c2392d3651d68c62ae34ede6525b916b1
+fetched_at: 2026-07-15T03:08:15.897796Z
+sha256: ca7e6c13d1310cd6203b14524a78ba09d29f0e3ccff11f93da1a6a1112aa9999
 ---
 
 # Admin API
@@ -25,6 +25,10 @@ The [Admin API](/docs/en/api/admin) allows you to programmatically manage your o
   * An **Admin API key** (starting with `sk-ant-admin...`) sent in the `x-api-key` header. Only organization members with the admin role can provision one. See [Create an Admin API key](/docs/en/manage-claude/admin-api-keys).
   * An **OAuth bearer token** with the `org:admin` scope sent in the `authorization: Bearer` header. Only members with the admin, owner, or primary owner role can obtain one. See [Obtain an OAuth bearer token](#oauth-bearer-token).
 </Check>
+
+<Note>
+  **Claude Enterprise:** Claude Enterprise (claude.ai) organizations use the Admin API too, with a scoped API key created in claude.ai. Of the endpoints on this page, only members and invites are available to them (in beta), alongside Claude-Enterprise-only endpoints: groups and custom-role reads (beta), and [spend limits](/docs/en/manage-claude/spend-limits-api). See [User management](/docs/en/manage-claude/user-management) for Claude Enterprise.
+</Note>
 
 <Note>
   **Claude Platform on AWS:** Most of the Admin API is not available on Claude Platform on AWS. Workspace endpoints (create, get, list, update, and archive on `/v1/organizations/workspaces`) are available. Other endpoints including organization members, workspace members, invites, API keys, usage reports, cost reports, and rate limit reports are not available. See [Claude Platform on AWS](/docs/en/build-with-claude/claude-platform-on-aws) for details.

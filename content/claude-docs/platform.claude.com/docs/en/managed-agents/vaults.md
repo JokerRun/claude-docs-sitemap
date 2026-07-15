@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/vaults
-fetched_at: 2026-07-10T03:11:05.177659Z
-sha256: 2e5130d364baa0e8f028c9630f586dbc17f38008019a9cc9307903c5b72a84f9
+fetched_at: 2026-07-15T03:08:15.897796Z
+sha256: 216170f970aa31e8806829c675d3c4f213d15e4f9ceebf3641956c9793da90c0
 ---
 
 # Authenticate with vaults
@@ -838,7 +838,7 @@ Runtime behavior:
 
 * When no MCP credential matches by `mcp_server_url`, the connection is attempted unauthenticated and will error if the server requires authentication.
 * When multiple vaults contain a matching credential, the first vault with a match wins.
-* In [multi-agent sessions](/docs/en/managed-agents/multi-agent), vault credentials apply to every thread. An agent whose own definition declares the matching MCP server authenticates with these credentials. See [Connect agents to MCP servers](/docs/en/managed-agents/multi-agent#connect-agents-to-mcp-servers).
+* In [multiagent sessions](/docs/en/managed-agents/multiagent-orchestration), vault credentials apply to every thread. An agent whose own definition declares the matching MCP server authenticates with these credentials. See [Connect agents to MCP servers](/docs/en/managed-agents/multiagent-orchestration#connect-agents-to-mcp-servers).
 
 ## Rotate a credential
 

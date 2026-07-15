@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/usage_report/retrieve_claude_code
-fetched_at: 2026-06-12T03:17:40.104094Z
-sha256: ca8b8c42eeb53a2f44848832afbe6f95835c5f4fd48f6c1ea134ecddec16d7e6
+fetched_at: 2026-07-15T03:08:15.897796Z
+sha256: dbae61c113eae13f2faacca96e014602f9de684329718d40b3e028b4851d3177
 ---
 
 ## Get Claude Code Usage Report
@@ -38,7 +38,7 @@ Enables organizations to analyze developer productivity and build custom dashboa
 
       The user or API key that performed the Claude Code actions.
 
-      - `UserActor object { email_address, type }`
+      - `ClaudeCodeUserActor object { email_address, type }`
 
         - `email_address: string`
 
@@ -48,7 +48,7 @@ Enables organizations to analyze developer productivity and build custom dashboa
 
           - `"user_actor"`
 
-      - `APIActor object { api_key_name, type }`
+      - `ClaudeCodeAPIActor object { api_key_name, type }`
 
         - `api_key_name: string`
 

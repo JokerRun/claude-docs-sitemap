@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/usage_report
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 6fe9e5ba30f5a1496572a1fad1b647ac2cd641062890d3daffa9fd07915b8854
+fetched_at: 2026-07-15T03:08:15.897796Z
+sha256: 9f8074fa8dbd18cc898d50d3366d47efea9bf57f435d1872aec5f4c0a16ee4db
 ---
 
 # Usage Report
@@ -325,7 +325,7 @@ Enables organizations to analyze developer productivity and build custom dashboa
 
       The user or API key that performed the Claude Code actions.
 
-      - `UserActor object { email_address, type }`
+      - `ClaudeCodeUserActor object { email_address, type }`
 
         - `email_address: string`
 
@@ -335,7 +335,7 @@ Enables organizations to analyze developer productivity and build custom dashboa
 
           - `"user_actor"`
 
-      - `APIActor object { api_key_name, type }`
+      - `ClaudeCodeAPIActor object { api_key_name, type }`
 
         - `api_key_name: string`
 
@@ -560,7 +560,7 @@ curl https://api.anthropic.com/v1/organizations/usage_report/claude_code \
 
       The user or API key that performed the Claude Code actions.
 
-      - `UserActor object { email_address, type }`
+      - `ClaudeCodeUserActor object { email_address, type }`
 
         - `email_address: string`
 
@@ -570,7 +570,7 @@ curl https://api.anthropic.com/v1/organizations/usage_report/claude_code \
 
           - `"user_actor"`
 
-      - `APIActor object { api_key_name, type }`
+      - `ClaudeCodeAPIActor object { api_key_name, type }`
 
         - `api_key_name: string`
 

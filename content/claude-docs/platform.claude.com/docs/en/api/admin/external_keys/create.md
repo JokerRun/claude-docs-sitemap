@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/external_keys/create
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: c9c9eaded06b27e38c692df07439209435d283084c40dfdc287b7b4cab9f7f39
+fetched_at: 2026-07-15T03:08:15.897796Z
+sha256: de17946b5bf7a991ea4548f70734661d2ba9d7e71524373cebaf522ad0515a2e
 ---
 
 ## Create External Key
@@ -47,6 +47,8 @@ Create an external key config owned by the caller's organization.
 
   - `Azure object { key_name, tenant_id, type, 2 more }`
 
+    Azure Key Vault provider configuration.
+
     - `key_name: string`
 
       Name of the key within the vault.
@@ -61,11 +63,11 @@ Create an external key config owned by the caller's organization.
 
     - `vault_uri: string`
 
-      Key Vault URI.
+      Key Vault data-plane URI — https://<vault-name>.vault.azure.net or https://<hsm-name>.managedhsm.azure.net.
 
     - `client_id: optional string`
 
-      Azure AD application (client) ID. Omit to use Anthropic's multi-tenant app. Provide only if using a single-tenant app registration in the customer's directory.
+      Azure AD application (client) ID. Omit to use Anthropic's multitenant app. Provide only if using a single-tenant app registration in the customer's directory.
 
 - `display_name: optional string`
 
@@ -81,7 +83,7 @@ Create an external key config owned by the caller's organization.
 
 - `id: string`
 
-  Tagged ID of the external key config.
+  Identifier of the external key config. A tagged ID prefixed `ekey_`, or — for organizations on the Claude Platform on AWS — the AWS KMS key ARN.
 
 - `created_at: string`
 
@@ -141,11 +143,11 @@ Create an external key config owned by the caller's organization.
 
     - `vault_uri: string`
 
-      Key Vault URI.
+      Key Vault data-plane URI — https://<vault-name>.vault.azure.net or https://<hsm-name>.managedhsm.azure.net.
 
     - `client_id: optional string`
 
-      Azure AD application (client) ID. Omit to use Anthropic's multi-tenant app. Provide only if using a single-tenant app registration in the customer's directory.
+      Azure AD application (client) ID. Omit to use Anthropic's multitenant app. Provide only if using a single-tenant app registration in the customer's directory.
 
 - `type: "external_key"`
 

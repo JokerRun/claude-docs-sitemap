@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: ca8df107bd8def7fc2be46281cf5dbb8f95647bbd88916122876b856332feea8
+fetched_at: 2026-07-15T03:08:15.897796Z
+sha256: 7a6c9f29103f2582374915784f1615cce5cd2df826936fbe692bcb3580b099ea
 ---
 
 # Memory tool
@@ -991,7 +991,7 @@ The memory tool can also be paired with [compaction](/docs/en/build-with-claude/
 
 For long-running agents, consider using both: compaction keeps the active context small without client-side bookkeeping, and memory preserves the information that must survive summarization.
 
-## Multi-session software development pattern
+## Multisession software development pattern
 
 For software projects that span multiple agent sessions, set up memory files deliberately instead of writing them ad hoc as work progresses. The following pattern turns memory into a recovery mechanism: each new session resumes from the state the last one recorded.
 

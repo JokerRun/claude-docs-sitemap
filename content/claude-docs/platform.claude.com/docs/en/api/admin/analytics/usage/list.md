@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/analytics/usage/list
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 558838a8e011b9588b6f9bfb2c861f5da584af5a729b5713e0abe095eac6680b
+fetched_at: 2026-07-15T03:08:15.897796Z
+sha256: cf9d8ab17a4f7d3d3aeb20ad271e5f8b92888656cff060086039027bfab20bc2
 ---
 
 ## Get Token Usage Over Time
@@ -84,7 +84,7 @@ key with the `read:analytics` scope.
 
 - `products: optional array of string`
 
-  Product surfaces to include. Defaults to all products. Use `group_by[]=product` to break out per-product values. Values include "chat", "claude_code", "cowork", "office_agent", "claude_in_chrome", and "claude_design".
+  Product surfaces to include. Defaults to all products. Use `group_by[]=product` to break out per-product values. Values include "chat", "claude_code", "cowork", "office_agent", "claude_in_chrome", "claude_design", and "claude-in-slack". "claude-in-slack" (with hyphens) is Claude Tag, the Claude product in Slack. A similarly spelled legacy value (underscores instead of hyphens) identifies the retiring v1 Slack chat bot and appears only for organizations that used it.
 
 - `rbac_group_ids: optional array of string`
 
@@ -146,7 +146,7 @@ key with the `read:analytics` scope.
 
       - `product: string`
 
-        Product surface that produced the usage or cost. Null unless product is in group_by[]; it can also be null on grouped rows whose usage cannot be attributed to a known surface. Values include "chat", "claude_code", "cowork", "office_agent", "claude_in_chrome", and "claude_design". Some unattributed usage is reported as "other".
+        Product surface that produced the usage or cost. Null unless product is in group_by[]; it can also be null on grouped rows whose usage cannot be attributed to a known surface. Values include "chat", "claude_code", "cowork", "office_agent", "claude_in_chrome", "claude_design", and "claude-in-slack". "claude-in-slack" (with hyphens) is Claude Tag, the Claude product in Slack. A similarly spelled legacy value (underscores instead of hyphens) identifies the retiring v1 Slack chat bot and appears only for organizations that used it. Some unattributed usage is reported as "other".
 
       - `rbac_group_id: string`
 

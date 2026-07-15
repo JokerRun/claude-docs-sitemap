@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/desktop-quickstart
-fetched_at: 2026-07-14T03:07:36.677443Z
-sha256: 647320e84524da794557661f3ca50d6fb158d3c05c11eff2f2bb96e0211ee356
+fetched_at: 2026-07-15T03:08:15.897796Z
+sha256: c41fc802c86452fd070af0eb8351ce8785beab102b886fe55c57b5ba83737afd
 ---
 
 > ## Documentation Index
@@ -40,7 +40,7 @@ This page walks through installing the app and starting your first session. If y
 The desktop app has three tabs:
 
 * **Chat**: General conversation with no file access, similar to claude.ai.
-* **Cowork**: An autonomous background agent that works on tasks in a cloud VM with its own environment. It can run independently while you do other work.
+* **Cowork**: An autonomous background agent that works on tasks in a sandboxed virtual machine with its own environment, running independently while you do other work. On-device Cowork sessions run the VM on your computer; remote Cowork sessions run on an Anthropic-managed VM instead.
 * **Code**: An interactive coding assistant with direct access to your local files. You review and approve each change in real time.
 
 Chat and Cowork are covered in the [Claude Help Center](https://support.claude.com/); installing and deploying the desktop app is covered in the [Claude Desktop support articles](https://support.claude.com/en/collections/16163169-claude-desktop). This page focuses on the **Code** tab.

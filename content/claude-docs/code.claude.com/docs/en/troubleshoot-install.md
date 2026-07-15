@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/troubleshoot-install
-fetched_at: 2026-07-14T03:07:36.677443Z
-sha256: 71b0d9eb12ecf862365a610f53cbdd25aacc091df8de7382ffed6ffeb22149bc
+fetched_at: 2026-07-15T03:08:15.897796Z
+sha256: c1bc34f80ff37827eec7bcaffa3ee5b52cf0e40eadff04a1c651b996161ed954
 ---
 
 > ## Documentation Index
@@ -430,11 +430,11 @@ Errors like `curl: (35) TLS connect error`, `schannel: next InitializeSecurityCo
    ```
    Ask your IT team for the certificate file if you don't have it. You can also try on a direct connection to confirm the proxy is the cause.
 
-4. **On Windows, bypass certificate revocation checks** if you see `CRYPT_E_NO_REVOCATION_CHECK (0x80092012)` or `CRYPT_E_REVOCATION_OFFLINE (0x80092013)`. These mean curl reached the server but your network blocks the certificate revocation lookup, which is common behind corporate firewalls. Add `--ssl-revoke-best-effort` to the install command:
-   ```batch theme={null}
-   curl --ssl-revoke-best-effort -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd
+4. **On Windows, switch installers if your network blocks revocation checks**. The errors `CRYPT_E_NO_REVOCATION_CHECK (0x80092012)` and `CRYPT_E_REVOCATION_OFFLINE (0x80092013)` mean curl reached the server but your network blocks the certificate revocation lookup, which is common behind corporate firewalls. Adding curl's `--ssl-revoke-best-effort` flag doesn't fix this: the flag only applies to downloading `install.cmd` itself, and the script's own downloads run without it, so the install fails with the same error. Use an install method that tolerates the blocked lookup instead. Open PowerShell and run the PowerShell installer, which downloads through .NET and doesn't fail when the revocation server is unreachable:
+   ```powershell theme={null}
+   irm https://claude.ai/install.ps1 | iex
    ```
-   Alternatively, install with `winget install Anthropic.ClaudeCode`, which avoids curl entirely.
+   You can also install with `winget install Anthropic.ClaudeCode`, which avoids curl entirely.
 
 ### `Failed to fetch version from downloads.claude.ai`
 

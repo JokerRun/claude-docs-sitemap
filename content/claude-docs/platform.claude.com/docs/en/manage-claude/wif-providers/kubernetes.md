@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/wif-providers/kubernetes
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 83a8eb6385ef2ef34372bfbd467aa3e65cf3a39b171a229f3b3b56ae2c1f8dfa
+fetched_at: 2026-07-15T03:08:15.897796Z
+sha256: e18d8aa5dd493ee69f6f59aa3ed1aca923841b9fe9b1f1f08767efdfa448a8c8
 ---
 
 # Use WIF with Kubernetes
@@ -156,7 +156,7 @@ The pod spec in [Configure Kubernetes](#configure-kubernetes) sets `ANTHROPIC_ID
     -H "anthropic-version: 2023-06-01" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-sonnet-4-6",
+      "model": "claude-opus-4-8",
       "max_tokens": 1024,
       "messages": [{"role": "user", "content": "Hello, Claude"}]
     }' | jq -r '.content[0].text'
@@ -171,7 +171,7 @@ The pod spec in [Configure Kubernetes](#configure-kubernetes) sets `ANTHROPIC_ID
   client = anthropic.Anthropic()
 
   message = client.messages.create(
-      model="claude-sonnet-4-6",
+      model="claude-opus-4-8",
       max_tokens=1024,
       messages=[{"role": "user", "content": "Hello, Claude"}],
   )
@@ -187,7 +187,7 @@ The pod spec in [Configure Kubernetes](#configure-kubernetes) sets `ANTHROPIC_ID
   const client = new Anthropic();
 
   const message = await client.messages.create({
-    model: "claude-sonnet-4-6",
+    model: "claude-opus-4-8",
     max_tokens: 1024,
     messages: [{ role: "user", content: "Hello, Claude" }]
   });
@@ -205,7 +205,7 @@ The pod spec in [Configure Kubernetes](#configure-kubernetes) sets `ANTHROPIC_ID
   client := anthropic.NewClient()
 
   message, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeSonnet4_6,
+  	Model:     anthropic.ModelClaudeOpus4_8,
   	MaxTokens: 1024,
   	Messages: []anthropic.MessageParam{
   		anthropic.NewUserMessage(anthropic.NewTextBlock("Hello, Claude")),
@@ -221,7 +221,7 @@ The pod spec in [Configure Kubernetes](#configure-kubernetes) sets `ANTHROPIC_ID
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
   var message = client.messages().create(MessageCreateParams.builder()
-          .model(Model.CLAUDE_SONNET_4_6)
+          .model(Model.CLAUDE_OPUS_4_8)
           .maxTokens(1024)
           .addUserMessage("Hello, Claude")
           .build());
@@ -236,7 +236,7 @@ The pod spec in [Configure Kubernetes](#configure-kubernetes) sets `ANTHROPIC_ID
 
   var message = await client.Messages.Create(new()
   {
-      Model = Model.ClaudeSonnet4_6,
+      Model = Model.ClaudeOpus4_8,
       MaxTokens = 1024,
       Messages = [new() { Role = Role.User, Content = "Hello, Claude" }],
   });
@@ -253,7 +253,7 @@ The pod spec in [Configure Kubernetes](#configure-kubernetes) sets `ANTHROPIC_ID
   # Reads ANTHROPIC_FEDERATION_RULE_ID, ANTHROPIC_ORGANIZATION_ID,
   # ANTHROPIC_SERVICE_ACCOUNT_ID, ANTHROPIC_WORKSPACE_ID, and ANTHROPIC_IDENTITY_TOKEN_FILE
   ant messages create \
-    --model claude-sonnet-4-6 \
+    --model claude-opus-4-8 \
     --max-tokens 1024 \
     --message '{role: user, content: "Hello, Claude"}'
   ```
@@ -266,7 +266,7 @@ The pod spec in [Configure Kubernetes](#configure-kubernetes) sets `ANTHROPIC_ID
   $client = new Client();
 
   $message = $client->messages->create(
-      model: 'claude-sonnet-4-6',
+      model: 'claude-opus-4-8',
       maxTokens: 1024,
       messages: [['role' => 'user', 'content' => 'Hello, Claude']],
   );
@@ -281,7 +281,7 @@ The pod spec in [Configure Kubernetes](#configure-kubernetes) sets `ANTHROPIC_ID
   client = Anthropic::Client.new
 
   message = client.messages.create(
-    model: "claude-sonnet-4-6",
+    model: "claude-opus-4-8",
     max_tokens: 1024,
     messages: [{role: "user", content: "Hello, Claude"}]
   )

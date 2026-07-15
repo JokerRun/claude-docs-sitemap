@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/analytics/plugins
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 2947ff654ac710c4bf47df8f6ef3aee2227a79e886ed991ad1d08a792f9a6676
+fetched_at: 2026-07-15T03:08:15.897796Z
+sha256: a516993b5a1fbc9703f7f9b4bb949719d559baae07d3eef962ad1ea599592608
 ---
 
 # Plugins
@@ -54,7 +54,7 @@ range-rollup mode like /skills.
 
 - `order_by: optional string`
 
-  Sort field. Restricted to the endpoint's sort column, plus — in date-range mode (starting_date/ending_date) — the endpoint's rankable metrics (metrics default to descending).
+  Sort field. Restricted to the endpoint's sort column plus its rankable metrics (metrics default to descending; a few metrics rank in date-range mode only, per the endpoint's documented orderable set).
 
 - `page: optional string`
 

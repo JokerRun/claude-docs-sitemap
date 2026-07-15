@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/external_keys/delete
-fetched_at: 2026-06-12T03:17:40.104094Z
-sha256: 9dec8a167995060cca3ca93287105ccbef48699a7a963331f10c910f2331dc10
+fetched_at: 2026-07-15T03:08:15.897796Z
+sha256: 1fdae42af692219072cb029032a0ed10c62757f0c2ae6a25000fe18626f95538
 ---
 
 ## Delete External Key
@@ -17,7 +17,7 @@ The request is rejected if any workspace still references this config.
 
 - `external_key_id: string`
 
-  ID of the External Key to delete.
+  ID of the External Key.
 
 ### Returns
 

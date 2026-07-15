@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 2e738257c015c48178253bd35d74d0591f5dc47d55bb659a53b7f2f6fa819f1e
+fetched_at: 2026-07-15T03:08:15.897796Z
+sha256: e8ed6450dc3c90dfd98ef9c933340b64068892a13c5fa23795d9386920d50b9f
 ---
 
 # Skill authoring best practices
@@ -476,7 +476,7 @@ Organize findings by theme. Include:
 Check that every claim references the correct source document. If citations are incomplete, return to Step 3.
 ````
 
-This example shows how workflows apply to analysis tasks that don't require code. The checklist pattern works for any complex, multi-step process.
+This example shows how workflows apply to analysis tasks that don't require code. The checklist pattern works for any complex, multistep process.
 
 **Example 2: PDF form filling workflow** (for Skills with code):
 
@@ -521,7 +521,7 @@ Run: `python scripts/verify_output.py output.pdf`
 If verification fails, return to Step 2.
 ````
 
-Clear steps prevent Claude from skipping critical validation. The checklist helps both Claude and you track progress through multi-step workflows.
+Clear steps prevent Claude from skipping critical validation. The checklist helps both Claude and you track progress through multistep workflows.
 
 ### Implement feedback loops
 

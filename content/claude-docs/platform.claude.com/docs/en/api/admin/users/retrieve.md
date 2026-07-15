@@ -1,15 +1,15 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/users/retrieve
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: d906184c9518f68b177e94b8028b349ed118d13dad1ce45fed16b1234585690f
+fetched_at: 2026-07-15T03:08:15.897796Z
+sha256: f377efd6473037dbef0ed613bb305cec0bd677c7c06f45f453e8e2c2d10db98b
 ---
 
 ## Get User
 
 **get** `/v1/organizations/users/{user_id}`
 
-Get User
+For Claude Enterprise organizations, this endpoint's availability is in beta.
 
 ### Path Parameters
 
@@ -37,7 +37,7 @@ Get User
 
     Name of the User.
 
-  - `role: "admin" or "billing" or "claude_code_user" or 2 more`
+  - `role: "admin" or "billing" or "claude_code_user" or 6 more`
 
     Organization role of the User.
 
@@ -48,6 +48,14 @@ Get User
     - `"claude_code_user"`
 
     - `"developer"`
+
+    - `"managed"`
+
+    - `"membership_admin"`
+
+    - `"owner"`
+
+    - `"primary_owner"`
 
     - `"user"`
 

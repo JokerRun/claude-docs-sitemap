@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/analytics/chat_projects/list
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: f040551cad2d1620751f3b761b9398ea716140268c9586a243e05bdc36d20241
+fetched_at: 2026-07-15T03:08:15.897796Z
+sha256: b358745945379233ff856190b691ef772abef52912c6e04712d39ec262dd5429
 ---
 
 ## Get Chat Project Usage
@@ -47,7 +47,7 @@ Requires an API key with the `read:analytics` scope.
 
 - `order_by: optional string`
 
-  Sort field. Restricted to the endpoint's sort column, plus — in date-range mode (starting_date/ending_date) — the endpoint's rankable metrics (metrics default to descending).
+  Sort field. Restricted to the endpoint's sort column plus its rankable metrics (metrics default to descending; a few metrics rank in date-range mode only, per the endpoint's documented orderable set).
 
 - `page: optional string`
 

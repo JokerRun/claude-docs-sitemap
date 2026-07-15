@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/api_keys/retrieve
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 30635b634b13ad2a96b00058bbed07d5f7dc07daf41c888b42629e9734a96a58
+fetched_at: 2026-07-15T03:08:15.897796Z
+sha256: b318baf05f9dd7fa45768935c08ad5688eb2082e6eedffa24100c01de4d6f14c
 ---
 
 ## Get API Key
@@ -19,7 +19,7 @@ Get API Key
 
 ### Returns
 
-- `APIKey object { id, created_at, created_by, 6 more }`
+- `APIKey object { id, created_at, created_by, 7 more }`
 
   - `id: string`
 
@@ -52,6 +52,22 @@ Get API Key
   - `partial_key_hint: string`
 
     Partially redacted hint for the API key.
+
+  - `principal: object { id, type }`
+
+    The ID and type of the principal the API key acts as, or `null` if the key is not bound to a principal.
+
+    - `id: string`
+
+      ID of the principal the API key acts as: a User ID (`user_...`) when the type is `user`, or a Service Account ID (`svac_...`) when the type is `service_account`.
+
+    - `type: "service_account" or "user"`
+
+      Type of the principal the API key acts as.
+
+      - `"service_account"`
+
+      - `"user"`
 
   - `status: "active" or "archived" or "expired" or "inactive"`
 
@@ -98,6 +114,10 @@ curl https://api.anthropic.com/v1/organizations/api_keys/$API_KEY_ID \
   "expires_at": "2024-10-30T23:58:27.427722Z",
   "name": "Developer Key",
   "partial_key_hint": "sk-ant-api03-R2D...igAA",
+  "principal": {
+    "id": "user_01WCz1FkmYMm4gnmykNKUu3Q",
+    "type": "user"
+  },
   "status": "active",
   "type": "api_key",
   "workspace_id": "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ"

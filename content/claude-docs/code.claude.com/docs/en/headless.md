@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/headless
-fetched_at: 2026-07-14T03:07:36.677443Z
-sha256: 12348b312f21b285ce016a00fd25f1129e05cfe8d290a95db1bfd88c8eafab99
+fetched_at: 2026-07-15T03:08:15.897796Z
+sha256: 32c5ba057865188fa52a627b4680d0c36327fca8d52d3e691a1c485416916d72
 ---
 
 > ## Documentation Index
@@ -153,6 +153,8 @@ Use `--output-format stream-json` with `--verbose` and `--include-partial-messag
 ```bash theme={null}
 claude -p "Explain recursion" --output-format stream-json --verbose --include-partial-messages
 ```
+
+The last line of the stream is a `result` message with the final response text, cost, and session metadata. {/* min-version: 2.1.208 */}Before v2.1.208, piping a large response could truncate the final line and omit the `result` message.
 
 The following example uses [jq](https://jqlang.github.io/jq/) to filter for text deltas and display just the streaming text. The `-r` flag outputs raw strings (no quotes) and `-j` joins without newlines so tokens stream continuously:
 

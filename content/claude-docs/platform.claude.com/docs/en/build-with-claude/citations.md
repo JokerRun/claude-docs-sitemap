@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/citations
-fetched_at: 2026-07-07T03:11:34.034287Z
-sha256: f5f1128bf5a95d23ac9d3453b175605218bb90d99e44d03b4e4b8c957cff42d5
+fetched_at: 2026-07-15T03:08:15.897796Z
+sha256: fa16802bdfbaa5226cf559f32ec507e2a53d86f358b113322462dc2beb11daed
 ---
 
 # Citations
@@ -17,7 +17,7 @@ Ground Claude's responses in your source documents. Citations return the exact p
 
 Claude can provide detailed citations when answering questions about documents, helping you track and verify the sources behind each response.
 
-All [active models](/docs/en/about-claude/models/overview) support citations, with the exception of Claude Haiku 3.
+All [active models](/docs/en/about-claude/models/overview) support citations.
 
 <Tip>
   Share your feedback and suggestions about the citations feature using the [citations feedback form](https://forms.gle/9n9hSrKnKe3rpowH9).

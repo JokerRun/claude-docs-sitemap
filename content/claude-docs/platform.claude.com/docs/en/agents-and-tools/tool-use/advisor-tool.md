@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool
-fetched_at: 2026-07-11T03:08:19.250903Z
-sha256: 10e581765040cde28e3915c9addb657a9f3cb7f9a1ae35f3af1269640c3416af
+fetched_at: 2026-07-15T03:08:15.897796Z
+sha256: 6e4388773eca353d7503ca46eb87ce8900fc0fb492e8c2924a480c66bf23d9a2
 ---
 
 # Advisor tool
@@ -13,7 +13,7 @@ Pair a faster executor model with a higher-intelligence advisor model that provi
 
 The advisor tool lets a faster, lower-cost **executor model** consult a higher-intelligence **advisor model** mid-generation for strategic guidance. The advisor reads the full conversation, produces a plan or course correction, and the executor continues with the task.
 
-This pattern fits long-horizon agentic workloads (coding agents, computer use, multi-step research pipelines) where most turns are mechanical but having an excellent plan is crucial. You get close to advisor-solo quality while the bulk of token generation happens at executor-model rates.
+This pattern fits long-horizon agentic workloads (coding agents, computer use, multistep research pipelines) where most turns are mechanical but having an excellent plan is crucial. You get close to advisor-solo quality while the bulk of token generation happens at executor-model rates.
 
 ```mermaid
 sequenceDiagram
@@ -205,10 +205,10 @@ The advisor is a weaker fit for single-turn Q\&A (nothing to plan), pure pass-th
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_SONNET_4_6)
+          .model(Model.CLAUDE_SONNET_5)
           .maxTokens(4096L)
           .addTool(BetaAdvisorTool20260301.builder()
-              .model(Model.CLAUDE_OPUS_4_8)
+              .model(Model.CLAUDE_FABLE_5)
               .build())
           .addUserMessage("Build a concurrent worker pool in Go with graceful shutdown.")
           .addBeta("advisor-tool-2026-03-01")
@@ -538,7 +538,7 @@ Pass the full assistant content, including `advisor_tool_result` blocks, back to
           .build());
 
       BetaMessage response = client.beta().messages().create(MessageCreateParams.builder()
-          .model(Model.CLAUDE_SONNET_4_6)
+          .model(Model.CLAUDE_SONNET_5)
           .maxTokens(4096L)
           .tools(tools)
           .messages(messages)
@@ -559,7 +559,7 @@ Pass the full assistant content, including `advisor_tool_result` blocks, back to
           .build());
 
       BetaMessage followUp = client.beta().messages().create(MessageCreateParams.builder()
-          .model(Model.CLAUDE_SONNET_4_6)
+          .model(Model.CLAUDE_SONNET_5)
           .maxTokens(4096L)
           .tools(tools)
           .messages(messages)
@@ -912,7 +912,7 @@ With the default `NUDGE_TURN` of 2, the reminder typically arrives after the mod
 
       List<BetaToolUnion> tools = List.of(
           BetaToolUnion.ofAdvisorTool20260301(
-              BetaAdvisorTool20260301.builder().model(Model.CLAUDE_OPUS_4_8).build())
+              BetaAdvisorTool20260301.builder().model(Model.CLAUDE_FABLE_5).build())
           // ... your other tools
       );
       String task = "Build a concurrent worker pool in Go with graceful shutdown.";

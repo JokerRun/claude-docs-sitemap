@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/terminal-config
-fetched_at: 2026-07-14T03:07:36.677443Z
-sha256: 5e6a4397ec505676f7195038681158748962f768f7b45159a038c9157bbba05d
+fetched_at: 2026-07-15T03:08:15.897796Z
+sha256: 072316f788e6ec6253cdb68b3f378195f7c834e2683363de8ae3b6213244dbe9
 ---
 
 > ## Documentation Index
@@ -303,7 +303,9 @@ The VS Code integrated terminal can drop characters from very large pastes befor
 
 Claude Code includes a Vim-style editing mode for the prompt input. Enable it through `/config` → Editor mode, or by setting [`editorMode`](/en/settings#available-settings) to `"vim"` in `~/.claude/settings.json`. Set Editor mode back to `normal` to turn it off.
 
-Vim mode supports a subset of NORMAL- and VISUAL-mode motions and operators, such as `hjkl` navigation, `v`/`V` selection, and `d`/`c`/`y` with text objects. See the [Vim editor mode reference](/en/interactive-mode#vim-editor-mode) for the full key table. Vim motions are not remappable through the keybindings file.
+Vim mode supports a subset of NORMAL- and VISUAL-mode motions and operators, such as `hjkl` navigation, `v`/`V` selection, and `d`/`c`/`y` with text objects. See the [Vim editor mode reference](/en/interactive-mode#vim-editor-mode) for the full key table.
+
+Vim motions aren't remappable through the keybindings file. To map a two-key INSERT-mode sequence such as `jj` to Escape, set [`vimInsertModeRemaps`](/en/interactive-mode#remap-insert-mode-key-sequences) in your user settings.
 
 Pressing Enter still submits your prompt in INSERT mode, unlike standard Vim. Use `o` or `O` in NORMAL mode, or Ctrl+J, to insert a newline instead.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance
-fetched_at: 2026-07-14T03:07:36.677443Z
-sha256: 514dde2d666a9fa7d67ff0acd4d9ad3b42215b405075d40f88b3f4168fc697be
+fetched_at: 2026-07-15T03:08:15.897796Z
+sha256: 36b4c0847a990e208efc0bd6707a397f638e9f10dfea40ee522f99057a9bcec6
 ---
 
 # Compliance API
@@ -22879,7 +22879,7 @@ compliance activities that can be filtered by various criteria.
 
     - `mfa_method: optional "not_used"`
 
-      The second authentication factor performed during this login, if any. `null` when the second-factor status is not recorded on this event — for example, when authentication was delegated to an external identity provider and any second factor is not visible to Anthropic, or when this event is one step of a multi-step login whose MFA is reported on another activity. May be absent on activities recorded before this field was introduced.
+      The second authentication factor performed during this login, if any. `null` when the second-factor status is not recorded on this event — for example, when authentication was delegated to an external identity provider and any second factor is not visible to Anthropic, or when this event is one step of a multistep login whose MFA is reported on another activity. May be absent on activities recorded before this field was introduced.
 
       - `"not_used"`
 
@@ -40944,7 +40944,7 @@ compliance activities that can be filtered by various criteria.
 
     - `mfa_method: optional "not_used"`
 
-      The second authentication factor performed during this login, if any. `null` when the second-factor status is not recorded on this event — for example, when authentication was delegated to an external identity provider and any second factor is not visible to Anthropic, or when this event is one step of a multi-step login whose MFA is reported on another activity. May be absent on activities recorded before this field was introduced.
+      The second authentication factor performed during this login, if any. `null` when the second-factor status is not recorded on this event — for example, when authentication was delegated to an external identity provider and any second factor is not visible to Anthropic, or when this event is one step of a multistep login whose MFA is reported on another activity. May be absent on activities recorded before this field was introduced.
 
       - `"not_used"`
 
@@ -43621,7 +43621,7 @@ compliance activities that can be filtered by various criteria.
 
     - `mfa_method: optional "not_used"`
 
-      The second authentication factor performed during this login, if any. `null` when the second-factor status is not recorded on this event — for example, when authentication was delegated to an external identity provider and any second factor is not visible to Anthropic, or when this event is one step of a multi-step login whose MFA is reported on another activity. May be absent on activities recorded before this field was introduced.
+      The second authentication factor performed during this login, if any. `null` when the second-factor status is not recorded on this event — for example, when authentication was delegated to an external identity provider and any second factor is not visible to Anthropic, or when this event is one step of a multistep login whose MFA is reported on another activity. May be absent on activities recorded before this field was introduced.
 
       - `"not_used"`
 
@@ -66648,7 +66648,7 @@ curl https://api.anthropic.com/v1/compliance/activities \
 
     - `mfa_method: optional "not_used"`
 
-      The second authentication factor performed during this login, if any. `null` when the second-factor status is not recorded on this event — for example, when authentication was delegated to an external identity provider and any second factor is not visible to Anthropic, or when this event is one step of a multi-step login whose MFA is reported on another activity. May be absent on activities recorded before this field was introduced.
+      The second authentication factor performed during this login, if any. `null` when the second-factor status is not recorded on this event — for example, when authentication was delegated to an external identity provider and any second factor is not visible to Anthropic, or when this event is one step of a multistep login whose MFA is reported on another activity. May be absent on activities recorded before this field was introduced.
 
       - `"not_used"`
 
@@ -84713,7 +84713,7 @@ curl https://api.anthropic.com/v1/compliance/activities \
 
     - `mfa_method: optional "not_used"`
 
-      The second authentication factor performed during this login, if any. `null` when the second-factor status is not recorded on this event — for example, when authentication was delegated to an external identity provider and any second factor is not visible to Anthropic, or when this event is one step of a multi-step login whose MFA is reported on another activity. May be absent on activities recorded before this field was introduced.
+      The second authentication factor performed during this login, if any. `null` when the second-factor status is not recorded on this event — for example, when authentication was delegated to an external identity provider and any second factor is not visible to Anthropic, or when this event is one step of a multistep login whose MFA is reported on another activity. May be absent on activities recorded before this field was introduced.
 
       - `"not_used"`
 
@@ -87390,7 +87390,7 @@ curl https://api.anthropic.com/v1/compliance/activities \
 
     - `mfa_method: optional "not_used"`
 
-      The second authentication factor performed during this login, if any. `null` when the second-factor status is not recorded on this event — for example, when authentication was delegated to an external identity provider and any second factor is not visible to Anthropic, or when this event is one step of a multi-step login whose MFA is reported on another activity. May be absent on activities recorded before this field was introduced.
+      The second authentication factor performed during this login, if any. `null` when the second-factor status is not recorded on this event — for example, when authentication was delegated to an external identity provider and any second factor is not visible to Anthropic, or when this event is one step of a multistep login whose MFA is reported on another activity. May be absent on activities recorded before this field was introduced.
 
       - `"not_used"`
 

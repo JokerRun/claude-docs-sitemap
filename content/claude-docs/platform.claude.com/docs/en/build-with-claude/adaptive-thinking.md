@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/adaptive-thinking
-fetched_at: 2026-07-03T03:11:00.926352Z
-sha256: f6833559206d0eacef927d5455a43b271323f9dda867d01c92e2d68d4152eca3
+fetched_at: 2026-07-15T03:08:15.897796Z
+sha256: 6e17d3e37adad907defa2fd28126ca111d6aed69047f5fbe5df4082c7ed03ff4
 ---
 
 # Adaptive thinking
@@ -757,13 +757,13 @@ Adaptive thinking's triggering behavior is promptable. If Claude is thinking mor
 ```text wrap
 Extended thinking adds latency and should only be used when it
 will meaningfully improve answer quality, typically for problems
-that require multi-step reasoning. When in doubt, respond directly.
+that require multistep reasoning. When in doubt, respond directly.
 ```
 
 To encourage thinking instead, use a phrase like:
 
 ```text wrap
-This task involves multi-step reasoning. Think carefully before responding.
+This task involves multistep reasoning. Think carefully before responding.
 ```
 
 Steering effectiveness can be sensitive to exact wording. If one phrasing doesn't produce the behavior you want, try a more direct variant.

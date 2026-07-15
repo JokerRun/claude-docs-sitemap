@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/events-and-streaming
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: f9c543033ef628ce1bd28388665ef59bfcbe905b815ac251b20fcf056a442a9d
+fetched_at: 2026-07-15T03:08:15.897796Z
+sha256: c897b1caaa8eec900d8b97c46b1c279246b3e93d2fb366931b4dc4b42b298d69
 ---
 
 # Aliran event sesi
@@ -601,7 +601,7 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang menunj
       ```
 
       ```php PHP
-      // Buka stream terlebih dahulu, lalu kirim pesan pengguna
+      // Open the stream first, then send the user message
       $stream = $client->beta->sessions->events->streamStream($session->id);
       $client->beta->sessions->events->send(
           $session->id,
@@ -855,13 +855,13 @@ Setiap event yang dipersistensi menyertakan timestamp `processed_at` yang menunj
       ```php PHP
       $stream = $client->beta->sessions->events->streamStream($session->id);
 
-      // Stream terbuka dan sedang buffering. Tampilkan riwayat sebelum mengikuti event langsung.
+      // Stream is open and buffering. List history before tailing live.
       $seenEventIds = [];
       foreach ($client->beta->sessions->events->list($session->id)->pagingEachItem() as $event) {
           $seenEventIds[$event->id] = true;
       }
 
-      // Ikuti event langsung, lewati apa pun yang sudah terlihat
+      // Tail live events, skipping anything already seen
       foreach ($stream as $event) {
           if (isset($seenEventIds[$event->id])) {
               continue;
@@ -1483,7 +1483,7 @@ Dalam pola manual, perlakukan pratinjau sebagai buffer sementara dan event yang 
   ```
 
   ```php PHP
-  // Aktifkan delta event: pratinjau agent.message di-stream sebagai fragmen inkremental.
+  // Opt in to event deltas: agent.message previews stream as incremental fragments.
   $stream = $client->beta->sessions->events->streamStream(
       $session->id,
       eventDeltas: [BetaManagedAgentsDeltaType::AGENT_MESSAGE],
@@ -1499,22 +1499,22 @@ Dalam pola manual, perlakukan pratinjau sebagai buffer sementara dan event yang 
       ],
   );
 
-  // Akumulasikan fragmen pratinjau berdasarkan (id event, index). agent.message yang di-buffer
-  // dengan id yang sama bersifat otoritatif dan menggantikan apa pun yang dibangun oleh delta.
+  // Accumulate preview fragments by (event id, index). The buffered agent.message
+  // with the same id is authoritative and replaces whatever the deltas built up.
   $buffers = [];
 
   foreach ($stream as $event) {
       if ($event->type === 'event_start') {
           printf("event_start             %s %s\n", $event->event->type, $event->event->id);
       } elseif ($event->type === 'event_delta') {
-          // index bersifat opsional di wire; pratinjau elemen tunggal menghilangkannya.
+          // index is optional on the wire; a single-element preview omits it.
           $index = $event->delta->index ?? 0;
           $fragment = $event->delta->content->text;
           $buffers[$event->eventID][$index] ??= '';
           $buffers[$event->eventID][$index] .= $fragment;
           printf("event_delta             preview: %s\n", json_encode($buffers[$event->eventID][$index]));
       } elseif ($event->type === 'agent.message') {
-          // Ganti: buang pratinjau yang terakumulasi dan render event lengkapnya.
+          // Replace: drop the accumulated preview and render the complete event.
           unset($buffers[$event->id]);
           $text = '';
           foreach ($event->content as $block) {
@@ -1524,7 +1524,7 @@ Dalam pola manual, perlakukan pratinjau sebagai buffer sementara dan event yang 
           }
           printf("agent.message           %s %s\n", $event->id, json_encode($text));
       } elseif ($event->type === 'span.model_request_end') {
-          // Tidak ada delta lagi yang datang. Tutup pratinjau apa pun yang tidak pernah direkonsiliasi.
+          // No more deltas are coming. Close any preview that was never reconciled.
           foreach (array_keys($buffers) as $eventID) {
               printf("span.model_request_end  closing preview for %s\n", $eventID);
           }

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/workspaces/list
-fetched_at: 2026-06-12T03:17:40.104094Z
-sha256: 169110e76df7aefa2278ddec01ebe23d4f2d5f72cb1e3ddc43fe7b8291be74e8
+fetched_at: 2026-07-15T03:08:15.897796Z
+sha256: 534145d3057db8f86350545c3c32b6653ca52e792f54b2ceb9b639e9e801e400
 ---
 
 ## List Workspaces
@@ -46,11 +46,11 @@ List Workspaces
   - `compartment_id: string`
 
     Identifier for this Workspace's encryption compartment. When you configure a
-    customer-managed encryption key (CMEK), reference this value in your cloud
-    provider's key configuration — an AWS KMS key-policy condition or an Azure Key
-    Vault tag — so the key is scoped to this compartment. See the CMEK integration
-    guide for the required key configuration, including the value used during key
-    validation.
+    customer-managed encryption key (CMEK) on AWS, reference this value in your
+    KMS key-policy condition so the key is scoped to this compartment. On GCP and
+    Azure, Anthropic enforces the compartment binding automatically; you do not
+    need to reference this value in your key configuration. See the CMEK integration guide for the
+    required key configuration, including the value used during key validation.
 
   - `created_at: string`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/mid-conversation-effort-example
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 15a1747c474e3ba4557f3dc37d8e48b06ff7601066989b7d1990c51252ac3d61
+fetched_at: 2026-07-15T03:08:15.897796Z
+sha256: 7fbe82cc561a7e09955e5a338a43f82f5ff8b51d4b1a9256c0c6961580308fd6
 ---
 
 # Membangun mode orkestrasi
@@ -108,10 +108,10 @@ Contoh ini adalah satu file. Konstanta-konstanta mengontrol tingkat effort, bent
   const string systemPrompt = "You are a helpful general-purpose agent. Answer the user's request directly.";
 
   const int requestTimeoutSeconds = 600;
-  // Port lain melakukan streaming dengan max_tokens 64000. Port ini menggunakan
-  // Messages.Create non-streaming, dan API menolak permintaan non-streaming sebesar itu.
-  // 8192 adalah batas atas non-streaming untuk Opus 4.0 dan 4.1 serta pilihan
-  // konservatif untuk model Opus yang lebih baru.
+  // The other ports stream with max_tokens 64000. This port uses non-streaming
+  // Messages.Create, and the API rejects non-streaming requests at that size.
+  // 8192 is the non-streaming ceiling for Opus 4.0 and 4.1 and a conservative
+  // choice for newer Opus models.
   const int requestMaxTokens = 8192;
   const int bashTimeoutSeconds = 60;
   const int toolResultMaxChars = 8000;
@@ -413,13 +413,13 @@ Alat Workflow membawa kontrak perilaku yang sebenarnya: aturan opt-in, persetuju
   WORKFLOW_TOOL = {
       "name": "Workflow",
       "description": (
-          "Orchestrate a multi-agent workflow: split a large task into independent subtasks "
+          "Orchestrate a multiagent workflow: split a large task into independent subtasks "
           "and run them as parallel agents, then collect their results.\n\n"
           "Opt-in: only use this tool when the user explicitly asks for a workflow, or when a "
           "system message confirms that orchestration mode is on.\n\n"
           "Quality patterns: adversarial verification (a second wave of agents checks the first "
           "wave's findings against the source), a completeness critic (one agent hunts for what "
-          "the others missed), and multi-phase sequencing (understand, design, implement, and "
+          "the others missed), and multiphase sequencing (understand, design, implement, and "
           "review as separate workflow calls, reading results between phases). A useful default "
           "is hybrid: scout inline first to discover the work-list, then fan out over it.\n\n"
           "Granularity: scope each subtask to a distinct concern, component, or question rather "
@@ -482,13 +482,13 @@ Alat Workflow membawa kontrak perilaku yang sebenarnya: aturan opt-in, persetuju
   const WORKFLOW_TOOL: Anthropic.Tool = {
     name: "Workflow",
     description:
-      "Orchestrate a multi-agent workflow: split a large task into independent subtasks " +
+      "Orchestrate a multiagent workflow: split a large task into independent subtasks " +
       "and run them as parallel agents, then collect their results.\n\n" +
       "Opt-in: only use this tool when the user explicitly asks for a workflow, or when a " +
       "system message confirms that orchestration mode is on.\n\n" +
       "Quality patterns: adversarial verification (a second wave of agents checks the first " +
       "wave's findings against the source), a completeness critic (one agent hunts for what " +
-      "the others missed), and multi-phase sequencing (understand, design, implement, and " +
+      "the others missed), and multiphase sequencing (understand, design, implement, and " +
       "review as separate workflow calls, reading results between phases). A useful default " +
       "is hybrid: scout inline first to discover the work-list, then fan out over it.\n\n" +
       "Granularity: scope each subtask to a distinct concern, component, or question rather " +
@@ -550,13 +550,13 @@ Alat Workflow membawa kontrak perilaku yang sebenarnya: aturan opt-in, persetuju
   {
       Name = "Workflow",
       Description =
-          "Orchestrate a multi-agent workflow: split a large task into independent subtasks "
+          "Orchestrate a multiagent workflow: split a large task into independent subtasks "
           + "and run them as parallel agents, then collect their results.\n\n"
           + "Opt-in: only use this tool when the user explicitly asks for a workflow, or when a "
           + "system message confirms that orchestration mode is on.\n\n"
           + "Quality patterns: adversarial verification (a second wave of agents checks the first "
           + "wave's findings against the source), a completeness critic (one agent hunts for what "
-          + "the others missed), and multi-phase sequencing (understand, design, implement, and "
+          + "the others missed), and multiphase sequencing (understand, design, implement, and "
           + "review as separate workflow calls, reading results between phases). A useful default "
           + "is hybrid: scout inline first to discover the work-list, then fan out over it.\n\n"
           + "Granularity: scope each subtask to a distinct concern, component, or question rather "
@@ -629,13 +629,13 @@ Alat Workflow membawa kontrak perilaku yang sebenarnya: aturan opt-in, persetuju
   var workflowTool = anthropic.ToolUnionParam{
   	OfTool: &anthropic.ToolParam{
   		Name: "Workflow",
-  		Description: anthropic.String("Orchestrate a multi-agent workflow: split a large task into independent subtasks " +
+  		Description: anthropic.String("Orchestrate a multiagent workflow: split a large task into independent subtasks " +
   			"and run them as parallel agents, then collect their results.\n\n" +
   			"Opt-in: only use this tool when the user explicitly asks for a workflow, or when a " +
   			"system message confirms that orchestration mode is on.\n\n" +
   			"Quality patterns: adversarial verification (a second wave of agents checks the first " +
   			"wave's findings against the source), a completeness critic (one agent hunts for what " +
-  			"the others missed), and multi-phase sequencing (understand, design, implement, and " +
+  			"the others missed), and multiphase sequencing (understand, design, implement, and " +
   			"review as separate workflow calls, reading results between phases). A useful default " +
   			"is hybrid: scout inline first to discover the work-list, then fan out over it.\n\n" +
   			"Granularity: scope each subtask to a distinct concern, component, or question rather " +
@@ -698,13 +698,13 @@ Alat Workflow membawa kontrak perilaku yang sebenarnya: aturan opt-in, persetuju
   ```java Java
   static final Tool WORKFLOW_TOOL = Tool.builder()
           .name("Workflow")
-          .description("Orchestrate a multi-agent workflow: split a large task into independent subtasks "
+          .description("Orchestrate a multiagent workflow: split a large task into independent subtasks "
                   + "and run them as parallel agents, then collect their results.\n\n"
                   + "Opt-in: only use this tool when the user explicitly asks for a workflow, or when a "
                   + "system message confirms that orchestration mode is on.\n\n"
                   + "Quality patterns: adversarial verification (a second wave of agents checks the first "
                   + "wave's findings against the source), a completeness critic (one agent hunts for what "
-                  + "the others missed), and multi-phase sequencing (understand, design, implement, and "
+                  + "the others missed), and multiphase sequencing (understand, design, implement, and "
                   + "review as separate workflow calls, reading results between phases). A useful default "
                   + "is hybrid: scout inline first to discover the work-list, then fan out over it.\n\n"
                   + "Granularity: scope each subtask to a distinct concern, component, or question rather "
@@ -759,13 +759,13 @@ Alat Workflow membawa kontrak perilaku yang sebenarnya: aturan opt-in, persetuju
   const WORKFLOW_TOOL = [
       'name' => 'Workflow',
       'description' =>
-          'Orchestrate a multi-agent workflow: split a large task into independent subtasks '
+          'Orchestrate a multiagent workflow: split a large task into independent subtasks '
           . "and run them as parallel agents, then collect their results.\n\n"
           . 'Opt-in: only use this tool when the user explicitly asks for a workflow, or when a '
           . "system message confirms that orchestration mode is on.\n\n"
           . 'Quality patterns: adversarial verification (a second wave of agents checks the first '
           . 'wave\'s findings against the source), a completeness critic (one agent hunts for what '
-          . 'the others missed), and multi-phase sequencing (understand, design, implement, and '
+          . 'the others missed), and multiphase sequencing (understand, design, implement, and '
           . 'review as separate workflow calls, reading results between phases). A useful default '
           . "is hybrid: scout inline first to discover the work-list, then fan out over it.\n\n"
           . 'Granularity: scope each subtask to a distinct concern, component, or question rather '
@@ -826,13 +826,13 @@ Alat Workflow membawa kontrak perilaku yang sebenarnya: aturan opt-in, persetuju
   WORKFLOW_TOOL = {
     name: "Workflow",
     description:
-      "Orchestrate a multi-agent workflow: split a large task into independent subtasks " \
+      "Orchestrate a multiagent workflow: split a large task into independent subtasks " \
       "and run them as parallel agents, then collect their results.\n\n" \
       "Opt-in: only use this tool when the user explicitly asks for a workflow, or when a " \
       "system message confirms that orchestration mode is on.\n\n" \
       "Quality patterns: adversarial verification (a second wave of agents checks the first " \
       "wave's findings against the source), a completeness critic (one agent hunts for what " \
-      "the others missed), and multi-phase sequencing (understand, design, implement, and " \
+      "the others missed), and multiphase sequencing (understand, design, implement, and " \
       "review as separate workflow calls, reading results between phases). A useful default " \
       "is hybrid: scout inline first to discover the work-list, then fan out over it.\n\n" \
       "Granularity: scope each subtask to a distinct concern, component, or question rather " \
@@ -896,8 +896,8 @@ Handler bash menjalankan perintah yang diminta dengan batas waktu, menangkap gab
 
 <CodeGroup>
   ```python Python
-  # Jalankan bash di tempat contoh diluncurkan. Dalam DOC_TEST_MODE, harness dokumentasi
-  # mengarahkannya ke direktori fixture sementara, yang dihapus saat keluar.
+  # Run bash where the example was launched. In DOC_TEST_MODE the docs harness
+  # points it at a throwaway fixture directory instead, removed on exit.
   if DOC_TEST_MODE:
       WORK_DIR = tempfile.mkdtemp(prefix="orchestration-")
       atexit.register(shutil.rmtree, WORK_DIR, ignore_errors=True)
@@ -945,8 +945,8 @@ Handler bash menjalankan perintah yang diminta dengan batas waktu, menangkap gab
   ```typescript TypeScript
   const execShell = promisify(exec);
 
-  // Jalankan bash di tempat contoh diluncurkan. Dalam DOC_TEST_MODE, harness dokumentasi
-  // mengarahkannya ke direktori fixture sementara, yang dihapus saat keluar.
+  // Run bash where the example was launched. In DOC_TEST_MODE the docs harness
+  // points it at a throwaway fixture directory instead, removed on exit.
   const WORK_DIR = DOC_TEST_MODE
     ? await mkdtemp(join(tmpdir(), "orchestration-"))
     : process.cwd();
@@ -960,7 +960,7 @@ Handler bash menjalankan perintah yang diminta dengan batas waktu, menangkap gab
     process.on("exit", () => rmSync(WORK_DIR, { recursive: true, force: true }));
   }
 
-  // Jalankan perintah shell dan kembalikan outputnya. Tanpa sandbox: hanya kode contoh.
+  // Run a shell command and return its output. No sandbox: example code only.
   async function runBash(command: string): Promise<{ output: string; isError: boolean }> {
     console.error(`[bash] ${command}`);
     let stdout = "";
@@ -1015,8 +1015,8 @@ Handler bash menjalankan perintah yang diminta dengan batas waktu, menangkap gab
   ```
 
   ```csharp C#
-  // Jalankan bash di tempat contoh ini diluncurkan. Dalam DOC_TEST_MODE, harness dokumentasi
-  // mengarahkannya ke direktori fixture sementara, yang dihapus saat keluar.
+  // Run bash where the example was launched. In DOC_TEST_MODE the docs harness
+  // points it at a throwaway fixture directory instead, removed on exit.
   var workDir = Environment.CurrentDirectory;
   if (docTestMode)
   {
@@ -1033,7 +1033,7 @@ Handler bash menjalankan perintah yang diminta dengan batas waktu, menangkap gab
       };
   }
 
-  // Jalankan perintah shell dan kembalikan outputnya plus flag error. Tanpa sandbox: hanya kode contoh.
+  // Run a shell command and return its output plus an error flag. No sandbox: example code only.
   async Task<(string Output, bool IsError)> RunBash(string command)
   {
       Console.Error.WriteLine($"[bash] {command}");
@@ -1058,14 +1058,14 @@ Handler bash menjalankan perintah yang diminta dengan batas waktu, menangkap gab
       catch (OperationCanceledException)
       {
           process.Kill(entireProcessTree: true);
-          // Biarkan task pembaca selesai sebelum proses di-dispose.
+          // Let the reader tasks finish before the process is disposed.
           try
           {
               await Task.WhenAll(stdoutTask, stderrTask);
           }
           catch
           {
-              // Output dibuang saat timeout, jadi kegagalan pembaca juga diabaikan.
+              // The output is discarded on timeout, so reader failures are ignored too.
           }
           return ($"command timed out after {bashTimeoutSeconds}s", true);
       }
@@ -1085,7 +1085,7 @@ Handler bash menjalankan perintah yang diminta dengan batas waktu, menangkap gab
       return (output, process.ExitCode != 0);
   }
 
-  // Eksekusi satu panggilan alat bash yang diminta oleh model.
+  // Execute one bash tool call requested by the model.
   async Task<(string Output, bool IsError)> HandleBashBlock(ToolUseBlock block)
   {
       if (block.Input.TryGetValue("restart", out var restart) && restart.ValueKind == JsonValueKind.True)
@@ -1104,8 +1104,8 @@ Handler bash menjalankan perintah yang diminta dengan batas waktu, menangkap gab
   ```
 
   ```go Go
-  // Jalankan bash di tempat contoh ini diluncurkan. Dalam DOC_TEST_MODE, harness dokumentasi
-  // mengarahkannya ke direktori fixture sekali pakai, yang dihapus saat keluar.
+  // Run bash where the example was launched. In DOC_TEST_MODE the docs harness
+  // points it at a throwaway fixture directory instead, removed on exit.
   var workDir = func() string {
   	if !docTestMode {
   		dir, err := os.Getwd()
@@ -1127,8 +1127,8 @@ Handler bash menjalankan perintah yang diminta dengan batas waktu, menangkap gab
   	return dir
   }()
 
-  // runBash menjalankan perintah shell dan mengembalikan output-nya beserta flag error.
-  // Tanpa sandbox: hanya kode contoh.
+  // runBash runs a shell command and returns its output plus an error flag.
+  // No sandbox: example code only.
   func runBash(ctx context.Context, command string) (string, bool) {
   	fmt.Fprintf(os.Stderr, "[bash] %s\n", command)
   	ctx, cancel := context.WithTimeout(ctx, bashTimeoutSeconds*time.Second)
@@ -1156,7 +1156,7 @@ Handler bash menjalankan perintah yang diminta dengan batas waktu, menangkap gab
   	return fmt.Sprintf("(%s)\n%s", err, output), true
   }
 
-  // handleBashBlock mengeksekusi satu panggilan alat bash yang diminta oleh model.
+  // handleBashBlock executes one bash tool call requested by the model.
   func handleBashBlock(ctx context.Context, block anthropic.ToolUseBlock) (string, bool) {
   	var input struct {
   		Command string `json:"command"`
@@ -1179,8 +1179,8 @@ Handler bash menjalankan perintah yang diminta dengan batas waktu, menangkap gab
   ```java Java
   record ToolOutput(String output, boolean isError) {}
 
-  // Jalankan bash di tempat contoh diluncurkan. Dalam DOC_TEST_MODE, harness dokumentasi
-  // mengarahkannya ke direktori fixture sementara, yang dihapus saat keluar.
+  // Run bash where the example was launched. In DOC_TEST_MODE the docs harness
+  // points it at a throwaway fixture directory instead, removed on exit.
   static final Path WORK_DIR = createWorkDir();
 
   static Path createWorkDir() {
@@ -1201,7 +1201,7 @@ Handler bash menjalankan perintah yang diminta dengan batas waktu, menangkap gab
                       try { Files.deleteIfExists(p); } catch (IOException ignored) {}
                   });
               } catch (IOException ignored) {
-                  // Pembersihan sebisa mungkin; penyapu tmp OS menangani sisanya.
+                  // Best-effort cleanup; the OS tmp sweeper handles leftovers.
               }
           }));
           return dir;
@@ -1210,7 +1210,7 @@ Handler bash menjalankan perintah yang diminta dengan batas waktu, menangkap gab
       }
   }
 
-  // Jalankan perintah shell dan kembalikan outputnya plus flag error. Tanpa sandbox: hanya kode contoh.
+  // Run a shell command and return its output plus an error flag. No sandbox: example code only.
   ToolOutput runBash(String command) throws InterruptedException {
       System.err.println("[bash] " + command);
       Process process;
@@ -1222,7 +1222,7 @@ Handler bash menjalankan perintah yang diminta dengan batas waktu, menangkap gab
       } catch (IOException error) {
           return new ToolOutput("(" + error + ")", true);
       }
-      // Kuras stdout di thread lain agar pipe yang penuh tidak menghambat penantian timeout di bawah.
+      // Drain stdout on another thread so a filled pipe cannot stall the timeout wait below.
       CompletableFuture<String> outputReader = CompletableFuture.supplyAsync(() -> {
           try (var stdout = process.getInputStream()) {
               return new String(stdout.readAllBytes(), StandardCharsets.UTF_8);
@@ -1250,7 +1250,7 @@ Handler bash menjalankan perintah yang diminta dengan batas waktu, menangkap gab
       return new ToolOutput(output, false);
   }
 
-  // Eksekusi satu panggilan alat bash yang diminta oleh model.
+  // Execute one bash tool call requested by the model.
   ToolOutput handleBashBlock(ToolUseBlock block) throws InterruptedException {
       Map<String, JsonValue> input = (Map<String, JsonValue>) block._input().asObject().orElse(Map.of());
       JsonValue restart = input.getOrDefault("restart", JsonValue.from(false));
@@ -1267,8 +1267,8 @@ Handler bash menjalankan perintah yang diminta dengan batas waktu, menangkap gab
   ```
 
   ```php PHP
-  // Jalankan bash di tempat contoh diluncurkan. Dalam DOC_TEST_MODE, harness dokumentasi
-  // mengarahkannya ke direktori fixture sementara, yang dihapus saat keluar.
+  // Run bash where the example was launched. In DOC_TEST_MODE the docs harness
+  // points it at a throwaway fixture directory instead, removed on exit.
   if (DOC_TEST_MODE) {
       $workDir = sys_get_temp_dir() . '/orchestration-' . bin2hex(random_bytes(8));
       if (!mkdir($workDir, 0700)) {
@@ -1298,7 +1298,7 @@ Handler bash menjalankan perintah yang diminta dengan batas waktu, menangkap gab
   function runBash(string $command): array
   {
       fwrite(STDERR, "[bash] {$command}\n");
-      // Memerlukan 'timeout' dari GNU coreutils. Di macOS: brew install coreutils, atau ganti dengan gtimeout.
+      // Requires GNU coreutils 'timeout'. On macOS: brew install coreutils, or replace with gtimeout.
       exec(
           'cd ' . escapeshellarg(WORK_DIR) . ' && timeout ' . BASH_TIMEOUT_SECONDS
               . ' bash -c ' . escapeshellarg($command) . ' 2>&1',
@@ -1337,8 +1337,8 @@ Handler bash menjalankan perintah yang diminta dengan batas waktu, menangkap gab
   ```
 
   ```ruby Ruby
-  # Jalankan bash di tempat contoh ini diluncurkan. Dalam DOC_TEST_MODE, harness dokumentasi
-  # mengarahkannya ke direktori fixture sementara, yang dihapus saat keluar.
+  # Run bash where the example was launched. In DOC_TEST_MODE the docs harness
+  # points it at a throwaway fixture directory instead, removed on exit.
   WORK_DIR =
     if DOC_TEST_MODE
       Dir.mktmpdir("orchestration-").tap do |dir|
@@ -1354,23 +1354,23 @@ Handler bash menjalankan perintah yang diminta dengan batas waktu, menangkap gab
       Dir.pwd
     end
 
-  # Input alat diterima sebagai Hash atau sebagai string JSON mentah dari akumulator
-  # streaming; normalkan kedua bentuk tersebut menjadi Hash dengan kunci string.
+  # Tool input arrives as a Hash or as a raw JSON string from the streaming
+  # accumulator; normalize either shape to a string-keyed Hash.
   def parse_tool_input(raw)
     return raw.transform_keys(&:to_s) if raw.is_a?(Hash)
     parsed = JSON.parse(raw.to_s) rescue nil
     parsed.is_a?(Hash) ? parsed : {}
   end
 
-  # Jalankan perintah shell dan kembalikan [output, is_error]. Tanpa sandbox: hanya kode contoh.
+  # Run a shell command and return [output, is_error]. No sandbox: example code only.
   def run_bash(command)
     warn "[bash] #{command}"
     begin
       stdin, stdout_and_stderr, wait_thr = Open3.popen2e("bash", "-c", command, pgroup: true, chdir: WORK_DIR)
       stdin.close
       reader = Thread.new { stdout_and_stderr.read.scrub }
-      # Terapkan batas waktu dengan tenggat jam monotonik agar perintah yang habis waktu
-      # dihentikan alih-alih dibiarkan berjalan di latar belakang.
+      # Enforce the time limit with a monotonic-clock deadline so a timed-out command is
+      # terminated rather than left running in the background.
       deadline = Process.clock_gettime(Process::CLOCK_MONOTONIC) + BASH_TIMEOUT_SECONDS
       until wait_thr.join(0.1)
         next if Process.clock_gettime(Process::CLOCK_MONOTONIC) < deadline
@@ -1404,7 +1404,7 @@ Handler bash menjalankan perintah yang diminta dengan batas waktu, menangkap gab
     end
   end
 
-  # Eksekusi satu panggilan alat bash yang diminta oleh model.
+  # Execute one bash tool call requested by the model.
   def handle_bash_block(block)
     input = parse_tool_input(block.input)
     return ["Shell restarted.", false] if input["restart"] == true
@@ -1415,9 +1415,9 @@ Handler bash menjalankan perintah yang diminta dengan batas waktu, menangkap gab
     run_bash(command)
   end
 
-  # Konversi konten respons ke params berbentuk permintaan. Akumulator streaming
-  # mengembalikan input tool_use sebagai string JSON mentah dan menyertakan field khusus respons,
-  # jadi bentuk ulang setiap blok ke skema permintaan sebelum mengirimkannya kembali.
+  # Convert response content to request-shaped params. The streaming accumulator
+  # returns tool_use input as a raw JSON string and includes response-only fields,
+  # so reshape each block to the request schema before echoing it back.
   def assistant_content_param(content)
     content.map do |block|
       case block.type
@@ -1499,8 +1499,8 @@ Setiap subtugas workflow menjadi loop agen kecilnya sendiri dengan alat bash, be
   ```
 
   ```typescript TypeScript
-  // Satu subagen: loop agen bersarang kecil dengan alat bash plus report_findings.
-  // Subagen mewarisi tingkat upaya dari loop utama.
+  // One subagent: a small nested agent loop with the bash tool plus report_findings.
+  // Subagents inherit the main loop's effort level.
   async function runSubagent(model: string, prompt: string): Promise<string> {
     const subagentSystem =
       "You are one agent in a larger parallel fan-out, assigned a single subtask. " +
@@ -1571,8 +1571,8 @@ Setiap subtugas workflow menjadi loop agen kecilnya sendiri dengan alat bash, be
   ```
 
   ```csharp C#
-  // Satu subagen: loop agen bersarang kecil dengan alat bash plus report_findings.
-  // Subagen mewarisi tingkat upaya dari loop utama.
+  // One subagent: a small nested agent loop with the bash tool plus report_findings.
+  // Subagents inherit the main loop's effort level.
   async Task<string> RunSubagent(string prompt)
   {
       const string subagentSystem =
@@ -1651,8 +1651,8 @@ Setiap subtugas workflow menjadi loop agen kecilnya sendiri dengan alat bash, be
   ```
 
   ```go Go
-  // runSubagent menjalankan satu subagen: loop agen bersarang kecil dengan alat bash plus
-  // report_findings. Subagen mewarisi tingkat upaya dari loop utama.
+  // runSubagent runs one subagent: a small nested agent loop with the bash tool plus
+  // report_findings. Subagents inherit the main loop's effort level.
   func runSubagent(ctx context.Context, model string, prompt string) (string, error) {
   	subagentSystem := "You are one agent in a larger parallel fan-out, assigned a single subtask. " +
   		"Investigate it directly, using bash to check facts rather than guessing, and finish " +
@@ -1736,8 +1736,8 @@ Setiap subtugas workflow menjadi loop agen kecilnya sendiri dengan alat bash, be
   ```
 
   ```java Java
-  // Satu subagen: loop agen bersarang kecil dengan alat bash plus report_findings.
-  // Subagen mewarisi tingkat upaya dari loop utama.
+  // One subagent: a small nested agent loop with the bash tool plus report_findings.
+  // Subagents inherit the main loop's effort level.
   String runSubagent(String model, String prompt) throws InterruptedException {
       String subagentSystem = "You are one agent in a larger parallel fan-out, assigned a single subtask. "
               + "Investigate it directly, using bash to check facts rather than guessing, and finish "
@@ -1924,8 +1924,8 @@ Setiap subtugas workflow menjadi loop agen kecilnya sendiri dengan alat bash, be
   ```
 
   ```ruby Ruby
-  # Satu subagen: loop agen bersarang kecil dengan alat bash plus report_findings.
-  # Subagen mewarisi tingkat upaya dari loop utama.
+  # One subagent: a small nested agent loop with the bash tool plus report_findings.
+  # Subagents inherit the main loop's effort level.
   def run_subagent(model, prompt)
     subagent_system =
       "You are one agent in a larger parallel fan-out, assigned a single subtask. " \
@@ -2038,9 +2038,9 @@ Fan-out yang memunculkan puluhan subagen mahal untuk dimulai ulang dari awal. Ju
     }
   }
 
-  // Kembalikan hasil yang di-cache untuk prompt persis ini, atau hitung dan simpan. Ini
-  // membuat fan-out dapat dilanjutkan: interupsi proses, jalankan ulang, dan hanya subtugas
-  // yang belum selesai yang dihitung ulang. Hapus file jurnal untuk memulai dari awal.
+  // Return a cached result for this exact prompt, or compute and persist it. This
+  // makes the fan-out resumable: interrupt the run, rerun it, and only the subtasks
+  // that never finished are recomputed. Delete the journal file to start fresh.
   async function journaled(prompt: string, compute: () => Promise<string>): Promise<string> {
     const key = createHash("sha256").update(prompt).digest("hex");
     const cached = (await loadJournal())[key];
@@ -2049,8 +2049,8 @@ Fan-out yang memunculkan puluhan subagen mahal untuk dimulai ulang dari awal. Ju
       return cached;
     }
     const result = await compute();
-    // Rantaikan penulisan agar subagen konkuren tidak saling menimpa entri satu sama lain.
-    // Rantai dijaga tetap settled agar satu penulisan gagal tidak meracuni yang berikutnya.
+    // Chain writes so concurrent subagents do not clobber each other's entries.
+    // The chain is kept settled so one failed write does not poison later ones.
     await (journalWriteChain = journalWriteChain
       .then(async () => {
         const journal = await loadJournal();
@@ -2079,9 +2079,9 @@ Fan-out yang memunculkan puluhan subagen mahal untuk dimulai ulang dari awal. Ju
       }
   }
 
-  // Kembalikan hasil yang di-cache untuk prompt persis ini, atau hitung dan simpan. Ini
-  // membuat fan-out dapat dilanjutkan: hentikan eksekusi, jalankan ulang, dan hanya subtugas
-  // yang belum pernah selesai yang dihitung ulang. Hapus file jurnal untuk memulai dari awal.
+  // Return a cached result for this exact prompt, or compute and persist it. This
+  // makes the fan-out resumable: interrupt the run, rerun it, and only the subtasks
+  // that never finished are recomputed. Delete the journal file to start fresh.
   async Task<string> Journaled(string prompt, Func<Task<string>> compute)
   {
       var key = Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(prompt))).ToLowerInvariant();
@@ -2102,7 +2102,7 @@ Fan-out yang memunculkan puluhan subagen mahal untuk dimulai ulang dari awal. Ju
       }
       catch (Exception error) when (error is IOException or UnauthorizedAccessException or NotSupportedException)
       {
-          // Jurnal bersifat best-effort; jangan pernah membuang hasil yang sudah dihitung.
+          // The journal is best-effort; never discard a computed result.
           Console.Error.WriteLine($"[journal] write failed: {error.Message}");
       }
       finally
@@ -2128,9 +2128,9 @@ Fan-out yang memunculkan puluhan subagen mahal untuk dimulai ulang dari awal. Ju
   	return journal
   }
 
-  // journaled mengembalikan hasil yang di-cache untuk prompt persis ini, atau menghitung dan
-  // menyimpannya. Ini membuat fan-out dapat dilanjutkan: hentikan proses, jalankan ulang, dan hanya
-  // subtugas yang belum selesai yang dihitung ulang. Hapus file jurnal untuk memulai dari awal.
+  // journaled returns a cached result for this exact prompt, or computes and persists
+  // it. This makes the fan-out resumable: interrupt the run, rerun it, and only the
+  // subtasks that never finished are recomputed. Delete the journal file to start fresh.
   func journaled(prompt string, compute func() (string, error)) (string, error) {
   	sum := sha256.Sum256([]byte(prompt))
   	key := hex.EncodeToString(sum[:])
@@ -2173,9 +2173,9 @@ Fan-out yang memunculkan puluhan subagen mahal untuk dimulai ulang dari awal. Ju
       }
   }
 
-  // Kembalikan hasil yang di-cache untuk prompt persis ini, atau hitung dan simpan. Ini
-  // membuat fan-out dapat dilanjutkan: interupsi proses, jalankan ulang, dan hanya subtugas
-  // yang belum selesai yang dihitung ulang. Hapus file jurnal untuk memulai dari awal.
+  // Return a cached result for this exact prompt, or compute and persist it. This
+  // makes the fan-out resumable: interrupt the run, rerun it, and only the subtasks
+  // that never finished are recomputed. Delete the journal file to start fresh.
   String journaled(String prompt, Callable<String> compute) throws Exception {
       var digest = MessageDigest.getInstance("SHA-256").digest(prompt.getBytes(StandardCharsets.UTF_8));
       String key = HexFormat.of().formatHex(digest);
@@ -2193,7 +2193,7 @@ Fan-out yang memunculkan puluhan subagen mahal untuk dimulai ulang dari awal. Ju
           Files.writeString(temp, JOURNAL_MAPPER.writeValueAsString(journal));
           Files.move(temp, JOURNAL_PATH, StandardCopyOption.REPLACE_EXISTING, StandardCopyOption.ATOMIC_MOVE);
       } catch (IOException error) {
-          // Jurnal bersifat sebisa mungkin; jangan pernah membuang hasil yang sudah dihitung.
+          // The journal is best-effort; never discard a computed result.
           System.err.println("[journal] write failed: " + error);
       } finally {
           JOURNAL_LOCK.unlock();
@@ -2248,9 +2248,9 @@ Fan-out yang memunculkan puluhan subagen mahal untuk dimulai ulang dari awal. Ju
     {}
   end
 
-  # Kembalikan hasil yang di-cache untuk prompt persis ini, atau hitung dan simpan. Ini
-  # membuat fan-out dapat dilanjutkan: interupsi proses, jalankan ulang, dan hanya subtugas
-  # yang belum selesai yang dihitung ulang. Hapus file jurnal untuk memulai dari awal.
+  # Return a cached result for this exact prompt, or compute and persist it. This
+  # makes the fan-out resumable: interrupt the run, rerun it, and only the subtasks
+  # that never finished are recomputed. Delete the journal file to start fresh.
   def journaled(prompt)
     key = Digest::SHA256.hexdigest(prompt)
     cached = load_journal[key]
@@ -2341,8 +2341,8 @@ Fan-out menerima hingga `MAX_TOTAL_SUBTASKS` prompt, menjalankannya melalui jurn
   ```
 
   ```typescript TypeScript
-  // Terima input subtasks dalam bentuk apa pun yang dihasilkan model: sebuah array, array
-  // yang di-encode JSON sebagai satu string, atau daftar yang dipisahkan baris baru.
+  // Accept the subtasks input in whatever shape the model emits: an array, the array
+  // JSON-encoded as a single string, or a newline-separated list.
   function normalizeSubtasks(raw: unknown): string[] {
     let value = raw;
     if (typeof raw === "string") {
@@ -2372,7 +2372,7 @@ Fan-out menerima hingga `MAX_TOTAL_SUBTASKS` prompt, menjalankannya melalui jurn
     );
   }
 
-  // Map dengan batas konkurensi: paling banyak `limit` tugas berjalan sekaligus.
+  // Map with a concurrency limit: at most `limit` tasks are in flight at once.
   async function mapWithLimit<In, Out>(
     items: readonly In[],
     limit: number,
@@ -2390,9 +2390,9 @@ Fan-out menerima hingga `MAX_TOTAL_SUBTASKS` prompt, menjalankannya melalui jurn
     return results;
   }
 
-  // Jalankan subtugas sebagai subagen paralel, lalu jalankan gelombang verifikasi kedua atas
-  // hasilnya, dan kembalikan keduanya. MAX_TOTAL_SUBTASKS membatasi jumlah yang dapat diantrekan
-  // model; MAX_CONCURRENT membatasi jumlah yang berjalan sekaligus.
+  // Run subtasks as parallel subagents, then run a second verification wave over
+  // the results, and return both. MAX_TOTAL_SUBTASKS bounds how many the model can
+  // queue; MAX_CONCURRENT bounds how many run at once.
   async function runWorkflow(
     model: string,
     rawSubtasks: unknown,
@@ -2409,7 +2409,7 @@ Fan-out menerima hingga `MAX_TOTAL_SUBTASKS` prompt, menjalankannya melalui jurn
       try {
         return await journaled(prompt, () => runSubagent(model, prompt));
       } catch (error) {
-        // Batas isolasi: satu subagen yang gagal tidak boleh menghentikan proses.
+        // Isolation boundary: one bad subagent should not end the run.
         const reason = error instanceof Error ? `${error.name}: ${error.message}` : String(error);
         return `(subagent failed: ${reason})`;
       }
@@ -2437,8 +2437,8 @@ Fan-out menerima hingga `MAX_TOTAL_SUBTASKS` prompt, menjalankannya melalui jurn
   ```
 
   ```csharp C#
-  // Terima input subtugas dalam bentuk apa pun yang dihasilkan model: sebuah array, array
-  // yang di-encode JSON sebagai satu string, atau daftar yang dipisahkan baris baru.
+  // Accept the subtasks input in whatever shape the model emits: an array, the array
+  // JSON-encoded as a single string, or a newline-separated list.
   List<string> NormalizeSubtasks(JsonElement raw)
   {
       List<string> tasks = [];
@@ -2472,9 +2472,9 @@ Fan-out menerima hingga `MAX_TOTAL_SUBTASKS` prompt, menjalankannya melalui jurn
       + "output that decided it.\n\n"
       + $"Subtask: {subtask}\n\nResult to verify:\n{result}";
 
-  // Jalankan subtugas sebagai subagen paralel, lalu jalankan gelombang verifikasi kedua atas
-  // hasilnya, dan kembalikan keduanya. maxTotalSubtasks membatasi jumlah yang dapat diantrekan
-  // model; maxConcurrent membatasi jumlah yang berjalan bersamaan.
+  // Run subtasks as parallel subagents, then run a second verification wave over
+  // the results, and return both. maxTotalSubtasks bounds how many the model can
+  // queue; maxConcurrent bounds how many run at once.
   async Task<(string Output, bool IsError)> RunWorkflow(JsonElement rawSubtasks)
   {
       var allSubtasks = NormalizeSubtasks(rawSubtasks);
@@ -2496,7 +2496,7 @@ Fan-out menerima hingga `MAX_TOTAL_SUBTASKS` prompt, menjalankannya melalui jurn
           }
           catch (Exception error)
           {
-              // Batas isolasi: satu subagen yang gagal tidak boleh mengakhiri eksekusi.
+              // Isolation boundary: one bad subagent should not end the run.
               return $"(subagent failed: {error.GetType().Name}: {error.Message})";
           }
           finally
@@ -2524,8 +2524,8 @@ Fan-out menerima hingga `MAX_TOTAL_SUBTASKS` prompt, menjalankannya melalui jurn
   ```
 
   ```go Go
-  // normalizeSubtasks menerima input subtasks dalam bentuk apa pun yang dihasilkan model: sebuah
-  // array, array yang di-encode JSON sebagai satu string, atau daftar yang dipisahkan baris baru.
+  // normalizeSubtasks accepts the subtasks input in whatever shape the model emits: an
+  // array, the array JSON-encoded as a single string, or a newline-separated list.
   func normalizeSubtasks(raw json.RawMessage) []string {
   	var tasks []string
   	if err := json.Unmarshal(raw, &tasks); err != nil {
@@ -2555,7 +2555,7 @@ Fan-out menerima hingga `MAX_TOTAL_SUBTASKS` prompt, menjalankannya melalui jurn
   		"Subtask: " + subtask + "\n\nResult to verify:\n" + result
   }
 
-  // mapWithLimit menjalankan task pada items dengan maksimal limit goroutine yang berjalan.
+  // mapWithLimit runs task over items with at most limit goroutines in flight.
   func mapWithLimit(items []string, limit int, task func(string) string) []string {
   	results := make([]string, len(items))
   	semaphore := make(chan struct{}, limit)
@@ -2573,9 +2573,9 @@ Fan-out menerima hingga `MAX_TOTAL_SUBTASKS` prompt, menjalankannya melalui jurn
   	return results
   }
 
-  // runWorkflow menjalankan subtugas sebagai subagen paralel, lalu menjalankan gelombang verifikasi
-  // kedua atas hasilnya, dan mengembalikan keduanya. maxTotalSubtasks membatasi jumlah yang dapat
-  // diantrekan model; maxConcurrent membatasi jumlah yang berjalan bersamaan.
+  // runWorkflow runs subtasks as parallel subagents, then runs a second verification wave
+  // over the results, and returns both. maxTotalSubtasks bounds how many the model can
+  // queue; maxConcurrent bounds how many run at once.
   func runWorkflow(ctx context.Context, model string, rawSubtasks json.RawMessage) (string, bool) {
   	allSubtasks := normalizeSubtasks(rawSubtasks)
   	subtasks := allSubtasks
@@ -2591,7 +2591,7 @@ Fan-out menerima hingga `MAX_TOTAL_SUBTASKS` prompt, menjalankannya melalui jurn
   	runOne := func(prompt string) string {
   		report, err := journaled(prompt, func() (string, error) { return runSubagent(ctx, model, prompt) })
   		if err != nil {
-  			// Batas isolasi: satu subagen yang gagal tidak boleh mengakhiri proses.
+  			// Isolation boundary: one bad subagent should not end the run.
   			return fmt.Sprintf("(subagent failed: %s)", err)
   		}
   		return report
@@ -2621,8 +2621,8 @@ Fan-out menerima hingga `MAX_TOTAL_SUBTASKS` prompt, menjalankannya melalui jurn
   ```
 
   ```java Java
-  // Terima input subtugas dalam bentuk apa pun yang dihasilkan model: array, array
-  // yang di-encode JSON sebagai satu string, atau daftar yang dipisahkan baris baru.
+  // Accept the subtasks input in whatever shape the model emits: an array, the array
+  // JSON-encoded as a single string, or a newline-separated list.
   List<String> normalizeSubtasks(JsonValue raw) {
       List<String> tasks = new ArrayList<>();
       if (raw.asArray().isPresent()) {
@@ -2669,7 +2669,7 @@ Fan-out menerima hingga `MAX_TOTAL_SUBTASKS` prompt, menjalankannya melalui jurn
           try {
               results.add(future.get());
           } catch (ExecutionException | CancellationException error) {
-              // Batas isolasi: satu subagen yang gagal tidak boleh menghentikan proses.
+              // Isolation boundary: one bad subagent should not end the run.
               Throwable cause = error.getCause() != null ? error.getCause() : error;
               results.add("(subagent failed: " + cause + ")");
           }
@@ -2677,9 +2677,9 @@ Fan-out menerima hingga `MAX_TOTAL_SUBTASKS` prompt, menjalankannya melalui jurn
       return results;
   }
 
-  // Jalankan subtugas sebagai subagen paralel, lalu jalankan gelombang verifikasi kedua atas
-  // hasilnya, dan kembalikan keduanya. MAX_TOTAL_SUBTASKS membatasi jumlah yang dapat
-  // diantrekan model; MAX_CONCURRENT membatasi jumlah yang berjalan bersamaan.
+  // Run subtasks as parallel subagents, then run a second verification wave over
+  // the results, and return both. MAX_TOTAL_SUBTASKS bounds how many the model can
+  // queue; MAX_CONCURRENT bounds how many run at once.
   ToolOutput runWorkflow(String model, JsonValue rawSubtasks) throws InterruptedException {
       List<String> allSubtasks = normalizeSubtasks(rawSubtasks);
       List<String> subtasks = allSubtasks.stream().limit(MAX_TOTAL_SUBTASKS).toList();
@@ -2762,7 +2762,7 @@ Fan-out menerima hingga `MAX_TOTAL_SUBTASKS` prompt, menjalankannya melalui jurn
           try {
               return journaled($prompt, fn () => runSubagent($client, $model, $prompt));
           } catch (Throwable $error) {
-              // Batas isolasi: satu subagen yang bermasalah tidak boleh menghentikan proses.
+              // Isolation boundary: one bad subagent should not end the run.
               return '(subagent failed: ' . $error::class . ': ' . $error->getMessage() . ')';
           }
       };
@@ -2787,8 +2787,8 @@ Fan-out menerima hingga `MAX_TOTAL_SUBTASKS` prompt, menjalankannya melalui jurn
   ```
 
   ```ruby Ruby
-  # Terima input subtugas dalam bentuk apa pun yang dihasilkan model: sebuah array, array
-  # yang di-encode JSON sebagai satu string, atau daftar yang dipisahkan baris baru.
+  # Accept the subtasks input in whatever shape the model emits: an array, the array
+  # JSON-encoded as a single string, or a newline-separated list.
   def normalize_subtasks(raw)
     if raw.is_a?(String)
       begin
@@ -2810,7 +2810,7 @@ Fan-out menerima hingga `MAX_TOTAL_SUBTASKS` prompt, menjalankannya melalui jurn
       "Subtask: #{subtask}\n\nResult to verify:\n#{result}"
   end
 
-  # Map dengan batas konkurensi: paling banyak `limit` thread berjalan sekaligus.
+  # Map with a concurrency limit: at most `limit` threads are in flight at once.
   def map_with_limit(items, limit)
     results = Array.new(items.length)
     queue = Queue.new
@@ -2827,9 +2827,9 @@ Fan-out menerima hingga `MAX_TOTAL_SUBTASKS` prompt, menjalankannya melalui jurn
     results
   end
 
-  # Jalankan subtugas sebagai subagen paralel, lalu jalankan gelombang verifikasi kedua atas
-  # hasilnya, dan kembalikan keduanya. MAX_TOTAL_SUBTASKS membatasi jumlah yang dapat diantrekan
-  # model; MAX_CONCURRENT membatasi jumlah yang berjalan sekaligus.
+  # Run subtasks as parallel subagents, then run a second verification wave over
+  # the results, and return both. MAX_TOTAL_SUBTASKS bounds how many the model can
+  # queue; MAX_CONCURRENT bounds how many run at once.
   def run_workflow(model, raw_subtasks)
     all_subtasks = normalize_subtasks(raw_subtasks)
     subtasks = all_subtasks.first(MAX_TOTAL_SUBTASKS)
@@ -2867,11 +2867,11 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
 
 <CodeGroup>
   ```bash cURL
-  # Satu giliran mode orkestrasi: pengingat mode disertakan dalam array messages sebagai
-  # entri {"role": "system"} yang ditempatkan setelah giliran user yang dituju. Respons
-  # berhenti pada panggilan alat pertama. Loop agen yang mengeksekusi panggilan alat dan
-  # menyebarkan subagen ditunjukkan di tab SDK; deskripsi Workflow diringkas
-  # di sini, contoh SDK memuat teks standing-consent lengkapnya.
+  # One orchestration-mode turn: the mode reminder rides in the messages array as a
+  # {"role": "system"} entry placed after the user turn it applies to. The response
+  # stops at the first tool call. The agent loop that executes tool calls and fans
+  # out subagents is shown in the SDK tabs; the Workflow description is condensed
+  # here, the SDK examples carry the full standing-consent text.
   curl --fail-with-body -sS https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -2886,7 +2886,7 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
     "tools": [
       {
         "name": "Workflow",
-        "description": "Orchestrate a multi-agent workflow: split a large task into independent subtasks and run them as parallel agents, then collect their results. Opt-in: only use this tool when the user explicitly asks for a workflow, or when a system message confirms that orchestration mode is on. Granularity: scope each subtask to a distinct concern rather than per line or file section; a review of a small module rarely needs more than about ten. Standing consent: while a system message confirms orchestration mode is on, author and run a workflow for every substantive task by default; work solo only on conversational turns or trivial mechanical edits.",
+        "description": "Orchestrate a multiagent workflow: split a large task into independent subtasks and run them as parallel agents, then collect their results. Opt-in: only use this tool when the user explicitly asks for a workflow, or when a system message confirms that orchestration mode is on. Granularity: scope each subtask to a distinct concern rather than per line or file section; a review of a small module rarely needs more than about ten. Standing consent: while a system message confirms orchestration mode is on, author and run a workflow for every substantive task by default; work solo only on conversational turns or trivial mechanical edits.",
         "input_schema": {
           "type": "object",
           "properties": {
@@ -2916,11 +2916,11 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
   ```
 
   ```bash CLI
-  # Satu giliran mode orkestrasi: pengingat mode disertakan dalam array messages sebagai
-  # entri peran system yang ditempatkan setelah giliran user yang dituju. Respons berhenti
-  # pada panggilan alat pertama. Loop agen yang mengeksekusi panggilan alat dan menyebarkan
-  # subagen ditunjukkan di tab SDK; deskripsi Workflow diringkas di sini,
-  # contoh SDK memuat teks standing-consent lengkapnya.
+  # One orchestration-mode turn: the mode reminder rides in the messages array as a
+  # system-role entry placed after the user turn it applies to. The response stops
+  # at the first tool call. The agent loop that executes tool calls and fans out
+  # subagents is shown in the SDK tabs; the Workflow description is condensed here,
+  # the SDK examples carry the full standing-consent text.
   ant messages create <<'YAML'
   model: claude-opus-4-8
   max_tokens: 64000
@@ -2930,7 +2930,7 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
   tools:
     - name: Workflow
       description: >-
-        Orchestrate a multi-agent workflow: split a large task into independent
+        Orchestrate a multiagent workflow: split a large task into independent
         subtasks and run them as parallel agents, then collect their results.
         Opt-in: only use this tool when the user explicitly asks for a workflow,
         or when a system message confirms that orchestration mode is on.
@@ -3007,8 +3007,8 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
           return due
 
       def turn(self, user_input: str) -> str:
-          # Pesan sistem di tengah percakapan mengikuti giliran pengguna yang terkait, sehingga
-          # prefiks yang di-cache sebelum pesan tersebut tetap tidak tersentuh.
+          # Mid-conversation system messages follow the user turn they apply to, which keeps
+          # the cached prefix ahead of them untouched.
           self.messages.append({"role": "user", "content": user_input})
           self.messages.extend(self._due_system_messages())
           self._turns_since_reminder += 1
@@ -3032,7 +3032,7 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
               if response.stop_reason != "tool_use":
                   text = "".join(block.text for block in response.content if block.type == "text")
                   if response.stop_reason == "max_tokens":
-                      # Buang pesan asisten yang terpotong agar giliran berikutnya tidak dibangun di atasnya.
+                      # Drop the truncated assistant message so later turns don't build on it.
                       self.messages.pop()
                       text += "\n\n(warning: response was truncated at max_tokens)"
                   return text
@@ -3060,7 +3060,7 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
   ```
 
   ```typescript TypeScript
-  // Loop agen yang mode orkestrasinya diaktifkan/dinonaktifkan dengan pesan sistem di tengah percakapan.
+  // An agent loop whose orchestration mode is toggled with mid-conversation system messages.
   class ModeAgent {
     private readonly model: string;
     private modeOn: boolean;
@@ -3074,7 +3074,7 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
       this.modeOn = modeOn;
     }
 
-    // Aktifkan atau nonaktifkan mode. Pemberitahuan disampaikan pada giliran pengguna berikutnya.
+    // Turn the mode on or off. The notice is delivered with the next user turn.
     setMode(modeOn: boolean): void {
       if (modeOn === this.modeOn) {
         return;
@@ -3089,8 +3089,8 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
       this.modeOn = modeOn;
     }
 
-    // Pesan sistem yang harus dikirim pada giliran ini: pemberitahuan keluar, teks mode lengkap saat masuk,
-    // atau pengingat satu baris setiap TURNS_BETWEEN_REFRESHERS giliran pengguna.
+    // System messages owed on this turn: an exit notice, the full mode text on entry,
+    // or a one-line refresher every TURNS_BETWEEN_REFRESHERS user turns.
     private dueSystemMessages(): Anthropic.MessageParam[] {
       const due: Array<{ role: "system"; content: string }> = [];
       if (this.exitPending) {
@@ -3108,14 +3108,14 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
           due.push({ role: "system", content: MODE_REFRESH });
         }
       }
-      // SDK yang dipublikasikan mengetik peran pesan sebagai "user" | "assistant"; dukungan bertipe untuk
-      // pesan sistem di tengah percakapan hadir bersama rilis SDK yang menyertakannya.
+      // The published SDK types message roles as "user" | "assistant"; typed support for
+      // mid-conversation system messages ships with the SDK release that includes them.
       return due as unknown as Anthropic.MessageParam[];
     }
 
     async turn(userInput: string): Promise<string> {
-      // Pesan sistem di tengah percakapan mengikuti giliran pengguna yang terkait, sehingga
-      // prefiks yang di-cache sebelum pesan tersebut tetap tidak tersentuh.
+      // Mid-conversation system messages follow the user turn they apply to, which keeps
+      // the cached prefix ahead of them untouched.
       this.messages.push({ role: "user", content: userInput });
       this.messages.push(...this.dueSystemMessages());
       this.turnsSinceReminder += 1;
@@ -3146,7 +3146,7 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
             .map((block) => block.text)
             .join("");
           if (response.stop_reason === "max_tokens") {
-            // Buang pesan asisten yang terpotong agar giliran berikutnya tidak dibangun di atasnya.
+            // Drop the truncated assistant message so later turns do not build on it.
             this.messages.pop();
             text += "\n\n(warning: response was truncated at max_tokens)";
           }
@@ -3184,14 +3184,14 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
   ```
 
   ```csharp C#
-  // Loop agen yang mode orkestrasinya diaktifkan/dinonaktifkan dengan pesan sistem di tengah percakapan.
+  // An agent loop whose orchestration mode is toggled with mid-conversation system messages.
   List<MessageParam> messages = [];
   var modeOn = true;
   var modeAnnounced = false;
   var exitPending = false;
   var turnsSinceReminder = 0;
 
-  // Aktifkan atau nonaktifkan mode. Pemberitahuan disampaikan bersama giliran pengguna berikutnya.
+  // Turn the mode on or off. The notice is delivered with the next user turn.
   void SetMode(bool nextModeOn)
   {
       if (nextModeOn == modeOn)
@@ -3212,12 +3212,12 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
       modeOn = nextModeOn;
   }
 
-  // Properti Role adalah enum terbuka, jadi peran "system" di tengah percakapan dapat ditetapkan
-  // sebagai string mentah; konstanta khusus disertakan dalam rilis SDK.
+  // The Role property is an open enum, so the mid-conversation "system" role can be assigned
+  // as a raw string; a dedicated constant ships with the SDK release.
   MessageParam SystemMessage(string content) => new() { Role = "system", Content = content };
 
-  // Pesan sistem yang harus dikirim pada giliran ini: pemberitahuan keluar, teks mode lengkap saat masuk,
-  // atau pengingat satu baris setiap turnsBetweenRefreshers giliran pengguna.
+  // System messages owed on this turn: an exit notice, the full mode text on entry,
+  // or a one-line refresher every turnsBetweenRefreshers user turns.
   List<MessageParam> DueSystemMessages()
   {
       List<MessageParam> due = [];
@@ -3244,11 +3244,11 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
       return due;
   }
 
-  // Kirim satu giliran pengguna melalui loop, mengeksekusi panggilan alat hingga model berhenti.
+  // Send one user turn through the loop, executing tool calls until the model stops.
   async Task<string> Turn(string userInput)
   {
-      // Pesan sistem di tengah percakapan mengikuti giliran pengguna yang terkait, sehingga
-      // prefiks yang di-cache sebelum pesan tersebut tetap tidak tersentuh.
+      // Mid-conversation system messages follow the user turn they apply to, which keeps
+      // the cached prefix ahead of them untouched.
       messages.Add(new() { Role = Role.User, Content = userInput });
       messages.AddRange(DueSystemMessages());
       turnsSinceReminder++;
@@ -3282,7 +3282,7 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
                   response.Content.Select(block => block.TryPickText(out var textBlock) ? textBlock.Text : ""));
               if (response.StopReason == StopReason.MaxTokens)
               {
-                  // Buang pesan asisten yang terpotong agar giliran berikutnya tidak melanjutkan darinya.
+                  // Drop the truncated assistant message so the next turn does not build on it.
                   messages.RemoveAt(messages.Count - 1);
                   text += "\n\n(warning: response was truncated at max_tokens)";
               }
@@ -3321,8 +3321,8 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
   ```
 
   ```go Go
-  // modeAgent adalah loop agen yang mode orkestrasinya dialihkan dengan pesan sistem di tengah
-  // percakapan.
+  // modeAgent is an agent loop whose orchestration mode is toggled with mid-conversation
+  // system messages.
   type modeAgent struct {
   	model              string
   	modeOn             bool
@@ -3336,7 +3336,7 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
   	return &modeAgent{model: model, modeOn: true}
   }
 
-  // setMode mengaktifkan atau menonaktifkan mode. Pemberitahuan disampaikan pada giliran pengguna berikutnya.
+  // setMode turns the mode on or off. The notice is delivered with the next user turn.
   func (agent *modeAgent) setMode(modeOn bool) {
   	if modeOn == agent.modeOn {
   		return
@@ -3351,11 +3351,11 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
   	agent.modeOn = modeOn
   }
 
-  // dueSystemMessages mengembalikan pesan sistem yang jatuh tempo pada giliran ini: pemberitahuan keluar,
-  // teks mode lengkap saat masuk, atau pengingat satu baris setiap turnsBetweenRefreshers giliran pengguna.
+  // dueSystemMessages returns the system messages owed on this turn: an exit notice, the
+  // full mode text on entry, or a one-line refresher every turnsBetweenRefreshers user turns.
   func (agent *modeAgent) dueSystemMessages() []anthropic.MessageParam {
-  	// MessageParamRole adalah tipe string terbuka, sehingga peran "system" di tengah percakapan dapat
-  	// diekspresikan secara langsung; konstanta khusus disertakan dalam rilis SDK.
+  	// MessageParamRole is an open string type, so the mid-conversation "system" role can
+  	// be expressed directly; a dedicated constant ships with the SDK release.
   	systemMessage := func(content string) anthropic.MessageParam {
   		return anthropic.MessageParam{
   			Role:    anthropic.MessageParamRole("system"),
@@ -3381,10 +3381,10 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
   	return due
   }
 
-  // turn mengirim satu giliran pengguna melalui loop, mengeksekusi panggilan alat hingga model berhenti.
+  // turn sends one user turn through the loop, executing tool calls until the model stops.
   func (agent *modeAgent) turn(ctx context.Context, userInput string) (string, error) {
-  	// Pesan sistem di tengah percakapan mengikuti giliran pengguna yang terkait, sehingga menjaga
-  	// prefiks yang di-cache di depannya tetap tidak tersentuh.
+  	// Mid-conversation system messages follow the user turn they apply to, which keeps
+  	// the cached prefix ahead of them untouched.
   	agent.messages = append(agent.messages, anthropic.NewUserMessage(anthropic.NewTextBlock(userInput)))
   	agent.messages = append(agent.messages, agent.dueSystemMessages()...)
   	agent.turnsSinceReminder++
@@ -3427,7 +3427,7 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
   				}
   			}
   			if response.StopReason == anthropic.StopReasonMaxTokens {
-  				// Buang pesan asisten yang terpotong daripada menyisakan giliran terpotong di riwayat.
+  				// Drop the truncated assistant message rather than leave a clipped turn in history.
   				agent.messages = agent.messages[:len(agent.messages)-1]
   				text.WriteString("\n\n(warning: response was truncated at max_tokens)")
   			}
@@ -3467,7 +3467,7 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
   ```
 
   ```java Java
-  // Loop agen yang mode orkestrasinya diaktifkan/dinonaktifkan dengan pesan sistem di tengah percakapan.
+  // An agent loop whose orchestration mode is toggled with mid-conversation system messages.
   class ModeAgent {
       private final String model;
       private boolean modeOn;
@@ -3485,7 +3485,7 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
           this.modeOn = modeOn;
       }
 
-      // Aktifkan atau nonaktifkan mode. Pemberitahuan disampaikan bersama giliran pengguna berikutnya.
+      // Turn the mode on or off. The notice is delivered with the next user turn.
       void setMode(boolean modeOn) {
           if (modeOn == this.modeOn) {
               return;
@@ -3500,8 +3500,8 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
           this.modeOn = modeOn;
       }
 
-      // Pesan sistem yang harus dikirim pada giliran ini: pemberitahuan keluar, teks mode lengkap saat masuk,
-      // atau pengingat satu baris setiap TURNS_BETWEEN_REFRESHERS giliran pengguna.
+      // System messages owed on this turn: an exit notice, the full mode text on entry,
+      // or a one-line refresher every TURNS_BETWEEN_REFRESHERS user turns.
       private List<MessageParam> dueSystemMessages() {
           List<MessageParam> due = new ArrayList<>();
           if (exitPending) {
@@ -3522,8 +3522,8 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
           return due;
       }
 
-      // MessageParam.Role adalah enum terbuka, jadi peran "system" di tengah percakapan dapat
-      // diekspresikan dengan Role.of; konstanta khusus disertakan dalam rilis SDK.
+      // MessageParam.Role is an open enum, so the mid-conversation "system" role can be
+      // expressed with Role.of; a dedicated constant ships with the SDK release.
       private MessageParam systemMessage(String content) {
           return MessageParam.builder()
                   .role(MessageParam.Role.of("system"))
@@ -3531,10 +3531,10 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
                   .build();
       }
 
-      // Kirim satu giliran pengguna melalui loop, mengeksekusi panggilan alat hingga model berhenti.
+      // Send one user turn through the loop, executing tool calls until the model stops.
       String turn(String userInput) throws InterruptedException {
-          // Pesan sistem di tengah percakapan mengikuti giliran pengguna yang terkait, sehingga
-          // prefiks yang di-cache sebelum pesan tersebut tetap tidak tersentuh.
+          // Mid-conversation system messages follow the user turn they apply to, which keeps
+          // the cached prefix ahead of them untouched.
           messages.add(MessageParam.builder().role(MessageParam.Role.USER).content(userInput).build());
           messages.addAll(dueSystemMessages());
           turnsSinceReminder++;
@@ -3567,7 +3567,7 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
                           .map(TextBlock::text)
                           .collect(Collectors.joining());
                   if (StopReason.MAX_TOKENS.equals(stopReason)) {
-                      // Buang pesan asisten yang terpotong agar tidak merusak giliran berikutnya.
+                      // Drop the truncated assistant message so it does not poison later turns.
                       messages.removeLast();
                       text += "\n\n(warning: response was truncated at max_tokens)";
                   }
@@ -3638,8 +3638,8 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
 
       public function turn(string $userInput): string
       {
-          // Pesan sistem di tengah percakapan mengikuti giliran pengguna yang terkait, sehingga menjaga
-          // prefiks yang di-cache sebelumnya tetap tidak tersentuh.
+          // Mid-conversation system messages follow the user turn they apply to, which keeps
+          // the cached prefix ahead of them untouched.
           $this->messages[] = ['role' => 'user', 'content' => $userInput];
           array_push($this->messages, ...$this->dueSystemMessages());
           $this->turnsSinceReminder++;
@@ -3669,7 +3669,7 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
                       }
                   }
                   if ($stopReason === 'max_tokens') {
-                      // Buang pesan asisten yang terpotong agar giliran berikutnya tidak melanjutkan darinya.
+                      // Drop the truncated assistant message so the next turn does not build on it.
                       array_pop($this->messages);
                       $text .= "\n\n(warning: response was truncated at max_tokens)";
                   }
@@ -3730,7 +3730,7 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
   ```
 
   ```ruby Ruby
-  # Loop agen yang mode orkestrasinya diaktifkan/dinonaktifkan dengan pesan sistem di tengah percakapan.
+  # An agent loop whose orchestration mode is toggled with mid-conversation system messages.
   class ModeAgent
     def initialize(model, mode_on: true)
       @model = model
@@ -3741,7 +3741,7 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
       @turns_since_reminder = 0
     end
 
-    # Aktifkan atau nonaktifkan mode. Pemberitahuan disampaikan bersama giliran pengguna berikutnya.
+    # Turn the mode on or off. The notice is delivered with the next user turn.
     def set_mode(mode_on)
       return if mode_on == @mode_on
 
@@ -3754,8 +3754,8 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
     end
 
     def turn(user_input)
-      # Pesan sistem di tengah percakapan mengikuti giliran pengguna yang terkait, sehingga
-      # prefiks yang di-cache sebelum pesan tersebut tetap tidak tersentuh.
+      # Mid-conversation system messages follow the user turn they apply to, which keeps
+      # the cached prefix ahead of them untouched.
       @messages << {role: "user", content: user_input}
       @messages.concat(due_system_messages)
       @turns_since_reminder += 1
@@ -3812,8 +3812,8 @@ Agen menambahkan pesan pengguna terlebih dahulu, lalu pesan sistem apa pun yang 
 
     private
 
-    # Pesan sistem yang harus disampaikan pada giliran ini: pemberitahuan keluar, teks mode lengkap saat masuk,
-    # atau pengingat satu baris setiap TURNS_BETWEEN_REFRESHERS giliran pengguna.
+    # System messages owed on this turn: an exit notice, the full mode text on entry,
+    # or a one-line refresher every TURNS_BETWEEN_REFRESHERS user turns.
     def due_system_messages
       due = []
       if @exit_pending

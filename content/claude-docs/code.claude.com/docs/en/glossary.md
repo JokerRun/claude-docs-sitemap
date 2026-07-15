@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/glossary
-fetched_at: 2026-07-14T03:07:36.677443Z
-sha256: 4303c76ece145bf0ce22b8597e0d10241dee3f84c90473ff46314f9d81cbf716
+fetched_at: 2026-07-15T03:08:15.897796Z
+sha256: 51bedf7dbc670716ec8181d3d9dcfb1f76a197d33daff6e4a7dbe58d39ada4d0
 ---
 
 > ## Documentation Index
@@ -235,7 +235,7 @@ Learn more: [Protect against prompt injection](/en/security#protect-against-prom
 
 ### Remote Control
 
-A way to continue a local Claude Code session from your phone or browser via claude.ai. Your code stays on your machine; only the UI is remote. Different from Claude Code on the web, which runs in a cloud sandbox.
+A way to continue a local Claude Code session from your phone or browser via claude.ai. Your code execution and files stay on your machine; the interface is remote. Different from Claude Code on the web, which runs in a cloud sandbox.
 
 Learn more: [Remote Control](/en/remote-control)
 

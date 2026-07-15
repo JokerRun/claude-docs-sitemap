@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/fast-mode
-fetched_at: 2026-07-14T03:07:36.677443Z
-sha256: 5807ea982e80ad2eae2483e0313e86ef40f1f496e83383266fe33a2296133976
+fetched_at: 2026-07-15T03:08:15.897796Z
+sha256: d5fe98a8aeb0de2f6701fee73d15d18056dd7ed667a3f643d5513cb38f934c8f
 ---
 
 > ## Documentation Index
@@ -51,6 +51,8 @@ When you enable fast mode:
 * Run `/fast` again at any time to check whether fast mode is on or off
 
 When you disable fast mode with `/fast` again, you remain on Opus. The model does not revert to your previous model. To switch to a different model, use `/model`.
+
+Switching to a model that doesn't support fast mode turns fast mode off. {/* min-version: 2.1.208 */}Switching back to a supported Opus model turns it on again when your saved fast mode preference is on, the same preference a new session starts from by default. With [per-session opt-in](#require-per-session-opt-in) configured, switching back doesn't turn fast mode on again; run `/fast` to re-enable it. Fast mode never turns on for a session whose saved preference is off, and the `↯` icon and `Fast mode ON` confirmation appear whenever it activates. Before v2.1.208, fast mode stayed off after you switched back until you ran `/fast` again.
 
 Opus 4.8 is the fast mode default in Claude Code v2.1.154 and later. On v2.1.142 through v2.1.153, fast mode defaults to Opus 4.7.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/context-windows
-fetched_at: 2026-07-14T03:07:36.677443Z
-sha256: 0ecc583947b2b9496eeb3419fad08ec1777aeffb671d5f53a454c3a8555827fd
+fetched_at: 2026-07-15T03:08:15.897796Z
+sha256: 28f4528001b8eedb59c069cc11e9f260d4dd888496f658893f7566cdc5fdcbb3
 ---
 
 # Context windows
@@ -133,10 +133,10 @@ Image tokens are included in these budgets.
 Newer models don't receive these injected tags. On Claude Opus 4.7 and later, Claude Fable 5, and Claude Mythos 5, you can give the model an explicit budget with [task budgets](/docs/en/build-with-claude/task-budgets), which are in beta.
 
 <Tip>
-  For agents that span multiple sessions, design your state artifacts so that context recovery is fast when a new session starts. The [memory tool's multi-session pattern](/docs/en/agents-and-tools/tool-use/memory-tool#multi-session-software-development-pattern) walks through a concrete approach. See also [Effective harnesses for long-running agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents).
+  For agents that span multiple sessions, design your state artifacts so that context recovery is fast when a new session starts. The [memory tool's multisession pattern](/docs/en/agents-and-tools/tool-use/memory-tool#multisession-software-development-pattern) walks through a concrete approach. See also [Effective harnesses for long-running agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents).
 </Tip>
 
-For prompting guidance on using context awareness, see [Prompting best practices](/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#context-awareness-and-multi-window-workflows).
+For prompting guidance on using context awareness, see [Prompting best practices](/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#context-awareness-and-multiwindow-workflows).
 
 ## Manage context with compaction
 

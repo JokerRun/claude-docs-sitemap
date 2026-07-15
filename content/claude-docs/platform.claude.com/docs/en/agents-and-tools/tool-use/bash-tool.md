@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/bash-tool
-fetched_at: 2026-07-07T03:11:34.034287Z
-sha256: 6dca052675baa1965795c1b13a46e01685eecb207fa19345dde73cebb2ef4ada
+fetched_at: 2026-07-15T03:08:15.897796Z
+sha256: 57b3d6be6d56bc9db97767777e7d0c7e5736075cf7c060fe3a17982634043cda
 ---
 
 # Bash tool
@@ -266,9 +266,9 @@ To handle `restart: true`, kill the shell process, start a new one, and return a
 
 The original `bash_20241022` version is part of the computer use beta, and the October 2024 Claude Sonnet 3.5 release ([retired](/docs/en/about-claude/model-deprecations)) is the only model that accepts it. Requests that use it need the `anthropic-beta: computer-use-2024-10-22` header, and the SDKs expose it only in their beta namespaces. New integrations should use `bash_20250124`.
 
-## Example: Multi-step automation
+## Example: Multistep automation
 
-Claude can chain commands across tool calls to complete a multi-step task:
+Claude can chain commands across tool calls to complete a multistep task:
 
 ```text
 User request:

@@ -1,15 +1,15 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/users/list
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 0cf48f69ff3129e051b812326618d2ff3117f83af15a852d04b381c096d1efde
+fetched_at: 2026-07-15T03:08:15.897796Z
+sha256: 1d4754ab6970670c9b48e79221fceb3401492deec0df0d2322700a98bbf3941c
 ---
 
 ## List Users
 
 **get** `/v1/organizations/users`
 
-List Users
+For Claude Enterprise organizations, this endpoint's availability is in beta.
 
 ### Query Parameters
 
@@ -51,7 +51,7 @@ List Users
 
     Name of the User.
 
-  - `role: "admin" or "billing" or "claude_code_user" or 2 more`
+  - `role: "admin" or "billing" or "claude_code_user" or 6 more`
 
     Organization role of the User.
 
@@ -62,6 +62,14 @@ List Users
     - `"claude_code_user"`
 
     - `"developer"`
+
+    - `"managed"`
+
+    - `"membership_admin"`
+
+    - `"owner"`
+
+    - `"primary_owner"`
 
     - `"user"`
 

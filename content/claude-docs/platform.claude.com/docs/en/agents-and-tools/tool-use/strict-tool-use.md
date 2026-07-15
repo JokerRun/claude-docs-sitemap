@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/strict-tool-use
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: bc0cce3824861d4f800bc5f8261cdcb6431f813c86d7fe34ff9d9bd1e036d435
+fetched_at: 2026-07-15T03:08:15.897796Z
+sha256: 6bab09d230a09b71705a375bf307723f89aa72d057e5ac12efda8c5e268b0e9d
 ---
 
 # Strict tool use
@@ -664,7 +664,7 @@ For example, suppose a booking system needs `passengers: int`. Without strict mo
   </Accordion>
 
   <Accordion title="Agentic workflow with multiple validated tools">
-    Build reliable multi-step agents with guaranteed tool parameters:
+    Build reliable multistep agents with guaranteed tool parameters:
 
     <CodeGroup>
       ```bash CLI

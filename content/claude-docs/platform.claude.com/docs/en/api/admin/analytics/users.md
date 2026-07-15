@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/analytics/users
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: e9fdb051b9e26a8c939bdc3e0f4e2949c26e180b631eccdb738684be993eade9
+fetched_at: 2026-07-15T03:08:15.897796Z
+sha256: 4287b8a25469c1c7f45c1c546d81cecac2ab15be96cc6cd727fab8ed88fe8d7b
 ---
 
 # Users
@@ -49,7 +49,7 @@ an API key with the `read:analytics` scope.
 
 - `order_by: optional string`
 
-  Sort field. Restricted to the endpoint's sort column, plus — in date-range mode (starting_date/ending_date) — the endpoint's rankable metrics (metrics default to descending).
+  Sort field. Restricted to the endpoint's sort column plus its rankable metrics (metrics default to descending; a few metrics rank in date-range mode only, per the endpoint's documented orderable set).
 
 - `page: optional string`
 

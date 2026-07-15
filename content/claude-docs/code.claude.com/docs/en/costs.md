@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/costs
-fetched_at: 2026-07-14T03:07:36.677443Z
-sha256: 88150ec837af9a0616b60a57a3dc9f576d6defec8da77e3d31c651979488fa14
+fetched_at: 2026-07-15T03:08:15.897796Z
+sha256: 2bfc8c242e4131c4de766029c1a32f5bb9b6c695d148c14130aa3c7bfb3360c6
 ---
 
 > ## Documentation Index
@@ -38,6 +38,8 @@ Total code changes:    0 lines added, 0 lines removed
 
 On a Pro, Max, Team, or Enterprise plan, `/usage` also shows a breakdown of what counts against your plan limits. It attributes recent usage to skills, subagents, plugins, and individual MCP servers, with each shown as a percentage of the total. Press `d` or `w` to switch between the last 24 hours and the last 7 days. The figures are approximate and computed from local session history on this machine, so usage from other devices or claude.ai is not included.
 
+When the request for your plan limits fails, most often because the usage endpoint is rate limited, `/usage` shows the last usage bars it loaded on this machine within the past 60 minutes, along with a `Showing last-known usage` note stating how long ago that data was fetched. Press `r` to retry; a successful retry replaces the last-known bars with fresh data. Without a snapshot from the past 60 minutes, `/usage` reports that the usage endpoint is rate limited and offers the same retry shortcut. Before v2.1.208, a rate-limited request in a session that hadn't loaded usage yet always showed the error with no bars.
+
 In the [VS Code extension](/en/vs-code#check-account-and-usage), the same breakdown appears in the Account & usage dialog with a Day and Week toggle. Requires Claude Code v2.1.174 or later.
 
 ### Set a spend limit on Pro and Max
@@ -55,7 +57,9 @@ Changing the monthly spend limit requires billing access on the account. If you 
 
 Amounts you type into the dialog, such as a custom purchase amount, the monthly spend limit, or the auto-reload threshold and target, must be digits, optionally followed by a period and one or two decimal digits, for example `20` or `20.50`. Any other input, including commas, shows an inline error and isn't saved. Versions before v2.1.207 don't show the dialog and open the billing page instead.
 
-Claude Code asks you to type `yes` before applying an amount above \$1,000, or above 1,000 units of a non-US-dollar billing currency. A purchase whose post-tax total crosses that threshold requires the same confirmation, even when the amount you typed is below it.
+Claude Code asks you to type `yes` to confirm every purchase and every auto-reload change, whatever the amount, and the purchase confirmation shows the post-tax total you are approving. Changing the monthly spend limit asks for the same typed confirmation only above \$1,000, or above 1,000 units of a non-US-dollar billing currency. Before v2.1.208, purchases and auto-reload changes used that threshold too, so smaller amounts went through the standard dialog flow without the extra typed `yes` step.
+
+Amount fields open prefilled with a suggested value, and the first digit you type replaces the suggestion instead of appending to it. The screen that turns on usage credits opens with Cancel selected, so turning them on takes a deliberate selection rather than a stray Enter. Both require Claude Code v2.1.208 or later.
 
 ## Manage costs for your organization
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/how-claude-code-works
-fetched_at: 2026-07-14T03:07:36.677443Z
-sha256: e4271841137e26d03b7cbfe5bfaf77077f8c3467728a13e848ea5186a1cc31a7
+fetched_at: 2026-07-15T03:08:15.897796Z
+sha256: c3e93b24c01d1624301dddb578d73d2c839a1d087bf03391dfdbdc12f27e2cf7
 ---
 
 > ## Documentation Index
@@ -93,7 +93,7 @@ Claude Code runs in three environments, each with different tradeoffs for where 
 | ------------------ | --------------------------------------- | ---------------------------------------------------------- |
 | **Local**          | Your machine                            | Default. Full access to your files, tools, and environment |
 | **Cloud**          | Anthropic-managed VMs                   | Offload tasks, work on repos you don't have locally        |
-| **Remote Control** | Your machine, controlled from a browser | Use the web UI while keeping everything local              |
+| **Remote Control** | Your machine, controlled from a browser | Use the web UI while execution and your files stay local   |
 
 ### Interfaces
 

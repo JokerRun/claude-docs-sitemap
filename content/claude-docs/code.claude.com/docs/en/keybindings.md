@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/keybindings
-fetched_at: 2026-07-14T03:07:36.677443Z
-sha256: 7f8fe469231b1897268b57cb43841c48495f181063934c8a7b3f13734312df57
+fetched_at: 2026-07-15T03:08:15.897796Z
+sha256: 43f414fa5495f6f165f6b15391b0ccc8a8def095865fab97d084e6ec8a7bb878
 ---
 
 > ## Documentation Index
@@ -465,6 +465,7 @@ When vim mode is enabled via `/config` → Editor mode, keybindings and vim mode
 * **Keybindings** handle actions at the component level (toggle todos, submit, etc.)
 * The Escape key in vim mode switches INSERT to NORMAL mode; it does not trigger `chat:cancel`
 * Most Ctrl+key shortcuts pass through vim mode to the keybinding system
+* Vim keys aren't remappable through the keybindings file. To map a two-key INSERT-mode sequence such as `jj` to Escape, use the [`vimInsertModeRemaps`](/en/interactive-mode#remap-insert-mode-key-sequences) setting
 * In vim NORMAL mode, `?` shows the help menu (vim behavior)
 * In vim NORMAL mode, `/` opens history search, the same as Ctrl+R in standard mode
 

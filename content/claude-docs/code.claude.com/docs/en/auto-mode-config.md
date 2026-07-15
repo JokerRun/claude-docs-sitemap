@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/auto-mode-config
-fetched_at: 2026-07-14T03:07:36.677443Z
-sha256: 04cb6a525ede8f29db48f032f046c45ccd1208336897ad032c717634f9711607
+fetched_at: 2026-07-15T03:08:15.897796Z
+sha256: adb0731f4b01fb571e16d054a5cadd38f2102231c36892da30b36c2887ca2707
 ---
 
 > ## Documentation Index
@@ -245,6 +245,8 @@ Print the built-in `environment`, `allow`, `soft_deny`, and `hard_deny` rules as
 ```bash theme={null}
 claude auto-mode defaults
 ```
+
+{/* min-version: 2.1.208 */}To read one rule's full wording without piping through `jq`, pass `--label` with the start of the rule's label, such as `claude auto-mode defaults --label 'Git Destructive'`. Matching is a case-insensitive prefix on each rule's label, and sections with no match print as empty lists. Requires Claude Code v2.1.208 or later.
 
 Print what the classifier actually uses as JSON, with your settings applied where set and defaults otherwise:
 
