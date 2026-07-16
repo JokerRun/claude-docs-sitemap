@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: e8ed6450dc3c90dfd98ef9c933340b64068892a13c5fa23795d9386920d50b9f
+fetched_at: 2026-07-16T03:08:08.295424Z
+sha256: 4c0afb5619877d5d124f47a8329e45002f8283015dcbea5733de9c87735d3e53
 ---
 
 # Skill authoring best practices
@@ -1043,7 +1043,7 @@ Skills run in a code execution environment with filesystem access, bash commands
 
 1. **Metadata pre-loaded:** At startup, the name and description from all Skills' YAML frontmatter are loaded into the system prompt
 2. **Files read on-demand:** Claude uses bash Read tools to access SKILL.md and other files from the filesystem when needed
-3. **Scripts executed efficiently:** Utility scripts can be executed via bash without loading their full contents into context. Only the script's output consumes tokens
+3. **Scripts executed efficiently:** Utility scripts can be executed through bash without loading their full contents into context. Only the script's output consumes tokens
 4. **No context penalty for large files:** Reference files, data, or documentation don't consume context tokens until actually read
 
 * **File paths matter:** Claude navigates your skill directory like a filesystem. Use forward slashes (`reference/guide.md`), not backslashes

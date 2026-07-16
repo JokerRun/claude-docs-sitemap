@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/task-budgets
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: 71ecdd27ff451898af7439e4a0fc98f9aa219185e860aac7461d83f2dc75f30e
+fetched_at: 2026-07-16T03:08:08.295424Z
+sha256: 7b81f74554c6dc6a2b628f8ae4af5b7f82d5587605bbf6ad11a5ea2b07f6f390
 ---
 
 # Task budgets
@@ -34,24 +34,24 @@ Add `task_budget` to `output_config` and include the beta header:
 <CodeGroup>
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
-      --no-buffer \
-      --header "x-api-key: $ANTHROPIC_API_KEY" \
-      --header "anthropic-version: 2023-06-01" \
-      --header "anthropic-beta: task-budgets-2026-03-13" \
-      --header "content-type: application/json" \
-      --data '{
-          "model": "claude-opus-4-8",
-          "max_tokens": 128000,
-          "stream": true,
-          "messages": [{
-              "role": "user",
-              "content": "Review the codebase and propose a refactor plan."
-          }],
-          "output_config": {
-              "effort": "high",
-              "task_budget": {"type": "tokens", "total": 64000}
-          }
-      }'
+    -N \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "anthropic-beta: task-budgets-2026-03-13" \
+    -H "content-type: application/json" \
+    -d '{
+      "model": "claude-opus-4-8",
+      "max_tokens": 128000,
+      "stream": true,
+      "messages": [{
+        "role": "user",
+        "content": "Review the codebase and propose a refactor plan."
+      }],
+      "output_config": {
+        "effort": "high",
+        "task_budget": {"type": "tokens", "total": 64000}
+      }
+    }'
   ```
 
   ```bash CLI
@@ -348,7 +348,7 @@ Your client sent the turn-1 user message three times and the turn-1 assistant me
 
 If your agentic loop compacts or rewrites context between requests (for example, by summarizing earlier turns), the server has no memory of how much budget was spent before compaction. Pass `remaining` on the next request so the countdown continues from where you left off rather than resetting to `total`:
 
-<CodeGroup>
+<CodeGroup exclude="shell">
   ```python Python
   output_config = {
       "effort": "high",
@@ -371,6 +371,18 @@ If your agentic loop compacts or rewrites context between requests (for example,
   };
   ```
 
+  ```csharp C#
+  var outputConfig = new BetaOutputConfig
+  {
+      Effort = Effort.High,
+      TaskBudget = new BetaTokenTaskBudget
+      {
+          Total = 128000,
+          Remaining = 128000 - tokensSpentSoFar,
+      },
+  };
+  ```
+
   ```go Go
   outputConfig := anthropic.BetaOutputConfigParam{
   	Effort: anthropic.BetaOutputConfigEffortHigh,
@@ -389,18 +401,6 @@ If your agentic loop compacts or rewrites context between requests (for example,
           .remaining(128000L - tokensSpentSoFar)
           .build())
       .build();
-  ```
-
-  ```csharp C#
-  var outputConfig = new BetaOutputConfig
-  {
-      Effort = Effort.High,
-      TaskBudget = new BetaTokenTaskBudget
-      {
-          Total = 128000,
-          Remaining = 128000 - tokensSpentSoFar,
-      },
-  };
   ```
 
   ```php PHP

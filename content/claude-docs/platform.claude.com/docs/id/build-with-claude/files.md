@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/files
-fetched_at: 2026-07-14T03:07:36.677443Z
-sha256: e93d3e9e18bfe1aeb5c9283e6e57b399ef8d5a4c4cdf8822157ac15eacf7966a
+fetched_at: 2026-07-16T03:08:08.295424Z
+sha256: f018d85b1cb97e47fcc6e2534c719c5b3d59b44b3474d784f874ed38558556f7
 ---
 
 # Files API
@@ -919,12 +919,14 @@ Unduh file yang dibuat oleh [skills](/docs/id/build-with-claude/skills-guide) at
   	}
   	defer resp.Body.Close()
 
-  	fileContent, err := io.ReadAll(resp.Body)
+  	out, err := os.Create("downloaded_file.txt")
   	if err != nil {
   		return err
   	}
+  	defer out.Close()
 
-  	return os.WriteFile("downloaded_file.txt", fileContent, 0644)
+  	_, err = io.Copy(out, resp.Body)
+  	return err
   }
 
   ```

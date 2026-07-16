@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/streaming
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 42a385503b7a87a7b03c5e818de55cad352574b0502337cf033cf23633ec61e3
+fetched_at: 2026-07-16T03:08:08.295424Z
+sha256: 7170169cfde2553a8399098e3a87fefa8f12a8f6fbbb64eef120c4e0b6c0d7ee
 ---
 
 # Streaming messages
@@ -15,7 +15,7 @@ When creating a Message, you can set `"stream": true` to incrementally stream th
 
 ## Streaming with SDKs
 
-The [Python](https://github.com/anthropics/anthropic-sdk-python) and [TypeScript](https://github.com/anthropics/anthropic-sdk-typescript) SDKs offer multiple ways of streaming. The [PHP](https://github.com/anthropics/anthropic-sdk-php) SDK provides streaming via `createStream()`. The Python SDK allows both sync and async streams. See the documentation in each SDK for details.
+The [Python](https://github.com/anthropics/anthropic-sdk-python) and [TypeScript](https://github.com/anthropics/anthropic-sdk-typescript) SDKs offer multiple ways of streaming. The [PHP](https://github.com/anthropics/anthropic-sdk-php) SDK provides streaming through `createStream()`. The Python SDK allows both sync and async streams. See the documentation in each SDK for details.
 
 <CodeGroup>
   ```bash CLI
@@ -372,7 +372,7 @@ Note: Current models only support emitting one complete key and value property f
 
 ### Thinking delta
 
-When using [extended thinking](/docs/en/build-with-claude/extended-thinking#streaming-thinking) with streaming enabled, you'll receive thinking content via `thinking_delta` events. These deltas correspond to the `thinking` field of the `thinking` content blocks.
+When using [extended thinking](/docs/en/build-with-claude/extended-thinking#streaming-thinking) with streaming enabled, you'll receive thinking content through `thinking_delta` events. These deltas correspond to the `thinking` field of the `thinking` content blocks.
 
 For thinking content, a special `signature_delta` event is sent just before the `content_block_stop` event. This signature is used to verify the integrity of the thinking block.
 

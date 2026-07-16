@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/files
-fetched_at: 2026-07-10T03:11:05.177659Z
-sha256: c049a91b2d2fee7b63ad3487f70b89ba30ac31da5842038d0cead046d11f5953
+fetched_at: 2026-07-16T03:08:08.295424Z
+sha256: 67f36ce2e886fbe4aca0961f785741dd1333ee9f75788ddc6698379496a523fc
 ---
 
 # Adding files
@@ -566,8 +566,8 @@ Use the [Files API](/docs/en/build-with-claude/files) to list files scoped to a 
       scope_id="sesn_abc123",
       betas=["managed-agents-2026-04-01"],
   )
-  for f in files:
-      print(f.id, f.filename)
+  for file in files:
+      print(file.id, file.filename)
 
   # Download a file
   content = client.beta.files.download(files.data[0].id)
@@ -580,8 +580,8 @@ Use the [Files API](/docs/en/build-with-claude/files) to list files scoped to a 
     scope_id: "sesn_abc123",
     betas: ["managed-agents-2026-04-01"]
   });
-  for (const f of files.data) {
-    console.log(f.id, f.filename);
+  for (const file of files.data) {
+    console.log(file.id, file.filename);
   }
 
   // Download a file

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/server-tools
-fetched_at: 2026-06-30T03:15:27.286427Z
-sha256: c99993fb50f20e435cd1154cf0765235e193665db9c74f4b4432fd8946cee895
+fetched_at: 2026-07-16T03:08:08.295424Z
+sha256: 2713bf581deec4cb63fd979843d0cbb7a85d90075ce2a2bc084df9966867983d
 ---
 
 # Server tools
@@ -1038,7 +1038,7 @@ This restricts the tool to direct invocation only, bypassing the internal code e
 `allowed_callers` controls how a tool can be invoked: directly by Claude (`"direct"`), from inside a code execution container (for example, `"code_execution_20260120"`), or both. The `_20260209` versions of the web tools default to the code execution caller only; earlier versions default to `["direct"]`. On models that don't support programmatic tool calling, these versions require `allowed_callers: ["direct"]`; without it the API returns a validation error that says to set it.
 
 <Note>
-  Even when web fetch is used in a ZDR-eligible configuration, website publishers may retain any parameters passed to the URL if Claude fetches content from their site.
+  Even when web fetch is used in a ZDR-eligible configuration, website publishers might retain any parameters passed to the URL if Claude fetches content from their site.
 </Note>
 
 ## Domain filtering

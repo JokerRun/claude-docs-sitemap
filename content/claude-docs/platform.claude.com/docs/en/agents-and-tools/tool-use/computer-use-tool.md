@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool
-fetched_at: 2026-07-03T03:11:00.926352Z
-sha256: 1f3f19828a0365eae4963346c585ccdc75f850fecc27953f68374d20d265e636
+fetched_at: 2026-07-16T03:08:08.295424Z
+sha256: 08a2a3cbcd42bfcc559580e45c0c75f77d9d581128a8c52e070be5f38fb08baa
 ---
 
 # Computer use tool
@@ -2150,15 +2150,15 @@ Because your application controls where and how computer use data is stored, com
 
 Computer use follows the standard [tool use pricing](/docs/en/agents-and-tools/tool-use/overview#pricing). When using the computer use tool:
 
-**System prompt overhead**: The computer use beta adds 466-499 tokens to the system prompt
+**System prompt overhead:** The computer use beta adds 466-499 tokens to the system prompt
 
-**Computer use tool token usage**:
+**Computer use tool token usage:**
 
 | Model             | Input tokens per tool definition |
 | ----------------- | -------------------------------- |
 | Claude 4.x models | 735 tokens                       |
 
-**Additional token consumption**:
+**Additional token consumption:**
 
 * Screenshot images (see [Vision pricing](/docs/en/build-with-claude/vision))
 * Tool execution results returned to Claude

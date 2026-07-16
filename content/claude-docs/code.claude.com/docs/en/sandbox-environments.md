@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sandbox-environments
-fetched_at: 2026-06-27T03:14:28.973816Z
-sha256: f3fd2c1531bb75f35ed34dcdf13de1cb0f118921d3bcfed9b130b699b2193fe3
+fetched_at: 2026-07-16T03:08:08.295424Z
+sha256: fdf2bf8ea46d44f67cbdf0f7aec363ebf67e92c157a1c1df19a10220d3e4f044
 ---
 
 > ## Documentation Index
@@ -61,7 +61,7 @@ Match your goal to a row below, then read the detail section that follows.
 
 [Permission modes](/en/permission-modes) decide whether a tool call runs and whether you are prompted first. Isolation restricts what a command can access once it runs. The two work together: when a permission mode lets actions run without asking you, an isolation boundary limits what those actions can reach.
 
-`--dangerously-skip-permissions` removes per-action review other than explicit [ask rules](/en/permissions#manage-permissions), so an isolation boundary is the only thing limiting what Claude can do. Always run it inside a container, a VM, or the [sandbox runtime](#sandbox-runtime), so that file tools, MCP servers, and hooks are also inside the boundary.
+When you pass `--dangerously-skip-permissions`, Claude acts without asking you first; you're only prompted for explicit [ask rules](/en/permissions#manage-permissions), connector tools [your organization set to `ask`](/en/mcp#organization-controls-on-connector-tools), MCP tools marked [`requiresUserInteraction`](/en/mcp#require-approval-for-a-specific-tool), and removals targeting `/` or your home directory. With no prompts to catch mistakes, the isolation boundary you choose is what protects your system. Always run this flag inside a container, a VM, or the [sandbox runtime](#sandbox-runtime), so that file tools, MCP servers, and hooks are also inside the boundary.
 
 [Auto mode](/en/permission-modes#eliminate-prompts-with-auto-mode) replaces the prompt with a classifier that reviews actions and blocks ones that escalate beyond the request, target unrecognized infrastructure, or appear driven by hostile content Claude read. The classifier is a per-action control, not an isolation boundary, so an isolation boundary still adds defense in depth for unattended runs, and is not required the way it is for `--dangerously-skip-permissions`.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/cmek
-fetched_at: 2026-07-10T03:11:05.177659Z
-sha256: 2221890e75f24304463dd6d56d951d0abef731f2c39dfc51a6f5655709ab959b
+fetched_at: 2026-07-16T03:08:08.295424Z
+sha256: 433e2e81e8b9050870a8c11e93176089cb41e871daf06fd2550f291581de7020
 ---
 
 # Customer-managed encryption keys
@@ -106,7 +106,7 @@ These features remain available, but their data is not encrypted under your key.
 
 * Claude Code Desktop, Claude Code on the web, and Claude in Slack. Anthropic recommends disabling any of these that are not appropriate for your use case in the admin console.
 * Beta and research preview features may not be covered by CMEK and can break in CMEK organizations, for example Claude Security and Claude Design.
-* On-demand data export under Settings > Privacy.
+* On-demand data export under **Settings** > **Privacy**.
 
 On both products, account data for users in your organization (such as names, email addresses, and profile pictures) is not encrypted under your key.
 

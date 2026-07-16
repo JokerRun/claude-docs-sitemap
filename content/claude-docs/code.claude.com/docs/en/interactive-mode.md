@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/interactive-mode
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: 7bfc0a4707efcbd082d33b609b47bc691e7abea43f04b0de97b44293a73863c9
+fetched_at: 2026-07-16T03:08:08.295424Z
+sha256: 720b327c3533084936a697f2a8150ef1bc2a0546261cc1fdc7268b35f6ba4027
 ---
 
 > ## Documentation Index
@@ -114,6 +114,8 @@ When the transcript viewer is open (toggled with `Ctrl+O`), these shortcuts are 
 ## Commands
 
 Type `/` in Claude Code to see all available commands, or type `/` followed by any letters to filter. The `/` menu shows everything you can invoke: built-in commands, bundled and user-authored [skills](/en/skills), and commands contributed by [plugins](/en/plugins) and [MCP servers](/en/mcp#use-mcp-prompts-as-commands). Not all built-in commands are visible to every user since some depend on your platform or plan.
+
+In [fullscreen rendering](/en/fullscreen#use-the-mouse), the `/` command and `@` file suggestion lists also respond to the mouse: hovering highlights a row and clicking accepts it.
 
 See the [commands reference](/en/commands) for the full list of commands included in Claude Code.
 

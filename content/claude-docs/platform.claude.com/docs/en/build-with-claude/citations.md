@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/citations
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: fa16802bdfbaa5226cf559f32ec507e2a53d86f358b113322462dc2beb11daed
+fetched_at: 2026-07-16T03:08:08.295424Z
+sha256: d5b77b6c2bcc16f402f21af3d19e0cc745230bb37d94019f439c0320bef5807f
 ---
 
 # Citations
@@ -341,7 +341,7 @@ Integrate citations with Claude in these steps:
   <Step title="Claude provides cited response">
     * Responses may now include multiple text blocks where each text block can contain a claim that Claude is making and a list of citations that support the claim.
 
-    * Citations reference specific locations in source documents. The format of these citations are dependent on the type of document being cited from.
+    * Citations reference specific locations in source documents. The format of these citations is dependent on the type of document being cited from.
 
       * **For PDFs:** Citations include the page number range (1-indexed).
       * **For plain text documents:** Citations include the character index range (0-indexed).
@@ -359,7 +359,7 @@ Integrate citations with Claude in these steps:
   For example, if you want Claude to be able to cite specific sentences from your RAG chunks, you should put each RAG chunk into a plain text document. Otherwise, if you do not want any further chunking to be done, or if you want to customize any additional chunking, you can put RAG chunks into custom content document(s).
 </Tip>
 
-### Citable vs non-citable content
+### Citable versus non-citable content
 
 * Text found within a document's `source` content can be cited from.
 * `title` and `context` are optional fields that are passed to the model but not used toward cited content.
@@ -1005,7 +1005,7 @@ Plain text documents are automatically chunked into sentences. You can provide t
 
 ### PDF documents
 
-PDF documents can be provided as base64-encoded data, a URL, or by `file_id`. PDF text is extracted and chunked into sentences. As image citations are not yet supported, PDFs that are scans of documents and do not contain extractable text will not be citable.
+PDF documents can be provided as base64-encoded data, a URL, or by `file_id`. PDF text is extracted and chunked into sentences. As image citations are not yet supported, PDFs that are scans of documents and do not contain extractable text are not citable.
 
 <Tabs>
   <Tab title="Base64">

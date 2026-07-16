@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/google-vertex-ai
-fetched_at: 2026-07-14T03:07:36.677443Z
-sha256: 043474890518067b165cee273de5f3df9c34f61bbff9410602a82258818e5c4e
+fetched_at: 2026-07-16T03:08:08.295424Z
+sha256: 627c707975ac3e37645ee2465ecf30cdcad80a972251c7cd4f86258ad51be77d
 ---
 
 > ## Documentation Index
@@ -115,7 +115,7 @@ If you have Google Cloud credentials and want to start using Claude Code through
   </Step>
 </Steps>
 
-After you've signed in, run `/setup-vertex` any time to reopen the wizard and change your credentials, project, region, or model pins.
+After you've signed in, run `/setup-vertex` any time to reopen the wizard and change your credentials, project, region, or model pins. The model pin step starts from your currently pinned models. The wizard writes to `~/.claude/settings.json`, or to `$CLAUDE_CONFIG_DIR/settings.json` when [`CLAUDE_CONFIG_DIR`](/en/env-vars#variables) is set.
 
 ## Region configuration
 

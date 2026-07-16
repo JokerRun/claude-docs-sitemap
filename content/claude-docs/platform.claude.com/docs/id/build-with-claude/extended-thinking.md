@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/extended-thinking
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 66ddda4895a9ae9ca9a313d09e5cd35f445d8e3533502054700594a6cc7beb08
+fetched_at: 2026-07-16T03:08:08.295424Z
+sha256: d860ad36e524680405d9adf5bf25f1e8c5790f167fcc419cf596ad1068dabed6
 ---
 
 # Pemikiran diperpanjang
@@ -69,24 +69,23 @@ Berikut adalah contoh penggunaan pemikiran diperpanjang di Messages API:
 <CodeGroup>
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
-       --header "x-api-key: $ANTHROPIC_API_KEY" \
-       --header "anthropic-version: 2023-06-01" \
-       --header "content-type: application/json" \
-       --data \
-  '{
-    "model": "claude-sonnet-4-6",
-    "max_tokens": 16000,
-    "thinking": {
-      "type": "enabled",
-      "budget_tokens": 10000
-    },
-    "messages": [
-      {
-        "role": "user",
-        "content": "Are there an infinite number of prime numbers such that n mod 4 == 3?"
-      }
-    ]
-  }'
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "content-type: application/json" \
+    -d '{
+      "model": "claude-sonnet-4-6",
+      "max_tokens": 16000,
+      "thinking": {
+        "type": "enabled",
+        "budget_tokens": 10000
+      },
+      "messages": [
+        {
+          "role": "user",
+          "content": "Are there an infinite number of prime numbers such that n mod 4 == 3?"
+        }
+      ]
+    }'
   ```
 
   ```bash CLI

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/memory
-fetched_at: 2026-07-10T03:11:05.177659Z
-sha256: 373b254f302916d1f9f6c51b5fbd4f6acf857b93543bc70c2ab0c2de1f3e3ffa
+fetched_at: 2026-07-16T03:08:08.295424Z
+sha256: 8e9081bfbc5f73cf7d97c600a34b5e46456ef0d9022bd8364d0261b78e30359f
 ---
 
 # Using agent memory
@@ -1328,7 +1328,7 @@ To permanently remove a store along with all of its memories and versions, use [
 
 When a store reaches its 2,000-memory limit, writes to new memories fail: both direct `memories.create` calls and the agent's file writes to unmapped paths. Existing memories remain readable and editable. The following practices help you stay well under the limit and recover gracefully if you reach it.
 
-* **Use focused stores.** Rather than one large general-purpose store, use smaller purpose-built stores — one per user, one for shared domain knowledge, and one for project-specific context. Each store has its own 2,000-memory limit, so keeping stores scoped reduces the chance any single one fills up.
+* **Use focused stores.** Rather than one large general-purpose store, use smaller purpose-built stores: one per user, one for shared domain knowledge, and one for project-specific context. Each store has its own 2,000-memory limit, so keeping stores scoped reduces the chance any single one fills up.
 
 * **Condense or prune before the store fills up.** Delete stale or redundant memories with `memories.delete`. You can also run a [dreaming session](/docs/en/managed-agents/dreams), which consolidates fragmented content into a separate new output store rather than modifying the original. Switch your sessions over to that output store, then archive or delete the original.
 

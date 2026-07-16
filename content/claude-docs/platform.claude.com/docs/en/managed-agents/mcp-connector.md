@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/mcp-connector
-fetched_at: 2026-07-10T03:11:05.177659Z
-sha256: d5dededf49ceed2d3f0bf2709fad2afad8a19d9c686eec3fd743242658258335
+fetched_at: 2026-07-16T03:08:08.295424Z
+sha256: 507a3af4c3053b6bdd0c3e84da02e6c66ac6bd3f5f2198c83bc78e92bcbac222
 ---
 
 # MCP connector
@@ -16,7 +16,7 @@ Claude Managed Agents supports connecting [Model Context Protocol (MCP)](https:/
 MCP configuration is split across two steps:
 
 1. **Agent creation** declares which MCP servers the agent connects to, by name and URL.
-2. **Session creation** supplies auth for those servers by referencing a pre-registered [vault](/docs/en/managed-agents/vaults).
+2. **Session creation** supplies authentication for those servers by referencing a pre-registered [vault](/docs/en/managed-agents/vaults).
 
 This separation keeps secrets out of reusable agent definitions while letting each session authenticate with its own credentials.
 

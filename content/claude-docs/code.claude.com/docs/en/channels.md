@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/channels
-fetched_at: 2026-07-14T03:07:36.677443Z
-sha256: f30ad96af871243087013af65ced3a1ac38a7c87988f01fe8648347127db2f81
+fetched_at: 2026-07-16T03:08:08.295424Z
+sha256: 01f63285bddc9e060ea810c8356bd2bfbba56565c94da0b76b39a44a8fd3cee6
 ---
 
 > ## Documentation Index
@@ -264,7 +264,7 @@ To try the fakechat demo, you'll need:
   </Step>
 </Steps>
 
-If Claude hits a permission prompt while you're away from the terminal, the session pauses until you respond. Channel servers that declare the [permission relay capability](/en/channels-reference#relay-permission-prompts) can forward these prompts to you so you can approve or deny remotely. For unattended use, [`--dangerously-skip-permissions`](/en/permission-modes#skip-all-checks-with-bypasspermissions-mode) bypasses prompts other than explicit ask rules, but only use it in environments you trust.
+If Claude hits a permission prompt while you're away from the terminal, the session pauses until you respond. Channel servers that declare the [permission relay capability](/en/channels-reference#relay-permission-prompts) can forward these prompts to you so you can approve or deny remotely. For unattended use, [`--dangerously-skip-permissions`](/en/permission-modes#skip-all-checks-with-bypasspermissions-mode) bypasses most prompts, but only use it in environments you trust. Explicit ask rules, connector tools [your organization set to `ask`](/en/mcp#organization-controls-on-connector-tools), and MCP tools marked [`requiresUserInteraction`](/en/mcp#require-approval-for-a-specific-tool) still prompt.
 
 When you run channels in non-interactive mode with `-p`, tools that need terminal input, such as multiple-choice questions and plan mode approval, are disabled so the session never stalls waiting for input.
 

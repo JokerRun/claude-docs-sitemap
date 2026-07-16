@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/headless
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: 32c5ba057865188fa52a627b4680d0c36327fca8d52d3e691a1c485416916d72
+fetched_at: 2026-07-16T03:08:08.295424Z
+sha256: 9bd4d6c9a706eac2ab1392e812aeda16fde370b8e964360e5bfe8fe96d66b8ed
 ---
 
 > ## Documentation Index
@@ -214,7 +214,9 @@ claude -p "Run the test suite and fix any failures" \
   --allowedTools "Bash,Read,Edit"
 ```
 
-To set a baseline for the whole session instead of listing individual tools, pass a [permission mode](/en/permission-modes). `dontAsk` denies anything not in your `permissions.allow` rules or the [read-only command set](/en/permissions#read-only-commands), which is useful for locked-down CI runs. `acceptEdits` lets Claude write files without prompting and also auto-approves common filesystem commands such as `mkdir`, `touch`, `mv`, and `cp`. Other shell commands and network requests still need an `--allowedTools` entry or a `permissions.allow` rule, otherwise the run aborts when one is attempted:
+To set a baseline for the whole session instead of listing individual tools, pass a [permission mode](/en/permission-modes). `dontAsk` denies anything not in your `permissions.allow` rules or the [read-only command set](/en/permissions#read-only-commands), which is useful for locked-down CI runs. `AskUserQuestion`, connector tools [your organization set to `ask`](/en/mcp#organization-controls-on-connector-tools), and MCP tools marked [`requiresUserInteraction`](/en/mcp#require-approval-for-a-specific-tool) are denied even when an allow rule matches.
+
+`acceptEdits` lets Claude write files without prompting and also auto-approves common filesystem commands such as `mkdir`, `touch`, `mv`, and `cp`. Other shell commands and network requests still need an `--allowedTools` entry or a `permissions.allow` rule, otherwise the run aborts when one is attempted:
 
 ```bash theme={null}
 claude -p "Apply the lint fixes" --permission-mode acceptEdits

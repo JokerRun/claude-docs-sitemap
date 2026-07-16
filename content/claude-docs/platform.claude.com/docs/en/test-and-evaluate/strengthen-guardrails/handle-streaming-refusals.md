@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/handle-streaming-refusals
-fetched_at: 2026-07-08T03:08:53.943475Z
-sha256: 409fe530d07a14dc9ab1461317fd9fc89b8c27f6f3abe4dbe5c1e459f3659946
+fetched_at: 2026-07-16T03:08:08.295424Z
+sha256: d2f16e081493f09575d5aee1c9ccb75fcccb30c521d2d7b3c22a8070b320d4a7
 ---
 
 # Streaming refusals
@@ -69,10 +69,10 @@ Here's how to detect and handle streaming refusals in your application:
   ```bash cURL
   # Stream request and check for refusal
   response=$(curl -N https://api.anthropic.com/v1/messages \
-    --header "anthropic-version: 2023-06-01" \
-    --header "content-type: application/json" \
-    --header "x-api-key: $ANTHROPIC_API_KEY" \
-    --data '{
+    -H "anthropic-version: 2023-06-01" \
+    -H "content-type: application/json" \
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -d '{
       "model": "claude-opus-4-8",
       "messages": [{"role": "user", "content": "Hello"}],
       "max_tokens": 1024,
@@ -326,11 +326,11 @@ Here's how to detect and handle streaming refusals in your application:
 
 The API currently handles refusals in three different ways:
 
-| Refusal Type                       | Response Format              | When It Occurs                                  |
+| Refusal type                       | Response format              | When it occurs                                  |
 | ---------------------------------- | ---------------------------- | ----------------------------------------------- |
 | Streaming classifier refusals      | **`stop_reason`: `refusal`** | During streaming when content violates policies |
 | API input and copyright validation | 400 error codes              | When input fails validation checks              |
-| Model-generated refusals           | Standard text responses      | When the model itself decides to refuse         |
+| Model-generated refusals           | Standard text responses      | When the model itself refuses                   |
 
 <Note>
   Future API versions will expand the **`stop_reason`: `refusal`** pattern to unify refusal handling across all types.

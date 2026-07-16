@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback
-fetched_at: 2026-07-11T03:08:19.250903Z
-sha256: d8cef01d710885baa19cbe8b8103db40fb9ee64439f9bfc6e347e0bb3c4de687
+fetched_at: 2026-07-16T03:08:08.295424Z
+sha256: 0a165dc59d039d98cec813b4c1a6437ed3c205a892d19f9d70a1d24db63662c0
 ---
 
 # Refusals and fallback
@@ -553,7 +553,7 @@ The `usage.iterations` array records every attempt. A model that declined appear
 
 ### Continuing the conversation
 
-On the next turn, send the assistant content back as you received it. After a mid-output fallback, `content` can include block types the declining model produced before the handoff; the table below covers which to keep and which to drop when you echo the turn.
+On the next turn, send the assistant content back as you received it. After a mid-output fallback, `content` can include block types the declining model produced before the handoff; the following table covers which to keep and which to drop when you echo the turn.
 
 | Block type                                                                             | On the next turn                                                                                                                                                                                                               |
 | -------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |

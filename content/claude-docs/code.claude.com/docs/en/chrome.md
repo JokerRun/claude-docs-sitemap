@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/chrome
-fetched_at: 2026-07-14T03:07:36.677443Z
-sha256: a4930baf02be284279dc49efc744a55377e1e81cf393ab92fbae82e0c7ecc285
+fetched_at: 2026-07-16T03:08:08.295424Z
+sha256: c4dcd4fbf4b4443a82da8a62c150d88329c3ad0f91ac6844357732eda05c13e6
 ---
 
 > ## Documentation Index
@@ -66,6 +66,8 @@ Before using Claude Code with Chrome, you need:
     Go to code.claude.com/docs, click on the search box,
     type "hooks", and tell me what results appear
     ```
+
+    The first browser action asks for permission to use the `claude-in-chrome` skill. Approve it and Claude opens a new tab and starts the task.
   </Step>
 </Steps>
 
@@ -98,7 +100,7 @@ As of v2.1.199, an otherwise read-only call that sets a state-changing input fla
 
 ## Example workflows
 
-These examples show common ways to combine browser actions with coding tasks. Run `/mcp` and select `claude-in-chrome` to see the full list of available browser tools.
+These examples show common ways to combine browser actions with coding tasks. Run `/mcp`, select `claude-in-chrome`, then select **View tools** to see the full list of available browser tools.
 
 ### Test a local web application
 

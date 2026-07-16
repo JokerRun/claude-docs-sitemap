@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/skills-guide
-fetched_at: 2026-07-14T03:07:36.677443Z
-sha256: b3def29b7b9f5891220453e6aad5e6c5297ca1eeef997856459650fb97693b36
+fetched_at: 2026-07-16T03:08:08.295424Z
+sha256: 2e7805fa79159fefddbbf7101564ba633705798cc21d086c183746d79860b83d
 ---
 
 # Using Agent Skills with the API
@@ -334,7 +334,7 @@ When Skills create documents (Excel, PowerPoint, PDF, Word), they return `file_i
 
 1. Skills create files during code execution.
 2. Response includes `file_id` for each created file.
-3. Use Files API to download the actual file content.
+3. Use the Files API to download the actual file content.
 4. Save locally or process as needed.
 
 **Example: Creating and downloading an Excel file**
@@ -968,7 +968,7 @@ When Skills create documents (Excel, PowerPoint, PDF, Word), they return `file_i
 </CodeGroup>
 
 <Note>
-  For complete details on the Files API, see the [Files API documentation](/docs/en/api/beta/files/download).
+  For complete details on the Files API, see the [Files API](/docs/en/api/beta/files/download) documentation.
 </Note>
 
 ### Multi-turn conversations
@@ -4704,7 +4704,7 @@ For ZDR eligibility across all features, see [API and data retention](/docs/en/m
 ## Next steps
 
 <CardGroup cols={3}>
-  <Card title="API Reference" icon="book" href="/docs/en/api/beta/skills/create">
+  <Card title="API reference" icon="book" href="/docs/en/api/beta/skills/create">
     Complete API reference with all endpoints
   </Card>
 

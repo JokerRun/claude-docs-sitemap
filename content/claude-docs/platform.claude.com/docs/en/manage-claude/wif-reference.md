@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/wif-reference
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 4ea2db04dac67a976297595c0e9635a64c0392404a0bbcf8a296d1036f67a1fa
+fetched_at: 2026-07-16T03:08:08.295424Z
+sha256: 8bc564caa26f08669640b5105bd64c31d923b5ae4de5a6216f146181e850bc1b
 ---
 
 # WIF reference
@@ -165,11 +165,11 @@ For complete parameter details and response schemas, see the [Service accounts A
 
 The `issuer_url`, `jwks.discovery_base`, and `jwks.url` fields are validated:
 
-| Constraint | Detail                                                                                                                    |
-| ---------- | ------------------------------------------------------------------------------------------------------------------------- |
-| Scheme     | Must be `https`.                                                                                                          |
-| Port       | Must be `443` (explicit or default).                                                                                      |
-| Host       | Must be a public DNS host name for your OIDC provider. Must resolve to public IP addresses; IP literals are not accepted. |
+| Constraint | Detail                                                                                                                   |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------ |
+| Scheme     | Must be `https`.                                                                                                         |
+| Port       | Must be `443` (explicit or default).                                                                                     |
+| Host       | Must be a public DNS hostname for your OIDC provider. Must resolve to public IP addresses; IP literals are not accepted. |
 
 URL validation failures return `400 invalid_request_error` with the field name as a prefix on the error message (for example, `issuer_url: url must use https scheme`).
 

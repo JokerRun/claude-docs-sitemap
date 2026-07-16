@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: be8295ecb791996fd392cd2be6f13cbd767beb2740f6869043f423523fd993ea
+fetched_at: 2026-07-16T03:08:08.295424Z
+sha256: 107254ceaa2880800e338e823d7167eb1257295e867e2b2e5940316d813f469b
 ---
 
 # Claude Platform on AWS
@@ -211,7 +211,7 @@ AWS publishes token-generator libraries for [JavaScript](https://github.com/aws/
 
 Pass the generated token to the SDK the same way you'd pass an AWS Console-generated API key:
 
-<CodeGroup>
+<CodeGroup exclude="shell, csharp, go, php, ruby">
   ```python Python
   from token_generator_for_aws_external_anthropic import TokenGenerator
   from anthropic import AnthropicAWS

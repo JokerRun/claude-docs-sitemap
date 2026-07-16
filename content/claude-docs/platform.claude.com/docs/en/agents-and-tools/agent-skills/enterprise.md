@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/enterprise
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: c371c8b27c607f01171f4030d7e2b660d4f9a08a8a8d40b1ec6f8fb0fc0c8c7a
+fetched_at: 2026-07-16T03:08:08.295424Z
+sha256: d89aa9829545a93d378f3f4f51f9b7f38ae96a5ffdabf5f23cf0e74927c5b7ef
 ---
 
 # Skills for enterprise
@@ -98,11 +98,11 @@ Evaluation results signal when to act:
   </Step>
 
   <Step title="Deploy">
-    Upload via the Skills API for workspace-wide access. See [Using Skills with the API](/docs/en/build-with-claude/skills-guide) for upload and version management. Document the Skill in your internal registry with purpose, owner, and version.
+    Upload through the Skills API for workspace-wide access. See [Using Skills with the API](/docs/en/build-with-claude/skills-guide) for upload and version management. Document the Skill in your internal registry with purpose, owner, and version.
   </Step>
 
   <Step title="Monitor">
-    Track usage patterns and collect feedback from users. Re-run evaluations periodically to detect drift or regressions as workflows and models evolve. Usage analytics are not currently available via the Skills API. Implement application-level logging to track which Skills are included in requests.
+    Track usage patterns and collect feedback from users. Re-run evaluations periodically to detect drift or regressions as workflows and models evolve. Usage analytics are not currently available through the Skills API. Implement application-level logging to track which Skills are included in requests.
   </Step>
 
   <Step title="Iterate or deprecate">
@@ -157,11 +157,11 @@ Each role-based bundle should contain only the Skills relevant to that role's da
 
 ### Source control
 
-Store Skill directories in Git for history tracking, code review via pull requests, and rollback capability. Each Skill directory (containing SKILL.md and any bundled files) maps naturally to a Git-tracked folder.
+Store Skill directories in Git for history tracking, code review through pull requests, and rollback capability. Each Skill directory (containing SKILL.md and any bundled files) maps naturally to a Git-tracked folder.
 
 ### API-based distribution
 
-The Skills API provides workspace-scoped distribution. Skills uploaded via the API are available to all workspace members. See [Using Skills with the API](/docs/en/build-with-claude/skills-guide) for upload, versioning, and management endpoints.
+The Skills API provides workspace-scoped distribution. Skills uploaded through the API are available to all workspace members. See [Using Skills with the API](/docs/en/build-with-claude/skills-guide) for upload, versioning, and management endpoints.
 
 ### Versioning strategy
 

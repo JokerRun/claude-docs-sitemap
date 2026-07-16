@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/parallel-tool-use
-fetched_at: 2026-06-30T03:15:27.286427Z
-sha256: 6fb20c0a1425a5fb9665bd26c0d092f0601273c09400a551bc97f5e3a3507a7c
+fetched_at: 2026-07-16T03:08:08.295424Z
+sha256: cf535bc07b2491dcde2a2ad9da03262ecef6e0ac63f4213923c126990749b326
 ---
 
 # Parallel tool use
@@ -1436,7 +1436,7 @@ See [Handle tool calls](/docs/en/agents-and-tools/tool-use/handle-tool-calls) fo
 
 **2. Weak prompting**
 
-Default prompting may not be sufficient. Use the stronger system prompt from [Maximizing parallel tool use](#maximizing-parallel-tool-use).
+Default prompting might not be sufficient. Use the stronger system prompt from [Maximizing parallel tool use](#maximizing-parallel-tool-use).
 
 **3. Measuring parallel tool usage**
 

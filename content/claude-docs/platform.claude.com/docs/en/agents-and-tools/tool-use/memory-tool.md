@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: 7a6c9f29103f2582374915784f1615cce5cd2df826936fbe692bcb3580b099ea
+fetched_at: 2026-07-16T03:08:08.295424Z
+sha256: e26a591778652601ffab8258a7485ccf93b5d002de6794ffc6fbdd7d25c5db13
 ---
 
 # Memory tool
@@ -294,7 +294,7 @@ Claude's reply to a request like the previous one ends with a `tool_use` block t
 
 Four SDKs provide memory tool helpers that handle the tool interface and the loop. Subclass `BetaAbstractMemoryTool` (Python and C#), use `betaMemoryTool` (TypeScript), or implement `BetaMemoryToolHandler` (Java) to back memory with your own storage, such as files on disk, a database, cloud storage, or encrypted files. Python and TypeScript also ship a ready-made local-filesystem implementation, `BetaLocalFilesystemMemoryTool`. The helper and tool-runner surfaces live in each SDK's beta namespace even though the memory tool itself is generally available. The Go and Ruby SDKs have no memory helper, so those examples run the tool-use loop themselves, and PHP wraps your handler closure in its generic `BetaRunnableTool`. All three use an in-memory store that you replace with your own storage.
 
-<CodeGroup>
+<CodeGroup exclude="shell">
   ```python Python
   import anthropic
   from anthropic.tools import BetaLocalFilesystemMemoryTool

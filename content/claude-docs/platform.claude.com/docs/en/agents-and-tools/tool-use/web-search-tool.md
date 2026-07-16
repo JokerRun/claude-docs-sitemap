@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: 4acbd8cc82d523ec27ae8d6743fc2fb4cb4c293285ccd452bafbb0bd03601928
+fetched_at: 2026-07-16T03:08:08.295424Z
+sha256: 4f9debe596890d0efd91943bb356807dceb334debf7c9e5d4858c4f7f2df00b0
 ---
 
 # Web search tool
@@ -78,23 +78,23 @@ The following examples use `web_search_20260318`:
 <CodeGroup>
   ```bash cURL
   curl https://api.anthropic.com/v1/messages \
-      --header "x-api-key: $ANTHROPIC_API_KEY" \
-      --header "anthropic-version: 2023-06-01" \
-      --header "content-type: application/json" \
-      --data '{
-          "model": "claude-opus-4-8",
-          "max_tokens": 4096,
-          "messages": [
-              {
-                  "role": "user",
-                  "content": "Search for the current prices of AAPL and GOOGL, then calculate which has a better P/E ratio."
-              }
-          ],
-          "tools": [{
-              "type": "web_search_20260318",
-              "name": "web_search"
-          }]
-      }'
+    -H "x-api-key: $ANTHROPIC_API_KEY" \
+    -H "anthropic-version: 2023-06-01" \
+    -H "content-type: application/json" \
+    -d '{
+      "model": "claude-opus-4-8",
+      "max_tokens": 4096,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Search for the current prices of AAPL and GOOGL, then calculate which has a better P/E ratio."
+        }
+      ],
+      "tools": [{
+        "type": "web_search_20260318",
+        "name": "web_search"
+      }]
+    }'
   ```
 
   ```bash CLI
@@ -575,7 +575,7 @@ Citations are always enabled for web search, and each `web_search_result_locatio
 The web search citation fields `cited_text`, `title`, and `url` do not count toward input or output token usage.
 
 <Note>
-  When displaying API outputs directly to end users, citations must be included to the original source. If you are making modifications to API outputs, including by reprocessing and/or combining them with your own material before displaying them to end users, display citations as appropriate based on consultation with your legal team.
+  When displaying API outputs directly to end users, citations must be included to the original source. If you are making modifications to API outputs, including by reprocessing or combining them with your own material before displaying them to end users, display citations as appropriate based on consultation with your legal team.
 </Note>
 
 ### Errors
@@ -618,7 +618,7 @@ For caching tool definitions across turns, see [Tool use with prompt caching](/d
 
 ## Streaming
 
-With streaming enabled, you'll receive search events as part of the stream. There will be a pause while the search executes:
+With streaming enabled, you'll receive search events as part of the stream. There will be a pause while the search runs:
 
 ```sse Output
 event: message_start

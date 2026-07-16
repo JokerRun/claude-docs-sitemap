@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: 54b4ac34f070a9ff782fed6cf9120c2d2c9f4c15b6e581d423f33cb177640eb2
+fetched_at: 2026-07-16T03:08:08.295424Z
+sha256: e54e077a85895fc4a783e9bff7da9a7a7b73fa1c053eb77f6ec3a52f87cfe45b
 ---
 
 # Claude on Amazon Bedrock (Opus 4.6 and earlier)
@@ -61,14 +61,14 @@ Anthropic's [client SDKs](/docs/en/cli-sdks-libraries/overview) support Bedrock.
   <Tab title="Java">
     <CodeGroup>
       ```groovy Gradle
-      implementation("com.anthropic:anthropic-java-bedrock:2.47.1")
+      implementation("com.anthropic:anthropic-java-bedrock:2.48.0")
       ```
 
       ```xml Maven
       <dependency>
           <groupId>com.anthropic</groupId>
           <artifactId>anthropic-java-bedrock</artifactId>
-          <version>2.47.1</version>
+          <version>2.48.0</version>
       </dependency>
       ```
 
@@ -361,15 +361,12 @@ The following examples show how to generate text from Claude on Bedrock:
     awsRegion: "us-west-2"
   });
 
-  async function main() {
-    const message = await client.messages.create({
-      model: "global.anthropic.claude-opus-4-6-v1",
-      max_tokens: 256,
-      messages: [{ role: "user", content: "Hello, world" }]
-    });
-    console.log(message);
-  }
-  main().catch(console.error);
+  const message = await client.messages.create({
+    model: "global.anthropic.claude-opus-4-6-v1",
+    max_tokens: 256,
+    messages: [{ role: "user", content: "Hello, world" }]
+  });
+  console.log(message);
   ```
 
   ```csharp C#

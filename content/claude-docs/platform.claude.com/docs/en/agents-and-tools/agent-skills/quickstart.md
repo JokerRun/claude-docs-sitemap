@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/quickstart
-fetched_at: 2026-07-14T03:07:36.677443Z
-sha256: 115d9cf1cc101969a27b7529df2fcff8ccc6b7ca32a41f2d65f516b644ba9d8f
+fetched_at: 2026-07-16T03:08:08.295424Z
+sha256: 3ae8c25ed58f13ed2cee9d9eeb531a333217dc443434167dc6240bb938cadf38
 ---
 
 # Get started with Agent Skills in the API
@@ -618,7 +618,7 @@ The presentation was created in the code execution container and saved as a file
 </CodeGroup>
 
 <Note>
-  For complete details on working with generated files, see the [code execution tool documentation](/docs/en/agents-and-tools/tool-use/code-execution-tool#retrieve-generated-files).
+  For complete details on working with generated files, see the [code execution tool](/docs/en/agents-and-tools/tool-use/code-execution-tool#retrieve-generated-files) documentation.
 </Note>
 
 ## Try more examples

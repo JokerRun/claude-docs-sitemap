@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/dreams
-fetched_at: 2026-07-14T03:07:36.677443Z
-sha256: 591dc492badecb82f54c3f0f86bea135f523c84f39865ad4591c2a6a86055397
+fetched_at: 2026-07-16T03:08:08.295424Z
+sha256: d626b6e3ab130968426f3cb8b209a7d0944cce5b0b638680210e64ccf727b607
 ---
 
 # Dreams
@@ -171,7 +171,7 @@ The dream produces another **output memory store**, separate from the input. The
   ```
 </CodeGroup>
 
-Dreaming inputs include the pre-existing memory store and an array of sessions. The model selected will run the dreaming pipeline; during the research preview `claude-fable-5`, `claude-opus-4-8`, `claude-opus-4-7`, `claude-sonnet-5`, and `claude-sonnet-4-6` are supported. You can optionally pass `instructions` to steer the dreaming process; see [Steer with instructions](#steer-with-instructions).
+Dreaming inputs include the pre-existing memory store and an array of sessions. The selected model runs the dreaming pipeline; during the research preview `claude-fable-5`, `claude-opus-4-8`, `claude-opus-4-7`, `claude-sonnet-5`, and `claude-sonnet-4-6` are supported. You can optionally pass `instructions` to steer the dreaming process; see [Steer with instructions](#steer-with-instructions).
 
 The response is the full `dream` resource with `status: "pending"`:
 
@@ -469,7 +469,7 @@ When `status` reaches `completed`, the `memory_store` entry in `outputs[]` refer
   ```
 </CodeGroup>
 
-The dream itself never deletes or modifies its inputs. On `failed` or `canceled` the output store persists with partial contents so you can inspect what was produced before stopping; clean it up via the Memory Stores API if you don't need it.
+The dream itself never deletes or modifies its inputs. On `failed` or `canceled` the output store persists with partial contents so you can inspect what was produced before stopping; clean it up through the Memory Stores API if you don't need it.
 
 <Warning>
   While a dream is `pending` or `running`, archiving or deleting its output store is rejected with a 400. Archiving or deleting an *input* store or session mid-run will cause the dream to fail with `input_memory_store_unavailable` or `input_session_unavailable`.
@@ -575,7 +575,7 @@ Archive sets `archived_at` on a dream that has reached a terminal state (`comple
   ```
 </CodeGroup>
 
-Archiving a dream does not touch its output memory store; manage that separately via the [Memory Stores API](/docs/en/managed-agents/memory).
+Archiving a dream does not touch its output memory store; manage that separately through the [Memory Stores API](/docs/en/managed-agents/memory).
 
 ## List dreams
 
@@ -648,7 +648,7 @@ Returns all non-archived dreams in the workspace, newest first. Use `limit` (def
 
 ## Errors
 
-A non-exhaustive list of possible dreaming errors is below.
+A non-exhaustive list of possible dreaming errors follows.
 
 | `error.type`                      | When                                                                                            |
 | --------------------------------- | ----------------------------------------------------------------------------------------------- |
@@ -671,4 +671,4 @@ Dreams are billed at standard API token rates for the model you select; `usage` 
 | `instructions` length | 4,096 characters                                                                               |
 | Supported models      | `claude-fable-5`, `claude-opus-4-8`, `claude-opus-4-7`, `claude-sonnet-5`, `claude-sonnet-4-6` |
 
-Default rate limits apply to dream creation while this feature is in beta. [Contact support](https://support.claude.com) if you need higher limits.
+Default rate limits apply to dream creation while this feature is in research preview. [Contact support](https://support.claude.com) if you need higher limits.

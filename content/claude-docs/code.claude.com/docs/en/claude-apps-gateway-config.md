@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-apps-gateway-config
-fetched_at: 2026-07-14T03:07:36.677443Z
-sha256: c558e4ccb63721642b1992c79b80d93437c2f4f9ce69b2a9993e6d8d95850e6e
+fetched_at: 2026-07-16T03:08:08.295424Z
+sha256: 28022a5efab1020964af9ed2414a8180c8ff7579512c5a0a894230d9b21d4651
 ---
 
 > ## Documentation Index
@@ -483,14 +483,14 @@ managed:
                 - { type: command, command: /usr/local/bin/audit-edit.sh }
 ```
 
-| Key                                        | Enforced by   | Effect                                                                                                                                                                                                        |
-| ------------------------------------------ | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `availableModels`                          | Gateway + CLI | Model allowlist. Also checked at `/v1/messages`, so a patched client can't bypass it.                                                                                                                         |
-| `permissions.allow` / `.deny`              | CLI           | Tool and command rules. See [Permissions](/en/permissions).                                                                                                                                                   |
-| `permissions.disableBypassPermissionsMode` | CLI           | Set to `disable` to block [`bypassPermissions`](/en/permission-modes#skip-all-checks-with-bypasspermissions-mode), the mode that auto-approves every tool call, and the `--dangerously-skip-permissions` flag |
-| `allowManagedPermissionRulesOnly`          | CLI           | When `true`, user and project permission rules are ignored; only rules from this document apply                                                                                                               |
-| `env`                                      | CLI           | Environment variables merged into the CLI process. Use for telemetry, auto-update, and model-name overrides.                                                                                                  |
-| `hooks`                                    | CLI           | Org-wide [hooks](/en/hooks)                                                                                                                                                                                   |
+| Key                                        | Enforced by   | Effect                                                                                                                                                                                                   |
+| ------------------------------------------ | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `availableModels`                          | Gateway + CLI | Model allowlist. Also checked at `/v1/messages`, so a patched client can't bypass it.                                                                                                                    |
+| `permissions.allow` / `.deny`              | CLI           | Tool and command rules. See [Permissions](/en/permissions).                                                                                                                                              |
+| `permissions.disableBypassPermissionsMode` | CLI           | Set to `disable` to block [`bypassPermissions`](/en/permission-modes#skip-all-checks-with-bypasspermissions-mode), the mode that skips permission prompts, and the `--dangerously-skip-permissions` flag |
+| `allowManagedPermissionRulesOnly`          | CLI           | When `true`, user and project permission rules are ignored; only rules from this document apply                                                                                                          |
+| `env`                                      | CLI           | Environment variables merged into the CLI process. Use for telemetry, auto-update, and model-name overrides.                                                                                             |
+| `hooks`                                    | CLI           | Org-wide [hooks](/en/hooks)                                                                                                                                                                              |
 
 Because these settings arrive over the network, the CLI shows each developer a one-time security approval dialog before applying anything that can run a shell command or alter where traffic goes. The dialog covers:
 

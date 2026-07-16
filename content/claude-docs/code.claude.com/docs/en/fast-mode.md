@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/fast-mode
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: d5fe98a8aeb0de2f6701fee73d15d18056dd7ed667a3f643d5513cb38f934c8f
+fetched_at: 2026-07-16T03:08:08.295424Z
+sha256: c9860baa21424b7781f1abf8409079d65d7b4dd81befabf635a5bafb361aee84
 ---
 
 > ## Documentation Index
@@ -99,7 +99,7 @@ You can combine both: use fast mode with a lower [effort level](/en/model-config
 Fast mode requires all of the following:
 
 * **Anthropic API or subscription only**: fast mode is available through the Anthropic Console API and for Claude subscription plans using usage credits. It is not available on Amazon Bedrock, Google Cloud's Agent Platform, Microsoft Foundry, or Claude Platform on AWS.
-* **Usage credits turned on**: your account must have usage credits turned on, which allows billing beyond your plan's included usage. For individual accounts, turn this on in your [Console billing settings](https://platform.claude.com/settings/organization/billing). For Team and Enterprise, an admin must turn on usage credits for the organization.
+* **Usage credits turned on**: your account must have usage credits turned on, which allows billing beyond your plan's included usage. For individual accounts, turn this on in your [Console billing settings](https://platform.claude.com/settings/billing). For Team and Enterprise, an admin must turn on usage credits for the organization.
 
 <Note>
   Fast mode usage draws directly from usage credits, even if you have remaining usage on your plan. This means fast mode tokens do not count against your plan's included usage and are charged at the fast mode rate from the first token.

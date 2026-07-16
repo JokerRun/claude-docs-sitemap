@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/overview
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 9a14b19b7f3beac7077d5265e12e5e5aa0edf14bea8c3cb74bfd9fed26d2d5fa
+fetched_at: 2026-07-16T03:08:08.295424Z
+sha256: b3ccbaa0052d769c2ac3033efb9ff771e654c575b62427588d1b74980a0db989
 ---
 
 # Claude Managed Agents overview
@@ -99,7 +99,7 @@ See [Tools](/docs/en/managed-agents/tools) for the full list and configuration o
 ## Beta access
 
 <Note>
-  Claude Managed Agents is currently in beta. All Managed Agents endpoints require the `managed-agents-2026-04-01` beta header. The SDK sets the beta header automatically. Behaviors may be refined between releases to improve outputs.
+  Claude Managed Agents is in beta. All Managed Agents endpoints require the `managed-agents-2026-04-01` beta header. The SDK sets the beta header automatically. Behaviors may be refined between releases to improve outputs.
 </Note>
 
 To get started, you need:

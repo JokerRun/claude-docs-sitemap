@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-caching
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: 98705a3aa64388c9ac47ca3cebafd5088ab4effeb3b84069145d8c2e93258817
+fetched_at: 2026-07-16T03:08:08.295424Z
+sha256: 86d251b0ce1c2d25f43d3fd5aecb0d6f94aef8ab5e3948607c79da1582464aea
 ---
 
 # Prompt caching
@@ -733,7 +733,7 @@ User: [Text response, cache=True]
 
 On earlier Opus/Sonnet models and all Haiku models, all previous thinking blocks are removed from context at this point. On Opus 4.5+ and Sonnet 4.6+, prior thinking blocks are kept by default and remain part of the cached prefix.
 
-For more detailed information, see the [extended thinking documentation](/docs/en/build-with-claude/extended-thinking#understanding-thinking-block-caching-behavior).
+For more detailed information, see the [extended thinking](/docs/en/build-with-claude/extended-thinking#understanding-thinking-block-caching-behavior) documentation.
 
 ### Cache storage and sharing
 
@@ -797,7 +797,7 @@ If experiencing unexpected behavior:
 If you find that 5 minutes is too short, Anthropic also offers a 1-hour cache duration [at additional cost](#pricing).
 
 <Note>
-  The 1-hour cache duration is available on the Claude API, [Claude Platform on AWS](/docs/en/build-with-claude/claude-platform-on-aws), [Amazon Bedrock](/docs/en/build-with-claude/claude-in-amazon-bedrock), [Amazon Bedrock (Opus 4.6 and earlier)](/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy), [Google Cloud](/docs/en/build-with-claude/claude-on-vertex-ai), and [Microsoft Foundry](/docs/en/build-with-claude/claude-in-microsoft-foundry).
+  The 1-hour cache duration is available on the Claude API, [Amazon Bedrock](/docs/en/build-with-claude/claude-in-amazon-bedrock), [Amazon Bedrock (Opus 4.6 and earlier)](/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy), [Claude Platform on AWS](/docs/en/build-with-claude/claude-platform-on-aws), [Google Cloud](/docs/en/build-with-claude/claude-on-vertex-ai), and [Microsoft Foundry](/docs/en/build-with-claude/claude-in-microsoft-foundry).
 </Note>
 
 To use the extended cache, include `ttl` in the `cache_control` definition like this:
@@ -829,7 +829,7 @@ The response will include detailed cache information like the following:
 
 Note that the current `cache_creation_input_tokens` field equals the sum of the values in the `cache_creation` object.
 
-If you see `ephemeral_5m_input_tokens` writes you didn't request while using server tools such as web search, see [this guide on prompt caching and tool use](/docs/en/agents-and-tools/tool-use/tool-use-with-prompt-caching#server-tool-results-are-cached-automatically).
+If you see `ephemeral_5m_input_tokens` writes you didn't request while using server tools such as web search, see [Tool use with prompt caching](/docs/en/agents-and-tools/tool-use/tool-use-with-prompt-caching#server-tool-results-are-cached-automatically).
 
 ### When to use the 1-hour cache
 
@@ -3205,7 +3205,7 @@ For ZDR eligibility across all features, see [API and data retention](/docs/en/m
 
     For more details on cache invalidation, see [What invalidates the cache](#what-invalidates-the-cache).
 
-    For more on extended thinking, including its interaction with tool use and prompt caching, see the [extended thinking documentation](/docs/en/build-with-claude/extended-thinking#extended-thinking-and-prompt-caching).
+    For more on extended thinking, including its interaction with tool use and prompt caching, see the [extended thinking](/docs/en/build-with-claude/extended-thinking#extended-thinking-and-prompt-caching) documentation.
   </Accordion>
 
   <Accordion title="How do I enable prompt caching?">

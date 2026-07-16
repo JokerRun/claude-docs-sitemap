@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: 7c5aabf1a60dc2b45f070b652c5d58d7617ba3fc29d2d4a2fa6a07b54b28f79f
+fetched_at: 2026-07-16T03:08:08.295424Z
+sha256: 4ecb12bc48dbabf287743ce2fe6ebcbe3eb09997d3c6cd0015a1d34aa3820eab
 ---
 
 # Define tools
@@ -18,7 +18,7 @@ Use the latest Claude Opus (4.8) model for complex tools and ambiguous queries; 
 Use Claude Haiku models for straightforward tools, but note they may infer missing parameters.
 
 <Tip>
-  If using Claude with tool use and extended thinking, refer to the [extended thinking guide](/docs/en/build-with-claude/extended-thinking) for more information.
+  If using Claude with tool use and extended thinking, refer to the [extended thinking](/docs/en/build-with-claude/extended-thinking) guide for more information.
 </Tip>
 
 ## Specifying client tools

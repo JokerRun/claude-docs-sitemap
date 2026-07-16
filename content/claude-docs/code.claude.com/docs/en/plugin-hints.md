@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugin-hints
-fetched_at: 2026-06-17T03:17:04.158711Z
-sha256: 6959a388e35444951f93e98b106e390e0aa22e19d2feef581210eb7d2563de9b
+fetched_at: 2026-07-16T03:08:08.295424Z
+sha256: a82029e41c6c0b849c67c8b193e8e4a233bc7ca1a9b96f50259bda9ccd9eaadf
 ---
 
 > ## Documentation Index
@@ -33,6 +33,8 @@ When Claude Code receives the command output, it:
 Claude Code never installs a plugin automatically. The user always confirms.
 
 ## Emit the hint
+
+Hint prompts only fire for plugins listed in the official Anthropic marketplace. See [Get your plugin into the official marketplace](#get-your-plugin-into-the-official-marketplace) before you ship the integration.
 
 Gate emission on an environment variable so the marker is unlikely to appear when a human runs your CLI directly, then write the tag to stderr on its own line. Choose which variable to check:
 

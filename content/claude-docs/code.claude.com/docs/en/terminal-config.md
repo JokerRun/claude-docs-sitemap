@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/terminal-config
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: 072316f788e6ec6253cdb68b3f378195f7c834e2683363de8ae3b6213244dbe9
+fetched_at: 2026-07-16T03:08:08.295424Z
+sha256: 17df873f3bb262eb4ff76f951a742960edfc2216da81527b4ce08a57f53b1147
 ---
 
 > ## Documentation Index
@@ -272,6 +272,8 @@ The reference below covers the tokens you can set in `overrides`. The interactiv
 ## Switch to fullscreen rendering
 
 If the display flickers or the scroll position jumps while Claude is working, switch to [fullscreen rendering mode](/en/fullscreen). It draws to a separate screen the terminal reserves for full-screen apps instead of appending to your normal scrollback, which keeps memory usage flat and adds mouse support for scrolling and selection. In this mode you scroll with the mouse or PageUp inside Claude Code rather than with your terminal's native scrollback; see the [fullscreen page](/en/fullscreen#search-and-review-the-conversation) for how to search and copy.
+
+If flicker is the only problem and your terminal supports synchronized output but isn't auto-detected, such as Emacs `eat`, set [`CLAUDE_CODE_FORCE_SYNC_OUTPUT=1`](/en/env-vars) to stop the flicker without changing renderers.
 
 Run `/tui fullscreen` to switch and save the preference. Your conversation relaunches intact and future sessions start in fullscreen. You can also set the `CLAUDE_CODE_NO_FLICKER` environment variable before starting Claude Code:
 

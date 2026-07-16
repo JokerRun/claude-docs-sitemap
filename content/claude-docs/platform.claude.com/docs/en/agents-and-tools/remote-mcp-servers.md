@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/remote-mcp-servers
-fetched_at: 2026-07-10T03:11:05.177659Z
-sha256: 198e7beb191bc6aa8c90fb61556c7db98145030a4f1325197afb836fcf2646fa
+fetched_at: 2026-07-16T03:08:08.295424Z
+sha256: c28feb6dd16a99509ac77c319c56c4014d5e83dde820fc779a3b6aa2c0b95896
 ---
 
 # Remote MCP servers
@@ -11,7 +11,7 @@ Connect Claude to third-party remote MCP servers through the MCP connector API. 
 
 ---
 
-Several companies have deployed remote MCP servers that developers can connect to via the Anthropic MCP connector API. These servers expand the capabilities available to developers and end users by providing remote access to various services and tools through the MCP protocol.
+Several companies have deployed remote MCP servers that developers can connect to by using the Anthropic MCP connector API. These servers expand the capabilities available to developers and end users by providing remote access to various services and tools through the MCP protocol.
 
 <Note>
   The remote MCP servers listed below are third-party services designed to work with the Claude API. These servers are not owned, operated, or endorsed by Anthropic. Users should only connect to remote MCP servers they trust and should review each server's security practices and terms before connecting.

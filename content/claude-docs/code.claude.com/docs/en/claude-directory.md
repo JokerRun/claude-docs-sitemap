@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-directory
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: 0f4b45ce72cfacc42a488ba51abca88687b0c1a3af36c8115247f815a987448b
+fetched_at: 2026-07-16T03:08:08.295424Z
+sha256: be40265360ecabd07b4f4efa314389627691cadf8d3cbd4a9c42a80659844f66
 ---
 
 > ## Documentation Index
@@ -1536,7 +1536,7 @@ Files in the paths below are deleted on startup once they're older than [`cleanu
 | `paste-cache/`, `image-cache/`               | Contents of large pastes and attached images                                                                                                                                                                                                            |
 | `session-env/`                               | Per-session environment metadata                                                                                                                                                                                                                        |
 | `tasks/`                                     | Per-session task lists written by the task tools                                                                                                                                                                                                        |
-| `shell-snapshots/`                           | Captured shell environment used by the Bash tool. Removed on clean exit. The sweep clears any left after a crash.                                                                                                                                       |
+| `shell-snapshots/`                           | Aliases, functions, and shell options captured at startup and applied by the [Bash tool](/en/tools-reference#bash-tool-behavior) to each command. Removed on clean exit. The sweep clears any left after a crash.                                       |
 | `backups/`                                   | Timestamped copies of `~/.claude.json` taken before config migrations                                                                                                                                                                                   |
 | `feedback-bundles/`                          | Redacted transcript archives written by `/feedback` on third-party providers or when no Anthropic credentials are configured, for sending to your Anthropic account team                                                                                |
 | `todos/`, `statsig/`, `logs/`                | Legacy directories from older versions. No longer written. The sweep removes their contents and then the empty directory.                                                                                                                               |

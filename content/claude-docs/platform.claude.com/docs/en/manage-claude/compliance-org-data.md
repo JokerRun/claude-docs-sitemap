@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/compliance-org-data
-fetched_at: 2026-07-08T03:08:53.943475Z
-sha256: bb6f01ef3a058f54273dd81f410d73621e774a30d07dc951cb6c402c5fdd0b6c
+fetched_at: 2026-07-16T03:08:08.295424Z
+sha256: 048781453d4a4838f124fdffbbc56efe704423e75f691bb0c7ceafc2fab5e479
 ---
 
 # List organizations, users, roles, groups, and settings
@@ -217,7 +217,7 @@ The [Get effective organization settings](/docs/en/api/compliance/organizations/
 This endpoint requires `read:compliance_org_data`; a key without that scope returns [403 Forbidden](/docs/en/manage-claude/compliance-errors#403-forbidden). The target must be one of the parent's linked organizations: the parent organization itself is not a valid target. An unknown organization, an organization ID that is not a valid UUID, an organization outside your parent's tree, and a parent organization that does not yet have access to this endpoint all return the same [404 Not Found](/docs/en/manage-claude/compliance-errors#404-not-found), so a 404 does not reveal whether an organization exists. The settings endpoint is enabled per parent organization separately from the rest of the Compliance API; if every request returns 404, contact your Anthropic representative.
 
 <Note>
-  Before June 30, 2026, this endpoint required the separate `read:compliance_org_settings` scope. That scope has been retired: it can no longer be selected or granted when creating a key, and a key that carries only the retired scope returns [403 Forbidden](/docs/en/manage-claude/compliance-errors#403-forbidden) — create a new Compliance Access Key with `read:compliance_org_data` instead.
+  Before June 30, 2026, this endpoint required the separate `read:compliance_org_settings` scope. That scope has been retired: it can no longer be selected or granted when creating a key, and a key that carries only the retired scope returns [403 Forbidden](/docs/en/manage-claude/compliance-errors#403-forbidden). Create a new Compliance Access Key with `read:compliance_org_data` instead.
 </Note>
 
 ```bash cURL

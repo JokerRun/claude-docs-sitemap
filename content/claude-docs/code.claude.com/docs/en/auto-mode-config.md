@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/auto-mode-config
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: adb0731f4b01fb571e16d054a5cadd38f2102231c36892da30b36c2887ca2707
+fetched_at: 2026-07-16T03:08:08.295424Z
+sha256: 3dde9819ff642c8f5d81d57c30e55e0ca079e6c1d28539e6f80e184c297bce52
 ---
 
 > ## Documentation Index
@@ -207,7 +207,7 @@ The following example keeps the defaults in all four lists and adds organization
 ```
 
 <Danger>
-  Setting any of `environment`, `allow`, `soft_deny`, or `hard_deny` without `"$defaults"` replaces the entire default list for that section. A `soft_deny` array without `"$defaults"` discards every built-in soft block rule, including force push, `curl | bash`, and production deploys. A `hard_deny` array without `"$defaults"` discards the built-in data exfiltration and auto-mode bypass rules.
+  Setting any of `environment`, `allow`, `soft_deny`, or `hard_deny` without `"$defaults"` replaces the entire default list for that section. A `soft_deny` array without `"$defaults"` discards every built-in soft block rule, including force push, `curl | bash`, production deploys, and auto-mode bypass. A `hard_deny` array without `"$defaults"` discards the built-in data exfiltration rule.
 </Danger>
 
 Each section is evaluated independently, so setting `environment` alone leaves the default `allow`, `soft_deny`, and `hard_deny` lists intact.

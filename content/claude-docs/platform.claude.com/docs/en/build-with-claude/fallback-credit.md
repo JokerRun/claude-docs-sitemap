@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/fallback-credit
-fetched_at: 2026-07-11T03:08:19.250903Z
-sha256: 5b69d877df1104cdd3e0b286cd8432dd6d377bcf90cbba83e5180e5fad99adb7
+fetched_at: 2026-07-16T03:08:08.295424Z
+sha256: e36246315bae352a092b8424447caeed6f02dab479376fed8804832ff33bf253
 ---
 
 # Fallback credit
@@ -567,7 +567,7 @@ The following example makes a request that may be refused and redeems the credit
 
 ## Where it works
 
-Fallback credit is in beta on the Claude API, Claude Platform on AWS, Amazon Bedrock, Google Cloud, and Microsoft Foundry. Credit tokens returned in [Message Batches](/docs/en/build-with-claude/batch-processing) results cannot be redeemed. Redemption applies only to direct Messages API requests.
+Fallback credit is in beta on the Claude API, Amazon Bedrock, Claude Platform on AWS, Google Cloud, and Microsoft Foundry. Credit tokens returned in [Message Batches](/docs/en/build-with-claude/batch-processing) results cannot be redeemed. Redemption applies only to direct Messages API requests.
 
 The retry model must be one of the refused model's permitted fallback targets. At launch, Claude Fable 5's permitted target is Claude Opus 4.8 (`claude-opus-4-8`).
 

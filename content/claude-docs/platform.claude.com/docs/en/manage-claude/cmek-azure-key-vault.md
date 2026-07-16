@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/cmek-azure-key-vault
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: e2bc8e5b1704b38a5234468dc085a86f5b5085e01b52178184efeae8614f340b
+fetched_at: 2026-07-16T03:08:08.295424Z
+sha256: ffbe399f66a7c785a2644818a5ee0524a42798312ea1759256b5f8f957893202
 ---
 
 # Configure Azure Key Vault for CMEK
@@ -33,7 +33,7 @@ This guide walks through configuring an Azure Key Vault key as a [customer-manag
 
 ## Anthropic app information
 
-In order to have Anthropic use your encryption key, you must configure an Anthropic multitenant application ID and display name. Those values are:
+To have Anthropic use your encryption key, you must configure an Anthropic multitenant application ID and display name. Those values are:
 
 | Field                          | Value                                  |
 | ------------------------------ | -------------------------------------- |

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/cmek-google-cloud-kms
-fetched_at: 2026-06-28T03:16:32.677203Z
-sha256: a3b6762daadec1e00a5838e91d31954e608c8918226556cefd989a1688bfc910
+fetched_at: 2026-07-16T03:08:08.295424Z
+sha256: 4edcc0156688cd86a429f8111d0fe342f91f69dc4b993cb74a7cce6734466e54
 ---
 
 # Configure Google Cloud KMS for CMEK
@@ -32,7 +32,7 @@ This guide walks through configuring a Google Cloud KMS key as a [customer-manag
 
 ## Anthropic service account email
 
-In order to have Anthropic use your encryption key, you must give Anthropic's service account a key it can use for encrypting data. The service account email for Anthropic CMEK is:
+To have Anthropic use your encryption key, you must give Anthropic's service account a key it can use for encrypting data. The service account email for Anthropic CMEK is:
 
 ```text wrap
 anthropic-cmek-client-us@gcp-anthropic-cmek-clients.iam.gserviceaccount.com
@@ -43,7 +43,7 @@ anthropic-cmek-client-us@gcp-anthropic-cmek-clients.iam.gserviceaccount.com
 </Warning>
 
 <Note>
-  **Domain restricted sharing:** If your project is under a Google Cloud organization that enforces `constraints/iam.allowedPolicyMemberDomains`, the IAM bindings below are rejected because the Anthropic service account is outside your organization. You need either a project-level carve-out on that constraint, or to add Anthropic's Cloud Identity customer ID (format `C0xxxxxxxx`) to the allowed list. Contact Anthropic for the customer ID if needed.
+  **Domain restricted sharing:** If your project is under a Google Cloud organization that enforces `constraints/iam.allowedPolicyMemberDomains`, the following IAM bindings are rejected because the Anthropic service account is outside your organization. You need either a project-level carve-out on that constraint, or to add Anthropic's Cloud Identity customer ID (format `C0xxxxxxxx`) to the allowed list. Contact Anthropic for the customer ID if needed.
 </Note>
 
 ## Encryption key setup
@@ -192,7 +192,7 @@ How you register the key depends on which product you use.
         If validation fails, common causes are:
 
         * **VPC Service Controls:** if a service perimeter protects Cloud KMS in your project, add Anthropic to an access level on the perimeter (or exclude the key's project) so Anthropic can reach the key.
-        * **Domain restricted sharing:** the `constraints/iam.allowedPolicyMemberDomains` org policy can strip the Anthropic service account binding (see the note above). Confirm the binding is present with `gcloud kms keys get-iam-policy <your-key-name> --project=<your-project-id> --location=<region> --keyring=<your-keyring-name>`.
+        * **Domain restricted sharing:** the `constraints/iam.allowedPolicyMemberDomains` org policy can strip the Anthropic service account binding (see the earlier note). Confirm the binding is present with `gcloud kms keys get-iam-policy <your-key-name> --project=<your-project-id> --location=<region> --keyring=<your-keyring-name>`.
         * **Disabled or destroyed key version:** confirm the key's primary version is enabled, and not disabled, scheduled for destruction, or destroyed.
       </Step>
 

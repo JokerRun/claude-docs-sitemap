@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/compaction
-fetched_at: 2026-07-01T03:16:45.163402Z
-sha256: 85bf626d37ab3cef7a4c4d4824b2b4558b3a90e2a2bfd78c755adcd38da40370
+fetched_at: 2026-07-16T03:08:08.295424Z
+sha256: a1e24501ca0f850abcdc75abb2d3eaa72b6cc84a9b7c079c94f8225fbf5ff3f7
 ---
 
 # Compaction
@@ -1114,7 +1114,7 @@ When a model works on long tasks with many tool-use iterations, total token cons
 
 This example appears in the SDK languages only: its value is the budget-tracking logic around the request. The raw request combines the `trigger` from [Trigger configuration](#trigger-configuration) with `pause_after_compaction` from [Pausing after compaction](#pausing-after-compaction).
 
-<CodeGroup>
+<CodeGroup exclude="shell">
   ```python Python
   client = anthropic.Anthropic()
   messages = [{"role": "user", "content": "Hello, Claude"}]

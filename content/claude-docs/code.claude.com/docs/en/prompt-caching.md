@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/prompt-caching
-fetched_at: 2026-07-14T03:07:36.677443Z
-sha256: 0749a3b5a00a780108c3df97f97fc31914e161e7a0bd12fcefa191f19ee61068
+fetched_at: 2026-07-16T03:08:08.295424Z
+sha256: 8beeca89933b1cb2321b086c94c76e7cba29cf3344b3ef90351a29d9f2c38f48
 ---
 
 > ## Documentation Index
@@ -95,7 +95,7 @@ The cost applies once per conversation. After the first fast mode turn, Claude C
 Tool definitions sit in the system prompt layer, so the cache invalidates when the set of tool definitions in the request changes between turns. Toggling the [advisor tool](/en/advisor) is an exception: its definition sits after the cache breakpoint, so enabling or disabling `/advisor` keeps the cached prefix intact. Whether an [MCP server](/en/mcp) change does this depends on whether its tools are deferred by [tool search](/en/mcp#scale-with-mcp-tool-search) or loaded into the prefix:
 
 * **Deferred tools**, the default on supported models: a server connecting, disconnecting, or changing its tool list only appends new content and doesn't disturb anything already cached.
-* **Tools loaded into the prefix**: any change to them invalidates the cache. This happens when [tool search is unavailable or disabled](/en/mcp#configure-tool-search), such as on Haiku models, on Google Cloud's Agent Platform, or with a custom `ANTHROPIC_BASE_URL` gateway. It also happens for a server or tool marked [`alwaysLoad`](/en/mcp#exempt-a-server-from-deferral), and for definitions kept upfront by [threshold-based loading](/en/mcp#configure-tool-search).
+* **Tools loaded into the prefix**: any change to them invalidates the cache. This happens when [tool search is unavailable or disabled](/en/mcp#configure-tool-search), such as on Google Cloud's Agent Platform or with a custom `ANTHROPIC_BASE_URL` gateway. It also happens for a server or tool marked [`alwaysLoad`](/en/mcp#exempt-a-server-from-deferral), and for definitions kept upfront by [threshold-based loading](/en/mcp#configure-tool-search).
 
 When tools load into the prefix, the most common cause of an invalidation is a server connecting or disconnecting mid-session, which can happen without any action on your part: a stdio server's process exits, an HTTP session expires, or a server [reconnects automatically after a transient failure](/en/mcp#automatic-reconnection). A connected server can also push a [dynamic tool update](/en/mcp#dynamic-tool-updates) that changes its tool list.
 

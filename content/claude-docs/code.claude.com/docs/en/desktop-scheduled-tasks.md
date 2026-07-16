@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/desktop-scheduled-tasks
-fetched_at: 2026-05-15T03:15:49.552363Z
-sha256: d09f4a7060da4301e4624558c9335ae8ad74c66b20b6e12cf02bfc4b1c248d68
+fetched_at: 2026-07-16T03:08:08.295424Z
+sha256: 8f6e792ac76e9b40405de15f4c10e83d37ec525b9caef600843491690dd7e44f
 ---
 
 > ## Documentation Index
@@ -87,6 +87,8 @@ Keep this in mind when writing prompts. A task scheduled for 9am might run at 11
 Each task has its own permission mode, which you set when creating or editing the task. Allow rules from `~/.claude/settings.json` also apply to scheduled task sessions. If a task runs in Ask mode and needs to run a tool it doesn't have permission for, the run stalls until you approve it. The session stays open in the sidebar so you can answer later.
 
 To avoid stalls, click **Run now** after creating a task, watch for permission prompts, and select "always allow" for each one. Future runs of that task auto-approve the same tools without prompting. You can review and revoke these approvals from the task's detail page.
+
+Connector tools [your organization set to `ask`](/en/mcp#organization-controls-on-connector-tools) and MCP tools marked [`requiresUserInteraction`](/en/mcp#require-approval-for-a-specific-tool) prompt on every call and don't offer an always-allow option. Runs that call these tools stall each time.
 
 ## Manage scheduled tasks
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/wif-admin-api
-fetched_at: 2026-07-14T03:07:36.677443Z
-sha256: 0d61c429ab17e38b78b7281dbeb3153c34259c1b52e6298b5bdd7d075cfe05fb
+fetched_at: 2026-07-16T03:08:08.295424Z
+sha256: fa42aae15f18b9218ffb46d5a1e10be2e07b5f3b574d9f7a23eed6afc6bcd4d2
 ---
 
 # Manage WIF with the Admin API
@@ -15,7 +15,7 @@ The Admin API lets you create and manage [Workload Identity Federation](/docs/en
 
 ## Prerequisites
 
-Every request on this page authenticates with an OAuth bearer token that carries the `org:admin` scope. The scope is granted only to organization members with the admin, owner, or primary owner role, and it grants access to the whole organization: any workspace binding is ignored. There are two ways to obtain a token, and they carry different permissions: a token from your own login acts as a user, while a federated token acts as a service account and cannot perform every operation on this page.
+Every request on this page authenticates with an OAuth bearer token that carries the `org:admin` scope. The scope is granted only to organization members with the admin, owner, or primary owner role, and it grants access to the whole organization: any workspace binding is ignored. There are two ways to obtain a token, and they carry different permissions: a token from your own login acts as a user, whereas a federated token acts as a service account and cannot perform every operation on this page.
 
 ### Interactive (your terminal)
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/files
-fetched_at: 2026-07-14T03:07:36.677443Z
-sha256: 51c4b49c501ad9acde1975eedae782f5ead177b01ccb0fb7ceb32446a41d1073
+fetched_at: 2026-07-16T03:08:08.295424Z
+sha256: b26aaa4770df9ecbb597c96831251555b853263fa7417a52cc3483c759360a28
 ---
 
 # Files API
@@ -919,12 +919,14 @@ Download files that were created by [skills](/docs/en/build-with-claude/skills-g
   	}
   	defer resp.Body.Close()
 
-  	fileContent, err := io.ReadAll(resp.Body)
+  	out, err := os.Create("downloaded_file.txt")
   	if err != nil {
   		return err
   	}
+  	defer out.Close()
 
-  	return os.WriteFile("downloaded_file.txt", fileContent, 0644)
+  	_, err = io.Copy(out, resp.Body)
+  	return err
   }
 
   ```

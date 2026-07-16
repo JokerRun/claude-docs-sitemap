@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/server-managed-settings
-fetched_at: 2026-07-14T03:07:36.677443Z
-sha256: fd6c58b9dc8e6a5441bb087956c19180d505f835efa475e73be641bc1ce8252d
+fetched_at: 2026-07-16T03:08:08.295424Z
+sha256: b6c26aa5f09fcf222b174d50550f3edc7c6b4dfa01c110ea906c108164c5f410
 ---
 
 > ## Documentation Index
@@ -237,6 +237,10 @@ Server-managed settings are not available when using third-party model providers
 * Microsoft Foundry
 * [Claude Platform on AWS](/en/claude-platform-on-aws)
 * Custom API endpoints via `ANTHROPIC_BASE_URL` or third-party [LLM gateways](/en/llm-gateway)
+
+If you export a `CLAUDE_CODE_USE_*` provider variable or a non-default `ANTHROPIC_BASE_URL` in your shell, Claude Code skips the settings fetch for your sessions. You can't clear the export with a server-managed `env` block, because the block arrives through the fetch that the export prevents. An [endpoint-managed settings](/en/settings#settings-files) `env` block doesn't restore the fetch either: Claude Code checks eligibility before it applies managed `env` blocks, so the override changes the session's provider selection but the fetch stays skipped.
+
+To restore server-managed delivery, remove the export from your shell, or set the variable to `""` in your user settings `env` block, which applies before the eligibility check. To enforce policy without relying on users to change their shells, deliver the settings through the endpoint-managed channel instead.
 
 For Amazon Bedrock, Google Cloud's Agent Platform, and Microsoft Foundry deployments, a self-hosted [Claude apps gateway](/en/claude-apps-gateway) provides the equivalent remote managed-settings delivery: gateway-signed-in clients fetch managed settings from the gateway instead of `api.anthropic.com`. The failure semantics differ at startup: a gateway client that can't reach the gateway exits with an error instead of falling back to cached settings, while the hourly background refresh is fail-open on both channels.
 

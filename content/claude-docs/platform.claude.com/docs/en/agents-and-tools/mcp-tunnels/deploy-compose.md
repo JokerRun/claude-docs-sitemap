@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/deploy-compose
-fetched_at: 2026-07-08T03:08:53.943475Z
-sha256: db0772e180af20ec316e0534171272a3507bb681e8d1407562af4fe0f823c69e
+fetched_at: 2026-07-16T03:08:08.295424Z
+sha256: 8c00d81528769bc3b6f370e8dfb01efe5680b6f959002141fce9888467cfe747
 ---
 
 # Deploy MCP tunnels with Docker Compose
@@ -28,7 +28,7 @@ You need:
   * **Programmatic access (recommended).** Turn on **Set up programmatic access** when creating the tunnel (or create the federation rule directly under **Settings > Workload identity** if you're letting the setup component create the tunnel) so the setup component can authenticate through Workload Identity Federation. Record the federation rule ID (`fdrl_...`) and your organization ID.
   * **Manual.** Skip programmatic access. You'll [get the tunnel token from the Console](/docs/en/agents-and-tools/mcp-tunnels/console#get-the-connection-details), generate a CA and server certificate yourself, and [register the CA in the Console](/docs/en/agents-and-tools/mcp-tunnels/console#add-a-ca-certificate).
 
-* **A host with Docker and Docker Compose** installed. The manual flow also requires `openssl` (1.1.1 or newer).
+* **A host with Docker and Docker Compose** installed. The manual flow also requires `openssl` (1.1.1 or later).
 
 * **Outbound network connectivity** from the host to `api.anthropic.com` (443 TCP) and the [tunnel edge](/docs/en/agents-and-tools/mcp-tunnels/concepts#components) (7844 TCP and UDP). See the full [network requirements](/docs/en/agents-and-tools/mcp-tunnels/overview#network-requirements).
 
