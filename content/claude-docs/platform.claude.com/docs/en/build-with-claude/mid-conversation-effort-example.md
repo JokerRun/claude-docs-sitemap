@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/mid-conversation-effort-example
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: 15269feadec5ee95d44e5b441663c3143f79796c3eb429f8df37e2b624f6e092
+fetched_at: 2026-07-17T03:08:17.884216Z
+sha256: 2045b0b050452a0dfbe4734fb6dd4e051abab2b499cc91fd5130cef0502c6511
 ---
 
 # Build an orchestration mode
@@ -20,7 +20,7 @@ The mode is not an API parameter. It is built entirely from documented pieces:
 3. **Standing consent in the tool description:** the orchestration tool's description states that while the mode is on, the model should author and run a workflow for every substantive task without asking first.
 
 <Note>
-  This example uses mid-conversation system messages, which are currently available on Claude Opus 4.8 only. The fan-out itself multiplies token usage: a single request can spawn many subagent conversations, so reserve the mode for work that justifies the cost.
+  This example uses mid-conversation system messages; for the models and platforms that support them, see [Mid-conversation system messages](/docs/en/build-with-claude/mid-conversation-system-messages). The fan-out itself multiplies token usage: a single request can spawn many subagent conversations, so reserve the mode for work that justifies the cost.
 </Note>
 
 ## Set up the loop

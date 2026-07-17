@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/events-and-streaming
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: e402b4b96ef3a47c07053aca65a0a3e986f10b921c28a926cd5113b19cf2f094
+fetched_at: 2026-07-17T03:08:17.884216Z
+sha256: 279c883c71d5b809b68ab163eaa68d6792c2bc9a66be603e28db1542b144d16c
 ---
 
 # Session event stream
@@ -2277,7 +2277,7 @@ To resume a session, send a `user.message` event to it as usual:
 ### Sending system messages
 
 <Note>
-  `system.message` is currently only supported by Claude Opus 4.8. If any model configured on the agent does not support mid-conversation system injection, the event is rejected with a `model_does_not_support_mid_conversation_system` validation error.
+  `system.message` is supported by Claude Fable 5, [Claude Mythos 5](https://anthropic.com/glasswing), and Claude Opus 4.8. If any model configured on the agent does not support mid-conversation system injection, the event is rejected with a `model_does_not_support_mid_conversation_system` validation error.
 </Note>
 
 Send a `system.message` event to update the agent's system prompt between turns. Unlike the `system` field on the agent definition (which is fixed at session creation), `system.message` lets you change the system prompt as the session progresses. Use it when the agent needs updated system-level guidance mid-session: a different persona, revised constraints, or context fetched at runtime that should shape the model's behavior going forward.

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/troubleshooting
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: 123ca3e00927ab552c1dab0a252f538e75674c780ef5161a3419becfdc81ea33
+fetched_at: 2026-07-17T03:08:17.884216Z
+sha256: 05aed74caa8c911c3d9e75e0f85f7cfa24f31175db197dca9ca33f4a945785c5
 ---
 
 > ## Documentation Index
@@ -95,6 +95,8 @@ If the Search tool, `@file` mentions, custom agents, or custom skills aren't fin
     ```bash theme={null}
     apk add ripgrep
     ```
+
+    `ripgrep` is in Alpine's community repository. If `apk` reports that the package is missing, see [Alpine Linux setup](/en/setup#alpine-linux-and-musl-based-distributions).
   </Tab>
 
   <Tab title="Arch">

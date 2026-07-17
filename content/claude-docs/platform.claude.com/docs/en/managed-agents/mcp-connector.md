@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/mcp-connector
-fetched_at: 2026-07-16T03:08:08.295424Z
-sha256: 507a3af4c3053b6bdd0c3e84da02e6c66ac6bd3f5f2198c83bc78e92bcbac222
+fetched_at: 2026-07-17T03:08:17.884216Z
+sha256: efa2d5423a13ca379c75d13cdebfb899051d0527b84115aee9dcc9bf2ed32a50
 ---
 
 # MCP connector
@@ -16,7 +16,7 @@ Claude Managed Agents supports connecting [Model Context Protocol (MCP)](https:/
 MCP configuration is split across two steps:
 
 1. **Agent creation** declares which MCP servers the agent connects to, by name and URL.
-2. **Session creation** supplies authentication for those servers by referencing a pre-registered [vault](/docs/en/managed-agents/vaults).
+2. **Session creation** supplies authentication for those servers by referencing a pre-registered vault (see [Authenticate with vaults](/docs/en/managed-agents/vaults)).
 
 This separation keeps secrets out of reusable agent definitions while letting each session authenticate with its own credentials.
 
@@ -235,7 +235,7 @@ Each entry in the `mcp_servers` array defines one connection.
 | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `type` | Required. Must be `"url"`.                                                                                                                                                                                                                   |
 | `name` | Required. A unique name for this server within the agent (1–255 characters). Used as the `mcp_server_name` in the `tools` array and surfaced on MCP tool events in the [session event stream](/docs/en/managed-agents/events-and-streaming). |
-| `url`  | Required. The endpoint of the remote MCP server (up to 2048 characters). See [Supported MCP server types](/docs/en/managed-agents/reference#supported-mcp-server-types) for transport requirements.                                          |
+| `url`  | Required. The endpoint of the remote MCP server (up to 2,048 characters). See [Supported MCP server types](/docs/en/managed-agents/reference#supported-mcp-server-types) for transport requirements.                                         |
 
 Constraints:
 

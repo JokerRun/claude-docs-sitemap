@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/reference
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: 2c2ab1d8015eaa4ec82d13c7e7d1288e44b602dabffeef585aadd35305058705
+fetched_at: 2026-07-17T03:08:17.884216Z
+sha256: a37f6e7cb4e6b5b01af48b0c0b477997f81eb7f5146a03ac8f1688f6305a4e90
 ---
 
 # Reference
@@ -78,9 +78,9 @@ Persisted event type strings follow a `{domain}.{action}` naming convention; the
   </Tab>
 
   <Tab title="System events">
-    | Type             | Description                                                                        |
-    | ---------------- | ---------------------------------------------------------------------------------- |
-    | `system.message` | Update the agent's system prompt between turns. Only supported on Claude Opus 4.8. |
+    | Type             | Description                                                                                                                                           |
+    | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+    | `system.message` | Update the agent's system prompt between turns. Supported on Claude Fable 5, [Claude Mythos 5](https://anthropic.com/glasswing), and Claude Opus 4.8. |
   </Tab>
 
   <Tab title="Event deltas">

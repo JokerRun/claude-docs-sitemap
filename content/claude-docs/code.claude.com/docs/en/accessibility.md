@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/accessibility
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: 1dbda48a5e7b6c87aad9a20b077dafc0d6ccfd7acf5819410e491c7cedcb6674
+fetched_at: 2026-07-17T03:08:17.884216Z
+sha256: 574aafb62e5ef9c5f17cd4e51c5bdafe4e86fa849f64b18a054f8ecad8dd699c
 ---
 
 > ## Documentation Index
@@ -69,6 +69,8 @@ Each message in the transcript starts with a label your screen reader announces,
 
 The terminal cursor follows the input caret, so a screen reader's read-current-line command answers "where am I" with the prompt you're editing.
 
+{/* min-version: 2.1.210 */}Cycling [permission modes](/en/permission-modes) with `Shift+Tab` announces the mode you land on, such as `[plan mode on]` or `[accept edits on]`. Claude Code prints the announcement once and doesn't repeat it on later redraws. Requires Claude Code v2.1.210 or later.
+
 ### Jump between turns
 
 Claude Code emits OSC 133 shell-integration markers at turn boundaries, so your terminal's jump-to-previous-prompt key moves between turns without reading through the whole transcript:
@@ -112,7 +114,7 @@ These options address accessibility needs outside of screen reader mode. All of 
 Some behaviors aren't adapted for screen reader mode:
 
 * Screen reader mode doesn't turn on automatically when a screen reader is running.
-* Mode changes, such as entering [plan mode](/en/permission-modes#analyze-before-you-edit-with-plan-mode), aren't announced yet.
+* Claude Code doesn't announce a permission mode change made in any way other than cycling with `Shift+Tab`, such as entering [plan mode](/en/permission-modes#analyze-before-you-edit-with-plan-mode) from a command.
 * Attaching to a [background session](/en/agent-view) with `claude attach` or from agent view enters the terminal's alternate screen, which has no native scrollback. This is the [same behavior as other attached sessions](/en/fullscreen). To get back out, press Left Arrow on an empty prompt, or Ctrl+Z if a dialog has focus.
 * Claude Code announces costs in the summary it prints at exit, not per turn.
 * Screen reader mode doesn't change [non-interactive mode](/en/headless) with the `-p` flag. Non-interactive mode already writes plain text and remains an alternative for scripting.

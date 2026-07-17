@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/server-tools
-fetched_at: 2026-07-16T03:08:08.295424Z
-sha256: 2713bf581deec4cb63fd979843d0cbb7a85d90075ce2a2bc084df9966867983d
+fetched_at: 2026-07-17T03:08:17.884216Z
+sha256: 23af1889ad644e25010f5917db82d3cc590bf4305bb0dd7a3a4288c5f0f60c27
 ---
 
 # Server tools
@@ -900,7 +900,7 @@ The following example enables web fetch together with a user-defined `run_comman
       ['type' => 'web_fetch_20250910', 'name' => 'web_fetch', 'max_uses' => 5],
       [
           'name' => 'run_command',
-          'description' => "Run a shell command on this computer and return its output.",
+          'description' => 'Run a shell command on this computer and return its output.',
           'input_schema' => [
               'type' => 'object',
               'properties' => [

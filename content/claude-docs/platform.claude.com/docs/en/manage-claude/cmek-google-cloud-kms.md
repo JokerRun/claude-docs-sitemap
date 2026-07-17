@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/cmek-google-cloud-kms
-fetched_at: 2026-07-16T03:08:08.295424Z
-sha256: 4edcc0156688cd86a429f8111d0fe342f91f69dc4b993cb74a7cce6734466e54
+fetched_at: 2026-07-17T03:08:17.884216Z
+sha256: 0ea370ddaaf0e122769463408ef3a059005f1d7438f732bc0b31a35136f08dcc
 ---
 
 # Configure Google Cloud KMS for CMEK
@@ -60,7 +60,7 @@ anthropic-cmek-client-us@gcp-anthropic-cmek-clients.iam.gserviceaccount.com
   </Step>
 
   <Step title="Create the crypto key">
-    Create a symmetric key with the `ENCRYPT_DECRYPT` purpose. HSM protection is strongly recommended: Cloud KMS HSM keys are FIPS 140-2 Level 3 validated, and the cost delta over software keys is small.
+    Create a symmetric key with the `ENCRYPT_DECRYPT` purpose. Anthropic strongly recommends HSM protection: Cloud KMS HSM keys are FIPS 140-2 Level 3 validated, and the cost delta over software keys is small.
 
     ```bash
     gcloud kms keys create <your-key-name> \
@@ -108,7 +108,7 @@ anthropic-cmek-client-us@gcp-anthropic-cmek-clients.iam.gserviceaccount.com
     From the Console, select the key, open the **Permissions** panel, click **Grant access**, and add the service account with both the Cloud KMS CryptoKey Encrypter/Decrypter and Cloud KMS Viewer roles. Make sure you are on the key's permissions page, not the key ring or project, so the grant is scoped to this key only.
 
     <Frame caption="Grant the Anthropic service account both roles, scoped to the key.">
-      ![Google Cloud Grant access dialog adding the Anthropic service account with the Cloud KMS CryptoKey Encrypter/Decrypter and Cloud KMS Viewer roles.](/docs/images/cmek/gcp-grant-access.png)
+      ![Grant access dialog with the Anthropic service account assigned Cloud KMS CryptoKey Encrypter/Decrypter and Viewer roles.](/docs/images/cmek/gcp-grant-access.png)
     </Frame>
   </Step>
 
@@ -180,7 +180,8 @@ How you register the key depends on which product you use.
         curl -sS -X POST https://api.anthropic.com/v1/organizations/external_keys/ekey_<id>/validate \
           -H "x-api-key: <anthropic-admin-api-key>" \
           -H "anthropic-version: 2023-06-01" \
-          -H "content-type: application/json" -d '{}'
+          -H "content-type: application/json" \
+          -d '{}'
         ```
 
         A successful response looks like this:

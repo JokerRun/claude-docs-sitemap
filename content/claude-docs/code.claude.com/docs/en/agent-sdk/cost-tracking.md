@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/cost-tracking
-fetched_at: 2026-07-16T03:08:08.295424Z
-sha256: ccd45bf20f12a82cc19940c6b55c469c75d4399758a64662d51136aa21741275
+fetched_at: 2026-07-17T03:08:17.884216Z
+sha256: c8a0f8ab6a5d63eaca1c5ab73a1bb03f08792ac6434340230c745bc3d329caad
 ---
 
 > ## Documentation Index
@@ -289,7 +289,7 @@ Cache entries written by the SDK use a 5-minute TTL by default when you authenti
 
 To request a 1-hour TTL on cache writes, set the [`ENABLE_PROMPT_CACHING_1H`](/en/env-vars) environment variable. You can export it in your shell or container environment, or pass it through `options.env`.
 
-The following example enables 1-hour TTL for an agent running on Amazon Bedrock:
+The following example enables 1-hour TTL for an agent running on Amazon Bedrock. Because it sets `CLAUDE_CODE_USE_BEDROCK`, it requires working AWS credentials for [Amazon Bedrock](/en/amazon-bedrock); without them the query fails.
 
 <CodeGroup>
   ```python Python theme={null}

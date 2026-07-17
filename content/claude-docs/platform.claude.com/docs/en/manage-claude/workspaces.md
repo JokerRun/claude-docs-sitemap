@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/workspaces
-fetched_at: 2026-07-16T03:08:08.295424Z
-sha256: f760aa7c4dad1aa9ff43338529361ebbd28269ea0ab11f1a0e83ed15f51d92e4
+fetched_at: 2026-07-17T03:08:17.884216Z
+sha256: c1b17e494718e2104a2c1df89890bd0859a02fee5e0a08cc4ae48603ea72154c
 ---
 
 # Workspaces
@@ -45,7 +45,7 @@ Members can have different roles in each workspace, allowing fine-grained access
 
 | Role                        | Permissions                                                                                     |
 | --------------------------- | ----------------------------------------------------------------------------------------------- |
-| Workspace User              | Use the Workbench only                                                                          |
+| Workspace User              | Use the Anthropic Workbench only                                                                |
 | Workspace Limited Developer | Create and manage API keys, use the API. Cannot access session tracing views or download files. |
 | Workspace Developer         | Create and manage API keys, use the API                                                         |
 | Workspace Admin             | Full control over workspace settings and members                                                |
@@ -149,20 +149,20 @@ Programmatically manage workspaces using the [Admin API](/docs/en/manage-claude/
 
 ```bash cURL
 # Create a workspace
-curl --request POST "https://api.anthropic.com/v1/organizations/workspaces" \
-  --header "anthropic-version: 2023-06-01" \
-  --header "x-api-key: $ANTHROPIC_ADMIN_KEY" \
-  --data '{"name": "Production"}'
+curl -X POST "https://api.anthropic.com/v1/organizations/workspaces" \
+  -H "anthropic-version: 2023-06-01" \
+  -H "x-api-key: $ANTHROPIC_ADMIN_KEY" \
+  -d '{"name": "Production"}'
 
 # List workspaces
 curl "https://api.anthropic.com/v1/organizations/workspaces?limit=10&include_archived=false" \
-  --header "anthropic-version: 2023-06-01" \
-  --header "x-api-key: $ANTHROPIC_ADMIN_KEY"
+  -H "anthropic-version: 2023-06-01" \
+  -H "x-api-key: $ANTHROPIC_ADMIN_KEY"
 
 # Archive a workspace
-curl --request POST "https://api.anthropic.com/v1/organizations/workspaces/{workspace_id}/archive" \
-  --header "anthropic-version: 2023-06-01" \
-  --header "x-api-key: $ANTHROPIC_ADMIN_KEY"
+curl -X POST "https://api.anthropic.com/v1/organizations/workspaces/{workspace_id}/archive" \
+  -H "anthropic-version: 2023-06-01" \
+  -H "x-api-key: $ANTHROPIC_ADMIN_KEY"
 ```
 
 For complete parameter details and response schemas, see the [Workspaces API reference](/docs/en/api/admin-api/workspaces/get-workspace).
@@ -173,24 +173,24 @@ Add, update, or remove members from a workspace:
 
 ```bash cURL
 # Add a member to a workspace
-curl --request POST "https://api.anthropic.com/v1/organizations/workspaces/{workspace_id}/members" \
-  --header "anthropic-version: 2023-06-01" \
-  --header "x-api-key: $ANTHROPIC_ADMIN_KEY" \
-  --data '{
+curl -X POST "https://api.anthropic.com/v1/organizations/workspaces/{workspace_id}/members" \
+  -H "anthropic-version: 2023-06-01" \
+  -H "x-api-key: $ANTHROPIC_ADMIN_KEY" \
+  -d '{
     "user_id": "user_xxx",
     "workspace_role": "workspace_developer"
   }'
 
 # Update a member's role
-curl --request POST "https://api.anthropic.com/v1/organizations/workspaces/{workspace_id}/members/{user_id}" \
-  --header "anthropic-version: 2023-06-01" \
-  --header "x-api-key: $ANTHROPIC_ADMIN_KEY" \
-  --data '{"workspace_role": "workspace_admin"}'
+curl -X POST "https://api.anthropic.com/v1/organizations/workspaces/{workspace_id}/members/{user_id}" \
+  -H "anthropic-version: 2023-06-01" \
+  -H "x-api-key: $ANTHROPIC_ADMIN_KEY" \
+  -d '{"workspace_role": "workspace_admin"}'
 
 # Remove a member from a workspace
-curl --request DELETE "https://api.anthropic.com/v1/organizations/workspaces/{workspace_id}/members/{user_id}" \
-  --header "anthropic-version: 2023-06-01" \
-  --header "x-api-key: $ANTHROPIC_ADMIN_KEY"
+curl -X DELETE "https://api.anthropic.com/v1/organizations/workspaces/{workspace_id}/members/{user_id}" \
+  -H "anthropic-version: 2023-06-01" \
+  -H "x-api-key: $ANTHROPIC_ADMIN_KEY"
 ```
 
 For complete parameter details, see the [Workspace Members API reference](/docs/en/api/admin-api/workspace_members/get-workspace-member).
@@ -224,7 +224,7 @@ You can set custom spend and rate limits for each workspace to protect against o
 
 ### Setting workspace limits
 
-Workspace limits can be set lower than (but not higher than) your organization's limits:
+You can set workspace limits lower than (but not higher than) your organization's limits:
 
 * **Spend limits:** Cap monthly spending for a workspace
 * **Rate limits:** Limit requests per minute, input tokens per minute, or output tokens per minute
@@ -248,8 +248,8 @@ ending_at=2025-01-08T00:00:00Z&\
 workspace_ids[]=wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ&\
 group_by[]=workspace_id&\
 bucket_width=1d" \
-  --header "anthropic-version: 2023-06-01" \
-  --header "x-api-key: $ANTHROPIC_ADMIN_KEY"
+  -H "anthropic-version: 2023-06-01" \
+  -H "x-api-key: $ANTHROPIC_ADMIN_KEY"
 ```
 
 Usage and costs attributed to the Default Workspace have a `null` value for `workspace_id`.

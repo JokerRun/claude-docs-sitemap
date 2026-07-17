@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/deploy-compose
-fetched_at: 2026-07-16T03:08:08.295424Z
-sha256: 8c00d81528769bc3b6f370e8dfb01efe5680b6f959002141fce9888467cfe747
+fetched_at: 2026-07-17T03:08:17.884216Z
+sha256: 2ac9ba22cc68295c4e0bdc4e9cd605cc25da6d5491d4b24879df3e6d0946fe59
 ---
 
 # Deploy MCP tunnels with Docker Compose
@@ -197,7 +197,7 @@ This guide provides one reference approach using Docker Compose. You are respons
         ```
 
         <Note>
-          Workload Identity Federation tokens are short-lived (one hour by default) and expire automatically; there is nothing to revoke after setup completes.
+          Workload Identity Federation tokens are short-lived (1 hour by default) and expire automatically; there is nothing to revoke after setup completes.
         </Note>
       </Step>
 

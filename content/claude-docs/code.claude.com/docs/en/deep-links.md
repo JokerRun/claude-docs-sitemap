@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/deep-links
-fetched_at: 2026-07-14T03:07:36.677443Z
-sha256: 4f992ea129b4b9f7dd92cf922cd971a46f37bbd927c61a7e2ab525b0172da265
+fetched_at: 2026-07-17T03:08:17.884216Z
+sha256: 150cb36d510ee0ea6ba4a4c16a9efc1109034dd5ae5353ce6cc211c873ee951d
 ---
 
 > ## Documentation Index
@@ -54,6 +54,8 @@ Every deep link starts with `claude-cli://open`, which is the only path the hand
 ```text theme={null}
 claude-cli://open
 ```
+
+To try a link without putting it on a page, paste it into your browser's address bar or [open it from the shell](#open-a-link-from-the-shell).
 
 Add parameters to control where the session starts and what the prompt box contains:
 
@@ -117,7 +119,7 @@ To use this in your own runbook, replace `acme/web-gateway` with your service's 
 
 ### Open a link from the shell
 
-You can also open a deep link from a shell script, alias, or automation rather than by clicking it. Call your operating system's URL-opening command with the link as the argument.
+You can also open a deep link from a shell script, alias, or automation rather than by clicking it. Call your operating system's URL-opening command with the link as the argument. These commands rely on the handler that Claude Code [registers when you send your first prompt of an interactive session](#registration-and-supported-platforms) on the machine.
 
 <Tabs>
   <Tab title="macOS">
@@ -134,6 +136,8 @@ You can also open a deep link from a shell script, alias, or automation rather t
     ```bash theme={null}
     xdg-open "claude-cli://open?repo=acme/payments&q=review%20open%20PRs"
     ```
+
+    On success, a new terminal window opens with Claude Code running and the prompt pre-filled. If the shell reports that `xdg-open` isn't found, see [Troubleshooting](#xdg-open-is-not-found-on-linux).
   </Tab>
 
   <Tab title="Windows">
@@ -153,7 +157,7 @@ You can also open a deep link from a shell script, alias, or automation rather t
 
 ## Registration and supported platforms
 
-Claude Code registers the `claude-cli://` handler with your operating system the first time you start an interactive session on macOS, Linux, and Windows. You do not run a separate install command. Registration writes to user-level locations only:
+Claude Code registers the `claude-cli://` handler with your operating system on macOS, Linux, and Windows when you send your first prompt of an interactive session. Starting `claude` and exiting without sending a prompt doesn't register the handler. You don't run a separate install command. Registration writes to user-level locations only:
 
 | Platform | Handler location                                                                                                   |
 | -------- | ------------------------------------------------------------------------------------------------------------------ |
@@ -173,7 +177,11 @@ The VS Code extension registers its own handler at `vscode://anthropic.claude-co
 
 ### Clicking the link does nothing
 
-The handler likely is not registered yet. Start an interactive `claude` session once on that machine, exit, and try the link again. If you are on Linux without a desktop environment, `xdg-open` may have nothing to dispatch to.
+The handler likely isn't registered yet. Registration happens when you send your first prompt of an interactive session, not when the session starts. Start an interactive `claude` session on that machine, send any prompt, exit, and try the link again. If you are on Linux without a desktop environment, `xdg-open` may have nothing to dispatch to.
+
+### xdg-open is not found on Linux
+
+The `xdg-open` command is part of the `xdg-utils` package, which minimal server images, containers, and WSL distributions often leave out. Install `xdg-utils` with your distribution's package manager, for example `sudo apt install xdg-utils`, then run the command again. If the command then runs but nothing opens, `xdg-open` may have no desktop environment to dispatch to; see [Clicking the link does nothing](#clicking-the-link-does-nothing).
 
 ### The link renders as plain text instead of being clickable
 

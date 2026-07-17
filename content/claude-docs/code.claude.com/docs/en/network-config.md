@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/network-config
-fetched_at: 2026-07-14T03:07:36.677443Z
-sha256: 650670f98516b910119d09062da77948e370180acf74ff73ed5930f50ca6d12a
+fetched_at: 2026-07-17T03:08:17.884216Z
+sha256: 38f393e76df2f4565fcc7556520f44155e784555d854e3377c09458bfafed627
 ---
 
 > ## Documentation Index
@@ -106,6 +106,26 @@ export CLAUDE_CODE_CLIENT_KEY_PASSPHRASE="your-passphrase"
 ```
 
 Claude Code reads the certificate and key files at startup and re-reads them each time it applies settings, including when settings change during a session. To rotate the certificate and key, replace the files at the same paths.
+
+## Apply network settings to background agents
+
+[Background agents](/en/agent-view) don't run inside the terminal that dispatched them. A per-user supervisor process starts on demand, outlives your shell, and hosts every `claude agents`, `--bg`, and `/background` session. See [How background sessions are hosted](/en/agent-view#how-background-sessions-are-hosted). This changes how the configuration on this page reaches those sessions.
+
+### Set network variables in settings, not the shell
+
+The supervisor is one process shared by every terminal. It inherits the environment of whichever shell starts it first, and an OS-installed supervisor receives no shell environment at all. If you export a proxy, CA path, or mTLS variable only in your shell, it reaches background agents when that shell happened to cold-start the supervisor, and silently doesn't when a different shell did.
+
+Put the same variables in the `env` block of `~/.claude/settings.json` or [managed settings](/en/settings) instead. Every variable on this page can be set there, and settings are the only configuration that reaches every background session on every machine.
+
+### Configure a corporate launcher as a setting
+
+Some organizations require every Claude Code process to start through a corporate launcher that applies sandboxing, network controls, or credential injection. The supervisor and its workers start Claude Code from a fixed path rather than by looking up `claude` on `PATH`, so every background agent bypasses a wrapper you place earlier on `PATH`.
+
+Set the [`processWrapper`](/en/settings#available-settings) setting to prefix the supervisor, its workers, and the other background processes listed under [What the launcher covers](/en/corporate-launcher#what-the-launcher-covers) with your launcher. The equivalent [`CLAUDE_CODE_PROCESS_WRAPPER`](/en/env-vars) environment variable takes precedence when both are set, and it is subject to the same rule: deliver it through managed settings or `~/.claude/settings.json`, not a shell export. [Run Claude Code behind a corporate launcher](/en/corporate-launcher) covers the contract the launcher must satisfy, what it does and doesn't reach, and how to roll it out.
+
+<Note>
+  An already-running supervisor keeps the launch configuration it started with. After deploying the launcher setting, run [`claude daemon stop --any`](/en/agent-view#the-supervisor-process) so the next `claude agents` or `--bg` starts a supervisor that honors it. An installed service takes `claude daemon stop` without `--any`.
+</Note>
 
 ## Network access requirements
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai
-fetched_at: 2026-07-16T03:08:08.295424Z
-sha256: cd4635f700eccbae9652cf355ee16d043dc54ce4b5bb7e0b004253c40ed054db
+fetched_at: 2026-07-17T03:08:17.884216Z
+sha256: 9de8ee1cf81462cd39b3398d4f5efd6e45252a17cb89d5de3143e01b450f52a3
 ---
 
 # Claude on Google Cloud
@@ -337,7 +337,7 @@ Data handling for this offering is governed by Google Cloud. For details, see [A
 
 ## Activity logging
 
-Agent Platform provides a [request-response logging service](https://cloud.google.com/vertex-ai/generative-ai/docs/multimodal/request-response-logging) that allows customers to log the prompts and completions associated with your usage.
+Agent Platform provides a [request-response logging service](https://cloud.google.com/vertex-ai/generative-ai/docs/multimodal/request-response-logging) that allows you to log the prompts and completions associated with your usage.
 
 Anthropic recommends that you log your activity on at least a 30-day rolling basis to understand your activity and investigate any potential misuse.
 

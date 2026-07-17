@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/search-results
-fetched_at: 2026-07-16T03:08:08.295424Z
-sha256: c1d8975359e635149e8b7f3622d21cdeaeb743af3d13e027660eb6be29a6f28e
+fetched_at: 2026-07-17T03:08:17.884216Z
+sha256: d22da877f52364788d76df484cbdc53ee4c948a6abc3eb56e71a220d08d46896
 ---
 
 # Search results
@@ -85,7 +85,7 @@ Search results use the following structure:
 
 | Field           | Type   | Description                                                   |
 | --------------- | ------ | ------------------------------------------------------------- |
-| `citations`     | object | Citation configuration with `enabled` boolean field           |
+| `citations`     | object | Citation configuration with `enabled` Boolean field           |
 | `cache_control` | object | Cache control settings (for example, `{"type": "ephemeral"}`) |
 
 Each item in the `content` array must be a text block with:
@@ -490,6 +490,8 @@ The most powerful use case is returning search results from your custom tools. T
   // ...
   import com.anthropic.models.messages.SearchResultBlockParam;
   // ...
+  public class SearchKnowledgeBaseExample {
+      public static void main(String[] args) {
           AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
           Tool knowledgeBaseTool = Tool.builder()
@@ -545,7 +547,8 @@ The most powerful use case is returning search results from your custom tools. T
               System.out.println(finalResponse);
           });
       }
-  // ...
+
+      private static List<ContentBlockParam> searchKnowledgeBase(String query) {
           return List.of(
               ContentBlockParam.ofSearchResult(
                   SearchResultBlockParam.builder()
@@ -573,6 +576,7 @@ The most powerful use case is returning search results from your custom tools. T
               )
           );
       }
+  }
   ```
 
   ```php PHP
@@ -758,7 +762,6 @@ You can also provide search results directly in user messages. This is useful fo
 
 <CodeGroup>
   ```bash cURL
-  #!/bin/sh
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
@@ -941,67 +944,56 @@ You can also provide search results directly in user messages. This is useful fo
   ```
 
   ```csharp C#
-  using System;
-  using System.Threading.Tasks;
-  using Anthropic;
-  using Anthropic.Models.Messages;
+  AnthropicClient client = new();
 
-  class Program
+  var parameters = new MessageCreateParams
   {
-      static async Task Main(string[] args)
-      {
-          AnthropicClient client = new();
-
-          var parameters = new MessageCreateParams
+      Model = Model.ClaudeOpus4_8,
+      MaxTokens = 1024,
+      Messages =
+      [
+          new()
           {
-              Model = Model.ClaudeOpus4_8,
-              MaxTokens = 1024,
-              Messages =
+              Role = Role.User,
+              Content =
               [
-                  new()
+                  new SearchResultBlockParam
                   {
-                      Role = Role.User,
+                      Source = "https://docs.company.com/api-reference",
+                      Title = "API Reference - Authentication",
                       Content =
                       [
-                          new SearchResultBlockParam
-                          {
-                              Source = "https://docs.company.com/api-reference",
-                              Title = "API Reference - Authentication",
-                              Content =
-                              [
-                                  new TextBlockParam
-                                  {
-                                      Text = "All API requests must include an API key in the Authorization header. Keys can be generated from the dashboard. Rate limits: 1000 requests per hour for standard tier, 10000 for premium."
-                                  }
-                              ],
-                              Citations = new CitationsConfigParam { Enabled = true }
-                          },
-                          new SearchResultBlockParam
-                          {
-                              Source = "https://docs.company.com/quickstart",
-                              Title = "Getting Started Guide",
-                              Content =
-                              [
-                                  new TextBlockParam
-                                  {
-                                      Text = "To get started: 1) Sign up for an account, 2) Generate an API key from the dashboard, 3) Install our SDK using pip install company-sdk, 4) Initialize the client with your API key."
-                                  }
-                              ],
-                              Citations = new CitationsConfigParam { Enabled = true }
-                          },
                           new TextBlockParam
                           {
-                              Text = "Based on these search results, how do I authenticate API requests and what are the rate limits?"
+                              Text = "All API requests must include an API key in the Authorization header. Keys can be generated from the dashboard. Rate limits: 1000 requests per hour for standard tier, 10000 for premium."
                           }
-                      ]
+                      ],
+                      Citations = new CitationsConfigParam { Enabled = true }
+                  },
+                  new SearchResultBlockParam
+                  {
+                      Source = "https://docs.company.com/quickstart",
+                      Title = "Getting Started Guide",
+                      Content =
+                      [
+                          new TextBlockParam
+                          {
+                              Text = "To get started: 1) Sign up for an account, 2) Generate an API key from the dashboard, 3) Install our SDK using pip install company-sdk, 4) Initialize the client with your API key."
+                          }
+                      ],
+                      Citations = new CitationsConfigParam { Enabled = true }
+                  },
+                  new TextBlockParam
+                  {
+                      Text = "Based on these search results, how do I authenticate API requests and what are the rate limits?"
                   }
               ]
-          };
+          }
+      ]
+  };
 
-          var message = await client.Messages.Create(parameters);
-          Console.WriteLine(message);
-      }
-  }
+  var message = await client.Messages.Create(parameters);
+  Console.WriteLine(message);
   ```
 
   ```go Go
@@ -1043,6 +1035,8 @@ You can also provide search results directly in user messages. This is useful fo
   // ...
   import com.anthropic.models.messages.SearchResultBlockParam;
   // ...
+  public class SearchResultExample {
+      public static void main(String[] args) {
           AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
           MessageCreateParams params = MessageCreateParams.builder()
@@ -1083,6 +1077,8 @@ You can also provide search results directly in user messages. This is useful fo
 
           Message response = client.messages().create(params);
           System.out.println(response);
+      }
+  }
   ```
 
   ```php PHP

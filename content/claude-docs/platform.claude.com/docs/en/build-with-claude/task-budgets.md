@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/task-budgets
-fetched_at: 2026-07-16T03:08:08.295424Z
-sha256: 7b81f74554c6dc6a2b628f8ae4af5b7f82d5587605bbf6ad11a5ea2b07f6f390
+fetched_at: 2026-07-17T03:08:17.884216Z
+sha256: 21175b866336cbec3d5fdb66a948aa3540cb9bd8548c066b8f77e672d7d712bb
 ---
 
 # Task budgets
@@ -165,29 +165,27 @@ Add `task_budget` to `output_config` and include the beta header:
   ```
 
   ```java Java
-  void main() {
-      AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+  AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-      MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_4_8)
-          .maxTokens(128000L)
-          .addUserMessage("Review the codebase and propose a refactor plan.")
-          .outputConfig(BetaOutputConfig.builder()
-              .effort(BetaOutputConfig.Effort.HIGH)
-              .taskBudget(BetaTokenTaskBudget.builder().total(64000L).build())
-              .build())
-          .addBeta("task-budgets-2026-03-13")
-          .build();
+  MessageCreateParams params = MessageCreateParams.builder()
+      .model(Model.CLAUDE_OPUS_4_8)
+      .maxTokens(128000L)
+      .addUserMessage("Review the codebase and propose a refactor plan.")
+      .outputConfig(BetaOutputConfig.builder()
+          .effort(BetaOutputConfig.Effort.HIGH)
+          .taskBudget(BetaTokenTaskBudget.builder().total(64000L).build())
+          .build())
+      .addBeta("task-budgets-2026-03-13")
+      .build();
 
-      BetaMessageAccumulator accumulator = BetaMessageAccumulator.create();
-      try (StreamResponse<BetaRawMessageStreamEvent> stream =
-              client.beta().messages().createStreaming(params)) {
-          stream.stream().forEach(accumulator::accumulate);
-      }
-
-      BetaMessage response = accumulator.message();
-      IO.println(response.usage());
+  BetaMessageAccumulator accumulator = BetaMessageAccumulator.create();
+  try (StreamResponse<BetaRawMessageStreamEvent> stream =
+          client.beta().messages().createStreaming(params)) {
+      stream.stream().forEach(accumulator::accumulate);
   }
+
+  BetaMessage response = accumulator.message();
+  IO.println(response.usage());
   ```
 
   ```php PHP
@@ -297,7 +295,7 @@ Claude thinks, then emits a tool call and stops with `stop_reason: "tool_use"`:
 
 Suppose this assistant turn (thinking plus the tool call) totals 5,000 generated tokens. The countdown Claude saw during generation ended near `remaining` ≈ 95,000.
 
-**Turn 2.** Your client executes the tool, then resends the full history with the tool result appended:
+**Turn 2.** Your client runs the tool, then resends the full history with the tool result appended:
 
 ```json
 {
@@ -361,7 +359,7 @@ If your agentic loop compacts or rewrites context between requests (for example,
   ```
 
   ```typescript TypeScript
-  const output_config = {
+  const outputConfig = {
     effort: "high",
     task_budget: {
       type: "tokens",
@@ -524,19 +522,17 @@ Run a representative sample of tasks **without** `task_budget` set and record th
   ```
 
   ```java Java
-  void main() {
-      AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+  AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-      MessageCreateParams params = MessageCreateParams.builder()
-          .model(Model.CLAUDE_OPUS_4_8)
-          .maxTokens(4096L)
-          .addUserMessage("Review the codebase and propose a refactor plan.")
-          .build();
+  MessageCreateParams params = MessageCreateParams.builder()
+      .model(Model.CLAUDE_OPUS_4_8)
+      .maxTokens(4096L)
+      .addUserMessage("Review the codebase and propose a refactor plan.")
+      .build();
 
-      Message response = client.messages().create(params);
-      // Sum outputTokens (text + thinking + tool calls) across every request in your loop.
-      IO.println(response.usage().outputTokens());
-  }
+  Message response = client.messages().create(params);
+  // Sum outputTokens (text + thinking + tool calls) across every request in your loop.
+  IO.println(response.usage().outputTokens());
   ```
 
   ```php PHP

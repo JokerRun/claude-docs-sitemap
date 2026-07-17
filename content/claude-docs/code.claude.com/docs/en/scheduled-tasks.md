@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/scheduled-tasks
-fetched_at: 2026-07-16T03:08:08.295424Z
-sha256: 03ec9c3326f3e75c2211fbdcfe52c4b122539d7a34b913b3810b351602f43cd7
+fetched_at: 2026-07-17T03:08:17.884216Z
+sha256: c069da72de29cece78a9f3a69638218028b4fe0fec38bca092a4ad989f2f72cf
 ---
 
 > ## Documentation Index
@@ -52,7 +52,7 @@ You can also pass a skill as the prompt, for example `/loop 20m /review-pr 1234`
 * built-in commands such as `/permissions`, `/model`, or `/clear`
 * skills marked [`disable-model-invocation: true`](/en/skills#frontmatter-reference)
 * skills withheld from Claude by a [`skillOverrides`](/en/skills#override-skill-visibility-from-settings) setting or a `Skill` [deny rule](/en/skills#restrict-claude’s-skill-access)
-* [MCP prompts](/en/mcp#use-mcp-prompts-as-commands) such as `/mcp__github__list_prs`; skills an MCP server exposes still run
+* [MCP prompts](/en/mcp#use-mcp-prompts-as-commands) such as `/mcp__github__list_prs`
 
 ### Run on a fixed interval
 

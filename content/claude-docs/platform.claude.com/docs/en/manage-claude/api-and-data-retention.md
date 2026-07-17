@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/api-and-data-retention
-fetched_at: 2026-07-16T03:08:08.295424Z
-sha256: 2c94c54685276716414fe21ebb5098af232b8891dfcd7ae97c9b75fa00b78018
+fetched_at: 2026-07-17T03:08:17.884216Z
+sha256: 674288ee80bc4fae2facebd062bdec82d92ef2e665a83ade313f06a39421f7a7
 ---
 
 # API and data retention
@@ -130,7 +130,7 @@ Whichever path you use, confirm which features are supported in the [feature eli
 
 ## Model-specific data retention requirements
 
-Claude Fable 5 and Claude Mythos 5 are designated [Covered Models](https://support.claude.com/en/articles/15425695) and require 30-day data retention; ZDR is therefore not available for either model. On the Claude API, requests to Claude Fable 5 from an organization whose data retention configuration does not meet this requirement return a `400 invalid_request_error`:
+Claude Fable 5 and Claude Mythos 5 are designated Covered Models (see the [Covered Models support article](https://support.claude.com/en/articles/15425695)) and require 30-day data retention; ZDR is therefore not available for either model. On the Claude API, requests to Claude Fable 5 from an organization whose data retention configuration does not meet this requirement return a `400 invalid_request_error`:
 
 ```json
 {
@@ -288,5 +288,5 @@ Even with ZDR or HIPAA arrangements in place, Anthropic may retain data where re
 * [Structured outputs](/docs/en/build-with-claude/structured-outputs)
 * [Prompt caching](/docs/en/build-with-claude/prompt-caching)
 * [Batch processing](/docs/en/build-with-claude/batch-processing)
-* [Files API](/docs/en/api/beta/files/upload)
+* [Files API reference](/docs/en/api/beta/files/upload)
 * [Trust Center](https://trust.anthropic.com/resources)

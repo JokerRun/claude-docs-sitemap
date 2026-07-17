@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/files
-fetched_at: 2026-07-16T03:08:08.295424Z
-sha256: 67f36ce2e886fbe4aca0961f785741dd1333ee9f75788ddc6698379496a523fc
+fetched_at: 2026-07-17T03:08:17.884216Z
+sha256: 6fe25477b732cd4d54bd10829ca3d18d789af0efc59b3307a733871fe20d63f7
 ---
 
 # Adding files
@@ -301,7 +301,6 @@ Mount multiple files by adding entries to the `resources` array:
   	{OfFile: &anthropic.BetaManagedAgentsFileResourceParams{Type: "file", FileID: "file_def456", MountPath: anthropic.String("/workspace/config.json")}},
   	{OfFile: &anthropic.BetaManagedAgentsFileResourceParams{Type: "file", FileID: "file_ghi789", MountPath: anthropic.String("/workspace/src/main.py")}},
   }
-  _ = resources
   ```
 
   ```java Java
@@ -618,11 +617,12 @@ Use the [Files API](/docs/en/build-with-claude/files) to list files scoped to a 
   	panic(err)
   }
   defer resp.Body.Close()
-  fileContent, err := io.ReadAll(resp.Body)
+  out, err := os.Create("output.txt")
   if err != nil {
   	panic(err)
   }
-  if err := os.WriteFile("output.txt", fileContent, 0644); err != nil {
+  defer out.Close()
+  if _, err := io.Copy(out, resp.Body); err != nil {
   	panic(err)
   }
   ```

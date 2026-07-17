@@ -333,6 +333,10 @@
 <priority>0.8</priority>
 </url>
 <url>
+<loc>https://platform.claude.com/docs/en/managed-agents/migration</loc>
+<priority>0.8</priority>
+</url>
+<url>
 <loc>https://platform.claude.com/docs/en/managed-agents/agent-setup</loc>
 <priority>0.8</priority>
 </url>

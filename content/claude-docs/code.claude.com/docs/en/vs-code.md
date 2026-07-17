@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/vs-code
-fetched_at: 2026-07-16T03:08:08.295424Z
-sha256: e732a9dd2bc358ed409dc0a3d39b311cc67f476e3e2737ec64ed45c16c5e1772
+fetched_at: 2026-07-17T03:08:17.884216Z
+sha256: bf5fa414f7abe2349a445fbc8ba9a62a805de64e349b5dff7b62a94c897e7b2f
 ---
 
 > ## Documentation Index
@@ -281,6 +281,8 @@ Invoke the handler with your operating system's URL opener.
     ```bash theme={null}
     xdg-open "vscode://anthropic.claude-code/open"
     ```
+
+    The `xdg-open` command comes from the `xdg-utils` package. If the shell reports it isn't found, see [xdg-open is not found on Linux](/en/deep-links#xdg-open-is-not-found-on-linux).
   </Tab>
 
   <Tab title="Windows">

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/skills
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: 3730d16960a0b924be1f204b7eab3f217688209d8c136cfd3ccf8bddd87f6ab5
+fetched_at: 2026-07-17T03:08:17.884216Z
+sha256: 910b5141e6b83062d3fbc511250700458fc96f42b0ba6b3c4618776fd0d466f5
 ---
 
 # Skills
@@ -11,7 +11,7 @@ Attach reusable, filesystem-based expertise to your agent for domain-specific wo
 
 ---
 
-Skills are reusable, filesystem-based resources that give your agent domain-specific expertise: workflows, context, and best practices that turn a general-purpose agent into a specialist. Unlike prompts (conversation-level instructions for one-off tasks), skills load on demand, only impacting the context window when needed.
+Skills are reusable, filesystem-based resources that give your agent domain-specific expertise: workflows, context, and best practices that turn a general-purpose agent into a specialist. Each skill you add incurs a modest cost on the session's context window, adding instructions and metadata that help the model use the skill. Learn more in the [Agent Skills](/docs/en/agents-and-tools/agent-skills/overview) overview.
 
 You can attach two types of skill. Both work the same way: your agent invokes them automatically when they are relevant to the task.
 

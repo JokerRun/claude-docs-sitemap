@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/quickstart
-fetched_at: 2026-07-04T03:09:59.852291Z
-sha256: 441ef18b1db89ccf18970d3148a9b346bdb412fc62624ce7b22ddfbfc1fe5cf1
+fetched_at: 2026-07-17T03:08:17.884216Z
+sha256: 51b023fe4f64611ca6a697d7a5190a56980e06bfa924aad5ccca97ff463de8a0
 ---
 
 > ## Documentation Index
@@ -88,6 +88,14 @@ To install Claude Code, use one of the following methods:
 
 You can also install with [apt, dnf, or apk](/en/setup#install-with-linux-package-managers) on Debian, Fedora, RHEL, and Alpine.
 
+To confirm the installation worked, run:
+
+```bash theme={null}
+claude --version
+```
+
+The command prints a version number followed by `(Claude Code)`.
+
 ## Step 2: Log in to your account
 
 Claude Code requires an account to use. Start an interactive session with the `claude` command and you'll be prompted to log in on first use:
@@ -119,6 +127,8 @@ Open your terminal in any project directory and start Claude Code:
 cd /path/to/your/project
 claude
 ```
+
+Replace `/path/to/your/project` with the path to the project you want to work on.
 
 You'll see the Claude Code prompt with the version, current model, and working directory shown above it. Type `/help` for available commands or `/resume` to continue a previous conversation.
 
@@ -178,11 +188,11 @@ Claude Code will:
 
 1. Find the appropriate file
 2. Show you the proposed changes
-3. Ask for your approval
+3. Ask for your approval before changing files, depending on your permission mode
 4. Make the edit
 
 <Note>
-  Claude Code always asks for permission before modifying files. You can approve individual changes or enable "Accept all" mode for a session.
+  Whether Claude Code asks before changing files depends on your [permission mode](/en/permission-modes). In default mode, Claude asks for approval before each change. Press `Shift+Tab` to cycle through modes: `acceptEdits` auto-approves file edits, and `plan` lets Claude propose changes without editing. Some accounts also have an `auto` mode that runs a background safety check and blocks risky actions, returning to prompts only after repeated blocks.
 </Note>
 
 ## Step 6: Use Git with Claude Code
@@ -282,11 +292,11 @@ Here are the most important commands for daily use. Shell commands run from your
 
 **Session commands**
 
-| Command           | What it does               | Example  |
-| ----------------- | -------------------------- | -------- |
-| `/clear`          | Clear conversation history | `/clear` |
-| `/help`           | Show available commands    | `/help`  |
-| `/exit` or Ctrl+D | Exit Claude Code           | `/exit`  |
+| Command                 | What it does               | Example  |
+| ----------------------- | -------------------------- | -------- |
+| `/clear`                | Clear conversation history | `/clear` |
+| `/help`                 | Show available commands    | `/help`  |
+| `/exit` or Ctrl+D twice | Exit Claude Code           | `/exit`  |
 
 See the [CLI reference](/en/cli-reference) for the complete list of shell commands and the [commands reference](/en/commands) for the complete list of session commands.
 

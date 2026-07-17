@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/server-managed-settings
-fetched_at: 2026-07-16T03:08:08.295424Z
-sha256: b6c26aa5f09fcf222b174d50550f3edc7c6b4dfa01c110ea906c108164c5f410
+fetched_at: 2026-07-17T03:08:17.884216Z
+sha256: e0142110b7466599a9522f03541913dd5c0d2896746e3ed6c36dd96e9c2b6499
 ---
 
 > ## Documentation Index
@@ -221,6 +221,8 @@ Certain settings that could pose security risks require explicit user approval b
 * **Managed CLAUDE.md content**: a `claudeMd` value delivered through managed settings
 
 When these settings are present, users see a security dialog explaining what is being configured. Users must approve to proceed. If a user rejects the settings, Claude Code exits.
+
+If an interactive session can't show the dialog, Claude Code doesn't apply the delivered settings and keeps the last-approved settings; the dialog appears in the next session that can show it. Requires Claude Code v2.1.211 or later.
 
 <Note>
   A non-interactive run, such as `claude -p` or an Agent SDK session, can't show the dialog. When the delivered settings would require approval, Claude Code applies them for that run only: it doesn't record them as approved or write them to the [local cache](#fetch-and-caching-behavior), and the next interactive session shows the dialog. Until a user approves in an interactive session, each non-interactive run fetches the settings again at startup. Before v2.1.207, a non-interactive run saved the settings as approved, so later interactive sessions never showed the dialog for them.

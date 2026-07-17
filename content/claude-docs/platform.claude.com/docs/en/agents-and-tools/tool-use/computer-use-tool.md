@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool
-fetched_at: 2026-07-16T03:08:08.295424Z
-sha256: 08a2a3cbcd42bfcc559580e45c0c75f77d9d581128a8c52e070be5f38fb08baa
+fetched_at: 2026-07-17T03:08:17.884216Z
+sha256: 53f6aa431935c3aa083f8604dbffaf028fbb18a3f171ab0e055235cde261a9d7
 ---
 
 # Computer use tool
@@ -2150,7 +2150,7 @@ Because your application controls where and how computer use data is stored, com
 
 Computer use follows the standard [tool use pricing](/docs/en/agents-and-tools/tool-use/overview#pricing). When using the computer use tool:
 
-**System prompt overhead:** The computer use beta adds 466-499 tokens to the system prompt
+**System prompt overhead:** The computer use beta adds 466–499 tokens to the system prompt
 
 **Computer use tool token usage:**
 

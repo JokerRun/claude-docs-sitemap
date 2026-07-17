@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/prompt-caching
-fetched_at: 2026-07-16T03:08:08.295424Z
-sha256: 8beeca89933b1cb2321b086c94c76e7cba29cf3344b3ef90351a29d9f2c38f48
+fetched_at: 2026-07-17T03:08:17.884216Z
+sha256: 139d78fc94d5b8f79580594557fbefb7e859bbadf5906084d2c258d5e7021db8
 ---
 
 > ## Documentation Index
@@ -54,8 +54,10 @@ Caching happens server-side, in whichever infrastructure serves your model. Wher
 
 * **API key, Claude subscription, or [Claude Platform on AWS](/en/claude-platform-on-aws)**: the cache lives in Anthropic's infrastructure, accessed through the [Claude API](https://platform.claude.com/docs)
 * **Amazon Bedrock or Google Cloud's Agent Platform**: the cache lives in your cloud provider's serving infrastructure
-* **Microsoft Foundry**: requests route to Anthropic's infrastructure
+* **Microsoft Foundry**: depends on the deployment's [hosting option](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry#hosting-options). Hosted on Azure deployments are served on Azure infrastructure; Hosted on Anthropic deployments are served on Anthropic's infrastructure
 * **Custom `ANTHROPIC_BASE_URL` or [LLM gateway](/en/llm-gateway)**: the cache lives wherever your requests are forwarded, and whether caching works depends on the gateway
+
+System context that Claude Code appends mid-conversation, such as file-change notices, is cached on Amazon Bedrock and its [Mantle endpoint](/en/amazon-bedrock#use-the-mantle-endpoint), Google Cloud's Agent Platform, and Microsoft Foundry the same way it is on the Claude API. {/* min-version: 2.1.211 */}Before v2.1.211, these providers billed that appended system context as uncached input tokens on every request.
 
 For what each provider stores and processes, see [data usage](/en/data-usage). Wherever the cache lives, entries expire after a period of inactivity, and [Cache lifetime](#cache-lifetime) below covers the TTL and how to extend it.
 

@@ -1,11 +1,11 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/handle-streaming-refusals
-fetched_at: 2026-07-16T03:08:08.295424Z
-sha256: d2f16e081493f09575d5aee1c9ccb75fcccb30c521d2d7b3c22a8070b320d4a7
+fetched_at: 2026-07-17T03:08:17.884216Z
+sha256: a6a3a7c609eca4413ebd16e1a3aff819e4343cd80517e96f96e7452e1089472c
 ---
 
-# Streaming refusals
+# Handle streaming refusals
 
 Detect and handle refusal stop reasons in streaming responses, and retry refused requests on a fallback model.
 
@@ -144,49 +144,36 @@ Here's how to detect and handle streaming refusals in your application:
   ```
 
   ```csharp C#
-  using System;
-  using System.Collections.Generic;
-  using System.Threading.Tasks;
-  using Anthropic;
-  using Anthropic.Models.Messages;
+  List<Message> messages = new();
+  AnthropicClient client = new();
 
-  class Program
+  var parameters = new MessageCreateParams
   {
-      private static List<Message> messages = new();
+      Model = Model.ClaudeOpus4_8,
+      MaxTokens = 1024,
+      Messages = [new() { Role = Role.User, Content = "Hello" }]
+  };
 
-      static async Task Main(string[] args)
+  try
+  {
+      await foreach (var msg in client.Messages.CreateStreaming(parameters))
       {
-          AnthropicClient client = new();
-
-          var parameters = new MessageCreateParams
+          if (msg.Type == "message_delta" && msg.Delta?.StopReason == "refusal")
           {
-              Model = Model.ClaudeOpus4_8,
-              MaxTokens = 1024,
-              Messages = [new() { Role = Role.User, Content = "Hello" }]
-          };
-
-          try
-          {
-              await foreach (var msg in client.Messages.CreateStreaming(parameters))
-              {
-                  if (msg.Type == "message_delta" && msg.Delta?.StopReason == "refusal")
-                  {
-                      ResetConversation();
-                      break;
-                  }
-              }
-          }
-          catch (Exception e)
-          {
-              Console.WriteLine($"Error: {e.Message}");
+              ResetConversation();
+              break;
           }
       }
+  }
+  catch (Exception e)
+  {
+      Console.WriteLine($"Error: {e.Message}");
+  }
 
-      private static void ResetConversation()
-      {
-          messages.Clear();
-          Console.WriteLine("Conversation reset due to refusal");
-      }
+  void ResetConversation()
+  {
+      messages.Clear();
+      Console.WriteLine("Conversation reset due to refusal");
   }
   ```
 
