@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/structured-outputs
-fetched_at: 2026-07-08T03:08:53.943475Z
-sha256: 97186cb931ab8c06727def2958ae162f14233b933453d22c986357f77a772ce8
+fetched_at: 2026-07-18T03:07:08.309502Z
+sha256: b783c1fdd396bc2f42577ed988984550519e606f6f8805e154b663a03df62138
 ---
 
 # Structured outputs
@@ -23,7 +23,7 @@ You can use these features independently or together in the same request.
 </Note>
 
 <Note>
-  This feature qualifies for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/api-and-data-retention) with limited technical retention. See the [Data retention](#data-retention) section for details on what is retained and why.
+  For how zero data retention (ZDR) applies to this feature, see [API and data retention](/docs/en/manage-claude/api-and-data-retention).
 </Note>
 
 <Tip>

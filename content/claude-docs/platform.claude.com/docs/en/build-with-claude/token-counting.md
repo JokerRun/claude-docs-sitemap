@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/token-counting
-fetched_at: 2026-07-17T03:08:17.884216Z
-sha256: b38eaf569086d0f98356990cf83ccf99e8a7e384da790865e7c27c361cad6a28
+fetched_at: 2026-07-18T03:07:08.309502Z
+sha256: bd127751455e0728c9af92b82edf33ec640872e5b8b651e495b05d6aaf024117
 ---
 
 # Token counting
@@ -18,7 +18,7 @@ Token counting lets you determine the number of tokens in a message before you s
 * Optimize prompts to a specific length
 
 <Note>
-  This feature is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/api-and-data-retention). When your organization has a ZDR arrangement, data sent through this feature is not stored after the API response is returned.
+  For how zero data retention (ZDR) applies to this feature, see [API and data retention](/docs/en/manage-claude/api-and-data-retention).
 </Note>
 
 ***

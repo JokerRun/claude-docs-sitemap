@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/text-editor-tool
-fetched_at: 2026-07-17T03:08:17.884216Z
-sha256: c1fcef87b3e7681d72f831d49bf520f45d4c5d584c9df8862f26c180abfdc8f7
+fetched_at: 2026-07-18T03:07:08.309502Z
+sha256: 0b3a4b59b6383801c64f477009d9005eb9713ba7809e69673eab97f72105d4da
 ---
 
 # Text editor tool
@@ -12,7 +12,7 @@ Give Claude the Anthropic-defined text editor tool to view, create, and edit fil
 ---
 
 <Note>
-  This feature is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/api-and-data-retention). When your organization has a ZDR arrangement, data sent through this feature is not stored after the API response is returned.
+  For how zero data retention (ZDR) applies to this feature, see [API and data retention](/docs/en/manage-claude/api-and-data-retention).
 </Note>
 
 Claude can use an Anthropic-schema text editor tool to view and modify text files, helping you debug, fix, and improve your code or other text documents. This allows Claude to directly interact with your files, providing hands-on assistance rather than just suggesting changes.

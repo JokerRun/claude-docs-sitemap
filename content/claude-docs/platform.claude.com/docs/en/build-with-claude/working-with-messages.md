@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/working-with-messages
-fetched_at: 2026-07-17T03:08:17.884216Z
-sha256: 8ef48539595b2f2c1a327a2cca4511d9392c973deb250a71d8d21426410e9744
+fetched_at: 2026-07-18T03:07:08.309502Z
+sha256: a820f26545380c8066b1dd15178d3b021ba05cb3798c33ac4597f6599ccf5091
 ---
 
 # Using the Messages API
@@ -22,7 +22,7 @@ Anthropic offers two ways to build with Claude, each suited to different use cas
 This guide covers common patterns for working with the Messages API, including basic requests, multi-turn conversations, prefill techniques, and vision capabilities. For complete API specifications, see the [Messages API reference](/docs/en/api/messages/create).
 
 <Note>
-  This feature is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/api-and-data-retention). When your organization has a ZDR arrangement, data sent through this feature is not stored after the API response is returned.
+  For how zero data retention (ZDR) applies to this feature, see [API and data retention](/docs/en/manage-claude/api-and-data-retention).
 </Note>
 
 ## Basic request and response

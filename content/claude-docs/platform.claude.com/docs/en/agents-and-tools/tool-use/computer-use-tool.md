@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool
-fetched_at: 2026-07-17T03:08:17.884216Z
-sha256: 53f6aa431935c3aa083f8604dbffaf028fbb18a3f171ab0e055235cde261a9d7
+fetched_at: 2026-07-18T03:07:08.309502Z
+sha256: 33aaf1e4ff4c9584521aade0caef415a832cc99fdc3bb8d1f086d222627eb529
 ---
 
 # Computer use tool
@@ -23,7 +23,7 @@ Claude can interact with computer environments through the computer use tool, wh
 </Note>
 
 <Note>
-  This feature is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/api-and-data-retention). When your organization has a ZDR arrangement, data sent through this feature is not stored after the API response is returned.
+  For how zero data retention (ZDR) applies to this feature, see [API and data retention](/docs/en/manage-claude/api-and-data-retention).
 </Note>
 
 ## Overview

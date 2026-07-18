@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/fast-mode
-fetched_at: 2026-07-17T03:08:17.884216Z
-sha256: f177473a2ae03faa1d557bf4b3c3886cdd1b6b174272f547abd6022fbf637ba2
+fetched_at: 2026-07-18T03:07:08.309502Z
+sha256: 165899df7d597487fae622991c7541e5a6874e512491e2f46e9f30759c0710d1
 ---
 
 # Fast mode (research preview)
@@ -18,7 +18,7 @@ Fast mode delivers up to 2.5x higher output tokens per second from Claude Opus 4
 </Note>
 
 <Note>
-  This feature is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/api-and-data-retention). When your organization has a ZDR arrangement, data sent through this feature is not stored after the API response is returned.
+  For how zero data retention (ZDR) applies to this feature, see [API and data retention](/docs/en/manage-claude/api-and-data-retention).
 </Note>
 
 ## Supported models

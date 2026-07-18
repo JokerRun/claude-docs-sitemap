@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/model-config
-fetched_at: 2026-07-17T03:08:17.884216Z
-sha256: 14da56fcf4a5a07bd768603232bb71b616952e16c7e75d5adc1a96ca8c898ef4
+fetched_at: 2026-07-18T03:07:08.309502Z
+sha256: 62f788133e4c991a53bf1580ed9f861600b8bfeb4de98ade03be0705b87e6b85
 ---
 
 > ## Documentation Index
@@ -504,7 +504,7 @@ The environment variable takes precedence over all other methods, then your conf
 
 The `effortLevel` key in [managed settings](/en/settings#settings-precedence) is a starting default, not enforcement: users can change it for a session with `/effort` or `--effort`, and the managed value re-asserts as the default in new sessions.
 
-The effort slider appears in `/model` when a supported model is selected. The current effort level is also displayed next to the logo and spinner, for example "with low effort", so you can confirm which setting is active without opening `/model`.
+The effort slider appears in `/model` when a supported model is selected. The current effort level is also shown in the session header next to the model name, for example "with low effort", so you can confirm which setting is active without opening `/model`. The footer also briefly shows the effort level at startup and when it changes.
 
 #### Adaptive reasoning and fixed thinking budgets
 
@@ -548,7 +548,7 @@ If your account supports 1M context, the option appears in the `/model` picker i
 
 You can also use the `[1m]` suffix with model aliases or full model names:
 
-```bash theme={null}
+```text theme={null}
 # Use the opus[1m] or sonnet[1m] alias
 /model opus[1m]
 /model sonnet[1m]

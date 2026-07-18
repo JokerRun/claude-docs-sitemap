@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/programmatic-tool-calling
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: e5a3fe9e07abfe840049582fabe29485dfe2966b7204006c5d9a392d576ad6c9
+fetched_at: 2026-07-18T03:07:08.309502Z
+sha256: a86fd71b2d62086c1716182a872086d85e312f650cec7925747a40957081fe7c
 ---
 
 # Programmatic tool calling
@@ -24,7 +24,7 @@ Consider checking budget compliance across 20 employees: the traditional approac
 </Note>
 
 <Note>
-  This feature is **not** eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/api-and-data-retention). Data is retained according to the feature's standard retention policy.
+  For how zero data retention (ZDR) applies to this feature, see [API and data retention](/docs/en/manage-claude/api-and-data-retention).
 </Note>
 
 ## Model compatibility

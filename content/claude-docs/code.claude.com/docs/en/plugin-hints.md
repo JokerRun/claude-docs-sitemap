@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugin-hints
-fetched_at: 2026-07-16T03:08:08.295424Z
-sha256: a82029e41c6c0b849c67c8b193e8e4a233bc7ca1a9b96f50259bda9ccd9eaadf
+fetched_at: 2026-07-18T03:07:08.309502Z
+sha256: 02d5a1ce0d92f37ccb5795f5805376f79116d4e21bd49af7cc92658341920c60
 ---
 
 > ## Documentation Index
@@ -70,8 +70,9 @@ The following examples gate on `CLAUDECODE` for maximum reach and emit a hint fo
   ```
 
   ```shell Shell theme={null}
-  [ -n "$CLAUDECODE" ] &&
+  if [ -n "$CLAUDECODE" ]; then
     printf '%s\n' '<claude-code-hint v="1" type="plugin" value="example-cli@claude-plugins-official" />' >&2
+  fi
   ```
 </CodeGroup>
 
@@ -112,10 +113,11 @@ When the hint passes all checks, Claude Code shows a prompt like the following:
 
 The prompt names the command that produced the hint so users can spot a mismatch between the tool and the plugin it recommends. If the user does not respond within 30 seconds, the prompt dismisses as **No**.
 
-Prompt frequency is bounded:
+Prompt frequency is bounded, and some sessions never prompt:
 
 * **Once per plugin**: after the prompt is shown, Claude Code records the plugin and never prompts for it again, regardless of the user's answer.
 * **Once per session**: across all CLIs on the machine, at most one hint prompt appears per Claude Code session.
+* **Telemetry opt-outs**: sessions where analytics are disabled never show hint prompts. This includes sessions with `DISABLE_TELEMETRY` or `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC` set, and sessions on third-party providers such as Amazon Bedrock or Google Cloud's Agent Platform where the [automatic telemetry opt-out](/en/data-usage#default-behaviors-by-api-provider) applies.
 
 Selecting **Yes** installs the plugin to user scope. Selecting **No, and don't show plugin installation hints again** disables all future hint prompts for the user.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/pdf-support
-fetched_at: 2026-07-17T03:08:17.884216Z
-sha256: 8a46c39b6feac28a54dd13019b9ef96475acdd72c40195329be2ebe0831e2480
+fetched_at: 2026-07-18T03:07:08.309502Z
+sha256: 6f11a41932a493d85208fed020975406dde71bb34c0a2cf57132141a5d6e2a9a
 ---
 
 # PDF support
@@ -12,7 +12,7 @@ Process PDFs with Claude: extract text, analyze charts, and understand visual co
 ---
 
 <Note>
-  This feature is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/api-and-data-retention). When your organization has a ZDR arrangement, data sent through this feature is not stored after the API response is returned.
+  For how zero data retention (ZDR) applies to this feature, see [API and data retention](/docs/en/manage-claude/api-and-data-retention).
 </Note>
 
 You can ask Claude about any text, pictures, charts, and tables in PDFs you provide. Some sample use cases:

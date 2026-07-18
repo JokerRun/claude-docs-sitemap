@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/best-practices
-fetched_at: 2026-07-14T03:07:36.677443Z
-sha256: 53b1f25b15b1da7d00e0d0f5fe6a893b321673556dbc3b47af59d1b8116d0a79
+fetched_at: 2026-07-18T03:07:08.309502Z
+sha256: 4feccb5c94ada554ac8f9c559611b84aa221bcf62121b843876b92aed2612630
 ---
 
 > ## Documentation Index
@@ -178,7 +178,7 @@ There's no required format for CLAUDE.md files, but keep it short and human-read
 - Prefer running single tests, and not the whole test suite, for performance
 ```
 
-CLAUDE.md is loaded every session, so only include things that apply broadly. For domain knowledge or workflows that are only relevant sometimes, use [skills](/en/skills) instead. Claude loads them on demand without bloating every conversation.
+Run `/context` to confirm Claude loaded the file. CLAUDE.md is loaded every session, so only include things that apply broadly. For domain knowledge or workflows that are only relevant sometimes, use [skills](/en/skills) instead. Claude loads them on demand without bloating every conversation.
 
 Keep it concise. For each line, ask: *"Would removing this cause Claude to make mistakes?"* If not, cut it. Bloated CLAUDE.md files cause Claude to ignore your actual instructions!
 
@@ -364,7 +364,7 @@ Using Claude Code this way is an effective onboarding workflow, improving ramp-u
   For larger features, have Claude interview you first. Start with a minimal prompt and ask Claude to interview you using the `AskUserQuestion` tool.
 </Tip>
 
-Claude asks about things you might not have considered yet, including technical implementation, UI/UX, edge cases, and tradeoffs.
+Claude asks about things you might not have considered yet, including technical implementation, UI/UX, edge cases, and tradeoffs. Replace `[brief description]` with your feature before sending the prompt.
 
 ```text theme={null}
 I want to build [brief description]. Interview me in detail using the AskUserQuestion tool.
@@ -485,6 +485,8 @@ claude -p "List all API endpoints" --output-format json
 # Streaming for real-time processing
 claude -p "Analyze this log file" --output-format stream-json --verbose
 ```
+
+The first command prints plain text. The `json` format returns a single JSON object with a `result` field. The `stream-json` format prints one JSON object per line, starting with an init event.
 
 ### Run multiple Claude sessions
 

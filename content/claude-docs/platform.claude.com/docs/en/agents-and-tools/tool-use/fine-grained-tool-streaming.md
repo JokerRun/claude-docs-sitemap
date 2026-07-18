@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/fine-grained-tool-streaming
-fetched_at: 2026-07-16T03:08:08.295424Z
-sha256: 4849dbd48594eef2e1f091c6a94532e9508e752f61133a44af10f691c2398fd8
+fetched_at: 2026-07-18T03:07:08.309502Z
+sha256: 8e091cce33c874e36bf45083bdb9aec25b4f9e97e6362850b37a36c01e279b50
 ---
 
 # Fine-grained tool streaming
@@ -12,7 +12,7 @@ Stream tool inputs without server-side JSON buffering for latency-sensitive appl
 ---
 
 <Note>
-  This feature is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/api-and-data-retention). When your organization has a ZDR arrangement, data sent through this feature is not stored after the API response is returned.
+  For how zero data retention (ZDR) applies to this feature, see [API and data retention](/docs/en/manage-claude/api-and-data-retention).
 </Note>
 
 Fine-grained tool streaming delivers a tool's input to your client as Claude generates it, without server-side buffering or JSON validation. Skipping the buffering step reduces the time to the first fragment of a large parameter, such as a document or a block of code, and the fragments arrive through the same [Streaming messages](/docs/en/build-with-claude/streaming) events as standard tool use.

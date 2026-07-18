@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sessions
-fetched_at: 2026-07-17T03:08:17.884216Z
-sha256: 60b0a9ff3493b5cb175264d31486ab2d3ae379cf2f67ef40d4d7649ea2b8c199
+fetched_at: 2026-07-18T03:07:08.309502Z
+sha256: c5947f605c202c2093862579a94dc9448be5b53375846f29765e124fa369e843
 ---
 
 > ## Documentation Index
@@ -77,6 +77,8 @@ Once a session is named, return to it with `claude --resume <name>` or `/resume 
 
 The default isn't a resume handle: `claude --resume <name>`, `/resume <name>`, and the session picker match only names you set. Naming the session replaces the default.
 
+If you don't name a session, Claude Code generates a session title for it: a short summary of your first prompt, written by a background request to the small/fast model, normally a Haiku-class model. Naming the session with `--name` or `/rename` replaces the generated title. You see the generated title in the [session picker](#use-the-session-picker) and in the statusline [`session_name`](/en/statusline) field when no name is set; like the default display name, it isn't a resume handle.
+
 ## Use the session picker
 
 Run `/resume` inside a session, or `claude --resume` with no arguments, to open the interactive session picker. Use these keyboard shortcuts to navigate, search, and widen the list:
@@ -94,9 +96,9 @@ Run `/resume` inside a session, or `claude --resume` with no arguments, to open 
 | `Ctrl+B`                                          | Filter to sessions from the current git branch. Press again to show all branches                                                                             |
 | `Esc`                                             | Exit the session picker or search mode                                                                                                                       |
 
-Each row shows the session name if set, otherwise the conversation summary or first prompt, along with time since last activity, message count, and git branch. Project path appears after you widen to all projects with `Ctrl+A`.
+Each row shows the session name if you set one, otherwise the AI-generated session title, conversation summary, or first prompt, along with time since last activity, git branch, and file size. Widen to all projects with `Ctrl+A` to also see each session's project path.
 
-Forked sessions created with `/branch`, `/rewind`, or `--fork-session` are grouped under their root session. Press `→` to expand a group.
+Sessions created with `/branch` or `--fork-session` get their own session IDs and appear as separate rows. When the picker finds more than one entry for the same session, it groups them under a single row. Press `→` to expand a group.
 
 ## Branch a session
 
@@ -124,7 +126,7 @@ For checkpoint-based rewind within a single session, see [Checkpointing](/en/che
 
 These commands control what's in the context window without leaving the session:
 
-* **`/clear`**: start fresh with an empty context. The previous conversation is saved and resumable with `/resume`, or, in the same Claude Code process, {/* min-version: 2.1.191 */}from [the rewind menu's previous-session entry](/en/checkpointing#rewind-past-a-cleared-conversation)
+* **`/clear`**: start fresh with an empty context. Claude Code saves the previous conversation; resume it with `/resume`, or, in the same Claude Code process, {/* min-version: 2.1.191 */}from [the rewind menu's previous-session entry](/en/checkpointing#rewind-past-a-cleared-conversation). You keep a name you set with `--name` or `/rename` in the new conversation, but not an AI-generated session title
 * **`/compact [instructions]`**: replace history with a summary, optionally focused on what you specify
 * **`/context`**: show what is currently consuming context
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-apps-gateway-deploy
-fetched_at: 2026-07-14T03:07:36.677443Z
-sha256: 4ad6a9b53ce39c528ab8658e335c9c4f51f7f931c4d35fb3bf7ff69095874694
+fetched_at: 2026-07-18T03:07:08.309502Z
+sha256: 72217119446e78d087a5f246bbc0bfd66476981bbf98b5e710c0c3ef85cb9aca
 ---
 
 > ## Documentation Index
@@ -116,7 +116,7 @@ Configure the service as follows:
 
 ### Push the gateway URL to developer machines
 
-Once the gateway is serving, push `forceLoginMethod` and `forceLoginGatewayUrl` to each developer's machine through managed settings, via MDM or by writing the per-OS `managed-settings.json` directly. Without this, `/login` shows the standard account picker with no gateway option. See [Client-side managed settings](/en/claude-apps-gateway-config#client-side-managed-settings) for the file paths.
+Once the gateway is serving, push `forceLoginMethod`, `forceLoginGatewayUrl`, and `parentSettingsBehavior: "merge"` to each developer's machine through managed settings, via MDM or by writing the per-OS `managed-settings.json` directly. Without this, `/login` shows the standard account picker with no gateway option. See [Client-side managed settings](/en/claude-apps-gateway-config#client-side-managed-settings) for the file paths.
 
 ## Operations
 

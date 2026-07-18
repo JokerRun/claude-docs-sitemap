@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/troubleshoot-install
-fetched_at: 2026-07-17T03:08:17.884216Z
-sha256: 0563201272cbe91a80b290ab4afbd96012b697802a0ee4305b76b49777c85101
+fetched_at: 2026-07-18T03:07:08.309502Z
+sha256: 8dbd6a871c3b1ca416711a353793ba590eb53818d7d8c59d0343f735062abab1
 ---
 
 > ## Documentation Index
@@ -854,3 +854,4 @@ If none of the above resolves your issue:
 1. Check the [GitHub repository](https://github.com/anthropics/claude-code/issues) for known issues, or open a new one with your operating system, the install command you ran, and the full error output
 2. If `claude --version` works but something else is wrong, run `claude doctor` for an automated diagnostic report
 3. If you can start a session, use `/feedback` inside Claude Code to report the problem
+4. If the problem is with your account rather than the install, such as a login loop, a subscription that isn't recognized, or a disabled organization, contact Anthropic support: sign in at [claude.ai](https://claude.ai) (Console users: [platform.claude.com](https://platform.claude.com)), click your initials in the lower left, and select **Get help**. See [How to get support](https://support.claude.com/en/articles/9015913-how-to-get-support) for the full flow.

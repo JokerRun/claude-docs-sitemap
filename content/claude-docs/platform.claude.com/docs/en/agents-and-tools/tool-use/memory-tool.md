@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool
-fetched_at: 2026-07-16T03:08:08.295424Z
-sha256: e26a591778652601ffab8258a7485ccf93b5d002de6794ffc6fbdd7d25c5db13
+fetched_at: 2026-07-18T03:07:08.309502Z
+sha256: 27bd67177036e8c392e07eb4289df792c1fce38fbbb1e1e6b54183820f6ecc1d
 ---
 
 # Memory tool
@@ -22,7 +22,7 @@ The memory tool operates client-side: Claude requests file operations, and your 
 </Note>
 
 <Note>
-  This feature is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/api-and-data-retention). When your organization has a ZDR arrangement, data sent through this feature is not stored after the API response is returned.
+  For how zero data retention (ZDR) applies to this feature, see [API and data retention](/docs/en/manage-claude/api-and-data-retention).
 </Note>
 
 ## Use cases

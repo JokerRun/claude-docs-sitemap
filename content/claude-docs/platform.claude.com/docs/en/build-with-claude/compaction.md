@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/compaction
-fetched_at: 2026-07-16T03:08:08.295424Z
-sha256: a1e24501ca0f850abcdc75abb2d3eaa72b6cc84a9b7c079c94f8225fbf5ff3f7
+fetched_at: 2026-07-18T03:07:08.309502Z
+sha256: 0d01e8b0f909447dd80aba7c4ba434baa13313185e00b49284497f692e797689
 ---
 
 # Compaction
@@ -12,7 +12,7 @@ Server-side context compaction for managing long conversations that approach con
 ---
 
 <Note>
-  This feature is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/api-and-data-retention). When your organization has a ZDR arrangement, data sent through this feature is not stored after the API response is returned.
+  For how zero data retention (ZDR) applies to this feature, see [API and data retention](/docs/en/manage-claude/api-and-data-retention).
 </Note>
 
 <Tip>

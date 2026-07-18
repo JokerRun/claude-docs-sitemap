@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/headless
-fetched_at: 2026-07-17T03:08:17.884216Z
-sha256: aec26b5821c09e6959d5926820b2fbc4e1da985bb12350e8efdd79fa08a9fd29
+fetched_at: 2026-07-18T03:07:08.309502Z
+sha256: 8d39e87fadc1c6f9905b6fd7df31343065e110848edeff3fc1a2103d9a95693e
 ---
 
 > ## Documentation Index
@@ -70,6 +70,8 @@ Bare mode skips OAuth and keychain reads. Anthropic authentication must come fro
 If Claude starts a [background Bash task](/en/tools-reference#bash-tool-behavior) during a `claude -p` run, for example a dev server or a watch build, that shell is terminated about five seconds after Claude has returned its final result and stdin has closed. The grace period lets a task that finishes right after the result still deliver its output. Before v2.1.163, a never-exiting background process would hold the `claude -p` invocation open indefinitely.
 
 Background [subagents](/en/sub-agents) and workflows are exempt from the five-second grace because their result is part of the final output, so `claude -p` waits for them to complete. From v2.1.182, that wait is capped at ten minutes by default so a stuck background agent cannot hold the process open indefinitely. Adjust the cap with [`CLAUDE_CODE_PRINT_BG_WAIT_CEILING_MS`](/en/env-vars), or set it to `0` to wait without a limit.
+
+If you stop a `claude -p` run with SIGTERM, for example from `kill`, a process supervisor, or an SDK host closing the session, Claude Code aborts the in-progress turn, terminates the process tree of any running Bash command, runs [`SessionEnd` hooks](/en/hooks#sessionend), and exits with code 143.
 
 ## Examples
 

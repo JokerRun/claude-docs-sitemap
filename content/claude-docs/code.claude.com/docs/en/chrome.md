@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/chrome
-fetched_at: 2026-07-17T03:08:17.884216Z
-sha256: f4f5f83c2a0acd560a89efa1aa56ed1ddd6dc3ba6f67a514f4dd64823071c975
+fetched_at: 2026-07-18T03:07:08.309502Z
+sha256: 85e5cc0785f6817d9a88240c6145857f7ed09903f310ccfa45c4bdee22fa8cfe
 ---
 
 > ## Documentation Index
@@ -202,7 +202,7 @@ Record a GIF showing how to complete the checkout flow, from adding
 an item to the cart through to the confirmation page.
 ```
 
-Claude records the interaction sequence and saves it as a GIF file.
+Claude records the interaction sequence and saves it as a GIF file. The recording captures everything visible in the browser, including account details on logged-in pages, so review it before sharing it outside your team.
 
 ### Save screenshots to disk
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins-reference
-fetched_at: 2026-07-17T03:08:17.884216Z
-sha256: 44609b71bfb922bd24bda3e0e27cc2440f97807ac8e9b0e6e90e170388f317c9
+fetched_at: 2026-07-18T03:07:08.309502Z
+sha256: 5bbcde15fdea0eb938c9cfb6f404910eff2e9eb3f71987b1dc3dd45a63179aa7
 ---
 
 > ## Documentation Index
@@ -973,6 +973,10 @@ claude plugin uninstall <plugin> [options]
 **Aliases:** `remove`, `rm`
 
 By default, uninstalling from the last remaining scope also deletes the plugin's `${CLAUDE_PLUGIN_DATA}` directory. Use `--keep-data` to preserve it, for example when reinstalling after testing a new version.
+
+<Note>
+  When installed plugins from different marketplaces share a name, the `plugin-name@marketplace-name` form uninstalls only the plugin from the named marketplace. Before v2.1.212, the qualified form could match and uninstall the same-named plugin from a different marketplace.
+</Note>
 
 ### plugin prune
 

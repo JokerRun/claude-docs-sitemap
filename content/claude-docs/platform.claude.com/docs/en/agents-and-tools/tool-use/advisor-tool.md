@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool
-fetched_at: 2026-07-17T03:08:17.884216Z
-sha256: f7771ca8c37e2d02d717ec92c7381bf3c67e539b0c4e5987b33fd025eb658396
+fetched_at: 2026-07-18T03:07:08.309502Z
+sha256: 62d9bba9577749bc42560d599181da6b8a6ff062d66dc8cdd78a6f474a284dee
 ---
 
 # Advisor tool
@@ -31,7 +31,7 @@ sequenceDiagram
 ```
 
 <Note>
-  This feature is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/api-and-data-retention). When your organization has a ZDR arrangement, data sent through this feature is not stored after the API response is returned.
+  For how zero data retention (ZDR) applies to this feature, see [API and data retention](/docs/en/manage-claude/api-and-data-retention).
 </Note>
 
 ## When to use it

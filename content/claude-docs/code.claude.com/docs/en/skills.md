@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/skills
-fetched_at: 2026-07-17T03:08:17.884216Z
-sha256: 8849d9fa7a0c1bc3cbbbcc71a8e9faf0f3b6ca3e4ebd550a196b18cb8c366a6c
+fetched_at: 2026-07-18T03:07:08.309502Z
+sha256: 209e5766f78ff65935b0a12364069f493c595388be72095f58ac13ed6f922527
 ---
 
 > ## Documentation Index
@@ -175,6 +175,17 @@ Other `.claude/` configuration such as commands and output styles is not loaded 
 <Note>
   CLAUDE.md files from `--add-dir` directories are not loaded by default. To load them, set `CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD=1`. See [Load from additional directories](/en/memory#load-from-additional-directories).
 </Note>
+
+#### Skills in Cowork and cloud sessions
+
+[Cowork](https://claude.com/product/cowork) sessions and [cloud sessions](/en/claude-code-on-the-web#the-cloud-environment), including [routines](/en/routines), don't read `~/.claude/skills/` on your machine. Both interactive and scheduled Cowork sessions load the skills enabled for your claude.ai account, synced at session start; manage them from **Customize** in the Desktop app sidebar or from the skills settings on claude.ai. Cloud sessions additionally load project skills committed to the cloned repository's `.claude/skills/`.
+
+If a skill exists only in `~/.claude/skills/` on your machine, Claude Code reports that the skill was not found when a [routine](/en/routines) invokes it, because each routine run starts as a fresh remote session. To make a personal skill available in these sessions:
+
+* For Cowork and cloud sessions, enable the skill for your claude.ai account.
+* For cloud sessions, you can instead commit the skill to the repository's `.claude/skills/`, or ship it in a plugin declared in the repository's `.claude/settings.json`. Repo-declared plugins [install at session start](/en/claude-code-on-the-web#what’s-available-in-cloud-sessions); plugins enabled only in your user settings don't transfer.
+
+[Desktop scheduled tasks](/en/desktop-scheduled-tasks) are different: they run locally on your machine and load skills from the same locations as any other local session.
 
 ## Configure skills
 
@@ -835,7 +846,7 @@ if __name__ == '__main__':
     webbrowser.open(f'file://{out.absolute()}')
 ```
 
-To test, open Claude Code in any project and ask "Visualize this codebase." Claude runs the script, which prints the generated file's path, such as `Generated /path/to/codebase-map.html`, and opens it in your browser.
+To test, open Claude Code in any project and ask "Visualize this codebase." Claude runs the script, which prints the generated file's path, such as `Generated /path/to/codebase-map.html`, and opens it in your browser. If you work in a headless environment where no browser opens, the printed path confirms the script succeeded.
 
 This pattern works for any visual output: dependency graphs, test coverage reports, API documentation, or database schema visualizations. The bundled script does the work while Claude handles orchestration.
 

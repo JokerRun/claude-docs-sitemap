@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/auto-mode-config
-fetched_at: 2026-07-17T03:08:17.884216Z
-sha256: c9e106ddfad253d544482653fcd844350f2db7de8dcc660dc99412e1c081dd4e
+fetched_at: 2026-07-18T03:07:08.309502Z
+sha256: a47d532e6e308a14d951132ee33578dc4e640cc0df6b8be79895cdf81e46d459
 ---
 
 > ## Documentation Index
@@ -124,6 +124,8 @@ The following example keeps the default entries and adds an organization's repos
   }
 }
 ```
+
+After you save your settings, run `claude auto-mode config` to [confirm the effective rules](#inspect-the-defaults-and-your-effective-config) include your entries.
 
 Entries are prose, not regex or tool patterns. The classifier reads them as natural-language rules. Write them the way you would describe your infrastructure to a new engineer. A thorough environment section covers:
 
@@ -248,7 +250,7 @@ The setting applies only while auto mode is active, and your allow rules behave 
 
 ## Inspect the defaults and your effective config
 
-Three CLI subcommands help you inspect and validate your configuration.
+The `claude auto-mode` subcommands help you inspect, validate, and reset your configuration.
 
 Print the built-in `environment`, `allow`, `soft_deny`, and `hard_deny` rules as JSON:
 
@@ -264,6 +266,28 @@ Print what the classifier actually uses as JSON, with your settings applied wher
 claude auto-mode config
 ```
 
+Both `defaults` and `config` print the four rule lists as a single JSON object, with each rule as a prose string. This is a truncated example:
+
+```json theme={null}
+{
+  "allow": [
+    ...
+    "Test Artifacts: Hardcoded test API keys, placeholder credentials in examples, or hardcoding test cases. Placeholder means authored as a placeholder — a file or value copied from a real secret or sensitive path is never a test artifact (see Sensitive-Source Provenance).",
+    ...
+  ],
+  "soft_deny": [
+    "Git Destructive [named+specifics — **must name:** the destructive operation and its target]: Force pushing (`git push --force`), deleting remote branches, tags, or releases, or rewriting remote history. Also `git commit --amend` when the commit being rewritten is not the agent's own unpushed work: either no prior `git commit` is visible (HEAD pre-dates the session), or a `git push` of the current branch is visible after the most recent commit (it has been pushed). Clears when the user asked to amend/reword/fixup, or when it is a message-only reword (`--amend -m …`, nothing newly staged) of a commit the agent visibly created this session.",
+    ...
+  ],
+  "hard_deny": [...],
+  "environment": [
+    ...
+    "**Trusted repo**: The git repository the agent started in (its working directory) and its configured remote(s). When the repo's public/private visibility is given — by the Repository visibility entry or the user's own message — use it to scope what is OK to commit or push there: confidential material is fine in a private repo; in a public one, only that repo's own work is — and content ported, repointed, or first read from outside this session's repo is not its own work, whoever directed the port. Visibility scopes confidential material only: secrets and sensitive data (personal & entrusted) are never cleared into any repo by its visibility (see Definitions).",
+    ...
+  ]
+}
+```
+
 Get AI feedback on your custom `allow`, `soft_deny`, and `hard_deny` rules:
 
 ```bash theme={null}
@@ -273,6 +297,14 @@ claude auto-mode critique
 Run `claude auto-mode config` after saving your settings to confirm the effective rules are what you expect, with `"$defaults"` expanded in place. If you've written custom rules, `claude auto-mode critique` reviews them and flags entries that are ambiguous, redundant, or likely to cause false positives.
 
 If you need to remove or rewrite a built-in rule rather than add alongside it, save the output of `claude auto-mode defaults` to a file, edit the lists, and paste the result into your settings file in place of `"$defaults"`.
+
+To discard your customizations and return to the built-in defaults, run the reset subcommand. It requires Claude Code v2.1.212 or later and removes the `autoMode` section from your user settings file:
+
+```bash theme={null}
+claude auto-mode reset
+```
+
+The command summarizes what it will remove and asks `Reset auto mode configuration to defaults?` before writing; pass `--yes` to skip the confirmation. Reset changes only `~/.claude/settings.json`: `autoMode` rules from [managed settings](/en/server-managed-settings) or the `--settings` flag still apply.
 
 ## Review denials
 

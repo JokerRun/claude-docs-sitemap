@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/adaptive-thinking
-fetched_at: 2026-07-17T03:08:17.884216Z
-sha256: acff219b25cfb7c55cb98eff435bfb052b8b6560cec1ea1449dcadc2d930dd6a
+fetched_at: 2026-07-18T03:07:08.309502Z
+sha256: f64865bbd8237013cbf2423003833a8e26f704547ec8299a2dc443a872f541c9
 ---
 
 # Adaptive thinking
@@ -12,7 +12,7 @@ Let Claude dynamically determine when and how much to use extended thinking with
 ---
 
 <Note>
-  This feature is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/api-and-data-retention). When your organization has a ZDR arrangement, data sent through this feature is not stored after the API response is returned.
+  For how zero data retention (ZDR) applies to this feature, see [API and data retention](/docs/en/manage-claude/api-and-data-retention).
 </Note>
 
 Adaptive thinking is the recommended way to use [extended thinking](/docs/en/build-with-claude/extended-thinking) with Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5, and Claude Sonnet 4.6, and the only thinking mode on Claude Fable 5 and [Claude Mythos 5](https://anthropic.com/glasswing). Instead of manually setting a thinking token budget, adaptive thinking lets Claude dynamically determine when and how much to use extended thinking based on the complexity of each request. Per-model defaults and restrictions are listed under [Supported models](#supported-models).

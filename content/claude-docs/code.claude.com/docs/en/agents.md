@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agents
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: be5f21d7322b6679f2f0d03cafe28218b72c6740109ca268bda6a02417341f6b
+fetched_at: 2026-07-18T03:07:08.309502Z
+sha256: 5565a2466f2a1576900c21638cf20500b1811499e7045d971cd61c279cc00ff1
 ---
 
 > ## Documentation Index
@@ -32,7 +32,7 @@ Two more tools support this work without being a way to run agents themselves:
 A few other features run Claude without you driving each step, but they solve a different problem than splitting work across agents:
 
 * A [background bash command](/en/interactive-mode#background-bash-commands) runs one shell command without blocking the conversation. It doesn't spawn an agent.
-* A [forked subagent](/en/sub-agents#fork-the-current-conversation) is a subagent that inherits your full conversation context instead of starting fresh. It's a way to spawn a subagent, not a separate surface.
+* A [forked subagent](/en/sub-agents#fork-the-current-conversation), started with `/subtask`, is a subagent that inherits your full conversation context instead of starting fresh. It's a way to spawn a subagent, not a separate surface. To copy the whole session into a new [background session](/en/agent-view#from-inside-a-session) that runs alongside it, use `/fork`. With [agent view turned off](/en/agent-view#turn-off-agent-view), the forked-subagent command is `/fork` instead and `/subtask` isn't available.
 * A [routine](/en/routines) runs a session on a schedule in Anthropic's cloud, not in parallel on your machine.
 
 <Note>

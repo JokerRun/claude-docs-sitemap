@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/files
-fetched_at: 2026-07-16T03:08:08.295424Z
-sha256: b26aaa4770df9ecbb597c96831251555b853263fa7417a52cc3483c759360a28
+fetched_at: 2026-07-18T03:07:08.309502Z
+sha256: 561896b206d1e0b6d064fc7aa7758f655a528c3415d7be7d230ac48750f2b36c
 ---
 
 # Files API
@@ -18,7 +18,7 @@ The Files API lets you upload and manage files to use with the Claude API withou
 </Note>
 
 <Note>
-  This feature is **not** eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/api-and-data-retention). Data is retained according to the feature's standard retention policy.
+  For how zero data retention (ZDR) applies to this feature, see [API and data retention](/docs/en/manage-claude/api-and-data-retention).
 </Note>
 
 ## Supported models

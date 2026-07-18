@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/extended-thinking
-fetched_at: 2026-07-17T03:08:17.884216Z
-sha256: 63783bea4b3438f6770dcb27a31e8afddf647ac6d4d13846d5963bf6b41f818e
+fetched_at: 2026-07-18T03:07:08.309502Z
+sha256: 62509fbf6f80422aee6ea5068b0218c8172729296cf1ce61f46e276b3af6afa7
 ---
 
 # Extended thinking
@@ -12,7 +12,7 @@ Give Claude enhanced reasoning for complex tasks and control how thinking conten
 ---
 
 <Note>
-  This feature is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/api-and-data-retention). When your organization has a ZDR arrangement, data sent through this feature is not stored after the API response is returned.
+  For how zero data retention (ZDR) applies to this feature, see [API and data retention](/docs/en/manage-claude/api-and-data-retention).
 </Note>
 
 Extended thinking gives Claude enhanced reasoning capabilities for complex tasks, while providing varying levels of transparency into its step-by-step thought process before it delivers its final answer.

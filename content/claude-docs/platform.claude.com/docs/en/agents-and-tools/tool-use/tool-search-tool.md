@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: bff536f8c3e5abe199ce06e344c49805dffd7348969ce806d7d5881a22c72f74
+fetched_at: 2026-07-18T03:07:08.309502Z
+sha256: 8b2afa3ad6783dec07795ecf11040296224610400ae990d80d755ec4783d796d
 ---
 
 # Tool search tool
@@ -31,7 +31,7 @@ Tool search runs as a server-side tool, but you can also implement your own clie
 </Note>
 
 <Note>
-  This feature is eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/api-and-data-retention). When your organization has a ZDR arrangement, data sent through this feature is not stored after the API response is returned.
+  For how zero data retention (ZDR) applies to this feature, see [API and data retention](/docs/en/manage-claude/api-and-data-retention).
 </Note>
 
 <Warning>

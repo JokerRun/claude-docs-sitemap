@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-apps-gateway-on-gcp
-fetched_at: 2026-07-04T03:09:59.852291Z
-sha256: bb2e561a84da0471777ef1e177c583bf6ba25f4b5cdc92104b029bb633162d6f
+fetched_at: 2026-07-18T03:07:08.309502Z
+sha256: bc51771a94f39fdaa67b2cef912c4383ef744362caa19a1c7f2d3b4685d38c05
 ---
 
 > ## Documentation Index
@@ -289,7 +289,7 @@ The steps below provision the full deployment with `gcloud` commands.
   </Step>
 
   <Step title="Push the gateway URL to developer machines">
-    The gateway is now running, but developers can't reach it from `/login` until the gateway URL is on their machines. Set `forceLoginMethod` and `forceLoginGatewayUrl` in the [managed settings file](/en/claude-apps-gateway#set-the-gateway-url) you deploy to each device via MDM. There is no gateway option in the login picker for a developer to select manually.
+    The gateway is now running, but developers can't reach it from `/login` until the gateway URL is on their machines. Deploy the full [managed settings snippet](/en/claude-apps-gateway#set-the-gateway-url), with `forceLoginMethod`, `forceLoginGatewayUrl`, and the `parentSettingsBehavior: "merge"` opt-in, to each device via MDM. There is no gateway option in the login picker for a developer to select manually.
   </Step>
 </Steps>
 

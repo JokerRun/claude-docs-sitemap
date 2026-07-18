@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/hooks
-fetched_at: 2026-07-17T03:08:17.884216Z
-sha256: 25b81ef9584e938452aadba240110687740043103c911759fcaac583e8e268a3
+fetched_at: 2026-07-18T03:07:08.309502Z
+sha256: 509b8036585918b0f121b09d0e4ce41952ab778bad794e75c961c14b628a0fca
 ---
 
 > ## Documentation Index
@@ -764,6 +764,8 @@ To stop Claude entirely regardless of event type:
 ```json theme={null}
 { "continue": false, "stopReason": "Build failed, fix errors before continuing" }
 ```
+
+For `PreToolUse` and `PostToolUse` hooks, the stop applies even when the tool call fails or completes while Claude is still streaming a response.
 
 #### Emit terminal notifications
 

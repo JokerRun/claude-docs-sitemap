@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool
-fetched_at: 2026-07-17T03:08:17.884216Z
-sha256: d0f284b0fd145634af275a3e3b49a629a9c5a0c5daf62bc6449c5bcee5c50bf1
+fetched_at: 2026-07-18T03:07:08.309502Z
+sha256: ef237e22d329e4e5b68119520ad7765491397c06b24ae8cbed63055693de1fd8
 ---
 
 # Code execution tool
@@ -22,7 +22,7 @@ Code execution also powers dynamic filtering in the [web search](/docs/en/agents
 </Note>
 
 <Note>
-  This feature is **not** eligible for [Zero Data Retention (ZDR)](/docs/en/build-with-claude/api-and-data-retention). Data is retained according to the feature's standard retention policy.
+  For how zero data retention (ZDR) applies to this feature, see [API and data retention](/docs/en/manage-claude/api-and-data-retention).
 </Note>
 
 ## Model compatibility

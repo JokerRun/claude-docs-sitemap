@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/memory
-fetched_at: 2026-07-17T03:08:17.884216Z
-sha256: e9ac9966b2f3a0ec8d011a2d70465908502f3d480625febb69d39803922d7099
+fetched_at: 2026-07-18T03:07:08.309502Z
+sha256: 9a6b9bc5f0e7e848c9311736f6d318bb51415caf3c71d2df2b38ccbbc77995fd
 ---
 
 > ## Documentation Index
@@ -389,6 +389,8 @@ The first 200 lines of `MEMORY.md`, or the first 25KB, whichever comes first, ar
 This limit applies only to `MEMORY.md`. CLAUDE.md files are loaded in full regardless of length, though shorter files produce better adherence.
 
 Topic files like `debugging.md` or `patterns.md` are not loaded at startup. Claude reads them on demand using its standard file tools when it needs the information.
+
+The main conversation's auto memory isn't loaded into [subagents](/en/sub-agents#what-loads-at-startup); the exception is a [fork](/en/sub-agents#fork-the-current-conversation), which inherits the parent conversation and system prompt. A subagent's own auto memory, enabled with the subagent `memory` field, is a separate directory.
 
 Claude reads and writes memory files during your session. When you see "Writing memory" or "Recalled memory" in the Claude Code interface, Claude is actively updating or reading from `~/.claude/projects/<project>/memory/`.
 
