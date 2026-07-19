@@ -269,8 +269,8 @@
     "source": "code",
     "url": "https://code.claude.com/docs/en/artifacts",
     "local_path": "content/claude-docs/code.claude.com/docs/en/artifacts.md",
-    "fetched_at": "2026-07-17T03:08:17.884216Z",
-    "sha256": "38e55118a30abb63e76066ae49842419d34746ad77f13eeeec7174adfb84e14a"
+    "fetched_at": "2026-07-19T03:09:15.838507Z",
+    "sha256": "86a72b661993a4c413290f762f222c908dbde0fd6e643243798eea6392d271d5"
   },
   {
     "source": "code",
@@ -304,8 +304,8 @@
     "source": "code",
     "url": "https://code.claude.com/docs/en/changelog",
     "local_path": "content/claude-docs/code.claude.com/docs/en/changelog.md",
-    "fetched_at": "2026-07-18T03:07:08.309502Z",
-    "sha256": "0958d3652917127528447713eeb68a1f7d63f86e418fa6b7fe95e1f5d8b6b741"
+    "fetched_at": "2026-07-19T03:09:15.838507Z",
+    "sha256": "db9342e4baa525eea914128706442a9d8fc0fe230af73ffa246238139c8a1d68"
   },
   {
     "source": "code",
@@ -353,8 +353,8 @@
     "source": "code",
     "url": "https://code.claude.com/docs/en/claude-apps-gateway-deploy",
     "local_path": "content/claude-docs/code.claude.com/docs/en/claude-apps-gateway-deploy.md",
-    "fetched_at": "2026-07-18T03:07:08.309502Z",
-    "sha256": "72217119446e78d087a5f246bbc0bfd66476981bbf98b5e710c0c3ef85cb9aca"
+    "fetched_at": "2026-07-19T03:09:15.838507Z",
+    "sha256": "4d29d6ca6268813f27d324033e3342d79a650eb179b3351a43acec43d0e18195"
   },
   {
     "source": "code",
@@ -374,8 +374,8 @@
     "source": "code",
     "url": "https://code.claude.com/docs/en/claude-code-on-the-web",
     "local_path": "content/claude-docs/code.claude.com/docs/en/claude-code-on-the-web.md",
-    "fetched_at": "2026-07-18T03:07:08.309502Z",
-    "sha256": "4ea02744272d46fe5f70c6eac0d0d4f9e64fe8a19be46722610e559bed3bc4ec"
+    "fetched_at": "2026-07-19T03:09:15.838507Z",
+    "sha256": "5da364f62f0fb114cbda749bb4674ad3cd31c2b51b92e089149879458f9f017b"
   },
   {
     "source": "code",
@@ -717,8 +717,8 @@
     "source": "code",
     "url": "https://code.claude.com/docs/en/mcp",
     "local_path": "content/claude-docs/code.claude.com/docs/en/mcp.md",
-    "fetched_at": "2026-07-18T03:07:08.309502Z",
-    "sha256": "ccd78c0b303335cec998e7a8658aa143e7f0c3d51ac743e3035b44fde888a489"
+    "fetched_at": "2026-07-19T03:09:15.838507Z",
+    "sha256": "52e110820b2be82dd8ced2ea6adebac330ddaaa987be836f67780fb27ee39214"
   },
   {
     "source": "code",
@@ -780,8 +780,8 @@
     "source": "code",
     "url": "https://code.claude.com/docs/en/overview",
     "local_path": "content/claude-docs/code.claude.com/docs/en/overview.md",
-    "fetched_at": "2026-07-18T03:07:08.309502Z",
-    "sha256": "51aedf11b4f193f443be1b0acda22e512738c93cb8955feb8003b21226b20399"
+    "fetched_at": "2026-07-19T03:09:15.838507Z",
+    "sha256": "fb1c6eac271eacf0bce114aa383a2b8920ac101733c6d6b8993147a9d45b8bc0"
   },
   {
     "source": "code",
@@ -878,8 +878,8 @@
     "source": "code",
     "url": "https://code.claude.com/docs/en/routines",
     "local_path": "content/claude-docs/code.claude.com/docs/en/routines.md",
-    "fetched_at": "2026-07-18T03:07:08.309502Z",
-    "sha256": "07b1150781aca668cf22cd0b1a5c33519469edac280c5bc9083cc79bb6566cb3"
+    "fetched_at": "2026-07-19T03:09:15.838507Z",
+    "sha256": "0e907e04942a326d6f3df8d9551929e5c87fc42156201e0b72fa57169c725752"
   },
   {
     "source": "code",
@@ -997,15 +997,15 @@
     "source": "code",
     "url": "https://code.claude.com/docs/en/troubleshoot-install",
     "local_path": "content/claude-docs/code.claude.com/docs/en/troubleshoot-install.md",
-    "fetched_at": "2026-07-18T03:07:08.309502Z",
-    "sha256": "8dbd6a871c3b1ca416711a353793ba590eb53818d7d8c59d0343f735062abab1"
+    "fetched_at": "2026-07-19T03:09:15.838507Z",
+    "sha256": "dcb61584c214fbe397e78277a1de9d51fbad328713f227ea4db1806e6bf39278"
   },
   {
     "source": "code",
     "url": "https://code.claude.com/docs/en/troubleshooting",
     "local_path": "content/claude-docs/code.claude.com/docs/en/troubleshooting.md",
-    "fetched_at": "2026-07-18T03:07:08.309502Z",
-    "sha256": "5059824d592ddd4d030a44c36bb736fca7e3c3931362c219ebd6a135cd0b23d4"
+    "fetched_at": "2026-07-19T03:09:15.838507Z",
+    "sha256": "b4687d055a34f36535401bbe8681a0eb1ae3acf0d48df5c8016f4d8662e88ef2"
   },
   {
     "source": "code",
@@ -1032,8 +1032,8 @@
     "source": "code",
     "url": "https://code.claude.com/docs/en/vs-code",
     "local_path": "content/claude-docs/code.claude.com/docs/en/vs-code.md",
-    "fetched_at": "2026-07-17T03:08:17.884216Z",
-    "sha256": "bf5fa414f7abe2349a445fbc8ba9a62a805de64e349b5dff7b62a94c897e7b2f"
+    "fetched_at": "2026-07-19T03:09:15.838507Z",
+    "sha256": "2334bcd39f74f951b24abb7c9d2ca37cf1b58d51754045465cdcf737643a2e6d"
   },
   {
     "source": "code",

@@ -115,7 +115,7 @@
   lastmod: '2026-07-14T01:11:53.015Z'
 - source: code
   loc: https://code.claude.com/docs/en/artifacts
-  lastmod: '2026-07-16T22:50:00.435Z'
+  lastmod: '2026-07-18T14:50:28.467Z'
 - source: code
   loc: https://code.claude.com/docs/en/authentication
   lastmod: '2026-07-18T01:47:36.015Z'
@@ -130,7 +130,7 @@
   lastmod: '2026-04-28T15:54:10.733Z'
 - source: code
   loc: https://code.claude.com/docs/en/changelog
-  lastmod: '2026-07-18T01:29:55.579Z'
+  lastmod: '2026-07-19T03:02:22.603Z'
 - source: code
   loc: https://code.claude.com/docs/en/channels
   lastmod: '2026-07-16T20:38:11.192Z'
@@ -151,7 +151,7 @@
   lastmod: '2026-07-17T23:38:30.345Z'
 - source: code
   loc: https://code.claude.com/docs/en/claude-apps-gateway-deploy
-  lastmod: '2026-07-17T23:38:30.350Z'
+  lastmod: '2026-07-18T15:05:00.917Z'
 - source: code
   loc: https://code.claude.com/docs/en/claude-apps-gateway-on-gcp
   lastmod: '2026-07-17T23:38:30.332Z'
@@ -160,7 +160,7 @@
   lastmod: '2026-07-04T02:33:59.456Z'
 - source: code
   loc: https://code.claude.com/docs/en/claude-code-on-the-web
-  lastmod: '2026-07-18T00:46:00.698Z'
+  lastmod: '2026-07-18T14:50:28.468Z'
 - source: code
   loc: https://code.claude.com/docs/en/claude-directory
   lastmod: '2026-07-16T23:53:57.986Z'
@@ -307,7 +307,7 @@
   lastmod: '2026-07-15T16:24:44.473Z'
 - source: code
   loc: https://code.claude.com/docs/en/mcp
-  lastmod: '2026-07-18T01:47:35.951Z'
+  lastmod: '2026-07-18T14:55:02.058Z'
 - source: code
   loc: https://code.claude.com/docs/en/mcp-quickstart
   lastmod: '2026-07-16T20:39:18.058Z'
@@ -334,7 +334,7 @@
   lastmod: '2026-07-17T15:13:52.097Z'
 - source: code
   loc: https://code.claude.com/docs/en/overview
-  lastmod: '2026-07-17T20:05:15.516Z'
+  lastmod: '2026-07-18T14:55:02.059Z'
 - source: code
   loc: https://code.claude.com/docs/en/permission-modes
   lastmod: '2026-07-18T01:47:35.860Z'
@@ -376,7 +376,7 @@
   lastmod: '2026-07-18T01:47:35.855Z'
 - source: code
   loc: https://code.claude.com/docs/en/routines
-  lastmod: '2026-07-17T22:01:54.680Z'
+  lastmod: '2026-07-18T14:50:28.466Z'
 - source: code
   loc: https://code.claude.com/docs/en/sandbox-environments
   lastmod: '2026-07-16T21:13:23.717Z'
@@ -427,10 +427,10 @@
   lastmod: '2026-07-18T01:47:35.866Z'
 - source: code
   loc: https://code.claude.com/docs/en/troubleshoot-install
-  lastmod: '2026-07-17T23:34:27.312Z'
+  lastmod: '2026-07-18T14:55:02.057Z'
 - source: code
   loc: https://code.claude.com/docs/en/troubleshooting
-  lastmod: '2026-07-18T02:34:26.935Z'
+  lastmod: '2026-07-18T15:05:00.913Z'
 - source: code
   loc: https://code.claude.com/docs/en/ultraplan
   lastmod: '2026-07-13T16:47:35.010Z'
@@ -442,7 +442,7 @@
   lastmod: '2026-07-13T16:47:35.012Z'
 - source: code
   loc: https://code.claude.com/docs/en/vs-code
-  lastmod: '2026-07-16T22:13:39.907Z'
+  lastmod: '2026-07-18T14:55:02.060Z'
 - source: code
   loc: https://code.claude.com/docs/en/web-quickstart
   lastmod: '2026-07-16T22:00:50.764Z'

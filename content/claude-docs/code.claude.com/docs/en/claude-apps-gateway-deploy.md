@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-apps-gateway-deploy
-fetched_at: 2026-07-18T03:07:08.309502Z
-sha256: 72217119446e78d087a5f246bbc0bfd66476981bbf98b5e710c0c3ef85cb9aca
+fetched_at: 2026-07-19T03:09:15.838507Z
+sha256: 4d29d6ca6268813f27d324033e3342d79a650eb179b3351a43acec43d0e18195
 ---
 
 > ## Documentation Index
@@ -240,6 +240,8 @@ For questions and feedback, use [Claude Code support](https://support.claude.com
 * **Gateway issue**: the gateway's stderr for the relevant window, your `gateway.yaml` with secrets redacted, the gateway version, shown on the landing page at `/` and in the `x-cc-gateway-version` response header on `/managed/settings`, and what changed recently
 * **Login issue**: the developer runs `claude --debug-file ./claude-debug.txt`, reproduces, and sends that file plus the gateway's audit log for the same window
 * **Inference issue**: the model requested, the upstreams configured, and the gateway's audit log for the request, which records which upstream served it and the response status
+
+The gateway's stderr includes the audit event stream, the audit log records developer identities, and the debug file records hook and MCP server output from the developer's machine. Review and redact these before posting to a public issue.
 
 | Symptom                                                                                                                                                                     | Cause                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | Fix                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

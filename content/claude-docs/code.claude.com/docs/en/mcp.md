@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/mcp
-fetched_at: 2026-07-18T03:07:08.309502Z
-sha256: ccd78c0b303335cec998e7a8658aa143e7f0c3d51ac743e3035b44fde888a489
+fetched_at: 2026-07-19T03:09:15.838507Z
+sha256: 52e110820b2be82dd8ced2ea6adebac330ddaaa987be836f67780fb27ee39214
 ---
 
 > ## Documentation Index
@@ -497,6 +497,8 @@ GitHub's remote MCP server authenticates with a GitHub personal access token pas
 claude mcp add --transport http github https://api.githubcopilot.com/mcp/ \
   --header "Authorization: Bearer YOUR_GITHUB_PAT"
 ```
+
+Replace `YOUR_GITHUB_PAT` with your personal access token. The `claude mcp add` command saves the configuration without validating credentials, so a placeholder value is accepted here but the server fails to connect later. To verify the connection, run `/mcp` and check that the server shows `connected`. A server with bad credentials shows `failed`.
 
 Then work with GitHub:
 

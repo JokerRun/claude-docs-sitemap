@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-code-on-the-web
-fetched_at: 2026-07-18T03:07:08.309502Z
-sha256: 4ea02744272d46fe5f70c6eac0d0d4f9e64fe8a19be46722610e559bed3bc4ec
+fetched_at: 2026-07-19T03:09:15.838507Z
+sha256: 5da364f62f0fb114cbda749bb4674ad3cd31c2b51b92e089149879458f9f017b
 ---
 
 > ## Documentation Index
@@ -767,7 +767,7 @@ For Max and Pro accounts, the two visibility options are **Private** and **Publi
 
 Check your session for sensitive content before sharing. Sessions may contain code and credentials from private GitHub repositories. Repository access verification is not enabled by default.
 
-To require recipients to have repository access, or to hide your name from shared sessions, go to Settings > Claude Code > Sharing settings.
+To require recipients to have repository access, or to hide your name from shared sessions, go to [**Settings > Claude Code > Sharing settings**](https://claude.ai/settings/claude-code).
 
 ### Archive sessions
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/troubleshooting
-fetched_at: 2026-07-18T03:07:08.309502Z
-sha256: 5059824d592ddd4d030a44c36bb736fca7e3c3931362c219ebd6a135cd0b23d4
+fetched_at: 2026-07-19T03:09:15.838507Z
+sha256: b4687d055a34f36535401bbe8681a0eb1ae3acf0d48df5c8016f4d8662e88ef2
 ---
 
 > ## Documentation Index
@@ -44,7 +44,7 @@ Claude Code is designed to work with most development environments, but may cons
 
 If memory usage stays high after these steps, run `/heapdump` to write a JavaScript heap snapshot and a memory breakdown to `~/Desktop`. On Linux without a Desktop folder, the files are written to your home directory.
 
-The breakdown shows resident set size, JS heap, array buffers, and unaccounted native memory, which helps identify whether the growth is in JavaScript objects or in native code. To inspect retainers, open the `.heapsnapshot` file in Chrome DevTools under Memory → Load.
+The breakdown shows resident set size, JS heap, array buffers, and unaccounted native memory, which helps identify whether the growth is in JavaScript objects or in native code. To inspect retainers, open the `.heapsnapshot` file in Chrome DevTools under Memory → Load; the breakdown is the file ending in `-diagnostics.json`.
 
 <Warning>
   The `.heapsnapshot` file contains every string in the process. Don't attach it to a public issue or share it. Attach only the `-diagnostics.json` file when reporting a memory issue on [GitHub](https://github.com/anthropics/claude-code/issues). That file contains memory statistics and no conversation content or credentials.

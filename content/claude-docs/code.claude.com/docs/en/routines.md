@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/routines
-fetched_at: 2026-07-18T03:07:08.309502Z
-sha256: 07b1150781aca668cf22cd0b1a5c33519469edac280c5bc9083cc79bb6566cb3
+fetched_at: 2026-07-19T03:09:15.838507Z
+sha256: 0e907e04942a326d6f3df8d9551929e5c87fc42156201e0b72fa57169c725752
 ---
 
 > ## Documentation Index
@@ -341,7 +341,7 @@ Connectors are the [claude.ai integrations](/en/mcp#use-mcp-servers-from-claude-
 
 When you create a routine, all of your currently connected connectors are included by default. Remove any that aren't needed to limit which tools Claude has access to during the run. You can also add connectors directly from the routine form.
 
-To manage or add connectors outside of the routine form, visit **Settings > Connectors** on claude.ai or use `/schedule update` in the CLI.
+To manage or add connectors outside of the routine form, visit [claude.ai/customize/connectors](https://claude.ai/customize/connectors) or use `/schedule update` in the CLI.
 
 ### Environments and network access
 
@@ -379,7 +379,7 @@ See [Network access](/en/claude-code-on-the-web#network-access) for details on a
 
 Routines draw down subscription usage the same way interactive sessions do. In addition to the standard subscription limits, routines have a daily cap on how many runs can start per account. See your current consumption and remaining daily routine runs at [claude.ai/code/routines](https://claude.ai/code/routines) or [claude.ai/settings/usage](https://claude.ai/settings/usage).
 
-When a routine hits the daily cap or your subscription usage limit, organizations with usage credits turned on can keep running routines on metered overage. Without usage credits, additional runs are rejected until the window resets. Turn on usage credits from **Settings > Billing** on claude.ai.
+When a routine hits the daily cap or your subscription usage limit, organizations with usage credits turned on can keep running routines on metered overage. Without usage credits, additional runs are rejected until the window resets. Turn on usage credits at [claude.ai/settings/usage](https://claude.ai/settings/usage). On Team and Enterprise plans, an admin turns them on for the organization at [claude.ai/admin-settings/usage](https://claude.ai/admin-settings/usage).
 
 One-off runs do not count against the daily routine cap. They draw down your regular subscription usage like any other session, but they are exempt from the per-account daily routine run allowance.
 
