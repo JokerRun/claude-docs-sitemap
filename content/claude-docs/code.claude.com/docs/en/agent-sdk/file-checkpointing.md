@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/file-checkpointing
-fetched_at: 2026-07-17T03:08:17.884216Z
-sha256: a4f936654dc78a04ba3273df44fdb3e07268b446771595d821a7ddec179f75b1
+fetched_at: 2026-07-21T03:08:36.086694Z
+sha256: edc4eb39cf9a62ed1b70aba2cbbfef7d8eedf33130a7ce21ce80792ff579f696
 ---
 
 > ## Documentation Index
@@ -264,7 +264,7 @@ The following example shows the complete flow: enable checkpointing, capture the
       ```
     </CodeGroup>
 
-    If you capture the session ID and checkpoint ID, you can also rewind from the CLI. This command requires the `claude` executable, which comes from [installing Claude Code](/en/setup) and is not installed by the SDK package. The SDK enables checkpointing for you, but when you run `claude -p` directly you must set the `CLAUDE_CODE_ENABLE_SDK_FILE_CHECKPOINTING` environment variable:
+    If you capture the session ID and checkpoint ID, you can also rewind from the CLI. This command requires the `claude` executable, which comes from [installing Claude Code](/docs/en/setup) and is not installed by the SDK package. The SDK enables checkpointing for you, but when you run `claude -p` directly you must set the `CLAUDE_CODE_ENABLE_SDK_FILE_CHECKPOINTING` environment variable:
 
     ```bash theme={null}
     CLAUDE_CODE_ENABLE_SDK_FILE_CHECKPOINTING=true claude -p --resume <session-id> --rewind-files <checkpoint-uuid>
@@ -493,7 +493,7 @@ This pattern stores all checkpoint UUIDs in an array with metadata. After the se
 
 This complete example creates a small utility file, has the agent add documentation comments, shows you the changes, then asks if you want to rewind.
 
-Before you begin, make sure you have the [Claude Agent SDK installed](/en/agent-sdk/quickstart).
+Before you begin, make sure you have the [Claude Agent SDK installed](/docs/en/agent-sdk/quickstart).
 
 <Steps>
   <Step title="Create a test file">
@@ -823,7 +823,7 @@ This error occurs when you call `rewindFiles()` or `rewind_files()` after you've
 
 ## Next steps
 
-* **[Sessions](/en/agent-sdk/sessions)**: learn how to resume sessions, which is required for rewinding after the stream completes. Covers session IDs, resuming conversations, and session forking.
-* **[Permissions](/en/agent-sdk/permissions)**: configure which tools Claude can use and how file modifications are approved. Useful if you want more control over when edits happen.
-* **[TypeScript SDK reference](/en/agent-sdk/typescript)**: complete API reference including all options for `query()` and the `rewindFiles()` method.
-* **[Python SDK reference](/en/agent-sdk/python)**: complete API reference including all options for `ClaudeAgentOptions` and the `rewind_files()` method.
+* **[Sessions](/docs/en/agent-sdk/sessions)**: learn how to resume sessions, which is required for rewinding after the stream completes. Covers session IDs, resuming conversations, and session forking.
+* **[Permissions](/docs/en/agent-sdk/permissions)**: configure which tools Claude can use and how file modifications are approved. Useful if you want more control over when edits happen.
+* **[TypeScript SDK reference](/docs/en/agent-sdk/typescript)**: complete API reference including all options for `query()` and the `rewindFiles()` method.
+* **[Python SDK reference](/docs/en/agent-sdk/python)**: complete API reference including all options for `ClaudeAgentOptions` and the `rewind_files()` method.

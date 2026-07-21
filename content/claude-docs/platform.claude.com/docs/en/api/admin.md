@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: 520f3edeaa3c38aa68f23f2e2fc5f54d43c0d66446e207105e73ae3f83221de9
+fetched_at: 2026-07-21T03:08:36.086694Z
+sha256: e73c4037238326798e02cd012c08481503f8a4a81fafcf6c0506e86964a8ca27
 ---
 
 # Admin
@@ -4304,11 +4304,11 @@ curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/service
 
 # API Keys
 
-## Get API Key
+## Retrieve API Key (Admin API)
 
 **get** `/v1/organizations/api_keys/{api_key_id}`
 
-Get API Key
+Retrieve information about a single API key in your organization, looked up by its ID. This Admin API endpoint requires an Admin API key, is intended for programmatic key management, and never returns the key's secret value. To view or create your own API keys, go to [API keys](https://platform.claude.com/settings/keys) in the Claude Console.
 
 ### Path Parameters
 

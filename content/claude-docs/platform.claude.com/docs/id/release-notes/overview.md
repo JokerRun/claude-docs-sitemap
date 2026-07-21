@@ -1,388 +1,611 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/release-notes/overview
-fetched_at: 2026-04-18T03:10:04.936408Z
-sha256: a8e278faa987620e26e19ad235002f5ab45a0bd4914d87f570f9a3e6cf3ee62e
+fetched_at: 2026-07-21T03:08:36.086694Z
+sha256: 7a3bf1d888cf8880765053dc38cb81244f9c973224039bf70a4cbd9ac520667a
 ---
 
 # Claude Platform
 
-Pembaruan ke Claude Platform, termasuk Claude API, SDK klien, dan Claude Console.
+Pembaruan pada Claude Platform, termasuk Claude API, SDK klien, dan Claude Console.
 
 ---
 
 <Tip>
-Untuk catatan rilis tentang Claude Apps, lihat [Catatan rilis untuk Claude Apps di Claude Help Center](https://support.claude.com/en/articles/12138966-release-notes).
+  Untuk catatan rilis tentang Aplikasi Claude, lihat [Catatan rilis untuk Aplikasi Claude di Pusat Bantuan Claude](https://support.claude.com/en/articles/12138966-release-notes).
 
-Untuk pembaruan ke Claude Code, lihat [CHANGELOG.md lengkap](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md) di repositori `claude-code`.
+  Untuk pembaruan pada Claude Code, lihat [CHANGELOG.md lengkap](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md) di repositori `claude-code`.
 </Tip>
 
+### 1 Juli 2026
+
+* Kami telah memulihkan akses ke Claude Fable 5 dan Claude Mythos 5. Lihat [pernyataan kami](https://www.anthropic.com/news/redeploying-fable-5) untuk informasi lebih lanjut.
+
+### 30 Juni 2026
+
+* Kami telah meluncurkan **Claude Sonnet 5** (`claude-sonnet-5`), generasi berikutnya dari keluarga model Sonnet kami, dengan harga perkenalan $2 / $10 per MTok hingga 31 Agustus 2026 (standar $3 / $15 setelahnya). Claude Sonnet 5 mendukung [jendela konteks 1M token](/docs/id/build-with-claude/context-windows), maksimum 128k token output, dan rangkaian alat serta fitur platform yang sama dengan Claude Sonnet 4.6, kecuali [Priority Tier](/docs/id/api/service-tiers#supported-models), yang tidak tersedia di Claude Sonnet 5. Tiga perubahan perilaku berlaku saat migrasi: [pemikiran adaptif (adaptive thinking)](/docs/id/build-with-claude/adaptive-thinking) sekarang aktif secara default; pemikiran diperpanjang manual (`thinking: {type: "enabled", budget_tokens: N}`) dihapus dan mengembalikan error 400 (fitur ini telah dihentikan dukungannya di Sonnet 4.6); dan mengatur parameter sampling (`temperature`, `top_p`, `top_k`) ke nilai non-default mengembalikan error 400. Claude Sonnet 5 juga menggunakan tokenizer baru yang menghasilkan sekitar 30% lebih banyak token untuk teks yang sama. Peningkatan pastinya bergantung pada konten dan bentuk beban kerja. Lihat [Apa yang baru di Claude Sonnet 5](/docs/id/about-claude/models/whats-new-sonnet-5) untuk detail dan panduan migrasi. Untuk perbedaan perilaku dan pola prompting khusus model, lihat [Prompting Claude Sonnet 5](/docs/id/build-with-claude/prompt-engineering/prompting-claude-sonnet-5).
+* Stream peristiwa sesi Claude Managed Agents sekarang mendukung [event delta](/docs/id/managed-agents/events-and-streaming#event-deltas). Aktifkan dengan parameter kueri `event_deltas[]` pada `GET /v1/sessions/{session_id}/events/stream`. Peristiwa `event_start` dan `event_delta` menampilkan pratinjau teks pesan agen saat dihasilkan, sebelum peristiwa `agent.message` lengkap tiba.
+* [Mendaftar sesi](/docs/id/managed-agents/session-operations#listing-sessions) untuk Claude Managed Agents sekarang mendukung paginasi mundur. `GET /v1/sessions` mengembalikan kursor `prev_page` bersama `next_page`; teruskan sebagai parameter `page` untuk kembali ke halaman sebelumnya. Lihat [Paginasi](/docs/id/api/overview#pagination).
+* Saat membuat sesi Claude Managed Agents, Anda sekarang dapat [menimpa konfigurasi agen untuk sesi tersebut](/docs/id/managed-agents/sessions#override-agent-configuration-for-a-session). Teruskan `agent` dengan `type: "agent_with_overrides"` untuk mengganti model, prompt sistem, alat, server MCP, atau skill untuk satu sesi. Agen itu sendiri tidak berubah.
+* Vault Claude Managed Agents sekarang mendukung pengaturan `injection_location` pada [kredensial variabel lingkungan](/docs/id/managed-agents/vaults#add-a-credential) (tab Environment variable). Pengaturan ini mengontrol apakah nilai kredensial disubstitusikan, saat egress, ke dalam header permintaan keluar agen, body permintaan, atau keduanya.
+* Webhook untuk Claude Managed Agents sekarang mencakup siklus hidup agen, deployment, dan deployment run. Anda dapat bereaksi terhadap versi agen yang baru dipublikasikan, deployment yang dijeda, atau run terjadwal yang gagal tanpa polling. Lihat tab Agent events, Deployment events, dan Deployment run events di [Berlangganan webhook](/docs/id/managed-agents/webhooks#supported-event-types).
+
+### 29 Juni 2026
+
+* Kami telah menghapus [mode cepat (fast mode)](/docs/id/build-with-claude/fast-mode) untuk Claude Opus 4.6. Permintaan ke `claude-opus-4-6` dengan `speed: "fast"` tidak lagi berjalan pada kecepatan cepat atau harga premium: permintaan tersebut berjalan pada kecepatan standar, ditagih dengan tarif standar, dan tidak mengembalikan error. Field `usage.speed` pada respons melaporkan kecepatan yang digunakan. Untuk terus menggunakan mode cepat, migrasikan ke [Claude Opus 4.8](/docs/id/about-claude/models/migration-guide). Baca selengkapnya di [Mode cepat](/docs/id/build-with-claude/fast-mode#supported-models).
+
+### 26 Juni 2026
+
+* Kami telah menaikkan [batas laju](/docs/id/api/rate-limits) di seluruh Claude API. Batas laju Claude Sonnet dan Claude Haiku sekarang setara dengan Claude Opus di setiap tingkat penggunaan, dan tingkat penggunaan telah dikonsolidasikan menjadi tiga: Start, Build, dan Scale. Sebagian besar organisasi pindah ke tingkat yang lebih tinggi, tidak ada organisasi yang menerima batas lebih rendah dari sebelumnya, dan tidak ada tindakan yang diperlukan. Anda dapat melihat tingkat dan batas Anda saat ini di [Claude Console](/settings/limits).
+
+### 25 Juni 2026
+
+* Kami telah menandai [mode cepat](/docs/id/build-with-claude/fast-mode) untuk Claude Opus 4.7 sebagai usang (deprecated), dengan penghapusan pada 24 Juli 2026. Setelah penghapusan, permintaan ke `claude-opus-4-7` dengan `speed: "fast"` akan mengembalikan error. Migrasikan ke mode cepat untuk Claude Opus 4.8. Baca selengkapnya di [Mode cepat](/docs/id/build-with-claude/fast-mode#supported-models).
+
+### 22 Juni 2026
+
+* **MCP tunnels** (pratinjau riset): API manajemen dipindahkan dari `/v1/organizations/tunnels` di Admin API ke `/v1/tunnels` di Claude API. Permukaan baru menggunakan header `anthropic-beta: mcp-tunnels-2026-06-22` dan cakupan WIF `workspace:manage_tunnels`. Permukaan sebelumnya tetap tersedia selama jendela migrasi. Lihat [referensi API Tunnels](/docs/id/api/beta/tunnels).
+
+### 18 Juni 2026
+
+* SDK Python, TypeScript, Go, Java, Ruby, PHP, dan C# sekarang menyertakan dukungan untuk `code_execution_20260120`, versi [alat eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool) yang menambahkan persistensi state REPL dan merupakan versi minimum untuk [pemanggilan alat terprogram](/docs/id/agents-and-tools/tool-use/programmatic-tool-calling). Untuk mengadopsinya, atur `type` alat ke `code_execution_20260120`; tidak diperlukan header beta. Versi ini tersedia di Claude Fable 5, Claude Mythos 5, Claude Opus 4.5 dan yang lebih baru, serta Claude Sonnet 4.5 dan yang lebih baru; lihat [tabel kompatibilitas model](/docs/id/agents-and-tools/tool-use/code-execution-tool#model-compatibility).
+
+### 15 Juni 2026
+
+* Kami telah menonaktifkan model Claude Sonnet 4 (`claude-sonnet-4-20250514`) dan model Claude Opus 4 (`claude-opus-4-20250514`). Semua permintaan ke model-model ini sekarang akan mengembalikan error. Kami merekomendasikan untuk meningkatkan ke [Claude Sonnet 4.6](/docs/id/about-claude/models/overview#latest-models-comparison) dan [Claude Opus 4.8](/docs/id/about-claude/models/overview#latest-models-comparison) secara berurutan. Peneliti dapat meminta akses berkelanjutan melalui [External Researcher Access Program](https://support.claude.com/en/articles/9125743-what-is-the-external-researcher-access-program).
+
+### 11 Juni 2026
+
+* [Alat eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool) sekarang mendukung `code_execution_20260521`, yang mengungkapkan batas waktu eksekusi 90 detik per sel dalam deskripsi alat sehingga Claude dapat menganggarkan sel yang berjalan lama. Tidak diperlukan header beta.
+* [Alat pencarian web](/docs/id/agents-and-tools/tool-use/web-search-tool) dan [alat pengambilan web](/docs/id/agents-and-tools/tool-use/web-fetch-tool) sekarang mendukung `web_search_20260318` dan `web_fetch_20260318`, menambahkan parameter `response_inclusion` untuk menghapus blok hasil yang telah dikonsumsi dari respons API untuk alur kerja agentik. Tidak diperlukan header beta.
+
+### 10 Juni 2026
+
+* Endpoint `GET /v1/environments/{id}/work`, yang mencantumkan pekerjaan tertunda untuk [sandbox yang dihosting sendiri](/docs/id/managed-agents/self-hosted-sandboxes), sekarang tersedia di [Claude Platform on AWS](/docs/id/build-with-claude/claude-platform-on-aws). Lihat [tindakan IAM untuk Claude Platform on AWS](/docs/id/api/claude-platform-on-aws-iam-actions) untuk tindakan `GetEnvironment` yang mengotorisasinya.
+
+### 9 Juni 2026
+
+* Kami telah meluncurkan **Claude Fable 5** (`claude-fable-5`), model kami yang paling mumpuni yang dirilis secara luas, bersama **Claude Mythos 5** (`claude-mythos-5`) untuk peserta Project Glasswing. Kedua model mendukung [jendela konteks 1M token](/docs/id/build-with-claude/context-windows) secara default, maksimum 128k token output, dan [pemikiran adaptif](/docs/id/build-with-claude/adaptive-thinking) yang selalu aktif. Lihat [Memperkenalkan Claude Fable 5 dan Claude Mythos 5](/docs/id/about-claude/models/introducing-claude-fable-5-and-claude-mythos-5) untuk kemampuan, perubahan API, dan ketersediaan.
+* Claude Fable 5 dan Claude Mythos 5 menggunakan tokenizer yang diperkenalkan dengan Claude Opus 4.7. Dibandingkan dengan model sebelum Claude Opus 4.7, teks yang sama menghasilkan sekitar 30% lebih banyak token. Peningkatan pastinya bergantung pada konten dan bentuk beban kerja. Gunakan [API penghitungan token](/docs/id/build-with-claude/token-counting#token-counts-on-claude-fable-5) dengan `model: "claude-fable-5"` untuk mengukur prompt Anda dengan tokenizer baru.
+* Claude Fable 5 menjalankan pengklasifikasi keamanan pada permintaan dan selama pembuatan respons. Ketika pengklasifikasi menolak permintaan, Messages API mengembalikan `stop_reason: "refusal"`. Anda tidak ditagih untuk permintaan yang ditolak sebelum output apa pun dihasilkan. Parameter opt-in `fallbacks` (dalam beta di Claude API dan Claude Platform on AWS; tidak didukung di Message Batches API) menjalankan ulang permintaan yang ditolak pada model lain, ditagih dengan tarif model fallback. Lihat [Menangani stop reason](/docs/id/build-with-claude/handling-stop-reasons).
+* Field [`stop_details.category`](/docs/id/build-with-claude/refusals-and-fallback#refusal-response) pada respons penolakan sekarang menyertakan `"reasoning_extraction"` di Claude Fable 5, yang dikembalikan ketika permintaan diblokir berdasarkan pembatasan Ketentuan Layanan Anthropic tentang rekayasa balik atau duplikasi output model. Kategori `"cyber"` dan `"bio"` yang sudah ada tidak berubah. Tidak diperlukan header beta.
+* Di Claude Fable 5 dan Claude Mythos 5, [pemikiran adaptif](/docs/id/build-with-claude/adaptive-thinking) adalah satu-satunya mode pemikiran: `thinking: {"type": "disabled"}` tidak didukung, dan anggaran pemikiran diperpanjang manual serta prefill asisten tidak didukung (keduanya mengembalikan error 400). Lihat [Migrasi dari Claude Mythos Preview ke Claude Mythos 5](/docs/id/about-claude/models/migration-guide#migrating-from-claude-mythos-preview).
+* Di Claude Fable 5 dan Claude Mythos 5, `thinking.display` secara default bernilai `"omitted"`, sama seperti Claude Opus 4.8, Claude Opus 4.7, dan Claude Mythos Preview; atur `display: "summarized"` untuk menerima ringkasan pemikiran yang dapat dibaca. Rantai pemikiran mentah tidak pernah dikembalikan; teruskan kembali blok pemikiran tanpa perubahan dalam percakapan multi-giliran pada model yang sama. Lihat [Output pemikiran di Claude Fable 5 dan Claude Mythos 5](/docs/id/build-with-claude/adaptive-thinking#thinking-output-on-claude-fable-5-and-claude-mythos-5).
+* Claude Fable 5 memerlukan retensi data 30 hari dan tidak tersedia dengan retensi data nol. Lihat [Persyaratan retensi data khusus model](/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements).
+* Claude Managed Agents sekarang mendukung [deployment terjadwal](/docs/id/managed-agents/scheduled-deployments), memungkinkan Anda menjalankan sesi pada jadwal cron tanpa mengelola scheduler Anda sendiri.
+* Vault Claude Managed Agents sekarang mendukung [kredensial variabel lingkungan](/docs/id/managed-agents/vaults#add-a-credential), sehingga Anda dapat menyuntikkan secret secara aman ke dalam sandbox agen untuk CLI, SDK, dan layanan lain yang mengautentikasi melalui variabel lingkungan.
+* Peristiwa webhook `session.thread_*` sekarang menyertakan field `session_thread_id` yang mengidentifikasi thread multi-agen yang memicu peristiwa tersebut.
+* Kami telah merilis [paket Swift](/docs/id/cli-sdks-libraries/libraries/apple-foundation-models) dalam beta yang menambahkan Claude sebagai `LanguageModel` sisi server dalam framework Foundation Models Apple. Panggil Claude melalui API `LanguageModelSession` yang sama dengan model on-device Apple di iOS 27, macOS 27, visionOS 27, dan watchOS 27 (beta).
+
+### 5 Juni 2026
+
+* Kami mengumumkan penghentian dukungan (deprecation) untuk model Claude Opus 4.1 (`claude-opus-4-1-20250805`), dengan penonaktifan di Claude API dijadwalkan pada 5 Agustus 2026. Kami merekomendasikan migrasi ke [Claude Opus 4.8](/docs/id/about-claude/models/migration-guide#migrating-from-claude-opus-47). Baca selengkapnya di [penghentian dukungan model](/docs/id/about-claude/model-deprecations).
+
+### 2 Juni 2026
+
+* [Alat advisor](/docs/id/agents-and-tools/tool-use/advisor-tool) sekarang mendukung parameter `max_tokens` untuk membatasi output model advisor per panggilan, mengurangi latensi dan biaya token output untuk beban kerja yang tidak memerlukan respons advisor dengan panjang penuh. Atur `tools[].max_tokens` pada definisi alat advisor; lihat [Membatasi output advisor](/docs/id/agents-and-tools/tool-use/advisor-tool#capping-advisor-output).
+* Di Claude API, Anda tidak lagi ditagih untuk sebuah permintaan ketika permintaan tersebut mengembalikan `stop_reason: "refusal"` tanpa Claude menghasilkan output apa pun. Lihat [Penolakan streaming](/docs/id/test-and-evaluate/strengthen-guardrails/handle-streaming-refusals) untuk mendeteksi dan menangani penolakan.
+
+### 29 Mei 2026
+
+* [Webhook](/docs/id/managed-agents/webhooks), [orkestrasi multi-agen](/docs/id/managed-agents/multi-agent), dan [sandbox yang dihosting sendiri](/docs/id/managed-agents/self-hosted-sandboxes) Claude Managed Agents sekarang tersedia di [Claude Platform on AWS](/docs/id/build-with-claude/claude-platform-on-aws). Lihat [tindakan IAM untuk Claude Platform on AWS](/docs/id/api/claude-platform-on-aws-iam-actions) untuk tindakan IAM baru dan kebijakan terkelola `AnthropicSelfHostedEnvironmentAccess`.
+
+### 28 Mei 2026
+
+* Kami telah meluncurkan **Claude Opus 4.8** (claude-opus-4-8), model kami yang paling mumpuni yang tersedia secara umum. Claude Opus 4.8 mendukung [jendela konteks 1M token](/docs/id/build-with-claude/context-windows) secara default di Claude API, Amazon Bedrock, Google Cloud, dan Microsoft Foundry, maksimum 128k token output, dan rangkaian alat serta fitur platform yang sama dengan Claude Opus 4.7. Lihat [Apa yang baru di Claude Opus 4.8](/docs/id/about-claude/models/whats-new-claude-4-8) untuk peningkatan kemampuan, fitur baru, dan panduan migrasi.
+* Kami telah meluncurkan [pesan sistem di tengah percakapan](/docs/id/build-with-claude/mid-conversation-system-messages). Di Claude Opus 4.8, Anda dapat mengirim pesan `role: "system"` setelah giliran pengguna (tunduk pada [aturan penempatan](/docs/id/build-with-claude/mid-conversation-system-messages#limitations)) dalam array `messages`, mempertahankan cache hit prompt ketika instruksi berubah selama sesi yang berjalan lama. Tidak diperlukan header beta.
+* Field [`stop_details`](/docs/id/build-with-claude/refusals-and-fallback#refusal-response) pada respons penolakan sekarang didokumentasikan secara publik; field ini mengembalikan `category` (`cyber`, `bio`, atau `null`) dan `explanation` yang dapat dibaca manusia, sehingga aplikasi Anda dapat mengarahkan kelas penolakan yang berbeda ke langkah berikutnya yang tepat. Tidak diperlukan header beta.
+* Di Claude Opus 4.8, [parameter effort](/docs/id/build-with-claude/effort) secara default bernilai `high` di semua permukaan, termasuk Claude Code dan Messages API.
+* Di Claude Opus 4.8, panjang prompt minimum yang dapat di-cache untuk [caching prompt](/docs/id/build-with-claude/prompt-caching) adalah 1.024 token, lebih rendah daripada di Claude Opus 4.7.
+* Dengan [pemikiran adaptif](/docs/id/build-with-claude/adaptive-thinking) diaktifkan, Claude Opus 4.8 memicu penalaran hanya ketika sebuah giliran membutuhkannya, mengurangi token pemikiran yang terbuang dibandingkan dengan Claude Opus 4.7 pada tingkat effort yang sama.
+* Claude Opus 4.8 mendukung [input gambar resolusi tinggi](/docs/id/build-with-claude/vision#high-resolution-image-support-on-claude-opus-4-7) (hingga 2576 piksel pada sisi terpanjang), sama seperti Claude Opus 4.7.
+* [Anggaran tugas](/docs/id/build-with-claude/task-budgets) sekarang mendukung Claude Opus 4.8.
+* [Alat advisor](/docs/id/agents-and-tools/tool-use/advisor-tool) sekarang mendukung Claude Opus 4.8.
+* [Penggunaan komputer](/docs/id/agents-and-tools/tool-use/computer-use-tool) sekarang mendukung Claude Opus 4.8.
+* [Mode cepat](/docs/id/build-with-claude/fast-mode) untuk Claude Opus 4.8 tersedia sebagai pratinjau riset hanya di Claude API.
+* Mengatur parameter sampling `temperature`, `top_p`, atau `top_k` ke nilai non-default mengembalikan error 400 di Claude Opus 4.8, sama seperti di Claude Opus 4.7. Lihat [panduan migrasi](/docs/id/about-claude/models/migration-guide) untuk detailnya.
+* Di Claude Code, kami telah memperluas mode Auto ke lebih banyak pengguna untuk tugas yang berjalan lama. Lihat [dokumentasi Claude Code](https://code.claude.com/docs).
+* Di Claude Code, pengguna paket Max sekarang secara default menggunakan [mode cepat](/docs/id/build-with-claude/fast-mode) di Claude Opus 4.8. Lihat [dokumentasi Claude Code](https://code.claude.com/docs).
+* Di Claude Code, Workflows tersedia sebagai pratinjau riset, memungkinkan Anda mendefinisikan dan menjalankan rencana agentik multi-langkah. Lihat [dokumentasi Claude Code](https://code.claude.com/docs).
+* Kami telah menandai [mode cepat](/docs/id/build-with-claude/fast-mode) untuk Claude Opus 4.6 sebagai usang (deprecated), dengan penghapusan sekitar 30 hari setelah peluncuran. Migrasikan ke mode cepat untuk Claude Opus 4.8 atau Claude Opus 4.7. Baca selengkapnya di [Mode cepat](/docs/id/build-with-claude/fast-mode#supported-models).
+* Untuk pembaruan pada claude.ai, Cowork, Claude for Microsoft 365, dan aplikasi Claude lainnya dalam rilis ini, lihat [catatan rilis untuk Aplikasi Claude](https://support.claude.com/en/articles/12138966-release-notes).
+
+### 27 Mei 2026
+
+* Respons Messages API sekarang menyertakan [`usage.output_tokens_details.thinking_tokens`](/docs/id/build-with-claude/extended-thinking#working-with-thinking-budgets), yang melaporkan berapa banyak dari token output yang ditagih merupakan pemikiran diperpanjang. Saat streaming, rincian ini hanya muncul pada peristiwa `message_delta` terakhir. Tidak diperlukan header beta.
+
+### 19 Mei 2026
+
+* [MCP tunnels](/docs/id/agents-and-tools/mcp-tunnels/overview) sekarang tersedia sebagai pratinjau riset, sehingga Anda dapat terhubung ke server MCP di jaringan privat Anda.
+* Sandbox yang dihosting sendiri sekarang tersedia untuk Claude Managed Agents, sebagai alternatif untuk menjalankan eksekusi alat di infrastruktur Anthropic. Lihat [Sandbox yang dihosting sendiri](/docs/id/managed-agents/self-hosted-sandboxes).
+* Dengan Claude Managed Agents, Anda sekarang dapat memperbarui konfigurasi server MCP dan alat agen yang terkait dengan sesi aktif.
+* Dengan Claude Managed Agents, output besar dari `agent_toolset` dan alat MCP yang melebihi 100K token sekarang secara otomatis dialihkan ke sebuah file di sandbox. Model menerima pratinjau terpotong dengan jalur file dan dapat membaca konten lengkapnya dari sana.
+
+### 18 Mei 2026
+
+* [Alat pencarian web](/docs/id/agents-and-tools/tool-use/web-search-tool) sekarang mengembalikan data pengajuan SEC yang lebih kaya, memudahkan untuk melandaskan agen riset keuangan, analisis laba, dan alur kerja uji tuntas pada sumber primer dengan sitasi.
+
+### 13 Mei 2026
+
+* Kami telah meluncurkan [diagnostik cache](/docs/id/build-with-claude/cache-diagnostics) dalam beta publik. Teruskan `diagnostics.previous_message_id` pada permintaan Messages dan API melaporkan `cache_miss_reason` yang menjelaskan di mana prefiks cache prompt menyimpang dari giliran sebelumnya. Sertakan header beta `cache-diagnosis-2026-04-07` dalam permintaan Anda.
+
+### 12 Mei 2026
+
+* [Mode cepat](/docs/id/build-with-claude/fast-mode) (pratinjau riset) sekarang mendukung Claude Opus 4.7. Atur `speed: "fast"` dengan `model: "claude-opus-4-7"` dan header beta `fast-mode-2026-02-01` untuk pembuatan token output yang jauh lebih cepat dengan harga premium. Harga, batas laju, dan akses sama dengan mode cepat Opus 4.6; pelanggan yang tertarik dapat bergabung dengan [daftar tunggu](https://claude.com/fast-mode).
+
+### 11 Mei 2026
+
+* Kami telah meluncurkan **Claude Platform on AWS**, menghadirkan Claude API ke infrastruktur yang dikelola Anthropic yang dapat diakses melalui AWS, dengan penagihan AWS dan autentikasi IAM. Akses Messages API lengkap, Files API, Message Batches API, Claude Managed Agents, Agent Skills, eksekusi kode, dan penggunaan alat melalui endpoint AWS native. Pelajari lebih lanjut di [Claude Platform on AWS](/docs/id/build-with-claude/claude-platform-on-aws).
+
+### 6 Mei 2026
+
+* [Sesi multi-agen](/docs/id/managed-agents/multi-agent) dan [Outcomes](/docs/id/managed-agents/define-outcomes) sekarang dalam beta publik di bawah header beta standar `managed-agents-2026-04-01`.
+* Penyegaran latar belakang kredensial vault Claude Managed Agents sekarang didukung untuk kredensial `mcp_oauth`. Lihat [Autentikasi dengan vault](/docs/id/managed-agents/vaults).
+* Webhook untuk Claude Managed Agents sekarang didukung. Jenis peristiwa webhook mencakup peristiwa siklus hidup sesi dan vault. Lihat [Berlangganan webhook](/docs/id/managed-agents/webhooks).
+* Opsi pemfilteran dan pengurutan tambahan sekarang didukung untuk Claude Managed Agents. Sesi dapat difilter berdasarkan status, dan peristiwa dapat difilter berdasarkan jenis. Peristiwa sekarang dapat difilter berdasarkan waktu pembuatan.
+* [Dreams](/docs/id/managed-agents/dreams) untuk Claude Managed Agents sekarang tersedia sebagai pratinjau riset. Sebuah dream membaca penyimpanan memori yang ada bersama transkrip sesi sebelumnya dan menghasilkan penyimpanan memori output yang direorganisasi dengan duplikat digabungkan, entri usang diganti, dan wawasan baru dimunculkan. Dreams memerlukan header beta `dreaming-2026-04-21` selain header standar `managed-agents-2026-04-01`. [Minta akses](https://claude.com/form/claude-managed-agents) untuk mencobanya.
+
+### 4 Mei 2026
+
+* [Workload Identity Federation](/docs/id/manage-claude/workload-identity-federation) sekarang tersedia secara umum. Autentikasi beban kerja ke Claude API dengan token OIDC berumur pendek dari penyedia identitas Anda sendiri (AWS IAM, Google Cloud, GitHub Actions, Kubernetes, Microsoft Entra ID, Okta, SPIFFE, dan lainnya) alih-alih kunci API statis berumur panjang. Konfigurasikan issuer dan aturan federasi di Claude Console, dan SDK menangani pertukaran serta penyegaran token secara otomatis. Lihat [Autentikasi](/docs/id/manage-claude/authentication).
+
+### 30 April 2026
+
+* Kami telah menonaktifkan beta jendela konteks 1M token (`context-1m-2025-08-07`) untuk Claude Sonnet 4.5 dan Claude Sonnet 4. Header beta sekarang tidak berpengaruh pada model-model ini, dan permintaan yang melebihi jendela konteks standar 200k token mengembalikan error. Untuk menggunakan jendela konteks 1M, migrasikan ke [Claude Sonnet 4.6](/docs/id/about-claude/models/overview#latest-models-comparison) atau [Claude Opus 4.6](/docs/id/about-claude/models/overview#latest-models-comparison), di mana fitur ini tersedia secara umum dengan harga standar tanpa memerlukan header beta.
+
+### 29 April 2026
+
+* Kami telah merilis [skill Claude API](/docs/id/agents-and-tools/agent-skills/claude-api-skill), sebuah [Agent Skill](/docs/id/agents-and-tools/agent-skills/overview) open-source yang memberi Claude materi referensi terkini untuk membangun di atas Messages API dan Claude Managed Agents dalam 8 bahasa. Skill ini dibundel dengan Claude Code dan tersedia di [repositori skill Anthropic](https://github.com/anthropics/skills/tree/main/skills/claude-api).
+
+### 24 April 2026
+
+* Kami telah merilis [Rate Limits API](/docs/id/manage-claude/rate-limits-api), yang memungkinkan administrator untuk mengkueri secara terprogram batas laju yang dikonfigurasi untuk organisasi dan workspace mereka.
+
+### 23 April 2026
+
+* Memori untuk Claude Managed Agents sekarang dalam beta publik di bawah header standar `managed-agents-2026-04-01`. Lihat [Menggunakan memori agen](/docs/id/managed-agents/memory) untuk panduan integrasi lengkap.
+
+### 20 April 2026
+
+* Kami telah menonaktifkan model Claude Haiku 3 (`claude-3-haiku-20240307`). Semua permintaan ke model ini sekarang akan mengembalikan error. Kami merekomendasikan untuk meningkatkan ke [Claude Haiku 4.5](/docs/id/about-claude/models/overview#latest-models-comparison).
+
 ### 16 April 2026
-- Kami telah meluncurkan [Claude Opus 4.7](https://www.anthropic.com/news/claude-opus-4-7), model kami yang paling mampu tersedia secara umum untuk penalaran kompleks dan pengkodean agentic, dengan harga yang sama $5 / $25 per MTok seperti Opus 4.6. Lihat [Apa yang baru di Claude Opus 4.7](/docs/id/about-claude/models/whats-new-claude-4-7) untuk peningkatan kemampuan, fitur baru, dan tokenizer yang diperbarui. Opus 4.7 mencakup perubahan yang merusak API versus Opus 4.6; lihat [Migrasi ke Claude Opus 4.7](/docs/id/about-claude/models/migration-guide#migrating-to-claude-opus-4-7) sebelum meningkatkan.
+
+* Kami telah meluncurkan [Claude Opus 4.7](https://www.anthropic.com/news/claude-opus-4-7), model kami yang paling mumpuni yang tersedia secara umum untuk penalaran kompleks dan pengkodean agentik, dengan harga yang sama $5 / $25 per MTok seperti Opus 4.6. Lihat [Apa yang baru di Claude Opus 4.7](/docs/id/about-claude/models/whats-new-claude-4-7) untuk peningkatan kemampuan, fitur baru, dan tokenizer yang diperbarui. Opus 4.7 menyertakan perubahan API yang merusak kompatibilitas dibandingkan Opus 4.6; lihat [Migrasi ke Claude Opus 4.7](/docs/id/about-claude/models/migration-guide#migrating-to-claude-opus-4-7) sebelum meningkatkan.
+* [Claude di Amazon Bedrock](/docs/id/build-with-claude/claude-in-amazon-bedrock) sekarang terbuka untuk semua pelanggan Amazon Bedrock. Claude Opus 4.7 dan Claude Haiku 4.5 tersedia secara mandiri dari konsol Bedrock melalui endpoint Messages API di `/anthropic/v1/messages`, di 27 region AWS dengan endpoint global dan regional.
+* Kami telah meluncurkan [anggaran tugas](/docs/id/build-with-claude/task-budgets) dalam beta di Claude Opus 4.7. Berikan Claude anggaran token yang bersifat anjuran untuk satu loop agentik penuh (pemikiran, panggilan alat, hasil alat, dan output) dan model melihat hitungan mundur yang berjalan, menggunakannya untuk memprioritaskan pekerjaan dan menyelesaikan dengan baik saat anggaran terpakai. Sertakan header beta `task-budgets-2026-03-13` dalam permintaan Anda.
+* Claude Opus 4.7 mendukung [input gambar resolusi tinggi](/docs/id/build-with-claude/vision#high-resolution-image-support-on-claude-opus-4-7), menaikkan resolusi gambar maksimum dari 1568 menjadi 2576 piksel pada sisi terpanjang untuk kinerja yang lebih baik pada penggunaan komputer, pemahaman tangkapan layar, dan analisis dokumen. Dukungan resolusi tinggi bersifat otomatis dan tidak memerlukan header beta; gambar dapat menggunakan hingga sekitar 3x lebih banyak token gambar dibandingkan model sebelumnya.
+* Kami telah menambahkan tingkat [effort](/docs/id/build-with-claude/effort) `xhigh` di Claude Opus 4.7. `xhigh` berada di antara `high` dan `max` dan disetel untuk tugas agentik dan pengkodean yang berjalan lama (lebih dari 30 menit) dengan anggaran token dalam jutaan. Tidak diperlukan header beta.
 
 ### 14 April 2026
-- Kami mengumumkan penghentian model Claude Sonnet 4 (`claude-sonnet-4-20250514`) dan model Claude Opus 4 (`claude-opus-4-20250514`), dengan pensiun di Claude API dijadwalkan untuk 15 Juni 2026. Kami merekomendasikan migrasi ke [Claude Sonnet 4.6](/docs/id/about-claude/models/overview#latest-models-comparison) dan [Claude Opus 4.7](/docs/id/about-claude/models/overview#latest-models-comparison) masing-masing. Baca lebih lanjut di [penghentian model](/docs/id/about-claude/model-deprecations).
+
+* Kami mengumumkan penghentian dukungan (deprecation) untuk model Claude Sonnet 4 (`claude-sonnet-4-20250514`) dan model Claude Opus 4 (`claude-opus-4-20250514`), dengan penonaktifan di Claude API dijadwalkan pada 15 Juni 2026. Kami merekomendasikan migrasi ke [Claude Sonnet 4.6](/docs/id/about-claude/models/overview#latest-models-comparison) dan [Claude Opus 4.8](/docs/id/about-claude/models/migration-guide#migrating-from-claude-opus-47) secara berurutan. Baca selengkapnya di [penghentian dukungan model](/docs/id/about-claude/model-deprecations).
 
 ### 9 April 2026
-- Kami telah meluncurkan [alat penasihat](/docs/id/agents-and-tools/tool-use/advisor-tool) dalam beta publik. Pasangkan model executor yang lebih cepat dengan model penasihat dengan kecerdasan lebih tinggi yang memberikan panduan strategis di tengah-tengah generasi, sehingga beban kerja agentic jangka panjang mendapatkan kualitas yang mendekati kualitas penasihat saja sementara sebagian besar generasi token terjadi pada tingkat model executor. Sertakan header beta `advisor-tool-2026-03-01` dalam permintaan Anda.
+
+* Kami telah meluncurkan [alat advisor](/docs/id/agents-and-tools/tool-use/advisor-tool) dalam beta publik. Pasangkan model eksekutor yang lebih cepat dengan model advisor berkecerdasan lebih tinggi yang memberikan panduan strategis di tengah pembuatan, sehingga beban kerja agentik berhorizon panjang mendekati kualitas advisor-saja sementara sebagian besar pembuatan token terjadi dengan tarif model eksekutor. Sertakan header beta `advisor-tool-2026-03-01` dalam permintaan Anda.
 
 ### 8 April 2026
-- Kami telah meluncurkan **Claude Managed Agents** dalam beta publik, harness agen yang sepenuhnya dikelola untuk menjalankan Claude sebagai agen otonomi dengan sandboxing aman, alat bawaan, dan streaming peristiwa yang dikirim server. Buat agen, konfigurasikan kontainer, dan jalankan sesi melalui API. Semua endpoint memerlukan header beta `managed-agents-2026-04-01`. Pelajari lebih lanjut di [Gambaran umum Claude Managed Agents](/docs/id/managed-agents/overview).
-- Kami telah meluncurkan **CLI `ant`**, klien baris perintah untuk Claude API yang memungkinkan interaksi lebih cepat dengan Claude API, integrasi asli dengan Claude Code, dan versioning sumber daya API dalam file YAML. Pelajari lebih lanjut di [referensi CLI](/docs/id/api/sdks/cli).
+
+* Kami telah meluncurkan **Claude Managed Agents** dalam beta publik, sebuah harness agen yang dikelola sepenuhnya untuk menjalankan Claude sebagai agen otonom dengan sandboxing yang aman, alat bawaan, dan streaming server-sent event. Buat agen, konfigurasikan kontainer, dan jalankan sesi melalui API. Semua endpoint memerlukan header beta `managed-agents-2026-04-01`. Pelajari lebih lanjut di [ikhtisar Claude Managed Agents](/docs/id/managed-agents/overview).
+* Kami telah meluncurkan **CLI `ant`**, klien baris perintah untuk Claude API yang memungkinkan interaksi lebih cepat dengan Claude API, integrasi native dengan Claude Code, dan pembuatan versi sumber daya API dalam file YAML. Pelajari lebih lanjut di [mulai cepat CLI](/docs/id/cli-sdks-libraries/cli/quickstart).
 
 ### 7 April 2026
-- Kami mengumumkan [Claude Mythos Preview](https://anthropic.com/glasswing) tersedia sebagai pratinjau penelitian yang dibatasi untuk pekerjaan keamanan siber defensif sebagai bagian dari [Project Glasswing](https://anthropic.com/glasswing). Akses hanya dengan undangan.
-- [Messages API](/docs/id/api/messages) sekarang tersedia di Amazon Bedrock sebagai pratinjau penelitian. Titik akhir Claude baru di Amazon Bedrock pada `/anthropic/v1/messages` menggunakan bentuk permintaan yang sama dengan Claude API pihak pertama dan berjalan pada infrastruktur yang dikelola AWS tanpa akses operator. Tersedia di `us-east-1`; hubungi eksekutif akun Anthropic Anda untuk meminta akses. Pelajari lebih lanjut di [Claude di Amazon Bedrock (pratinjau penelitian)](/docs/id/build-with-claude/claude-in-amazon-bedrock-research-preview).
+
+* Kami mengumumkan [Claude Mythos Preview](https://anthropic.com/glasswing) tersedia sebagai pratinjau riset terbatas untuk pekerjaan keamanan siber defensif sebagai bagian dari [Project Glasswing](https://anthropic.com/glasswing). Akses hanya melalui undangan.
+* [Messages API](/docs/id/api/messages) sekarang tersedia di Amazon Bedrock sebagai pratinjau riset. Endpoint Claude di Amazon Bedrock yang baru di `/anthropic/v1/messages` menggunakan bentuk permintaan yang sama dengan Claude API pihak pertama dan berjalan di infrastruktur yang dikelola AWS tanpa akses operator. Tersedia di `us-east-1`; hubungi account executive Anthropic Anda untuk meminta akses. Pelajari lebih lanjut di [Claude di Amazon Bedrock](/docs/id/build-with-claude/claude-in-amazon-bedrock).
 
 ### 30 Maret 2026
-- Kami telah menaikkan batas `max_tokens` menjadi 300k pada [Message Batches API](/docs/id/build-with-claude/batch-processing#extended-output-beta) untuk Claude Opus 4.6 dan Sonnet 4.6. Sertakan header beta `output-300k-2026-03-24` untuk menghasilkan output yang lebih panjang dalam satu putaran untuk konten bentuk panjang, data terstruktur, dan tugas generasi kode besar.
-- Kami menghentikan jendela konteks token 1M beta untuk Claude Sonnet 4.5 dan Claude Sonnet 4 pada **30 April 2026**. Setelah tanggal tersebut, header beta `context-1m-2025-08-07` tidak akan berpengaruh pada model ini, dan permintaan yang melebihi jendela konteks token 200k standar akan mengembalikan kesalahan. Untuk terus menggunakan jendela konteks 1M, migrasi ke [Claude Sonnet 4.6](/docs/id/about-claude/models/overview#latest-models-comparison) atau [Claude Opus 4.6](/docs/id/about-claude/models/overview#latest-models-comparison), yang mendukung jendela konteks token 1M penuh dengan harga standar tanpa header beta yang diperlukan.
+
+* Kami telah menaikkan batas `max_tokens` menjadi 300k di [Message Batches API](/docs/id/build-with-claude/batch-processing#extended-output-beta) untuk Claude Opus 4.6 dan Sonnet 4.6. Sertakan header beta `output-300k-2026-03-24` untuk menghasilkan output giliran tunggal yang lebih panjang untuk konten berbentuk panjang, data terstruktur, dan tugas pembuatan kode besar.
+* Kami akan menonaktifkan beta jendela konteks 1M token untuk Claude Sonnet 4.5 dan Claude Sonnet 4 pada **30 April 2026**. Setelah tanggal tersebut, header beta `context-1m-2025-08-07` tidak akan berpengaruh pada model-model ini, dan permintaan yang melebihi jendela konteks standar 200k token akan mengembalikan error. Untuk terus menggunakan jendela konteks 1M, migrasikan ke [Claude Sonnet 4.6](/docs/id/about-claude/models/overview#latest-models-comparison) atau [Claude Opus 4.6](/docs/id/about-claude/models/overview#latest-models-comparison), yang mendukung jendela konteks 1M token penuh dengan harga standar tanpa memerlukan header beta.
 
 ### 18 Maret 2026
-- Kami telah menambahkan bidang kemampuan model ke [Models API](/docs/id/api/models/list). `GET /v1/models` dan `GET /v1/models/{model_id}` sekarang mengembalikan `max_input_tokens`, `max_tokens`, dan objek `capabilities`. Kueri API untuk menemukan apa yang didukung setiap model.
+
+* Kami telah menambahkan field kemampuan model ke [Models API](/docs/id/api/models/list). `GET /v1/models` dan `GET /v1/models/{model_id}` sekarang mengembalikan `max_input_tokens`, `max_tokens`, dan objek `capabilities`. Kueri API untuk menemukan apa yang didukung setiap model.
 
 ### 16 Maret 2026
-- Kami telah meluncurkan bidang `display` untuk pemikiran yang diperluas, memungkinkan Anda menghilangkan konten pemikiran dari respons untuk streaming yang lebih cepat. Atur `thinking.display: "omitted"` untuk menerima blok pemikiran dengan bidang `thinking` kosong dan `signature` dipertahankan untuk kontinuitas multi-putaran. Penagihan tidak berubah. Pelajari lebih lanjut di [Mengontrol tampilan pemikiran](/docs/id/build-with-claude/extended-thinking#controlling-thinking-display).
+
+* Kami telah meluncurkan field `display` untuk pemikiran diperpanjang, memungkinkan Anda menghilangkan konten pemikiran dari respons untuk streaming yang lebih cepat. Atur `thinking.display: "omitted"` untuk menerima blok pemikiran dengan field `thinking` kosong dan `signature` yang dipertahankan untuk kontinuitas multi-giliran. Penagihan tidak berubah. Pelajari lebih lanjut di [Mengontrol tampilan pemikiran](/docs/id/build-with-claude/extended-thinking#controlling-thinking-display).
 
 ### 13 Maret 2026
-- [Jendela konteks token 1M](/docs/id/build-with-claude/context-windows) sekarang tersedia secara umum untuk Claude Opus 4.6 dan Sonnet 4.6 dengan harga standar. Permintaan di atas 200k token bekerja secara otomatis untuk model ini tanpa header beta yang diperlukan. Jendela konteks token 1M tetap dalam beta untuk Claude Sonnet 4.5 dan Sonnet 4.
-- Kami telah menghapus batas laju 1M khusus untuk semua model yang didukung. Batas akun standar Anda sekarang berlaku di setiap panjang konteks.
-- Kami telah menaikkan batas media dari 100 menjadi 600 gambar atau halaman PDF per permintaan saat menggunakan jendela konteks token 1M.
+
+* [Jendela konteks 1M token](/docs/id/build-with-claude/context-windows) sekarang tersedia secara umum untuk Claude Opus 4.6 dan Sonnet 4.6 dengan harga standar. Permintaan di atas 200k token bekerja secara otomatis untuk model-model ini tanpa memerlukan header beta. Jendela konteks 1M token tetap dalam beta untuk Claude Sonnet 4.5 dan Sonnet 4.
+* Kami telah menghapus batas laju 1M khusus untuk semua model yang didukung. Batas akun standar Anda sekarang berlaku di setiap panjang konteks.
+* Kami telah menaikkan batas media dari 100 menjadi 600 gambar atau halaman PDF per permintaan saat menggunakan jendela konteks 1M token.
 
 ### 19 Februari 2026
-- Kami telah meluncurkan **penyimpanan cache otomatis** untuk Messages API. Tambahkan satu bidang `cache_control` ke badan permintaan Anda dan sistem secara otomatis menyimpan blok yang dapat disimpan terakhir, memindahkan titik cache maju saat percakapan berkembang. Tidak ada manajemen titik henti manual yang diperlukan. Bekerja bersama kontrol cache tingkat blok yang ada untuk optimasi butir halus. Tersedia di Claude API dan Azure AI Foundry (pratinjau). Pelajari lebih lanjut di [Penyimpanan cache prompt](/docs/id/build-with-claude/prompt-caching#automatic-caching).
-- Kami telah menghentikan model Claude Sonnet 3.7 (`claude-3-7-sonnet-20250219`) dan model Claude Haiku 3.5 (`claude-3-5-haiku-20241022`). Semua permintaan ke model ini sekarang akan mengembalikan kesalahan. Kami merekomendasikan meningkatkan ke [Claude Sonnet 4.6](/docs/id/about-claude/models/overview#latest-models-comparison) dan [Claude Haiku 4.5](/docs/id/about-claude/models/overview#latest-models-comparison) masing-masing. Peneliti dapat meminta akses berkelanjutan melalui [Program Akses Peneliti Eksternal](https://support.claude.com/en/articles/9125743-what-is-the-external-researcher-access-program).
-- Kami mengumumkan penghentian model Claude Haiku 3 (`claude-3-haiku-20240307`), dengan pensiun dijadwalkan untuk 19 April 2026. Kami merekomendasikan migrasi ke [Claude Haiku 4.5](/docs/id/about-claude/models/overview#latest-models-comparison). Baca lebih lanjut di [penghentian model](/docs/id/about-claude/model-deprecations).
+
+* Kami telah meluncurkan **caching otomatis** untuk Messages API. Tambahkan satu field `cache_control` ke body permintaan Anda dan sistem secara otomatis meng-cache blok terakhir yang dapat di-cache, memindahkan titik cache ke depan seiring percakapan bertambah. Tidak diperlukan pengelolaan breakpoint manual. Bekerja bersama kontrol cache tingkat blok yang sudah ada untuk optimasi yang lebih terperinci. Tersedia di Claude API dan Microsoft Foundry (pratinjau). Pelajari lebih lanjut di [Caching prompt](/docs/id/build-with-claude/prompt-caching#automatic-caching).
+* Kami telah menonaktifkan model Claude Sonnet 3.7 (`claude-3-7-sonnet-20250219`) dan model Claude Haiku 3.5 (`claude-3-5-haiku-20241022`). Semua permintaan ke model-model ini sekarang akan mengembalikan error. Kami merekomendasikan untuk meningkatkan ke [Claude Sonnet 4.6](/docs/id/about-claude/models/overview#latest-models-comparison) dan [Claude Haiku 4.5](/docs/id/about-claude/models/overview#latest-models-comparison) secara berurutan. Peneliti dapat meminta akses berkelanjutan melalui [External Researcher Access Program](https://support.claude.com/en/articles/9125743-what-is-the-external-researcher-access-program).
+* Kami mengumumkan penghentian dukungan (deprecation) untuk model Claude Haiku 3 (`claude-3-haiku-20240307`), dengan penonaktifan dijadwalkan pada 20 April 2026. Kami merekomendasikan migrasi ke [Claude Haiku 4.5](/docs/id/about-claude/models/overview#latest-models-comparison). Baca selengkapnya di [Penghentian dukungan model](/docs/id/about-claude/model-deprecations).
 
 ### 17 Februari 2026
-- Kami telah meluncurkan [Claude Sonnet 4.6](https://www.anthropic.com/news/claude-sonnet-4-6), model seimbang terbaru kami yang menggabungkan kecepatan dan kecerdasan untuk tugas sehari-hari. Sonnet 4.6 memberikan kinerja pencarian agentic yang ditingkatkan sambil mengonsumsi lebih sedikit token. Sonnet 4.6 mendukung [pemikiran yang diperluas](/docs/id/build-with-claude/extended-thinking) dan [jendela konteks token 1M](/docs/id/build-with-claude/context-windows) (beta). Lihat [Model & Harga](/docs/id/about-claude/models) untuk detail.
-- [Eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool) API sekarang **gratis saat digunakan dengan pencarian web atau pengambilan web**. Eksekusi kode yang disandbox meningkatkan kemampuan model dan efisiensi token. Lihat [detail harga](/docs/id/agents-and-tools/tool-use/code-execution-tool#usage-and-pricing) untuk penggunaan mandiri.
-- [Alat pencarian web](/docs/id/agents-and-tools/tool-use/web-search-tool) dan [pemanggilan alat terprogram](/docs/id/agents-and-tools/tool-use/programmatic-tool-calling) sekarang tersedia secara umum (tidak ada header beta yang diperlukan). Pencarian web dan pengambilan web sekarang mendukung [penyaringan dinamis](/docs/id/agents-and-tools/tool-use/web-search-tool#dynamic-filtering), yang menggunakan eksekusi kode untuk menyaring hasil sebelum mereka mencapai jendela konteks untuk kinerja yang lebih baik dan biaya token yang berkurang.
-- [Alat eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool), [alat pengambilan web](/docs/id/agents-and-tools/tool-use/web-fetch-tool), [alat pencarian alat](/docs/id/agents-and-tools/tool-use/tool-search-tool), [contoh penggunaan alat](/docs/id/agents-and-tools/tool-use/define-tools#providing-tool-use-examples), dan [alat memori](/docs/id/agents-and-tools/tool-use/memory-tool) sekarang tersedia secara umum (tidak ada header beta yang diperlukan).
+
+* Kami telah meluncurkan [Claude Sonnet 4.6](https://www.anthropic.com/news/claude-sonnet-4-6), model seimbang terbaru kami yang menggabungkan kecepatan dan kecerdasan untuk tugas sehari-hari. Sonnet 4.6 memberikan kinerja pencarian agentik yang lebih baik sambil mengonsumsi lebih sedikit token. Sonnet 4.6 mendukung [pemikiran diperpanjang](/docs/id/build-with-claude/extended-thinking) dan [jendela konteks 1M token](/docs/id/build-with-claude/context-windows) (beta). Lihat [Model & Harga](/docs/id/about-claude/models) untuk detailnya.
+* [Eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool) API sekarang **gratis saat digunakan dengan pencarian web atau pengambilan web**. Eksekusi kode dalam sandbox meningkatkan kemampuan model dan efisiensi token. Lihat [detail harga](/docs/id/agents-and-tools/tool-use/code-execution-tool#usage-and-pricing) untuk penggunaan mandiri.
+* [Alat pencarian web](/docs/id/agents-and-tools/tool-use/web-search-tool) dan [pemanggilan alat terprogram](/docs/id/agents-and-tools/tool-use/programmatic-tool-calling) sekarang tersedia secara umum (tidak memerlukan header beta). Pencarian web dan pengambilan web sekarang mendukung [pemfilteran dinamis](/docs/id/agents-and-tools/tool-use/web-search-tool#dynamic-filtering), yang menggunakan eksekusi kode untuk memfilter hasil sebelum mencapai jendela konteks demi kinerja yang lebih baik dan biaya token yang lebih rendah.
+* [Alat eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool), [alat pengambilan web](/docs/id/agents-and-tools/tool-use/web-fetch-tool), [alat pencarian alat](/docs/id/agents-and-tools/tool-use/tool-search-tool), [contoh penggunaan alat](/docs/id/agents-and-tools/tool-use/define-tools#providing-tool-use-examples), dan [alat memori](/docs/id/agents-and-tools/tool-use/memory-tool) sekarang tersedia secara umum (tidak memerlukan header beta).
 
 ### 7 Februari 2026
-- Kami telah meluncurkan [mode cepat](/docs/id/build-with-claude/fast-mode) dalam pratinjau penelitian untuk Opus 4.6, memberikan generasi token output yang jauh lebih cepat melalui parameter `speed`. Mode cepat hingga 2,5x lebih cepat dengan harga premium. Pelanggan yang tertarik harus bergabung dengan [daftar tunggu](https://claude.com/fast-mode).
+
+* Kami telah meluncurkan [mode cepat](/docs/id/build-with-claude/fast-mode) dalam pratinjau riset untuk Opus 4.6, yang memberikan pembuatan token output yang jauh lebih cepat melalui parameter `speed`. Mode cepat hingga 2,5x lebih cepat dengan harga premium. Pelanggan yang tertarik dapat bergabung dengan [daftar tunggu](https://claude.com/fast-mode).
 
 ### 5 Februari 2026
-- Kami telah meluncurkan [Claude Opus 4.6](https://www.anthropic.com/news/claude-opus-4-6), model kami yang paling cerdas untuk tugas agentic kompleks dan pekerjaan jangka panjang. Opus 4.6 merekomendasikan [pemikiran adaptif](/docs/id/build-with-claude/adaptive-thinking) (`thinking: {type: "adaptive"}`); pemikiran manual (`type: "enabled"` dengan `budget_tokens`) sudah usang. Opus 4.6 tidak mendukung prefilling pesan asisten. Pelajari lebih lanjut di [Apa yang baru di Claude 4.6](/docs/id/about-claude/models/whats-new-claude-4-6).
-- [Parameter effort](/docs/id/build-with-claude/effort) sekarang tersedia secara umum (tidak ada header beta yang diperlukan) dan mendukung Claude Opus 4.6. Effort menggantikan `budget_tokens` untuk mengontrol kedalaman pemikiran pada model baru.
-- Kami telah meluncurkan [API pemadatan](/docs/id/build-with-claude/compaction) dalam beta, memberikan peringkasan konteks sisi server untuk percakapan yang efektif tak terbatas. Tersedia di Opus 4.6.
-- Kami telah memperkenalkan [kontrol residensi data](/docs/id/build-with-claude/data-residency), memungkinkan Anda menentukan di mana inferensi model berjalan dengan parameter `inference_geo`. Inferensi hanya AS tersedia dengan harga 1,1x untuk model yang dirilis setelah 1 Februari 2026.
-- [Jendela konteks token 1M](/docs/id/build-with-claude/context-windows) sekarang tersedia dalam beta untuk Claude Opus 4.6, selain Sonnet 4.5 dan Sonnet 4. [Harga konteks panjang](/docs/id/about-claude/pricing#long-context-pricing) berlaku untuk permintaan yang melebihi 200k token input.
-- [Streaming alat butir halus](/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming) sekarang tersedia secara umum di semua model dan platform (tidak ada header beta yang diperlukan). Parameter `output_format` untuk [output terstruktur](/docs/id/build-with-claude/structured-outputs) telah dipindahkan ke `output_config.format`.
+
+* Kami telah meluncurkan [Claude Opus 4.6](https://www.anthropic.com/news/claude-opus-4-6), model kami yang paling cerdas untuk tugas agentik kompleks dan pekerjaan jangka panjang. Opus 4.6 merekomendasikan [pemikiran adaptif](/docs/id/build-with-claude/adaptive-thinking) (`thinking: {type: "adaptive"}`); pemikiran manual (`type: "enabled"` dengan `budget_tokens`) sudah tidak direkomendasikan (deprecated). Opus 4.6 tidak mendukung prefilling pesan assistant. Pelajari lebih lanjut di [Apa yang baru di Claude 4.6](/docs/id/about-claude/models/whats-new-claude-4-6).
+* [Parameter effort](/docs/id/build-with-claude/effort) sekarang tersedia secara umum (tidak memerlukan header beta) dan mendukung Claude Opus 4.6. Effort menggantikan `budget_tokens` untuk mengontrol kedalaman pemikiran pada model baru.
+* Kami telah meluncurkan [API kompaksi](/docs/id/build-with-claude/compaction) dalam beta, yang menyediakan ringkasan konteks di sisi server untuk percakapan yang secara efektif tak terbatas. Tersedia di Opus 4.6.
+* Kami telah memperkenalkan [kontrol residensi data](/docs/id/manage-claude/data-residency), yang memungkinkan Anda menentukan di mana inferensi model berjalan dengan parameter `inference_geo`. Inferensi khusus AS tersedia dengan harga 1,1x untuk model yang dirilis setelah 1 Februari 2026.
+* [Jendela konteks 1M token](/docs/id/build-with-claude/context-windows) sekarang tersedia dalam beta untuk Claude Opus 4.6, selain Sonnet 4.5 dan Sonnet 4. [Harga konteks panjang](/docs/id/about-claude/pricing#long-context-pricing) berlaku untuk permintaan yang melebihi 200k token input.
+* [Streaming alat berbutir halus](/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming) sekarang tersedia secara umum di semua model dan platform (tidak memerlukan header beta).
 
 ### 29 Januari 2026
-- [Output terstruktur](/docs/id/build-with-claude/structured-outputs) sekarang tersedia secara umum di Claude API untuk Claude Sonnet 4.5, Claude Opus 4.5, dan Claude Haiku 4.5. GA mencakup dukungan skema yang diperluas, latensi kompilasi tata bahasa yang ditingkatkan, dan jalur integrasi yang disederhanakan tanpa header beta yang diperlukan. Parameter `output_format` telah dipindahkan ke `output_config.format`. Pengguna beta yang ada dapat terus menggunakan header beta selama periode transisi. Output terstruktur tetap dalam beta publik di Amazon Bedrock dan Microsoft Foundry.
+
+* [Output terstruktur](/docs/id/build-with-claude/structured-outputs) sekarang tersedia secara umum di Claude API untuk Claude Sonnet 4.5, Claude Opus 4.5, dan Claude Haiku 4.5. GA mencakup dukungan skema yang diperluas, latensi kompilasi grammar yang lebih baik, dan jalur integrasi yang disederhanakan tanpa memerlukan header beta. Parameter `output_format` telah dipindahkan ke `output_config.format`. Pengguna beta yang sudah ada dapat terus menggunakan header beta selama periode transisi. Output terstruktur tetap dalam beta publik di Amazon Bedrock dan Microsoft Foundry.
 
 ### 12 Januari 2026
-- `console.anthropic.com` sekarang dialihkan ke `platform.claude.com`. Claude Console telah pindah ke rumah barunya sebagai bagian dari konsolidasi merek Claude kami. Penanda halaman dan tautan yang ada akan terus berfungsi melalui pengalihan otomatis. Untuk detail lebih lanjut, lihat [pengumuman 16 September 2025](#september-16-2025).
+
+* `console.anthropic.com` sekarang dialihkan ke `platform.claude.com`. Claude Console telah pindah ke rumah barunya sebagai bagian dari konsolidasi merek Claude kami. Bookmark dan tautan yang sudah ada akan tetap berfungsi melalui pengalihan otomatis. Untuk detail lebih lanjut, lihat [pengumuman 16 September 2025](#september-16-2025).
 
 ### 5 Januari 2026
-- Kami telah menghentikan model Claude Opus 3 (`claude-3-opus-20240229`). Semua permintaan ke model ini sekarang akan mengembalikan kesalahan. Kami merekomendasikan meningkatkan ke [Claude Opus 4.5](/docs/id/about-claude/models/overview#latest-models-comparison), yang menawarkan kecerdasan yang jauh lebih baik dengan sepertiga biayanya. Peneliti dapat meminta akses berkelanjutan ke Claude Opus 3 di API melalui [Program Akses Peneliti Eksternal](https://support.claude.com/en/articles/9125743-what-is-the-external-researcher-access-program).
+
+* Kami telah menghentikan model Claude Opus 3 (`claude-3-opus-20240229`). Semua permintaan ke model ini sekarang akan mengembalikan error. Kami merekomendasikan untuk meningkatkan ke [Claude Opus 4.5](/docs/id/about-claude/models/overview#latest-models-comparison), yang menawarkan kecerdasan yang jauh lebih baik dengan sepertiga biaya. Peneliti dapat meminta akses berkelanjutan ke Claude Opus 3 di API melalui [External Researcher Access Program](https://support.claude.com/en/articles/9125743-what-is-the-external-researcher-access-program).
 
 ### 19 Desember 2025
-- Kami mengumumkan penghentian model Claude Haiku 3.5. Baca lebih lanjut di [Penghentian model](/docs/id/about-claude/model-deprecations).
+
+* Kami mengumumkan penghentian dukungan (deprecation) model Claude Haiku 3.5. Baca lebih lanjut di [Penghentian model](/docs/id/about-claude/model-deprecations).
 
 ### 4 Desember 2025
-- [Output terstruktur](/docs/id/build-with-claude/structured-outputs) sekarang mendukung Claude Haiku 4.5.
+
+* [Output terstruktur](/docs/id/build-with-claude/structured-outputs) sekarang mendukung Claude Haiku 4.5.
 
 ### 24 November 2025
-- Kami telah meluncurkan [Claude Opus 4.5](https://www.anthropic.com/news/claude-opus-4-5), model kami yang paling cerdas menggabungkan kemampuan maksimal dengan kinerja praktis. Ideal untuk tugas khusus kompleks, rekayasa perangkat lunak profesional, dan agen lanjutan. Fitur peningkatan perubahan langkah dalam visi, pengkodean, dan penggunaan komputer dengan titik harga yang lebih terjangkau daripada model Opus sebelumnya. Pelajari lebih lanjut di [Gambaran umum Model](/docs/id/about-claude/models).
-- Kami telah meluncurkan [pemanggilan alat terprogram](/docs/id/agents-and-tools/tool-use/programmatic-tool-calling) dalam beta publik, memungkinkan Claude memanggil alat dari dalam eksekusi kode untuk mengurangi latensi dan penggunaan token dalam alur kerja multi-alat.
-- Kami telah meluncurkan [alat pencarian alat](/docs/id/agents-and-tools/tool-use/tool-search-tool) dalam beta publik, memungkinkan Claude secara dinamis menemukan dan memuat alat sesuai permintaan dari katalog alat besar.
-- Kami telah meluncurkan [parameter effort](/docs/id/build-with-claude/effort) dalam beta publik untuk Claude Opus 4.5, memungkinkan Anda mengontrol penggunaan token dengan menukar antara kelengkapan respons dan efisiensi.
-- Kami telah menambahkan [pemadatan sisi klien](/docs/id/build-with-claude/context-editing#client-side-compaction-sdk) ke SDK Python dan TypeScript kami, secara otomatis mengelola konteks percakapan melalui peringkasan saat menggunakan `tool_runner`.
+
+* Kami telah meluncurkan [Claude Opus 4.5](https://www.anthropic.com/news/claude-opus-4-5), model kami yang paling cerdas yang menggabungkan kemampuan maksimum dengan kinerja praktis. Ideal untuk tugas khusus yang kompleks, rekayasa perangkat lunak profesional, dan agen tingkat lanjut. Menghadirkan peningkatan signifikan dalam visi, pengkodean, dan penggunaan komputer dengan harga yang lebih terjangkau dibandingkan model Opus sebelumnya. Pelajari lebih lanjut di [Ikhtisar model](/docs/id/about-claude/models).
+* Kami telah meluncurkan [pemanggilan alat terprogram](/docs/id/agents-and-tools/tool-use/programmatic-tool-calling) dalam beta publik, yang memungkinkan Claude memanggil alat dari dalam eksekusi kode untuk mengurangi latensi dan penggunaan token dalam alur kerja multi-alat.
+* Kami telah meluncurkan [alat pencarian alat](/docs/id/agents-and-tools/tool-use/tool-search-tool) dalam beta publik, yang memungkinkan Claude menemukan dan memuat alat secara dinamis sesuai permintaan dari katalog alat yang besar.
+* Kami telah meluncurkan [parameter effort](/docs/id/build-with-claude/effort) dalam beta publik untuk Claude Opus 4.5, yang memungkinkan Anda mengontrol penggunaan token dengan menyeimbangkan antara ketelitian respons dan efisiensi.
+* Kami telah menambahkan [kompaksi sisi klien](/docs/id/build-with-claude/context-editing#client-side-compaction-sdk) ke SDK Python dan TypeScript kami, yang secara otomatis mengelola konteks percakapan melalui ringkasan saat menggunakan `tool_runner`.
 
 ### 21 November 2025
-- Blok konten hasil pencarian sekarang tersedia secara umum di Amazon Bedrock. Pelajari lebih lanjut di [Hasil pencarian](/docs/id/build-with-claude/search-results).
+
+* Blok konten hasil pencarian sekarang tersedia secara umum di Amazon Bedrock. Pelajari lebih lanjut di [Hasil pencarian](/docs/id/build-with-claude/search-results).
 
 ### 19 November 2025
-- Kami telah meluncurkan **platform dokumentasi baru** di [platform.claude.com/docs](https://platform.claude.com/docs). Dokumentasi kami sekarang hidup berdampingan dengan Claude Console, memberikan pengalaman pengembang yang terpadu. Situs docs sebelumnya di docs.claude.com akan dialihkan ke lokasi baru.
+
+* Kami telah meluncurkan **platform dokumentasi baru** di [platform.claude.com/docs](https://platform.claude.com/docs). Dokumentasi kami sekarang berada berdampingan dengan Claude Console, memberikan pengalaman pengembang yang terpadu. Situs dokumentasi sebelumnya di docs.claude.com akan dialihkan ke lokasi baru.
 
 ### 18 November 2025
-- Kami telah meluncurkan **Claude di Microsoft Foundry**, membawa model Claude ke pelanggan Azure dengan penagihan Azure dan autentikasi OAuth. Akses Messages API lengkap termasuk pemikiran yang diperluas, penyimpanan cache prompt (5 menit dan 1 jam), dukungan PDF, Files API, Agent Skills, dan penggunaan alat. Pelajari lebih lanjut di [Claude di Microsoft Foundry](/docs/id/build-with-claude/claude-in-microsoft-foundry).
+
+* Kami telah meluncurkan **Claude di Microsoft Foundry**, menghadirkan model Claude kepada pelanggan Azure dengan penagihan Azure dan autentikasi OAuth. Akses Messages API lengkap termasuk pemikiran diperpanjang, caching prompt (5 menit dan 1 jam), dukungan PDF, Files API, Agent Skills, dan penggunaan alat. Pelajari lebih lanjut di [Claude di Microsoft Foundry](/docs/id/build-with-claude/claude-in-microsoft-foundry).
 
 ### 14 November 2025
-- Kami telah meluncurkan [output terstruktur](/docs/id/build-with-claude/structured-outputs) dalam beta publik, memberikan kepatuhan skema yang dijamin untuk respons Claude. Gunakan output JSON untuk respons data terstruktur atau penggunaan alat ketat untuk input alat yang divalidasi. Tersedia untuk Claude Sonnet 4.5 dan Claude Opus 4.1. Untuk mengaktifkan, gunakan header beta `structured-outputs-2025-11-13`.
+
+* Kami telah meluncurkan [output terstruktur](/docs/id/build-with-claude/structured-outputs) dalam beta publik, yang memberikan jaminan kesesuaian skema untuk respons Claude. Gunakan output JSON untuk respons data terstruktur atau penggunaan alat ketat (strict tool use) untuk input alat yang tervalidasi. Tersedia untuk Claude Sonnet 4.5 dan Claude Opus 4.1. Untuk mengaktifkannya, gunakan header beta `structured-outputs-2025-11-13`.
 
 ### 28 Oktober 2025
-- Kami mengumumkan penghentian model Claude Sonnet 3.7. Baca lebih lanjut di [Penghentian model](/docs/id/about-claude/model-deprecations).
-- Kami telah menghentikan model Claude Sonnet 3.5. Semua permintaan ke model ini sekarang akan mengembalikan kesalahan.
-- Kami telah memperluas pengeditan konteks dengan pembersihan blok pemikiran (`clear_thinking_20251015`), memungkinkan manajemen otomatis blok pemikiran. Pelajari lebih lanjut di [Pengeditan konteks](/docs/id/build-with-claude/context-editing).
+
+* Kami mengumumkan penghentian dukungan (deprecation) model Claude Sonnet 3.7. Baca lebih lanjut di [Penghentian model](/docs/id/about-claude/model-deprecations).
+* Kami telah menghentikan model Claude Sonnet 3.5. Semua permintaan ke model-model ini sekarang akan mengembalikan error.
+* Kami telah memperluas pengeditan konteks dengan pembersihan blok pemikiran (`clear_thinking_20251015`), yang memungkinkan pengelolaan otomatis blok pemikiran. Pelajari lebih lanjut di [Pengeditan konteks](/docs/id/build-with-claude/context-editing).
 
 ### 16 Oktober 2025
-- Kami telah meluncurkan [Agent Skills](https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills) (`skills-2025-10-02` beta), cara baru untuk memperluas kemampuan Claude. Skills adalah folder terorganisir dari instruksi, skrip, dan sumber daya yang Claude muat secara dinamis untuk melakukan tugas khusus. Rilis awal mencakup:
-  - **Skills yang Dikelola Anthropic**: Skills pra-bangun untuk bekerja dengan file PowerPoint (.pptx), Excel (.xlsx), Word (.docx), dan PDF
-  - **Skills Kustom**: Unggah Skills Anda sendiri melalui Skills API (endpoint `/v1/skills`) untuk mengemas keahlian domain dan alur kerja organisasi
-  - Skills memerlukan [alat eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool) untuk diaktifkan
-  - Pelajari lebih lanjut di [Agent Skills](/docs/id/agents-and-tools/agent-skills/overview) dan [referensi API](/docs/id/api/skills/create-skill)
+
+* Kami telah meluncurkan [Agent Skills](https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills) (beta `skills-2025-10-02`), cara baru untuk memperluas kemampuan Claude. Skills adalah folder terorganisir berisi instruksi, skrip, dan sumber daya yang dimuat Claude secara dinamis untuk melakukan tugas khusus. Rilis awal mencakup:
+
+  * **Skills yang dikelola Anthropic**: Skills siap pakai untuk bekerja dengan file PowerPoint (.pptx), Excel (.xlsx), Word (.docx), dan PDF
+  * **Skills kustom**: Unggah Skills Anda sendiri melalui Skills API (endpoint `/v1/skills`) untuk mengemas keahlian domain dan alur kerja organisasi
+  * Skills memerlukan [alat eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool) untuk diaktifkan
+  * Pelajari lebih lanjut di [Agent Skills](/docs/id/agents-and-tools/agent-skills/overview) dan [referensi API](/docs/id/api/skills/create-skill)
 
 ### 15 Oktober 2025
-- Kami telah meluncurkan [Claude Haiku 4.5](https://www.anthropic.com/news/claude-haiku-4-5), model Haiku kami yang tercepat dan paling cerdas dengan kinerja mendekati perbatasan. Ideal untuk aplikasi real-time, pemrosesan volume tinggi, dan penyebaran sensitif biaya yang memerlukan penalaran kuat. Pelajari lebih lanjut di [Gambaran umum Model](/docs/id/about-claude/models).
+
+* Kami telah meluncurkan [Claude Haiku 4.5](https://www.anthropic.com/news/claude-haiku-4-5), model Haiku tercepat dan tercerdas kami dengan kinerja mendekati frontier. Ideal untuk aplikasi real-time, pemrosesan volume tinggi, dan penerapan yang sensitif terhadap biaya yang memerlukan penalaran yang kuat. Pelajari lebih lanjut di [Ikhtisar model](/docs/id/about-claude/models).
 
 ### 29 September 2025
-- Kami telah meluncurkan [Claude Sonnet 4.5](https://www.anthropic.com/news/claude-sonnet-4-5), model terbaik kami untuk agen kompleks dan pengkodean, dengan kecerdasan tertinggi di sebagian besar tugas. Pelajari lebih lanjut di [gambaran umum model](/docs/id/about-claude/models/overview).
-- Kami telah memperkenalkan [harga titik akhir global](/docs/id/about-claude/pricing#third-party-platform-pricing) untuk AWS Bedrock dan Google Vertex AI. Harga Claude API (1P) tidak terpengaruh.
-- Kami telah memperkenalkan alasan berhenti baru `model_context_window_exceeded` yang memungkinkan Anda meminta token maksimal yang mungkin tanpa menghitung ukuran input. Pelajari lebih lanjut di [Menangani alasan berhenti](/docs/id/build-with-claude/handling-stop-reasons).
-- Kami telah meluncurkan alat memori dalam beta, memungkinkan Claude menyimpan dan berkonsultasi informasi di seluruh percakapan. Pelajari lebih lanjut di [Alat memori](/docs/id/agents-and-tools/tool-use/memory-tool).
-- Kami telah meluncurkan pengeditan konteks dalam beta, memberikan strategi untuk secara otomatis mengelola konteks percakapan. Rilis awal mendukung pembersihan hasil alat yang lebih lama dan panggilan saat mendekati batas token. Pelajari lebih lanjut di [Pengeditan konteks](/docs/id/build-with-claude/context-editing).
+
+* Kami telah meluncurkan [Claude Sonnet 4.5](https://www.anthropic.com/news/claude-sonnet-4-5), model terbaik kami untuk agen kompleks dan pengkodean, dengan kecerdasan tertinggi di sebagian besar tugas. Pelajari lebih lanjut di [ikhtisar model](/docs/id/about-claude/models/overview).
+* Kami telah memperkenalkan [harga endpoint global](/docs/id/about-claude/pricing#cloud-platform-pricing) untuk Amazon Bedrock dan Vertex AI. Harga Claude API (1P) tidak terpengaruh.
+* Kami telah memperkenalkan stop reason baru `model_context_window_exceeded` yang memungkinkan Anda meminta token maksimum yang mungkin tanpa menghitung ukuran input. Pelajari lebih lanjut di [Menangani stop reason](/docs/id/build-with-claude/handling-stop-reasons).
+* Kami telah meluncurkan alat memori dalam beta, yang memungkinkan Claude menyimpan dan merujuk informasi di seluruh percakapan. Pelajari lebih lanjut di [Alat memori](/docs/id/agents-and-tools/tool-use/memory-tool).
+* Kami telah meluncurkan pengeditan konteks dalam beta, yang menyediakan strategi untuk mengelola konteks percakapan secara otomatis. Rilis awal mendukung pembersihan hasil alat dan pemanggilan yang lebih lama saat mendekati batas token. Pelajari lebih lanjut di [Pengeditan konteks](/docs/id/build-with-claude/context-editing).
 
 ### 17 September 2025
-- Kami telah meluncurkan pembantu alat dalam beta untuk SDK Python dan TypeScript, menyederhanakan pembuatan dan eksekusi alat dengan validasi input yang aman tipe dan pelari alat untuk penanganan alat otomatis dalam percakapan. Untuk detail, lihat dokumentasi untuk [SDK Python](https://github.com/anthropics/anthropic-sdk-python/blob/main/tools.md) dan [SDK TypeScript](https://github.com/anthropics/anthropic-sdk-typescript/blob/main/helpers.md#tool-helpers).
+
+* Kami telah meluncurkan tool helpers dalam beta untuk SDK Python dan TypeScript, yang menyederhanakan pembuatan dan eksekusi alat dengan validasi input yang type-safe dan tool runner untuk penanganan alat otomatis dalam percakapan. Untuk detailnya, lihat dokumentasi untuk [SDK Python](https://github.com/anthropics/anthropic-sdk-python/blob/main/tools.md) dan [SDK TypeScript](https://github.com/anthropics/anthropic-sdk-typescript/blob/main/helpers.md#tool-helpers).
 
 ### 16 September 2025
-- Kami telah menyatukan penawaran pengembang kami di bawah merek Claude. Anda harus melihat penamaan dan URL yang diperbarui di seluruh platform dan dokumentasi kami, tetapi **antarmuka pengembang kami akan tetap sama**. Berikut adalah beberapa perubahan penting:
-  - Claude Console ([console.anthropic.com](https://console.anthropic.com)) → Claude Console ([platform.claude.com](https://platform.claude.com)). Konsol akan tersedia di kedua URL hingga 12 Januari 2026. Setelah tanggal tersebut, [console.anthropic.com](https://console.anthropic.com) akan secara otomatis dialihkan ke [platform.claude.com](https://platform.claude.com).
-  - Anthropic Docs ([docs.claude.com](https://docs.claude.com)) → Claude Docs ([docs.claude.com](https://docs.claude.com))
-  - Anthropic Help Center ([support.claude.com](https://support.claude.com)) → Claude Help Center ([support.claude.com](https://support.claude.com))
-  - Titik akhir API, header, variabel lingkungan, dan SDK tetap sama. Integrasi yang ada akan terus berfungsi tanpa perubahan apa pun.
+
+* Kami telah menyatukan penawaran pengembang kami di bawah merek Claude. Anda akan melihat penamaan dan URL yang diperbarui di seluruh platform dan dokumentasi kami, tetapi **antarmuka pengembang kami akan tetap sama**. Berikut beberapa perubahan penting:
+
+  * Claude Console ([console.anthropic.com](https://console.anthropic.com)) → Claude Console ([platform.claude.com](https://platform.claude.com)). Console akan tersedia di kedua URL hingga 12 Januari 2026. Setelah tanggal tersebut, [console.anthropic.com](https://console.anthropic.com) akan secara otomatis dialihkan ke [platform.claude.com](https://platform.claude.com).
+  * Anthropic Docs ([docs.anthropic.com](https://docs.anthropic.com)) → Claude Docs ([docs.claude.com](https://docs.claude.com))
+  * Anthropic Help Center ([support.anthropic.com](https://support.anthropic.com)) → Claude Help Center ([support.claude.com](https://support.claude.com))
+  * Endpoint API, header, variabel lingkungan, dan SDK tetap sama. Integrasi Anda yang sudah ada akan terus berfungsi tanpa perubahan apa pun.
 
 ### 10 September 2025
-- Kami telah meluncurkan alat pengambilan web dalam beta, memungkinkan Claude mengambil konten lengkap dari halaman web dan dokumen PDF yang ditentukan. Pelajari lebih lanjut di [Alat pengambilan web](/docs/id/agents-and-tools/tool-use/web-fetch-tool).
-- Kami telah meluncurkan [Claude Code Analytics API](/docs/id/build-with-claude/claude-code-analytics-api), memungkinkan organisasi untuk secara terprogram mengakses metrik penggunaan harian yang diagregasi untuk Claude Code, termasuk metrik produktivitas, statistik penggunaan alat, dan data biaya.
+
+* Kami telah meluncurkan alat pengambilan web dalam beta, yang memungkinkan Claude mengambil konten lengkap dari halaman web dan dokumen PDF yang ditentukan. Pelajari lebih lanjut di [Alat pengambilan web](/docs/id/agents-and-tools/tool-use/web-fetch-tool).
+* Kami telah meluncurkan [Claude Code Analytics API](/docs/id/manage-claude/claude-code-analytics-api), yang memungkinkan organisasi mengakses metrik penggunaan agregat harian untuk Claude Code secara terprogram, termasuk metrik produktivitas, statistik penggunaan alat, dan data biaya.
 
 ### 8 September 2025
-- Kami meluncurkan versi beta dari [C# SDK](https://github.com/anthropics/anthropic-sdk-csharp).
+
+* Kami meluncurkan versi beta dari [SDK C#](https://github.com/anthropics/anthropic-sdk-csharp).
 
 ### 5 September 2025
-- Kami telah meluncurkan [bagan batas laju](/docs/id/api/rate-limits#monitoring-your-rate-limits-in-the-console) di halaman [Penggunaan](https://console.anthropic.com/settings/usage) Console, memungkinkan Anda memantau penggunaan batas laju API dan tingkat penyimpanan cache dari waktu ke waktu.
+
+* Kami telah meluncurkan [grafik batas laju](/docs/id/api/rate-limits#monitoring-your-rate-limits-in-the-console) di halaman [Usage](https://console.anthropic.com/settings/usage) Console, yang memungkinkan Anda memantau penggunaan batas laju API dan tingkat caching Anda dari waktu ke waktu.
 
 ### 3 September 2025
-- Kami telah meluncurkan dukungan untuk dokumen yang dapat dikutip dalam hasil alat sisi klien. Pelajari lebih lanjut di [Menangani panggilan alat](/docs/id/agents-and-tools/tool-use/handle-tool-calls).
+
+* Kami telah meluncurkan dukungan untuk dokumen yang dapat dikutip dalam hasil alat sisi klien. Pelajari lebih lanjut di [Menangani pemanggilan alat](/docs/id/agents-and-tools/tool-use/handle-tool-calls).
 
 ### 2 September 2025
-- Kami telah meluncurkan v2 dari [Code Execution Tool](/docs/id/agents-and-tools/tool-use/code-execution-tool) dalam beta publik, menggantikan alat Python-only asli dengan eksekusi perintah Bash dan kemampuan manipulasi file langsung, termasuk menulis kode dalam bahasa lain.
+
+* Kami telah meluncurkan v2 dari [Alat Eksekusi Kode](/docs/id/agents-and-tools/tool-use/code-execution-tool) dalam beta publik, menggantikan alat asli yang hanya mendukung Python dengan eksekusi perintah Bash dan kemampuan manipulasi file langsung, termasuk menulis kode dalam bahasa lain.
 
 ### 27 Agustus 2025
-- Kami meluncurkan versi beta dari [PHP SDK](https://github.com/anthropics/anthropic-sdk-php).
+
+* Kami meluncurkan versi beta dari [SDK PHP](https://github.com/anthropics/anthropic-sdk-php).
 
 ### 26 Agustus 2025
-- Kami telah meningkatkan batas laju pada [jendela konteks token 1M](/docs/id/build-with-claude/context-windows) untuk Claude Sonnet 4 di Claude API.
-- Jendela konteks token 1M sekarang tersedia di Vertex AI Google Cloud. Untuk informasi lebih lanjut, lihat [Claude di Vertex AI](/docs/id/build-with-claude/claude-on-vertex-ai).
+
+* Kami telah meningkatkan batas laju pada [jendela konteks 1M token](/docs/id/build-with-claude/context-windows) untuk Claude Sonnet 4 di Claude API.
+* Jendela konteks 1M token sekarang tersedia di Vertex AI. Untuk informasi lebih lanjut, lihat [Claude di Vertex AI](/docs/id/build-with-claude/claude-on-vertex-ai).
 
 ### 19 Agustus 2025
-- ID permintaan sekarang disertakan langsung dalam badan respons kesalahan bersama header `request-id` yang ada. Pelajari lebih lanjut di [Kesalahan](/docs/id/api/errors#error-shapes).
+
+* ID permintaan sekarang disertakan langsung dalam badan respons error bersama dengan header `request-id` yang sudah ada. Pelajari lebih lanjut di [Error](/docs/id/api/errors#error-shapes).
 
 ### 18 Agustus 2025
-- Kami telah merilis [Usage & Cost API](/docs/id/build-with-claude/usage-cost-api), memungkinkan administrator untuk secara terprogram memantau data penggunaan dan biaya organisasi mereka.
-- Kami telah menambahkan titik akhir baru ke Admin API untuk mengambil informasi organisasi. Untuk detail, lihat [referensi Organization Info Admin API](/docs/id/api/admin-api/organization/get-me).
+
+* Kami telah merilis [Usage & Cost API](/docs/id/manage-claude/usage-cost-api), yang memungkinkan administrator memantau data penggunaan dan biaya organisasi mereka secara terprogram.
+* Kami telah menambahkan endpoint baru ke Admin API untuk mengambil informasi organisasi. Untuk detailnya, lihat [referensi Organization Info Admin API](/docs/id/api/admin-api/organization/get-me).
 
 ### 13 Agustus 2025
-- Kami mengumumkan penghentian model Claude Sonnet 3.5 (`claude-3-5-sonnet-20240620` dan `claude-3-5-sonnet-20241022`). Model ini akan pensiun pada 28 Oktober 2025. Kami merekomendasikan migrasi ke Claude Sonnet 4.5 (`claude-sonnet-4-5-20250929`) untuk kinerja dan kemampuan yang ditingkatkan. Baca lebih lanjut di [Penghentian model](/docs/id/about-claude/model-deprecations).
-- Durasi cache 1 jam untuk penyimpanan cache prompt sekarang tersedia secara umum. Anda sekarang dapat menggunakan TTL cache yang diperluas tanpa header beta. Pelajari lebih lanjut di [Penyimpanan cache prompt](/docs/id/build-with-claude/prompt-caching#1-hour-cache-duration).
+
+* Kami mengumumkan penghentian dukungan (deprecation) model Claude Sonnet 3.5 (`claude-3-5-sonnet-20240620` dan `claude-3-5-sonnet-20241022`). Model-model ini akan dihentikan pada 28 Oktober 2025. Kami merekomendasikan migrasi ke Claude Sonnet 4.5 (`claude-sonnet-4-5-20250929`) untuk kinerja dan kemampuan yang lebih baik. Baca lebih lanjut di [Penghentian model](/docs/id/about-claude/model-deprecations).
+* Durasi cache 1 jam untuk caching prompt sekarang tersedia secara umum. Anda sekarang dapat menggunakan TTL cache yang diperpanjang tanpa header beta. Pelajari lebih lanjut di [Caching prompt](/docs/id/build-with-claude/prompt-caching#1-hour-cache-duration).
 
 ### 12 Agustus 2025
-- Kami telah meluncurkan dukungan beta untuk [jendela konteks token 1M](/docs/id/build-with-claude/context-windows) di Claude Sonnet 4 di Claude API dan Amazon Bedrock.
+
+* Kami telah meluncurkan dukungan beta untuk [jendela konteks 1M token](/docs/id/build-with-claude/context-windows) di Claude Sonnet 4 pada Claude API dan Amazon Bedrock.
 
 ### 11 Agustus 2025
-- Beberapa pelanggan mungkin mengalami 429 (`rate_limit_error`) [kesalahan](/docs/id/api/errors) setelah peningkatan tajam dalam penggunaan API karena batas akselerasi pada API. Sebelumnya, kesalahan 529 (`overloaded_error`) akan terjadi dalam skenario serupa.
+
+* Beberapa pelanggan mungkin mengalami [error](/docs/id/api/errors) 429 (`rate_limit_error`) setelah peningkatan tajam dalam penggunaan API karena batas akselerasi pada API. Sebelumnya, error 529 (`overloaded_error`) akan terjadi dalam skenario serupa.
 
 ### 8 Agustus 2025
-- Blok konten hasil pencarian sekarang tersedia secara umum di Claude API dan Vertex AI Google Cloud. Fitur ini memungkinkan kutipan alami untuk aplikasi RAG dengan atribusi sumber yang tepat. Header beta `search-results-2025-06-09` tidak lagi diperlukan. Pelajari lebih lanjut di [Hasil pencarian](/docs/id/build-with-claude/search-results).
+
+* Blok konten hasil pencarian sekarang tersedia secara umum di Claude API dan Vertex AI. Fitur ini memungkinkan kutipan alami untuk aplikasi RAG dengan atribusi sumber yang tepat. Header beta `search-results-2025-06-09` tidak lagi diperlukan. Pelajari lebih lanjut di [Hasil pencarian](/docs/id/build-with-claude/search-results).
 
 ### 5 Agustus 2025
-- Kami telah meluncurkan [Claude Opus 4.1](https://www.anthropic.com/news/claude-opus-4-1), pembaruan inkremental ke Claude Opus 4 dengan kemampuan yang ditingkatkan dan peningkatan kinerja.<sup>*</sup> Pelajari lebih lanjut di [Gambaran umum Model](/docs/id/about-claude/models).
 
-_<sup>* - Opus 4.1 tidak memungkinkan parameter `temperature` dan `top_p` untuk ditentukan bersama. Silakan gunakan hanya satu. </sup>_
+* Kami telah meluncurkan [Claude Opus 4.1](https://www.anthropic.com/news/claude-opus-4-1), pembaruan inkremental untuk Claude Opus 4 dengan kemampuan yang ditingkatkan dan peningkatan kinerja.\* Pelajari lebih lanjut di [Ikhtisar model](/docs/id/about-claude/models).
+
+*\* - Opus 4.1 tidak mengizinkan parameter `temperature` dan `top_p` ditentukan bersamaan. Harap gunakan hanya salah satu.*
 
 ### 28 Juli 2025
-- Kami telah merilis `text_editor_20250728`, alat editor teks yang diperbarui yang memperbaiki beberapa masalah dari versi sebelumnya dan menambahkan parameter `max_characters` opsional yang memungkinkan Anda mengontrol panjang pemotongan saat melihat file besar.
+
+* Kami telah merilis `text_editor_20250728`, alat editor teks yang diperbarui yang memperbaiki beberapa masalah dari versi sebelumnya dan menambahkan parameter opsional `max_characters` yang memungkinkan Anda mengontrol panjang pemotongan saat melihat file besar.
 
 ### 24 Juli 2025
-- Kami telah meningkatkan [batas laju](/docs/id/api/rate-limits) untuk Claude Opus 4 di Claude API untuk memberi Anda lebih banyak kapasitas untuk membangun dan menskalakan dengan Claude. Untuk pelanggan dengan [batas laju tingkat penggunaan 1-4](/docs/id/api/rate-limits#rate-limits), perubahan ini berlaku segera untuk akun Anda - tidak ada tindakan yang diperlukan.
+
+* Kami telah meningkatkan [batas laju](/docs/id/api/rate-limits) untuk Claude Opus 4 di Claude API untuk memberi Anda lebih banyak kapasitas untuk membangun dan menskalakan dengan Claude. Untuk pelanggan dengan [batas laju tingkat penggunaan 1-4](/docs/id/api/rate-limits#rate-limits), perubahan ini berlaku segera untuk akun Anda - tidak diperlukan tindakan apa pun.
 
 ### 21 Juli 2025
-- Kami telah menghentikan model Claude 2.0, Claude 2.1, dan Claude Sonnet 3. Semua permintaan ke model ini sekarang akan mengembalikan kesalahan. Baca lebih lanjut di [Penghentian model](/docs/id/about-claude/model-deprecations).
+
+* Kami telah menghentikan model Claude 2.0, Claude 2.1, dan Claude Sonnet 3. Semua permintaan ke model-model ini sekarang akan mengembalikan error. Baca lebih lanjut di [Penghentian model](/docs/id/about-claude/model-deprecations).
 
 ### 17 Juli 2025
-- Kami telah meningkatkan [batas laju](/docs/id/api/rate-limits) untuk Claude Sonnet 4 di Claude API untuk memberi Anda lebih banyak kapasitas untuk membangun dan menskalakan dengan Claude. Untuk pelanggan dengan [batas laju tingkat penggunaan 1-4](/docs/id/api/rate-limits#rate-limits), perubahan ini berlaku segera untuk akun Anda - tidak ada tindakan yang diperlukan.
+
+* Kami telah meningkatkan [batas laju](/docs/id/api/rate-limits) untuk Claude Sonnet 4 di Claude API untuk memberi Anda lebih banyak kapasitas untuk membangun dan menskalakan dengan Claude. Untuk pelanggan dengan [batas laju tingkat penggunaan 1-4](/docs/id/api/rate-limits#rate-limits), perubahan ini berlaku segera untuk akun Anda - tidak diperlukan tindakan apa pun.
 
 ### 3 Juli 2025
-- Kami telah meluncurkan blok konten hasil pencarian dalam beta, memungkinkan kutipan alami untuk aplikasi RAG. Alat sekarang dapat mengembalikan hasil pencarian dengan atribusi sumber yang tepat, dan Claude akan secara otomatis mengutip sumber ini dalam respons - cocok dengan kualitas kutipan pencarian web. Ini menghilangkan kebutuhan untuk solusi dokumen dalam aplikasi basis pengetahuan kustom. Pelajari lebih lanjut di [Hasil pencarian](/docs/id/build-with-claude/search-results). Untuk mengaktifkan fitur ini, gunakan header beta `search-results-2025-06-09`.
+
+* Kami telah meluncurkan blok konten hasil pencarian dalam beta, yang memungkinkan kutipan alami untuk aplikasi RAG. Alat sekarang dapat mengembalikan hasil pencarian dengan atribusi sumber yang tepat, dan Claude akan secara otomatis mengutip sumber-sumber ini dalam responsnya - menyamai kualitas kutipan pencarian web. Ini menghilangkan kebutuhan akan solusi alternatif dokumen dalam aplikasi basis pengetahuan kustom. Pelajari lebih lanjut di [Hasil pencarian](/docs/id/build-with-claude/search-results). Untuk mengaktifkan fitur ini, gunakan header beta `search-results-2025-06-09`.
 
 ### 30 Juni 2025
-- Kami mengumumkan penghentian model Claude Opus 3. Baca lebih lanjut di [Penghentian model](/docs/id/about-claude/model-deprecations).
+
+* Kami mengumumkan penghentian dukungan (deprecation) model Claude Opus 3. Baca lebih lanjut di [Penghentian model](/docs/id/about-claude/model-deprecations).
 
 ### 23 Juni 2025
-- Pengguna Console dengan peran Developer sekarang dapat mengakses halaman [Biaya](https://console.anthropic.com/settings/cost). Sebelumnya, peran Developer memungkinkan akses ke halaman [Penggunaan](https://console.anthropic.com/settings/usage), tetapi bukan halaman Biaya.
+
+* Pengguna Console dengan peran Developer sekarang dapat mengakses halaman [Cost](https://console.anthropic.com/settings/cost). Sebelumnya, peran Developer mengizinkan akses ke halaman [Usage](https://console.anthropic.com/settings/usage), tetapi tidak ke halaman Cost.
 
 ### 11 Juni 2025
-- Kami telah meluncurkan [streaming alat butir halus](/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming) dalam beta publik, fitur yang memungkinkan Claude untuk streaming parameter penggunaan alat tanpa buffering / validasi JSON. Untuk mengaktifkan streaming alat butir halus, gunakan [header beta](/docs/id/api/beta-headers) `fine-grained-tool-streaming-2025-05-14`.
+
+* Kami telah meluncurkan [streaming alat berbutir halus](/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming) dalam beta publik, fitur yang memungkinkan Claude melakukan streaming parameter penggunaan alat tanpa buffering / validasi JSON. Untuk mengaktifkan streaming alat berbutir halus, gunakan [header beta](/docs/id/api/beta-headers) `fine-grained-tool-streaming-2025-05-14`.
 
 ### 22 Mei 2025
-- Kami telah meluncurkan [Claude Opus 4 dan Claude Sonnet 4](http://www.anthropic.com/news/claude-4), model terbaru kami dengan kemampuan pemikiran yang diperluas. Pelajari lebih lanjut di [Gambaran umum Model](/docs/id/about-claude/models).
-- Perilaku default [pemikiran yang diperluas](/docs/id/build-with-claude/extended-thinking) dalam model Claude 4 mengembalikan ringkasan proses pemikiran lengkap Claude, dengan pemikiran lengkap dienkripsi dan dikembalikan di bidang `signature` dari output blok `thinking`.
-- Kami telah meluncurkan [pemikiran yang disisipi](/docs/id/build-with-claude/extended-thinking#interleaved-thinking) dalam beta publik, fitur yang memungkinkan Claude untuk berpikir di antara panggilan alat. Untuk mengaktifkan pemikiran yang disisipi, gunakan [header beta](/docs/id/api/beta-headers) `interleaved-thinking-2025-05-14`.
-- Kami telah meluncurkan [Files API](/docs/id/build-with-claude/files) dalam beta publik, memungkinkan Anda mengunggah file dan mereferensikannya di Messages API dan alat eksekusi kode.
-- Kami telah meluncurkan [alat eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool) dalam beta publik, alat yang memungkinkan Claude menjalankan kode Python di lingkungan yang aman dan tersandbox.
-- Kami telah meluncurkan [konektor MCP](/docs/id/agents-and-tools/mcp-connector) dalam beta publik, fitur yang memungkinkan Anda terhubung ke server MCP jarak jauh langsung dari Messages API.
-- Untuk meningkatkan kualitas jawaban dan mengurangi kesalahan alat, kami telah mengubah nilai default untuk parameter `top_p` [nucleus sampling](https://en.wikipedia.org/wiki/Top-p_sampling) di Messages API dari 0.999 menjadi 0.99 untuk semua model. Untuk mengembalikan perubahan ini, atur `top_p` ke 0.999.
-    Selain itu, ketika pemikiran yang diperluas diaktifkan, Anda sekarang dapat mengatur `top_p` ke nilai antara 0.95 dan 1.
-- Kami telah memindahkan [Go SDK](https://github.com/anthropics/anthropic-sdk-go) kami dari beta ke GA.
-- Kami telah menyertakan granularitas tingkat menit dan jam ke halaman [Penggunaan](https://console.anthropic.com/settings/usage) Console bersama tingkat kesalahan 429 di halaman Penggunaan.
+
+* Kami telah meluncurkan [Claude Opus 4 dan Claude Sonnet 4](https://www.anthropic.com/news/claude-4), model terbaru kami dengan kemampuan pemikiran diperpanjang. Pelajari lebih lanjut di [Ikhtisar model](/docs/id/about-claude/models).
+* Perilaku default [pemikiran diperpanjang](/docs/id/build-with-claude/extended-thinking) pada model Claude 4 mengembalikan ringkasan dari proses pemikiran lengkap Claude, dengan pemikiran lengkap dienkripsi dan dikembalikan dalam field `signature` dari output blok `thinking`.
+* Kami telah meluncurkan [pemikiran tersisip (interleaved thinking)](/docs/id/build-with-claude/extended-thinking#interleaved-thinking) dalam beta publik, fitur yang memungkinkan Claude berpikir di antara pemanggilan alat. Untuk mengaktifkan pemikiran tersisip, gunakan [header beta](/docs/id/api/beta-headers) `interleaved-thinking-2025-05-14`.
+* Kami telah meluncurkan [Files API](/docs/id/build-with-claude/files) dalam beta publik, yang memungkinkan Anda mengunggah file dan mereferensikannya di Messages API dan alat eksekusi kode.
+* Kami telah meluncurkan [Alat eksekusi kode](/docs/id/agents-and-tools/tool-use/code-execution-tool) dalam beta publik, alat yang memungkinkan Claude mengeksekusi kode Python dalam lingkungan sandbox yang aman.
+* Kami telah meluncurkan [konektor MCP](/docs/id/agents-and-tools/mcp-connector) dalam beta publik, fitur yang memungkinkan Anda terhubung ke server MCP jarak jauh langsung dari Messages API.
+* Untuk meningkatkan kualitas jawaban dan mengurangi error alat, kami telah mengubah nilai default untuk parameter [nucleus sampling](https://en.wikipedia.org/wiki/Top-p_sampling) `top_p` di Messages API dari 0,999 menjadi 0,99 untuk semua model. Untuk mengembalikan perubahan ini, atur `top_p` ke 0,999. Selain itu, saat pemikiran diperpanjang diaktifkan, Anda sekarang dapat mengatur `top_p` ke nilai antara 0,95 dan 1.
+* Kami telah memindahkan [SDK Go](https://github.com/anthropics/anthropic-sdk-go) kami dari beta ke GA.
+* Kami telah menyertakan granularitas tingkat menit dan jam ke halaman [Usage](https://console.anthropic.com/settings/usage) di Console bersama dengan tingkat error 429 di halaman Usage.
 
 ### 21 Mei 2025
-- Kami telah memindahkan [Ruby SDK](https://github.com/anthropics/anthropic-sdk-ruby) kami dari beta ke GA.
+
+* Kami telah memindahkan [SDK Ruby](https://github.com/anthropics/anthropic-sdk-ruby) kami dari beta ke GA.
 
 ### 7 Mei 2025
-- Kami telah meluncurkan alat pencarian web di API, memungkinkan Claude mengakses informasi terkini dari web. Pelajari lebih lanjut di [Alat pencarian web](/docs/id/agents-and-tools/tool-use/web-search-tool).
+
+* Kami telah meluncurkan alat pencarian web di API, yang memungkinkan Claude mengakses informasi terkini dari web. Pelajari lebih lanjut di [Alat pencarian web](/docs/id/agents-and-tools/tool-use/web-search-tool).
 
 ### 1 Mei 2025
-- Kontrol cache sekarang harus ditentukan langsung di blok `content` induk dari `tool_result` dan `document.source`. Untuk kompatibilitas mundur, jika kontrol cache terdeteksi pada blok terakhir di `tool_result.content` atau `document.source.content`, akan secara otomatis diterapkan ke blok induk sebagai gantinya. Kontrol cache pada blok lain apa pun dalam `tool_result.content` dan `document.source.content` akan menghasilkan kesalahan validasi.
+
+* Kontrol cache sekarang harus ditentukan langsung di blok `content` induk dari `tool_result` dan `document.source`. Untuk kompatibilitas mundur, jika kontrol cache terdeteksi pada blok terakhir di `tool_result.content` atau `document.source.content`, kontrol tersebut akan secara otomatis diterapkan ke blok induk sebagai gantinya. Kontrol cache pada blok lain di dalam `tool_result.content` dan `document.source.content` akan menghasilkan error validasi.
 
 ### 9 April 2025
-- Kami meluncurkan versi beta dari [Ruby SDK](https://github.com/anthropics/anthropic-sdk-ruby).
+
+* Kami meluncurkan versi beta dari [SDK Ruby](https://github.com/anthropics/anthropic-sdk-ruby).
 
 ### 31 Maret 2025
-- Kami telah memindahkan [Java SDK](https://github.com/anthropics/anthropic-sdk-java) kami dari beta ke GA.
-- Kami telah memindahkan [Go SDK](https://github.com/anthropics/anthropic-sdk-go) kami dari alpha ke beta.
+
+* Kami telah memindahkan [SDK Java](https://github.com/anthropics/anthropic-sdk-java) kami dari beta ke GA.
+* Kami telah memindahkan [SDK Go](https://github.com/anthropics/anthropic-sdk-go) kami dari alpha ke beta.
 
 ### 27 Februari 2025
-- Kami telah menambahkan blok sumber URL untuk gambar dan PDF di Messages API. Anda sekarang dapat mereferensikan gambar dan PDF langsung melalui URL alih-alih harus mengenkode base64 mereka. Pelajari lebih lanjut di [Visi](/docs/id/build-with-claude/vision) dan [Dukungan PDF](/docs/id/build-with-claude/pdf-support).
-- Kami telah menambahkan dukungan untuk opsi `none` ke parameter `tool_choice` di Messages API yang mencegah Claude memanggil alat apa pun. Selain itu, Anda tidak lagi diperlukan untuk memberikan `tools` apa pun saat menyertakan blok `tool_use` dan `tool_result`.
-- Kami telah meluncurkan titik akhir API yang kompatibel dengan OpenAI, memungkinkan Anda menguji model Claude dengan hanya mengubah kunci API, URL dasar, dan nama model Anda dalam integrasi OpenAI yang ada. Lapisan kompatibilitas ini mendukung fungsionalitas penyelesaian obrolan inti. Pelajari lebih lanjut di [Kompatibilitas SDK OpenAI](/docs/id/api/openai-sdk).
+
+* Kami telah menambahkan blok sumber URL untuk gambar dan PDF di Messages API. Anda sekarang dapat mereferensikan gambar dan PDF langsung melalui URL tanpa harus mengenkodenya dalam base64. Pelajari lebih lanjut di [Vision](/docs/id/build-with-claude/vision) dan [Dukungan PDF](/docs/id/build-with-claude/pdf-support).
+* Kami telah menambahkan dukungan untuk opsi `none` pada parameter `tool_choice` di Messages API yang mencegah Claude memanggil alat apa pun. Selain itu, Anda tidak lagi diharuskan menyediakan `tools` apa pun saat menyertakan blok `tool_use` dan `tool_result`.
+* Kami telah meluncurkan endpoint API yang kompatibel dengan OpenAI, yang memungkinkan Anda menguji model Claude hanya dengan mengubah kunci API, URL dasar, dan nama model di integrasi OpenAI yang sudah ada. Lapisan kompatibilitas ini mendukung fungsionalitas inti chat completions. Pelajari lebih lanjut di [Kompatibilitas SDK OpenAI](/docs/id/cli-sdks-libraries/libraries/openai-sdk).
 
 ### 24 Februari 2025
-- Kami telah meluncurkan [Claude Sonnet 3.7](http://www.anthropic.com/news/claude-3-7-sonnet), model kami yang paling cerdas sejauh ini. Claude Sonnet 3.7 dapat menghasilkan respons yang hampir instan atau menunjukkan pemikiran yang diperluas langkah demi langkah. Satu model, dua cara untuk berpikir. Pelajari lebih lanjut tentang semua model Claude di [Gambaran umum Model](/docs/id/about-claude/models).
-- Kami telah menambahkan dukungan visi ke Claude Haiku 3.5, memungkinkan model menganalisis dan memahami gambar.
-- Kami telah merilis implementasi penggunaan alat yang hemat token, meningkatkan kinerja keseluruhan saat menggunakan alat dengan Claude. Pelajari lebih lanjut di [Penggunaan alat dengan Claude](/docs/id/agents-and-tools/tool-use/overview).
-- Kami telah mengubah suhu default di [Console](https://console.anthropic.com/workbench) untuk prompt baru dari 0 menjadi 1 untuk konsistensi dengan suhu default di API. Prompt yang disimpan yang ada tidak berubah.
-- Kami telah merilis versi alat yang diperbarui yang memisahkan alat edit teks dan bash dari prompt sistem penggunaan komputer:
-  - `bash_20250124`: Fungsionalitas yang sama dengan versi sebelumnya tetapi independen dari penggunaan komputer. Tidak memerlukan header beta.
-  - `text_editor_20250124`: Fungsionalitas yang sama dengan versi sebelumnya tetapi independen dari penggunaan komputer. Tidak memerlukan header beta.
-  - `computer_20250124`: Alat penggunaan komputer yang diperbarui dengan opsi perintah baru termasuk "hold_key", "left_mouse_down", "left_mouse_up", "scroll", "triple_click", dan "wait". Alat ini memerlukan header beta "computer-use-2025-01-24" anthropic.
-  Pelajari lebih lanjut di [Penggunaan alat dengan Claude](/docs/id/agents-and-tools/tool-use/overview).
+
+* Kami telah meluncurkan [Claude Sonnet 3.7](https://www.anthropic.com/news/claude-3-7-sonnet), model kami yang paling cerdas saat itu. Claude Sonnet 3.7 dapat menghasilkan respons hampir instan atau menunjukkan pemikiran diperpanjangnya langkah demi langkah. Satu model, dua cara berpikir. Pelajari lebih lanjut tentang semua model Claude di [Ikhtisar model](/docs/id/about-claude/models).
+
+* Kami telah menambahkan dukungan visi ke Claude Haiku 3.5, yang memungkinkan model menganalisis dan memahami gambar.
+
+* Kami telah merilis implementasi penggunaan alat yang hemat token, yang meningkatkan kinerja keseluruhan saat menggunakan alat dengan Claude. Pelajari lebih lanjut di [Penggunaan alat dengan Claude](/docs/id/agents-and-tools/tool-use/overview).
+
+* Kami telah mengubah temperature default di [Console](https://console.anthropic.com/workbench) untuk prompt baru dari 0 menjadi 1 agar konsisten dengan temperature default di API. Prompt tersimpan yang sudah ada tidak berubah.
+
+* Kami telah merilis versi terbaru dari alat kami yang memisahkan alat edit teks dan bash dari prompt sistem penggunaan komputer:
+
+  * `bash_20250124`: Fungsionalitas sama dengan versi sebelumnya tetapi independen dari penggunaan komputer. Tidak memerlukan header beta.
+  * `text_editor_20250124`: Fungsionalitas sama dengan versi sebelumnya tetapi independen dari penggunaan komputer. Tidak memerlukan header beta.
+  * `computer_20250124`: Alat penggunaan komputer yang diperbarui dengan opsi perintah baru termasuk "hold\_key", "left\_mouse\_down", "left\_mouse\_up", "scroll", "triple\_click", dan "wait". Alat ini memerlukan header anthropic-beta "computer-use-2025-01-24". Pelajari lebih lanjut di [Penggunaan alat dengan Claude](/docs/id/agents-and-tools/tool-use/overview).
 
 ### 10 Februari 2025
-- Kami telah menambahkan header respons `anthropic-organization-id` ke semua respons API. Header ini menyediakan ID organisasi yang terkait dengan kunci API yang digunakan dalam permintaan.
+
+* Kami telah menambahkan header respons `anthropic-organization-id` ke semua respons API. Header ini memberikan ID organisasi yang terkait dengan kunci API yang digunakan dalam permintaan.
 
 ### 31 Januari 2025
 
-- Kami telah memindahkan [Java SDK](https://github.com/anthropics/anthropic-sdk-java) kami dari alpha ke beta.
+* Kami telah memindahkan [SDK Java](https://github.com/anthropics/anthropic-sdk-java) kami dari alpha ke beta.
 
 ### 23 Januari 2025
 
-- Kami telah meluncurkan kemampuan kutipan di API, memungkinkan Claude memberikan atribusi sumber untuk informasi. Pelajari lebih lanjut di [Kutipan](/docs/id/build-with-claude/citations).
-- Kami telah menambahkan dukungan untuk dokumen teks biasa dan dokumen konten kustom di Messages API.
+* Kami telah meluncurkan kemampuan kutipan di API, yang memungkinkan Claude memberikan atribusi sumber untuk informasi. Pelajari lebih lanjut di [Kutipan](/docs/id/build-with-claude/citations).
+* Kami telah menambahkan dukungan untuk dokumen teks biasa dan dokumen konten kustom di Messages API.
 
 ### 21 Januari 2025
 
-- Kami mengumumkan penghentian model Claude 2, Claude 2.1, dan Claude Sonnet 3. Baca lebih lanjut di [Penghentian model](/docs/id/about-claude/model-deprecations).
+* Kami mengumumkan penghentian dukungan (deprecation) model Claude 2, Claude 2.1, dan Claude Sonnet 3. Baca lebih lanjut di [Penghentian model](/docs/id/about-claude/model-deprecations).
 
 ### 15 Januari 2025
 
-- Kami telah memperbarui [penyimpanan cache prompt](/docs/id/build-with-claude/prompt-caching) agar lebih mudah digunakan. Sekarang, ketika Anda menetapkan titik henti cache, kami akan secara otomatis membaca dari awalan yang disimpan sebelumnya terpanjang Anda.
-- Anda sekarang dapat menempatkan kata-kata di mulut Claude saat menggunakan alat.
+* Kami telah memperbarui [caching prompt](/docs/id/build-with-claude/prompt-caching) agar lebih mudah digunakan. Sekarang, saat Anda menetapkan breakpoint cache, kami akan secara otomatis membaca dari prefix terpanjang yang sebelumnya di-cache.
+* Anda sekarang dapat menempatkan kata-kata di mulut Claude saat menggunakan alat.
 
 ### 10 Januari 2025
 
-- Kami telah mengoptimalkan dukungan untuk [prompt caching dalam Message Batches API](/docs/id/build-with-claude/batch-processing#using-prompt-caching-with-message-batches) untuk meningkatkan cache hit rate.
+* Kami telah mengoptimalkan dukungan untuk [caching prompt di Message Batches API](/docs/id/build-with-claude/batch-processing#using-prompt-caching-with-message-batches) untuk meningkatkan tingkat cache hit.
 
 ### 19 Desember 2024
 
-- Kami telah menambahkan dukungan untuk [delete endpoint](/docs/id/api/deleting-message-batches) dalam Message Batches API.
+* Kami telah menambahkan dukungan untuk [endpoint delete](/docs/id/api/deleting-message-batches) di Message Batches API.
 
 ### 17 Desember 2024
-Fitur-fitur berikut sekarang tersedia secara umum dalam Claude API:
 
-- [Models API](/docs/id/api/models/list): Kueri model yang tersedia, validasi ID model, dan selesaikan [model aliases](/docs/id/about-claude/models#model-names) ke ID model kanonik mereka.
-- [Message Batches API](/docs/id/build-with-claude/batch-processing): Proses batch besar pesan secara asinkron dengan harga 50% dari biaya API standar.
-- [Token counting API](/docs/id/build-with-claude/token-counting): Hitung jumlah token untuk Messages sebelum mengirimnya ke Claude.
-- [Prompt Caching](/docs/id/build-with-claude/prompt-caching): Kurangi biaya hingga 90% dan latensi hingga 80% dengan menyimpan dan menggunakan kembali konten prompt.
-- [PDF support](/docs/id/build-with-claude/pdf-support): Proses PDF untuk menganalisis konten teks dan visual dalam dokumen.
+Fitur-fitur berikut sekarang tersedia secara umum di Claude API:
+
+* [Models API](/docs/id/api/models/list): Kueri model yang tersedia, validasi ID model, dan resolusi [alias model](/docs/id/about-claude/models#model-names) ke ID model kanoniknya.
+* [Message Batches API](/docs/id/build-with-claude/batch-processing): Proses batch pesan besar secara asinkron dengan 50% dari biaya API standar.
+* [Token counting API](/docs/id/build-with-claude/token-counting): Hitung jumlah token untuk Messages sebelum mengirimkannya ke Claude.
+* [Prompt Caching](/docs/id/build-with-claude/prompt-caching): Kurangi biaya hingga 90% dan latensi hingga 80% dengan melakukan caching dan menggunakan kembali konten prompt.
+* [Dukungan PDF](/docs/id/build-with-claude/pdf-support): Proses PDF untuk menganalisis konten teks dan visual di dalam dokumen.
 
 Kami juga merilis SDK resmi baru:
-- [Java SDK](https://github.com/anthropics/anthropic-sdk-java) (alpha)
-- [Go SDK](https://github.com/anthropics/anthropic-sdk-go) (alpha)
+
+* [SDK Java](https://github.com/anthropics/anthropic-sdk-java) (alpha)
+* [SDK Go](https://github.com/anthropics/anthropic-sdk-go) (alpha)
 
 ### 4 Desember 2024
 
-- Kami telah menambahkan kemampuan untuk mengelompokkan berdasarkan API key pada halaman [Usage](https://console.anthropic.com/settings/usage) dan [Cost](https://console.anthropic.com/settings/cost) dari [Developer Console](https://console.anthropic.com).
-- Kami telah menambahkan dua kolom baru **Last used at** dan **Cost** serta kemampuan untuk mengurutkan berdasarkan kolom apa pun pada halaman [API keys](https://console.anthropic.com/settings/keys) dari [Developer Console](https://console.anthropic.com).
+* Kami telah menambahkan kemampuan untuk mengelompokkan berdasarkan kunci API di halaman [Usage](https://console.anthropic.com/settings/usage) dan [Cost](https://console.anthropic.com/settings/cost) di [Developer Console](https://console.anthropic.com).
+* Kami telah menambahkan dua kolom baru **Last used at** dan **Cost** serta kemampuan untuk mengurutkan berdasarkan kolom apa pun di halaman [API keys](https://console.anthropic.com/settings/keys) di [Developer Console](https://console.anthropic.com).
 
 ### 21 November 2024
 
-- Kami telah merilis [Admin API](/docs/id/build-with-claude/administration-api), memungkinkan pengguna untuk mengelola sumber daya organisasi mereka secara terprogram.
+* Kami telah merilis [Admin API](/docs/id/manage-claude/admin-api), yang memungkinkan pengguna mengelola sumber daya organisasi mereka secara terprogram.
 
 ### 20 November 2024
 
-- Kami telah memperbarui batas laju kami untuk Messages API. Kami telah mengganti batas laju token per menit dengan batas laju token input dan output per menit yang baru. Baca lebih lanjut di [Rate limits](/docs/id/api/rate-limits).
-- Kami telah menambahkan dukungan untuk [tool use](/docs/id/agents-and-tools/tool-use/overview) dalam [Workbench](https://console.anthropic.com/workbench).
+* Kami telah memperbarui batas laju kami untuk Messages API. Kami telah mengganti batas laju token per menit dengan batas laju token input dan output per menit yang baru. Baca lebih lanjut di [Batas laju](/docs/id/api/rate-limits).
+* Kami telah menambahkan dukungan untuk [penggunaan alat](/docs/id/agents-and-tools/tool-use/overview) di [Workbench](https://console.anthropic.com/workbench).
 
 ### 13 November 2024
 
-- Kami telah menambahkan dukungan PDF untuk semua model Claude Sonnet 3.5. Baca lebih lanjut di [PDF support](/docs/id/build-with-claude/pdf-support).
+* Kami telah menambahkan dukungan PDF untuk semua model Claude Sonnet 3.5. Baca lebih lanjut di [Dukungan PDF](/docs/id/build-with-claude/pdf-support).
 
 ### 6 November 2024
 
-- Kami telah menghentikan model Claude 1 dan Instant. Baca lebih lanjut di [Model deprecations](/docs/id/about-claude/model-deprecations).
+* Kami telah menghentikan model Claude 1 dan Instant. Baca lebih lanjut di [Penghentian model](/docs/id/about-claude/model-deprecations).
 
 ### 4 November 2024
 
-- [Claude Haiku 3.5](https://www.anthropic.com/claude/haiku) sekarang tersedia di Claude API sebagai model hanya teks.
+* [Claude Haiku 3.5](https://www.anthropic.com/claude/haiku) sekarang tersedia di Claude API sebagai model khusus teks.
 
 ### 1 November 2024
 
-- Kami telah menambahkan dukungan PDF untuk digunakan dengan Claude Sonnet 3.5 yang baru. Baca lebih lanjut di [PDF support](/docs/id/build-with-claude/pdf-support).
-- Kami juga telah menambahkan token counting, yang memungkinkan Anda menentukan jumlah total token dalam Message sebelum mengirimnya ke Claude. Baca lebih lanjut di [Token counting](/docs/id/build-with-claude/token-counting).
+* Kami telah menambahkan dukungan PDF untuk digunakan dengan Claude Sonnet 3.5 yang baru. Baca lebih lanjut di [Dukungan PDF](/docs/id/build-with-claude/pdf-support).
+* Kami juga telah menambahkan penghitungan token, yang memungkinkan Anda menentukan jumlah total token dalam sebuah Message sebelum mengirimkannya ke Claude. Baca lebih lanjut di [Penghitungan token](/docs/id/build-with-claude/token-counting).
 
 ### 22 Oktober 2024
 
-- Kami telah menambahkan alat computer use yang ditentukan Anthropic ke API kami untuk digunakan dengan Claude Sonnet 3.5 yang baru. Baca lebih lanjut di [Computer use tool](/docs/id/agents-and-tools/tool-use/computer-use-tool).
-- Claude Sonnet 3.5, model paling cerdas kami sejauh ini, baru saja mendapat peningkatan dan sekarang tersedia di Claude API. Baca lebih lanjut di [Claude Sonnet documentation](https://www.anthropic.com/claude/sonnet).
+* Kami telah menambahkan alat penggunaan komputer yang didefinisikan Anthropic ke API kami untuk digunakan dengan Claude Sonnet 3.5 yang baru. Baca lebih lanjut di [Alat penggunaan komputer](/docs/id/agents-and-tools/tool-use/computer-use-tool).
+* Claude Sonnet 3.5, model kami yang paling cerdas saat itu, baru saja mendapatkan peningkatan dan sekarang tersedia di Claude API. Baca lebih lanjut di [dokumentasi Claude Sonnet](https://www.anthropic.com/claude/sonnet).
 
 ### 8 Oktober 2024
 
-- Message Batches API sekarang tersedia dalam beta. Proses batch besar kueri secara asinkron dalam Claude API dengan biaya 50% lebih rendah. Baca lebih lanjut di [Batch processing](/docs/id/build-with-claude/batch-processing).
-- Kami telah melonggarkan pembatasan pada pengurutan giliran `user`/`assistant` dalam Messages API kami. Pesan `user`/`assistant` berturut-turut akan digabungkan menjadi satu pesan alih-alih menghasilkan kesalahan, dan kami tidak lagi memerlukan pesan input pertama menjadi pesan `user`.
-- Kami telah menghentikan rencana Build dan Scale mendukung suite fitur standar (sebelumnya disebut sebagai Build), bersama dengan fitur tambahan yang tersedia melalui penjualan. Baca lebih lanjut di [API pricing information](https://claude.com/platform/api) kami.
+* Message Batches API sekarang tersedia dalam beta. Proses batch kueri besar secara asinkron di Claude API dengan biaya 50% lebih rendah. Baca lebih lanjut di [Pemrosesan batch](/docs/id/build-with-claude/batch-processing).
+* Kami telah melonggarkan pembatasan pada urutan giliran `user`/`assistant` di Messages API kami. Pesan `user`/`assistant` yang berurutan akan digabungkan menjadi satu pesan alih-alih menghasilkan error, dan kami tidak lagi mengharuskan pesan input pertama berupa pesan `user`.
+* Kami telah menghentikan dukungan paket Build dan Scale demi rangkaian fitur standar (sebelumnya disebut Build), bersama dengan fitur tambahan yang tersedia melalui tim penjualan. Baca lebih lanjut di [informasi harga API kami](https://claude.com/platform/api).
 
 ### 3 Oktober 2024
 
-- Kami telah menambahkan kemampuan untuk menonaktifkan penggunaan alat paralel dalam API. Atur `disable_parallel_tool_use: true` dalam bidang `tool_choice` untuk memastikan bahwa Claude menggunakan paling banyak satu alat. Baca lebih lanjut di [Parallel tool use](/docs/id/agents-and-tools/tool-use/parallel-tool-use).
+* Kami telah menambahkan kemampuan untuk menonaktifkan penggunaan alat paralel di API. Atur `disable_parallel_tool_use: true` di field `tool_choice` untuk memastikan Claude menggunakan paling banyak satu alat. Baca lebih lanjut di [Penggunaan alat paralel](/docs/id/agents-and-tools/tool-use/parallel-tool-use).
 
 ### 10 September 2024
 
-- Kami telah menambahkan Workspaces ke [Developer Console](https://console.anthropic.com). Workspaces memungkinkan Anda menetapkan batas pengeluaran atau laju kustom, mengelompokkan API key, melacak penggunaan berdasarkan proyek, dan mengontrol akses dengan peran pengguna. Baca lebih lanjut di [blog post](https://www.anthropic.com/news/workspaces) kami.
+* Kami telah menambahkan Workspaces ke [Developer Console](https://console.anthropic.com). Workspaces memungkinkan Anda menetapkan batas pengeluaran atau batas laju kustom, mengelompokkan kunci API, melacak penggunaan berdasarkan proyek, dan mengontrol akses dengan peran pengguna. Baca lebih lanjut di [postingan blog kami](https://www.anthropic.com/news/workspaces).
 
 ### 4 September 2024
 
-- Kami mengumumkan penghentian model Claude 1. Baca lebih lanjut di [Model deprecations](/docs/id/about-claude/model-deprecations).
+* Kami mengumumkan penghentian dukungan (deprecation) model Claude 1. Baca lebih lanjut di [Penghentian model](/docs/id/about-claude/model-deprecations).
 
 ### 22 Agustus 2024
 
-- Kami telah menambahkan dukungan untuk penggunaan SDK di browser dengan mengembalikan header CORS dalam respons API. Atur `dangerouslyAllowBrowser: true` dalam instantiasi SDK untuk mengaktifkan fitur ini.
+* Kami telah menambahkan dukungan untuk penggunaan SDK di browser dengan mengembalikan header CORS dalam respons API. Atur `dangerouslyAllowBrowser: true` dalam instansiasi SDK untuk mengaktifkan fitur ini.
 
 ### 19 Agustus 2024
 
-- Kami telah memindahkan output token 8.192 dari beta ke ketersediaan umum untuk Claude Sonnet 3.5.
+* Kami telah memindahkan output 8.192 token dari beta ke ketersediaan umum untuk Claude Sonnet 3.5.
 
 ### 14 Agustus 2024
 
-- [Prompt caching](/docs/id/build-with-claude/prompt-caching) sekarang tersedia sebagai fitur beta dalam Claude API. Simpan dan gunakan kembali prompt untuk mengurangi latensi hingga 80% dan biaya hingga 90%.
+* [Caching prompt](/docs/id/build-with-claude/prompt-caching) sekarang tersedia sebagai fitur beta di Claude API. Lakukan caching dan gunakan kembali prompt untuk mengurangi latensi hingga 80% dan biaya hingga 90%.
 
 ### 15 Juli 2024
 
-- Hasilkan output hingga 8.192 token panjang dari Claude Sonnet 3.5 dengan header `anthropic-beta: max-tokens-3-5-sonnet-2024-07-15` yang baru.
+* Hasilkan output hingga 8.192 token dari Claude Sonnet 3.5 dengan header baru `anthropic-beta: max-tokens-3-5-sonnet-2024-07-15`.
 
 ### 9 Juli 2024
 
-- Secara otomatis hasilkan kasus uji untuk prompt Anda menggunakan Claude dalam [Developer Console](https://console.anthropic.com).
-- Bandingkan output dari prompt berbeda berdampingan dalam mode perbandingan output baru dalam [Developer Console](https://console.anthropic.com).
+* Hasilkan kasus uji untuk prompt Anda secara otomatis menggunakan Claude di [Developer Console](https://console.anthropic.com).
+* Bandingkan output dari prompt yang berbeda secara berdampingan dalam mode perbandingan output baru di [Developer Console](https://console.anthropic.com).
 
 ### 27 Juni 2024
 
-- Lihat penggunaan API dan penagihan yang dipecah berdasarkan jumlah dolar, jumlah token, dan API key dalam tab [Usage](https://console.anthropic.com/settings/usage) dan [Cost](https://console.anthropic.com/settings/cost) yang baru dalam [Developer Console](https://console.anthropic.com).
-- Lihat batas laju API Anda saat ini dalam tab [Rate Limits](https://console.anthropic.com/settings/limits) yang baru dalam [Developer Console](https://console.anthropic.com).
+* Lihat penggunaan dan penagihan API yang dirinci berdasarkan jumlah dolar, jumlah token, dan kunci API di tab [Usage](https://console.anthropic.com/settings/usage) dan [Cost](https://console.anthropic.com/settings/cost) yang baru di [Developer Console](https://console.anthropic.com).
+* Lihat batas laju API Anda saat ini di tab [Rate Limits](https://console.anthropic.com/settings/limits) yang baru di [Developer Console](https://console.anthropic.com).
 
 ### 20 Juni 2024
 
-- [Claude Sonnet 3.5](http://anthropic.com/news/claude-3-5-sonnet), model paling cerdas kami sejauh ini, sekarang tersedia secara umum di seluruh Claude API, Amazon Bedrock, dan Google Vertex AI.
+* [Claude Sonnet 3.5](https://www.anthropic.com/news/claude-3-5-sonnet), model kami yang paling cerdas saat itu, sekarang tersedia secara umum di Claude API, Amazon Bedrock, dan Vertex AI.
 
 ### 30 Mei 2024
 
-- [Tool use](/docs/id/agents-and-tools/tool-use/overview) sekarang tersedia secara umum di seluruh Claude API, Amazon Bedrock, dan Google Vertex AI.
+* [Penggunaan alat](/docs/id/agents-and-tools/tool-use/overview) sekarang tersedia secara umum di Claude API, Amazon Bedrock, dan Vertex AI.
 
 ### 10 Mei 2024
 
-- Alat prompt generator kami sekarang tersedia dalam [Developer Console](https://console.anthropic.com). Prompt Generator memudahkan untuk memandu Claude menghasilkan prompt berkualitas tinggi yang disesuaikan dengan tugas spesifik Anda. Baca lebih lanjut di [blog post](https://www.anthropic.com/news/prompt-generator) kami.
+* Alat prompt generator kami sekarang tersedia di [Developer Console](https://console.anthropic.com). Prompt Generator memudahkan Anda memandu Claude untuk menghasilkan prompt berkualitas tinggi yang disesuaikan dengan tugas spesifik Anda. Baca lebih lanjut di [postingan blog kami](https://www.anthropic.com/news/prompt-generator).

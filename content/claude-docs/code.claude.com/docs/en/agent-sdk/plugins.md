@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/plugins
-fetched_at: 2026-06-02T03:18:54.775717Z
-sha256: 8975ffbfd10b03e66e6677c900bf1b0858f6b15158eaec9f031bc21fe400eb75
+fetched_at: 2026-07-21T03:08:36.086694Z
+sha256: e141b7d8f77621f0e145f65b49104f6109173ffc2b5ce9f2e3e8057daf2c511a
 ---
 
 > ## Documentation Index
@@ -28,11 +28,11 @@ Plugins are packages of Claude Code extensions that can include:
   The `commands/` directory is a legacy format. Use `skills/` for new plugins. Claude Code continues to support both formats for backward compatibility.
 </Note>
 
-For complete information on plugin structure and how to create plugins, see [Plugins](/en/plugins).
+For complete information on plugin structure and how to create plugins, see [Plugins](/docs/en/plugins).
 
 ## Loading plugins
 
-Load plugins by providing their local file system paths in your options configuration. The `type` field must be `"local"`, the only value the SDK accepts. To use a plugin distributed through a [marketplace](/en/plugin-marketplaces) or remote repository, download it first and provide the local directory path. The SDK supports loading multiple plugins from different locations.
+Load plugins by providing their local file system paths in your options configuration. The `type` field must be `"local"`, the only value the SDK accepts. To use a plugin distributed through a [marketplace](/docs/en/plugin-marketplaces) or remote repository, download it first and provide the local directory path. The SDK supports loading multiple plugins from different locations.
 
 <CodeGroup>
   ```typescript TypeScript theme={null}
@@ -298,8 +298,8 @@ my-plugin/
 
 For detailed information on creating plugins, see:
 
-* [Plugins](/en/plugins) - Complete plugin development guide
-* [Plugins reference](/en/plugins-reference) - Technical specifications and schemas
+* [Plugins](/docs/en/plugins) - Complete plugin development guide
+* [Plugins reference](/docs/en/plugins-reference) - Technical specifications and schemas
 
 ## Common use cases
 
@@ -358,8 +358,8 @@ If relative paths don't work:
 
 ## See also
 
-* [Plugins](/en/plugins) - Complete plugin development guide
-* [Plugins reference](/en/plugins-reference) - Technical specifications
-* [Commands](/en/agent-sdk/slash-commands) - Using commands in the SDK
-* [Subagents](/en/agent-sdk/subagents) - Working with specialized agents
-* [Skills](/en/agent-sdk/skills) - Using Agent Skills
+* [Plugins](/docs/en/plugins) - Complete plugin development guide
+* [Plugins reference](/docs/en/plugins-reference) - Technical specifications
+* [Commands](/docs/en/agent-sdk/slash-commands) - Using commands in the SDK
+* [Subagents](/docs/en/agent-sdk/subagents) - Working with specialized agents
+* [Skills](/docs/en/agent-sdk/skills) - Using Agent Skills

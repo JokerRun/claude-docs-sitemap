@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/supported-regions
-fetched_at: 2026-04-18T03:10:04.936408Z
-sha256: 123708f4d28dd9dfc93e7e8add242f8b67782059928e1bae025282c046b25e96
+fetched_at: 2026-07-21T03:08:36.086694Z
+sha256: 0f6593d90309f582e3b5e137f257c7d1bfa1aeb02849e2f5fb7a889b4fa00ca4
 ---
 
 # Wilayah yang didukung
 
-Berikut adalah negara, wilayah, dan teritori yang saat ini dapat kami dukung akses darinya:
+Berikut adalah negara, wilayah, dan teritori yang saat ini dapat kami dukung aksesnya:
 
 ---
 
@@ -47,10 +47,10 @@ Berikut adalah negara, wilayah, dan teritori yang saat ini dapat kami dukung aks
 * Komoro
 * Kongo, Republik
 * Kosta Rika
-* Côte d'Ivoire
+* Pantai Gading
 * Kroasia
 * Siprus
-* Czechia (Republik Ceko)
+* Ceko (Republik Ceko)
 * Denmark
 * Djibouti
 * Dominika
@@ -76,7 +76,7 @@ Berikut adalah negara, wilayah, dan teritori yang saat ini dapat kami dukung aks
 * Guinea-Bissau
 * Guyana
 * Haiti
-* Tahta Suci (Kota Vatikan)
+* Takhta Suci (Kota Vatikan)
 * Honduras
 * Hungaria
 * Islandia
@@ -93,7 +93,7 @@ Berikut adalah negara, wilayah, dan teritori yang saat ini dapat kami dukung aks
 * Kenya
 * Kiribati
 * Kuwait
-* Kirgistan
+* Kirgizstan
 * Laos
 * Latvia
 * Lebanon
@@ -101,7 +101,7 @@ Berikut adalah negara, wilayah, dan teritori yang saat ini dapat kami dukung aks
 * Liberia
 * Liechtenstein
 * Lituania
-* Luxemburg
+* Luksemburg
 * Madagaskar
 * Malawi
 * Malaysia
@@ -153,7 +153,7 @@ Berikut adalah negara, wilayah, dan teritori yang saat ini dapat kami dukung aks
 * Seychelles
 * Sierra Leone
 * Singapura
-* Slovakia
+* Slowakia
 * Slovenia
 * Kepulauan Solomon
 * Afrika Selatan
@@ -176,9 +176,9 @@ Berikut adalah negara, wilayah, dan teritori yang saat ini dapat kami dukung aks
 * Turkmenistan
 * Tuvalu
 * Uganda
-* Ukraina (kecuali wilayah Crimea, Donetsk, dan Luhansk)
+* Ukraina (kecuali wilayah Krimea, Donetsk, dan Luhansk)
 * Uni Emirat Arab
-* Inggris Raya
+* Britania Raya
 * Amerika Serikat
 * Uruguay
 * Uzbekistan

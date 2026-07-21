@@ -1,287 +1,258 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/ticket-routing
-fetched_at: 2026-04-10T03:11:42.436400Z
-sha256: 9d8514f290a0cb46e277e201bd01dceb2b9bbf7ff0883b4225de756be6431f89
+fetched_at: 2026-07-21T03:08:36.086694Z
+sha256: 0a9339737b3fb57255e909538fe51dd3d4563cc07a14a065d1033b5cb2395fc5
 ---
 
 # Perutean tiket
 
-Panduan ini menjelaskan cara memanfaatkan kemampuan pemahaman bahasa alami tingkat lanjut Claude untuk mengklasifikasikan tiket dukungan pelanggan dalam skala besar berdasarkan niat pelanggan, urgensi, prioritas, profil pelanggan, dan banyak lagi.
+Panduan ini menjelaskan cara memanfaatkan kemampuan pemahaman bahasa alami tingkat lanjut dari Claude untuk mengklasifikasikan tiket dukungan pelanggan dalam skala besar berdasarkan maksud pelanggan, urgensi, prioritas, profil pelanggan, dan lainnya.
 
 ---
 
 ## Tentukan apakah akan menggunakan Claude untuk perutean tiket
 
-Berikut adalah beberapa indikator kunci bahwa Anda harus menggunakan LLM seperti Claude daripada pendekatan ML tradisional untuk tugas klasifikasi Anda:
+Berikut adalah beberapa indikator utama bahwa Anda sebaiknya menggunakan LLM seperti Claude alih-alih pendekatan ML tradisional untuk tugas klasifikasi Anda:
 
-    <section title="Anda memiliki data pelatihan berlabel terbatas yang tersedia">
+<AccordionGroup>
+  <Accordion title="Anda memiliki data pelatihan berlabel yang terbatas">
+    Proses ML tradisional memerlukan dataset berlabel yang sangat besar. Model Claude yang telah dilatih sebelumnya dapat secara efektif mengklasifikasikan tiket hanya dengan beberapa lusin contoh berlabel, sehingga secara signifikan mengurangi waktu dan biaya persiapan data.
+  </Accordion>
 
-        Proses ML tradisional memerlukan dataset berlabel besar. Model Claude yang telah dilatih sebelumnya dapat secara efektif mengklasifikasikan tiket hanya dengan beberapa puluh contoh berlabel, secara signifikan mengurangi waktu dan biaya persiapan data.
-    
-</section>
-    <section title="Kategori klasifikasi Anda mungkin berubah atau berkembang seiring waktu">
+  <Accordion title="Kategori klasifikasi Anda kemungkinan akan berubah atau berkembang seiring waktu">
+    Setelah pendekatan ML tradisional ditetapkan, mengubahnya adalah upaya yang melelahkan dan membutuhkan banyak data. Di sisi lain, seiring produk atau kebutuhan pelanggan Anda berkembang, Claude dapat dengan mudah beradaptasi dengan perubahan definisi kelas atau kelas baru tanpa pelabelan ulang data pelatihan yang ekstensif.
+  </Accordion>
 
-        Setelah pendekatan ML tradisional ditetapkan, mengubahnya adalah tugas yang membosankan dan padat data. Di sisi lain, seiring dengan evolusi produk atau kebutuhan pelanggan Anda, Claude dapat dengan mudah beradaptasi dengan perubahan definisi kelas atau kelas baru tanpa pelabelan ulang data pelatihan yang ekstensif.
-    
-</section>
-    <section title="Anda perlu menangani input teks yang kompleks dan tidak terstruktur">
+  <Accordion title="Anda perlu menangani input teks yang kompleks dan tidak terstruktur">
+    Model ML tradisional sering kali kesulitan dengan data tidak terstruktur dan memerlukan rekayasa fitur yang ekstensif. Pemahaman bahasa tingkat lanjut dari Claude memungkinkan klasifikasi yang akurat berdasarkan konten dan konteks, alih-alih mengandalkan struktur ontologis yang ketat.
+  </Accordion>
 
-        Model ML tradisional sering kesulitan dengan data tidak terstruktur dan memerlukan rekayasa fitur yang ekstensif. Pemahaman bahasa tingkat lanjut Claude memungkinkan klasifikasi akurat berdasarkan konten dan konteks, daripada mengandalkan struktur ontologi yang ketat.
-    
-</section>
-    <section title="Aturan klasifikasi Anda didasarkan pada pemahaman semantik">
+  <Accordion title="Aturan klasifikasi Anda didasarkan pada pemahaman semantik">
+    Pendekatan ML tradisional sering kali mengandalkan model bag-of-words atau pencocokan pola sederhana. Claude unggul dalam memahami dan menerapkan aturan yang mendasarinya ketika kelas didefinisikan oleh kondisi, bukan oleh contoh.
+  </Accordion>
 
-        Pendekatan ML tradisional sering mengandalkan model bag-of-words atau pencocokan pola sederhana. Claude unggul dalam memahami dan menerapkan aturan mendasar ketika kelas didefinisikan oleh kondisi daripada contoh.
-    
-</section>
-    <section title="Anda memerlukan penalaran yang dapat diinterpretasikan untuk keputusan klasifikasi">
+  <Accordion title="Anda memerlukan penalaran yang dapat diinterpretasikan untuk keputusan klasifikasi">
+    Banyak model ML tradisional memberikan sedikit wawasan tentang proses pengambilan keputusannya. Claude dapat memberikan penjelasan yang dapat dibaca manusia untuk keputusan klasifikasinya, membangun kepercayaan pada sistem otomatisasi dan memfasilitasi adaptasi yang mudah jika diperlukan.
+  </Accordion>
 
-        Banyak model ML tradisional memberikan sedikit wawasan tentang proses pengambilan keputusan mereka. Claude dapat memberikan penjelasan yang dapat dibaca manusia untuk keputusan klasifikasinya, membangun kepercayaan dalam sistem otomasi dan memfasilitasi adaptasi mudah jika diperlukan.
-    
-</section>
-    <section title="Anda ingin menangani kasus tepi dan tiket ambigu dengan lebih efektif">
+  <Accordion title="Anda ingin menangani kasus tepi dan tiket ambigu dengan lebih efektif">
+    Sistem ML tradisional sering kali kesulitan dengan outlier dan input ambigu, sering salah mengklasifikasikannya atau mengarahkannya ke kategori umum. Kemampuan pemrosesan bahasa alami Claude memungkinkannya untuk lebih baik menginterpretasikan konteks dan nuansa dalam tiket dukungan, yang berpotensi mengurangi jumlah tiket yang salah dirutekan atau tidak terklasifikasi yang memerlukan intervensi manual.
+  </Accordion>
 
-        Sistem ML tradisional sering kesulitan dengan outlier dan input ambigu, sering kali salah mengklasifikasikannya atau menggunakan kategori catch-all. Kemampuan pemrosesan bahasa alami Claude memungkinkannya untuk lebih baik menginterpretasikan konteks dan nuansa dalam tiket dukungan, berpotensi mengurangi jumlah tiket yang salah rute atau tidak diklasifikasikan yang memerlukan intervensi manual.
-    
-</section>
-    <section title="Anda memerlukan dukungan multibahasa tanpa mempertahankan model terpisah">
-
-        Pendekatan ML tradisional biasanya memerlukan model terpisah atau proses terjemahan ekstensif untuk setiap bahasa yang didukung. Kemampuan multibahasa Claude memungkinkannya untuk mengklasifikasikan tiket dalam berbagai bahasa tanpa perlu model terpisah atau proses terjemahan ekstensif, menyederhanakan dukungan untuk basis pelanggan global.
-    
-</section>
+  <Accordion title="Anda memerlukan dukungan multibahasa tanpa memelihara model terpisah">
+    Pendekatan ML tradisional biasanya memerlukan model terpisah atau proses terjemahan yang ekstensif untuk setiap bahasa yang didukung. Kemampuan multibahasa Claude memungkinkannya untuk mengklasifikasikan tiket dalam berbagai bahasa tanpa perlu model terpisah atau proses terjemahan yang ekstensif, menyederhanakan dukungan untuk basis pelanggan global.
+  </Accordion>
+</AccordionGroup>
 
 ***
 
-##  Bangun dan terapkan alur kerja dukungan LLM Anda
+## Bangun dan terapkan alur kerja dukungan LLM Anda
 
-### Pahami pendekatan dukungan saat ini Anda
-Sebelum menyelam ke otomasi, sangat penting untuk memahami sistem tiket yang ada. Mulai dengan menyelidiki bagaimana tim dukungan Anda saat ini menangani perutean tiket.
+### Pahami pendekatan dukungan Anda saat ini
+
+Sebelum terjun ke otomatisasi, sangat penting untuk memahami sistem tiket Anda yang sudah ada. Mulailah dengan menyelidiki bagaimana tim dukungan Anda saat ini menangani perutean tiket.
 
 Pertimbangkan pertanyaan seperti:
-* Kriteria apa yang digunakan untuk menentukan SLA/penawaran layanan apa yang diterapkan?
+
+* Kriteria apa yang digunakan untuk menentukan SLA/penawaran layanan mana yang diterapkan?
 * Apakah perutean tiket digunakan untuk menentukan tingkat dukungan atau spesialis produk mana yang akan menerima tiket?
-* Apakah ada aturan atau alur kerja otomatis yang sudah ada? Dalam kasus apa mereka gagal?
+* Apakah sudah ada aturan atau alur kerja otomatis yang diterapkan? Dalam kasus apa aturan tersebut gagal?
 * Bagaimana kasus tepi atau tiket ambigu ditangani?
 * Bagaimana tim memprioritaskan tiket?
 
 Semakin banyak Anda tahu tentang bagaimana manusia menangani kasus tertentu, semakin baik Anda dapat bekerja dengan Claude untuk melakukan tugas tersebut.
 
-### Tentukan kategori niat pengguna
-Daftar kategori niat pengguna yang terdefinisi dengan baik sangat penting untuk klasifikasi tiket dukungan yang akurat dengan Claude. Kemampuan Claude untuk merutkan tiket secara efektif dalam sistem Anda berbanding lurus dengan seberapa baik kategori sistem Anda didefinisikan.
+### Definisikan kategori maksud pengguna
 
-Berikut adalah beberapa contoh kategori dan subkategori niat pengguna.
+Daftar kategori maksud pengguna yang terdefinisi dengan baik sangat penting untuk klasifikasi tiket dukungan yang akurat dengan Claude. Kemampuan Claude untuk merutekan tiket secara efektif dalam sistem Anda berbanding lurus dengan seberapa baik kategori sistem Anda didefinisikan.
 
-    <section title="Masalah teknis">
+Berikut adalah beberapa contoh kategori dan subkategori maksud pengguna.
 
-        * Masalah perangkat keras
-        * Bug perangkat lunak
-        * Masalah kompatibilitas
-        * Masalah kinerja
-    
-</section>
-    <section title="Manajemen akun">
+<AccordionGroup>
+  <Accordion title="Masalah teknis">
+    * Masalah perangkat keras
+    * Bug perangkat lunak
+    * Masalah kompatibilitas
+    * Masalah kinerja
+  </Accordion>
 
-        * Pengaturan ulang kata sandi
-        * Masalah akses akun
-        * Pertanyaan penagihan
-        * Perubahan langganan
-    
-</section>
-    <section title="Informasi produk">
+  <Accordion title="Manajemen akun">
+    * Reset kata sandi
+    * Masalah akses akun
+    * Pertanyaan penagihan
+    * Perubahan langganan
+  </Accordion>
 
-        * Pertanyaan fitur
-        * Pertanyaan kompatibilitas produk
-        * Informasi harga
-        * Pertanyaan ketersediaan
-    
-</section>
-    <section title="Panduan pengguna">
+  <Accordion title="Informasi produk">
+    * Pertanyaan fitur
+    * Pertanyaan kompatibilitas produk
+    * Informasi harga
+    * Pertanyaan ketersediaan
+  </Accordion>
 
-        * Pertanyaan cara melakukan
-        * Bantuan penggunaan fitur
-        * Saran praktik terbaik
-        * Panduan pemecahan masalah
-    
-</section>
-    <section title="Umpan balik">
+  <Accordion title="Panduan pengguna">
+    * Pertanyaan cara penggunaan
+    * Bantuan penggunaan fitur
+    * Saran praktik terbaik
+    * Panduan pemecahan masalah
+  </Accordion>
 
-        * Laporan bug
-        * Permintaan fitur
-        * Umpan balik umum atau saran
-        * Keluhan
-    
-</section>
-    <section title="Terkait pesanan">
+  <Accordion title="Umpan balik">
+    * Laporan bug
+    * Permintaan fitur
+    * Umpan balik atau saran umum
+    * Keluhan
+  </Accordion>
 
-        * Pertanyaan status pesanan
-        * Informasi pengiriman
-        * Pengembalian dan pertukaran
-        * Modifikasi pesanan
-    
-</section>
-    <section title="Permintaan layanan">
+  <Accordion title="Terkait pesanan">
+    * Pertanyaan status pesanan
+    * Informasi pengiriman
+    * Pengembalian dan penukaran
+    * Modifikasi pesanan
+  </Accordion>
 
-        * Bantuan instalasi
-        * Permintaan upgrade
-        * Penjadwalan pemeliharaan
-        * Pembatalan layanan
-    
-</section>
-    <section title="Masalah keamanan">
+  <Accordion title="Permintaan layanan">
+    * Bantuan instalasi
+    * Permintaan upgrade
+    * Penjadwalan pemeliharaan
+    * Pembatalan layanan
+  </Accordion>
 
-        * Pertanyaan privasi data
-        * Laporan aktivitas mencurigakan
-        * Bantuan fitur keamanan
-    
-</section>
-    <section title="Kepatuhan dan hukum">
+  <Accordion title="Kekhawatiran keamanan">
+    * Pertanyaan privasi data
+    * Laporan aktivitas mencurigakan
+    * Bantuan fitur keamanan
+  </Accordion>
 
-        * Pertanyaan kepatuhan peraturan
-        * Pertanyaan syarat layanan
-        * Permintaan dokumentasi hukum
-    
-</section>
-    <section title="Dukungan darurat">
+  <Accordion title="Kepatuhan dan hukum">
+    * Pertanyaan kepatuhan regulasi
+    * Pertanyaan ketentuan layanan
+    * Permintaan dokumentasi hukum
+  </Accordion>
 
-        * Kegagalan sistem kritis
-        * Masalah keamanan mendesak
-        * Masalah sensitif waktu
-    
-</section>
-    <section title="Pelatihan dan pendidikan">
+  <Accordion title="Dukungan darurat">
+    * Kegagalan sistem kritis
+    * Masalah keamanan mendesak
+    * Masalah yang sensitif terhadap waktu
+  </Accordion>
 
-        * Permintaan pelatihan produk
-        * Pertanyaan dokumentasi
-        * Informasi webinar atau workshop
-    
-</section>
-    <section title="Integrasi dan API">
+  <Accordion title="Pelatihan dan edukasi">
+    * Permintaan pelatihan produk
+    * Pertanyaan dokumentasi
+    * Informasi webinar atau workshop
+  </Accordion>
 
-        * Bantuan integrasi
-        * Pertanyaan penggunaan API
-        * Pertanyaan kompatibilitas pihak ketiga
-    
-</section>
+  <Accordion title="Integrasi dan API">
+    * Bantuan integrasi
+    * Pertanyaan penggunaan API
+    * Pertanyaan kompatibilitas pihak ketiga
+  </Accordion>
+</AccordionGroup>
 
-Selain niat, perutean dan prioritas tiket juga dapat dipengaruhi oleh faktor lain seperti urgensi, jenis pelanggan, SLA, atau bahasa. Pastikan untuk mempertimbangkan kriteria perutean lainnya saat membangun sistem perutean otomatis Anda.
+Selain maksud, perutean dan prioritas tiket juga dapat dipengaruhi oleh faktor lain seperti urgensi, jenis pelanggan, SLA, atau bahasa. Pastikan untuk mempertimbangkan kriteria perutean lainnya saat membangun sistem perutean otomatis Anda.
 
-### Tetapkan kriteria kesuksesan
+### Tetapkan kriteria keberhasilan
 
-Bekerja dengan tim dukungan Anda untuk [mendefinisikan kriteria kesuksesan yang jelas](/docs/id/test-and-evaluate/develop-tests) dengan tolok ukur, ambang batas, dan tujuan yang terukur.
+Bekerja samalah dengan tim dukungan Anda untuk [mendefinisikan kriteria keberhasilan yang jelas](/docs/id/test-and-evaluate/develop-tests) dengan tolok ukur, ambang batas, dan tujuan yang terukur.
 
 Berikut adalah beberapa kriteria dan tolok ukur standar saat menggunakan LLM untuk perutean tiket dukungan:
 
-    <section title="Konsistensi klasifikasi">
+<AccordionGroup>
+  <Accordion title="Konsistensi klasifikasi">
+    Metrik ini menilai seberapa konsisten Claude mengklasifikasikan tiket serupa dari waktu ke waktu. Ini sangat penting untuk menjaga keandalan perutean. Ukur ini dengan menguji model secara berkala menggunakan serangkaian input terstandar dan targetkan tingkat konsistensi 95% atau lebih tinggi.
+  </Accordion>
 
-        Metrik ini menilai seberapa konsisten Claude mengklasifikasikan tiket serupa seiring waktu. Ini penting untuk mempertahankan keandalan perutean. Ukur ini dengan secara berkala menguji model dengan serangkaian input standar dan bertujuan untuk tingkat konsistensi 95% atau lebih tinggi.
-    
-</section>
-    <section title="Kecepatan adaptasi">
+  <Accordion title="Kecepatan adaptasi">
+    Ini mengukur seberapa cepat Claude dapat beradaptasi dengan kategori baru atau pola tiket yang berubah. Uji ini dengan memperkenalkan jenis tiket baru dan mengukur waktu yang diperlukan model untuk mencapai akurasi yang memuaskan (misalnya, >90%) pada kategori baru ini. Targetkan adaptasi dalam 50-100 sampel tiket.
+  </Accordion>
 
-        Ini mengukur seberapa cepat Claude dapat beradaptasi dengan kategori baru atau pola tiket yang berubah. Uji ini dengan memperkenalkan jenis tiket baru dan mengukur waktu yang diperlukan model untuk mencapai akurasi yang memuaskan (misalnya, >90%) pada kategori baru ini. Bertujuan untuk adaptasi dalam 50-100 tiket sampel.
-    
-</section>
-    <section title="Penanganan multibahasa">
+  <Accordion title="Penanganan multibahasa">
+    Ini menilai kemampuan Claude untuk merutekan tiket secara akurat dalam berbagai bahasa. Ukur akurasi perutean di berbagai bahasa, dengan target penurunan akurasi tidak lebih dari 5-10% untuk bahasa non-utama.
+  </Accordion>
 
-        Ini menilai kemampuan Claude untuk secara akurat merutkan tiket dalam berbagai bahasa. Ukur akurasi perutean di berbagai bahasa, bertujuan untuk tidak lebih dari penurunan akurasi 5-10% untuk bahasa non-primer.
-    
-</section>
-    <section title="Penanganan kasus tepi">
+  <Accordion title="Penanganan kasus tepi">
+    Ini mengevaluasi kinerja Claude pada tiket yang tidak biasa atau kompleks. Buat set pengujian kasus tepi dan ukur akurasi perutean, dengan target setidaknya 80% akurasi pada input yang menantang ini.
+  </Accordion>
 
-        Ini mengevaluasi kinerja Claude pada tiket yang tidak biasa atau kompleks. Buat set pengujian kasus tepi dan ukur akurasi perutean, bertujuan untuk setidaknya akurasi 80% pada input yang menantang ini.
-    
-</section>
-    <section title="Mitigasi bias">
+  <Accordion title="Mitigasi bias">
+    Ini mengukur keadilan Claude dalam perutean di berbagai demografi pelanggan. Audit keputusan perutean secara berkala untuk potensi bias, dengan target akurasi perutean yang konsisten (dalam rentang 2-3%) di semua kelompok pelanggan.
+  </Accordion>
 
-        Ini mengukur keadilan Claude dalam perutean di berbagai demografi pelanggan. Secara teratur audit keputusan perutean untuk potensi bias, bertujuan untuk akurasi perutean yang konsisten (dalam 2-3%) di semua kelompok pelanggan.
-    
-</section>
-    <section title="Efisiensi prompt">
+  <Accordion title="Efisiensi prompt">
+    Dalam situasi di mana meminimalkan jumlah token sangat penting, kriteria ini menilai seberapa baik Claude bekerja dengan konteks minimal. Ukur akurasi perutean dengan jumlah konteks yang bervariasi, dengan target akurasi 90%+ hanya dengan judul tiket dan deskripsi singkat.
+  </Accordion>
 
-        Dalam situasi di mana meminimalkan jumlah token sangat penting, kriteria ini menilai seberapa baik Claude berkinerja dengan konteks minimal. Ukur akurasi perutean dengan berbagai jumlah konteks yang disediakan, bertujuan untuk akurasi 90%+ hanya dengan judul tiket dan deskripsi singkat.
-    
-</section>
-    <section title="Skor penjelasan">
+  <Accordion title="Skor keterjelasan">
+    Ini mengevaluasi kualitas dan relevansi penjelasan Claude untuk keputusan peruteannya. Penilai manusia dapat memberi skor penjelasan pada skala (misalnya, 1-5), dengan tujuan mencapai skor rata-rata 4 atau lebih tinggi.
+  </Accordion>
+</AccordionGroup>
 
-        Ini mengevaluasi kualitas dan relevansi penjelasan Claude untuk keputusan peruteannya. Penilai manusia dapat menilai penjelasan pada skala (misalnya, 1-5), dengan tujuan mencapai skor rata-rata 4 atau lebih tinggi.
-    
-</section>
+Berikut adalah beberapa kriteria keberhasilan umum yang mungkin berguna terlepas dari apakah LLM digunakan atau tidak:
 
-Berikut adalah beberapa kriteria kesuksesan umum yang mungkin berguna terlepas dari apakah LLM digunakan:
+<AccordionGroup>
+  <Accordion title="Akurasi perutean">
+    Akurasi perutean mengukur seberapa sering tiket ditugaskan dengan benar ke tim atau individu yang tepat pada percobaan pertama. Ini biasanya diukur sebagai persentase tiket yang dirutekan dengan benar dari total tiket. Tolok ukur industri sering menargetkan akurasi 90-95%, meskipun ini dapat bervariasi berdasarkan kompleksitas struktur dukungan.
+  </Accordion>
 
-    <section title="Akurasi perutean">
+  <Accordion title="Waktu hingga penugasan">
+    Metrik ini melacak seberapa cepat tiket ditugaskan setelah dikirimkan. Waktu penugasan yang lebih cepat umumnya menghasilkan resolusi yang lebih cepat dan kepuasan pelanggan yang lebih baik. Sistem terbaik di kelasnya sering mencapai waktu penugasan rata-rata di bawah 5 menit, dengan banyak yang menargetkan perutean hampir instan (yang dimungkinkan dengan implementasi LLM).
+  </Accordion>
 
-        Akurasi perutean mengukur seberapa sering tiket ditugaskan dengan benar ke tim atau individu yang sesuai pada percobaan pertama. Ini biasanya diukur sebagai persentase tiket yang dirutkan dengan benar dari total tiket. Tolok ukur industri sering bertujuan untuk akurasi 90-95%, meskipun ini dapat bervariasi berdasarkan kompleksitas struktur dukungan.
-    
-</section>
-    <section title="Waktu ke penugasan">
+  <Accordion title="Tingkat perutean ulang">
+    Tingkat perutean ulang menunjukkan seberapa sering tiket perlu ditugaskan ulang setelah perutean awal. Tingkat yang lebih rendah menunjukkan perutean awal yang lebih akurat. Targetkan tingkat perutean ulang di bawah 10%, dengan sistem berkinerja terbaik mencapai tingkat serendah 5% atau kurang.
+  </Accordion>
 
-        Metrik ini melacak seberapa cepat tiket ditugaskan setelah dikirimkan. Waktu penugasan yang lebih cepat umumnya mengarah pada resolusi yang lebih cepat dan kepuasan pelanggan yang lebih baik. Sistem kelas terbaik sering mencapai waktu penugasan rata-rata di bawah 5 menit, dengan banyak yang bertujuan untuk perutean hampir instan (yang mungkin dengan implementasi LLM).
-    
-</section>
-    <section title="Tingkat perutean ulang">
+  <Accordion title="Tingkat resolusi kontak pertama">
+    Ini mengukur persentase tiket yang diselesaikan selama interaksi pertama dengan pelanggan. Tingkat yang lebih tinggi menunjukkan perutean yang efisien dan tim dukungan yang siap. Tolok ukur industri biasanya berkisar antara 70-75%, dengan performa terbaik mencapai tingkat 80% atau lebih tinggi.
+  </Accordion>
 
-        Tingkat perutean ulang menunjukkan seberapa sering tiket perlu ditugaskan kembali setelah perutean awal. Tingkat yang lebih rendah menunjukkan perutean awal yang lebih akurat. Bertujuan untuk tingkat perutean ulang di bawah 10%, dengan sistem berkinerja terbaik mencapai tingkat serendah 5% atau lebih rendah.
-    
-</section>
-    <section title="Tingkat resolusi kontak pertama">
+  <Accordion title="Waktu penanganan rata-rata">
+    Waktu penanganan rata-rata mengukur berapa lama waktu yang dibutuhkan untuk menyelesaikan tiket dari awal hingga akhir. Perutean yang efisien dapat secara signifikan mengurangi waktu ini. Tolok ukur sangat bervariasi berdasarkan industri dan kompleksitas, tetapi banyak organisasi menargetkan untuk menjaga waktu penanganan rata-rata di bawah 24 jam untuk masalah non-kritis.
+  </Accordion>
 
-        Ini mengukur persentase tiket yang diselesaikan selama interaksi pertama dengan pelanggan. Tingkat yang lebih tinggi menunjukkan perutean yang efisien dan tim dukungan yang siap. Tolok ukur industri biasanya berkisar dari 70-75%, dengan pemain terbaik mencapai tingkat 80% atau lebih tinggi.
-    
-</section>
-    <section title="Waktu penanganan rata-rata">
+  <Accordion title="Skor kepuasan pelanggan">
+    Sering diukur melalui survei pasca-interaksi, skor ini mencerminkan kepuasan pelanggan secara keseluruhan dengan proses dukungan. Perutean yang efektif berkontribusi pada kepuasan yang lebih tinggi. Targetkan skor CSAT 90% atau lebih tinggi, dengan performa terbaik sering mencapai tingkat kepuasan 95%+.
+  </Accordion>
 
-        Waktu penanganan rata-rata mengukur berapa lama waktu yang diperlukan untuk menyelesaikan tiket dari awal hingga akhir. Perutean yang efisien dapat secara signifikan mengurangi waktu ini. Tolok ukur bervariasi luas menurut industri dan kompleksitas, tetapi banyak organisasi bertujuan untuk menjaga waktu penanganan rata-rata di bawah 24 jam untuk masalah non-kritis.
-    
-</section>
-    <section title="Skor kepuasan pelanggan">
+  <Accordion title="Tingkat eskalasi">
+    Ini mengukur seberapa sering tiket perlu dieskalasi ke tingkat dukungan yang lebih tinggi. Tingkat eskalasi yang lebih rendah sering menunjukkan perutean awal yang lebih akurat. Upayakan tingkat eskalasi di bawah 20%, dengan sistem terbaik di kelasnya mencapai tingkat 10% atau kurang.
+  </Accordion>
 
-        Sering diukur melalui survei pasca-interaksi, skor ini mencerminkan kebahagiaan pelanggan secara keseluruhan dengan proses dukungan. Perutean yang efektif berkontribusi pada kepuasan yang lebih tinggi. Bertujuan untuk skor CSAT 90% atau lebih tinggi, dengan pemain terbaik sering mencapai tingkat kepuasan 95%+.
-    
-</section>
-    <section title="Tingkat eskalasi">
+  <Accordion title="Produktivitas agen">
+    Metrik ini melihat berapa banyak tiket yang dapat ditangani agen secara efektif setelah menerapkan solusi perutean. Perutean yang lebih baik seharusnya meningkatkan produktivitas. Ukur ini dengan melacak tiket yang diselesaikan per agen per hari atau jam, dengan target peningkatan 10-20% setelah menerapkan sistem perutean baru.
+  </Accordion>
 
-        Ini mengukur seberapa sering tiket perlu ditingkatkan ke tingkat dukungan yang lebih tinggi. Tingkat eskalasi yang lebih rendah sering menunjukkan perutean awal yang lebih akurat. Berusaha untuk tingkat eskalasi di bawah 20%, dengan sistem kelas terbaik mencapai tingkat 10% atau lebih rendah.
-    
-</section>
-    <section title="Produktivitas agen">
+  <Accordion title="Tingkat pengalihan layanan mandiri">
+    Ini mengukur persentase tiket potensial yang diselesaikan melalui opsi layanan mandiri sebelum masuk ke sistem perutean. Tingkat yang lebih tinggi menunjukkan triase pra-perutean yang efektif. Targetkan tingkat pengalihan 20-30%, dengan performa terbaik mencapai tingkat 40% atau lebih tinggi.
+  </Accordion>
 
-        Metrik ini melihat berapa banyak tiket yang dapat ditangani agen secara efektif setelah menerapkan solusi perutean. Perutean yang ditingkatkan harus meningkatkan produktivitas. Ukur ini dengan melacak tiket yang diselesaikan per agen per hari atau jam, bertujuan untuk peningkatan 10-20% setelah menerapkan sistem perutean baru.
-    
-</section>
-    <section title="Tingkat defleksi layanan mandiri">
-
-        Ini mengukur persentase tiket potensial yang diselesaikan melalui opsi layanan mandiri sebelum memasuki sistem perutean. Tingkat yang lebih tinggi menunjukkan triage pra-perutean yang efektif. Bertujuan untuk tingkat defleksi 20-30%, dengan pemain terbaik mencapai tingkat 40% atau lebih tinggi.
-    
-</section>
-    <section title="Biaya per tiket">
-
-        Metrik ini menghitung biaya rata-rata untuk menyelesaikan setiap tiket dukungan. Perutean yang efisien harus membantu mengurangi biaya ini seiring waktu. Meskipun tolok ukur bervariasi luas, banyak organisasi bertujuan untuk mengurangi biaya per tiket sebesar 10-15% setelah menerapkan sistem perutean yang ditingkatkan.
-    
-</section>
+  <Accordion title="Biaya per tiket">
+    Metrik ini menghitung biaya rata-rata untuk menyelesaikan setiap tiket dukungan. Perutean yang efisien seharusnya membantu mengurangi biaya ini dari waktu ke waktu. Meskipun tolok ukur sangat bervariasi, banyak organisasi menargetkan pengurangan biaya per tiket sebesar 10-15% setelah menerapkan sistem perutean yang lebih baik.
+  </Accordion>
+</AccordionGroup>
 
 ### Pilih model Claude yang tepat
 
-Pilihan model tergantung pada pertukaran antara biaya, akurasi, dan waktu respons.
+Pilihan model bergantung pada pertimbangan antara biaya, akurasi, dan waktu respons.
 
-Banyak pelanggan telah menemukan `claude-haiku-4-5-20251001` model ideal untuk perutean tiket, karena merupakan model tercepat dan paling hemat biaya dalam keluarga Claude 4 sambil tetap memberikan hasil yang sangat baik. Jika masalah klasifikasi Anda memerlukan keahlian subjek yang mendalam atau volume besar kategori niat penalaran kompleks, Anda dapat memilih [model Sonnet yang lebih besar](/docs/id/about-claude/models).
+Banyak pelanggan menemukan bahwa `claude-haiku-4-5-20251001` adalah model yang ideal untuk perutean tiket, karena merupakan model tercepat dan paling hemat biaya dalam keluarga Claude 4 sambil tetap memberikan hasil yang sangat baik. Jika masalah klasifikasi Anda memerlukan keahlian subjek yang mendalam atau volume kategori maksud yang besar dengan penalaran kompleks, Anda dapat memilih [model Sonnet yang lebih besar](/docs/id/about-claude/models).
 
 ### Bangun prompt yang kuat
 
-Perutean tiket adalah jenis tugas klasifikasi. Claude menganalisis konten tiket dukungan dan mengklasifikasinya ke dalam kategori yang telah ditentukan sebelumnya berdasarkan jenis masalah, urgensi, keahlian yang diperlukan, atau faktor relevan lainnya.
+Perutean tiket adalah jenis tugas klasifikasi. Claude menganalisis konten tiket dukungan dan mengklasifikasikannya ke dalam kategori yang telah ditentukan berdasarkan jenis masalah, urgensi, keahlian yang diperlukan, atau faktor relevan lainnya.
 
-Mari kita tulis prompt klasifikasi tiket. Prompt awal kami harus berisi konten permintaan pengguna dan mengembalikan baik penalaran maupun niat.
+Mari kita tulis prompt klasifikasi tiket. Prompt awal kita harus berisi konten permintaan pengguna dan mengembalikan penalaran serta maksud.
 
 <Tip>
-Coba [pembuat prompt](/docs/id/prompt-generator) di [Claude Console](/login) untuk membuat draf pertama untuk Anda.
+  Coba [prompt generator](/docs/id/prompt-generator) di [Claude Console](/login) agar Claude menulis draf pertama untuk Anda.
 </Tip>
 
 Berikut adalah contoh prompt klasifikasi perutean tiket:
 
-```python nocheck
+```python
 def classify_support_request(ticket_contents):
-    # Define the prompt for the classification task
+    # Definisikan prompt untuk tugas klasifikasi
     classification_prompt = f"""You will be acting as a customer support ticket classification system. Your task is to analyze customer support requests and output the appropriate classification intent for each request, along with your reasoning.
 
         Here is the customer support request you need to classify:
@@ -336,39 +307,39 @@ def classify_support_request(ticket_contents):
         """
 ```
 
-Mari kita uraikan komponen kunci prompt ini:
-* Kami menggunakan f-string Python untuk membuat template prompt, memungkinkan `ticket_contents` untuk dimasukkan ke dalam tag `<request>`.
-* Kami memberikan Claude peran yang jelas didefinisikan sebagai sistem klasifikasi yang dengan hati-hati menganalisis konten tiket untuk menentukan niat dan kebutuhan inti pelanggan.
-* Kami menginstruksikan Claude tentang format output yang tepat, dalam hal ini untuk memberikan penalaran dan analisisnya di dalam tag `<reasoning>`, diikuti oleh label klasifikasi yang sesuai di dalam tag `<intent>`.
-* Kami menentukan kategori niat yang valid: "Support, Feedback, Complaint", "Order Tracking", dan "Refund/Exchange".
-* Kami menyertakan beberapa contoh (alias few-shot prompting) untuk mengilustrasikan bagaimana output harus diformat, yang meningkatkan akurasi dan konsistensi.
+Mari kita uraikan komponen utama dari prompt ini:
 
-Alasan kami ingin Claude membagi responsnya ke dalam berbagai bagian tag XML adalah sehingga kami dapat menggunakan ekspresi reguler untuk secara terpisah mengekstrak penalaran dan niat dari output. Ini memungkinkan kami untuk membuat langkah berikutnya yang ditargetkan dalam alur kerja perutean tiket, seperti menggunakan hanya niat untuk memutuskan orang mana yang akan merutkan tiket.
+* Kita menggunakan f-string Python untuk membuat template prompt, memungkinkan `ticket_contents` disisipkan ke dalam tag `<request>`.
+* Kita memberi Claude peran yang didefinisikan dengan jelas sebagai sistem klasifikasi yang dengan cermat menganalisis konten tiket untuk menentukan maksud dan kebutuhan inti pelanggan.
+* Kita menginstruksikan Claude tentang format output yang tepat, dalam hal ini untuk memberikan penalaran dan analisisnya di dalam tag `<reasoning>`, diikuti oleh label klasifikasi yang sesuai di dalam tag `<intent>`.
+* Kita menentukan kategori maksud yang valid: "Support, Feedback, Complaint", "Order Tracking", dan "Refund/Exchange".
+* Kita menyertakan beberapa contoh (dikenal juga sebagai few-shot prompting) untuk mengilustrasikan bagaimana output harus diformat, yang meningkatkan akurasi dan konsistensi.
+
+Alasan kita ingin Claude membagi responsnya ke dalam berbagai bagian tag XML adalah agar kita dapat menggunakan ekspresi reguler untuk mengekstrak penalaran dan maksud secara terpisah dari output. Ini memungkinkan kita untuk membuat langkah selanjutnya yang ditargetkan dalam alur kerja perutean tiket, seperti hanya menggunakan maksud untuk memutuskan kepada siapa tiket akan dirutekan.
 
 ### Terapkan prompt Anda
 
-Sulit untuk mengetahui seberapa baik prompt Anda bekerja tanpa menerapkannya dalam pengaturan produksi pengujian dan [menjalankan evaluasi](/docs/id/test-and-evaluate/develop-tests).
+Sulit untuk mengetahui seberapa baik prompt Anda bekerja tanpa menerapkannya dalam pengaturan produksi uji dan [menjalankan evaluasi](/docs/id/test-and-evaluate/develop-tests).
 
-Mari kita bangun struktur penyebaran. Mulai dengan mendefinisikan tanda tangan metode untuk membungkus panggilan kami ke Claude. Kami akan mengambil metode yang sudah kami mulai tulis, yang memiliki `ticket_contents` sebagai input, dan sekarang mengembalikan tuple `reasoning` dan `intent` sebagai output. Jika Anda memiliki otomasi yang ada menggunakan ML tradisional, Anda akan ingin mengikuti tanda tangan metode itu sebagai gantinya.
+Mari kita bangun struktur penerapan. Mulailah dengan mendefinisikan signature metode untuk membungkus panggilan kita ke Claude. Kita akan mengambil metode yang sudah mulai kita tulis, yang memiliki `ticket_contents` sebagai input, dan sekarang mengembalikan tuple `reasoning` dan `intent` sebagai output. Jika Anda memiliki otomatisasi yang sudah ada menggunakan ML tradisional, Anda sebaiknya mengikuti signature metode tersebut.
 
-```python Python nocheck hidelines={1}
-import anthropic
+```python Python
 import re
 
-# Create an instance of the Claude API client
+# Buat instance dari klien API Claude
 client = anthropic.Anthropic()
 
-# Set the default model
+# Tetapkan model default
 DEFAULT_MODEL = "claude-haiku-4-5-20251001"
 
 
 def classify_support_request(ticket_contents):
-    # Define the prompt for the classification task
+    # Definisikan prompt untuk tugas klasifikasi
     classification_prompt = f"""You will be acting as a customer support ticket classification system.
         ...
         ... The reasoning should be enclosed in <reasoning> tags and the intent in <intent> tags. Return only the reasoning and the intent.
         """
-    # Send the prompt to the API to classify the support request.
+    # Kirim prompt ke API untuk mengklasifikasikan permintaan dukungan.
     message = client.messages.create(
         model=DEFAULT_MODEL,
         max_tokens=500,
@@ -378,13 +349,13 @@ def classify_support_request(ticket_contents):
     )
     reasoning_and_intent = message.content[0].text
 
-    # Use Python's regular expressions library to extract `reasoning`.
+    # Gunakan pustaka regular expression Python untuk mengekstrak `reasoning`.
     reasoning_match = re.search(
         r"<reasoning>(.*?)</reasoning>", reasoning_and_intent, re.DOTALL
     )
     reasoning = reasoning_match.group(1).strip() if reasoning_match else ""
 
-    # Similarly, also extract the `intent`.
+    # Dengan cara serupa, ekstrak juga `intent`.
     intent_match = re.search(r"<intent>(.*?)</intent>", reasoning_and_intent, re.DOTALL)
     intent = intent_match.group(1).strip() if intent_match else ""
 
@@ -392,44 +363,45 @@ def classify_support_request(ticket_contents):
 ```
 
 Kode ini:
-* Membuat instans klien menggunakan kunci API Anda.
-* Mendefinisikan fungsi `classify_support_request` yang mengambil string `ticket_contents`.
+
+* Membuat instance client menggunakan kunci API Anda.
+* Mendefinisikan fungsi `classify_support_request` yang menerima string `ticket_contents`.
 * Mengirim `ticket_contents` ke Claude untuk klasifikasi menggunakan `classification_prompt`
 * Mengembalikan `reasoning` dan `intent` model yang diekstrak dari respons.
 
-Karena kami perlu menunggu seluruh teks penalaran dan niat dihasilkan sebelum menguraikan, kami menetapkan `stream=False` (default).
+Karena kita perlu menunggu seluruh teks penalaran dan maksud dihasilkan sebelum mem-parsing, kita mengatur `stream=False` (default).
 
 ***
 
 ## Evaluasi prompt Anda
 
-Prompting sering memerlukan pengujian dan optimasi agar siap produksi. Untuk menentukan kesiapan solusi Anda, evaluasi kinerja berdasarkan kriteria kesuksesan dan ambang batas yang Anda tetapkan sebelumnya.
+Prompting sering kali memerlukan pengujian dan optimasi agar siap untuk produksi. Untuk menentukan kesiapan solusi Anda, evaluasi kinerja berdasarkan kriteria keberhasilan dan ambang batas yang telah Anda tetapkan sebelumnya.
 
-Untuk menjalankan evaluasi Anda, Anda memerlukan kasus pengujian untuk menjalankannya. Sisa panduan ini mengasumsikan Anda telah [mengembangkan kasus pengujian Anda](/docs/id/test-and-evaluate/develop-tests).
+Untuk menjalankan evaluasi Anda, Anda memerlukan kasus uji untuk dijalankan. Sisa panduan ini mengasumsikan Anda telah [mengembangkan kasus uji Anda](/docs/id/test-and-evaluate/develop-tests).
 
 ### Bangun fungsi evaluasi
 
-Evaluasi contoh kami untuk panduan ini mengukur kinerja Claude di sepanjang tiga metrik kunci:
+Contoh evaluasi kami untuk panduan ini mengukur kinerja Claude berdasarkan tiga metrik utama:
+
 * Akurasi
 * Biaya per klasifikasi
 
 Anda mungkin perlu menilai Claude pada sumbu lain tergantung pada faktor apa yang penting bagi Anda.
 
-Untuk menilai ini, pertama-tama kami harus memodifikasi skrip yang kami tulis dan menambahkan fungsi untuk membandingkan niat yang diprediksi dengan niat aktual dan menghitung persentase prediksi yang benar. Kami juga harus menambahkan fungsionalitas perhitungan biaya dan pengukuran waktu.
+Untuk menilai ini, pertama-tama kita harus memodifikasi skrip yang kita tulis dan menambahkan fungsi untuk membandingkan maksud yang diprediksi dengan maksud sebenarnya dan menghitung persentase prediksi yang benar. Kita juga harus menambahkan fungsionalitas perhitungan biaya dan pengukuran waktu.
 
-```python Python nocheck hidelines={1}
-import anthropic
+```python Python
 import re
 
-# Create an instance of the Claude API client
+# Buat instance dari klien API Claude
 client = anthropic.Anthropic()
 
-# Set the default model
+# Tetapkan model default
 DEFAULT_MODEL = "claude-haiku-4-5-20251001"
 
 
 def classify_support_request(request, actual_intent):
-    # Define the prompt for the classification task
+    # Definisikan prompt untuk tugas klasifikasi
     classification_prompt = f"""You will be acting as a customer support ticket classification system.
         ...
         ...The reasoning should be enclosed in <reasoning> tags and the intent in <intent> tags. Return only the reasoning and the intent.
@@ -444,105 +416,111 @@ def classify_support_request(request, actual_intent):
     usage = message.usage  # Get the usage statistics for the API call for how many input and output tokens were used.
     reasoning_and_intent = message.content[0].text
 
-    # Use Python's regular expressions library to extract `reasoning`.
+    # Gunakan pustaka regular expression Python untuk mengekstrak `reasoning`.
     reasoning_match = re.search(
         r"<reasoning>(.*?)</reasoning>", reasoning_and_intent, re.DOTALL
     )
     reasoning = reasoning_match.group(1).strip() if reasoning_match else ""
 
-    # Similarly, also extract the `intent`.
+    # Dengan cara serupa, ekstrak juga `intent`.
     intent_match = re.search(r"<intent>(.*?)</intent>", reasoning_and_intent, re.DOTALL)
     intent = intent_match.group(1).strip() if intent_match else ""
 
-    # Check if the model's prediction is correct.
+    # Periksa apakah prediksi model sudah benar.
     correct = actual_intent.strip() == intent.strip()
 
-    # Return the reasoning, intent, correct, and usage.
+    # Kembalikan reasoning, intent, correct, dan usage.
     return reasoning, intent, correct, usage
 ```
 
-Mari kita uraikan edit yang telah kami buat:
-* Kami menambahkan `actual_intent` dari kasus pengujian kami ke dalam metode `classify_support_request` dan menyiapkan perbandingan untuk menilai apakah klasifikasi niat Claude cocok dengan klasifikasi niat emas kami.
-* Kami mengekstrak statistik penggunaan untuk panggilan API untuk menghitung biaya berdasarkan token input dan output yang digunakan
+Mari kita uraikan perubahan yang telah kita buat:
+
+* Kita menambahkan `actual_intent` dari kasus uji kita ke dalam metode `classify_support_request` dan menyiapkan perbandingan untuk menilai apakah klasifikasi maksud Claude cocok dengan klasifikasi maksud acuan kita.
+* Kita mengekstrak statistik penggunaan untuk panggilan API guna menghitung biaya berdasarkan token input dan output yang digunakan
 
 ### Jalankan evaluasi Anda
 
-Evaluasi yang tepat memerlukan ambang batas dan tolok ukur yang jelas untuk menentukan apa hasil yang baik. Skrip di atas memberi kami nilai runtime untuk akurasi, waktu respons, dan biaya per klasifikasi, tetapi kami masih perlu menetapkan ambang batas dengan jelas. Sebagai contoh:
-* **Akurasi:** 95% (dari 100 tes)
-* **Biaya per klasifikasi:** Pengurangan 50% rata-rata (di seluruh 100 tes) dari metode perutean saat ini
+Evaluasi yang tepat memerlukan ambang batas dan tolok ukur yang jelas untuk menentukan apa yang merupakan hasil yang baik. Skrip di atas memberi kita nilai runtime untuk akurasi, waktu respons, dan biaya per klasifikasi, tetapi kita masih memerlukan ambang batas yang ditetapkan dengan jelas. Misalnya:
 
-Memiliki ambang batas ini memungkinkan Anda dengan cepat dan mudah mengatakan dalam skala, dan dengan empirisme yang tidak memihak, metode mana yang terbaik untuk Anda dan perubahan apa yang mungkin perlu dilakukan untuk lebih sesuai dengan persyaratan Anda.
+* **Akurasi:** 95% (dari 100 pengujian)
+* **Biaya per klasifikasi:** pengurangan rata-rata 50% (di 100 pengujian) dari metode perutean saat ini
+
+Memiliki ambang batas ini memungkinkan Anda untuk dengan cepat dan mudah mengetahui dalam skala besar, dan dengan empirisme yang tidak memihak, metode mana yang terbaik untuk Anda dan perubahan apa yang mungkin perlu dilakukan agar lebih sesuai dengan kebutuhan Anda.
 
 ***
 
 ## Tingkatkan kinerja
 
-Dalam skenario kompleks, mungkin berguna untuk mempertimbangkan strategi tambahan untuk meningkatkan kinerja di luar [teknik rekayasa prompt](/docs/id/build-with-claude/prompt-engineering/overview) standar & [strategi implementasi guardrail](/docs/id/test-and-evaluate/strengthen-guardrails/reduce-hallucinations). Berikut adalah beberapa skenario umum:
+Dalam skenario yang kompleks, mungkin berguna untuk mempertimbangkan strategi tambahan untuk meningkatkan kinerja di luar [teknik rekayasa prompt](/docs/id/build-with-claude/prompt-engineering/overview) standar & [strategi implementasi guardrail](/docs/id/test-and-evaluate/strengthen-guardrails/reduce-hallucinations). Berikut adalah beberapa skenario umum:
 
-### Gunakan hierarki taksonomi untuk kasus dengan 20+ kategori niat
+### Gunakan hierarki taksonomi untuk kasus dengan 20+ kategori maksud
 
-Seiring dengan meningkatnya jumlah kelas, jumlah contoh yang diperlukan juga berkembang, berpotensi membuat prompt menjadi tidak praktis. Sebagai alternatif, Anda dapat mempertimbangkan untuk menerapkan sistem klasifikasi hierarki menggunakan campuran pengklasifikasi.
-1. Atur niat Anda dalam struktur pohon taksonomi.
-2. Buat serangkaian pengklasifikasi di setiap tingkat pohon, memungkinkan pendekatan perutean berjenjang.
+Seiring bertambahnya jumlah kelas, jumlah contoh yang diperlukan juga bertambah, yang berpotensi membuat prompt menjadi tidak praktis. Sebagai alternatif, Anda dapat mempertimbangkan untuk menerapkan sistem klasifikasi hierarkis menggunakan campuran pengklasifikasi.
 
-Sebagai contoh, Anda mungkin memiliki pengklasifikasi tingkat atas yang secara luas mengkategorikan tiket menjadi "Masalah Teknis," "Pertanyaan Penagihan," dan "Pertanyaan Umum." Masing-masing kategori ini kemudian dapat memiliki sub-pengklasifikasi sendiri untuk lebih menyempurnakan klasifikasi.
+1. Atur maksud Anda dalam struktur pohon taksonomi.
+2. Buat serangkaian pengklasifikasi di setiap tingkat pohon, memungkinkan pendekatan perutean bertingkat.
+
+Misalnya, Anda mungkin memiliki pengklasifikasi tingkat atas yang secara luas mengkategorikan tiket ke dalam "Technical Issues," "Billing Questions," dan "General Inquiries." Masing-masing kategori ini kemudian dapat memiliki sub-pengklasifikasi sendiri untuk lebih menyempurnakan klasifikasi.
 
 ![](/docs/images/ticket-hierarchy.png)
 
-* **Pros - nuansa dan akurasi yang lebih besar:** Anda dapat membuat prompt berbeda untuk setiap jalur induk, memungkinkan klasifikasi yang lebih ditargetkan dan spesifik konteks. Ini dapat menghasilkan akurasi yang ditingkatkan dan penanganan permintaan pelanggan yang lebih bernuansa.
+* **Kelebihan - nuansa dan akurasi yang lebih besar:** Anda dapat membuat prompt yang berbeda untuk setiap jalur induk, memungkinkan klasifikasi yang lebih terarah dan spesifik konteks. Ini dapat menghasilkan akurasi yang lebih baik dan penanganan permintaan pelanggan yang lebih bernuansa.
 
-* **Cons - latensi yang meningkat:** Perlu diketahui bahwa beberapa pengklasifikasi dapat menyebabkan latensi yang meningkat, dan kami merekomendasikan menerapkan pendekatan ini dengan model tercepat kami, Haiku.
+* **Kekurangan - latensi yang meningkat:** Perlu diketahui bahwa beberapa pengklasifikasi dapat menyebabkan peningkatan "latency" (latensi), dan kami merekomendasikan untuk menerapkan pendekatan ini dengan model tercepat kami, Haiku.
 
-### Gunakan database vektor dan pencarian kesamaan retrieval untuk menangani tiket yang sangat bervariasi
+### Gunakan database vektor dan pengambilan pencarian kemiripan untuk menangani tiket yang sangat bervariasi
 
-Meskipun memberikan contoh adalah cara paling efektif untuk meningkatkan kinerja, jika permintaan dukungan sangat bervariasi, sulit untuk menyertakan cukup contoh dalam satu prompt.
+Meskipun memberikan contoh adalah cara paling efektif untuk meningkatkan kinerja, jika permintaan dukungan sangat bervariasi, mungkin sulit untuk menyertakan cukup contoh dalam satu prompt.
 
-Dalam skenario ini, Anda dapat menggunakan database vektor untuk melakukan pencarian kesamaan dari dataset contoh dan mengambil contoh paling relevan untuk kueri tertentu.
+Dalam skenario ini, Anda dapat menggunakan database vektor untuk melakukan pencarian kemiripan dari dataset contoh dan mengambil contoh yang paling relevan untuk kueri tertentu.
 
-Pendekatan ini, yang diuraikan secara detail dalam [resep klasifikasi](https://platform.claude.com/cookbook/capabilities-classification-guide) kami, telah terbukti meningkatkan kinerja dari akurasi 71% menjadi akurasi 93%.
+Pendekatan ini, yang diuraikan secara rinci dalam [resep klasifikasi](https://platform.claude.com/cookbook/capabilities-classification-guide) kami, telah terbukti meningkatkan kinerja dari akurasi 71% menjadi akurasi 93%.
 
-### Akun khusus untuk kasus tepi yang diharapkan
+### Perhitungkan secara spesifik kasus tepi yang diharapkan
 
-Berikut adalah beberapa skenario di mana Claude mungkin salah mengklasifikasikan tiket (mungkin ada yang lain yang unik untuk situasi Anda). Dalam skenario ini, pertimbangkan untuk memberikan instruksi eksplisit atau contoh dalam prompt tentang bagaimana Claude harus menangani kasus tepi:
+Berikut adalah beberapa skenario di mana Claude mungkin salah mengklasifikasikan tiket (mungkin ada skenario lain yang unik untuk situasi Anda). Dalam skenario ini, pertimbangkan untuk memberikan instruksi atau contoh eksplisit dalam prompt tentang bagaimana Claude harus menangani kasus tepi:
 
-    <section title="Pelanggan membuat permintaan implisit">
+<AccordionGroup>
+  <Accordion title="Pelanggan membuat permintaan implisit">
+    Pelanggan sering mengungkapkan kebutuhan secara tidak langsung. Misalnya, "Saya sudah menunggu paket saya selama lebih dari dua minggu sekarang" mungkin merupakan permintaan tidak langsung untuk status pesanan.
 
-        Pelanggan sering mengekspresikan kebutuhan secara tidak langsung. Sebagai contoh, "Saya telah menunggu paket saya selama lebih dari dua minggu" mungkin merupakan permintaan tidak langsung untuk status pesanan.
-        * **Solusi:** Berikan Claude dengan beberapa contoh pelanggan nyata dari jenis permintaan ini, bersama dengan niat yang mendasarinya. Anda dapat mendapatkan hasil yang lebih baik jika Anda menyertakan rasionalisasi klasifikasi untuk niat tiket yang sangat bernuansa, sehingga Claude dapat lebih baik menggeneralisasi logika ke tiket lain.
-    
-</section>
-    <section title="Claude memprioritaskan emosi daripada niat">
+    * **Solusi:** Berikan Claude beberapa contoh nyata dari pelanggan untuk jenis permintaan ini, beserta maksud yang mendasarinya. Anda bisa mendapatkan hasil yang lebih baik jika Anda menyertakan alasan klasifikasi untuk maksud tiket yang sangat bernuansa, sehingga Claude dapat lebih baik menggeneralisasi logika ke tiket lainnya.
+  </Accordion>
 
-        Ketika pelanggan mengekspresikan ketidakpuasan, Claude mungkin memprioritaskan mengatasi emosi daripada menyelesaikan masalah yang mendasar.
-        * **Solusi:** Berikan Claude dengan arahan tentang kapan harus memprioritaskan sentimen pelanggan atau tidak. Ini bisa sesederhana "Abaikan semua emosi pelanggan. Fokus hanya pada menganalisis niat permintaan pelanggan dan informasi apa yang mungkin diminta pelanggan."
-    
-</section>
-    <section title="Beberapa masalah menyebabkan kebingungan prioritas masalah">
+  <Accordion title="Claude memprioritaskan emosi di atas maksud">
+    Ketika pelanggan mengungkapkan ketidakpuasan, Claude mungkin memprioritaskan penanganan emosi daripada menyelesaikan masalah yang mendasarinya.
 
-        Ketika pelanggan menyajikan beberapa masalah dalam satu interaksi, Claude mungkin mengalami kesulitan mengidentifikasi kekhawatiran utama.
-        * **Solusi:** Jelaskan prioritas niat sehingga Claude dapat lebih baik menentukan peringkat niat yang diekstrak dan mengidentifikasi kekhawatiran utama.
-    
-</section>
+    * **Solusi:** Berikan Claude arahan tentang kapan harus memprioritaskan sentimen pelanggan atau tidak. Ini bisa sesederhana "Abaikan semua emosi pelanggan. Fokus hanya pada menganalisis maksud permintaan pelanggan dan informasi apa yang mungkin diminta pelanggan."
+  </Accordion>
+
+  <Accordion title="Beberapa masalah menyebabkan kebingungan prioritas masalah">
+    Ketika pelanggan menyampaikan beberapa masalah dalam satu interaksi, Claude mungkin kesulitan mengidentifikasi kekhawatiran utama.
+
+    * **Solusi:** Klarifikasi prioritas maksud sehingga Claude dapat lebih baik memeringkat maksud yang diekstrak dan mengidentifikasi kekhawatiran utama.
+  </Accordion>
+</AccordionGroup>
 
 ***
 
-## Integrasikan Claude ke dalam alur kerja dukungan yang lebih besar
+## Integrasikan Claude ke dalam alur kerja dukungan Anda yang lebih besar
 
-Integrasi yang tepat memerlukan Anda membuat beberapa keputusan mengenai bagaimana skrip perutean berbasis Claude Anda cocok dengan arsitektur sistem perutean tiket yang lebih besar. Ada dua cara Anda bisa melakukan ini:
-* **Berbasis push:** Sistem tiket dukungan yang Anda gunakan (misalnya Zendesk) memicu kode Anda dengan mengirim acara webhook ke layanan perutean Anda, yang kemudian mengklasifikasikan niat dan meruteannya.
-    * Pendekatan ini lebih dapat diskalakan web, tetapi memerlukan Anda untuk mengekspos titik akhir publik.
-* **Berbasis pull:** Kode Anda menarik tiket terbaru berdasarkan jadwal tertentu dan meruteannya pada waktu pull.
-    * Pendekatan ini lebih mudah untuk diimplementasikan tetapi mungkin membuat panggilan yang tidak perlu ke sistem tiket dukungan ketika frekuensi pull terlalu tinggi atau mungkin terlalu lambat ketika frekuensi pull terlalu rendah.
+Integrasi yang tepat mengharuskan Anda membuat beberapa keputusan mengenai bagaimana skrip perutean tiket berbasis Claude Anda cocok dengan arsitektur sistem perutean tiket Anda yang lebih besar. Ada dua cara yang dapat Anda lakukan:
 
-Untuk salah satu pendekatan ini, Anda perlu membungkus skrip Anda dalam layanan. Pilihan pendekatan tergantung pada API apa yang disediakan sistem tiket dukungan Anda.
+* **Berbasis push:** Sistem tiket dukungan yang Anda gunakan (misalnya Zendesk) memicu kode Anda dengan mengirimkan event webhook ke layanan perutean Anda, yang kemudian mengklasifikasikan maksud dan merutekannya.
+  * Pendekatan ini lebih skalabel untuk web, tetapi mengharuskan Anda mengekspos endpoint publik.
+* **Berbasis pull:** Kode Anda menarik tiket terbaru berdasarkan jadwal tertentu dan merutekannya pada saat penarikan.
+  * Pendekatan ini lebih mudah diimplementasikan tetapi mungkin membuat panggilan yang tidak perlu ke sistem tiket dukungan ketika frekuensi penarikan terlalu tinggi atau mungkin terlalu lambat ketika frekuensi penarikan terlalu rendah.
+
+Untuk kedua pendekatan ini, Anda perlu membungkus skrip Anda dalam sebuah layanan. Pilihan pendekatan bergantung pada API apa yang disediakan oleh sistem tiket dukungan Anda.
 
 ***
 
 <CardGroup cols={2}>
-    <Card title="Buku resep klasifikasi" icon="link" href="https://platform.claude.com/cookbook/capabilities-classification-guide">
-        Kunjungi buku resep klasifikasi kami untuk contoh kode lebih lanjut dan panduan eval terperinci.
-    </Card>
-    <Card title="Claude Console" icon="link" href="/dashboard">
-        Mulai membangun dan mengevaluasi alur kerja Anda di Claude Console.
-    </Card>
+  <Card title="Cookbook klasifikasi" icon="link" href="https://platform.claude.com/cookbook/capabilities-classification-guide">
+    Kunjungi cookbook klasifikasi kami untuk lebih banyak contoh kode dan panduan evaluasi yang terperinci.
+  </Card>
+
+  <Card title="Claude Console" icon="link" href="/dashboard">
+    Mulai membangun dan mengevaluasi alur kerja Anda di Claude Console.
+  </Card>
 </CardGroup>

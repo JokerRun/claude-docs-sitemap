@@ -24,12 +24,12 @@ Automated daily English sitemap collection from Claude documentation sources.
 | source | loc | lastmod | priority |
 |--------|--------|--------|--------|
 | code | https://code.claude.com/docs/en/accessibility | 2026-07-16 |  |
-| code | https://code.claude.com/docs/en/admin-setup | 2026-07-18 |  |
+| code | https://code.claude.com/docs/en/admin-setup | 2026-07-21 |  |
 | code | https://code.claude.com/docs/en/advisor | 2026-07-16 |  |
-| code | https://code.claude.com/docs/en/agent-sdk/agent-loop | 2026-07-16 |  |
+| code | https://code.claude.com/docs/en/agent-sdk/agent-loop | 2026-07-20 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/claude-cod... | 2026-07-17 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/cost-tracking | 2026-07-16 |  |
-| code | https://code.claude.com/docs/en/agent-sdk/custom-tools | 2026-07-16 |  |
+| code | https://code.claude.com/docs/en/agent-sdk/custom-tools | 2026-07-20 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/file-check... | 2026-07-16 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/hooks | 2026-07-17 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/hosting | 2026-07-16 |  |
@@ -37,8 +37,8 @@ Automated daily English sitemap collection from Claude documentation sources.
 | code | https://code.claude.com/docs/en/agent-sdk/migration-... | 2026-07-16 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/modifying-... | 2026-07-03 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/observability | 2026-07-17 |  |
-| code | https://code.claude.com/docs/en/agent-sdk/overview | 2026-07-17 |  |
-| ... | _(~2187 more rows)_ | | |
+| code | https://code.claude.com/docs/en/agent-sdk/overview | 2026-07-20 |  |
+| ... | _(~2305 more rows)_ | | |
 
 <!-- tsv_preview_end -->
 

@@ -1,11 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/use-case-guides/overview
-fetched_at: 2026-01-18T03:48:37.713242Z
-sha256: 43239e353a3665f7f27444745f3ff3b76094016a7948fb6de3b2565925404d0b
+fetched_at: 2026-07-21T03:08:36.086694Z
+sha256: e1065cacc6ed14df80a82f338a211a63c30b0300c07854467aa9ec408d16797c
 ---
 
 # Guides to common use cases
+
+Explore production guides for building common Claude use cases: ticket routing, customer support agents, content moderation, and legal summarization.
 
 ---
 
@@ -15,12 +17,15 @@ Claude is designed to excel in a variety of tasks. Explore these in-depth produc
   <Card title="Ticket routing" icon="headset" href="/docs/en/about-claude/use-case-guides/ticket-routing">
     Best practices for using Claude to classify and route customer support tickets at scale.
   </Card>
+
   <Card title="Customer support agent" icon="robot" href="/docs/en/about-claude/use-case-guides/customer-support-chat">
     Build intelligent, context-aware chatbots with Claude to enhance customer support interactions.
   </Card>
+
   <Card title="Content moderation" icon="verified" href="/docs/en/about-claude/use-case-guides/content-moderation">
     Techniques and best practices for using Claude to perform content filtering and general content moderation.
   </Card>
+
   <Card title="Legal summarization" icon="book" href="/docs/en/about-claude/use-case-guides/legal-summarization">
     Summarize legal documents using Claude to extract key information and expedite research.
   </Card>

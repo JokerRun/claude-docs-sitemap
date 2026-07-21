@@ -1,38 +1,42 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/versioning
-fetched_at: 2026-04-09T03:10:22.306859Z
-sha256: f7848bbf23822ff845b28fbe28f5c2ad26627d93f8fde03b7d48b6c7e254acac
+fetched_at: 2026-07-21T03:08:36.086694Z
+sha256: e692856b0e16e611948e411790e0dc615a66fde02af448d4962a1e8723d29dc6
 ---
 
 # Versions
 
-When making API requests, you must send an `anthropic-version` request header. For example, `anthropic-version: 2023-06-01`. If you are using our [client SDKs](/docs/en/api/client-sdks), this is handled for you automatically.
+When making API requests, you must send an `anthropic-version` request header. For example, `anthropic-version: 2023-06-01`. If you are using the [client SDKs](/docs/en/cli-sdks-libraries/overview), this is handled for you automatically.
 
 ---
 
-For any given version with the Messages API, we will preserve:
+For any given version with the Messages API, Anthropic preserves:
 
 * Existing input parameters
 * Existing output parameters
 
-However, we may do the following:
+However, Anthropic may do the following:
 
 * Add additional optional inputs
 * Add additional values to the output
 * Change conditions for specific error types
 * Add new variants to enum-like output values (for example, streaming event types)
 
-Generally, if you are using the API as documented in this reference, we will not break your usage.
+Generally, if you are using the API as documented in this reference, Anthropic will not break your usage.
 
 ## Version history
 
-We always recommend using the latest API version whenever possible. Previous versions are considered deprecated and may be unavailable for new users.
+Anthropic recommends using the latest API version whenever possible. Previous versions are considered deprecated and may be unavailable for new users.
 
 * `2023-06-01`
-   * New format for [streaming](/docs/en/build-with-claude/streaming) server-sent events (SSE):
-         * Completions are incremental. For example, `" Hello"`, `" my"`, `" name"`, `" is"`, `" Claude." ` instead of `" Hello"`, `" Hello my"`, `" Hello my name"`, `" Hello my name is"`, `" Hello my name is Claude."`.
-         * All events are [named events](https://developer.mozilla.org/en-US/Web/API/Server-sent%5Fevents/Using%5Fserver-sent%5Fevents#named%5Fevents), rather than [data-only events](https://developer.mozilla.org/en-US/Web/API/Server-sent%5Fevents/Using%5Fserver-sent%5Fevents#data-only%5Fmessages).
-         * Removed unnecessary `data: [DONE]` event.
-   * Removed legacy `exception` and `truncated` values in responses.
+
+  * New format for [streaming](/docs/en/build-with-claude/streaming) server-sent events (SSE):
+
+    * Completions are incremental. For example, `" Hello"`, `" my"`, `" name"`, `" is"`, `" Claude." `instead of `" Hello"`, `" Hello my"`, `" Hello my name"`, `" Hello my name is"`, `" Hello my name is Claude."`.
+    * All events are [named events](https://developer.mozilla.org/en-US/Web/API/Server-sent%5Fevents/Using%5Fserver-sent%5Fevents#named%5Fevents), rather than [data-only events](https://developer.mozilla.org/en-US/Web/API/Server-sent%5Fevents/Using%5Fserver-sent%5Fevents#data-only%5Fmessages).
+    * Removed unnecessary `data: [DONE]` event.
+
+  * Removed legacy `exception` and `truncated` values in responses.
+
 * `2023-01-01`: Initial release.

@@ -1,15 +1,15 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/admin/api_keys/retrieve
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: b318baf05f9dd7fa45768935c08ad5688eb2082e6eedffa24100c01de4d6f14c
+fetched_at: 2026-07-21T03:08:36.086694Z
+sha256: 8d10ffee44a046215a1bd867fad9da2c55770c1751fc0cb77a4c65b1c347e8b8
 ---
 
-## Get API Key
+## Retrieve API Key (Admin API)
 
 **get** `/v1/organizations/api_keys/{api_key_id}`
 
-Get API Key
+Retrieve information about a single API key in your organization, looked up by its ID. This Admin API endpoint requires an Admin API key, is intended for programmatic key management, and never returns the key's secret value. To view or create your own API keys, go to [API keys](https://platform.claude.com/settings/keys) in the Claude Console.
 
 ### Path Parameters
 

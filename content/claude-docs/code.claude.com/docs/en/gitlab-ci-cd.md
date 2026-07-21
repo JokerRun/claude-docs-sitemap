@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/gitlab-ci-cd
-fetched_at: 2026-07-04T03:09:59.852291Z
-sha256: 50229363728305765045171e92e03bf69dcf7195fda93b7a4e1e1885beb270aa
+fetched_at: 2026-07-21T03:08:36.086694Z
+sha256: 6cf18fe767e2d99cf1e8b47ac9c18effac7b6c43891ddb1b4d26190ec0fa44b5
 ---
 
 > ## Documentation Index
@@ -20,7 +20,7 @@ sha256: 50229363728305765045171e92e03bf69dcf7195fda93b7a4e1e1885beb270aa
 </Info>
 
 <Note>
-  This integration is built on top of the [Claude Code CLI and Agent SDK](/en/agent-sdk/overview), enabling programmatic use of Claude in your CI/CD jobs and custom automation workflows.
+  This integration is built on top of the [Claude Code CLI and Agent SDK](/docs/en/agent-sdk/overview), enabling programmatic use of Claude in your CI/CD jobs and custom automation workflows.
 </Note>
 
 ## Why use Claude Code with GitLab?
