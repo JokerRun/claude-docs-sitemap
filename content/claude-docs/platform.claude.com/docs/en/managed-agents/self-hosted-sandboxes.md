@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes
-fetched_at: 2026-07-16T03:08:08.295424Z
-sha256: 1b655a77dfff5747e617b3ed7fc7bb16fe10571d74d1ca6cf28aac5b46a4177d
+fetched_at: 2026-07-22T03:08:36.547264Z
+sha256: 132bbe416f275cdb146134a71c321f423d2c54cf79f5d40e8e68f5bbd9dcf93a
 ---
 
 # Self-hosted sandboxes
@@ -747,9 +747,50 @@ Use the work poller directly when you want to launch your own per-session proces
 
 **With `EnvironmentWorker`:** both are managed automatically. Pass a `tools` factory to customize the tool list:
 
-```python Python
-EnvironmentWorker(client, ..., tools=lambda env: [beta_bash_tool(env), my_custom_tool])
-```
+<CodeGroup exclude="shell">
+  ```python Python
+  EnvironmentWorker(client, ..., tools=lambda env: [beta_bash_tool(env), my_custom_tool])
+  ```
+
+  ```typescript TypeScript
+  new EnvironmentWorker({
+    client,
+    environmentId,
+    environmentKey,
+    tools: (ctx) => [betaBashTool(ctx), myCustomTool]
+  });
+  ```
+
+  ```csharp C#
+  // EnvironmentWorker is not currently available in the C# SDK.
+  // To answer custom tool calls directly, see the session event stream.
+  ```
+
+  ```go Go
+  worker := environments.NewEnvironmentWorker(client, environments.EnvironmentWorkerOptions{
+  	EnvironmentID:  environmentID,
+  	EnvironmentKey: environmentKey,
+  	ToolsFunc: func(env *agenttoolset.AgentToolContext) []anthropic.BetaTool {
+  		return []anthropic.BetaTool{agenttoolset.BetaBashTool(env), myCustomTool}
+  	},
+  })
+  ```
+
+  ```java Java
+  // EnvironmentWorker is not currently available in the Java SDK.
+  // To answer custom tool calls directly, see the session event stream.
+  ```
+
+  ```php PHP
+  // EnvironmentWorker is not currently available in the PHP SDK.
+  // To answer custom tool calls directly, see the session event stream.
+  ```
+
+  ```ruby Ruby
+  # EnvironmentWorker is not currently available in the Ruby SDK.
+  # To answer custom tool calls directly, see the session event stream.
+  ```
+</CodeGroup>
 
 **With `work.poller()` and `tool_runner()`:** pass a tool list as `tools` to `client.beta.sessions.events.tool_runner()`. To build that list, set up `AgentToolContext` yourself and call `beta_agent_toolset_20260401(env)`:
 

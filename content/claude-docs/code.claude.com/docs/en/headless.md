@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/headless
-fetched_at: 2026-07-21T03:08:36.086694Z
-sha256: ca8efba5e0acf19dd9d85d4aed108c949189cb3f11404483e7f52a30f3e2530f
+fetched_at: 2026-07-22T03:08:36.547264Z
+sha256: 881bce850c32a4a40a88269fe022d48c13d157fca72488f5c8d80e47e702a674
 ---
 
 > ## Documentation Index
@@ -158,7 +158,9 @@ Use `--output-format stream-json` with `--verbose` and `--include-partial-messag
 claude -p "Explain recursion" --output-format stream-json --verbose --include-partial-messages
 ```
 
-The last line of the stream is a `result` message with the final response text, cost, and session metadata. {/* min-version: 2.1.208 */}Before v2.1.208, piping a large response could truncate the final line and omit the `result` message.
+The last line of the stream is a `result` message with the final response text, cost, and session metadata.
+
+{/* min-version: 2.1.214 */}If your consumer reads the stream slowly, Claude Code waits for the queued output to drain before exiting, scaling the wait with how much is still queued, capped at 30 seconds. {/* min-version: 2.1.208 */}Before v2.1.214 the exit wait was capped at about two seconds, which could cut off the end of a large response, and before v2.1.208 piping a large response could truncate the final line and omit the `result` message.
 
 Messages from [subagents](/docs/en/sub-agents) appear in the stream as `assistant` and `user` messages whose `parent_tool_use_id` field is the ID of the tool call that spawned the subagent. Messages from the main conversation carry `null` in that field.
 

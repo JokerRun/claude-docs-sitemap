@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/rate-limits
-fetched_at: 2026-07-21T03:08:36.086694Z
-sha256: bb126c24d0faebfd476ef1a1e77783e33f71069deffebeaeff6c9c1195e3e597
+fetched_at: 2026-07-22T03:08:36.547264Z
+sha256: 9f0bbbf70b9d4cbbbcbfed30e09fe3154f6b831831efe4d210a6f7d6f0c25f98
 ---
 
 # Rate limits
@@ -25,7 +25,8 @@ The API enforces service-configured limits at the organization level, but you ma
 ## About rate limits
 
 * Limits are designed to prevent API abuse, while minimizing impact on common customer usage patterns.
-* Limits are defined by **usage tier**. Your organization is placed on a tier automatically and can move to a higher tier over time as you use the API.
+* Limits are defined by **usage tier**. Organizations are placed on a tier automatically based on usage history and account standing and can move to a higher tier over time as they use the API.
+* New organizations and organizations with limited usage history may start with limits below the standard limits shown on this page while account history is established. These starting limits are part of how we prevent fraud and abuse, and they increase automatically as your organization builds usage history.
 * Limits are set at the organization level. You can see your organization's tier and current limits on the [Limits](/settings/limits) page in the [Claude Console](/).
 * You might hit rate limits over shorter time intervals. For instance, a rate of 60 requests per minute (RPM) might be enforced as 1 request per second. Short bursts of requests can exceed the limit and trigger rate limit errors.
 * The following limits are the standard limits for each tier. If you need higher limits, see [Requesting higher limits](#requesting-higher-limits).

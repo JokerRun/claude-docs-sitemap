@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/memory
-fetched_at: 2026-07-21T03:08:36.086694Z
-sha256: 5fd9c0dc12334ae2595022699d7224fd90832912e9e82da6c4115024199009e8
+fetched_at: 2026-07-22T03:08:36.547264Z
+sha256: 40fda6f5c9d988b392e9013ced8df1d2f2b063c405ce5c49321f74910d8d4e60
 ---
 
 > ## Documentation Index
@@ -398,6 +398,8 @@ The main conversation's auto memory isn't loaded into [subagents](/docs/en/sub-a
 
 Claude reads and writes memory files during your session. When you see messages like "Saved 2 memories" or "Recalled 2 memories" in the Claude Code interface, Claude is actively updating or reading from `~/.claude/projects/<project>/memory/`.
 
+{/* min-version: 2.1.214 */}When Claude writes a memory file that begins with YAML frontmatter, Claude Code records the write time in a `modified` frontmatter field as an ISO 8601 timestamp. The timestamp shows how current the fact is, both to you and to Claude when it reads the memory back. Any file that has frontmatter gets the field the next time Claude writes it, including files created on earlier versions; Claude Code never adds frontmatter to a file that has none. The `modified` field requires Claude Code v2.1.214 or later.
+
 ### Audit and edit your memory
 
 Auto memory files are plain markdown you can edit or delete at any time. Run [`/memory`](#view-and-edit-with-%2Fmemory) to browse and open memory files from within a session.
@@ -405,6 +407,8 @@ Auto memory files are plain markdown you can edit or delete at any time. Run [`/
 ## View and edit with `/memory`
 
 The `/memory` command lists your CLAUDE.md, CLAUDE.local.md, and other memory file locations across user and project scopes, including user and project CLAUDE.md entries for files that don't exist yet. It also lets you toggle auto memory on or off and provides an option to open the auto memory folder. Select any file to open it in your editor; selecting one that doesn't exist yet creates it first. To check which files actually loaded into the current session, run `/context`.
+
+{/* min-version: 2.1.216 */}GUI editors such as VS Code open the file in a separate window, and you can keep using the session while it's open. Before v2.1.216, `/memory` waited for you to close the file before responding. Terminal editors such as Vim take over the terminal until you exit.
 
 When you ask Claude to remember something, like "always use pnpm, not npm" or "remember that the API tests require a local Redis instance," Claude saves it to auto memory. To add instructions to CLAUDE.md instead, ask Claude directly, like "add this to CLAUDE.md," or edit the file yourself via `/memory`.
 

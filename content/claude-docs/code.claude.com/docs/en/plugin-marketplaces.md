@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugin-marketplaces
-fetched_at: 2026-07-21T03:08:36.086694Z
-sha256: c55f3461e5367188de1f3d67e61ba273bf3881b280066f32537dc2dca9bb3b23
+fetched_at: 2026-07-22T03:08:36.547264Z
+sha256: b26587f202719e55188d55f099b17adad7a64a046bf838a7843627aa72e4129e
 ---
 
 > ## Documentation Index
@@ -66,7 +66,10 @@ This example creates a marketplace with one plugin: a `quality-review` skill for
     {
       "name": "quality-review-plugin",
       "description": "Adds a quality-review skill for quick code reviews",
-      "version": "1.0.0"
+      "version": "1.0.0",
+      "author": {
+        "name": "Your Name"
+      }
     }
     ```
 
@@ -96,11 +99,12 @@ This example creates a marketplace with one plugin: a `quality-review` skill for
   </Step>
 
   <Step title="Add and install">
-    Add the marketplace and install the plugin.
+    From the directory that contains `my-marketplace`, start Claude Code and run the following commands. The install command opens a plugin details view where you select an installation scope to confirm the install, and `/reload-plugins` activates the plugin in your current session.
 
     ```shell theme={null}
     /plugin marketplace add ./my-marketplace
     /plugin install quality-review-plugin@my-plugins
+    /reload-plugins
     ```
   </Step>
 
@@ -881,7 +885,7 @@ Earlier versions of Claude Code ignore the `renames` field and report `plugin-no
 
 Test your marketplace before sharing.
 
-Validate your marketplace JSON syntax:
+From your marketplace directory, validate the JSON syntax:
 
 ```bash theme={null}
 claude plugin validate .
@@ -988,7 +992,7 @@ claude plugin marketplace list [options]
 | :------- | :------------- |
 | `--json` | Output as JSON |
 
-With `--json`, each entry includes `name`, `source`, and source-specific fields: `repo` for GitHub sources, `url` for git and URL sources, and `path` for local sources. GitHub and git sources also include a `ref` field when the marketplace was added with a pinned branch or tag.
+With `--json`, each entry includes `name`, `source`, an `installLocation` field with the local cache path where the marketplace is stored, and source-specific fields: `repo` for GitHub sources, `url` for git and URL sources, and `path` for local sources. GitHub and git sources also include a `ref` field when the marketplace was added with a pinned branch or tag.
 
 ### Plugin marketplace remove
 
@@ -1089,8 +1093,8 @@ To validate an individual plugin's `plugin.json` and its skill, agent, command, 
 For manual installation and updates:
 
 * Verify you're authenticated with your git provider (for example, run `gh auth status` for GitHub)
-* Check that your credential helper is configured correctly: `git config --global credential.helper`
-* Try cloning the repository manually to verify your credentials work
+* Check that your credential helper is configured: `git config --global credential.helper`
+* Run `git ls-remote <marketplace-url>` to test whether git can authenticate on its own. If git asks for a username or password, store the credential first: for GitHub over HTTPS, run `gh auth setup-git`, and for SSH remotes, load your key into `ssh-agent`
 
 For background auto-updates:
 

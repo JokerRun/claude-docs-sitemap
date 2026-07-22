@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/jetbrains
-fetched_at: 2026-07-21T03:08:36.086694Z
-sha256: a5f0360ca8b0e7be9ebd885cd4c80347d2329f9703e7a26f22946d53a959d2b7
+fetched_at: 2026-07-22T03:08:36.547264Z
+sha256: 920527f367773607ee2c88ec6f9c5982be894b8eae9ee9ea0fad8ccb7630c3a0
 ---
 
 > ## Documentation Index
@@ -74,6 +74,8 @@ claude
 /ide
 ```
 
+When the connection succeeds, Claude Code confirms with a message like `Connected to IntelliJ IDEA.` If Claude Code detects a running IDE that doesn't have the plugin, `/ide` installs the plugin for you and asks you to restart the IDE.
+
 If you want Claude to have access to the same files as your IDE, start Claude Code from the same directory as your IDE project root.
 
 ## Configuration
@@ -120,10 +122,8 @@ This allows the ESC key to properly interrupt Claude Code operations.
 ### Remote development
 
 <Warning>
-  When using JetBrains Remote Development, you must install the plugin in the remote host via **Settings → Plugin (Host)**.
+  When using JetBrains Remote Development, you must install the plugin on the remote host via **Settings → Plugin (Host)**, not on your local client machine.
 </Warning>
-
-The plugin must be installed on the remote host, not on your local client machine.
 
 ### WSL configuration
 
@@ -141,7 +141,7 @@ This is the recommended fix because it keeps your existing WSL2 networking mode.
     hostname -I
     ```
 
-    Note the subnet, for example `172.21.123.45` is in `172.21.0.0/16`.
+    Note your subnet: take the first two segments of the address and follow them with `.0.0/16`. For example, if the address is `172.21.123.45`, your subnet is `172.21.0.0/16`.
   </Step>
 
   <Step title="Create a firewall rule">
@@ -183,11 +183,11 @@ If the plugin is installed but Claude Code features don't appear in your IDE:
 
 ### IDE not detected
 
-If running `claude` shows "No available IDEs detected":
+If the `/ide` command shows "No available IDEs detected":
 
 * Verify the plugin is installed and enabled
 * Restart the IDE completely
-* Check that you're running Claude Code from the integrated terminal
+* If you expected an automatic connection without running `/ide`, check that you launched `claude` from the IDE's integrated terminal
 * For WSL users, see [WSL configuration](#wsl-configuration) above
 
 ### Command not found
