@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/vaults
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: 216170f970aa31e8806829c675d3c4f213d15e4f9ceebf3641956c9793da90c0
+fetched_at: 2026-07-23T03:08:39.550142Z
+sha256: d195434fe0a873cab6a0bfba054a66fc2a0e88bddaacb304f1d4435b168dc4b1
 ---
 
 # Authenticate with vaults
@@ -714,6 +714,10 @@ The actual credential values you supply (`token`, `access_token`, `refresh_token
     A credential must have at least one location enabled, so a create or update that would disable both locations returns a 400 error. Passing an explicit `null` for the `injection_location` object or for either field also returns a 400 error ("omit the field instead"). The response always returns both fields with their resolved values.
 
     A placeholder in a disabled location is neither substituted nor stripped. The request is sent to the third party with the literal opaque placeholder string in that location. If a request arrives at the third party containing the literal placeholder string, either that location is disabled for the credential or the destination host is not covered by the credential's `networking.allowed_hosts`.
+
+    <Note>
+      Credentials created in the Console enable header injection only. If your client sends the secret in the request body, such as a form-encoded token request, the placeholder passes through literally and the service rejects it with its own authentication error. Enable body injection in the Console form when you create the credential, or update the credential with `{"injection_location": {"body": true}}`.
+    </Note>
 
     The substitution happens at egress, not inside the sandbox. Anything that processes the credential locally sees the opaque placeholder, not the real value: clients that validate the credential format at startup may reject it, and clients that compute a request signature from the secret (for example, AWS SigV4) produce an invalid signature. Environment variable credentials work for clients that send the secret value verbatim in an outbound request, in a location the credential's `injection_location` enables.
 

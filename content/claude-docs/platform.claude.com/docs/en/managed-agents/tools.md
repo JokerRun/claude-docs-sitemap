@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/tools
-fetched_at: 2026-07-10T03:11:05.177659Z
-sha256: 460468163dbcc771b63232c668dbd647658613e1e1c1b59c2e306e81d2ad4029
+fetched_at: 2026-07-23T03:08:39.550142Z
+sha256: 9eef7a2f4e047cb1e955572f9e9ef4a42410df2b8039d385516b2735b1296a09
 ---
 
 # Tools
@@ -34,7 +34,7 @@ The agent toolset includes the following tools. All are enabled by default when 
 | Web fetch  | `web_fetch`  | Fetch content from a URL                       |
 | Web search | `web_search` | Search the web for information                 |
 
-When a tool output exceeds 100,000 tokens, it is automatically written to a file in the [sandbox](/docs/en/managed-agents/environments). The model receives a truncated preview with the file path and can read the full content from there.
+When a tool output exceeds 100,000 characters (about 25,000 tokens), it is automatically written to a file in the [sandbox](/docs/en/managed-agents/environments). The model receives a truncated preview with the file path and can read the full content from there.
 
 ## Configuring the toolset
 

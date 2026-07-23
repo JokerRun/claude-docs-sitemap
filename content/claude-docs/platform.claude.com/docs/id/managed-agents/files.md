@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/files
-fetched_at: 2026-07-10T03:11:05.177659Z
-sha256: 3d09dcd101dfd174dfb08dca429cf6f827862c56657ea93b506cb125fd9e2d55
+fetched_at: 2026-07-23T03:08:39.550142Z
+sha256: 1b0280fe9f1223a1ff5e5a7e6f0fee73a4612aba85bcb2c140e17fd5d314b80d
 ---
 
 # Menambahkan file
@@ -112,7 +112,7 @@ Pasang (mount) file yang telah diunggah ke dalam sandbox dengan menambahkannya k
           {
             type: "file",
             file_id: $file_id,
-            mount_path: "/workspace/data.csv"
+            mount_path: "/data.csv"
           }
         ]
       }' | curl --fail-with-body -sS "${auth[@]}" "${base_url}/sessions" --json @-
@@ -128,7 +128,7 @@ Pasang (mount) file yang telah diunggah ke dalam sandbox dengan menambahkannya k
   resources:
     - type: file
       file_id: $FILE_ID
-      mount_path: /workspace/data.csv
+      mount_path: /data.csv
   EOF
   )
   ```
@@ -141,7 +141,7 @@ Pasang (mount) file yang telah diunggah ke dalam sandbox dengan menambahkannya k
           {
               "type": "file",
               "file_id": file.id,
-              "mount_path": "/workspace/data.csv",
+              "mount_path": "/data.csv",
           },
       ],
   )
@@ -155,7 +155,7 @@ Pasang (mount) file yang telah diunggah ke dalam sandbox dengan menambahkannya k
       {
         type: "file",
         file_id: file.id,
-        mount_path: "/workspace/data.csv",
+        mount_path: "/data.csv",
       },
     ],
   });
@@ -172,7 +172,7 @@ Pasang (mount) file yang telah diunggah ke dalam sandbox dengan menambahkannya k
           {
               Type = "file",
               FileID = file.ID,
-              MountPath = "/workspace/data.csv",
+              MountPath = "/data.csv",
           },
       ],
   });
@@ -188,7 +188,7 @@ Pasang (mount) file yang telah diunggah ke dalam sandbox dengan menambahkannya k
   		OfFile: &anthropic.BetaManagedAgentsFileResourceParams{
   			Type:      anthropic.BetaManagedAgentsFileResourceParamsTypeFile,
   			FileID:    file.ID,
-  			MountPath: anthropic.String("/workspace/data.csv"),
+  			MountPath: anthropic.String("/data.csv"),
   		},
   	}},
   })
@@ -206,7 +206,7 @@ Pasang (mount) file yang telah diunggah ke dalam sandbox dengan menambahkannya k
               BetaManagedAgentsFileResourceParams.builder()
                   .type(BetaManagedAgentsFileResourceParams.Type.FILE)
                   .fileId(file.id())
-                  .mountPath("/workspace/data.csv")
+                  .mountPath("/data.csv")
                   .build()
           )
           .build()
@@ -221,7 +221,7 @@ Pasang (mount) file yang telah diunggah ke dalam sandbox dengan menambahkannya k
           BetaManagedAgentsFileResourceParams::with(
               type: 'file',
               fileID: $file->id,
-              mountPath: '/workspace/data.csv',
+              mountPath: '/data.csv',
           ),
       ],
   );
@@ -235,7 +235,7 @@ Pasang (mount) file yang telah diunggah ke dalam sandbox dengan menambahkannya k
       {
         type: "file",
         file_id: file.id,
-        mount_path: "/workspace/data.csv"
+        mount_path: "/data.csv"
       }
     ]
   )

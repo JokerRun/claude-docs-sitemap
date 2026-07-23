@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/use-case-guides/ticket-routing
-fetched_at: 2026-07-21T03:08:36.086694Z
-sha256: 61f9e0b4caf7f6ab7e20c89da30aaf06305e2582812bf0eadb155264ccc79884
+fetched_at: 2026-07-23T03:08:39.550142Z
+sha256: ce83eb2624ae59aca8261f35c922480b78907d930b697d90565a2ccaf0e35c20
 ---
 
 # Ticket routing
@@ -251,7 +251,7 @@ Ticket routing is a type of classification task. Claude analyzes the content of 
 Write a ticket classification prompt. The initial prompt should contain the contents of the user request and return both the reasoning and the intent.
 
 <Tip>
-  Try the [prompt generator](/docs/en/prompt-generator) on the [Claude Console](/login) to have Claude write a first draft for you.
+  Try the [metaprompt recipe from the Claude Cookbook](https://colab.research.google.com/github/anthropics/claude-cookbooks/blob/main/misc/metaprompt.ipynb) to have Claude write a first draft for you.
 </Tip>
 
 Here's an example ticket routing classification prompt:

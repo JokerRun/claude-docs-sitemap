@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek
-fetched_at: 2026-07-03T03:11:00.926352Z
-sha256: 735ec54139e07c8050b0833f0302385d81ce3e6de6dec3b3d0bb28704d666744
+fetched_at: 2026-07-23T03:08:39.550142Z
+sha256: e93a459ee462ea011cc54f7f6c877c2382eb54b23324ef3e2c0150a0d6f5d2e5
 ---
 
 # Kunci enkripsi yang dikelola pelanggan
@@ -19,12 +19,14 @@ claude "/claude-api tell me about customer-managed encryption keys"
 
 Penggunaan CMEK bersifat opsional. Organisasi yang memenuhi syarat dapat **memilih untuk ikut serta** menggunakan kunci enkripsi yang dikelola pelanggan alih-alih enkripsi default yang disediakan Anthropic. Untuk mengaktifkan CMEK, hubungi tim akun Anthropic Anda.
 
-<Accordion title="Mengaktifkan CMEK bersifat permanen dan dapat menyebabkan kehilangan data yang tidak dapat dipulihkan" className="!border-warning-200 bg-warning-900 text-warning-000 [&_button:hover]:bg-warning-200/10">
+<Warning>
+  **Mengaktifkan CMEK bersifat permanen dan dapat menyebabkan kehilangan data yang tidak dapat dipulihkan**
+
   Mengaktifkan CMEK bersifat permanen. Anthropic tidak menyimpan salinan kunci Anda, sehingga kesalahan konfigurasi atau kehilangan kunci dapat menghancurkan data yang dilindungi CMEK secara permanen. Jika Anda tidak yakin tentang langkah apa pun, hubungi perwakilan Anthropic Anda sebelum menerapkan perubahan.
 
   * **Kehilangan data permanen:** Jika kunci enkripsi Anda dihapus, dijadwalkan untuk dihapus, atau materi kuncinya dihancurkan, Anthropic tidak dapat memulihkan data Anda.
   * **Verifikasi pengidentifikasi bersifat wajib:** Memberikan akses kunci ke principal yang salah atau dipalsukan dapat mengekspos data Anda ke pihak yang tidak berwenang. Selalu verifikasi pengidentifikasi Anthropic terhadap identitas produksi yang dipublikasikan di setiap panduan konfigurasi. Jangan pernah memercayai pengidentifikasi yang diberikan melalui email, chat, atau saluran onboarding apa pun.
-</Accordion>
+</Warning>
 
 ## Cara kerjanya
 

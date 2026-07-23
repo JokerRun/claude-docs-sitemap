@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/typescript
-fetched_at: 2026-07-21T03:08:36.086694Z
-sha256: de34611900433ea7e970a902b535d9600c24a9048bbd4605dcb8e4e55a0e6929
+fetched_at: 2026-07-23T03:08:39.550142Z
+sha256: d6d9403ca6e6a0c2254b4a2215eba98863f8133cd68f78423b8df33cf302ac57
 ---
 
 > ## Documentation Index
@@ -262,14 +262,14 @@ function getSessionMessages(
 
 #### Return type: `SessionMessage`
 
-| Property             | Type                    | Description                                                                                                                                                                                                                                                                              |
-| :------------------- | :---------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `type`               | `"user" \| "assistant"` | Message role                                                                                                                                                                                                                                                                             |
-| `uuid`               | `string`                | Unique message identifier                                                                                                                                                                                                                                                                |
-| `session_id`         | `string`                | Session this message belongs to                                                                                                                                                                                                                                                          |
-| `message`            | `unknown`               | Raw message payload from the transcript                                                                                                                                                                                                                                                  |
-| `parent_tool_use_id` | `string \| null`        | For subagent messages, the `tool_use_id` of the spawning `Agent` tool call. `null` for main-session messages and older sessions                                                                                                                                                          |
-| `parent_agent_id`    | `string \| null`        | For messages from a [nested subagent](/docs/en/sub-agents#spawn-nested-subagents), the `agentId` of the subagent that spawned it. `null` for main-session messages, messages from top-level subagents, and older sessions. {/* min-version: 2.1.202 */}Requires Claude Code v2.1.202 or later |
+| Property             | Type                    | Description                                                                                                                                                                                                                                                                                               |
+| :------------------- | :---------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `type`               | `"user" \| "assistant"` | Message role                                                                                                                                                                                                                                                                                              |
+| `uuid`               | `string`                | Unique message identifier                                                                                                                                                                                                                                                                                 |
+| `session_id`         | `string`                | Session this message belongs to                                                                                                                                                                                                                                                                           |
+| `message`            | `unknown`               | Raw message payload from the transcript                                                                                                                                                                                                                                                                   |
+| `parent_tool_use_id` | `string \| null`        | For subagent messages, the `tool_use_id` of the spawning `Agent` tool call. `null` for main-session messages and older sessions                                                                                                                                                                           |
+| `parent_agent_id`    | `string \| null`        | For messages from a [nested subagent](/docs/en/sub-agents#let-subagents-spawn-their-own-subagents), the `agentId` of the subagent that spawned it. `null` for main-session messages, messages from top-level subagents, and older sessions. {/* min-version: 2.1.202 */}Requires Claude Code v2.1.202 or later |
 
 #### Example
 
@@ -670,7 +670,7 @@ type AgentDefinition = {
 | Field                                 | Required | Description                                                                                                                                                                                                                        |
 | :------------------------------------ | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `description`                         | Yes      | Natural language description of when to use this agent                                                                                                                                                                             |
-| `tools`                               | No       | Array of allowed tool names. If omitted, inherits all tools from parent. To preload Skills into the agent's context, use the `skills` field rather than listing `'Skill'` here                                                     |
+| `tools`                               | No       | Array of allowed tool names. If omitted, inherits every [tool available to subagents](/docs/en/sub-agents#available-tools). To preload Skills into the agent's context, use the `skills` field rather than listing `'Skill'` here       |
 | `disallowedTools`                     | No       | Array of tool names to explicitly disallow for this agent. MCP server-level patterns are also accepted: `mcp__server` or `mcp__server__*` removes every tool from that server, and `mcp__*` removes every MCP tool from any server |
 | `prompt`                              | Yes      | The agent's system prompt                                                                                                                                                                                                          |
 | `model`                               | No       | Model override for this agent. Accepts an alias such as `'fable'`, `'opus'`, `'sonnet'`, `'haiku'`, `'inherit'`, or a full model ID. If omitted or `'inherit'`, uses the main model                                                |

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/strict-tool-use
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: 6bab09d230a09b71705a375bf307723f89aa72d057e5ac12efda8c5e268b0e9d
+fetched_at: 2026-07-23T03:08:39.550142Z
+sha256: 77e53e4e78edf1e506407d1d4eee633d93ee5efa922a0701aa958955f4dd89c1
 ---
 
 # Strict tool use
@@ -394,6 +394,34 @@ For example, suppose a booking system needs `passengers: int`. Without strict mo
     Ensure tool parameters exactly match your schema:
 
     <CodeGroup>
+      ```bash cURL
+      curl https://api.anthropic.com/v1/messages \
+        -H "content-type: application/json" \
+        -H "x-api-key: $ANTHROPIC_API_KEY" \
+        -H "anthropic-version: 2023-06-01" \
+        -d '{
+          "model": "claude-opus-4-8",
+          "max_tokens": 1024,
+          "messages": [
+            {"role": "user", "content": "Search for flights to Tokyo departing June 1, 2026"}
+          ],
+          "tools": [{
+            "name": "search_flights",
+            "strict": true,
+            "input_schema": {
+              "type": "object",
+              "properties": {
+                "destination": {"type": "string"},
+                "departure_date": {"type": "string", "format": "date"},
+                "passengers": {"type": "integer", "enum": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
+              },
+              "required": ["destination", "departure_date"],
+              "additionalProperties": false
+            }
+          }]
+        }'
+      ```
+
       ```bash CLI
       ant messages create <<'YAML'
       model: claude-opus-4-8
@@ -667,6 +695,51 @@ For example, suppose a booking system needs `passengers: int`. Without strict mo
     Build reliable multistep agents with guaranteed tool parameters:
 
     <CodeGroup>
+      ```bash cURL
+      curl https://api.anthropic.com/v1/messages \
+        -H "content-type: application/json" \
+        -H "x-api-key: $ANTHROPIC_API_KEY" \
+        -H "anthropic-version: 2023-06-01" \
+        -d '{
+          "model": "claude-opus-4-8",
+          "max_tokens": 1024,
+          "messages": [
+            {"role": "user", "content": "Help me plan a trip from New York to Paris for 2 people, departing June 1, 2026"}
+          ],
+          "tools": [
+            {
+              "name": "search_flights",
+              "strict": true,
+              "input_schema": {
+                "type": "object",
+                "properties": {
+                  "origin": {"type": "string"},
+                  "destination": {"type": "string"},
+                  "departure_date": {"type": "string", "format": "date"},
+                  "travelers": {"type": "integer", "enum": [1, 2, 3, 4, 5, 6]}
+                },
+                "required": ["origin", "destination", "departure_date"],
+                "additionalProperties": false
+              }
+            },
+            {
+              "name": "search_hotels",
+              "strict": true,
+              "input_schema": {
+                "type": "object",
+                "properties": {
+                  "city": {"type": "string"},
+                  "check_in": {"type": "string", "format": "date"},
+                  "guests": {"type": "integer", "enum": [1, 2, 3, 4]}
+                },
+                "required": ["city", "check_in"],
+                "additionalProperties": false
+              }
+            }
+          ]
+        }'
+      ```
+
       ```bash CLI
       ant messages create <<'YAML'
       model: claude-opus-4-8

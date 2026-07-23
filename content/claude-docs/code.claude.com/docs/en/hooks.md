@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/hooks
-fetched_at: 2026-07-22T03:08:36.547264Z
-sha256: b212e7f13d2ede7d2b6d8d1c1bb6fdca5e29d023fad199abceac853904caad65
+fetched_at: 2026-07-23T03:08:39.550142Z
+sha256: 21ee7174a0d2e211871009ba9eff4965804cefe635fd977e26f7c67cf0646d61
 ---
 
 > ## Documentation Index
@@ -578,7 +578,9 @@ hooks:
 ---
 ```
 
-Agents use the same format in their YAML frontmatter.
+Subagents use the same format in their YAML frontmatter.
+
+{/* min-version: 2.1.218 */}Frontmatter hooks in a project subagent run only after you accept the [workspace trust dialog](/docs/en/permissions#project-allow-rules-and-workspace-trust) for the folder the agent file came from; see [which scopes are exempt](/docs/en/sub-agents#hooks-in-subagent-frontmatter). Before v2.1.218, these hooks could run from folders you hadn't trusted.
 
 ### The `/hooks` menu
 

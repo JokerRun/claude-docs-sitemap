@@ -23,7 +23,7 @@ Automated daily English sitemap collection from Claude documentation sources.
 <!-- tsv_preview_start -->
 | source | loc | lastmod | priority |
 |--------|--------|--------|--------|
-| code | https://code.claude.com/docs/en/accessibility | 2026-07-16 |  |
+| code | https://code.claude.com/docs/en/accessibility | 2026-07-22 |  |
 | code | https://code.claude.com/docs/en/admin-setup | 2026-07-21 |  |
 | code | https://code.claude.com/docs/en/advisor | 2026-07-16 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/agent-loop | 2026-07-20 |  |
@@ -38,7 +38,7 @@ Automated daily English sitemap collection from Claude documentation sources.
 | code | https://code.claude.com/docs/en/agent-sdk/modifying-... | 2026-07-03 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/observability | 2026-07-21 |  |
 | code | https://code.claude.com/docs/en/agent-sdk/overview | 2026-07-20 |  |
-| ... | _(~894 more rows)_ | | |
+| ... | _(~897 more rows)_ | | |
 
 <!-- tsv_preview_end -->
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployments/pause
-fetched_at: 2026-07-11T03:08:19.250903Z
-sha256: f8b099adb24ff022dff233f1bc0f28a751713080fd530a522aee462a0208ad5f
+fetched_at: 2026-07-23T03:08:39.550142Z
+sha256: 4723549f00157440c6c50678737bf9627f3fab91899dd717bbcc304a43999ae8
 ---
 
 ## Pause Deployment
@@ -23,7 +23,7 @@ Pause Deployment
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 26 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 27 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -74,6 +74,8 @@ Pause Deployment
     - `"managed-agents-2026-04-01"`
 
     - `"cache-diagnosis-2026-04-07"`
+
+    - `"dreaming-2026-04-21"`
 
     - `"thinking-token-count-2026-05-13"`
 

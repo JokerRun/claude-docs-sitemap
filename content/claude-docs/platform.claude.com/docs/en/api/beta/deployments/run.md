@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployments/run
-fetched_at: 2026-07-11T03:08:19.250903Z
-sha256: 38fc7e26e0a75f4c41d5c3094db008fcf731068bbae64ce07bde98fb487eb56f
+fetched_at: 2026-07-23T03:08:39.550142Z
+sha256: 1d933855810e609cb35c84145762d74675bf30faf76e88b0cc17329e008c3aba
 ---
 
 ## Run Deployment Now
@@ -23,7 +23,7 @@ Run Deployment Now
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 26 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 27 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -74,6 +74,8 @@ Run Deployment Now
     - `"managed-agents-2026-04-01"`
 
     - `"cache-diagnosis-2026-04-07"`
+
+    - `"dreaming-2026-04-21"`
 
     - `"thinking-token-count-2026-05-13"`
 

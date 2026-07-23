@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/get-started
-fetched_at: 2026-07-17T03:08:17.884216Z
-sha256: ec98d455b7deee2e9d44a7f24173a5a9d522a8d439d67bd874aa468f55f81940
+fetched_at: 2026-07-23T03:08:39.550142Z
+sha256: 7b48d6a1d0f3526959bc579cf6469cabc2a216ed80a9d74c036d938a33c147e4
 ---
 
 # Get started with Claude
@@ -13,7 +13,7 @@ Make your first API call to Claude and build a simple web search assistant.
 
 ## Prerequisites
 
-* An Anthropic [Console account](/)
+* A [Claude Console account](https://platform.claude.com)
 * An [API key](/settings/keys)
 
 ## Call the API

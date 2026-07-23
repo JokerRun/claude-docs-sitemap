@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/batches/create
-fetched_at: 2026-07-11T03:08:19.250903Z
-sha256: 62a2098b548e9485883fac281f4874e7fa9c1468f570dc428b7cea5f983d922a
+fetched_at: 2026-07-23T03:08:39.550142Z
+sha256: a9c47de8f517b4429e38b0c828d1cb1aed4831f71ba54e4a89856834eddd83e4
 ---
 
 ## Create a Message Batch
@@ -23,7 +23,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 26 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 27 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -74,6 +74,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
     - `"managed-agents-2026-04-01"`
 
     - `"cache-diagnosis-2026-04-07"`
+
+    - `"dreaming-2026-04-21"`
 
     - `"thinking-token-count-2026-05-13"`
 
@@ -1543,6 +1545,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
       - `speed: optional "standard" or "fast"`
 
+        Inference speed mode. `fast` provides significantly faster output token generation at premium pricing. Not all models support `fast`; invalid combinations are rejected at create time.
+
         - `"standard"`
 
         - `"fast"`
@@ -1647,7 +1651,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
     - `speed: optional "standard" or "fast"`
 
-      The inference speed mode for this request. `"fast"` enables high output-tokens-per-second inference.
+      Inference speed mode. `fast` provides significantly faster output token generation at premium pricing. Not all models support `fast`; invalid combinations are rejected at create time.
 
       - `"standard"`
 

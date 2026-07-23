@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/python
-fetched_at: 2026-07-21T03:08:36.086694Z
-sha256: e8141eaf2bc92d721e817c0739fe3fd172a936c62646a07cc198809991993d6e
+fetched_at: 2026-07-23T03:08:39.550142Z
+sha256: a8a9d22569de3037247501c7d44df7c16d73f0549f9105770e4f6f41c33f4a79
 ---
 
 > ## Documentation Index
@@ -1145,7 +1145,7 @@ class AgentDefinition:
 | :---------------- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `description`     | Yes      | Natural language description of when to use this agent                                                                                                                                                                           |
 | `prompt`          | Yes      | The agent's system prompt                                                                                                                                                                                                        |
-| `tools`           | No       | Array of allowed tool names. If omitted, inherits all tools                                                                                                                                                                      |
+| `tools`           | No       | Array of allowed tool names. If omitted, inherits every [tool available to subagents](/docs/en/sub-agents#available-tools)                                                                                                            |
 | `disallowedTools` | No       | Array of tool names to remove from the agent's tool set. MCP server-level patterns are also accepted: `mcp__server` or `mcp__server__*` removes every tool from that server, and `mcp__*` removes every MCP tool from any server |
 | `model`           | No       | Model override for this agent. Accepts an alias such as `"sonnet"`, `"opus"`, `"haiku"`, or `"inherit"`, or a full model ID. If omitted, uses the main model                                                                     |
 | `skills`          | No       | List of skill names to preload into the agent's context at startup. Unlisted skills remain invocable through the Skill tool                                                                                                      |

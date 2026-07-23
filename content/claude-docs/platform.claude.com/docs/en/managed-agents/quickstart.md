@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/quickstart
-fetched_at: 2026-07-16T03:08:08.295424Z
-sha256: 2ffd568601d9311fb332ef06357c1d8968f3cc6d5236c15ba5a658b3a568b051
+fetched_at: 2026-07-23T03:08:39.550142Z
+sha256: 4a607a96c1720e1c93789cc5adee1ed57a9080c017524cb576bc848c7a61cc42
 ---
 
 # Get started with Claude Managed Agents
@@ -28,7 +28,7 @@ This guide walks you through creating an agent, setting up an environment, start
 
 ## Prerequisites
 
-* An Anthropic [Console account](https://platform.claude.com)
+* A [Claude Console account](https://platform.claude.com)
 * An [API key](/settings/keys)
 
 ## Install the CLI

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/authentication
-fetched_at: 2026-07-21T03:08:36.086694Z
-sha256: 75d1338f741e8e064df1a5587b09421d2f01c42b28d30702c11f66811a1eeb70
+fetched_at: 2026-07-23T03:08:39.550142Z
+sha256: 43d151845b84e4aeca9f374a64d081aac2f5b1ea190bc10b4d318832ea2878f7
 ---
 
 > ## Documentation Index
@@ -156,7 +156,7 @@ Claude Code securely manages your authentication credentials:
 
 ### Renew an expiring login
 
-When the login you created with `/login` is within five days of expiring, Claude Code shows a warning at startup: `Your login expires in 3 days · run /login to renew`. Requires Claude Code v2.1.203 or later.
+When the login you created with `/login` is within three days of expiring, Claude Code shows a warning at startup: `Your login expires in 3 days · run /login to renew`. Requires Claude Code v2.1.203 or later. {/* min-version: 2.1.217 */}Before v2.1.217, the warning appeared five days out.
 
 Run `/login` to renew. The warning is informational and never blocks a request: authentication keeps working until the login actually expires. The login lifetime itself is unchanged; the advance warning is what v2.1.203 adds.
 

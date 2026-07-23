@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/list
-fetched_at: 2026-07-11T03:08:19.250903Z
-sha256: b34bf14bb45749985b27c4a6c3b0a28d18caeed6f5e4273f071966fd4f6d3f61
+fetched_at: 2026-07-23T03:08:39.550142Z
+sha256: 5ccd1d19490a12c701563aa76c9f7af59f13e9a9d85565659aae3fd25b4eb428
 ---
 
 ## List Credentials
@@ -37,7 +37,7 @@ List Credentials
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 26 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 27 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -88,6 +88,8 @@ List Credentials
     - `"managed-agents-2026-04-01"`
 
     - `"cache-diagnosis-2026-04-07"`
+
+    - `"dreaming-2026-04-21"`
 
     - `"thinking-token-count-2026-05-13"`
 

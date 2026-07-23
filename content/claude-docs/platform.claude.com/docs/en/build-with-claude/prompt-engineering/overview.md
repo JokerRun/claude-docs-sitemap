@@ -1,13 +1,13 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview
-fetched_at: 2026-07-21T03:08:36.086694Z
-sha256: aa097f81d8de347dc3287f591464d36511e582d3b1a48872419c0cfa88f0ebdd
+fetched_at: 2026-07-23T03:08:39.550142Z
+sha256: efab4b9cdce3f22f64e498fef41ca5597322f853573d89c3b687dc1afa9017a4
 ---
 
 # Prompt engineering overview
 
-Learn when prompt engineering is the right solution, and find Claude prompting techniques, Console prompting tools, and interactive tutorials.
+Learn when prompt engineering is the right solution, and find Claude prompting techniques and interactive tutorials.
 
 ---
 
@@ -22,8 +22,8 @@ This guide assumes that you have:
 If not, spend time establishing that first. Check out [Define success criteria and build evaluations](/docs/en/test-and-evaluate/develop-tests) for tips and guidance.
 
 <CardGroup cols={2}>
-  <Card title="Prompt generator" icon="link" href="/dashboard">
-    Don't have a first draft prompt? Try the prompt generator in the Claude Console!
+  <Card title="Prompt generator notebook" icon="link" href="https://colab.research.google.com/github/anthropics/claude-cookbooks/blob/main/misc/metaprompt.ipynb">
+    Don't have a first draft prompt? Generate one with the metaprompt recipe from the Claude Cookbook.
   </Card>
 
   <Card title="Prompting best practices" icon="link" href="/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices">
@@ -44,8 +44,6 @@ This guide focuses on success criteria that are controllable through prompt engi
 All prompting techniques (from clarity and examples to XML structuring, role prompting, thinking, and prompt chaining) are covered in [Prompting best practices](/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices). That's the living reference; start there.
 
 For general prompt engineering craft beyond Claude-specific techniques, see the blog post on [best practices for prompt engineering](https://claude.com/blog/best-practices-for-prompt-engineering).
-
-The [Claude Console](/dashboard) also offers [prompting tools](/docs/en/build-with-claude/prompt-engineering/prompting-tools) (prompt generator, templates and variables, and prompt improver) to help you build and refine prompts quickly.
 
 ***
 

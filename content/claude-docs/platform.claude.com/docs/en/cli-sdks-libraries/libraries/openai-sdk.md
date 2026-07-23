@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/libraries/openai-sdk
-fetched_at: 2026-07-21T03:08:36.086694Z
-sha256: 9aa394fd753ae37b66aa048b6562ceb588bbe0df8717bb5262ce80858f9f6188
+fetched_at: 2026-07-23T03:08:39.550142Z
+sha256: d8bab83fc8fc537606fc6c8f2c82efaefbaa0ef839b1f5074cb46583e8154faf
 ---
 
 # OpenAI SDK compatibility
@@ -93,7 +93,7 @@ Most unsupported fields are silently ignored rather than producing errors. These
 
 ### Output quality considerations
 
-If you’ve done lots of tweaking to your prompt, it’s likely to be well-tuned to OpenAI specifically. Consider using the [prompt improver in the Claude Console](/dashboard) as a good starting point.
+If you’ve done lots of tweaking to your prompt, it’s likely to be well-tuned to OpenAI specifically. Consider reworking it for Claude using the [prompting best practices guide](/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices).
 
 ### System / developer message hoisting
 

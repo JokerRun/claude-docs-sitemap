@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/sessions
-fetched_at: 2026-07-10T03:11:05.177659Z
-sha256: 987a9edbe4fc331ea2db501c729d3e223e9ca227e04a7f5a03a8d94a8df89165
+fetched_at: 2026-07-23T03:08:39.550142Z
+sha256: 2d39aec44d0c1622549bc76fae0d4b2572dfd17f87d7ba770f68886c53a9ca7b
 ---
 
 # Memulai sesi
@@ -148,7 +148,7 @@ Untuk menyematkan sesi ke versi agen tertentu, teruskan sebuah objek. Ini memung
   {
       Agent = new BetaManagedAgentsAgentParams
       {
-          Type = Anthropic.Models.Beta.Sessions.Type.Agent,
+          Type = BetaManagedAgentsAgentParamsType.Agent,
           ID = agent.ID,
           Version = 1,
       },
@@ -243,8 +243,8 @@ Contoh berikut memulai sesi yang menimpa model dan mengosongkan prompt sistem:
   ```
 
   ```bash CLI
-  # `agent` pada respons adalah snapshot yang telah di-resolve: setiap override mengganti field
-  # itu hanya untuk sesi ini, dan resource agent mempertahankan id serta versinya.
+  # The response's `agent` is the resolved snapshot: each override replaces that
+  # field for this session only, and the agent resource keeps its id and version.
   ant beta:sessions create \
     --transform 'agent.{id,version,model,system}' \
     --format json <<YAML
@@ -268,7 +268,7 @@ Contoh berikut memulai sesi yang menimpa model dan mengosongkan prompt sistem:
       },
       environment_id=environment.id,
   )
-  # Agen pada respons adalah snapshot terselesaikan dengan override yang diterapkan.
+  # The response's agent is the resolved snapshot with the overrides applied.
   print(f"Model: {override_session.agent.model.id}")
   print(f"System: {override_session.agent.system}")
   ```
@@ -283,7 +283,7 @@ Contoh berikut memulai sesi yang menimpa model dan mengosongkan prompt sistem:
     },
     environment_id: environment.id
   });
-  // Agen pada respons adalah snapshot terselesaikan dengan override yang diterapkan.
+  // The response's agent is the resolved snapshot with the overrides applied.
   console.log(`Model: ${overrideSession.agent.model.id}`);
   console.log(`System: ${overrideSession.agent.system}`);
   ```
@@ -303,7 +303,7 @@ Contoh berikut memulai sesi yang menimpa model dan mengosongkan prompt sistem:
       },
       EnvironmentID = environment.ID,
   });
-  // Agen pada respons adalah snapshot terselesaikan dengan override yang sudah diterapkan.
+  // The response's agent is the resolved snapshot with the overrides applied.
   Console.WriteLine($"Model: {overrideSession.Agent.Model.ID.Raw()}");
   Console.WriteLine($"System: {overrideSession.Agent.System ?? "null"}");
   ```
@@ -317,7 +317,7 @@ Contoh berikut memulai sesi yang menimpa model dan mengosongkan prompt sistem:
   			Model: anthropic.BetaManagedAgentsModelConfigParams{
   				ID: anthropic.BetaManagedAgentsModelClaudeSonnet5,
   			},
-  			// Hapus prompt sistem agen untuk sesi ini.
+  			// Clear the agent's system prompt for this session.
   			System: param.Null[string](),
   		},
   	},
@@ -326,7 +326,7 @@ Contoh berikut memulai sesi yang menimpa model dan mengosongkan prompt sistem:
   if err != nil {
   	panic(err)
   }
-  // Agen pada respons adalah snapshot hasil resolusi dengan override yang diterapkan.
+  // The response's agent is the resolved snapshot with the overrides applied.
   fmt.Printf("Model: %s\n", overrideSession.Agent.Model.ID)
   fmt.Printf("System: %q\n", overrideSession.Agent.System)
   ```
@@ -343,7 +343,7 @@ Contoh berikut memulai sesi yang menimpa model dan mengosongkan prompt sistem:
           .build())
       .environmentId(environment.id())
       .build());
-  // Agen pada respons adalah snapshot terresolusi dengan override yang diterapkan.
+  // The response's agent is the resolved snapshot with the overrides applied.
   IO.println("Model: " + overrideSession.agent().model().id());
   IO.println("System: " + overrideSession.agent().system().orElse("null"));
   ```
@@ -354,22 +354,22 @@ Contoh berikut memulai sesi yang menimpa model dan mengosongkan prompt sistem:
       type: 'agent_with_overrides',
       model: ['id' => 'claude-sonnet-5'],
   );
-  // Kosongkan prompt sistem untuk sesi ini. Akses array sangat penting di sini:
-  // create() membuang null dari array mentah dan ::with() memperlakukan argumen null sebagai dihilangkan.
+  // Clear the system prompt for this session. Array access is load-bearing here:
+  // create() strips nulls from raw arrays and ::with() treats null args as omitted.
   $overrides['system'] = null;
 
   $overrideSession = $client->beta->sessions->create(
       agent: $overrides,
       environmentID: $environment->id,
   );
-  // Agen pada respons adalah snapshot terselesaikan dengan override yang diterapkan.
+  // The response's agent is the resolved snapshot with the overrides applied.
   echo "Model: {$overrideSession->agent->model->id}\n";
   echo 'System: ' . ($overrideSession->agent->system ?? 'null') . "\n";
   ```
 
   ```ruby Ruby
-  # Override prompt sistem adalah `system_` (dengan underscore di akhir) karena
-  # `system` biasa adalah Kernel#system milik Ruby. Menyetelnya ke nil menghapus prompt.
+  # The system prompt override is `system_` (trailing underscore) because plain
+  # `system` is Ruby's Kernel#system. Setting it to nil clears the prompt.
   override_session = client.beta.sessions.create(
     agent: Anthropic::Beta::BetaManagedAgentsAgentWithOverridesParams.new(
       type: :agent_with_overrides,
@@ -379,7 +379,7 @@ Contoh berikut memulai sesi yang menimpa model dan mengosongkan prompt sistem:
     ),
     environment_id: environment.id
   )
-  # Agen pada respons adalah snapshot terselesaikan dengan override yang sudah diterapkan.
+  # The response's agent is the resolved snapshot with the overrides applied.
   puts "Model: #{override_session.agent.model.id}"
   puts "System: #{override_session.agent.system_.inspect}"
   ```

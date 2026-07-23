@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/cmek
-fetched_at: 2026-07-22T03:08:36.547264Z
-sha256: d31a678e6b376b9211175acad551ac9ed2752abb353494aaf35ffef28c20d14d
+fetched_at: 2026-07-23T03:08:39.550142Z
+sha256: 44337f5f959da2a43d82be97a2338c71b5651ecd99c4d47fb12bffba7964638a
 ---
 
 # Customer-managed encryption keys
@@ -19,12 +19,14 @@ A customer-managed encryption key (CMEK) lets you provision an encryption key in
 
 The use of CMEK is optional. Eligible organizations can **opt in** to use customer-managed encryption keys instead of the default encryption that Anthropic provides. To activate CMEK, contact your Anthropic account team.
 
-<Accordion title="Enabling CMEK is permanent and can cause irreversible data loss" className="!border-warning-200 bg-warning-900 text-warning-000 [&_button:hover]:bg-warning-200/10">
+<Warning>
+  **Enabling CMEK is permanent and can cause irreversible data loss**
+
   Enabling CMEK is permanent. Anthropic keeps no copy of your key, so misconfiguration or key loss can permanently destroy your CMEK-protected data. If you are uncertain about any step, contact your Anthropic representative before applying changes.
 
   * **Permanent data loss:** If your encryption key is deleted, scheduled for deletion, or has its key material destroyed, Anthropic cannot recover your data.
   * **Identifier verification is mandatory:** Granting key access to an incorrect or spoofed principal can expose your data to an unauthorized party. Always verify the Anthropic identifier against the published production identities in each configuration guide. Never trust an identifier provided over email, chat, or any onboarding channel.
-</Accordion>
+</Warning>
 
 ## How it works
 

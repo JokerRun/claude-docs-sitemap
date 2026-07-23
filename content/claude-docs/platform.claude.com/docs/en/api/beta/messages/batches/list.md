@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/batches/list
-fetched_at: 2026-07-11T03:08:19.250903Z
-sha256: ea6891b8b0dcf35d86ee5489ec10e366c8ac70af8d21fb74ef770d8e45a2c952
+fetched_at: 2026-07-23T03:08:39.550142Z
+sha256: 284b9f9ec95669452ecdbe2226172bfdcbd61d1a41c1910b0c76aef55abd0540
 ---
 
 ## List Message Batches
@@ -37,7 +37,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
   - `string`
 
-  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 26 more`
+  - `"message-batches-2024-09-24" or "prompt-caching-2024-07-31" or "computer-use-2024-10-22" or 27 more`
 
     - `"message-batches-2024-09-24"`
 
@@ -88,6 +88,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
     - `"managed-agents-2026-04-01"`
 
     - `"cache-diagnosis-2026-04-07"`
+
+    - `"dreaming-2026-04-21"`
 
     - `"thinking-token-count-2026-05-13"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/define-outcomes
-fetched_at: 2026-07-10T03:11:05.177659Z
-sha256: 5e4d5c7d51822127c753fb22a9e931e0a1c34a295d19c12a09c1061d6c2fe76b
+fetched_at: 2026-07-23T03:08:39.550142Z
+sha256: c6d76b88e86774c03477245260615a54a104675e00e5af747f7ded3999207b5f
 ---
 
 # Mendefinisikan hasil
@@ -70,7 +70,7 @@ Kirimkan rubrik sebagai teks inline pada `user.define_outcome` (lihat bagian ber
   rubric=$(curl -fsSL https://api.anthropic.com/v1/files \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: managed-agents-2026-04-01,files-api-2025-04-14" \
+    -H "anthropic-beta: managed-agents-2026-04-01" \
     -F file=@/tmp/rubric.md)
   rubric_id=$(jq -r '.id' <<<"$rubric")
   printf 'Uploaded rubric: %s\n' "$rubric_id"
@@ -722,11 +722,11 @@ Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Setelah se
 <CodeGroup>
   ```bash curl
   # List files produced by this session
-  # scope_id filtering requires the managed-agents beta alongside the files beta
+  # scope_id filtering requires the managed-agents beta
   files=$(curl -fsSL "https://api.anthropic.com/v1/files?scope_id=$session_id" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2023-06-01" \
-    -H "anthropic-beta: managed-agents-2026-04-01,files-api-2025-04-14")
+    -H "anthropic-beta: managed-agents-2026-04-01")
   jq -r '.data[] | "\(.id) \(.filename)"' <<<"$files"
 
   # Download a file
@@ -735,7 +735,7 @@ Agen menulis file output ke `/mnt/session/outputs/` di dalam sandbox. Setelah se
     curl -fsSL "https://api.anthropic.com/v1/files/$file_id/content" \
       -H "x-api-key: $ANTHROPIC_API_KEY" \
       -H "anthropic-version: 2023-06-01" \
-      -H "anthropic-beta: managed-agents-2026-04-01,files-api-2025-04-14" \
+      -H "anthropic-beta: managed-agents-2026-04-01" \
       -o /tmp/output.txt
   fi
   ```

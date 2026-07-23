@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/intro
-fetched_at: 2026-07-02T03:13:49.360020Z
-sha256: 6c9866e1b2fa7e8916fe5c5da5bc68afd17c9561cb4e0de8ae0abf3e4de2b264
+fetched_at: 2026-07-23T03:08:39.550142Z
+sha256: 5218bd25b0e3b2ef5939ac98ae99ae449cc570f7e8f79a83e2b963c8b1bcbda5
 ---
 
 # Intro to Claude
@@ -75,7 +75,7 @@ Anthropic provides developer tools to help you build and scale applications with
 
 <CardGroup cols={3}>
   <Card title="Developer Console" icon="computer" href="/">
-    Prototype and test prompts in your browser with the Workbench and prompt generator.
+    Prototype and test prompts in your browser with the Workbench.
   </Card>
 
   <Card title="API Reference" icon="code" href="/docs/en/api/overview">

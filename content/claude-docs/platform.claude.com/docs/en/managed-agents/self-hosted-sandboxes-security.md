@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes-security
-fetched_at: 2026-07-15T03:08:15.897796Z
-sha256: 270685f60abf38adf4513c91b6b673b4aba46e1ba855ffdd70d08260d099c29f
+fetched_at: 2026-07-23T03:08:39.550142Z
+sha256: cba1539d0c9dd06236fb78254c54a84dc9df720226a79243e2266d91825aa980
 ---
 
 # Security model
@@ -24,7 +24,7 @@ Anthropic secures the control plane across all environments: session and work qu
 
 ## What Anthropic cannot do for you
 
-* **Instantly invalidate a leaked key.** Anthropic can detect anomalous usage patterns, but cannot instantly invalidate a key. Treat `ANTHROPIC_ENVIRONMENT_KEY` like a database password: rotate it immediately if compromised.
+* **Know that your key leaked.** Anthropic can detect anomalous usage patterns, but cannot know your key was compromised. If you suspect `ANTHROPIC_ENVIRONMENT_KEY` leaked, revoke it and generate a replacement immediately. Revocation is validated on every request, so it takes effect on the worker's next call.
 * **Verify your worker build.** Anthropic does not inspect your sandbox image or runtime. A supply-chain compromise in your image is not detectable from the control plane.
 * **Isolate tools inside your sandbox.** Anthropic's security boundary stops at the sandbox. How you isolate individual tool executions from each other inside that boundary is entirely your responsibility.
 * **Enforce data retention in your environment.** Once session content reaches your worker, it is outside Anthropic's data lifecycle controls.

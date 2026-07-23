@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/keybindings
-fetched_at: 2026-07-21T03:08:36.086694Z
-sha256: 21e693e3bb174f0e56af8b16f9d707424584cb3a2ca1e186e0e20b513470d134
+fetched_at: 2026-07-23T03:08:39.550142Z
+sha256: f601200bb8f7f85713714734668e166b80572887abaa39cc9705aa9fb67f275b
 ---
 
 > ## Documentation Index
@@ -63,7 +63,7 @@ Each binding block specifies a **context** where the bindings apply:
 | `Task`            | Background task is running                                   |
 | `ThemePicker`     | Theme picker dialog                                          |
 | `Attachments`     | Image attachment navigation in select dialogs                |
-| `Footer`          | Footer indicator navigation (tasks, teams, diff)             |
+| `Footer`          | Footer indicator navigation (tasks, teams, diff, artifacts)  |
 | `MessageSelector` | Rewind and summarize dialog message selection                |
 | `DiffDialog`      | Diff viewer navigation                                       |
 | `ModelPicker`     | Model picker effort level                                    |
@@ -230,14 +230,15 @@ Actions available in the `Attachments` context:
 
 Actions available in the `Footer` context:
 
-| Action                  | Default | Description                              |
-| :---------------------- | :------ | :--------------------------------------- |
-| `footer:next`           | Right   | Next footer item                         |
-| `footer:previous`       | Left    | Previous footer item                     |
-| `footer:up`             | Up      | Navigate up in footer (deselects at top) |
-| `footer:down`           | Down    | Navigate down in footer                  |
-| `footer:openSelected`   | Enter   | Open selected footer item                |
-| `footer:clearSelection` | Escape  | Clear footer selection                   |
+| Action                  | Default           | Description                                                                                                                                                                                                               |
+| :---------------------- | :---------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `footer:next`           | Right             | Next footer item                                                                                                                                                                                                          |
+| `footer:previous`       | Left              | Previous footer item                                                                                                                                                                                                      |
+| `footer:up`             | Up                | Navigate up in footer (deselects at top)                                                                                                                                                                                  |
+| `footer:down`           | Down              | Navigate down in footer                                                                                                                                                                                                   |
+| `footer:openSelected`   | Enter             | Open selected footer item                                                                                                                                                                                                 |
+| `footer:clearSelection` | Escape            | Clear footer selection                                                                                                                                                                                                    |
+| `footer:dismiss`        | Backspace, Delete | Dismiss the selected [artifact](/docs/en/artifacts) link from the footer; the published artifact itself is unaffected. On other footer rows, these keys have no effect. {/* min-version: 2.1.217 */}Requires v2.1.217 or later |
 
 ### Message selector actions
 
